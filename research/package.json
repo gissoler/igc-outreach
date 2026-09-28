@@ -1,0 +1,16 @@
+{
+  "name": "igc-public-research",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "browser:install": "playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

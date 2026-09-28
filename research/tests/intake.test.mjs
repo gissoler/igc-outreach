@@ -1,0 +1,180 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createStore } from '../server/research/store.mjs';
+import { createApp } from '../server/index.mjs';
+import { applyUpdate, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
+import { blankProfile } from '../server/research/profileDefaults.mjs';
+import { createServer } from 'node:http';
+
+const DECK = `Andes Neuro Labs es una startup de Bogotá, Colombia.
+Nuestro producto se llama Aurora: un wearable con IA que detecta deterioro cognitivo temprano.
+Estamos en piloto con 3 clínicas en EE.UU.
+Buscamos levantar US$1.5M en una ronda pre-seed y aplicar a grants del NIH.
+El TAM es de $5B.
+Competidores: Calmwave, NeuroNest y Mindloop.
+No queremos inversionistas de tabaco.`;
+
+test('extracción heurística con citas literales y sin confundir TAM con monto', () => {
+  const out = heuristicExtract(DECK);
+  const get = (p) => out.find((u) => u.path === p)?.value;
+  assert.equal(get('company.name'), 'Andes Neuro Labs');
+  assert.equal(get('product.name'), 'Aurora');
+  assert.equal(get('funding.amount_usd'), 1_500_000);
+  assert.equal(get('funding.round'), 'pre-seed');
+  assert.equal(get('product.maturity'), 'prototype');
+  assert.deepEqual(get('competitors'), ['Calmwave', 'NeuroNest', 'Mindloop']);
+  assert.ok(out.filter((u) => u.path === 'funding.objectives').flatMap((u) => u.value).includes('grant'));
+  for (const u of out) assert.ok(DECK.replace(/\s+/g, ' ').includes(u.quote), u.path);
+});
+
+test('respuestas guiadas, omisiones y ediciones del usuario bloqueadas', async () => {
+  assert.deepEqual(interpretAnswer('funding.amount_usd', 'unos 2 millones'), { value: 2_000_000 });
+  assert.deepEqual(interpretAnswer('geography', 'México y Estados Unidos').value.sort(), ['MX', 'US']);
+  assert.deepEqual(interpretAnswer('competitors', 'none'), { skip: true });
+  const s = newIntake({ user: { name: 'Ana Pérez' } });
+  await runTurn(s, { text: 'Hi' });
+  assert.equal(s.pending, 'company.name');
+  await runTurn(s, { text: 'IGC Pharma' });
+  assert.equal(s.fields['company.name'].value, 'IGC Pharma');
+  assert.equal(s.fields['industry.sectors'], undefined);
+  s.fields['company.name'] = { value: 'Nombre editado', origin: 'user', confidence: 'user', quote: '' };
+  assert.equal(applyUpdate(s, { path: 'company.name', value: 'Other', quote: '' }, 'conversation', ''), false);
+});
+
+test('con modelo configurado, la heurística por patrones NO corre en paralelo (modelo manda)', async () => {
+  // Un servidor OpenAI-compatible real (como vLLM), no un mock de fetch: prueba el contrato HTTP tal
+  // cual lo habla el endpoint remoto (147.185.41.229), incluida la ruta /v1/models.
+  let lastBody = null;
+  const server = createServer((req, res) => {
+    let raw = '';
+    req.on('data', (c) => { raw += c; });
+    req.on('end', () => {
+      if (req.url === '/v1/models') { res.end(JSON.stringify({ data: [{ id: 'qwen3-4b' }] })); return; }
+      lastBody = JSON.parse(raw);
+      res.setHeader('Content-Type', 'application/json');
+      // El modelo decide deliberadamente NO extraer nada de este mensaje, aunque el texto
+      // contenga disparadores que la heurística por patrones sí reconocería (p. ej. "inversionistas").
+      res.end(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ reply: 'Ese texto no parece describir tu propia búsqueda de financiación. ¿Qué quieres financiar tú?', updates: [] }) } }] }));
+    });
+  });
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  try {
+    const env = { INTAKE_LLM_BASE_URL: `http://127.0.0.1:${server.address().port}/v1`, INTAKE_LLM_MODEL: 'qwen3-4b' };
+    const s = newIntake({});
+    // Texto que la heurística SÍ leería (dispara sector, objetivo e incluso un enlace) si corriera.
+    const noisy = 'Este README describe la investigación de inversionistas del propio producto. Ver http://localhost:5173/buscar.';
+    const turn = await runTurn(s, { text: noisy, env, fetchImpl: fetch });
+    assert.equal(turn.model.used, true);
+    assert.equal(s.fields['funding.objectives'], undefined, 'la heurística no debió tocar funding.objectives');
+    assert.equal(s.fields['company.website'], undefined, 'la heurística no debió tocar company.website');
+    assert.equal(s.messages.at(-1).text, 'Ese texto no parece describir tu propia búsqueda de financiación. ¿Qué quieres financiar tú?');
+    // El cuerpo enviado al servidor siguió el contrato OpenAI: model + messages con system/user.
+    assert.equal(lastBody.model, 'qwen3-4b');
+    assert.ok(Array.isArray(lastBody.messages) && lastBody.messages.some((m) => m.role === 'system'));
+  } finally {
+    server.close();
+  }
+});
+
+test('el modelo propone, el código valida enums y citas; si falla se usa la heurística', async () => {
+  const s = newIntake({});
+  const modelFetch = async () => new Response(JSON.stringify({ choices: [{ message: { content: '<think>x</think>{"reply":"Entendido. ¿Qué monto buscas?","updates":[{"path":"product.maturity","value":"clinical_phase_2","quote":"fase 2"},{"path":"funding.objectives","value":["grant","lottery"],"quote":""},{"path":"hack.field","value":"x"}]}' } }] }));
+  const turn = await runTurn(s, { text: 'Estamos en fase 2 con nuestro fármaco', env: { INTAKE_LLM_BASE_URL: 'http://127.0.0.1:11434/v1' }, fetchImpl: modelFetch });
+  assert.equal(turn.model.used, true);
+  assert.equal(s.fields['product.maturity'].value, 'clinical_phase_2');
+  assert.deepEqual(s.fields['funding.objectives'].value, ['grant']);
+  assert.equal(s.fields['funding.objectives'].confidence, 'inferred');
+  assert.equal(s.fields['hack.field'], undefined);
+  assert.equal(s.messages.at(-1).text, 'Entendido. ¿Qué monto buscas?');
+  const broken = await runTurn(s, { text: 'Somos Delta Bio', env: { INTAKE_LLM_BASE_URL: 'http://x' }, fetchImpl: async () => { throw new Error('offline'); } });
+  assert.equal(broken.model.error, 'offline');
+  assert.equal(s.fields['company.name'].value, 'Delta Bio');
+});
+
+test('planificador elige fuentes por objetivo y perfil confirmado conserva evidencia', async () => {
+  const s = newIntake({});
+  await runTurn(s, { documents: [{ name: 'deck.pdf', text: DECK }] });
+  const plan = planResearch(s, {});
+  const sources = plan.steps.map((x) => x.source);
+  assert.ok(sources.includes('Grants.gov') && sources.includes('NIH RePORTER') && sources.includes('SEC Form D'));
+  assert.ok(!sources.includes('ClinicalTrials.gov'));
+  const profile = toProfile(s, blankProfile({ name: 'Ana', email: 'a@b.co' }), { name: 'Ana', email: 'a@b.co' });
+  assert.equal(profile.founder.org, 'Andes Neuro Labs');
+  assert.ok(profile.project.funding_types.includes('grant'));
+  assert.equal(profile.intake.evidence['company.name'].origin, 'document:deck.pdf');
+  assert.equal(profile.intake.documents[0].name, 'deck.pdf');
+});
+
+test('rutas HTTP del prerregistro: aislamiento, documentos, edición y confirmación', async () => {
+  const store = createStore(':memory:');
+  const { server } = createApp({ store, env: {} });
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  const url = `http://127.0.0.1:${server.address().port}/api/research`;
+  try {
+    assert.equal((await fetch(url + '/intake')).status, 401);
+    const reg = await fetch(url + '/auth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: 'Ana Pérez', email: 'ana@example.test', password: 'StrongPass1' }) });
+    const cookie = reg.headers.get('set-cookie').split(';')[0];
+    const call = (path, method = 'GET', body) => fetch(url + path, method === 'GET' ? { headers: { cookie } } : { method, headers: { 'Content-Type': 'application/json', cookie }, body: JSON.stringify(body ?? {}) });
+    const first = await (await call('/intake')).json();
+    assert.equal(first.messages[0].role, 'assistant');
+    assert.equal(first.model.configured, false);
+    assert.equal((await call('/intake/message', 'POST', { text: '' })).status, 400);
+    assert.equal((await call('/intake/confirm', 'POST', {})).status, 400);
+    const after = await (await call('/intake/message', 'POST', { text: 'Te paso el deck', documents: [{ name: 'deck.pdf', type: 'application/pdf', size: 1000, text: DECK }] })).json();
+    assert.equal(after.documents.length, 1);
+    assert.equal(after.documents[0].text, undefined);
+    assert.equal(after.fields['company.name'].value, 'Andes Neuro Labs');
+    const edited = await (await call('/intake/field', 'PUT', { path: 'product.one_liner', value: 'Wearable que detecta deterioro cognitivo' })).json();
+    assert.equal(edited.fields['product.one_liner'].origin, 'user');
+    assert.equal((await call('/intake/field', 'PUT', { path: 'nope', value: 'x' })).status, 400);
+    const confirmed = await (await call('/intake/confirm', 'POST', {})).json();
+    assert.equal(confirmed.profile.project.name, 'Aurora');
+    assert.equal(confirmed.profile.onboardingComplete, false);
+    assert.ok(confirmed.intake.confirmedAt);
+    const me = await (await call('/auth/me')).json();
+    assert.equal(me.profile.founder.org, 'Andes Neuro Labs');
+    const removed = await (await call(`/intake/documents/${after.documents[0].id}`, 'DELETE', {})).json();
+    assert.equal(removed.documents.length, 0);
+    assert.equal(removed.fields['company.name'], undefined);
+    assert.equal(removed.fields['product.one_liner'].value, 'Wearable que detecta deterioro cognitivo');
+  } finally {
+    server.close();
+  }
+});
+
+test('investor-style intake: never re-asks a known field and sees previous documents', async () => {
+  const s = newIntake({ user: { name: 'Gisel' } });
+  let seen = null;
+  const reply = (body) => ({ ok: true, json: async () => ({ choices: [{ message: { content: JSON.stringify(body) } }] }) });
+  const env = { INTAKE_LLM_BASE_URL: 'http://model/v1' };
+  // Turn 1: a deck gives name, product and amount.
+  await runTurn(s, { text: 'Here is our deck', documents: [{ name: 'deck.pdf', text: 'Mentiva raises USD 1.5M. Mentiva app helps knowledge workers reflect on stress. 1,200 beta users.' }], env, fetchImpl: async (_u, init) => { seen = JSON.parse(JSON.parse(init.body).messages[1].content.replace(/\n\/no_think$/, '')); return reply({ reply: 'Read deck.pdf: Mentiva, raising $1.5M.', asking: 'product.one_liner', updates: [{ path: 'company.name', value: 'Mentiva', quote: 'Mentiva raises' }, { path: 'funding.amount_usd', value: 1500000, quote: 'USD 1.5M' }] }); } });
+  assert.ok(seen.open_questions.some((q) => q.path === 'company.name'));
+  assert.equal(s.pending, 'product.one_liner');
+  // Turn 2: the model tries to ask for the company name again → the server replaces it with an open question.
+  await runTurn(s, { text: 'It helps people reflect on stress and focus.', env, fetchImpl: async (_u, init) => { seen = JSON.parse(JSON.parse(init.body).messages[1].content.replace(/\n\/no_think$/, '')); return reply({ reply: 'Got it. What is the company name?', asking: 'company.name', updates: [{ path: 'product.one_liner', value: 'Helps people reflect on stress and focus', quote: '' }] }); } });
+  assert.ok(seen.previous_documents.includes('deck.pdf'), 'previous documents are sent again');
+  assert.ok(!seen.open_questions.some((q) => q.path === 'company.name'), 'filled fields are not open');
+  assert.notEqual(s.pending, 'company.name');
+  assert.ok(!/company name\?/i.test(s.messages.at(-1).text));
+  assert.match(s.messages.at(-1).text, /\?/);
+});
+
+test('intake: "no sé" skips the pending question, always asks one, never repeats the same summary', async () => {
+  const s = newIntake({ user: { name: 'Gisel' } });
+  const env = { INTAKE_LLM_BASE_URL: 'http://model/v1' };
+  const summary = 'Mentiva is a local, on-device mobile experience for professionals managing stress and focus.';
+  const answer = (body) => async () => ({ ok: true, json: async () => ({ choices: [{ message: { content: JSON.stringify(body) } }] }) });
+  await runTurn(s, { text: 'Mentiva, on-device app for stress and focus, prototype, pre-seed $1.5M, global, mental health', env, fetchImpl: answer({ ack: summary, question: 'What traction do you have?', asking: 'company.traction', updates: [{ path: 'company.name', value: 'Mentiva', quote: 'Mentiva' }] }) });
+  assert.equal(s.pending, 'company.traction');
+  // The founder doesn't know: skipped, and the next question is a different one.
+  await runTurn(s, { text: 'no se cuales son', env, fetchImpl: answer({ ack: summary, question: 'What traction do you have?', asking: 'company.traction', updates: [] }) });
+  assert.ok(s.skipped.includes('company.traction'));
+  assert.notEqual(s.pending, 'company.traction');
+  const last = s.messages.at(-1).text;
+  assert.ok(!last.includes('local, on-device'), 'the same summary is not repeated');
+  assert.match(last, /\?/);
+  // The model forgets to ask: the server still asks the next open question.
+  await runTurn(s, { text: 'for quarter 2 2026', env, fetchImpl: answer({ ack: 'Target: Q2 2026.', question: '', asking: null, updates: [{ path: 'funding.timeline', value: 'Q2 2026', quote: 'quarter 2 2026' }] }) });
+  assert.match(s.messages.at(-1).text, /^Target: Q2 2026\. .+\?/);
+});

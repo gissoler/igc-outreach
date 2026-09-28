@@ -1,0 +1,289 @@
+import { legacyDeep } from './legacyText';
+import type { LiveRunEvent } from './liveRunModel';
+export type Brief = {
+  name: string;
+  role: string;
+  company: string;
+  product: string;
+  description: string;
+  industry: string;
+  stage: string;
+  geography: string;
+  fundingTypes: string[];
+  amount: string | number | null;
+  criteria: string;
+  exclusions: string;
+  event: string;
+  minDays: number;
+  mode: 'strategic' | 'financial';
+  dataMode: 'live' | 'demo';
+  useTeam: boolean;
+  useApify: boolean;
+  excludeCompetitors: boolean;
+  strictTypes: boolean;
+  linkedinUrl?: string;
+  /** Organización que busca (p. ej. IGC) cuando es distinta de la empresa financiada. */
+  organization?: string;
+  /** Empresa o proyecto que recibe la financiación (p. ej. Mentiva). */
+  venture?: string;
+  relation?: string;
+  oneLiner?: string;
+  round?: string;
+  constraints?: string;
+  useOfFunds?: string;
+  timeline?: string;
+  website?: string;
+};
+export type Evidence = {
+  id: string;
+  source: string;
+  url: string;
+  quote: string;
+  field: string;
+  retrievedAt: string;
+  verified: boolean;
+};
+export type Feedback = {
+  decision: string;
+  reason: string;
+  note: string;
+  at: string;
+};
+export type WarmPlanStep = { when: string | null; what: string };
+export type WarmPlan = { route: string; label: string; built: boolean; via?: string; cadenceDays: number | null; updates?: number; why: string; steps: WarmPlanStep[]; hook?: string; source?: 'signals' | 'ai'; evidence?: { id: string; url: string; quote: string } | null };
+export type Lead = {
+  warmPlan?: WarmPlan;
+  eligibility?: { verdict: '✔' | '✖' | '?'; closed: boolean; questions: string[]; method: string };
+  activeFund?: { rank: number; dealsInWindow: number };
+  id: string;
+  rank: number;
+  person: string | null;
+  role: string | null;
+  org: string;
+  title: string;
+  kind: string;
+  fundingType: string;
+  status: string;
+  deadline: string | null;
+  amount: number | null;
+  contact: { type: string; value: string; provenance: string } | null;
+  evidence: Evidence[];
+  paths: {
+    nodes: string[];
+    strength: number;
+    hypothesis: boolean;
+    hops: {
+      from: string;
+      to: string;
+      relation: string;
+      strength: number;
+      url: string | null;
+      evidenceIds: string[];
+    }[];
+  }[];
+  risks: string[];
+  missing: string[];
+  why: string[];
+  score: number;
+  breakdown: { factor: string; points: number; max: number }[];
+  confidence: string;
+  bucket: string;
+  discard: string;
+  demo: boolean;
+  feedback: Feedback | null;
+  /** Días hasta el cierre calculados por el servidor (null si no hay fecha). */
+  daysToDeadline?: number | null;
+  jev?: {
+    action: 'prioritize' | 'investigate_more' | 'discard';
+    actionConfidence: number;
+    actionProbabilities: Record<string, number>;
+    strategicFit: number;
+    fitConfidence: number;
+    evidenceSufficient: number;
+    model: string;
+  };
+  draft: {
+    subject: string;
+    body: string;
+    connector: string | null;
+    warning: string;
+    wordCount: number;
+    sections: { label: string; text: string; evidenceIds: string[] }[];
+  };
+};
+export type RunGrant = { id: string; leadId: string; title: string; agency: string; url: string; closeDate: string | null; awardCeiling: number | null; verdict: '✔' | '✖' | '?'; closed: boolean };
+export type ActiveFund = { fundId: string; rank: number; name: string; dealsInWindow: number; leads: number; inactive: boolean; signals: { type: string; label: string; url: string | null }[]; why: { text: string; url: string } | null };
+export type Job = {
+  grants?: { evaluations: RunGrant[]; alerts: { id: string; title: string; closeDate: string; days: number; verdict: string; level: string }[] };
+  activeInvestors?: { asOf: string; funds: ActiveFund[]; universe: number };
+  id: string;
+  brief: Brief;
+  mode: 'live' | 'demo';
+  status: string;
+  createdAt: string;
+  finishedAt?: string;
+  events: { phase: string; message: string; at: string }[];
+  leads: Lead[];
+  senderEvidence: Evidence[];
+  plan?: { summary: string; items: { provider: string; query: string }[] };
+  /** Eventos estructurados del Live Agent Run (ausente en investigaciones anteriores a este registro). */
+  run?: { version: number; events: LiveRunEvent[]; dropped: number };
+};
+export type History = {
+  id: string;
+  name: string;
+  product: string;
+  status: string;
+  mode: string;
+  createdAt: string;
+  /** Campos añadidos al listado (opcionales para compatibilidad con servidores anteriores). */
+  company?: string;
+  venture?: string;
+  finishedAt?: string | null;
+  leads?: number;
+  top?: number;
+}[];
+export const API = '/api/research';
+/** Error HTTP con código, para distinguir «no existe / no es tuya» (404) de fallos transitorios. */
+export class ApiError extends Error {
+  status: number;
+  code?: string;
+  detail?: string;
+  constructor(message: string, status: number, code?: string, detail?: string) {
+    super(message);
+    this.status = status;
+    this.code = code;
+    this.detail = detail;
+  }
+}
+export async function api<T>(
+  path: string,
+  body?: unknown,
+  method?: string,
+): Promise<T> {
+  const r = await fetch(API + path, {
+    method: method || (body ? 'POST' : 'GET'),
+    headers: body ? { 'Content-Type': 'application/json' } : undefined,
+    body: body ? JSON.stringify(body) : undefined,
+    signal: AbortSignal.timeout(15000),
+  });
+  const data = await r.json();
+  if (!r.ok)
+    throw new ApiError(
+      typeof data === 'object' && data !== null && 'error' in data
+        ? String(data.error)
+        : `Error ${r.status}`,
+      r.status,
+      typeof data === 'object' && data !== null && 'code' in data
+        ? String(data.code)
+        : undefined,
+      typeof data === 'object' && data !== null && 'detail' in data
+        ? String(data.detail)
+        : undefined,
+    );
+  return legacyDeep(data) as T;
+}
+export const blank: Brief = {
+  name: '',
+  role: '',
+  company: '',
+  product: '',
+  description: '',
+  industry: '',
+  stage: 'prototype',
+  geography: '',
+  fundingTypes: ['partnering'],
+  amount: '',
+  criteria: '',
+  exclusions: '',
+  event: '',
+  minDays: 30,
+  mode: 'strategic',
+  dataMode: 'live',
+  useTeam: false,
+  useApify: true,
+  excludeCompetitors: false,
+  strictTypes: false,
+};
+export const presets: Record<string, Brief> = {
+  ram: {
+    ...blank,
+    name: 'Ram Mukunda',
+    role: 'CEO & Director',
+    company: 'IGC Pharma',
+    product: 'IGC-AD1',
+    description:
+      'Phase 2 candidate for agitation in Alzheimer\'s dementia.',
+    industry: 'Alzheimer agitation neuroscience',
+    stage: 'clinical_phase_2',
+    geography: 'United States, Europe',
+    fundingTypes: ['partnering'],
+    criteria:
+      'Prioritize neuroscience partnering and licensing. Confirm the BD lead.',
+    useTeam: true,
+  },
+  rohit: {
+    ...blank,
+    name: 'Rohit Goel',
+    role: 'Senior Director, Accounting & Finance',
+    company: 'IGC Pharma',
+    product: 'AHA — Agentic Harmonization Assistant',
+    description:
+      'AI tool for research data harmonization.',
+    industry: 'Alzheimer data harmonization artificial intelligence',
+    stage: 'prototype',
+    geography: 'United States',
+    fundingTypes: ['grant'],
+    mode: 'financial',
+    minDays: 60,
+    criteria:
+      'Confirm for-profit eligibility and non-US work conditions.',
+  },
+};
+export const fundingLabels: Record<string, string> = {
+  partnering: 'Partnering / licensing',
+  grant: 'Grant / non-dilutive',
+  investment: 'Investment',
+  sponsorship: 'Sponsorship',
+  debt: 'Debt',
+};
+export const statusLabels: Record<string, string> = {
+  open: 'Open',
+  closed: 'Closed',
+  unknown: 'Unconfirmed',
+  forecasted: 'Forecast',
+  active: 'Recent activity',
+};
+
+/* ───────── Live Agent Run por SSE (EventSource nativo) ───────── */
+export type RunSnapshot = { jobId: string; status: string; events: LiveRunEvent[]; dropped: number; structured: boolean };
+export type RunStreamHandlers = {
+  onSnapshot: (snapshot: RunSnapshot) => void;
+  onEvent: (event: LiveRunEvent) => void;
+  onEnd: (status: string) => void;
+  /** El navegador está reintentando (reconexión automática con Last-Event-ID). */
+  onReconnecting: () => void;
+  /** El stream no se puede usar (404, red, servidor sin SSE): el llamador vuelve al sondeo. */
+  onFailure: () => void;
+};
+export function subscribeRun(jobId: string, handlers: RunStreamHandlers): () => void {
+  const source = new EventSource(`${API}/jobs/${encodeURIComponent(jobId)}/events`);
+  let closed = false;
+  let failures = 0;
+  const close = () => { closed = true; source.close(); };
+  const parse = <T,>(e: Event): T | null => {
+    try { return legacyDeep(JSON.parse((e as MessageEvent<string>).data)) as T; } catch { return null; }
+  };
+  source.addEventListener('snapshot', (e) => { failures = 0; const data = parse<RunSnapshot>(e); if (data && !closed) handlers.onSnapshot(data); });
+  source.addEventListener('live', (e) => { const data = parse<LiveRunEvent>(e); if (data && !closed) handlers.onEvent(data); });
+  source.addEventListener('end', (e) => { const data = parse<{ status: string }>(e); close(); handlers.onEnd(data?.status || 'done'); });
+  source.onerror = () => {
+    if (closed) return;
+    failures += 1;
+    // CLOSED: el servidor respondió con error (p. ej. 404). Tres reintentos seguidos sin snapshot: se usa el sondeo.
+    if (source.readyState === EventSource.CLOSED || failures >= 3) { close(); handlers.onFailure(); }
+    else handlers.onReconnecting();
+  };
+  return close;
+}
+export const frameUrl = (jobId: string, frameId: string) => `${API}/jobs/${encodeURIComponent(jobId)}/frames/${encodeURIComponent(frameId)}`;

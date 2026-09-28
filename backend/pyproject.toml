@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "warmpath"
+version = "0.2.0"
+description = "Warm Path Engine MVP: inversores que encajan con un proyecto + el camino cálido más fuerte para llegar a ellos."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "duckdb>=1.0",
+  "fastapi>=0.115",
+  "networkx>=3.2",
+  "pydantic>=2.5",
+  "typer>=0.12",
+  "httpx>=0.27",
+  "selectolax>=0.3.21",
+  "pyyaml>=6.0",
+  "icalendar>=5.0",
+  "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+# Resolución de entidades probabilística (Splink 4 sobre DuckDB)
+splink = ["splink>=4.0", "pandas>=2.0"]
+# Similitud de tesis con embeddings (all-MiniLM-L6-v2). Sin esto se usa TF-IDF.
+embeddings = ["sentence-transformers>=2.7"]
+ui = ["streamlit>=1.35"]
+dev = ["pytest>=8.0"]
+all = ["splink>=4.0", "pandas>=2.0", "sentence-transformers>=2.7", "pytest>=8.0"]
+
+[project.scripts]
+warmpath = "warmpath.cli:app"
+warmpath-api = "warmpath.api:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

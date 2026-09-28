@@ -1,0 +1,44 @@
+{
+  "name": "warmpath-frontend",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint:research": "cd .. && frontend/node_modules/.bin/oxlint frontend/src/Research.tsx frontend/src/ResearchResults.tsx frontend/src/LiveAgentRun.tsx frontend/src/liveRunModel.ts frontend/src/researchApi.ts frontend/src/AccountPortal.tsx frontend/src/IntakeAgent.tsx frontend/src/docText.ts frontend/src/accountApi.ts frontend/src/main.tsx research/server research/tests",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "d3-geo": "^3.1.1",
+    "d3-scale": "^4.0.2",
+    "d3-selection": "^3.0.0",
+    "d3-shape": "^3.2.0",
+    "d3-transition": "^3.0.1",
+    "d3-zoom": "^3.0.0",
+    "lucide-react": "latest",
+    "pdfjs-dist": "^6.3.289",
+    "react": "latest",
+    "react-dom": "latest",
+    "topojson-client": "^3.1.0",
+    "typescript": "latest",
+    "us-atlas": "^3.0.1",
+    "vite": "latest",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "^3.1.1",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-selection": "^3.0.12",
+    "@types/d3-shape": "^3.2.0",
+    "@types/d3-transition": "^3.0.9",
+    "@types/d3-zoom": "^3.0.8",
+    "@types/geojson": "^7946.0.16",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/topojson-client": "^3.1.5",
+    "oxlint": "^1.76.0"
+  }
+}

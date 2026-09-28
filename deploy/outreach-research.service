@@ -1,0 +1,21 @@
+[Unit]
+Description=IGC Outreach - research (cuentas, red, investigación)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=outreach
+Group=outreach
+WorkingDirectory=/opt/outreach/research
+# Lee research/.env (claves) igual que en local con `npm start`.
+ExecStart=/usr/bin/node --env-file-if-exists=.env server/index.mjs
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ReadWritePaths=/opt/outreach/research/data
+
+[Install]
+WantedBy=multi-user.target

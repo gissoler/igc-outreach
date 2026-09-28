@@ -1,0 +1,14 @@
+# Rondas de los comparables. REGLA: sin source_url + snippet literal, no entra.
+# Genera entradas con:  warmpath extract-round <URL-del-anuncio>   (verifica la cita)
+# El bloque de abajo es un EJEMPLO de formato con datos ficticios: bórralo.
+rounds:
+  - company: "COMPARABLE 1"
+    date: 2025-03-15
+    stage: seed
+    amount_usd: 3000000
+    investors:
+      - {name: "Fondo Ejemplo Ventures", lead: true, person: "Nombre Partner", domain: "fondoejemplo.vc"}
+      - {name: "Otro Fondo Capital", lead: false}
+    source_url: "https://example.com/anuncio-ronda"
+    snippet: "The round was led by Fondo Ejemplo Ventures with participation from Otro Fondo Capital."
+    confidence: 0.9

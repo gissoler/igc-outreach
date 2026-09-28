@@ -1,0 +1,52 @@
+# Perfil del proyecto + 5 comparables. Copia a config/project.yaml (warmpath init lo hace).
+# Todo lo que está aquí es entrada del founder; nada se inventa en el output.
+project:
+  name: Mentiva
+  one_liner: "Plataforma de salud mental digital con wearables para seguimiento continuo"
+  description: >
+    Monitoreo de bienestar mental con señales de wearables y evaluación clínica digital,
+    para clínicas y empleadores. Evidencia de mundo real (RWE) y modelo B2B2C.
+  sectors: [digital health, mental health, wearables, healthtech]
+  keywords: [behavioral health, remote monitoring, measurement-based care, digital therapeutics]
+  stage: pre-seed
+  raise_usd: 750000
+  geo: [US, CO]
+
+founder:
+  name: "NOMBRE DEL FOUNDER"
+  email: "founder@startup.com"          # cuenta cuyo export de Outlook se usará
+  linkedin_url: "https://www.linkedin.com/in/SLUG"
+  org: "Mentiva"
+
+# 5 comparables: startups parecidas que YA levantaron capital. cik opcional (EDGAR).
+comparables:
+  - {name: "COMPARABLE 1", domain: "comparable1.com", sec_cik: "", aliases: [], why: "mismo problema, 1-2 años adelante"}
+  - {name: "COMPARABLE 2", domain: "", sec_cik: "", aliases: []}
+  - {name: "COMPARABLE 3", domain: "", sec_cik: "", aliases: []}
+  - {name: "COMPARABLE 4", domain: "", sec_cik: "", aliases: []}
+  - {name: "COMPARABLE 5", domain: "", sec_cik: "", aliases: []}
+
+filters:
+  stages_allowed: [pre-seed, seed]
+  ticket_min_usd: 100000
+  ticket_max_usd: 1500000
+  geos: [US, LATAM, GLOBAL]     # se aplica solo si el fondo publica su geografía
+  require_known_stage: false
+
+weights: {seed: 0.30, coinvest: 0.20, thesis: 0.25, path: 0.20, activity: 0.05}
+top_n: 20
+hop_penalty: 0.25   # costo extra por salto: prefiere 2 saltos fuertes a 4 débiles
+max_hops: 4
+
+# Equipo y grupo: cada persona es un punto de partida más para los caminos cálidos.
+# role: cofounder | equipo | advisor | board | inversionista | grupo. closeness vacío = valor por rol.
+# shares_network: true solo con consentimiento (warmpath consent add) y su export ingerido con --owner-name.
+team:
+  - {name: "COFOUNDER", role: cofounder, email: "", linkedin_url: "", org: "Mentiva", shares_network: false}
+# Contactos que conoces sin export (fuerza: fuerte | media | debil). known_by vacío = founder.
+contacts:
+  - {name: "PARTNER CONOCIDO", org: "NOMBRE DEL FONDO", known_by: "COFOUNDER", strength: media, note: ""}
+# Afiliaciones compartidas: generan HIPÓTESIS débiles con personas del grafo de la misma organización.
+affiliations:
+  - {name: "UNIVERSIDAD", kind: universidad, members: []}
+exclude_funds: []

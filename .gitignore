@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+*.egg-info/
+.pytest_cache/
+
+# Datos locales: NUNCA subir exports personales ni la base
+backend/data/
+backend/exports/
+backend/out/
+*.duckdb
+*.duckdb.wal
+.env
+backend/config/project.yaml
+backend/config/rounds.yaml
+
+# Base de research, capturas y salidas de trabajo (no van al servidor)
+research/data/*.sqlite
+research/data/*.sqlite-*
+workspace_notes/
+backend/eval/results/
+*.png
+!frontend/public/**/*.png
+.DS_Store

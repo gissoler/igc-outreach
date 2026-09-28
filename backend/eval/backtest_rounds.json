@@ -1,0 +1,968 @@
+{
+  "version": "2026-09-27",
+  "criterios": "Rondas de salud y salud mental, pre-seed/seed (o etapa no especificada), LatAm o EE. UU., anunciadas entre 2023 y 2026, con líder nombrado en la fuente. Las citas se copiaron con una herramienta de lectura web (texto intermedio): quote_verified=false hasta correr scripts/backtest-verify.mjs, que comprueba cada cita literal contra la página.",
+  "limitaciones": [
+    "32 rondas incluidas (objetivo 30–50).",
+    "Salud mental/conductual: 11; neuro/demencia/cuidadores/sueño: 5. El objetivo de ≥15 de salud mental no se cumple.",
+    "LatAm: 12; EE. UU.: 20. Pre-seed: 6.",
+    "profile_hint sale del anuncio (posterior a T): reemplazar por el perfil de Wayback anterior a T antes de reportar resultados.",
+    "Las citas vienen de una herramienta de lectura web (texto intermedio); quote_verified=false hasta correr scripts/backtest-verify.mjs."
+  ],
+  "rounds": [
+    {
+      "id": "latam-01",
+      "company": "Telepatia AI",
+      "announced": "2025-10-20",
+      "stage": "seed",
+      "amount_text": "$9M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "A-Star"
+      ],
+      "co_investors": [
+        "Canary",
+        "Abstract",
+        "Picus",
+        "SV Angel",
+        "Nido"
+      ],
+      "url": "https://latamlist.com/telepatia-ai-raises-9m-seed-round/",
+      "quote": "Brazilian healthtech Telepatia AI raised a $9M seed round led by A-Star.",
+      "profile_hint": "seed · digital health · BR · an AI Doctor that transcribes consultations, generates medical reports, and helps make clinical decisions.",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.telepatia.ai/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-02",
+      "company": "Huna",
+      "announced": "2025-06-05",
+      "stage": "pre-seed",
+      "amount_text": "$1.5M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "diagnostics",
+      "leads": [
+        "Kortex Ventures"
+      ],
+      "co_investors": [
+        "big_bets",
+        "Niu Ventures",
+        "New Ventures Capital"
+      ],
+      "url": "https://latamlist.com/huna-raises-1-5m-to-expand-ai-powered-cancer-diagnostics-platform/",
+      "quote": "Brazilian healthtech Huna raised a $1.5M pre-seed round led by Kortex Ventures.",
+      "profile_hint": "pre-seed · diagnostics · BR · Huna uses artificial intelligence to analyze routine blood tests and assess cancer risk, particularly breast cancer, by identifying patterns in standard results.",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "http://huna-ai.com",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-03",
+      "company": "Cycles Nutrition",
+      "announced": "2025-02-06",
+      "stage": "seed",
+      "amount_text": "$2.5M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "health",
+      "leads": [
+        "Headline Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/cycles-nutrition-raises-2-5m-in-its-first-funding-round/",
+      "quote": "Brazilian healthtech Cycles Nutrition raised $2.5M in its first funding round led by Headline Ventures.",
+      "profile_hint": "seed · health · BR · offers workout supplements produced locally in Brazil and a mobile app that helps users build healthier habits",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.cyclesnutrition.com.br/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-04",
+      "company": "The Men's",
+      "announced": "2025-01-13",
+      "stage": "seed",
+      "amount_text": "$424K",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "BR Angels"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/the-mens-raises-424k-in-a-round-led-by-br-angels/",
+      "quote": "Brazilian healthtech The Men's raised $424K in a round led by BR Angels.",
+      "profile_hint": "seed · digital health · BR · The Men's offers health products for men, including treatments for hair loss, sexual dysfunction, and sleep issues.",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "http://www.themens.com.br/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-05",
+      "company": "Carecode",
+      "announced": "2025-01-08",
+      "stage": "pre-seed",
+      "amount_text": "$4.3M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "Andreessen Horowitz",
+        "QED Investors"
+      ],
+      "co_investors": [
+        "Endeavor Catalyst",
+        "KDX Ventures",
+        "K50 Ventures",
+        "Latitud Ventures"
+      ],
+      "url": "https://latamlist.com/healthtech-carecode-raised-a-4-3m-pre-seed-round/",
+      "quote": "Brazilian healthtech Carecode raised a $4.3M pre-seed round led by Andreessen Horowitz and QED",
+      "profile_hint": "pre-seed · digital health · BR · AI agent for WhatsApp for hospitals, clinics and labs that manages the patient journey by scheduling, following-up, and sending payment reminders",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.carecode.ai/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-06",
+      "company": "Clinia",
+      "announced": "2024-11-28",
+      "stage": "pre-seed",
+      "amount_text": "$344K",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "ABSeed Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/clinia-raises-344k-in-pre-seed-round/",
+      "quote": "Clinia, a Brazilian AI chatbot for enhancing patient engagement, raised $344K in a pre-seed round led by ABSeed Ventures.",
+      "profile_hint": "pre-seed · digital health · BR · Clinia's chatbot streamlines appointment scheduling, patient management, and communication, providing support to patients via WhatsApp.",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.clinia.io/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-07",
+      "company": "Sofía",
+      "announced": "2024-12-17",
+      "stage": "no especificada",
+      "amount_text": "$13.5M",
+      "region": "LATAM",
+      "country": "MX",
+      "sector": "digital health",
+      "leads": [
+        "Kfund"
+      ],
+      "co_investors": [
+        "Index Ventures",
+        "Kaszek",
+        "IDB Lab"
+      ],
+      "url": "https://latamlist.com/sofia-raises-13-5m-round/",
+      "quote": "Mexican healthtech Sofía raised $13.5M in a round led by Kfund, with participation from Index Ventures, Kaszek, and IDB Lab.",
+      "profile_hint": "no especificada · digital health · MX · Sofía offers health insurance and telemedicine for individuals, families, and SMEs in Mexico.",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.sofiasalud.com/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-08",
+      "company": "Biologix",
+      "announced": "2024-05-07",
+      "stage": "no especificada",
+      "amount_text": "$1.2M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "medtech",
+      "leads": [
+        "Kortex Ventures"
+      ],
+      "co_investors": [
+        "Hospital Israelita Albert Einstein"
+      ],
+      "url": "https://latamlist.com/brazilian-healthtech-biologix-lands-a-1-2m-round/",
+      "quote": "Brazilian healthtech Biologix raised a $1.2M round led by Kortex Ventures.",
+      "profile_hint": "no especificada · medtech · BR · Biologix specializes in sleep medicine, offering diagnostic solutions and treatments for disorders like sleep apnea.",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.biologix.com.br/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-09",
+      "company": "Genial Care",
+      "announced": "2024-01-25",
+      "stage": "no especificada",
+      "amount_text": "$10M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "mental health",
+      "leads": [
+        "General Catalyst"
+      ],
+      "co_investors": [
+        "Canary",
+        "Atlantico",
+        "IKJ Health Innovation",
+        "1616"
+      ],
+      "url": "https://latamlist.com/genial-care-raises-10m-to-expand-autism-care-services/",
+      "quote": "Genial Care, a Brazilian healthtech specializing in services for children with Autistic Spectrum Disorder (ASD) and their families, secured $10M in a funding round led by General Catalyst.",
+      "profile_hint": "no especificada · mental health · BR · multidisciplinary platform that supports children with autism spectrum disorder through content and face-to-face sessions at clinics or homes",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://genialcare.com.br/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-10",
+      "company": "Leona Health",
+      "announced": "2025-12-17",
+      "stage": "seed",
+      "amount_text": "$14M",
+      "region": "LATAM",
+      "country": "MX",
+      "sector": "digital health",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "co_investors": [
+        "General Catalyst",
+        "Accel"
+      ],
+      "url": "https://latamlist.com/leona-health-raises-14m-seed-round/",
+      "quote": "Leona Health raised a $14M seed round led by Andreessen Horowitz, with participation from General Catalyst, Accel, Kate Ryder, David Vélez, and Simón Borrero.",
+      "profile_hint": "seed · digital health · MX · building an AI copilot that helps physicians manage patient communication on WhatsApp",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.leona.health/en",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-11",
+      "company": "Marisa.Care",
+      "announced": "2025-08-26",
+      "stage": "pre-seed",
+      "amount_text": "$1.5M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "Afya"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/marisa-care-raises-1-5m-pre-seed-led-by-afya/",
+      "quote": "raised $1.5M pre-seed round led by Afya",
+      "profile_hint": "pre-seed · digital health · BR · uses AI to improve the patient journey at hospitals",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.marisa.care/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-12",
+      "company": "Yeda Health",
+      "announced": "2025-04-29",
+      "stage": "pre-seed",
+      "amount_text": "$300K",
+      "region": "LATAM",
+      "country": "UY",
+      "sector": "digital health",
+      "leads": [
+        "OurCrowd LATAM Labs"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/yeda-health-raises-300k-pre-seed-round/",
+      "quote": "Uruguayan healthtech startup Yeda Health raised a $ 300K pre-seed round led by OurCrowd LATAM Labs",
+      "profile_hint": "pre-seed · digital health · UY · uses clinical data to predict how individuals will respond to different treatments for diabetes and obesity",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.yedahealth.com/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "latam-13",
+      "company": "Telepatia",
+      "announced": "2026-06-18",
+      "stage": "series-a",
+      "amount_text": "$33M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/telepatia-raises-33m-series-a-led-by-andreessen-horowitz/",
+      "quote": "Telepatia, a healthtech startup, raised a $33M Series A round led by Andreessen Horowitz (a16z).",
+      "profile_hint": "series-a · digital health · BR · platform that combines AI-powered documentation, clinical decision support, and AI healthcare workers",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.telepatia.ai/",
+      "include": false,
+      "exclude_reason": "Serie A (criterio: pre-seed o seed); además la startup ya está en la base por su seed",
+      "quote_verified": false
+    },
+    {
+      "id": "latam-14",
+      "company": "Eden",
+      "announced": "2025-10-10",
+      "stage": "series-a",
+      "amount_text": "$22M",
+      "region": "LATAM",
+      "country": "MX",
+      "sector": "digital health",
+      "leads": [
+        "Sierra Ventures"
+      ],
+      "co_investors": [
+        "Liquid 2 Ventures"
+      ],
+      "url": "https://latamlist.com/eden-raises-22m-series-a/",
+      "quote": "Eden, a Mexican healthtech developing a cloud-native operating system for radiology, raised $22M in a Series A round led by Sierra Ventures, with participation from Liquid 2 Ventures and Daniel Servitje, CEO of Grupo Bimbo.",
+      "profile_hint": "series-a · digital health · MX · cloud-based RIS/PACS system for hospitals and clinics",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://edenmed.com/",
+      "include": false,
+      "exclude_reason": "Serie A",
+      "quote_verified": false
+    },
+    {
+      "id": "latam-15",
+      "company": "Welbe Care",
+      "announced": "2024-05-28",
+      "stage": "series-a",
+      "amount_text": "$7M",
+      "region": "LATAM",
+      "country": "MX",
+      "sector": "digital health",
+      "leads": [
+        "Volpe Capital",
+        "International Finance Corporation"
+      ],
+      "co_investors": [
+        "NAZCA",
+        "Kortex"
+      ],
+      "url": "https://latamlist.com/healthtech-welbe-care-raises-7m-in-series-a/",
+      "quote": "Welbe Care raised a $7M Series A co-led by Volpe Capital and the International Finance Corporation (IFC) of the World Bank Group.",
+      "profile_hint": "series-a · digital health · MX · occupational health and medical platform for companies and their employees",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://main.welbecare.com/",
+      "include": false,
+      "exclude_reason": "Serie A",
+      "quote_verified": false
+    },
+    {
+      "id": "latam-16",
+      "company": "Capim",
+      "announced": "2025-02-28",
+      "stage": "series-a",
+      "amount_text": "$26.7M",
+      "region": "LATAM",
+      "country": "BR",
+      "sector": "digital health",
+      "leads": [
+        "Valor Capital",
+        "QED Investors"
+      ],
+      "co_investors": [
+        "ONEVC",
+        "Canary",
+        "NXTP"
+      ],
+      "url": "https://latamlist.com/capim-raises-26-7m-series-a/",
+      "quote": "Brazilian SaaS Capim raised a $26.7M Series A round co-led by Valor Capital and QED Investors",
+      "profile_hint": "series-a · digital health · BR · operating system for dental clinics with patient financing",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://capim.com.br/",
+      "include": false,
+      "exclude_reason": "Serie A",
+      "quote_verified": false
+    },
+    {
+      "id": "latam-17",
+      "company": "Preventix",
+      "announced": "2025-05-23",
+      "stage": "seed",
+      "amount_text": "no revelado",
+      "region": "LATAM",
+      "country": "MX",
+      "sector": "diagnostics",
+      "leads": [
+        "Impact Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://latamlist.com/preventix-raises-seed-round-to-democratize-cervical-cancer-screening/",
+      "quote": "Mexican healthtech Preventix raised an undisclosed amount from Impact Ventures, marking Impact's first investment in Latin America through its PSM Seed fund.",
+      "profile_hint": "seed · diagnostics · MX · non-invasive cervical cancer screening blood test",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://preventix.global/",
+      "include": false,
+      "exclude_reason": "La fuente no dice 'led by'",
+      "quote_verified": false
+    },
+    {
+      "id": "us-01",
+      "company": "The Path",
+      "announced": "2026-05-21",
+      "stage": "seed",
+      "amount_text": "$14.3M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Prime Movers Lab"
+      ],
+      "co_investors": [
+        "Designer Fund"
+      ],
+      "url": "https://www.prnewswire.com/news-releases/the-path-raises-14-3m-in-seed-funding-to-redefine-mental-health-care-302778856.html",
+      "quote": "Today, The Path, the global AI therapy platform designed for creating long-term mental wellness, announced $14.3 million in seed funding led by Prime Movers Lab with participation from Apolo Anton Ohno, Deontay Wilder, Designer Fund and others.",
+      "profile_hint": "seed · mental health · US · global AI therapy platform designed for creating long-term mental wellness",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://thepath.ai",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-02",
+      "company": "Blossom Health",
+      "announced": "2026-03-26",
+      "stage": "seed",
+      "amount_text": "$20M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Headline"
+      ],
+      "co_investors": [
+        "Village Global",
+        "TA Ventures",
+        "Operator Partners",
+        "Correlation Ventures"
+      ],
+      "url": "https://fortune.com/2026/03/26/exclusive-blossom-health-telehealth-telepsychiatry-headline/",
+      "quote": "The round, led by Headline with participation from Village Global, TA Ventures, Operator Partners, and Correlation Ventures, also adds Headline cofounder Mathias Schilling to the board.",
+      "profile_hint": "seed · mental health · US · AI-native psychiatry platform, an all-in-one AI copilot for clinicians",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-03",
+      "company": "Somethings",
+      "announced": "2023-05-16",
+      "stage": "seed",
+      "amount_text": "$3.2M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "General Catalyst"
+      ],
+      "co_investors": [
+        "Tau Ventures",
+        "Coalition Operators",
+        "MVP Ventures"
+      ],
+      "url": "https://techcrunch.com/2023/05/16/youth-mental-health-startup-somethings-launches-with-a-3-2m-raise-led-by-general-catalyst/",
+      "quote": "General Catalyst just led the company's $3.2 million seed round with participation from Tau Ventures, Toyin Ajayi (City Block Health co-founder) and Ashley Mayer through their Coalition Operators fund, MVP Ventures and more.",
+      "profile_hint": "seed · mental health · US · youth-specific wellness platform that connects teenagers with trained mentors for asynchronous help",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.somethings.com/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-04",
+      "company": "Isaac Health",
+      "announced": "2024-01-25",
+      "stage": "seed",
+      "amount_text": "$5.7M",
+      "region": "US",
+      "country": "US",
+      "sector": "neuro",
+      "leads": [
+        "Meridian Street Capital",
+        "B Capital"
+      ],
+      "co_investors": [
+        "Primetime Partners",
+        "Co-Found Partners",
+        "VU Venture Partners"
+      ],
+      "url": "https://www.fiercehealthcare.com/digital-health/isaac-health-nabs-57m-seed-round-scale-virtual-brain-health-and-dementia-care",
+      "quote": "The round was led by Meridian Street Capital and B Capital with participation from Primetime Partners, Co-Found Partners, VU Venture Partners and AirAngels.",
+      "profile_hint": "seed · neuro · US · virtual brain health and dementia care: screen, diagnose, treat and manage populations with brain health conditions",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.myisaachealth.com/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-05",
+      "company": "NewDays",
+      "announced": "2026-09-02",
+      "stage": "seed",
+      "amount_text": "$16M",
+      "region": "US",
+      "country": "US",
+      "sector": "neuro",
+      "leads": [
+        "Madrona",
+        "General Catalyst"
+      ],
+      "co_investors": [],
+      "url": "https://www.geekwire.com/2026/newdays-brings-its-ai-driven-dementia-care-platform-to-nevada-expands-seed-round-to-16m/",
+      "quote": "The funding was led by Madrona and General Catalyst.",
+      "profile_hint": "seed · neuro · US · generative AI therapy to treat people with mild dementia, telehealth visits with clinicians plus an AI companion",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.newdays.ai/",
+      "include": true,
+      "exclude_reason": "Extensión de seed: la fecha del primer tramo es anterior; revisar T",
+      "quote_verified": false
+    },
+    {
+      "id": "us-06",
+      "company": "Lizzy Care",
+      "announced": "2025-02-25",
+      "stage": "seed",
+      "amount_text": "$2.6M",
+      "region": "US",
+      "country": "US",
+      "sector": "neuro",
+      "leads": [
+        "Boomerang Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://www.startuphealth.com/startup-health-blog/two-startup-health-members-raise-seed-rounds-startup-health-insights-week-of-feb-25-2025",
+      "quote": "Lizzy Care, a member of StartUp Health's Alzheimer's Moonshot Community, raised $2.6M led by Boomerang Ventures.",
+      "profile_hint": "seed · neuro · US · AI-powered platform for at-home dementia and memory care",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://hilizzy.com/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-07",
+      "company": "Precise Behavioral",
+      "announced": "2026-07-29",
+      "stage": "no especificada",
+      "amount_text": "$14.2M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "A1 Health Ventures"
+      ],
+      "co_investors": [
+        "Ziegler Link-Age Fund",
+        "Converge Capital Partners"
+      ],
+      "url": "https://bhbusiness.com/2026/07/29/exclusive-precise-behavioral-lands-14-2-million-to-tackle-ed-boarding-eliminate-vendor-soup/",
+      "quote": "Precise Behavioral has raised $14.2 million in a funding round led by A1 Health Ventures.",
+      "profile_hint": "no especificada · mental health · US · behavioral health services and technology provider for emergency department boarding",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-08",
+      "company": "Avela Health",
+      "announced": "2026-02-10",
+      "stage": "seed",
+      "amount_text": "$10M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Rethink Education"
+      ],
+      "co_investors": [],
+      "url": "https://bhbusiness.com/2026/02/10/virtual-autism-therapy-provider-avela-health-raises-6-5m/",
+      "quote": "Rethink Education, a part of Rethink Capital Partners, led the round.",
+      "profile_hint": "seed · mental health · US · virtual autism diagnostics and support services",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-09",
+      "company": "Triplemoon",
+      "announced": "2025-10-16",
+      "stage": "seed",
+      "amount_text": "$3.5M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Activate Venture Partners",
+        "LiveOak Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://www.businesswire.com/news/home/20251016601066/en/Triplemoon-Closes-$3.5M-Seed-Round-to-Address-Pediatric-Mental-Health-Gap",
+      "quote": "The investment was led by Activate Venture Partners (NY) and LiveOak Ventures (TX).",
+      "profile_hint": "seed · mental health · US · digital health platform that provides mental health services to pediatric patients and their families",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": "https://www.triplemoon.com/",
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-10",
+      "company": "Pallie AI",
+      "announced": "2025-05-06",
+      "stage": "pre-seed",
+      "amount_text": "$2M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "True Ventures"
+      ],
+      "co_investors": [
+        "Palta"
+      ],
+      "url": "https://www.startuphealth.com/startup-health-blog/ai-diagnostics-nutrition-and-mental-health-solutions-startup-health-insights-week-of-may-6-2025",
+      "quote": "Pallie AI, a San Francisco, CA-based tech startup developing an AI-powered companion supporting health and wellbeing, raised $2M led by True Ventures, with participation from Palta.",
+      "profile_hint": "pre-seed · mental health · US · AI-powered companion supporting health and wellbeing",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-11",
+      "company": "No Barrier",
+      "announced": "2025-11-18",
+      "stage": "seed",
+      "amount_text": "$2.7M",
+      "region": "US",
+      "country": "US",
+      "sector": "digital health",
+      "leads": [
+        "A Squared Ventures",
+        "Esplanade Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://www.startuphealth.com/startup-health-blog/sandy-health-closes-pre-seed-round-for-ai-powered-healthcare-operations-platform-startup-health-insights-week-of-nov-18-2025",
+      "quote": "No Barrier, a San Francisco, CA-based startup developing instant AI medical interpretation to remove language barriers, raised $2.7M led by A Squared Ventures and Esplanade Ventures",
+      "profile_hint": "seed · digital health · US · instant AI medical interpretation to remove language barriers",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-12",
+      "company": "Proximity",
+      "announced": "2025-02-25",
+      "stage": "seed",
+      "amount_text": "$3M",
+      "region": "US",
+      "country": "US",
+      "sector": "digital health",
+      "leads": [
+        "LRVHealth"
+      ],
+      "co_investors": [],
+      "url": "https://www.startuphealth.com/startup-health-blog/two-startup-health-members-raise-seed-rounds-startup-health-insights-week-of-feb-25-2025",
+      "quote": "Proximity, a Chicago, IL-based automation platform maximizing 340B drug discount revenue for qualified healthcare providers, raised $3M led by LRVHealth.",
+      "profile_hint": "seed · digital health · US · automation platform maximizing 340B drug discount revenue for healthcare providers",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-13",
+      "company": "a2z Radiology AI",
+      "announced": "2025-12-16",
+      "stage": "seed",
+      "amount_text": "$4.5M",
+      "region": "US",
+      "country": "US",
+      "sector": "diagnostics",
+      "leads": [
+        "Khosla Ventures",
+        "SeaX Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://www.startuphealth.com/startup-health-blog/punto-health-raises-seed-funding-for-os-for-dementia-care-startup-health-insights-week-of-dec-16-2025",
+      "quote": "a2z Radiology AI, a Boston, MA-based provider of an AI-powered FDA-cleared radiology triage system, raised $4.5M led by Khosla Ventures and SeaX Ventures",
+      "profile_hint": "seed · diagnostics · US · AI-powered FDA-cleared radiology triage system",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-14",
+      "company": "Valinor",
+      "announced": "2025-12-16",
+      "stage": "seed",
+      "amount_text": "$13M",
+      "region": "US",
+      "country": "US",
+      "sector": "digital health",
+      "leads": [
+        "CRV",
+        "Harpoon Ventures"
+      ],
+      "co_investors": [],
+      "url": "https://www.startuphealth.com/startup-health-blog/punto-health-raises-seed-funding-for-os-for-dementia-care-startup-health-insights-week-of-dec-16-2025",
+      "quote": "Valinor, a San Francisco, CA-based clinical trial tech startup, raised $13M led by CRV and Harpoon Ventures",
+      "profile_hint": "seed · digital health · US · clinical trial technology",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-15",
+      "company": "Zócalo Health",
+      "announced": "2026-04-21",
+      "stage": "series-a",
+      "amount_text": "$15M",
+      "region": "US",
+      "country": "US",
+      "sector": "digital health",
+      "leads": [
+        "EO Ventures"
+      ],
+      "co_investors": [
+        "Vamos Ventures",
+        "Acumen America"
+      ],
+      "url": "https://bhbusiness.com/2026/04/21/zocalo-health-raises-22-6m-for-integrated-care-platform-focused-on-serving-the-latino-community/",
+      "quote": "$15 million of that funding came through a Series A round led by EO Ventures.",
+      "profile_hint": "series-a · digital health · US · community-oriented primary care organization for Medicaid with integrated behavioral health for the Latino community",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": false,
+      "exclude_reason": "Serie A",
+      "quote_verified": false
+    },
+    {
+      "id": "uk-01",
+      "company": "Punto Health",
+      "announced": "2025-12-11",
+      "stage": "seed",
+      "amount_text": "$2.7M",
+      "region": "UK",
+      "country": "UK",
+      "sector": "neuro",
+      "leads": [
+        "Shilling VC",
+        "Plus Partners"
+      ],
+      "co_investors": [
+        "Exceptional Ventures",
+        "Fondo Bolsa Social"
+      ],
+      "url": "https://techfundingnews.com/punto-health-2-7m-seed-ai-dementia-care-platform/",
+      "quote": "London-based health tech startup Punto Health, which specialises in dementia and cognitive care, has raised $2.7M in a Seed funding round, co-led by Shilling VC and Plus Partners",
+      "profile_hint": "seed · neuro · UK · AI-powered tools for early detection and personalised support in dementia and cognitive decline",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": false,
+      "exclude_reason": "Fuera de LatAm/EE. UU.",
+      "quote_verified": false
+    },
+    {
+      "id": "us-16",
+      "company": "Rosebud",
+      "announced": "2025-06-04",
+      "stage": "seed",
+      "amount_text": "$6M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Susa Ventures",
+        "Lachy Groom"
+      ],
+      "co_investors": [
+        "Y Combinator"
+      ],
+      "url": "https://blog.tmcnet.com/blog/rich-tehrani/ai/rosebud-gets-seed-backing-to-scale-emotionally-intelligent-ai-tool.html",
+      "quote": "The round was led by venture firms including Susa Ventures and Lachy Groom, with participation from Y Combinator and other early-stage investors.",
+      "profile_hint": "seed · mental health · US · AI-powered journaling platform that supports mental wellness through reflective conversation",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-17",
+      "company": "Slingshot AI",
+      "announced": "2024-08-28",
+      "stage": "no especificada",
+      "amount_text": "$30M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "co_investors": [
+        "Menlo Ventures"
+      ],
+      "url": "https://bhbusiness.com/2024/08/28/mental-health-chatbot-startup-slingshot-ai-raises-30m/",
+      "quote": "New York City-based Slingshot AI reportedly raised a $30 million funding round led by Andreessen Horowitz, one of the largest and most prominent venture capital firms in the world",
+      "profile_hint": "no especificada · mental health · US · AI research company developing a mental health chatbot for subclinical issues like stress and relationship problems",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": "La fuente dice 'reportedly'; etapa no informada",
+      "quote_verified": false
+    },
+    {
+      "id": "us-18",
+      "company": "Canopie",
+      "announced": "2024-09-24",
+      "stage": "seed",
+      "amount_text": "$3.7M",
+      "region": "US",
+      "country": "US",
+      "sector": "mental health",
+      "leads": [
+        "Beta Boom",
+        "Aeroflow Health"
+      ],
+      "co_investors": [
+        "Sorenson Institute",
+        "Luminary Impact Fund",
+        "Symphonic Capital",
+        "Techstars"
+      ],
+      "url": "https://www.startuphealth.com/startup-health-blog/maternal-health-startup-canopie-secures-37m-seed-round-startup-health-insights-week-of-sep-24-2024",
+      "quote": "The Seed round is co-led by Beta Boom and Aeroflow Health, with participation from the Sorenson Institute, Luminary Impact Fund, Symphonic Capital, Techstars, and a family office.",
+      "profile_hint": "seed · mental health · US · prevention-focused maternal health company offering personalized virtual mental healthcare",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-19",
+      "company": "Coral Care",
+      "announced": "2024-09-24",
+      "stage": "seed",
+      "amount_text": "$5.2M",
+      "region": "US",
+      "country": "US",
+      "sector": "digital health",
+      "leads": [
+        "AlleyCorp",
+        "Reach Capital"
+      ],
+      "co_investors": [
+        "GreyMatter",
+        "Charge Ventures"
+      ],
+      "url": "https://www.startuphealth.com/startup-health-blog/maternal-health-startup-canopie-secures-37m-seed-round-startup-health-insights-week-of-sep-24-2024",
+      "quote": "raised $5.2M co-led by AlleyCorp and Reach Capital, with participation from GreyMatter and Charge Ventures.",
+      "profile_hint": "seed · digital health · US · connects pediatric specialists to families needing support",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-20",
+      "company": "Counsel Health",
+      "announced": "2024-10-22",
+      "stage": "seed",
+      "amount_text": "$11M",
+      "region": "US",
+      "country": "US",
+      "sector": "digital health",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "co_investors": [
+        "Asymmetric Capital Partners",
+        "Floodgate",
+        "Pear VC"
+      ],
+      "url": "https://www.startuphealth.com/startup-health-blog/drug-discovery-micro-robotics-and-digital-wellness-startup-health-insights-week-of-oct-22-2024",
+      "quote": "Counsel Health, a Canton, MA-based virtual medical practice specializing in messaging-based care, raised $11M led by Andreessen Horowitz (a16z) Bio + Health, with participation from Asymmetric Capital Partners, Floodgate Fund, Pear VC, and individual investors.",
+      "profile_hint": "seed · digital health · US · virtual medical practice specializing in messaging-based care",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    },
+    {
+      "id": "us-21",
+      "company": "Baba",
+      "announced": "2026-03-03",
+      "stage": "seed",
+      "amount_text": "$6.5M",
+      "region": "US",
+      "country": "US",
+      "sector": "neuro",
+      "leads": [
+        "General Catalyst"
+      ],
+      "co_investors": [
+        "Genius Ventures",
+        "Soma Capital",
+        "Ground Up Ventures"
+      ],
+      "url": "https://media.startuphealth.com/p/brain-health-value-based-care-and-ai-platforms-anchor-a-global-funding-week-startup-health-insights",
+      "quote": "Baba, a New York, NY-based Medicare- and Medicare Advantage-covered patient advocacy platform supporting older adults and caregivers across their healthcare journeys, raised $6.5M led by General Catalyst, with participation from Genius Ventures, Soma Capital, Ground Up Ventures, Triedge Investments, and others.",
+      "profile_hint": "seed · neuro · US · patient advocacy platform supporting older adults and caregivers",
+      "profile_source": "descripción del anuncio (provisional; reemplazar por Wayback anterior a T con scripts/backtest-profiles.mjs)",
+      "website": null,
+      "include": true,
+      "exclude_reason": null,
+      "quote_verified": false
+    }
+  ]
+}
