@@ -1228,7 +1228,7 @@
       }
     }
   },
-  "vsClaude": null,
+  "vsLLM": null,
   "vsApp": {
     "mean": -0.03125,
     "ci95": [
@@ -1237,5 +1237,5 @@
     ]
   },
   "coverage": 0.25,
-  "decision": "Falta la línea base (b) Claude: correr scripts/baseline-claude.mjs."
+  "decision": "Falta la línea base (b) LLM: correr scripts/baseline-llm.mjs."
 }
