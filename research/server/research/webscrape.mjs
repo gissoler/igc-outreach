@@ -2,6 +2,7 @@
 // Reemplaza a Apify. No toca LinkedIn con scraping: solo usa resultados de búsqueda públicos.
 import { readMany } from './readOpportunity.mjs';
 import { verifyOpportunity, compactVerification } from './verify.mjs';
+import { EXTRACT_SCHEMA, EXTRACT_PROMPT } from './extract.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 
@@ -125,6 +126,27 @@ export async function firecrawlScrape(url, { env = process.env, fetcher = fetch,
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';
     return markdown.length > 80 ? { url: safeUrl(d.metadata?.sourceURL || d.metadata?.url) || url, title: String(d.metadata?.title || ''), markdown, text: markdown } : null;
   } catch { return null; }
+}
+
+/**
+ * Firecrawl v2 /scrape con formato JSON: la página se descarga (con JavaScript si hace falta), se limpia y un modelo
+ * del proveedor devuelve fases/fechas/elegibilidad con cita. Devuelve {json, markdown, credits, ms} o null; nunca lanza.
+ * La respuesta es dato NO confiable: extract.mjs comprueba cada cita contra el markdown antes de usarla.
+ * Coste: la extracción JSON gasta más créditos que un scrape normal (ver el plan de Firecrawl); por eso el motor la pide
+ * solo para candidatas y con tope (ENGINE_EXTRACT_MAX).
+ */
+export async function firecrawlExtract(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
+  if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
+  try {
+    const timeout = clamp(env.FIRECRAWL_EXTRACT_TIMEOUT_MS, 10_000, 120_000, 50_000);
+    const body = { url, formats: ['markdown', { type: 'json', schema: EXTRACT_SCHEMA, prompt: EXTRACT_PROMPT }], onlyMainContent: env.FIRECRAWL_EXTRACT_MAIN_ONLY === '1', timeout };
+    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, retries: 1, timeoutMs: timeout + 15_000 });
+    const d = data?.data || {};
+    const json = d.json && typeof d.json === 'object' ? d.json : d.extract && typeof d.extract === 'object' ? d.extract : null;
+    const markdown = typeof d.markdown === 'string' ? d.markdown : '';
+    if (!json) return null;
+    return { json, markdown, credits: Number(data.creditsUsed ?? d.metadata?.creditsUsed) || 0, ms: data.__ms || 0 };
+  } catch (error) { return error?.fatal ? { error: String(error.message || error).slice(0, 200), fatal: true } : null; }
 }
 
 /** Varias búsquedas; una que falla no tumba las demás. Devuelve {results, errors, calls, ms}. */
