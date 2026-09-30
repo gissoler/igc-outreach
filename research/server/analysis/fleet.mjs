@@ -38,6 +38,16 @@ export function fleetConfig(env = process.env) {
   return { base, roles, extractor, apiKey: env.VLLM_API_KEY || '', timeoutMs: Number(env.VLLM_TIMEOUT_MS) || 120_000 };
 }
 export const fleetReady = (env, role) => fleetConfig(env).roles[role]?.ready || false;
+/** ¿Responde de verdad el modelo de ese rol? (GET /models, rápido). Configurado ≠ alcanzable: el túnel puede estar cerrado. */
+export async function roleReachable(env = process.env, role = 'engine', { fetcher = fetch, timeoutMs = 4000 } = {}) {
+  const cfg = fleetConfig(env); const target = cfg.roles[role];
+  if (!target?.ready) return false;
+  try {
+    const key = target.apiKey || cfg.apiKey;
+    const r = await fetcher(`${target.url}/models`, { headers: key ? { Authorization: `Bearer ${key}` } : {}, signal: AbortSignal.timeout(timeoutMs) });
+    return r.ok;
+  } catch { return false; }
+}
 
 /** Resuelve el rol + modelo para extracción. Un id que no es rol se trata como adaptador LoRA en 'small'. */
 export function extractorTarget(cfg) {

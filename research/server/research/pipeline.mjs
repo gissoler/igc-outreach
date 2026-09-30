@@ -5,7 +5,11 @@ import { demoLeads } from './demo.mjs';
 import { addConnections, addOrgBridges, networkCandidates } from './network.mjs';
 import { runEngine, runObjective, engineLeads, engineConfigured, ENGINE_SOURCE } from './engine.mjs';
 import { multiSearch, searchApisConfigured } from './searchApis.mjs';
-import { ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads, confirmFromPages } from './orchestrator.mjs';
+import { roleReachable } from '../analysis/fleet.mjs';
+import { fundingQuery } from './expand.mjs';
+import { ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads, confirmFromPages, templateQueries } from './orchestrator.mjs';
+/** Grants buscados directo en las APIs de búsqueda cuando el motor con IA no está disponible. */
+const GRANT_API_SOURCE = 'Grant search (web APIs)';
 import { fetchPage } from './localSearch.mjs';
 import { jinaRead, firecrawlRead } from './searchApis.mjs';
 import { HUNTER_SOURCE, enrichWithHunter, hunterConfigured, makeHunter } from './hunter.mjs';
@@ -110,6 +114,14 @@ export async function runResearch(
       );
     } else {
       const grantsOnly = b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant';
+      // El motor v2 necesita el modelo de IA para planear y leer. Si está configurado pero no responde
+      // (túnel cerrado, g355 caído), NO se pierden las APIs de búsqueda: se usan directo, sin modelo.
+      let engineOn = !providers && engineConfigured(env);
+      if (engineOn && !(await roleReachable(env, 'engine', { fetcher }))) {
+        engineOn = false;
+        live({ phase: 'warning', provider: ENGINE_SOURCE, status: 'warning', title: 'AI model not reachable', message: 'The AI model did not respond; searching the web APIs directly (without AI planning or reading).' });
+      }
+      const apiSearchOn = !providers && !engineOn && searchApisConfigured(env) && b.fundingTypes.includes('grant');
       const enabled = providers || [
         ...(b.fundingTypes.includes('partnering')
           ? [
@@ -123,10 +135,26 @@ export async function runResearch(
               ['NIH RePORTER', (c) => reporter(c, b, job.plan)],
             ]
           : []),
-        ...(!providers && engineConfigured(env)
+        ...(engineOn
           ? [[ENGINE_SOURCE, async () => { const r = await runEngine(b, { env, fetcher, signal }); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped })) }); }]]
           : []),
-        ...(grantsOnly && b.useApify && firecrawlConfigured(env) && !engineConfigured(env)
+        // Grants por las APIs de búsqueda (Exa, Serper, Tavily, You, Jina, Linkup) sin depender del modelo:
+        // una consulta por término («¿quién financia X?») + programas y fundaciones; las páginas se abren y confirman después.
+        ...(apiSearchOn
+          ? [[GRANT_API_SOURCE, async () => {
+              const terms = (job.plan.terms?.length ? job.plan.terms.map((t) => t.term) : [b.industry || b.product]).filter(Boolean).slice(0, 4);
+              const queries = [...terms.map((t) => fundingQuery(t, 'grant', b)), ...templateQueries('named_funders', b, { terms, n: 3 }).map((q) => q.query)].slice(0, Number(env.GRANT_API_QUERIES) || 6);
+              const breaker = {}; const out = [];
+              await Promise.all(queries.map(async (query) => {
+                const rows = await multiSearch(query, { env, fetcher, signal, breaker });
+                for (const [provider, stat] of Object.entries(rows.stats || {})) client.track(provider, { calls: 1, results: stat.returned, ms: stat.ms });
+                searchAudit.push({ provider: GRANT_API_SOURCE, query, dimension: 'api', returned: rows.length, discovered: rows.length });
+                out.push(...searchRowsToLeads(rows.slice(0, 10), b, { objective: 'grant', query }));
+              }));
+              return out;
+            }]]
+          : []),
+        ...(grantsOnly && b.useApify && firecrawlConfigured(env) && !engineOn
           ? [[GRANT_WEB_SOURCE, () => grantWebOpportunities(b, job.plan, { env, fetcher, signal, live: live.scope(GRANT_WEB_SOURCE), record, usageClient: client })]]
           : []),
         ...(job.plan.alzheimer
@@ -311,7 +339,7 @@ export async function runResearch(
           for (const q of queries) byObjective.set(q.objective || b.fundingTypes[0], [...(byObjective.get(q.objective || b.fundingTypes[0]) || []), q]);
           const found = [];
           for (const [objective, list] of byObjective) {
-            if (engineConfigured(env)) {
+            if (engineOn) {
               const r = await runObjective(objective, b, { env, fetcher, signal: s, queries: list.map((q) => ({ query: q.query, family: 'orchestrator' })), rounds: 1, breaker });
               found.push(...engineLeads(r.findings));
             } else if (searchApisConfigured(env)) {

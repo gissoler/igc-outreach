@@ -223,3 +223,36 @@ test('pipeline completo: Serper + orquestador (OpenJev) + Hunter → más result
   assert.ok(job.leads.some((l) => l.jev?.provider === 'OpenJev'));
   store.close();
 });
+
+test('grants: modelo de IA caído → las APIs de búsqueda se usan directo (no solo Grants.gov)', async () => {
+  const { createStore } = await import('../server/research/store.mjs');
+  const { runResearch } = await import('../server/research/pipeline.mjs');
+  const { validateBrief } = await import('../server/research/core.mjs');
+  const store = createStore(':memory:');
+  const b = validateBrief({ name: 'Tester', role: 'Founder', company: 'Mentiva', product: 'Wellbeing app', description: 'digital mental health', industry: 'digital mental health', stage: 'prototype', geography: 'GLOBAL', fundingTypes: ['grant'], dataMode: 'live', useTeam: false, useApify: false, minDays: 14 });
+  const job = { id: 'grant-api', brief: b, mode: 'live', events: [], leads: [], senderEvidence: [] };
+  const seen = { model: 0, serper: 0, grantsgov: 0 };
+  const fetcher = async (url) => {
+    const u = new URL(String(url));
+    if (u.pathname === '/robots.txt') return new Response('', { status: 404 });
+    if (u.hostname === '127.0.0.1') { seen.model++; throw new TypeError('fetch failed'); } // túnel cerrado
+    if (u.hostname === 'api.grants.gov') { seen.grantsgov++; return json(200, { errorcode: 0, data: { oppHits: [] } }); }
+    if (u.hostname === 'api.reporter.nih.gov') return json(200, { results: [] });
+    if (u.hostname === 'google.serper.dev') {
+      seen.serper++;
+      return json(200, { organic: [{ link: 'https://mindfund.org/grants/digital-mental-health-2027', title: 'Digital Mental Health Innovation Grants 2027 — applications open', snippet: 'Grants of up to $100,000 for digital mental health startups. Applications open until 2027-03-01.' }] });
+    }
+    if (u.hostname === 'mindfund.org') return new Response(`<html><head><title>Digital Mental Health Innovation Grants 2027</title></head><body><h1>Digital Mental Health Innovation Grants 2027</h1><p>The foundation funds digital mental health startups with grants of up to $100,000. Applications are open until March 1, 2027. Apply through the online form.</p><p>${'Eligibility and program details. '.repeat(30)}</p></body></html>`, { status: 200, headers: { 'content-type': 'text/html' } });
+    throw new Error(`unexpected ${url}`);
+  };
+  await runResearch(job, store, { env: { ENGINE_V2: '1', VLLM_CHAT_URL: 'http://127.0.0.1:18000/v1', VLLM_CHAT_MODEL: 'qwen', SERPER_API_KEY: 's', ENGINE_SEARCH_PROVIDERS: 'serper', ORCHESTRATOR: '0', RESEARCH_RUN_TIMEOUT_MS: '60000', EXPAND_TERMS: '0' }, fetcher });
+  assert.notEqual(job.status, 'failed', job.events.map((e) => e.message).join('\n'));
+  assert.ok(seen.model >= 1, 'comprueba el modelo');
+  assert.ok(seen.serper >= 1, 'usa las APIs de búsqueda');
+  assert.ok(job.run.events.some((e) => e.title === 'AI model not reachable'));
+  const web = job.leads.find((l) => l.evidence.some((e) => /mindfund\.org/.test(e.url)));
+  assert.ok(web, `grant de la web: ${job.leads.map((l) => l.org).join(', ')}`);
+  assert.equal(web.kind, 'opportunity');
+  assert.notEqual(web.bucket, 'discarded', web.discard);
+  store.close();
+});
