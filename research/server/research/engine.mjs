@@ -181,7 +181,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead } = opts;
-  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, extracted: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
+  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 });
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
   const range = o.dated ? (env.ENGINE_TBS ?? 'qdr:y') : '';
@@ -195,7 +195,7 @@ export async function runObjective(objective, brief, opts = {}) {
   // «cerrada»), con tope por objetivo. Sin clave, sin ENGINE_EXTRACT o con `search` inyectado (pruebas) no se usa, salvo opts.extractor.
   const extractor = opts.extractor !== undefined ? opts.extractor : (!opts.search && env.ENGINE_EXTRACT !== 'off' && firecrawlConfigured(env)) ? firecrawlExtract : null;
   const maxExtract = Number(env.ENGINE_EXTRACT_MAX ?? 15);
-  let extractOff = false;
+  let extractOff = false; let extractInFlight = 0;
   const run = search || (apis
     ? async (q) => { const ck = `${recency}|${q}`; if (opts.cache?.[ck]) return opts.cache[ck]; const rows = await multiSearch(q, { env, fetcher, signal, recency, breaker }); if (opts.cache && rows.length) opts.cache[ck] = rows; for (const [p, x] of Object.entries(rows.stats || {})) { const s = stat(p); s.calls++; s.returned += x.returned; s.ms += x.ms; s.costUsd += x.costUsd || 0; if (x.error) { s.errors++; if (audit.errors.length < 20) audit.errors.push(`${p}: ${x.error}`); } if (x.disabled && !s.disabled) { s.disabled = x.disabled; audit.errors.push(`${p}: DESACTIVADO para el resto de la corrida (${x.disabled.slice(0, 120)})`); } } return rows; }
     : searxConfigured(env)
@@ -207,7 +207,15 @@ export async function runObjective(objective, brief, opts = {}) {
   audit.planned = plan.planned;
   audit.interpretation = interpretBrief(objective, brief, { today, recency, providers: apis ? searchProviders(env) : [audit.search], planned: plan.planned && !injected?.length });
   const asked = []; const queries = []; const seenPages = new Set(); const findings = [];
-  const keepTrace = (t) => { if (audit.traces.length < maxTraces) audit.traces.push(t); };
+  // Las páginas leídas son lo que explica un resultado: tienen su propio tope. Las omitidas sin leer (presupuesto de páginas, agregadores)
+  // tienen otro más pequeño, para que cientos de ellas no dejen fuera a las leídas (pasó en la corrida de 80 páginas).
+  const maxSkippedTraces = Number(env.ENGINE_TRACE_SKIPPED_MAX) || 80;
+  let skippedTraces = 0;
+  const keepTrace = (t) => {
+    const unreadSkip = t.read === null && t.verdict === 'skip';
+    if (unreadSkip) { if (skippedTraces < maxSkippedTraces) { skippedTraces++; audit.traces.push(t); } return; }
+    if (audit.traces.length - skippedTraces < maxTraces) audit.traces.push(t);
+  };
   let todo = plan.queries;
   for (let round = 1; round <= Math.max(1, rounds) && todo.length; round++) {
     audit.rounds = round; queries.push(...todo); asked.push(...todo.map((q) => q.query));
@@ -281,11 +289,12 @@ export async function runObjective(objective, brief, opts = {}) {
           }
         }
         let extractionMeta = null;
-        if (extractor && o.dated && !extractOff && audit.extracted < maxExtract && (v.keep || v.drop === 'closed')) {
-          audit.extracted++;
-          const ex = await extractor(page.url, { env, fetcher, signal }).catch(() => null);
-          if (ex?.fatal) { extractOff = true; audit.errors.push(`Extractor: ${ex.error}`); }
+        if (extractor && o.dated && !extractOff && audit.extracted + extractInFlight < maxExtract && audit.extractFailed < maxExtract && (v.keep || v.drop === 'closed')) {
+          extractInFlight++;   // reserva el turno antes de esperar: con lecturas en paralelo el tope se respeta
+          const ex = await extractor(page.url, { env, fetcher, signal }).catch((error) => ({ error: String(error?.message || error) })).finally(() => { extractInFlight--; });
+          if (ex?.fatal) { extractOff = true; audit.extractFailed++; audit.errors.push(`Extractor: ${ex.error}`); extractionMeta = { ok: false, error: String(ex.error).slice(0, 200) }; }
           else if (ex?.json) {
+            audit.extracted++;
             audit.extractCredits += ex.credits || 0;
             const extraction = extractedFacts(ex, page.text, { today });
             const v3 = verifyFinding(json, page, objective, { today, brief, profile, extraction });
@@ -293,7 +302,7 @@ export async function runObjective(objective, brief, opts = {}) {
             if (v3.flags.includes('extractor_conflict')) audit.extractConflicts++;
             extractionMeta = compactExtraction(extraction, { credits: ex.credits || 0, ms: ex.ms || 0 });
             v = v3;
-          } else audit.errors.push(`Extractor: no result for ${page.url}`.slice(0, 200));
+          } else { audit.extractFailed++; const why = String(ex?.error || 'no JSON in the response').slice(0, 160); audit.errors.push(`Extractor: ${why} (${page.url})`.slice(0, 240)); extractionMeta = { ok: false, error: why }; }
         }
         for (const p of page.providers) stat(p).pagesRead++;
         const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };

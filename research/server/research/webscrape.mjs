@@ -130,7 +130,7 @@ export async function firecrawlScrape(url, { env = process.env, fetcher = fetch,
 
 /**
  * Firecrawl v2 /scrape con formato JSON: la página se descarga (con JavaScript si hace falta), se limpia y un modelo
- * del proveedor devuelve fases/fechas/elegibilidad con cita. Devuelve {json, markdown, credits, ms} o null; nunca lanza.
+ * del proveedor devuelve fases/fechas/elegibilidad con cita. Devuelve {json, markdown, credits, ms}; si falla, {error, fatal?} (o null sin clave o host bloqueado); nunca lanza.
  * La respuesta es dato NO confiable: extract.mjs comprueba cada cita contra el markdown antes de usarla.
  * Coste: la extracción JSON gasta más créditos que un scrape normal (ver el plan de Firecrawl); por eso el motor la pide
  * solo para candidatas y con tope (ENGINE_EXTRACT_MAX).
@@ -144,9 +144,9 @@ export async function firecrawlExtract(url, { env = process.env, fetcher = fetch
     const d = data?.data || {};
     const json = d.json && typeof d.json === 'object' ? d.json : d.extract && typeof d.extract === 'object' ? d.extract : null;
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';
-    if (!json) return null;
+    if (!json) return { error: `Firecrawl answered without JSON (keys: ${Object.keys(d).slice(0, 6).join(', ') || 'none'})` };
     return { json, markdown, credits: Number(data.creditsUsed ?? d.metadata?.creditsUsed) || 0, ms: data.__ms || 0 };
-  } catch (error) { return error?.fatal ? { error: String(error.message || error).slice(0, 200), fatal: true } : null; }
+  } catch (error) { return { error: String(error.message || error).slice(0, 200), ...(error?.fatal ? { fatal: true } : {}) }; }
 }
 
 /** Varias búsquedas; una que falla no tumba las demás. Devuelve {results, errors, calls, ms}. */

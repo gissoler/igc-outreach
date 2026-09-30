@@ -142,7 +142,10 @@ test('firecrawlExtract: pide markdown + json con esquema, lee data.json y nunca 
   assert.equal(await firecrawlExtract('https://www.linkedin.com/x', { env: { FIRECRAWL_API_KEY: 'k' }, fetcher }), null);
   assert.equal(await firecrawlExtract('https://funder.example.org/a', { env: {}, fetcher }), null);
   const bad = async () => new Response('{"error":"boom"}', { status: 400 });
-  assert.equal(await firecrawlExtract('https://funder.example.org/b', { env: { FIRECRAWL_API_KEY: 'k' }, fetcher: bad }), null);
+  const failed = await firecrawlExtract('https://funder.example.org/b', { env: { FIRECRAWL_API_KEY: 'k' }, fetcher: bad });
+  assert.ok(/400.*boom/.test(failed.error)); assert.ok(!failed.fatal);
+  const noJson = async () => new Response(JSON.stringify({ success: true, data: { markdown: 'x'.repeat(200) } }), { status: 200 });
+  assert.ok(/without JSON/.test((await firecrawlExtract('https://funder.example.org/d', { env: { FIRECRAWL_API_KEY: 'k' }, fetcher: noJson })).error));
   const noCredits = async () => new Response('{"error":"Insufficient credits"}', { status: 402 });
   const fatal = await firecrawlExtract('https://funder.example.org/c', { env: { FIRECRAWL_API_KEY: 'k' }, fetcher: noCredits });
   assert.equal(fatal.fatal, true); resetProviderBreakers();
@@ -175,4 +178,22 @@ test('motor: un fallo fatal del extractor (sin créditos) lo apaga para el resto
 test('motor: sin extractor (o con ENGINE_EXTRACT=off) todo funciona como antes', async () => {
   const r = await runObjective('grant', mentiva, { chat, search: async () => mkPages(2), today: TODAY, rounds: 1 });
   assert.equal(r.audit.extracted, 0); assert.ok(r.findings.every((f) => !f.trace.extraction));
+});
+
+test('motor: un fallo no fatal del extractor se registra con su motivo y no gasta el tope de lecturas logradas', async () => {
+  let n = 0;
+  const extractor = async () => { n++; return n <= 2 ? { error: 'Firecrawl: timed out' } : { json: { is_open_call: true, dates: [{ phase: 'application_deadline', quote: 'get their dossier in by 15 January 2027 at noon' }] }, markdown: '', credits: 5 }; };
+  const r = await runObjective('grant', mentiva, { chat, search: async () => mkPages(6), today: TODAY, rounds: 1, extractor, concurrency: 1, env: { ENGINE_EXTRACT_MAX: '3' } });
+  assert.equal(r.audit.extractFailed, 2); assert.equal(r.audit.extracted, 3);
+  assert.equal(r.audit.errors.filter((e) => /Extractor: Firecrawl: timed out/.test(e)).length, 2);
+  assert.ok(r.findings.some((f) => f.trace.extraction?.ok === false && /timed out/.test(f.trace.extraction.error)));
+});
+
+test('trazas: cientos de páginas omitidas sin leer no dejan fuera a las leídas y descartadas', async () => {
+  const closed = mkPages(200).map((p) => ({ ...p, markdown: p.markdown.replace('Teams need to get their dossier in by 15 January 2027 at noon.', 'Application deadline: 15 January 2026.') }));
+  const r = await runObjective('grant', mentiva, { chat, search: async () => closed, today: TODAY, rounds: 1, env: { ENGINE_MAX_PAGES: '5', ENGINE_TRACE_MAX: '50' } });
+  const read = r.audit.traces.filter((t) => t.read);
+  const skipped = r.audit.traces.filter((t) => t.read === null && t.verdict === 'skip');
+  assert.equal(read.length, 5); assert.ok(read.every((t) => t.drop === 'closed'));
+  assert.equal(skipped.length, 80); assert.equal(r.audit.skipped.over_page_budget, 195);
 });
