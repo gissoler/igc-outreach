@@ -7,8 +7,8 @@ import { readFileSync } from 'node:fs';
 import { milestones, deadlineDecision } from '../server/research/dates.mjs';
 import { verifyOpportunity } from '../server/research/verify.mjs';
 import { extractedFacts, compactExtraction, EXTRACT_SCHEMA } from '../server/research/extract.mjs';
-import { firecrawlExtract, resetProviderBreakers } from '../server/research/webscrape.mjs';
-import { runObjective } from '../server/research/engine.mjs';
+import { firecrawlExtract, firecrawlPace, resetFirecrawlPace, resetProviderBreakers } from '../server/research/webscrape.mjs';
+import { runObjective, readPriority } from '../server/research/engine.mjs';
 
 const mentiva = JSON.parse(readFileSync(new URL('../eval/briefs/mentiva.json', import.meta.url), 'utf8'));
 const TODAY = '2026-09-30';
@@ -196,4 +196,46 @@ test('trazas: cientos de páginas omitidas sin leer no dejan fuera a las leídas
   const skipped = r.audit.traces.filter((t) => t.read === null && t.verdict === 'skip');
   assert.equal(read.length, 5); assert.ok(read.every((t) => t.drop === 'closed'));
   assert.equal(skipped.length, 80); assert.equal(r.audit.skipped.over_page_budget, 195);
+});
+
+/* ── 429 de Firecrawl: se espacian las llamadas en vez de gastar el turno en errores ── */
+test('firecrawlExtract: un 429 sube el ritmo entre llamadas y la llamada se reintenta con éxito', async () => {
+  resetProviderBreakers(); resetFirecrawlPace();
+  const env = { FIRECRAWL_API_KEY: 'k', FIRECRAWL_RATE_BACKOFF_MS: '60' };
+  let n = 0; const starts = [];
+  const fetcher = async () => { starts.push(Date.now()); n++; return n === 1 ? new Response('{"error":"Rate limit exceeded"}', { status: 429 }) : new Response(JSON.stringify({ success: true, creditsUsed: 5, data: { markdown: 'x', json: { is_open_call: true, dates: [] } } }), { status: 200 }); };
+  assert.equal(firecrawlPace().interval, 0);
+  const a = await firecrawlExtract('https://funder.example.org/a', { env, fetcher });
+  assert.equal(a.credits, 5); assert.equal(firecrawlPace().interval, 60);
+  assert.ok(starts[1] - starts[0] >= 55, `el reintento esperó ${starts[1] - starts[0]} ms`);
+  const b = await firecrawlExtract('https://funder.example.org/b', { env, fetcher });
+  assert.ok(b.json); assert.ok(starts[2] - starts[1] >= 55, 'las llamadas siguientes también van espaciadas');
+  resetProviderBreakers();
+  assert.equal(firecrawlPace().interval, 0);
+});
+
+test('firecrawlExtract: sin 429 no hay espera entre llamadas', async () => {
+  resetProviderBreakers();
+  const fetcher = async () => new Response(JSON.stringify({ success: true, data: { markdown: 'x', json: { is_open_call: true, dates: [] } } }), { status: 200 });
+  const t = Date.now();
+  for (let i = 0; i < 5; i++) await firecrawlExtract(`https://funder.example.org/${i}`, { env: { FIRECRAWL_API_KEY: 'k' }, fetcher });
+  assert.ok(Date.now() - t < 500);
+});
+
+/* ── Qué leer primero con un presupuesto de páginas ── */
+test('orden de lectura: la página de una convocatoria pasa delante de blogs y listas aunque salgan en más buscadores', () => {
+  const p = (url, title, n) => ({ url, title, providers: Array.from({ length: n }, (_, i) => `p${i}`) });
+  const call = p('https://grants.nih.gov/grants/guide/pa-files/PAR-25-136.html', 'PAR-25-136: Laboratories to Optimize Digital Health', 1);
+  const challenge = p('https://solve.mit.edu/challenges/2027-global-health-challenge', 'Global Health Challenge 2027', 1);
+  const listicle = p('https://example-blog.com/blog/top-10-digital-health-grants', 'Top 10 digital health grants', 3);
+  const oldNews = p('https://example.org/news/2024/05/funding-roundup', 'Funding roundup 2024', 3);
+  const T = '2026-09-30';
+  assert.ok(readPriority(call, T) > readPriority(listicle, T)); assert.ok(readPriority(challenge, T) > readPriority(oldNews, T));
+  const order = [listicle, oldNews, call, challenge].sort((a, b) => readPriority(b, T) - readPriority(a, T));
+  assert.deepEqual(order.slice(0, 2).map((x) => x.url).sort(), [call.url, challenge.url].sort());
+});
+
+test('motor: las páginas sin leer por presupuesto quedan listadas en la auditoría (audit.overBudget)', async () => {
+  const r = await runObjective('grant', mentiva, { chat, search: async () => mkPages(30), today: TODAY, rounds: 1, env: { ENGINE_MAX_PAGES: '10' } });
+  assert.equal(r.audit.overBudget.length, 20); assert.ok(r.audit.overBudget.every((x) => x.url && 'score' in x));
 });
