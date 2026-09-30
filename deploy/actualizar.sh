@@ -19,6 +19,9 @@ main() {
   sudo -u outreach bash -lc "$APP_DIR/.venv/bin/pip install --quiet -e $APP_DIR/backend"
   # Claves nuevas (Exa, etc.) desde tu .env local, sin pisar las del servidor (ver deploy/claves.sh).
   bash "$APP_DIR/deploy/claves.sh" || echo "claves: no se pudieron fusionar; el servidor sigue con las que tenía."
+  # nginx: servir .mjs como JavaScript (worker del lector de PDF). Idempotente; no toca el sitio que certbot editó.
+  install -m 644 "$APP_DIR/deploy/nginx-mjs.conf" /etc/nginx/conf.d/outreach-mjs.conf
+  nginx -t && systemctl reload nginx || echo "nginx: revisa la configuración (nginx -t)."
   install -m 644 "$APP_DIR/deploy/outreach-research.service" /etc/systemd/system/outreach-research.service
   systemctl daemon-reload
   systemctl restart outreach-research outreach-api
