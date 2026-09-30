@@ -1,3 +1,4 @@
+import { BRAND_KEYS, maskBrands } from './brand';
 /* Runs y registros guardados antes de pasar la app a inglés: traduce los fragmentos conocidos
    de los mensajes del servidor (generado a partir del mapa de traducción del backend). No toca citas literales. */
 const PAIRS: [string, string][] = [
@@ -728,7 +729,7 @@ export function legacyText(s: string): string {
 
 /** Recorre una respuesta y traduce solo campos de texto de interfaz (nunca citas ni URLs). */
 export function legacyDeep<T>(value: T, key = ''): T {
-  if (typeof value === 'string') return (KEYS.has(key) ? legacyText(value) : value) as T;
+  if (typeof value === 'string') return (KEYS.has(key) ? maskBrands(legacyText(value)) : BRAND_KEYS.has(key) ? maskBrands(value) : value) as T;
   if (Array.isArray(value)) return value.map((v) => legacyDeep(v, key === 'items' ? 'items' : key)) as T;
   if (value && typeof value === 'object') {
     const out: Record<string, unknown> = {};

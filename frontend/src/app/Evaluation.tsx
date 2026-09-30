@@ -27,7 +27,7 @@ export function SourceStateBadge({ state }: { state: SourceState }) { return <sp
 export function ApifyCard({ s }: { s: ApifyStatus }) {
   const tone = s.state === 'ran' ? 'ok' : s.state === 'error' ? 'error' : s.state === 'ran_empty' || s.state === 'no_eligible' ? 'empty' : 'not_configured';
   return <article className={`svc ${tone}`}>
-    <header><Coins size={16} aria-hidden="true" /><b>People search <small className="x-muted">(Firecrawl + ScrapeGraph)</small></b><SourceStateBadge state={tone as SourceState} /></header>
+    <header><Coins size={16} aria-hidden="true" /><b>People search</b><SourceStateBadge state={tone as SourceState} /></header>
     <p className="svc-head">{s.headline}</p>
     <p>{s.explanation}</p>
     <dl className="svc-nums"><div><dt>Searches</dt><dd>{fmtInt(s.runs)}</dd></div><div><dt>Records</dt><dd>{fmtInt(s.items)}</dd></div><div><dt>With a named person</dt><dd>{fmtInt(s.people)}</dd></div><div><dt>Duration</dt><dd>{fmtDuration(s.durationMs)}</dd></div><div><dt>Credit</dt><dd>{s.creditUsed ? 'Used' : 'Not used'}</dd></div></dl>
@@ -39,7 +39,7 @@ export function ApifyCard({ s }: { s: ApifyStatus }) {
 export function JevCard({ s }: { s: JevStatus }) {
   const tone = s.state === 'ran' ? 'ok' : s.state === 'error' ? 'error' : 'not_configured';
   return <article className={`svc ${tone}`}>
-    <header><Bot size={16} aria-hidden="true" /><b>AI second opinion <small className="x-muted">(Jev)</small></b><SourceStateBadge state={tone as SourceState} /></header>
+    <header><Bot size={16} aria-hidden="true" /><b>AI second opinion</b><SourceStateBadge state={tone as SourceState} /></header>
     <p className="svc-head">{s.headline}</p><p>{s.explanation}</p>
     <dl className="svc-nums"><div><dt>Reviewed</dt><dd>{fmtInt(s.decisions)}</dd></div><div><dt>Moved to radar</dt><dd>{fmtInt(s.routedToRadar)}</dd></div><div><dt>Model</dt><dd>{s.model || '—'}</dd></div><div><dt>Duration</dt><dd>{fmtDuration(s.durationMs)}</dd></div></dl>
     {s.action && <p className="svc-act"><ArrowRight size={13} /> {s.action}</p>}
@@ -299,7 +299,7 @@ function useAdvisorPill(job: Job, enabled: boolean): AdvisorPill | null {
         if (running) { setPill({ tone: 'lav', label: 'analyzing', title: 'The advisor is researching each contact and building your plan.', live: true }); t = window.setTimeout(tick, 4000); }
         else if (r.run?.status === 'failed') setPill({ tone: 'rose', label: 'failed', title: 'The analysis stopped. Open the Advisor to retry.' });
         else if (r.run?.roadmap) setPill({ tone: 'mint', label: 'plan ready', title: 'The advisor finished: open it to see the action plan.' });
-        else if (!r.role) setPill({ tone: 'gray', label: 'no model', title: 'No model configured: set VLLM_BASE and VLLM_CHAT_MODEL (or INTAKE_LLM_*) in research/.env so it can start on its own.' });
+        else if (!r.role) setPill({ tone: 'gray', label: 'no model', title: 'No AI model configured: ask your admin to connect it in the server settings.' });
         else { setPill({ tone: 'gray', label: 'waiting', title: 'The advisor starts right after the research finishes.' }); t = window.setTimeout(tick, 5000); }
       } catch { /* the pill just stays hidden */ }
     };

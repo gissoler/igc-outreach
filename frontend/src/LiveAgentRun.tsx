@@ -60,10 +60,10 @@ const SITE: [RegExp, { name: string; color: string; kind: string }][] = [
   [/reporter|nih/i, { name: 'NIH RePORTER', color: '#20558a', kind: 'Project' }],
   [/openalex/i, { name: 'OpenAlex', color: '#c2410c', kind: 'Paper' }],
   [/clinicaltrials/i, { name: 'ClinicalTrials.gov', color: '#1f6f8b', kind: 'Trial' }],
-  [/exa/i, { name: 'Exa', color: '#1d4ed8', kind: 'Web' }],
-  [/serper|google/i, { name: 'Web search', color: '#0f766e', kind: 'Web' }],
-  [/firecrawl|scrapegraph/i, { name: 'Firecrawl + ScrapeGraph', color: '#d08a1e', kind: 'Page' }],
-  [/apify|linkedin/i, { name: 'LinkedIn', color: '#0a66c2', kind: 'Profile' }],
+  [/semantic search/i, { name: 'Semantic Search', color: '#1d4ed8', kind: 'Web' }],
+  [/web search|deep search|news search|answer search|google/i, { name: 'Web search', color: '#0f766e', kind: 'Web' }],
+  [/web reader|page reader/i, { name: 'Web Reader', color: '#d08a1e', kind: 'Page' }],
+  [/people search|linkedin/i, { name: 'LinkedIn', color: '#0a66c2', kind: 'Profile' }],
 ];
 const siteOf = (text: string) => SITE.find(([rx]) => rx.test(text))?.[1] || { name: text || 'Public source', color: '#2150f5', kind: 'Record' };
 
@@ -404,7 +404,7 @@ function PageScene({ scene, p, jobId }: { scene: Scene; p: number; jobId: string
     <div className="lv-shot" data-cursor="shot-top">
       {frame && jobId ? <FrameImage src={frameUrl(jobId, frame.frameId!)} alt={`Real capture of ${host}`} scanning={p < 0.95} p={p} />
         : error && !httpOnly ? <div className="lv-error big"><TriangleAlert size={22} /><div><b>The browser couldn't load the page</b><p>{error.message}</p></div></div>
-        : httpOnly || noBrowser ? <div className="lv-skelpage"><header><b>{host}</b></header><div className="lv-scan" style={{ top: `${10 + p * 80}%` }} /><p><FileText size={16} /> Read over HTTP{noBrowser ? ' (Chromium unavailable)' : ''}: no capture.</p><i /><i /><i className="s" /><i /></div>
+        : httpOnly || noBrowser ? <div className="lv-skelpage"><header><b>{host}</b></header><div className="lv-scan" style={{ top: `${10 + p * 80}%` }} /><p><FileText size={16} /> Read over HTTP{noBrowser ? ' (browser unavailable)' : ''}: no capture.</p><i /><i /><i className="s" /><i /></div>
         : <div className="lv-skelpage loading"><header><b>{host}</b><LoaderCircle className="spin" size={14} /></header><i /><i /><i className="s" /><i /><i className="s" /></div>}
       <span className="lv-anchor mid" data-cursor="shot-mid" /><span className="lv-anchor low" data-cursor="shot-low" />
     </div>

@@ -80,7 +80,7 @@ export function AnalysisView({ job, onOpenOutreach, onOpenLead, embedded = false
   let body: ReactNode;
   if (!jobId) body = <EmptyState title="Run an evaluation first">The advisor analyzes the contacts found by your latest run.</EmptyState>;
   else if (!loaded) body = <SkeletonState variant="dashboard" rows={4} label="Loading analysis…" />;
-  else if (!run && !running) body = <EmptyState icon={<Bot size={22} />} title="No analysis yet" action={<button className="x-btn primary" disabled={!role} onClick={() => void start({})}><Play size={14} /> Analyze with AI</button>}>{role ? 'One agent per contact, a strategist and a critic.' : 'Connect the model fleet (VLLM_BASE, VLLM_CHAT_MODEL) first.'}</EmptyState>;
+  else if (!run && !running) body = <EmptyState icon={<Bot size={22} />} title="No analysis yet" action={<button className="x-btn primary" disabled={!role} onClick={() => void start({})}><Play size={14} /> Analyze with AI</button>}>{role ? 'One agent per contact, a strategist and a critic.' : 'Connect the AI model first (ask your admin).'}</EmptyState>;
   else body = <>
     {running && run && <div className="an2-live" aria-live="polite"><span className="sh-live" /><b>Analyzing</b><span>{run.events.at(-1)?.message || `${run.events.at(-1)?.contact || ''} ${run.events.at(-1)?.action || ''}`}</span><i style={{ width: `${Math.min(96, 8 + dossiers.length * 9)}%` }} /></div>}
 

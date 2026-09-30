@@ -61,9 +61,9 @@ type Health = { status: string; providers: Record<string, string> };
 const PROVIDER_LABEL: Record<string, [string, string]> = {
   openalex: ['Publications', 'Who publishes on your topic (OpenAlex)'], clinicalTrials: ['Clinical trials', 'Trial sponsors in your area'],
   grants: ['Public grants', 'Open federal grants (Grants.gov)'], reporter: ['Funded projects', 'NIH projects and program officers'],
-  exa: ['Web search', 'Funds, partners and news (Exa · paid)'], rounds: ['Funding rounds', 'Who led similar rounds'],
-  web: ['Broad web search', 'Unverified leads (Serper · paid)'], people: ['People on the web', 'Who to contact at each org (paid)'],
-  linkedin: ['Your LinkedIn', 'People who appear with you online'], jev: ['AI second opinion', 'Checks evidence before prioritizing (Jev)'], intakeModel: ['Profile assistant', 'Fills your profile from what you share'],
+  exa: ['Web search', 'Funds, partners and news (paid)'], rounds: ['Funding rounds', 'Who led similar rounds'],
+  web: ['Broad web search', 'Unverified leads (paid)'], people: ['People on the web', 'Who to contact at each org (paid)'],
+  linkedin: ['Your LinkedIn', 'People who appear with you online'], jev: ['AI second opinion', 'Checks evidence before prioritizing '], intakeModel: ['Profile assistant', 'Fills your profile from what you share'],
 };
 const stateOf = (v: string) => /pendiente|sin |falta|missing|not set|pending|no model/i.test(v) ? 'not_configured' : 'ok';
 export function IntegrationsDrawer({ open, onClose, demo }: { open: boolean; onClose: () => void; demo?: boolean }) {

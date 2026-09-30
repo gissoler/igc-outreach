@@ -1,3 +1,4 @@
+import { maskDeep } from '../brand';
 /* ─────────────────────────────────────────────────────────────────────────────
    DEMO EJECUTIVA — personas, organizaciones, URLs y evidencias FICTICIAS.
    Sirve para contar la historia completa (warm paths de 1–3 saltos, Apify y Jev
@@ -102,7 +103,7 @@ const specs: Spec[] = [
   { person: 'Julian Park', role: 'Managing Partner', org: 'Calmwave Labs', title: 'Managing Partner at Calmwave Labs', fundingType: 'investment', status: 'active', fit: 0.75, timing: 0.6, contact: li('julian-park'), bucket: 'discarded', discard: 'Excluded by your criteria.', confidence: 'media', hits: ['dementia', 'sensors', 'digital health'],
     evidence: [ev(APIFY, 'linkedin/julian-park', 'Julian Park · Managing Partner · Calmwave Labs', 'profile', true, 6)], risks: ['competitor_conflict'] },
   { person: 'Grace Liu', role: null, org: 'Pinecrest Partners', title: 'Mentioned in an angel investor list', fundingType: 'investment', status: 'unknown', fit: 0.25, timing: 0.1, bucket: 'discarded', discard: 'No confirmed evidence; search lead.', confidence: 'baja', hits: ['digital health'],
-    evidence: [ev('Web search (Serper)', 'serper/list', 'Snippet: «… Grace Liu, angel investor …»', 'snippet', false, 300)] },
+    evidence: [ev('Web search (Serper)', 'web-search/list', 'Snippet: «… Grace Liu, angel investor …»', 'snippet', false, 300)] },
   { person: 'Victor Hsu', role: 'Director, Oncology BD', org: 'Oriel Biosciences', title: 'Oncology BD', fundingType: 'partnering', status: 'active', fit: 0, timing: 0.6, contact: li('victor-hsu'), bucket: 'discarded', discard: 'Rejected before for this user, product and mode.', confidence: 'media', hits: [],
     evidence: [ev(APIFY, 'linkedin/victor-hsu', 'Victor Hsu · Director, Oncology BD · Oriel Biosciences', 'profile', true, 12)] },
 ];
@@ -201,7 +202,7 @@ function runEvents(leads: Lead[]): LiveRunEvent[] {
   ].sort((a, b) => a.at.localeCompare(b.at)).map((x, k) => ({ ...x, sequence: k + 1, id: `demo:${k + 1}` }));
 }
 
-export function demoJob(): Job {
+function buildDemoJob(): Job {
   evSeq = 0;
   const leads = withRanks(specs.map(buildLead));
   return {
@@ -210,6 +211,9 @@ export function demoJob(): Job {
     run: { version: 1, events: runEvents(leads), dropped: 0 },
   };
 }
+
+/** Los datos de demostración también salen con los nombres neutros (nunca el proveedor real). */
+export const demoJob = (): Job => maskDeep(buildDemoJob());
 
 /** Red del founder (ficticia): equipo, contactos directos e interacciones públicas. */
 export function demoNetwork(): NetworkGraphData {

@@ -63,7 +63,7 @@ export function CandidateInsight({ lead, dossier }: { lead: Lead | null; dossier
           {verdict && <span className={`pl-chip ${verdict.tone}`}>{verdict.t}</span>}
           {d && <span className={`pl-chip ${d.fit.verdict === 'alto' ? 'mint' : d.fit.verdict === 'medio' ? 'sun' : 'gray'}`}>{FIT[d.fit.verdict] || d.fit.verdict}</span>}
           {d && <span className="pl-chip lav">{ROLE[d.role.kind] || d.role.kind}</span>}
-          {jev && <span className="pl-chip gray" title={`Action confidence ${Math.round(jev.actionConfidence * 100)}% · evidence ${Math.round(jev.evidenceSufficient * 100)}%`}>{jev.provider || 'Jev'}: {jev.action === 'prioritize' ? 'prioritize' : jev.action === 'discard' ? 'review' : 'dig deeper'}</span>}
+          {jev && <span className="pl-chip gray" title={`Action confidence ${Math.round(jev.actionConfidence * 100)}% · evidence ${Math.round(jev.evidenceSufficient * 100)}%`}>{jev.provider || 'Decision Agent'}: {jev.action === 'prioritize' ? 'prioritize' : jev.action === 'discard' ? 'review' : 'dig deeper'}</span>}
         </div>
         {d?.summary ? <p className="ci-sum">{clip(d.summary, 220)}</p> : lead && <p className="ci-sum">{clip(lead.title, 160)}</p>}
       </div>

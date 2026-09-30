@@ -46,7 +46,7 @@ export function DecisionTrace({ lead, job, expanded = false }: { lead: Lead; job
   const [all, setAll] = useState(expanded);
   useEffect(() => setAll(expanded), [expanded]);
   return <div className="t-card">
-    <div className="t-head"><span><b>Decision trace</b><small>Evidence → rules → Jev → result.</small></span><button className="x-btn sm" onClick={() => setAll(!all)} aria-pressed={all}>{all ? 'Collapse' : 'Expand all'}</button></div>
+    <div className="t-head"><span><b>Decision trace</b><small>Evidence → rules → Decision Agent → result.</small></span><button className="x-btn sm" onClick={() => setAll(!all)} aria-pressed={all}>{all ? 'Collapse' : 'Expand all'}</button></div>
     <ul className="t-tree" key={String(all)}><TraceBranch n={tree} depth={0} open={all} /></ul>
   </div>;
 }
@@ -228,7 +228,7 @@ function OfficialPageView({ lead, job, demo }: { lead: Lead; job: Job; demo: boo
       if (info.embeddable) { setMode('embed'); return; }
       setWhy(info.reason || '');
       setMode(info.browser?.available === false ? 'blocked' : 'browser');
-      if (info.browser?.available === false) setWhy(`${info.reason || 'This site does not allow being shown inside other apps.'} The in-app browser is off on this server (${info.browser.reason || 'Chromium not installed'}).`);
+      if (info.browser?.available === false) setWhy(`${info.reason || 'This site does not allow being shown inside other apps.'} The in-app browser is off on this server (${info.browser.reason || 'browser not installed'}).`);
     }).catch(() => { if (alive) setMode('embed'); });
     return () => { alive = false; };
   }, [lead.id, job.id, url]);

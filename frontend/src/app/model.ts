@@ -176,7 +176,7 @@ export function nextAction(lead: Lead): NextAction {
   return { kind: 'research', label: 'Finish research', detail: gap ? `Missing: ${gap}.` : 'Find the right person and channel.', rule: 'Priority + no path or channel' };
 }
 export function radarReason(lead: Lead): string {
-  if (lead.jev && lead.missing.some((m) => /jev/i.test(m))) return lead.missing.find((m) => /jev/i.test(m))!;
+  if (lead.jev && lead.missing.some((m) => /decision agent/i.test(m))) return lead.missing.find((m) => /decision agent/i.test(m))!;
   if (lead.status === 'closed') return 'Closed or past deadline: wait for the next cycle.';
   if (lead.status === 'forecasted') return 'Forecast, not open yet.';
   if (lead.kind === 'radar') return 'Radar source: future cycle or no open call.';
@@ -191,14 +191,15 @@ export type SourceHealthItem = {
   name: string; state: SourceState; results: number | null; durationMs: number | null; calls: number;
   failedCalls: number; messages: string[]; reason: string; fix: string | null; tech: string | null; consumesCredit: boolean;
 };
-const CREDIT = /apify|firecrawl|scrapegraph|exa|serper|jev|hunter/i;
+const CREDIT = /people search|web reader|semantic search|web search|deep search|news search|answer search|page reader|decision agent|contact finder/i;
 /* Lenguaje de negocio para el usuario; el detalle técnico (variable de entorno) queda aparte para el administrador. */
 const KEY_FIX: [RegExp, string, string][] = [
-  [/EXA_API_KEY/, 'Semantic web search is off for your org.', 'EXA_API_KEY in research/.env, then restart the research server.'],
-  [/SERPER_API_KEY/, 'Broad web search is off (optional: unverified leads only).', 'SERPER_API_KEY in research/.env.'],
-  [/FIRECRAWL_API_KEY|SGAI_API_KEY/, 'People search is off for your org.', 'FIRECRAWL_API_KEY and SGAI_API_KEY in research/.env; each run uses Firecrawl and ScrapeGraph credit.'],
-  [/APIFY_TOKEN/, 'People search is off for your org.', 'Older evaluation: used APIFY_TOKEN (now Firecrawl + ScrapeGraph).'],
-  [/JEV_API_KEY/, 'Jev second opinion is off.', 'JEV_API_KEY in research/.env.'],
+  [/Semantic Search key/, 'Semantic web search is off for your org.', 'Semantic Search key in the server settings, then restart the research server.'],
+  [/Web Search key/, 'Broad web search is off (optional: unverified leads only).', 'Web Search key in the server settings.'],
+  [/Contact Finder key/, 'Email lookup is off for your org.', 'Contact Finder key in the server settings.'],
+  [/Web Reader key/, 'People search is off for your org.', 'Web Reader key in the server settings; each run uses paid credit.'],
+  [/People Search key/, 'People search is off for your org.', 'Older evaluation: used a previous people-search key (now Web Reader).'],
+  [/Decision Agent key/, 'The AI second opinion is off.', 'Decision Agent key in the server settings.'],
 ];
 const keyInfo = (msg: string) => KEY_FIX.find(([re]) => re.test(msg));
 const fixFor = (msg: string) => (keyInfo(msg) ? 'Ask your admin to turn it on.' : null);
@@ -216,11 +217,11 @@ export function sourceHealth(job: Job): SourceHealthItem[] {
     for (const e of events) {
       if (e.phase === 'planning' && e.status === 'pending' && /omitid|pendiente|skipped|pending/i.test(e.title + e.message)) {
         const name = e.provider || e.message.split(':')[0].trim();
-        if (name === 'Jev') continue;
+        if (name === 'Decision Agent') continue;
         const it = get(name); it.state = 'not_configured'; it.reason = plainReason(e.message); it.fix = fixFor(e.message); it.tech = techDetail(e.message);
         continue;
       }
-      if (!e.provider || e.provider === 'Jev') continue;
+      if (!e.provider || e.provider === 'Decision Agent') continue;
       const it = get(e.provider);
       if (e.phase === 'api_request') it.calls++;
       if (e.phase === 'api_response' && (e.status === 'error' || ((e.detail as { httpStatus?: number } | undefined)?.httpStatus || 0) >= 400)) it.failedCalls++;
@@ -244,7 +245,7 @@ export function sourceHealth(job: Job): SourceHealthItem[] {
   }
   for (const it of items.values()) if (it.state === 'running' && !['queued', 'running'].includes(job.status)) { it.state = it.messages.length ? 'error' : 'empty'; it.reason ||= it.messages[0] || 'The source didn\'t report completion.'; }
   for (const it of items.values()) if (it.state === 'error' && !it.reason) it.reason = it.messages[0] || 'Unspecified error.';
-  return [...items.values()].filter((i) => i.name !== 'Apify' && i.name !== 'Firecrawl + ScrapeGraph').sort((a, b) => stateOrder(a.state) - stateOrder(b.state) || a.name.localeCompare(b.name));
+  return [...items.values()].filter((i) => i.name !== 'People Search' && i.name !== 'Web Reader').sort((a, b) => stateOrder(a.state) - stateOrder(b.state) || a.name.localeCompare(b.name));
 }
 const stateOrder = (s: SourceState) => ({ error: 0, not_configured: 1, empty: 2, running: 3, skipped: 4, ok: 5 })[s];
 
@@ -255,15 +256,15 @@ export type ApifyStatus = {
   runs: number; items: number; people: number; durationMs: number | null; actors: string[]; creditUsed: boolean;
 };
 export function apifyStatus(job: Job): ApifyStatus {
-  const PEOPLE_SRC = /apify|firecrawl|scrapegraph/i;
-  const events = (job.run?.events || []).filter((e) => e.provider === 'Apify' || e.provider === 'Firecrawl + ScrapeGraph' || PEOPLE_SRC.test(e.message));
+  const PEOPLE_SRC = /people search|web reader/i;
+  const events = (job.run?.events || []).filter((e) => e.provider === 'People Search' || e.provider === 'Web Reader' || PEOPLE_SRC.test(e.message));
   const people = job.leads.filter((l) => l.evidence.some((e) => PEOPLE_SRC.test(e.source))).length;
   const base = { runs: 0, items: 0, people, durationMs: null as number | null, actors: [] as string[], creditUsed: false,
     coverage: 'Finds the named decision-makers at each organization.' };
-  if (job.mode === 'demo' && !job.run?.events.some((e) => e.provider === 'Apify' || e.provider === 'Firecrawl + ScrapeGraph')) return { ...base, state: 'demo', headline: 'Not run (demo)', explanation: 'The demo doesn\'t query external sources. No credit used.', action: null };
+  if (job.mode === 'demo' && !job.run?.events.some((e) => e.provider === 'People Search' || e.provider === 'Web Reader')) return { ...base, state: 'demo', headline: 'Not run (demo)', explanation: 'The demo doesn\'t query external sources. No credit used.', action: null };
   if (!job.brief.useApify) return { ...base, state: 'disabled', headline: 'Off for this evaluation', explanation: 'People search was off to save credit.', action: 'Turn it on in Setup → Network.' };
   const legacy = job.events.filter((e) => PEOPLE_SRC.test(e.message));
-  if (events.some((e) => /APIFY_TOKEN|FIRECRAWL_API_KEY|SGAI_API_KEY/.test(e.message)) || legacy.some((e) => /APIFY_TOKEN|FIRECRAWL_API_KEY|SGAI_API_KEY/.test(e.message))) return { ...base, state: 'not_configured', headline: 'Not run: turned off', explanation: 'People search is off for your org. No credit used.', action: 'Ask your admin to turn it on and run again.', tech: 'FIRECRAWL_API_KEY and SGAI_API_KEY in research/.env' };
+  if (events.some((e) => /People Search key|Web Reader key/.test(e.message)) || legacy.some((e) => /People Search key|Web Reader key/.test(e.message))) return { ...base, state: 'not_configured', headline: 'Not run: turned off', explanation: 'People search is off for your org. No credit used.', action: 'Ask your admin to turn it on and run again.', tech: 'Web Reader key in the server settings' };
   const requests = events.filter((e) => e.phase === 'api_request');
   const responses = events.filter((e) => e.phase === 'api_response');
   const actors = [...new Set(requests.map((e) => e.message.match(/Actor ([\w./-]+)/)?.[1]).filter(Boolean) as string[])];
@@ -271,10 +272,10 @@ export function apifyStatus(job: Job): ApifyStatus {
   const completed = events.find((e) => e.phase === 'source_completed');
   const warn = events.find((e) => e.phase === 'warning');
   const stats = { ...base, runs: requests.length, items, actors, durationMs: completed?.durationMs ?? null, creditUsed: requests.length > 0 };
-  if (warn || completed?.status === 'error') return { ...stats, state: 'error', headline: 'Failed during the run', explanation: `${warn?.message || completed?.message}. Other sources' results were kept.`, action: 'Run again; if it fails again, tell your admin.', tech: 'Check Firecrawl and ScrapeGraph keys and balance in research/.env' };
+  if (warn || completed?.status === 'error') return { ...stats, state: 'error', headline: 'Failed during the run', explanation: `${warn?.message || completed?.message}. Other sources' results were kept.`, action: 'Run again; if it fails again, tell your admin.', tech: 'Check the Web Reader key and balance in the server settings' };
   if (events.some((e) => /Sin organizaciones|No eligible organizations|No organizations/i.test(e.title))) return { ...stats, state: 'no_eligible', headline: 'No eligible organizations', explanation: 'No public page returned organizations to search.', action: 'Widen sector or geography in Setup and run again.', tech: 'Limits: WEB_MAX_PAGES and WEB_MAX_PEOPLE' };
   if (completed) return (completed.resultCount || 0) > 0
-    ? { ...stats, state: 'ran', headline: `${requests.length} ${requests.length === 1 ? 'run' : 'runs'} · ${items} records · ${people} people in candidates`, explanation: 'Read public pages and found named people with roles, quoting each page. Paid per use.', action: null, tech: `Providers: Firecrawl + ScrapeGraph` }
+    ? { ...stats, state: 'ran', headline: `${requests.length} ${requests.length === 1 ? 'run' : 'runs'} · ${items} records · ${people} people in candidates`, explanation: 'Read public pages and found named people with roles, quoting each page. Paid per use.', action: null, tech: 'Provider: Web Reader' }
     : { ...stats, state: 'ran_empty', headline: 'Ran with no results', explanation: `${requests.length} searches found no people. May have used credit.`, action: 'Adjust sector or target orgs and run again.', tech: 'Queries built from profile sector and stage' };
   if (legacy.length) { const ok = legacy.find((e) => e.phase === 'reading'); return ok ? { ...stats, state: 'ran', headline: ok.message, explanation: 'Older evaluation without call log.', action: null } : { ...stats, state: 'error', headline: 'Inconclusive', explanation: legacy.at(-1)!.message, action: null }; }
   return { ...stats, state: 'not_reached', headline: 'Didn\'t run', explanation: job.status === 'failed' ? 'The evaluation stopped before enrichment.' : 'No people-search calls recorded.', action: 'Run again with people search on.' };
@@ -283,18 +284,18 @@ export function apifyStatus(job: Job): ApifyStatus {
 /* ───────── Jev: capa de decisión estructurada ───────── */
 export type JevStatus = { state: 'demo' | 'not_configured' | 'ran' | 'error' | 'no_candidates' | 'not_reached'; headline: string; explanation: string; action: string | null; tech?: string | null; decisions: number; routedToRadar: number; model: string | null; durationMs: number | null };
 export function jevStatus(job: Job): JevStatus {
-  const events = (job.run?.events || []).filter((e) => e.provider === 'Jev');
+  const events = (job.run?.events || []).filter((e) => e.provider === 'Decision Agent');
   const withJev = job.leads.filter((l) => l.jev);
-  const routed = withJev.filter((l) => l.bucket === 'radar' && l.missing.some((m) => /jev/i.test(m))).length;
+  const routed = withJev.filter((l) => l.bucket === 'radar' && l.missing.some((m) => /decision agent/i.test(m))).length;
   const base = { decisions: withJev.length, routedToRadar: routed, model: withJev[0]?.jev?.model || null, durationMs: events.find((e) => e.status === 'success')?.durationMs ?? null };
-  if (withJev.length) return { ...base, state: 'ran', headline: `${withJev.length} reviewed · ${routed} sent to review`, explanation: 'Jev scores fit (0–4) and evidence sufficiency. It can only move a priority to radar.', action: null };
-  const legacy = job.events.find((e) => /jev/i.test(e.message));
-  if (job.mode === 'demo') return { ...base, state: 'demo', headline: 'Not run (demo)', explanation: 'The server demo doesn\'t call Jev.', action: null };
-  if (events.some((e) => e.status === 'pending') || /JEV_API_KEY/.test(legacy?.message || '')) return { ...base, state: 'not_configured', headline: 'Off', explanation: 'Rules-only ranking. No AI model decided anything.', action: 'Optional: ask your admin to turn on Jev.', tech: 'JEV_API_KEY in research/.env' };
+  if (withJev.length) return { ...base, state: 'ran', headline: `${withJev.length} reviewed · ${routed} sent to review`, explanation: 'The Decision Agent scores fit (0–4) and evidence sufficiency. It can only move a priority to radar.', action: null };
+  const legacy = job.events.find((e) => /decision agent/i.test(e.message));
+  if (job.mode === 'demo') return { ...base, state: 'demo', headline: 'Not run (demo)', explanation: 'The server demo doesn\'t call the Decision Agent.', action: null };
+  if (events.some((e) => e.status === 'pending') || /Decision Agent key/.test(legacy?.message || '')) return { ...base, state: 'not_configured', headline: 'Off', explanation: 'Rules-only ranking. No AI model decided anything.', action: 'Optional: ask your admin to turn on the Decision Agent.', tech: 'Decision Agent key in the server settings' };
   const warn = events.find((e) => e.phase === 'warning') || (legacy?.phase === 'warning' ? legacy : null);
-  if (warn) return { ...base, state: 'error', headline: 'Jev didn\'t respond', explanation: `${warn.message}`, action: 'Retry; the rules ranking was kept.' };
-  if (!job.leads.some((l) => l.bucket !== 'discarded')) return { ...base, state: 'no_candidates', headline: 'No eligible candidates', explanation: 'Jev only reviews active candidates.', action: null };
-  return { ...base, state: 'not_reached', headline: 'No Jev record', explanation: 'This evaluation left no decision-layer record.', action: null };
+  if (warn) return { ...base, state: 'error', headline: 'Decision Agent didn\'t respond', explanation: `${warn.message}`, action: 'Retry; the rules ranking was kept.' };
+  if (!job.leads.some((l) => l.bucket !== 'discarded')) return { ...base, state: 'no_candidates', headline: 'No eligible candidates', explanation: 'The Decision Agent only reviews active candidates.', action: null };
+  return { ...base, state: 'not_reached', headline: 'No Decision Agent record', explanation: 'This evaluation left no decision-layer record.', action: null };
 }
 
 /* ───────── Resumen ejecutivo ───────── */
@@ -331,7 +332,7 @@ export function summarize(job: Job): Summary {
   for (const l of active) {
     if (l.risks.includes('competitor_conflict')) addRisk('Possible competitor', true, l.id);
     if (!l.evidence.some((e) => e.verified)) addRisk('No verified evidence', true, l.id);
-    if (l.jev?.action === 'discard') addRisk('Jev suggests discarding', true, l.id);
+    if (l.jev?.action === 'discard') addRisk('Decision Agent suggests discarding', true, l.id);
     if (l.bucket === 'top' && !l.person) addRisk('Priority without a named decision-maker', true, l.id);
     for (const r of l.risks) if (r !== 'competitor_conflict' && !r.startsWith('DEMO')) addRisk(r.replace(/: .*/, ''), false, l.id);
   }
@@ -525,12 +526,12 @@ export function decisionTrace(lead: Lead, job: Job): TraceNode {
         ...lead.breakdown.filter((f) => !['timing', 'path'].includes(f.factor) && (f.max || f.points)).map((f) => ({ id: `r-${f.factor}`, label: FACTOR_LABEL[f.factor] || f.factor, value: f.max ? `${(f.points / f.max).toFixed(2)} × ${f.max} = ${f.points} pts` : `${f.points} pts`, note: FACTOR_HELP[f.factor], tone: (f.points < 0 ? 'neg' : f.max && f.points / f.max >= 0.5 ? 'pos' : 'neutral') as TraceNode['tone'] })),
         { id: 'r-bucket', label: 'List rule', value: BUCKET_LABEL[lead.bucket], note: bucketRule, tone: lead.bucket === 'top' ? 'pos' : 'warn' },
       ] },
-      j ? { id: 'jev', label: 'Jev review', value: `${j.action === 'prioritize' ? 'Prioritize' : j.action === 'investigate_more' ? 'Dig deeper' : 'Review to discard'} · ${Math.round(j.actionConfidence * 100)}%`, note: `Model ${j.model}. Action probabilities, not investment odds.`, children: [
+      j ? { id: 'jev', label: 'Decision Agent review', value: `${j.action === 'prioritize' ? 'Prioritize' : j.action === 'investigate_more' ? 'Dig deeper' : 'Review to discard'} · ${Math.round(j.actionConfidence * 100)}%`, note: `Model ${j.model}. Action probabilities, not investment odds.`, children: [
         { id: 'j-pos', label: 'Positive signals', value: [j.strategicFit >= 3 ? `fit ${j.strategicFit.toFixed(1)}/4` : '', j.evidenceSufficient >= 0.65 ? `enough evidence ${Math.round(j.evidenceSufficient * 100)}%` : ''].filter(Boolean).join(' · ') || 'none strong', tone: 'pos' },
         { id: 'j-neg', label: 'Negative signals', value: [j.strategicFit < 2 ? `fit ${j.strategicFit.toFixed(1)}/4` : '', j.evidenceSufficient < 0.65 ? `insufficient evidence ${Math.round(j.evidenceSufficient * 100)}% (< 65 %)` : '', j.actionConfidence < 0.55 ? `confidence ${Math.round(j.actionConfidence * 100)}% (< 55 %)` : ''].filter(Boolean).join(' · ') || 'none', tone: 'neg' },
         { id: 'j-risk', label: 'Risks', value: String(lead.risks.length), note: lead.risks.map((r) => (r === 'competitor_conflict' ? 'possible competitor' : r)).join(' · ') || 'No risks.' },
         { id: 'j-unc', label: 'Uncertainty', value: Object.entries(j.actionProbabilities).map(([k, v]) => `${k === 'prioritize' ? 'prioritize' : k === 'investigate_more' ? 'dig deeper' : 'discard'} ${Math.round(v * 100)}%`).join(' · ') || '—', note: 'Routing: if Jev asks to dig deeper or discard, or confidence < 55% or evidence < 65%, a priority moves to radar.' },
-      ] } : { id: 'jev', label: 'Jev review', value: 'Not run', tone: 'neutral', note: jevStatus(job).explanation },
+      ] } : { id: 'jev', label: 'Decision Agent review', value: 'Not run', tone: 'neutral', note: jevStatus(job).explanation },
       { id: 'out', label: 'Result', value: action.label, tone: lead.bucket === 'top' ? 'pos' : 'warn', children: [
         { id: 'o-path', label: 'Recommended path', value: best ? best.nodes.join(' → ') : 'None', note: best ? `${STATUS_LABEL[best.status]} · strength ${Math.round(best.strength * 100)}% · weakest link ${Math.round(best.weakest.strength * 100)}%` : 'No documented relationship.' },
         { id: 'o-alt', label: 'Alternatives', value: String(Math.max(0, paths.length - 1)), note: paths.slice(1).map((p) => `${p.nodes.join(' → ')} (${Math.round(p.strength * 100)}%)`).join(' · ') || 'No alternatives.' },

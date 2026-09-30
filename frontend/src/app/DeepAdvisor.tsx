@@ -57,7 +57,7 @@ export function DeepAdvisor({ jobId }: { jobId: string }) {
       </div>
     </div>
     {err && <ErrorState message={err} />}
-    {!role && <div className="x-callout warn"><b>Connect the fleet first.</b>Set VLLM_BASE and VLLM_CHAT_MODEL in research/.env.</div>}
+    {!role && <div className="x-callout warn"><b>Connect the fleet first.</b>Ask your admin to connect the AI model in the server settings.</div>}
     {run && (running || run.status === 'running') && <div className="deep-log" aria-live="polite">{run.events.slice(-12).map((e, i) => <div key={i} className={`deep-ev ${e.type}`}><Bot size={12} /> {e.message || `${e.contact}: step ${e.step} · ${e.action}${e.thought ? ` — ${e.thought}` : ''}`}</div>)}</div>}
     {run?.errors?.length ? <p className="x-muted an-small">Errors: {run.errors.map((e) => `${e.contact}: ${e.error}`).join(' · ')}</p> : null}
 

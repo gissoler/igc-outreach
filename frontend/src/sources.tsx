@@ -8,7 +8,7 @@ export const SOURCE_META: Record<SourceKey, { label: string; hint: string; color
   linkedin: { label: 'LinkedIn', hint: 'Profiles and public activity', color: '#0a66c2', icon: Link2 },
   public_db: { label: 'Public databases', hint: 'Grants.gov · NIH · ClinicalTrials · SEC', color: '#6d5dfc', icon: Database },
   science: { label: 'Publications', hint: 'OpenAlex · PubMed', color: '#23a07a', icon: BookOpen },
-  search: { label: 'Web search', hint: 'Exa · Serper · funding rounds', color: '#0f9fb5', icon: Search },
+  search: { label: 'Web search', hint: 'Funds, partners, news and funding rounds', color: '#0f9fb5', icon: Search },
   web: { label: 'Official websites', hint: 'Company and foundation sites', color: '#d08a1e', icon: Globe },
   network: { label: 'Your network', hint: 'Imported contacts and calendar', color: '#d0487a', icon: Users },
   demo: { label: 'Demo', hint: 'Fictional data', color: '#9aa0ad', icon: FlaskConical },
@@ -18,16 +18,16 @@ export const SOURCE_ORDER: SourceKey[] = ['linkedin', 'public_db', 'science', 's
 export function classifySource(source = '', url = ''): SourceKey {
   const s = `${source} ${url}`.toLowerCase();
   if (/fixture|demostraci|example\.org/.test(s)) return 'demo';
-  if (/linkedin|apify/.test(s)) return 'linkedin';
+  if (/linkedin|people search/.test(s)) return 'linkedin';
   if (/calendar|calendario|contacts|contactos|\bcsv\b|gmail|outlook/.test(s)) return 'network';
-  if (/\bexa\b|serper/.test(s)) return 'search';
+  if (/semantic search|web search|deep search|news search|answer search/.test(s)) return 'search';
   if (/openalex|pubmed|ncbi|doi\.org|orcid/.test(s)) return 'science';
   if (/grants\.gov|reporter|nih\.gov|clinicaltrials|sec\.gov|edgar|cdmrp|\.gov\b/.test(s)) return 'public_db';
   return 'web';
 }
 export const evidenceKind = (e: Evidence) => classifySource(e.source, e.url);
 /** Proveedor concreto que se muestra junto a la familia (p. ej. "vía Apify"). */
-export const providerName = (e: Evidence) => /apify/i.test(e.source) ? 'Public profile (legacy source)' : e.source;
+export const providerName = (e: Evidence) => /people search/i.test(e.source) ? 'Public profile (legacy source)' : e.source;
 
 type Hop = Lead['paths'][number]['hops'][number];
 export function hopKind(hop: Hop, lead: Lead): SourceKey {
