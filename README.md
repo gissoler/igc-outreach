@@ -4,7 +4,7 @@ Aplicación local para priorizar inversionistas y encontrar el camino cálido m�
 
 ## Investigación de financiación
 
-La sección **Encontrar oportunidades** añade registro e inicio de sesión, onboarding por cuenta, importación de red desde LinkedIn, Gmail, Outlook, Calendar, HubSpot y Apollo, enriquecimiento opcional de personas mediante Apify y el flujo para Ram Mukunda y Rohit Goel, fuentes públicas, evidencia, ranking, borradores y feedback. Abre [la investigación local](http://localhost:5173/buscar). Inicia también `npm --prefix research start` junto al frontend y backend habituales. Configuración, formatos, limitaciones y pruebas en [research/README.md](research/README.md).
+La sección **Encontrar oportunidades** añade onboarding por espacio de trabajo (sin inicio de sesión: cada navegador abre el suyo), importación de red desde LinkedIn, Gmail, Outlook, Calendar, HubSpot y Apollo, enriquecimiento opcional de personas mediante Apify y el flujo para Ram Mukunda y Rohit Goel, fuentes públicas, evidencia, ranking, borradores y feedback. Abre [la investigación local](http://localhost:5173/buscar). Inicia también `npm --prefix research start` junto al frontend y backend habituales. Configuración, formatos, limitaciones y pruebas en [research/README.md](research/README.md).
 
 ## Frontend v2 (workspace ejecutivo)
 
@@ -39,7 +39,7 @@ npm install
 npm run dev
 ```
 
-Cuentas e investigación, en una tercera terminal:
+Investigación, en una tercera terminal:
 
 ```bash
 npm --prefix research start

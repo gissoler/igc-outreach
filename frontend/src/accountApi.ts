@@ -47,12 +47,8 @@ async function request<T>(path: string, init?: RequestInit, timeout = 20_000): P
 
 export const accountApi = {
   me: () => request<AccountSession>('/auth/me'),
-  /** Opens (or creates) the workspace of this browser. No email or password. */
+  /** Opens (or creates) the workspace of this browser. There is no sign-in: no email, no password. */
   browser: (key: string) => request<AccountSession>('/auth/browser', { method: 'POST', body: JSON.stringify({ key }) }),
-  register: (name: string, email: string, password: string) =>
-    request<AccountSession>('/auth/register', { method: 'POST', body: JSON.stringify({ name, email, password }) }),
-  login: (email: string, password: string) =>
-    request<AccountSession>('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }),
   logout: () => request<{ loggedOut: boolean }>('/auth/logout', { method: 'POST', body: '{}' }),
   saveProfile: (profile: ProjectConfig & { onboardingComplete?: boolean }) =>
     request<ProjectConfig & { onboardingComplete?: boolean }>('/account/profile', { method: 'PUT', body: JSON.stringify(profile) }),

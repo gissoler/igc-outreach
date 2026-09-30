@@ -1,6 +1,6 @@
 # Investigación pública en IGC Outreach
 
-Este módulo está integrado en la aplicación original `frontend/` mediante la ruta `/buscar`. El registro y onboarding ahora protegen la entrada al espacio personal de investigación. Los componentes del dashboard, el motor Python, los datos DuckDB y el pipeline existentes se conservan sin migrar ni borrar datos.
+Este módulo está integrado en la aplicación original `frontend/` mediante la ruta `/buscar`. El onboarding abre el espacio personal de investigación. Los componentes del dashboard, el motor Python, los datos DuckDB y el pipeline existentes se conservan sin migrar ni borrar datos.
 
 ## Ejecutar
 
@@ -16,7 +16,7 @@ npm start
 
 Con los tres servicios activos, abre http://localhost:5173/buscar. Vite redirige `/api/research` a `127.0.0.1:8788`; el resto de `/api` sigue en FastAPI (8000). Si cambias el puerto de investigación, actualiza también `frontend/vite.config.ts`. Solo escucha en localhost y no es una aplicación desplegada.
 
-La primera visita muestra registro e inicio de sesión reales. Cada cuenta tiene sesión HTTP-only, perfil, fuentes e historial separados. El onboarding guarda identidad, empresa, proyecto y necesidad de financiación antes de abrir la búsqueda. Las contraseñas se almacenan con `scrypt`; nunca se guardan en texto plano. En un despliegue público todavía harían falta HTTPS, verificación de correo, recuperación de contraseña, protección CSRF adicional, política de retención y una base de datos gestionada.
+No hay inicio de sesión: la primera visita abre automáticamente un espacio de trabajo propio del navegador (clave aleatoria en localStorage; «Start over» lo olvida). Cada espacio tiene sesión HTTP-only, perfil, fuentes e historial separados. El onboarding guarda identidad, empresa, proyecto y necesidad de financiación antes de abrir la búsqueda. Las contraseñas se almacenan con `scrypt`; nunca se guardan en texto plano. En un despliegue público todavía harían falta HTTPS, verificación de correo, recuperación de contraseña, protección CSRF adicional, política de retención y una base de datos gestionada.
 
 ## Qué hace
 

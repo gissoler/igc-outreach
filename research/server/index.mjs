@@ -181,26 +181,9 @@ export function createApp({
             intakeModel: env.INTAKE_LLM_BASE_URL ? env.INTAKE_LLM_MODEL || 'qwen3-4b' : 'no model · basic extraction',
           },
         });
-      if (req.method === 'POST' && path === '/api/research/auth/register') {
-        const name = typeof body.name === 'string' ? body.name.trim() : '';
-        const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
-        const password = typeof body.password === 'string' ? body.password : '';
-        if (!name || name.length > 120 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || email.length > 254)
-          return json(400, { error: 'Enter a valid name and email.' });
-        if (password.length < 8 || password.length > 128 || !/[A-Z]/.test(password) || !/\d/.test(password))
-          return json(400, { error: 'Password needs 8 characters, an uppercase letter and a number.' });
-        const salt = randomBytes(16).toString('hex');
-        const user = { id: randomUUID(), email, name, passwordSalt: salt, passwordHash: scryptSync(password, salt, 64).toString('hex'), createdAt: new Date().toISOString() };
-        try { store.createUser(user); }
-        catch { return json(409, { error: 'An account with that email already exists.' }); }
-        issueSession(res, user.id);
-        return json(201, { user: publicUser(user), profile: null, sources: [] });
-      }
-      /* Browser workspace, no login (feedback 29/09). The browser keeps a random key in
-         localStorage; the key is the credential of an anonymous account. Same key → same
-         workspace; clearing browser data starts a new one. Off with RESEARCH_BROWSER_WORKSPACES=0. */
+      /* The only way in: there is no sign-in. The browser keeps a random key in localStorage; the key is the
+         credential of an anonymous account. Same key → same workspace; clearing browser data starts a new one. */
       if (req.method === 'POST' && path === '/api/research/auth/browser') {
-        if (env.RESEARCH_BROWSER_WORKSPACES === '0') return json(403, { error: 'Browser workspaces are disabled.' });
         const key = typeof body.key === 'string' ? body.key : '';
         if (!/^[A-Za-z0-9_-]{32,128}$/.test(key)) return json(400, { error: 'Invalid browser key.' });
         const email = `browser-${tokenHash(`browser:${key}`).slice(0, 32)}@workspace.local`;
@@ -214,19 +197,6 @@ export function createApp({
           try { store.createUser(created); } catch { return json(409, { error: 'Try again.' }); }
           user = store.userById(created.id);
         }
-        issueSession(res, user.id);
-        return json(200, { user: publicUser(user), profile: store.profile(user.id), sources: store.accountSources(user.id) });
-      }
-      if (req.method === 'POST' && path === '/api/research/auth/login') {
-        const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
-        const password = typeof body.password === 'string' ? body.password : '';
-        if (!email || !password || password.length > 128)
-          return json(401, { error: 'Wrong email or password.' });
-        const user = store.userByEmail(email);
-        const supplied = user ? scryptSync(password, user.password_salt, 64) : Buffer.alloc(64);
-        const expected = user ? Buffer.from(user.password_hash, 'hex') : Buffer.alloc(64, 1);
-        if (!user || !timingSafeEqual(supplied, expected))
-          return json(401, { error: 'Wrong email or password.' });
         issueSession(res, user.id);
         return json(200, { user: publicUser(user), profile: store.profile(user.id), sources: store.accountSources(user.id) });
       }

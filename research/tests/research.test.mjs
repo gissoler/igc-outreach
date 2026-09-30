@@ -672,7 +672,7 @@ test('API end-to-end: validation, job, evidence, feedback, export, history and o
     store.close();
   }
 });
-test('real account registration persists profile, sources and session', async () => {
+test('the browser workspace persists profile, sources and session (no sign-in)', async () => {
   const store = createStore(':memory:');
   const { server } = createApp({
     store,
@@ -690,12 +690,12 @@ test('real account registration persists profile, sources and session', async ()
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
   const url = `http://127.0.0.1:${server.address().port}/api/research`;
   try {
-    const register = await fetch(url + '/auth/register', {
+    const register = await fetch(url + '/auth/browser', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: 'New Founder', email: 'founder@example.test', password: 'StrongPass1' }),
+      body: JSON.stringify({ key: 'k'.repeat(40) }),
     });
-    assert.equal(register.status, 201);
+    assert.equal(register.status, 200);
     const cookie = register.headers.get('set-cookie').split(';')[0];
     assert.match(cookie, /^wp_session=/);
     const profile = {
@@ -723,7 +723,7 @@ test('real account registration persists profile, sources and session', async ()
     assert.equal(imported.status, 200);
     assert.equal((await imported.json()).count, 1);
     const me = await (await fetch(url + '/auth/me', { headers: { Cookie: cookie } })).json();
-    assert.equal(me.user.email, 'founder@example.test');
+    assert.equal(me.user.browser, true);
     assert.equal(me.profile.project.name, 'New Product');
     assert.equal(me.profile.founder.linkedin_url, 'https://www.linkedin.com/in/new-founder');
     assert.equal(me.profile.linkedin_interactions.count, 1);
@@ -749,9 +749,9 @@ test('LinkedIn profile not found publicly falls back to a manual entry the clien
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
   const url = `http://127.0.0.1:${server.address().port}/api/research`;
   try {
-    const register = await fetch(url + '/auth/register', {
+    const register = await fetch(url + '/auth/browser', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: 'Unindexed Founder', email: 'unindexed@example.test', password: 'StrongPass1' }),
+      body: JSON.stringify({ key: 'k'.repeat(40) }),
     });
     const cookie = register.headers.get('set-cookie').split(';')[0];
     const profile = {
@@ -890,7 +890,7 @@ test('LinkedIn not indexed publicly: continues with the setup name instead of bl
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
   const url = `http://127.0.0.1:${server.address().port}/api/research`;
   try {
-    const register = await fetch(url + '/auth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: 'Gisel Caicedo', email: 'gisel@example.test', password: 'StrongPass1' }) });
+    const register = await fetch(url + '/auth/browser', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: 'k'.repeat(40) }) });
     const cookie = register.headers.get('set-cookie').split(';')[0];
     const profile = {
       founder: { name: 'Gisel Caicedo', title: 'Founder', email: 'gisel@example.test', linkedin_url: '', org: 'Mentiva' },
@@ -928,8 +928,8 @@ test('RESEARCH_PUBLIC_ORIGIN lets the deployed domain through and keeps others o
     assert.equal(await call('outreach.example.com', 'https://evil.example.com'), 403);
     assert.equal(await call(`localhost:${port}`), 401);
     const reg = await new Promise((resolve, reject) => {
-      const body = JSON.stringify({ name: 'Ana Test', email: 'ana@example.test', password: 'StrongPass1' });
-      const req = httpRequest({ host: '127.0.0.1', port, method: 'POST', path: '/api/research/auth/register', headers: { Host: 'outreach.example.com', Origin: 'https://outreach.example.com', 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => { res.resume(); resolve(res.headers['set-cookie']?.[0] || ''); });
+      const body = JSON.stringify({ key: 'k'.repeat(40) });
+      const req = httpRequest({ host: '127.0.0.1', port, method: 'POST', path: '/api/research/auth/browser', headers: { Host: 'outreach.example.com', Origin: 'https://outreach.example.com', 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => { res.resume(); resolve(res.headers['set-cookie']?.[0] || ''); });
       req.on('error', reject); req.end(body);
     });
     assert.match(reg, /; Secure/);

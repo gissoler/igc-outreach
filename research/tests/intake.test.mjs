@@ -118,7 +118,7 @@ test('rutas HTTP del prerregistro: aislamiento, documentos, edición y confirmac
   const url = `http://127.0.0.1:${server.address().port}/api/research`;
   try {
     assert.equal((await fetch(url + '/intake')).status, 401);
-    const reg = await fetch(url + '/auth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: 'Ana Pérez', email: 'ana@example.test', password: 'StrongPass1' }) });
+    const reg = await fetch(url + '/auth/browser', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: 'k'.repeat(40) }) });
     const cookie = reg.headers.get('set-cookie').split(';')[0];
     const call = (path, method = 'GET', body) => fetch(url + path, method === 'GET' ? { headers: { cookie } } : { method, headers: { 'Content-Type': 'application/json', cookie }, body: JSON.stringify(body ?? {}) });
     const first = await (await call('/intake')).json();
@@ -208,15 +208,6 @@ test('espacio del navegador sin login: misma clave, mismo espacio; otra clave, o
     assert.equal(intake.fields['company.name'].value, 'Mentiva');
     const other = await (await open('z'.repeat(40))).json();
     assert.notEqual(other.user.id, u1.id);
-  } finally { server.close(); }
-});
-
-test('espacios del navegador se pueden desactivar', async () => {
-  const { server } = createApp({ store: createStore(':memory:'), env: { RESEARCH_BROWSER_WORKSPACES: '0' } });
-  await new Promise((r) => server.listen(0, '127.0.0.1', r));
-  try {
-    const r = await fetch(`http://127.0.0.1:${server.address().port}/api/research/auth/browser`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: 'x'.repeat(40) }) });
-    assert.equal(r.status, 403);
   } finally { server.close(); }
 });
 

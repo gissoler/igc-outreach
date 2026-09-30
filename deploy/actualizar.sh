@@ -13,8 +13,8 @@ main() {
   sudo -u outreach env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 bash -lc "cd $APP_DIR/research && npm ci --omit=dev --no-audit --no-fund"
   sudo -u outreach bash -lc "cd $APP_DIR/frontend && npm ci --no-audit --no-fund && npm run build"
   sudo -u outreach bash -lc "$APP_DIR/.venv/bin/pip install --quiet -e $APP_DIR/backend"
-  # Motor de búsqueda v2: claves, túnel a g355 y bloque del .env (ver deploy/motor-v2.sh).
-  bash "$APP_DIR/deploy/motor-v2.sh" || echo "motor v2: falló su configuración; la app sigue sin él."
+  # Claves nuevas (Exa, etc.) desde tu .env local, sin pisar las del servidor (ver deploy/claves.sh).
+  bash "$APP_DIR/deploy/claves.sh" || echo "claves: no se pudieron fusionar; el servidor sigue con las que tenía."
   install -m 644 "$APP_DIR/deploy/outreach-research.service" /etc/systemd/system/outreach-research.service
   systemctl daemon-reload
   systemctl restart outreach-research outreach-api
