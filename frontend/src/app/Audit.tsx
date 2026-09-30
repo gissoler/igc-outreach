@@ -106,7 +106,7 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
     <div className="au-kpis">
       <div><b>{c.queries || audit.queries.length}</b><span>queries{c.queriesYearFixed ? ` · ${c.queriesYearFixed} year-fixed` : ''}</span></div>
       <div><b>{c.pagesSeen}</b><span>pages found</span></div>
-      <div><b>{c.pagesRead}</b><span>read by the AI{c.rereadForDates ? ` · ${c.rereadForDates} re-read for dates` : ''}</span></div>
+      <div><b>{c.pagesRead}</b><span>read by the AI{c.rereadForDates ? ` · ${c.rereadForDates} re-read for dates` : ''}{c.extracted ? ` · ${c.extracted} second reads (${c.extractConflicts || 0} disagreed)` : ''}</span></div>
       <div><b>{c.buckets.top}</b><span>main list</span></div>
       <div><b>{c.buckets.radar}</b><span>to verify</span></div>
       <div><b>{c.buckets.discarded}</b><span>discarded</span></div>
