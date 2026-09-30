@@ -120,6 +120,7 @@ sed "s/DOMINIO/$DOMINIO/g" "$APP_DIR/deploy/nginx.conf" > /etc/nginx/sites-avail
 ln -sf /etc/nginx/sites-available/outreach /etc/nginx/sites-enabled/outreach
 # Solo quitamos el sitio por defecto; el de Mentiva (si existe) se queda como está.
 rm -f /etc/nginx/sites-enabled/default
+install -m 644 "$APP_DIR/deploy/nginx-mjs.conf" /etc/nginx/conf.d/outreach-mjs.conf
 nginx -t && systemctl reload nginx
 
 echo "==> Firewall"
