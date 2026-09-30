@@ -195,7 +195,8 @@ export async function runObjective(objective, brief, opts = {}) {
   // «cerrada»), con tope por objetivo. Sin clave, sin ENGINE_EXTRACT o con `search` inyectado (pruebas) no se usa, salvo opts.extractor.
   const extractor = opts.extractor !== undefined ? opts.extractor : (!opts.search && env.ENGINE_EXTRACT !== 'off' && firecrawlConfigured(env)) ? firecrawlExtract : null;
   const maxExtract = Number(env.ENGINE_EXTRACT_MAX ?? 15);
-  let extractOff = false; let extractInFlight = 0;
+  const maxExtractClosed = Math.floor(maxExtract / 3);   // dudas de 'cerrada' no le quitan turno a los candidatos que sí pasan
+  let extractOff = false; let extractInFlight = 0; let extractClosedUsed = 0;
   const run = search || (apis
     ? async (q) => { const ck = `${recency}|${q}`; if (opts.cache?.[ck]) return opts.cache[ck]; const rows = await multiSearch(q, { env, fetcher, signal, recency, breaker }); if (opts.cache && rows.length) opts.cache[ck] = rows; for (const [p, x] of Object.entries(rows.stats || {})) { const s = stat(p); s.calls++; s.returned += x.returned; s.ms += x.ms; s.costUsd += x.costUsd || 0; if (x.error) { s.errors++; if (audit.errors.length < 20) audit.errors.push(`${p}: ${x.error}`); } if (x.disabled && !s.disabled) { s.disabled = x.disabled; audit.errors.push(`${p}: DESACTIVADO para el resto de la corrida (${x.disabled.slice(0, 120)})`); } } return rows; }
     : searxConfigured(env)
@@ -290,7 +291,8 @@ export async function runObjective(objective, brief, opts = {}) {
           }
         }
         let extractionMeta = null;
-        if (extractor && o.dated && !extractOff && audit.extracted + extractInFlight < maxExtract && audit.extractFailed < maxExtract && (v.keep || v.drop === 'closed')) {
+        if (extractor && o.dated && !extractOff && audit.extracted + extractInFlight < maxExtract && audit.extractFailed < maxExtract && (v.keep || (v.drop === 'closed' && extractClosedUsed < maxExtractClosed))) {
+          if (!v.keep) extractClosedUsed++;
           extractInFlight++;   // reserva el turno antes de esperar: con lecturas en paralelo el tope se respeta
           const ex = await extractor(page.url, { env, fetcher, signal }).catch((error) => ({ error: String(error?.message || error) })).finally(() => { extractInFlight--; });
           if (ex?.fatal) { extractOff = true; audit.extractFailed++; audit.errors.push(`Extractor: ${ex.error}`); extractionMeta = { ok: false, error: String(ex.error).slice(0, 200) }; }
