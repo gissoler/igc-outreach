@@ -181,7 +181,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead } = opts;
-  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
+  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 });
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
   const range = o.dated ? (env.ENGINE_TBS ?? 'qdr:y') : '';
@@ -243,8 +243,9 @@ export async function runObjective(objective, brief, opts = {}) {
       audit.dropped.aggregator = (audit.dropped.aggregator || 0) + 1;
       keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'aggregator', reasons: ['aggregator'], today: dayOf(today), note: 'Aggregator/directory host: not read' });
       return false;
-    }).sort((a, b) => b.providers.length - a.providers.length || a.order - b.order);
+    }).sort((a, b) => readPriority(b, today) - readPriority(a, today) || a.order - b.order);
     if (list.length > maxPages) audit.skipped.over_page_budget = (audit.skipped.over_page_budget || 0) + list.length - maxPages;
+    for (const p of list.slice(maxPages)) { if (audit.overBudget.length < 600) audit.overBudget.push({ url: p.url, title: String(p.title || '').slice(0, 100), score: readPriority(p, today), providers: p.providers.length }); }
     for (const p of list.slice(maxPages)) keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'over_page_budget', reasons: ['over_page_budget'], today: dayOf(today), note: `Not read: over the page budget (ENGINE_MAX_PAGES=${maxPages})` });
     list = list.slice(0, maxPages);
     const fetchFull = async (p) => {
@@ -329,6 +330,24 @@ export async function runObjective(objective, brief, opts = {}) {
   const rank = { apply: 0, watch: 1, skip: 2 };
   findings.sort((a, b) => rank[a.verdict] - rank[b.verdict] || (a.daysLeft ?? 1e9) - (b.daysLeft ?? 1e9));
   return { findings, audit, queries };
+}
+
+/**
+ * Con un presupuesto de páginas a leer, qué leer primero. Antes solo contaba en cuántos buscadores salía (lo que favorece a los
+ * listados y blogs populares, que salen en todos). Ahora suman: los buscadores que la traen, que el título o la URL suene a
+ * convocatoria (call, apply, challenge, grant, RFA/PAR…) y que el host parezca de una institución; restan las URLs de noticias,
+ * blogs, informes y listas, y las de años ya pasados. Es un orden de lectura, nunca un descarte: las demás se leen si hay sitio.
+ */
+const CALL_TERMS = /\b(call|calls|apply|application|applications|challenge|prize|grants?|funding|rfa|rfp|opportunit\w*|accelerator|competition|awards?|solicitation|fellowship|programme?)\b|\b(par|rfa|nofo|pa)-[\w-]*\d/i;
+const NEWSY = /\/(news|blog|blogs|press|articles?|stories|insights?|resources|webinars?|podcasts?|events?)\/|\b(best \d+|top \d+|roundup|newsletter|webinar|podcast|impact report|annual report|success stories)\b/i;
+const INSTITUTION = /\.(gov|edu|int|eu|mil)(\.[a-z]{2})?$|\.ac\.[a-z]{2}$|\.europa\.eu$|\.org$/i;
+export function readPriority(p, today = new Date()) {
+  const label = `${p.url} ${p.title || ''}`;
+  const host = (() => { try { return new URL(p.url).hostname; } catch { return ''; } })();
+  const thisYear = new Date(today).getUTCFullYear();
+  const years = [...label.matchAll(/\b(20\d{2})\b/g)].map((m) => +m[1]);
+  const old = years.length && Math.max(...years) < thisYear;
+  return Math.min(p.providers?.length || 1, 4) * 1.5 + (CALL_TERMS.test(label) ? 3 : 0) + (INSTITUTION.test(host) ? 1.5 : 0) - (NEWSY.test(label) ? 4 : 0) - (old ? 2 : 0);
 }
 
 /** Motor completo: un ciclo por objetivo del brief. */
