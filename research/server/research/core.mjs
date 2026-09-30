@@ -1,4 +1,5 @@
 import { GENERIC, grantMatch } from './grantMatch.mjs';
+import { applicantProfile, checkApplicant } from './applicant.mjs';
 import { createHash } from 'node:crypto';
 
 export const norm = (s = '') =>
@@ -271,6 +272,7 @@ export function evaluate(
   // Palabras genéricas («research», «data», «infrastructure»…) nunca cuentan como encaje temático.
   const specific = (value) => norm(value).split(' ').filter((t) => t.length > 2 && !GENERIC.has(t) && !GENERIC.has(t.replace(/s$/, '')));
   const tokens = [...new Set(tokenSources.flatMap((x) => specific(x.value)))];
+  const profile = applicantProfile(brief);
   const ranked = dedupe(leads).map((l) => {
     const verified = l.evidence.filter((e) => e.verified);
     const hay = norm(
@@ -351,7 +353,11 @@ export function evaluate(
     if (l.fundingType === 'grant' && l.kind !== 'opportunity')
       discard = 'Historical grant intelligence; not an open funding opportunity.';
     if (match?.verdict === 'mismatch') discard = match.summary;
+    // Regla (30/09): sin vigencia y elegibilidad verificadas, una convocatoria no entra en la lista principal.
+    const gate = grantOpp && !l.demo ? grantGate(l, days, profile) : null;
+    if (gate?.tier === 'drop' && !discard) discard = gate.reason;
     const watch =
+      gate?.tier === 'verify' ||
       match?.verdict === 'weak' ||
       l.kind === 'radar' ||
       l.status === 'closed' ||
@@ -421,12 +427,48 @@ export function evaluate(
       bucket: discard ? 'discarded' : watch ? 'radar' : 'top',
       discard,
       daysToDeadline: days === null ? null : Math.floor(days),
+      ...(gate ? { gate } : {}),
     };
   });
+  // Una persona o contacto sacado de una convocatoria (Hunter, seguimiento) no puede estar por encima de ella:
+  // si la convocatoria no está en la lista principal (cerrada, sin fecha, no elegible), el contacto baja a radar.
+  const byKey = new Map(ranked.map((l) => [l.key, l]));
+  for (const l of ranked) {
+    const parent = l.parentKey && byKey.get(l.parentKey);
+    if (parent && l.bucket === 'top' && parent.bucket !== 'top') {
+      l.bucket = 'radar';
+      l.missing = [...new Set([...(l.missing || []), `Linked opportunity "${String(parent.title || parent.org).slice(0, 80)}" is ${parent.bucket === 'discarded' ? `discarded (${String(parent.discard || '').slice(0, 80)})` : 'not verified as open and eligible'}`])];
+    }
+  }
   const ranks = { top: 0, radar: 0, discarded: 0 };
   return ranked
     .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
     .map((l) => ({ ...l, rank: ++ranks[l.bucket] }));
+}
+const dropText = (ver) => {
+  const r = ver.drop || ver.reasons?.[0] || '';
+  if (r === 'closed') return `Closed on ${ver.today}: ${ver.dates?.reason || 'the deadline has passed'}.`;
+  if (r.startsWith('not_a_call')) return `Not a call: ${ver.pageType?.reason || r}.`;
+  if (r === 'not_eligible') return `Not eligible: ${ver.eligibility?.reason || 'the page excludes this applicant'}.`;
+  if (r === 'aggregator' || r === 'social_host') return 'Aggregator or social network, not the official source.';
+  return `Discarded by verification: ${r}.`;
+};
+/** Puerta de la lista principal para una convocatoria: main | verify | drop, con motivo. */
+export function grantGate(l, days, profile = applicantProfile({})) {
+  const ver = l.verification || l.codeCheck;
+  if (ver?.tier) return ver.tier === 'drop' ? { tier: 'drop', reason: dropText(ver), source: l.verification ? 'read' : 'code' } : { tier: ver.tier, reason: ver.tier === 'main' ? 'Open today and eligible, both verified on the page' : (ver.blockers?.[0] || 'To verify'), source: l.verification ? 'read' : 'code' };
+  // Registros oficiales (Grants.gov, radar): plazo del registro + elegibilidad del aviso oficial.
+  const vigent = l.status === 'open' && days !== null && days >= 0;
+  const eligText = (l.evidence || []).filter((e) => e.field === 'eligibility').map((e) => e.quote).join('. ');
+  const byEnricher = l.eligibility?.verdict === '✔' ? 'yes' : l.eligibility?.verdict === '✖' ? 'no' : null;
+  const code = eligText ? checkApplicant('', profile, { modelQuote: eligText }) : null;
+  const elig = byEnricher || code?.decision || 'unclear';
+  if (elig === 'no' && !byEnricher) return { tier: 'drop', reason: `Not eligible: ${code.reason}.`, source: 'official' };
+  if (!vigent) return { tier: 'verify', reason: l.status === 'forecasted' ? 'Forecast: not open yet' : l.status === 'closed' ? 'Closed' : 'Deadline not verified', source: 'official' };
+  // Excepción anotada: en un registro oficial (Grants.gov) sin tipos de solicitante, la elegibilidad la resuelve el paso de
+  // elegibilidad y el plan de la convocatoria (✖ → descartada). Queda en la lista con la elegibilidad como pendiente visible.
+  if (elig !== 'yes') return { tier: 'main', pending: 'eligibility', reason: `Open per the official registry; eligibility pending${code?.reason ? ` (${code.reason})` : ''}`, source: 'official' };
+  return { tier: 'main', reason: 'Open (official registry deadline) and eligible per the official notice', source: 'official' };
 }
 export function buildDraft(lead, brief, senderFacts = []) {
   if (lead.fundingType === 'grant' || lead.kind === 'opportunity') {
