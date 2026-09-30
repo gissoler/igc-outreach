@@ -1,7 +1,7 @@
 // Módulo 5. Las oraciones de prueba reproducen frases estándar de NOFOs de NIH; los casos son de prueba.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluateOpportunity, patternRules, deadlineAlerts, toICS, verdictAccuracy, IGC_PROFILE, opportunityFromLead } from '../server/analysis/eligibility.mjs';
+import { evaluateOpportunity, evaluateRule, patternRules, deadlineAlerts, toICS, verdictAccuracy, IGC_PROFILE, opportunityFromLead } from '../server/analysis/eligibility.mjs';
 
 const NOFO = 'Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply. Foreign components, as defined in the NIH Grants Policy Statement, are not allowed. Cost Sharing is not required. The PI must have primary employment (more than one half) with the small business at the time of award.';
 const base = { id: 'X-1', number: 'PA-00-000', title: 'SBIR prueba', agency: 'NIH', url: 'https://www.grants.gov/search-results-detail/1', closeDate: '2026-11-05', awardCeiling: 300000, applicantTypes: [{ description: 'Small businesses' }], applicantEligibilityDesc: NOFO };
@@ -28,6 +28,12 @@ test('un "?" nunca se convierte en ✔', async () => {
 test('empresas con fines de lucro no pequeñas: ✔ si el campo oficial lo permite', async () => {
   const e = await evaluateOpportunity({ ...base, applicantTypes: ['For profit organizations other than small businesses'], applicantEligibilityDesc: '' }, { today: new Date('2026-09-27'), useFleet: false });
   assert.equal(e.verdict, '✔');
+});
+
+test('entity_type extraído por modelo como string no rompe la evaluación', () => {
+  const rule = { type: 'entity_type', requirement: 'small businesses', quote: 'Small businesses are eligible.' };
+  const result = evaluateRule(rule, { ...IGC_PROFILE, smallBusiness: { value: true } });
+  assert.equal(result.verdict, '✔');
 });
 
 test('alertas 60/30/7, ICS y exactitud', async () => {

@@ -1,0 +1,183 @@
+{
+  "about": "Gold para comparar modelos en el caso Mentiva. Cada dato se comprobó en la página oficial el 2026-09-29. null = no se puntúa. Correcciones 29/09 tras la primera corrida: nia.status, foster.deadline, startupgrantsindia.deadline; \"*\" = ambiguo, no se puntúa.",
+  "today": "2026-09-29",
+  "brief": {
+    "venture": "Mentiva",
+    "oneLiner": "Platform for digital well-being: helps people understand what's weighing on them, observe changes over time and find next steps, without diagnosing.",
+    "stage": "pre-seed (working prototype)",
+    "sector": "wellness, mental health, digital health (non-clinical)",
+    "entity": "for-profit startup",
+    "domicile": "ASUNCIÓN DEL BENCHMARK: incorporada fuera de EE. UU. y de la UE (p. ej. Colombia); abierta a operar globalmente",
+    "goal": "non-dilutive funding (grants, prizes, challenges, accelerators with cash) open now or soon"
+  },
+  "extract": {
+    "nia": {
+      "status": "upcoming",
+      "deadline": "2027-01-15",
+      "official": true,
+      "eligible": "no",
+      "non_dilutive": "yes"
+    },
+    "foster": {
+      "status": "upcoming",
+      "deadline": "2027-01-25",
+      "official": true,
+      "eligible": "no",
+      "non_dilutive": "yes"
+    },
+    "mmhpi": {
+      "status": "closed",
+      "deadline": "2023-04-05",
+      "official": null,
+      "eligible": null,
+      "non_dilutive": null
+    },
+    "braininnovationdays": {
+      "status": "closed",
+      "deadline": "2026-06-30",
+      "official": true,
+      "eligible": null,
+      "non_dilutive": null
+    },
+    "onemind": {
+      "status": "unknown",
+      "deadline": null,
+      "official": true,
+      "eligible": "unclear",
+      "non_dilutive": null
+    },
+    "headstreaminnovation": {
+      "status": "not_a_call",
+      "deadline": null,
+      "official": true,
+      "eligible": null,
+      "non_dilutive": null
+    },
+    "innovationsinmentalhealth": {
+      "status": "closed",
+      "deadline": "*",
+      "official": true,
+      "eligible": null,
+      "non_dilutive": "*"
+    },
+    "vestbee": {
+      "status": "closed",
+      "deadline": "2025-04-30",
+      "official": false,
+      "eligible": null,
+      "non_dilutive": "yes"
+    },
+    "startupgrantsindia": {
+      "status": null,
+      "deadline": "2026-09-15",
+      "official": false,
+      "eligible": null,
+      "non_dilutive": null
+    },
+    "fundsforngos": {
+      "status": "closed",
+      "deadline": "2026-09-18",
+      "official": false,
+      "eligible": null,
+      "non_dilutive": "yes"
+    },
+    "wellcome": {
+      "status": "closed",
+      "deadline": "2026-09-18",
+      "official": true,
+      "eligible": null,
+      "non_dilutive": "yes"
+    }
+  },
+  "judge": {
+    "cards": [
+      {
+        "id": "S1",
+        "name": "MIT Solve 2027 Global Health Challenge",
+        "facts": "Solution deadline 2026-11-02. Selected teams get ~USD 40k on average plus access to >USD 1M in prizes. Open globally; for-profit and nonprofit; concept to scale. Scope includes mental health conditions."
+      },
+      {
+        "id": "S2",
+        "name": "One Mind Accelerator (2027 cohort)",
+        "facts": "Applications reviewed on a rolling basis through 2026-10-19. Pre-seed, Seed and Series A mental-health startups. Offers network, education and 'capital' (type not specified). No geographic restriction stated."
+      },
+      {
+        "id": "S3",
+        "name": "EIC Accelerator",
+        "facts": "Next batching cut-off 2026-11-04. Grant component below EUR 2.5M. Only SMEs established in EU Member States or Horizon Europe associated countries (third-country companies would have to relocate)."
+      },
+      {
+        "id": "S4",
+        "name": "Future of Health Grant",
+        "facts": "Next deadline 2027-01-15. CHF 10k-50k equity-free. Startups based in Switzerland, or non-Swiss startups with a concrete plan to develop their business in Switzerland."
+      },
+      {
+        "id": "S5",
+        "name": "NIH PAR-25-136 Laboratories to Optimize Digital Health",
+        "facts": "Next due date 2026-10-05. For-profit and foreign organizations are eligible. Clinical trial required; R01 research grant testing evidence-based digital mental health interventions."
+      },
+      {
+        "id": "S6",
+        "name": "Wellcome Prize for Mental Health Science",
+        "facts": "Application deadline was 2026-09-18. USD 1M winner, USD 250k finalists. Research teams and SMEs worldwide."
+      },
+      {
+        "id": "S7",
+        "name": "Innovations in Mental Health (IMH) Fund",
+        "facts": "Currently not open for new applications. Post-programme funding is equity (GBP 250k-1M tickets)."
+      },
+      {
+        "id": "S8",
+        "name": "Headstream 2026 cohort",
+        "facts": "The page announces the members already selected for the 2026 cohort; no application information."
+      },
+      {
+        "id": "S9",
+        "name": "NIA Start-Up Challenge",
+        "facts": "Deadline 2027-01-15. Cash prizes only for teams led by US citizens/permanent residents or entities incorporated in the US. Focus: aging and Alzheimer's."
+      },
+      {
+        "id": "S10",
+        "name": "Brain Innovation Days Pitch Competition",
+        "facts": "Applications were open until 2026-06-30. Event 2026-11-19 in Brussels. No cash prize stated."
+      }
+    ],
+    "decisions": {
+      "S1": "apply",
+      "S2": "apply",
+      "S3": "watch",
+      "S4": "watch",
+      "S5": "watch",
+      "S6": "skip",
+      "S7": "skip",
+      "S8": "skip",
+      "S9": "skip",
+      "S10": "skip"
+    },
+    "mustTop2": [
+      "S1",
+      "S2"
+    ]
+  },
+  "plan": {
+    "families": {
+      "us_federal_sbir": "sbir|sttr|nimh|\\bnih\\b|\\bnsf\\b|seed ?fund",
+      "eu_programs": "\\beic\\b|horizon europe|eurostars|eit health",
+      "uk_programs": "innovate uk|\\bukri\\b|\\bnihr\\b",
+      "other_national": "canada|irap|germany|exist|korea|k-startup|australia|singapore|israel|chile|corfo|colombia|minciencias|innpulsa|mexico|brazil|brasil|india|latam|latin america|switzerland|swiss",
+      "mental_health_accelerators": "(accelerator|incubator|cohort)",
+      "prizes_challenges": "prize|challenge|competition|xprize|solve",
+      "foundations": "foundation|philanthrop|wellcome|trust|charit",
+      "time_bound": "2026|2027|deadline|open call|applications open|apply"
+    },
+    "liveTargets": [
+      "solve.mit.edu",
+      "onemind.org",
+      "eic.ec.europa.eu",
+      "future-of-health.org",
+      "seedfund.nsf.gov",
+      "nimh.nih.gov",
+      "grants.nih.gov"
+    ]
+  }
+}

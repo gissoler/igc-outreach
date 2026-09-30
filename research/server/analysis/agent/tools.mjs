@@ -7,8 +7,7 @@
 // anterior por palabras clave (focusText) / los primeros N, si no hay flota para esto o falla.
 import { firecrawlSearch, FIRECRAWL_URL } from '../../research/webscrape.mjs';
 import { fundId, personKey, normText } from '../entities.mjs';
-import { clip } from './evidence.mjs';
-import { rerank, embed, cosine, fleetConfig } from '../fleet.mjs';
+import { focusText, relevantText, rankItems } from '../../lib/relevance.mjs';
 
 const BLOCKED = /(^|\.)linkedin\.com$/i;
 const hostOf = (u) => { try { return new URL(u).hostname; } catch { return ''; } };
@@ -27,72 +26,7 @@ async function readPage(url, { env, fetcher, signal }) {
   return { title: (html.match(/<title>([^<]*)<\/title>/i) || [])[1] || '', text: html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' '), date: null };
 }
 
-/** Fragmentos de una página alrededor de las palabras de interés (para no pasar páginas enteras al modelo). Respaldo sin reranker. */
-export function focusText(text, terms, { window = 500, max = 3 } = {}) {
-  const t = String(text || '').replace(/\s+/g, ' ');
-  const low = t.toLowerCase();
-  const hits = [];
-  for (const term of terms.map((x) => String(x || '').toLowerCase()).filter((x) => x.length > 2)) {
-    let i = low.indexOf(term);
-    while (i >= 0 && hits.length < max * 3) { hits.push(i); i = low.indexOf(term, i + term.length); }
-  }
-  if (!hits.length) return clip(t, window * 2);
-  hits.sort((a, b) => a - b);
-  const spans = [];
-  for (const h of hits) { const s = Math.max(0, h - window / 2), e = Math.min(t.length, h + window / 2); if (spans.length && s <= spans.at(-1)[1]) spans.at(-1)[1] = e; else spans.push([s, e]); }
-  return spans.slice(0, max).map(([s, e]) => t.slice(s, e)).join(' … ');
-}
-
-/** Trocea un texto largo en fragmentos solapados para dárselos al cross-encoder. */
-function chunkText(text, size = 700, overlap = 120) {
-  const t = String(text || '').replace(/\s+/g, ' ').trim();
-  if (!t) return [];
-  if (t.length <= size) return [t];
-  const out = [];
-  for (let i = 0; i < t.length; i += size - overlap) { out.push(t.slice(i, i + size)); if (i + size >= t.length) break; }
-  return out;
-}
-
-/**
- * Orden de `texts` por relevancia real a `query`: cross-encoder (rerank) si hay uno de verdad configurado;
- * si no, embeddings + coseno (lo que suele haber: BAAI/bge, mxbai-embed…, que NO son cross-encoders aunque
- * el puerto se llame "rerank"). Devuelve null si no hay flota disponible para esto o si falla.
- */
-async function rankByRelevance(query, texts, { env, fetcher, signal } = {}) {
-  if (!query || texts.length < 2) return null;
-  const cfg = fleetConfig(env);
-  if (cfg.roles.rerank.ready) {
-    try { const r = await rerank(query, texts, { env, fetcher, signal }); if (r.length) return r.map((x) => x.index); } catch { /* sigue con embeddings */ }
-  }
-  if (cfg.roles.embed.ready) {
-    try {
-      const vecs = await embed([query, ...texts], { env, fetcher, signal });
-      const [qv, ...tv] = vecs;
-      return tv.map((v, index) => ({ index, score: cosine(qv, v) })).sort((a, b) => b.score - a.score).map((x) => x.index);
-    } catch { /* sin flota disponible para esto; sigue con el respaldo por palabras clave */ }
-  }
-  return null;
-}
-
-/** Los fragmentos de `text` más relevantes a `query` (ver rankByRelevance). Sin flota para esto, focusText por palabras clave. */
-async function relevantText(query, text, terms, { env, fetcher, signal, window = 500, max = 3 } = {}) {
-  if (query) {
-    const chunks = chunkText(text, window + 200);
-    if (chunks.length > 1) {
-      const order = await rankByRelevance(query, chunks, { env, fetcher, signal });
-      if (order) return order.slice(0, max).map((i) => chunks[i]).join(' … ');
-    } else if (chunks.length === 1) return chunks[0];
-  }
-  return focusText(text, terms, { window, max });
-}
-
-/** De una lista de ítems (deals, fragmentos de voz…), los `k` más relevantes a `query` (ver rankByRelevance). */
-async function rankItems(query, items, textOf, { env, fetcher, signal, k = 8 } = {}) {
-  if (!query || items.length <= 1) return items.slice(0, k);
-  const order = await rankByRelevance(query, items.map(textOf), { env, fetcher, signal });
-  if (order) return order.slice(0, k).map((i) => items[i]);
-  return items.slice(0, k);
-}
+export { focusText };
 
 export const TOOL_SPECS = {
   search_web: 'search_web {query}: search the web (news and pages). Use for: recent investments, current role, interviews, relationship between two people.',

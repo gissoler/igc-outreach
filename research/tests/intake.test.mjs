@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from '../server/research/store.mjs';
 import { createApp } from '../server/index.mjs';
-import { applyUpdate, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
+import { applyUpdate, missingRequired, planFields, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
 import { blankProfile } from '../server/research/profileDefaults.mjs';
 import { createServer } from 'node:http';
 
@@ -25,6 +25,12 @@ test('extracción heurística con citas literales y sin confundir TAM con monto'
   assert.deepEqual(get('competitors'), ['Calmwave', 'NeuroNest', 'Mindloop']);
   assert.ok(out.filter((u) => u.path === 'funding.objectives').flatMap((u) => u.value).includes('grant'));
   for (const u of out) assert.ok(DECK.replace(/\s+/g, ' ').includes(u.quote), u.path);
+});
+
+test('alternativas genéricas no se convierten en competidores ni exclusiones', () => {
+  const out = heuristicExtract('Alternativas: apps para conversar, tests aislados, clases, eventos o profesionales.');
+  assert.equal(out.some((u) => u.path === 'competitors'), false);
+  assert.equal(out.some((u) => u.path === 'constraints'), false);
 });
 
 test('respuestas guiadas, omisiones y ediciones del usuario bloqueadas', async () => {
@@ -165,16 +171,94 @@ test('intake: "no sé" skips the pending question, always asks one, never repeat
   const env = { INTAKE_LLM_BASE_URL: 'http://model/v1' };
   const summary = 'Mentiva is a local, on-device mobile experience for professionals managing stress and focus.';
   const answer = (body) => async () => ({ ok: true, json: async () => ({ choices: [{ message: { content: JSON.stringify(body) } }] }) });
-  await runTurn(s, { text: 'Mentiva, on-device app for stress and focus, prototype, pre-seed $1.5M, global, mental health', env, fetchImpl: answer({ ack: summary, question: 'What traction do you have?', asking: 'company.traction', updates: [{ path: 'company.name', value: 'Mentiva', quote: 'Mentiva' }] }) });
-  assert.equal(s.pending, 'company.traction');
+  // Optional questions are not asked while required ones are open (the progress bar counts only those).
+  await runTurn(s, { text: 'Mentiva, on-device app for stress and focus, prototype, pre-seed $1.5M, global, mental health', env, fetchImpl: answer({ ack: summary, question: 'Which product do you want to fund?', asking: 'product.name', updates: [{ path: 'company.name', value: 'Mentiva', quote: 'Mentiva' }] }) });
+  assert.equal(s.pending, 'product.name');
   // The founder doesn't know: skipped, and the next question is a different one.
-  await runTurn(s, { text: 'no se cuales son', env, fetchImpl: answer({ ack: summary, question: 'What traction do you have?', asking: 'company.traction', updates: [] }) });
-  assert.ok(s.skipped.includes('company.traction'));
-  assert.notEqual(s.pending, 'company.traction');
+  await runTurn(s, { text: 'no se cuales son', env, fetchImpl: answer({ ack: summary, question: 'Which product?', asking: 'product.name', updates: [] }) });
+  assert.ok(s.skipped.includes('product.name'));
+  assert.notEqual(s.pending, 'product.name');
   const last = s.messages.at(-1).text;
   assert.ok(!last.includes('local, on-device'), 'the same summary is not repeated');
   assert.match(last, /\?/);
   // The model forgets to ask: the server still asks the next open question.
   await runTurn(s, { text: 'for quarter 2 2026', env, fetchImpl: answer({ ack: 'Target: Q2 2026.', question: '', asking: null, updates: [{ path: 'funding.timeline', value: 'Q2 2026', quote: 'quarter 2 2026' }] }) });
   assert.match(s.messages.at(-1).text, /^Target: Q2 2026\. .+\?/);
+});
+
+test('espacio del navegador sin login: misma clave, mismo espacio; otra clave, otro espacio', async () => {
+  const store = createStore(':memory:');
+  const { server } = createApp({ store, env: {} });
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  const url = `http://127.0.0.1:${server.address().port}/api/research`;
+  const open = (key) => fetch(url + '/auth/browser', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key }) });
+  try {
+    const key = 'a'.repeat(20) + 'B_-9'.repeat(5);
+    assert.equal((await open('short')).status, 400);
+    const first = await open(key);
+    assert.equal(first.status, 200);
+    const u1 = (await first.json()).user;
+    assert.equal(u1.browser, true);
+    const cookie = first.headers.get('set-cookie').split(';')[0];
+    await fetch(url + '/intake/field', { method: 'PUT', headers: { 'Content-Type': 'application/json', cookie }, body: JSON.stringify({ path: 'company.name', value: 'Mentiva' }) });
+    const again = await open(key);
+    const cookie2 = again.headers.get('set-cookie').split(';')[0];
+    assert.equal((await again.json()).user.id, u1.id);
+    const intake = await (await fetch(url + '/intake', { headers: { cookie: cookie2 } })).json();
+    assert.equal(intake.fields['company.name'].value, 'Mentiva');
+    const other = await (await open('z'.repeat(40))).json();
+    assert.notEqual(other.user.id, u1.id);
+  } finally { server.close(); }
+});
+
+test('espacios del navegador se pueden desactivar', async () => {
+  const { server } = createApp({ store: createStore(':memory:'), env: { RESEARCH_BROWSER_WORKSPACES: '0' } });
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  try {
+    const r = await fetch(`http://127.0.0.1:${server.address().port}/api/research/auth/browser`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: 'x'.repeat(40) }) });
+    assert.equal(r.status, 403);
+  } finally { server.close(); }
+});
+
+test('intake: el plan depende del objetivo; inversión exige ronda, monto y tracción antes del 100%', async () => {
+  const s = newIntake({ user: { name: 'Gisel' } });
+  const env = { INTAKE_LLM_BASE_URL: 'http://model/v1' };
+  const answer = (body) => async () => ({ ok: true, json: async () => ({ choices: [{ message: { content: JSON.stringify(body) } }] }) });
+  const base = [['company.name', 'Mentiva'], ['product.name', 'Mentiva app'], ['product.one_liner', 'Helps students name their stress'], ['industry.sectors', ['mental health']], ['product.maturity', 'prototype'], ['geography', ['CO']], ['funding.objectives', ['investment']]].map(([path, value]) => ({ path, value, quote: '' }));
+  await runTurn(s, { text: 'all of it', env, fetchImpl: answer({ ack: 'Got it.', question: 'Who is on your team?', asking: 'company.team', updates: base }) });
+  assert.deepEqual(planFields(s).slice(-3), ['funding.round', 'funding.amount_usd', 'company.traction']);
+  assert.deepEqual(missingRequired(s), ['funding.round', 'funding.amount_usd', 'company.traction']);
+  assert.equal(s.pending, 'funding.round', 'asks what the plan needs, not the team');
+  // "I don't know" keeps it missing: the plan is not complete and the assistant says what is left.
+  await runTurn(s, { text: 'seed', env, fetchImpl: answer({ ack: 'Seed.', question: 'How much?', asking: 'funding.amount_usd', updates: [{ path: 'funding.round', value: 'seed', quote: 'seed' }] }) });
+  await runTurn(s, { text: 'no sé', env, fetchImpl: answer({ ack: 'Ok.', question: '', asking: null, skipped: 'funding.amount_usd', updates: [] }) });
+  assert.ok(missingRequired(s).includes('funding.amount_usd'));
+  await runTurn(s, { text: '1,200 beta users', env, fetchImpl: answer({ ack: 'Great traction.', question: '', asking: null, updates: [{ path: 'company.traction', value: '1,200 beta users', quote: '1,200 beta users' }] }) });
+  assert.match(s.messages.at(-1).text, /still need: amount/i);
+  assert.doesNotMatch(s.messages.at(-1).text, /complete/);
+  await runTurn(s, { text: 'about 500k', env, fetchImpl: answer({ ack: 'USD 500k.', question: '', asking: null, updates: [{ path: 'funding.amount_usd', value: 500000, quote: '500k' }] }) });
+  assert.deepEqual(missingRequired(s), []);
+  assert.match(s.messages.at(-1).text, /Your plan is complete/);
+  assert.equal(s.pending, null);
+});
+
+test('intake: grants piden monto y uso de fondos; no piden ronda', () => {
+  const s = newIntake({});
+  s.fields['funding.objectives'] = { value: ['grant'], origin: 'user', confidence: 'source' };
+  assert.deepEqual(planFields(s).slice(-2), ['funding.amount_usd', 'funding.use_of_funds']);
+  assert.ok(!planFields(s).includes('funding.round'));
+});
+
+test('intake sin modelo: capta ronda y monto aunque lleguen fuera de orden; "1,200 users" no es un monto', async () => {
+  const s = newIntake({});
+  s.fields['funding.objectives'] = { value: ['investment'], origin: 'user', confidence: 'source' };
+  s.pending = 'funding.amount_usd';
+  await runTurn(s, { text: 'seed', env: {} });
+  assert.equal(s.fields['funding.round']?.value, 'seed');
+  s.pending = 'company.traction';
+  await runTurn(s, { text: '1,200 beta users in 3 universities', env: {} });
+  assert.equal(s.fields['funding.amount_usd'], undefined);
+  s.pending = null;
+  await runTurn(s, { text: 'about 500k USD', env: {} });
+  assert.equal(s.fields['funding.amount_usd']?.value, 500000);
 });

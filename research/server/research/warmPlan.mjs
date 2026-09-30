@@ -46,11 +46,11 @@ export function planWarmPath(lead, brief = {}, { now = new Date() } = {}) {
     const days = lead.daysToDeadline;
     const far = days == null || days > 45;
     return {
-      route: 'program_officer', label: 'Talk to the program officer', built: false, cadenceDays: null,
-      why: 'Grants are warmer when the program officer already knows your project and has confirmed fit before you submit.',
+      route: 'grant_application', label: 'Manage the application', built: false, cadenceDays: null,
+      why: 'The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.',
       steps: [
-        { when: addDays(now, 0), what: far ? 'Email the program officer a 5-line summary and one specific fit question.' : 'Confirm eligibility with the published contact before drafting.' },
-        { when: addDays(now, far ? 14 : 3), what: 'Adjust the aims to their answer; ask if a pre-submission call is possible.' },
+        { when: addDays(now, 0), what: 'Read the official notice and resolve entity, geography, PI, budget and scope eligibility.' },
+        { when: addDays(now, far ? 14 : 3), what: far ? 'Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question.' : 'Make an urgent go/no-go decision before drafting.' },
         ...(days != null ? [{ when: addDays(now, Math.max(0, days - 7)), what: 'Submit a week before the deadline.' }] : []),
       ],
     };

@@ -19,7 +19,8 @@ test('every non-discarded candidate gets a warm path; without a network path it 
   assert.equal(fund.warmPlan.route, 'updates');
   assert.ok(fund.warmPlan.updates >= 2 && fund.warmPlan.cadenceDays);
   assert.match(fund.warmPlan.steps.at(-1).what, /meeting/);
-  assert.equal(grant.warmPlan.route, 'program_officer');
+  assert.equal(grant.warmPlan.route, 'grant_application');
+  assert.match(grant.warmPlan.steps[0].what, /official notice/i);
   assert.equal(intro.warmPlan.route, 'intro');
   assert.equal(intro.warmPlan.via, 'Andres');
   assert.equal(gone.warmPlan, undefined);
@@ -62,4 +63,17 @@ test('creative warm paths (AI) only replace the plan when they cite real evidenc
   assert.match(job.leads[0].warmPlan.steps[0].what, /essay/);
   assert.ok(job.leads[0].warmPlan.steps.some((s) => /meeting/.test(s.what)), 'keeps the updates and the final ask');
   assert.equal(job.leads[1].warmPlan.route, 'updates', 'uncited answer rejected');
+});
+
+test('creative investor outreach never rewrites a grant application plan', async () => {
+  const { createRunEnrichers } = await import('../server/analysis/routes.mjs');
+  const store = { analysis: { dealCount: () => 0 }, get: () => null };
+  let calls = 0;
+  const fetcher = async () => { calls++; throw new Error('model must not be called'); };
+  const step = createRunEnrichers({ store, env: { VLLM_BASE: 'http://fleet/v1', VLLM_CHAT_MODEL: 'm' }, fetcher }).find((x) => x.name === 'Creative warm paths');
+  const job = { brief: { name: 'G' }, leads: [{ id: 'grant', org: 'NIH', title: 'Specific call', kind: 'opportunity', fundingType: 'grant', bucket: 'top', score: 80, evidence: [], warmPlan: { route: 'grant_application', label: 'Review official notice', built: false, why: '', steps: [] } }] };
+  const result = await step.run(job, {});
+  assert.equal(result.skipped, true);
+  assert.equal(calls, 0);
+  assert.equal(job.leads[0].warmPlan.route, 'grant_application');
 });

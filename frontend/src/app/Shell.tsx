@@ -51,19 +51,19 @@ export function AccountMenu({ session, onNavigate, onSwitch, onIntegrations, onL
     if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length]?.focus(); }
   };
   const act = (fn: () => void) => () => { setOpen(false); fn(); };
-  const name = demo ? 'Ana Ríos (demo)' : session?.user.name || 'Guest';
+  const name = demo ? 'Ana Ríos (demo)' : (session?.user.browser ? session?.profile?.founder.name : session?.user.name) || session?.user.name || 'Guest';
   const role = demo ? 'CEO · fictional' : session?.profile?.founder.title || 'Role not set';
   const company = demo ? 'Lumen Neuro (demo)' : companyOf(session);
   return <div className="am" ref={ref} onKeyDown={onKey}>
     <button className="am-btn" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)} aria-label={`Account: ${name}`}><span className="am-av" aria-hidden="true">{initials(name)}</span><ChevronDown size={14} aria-hidden="true" /></button>
     {open && <div className="am-menu" role="menu" ref={menu} aria-label="Account menu">
-      <div className="am-head"><span className="am-av lg" aria-hidden="true">{initials(name)}</span><div><b>{name}</b><small>{demo ? 'No account · demo data' : session?.user.email}</small><span className="am-meta"><Building2 size={12} /> {company}</span><span className="am-meta"><UserRound size={12} /> {role}</span></div></div>
-      <button role="menuitem" onClick={act(onSwitch)}><Building2 size={15} /> Switch workspace</button>
+      <div className="am-head"><span className="am-av lg" aria-hidden="true">{initials(name)}</span><div><b>{name}</b><small>{demo ? 'No account · demo data' : session?.user.browser ? 'Saved in this browser · no login' : session?.user.email}</small><span className="am-meta"><Building2 size={12} /> {company}</span><span className="am-meta"><UserRound size={12} /> {role}</span></div></div>
+      {!session?.user.browser && <button role="menuitem" onClick={act(onSwitch)}><Building2 size={15} /> Switch workspace</button>}
       {!demo && <button role="menuitem" onClick={act(() => onNavigate('#/configuracion/empresa'))}><UserPen size={15} /> Edit profile</button>}
       {!demo && <button role="menuitem" onClick={act(() => onNavigate('#/configuracion/revision'))}><Settings size={15} /> Settings</button>}
       <button role="menuitem" onClick={act(onIntegrations)}><Plug size={15} /> Integrations</button>
       {!demo ? <button role="menuitem" onClick={act(() => onNavigate('#/demo'))}><FlaskConical size={15} /> Open demo</button> : <button role="menuitem" onClick={act(() => onNavigate('#/evaluacion'))}><LayoutDashboard size={15} /> Leave demo</button>}
-      {!demo && <button role="menuitem" className="danger" onClick={act(onLogout)}><LogOut size={15} /> Sign out</button>}
+      {!demo && <button role="menuitem" className="danger" onClick={act(onLogout)} title={session?.user.browser ? 'Forget this browser’s workspace and start an empty one' : undefined}><LogOut size={15} /> {session?.user.browser ? 'Start over' : 'Sign out'}</button>}
     </div>}
   </div>;
 }
@@ -221,15 +221,16 @@ export function AuthScreen({ initialEmail = '', notice = '', startRegister = fal
       </form>
     </section>
     <section className="auth-side" aria-label="What it does">
-      <span className="auth-eyebrow">Warm path intelligence</span>
-      <h2>Who to contact, how to reach them, and why.</h2>
+      <span className="auth-eyebrow">Why warm paths</span>
+      <h2>Investors mostly meet founders through someone they already know.</h2>
+      <p className="auth-stat"><b>58%</b> of closed VC deals come from a referral — the investor's network, other investors or portfolio companies. Only <b>10%</b> start with a cold email. <small>Gompers et al., “How Do Venture Capitalists Make Decisions?”, 2020</small></p>
+      <p className="auth-lead">Outreach puts you on their radar: it finds who is funding your space today and which people can introduce you.</p>
       <ol className="auth-steps">
-        <li><b>01</b><span>Verified company profile</span></li>
-        <li><b>02</b><span>Research with sources for every claim</span></li>
-        <li><b>03</b><span>Warm paths you can audit</span></li>
-        <li><b>04</b><span>A clear next step</span></li>
+        <li><b>01</b><span>Tell us what you're raising for<small>7 short questions, or attach your deck</small></span></li>
+        <li><b>02</b><span>We find who funds this today<small>funds, programs and the people inside them</small></span></li>
+        <li><b>03</b><span>You get who to contact first<small>why, how to reach them, and a 4-line email you review</small></span></li>
       </ol>
-      <button className="x-btn" onClick={onDemo}><FlaskConical size={15} /> Try the demo</button>
+      <button className="x-btn primary" onClick={onDemo}><FlaskConical size={15} /> Open the demo · no sign-in</button>
       <p className="auth-foot"><ShieldCheck size={13} /> We never guess emails or send messages for you.</p>
     </section>
   </div>;

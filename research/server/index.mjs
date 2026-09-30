@@ -12,6 +12,8 @@ import { editField, missingRequired, newIntake, publicIntake, removeDocument, ru
 import { blankProfile } from './research/profileDefaults.mjs';
 import { createFrameStore, createLiveHub } from './research/liveRun.mjs';
 import { createBrowserService } from './research/browser.mjs';
+import { createOfficialPages, officialUrlOf } from './research/officialPage.mjs';
+import { createRemoteBrowser } from './research/remoteBrowser.mjs';
 import { createAnalysisRoutes, createRunEnrichers, judgmentFromFeedback } from './analysis/routes.mjs';
 import { createAdvisorRoutes } from './analysis/advisorRoutes.mjs';
 export function createApp({
@@ -29,6 +31,7 @@ export function createApp({
   keepAliveMs = 15000,
 } = {}) {
   let active = null;
+  const anonymousRuns = new Map();
   const streams = new Set();
   /** SSE del Live Agent Run: snapshot inicial (desde Last-Event-ID), eventos nuevos, keepalive y cierre. */
   const streamEvents = (req, res, job, requestUrl) => {
@@ -87,7 +90,7 @@ export function createApp({
     const session = store.session(tokenHash(token));
     return session ? store.userById(session.user_id) : null;
   };
-  const publicUser = (user) => user && ({ id: user.id, email: user.email, name: user.name });
+  const publicUser = (user) => user && ({ id: user.id, email: user.email, name: user.name, browser: String(user.email).endsWith('@workspace.local') });
   // Producción: RESEARCH_PUBLIC_ORIGIN=https://outreach.tudominio.com (varios separados por coma).
   // Sin esa variable el servidor solo acepta localhost, como siempre.
   const publicOrigins = String(env.RESEARCH_PUBLIC_ORIGIN || '').split(',').map((o) => o.trim().replace(/\/$/, '')).filter(Boolean);
@@ -95,6 +98,8 @@ export function createApp({
   const secureCookie = publicOrigins.some((o) => o.startsWith('https://'));
   const sessionCookie = (token, maxAge = 60 * 60 * 24 * 30) =>
     `wp_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${maxAge}${secureCookie ? '; Secure' : ''}`;
+  const officialPages = createOfficialPages({});
+  const remoteBrowser = createRemoteBrowser({ env });
   const analysisRoutes = createAnalysisRoutes({ store, env, authUser: (req) => authUser(req), fetcher: modelFetch });
   const runEnrichers = store.analysis ? createRunEnrichers({ store, env, fetcher: modelFetch }) : [];
   const advisorRoutes = createAdvisorRoutes({ store, env, authUser: (req) => authUser(req), fetcher: modelFetch });
@@ -191,6 +196,27 @@ export function createApp({
         issueSession(res, user.id);
         return json(201, { user: publicUser(user), profile: null, sources: [] });
       }
+      /* Browser workspace, no login (feedback 29/09). The browser keeps a random key in
+         localStorage; the key is the credential of an anonymous account. Same key → same
+         workspace; clearing browser data starts a new one. Off with RESEARCH_BROWSER_WORKSPACES=0. */
+      if (req.method === 'POST' && path === '/api/research/auth/browser') {
+        if (env.RESEARCH_BROWSER_WORKSPACES === '0') return json(403, { error: 'Browser workspaces are disabled.' });
+        const key = typeof body.key === 'string' ? body.key : '';
+        if (!/^[A-Za-z0-9_-]{32,128}$/.test(key)) return json(400, { error: 'Invalid browser key.' });
+        const email = `browser-${tokenHash(`browser:${key}`).slice(0, 32)}@workspace.local`;
+        let user = store.userByEmail(email);
+        if (user) {
+          const supplied = scryptSync(key, user.password_salt, 64);
+          if (!timingSafeEqual(supplied, Buffer.from(user.password_hash, 'hex'))) return json(401, { error: 'Invalid browser key.' });
+        } else {
+          const salt = randomBytes(16).toString('hex');
+          const created = { id: randomUUID(), email, name: '', passwordSalt: salt, passwordHash: scryptSync(key, salt, 64).toString('hex'), createdAt: new Date().toISOString() };
+          try { store.createUser(created); } catch { return json(409, { error: 'Try again.' }); }
+          user = store.userById(created.id);
+        }
+        issueSession(res, user.id);
+        return json(200, { user: publicUser(user), profile: store.profile(user.id), sources: store.accountSources(user.id) });
+      }
       if (req.method === 'POST' && path === '/api/research/auth/login') {
         const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
         const password = typeof body.password === 'string' ? body.password : '';
@@ -220,6 +246,8 @@ export function createApp({
         if (!user) return json(401, { error: 'Sign in to continue.' });
         if (req.method === 'GET') return json(200, store.profile(user.id));
         const founder = body?.founder, project = body?.project;
+        // Browser workspaces have no name: default it so the profile and the search brief stay valid.
+        if (founder && typeof founder === 'object' && String(user.email).endsWith('@workspace.local')) { if (typeof founder.name !== 'string' || !founder.name.trim()) founder.name = 'Founder'; if (String(founder.email || '').endsWith('@workspace.local')) founder.email = ''; }
         if (!founder || !project || typeof founder.name !== 'string' || !founder.name.trim() || typeof founder.org !== 'string' || !founder.org.trim())
           return json(400, { error: 'Fill in user and company.' });
         if (body.onboardingComplete === true && (typeof project.name !== 'string' || !project.name.trim()))
@@ -402,6 +430,17 @@ export function createApp({
           return json(409, {
             error: 'A run is in progress. Wait for it to finish.',
           });
+        const maxRuns = Math.max(0, Number(env.RESEARCH_MAX_RUNS_PER_DAY) || 0);
+        const requestUser = authUser(req);
+        if (maxRuns > 0 && (!requestUser || String(requestUser.email).endsWith('@workspace.local'))) {
+          const day = new Date().toISOString().slice(0, 10);
+          const ip = String(req.socket.remoteAddress || 'unknown');
+          const keys = [`ip:${ip}:${day}`, ...(requestUser ? [`workspace:${requestUser.id}:${day}`] : [])];
+          const persisted = requestUser ? store.list(requestUser.id).filter((item) => String(item.createdAt || '').startsWith(day)).length : 0;
+          const used = Math.max(persisted, ...keys.map((key) => anonymousRuns.get(key) || 0));
+          if (used >= maxRuns) return json(429, { error: `Daily research limit reached (${maxRuns}). Sign in or try again tomorrow.`, code: 'DAILY_RUN_LIMIT' });
+          for (const key of keys) anonymousRuns.set(key, used + 1);
+        }
         const job = {
           id: randomUUID(),
           brief,
@@ -411,7 +450,7 @@ export function createApp({
           events: [],
           leads: [],
           senderEvidence: [],
-          userId: authUser(req)?.id || null,
+          userId: requestUser?.id || null,
         };
         store.save(job);
         const controller = new AbortController();
@@ -426,8 +465,34 @@ export function createApp({
             frames.expireJob(job.id);
             // Cierra los streams aunque el pipeline haya fallado antes de emitir `completed`.
             hub.end(job.id, job.status);
+            // The advisor starts by itself once the research has candidates, so the plan is ready when they open it.
+            void advisorRoutes.autoStart(store.get(job.id) || job);
           });
         return json(202, { jobId: job.id });
+      }
+      // Página oficial de un lead dentro de la app: si se puede embeber (GET) o navegador remoto (POST).
+      const pageMatch = path.match(/^\/api\/research\/jobs\/([a-f0-9-]+)\/leads\/([A-Za-z0-9_:.-]{1,200})\/(page|browse)$/);
+      if (pageMatch && ((pageMatch[3] === 'page' && req.method === 'GET') || (pageMatch[3] === 'browse' && req.method === 'POST'))) {
+        const job = store.get(pageMatch[1]);
+        const requestUser = authUser(req);
+        if (!job || (job.userId && job.userId !== requestUser?.id)) return json(404, { error: 'Run not found.' });
+        const lead = (job.leads || []).find((l) => l.id === pageMatch[2]);
+        if (!lead) return json(404, { error: 'Item not found.' });
+        if (pageMatch[3] === 'page') return json(200, await officialPages.info(job.id, lead));
+        const owner = requestUser?.id || 'anonymous';
+        const key = `${owner}:${job.id}:${lead.id}`;
+        try {
+          if (body.action === 'open') {
+            const url = officialUrlOf(lead);
+            if (!url) return json(404, { error: 'No official page was found for this item.' });
+            return json(200, await remoteBrowser.open(key, url, { owner, refresh: body.refresh === true }));
+          }
+          if (body.action === 'close') { await remoteBrowser.close(key); return json(200, { closed: true }); }
+          return json(200, await remoteBrowser.act(key, body));
+        } catch (e) {
+          const status = { BROWSER_UNAVAILABLE: 503, NO_SESSION: 410, BLOCKED_HOST: 403, BAD_ACTION: 400, LOAD_FAILED: 502 }[e?.code] || 500;
+          return json(status, { error: e?.code ? e.message : 'The browser could not do that.', code: e?.code });
+        }
       }
       const match = path.match(
         /^\/api\/research\/jobs\/([a-f0-9-]+)(?:\/(export.csv|feedback|events|cancel|frames\/([a-f0-9]{8,64})))?$/,
@@ -561,6 +626,7 @@ export function createApp({
     for (const end of Array.from(streams)) end();
     hub.close();
     frames.close();
+    void remoteBrowser.closeAll();
     await browser?.close();
     await new Promise((resolve) => server.close(() => resolve()));
     server.closeAllConnections?.();

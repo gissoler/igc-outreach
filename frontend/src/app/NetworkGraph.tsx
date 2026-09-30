@@ -127,9 +127,9 @@ export function NetworkGraph({ job, account, selectedLeadId, onSelectLead, onIns
       .on('zoom', (ev) => setT(ev.transform));
     select(el).call(z).on('dblclick.zoom', null);
     zoomRef.current = z;
-    const wheel = (ev: WheelEvent) => { if (ev.ctrlKey || ev.metaKey) return; ev.preventDefault(); z.translateBy(select(el), -ev.deltaX / (select(el).property('__zoom')?.k || 1), -ev.deltaY / (select(el).property('__zoom')?.k || 1)); };
-    el.addEventListener('wheel', wheel, { passive: false });
-    return () => el.removeEventListener('wheel', wheel);
+    /* Feedback 28/09 ("the screen shifts and won't let me go back"): a plain wheel used to pan the
+       map and block page scrolling. Now the wheel scrolls the page; drag pans; ⌘/Ctrl + wheel zooms. */
+    return () => { select(el).on('.zoom', null); };
   }, []);
   const apply = (tr: ZoomTransform) => { if (!stage.current || !zoomRef.current) return; const s = select(stage.current); if (reduced()) s.call(zoomRef.current.transform, tr); else s.transition().duration(380).call(zoomRef.current.transform, tr); };
   const fit = (ids?: string[]) => {
@@ -175,6 +175,7 @@ export function NetworkGraph({ job, account, selectedLeadId, onSelectLead, onIns
         <option value="15|0">Top 15</option><option value="30|0">Top 30</option><option value="60|0">Top 60</option><option value="1000|0">All active</option><option value="1000|1">All incl. discarded</option>
       </select></label>}
       <span className="rm-zoom"><button onClick={() => zoomBy(1 / 1.25)} aria-label="Zoom out"><Minus size={15} /></button><span>{Math.round(t.k * 100)}%</span><button onClick={() => zoomBy(1.25)} aria-label="Zoom in"><Plus size={15} /></button><button onClick={() => fit()} aria-label="Fit to screen"><Maximize2 size={14} /></button></span>
+      <span className="rm-hint">Drag to move · ⌘/Ctrl + scroll to zoom</span>
     </div>
     <div className="rm-stage" ref={stage} style={{ height }} onClick={(e) => { if (e.target === e.currentTarget) setPop(null); }}>
       <div className="rm-world" ref={world} style={{ transform: `translate(${t.x}px,${t.y}px) scale(${t.k})` }}>

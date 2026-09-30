@@ -27,7 +27,7 @@ export const FIELDS = [
   { path: 'product.differentiation', label: 'Why you win', kind: 'text', investor: true, ask: 'Why will you win against the alternatives people use today?' },
   { path: 'product.business_model', label: 'Business model', kind: 'text', investor: true, ask: 'Who pays, how much, and how do you reach them?' },
   { path: 'company.team', label: 'Team', kind: 'text', investor: true, ask: 'Who is on the team, and why are you the right people to build this?' },
-  { path: 'competitors', label: 'Competitors', kind: 'list', ask: 'Who are your main competitors? We use them to avoid conflicts.' },
+  { path: 'competitors', label: 'Competitors', kind: 'list', ask: 'Which named companies or products are direct competitors? We use them to avoid conflicts.' },
   { path: 'constraints', label: 'Constraints', kind: 'list', ask: 'Anything to avoid: investor types, countries, conflicts or terms?' },
   { path: 'organization.name', label: 'Organization you represent', kind: 'text', ask: 'Are you raising for that company directly or from another organization? e.g. IGC seeking sponsorship for Mentiva.' },
   { path: 'company.relation', label: 'Relationship to the company', kind: 'enum', options: RELATIONS },
@@ -155,7 +155,7 @@ export function heuristicExtract(text) {
     once('funding.round', mapRound(s), s);
     const maturity = mapMaturity(s); if (maturity) once('product.maturity', maturity, s);
     if (RAISE_CTX.test(n) && !NOT_RAISE.test(n)) for (const m of s.matchAll(MONEY)) once('funding.amount_usd', parseAmount(m[1] || m[3], m[2] || m[4] || ''), s);
-    const comp = s.match(/\b(?:competidores|competencia|competitors|competition|alternativas)\s*(?:principales|main|directos|directa)?\s*(?:son|are|incluyen|include|:|-|—)\s*(.{3,200})/i);
+    const comp = s.match(/\b(?:competidores|competencia|competitors|competition)\s*(?:principales|main|directos|directa)?\s*(?:son|are|incluyen|include|:|-|—)\s*(.{3,200})/i);
     if (comp) push('competitors', listSplit(comp[1]).filter((x) => /[A-ZÁÉÍÓÚÑ0-9]/.test(x[0])), s);
     let company = nameAfter(s, COMPANY_TRIG);
     const lead = s.match(/^([A-ZÁÉÍÓÚÑ][\w&.+-]*(?:\s+[A-ZÁÉÍÓÚÑ][\w&.+-]*){0,3})\s+(?:es una|es un|is a|is an)\s+(?:startup|empresa|compañía|company|spin-?off|biotech|organizaci)/);
@@ -267,28 +267,48 @@ export function editField(s, path, value) {
   return s;
 }
 
-export function missingRequired(s) { return FIELDS.filter((f) => f.required && !filled(s, f.path)).map((f) => f.path); }
-/** Preguntas aún abiertas, en orden: primero lo requerido, luego lo que un inversor pregunta. Nunca algo ya lleno o saltado. */
+/* What the plan needs depends on the goal (feedback 29/09). The engine uses the amount in the
+   score (ticket / ceiling fit), the round in every investor query, use of funds in semantic search,
+   and traction is the proof point investors and the drafts rely on. Progress bar, questions and
+   review all use this same list, so 100% means "the search has what it needs". */
+export const GOAL_FIELDS = {
+  investment: ['funding.round', 'funding.amount_usd', 'company.traction'],
+  grant: ['funding.amount_usd', 'funding.use_of_funds'],
+  partnering: ['company.traction', 'product.differentiation'],
+  sponsorship: ['funding.amount_usd', 'funding.use_of_funds'],
+  debt: ['funding.amount_usd', 'company.traction'],
+};
+export function planFields(s) {
+  const base = FIELDS.filter((f) => f.required).map((f) => f.path);
+  const goals = fieldValue(s, 'funding.objectives') || [];
+  const extra = goals.flatMap((g) => GOAL_FIELDS[g] || []);
+  return [...new Set([...base, ...extra])];
+}
+const inPlan = (s, path) => planFields(s).includes(path);
+/** Plan fields still empty. A skipped ("I don't know") field stays missing: 100% only when everything is there. */
+export function missingRequired(s) { return planFields(s).filter((p) => !filled(s, p)); }
+/** Open questions, in order: the plan fields first. Never something already filled or skipped. */
 export function openQuestions(s) {
   const objectives = fieldValue(s, 'funding.objectives') || [];
   return ASK.filter((f) => {
     if (f.path === 'funding.round' && objectives.length && !objectives.includes('investment')) return false;
     const times = s.asked.filter((p) => p === f.path).length;
-    return !filled(s, f.path) && !s.skipped.includes(f.path) && times < (f.required ? 2 : 1);
+    return !filled(s, f.path) && !s.skipped.includes(f.path) && times < (inPlan(s, f.path) ? 2 : 1);
   });
 }
+/** The assistant asks only what the plan needs, in the order the list defines. */
 export function nextQuestion(s) {
   const open = openQuestions(s);
-  // Lo requerido va primero; lo demás, en el orden en que un inversor lo pediría.
-  return open.find((f) => f.required) || open.find((f) => f.investor) || open[0] || null;
+  const order = planFields(s);
+  return open.filter((f) => order.includes(f.path)).sort((a, b) => order.indexOf(a.path) - order.indexOf(b.path))[0] || null;
 }
-/** Mensaje de cierre cuando ya no quedan preguntas abiertas: nombra lo que aún falta y a dónde ir,
- *  en vez de un genérico "revisa y confirma" que deja al fundador sin saber qué falta ni dónde. */
+export const isPlanQuestion = inPlan;
+/** Closing message when nothing is left to ask: either the plan is complete, or what is still missing and why. */
 export function closingLine(s) {
   const missing = missingRequired(s);
-  if (!missing.length) return 'I have everything required. Continue to review and confirm the profile before research.';
-  const labels = missing.map((p) => FIELD[p]?.label).filter(Boolean);
-  return `I have what I can gather here. Still needed: ${labels.join(', ')} — please add ${labels.length > 1 ? 'those' : 'it'} in the next section, then confirm the profile.`;
+  if (!missing.length) return 'Your plan is complete. Press “Review and run” to start the search.';
+  const labels = missing.map((p) => FIELD[p]?.label.toLowerCase()).filter(Boolean);
+  return `To build your plan I still need: ${labels.join(', ')}. Tell me here when you have ${labels.length > 1 ? 'them' : 'it'} — even a rough estimate works.`;
 }
 
 /* ───────── Modelo (opcional) ───────── */
@@ -306,6 +326,7 @@ How to extract:
 3. funding.amount_usd is a USD number (1.5M → 1500000). geography uses codes (US, CO, MX, UK, EU, LATAM, GLOBAL...) or names.
 4. company.name is the company or project that RECEIVES the funding (e.g. Mentiva). organization.name is the organization the user represents, only if different (e.g. IGC seeking sponsorship for Mentiva); company.relation describes that relationship.
 5. Text fields (traction, use of funds, why you win, business model, team) should be short, specific summaries with numbers when available.
+5b. competitors contains only NAMED companies or products. Generic alternatives such as classes, professionals, apps, tests or events belong in differentiation, never competitors or constraints.
 How to reply:
 6. English only. No filler ("Great!", "Thanks for sharing"), no lists, never restate the whole profile.
 7. "ack": ONE short sentence (max 20 words) naming only what is NEW in this turn (a number, a date, a milestone). If they sent a document, name it. If nothing new was learned, "ack" is "".
@@ -393,7 +414,7 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
     const open = openQuestions(s);
     const user = JSON.stringify({
       current_profile: compact(s),
-      open_questions: open.map((f) => ({ path: f.path, label: f.label, required: Boolean(f.required) })),
+      open_questions: open.map((f) => ({ path: f.path, label: f.label, required: inPlan(s, f.path) })),
       already_asked: [...new Set(s.asked)].map((p) => FIELD[p]?.label).filter(Boolean),
       skipped: s.skipped.map((p) => FIELD[p]?.label).filter(Boolean),
       pending_question: pending ? FIELD[pending]?.label : null,
@@ -430,6 +451,14 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
         if (answer?.skip) { if (!s.skipped.includes(pending)) s.skipped.push(pending); }
         else if (answer && applyUpdate(s, { path: pending, value: answer.value, quote: message }, 'conversation', message)) changed.add(pending);
       }
+      // Out-of-order answers (feedback 29/09): "seed" while asked for the amount, or "about 500k USD"
+      // after the closing line. Only unambiguous, strongly typed fields; an amount needs money units.
+      for (const path of ['funding.round', 'funding.amount_usd', 'product.maturity']) {
+        if (path === pending || changed.has(path) || filled(s, path) || !planFields(s).includes(path)) continue;
+        if (path === 'funding.amount_usd' && !/\$|\busd\b|d[oó]lar|dollar|\d\s*(k|m|mm|million|millones|millon|mil)\b/i.test(message)) continue;
+        const hit = interpretAnswer(path, message);
+        if (hit?.value && applyUpdate(s, { path, value: hit.value, quote: message }, 'conversation', message)) changed.add(path);
+      }
       if (!filled(s, 'product.description') && message.length >= 120 && applyUpdate(s, { path: 'product.description', value: message, quote: '' }, 'conversation', message)) changed.add('product.description');
     }
   }
@@ -437,7 +466,7 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
   // La pregunta la elige el modelo entre las abiertas; si elige algo ya lleno, saltado o repetido, se usa la regla.
   // Siempre hay pregunta mientras queden abiertas: la respuesta = acuse corto (lo nuevo) + UNA pregunta.
   const open = openQuestions(s);
-  const chosen = model.used && modelAsking ? open.find((f) => f.path === modelAsking) : null;
+  const chosen = model.used && modelAsking ? open.find((f) => f.path === modelAsking && inPlan(s, f.path)) : null;
   const q = chosen || nextQuestion(s);
   if (model.used && !modelAck && !modelQuestion && modelReply) {
     // Formato antiguo (solo "reply"): se respeta, pero siempre termina en una pregunta abierta.
@@ -455,9 +484,10 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
   let reply = modelReply;
   if (!reply) {
     const parts = [];
-    if (added.length) parts.push(`Read ${added.map((d) => `${d.name} (${d.chars.toLocaleString('en-US')} characters)`).join(', ')}.`);
-    const learned = [...changed].filter((p) => FIELD[p]).map((p) => FIELD[p].label);
-    if (learned.length) parts.push(`Noted: ${learned.join(', ')}.`);
+    // Feedback 29/09: no field names in the chat; the progress bar shows how far along we are.
+    if (added.length) parts.push(`I read ${added.map((d) => d.name).join(', ')}.`);
+    const learned = [...changed].filter((p) => FIELD[p]);
+    if (learned.length) parts.push(added.length ? 'That covers a good part of it.' : 'Got it.');
     else if (message && pending && !s.skipped.includes(pending)) parts.push('I couldn\'t get a clear detail from that.');
     if (q) parts.push(q.ask);
     else parts.push(closingLine(s));
@@ -551,6 +581,6 @@ export function publicIntake(s, env = {}) {
   return {
     id: s.id, messages: s.messages, pending: s.pending, confirmedAt: s.confirmedAt, updatedAt: s.updatedAt, skipped: s.skipped,
     documents: s.documents.map(({ text, ...d }) => ({ ...d, preview: clip(text, 280) })),
-    fields: s.fields, missing: missingRequired(s), plan: planResearch(s, env), model: modelInfo(env),
+    fields: s.fields, missing: missingRequired(s), planFields: planFields(s), plan: planResearch(s, env), model: modelInfo(env),
   };
 }

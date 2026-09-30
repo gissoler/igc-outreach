@@ -116,6 +116,7 @@ export function makePlan(b) {
       ? 'Alzheimer data'
       : 'Alzheimer agitation'
     : `${b.industry} ${b.product}`;
+  const grantsOnly = b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant';
   return {
     topic,
     query,
@@ -146,27 +147,30 @@ export function makePlan(b) {
             { provider: 'NIH RePORTER', query },
           ]
         : []),
+      ...(grantsOnly && b.useApify
+        ? [{ provider: 'Open web opportunities', query: 'Challenges, prizes, accelerators and startup calls by topic and stage' }]
+        : []),
       ...(alzheimer
         ? [{ provider: 'Official radar', query: 'ADDF · a2 Collective · CDMRP' }]
         : []),
-      ...(b.useApify
+      ...(!grantsOnly && b.useApify
         ? [{ provider: 'Firecrawl + ScrapeGraph', query: 'Fund and organization teams on public pages' }]
         : []),
-      {
+      ...(!grantsOnly ? [{
         provider: 'Exa (semantic search)',
         query: `Full profile by goal (${b.fundingTypes.join(', ')}), with criteria and constraints`,
-      },
+      }] : []),
       ...(b.fundingTypes.includes('investment')
         ? [{ provider: 'Funding rounds', query: `${b.industry} ${b.round || 'early-stage'} · Exa news o Serper` }]
         : []),
-      {
+      ...(!grantsOnly ? [{
         provider: 'Serper (optional)',
         query:
           `${query} ${b.fundingTypes.join(' ')} ${b.geography} ${b.criteria}`.slice(
             0,
             500,
           ),
-      },
+      }] : []),
     ],
     alzheimer,
   };
@@ -210,6 +214,9 @@ export function candidate(data) {
     missing: [],
     searchText: '',
     demo: false,
+    foundBy: [],
+    facts: {},
+    sufficiency: null,
     ...data,
   };
 }
@@ -230,6 +237,9 @@ export function dedupe(leads) {
         ).values(),
       ];
       current.paths = [...new Map([...current.paths, ...l.paths].map(p=>[p.hops.at(-1)?.url || JSON.stringify(p.nodes),p])).values()].slice(0, 3);
+      current.foundBy = [...new Map([...(current.foundBy || []), ...(l.foundBy || [])].map((x) => [`${x.provider}|${x.objective || ''}|${x.term || ''}|${x.query || ''}`, x])).values()];
+      current.facts = { ...current.facts, ...l.facts };
+      current.sufficiency ||= l.sufficiency || null;
       if (!current.contact && l.contact) current.contact = l.contact;
     }
   }
@@ -247,24 +257,24 @@ export function evaluate(
   brief,
   rejected = new Set(),
   today = new Date(),
+  terms = [],
 ) {
   const exclusions = brief.exclusions
     .split(/[,;\n]/)
     .map(norm)
     .filter(Boolean);
-  const tokens = [
-    ...new Set(
-      norm(brief.industry)
-        .split(' ')
-        .filter((t) => t.length > 2),
-    ),
-  ];
+  const tokenSources = [
+    { label: brief.industry, value: brief.industry },
+    ...terms.map((term) => ({ label: typeof term === 'string' ? term : term.term, value: typeof term === 'string' ? term : term.term })),
+  ].filter((x) => x.value);
+  const tokens = [...new Set(tokenSources.flatMap((x) => norm(x.value).split(' ').filter((t) => t.length > 2)))];
   const ranked = dedupe(leads).map((l) => {
     const verified = l.evidence.filter((e) => e.verified);
     const hay = norm(
       `${l.title} ${l.searchText} ${l.evidence.map((e) => e.quote).join(' ')}`,
     );
     const hits = tokens.filter((t) => hay.includes(t));
+    const matchedTerms = tokenSources.filter((source) => norm(source.value).split(' ').filter((t) => t.length > 2).some((t) => hay.includes(t))).map((source) => source.label);
     const fit = Math.min(
       1,
       hits.length / Math.max(2, Math.min(6, tokens.length)),
@@ -291,8 +301,11 @@ export function evaluate(
     const contact = l.contact?.type === 'email' ? 1 : l.contact ? 0.4 : 0;
     const amountFit =
       !brief.amount || !l.amount ? 0.3 : l.amount >= brief.amount ? 1 : 0;
+    const grantOpportunity = l.fundingType === 'grant' && l.kind === 'opportunity';
     const weights =
-      brief.mode === 'financial'
+      grantOpportunity
+        ? { fit: 35, type: 20, timing: 25, path: 0, contact: 0, amountFit: 20 }
+        : brief.mode === 'financial'
         ? { fit: 25, type: 25, timing: 25, path: 5, contact: 10, amountFit: 10 }
         : {
             fit: 35,
@@ -325,6 +338,10 @@ export function evaluate(
       discard = 'Different funding type than requested.';
     if (brief.excludeCompetitors && l.risks.includes('competitor_conflict'))
       discard = 'Excluded competitor.';
+    if (l.facts?.funder_type === 'not_funder')
+      discard = 'Verified page indicates this organization is not a funder.';
+    if (l.fundingType === 'grant' && l.kind !== 'opportunity')
+      discard = 'Historical grant intelligence; not an open funding opportunity.';
     const watch =
       l.kind === 'radar' ||
       l.status === 'closed' ||
@@ -333,9 +350,9 @@ export function evaluate(
     const missing = [
       ...new Set([
         ...l.missing,
-        ...(!l.person ? ['No named decision-maker'] : []),
-        ...(!l.role ? ['Current role not confirmed'] : []),
-        ...(!l.contact || l.contact.type !== 'email'
+        ...(!grantOpportunity && !l.person ? ['No named decision-maker'] : []),
+        ...(!grantOpportunity && !l.role ? ['Current role not confirmed'] : []),
+        ...(!grantOpportunity && (!l.contact || l.contact.type !== 'email')
           ? ['No public email']
           : []),
         'Geographic eligibility and stage to confirm',
@@ -344,9 +361,17 @@ export function evaluate(
           : []),
       ]),
     ];
-    const why = [
+    const why = grantOpportunity ? [
       hits.length
-        ? `Matches ${hits.slice(0, 4).join(', ')} in the evidence.`
+        ? `The official call matches ${matchedTerms.slice(0, 3).join(', ') || hits.slice(0, 4).join(', ')}.`
+        : 'Limited topic match: review the official scope before proceeding.',
+      `Specific ${l.status} grant opportunity${l.externalId ? ` (${l.externalId})` : ''}; eligibility must be resolved against the notice.`,
+      l.deadline ? `Published deadline: ${l.deadline}.` : 'Deadline is not confirmed.',
+      ...(brief.criteria ? [`Policy or program priorities to validate: ${brief.criteria}`] : []),
+      ...(brief.amount ? [l.amount ? `Published ceiling USD ${l.amount}; stated target USD ${brief.amount}.` : 'No published amount to compare with your target.'] : []),
+    ] : [
+      hits.length
+        ? `Matches ${matchedTerms.slice(0, 3).join(', ') || hits.slice(0, 4).join(', ')} in the evidence.`
         : 'Limited topic match: review before contacting.',
       type === 1
         ? `Category ${l.fundingType} requested; ${l.kind === 'person' || l.kind === 'research' ? 'interest in funding or partnering not confirmed yet' : 'validate eligibility'}.`
@@ -371,6 +396,8 @@ export function evaluate(
     ];
     return {
       ...l,
+      fit,
+      matchedTerms,
       score,
       breakdown,
       missing,
@@ -392,6 +419,14 @@ export function evaluate(
     .map((l) => ({ ...l, rank: ++ranks[l.bucket] }));
 }
 export function buildDraft(lead, brief, senderFacts = []) {
+  if (lead.fundingType === 'grant' || lead.kind === 'opportunity') {
+    const number = lead.externalId || 'program number to confirm';
+    const question = lead.grantPlan?.contactQuestion;
+    const body = `${lead.demo ? '[DEMO — DO NOT USE]\n' : ''}${question
+      ? `Official call: ${number} — ${lead.title}\n\n${question}`
+      : `Official call: ${number} — ${lead.title}\n\nNext action: review the official notice, confirm eligibility, and make a go/no-go decision before drafting.`}`;
+    return { subject: `Application review · ${number}`, body, sections: [], connector: null, status: 'grant work item', warning: 'This is an application work item, not an investor outreach email. Contact a program officer only with a specific published-channel question.', wordCount: body.split(/\s+/).length };
+  }
   const recipientFact = lead.evidence.find(
     (e) => e.verified && ['work', 'title', 'opportunity'].includes(e.field),
   );
@@ -423,16 +458,14 @@ export function buildDraft(lead, brief, senderFacts = []) {
     },
     { label: 'Ask', text: ask, evidenceIds: [] },
   ];
-  const body = label + sections.map((s) => s.text).join('\n\n');
+  // Feedback 28/09: 4–5 lines max, two paragraphs — why you / who we are + the ask.
+  const body = label + `${common}\n\n${context} ${ask}`;
   const path = lead.paths[0];
   const connector =
     path && path.nodes.length > 2
-      ? `${label}Hi ${path.nodes[1]}. Public evidence shows you co-authored with ${path.nodes.at(-1)}. Do you know them and would you feel comfortable asking first if they'd take an intro?
+      ? `${label}Hi ${path.nodes[1]}, public evidence shows you worked with ${path.nodes.at(-1)}. Would you be comfortable asking if they'd take a short intro?
 
-To forward, only with their permission:
-We'd like to explore a collaboration.
-We can share public project information.
-We suggest a 20-minute call.`
+To forward, only with their permission: we'd like to explore a collaboration and can share public project information in a 20-minute call.`
       : null;
   return {
     subject: 'Collaboration and fit',

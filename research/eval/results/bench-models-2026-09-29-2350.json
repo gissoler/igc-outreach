@@ -1,0 +1,1132 @@
+{
+  "at": "2026-09-29T23:50:15.531538",
+  "host": "http://127.0.0.1",
+  "rows": [
+    {
+      "name": "Qwen3-30B-A3B-Instruct-2507 (:8000)",
+      "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "errors": [],
+      "ms": 13393,
+      "jsonFail": 0,
+      "plan": {
+        "queries": 20,
+        "unique": 20,
+        "covered": [
+          "eu_programs",
+          "uk_programs",
+          "other_national",
+          "mental_health_accelerators",
+          "prizes_challenges",
+          "foundations",
+          "time_bound"
+        ],
+        "coverage": 0.875
+      },
+      "extract": {
+        "correct": 30,
+        "total": 40,
+        "quotes": 30,
+        "fakeQuotes": 2,
+        "pages": [
+          {
+            "correct": 4,
+            "total": 5,
+            "checks": [
+              {
+                "field": "status",
+                "want": "open",
+                "got": "upcoming",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2027-01-15",
+                "got": "2027-01-15",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "no",
+                "got": "no",
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "nia"
+          },
+          {
+            "correct": 4,
+            "total": 5,
+            "checks": [
+              {
+                "field": "status",
+                "want": "upcoming",
+                "got": "upcoming",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2027-01-25",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "no",
+                "got": "no",
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "foster"
+          },
+          {
+            "correct": 2,
+            "total": 2,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2023-04-05",
+                "got": "2023-04-05",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "mmhpi"
+          },
+          {
+            "correct": 3,
+            "total": 3,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2026-06-30",
+                "got": "2026-06-30",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "braininnovationdays"
+          },
+          {
+            "correct": 4,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "unknown",
+                "got": "unknown",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": null,
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "unclear",
+                "got": "unclear",
+                "ok": true
+              }
+            ],
+            "quotes": 0,
+            "fakeQuotes": 0,
+            "id": "onemind"
+          },
+          {
+            "correct": 0,
+            "total": 3,
+            "checks": [
+              {
+                "field": "status",
+                "want": "not_a_call",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2026-10-15",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": false,
+                "ok": false
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "headstreaminnovation"
+          },
+          {
+            "correct": 2,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2025-10-10",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "no",
+                "got": "unknown",
+                "ok": false
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "innovationsinmentalhealth"
+          },
+          {
+            "correct": 4,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2025-04-30",
+                "got": "2025-04-30",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": false,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "vestbee"
+          },
+          {
+            "correct": 1,
+            "total": 2,
+            "checks": [
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2026-09-15",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": false,
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "startupgrantsindia"
+          },
+          {
+            "correct": 3,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-09-18",
+                "got": "2026-09-18",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": false,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "fundsforngos"
+          },
+          {
+            "correct": 3,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-09-18",
+                "got": "2026-09-18",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "wellcome"
+          }
+        ]
+      },
+      "judge": {
+        "correct": 8,
+        "total": 10,
+        "top2ok": true,
+        "skipInTop3": 0,
+        "top3": [
+          "S1",
+          "S2",
+          "S4"
+        ]
+      }
+    },
+    {
+      "name": "Qwen3-4B-Instruct-2507 (:8001)",
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "errors": [],
+      "ms": 10239,
+      "jsonFail": 0,
+      "plan": {
+        "queries": 20,
+        "unique": 20,
+        "covered": [
+          "eu_programs",
+          "other_national",
+          "mental_health_accelerators",
+          "prizes_challenges",
+          "time_bound"
+        ],
+        "coverage": 0.625
+      },
+      "extract": {
+        "correct": 23,
+        "total": 40,
+        "quotes": 26,
+        "fakeQuotes": 4,
+        "pages": [
+          {
+            "correct": 3,
+            "total": 5,
+            "checks": [
+              {
+                "field": "status",
+                "want": "open",
+                "got": "upcoming",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2027-01-15",
+                "got": "2027-01-15",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "no",
+                "got": "unclear",
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "nia"
+          },
+          {
+            "correct": 2,
+            "total": 5,
+            "checks": [
+              {
+                "field": "status",
+                "want": "upcoming",
+                "got": "upcoming",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2027-01-25",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "no",
+                "got": "unclear",
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "unknown",
+                "ok": false
+              }
+            ],
+            "quotes": 0,
+            "fakeQuotes": 0,
+            "id": "foster"
+          },
+          {
+            "correct": 1,
+            "total": 2,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2023-04-05",
+                "got": null,
+                "ok": false
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "mmhpi"
+          },
+          {
+            "correct": 3,
+            "total": 3,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2026-06-30",
+                "got": "2026-06-30",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "braininnovationdays"
+          },
+          {
+            "correct": 3,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "unknown",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": null,
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "unclear",
+                "got": "unclear",
+                "ok": true
+              }
+            ],
+            "quotes": 2,
+            "fakeQuotes": 0,
+            "id": "onemind"
+          },
+          {
+            "correct": 1,
+            "total": 3,
+            "checks": [
+              {
+                "field": "status",
+                "want": "not_a_call",
+                "got": "upcoming",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": null,
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": false,
+                "ok": false
+              }
+            ],
+            "quotes": 0,
+            "fakeQuotes": 0,
+            "id": "headstreaminnovation"
+          },
+          {
+            "correct": 2,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2025-10-10",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "no",
+                "got": "unknown",
+                "ok": false
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "innovationsinmentalhealth"
+          },
+          {
+            "correct": 3,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "closed",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2025-04-30",
+                "got": "2025-04-30",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": true,
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "vestbee"
+          },
+          {
+            "correct": 0,
+            "total": 2,
+            "checks": [
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2026-09-15",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": true,
+                "ok": false
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "startupgrantsindia"
+          },
+          {
+            "correct": 2,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-09-18",
+                "got": "2026-09-18",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": true,
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "fundsforngos"
+          },
+          {
+            "correct": 3,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-09-18",
+                "got": "2026-09-18",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "wellcome"
+          }
+        ]
+      },
+      "judge": {
+        "correct": 6,
+        "total": 10,
+        "top2ok": true,
+        "skipInTop3": 0,
+        "top3": [
+          "S1",
+          "S2",
+          "S4"
+        ]
+      }
+    },
+    {
+      "name": "DeepSeek-R1-Distill-Llama-8B (:8002)",
+      "model": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+      "errors": [],
+      "ms": 85757,
+      "jsonFail": 1,
+      "plan": {
+        "queries": 0,
+        "unique": 0,
+        "covered": [],
+        "coverage": 0.0
+      },
+      "extract": {
+        "correct": 17,
+        "total": 40,
+        "quotes": 34,
+        "fakeQuotes": 10,
+        "pages": [
+          {
+            "correct": 3,
+            "total": 5,
+            "checks": [
+              {
+                "field": "status",
+                "want": "open",
+                "got": "open",
+                "ok": true
+              },
+              {
+                "field": "deadline",
+                "want": "2027-01-15",
+                "got": "December 1, 2026 – January 15, 2027, at 11:59 p.m. ET",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "no",
+                "got": "yes",
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "nia"
+          },
+          {
+            "correct": 2,
+            "total": 5,
+            "checks": [
+              {
+                "field": "status",
+                "want": "upcoming",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2026-12-01",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "no",
+                "got": "yes",
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 2,
+            "id": "foster"
+          },
+          {
+            "correct": 1,
+            "total": 2,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2023-04-05",
+                "got": "2023-04-05",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "mmhpi"
+          },
+          {
+            "correct": 1,
+            "total": 3,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-06-30",
+                "got": "30 June 2026",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "braininnovationdays"
+          },
+          {
+            "correct": 1,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "unknown",
+                "got": "open now or soon",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "null",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "eligible",
+                "want": "unclear",
+                "got": "yes",
+                "ok": false
+              }
+            ],
+            "quotes": 2,
+            "fakeQuotes": 1,
+            "id": "onemind"
+          },
+          {
+            "correct": 1,
+            "total": 3,
+            "checks": [
+              {
+                "field": "status",
+                "want": "not_a_call",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "open now or soon",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 3,
+            "id": "headstreaminnovation"
+          },
+          {
+            "correct": 1,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "upcoming",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "2026-10-10",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "no",
+                "got": "yes",
+                "ok": false
+              }
+            ],
+            "quotes": 4,
+            "fakeQuotes": 1,
+            "id": "innovationsinmentalhealth"
+          },
+          {
+            "correct": 2,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2025-04-30",
+                "got": "2025-04-30",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": true,
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 1,
+            "id": "vestbee"
+          },
+          {
+            "correct": 0,
+            "total": 2,
+            "checks": [
+              {
+                "field": "deadline",
+                "want": null,
+                "got": "September 15, 2026, at 5:30 AM IST",
+                "ok": false
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": true,
+                "ok": false
+              }
+            ],
+            "quotes": 4,
+            "fakeQuotes": 1,
+            "id": "startupgrantsindia"
+          },
+          {
+            "correct": 2,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-09-18",
+                "got": "2026-09-18",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": false,
+                "got": true,
+                "ok": false
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "fundsforngos"
+          },
+          {
+            "correct": 3,
+            "total": 4,
+            "checks": [
+              {
+                "field": "status",
+                "want": "closed",
+                "got": "open",
+                "ok": false
+              },
+              {
+                "field": "deadline",
+                "want": "2026-09-18",
+                "got": "2026-09-18",
+                "ok": true
+              },
+              {
+                "field": "official",
+                "want": true,
+                "got": true,
+                "ok": true
+              },
+              {
+                "field": "non_dilutive",
+                "want": "yes",
+                "got": "yes",
+                "ok": true
+              }
+            ],
+            "quotes": 3,
+            "fakeQuotes": 0,
+            "id": "wellcome"
+          }
+        ]
+      },
+      "judge": {
+        "correct": 7,
+        "total": 10,
+        "top2ok": true,
+        "skipInTop3": 0,
+        "top3": [
+          "S1",
+          "S2"
+        ]
+      }
+    }
+  ]
+}

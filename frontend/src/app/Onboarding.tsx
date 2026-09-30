@@ -10,7 +10,7 @@ import { AgentChat } from '../IntakeAgent';
 import { ACCEPT, extractText } from '../docText';
 import type { Job } from '../researchApi';
 import { fmtDateTime, fmtInt, fmtUsd, fmtTime } from './format';
-import { MODE_LABEL, WEIGHTS, FACTOR_LABEL } from './model';
+import { MODE_LABEL } from './model';
 import { NetworkGraph } from './NetworkGraph';
 import { prefsOf, type Profile, type ResearchPrefs } from './profile';
 import { PageHeader } from './Shell';
@@ -283,36 +283,29 @@ function ReviewSection({ intake, prefs, setPrefs, onGo, canPrefs }: { intake: In
       <dt>Exclusions</dt><dd>{asList(v('competitors')).join(', ') || 'None'}</dd>
       <dt>Documents</dt><dd>{intake.documents.length ? intake.documents.map((d) => d.name).join(', ') : 'None'}</dd>
     </dl>
-    <h3 className="x-h3">Scoring <Info wide label="Scoring mode">Mode changes the score weights, not the evidence searched.</Info></h3>
-    <div className="ow-mode" role="radiogroup" aria-label="Scoring mode">{(['strategic', 'financial'] as const).map((m) => <button key={m} role="radio" aria-checked={prefs.mode === m} disabled={!canPrefs} className={prefs.mode === m ? 'on' : ''} onClick={() => setPrefs({ mode: m })}><b>{MODE_LABEL[m]}</b><span>{Object.entries(WEIGHTS[m]).filter(([, w]) => w).map(([k, w]) => `${FACTOR_LABEL[k].split(' (')[0]} ${w}`).join(' · ')}</span></button>)}</div>
-    <label className="ow-inline">Minimum lead time <input type="number" min={0} max={730} value={prefs.minDays} disabled={!canPrefs} onChange={(e) => setPrefs({ minDays: Math.max(0, Math.min(730, Math.round(Number(e.target.value) || 0))) })} /> days <small>Earlier deadlines go to radar.</small></label>
-    {!canPrefs && <p className="x-muted">Preferences save once the profile is confirmed.</p>}
-    <h3 className="x-h3">Source plan</h3>
-    <table className="x-table"><thead><tr><th scope="col">Goal</th><th scope="col">Source</th><th scope="col">Why</th><th scope="col">Status</th><th scope="col">Cost</th></tr></thead><tbody>{intake.plan.steps.map((s) => <tr key={`${s.goal}-${s.source}`}><td>{s.goal}</td><th scope="row">{s.source}</th><td>{s.why}</td><td><span className={`x-state ${s.status === 'activo' ? 'ok' : 'not_configured'}`} title={s.status}>{s.status === 'activo' ? 'On' : /integraci/.test(s.status) ? 'Soon' : 'Off'}</span></td><td>{s.cost === 'crédito' ? <span className="x-credit">paid</span> : 'free'}</td></tr>)}</tbody></table>
-    {intake.plan.skipped.length > 0 && <p className="x-muted">Not applicable: {intake.plan.skipped.map((s) => `${s.source} (${s.reason})`).join(' · ')}</p>}
-    {credit.length > 0 && <p className="x-muted"><b>Paid per use:</b> {credit.map((s) => `${s.source}${s.status !== 'activo' ? ' (off)' : ''}`).join(' · ')}.</p>}
+    <details className="ow-adv">
+      <summary>Advanced settings <span className="x-muted">(optional — the defaults work)</span></summary>
+      <div className="ow-adv-body">
+        <h3 className="x-h3">Scoring <Info wide label="Scoring mode">Mode changes the score weights, not the evidence searched.</Info></h3>
+        <div className="ow-mode" role="radiogroup" aria-label="Scoring mode">{(['strategic', 'financial'] as const).map((m) => <button key={m} role="radio" aria-checked={prefs.mode === m} disabled={!canPrefs} className={prefs.mode === m ? 'on' : ''} onClick={() => setPrefs({ mode: m })}><b>{MODE_LABEL[m]}</b></button>)}</div>
+        <label className="ow-inline">Minimum lead time <input type="number" min={0} max={730} value={prefs.minDays} disabled={!canPrefs} onChange={(e) => setPrefs({ minDays: Math.max(0, Math.min(730, Math.round(Number(e.target.value) || 0))) })} /> days <small>Earlier deadlines go to radar.</small></label>
+        {!canPrefs && <p className="x-muted">Preferences save once the profile is confirmed.</p>}
+        <h3 className="x-h3">Where we look</h3>
+        <ul className="ow-sources">{intake.plan.steps.filter((s) => s.status === 'activo').map((s) => <li key={`${s.goal}-${s.source}`}>{s.source}{s.cost === 'crédito' ? <span className="x-credit">paid</span> : null}</li>)}</ul>
+        {credit.length > 0 && <p className="x-muted">Paid sources are used only when they add something the free ones can't find.</p>}
+      </div>
+    </details>
   </div>;
 }
 
 /* ───────── Asistente IA: conversar en lugar de llenar el formulario ───────── */
 function AssistantSection({ intake, setIntake, onError, onGo }: { intake: IntakeState; setIntake: (s: IntakeState) => void; onError: (e: string) => void; onGo: (s: SectionId, field?: string) => void }) {
-  const groups = SECTIONS.filter((x) => x.fields.length);
-  const blocking = intake.missing.filter((p) => BLOCKING.includes(p));
-  const filledCount = Object.keys(F).filter((p) => intake.fields[p]).length;
-  const firstMissing = intake.missing[0];
-  const where = (p: string) => SECTIONS.find((x) => x.fields.includes(p) || x.advanced?.includes(p))?.id || 'empresa';
-  const show = (p: string) => { const v = intake.fields[p]?.value; if (v == null) return ''; if (p === 'funding.objectives') return asList(v).map((o) => OBJECTIVES.find(([id]) => id === o)?.[1] || o).join(', '); if (p === 'product.maturity') return MATURITY.find(([id]) => id === v)?.[1] || String(v); if (p === 'company.relation') return RELATIONS.find(([id]) => id === v)?.[1] || String(v); if (p === 'funding.amount_usd') return fmtUsd(Number(v)); const t = Array.isArray(v) ? v.join(', ') : String(v); return t.length > 140 ? `${t.slice(0, 139)}…` : t; };
-  return <div className="ow-ai">
+  // Feedback 29/09: no "understood so far" table — the progress bar is enough; the assistant asks for what is missing.
+  return <div className="ow-ai solo">
     <div className="ow-ai-chat">
-      <AgentChat intake={intake} onChange={setIntake} onError={onError} title="Tell the AI about your company" description="Write it like you'd pitch an investor, or attach your deck. The AI fills the profile; you review." reviewLabel={blocking.length ? 'Fill what\'s missing' : 'Review and confirm'} reviewRequiresConversation={false} onReview={() => (firstMissing ? onGo(where(firstMissing), firstMissing) : onGo('revision'))} />
+      <AgentChat intake={intake} onChange={setIntake} onError={onError} title="" description="" reviewLabel="Review and run" reviewRequiresConversation={false} onReview={() => onGo('revision')} />
       <p className="ow-ai-alt"><Pencil size={13} /> Prefer a form? <button className="x-link-btn" onClick={() => onGo('empresa')}>Fill it in yourself</button></p>
     </div>
-    <aside className="ow-ai-side" aria-label="What the AI understood">
-      <header><MessageSquareText size={15} /><b>Understood so far</b><span>{filledCount} of {Object.keys(F).length}</span></header>
-      <div className="x-meter blue"><i style={{ width: `${(filledCount / Object.keys(F).length) * 100}%` }} /></div>
-      {blocking.length > 0 ? <p className="ow-ai-need">Still needs: <b>{blocking.map((p) => F[p].label.toLowerCase()).join(', ')}</b>.</p> : <p className="ow-ai-ok"><CheckCircle2 size={14} /> Has everything required.</p>}
-      {groups.map((g) => <section key={g.id}><h4>{g.label}<button className="x-link-btn" onClick={() => onGo(g.id)}>Edit</button></h4><dl>{[...g.fields, ...(g.advanced || [])].map((p) => { const f = intake.fields[p]; return <div key={p} className={`${f ? 'on' : F[p].required ? 'need' : ''} ${intake.changed?.includes(p) ? 'fresh' : ''}`}><dt>{F[p].label}{F[p].required && !f && <b className="of-req"> *</b>}</dt><dd>{f ? <>{show(p)}{f.confidence === 'inferred' && <em className="of-origin inferred">review</em>}</> : <span className="x-muted">pending</span>}</dd></div>; })}</dl></section>)}
-    </aside>
   </div>;
 }
 
@@ -380,16 +373,17 @@ export function OnboardingWorkspace({ session, section, onSection, onDone, onCan
   if (!intake) return <div className="ow"><SkeletonState rows={6} label="Loading setup…" /></div>;
 
   const filled = (p: string) => Boolean(intake.fields[p]);
+  const plan = intake.planFields?.length ? intake.planFields : REQUIRED;
   const secProgress = (s: SectionDef) => {
     if (s.id === 'asistente') return { done: intake.messages.some((m) => m.role === 'user') ? 1 : 0, total: 1, req: 0, reqDone: 0 };
     if (s.id === 'evidencia') return { done: intake.documents.length ? 1 : 0, total: 1, req: 0, reqDone: 0 };
     if (s.id === 'red') { const has = Boolean(profile?.linkedin_interactions?.count || profile?.linkedin_profile); return { done: has ? 1 : 0, total: 1, req: 0, reqDone: 0 }; }
     if (s.id === 'revision') return { done: intake.confirmedAt ? 1 : 0, total: 1, req: 0, reqDone: 0 };
     const all = [...s.fields, ...(s.advanced || [])];
-    const req = all.filter((p) => F[p]?.required);
+    const req = all.filter((p) => plan.includes(p));
     return { done: all.filter(filled).length, total: all.length, req: req.length, reqDone: req.filter(filled).length };
   };
-  const reqDone = REQUIRED.filter(filled).length;
+  const reqDone = plan.filter(filled).length;
   const optAll = Object.keys(F).filter((p) => !F[p].required);
   const optDone = optAll.filter(filled).length;
   const blocking = intake.missing.filter((p) => BLOCKING.includes(p));
@@ -399,10 +393,10 @@ export function OnboardingWorkspace({ session, section, onSection, onDone, onCan
 
   return <div className="ow">
     <aside className="ow-nav" aria-label="Setup sections">
-      <div className="ow-progress"><span><b>{Math.round(((reqDone + optDone * 0.5) / (REQUIRED.length + optAll.length * 0.5)) * 100)}%</b> complete</span><div className="x-meter blue"><i style={{ width: `${((reqDone + optDone * 0.5) / (REQUIRED.length + optAll.length * 0.5)) * 100}%` }} /></div><small>Required {reqDone}/{REQUIRED.length} · recommended {optDone}/{optAll.length}</small></div>
+      <div className="ow-progress"><span><b>{Math.round((reqDone / plan.length) * 100)}%</b> of your plan</span><div className="x-meter blue"><i style={{ width: `${(reqDone / plan.length) * 100}%` }} /></div><small>{reqDone} of {plan.length} answers</small></div>
       <ol>{SECTIONS.map((s, i) => { const p = secProgress(s); const miss = p.req - p.reqDone; const complete = s.id === 'revision' ? !!intake.confirmedAt : p.total ? p.done === p.total || (p.req > 0 && miss === 0 && p.done >= p.req) : false; return <li key={s.id}><button aria-current={s.id === section ? 'step' : undefined} className={`${s.id === section ? 'on' : ''} ${miss > 0 ? 'miss' : complete ? 'done' : ''}`} onClick={() => onSection(s.id)}>
         <span className="ow-num" aria-hidden="true">{miss > 0 ? '!' : complete ? <Check size={13} /> : i + 1}</span>
-        <span className="ow-lbl"><b>{s.label}</b><small>{s.id === 'asistente' ? `${Object.keys(intake.fields).length} fields filled` : s.id === 'evidencia' ? `${intake.documents.length} documents` : s.id === 'red' ? (profile?.linkedin_interactions?.count ? `${profile.linkedin_interactions.count} relationships` : 'Not connected') : s.id === 'revision' ? (blocking.length ? `${blocking.length} blocking` : 'Ready') : `${p.done}/${p.total} fields${miss > 0 ? ` · missing ${miss} required` : ''}`}</small></span>
+        <span className="ow-lbl"><b>{s.label}</b><small>{s.id === 'asistente' ? 'Start here' : s.id === 'evidencia' ? `${intake.documents.length} documents` : s.id === 'red' ? (profile?.linkedin_interactions?.count ? `${profile.linkedin_interactions.count} relationships` : 'Not connected') : s.id === 'revision' ? (blocking.length ? 'Not ready yet' : intake.missing.length ? 'Almost ready' : 'Ready') : miss > 0 ? 'To complete' : 'Done'}</small></span>
       </button></li>; })}</ol>
     </aside>
     <main className="ow-main">
@@ -415,12 +409,12 @@ export function OnboardingWorkspace({ session, section, onSection, onDone, onCan
       {cur.id === 'evidencia' && <EvidenceSection intake={intake} setIntake={setIntake} onError={setError} />}
       {cur.id === 'red' && <NetworkSection session={session} profile={profile} ensureProfile={ensureProfile} prefs={prefs} setPrefs={(p) => void setPrefs(p)} onError={setError} />}
       {cur.id === 'revision' && <ReviewSection intake={intake} prefs={prefs} setPrefs={(p) => void setPrefs(p)} onGo={go} canPrefs={!!profile} />}
-      <footer className="ow-foot">
+      {cur.id !== 'asistente' && <footer className="ow-foot">
         <button className="x-btn" disabled={idx === 0} onClick={() => onSection(SECTIONS[idx - 1].id)}><ChevronLeft size={15} /> {idx > 0 ? SECTIONS[idx - 1].label : 'Back'}</button>
         <span className="ow-foot-mid">{blocking.length ? <><AlertCircle size={14} /> Missing: {blocking.map((p) => F[p].label).join(', ')}</> : <><CheckCircle2 size={14} /> Ready to run</>}</span>
         {cur.id !== 'revision' ? <button className="x-btn" onClick={() => onSection(SECTIONS[idx + 1].id)}>{SECTIONS[idx + 1].label} <ChevronRight size={15} /></button>
           : <span className="x-row"><button className="x-btn" disabled={busy || blocking.length > 0} onClick={() => void finish(false)}><Save size={15} /> Save without running</button><button className="x-btn primary" disabled={busy || blocking.length > 0} onClick={() => void finish(true)}>{busy ? <LoaderCircle size={15} className="spin" /> : <Play size={15} />} Confirm and run</button></span>}
-      </footer>
+      </footer>}
     </main>
   </div>;
 }

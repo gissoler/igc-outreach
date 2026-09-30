@@ -206,7 +206,7 @@ export function demoJob(): Job {
   const leads = withRanks(specs.map(buildLead));
   return {
     id: 'demo-ejecutiva', brief: DEMO_BRIEF, mode: 'demo', status: 'partial', createdAt: at(0), finishedAt: at(28.4),
-    events: [], leads, senderEvidence: [], plan: { summary: 'Lumen Neuro · LN-2: seed investment and neurotech partnering · United States and Europe', items: [] },
+    events: [], leads, senderEvidence: [], plan: { summary: 'Lumen Neuro · LN-2: seed investment and neurotech partnering · United States and Europe', items: [], terms: [{ term: 'neurotech', source: 'yours' }, { term: 'dementia care', source: 'lexicon' }, { term: 'remote patient monitoring', source: 'lexicon' }, { term: 'digital therapeutics', source: 'lexicon' }] },
     run: { version: 1, events: runEvents(leads), dropped: 0 },
   };
 }

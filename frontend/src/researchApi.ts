@@ -51,8 +51,27 @@ export type Feedback = {
 };
 export type WarmPlanStep = { when: string | null; what: string };
 export type WarmPlan = { route: string; label: string; built: boolean; via?: string; cadenceDays: number | null; updates?: number; why: string; steps: WarmPlanStep[]; hook?: string; source?: 'signals' | 'ai'; evidence?: { id: string; url: string; quote: string } | null };
+export type GrantPlan = {
+  state: 'eligibility_review' | 'not_pursuing' | 'watching' | 'preparing' | 'decision_needed';
+  decision: 'review' | 'no_go' | 'watch' | 'go' | 'conditional_go';
+  label: string;
+  nextAction: string;
+  checklist: { key: string; label: string; done: boolean }[];
+  programNumber: string | null;
+  agency: string | null;
+  deadline: string | null;
+  daysToDeadline: number | null;
+  policyThemes: string[];
+  geography: string | null;
+  contactQuestion: string | null;
+};
 export type Lead = {
   warmPlan?: WarmPlan;
+  grantPlan?: GrantPlan;
+  foundBy?: { provider: string; term: string; objective: string; query: string; gap?: string }[];
+  parentKey?: string;
+  followUp?: { from: string; question: string };
+  sufficiency?: { verdict: 'sufficient' | 'insufficient' | 'contradictory'; gaps: string[]; items: Record<string, { status: string }> };
   eligibility?: { verdict: '✔' | '✖' | '?'; closed: boolean; questions: string[]; method: string };
   activeFund?: { rank: number; dealsInWindow: number };
   id: string;
@@ -63,6 +82,7 @@ export type Lead = {
   title: string;
   kind: string;
   fundingType: string;
+  opportunityType?: 'challenge' | 'prize' | 'accelerator' | 'fellowship' | 'open_call' | string;
   status: string;
   deadline: string | null;
   amount: number | null;
@@ -114,6 +134,7 @@ export type Lead = {
 export type RunGrant = { id: string; leadId: string; title: string; agency: string; url: string; closeDate: string | null; awardCeiling: number | null; verdict: '✔' | '✖' | '?'; closed: boolean };
 export type ActiveFund = { fundId: string; rank: number; name: string; dealsInWindow: number; leads: number; inactive: boolean; signals: { type: string; label: string; url: string | null }[]; why: { text: string; url: string } | null };
 export type Job = {
+  searchAudit?: { provider: string; query: string; dimension: string; returned?: number; discovered: number; priority: number; watch: number; discarded: number }[];
   grants?: { evaluations: RunGrant[]; alerts: { id: string; title: string; closeDate: string; days: number; verdict: string; level: string }[] };
   activeInvestors?: { asOf: string; funds: ActiveFund[]; universe: number };
   id: string;
@@ -125,7 +146,10 @@ export type Job = {
   events: { phase: string; message: string; at: string }[];
   leads: Lead[];
   senderEvidence: Evidence[];
-  plan?: { summary: string; items: { provider: string; query: string }[] };
+  usage?: Record<string, { calls: number; results: number; ms: number; bytes: number; costUsd: number }>;
+  queryLedger?: { id: string; parent: string | null; round: number; gap: string; term: string; provider: string; query: string; results: number; newOrgs: number; acceptedLeads: number; costUsd: number; ms: number; error?: string }[];
+  loop?: { stopReason: string; sufficient: boolean; partial: boolean };
+  plan?: { summary: string; items: { provider: string; query: string }[]; terms?: { term: string; source: 'yours' | 'model' | 'lexicon' }[] };
   /** Eventos estructurados del Live Agent Run (ausente en investigaciones anteriores a este registro). */
   run?: { version: number; events: LiveRunEvent[]; dropped: number };
 };
@@ -287,3 +311,30 @@ export function subscribeRun(jobId: string, handlers: RunStreamHandlers): () => 
   return close;
 }
 export const frameUrl = (jobId: string, frameId: string) => `${API}/jobs/${encodeURIComponent(jobId)}/frames/${encodeURIComponent(frameId)}`;
+
+/* Página oficial de un lead dentro de la app. `officialPage` dice si el sitio se deja embeber (iframe);
+   `browsePage` maneja el navegador remoto: la página corre en el servidor y aquí se ven los fotogramas. */
+export type OfficialPage = { url: string | null; status?: number | null; embeddable: boolean; reason: string | null };
+export type BrowseShot = { url: string; title: string; image: string; width: number; height: number };
+export type BrowseAction =
+  | { action: 'open'; refresh?: boolean } | { action: 'close' } | { action: 'back' } | { action: 'reload' }
+  | { action: 'click'; x: number; y: number } | { action: 'scroll'; dy: number } | { action: 'type'; text: string } | { action: 'key'; key: string };
+const leadPath = (jobId: string, leadId: string) => `${API}/jobs/${jobId}/leads/${encodeURIComponent(leadId)}`;
+export async function officialPage(jobId: string, leadId: string): Promise<OfficialPage> {
+  const r = await fetch(`${leadPath(jobId, leadId)}/page`, { signal: AbortSignal.timeout(20000) });
+  const data = await r.json();
+  if (!r.ok) throw new ApiError(String(data?.error || `Error ${r.status}`), r.status);
+  return data as OfficialPage;
+}
+export async function browsePage(jobId: string, leadId: string, body: BrowseAction): Promise<BrowseShot> {
+  const r = await fetch(`${leadPath(jobId, leadId)}/browse`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    signal: AbortSignal.timeout(body.action === 'open' ? 45000 : 25000),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new ApiError(String(data?.error || `Error ${r.status}`), r.status, data?.code);
+  return data as BrowseShot;
+}
+export function closeBrowse(jobId: string, leadId: string) {
+  void fetch(`${leadPath(jobId, leadId)}/browse`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'close' }), keepalive: true }).catch(() => {});
+}

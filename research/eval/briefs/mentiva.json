@@ -1,0 +1,15 @@
+{
+  "_about": "Brief del run 8f544426 (29/09/2026). Caso de prueba del motor v2; referencia en eval/search-quality-2026-09-29/reference-list.md",
+  "company": "Mentiva",
+  "product": "Platform for digital well-being and navigation toward care experiences",
+  "description": "Helps individuals understand what's weighing on them, observe changes over time, and find relevant next steps without diagnosing.",
+  "industry": "wellness mental health digital health",
+  "stage": "prototype",
+  "round": "pre-seed",
+  "geography": "GLOBAL (incorporated outside the US and the EU)",
+  "exclusions": "isolated wellness tests",
+  "constraints": "No clinical diagnosis or substitution of medical/psychological care; Requires privacy, data security, and user trust",
+  "useOfFunds": "Strengthen product reliability, privacy, analytics, compliance, and user experience; operate real cohorts to measure activation, repetition, derivation, and attendance; design paid pilots and close first contracts.",
+  "timeline": "12-18 months to validate product-market fit, user retention, and revenue pathways",
+  "fundingTypes": ["grant"]
+}

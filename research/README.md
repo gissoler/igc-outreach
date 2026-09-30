@@ -22,10 +22,29 @@ La primera visita muestra registro e inicio de sesión reales. Cada cuenta tiene
 
 Formulario para cualquier usuario → red propia opcional → estrategia visible → consultas → deduplicación → ranking determinista → decisión estructurada Jev opcional → cinco candidatos y más resultados → detalle, fuentes y borrador → feedback persistente. La pantalla abre con un perfil nuevo vacío; Ram/IGC-AD1 y Rohit/AHA son ejemplos opcionales. Nombres y cargos de esos ejemplos se comprueban contra la página oficial de IGC al investigar; no se tratan objetivos de financiación o geografía como anuncios públicos. La etapa de AHA es una hipótesis editable, no un hecho verificado.
 
+### Motor agentic por fases
+
+El pipeline incorpora un ciclo controlado detrás de banderas, apagadas por defecto hasta completar una evaluación con datos reales:
+
+- `AGENTIC_FOLLOWUP=1`: toma financiadores con evidencia y sigue su sitio oficial hasta páginas de equipo; las personas nuevas conservan la pregunta de seguimiento y una cita literal.
+- `AGENTIC_READ=1`: lee páginas prometedoras y extrae tesis, etapa, geografía, ticket, actividad y decisores mediante la flota. Una afirmación solo se conserva si su cita y sus cifras aparecen literalmente en el texto leído.
+- `AGENTIC_LOOP=1`: calcula vacíos de suficiencia y formula búsquedas subsecuentes hasta cubrirlos o alcanzar límites de rondas, consultas, tiempo o coste. Cada búsqueda queda en `job.queryLedger`.
+- `LOOP_LLM_PLANNER=1`: permite al modelo proponer hasta tres consultas; si falla o devuelve una salida inválida, continúan las plantillas deterministas.
+
+Cada trabajo expone `job.usage`, `job.budget`, `job.queryLedger` y la suficiencia por candidato. `RESEARCH_MAX_RUNS_PER_DAY` limita espacios anónimos por navegador/IP. Las opciones y costes estimados están documentados en `.env.example`.
+
+La evaluación reproducible usa casos adjudicados en `eval/gold/`, payloads congelados en `eval/replay/<case-id>/` y `npm run eval:search -- --variant A --replay eval/replay`. Las variantes A–F activan progresivamente follow-up, lectura, bucle, planner y modelo alternativo; `case.example.json` es solo una plantilla, no un resultado ficticio.
+
 - OpenAlex: coautorías con identidad estable y afiliaciones históricas. Cuando se activa equipo IGC, verifica al advisor en el sitio oficial antes de construir el camino. Una coautoría no prueba amistad ni capacidad de presentar.
 - ClinicalTrials.gov: patrocinadores industriales y responsables publicados. No se usan correos de reclutamiento como contactos de negocio.
 - Grants.gov: convocatorias, estados, fechas, techos y contactos publicados en la convocatoria.
 - NIH RePORTER: proyectos financiados y responsables/program officers. Los montos adjudicados no se presentan como dinero disponible.
+
+### Grants como gestor de convocatorias
+
+El flujo de grants no reutiliza el outreach de inversionistas. Busca convocatorias concretas en Grants.gov por tema, geografía y prioridades/criterios declarados; cada resultado conserva el número oficial, agencia, estado, fecha, techo, evidencia y evaluación de elegibilidad. Después lo convierte en un estado de trabajo: revisar elegibilidad, preparar, decisión urgente, vigilar o no perseguir, con checklist y siguiente acción. NIH RePORTER se usa solo como inteligencia histórica y nunca se muestra como una convocatoria abierta. Un program officer solo recibe una pregunta específica sobre una ambigüedad publicada; la aplicación no genera pitches de ronda para agencias.
+
+Este discovery oficial no requiere Firecrawl ni ScrapeGraph. Esos proveedores quedan limitados al enriquecimiento opcional de personas y páginas públicas en los flujos donde aporte valor.
 - Radar oficial: ADDF, a2 Collective y CDMRP. Ciclos cerrados o futuros quedan fuera del top.
 - Serper opcional: pistas complementarias; sus snippets no se elevan a hechos ni al top sin evidencia adicional.
 - LinkedIn durante onboarding: el usuario pega una URL `/in/`; el servidor consulta el perfil público mediante `harvestapi/linkedin-profile-scraper` y construye un mapa de actividad en ambos sentidos con `harvestapi/linkedin-profile-posts`, `harvestapi/linkedin-profile-comments` y `harvestapi/linkedin-profile-reactions`: quién comenta/reacciona a los posts del usuario y en los posts de quién comenta/reacciona el usuario. Los tres Actors se ejecutan en paralelo, con resultados parciales si uno falla. No se piden cookies, contraseña ni exports. Las personas se guardan como **relaciones por interacción pública**, nunca como conexiones oficiales, y conservan URL, dirección, tipo, frecuencia y fecha para construir warm paths con evidencia.

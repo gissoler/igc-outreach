@@ -1,0 +1,472 @@
+diff --git a/research/server/analysis/eligibility.mjs b/research/server/analysis/eligibility.mjs
+index 4f57287..5ab28d5 100644
+--- a/research/server/analysis/eligibility.mjs
++++ b/research/server/analysis/eligibility.mjs
+@@ -25,6 +25,17 @@ export const IGC_PROFILE = {
+   requestedBudget: { value: null, source: 'Pendiente: monto que se pediría (US$)' },
+ };
+ 
++/**
++ * Perfil para el run: el de IGC solo si quien recibe los fondos es IGC. Para otra empresa (p. ej. Mentiva)
++ * todo empieza desconocido: produce "?" y preguntas, nunca un ✔/✖ heredado de otra compañía.
++ */
++export function profileForBrief(brief = {}, igcProfile = IGC_PROFILE) {
++  const venture = String(brief.venture || brief.company || '').trim();
++  if (/\bigc\b/i.test(`${venture} ${brief.organization || ''}`) && (!brief.venture || /\bigc\b/i.test(brief.venture))) return igcProfile;
++  const unknown = (what) => ({ value: null, source: `Pendiente para ${venture || 'la empresa'}: ${what}` });
++  return Object.fromEntries(Object.keys(igcProfile).map((key) => [key, key === 'name' ? (venture || 'Venture') : unknown(key)]));
++}
++
+ // Frases estándar de NOFOs de NIH y Grants.gov. Cada patrón produce una regla con la oración literal como cita.
+ const PATTERNS = [
+   { type: 'foreign_entity', requirement: 'not_allowed', rx: /non-domestic \(non-u\.?s\.?\) entities \(foreign (?:institutions|organizations)\) are not eligible|foreign (?:institutions|organizations) are not eligible/i },
+@@ -84,7 +95,8 @@ export function evaluateRule(rule, profile, { today = new Date() } = {}) {
+       if (forProfit && types.some((t) => /for.profit organizations other than small businesses/.test(t))) return v('✔', 'Accepts for-profit companies (not small).');
+       if (forProfit && types.some((t) => /small business/.test(t))) return small === true ? v('✔', 'Accepts small businesses and the profile says it is one.') : small === false ? (types.some((t) => /for.profit/.test(t)) ? v('✔', 'Accepts other for-profit companies.') : v('✖', 'Small businesses only, and the profile says it isn\'t.')) : v('?', 'Small businesses only: confirm whether IGC qualifies (SBA definition).');
+       if (types.some((t) => /others \(see text/.test(t))) return v('?', 'Eligibility depends on additional call text.');
+-      if (forProfit) return v('✖', 'Listed applicant types exclude for-profit companies.');
++      // Solo la lista oficial de tipos (array) puede excluir; una frase suelta extraída por la flota no basta.
++      if (forProfit) return Array.isArray(rule.requirement) ? v('✖', 'Listed applicant types exclude for-profit companies.') : v('?', 'Applicant-type sentence: check it against the official applicant list.');
+       return v('?', 'Profile entity type unknown.');
+     }
+     case 'small_business': { const s = val(profile, 'smallBusiness'); return s === true ? v('✔', 'Profile indicates a small business.') : s === false ? v('✖', 'Requires a small business; the profile says it isn\'t.') : v('?', 'Requires a small business: missing from the profile.'); }
+diff --git a/research/server/analysis/routes.mjs b/research/server/analysis/routes.mjs
+index b0681fe..2f17f62 100644
+--- a/research/server/analysis/routes.mjs
++++ b/research/server/analysis/routes.mjs
+@@ -6,7 +6,7 @@ import { chatJSON, fleetConfig } from './fleet.mjs';
+ import { loadVehicles } from './momentum.mjs';
+ import { rankRevealed } from './revealed.mjs';
+ import { armsFromEvents, chooseArm, importOutreachRows, networkAggregate, summarizeOutreach, validateOutreach, CHANNELS, ARGUMENTS, OUTCOMES, OUTCOME_LABEL } from './outreach.mjs';
+-import { deadlineAlerts, evaluateOpportunity, IGC_PROFILE, opportunityFromLead, toICS } from './eligibility.mjs';
++import { deadlineAlerts, evaluateOpportunity, IGC_PROFILE, opportunityFromLead, profileForBrief, toICS } from './eligibility.mjs';
+ import { meetingBrief, simulateTurn } from './voice.mjs';
+ import { personKey } from './entities.mjs';
+ import { parseCsv } from './extractEval.mjs';
+@@ -30,7 +30,8 @@ const CREATIVE_SCHEMA = { type: 'object', additionalProperties: false, required:
+ export function createRunEnrichers({ store, env = process.env, fetcher = fetch }) {
+   const A = store.analysis;
+   const profilePath = resolve(env.ELIGIBILITY_PROFILE_PATH || 'data/eligibility_profile.json');
+-  const eligibilityProfile = () => existsSync(profilePath) ? { ...IGC_PROFILE, ...JSON.parse(readFileSync(profilePath, 'utf8')) } : IGC_PROFILE;
++  // El perfil guardado es el de IGC: solo se usa cuando el run es para IGC (feedback 29/09: Mentiva se evaluaba como IGC).
++  const eligibilityProfile = (brief) => { const base = profileForBrief(brief, IGC_PROFILE); return base === IGC_PROFILE && existsSync(profilePath) ? { ...IGC_PROFILE, ...JSON.parse(readFileSync(profilePath, 'utf8')) } : base; };
+   let vehicles = null;
+   const getVehicles = () => (vehicles ??= loadVehicles(resolve(env.FUND_VEHICLES_PATH || 'data/fund_vehicles.json')));
+   return [
+@@ -40,7 +41,7 @@ export function createRunEnrichers({ store, env = process.env, fetcher = fetch }
+       const out = [];
+       for (const lead of leads.slice(0, 15)) {
+         signal?.throwIfAborted();
+-        const e = await evaluateOpportunity(opportunityFromLead(lead), { profile: eligibilityProfile(), env, fetcher });
++        const e = await evaluateOpportunity(opportunityFromLead(lead), { profile: eligibilityProfile(job.brief), env, fetcher });
+         A.saveGrantEvaluation(String(e.id), e);
+         lead.eligibility = { verdict: e.verdict, closed: e.closed, questions: e.questions.slice(0, 3), method: e.method };
+         out.push({ id: String(e.id), leadId: lead.id, title: e.title, agency: e.agency, url: e.url, closeDate: e.closeDate, awardCeiling: e.awardCeiling, verdict: e.verdict, closed: e.closed });
+diff --git a/research/server/research/core.mjs b/research/server/research/core.mjs
+index c54765f..8242d16 100644
+--- a/research/server/research/core.mjs
++++ b/research/server/research/core.mjs
+@@ -252,6 +252,32 @@ export function dedupe(leads) {
+     return l;
+   });
+ }
++/* Palabras que aparecen en casi cualquier convocatoria de salud o tecnología: solas no prueban encaje temático. */
++export const GENERIC_TOPIC_WORDS = new Set(['health', 'healthcare', 'digital', 'care', 'data', 'tool', 'tools', 'self', 'well', 'being', 'monitoring', 'tracking', 'program', 'programs', 'support', 'services', 'service', 'system', 'systems', 'solution', 'solutions', 'innovation', 'innovative', 'technology', 'technologies', 'research', 'based', 'platform', 'management', 'public', 'community', 'people', 'development']);
++const TOPIC_STOPWORDS = new Set(['and', 'the', 'for', 'with', 'from', 'into', 'that', 'this', 'your', 'our']);
++/**
++ * Encaje temático por palabras completas: palabras específicas (peso 1) y bigramas de cada término
++ * ("mental health" 1; "digital health", dos genéricas, 0.5). "health" o "tools" solos ya no suman,
++ * y "mental" no coincide dentro de "environmental".
++ */
++export function topicMatcher(sources = []) {
++  const units = new Map();
++  for (const { label, value } of sources) {
++    const words = norm(value).split(' ').filter((w) => w.length > 2 && !TOPIC_STOPWORDS.has(w));
++    words.forEach((word, i) => {
++      if (!GENERIC_TOPIC_WORDS.has(word) && !units.has(word)) units.set(word, { weight: 1, label });
++      const next = words[i + 1];
++      if (next && !units.has(`${word} ${next}`)) units.set(`${word} ${next}`, { weight: GENERIC_TOPIC_WORDS.has(word) && GENERIC_TOPIC_WORDS.has(next) ? 0.5 : 1, label });
++    });
++  }
++  const total = [...units.values()].reduce((n, u) => n + u.weight, 0);
++  return (text) => {
++    const hay = ` ${norm(text)} `;
++    const found = [...units].filter(([unit]) => hay.includes(` ${unit} `));
++    const got = found.reduce((n, [, u]) => n + u.weight, 0);
++    return { fit: Math.min(1, got / Math.max(2, Math.min(6, total))), hits: found.map(([unit]) => unit), labels: [...new Set(found.map(([, u]) => u.label))] };
++  };
++}
+ export function evaluate(
+   leads,
+   brief,
+@@ -267,20 +293,17 @@ export function evaluate(
+     { label: brief.industry, value: brief.industry },
+     ...terms.map((term) => ({ label: typeof term === 'string' ? term : term.term, value: typeof term === 'string' ? term : term.term })),
+   ].filter((x) => x.value);
+-  const tokens = [...new Set(tokenSources.flatMap((x) => norm(x.value).split(' ').filter((t) => t.length > 2)))];
++  const match = topicMatcher(tokenSources);
+   const ranked = dedupe(leads).map((l) => {
+     const verified = l.evidence.filter((e) => e.verified);
+-    const hay = norm(
+-      `${l.title} ${l.searchText} ${l.evidence.map((e) => e.quote).join(' ')}`,
+-    );
+-    const hits = tokens.filter((t) => hay.includes(t));
+-    const matchedTerms = tokenSources.filter((source) => norm(source.value).split(' ').filter((t) => t.length > 2).some((t) => hay.includes(t))).map((source) => source.label);
+-    const fit = Math.min(
+-      1,
+-      hits.length / Math.max(2, Math.min(6, tokens.length)),
+-    );
++    const topic = match(`${l.title} ${l.searchText} ${l.evidence.map((e) => e.quote).join(' ')}`);
++    const hits = topic.hits;
++    const matchedTerms = topic.labels;
++    const fit = topic.fit;
+     const type = brief.fundingTypes.includes(l.fundingType) ? 1 : 0.15;
+-    const deadline = l.deadline ? Date.parse(l.deadline + 'T23:59:59Z') : NaN;
++    // Fechas de relleno (p. ej. 2099-01-01 en Grants.gov) no son un cierre publicado.
++    const placeholderDeadline = /^(209\d|2[1-9]\d\d)-/.test(String(l.deadline || ''));
++    const deadline = l.deadline && !placeholderDeadline ? Date.parse(l.deadline + 'T23:59:59Z') : NaN;
+     const days = Number.isFinite(deadline)
+       ? (deadline - today.getTime()) / 86400000
+       : null;
+@@ -340,10 +363,16 @@ export function evaluate(
+       discard = 'Excluded competitor.';
+     if (l.facts?.funder_type === 'not_funder')
+       discard = 'Verified page indicates this organization is not a funder.';
++    // La convocatoria se leyó (evidencia verificada) y ninguna palabra específica del tema aparece: fuera de tema.
++    if (grantOpportunity && verified.length && fit === 0 && tokenSources.length)
++      discard = 'Off-topic: the official text does not mention your topic terms.';
+     if (l.fundingType === 'grant' && l.kind !== 'opportunity')
+       discard = 'Historical grant intelligence; not an open funding opportunity.';
++    // Una convocatoria sin fecha de cierre confirmada no es prioridad: puede estar cerrada o ser un anuncio.
++    const undatedGrant = grantOpportunity && days === null && l.status !== 'forecasted';
+     const watch =
+       l.kind === 'radar' ||
++      undatedGrant ||
+       l.status === 'closed' ||
+       l.status === 'forecasted' ||
+       (days !== null && days < brief.minDays);
+@@ -356,6 +385,7 @@ export function evaluate(
+           ? ['No public email']
+           : []),
+         'Geographic eligibility and stage to confirm',
++        ...(undatedGrant ? [placeholderDeadline ? 'Close date is a placeholder, not a published deadline' : 'Application deadline not confirmed'] : []),
+         ...(brief.amount && !l.amount
+           ? ['Available amount not confirmed']
+           : []),
+diff --git a/research/server/research/grantManager.mjs b/research/server/research/grantManager.mjs
+index 9827783..14f8fb3 100644
+--- a/research/server/research/grantManager.mjs
++++ b/research/server/research/grantManager.mjs
+@@ -22,22 +22,29 @@ export function grantQueries(brief, plan) {
+   return queries.slice(0, 8);
+ }
+ 
+-/** Round-robin por agencia para no gastar todo el presupuesto de lectura en el primer organismo. */
+-export function diversifyGrantHits(hits, limit = 16) {
+-  const groups = new Map();
+-  for (const hit of hits) {
+-    const key = clean(hit.agency || 'unknown');
+-    if (!groups.has(key)) groups.set(key, []);
+-    if (!groups.get(key).some((x) => x.id === hit.id)) groups.get(key).push(hit);
+-  }
++/**
++ * Elige qué convocatorias leer. Antes era un round-robin puro por agencia: con un tema de salud mental,
++ * NIH (una sola agencia con los avisos relevantes) recibía 1–2 cupos y el resto se llenaba con agencias
++ * fuera de tema (misiones en Mozambique/Túnez, NIOSH). Ahora se ordena por relevancia temática del
++ * título y la diversidad es solo un tope por agencia, no un turno obligatorio.
++ */
++export function diversifyGrantHits(hits, limit = 16, relevance = () => 1, { perAgency = Math.max(1, Math.ceil(limit * 0.6)) } = {}) {
++  const unique = [...new Map(hits.map((hit) => [hit.id, hit])).values()];
++  const scored = unique.map((hit, index) => ({ hit, index, score: Number(relevance(hit)) || 0 }))
++    .sort((a, b) => b.score - a.score || a.index - b.index);
++  const relevant = scored.filter((x) => x.score > 0);
++  const pool = relevant.length >= Math.min(limit, 4) ? relevant : scored;
++  const perKey = new Map();
+   const out = [];
+-  let round = 0;
+-  while (out.length < limit) {
+-    let added = false;
+-    for (const group of groups.values()) if (group[round] && out.length < limit) { out.push(group[round]); added = true; }
+-    if (!added) break;
+-    round++;
++  for (const { hit } of pool) {
++    const key = clean(hit.agencyCode || hit.agency || 'unknown');
++    if ((perKey.get(key) || 0) >= perAgency) continue;
++    perKey.set(key, (perKey.get(key) || 0) + 1);
++    out.push(hit);
++    if (out.length >= limit) break;
+   }
++  // El tope por agencia solo cede cupo a otra convocatoria relevante; nunca deja cupos vacíos.
++  for (const { hit } of pool) if (out.length < limit && !out.includes(hit)) out.push(hit);
+   return out;
+ }
+ 
+diff --git a/research/server/research/providers.mjs b/research/server/research/providers.mjs
+index 010d8ca..f810121 100644
+--- a/research/server/research/providers.mjs
++++ b/research/server/research/providers.mjs
+@@ -1,4 +1,4 @@
+-import { candidate, evidence, isIGC, norm, safeUrl, ventureOf } from './core.mjs';
++import { candidate, evidence, isIGC, norm, safeUrl, topicMatcher, ventureOf } from './core.mjs';
+ import { adjacent, fundingQuery } from './expand.mjs';
+ import { diversifyGrantHits, grantQueries } from './grantManager.mjs';
+ import { countRecords, noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
+@@ -616,7 +616,8 @@ export async function grants(client, brief, plan, emit) {
+   }
+   if (!hits.length) emit('searching', 'Grants.gov: no open or forecasted calls matched the searched topics and geographies.');
+   const leads = [];
+-  for (const hit of diversifyGrantHits(hits, 16)) {
++  const topic = topicMatcher([{ label: brief.industry, value: brief.industry }, ...(plan.terms || []).map((t) => ({ label: t.term, value: t.term }))]);
++  for (const hit of diversifyGrantHits(hits, 16, (h) => topic(plain(h.title)).fit)) {
+     let detail = null;
+     try {
+       const d = await client.json(
+diff --git a/research/server/research/webscrape.mjs b/research/server/research/webscrape.mjs
+index 58d2230..86aa6ce 100644
+--- a/research/server/research/webscrape.mjs
++++ b/research/server/research/webscrape.mjs
+@@ -68,17 +68,43 @@ export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs
+ }
+ 
+ const opportunityType = (text) => /challenge|competition/i.test(text) ? 'challenge' : /prize|award/i.test(text) ? 'prize' : /accelerator|incubator|cohort/i.test(text) ? 'accelerator' : /fellowship/i.test(text) ? 'fellowship' : 'open_call';
+-const opportunityDate = (text) => {
+-  const months = 'Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?';
+-  const matches = [...String(text).matchAll(new RegExp(`(?:apply by|deadline|applications? close(?:s)?|closing)\\s*(?:on\\s*)?([0-9]{1,2}\\s+(?:${months})\\s+20[2-9][0-9]|(?:${months})\\s+[0-9]{1,2}(?:st|nd|rd|th)?[,]?\\s+20[2-9][0-9])`, 'ig'))];
+-  for (const match of matches) { const date = new Date(match[1].replace(/(\d)(st|nd|rd|th)/i, '$1')); if (Number.isFinite(date.getTime())) return date.toISOString().slice(0, 10); }
+-  return null;
++const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
++const MONTH_RX = 'Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?';
++const DATE_RX = `([0-9]{1,2})(?:st|nd|rd|th)?\\s+(${MONTH_RX})\\.?,?\\s+(20[2-9][0-9])|(${MONTH_RX})\\.?\\s+([0-9]{1,2})(?:st|nd|rd|th)?,?\\s+(20[2-9][0-9])|(20[2-9][0-9])-([01][0-9])-([0-3][0-9])`;
++/** Texto de página sin sintaxis markdown: enlaces e imágenes quedan como su texto; negritas y títulos fuera. */
++export const plainMarkdown = (text) => String(text || '')
++  .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
++  .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
++  .replace(/[#*_>`|\\]+/g, ' ')
++  .replace(/\s+/g, ' ')
++  .trim();
++const isoFromMatch = (m) => {
++  const [year, month, day] = m[7] ? [m[7], Number(m[8]), m[9]] : m[3] ? [m[3], MONTHS.indexOf(m[2].slice(0, 3).toLowerCase()) + 1, m[1]] : [m[6], MONTHS.indexOf(m[4].slice(0, 3).toLowerCase()) + 1, m[5]];
++  const date = new Date(Date.UTC(Number(year), month - 1, Number(day)));
++  return month >= 1 && date.getUTCDate() === Number(day) ? date.toISOString().slice(0, 10) : null;
+ };
++/**
++ * Fecha de cierre escrita en la página. Acepta "Deadline: 30 June 2026", "**Apply by** April 5, 2023",
++ * "through October 19, 2026" y fechas ISO. Si hay varios cierres (convocatorias por ciclos) devuelve el
++ * primero que aún no pasó; si todos pasaron, el más reciente (la convocatoria está cerrada).
++ */
++export function opportunityDate(text, now = new Date()) {
++  const clean = plainMarkdown(text);
++  const cue = '(?:apply by|deadline|due(?: date)?|applications? (?:close|closes|closing|are due|due|accepted until)|submissions? (?:close|deadline|due)|closing date|closes|through|until)';
++  const rx = new RegExp(`${cue}\\s*(?:is|on|of|:|-|–)?\\s*(?:[A-Za-z]+day,?\\s+)?(?:${DATE_RX})`, 'ig');
++  const dates = [...new Set([...clean.matchAll(rx)].map((m) => isoFromMatch(m)).filter(Boolean))].sort();
++  if (!dates.length) return null;
++  const today = now.toISOString().slice(0, 10);
++  return dates.find((d) => d >= today) || dates.at(-1);
++}
+ const opportunityExcerpt = (text) => {
+-  const clean = String(text || '').replace(/[#*_>`|]+/g, ' ').replace(/\s+/g, ' ').trim();
+-  const at = clean.search(/apply|application|challenge|competition|prize|accelerator|open call/i);
+-  return clean.slice(Math.max(0, at < 0 ? 0 : at - 120), Math.max(500, at + 700)).slice(0, 900);
++  const clean = plainMarkdown(text).replace(/skip to (?:main )?content/gi, ' ');
++  const at = clean.search(/deadline|apply by|applications? (?:open|close)|open call|eligib/i);
++  const from = at < 0 ? Math.max(0, clean.search(/apply|application|challenge|competition|prize|accelerator/i)) : at;
++  return clean.slice(Math.max(0, from - 200), from + 700).trim().slice(0, 900);
+ };
++/** Agregadores y blogs de oportunidades: sirven para descubrir, pero no son la página oficial del programa. */
++export const AGGREGATOR_HOSTS = /(^|\.)(fundsforngos\.org|startupgrantsindia\.com|vestbee\.com|opportunitydesk\.org|opportunitiesforyouth\.org|opportunitiesforafricans\.com|globalsouthopportunities\.com|scholarshipsforafricans\.com|grantedai\.com|instrumentl\.com|grantforward\.com|incubatorlist\.com|kindora\.co|qubit\.capital|socialroots\.ai)$/i;
+ 
+ /** Discovery amplio de challenges, prizes y aceleradoras. Solo Firecrawl search; no ScrapeGraph. */
+ export async function grantWebOpportunities(brief, plan, { env = process.env, fetcher = fetch, signal, live = noopRecorder, record = () => {}, usageClient = null } = {}) {
+@@ -90,16 +116,22 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
+     `${focus} startup challenge prize competition applications open ${year}`,
+     `${focus} startup accelerator innovation program non-dilutive funding apply ${year}`,
+     `${terms[1] || focus} early stage startup open call global prize`,
+-  ].slice(0, clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 5, 3));
++    // Subvenciones y premios con cierre publicado, no solo challenges y aceleradoras.
++    `${focus} grant for startups call for proposals deadline ${year} for-profit eligible`,
++    `${focus} innovation prize ${year} ${year + 1} solution deadline apply global`,
++  ].slice(0, clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 5, 5));
++  const tbs = env.GRANT_WEB_TBS ?? 'qdr:y';
+   const seen = new Map();
+   const audit = [];
+   for (const query of queries) {
+-    const results = await firecrawlSearch(query, { limit: clamp(env.GRANT_WEB_RESULTS_PER_QUERY, 3, 10, 6), markdown: true, env, fetcher, signal, live, record });
++    const results = await firecrawlSearch(query, { limit: clamp(env.GRANT_WEB_RESULTS_PER_QUERY, 3, 10, 6), markdown: true, tbs, env, fetcher, signal, live, record });
+     let accepted = 0;
++    let aggregators = 0;
+     for (const result of results) {
+       const hay = `${result.title} ${result.description} ${result.markdown}`;
+       if (!/(apply|applications?|challenge|competition|prize|accelerator|incubator|fellowship|open call|startup call)/i.test(hay)) continue;
+       if (BLOCKED_HOSTS.test(hostOf(result.url))) continue;
++      if (AGGREGATOR_HOSTS.test(hostOf(result.url))) { aggregators++; continue; }
+       const excerpt = opportunityExcerpt(result.markdown || result.description);
+       if (excerpt.length < 80) continue;
+       const host = hostOf(result.url).replace(/^www\./, '');
+@@ -110,7 +142,8 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
+         org: host,
+         title: result.title || `${opportunityType(hay)} opportunity`,
+         kind: 'opportunity', fundingType: 'grant', opportunityType: opportunityType(hay),
+-        status: deadline && Date.parse(`${deadline}T23:59:59Z`) < Date.now() ? 'closed' : 'open',
++        // Sin fecha publicada no se asume "abierta": puede ser un anuncio viejo o una cohorte ya elegida.
++        status: deadline ? (Date.parse(`${deadline}T23:59:59Z`) < Date.now() ? 'closed' : 'open') : 'unknown',
+         deadline,
+         contact: { type: 'source', value: result.url, provenance: 'Official or first-party opportunity page found by web search; verify before applying' },
+         evidence: ev,
+@@ -121,7 +154,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
+       });
+       if (!seen.has(result.url)) { seen.set(result.url, lead); accepted++; }
+     }
+-    audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: results.length, discovered: accepted });
++    audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: results.length, discovered: accepted, aggregatorsSkipped: aggregators });
+   }
+   usageClient?.track?.('Firecrawl', { calls: queries.length, results: seen.size });
+   return Object.assign([...seen.values()].slice(0, 18), { searchAudit: audit });
+diff --git a/research/tests/grantManager.test.mjs b/research/tests/grantManager.test.mjs
+index 9d67d9d..f8ac11e 100644
+--- a/research/tests/grantManager.test.mjs
++++ b/research/tests/grantManager.test.mjs
+@@ -1,6 +1,7 @@
+ import test from 'node:test';
+ import assert from 'node:assert/strict';
+ import { attachGrantPlans, diversifyGrantHits, finalizeSearchAudit, grantPlan, grantQueries } from '../server/research/grantManager.mjs';
++import { topicMatcher } from '../server/research/core.mjs';
+ import { buildDraft, candidate, evidence, evaluate, makePlan } from '../server/research/core.mjs';
+ 
+ const brief = { company: 'Mentiva', venture: 'Mentiva', industry: 'mental health', geography: 'California, US', criteria: 'youth; public health policy', minDays: 30, fundingTypes: ['grant'], mode: 'financial', amount: null, exclusions: '', constraints: '', stage: 'prototype' };
+@@ -23,9 +24,25 @@ test('grant-only plan uses official sources and does not schedule paid web enric
+   assert.doesNotMatch(providers, /ScrapeGraph|Exa|Serper/);
+ });
+ 
+-test('grant hits are diversified by agency before detail fetch', () => {
++test('grant hits: one agency cannot take every slot, but diversity is a cap, not a forced turn', () => {
+   const hits = [1, 2, 3, 4].map((id) => ({ id, agency: 'NIH' })).concat([{ id: 5, agency: 'NSF' }, { id: 6, agency: 'EU' }]);
+-  assert.deepEqual(diversifyGrantHits(hits, 4).map((x) => x.id), [1, 5, 6, 2]);
++  assert.deepEqual(diversifyGrantHits(hits, 4).map((x) => x.id), [1, 2, 3, 5]);
++});
++
++test('grant hits are chosen by topic relevance before agency diversity (Mentiva run 29/09)', () => {
++  // Títulos reales de la respuesta de Grants.gov guardada para el run 8f544426.
++  const hits = [
++    { id: 1, agencyCode: 'HHS-NIH11', title: 'Navigator Emergency Department Diversion Models for Non-Urgent Mental Health Concerns' },
++    { id: 2, agencyCode: 'HHS-NIH11', title: 'Effectiveness Trials to Test Mental Health System Interventions' },
++    { id: 3, agencyCode: 'HHS-NIH11', title: 'Laboratories to Optimize Digital Health' },
++    { id: 4, agencyCode: 'HHS-NIH11', title: 'Mind and Body Interventions to Restore Whole Person Health via Emotional Well-Being Mechanisms' },
++    { id: 5, agencyCode: 'DOS-MOZ', title: 'PEPFAR Community Led Monitoring - Mozambique Relief Programs' },
++    { id: 6, agencyCode: 'DOS-TUN', title: 'Annual Program Statement (APS) for Fiscal Year 2025' },
++    { id: 7, agencyCode: 'HHS-CDC-GHC', title: 'Expanding global health security through local partnerships in Indonesia' },
++  ];
++  const topic = topicMatcher([{ label: 'wellness mental health digital health', value: 'wellness mental health digital health' }, { label: 'emotional health monitoring', value: 'emotional health monitoring' }]);
++  const picked = diversifyGrantHits(hits, 4, (h) => topic(h.title).fit).map((x) => x.id);
++  assert.deepEqual(picked.sort(), [1, 2, 3, 4]);
+ });
+ 
+ test('search audit shows which exact queries produced priority results', () => {
+diff --git a/research/tests/searchQuality.test.mjs b/research/tests/searchQuality.test.mjs
+new file mode 100644
+index 0000000..fc8c6a2
+--- /dev/null
++++ b/research/tests/searchQuality.test.mjs
+@@ -0,0 +1,103 @@
++// Calidad de búsqueda de grants (revisión 29/09/2026, brief Mentiva). Cada caso viene de un fallo visto en el run 8f544426.
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { AGGREGATOR_HOSTS, grantWebOpportunities, opportunityDate } from '../server/research/webscrape.mjs';
++import { candidate, evaluate, evidence, topicMatcher } from '../server/research/core.mjs';
++import { evaluateRule, IGC_PROFILE, profileForBrief } from '../server/analysis/eligibility.mjs';
++
++const NOW = new Date('2026-09-29T12:00:00Z');
++
++test('deadline parser reads the formats real program pages use', () => {
++  const cases = {
++    'Deadline: 30 June 2026': '2026-06-30', // Brain Innovation Days: antes null → "open"
++    '**Apply by** April 5, 2023': '2023-04-05', // markdown en negrita
++    'Application deadline: November 2, 2026': '2026-11-02',
++    'Solution Deadline November 2, 2026 12:00pm EST': '2026-11-02', // MIT Solve
++    'Reviewed on a Rolling Basis Through October 19, 2026': '2026-10-19', // One Mind Accelerator
++    'Deadline: 2026-11-02': '2026-11-02',
++    'with an application deadline of 18 September 2026.': '2026-09-18', // wellcome.org (el agregador decía 2 Oct)
++    'Deadline: Monday, February 2, 2027 at noon': '2027-02-02',
++    'Fall 2026: deadline July 31, 2026. Spring 2027: deadline January 15, 2027': '2027-01-15', // próximo ciclo
++    'The application period is open now through April 5.': null, // sin año: no se inventa
++    'Deadline: February 30, 2026': null, // fecha imposible
++  };
++  for (const [text, expected] of Object.entries(cases)) assert.equal(opportunityDate(text, NOW), expected, text);
++});
++
++function mockFetch(web) {
++  const calls = [];
++  const fetcher = async (url, init) => { calls.push(JSON.parse(init.body)); return { ok: true, status: 200, text: async () => JSON.stringify({ data: { web } }) }; };
++  return { fetcher, calls };
++}
++
++test('open-web grants: aggregators are skipped, undated pages are not "open", search is limited to the past year', async () => {
++  const pad = (s) => s.padEnd(300, ' ');
++  const { fetcher, calls } = mockFetch([
++    { url: 'https://www.startupgrantsindia.com/wellcome-prize-mental-health-science-nature', title: 'The Wellcome Prize for Mental Health Science', markdown: pad('Apply now. Deadline: 2 October 2026. Sign up to read this grant.') },
++    { url: 'https://www.headstreaminnovation.com/post/2026-members', title: 'Headstream Announces the 2026 Members of its Accelerator', markdown: pad('Headstream accelerator cohort for youth mental health startups. Founders will sharpen their business models.') },
++    { url: 'https://www.braininnovationdays.eu/2026-bids-pitch-competition/', title: 'BIDs Pitch Competition', markdown: pad('Brain Innovation Days Pitch Competition for start-ups. **Deadline:** 30 June 2026. Apply here.') },
++  ]);
++  const results = await grantWebOpportunities({ industry: 'mental health', product: 'well-being navigation', stage: 'prototype' }, { terms: [{ term: 'mental health' }] }, { env: { FIRECRAWL_API_KEY: 'fc', GRANT_WEB_MAX_SEARCHES: '1' }, fetcher });
++  assert.ok(AGGREGATOR_HOSTS.test('www2.fundsforngos.org'));
++  assert.equal(results.some((r) => /startupgrantsindia/.test(r.org)), false, 'aggregator is not an official program page');
++  assert.equal(results.searchAudit[0].aggregatorsSkipped, 1);
++  assert.equal(results.find((r) => /headstream/.test(r.org)).status, 'unknown');
++  const bids = results.find((r) => /braininnovationdays/.test(r.org));
++  assert.equal(bids.deadline, '2026-06-30');
++  assert.equal(calls[0].tbs, 'qdr:y');
++});
++
++const brief = { industry: 'wellness mental health digital health', exclusions: '', fundingTypes: ['grant'], minDays: 30, mode: 'strategic', geography: 'GLOBAL', stage: 'prototype', criteria: '', constraints: '', amount: null };
++const terms = ['mental well-being tracking', 'emotional health monitoring', 'self-awareness tools'].map((term) => ({ term }));
++const call = (title, text, extra = {}) => candidate({ kind: 'opportunity', fundingType: 'grant', status: 'open', deadline: '2026-12-01', org: 'Agency', title, externalId: title, evidence: [evidence('Grants.gov', 'https://www.grants.gov/x', text, 'scope')], searchText: text, ...extra });
++
++test('topic fit ignores generic words: "health", "monitoring" or "tools" alone do not make a mental-health match', () => {
++  const ranked = evaluate([
++    call('Expanding global health security through local partnerships in Indonesia', 'Strengthen public health laboratory capacity, disease surveillance and monitoring tools.'),
++    call('Holistic and Evidence-Informed Wellness for STI Prevention', 'Community programs for sexually transmitted infection prevention and health monitoring.'),
++    call('Environmental health tracking', 'Environmental exposure data for public health.'),
++    call('Digital mental health interventions', 'Test digital mental health platforms that improve emotional well-being and mental health outcomes.'),
++  ], brief, new Set(), NOW, terms);
++  const by = Object.fromEntries(ranked.map((l) => [l.title.split(' ')[0], l]));
++  assert.equal(ranked[0].title, 'Digital mental health interventions');
++  assert.equal(by.Expanding.fit, 0);
++  assert.equal(by.Environmental.fit, 0, '"mental" must not match inside "environmental"');
++  assert.equal(by.Expanding.bucket, 'discarded');
++  assert.match(by.Expanding.discard, /Off-topic/);
++  // Antes: STI 0.67 de fit (74 pts) frente a 1.0 (86). Ahora el encaje real duplica al de STI.
++  assert.ok(ranked[0].fit >= 2 * by.Holistic.fit, `fit ${ranked[0].fit} vs ${by.Holistic.fit}`);
++  assert.ok(by.Holistic.fit <= 0.3);
++  const m = topicMatcher([{ label: 'x', value: 'mental health' }]);
++  assert.deepEqual(m('Environmental health').hits, []);
++});
++
++test('grant calls without a real close date go to the radar, not to priority', () => {
++  const [placeholder, undated, dated] = ['Program to End Modern Slavery', 'Innovations in Mental Health Fund', 'Mental health challenge'].map((t) => t);
++  const ranked = evaluate([
++    call(placeholder, 'mental health program', { deadline: '2099-01-01' }),
++    call(undated, 'mental health programme', { deadline: null, status: 'unknown' }),
++    call(dated, 'mental health challenge', { deadline: '2026-11-02' }),
++  ], brief, new Set(), NOW, terms);
++  const get = (t) => ranked.find((l) => l.title === t);
++  assert.equal(get(placeholder).bucket, 'radar');
++  assert.equal(get(placeholder).daysToDeadline, null);
++  assert.ok(get(placeholder).missing.includes('Close date is a placeholder, not a published deadline'));
++  assert.equal(get(undated).bucket, 'radar');
++  assert.ok(get(undated).missing.includes('Application deadline not confirmed'));
++  assert.equal(get(dated).bucket, 'top');
++});
++
++test('eligibility: a non-IGC venture is not evaluated with the IGC profile', () => {
++  const mentiva = profileForBrief({ company: 'Mentiva', venture: 'Mentiva', organization: 'Mentiva' });
++  assert.equal(mentiva.name, 'Mentiva');
++  assert.equal(mentiva.usEntity.value, null);
++  assert.equal(mentiva.publiclyTraded.value, null);
++  assert.equal(profileForBrief({ company: 'IGC Pharma' }), IGC_PROFILE);
++});
++
++test('eligibility: a loose applicant-type sentence cannot exclude a for-profit; the official list can', () => {
++  const profile = { entityType: { value: 'for_profit' } };
++  // Regla real de la flota para PAR-25-136, cuya lista oficial sí admite for-profit y small business.
++  assert.equal(evaluateRule({ type: 'entity_type', requirement: 'required', quote: 'U.S. Territory or Possession', method: 'flota' }, profile).verdict, '?');
++  assert.equal(evaluateRule({ type: 'entity_type', requirement: ['State governments', 'Nonprofits'], quote: 'Eligible applicant types', method: 'official field' }, profile).verdict, '✖');
++});

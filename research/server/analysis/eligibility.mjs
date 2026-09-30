@@ -77,7 +77,7 @@ export function evaluateRule(rule, profile, { today = new Date() } = {}) {
   const v = (verdict, why) => ({ ...rule, verdict, why });
   switch (rule.type) {
     case 'entity_type': {
-      const types = rule.requirement.map((t) => t.toLowerCase());
+      const types = (Array.isArray(rule.requirement) ? rule.requirement : [rule.requirement]).map((t) => String(t).toLowerCase()).filter(Boolean);
       const forProfit = val(profile, 'entityType') === 'for_profit';
       const small = val(profile, 'smallBusiness');
       if (types.some((t) => /^unrestricted|open to any type/.test(t))) return v('✔', 'No applicant-type restriction.');

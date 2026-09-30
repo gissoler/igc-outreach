@@ -104,6 +104,9 @@ sudo -u "$APP_USER" bash -lc "cd $APP_DIR/frontend && npm ci --no-audit --no-fun
 [[ -x "$APP_DIR/.venv/bin/python" ]] || sudo -u "$APP_USER" python3 -m venv "$APP_DIR/.venv"
 sudo -u "$APP_USER" bash -lc "$APP_DIR/.venv/bin/pip install --quiet --upgrade pip && $APP_DIR/.venv/bin/pip install --quiet -e $APP_DIR/backend"
 
+echo "==> Motor de búsqueda v2"
+bash "$APP_DIR/deploy/motor-v2.sh" || echo "    motor v2: falló su configuración; la app sigue sin él."
+
 echo "==> Servicios"
 install -m 644 "$APP_DIR/deploy/outreach-research.service" /etc/systemd/system/outreach-research.service
 sed "s#DOMINIO#$DOMINIO#g" "$APP_DIR/deploy/outreach-api.service" > /etc/systemd/system/outreach-api.service

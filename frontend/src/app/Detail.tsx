@@ -1,11 +1,12 @@
-import { ArrowRight, Bookmark, BookmarkCheck, Check, ChevronRight, Copy, ExternalLink, FileSearch, Lightbulb, MessageSquareText, MoreHorizontal, Plus, Route, ThumbsDown, TriangleAlert, UserRound, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, Check, ChevronRight, Copy, ExternalLink, FileSearch, Globe, Lightbulb, Lock, Mail, MessageSquareText, MoreHorizontal, Plus, RefreshCw, Route, ThumbsDown, TriangleAlert, UserRound, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import type { Evidence, Job, Lead } from '../researchApi';
-import { fundingLabels, statusLabels } from '../researchApi';
+import type { BrowseAction, BrowseShot, Evidence, Job, Lead } from '../researchApi';
+import { browsePage, closeBrowse, fundingLabels, statusLabels } from '../researchApi';
 import { SOURCE_META } from '../sources';
-import { clip, fmtAge, fmtDate, fmtPct, initials, readableQuote } from './format';
+import { CopyBtn, reasonFor, shortDraft } from './Contacts';
+import { clip, clipWords, cleanText, fmtAge, fmtDate, fmtPct, initials, readableQuote } from './format';
 import {
-  BUCKET_LABEL, contributions, decisionTrace, familyOf, GKIND_LABEL, introReason, isDemoJob, jevStatus, nextAction, oneLiner, pathsOf,
+  BUCKET_LABEL, contributions, decisionTrace, familyOf, GKIND_LABEL, introReason, isDemoJob, nextAction, oneLiner, pathsOf,
   RELATION_LABEL, STATUS_HELP, type GEdge, type GNode, type Graph, type NormHop, type NormPath, type TraceNode,
   warmPlanOf,
 } from './model';
@@ -111,13 +112,140 @@ function CopyButton({ text, label = 'Copy message', className = 'x-btn sm' }: { 
 const noteKey = (job: string, lead: string) => `igc-note:${job}:${lead}`;
 export const readNote = (job: string, lead: string) => { try { return localStorage.getItem(noteKey(job, lead)) || ''; } catch { return ''; } };
 const writeNote = (job: string, lead: string, v: string) => { try { if (v) localStorage.setItem(noteKey(job, lead), v); else localStorage.removeItem(noteKey(job, lead)); } catch { /* no storage */ } };
-const CONF_EN: Record<string, string> = { alta: 'High', media: 'Medium', baja: 'Low' };
+
+/* ───────── Contact: who to write to, shown on the card ───────── */
+function contactOf(lead: Lead, demo: boolean) {
+  const c = lead.contact;
+  const channel = !c ? null : c.type === 'email' ? 'Email' : c.type === 'linkedin' ? 'LinkedIn' : 'Website';
+  const href = c && !demo ? (c.type === 'email' ? `mailto:${c.value}` : c.value) : null;
+  const value = c ? (demo ? `${channel} (fictional)` : c.type === 'email' ? c.value : channel!) : null;
+  return { name: lead.person, role: lead.role, channel, href, value, type: c?.type || null };
+}
+function ContactCard({ lead, demo, isGrant }: { lead: Lead; demo: boolean; isGrant: boolean }) {
+  const k = contactOf(lead, demo);
+  const Icon = k.type === 'email' ? Mail : k.type === 'linkedin' ? ExternalLink : Globe;
+  const who = k.name || (isGrant ? 'Program officer' : lead.org);
+  const sub = k.name ? [k.role, lead.org].filter(Boolean).join(' · ') : isGrant ? (k.value ? `Published contact · ${lead.org}` : 'Name not published in the notice') : 'No named person yet';
+  return <div className="ld-contact">
+    <span className={`ld-contact-av ${k.name ? '' : 'empty'}`} aria-hidden="true">{k.name ? initials(k.name) : <UserRound size={16} />}</span>
+    <div className="ld-contact-who"><small>Contact</small><b>{who}</b><span>{sub}</span></div>
+    <div className="ld-contact-a">
+      {k.href ? <a className="x-btn sm" href={k.href} target="_blank" rel="noreferrer"><Icon size={13} /> {k.type === 'email' ? clip(k.value || '', 28) : k.channel}</a>
+        : <span className="pl-chip gray">{k.value || 'No public channel'}</span>}
+      {k.type === 'email' && k.value && !demo && <CopyButton text={k.value} label="" className="ld-ic" />}
+    </div>
+  </div>;
+}
+
+/* ───────── Official page inside the app ─────────
+   Two ways to browse without leaving the app:
+   · Live: the site allows framing, so it is embedded directly.
+   · Browser: the site forbids framing (most .gov and foundations). The page runs in a
+     headless browser on the server; clicks, scroll and typing here are sent to it.
+   The URL is always the one the pipeline stored for this item. */
+const NAV_KEYS = new Set(['Enter', 'Backspace', 'Delete', 'Tab', 'Escape', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End']);
+
+function RemoteBrowser({ lead, job, onShot }: { lead: Lead; job: Job; onShot: (s: BrowseShot) => void }) {
+  const [shot, setShot] = useState<BrowseShot | null>(null);
+  const [err, setErr] = useState('');
+  const [pending, setPending] = useState(0);
+  const chain = useRef<Promise<unknown>>(Promise.resolve());
+  const typed = useRef(''); const typeTimer = useRef<number | undefined>(undefined);
+  const scrolled = useRef(0); const scrollTimer = useRef<number | undefined>(undefined);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const send = (body: BrowseAction) => {
+    setPending((n) => n + 1);
+    const run = chain.current.then(() => browsePage(job.id, lead.id, body)).then((r) => { setShot(r); onShot(r); setErr(''); }, (e) => setErr(e instanceof Error ? e.message : "Couldn't reach the browser."));
+    chain.current = run.finally(() => setPending((n) => n - 1));
+  };
+  useEffect(() => {
+    setShot(null); setErr(''); chain.current = Promise.resolve();
+    send({ action: 'open' });
+    return () => { window.clearTimeout(typeTimer.current); window.clearTimeout(scrollTimer.current); closeBrowse(job.id, lead.id); };
+  }, [lead.id, job.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { // wheel must be non-passive to keep the side panel from scrolling underneath
+    const el = boxRef.current; if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault(); scrolled.current += e.deltaY;
+      window.clearTimeout(scrollTimer.current);
+      scrollTimer.current = window.setTimeout(() => { const dy = scrolled.current; scrolled.current = 0; if (dy) send({ action: 'scroll', dy }); }, 80);
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }); // eslint-disable-line react-hooks/exhaustive-deps
+  const flushTyped = () => { window.clearTimeout(typeTimer.current); const text = typed.current; typed.current = ''; if (text) send({ action: 'type', text }); };
+  const onClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (!shot) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    flushTyped();
+    send({ action: 'click', x: Math.round((e.clientX - r.left) * (shot.width / r.width)), y: Math.round((e.clientY - r.top) * (shot.height / r.height)) });
+    boxRef.current?.focus();
+  };
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key.length === 1) { e.preventDefault(); e.stopPropagation(); typed.current += e.key; window.clearTimeout(typeTimer.current); typeTimer.current = window.setTimeout(flushTyped, 140); return; }
+    if (NAV_KEYS.has(e.key)) { e.preventDefault(); e.stopPropagation(); flushTyped(); send({ action: 'key', key: e.key }); }
+  };
+  const busy = pending > 0;
+  return <div className="ld-rb">
+    <div className="ld-page-bar">
+      <button className="ld-ic" aria-label="Back" title="Back" onClick={() => send({ action: 'back' })} disabled={!shot}><ArrowLeft size={14} /></button>
+      <button className="ld-ic" aria-label="Reload" title="Reload" onClick={() => send({ action: 'reload' })} disabled={!shot}><RefreshCw size={14} className={busy ? 'ld-spin' : ''} /></button>
+      <span className="ld-page-url"><Lock size={11} /> {shot ? clip(shot.url.replace(/^https?:\/\//, ''), 80) : 'Opening the official page…'}</span>
+      {shot?.url && <a className="x-btn sm" href={shot.url} target="_blank" rel="noreferrer">New tab <ExternalLink size={12} /></a>}
+    </div>
+    {err && <p className="x-note" role="alert">{err}</p>}
+    <div className="ld-rb-box" ref={boxRef} tabIndex={0} onKeyDown={onKeyDown} aria-label="Remote browser: click the page, then scroll or type">
+      {shot ? <img src={`data:image/jpeg;base64,${shot.image}`} width={shot.width} height={shot.height} alt={shot.title || 'Official page'} draggable={false} onClick={onClick} />
+        : !err && <div className="ld-page-frame loading"><span>Opening the official page…</span></div>}
+      {busy && shot && <span className="ld-rb-busy" role="status">Loading…</span>}
+    </div>
+    <p className="ld-hint">This is the real page. Click links and fields, scroll with the wheel, and type after clicking a field.</p>
+  </div>;
+}
+
+const httpUrl = (u?: string | null) => { try { const x = new URL(String(u)); return x.protocol === 'http:' || x.protocol === 'https:' ? x.href : null; } catch { return null; } };
+/** Misma regla que el servidor: la evidencia verificada primero, luego cualquier evidencia, luego el contacto web. */
+const officialUrlOfLead = (lead: Lead) => {
+  const ev = lead.evidence || [];
+  const pick = ev.find((e) => e.verified && httpUrl(e.url)) || ev.find((e) => httpUrl(e.url));
+  return httpUrl(pick?.url) || (lead.contact && lead.contact.type !== 'email' ? httpUrl(lead.contact.value) : null);
+};
+
+function OfficialPageView({ lead, job, demo }: { lead: Lead; job: Job; demo: boolean }) {
+  const url = demo ? null : officialUrlOfLead(lead);
+  const [mode, setMode] = useState<'embed' | 'browser'>('embed');
+  const [seen, setSeen] = useState<string | null>(null);
+  useEffect(() => { setMode('embed'); setSeen(null); }, [lead.id]);
+  const host = url ? safeHost(seen || url) : '';
+  const onPage = lead.evidence.filter((e) => host && e.url && safeHost(e.url) === host).slice(0, 4);
+  if (demo) return <section className="ld-sec"><p className="ld-empty">Demo data uses fictional URLs, so there is no page to show.</p></section>;
+  if (!url) return <section className="ld-sec"><p className="ld-empty">No official page was found for this item.</p></section>;
+  return <section className="ld-sec ld-page">
+    {mode === 'embed' && <>
+      <div className="ld-page-bar"><span className="ld-page-url"><Lock size={11} /> {clip(url.replace(/^https?:\/\//, ''), 80)}</span>
+        <button className="x-btn sm" onClick={() => setMode('browser')} title="Some sites refuse to be shown inside other pages">Blank? Use remote browser</button>
+        <a className="x-btn sm" href={url} target="_blank" rel="noreferrer">New tab <ExternalLink size={12} /></a></div>
+      <iframe className="ld-page-frame" src={url} title={`Official page: ${lead.title}`} sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" referrerPolicy="no-referrer" />
+    </>}
+    {mode === 'browser' && <>
+      <div className="pl-seg"><button onClick={() => setMode('embed')}><ArrowLeft size={13} /> Back to direct view</button></div>
+      <RemoteBrowser key={lead.id} lead={lead} job={job} onShot={(s) => setSeen(s.url)} />
+    </>}
+    {onPage.length > 0 && <div className="ld-page-ev">
+      <header className="ld-h"><h3>What we read on this site</h3><span className="pl-badge sun">{onPage.length}</span></header>
+      <ul className="ld-ev">{onPage.map((e) => <li key={e.id}><div><span className={`pl-chip ${e.verified ? 'mint' : 'lav'}`}>{e.verified ? 'Found' : 'Our read'}</span><small>{e.field}</small></div><q>{clipWords(readableQuote(e.quote), 200)}</q></li>)}</ul>
+    </div>}
+  </section>;
+}
+const safeHost = (u: string) => { try { return new URL(u).host.replace(/^www\./, ''); } catch { return ''; } };
 
 export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClose }: {
   lead: Lead; job: Job; onFeedback: ((id: string, d: 'approve' | 'reject', reason: string, note: string) => Promise<unknown>) | null;
   onEvidence: (title: string, ev: Evidence[]) => void; onHop: (hop: NormHop, path: NormPath) => void; onClose?: () => void;
 }) {
   const demo = isDemoJob(job);
+  const isGrant = lead.fundingType === 'grant' || lead.kind === 'opportunity';
   const [note, setNote] = useState(() => readNote(job.id, lead.id));
   const [noteOpen, setNoteOpen] = useState(false);
   const [reason, setReason] = useState('not_relevant');
@@ -125,20 +253,24 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
   const [more, setMore] = useState(false);
   const [why, setWhy] = useState(false);
   const [level, setLevel] = useState<1 | 2 | 3>(1);
+  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence'>(isDemoJob(job) ? 'overview' : 'page');
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { setNote(readNote(job.id, lead.id)); setDiscarding(false); setMsg(''); setNoteOpen(false); setMore(false); }, [lead.id, job.id]);
+  useEffect(() => { setNote(readNote(job.id, lead.id)); setDiscarding(false); setMsg(''); setNoteOpen(false); setMore(false); setTab(isDemoJob(job) ? 'overview' : 'page'); }, [lead.id, job.id]);
   useEffect(() => { if (!more) return; const f = (e: MouseEvent) => { if (!moreRef.current?.contains(e.target as Node)) setMore(false); }; document.addEventListener('mousedown', f); return () => document.removeEventListener('mousedown', f); }, [more]);
   const action = nextAction(lead);
-  const jev = jevStatus(job);
   const paths = pathsOf(lead);
   const p = paths[0] || null;
   const verified = lead.evidence.filter((e) => e.verified);
-  const primary = [...verified, ...lead.evidence.filter((e) => !e.verified)].slice(0, 2);
-  const saved = lead.feedback?.decision === 'approve';
-  const draft = lead.draft.connector || lead.draft.body;
-  const name = lead.person || lead.org;
+    const saved = lead.feedback?.decision === 'approve';
+  const mail = useMemo(() => shortDraft(lead, job), [lead, job]);
+  const emailText = `Subject: ${mail.subject}\n\n${mail.text}`;
+  const unverified = lead.evidence.filter((e) => !e.verified);
+  const gapLabels: Record<string, string> = { funds_space: 'funding thesis', active: 'recent activity', stage_fit: 'stage fit', geo_fit: 'geography fit', ticket_fit: 'ticket size', decider: 'named decision-maker', contact: 'public contact', warm_path: 'verified warm path' };
+  const researchGaps = (lead.sufficiency?.gaps || []).slice(0, 4).map((gap) => `Missing: ${gapLabels[gap] || gap}`);
+  const readItems = [...lead.why.slice(0, 3), ...researchGaps, ...lead.missing.slice(0, researchGaps.length ? 0 : 1).map((m) => `To confirm: ${m.charAt(0).toLowerCase()}${m.slice(1)}`)];
+  const name = isGrant ? lead.title : (lead.person || lead.org);
   const save = async (d: 'approve' | 'reject') => {
     if (!onFeedback) { setMsg(demo ? "The demo doesn't save feedback." : 'No active evaluation.'); return; }
     setBusy(true); setMsg('');
@@ -147,29 +279,28 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
   };
   const risks = lead.risks.filter((r) => !r.startsWith('DEMO')).map((r) => (r === 'competitor_conflict' ? 'Possible competitor' : r));
   const contactHref = lead.contact && !demo ? (lead.contact.type === 'email' ? `mailto:${lead.contact.value}` : lead.contact.value) : null;
-  return <article className="ld" aria-label={`${name} detail`}>
+  return <article className={`ld${tab === 'page' ? ' page-mode' : ''}`} aria-label={`${name} detail`}>
     <header className="ld-top">
       {onClose && <button className="ld-x" onClick={onClose} aria-label="Close"><X size={18} /></button>}
-      <h2>Candidate</h2>
+      <h2>{isGrant ? 'Grant opportunity' : 'Candidate'}</h2>
       <button className="x-btn primary sm" disabled={busy} onClick={() => void save('approve')}>{saved ? <BookmarkCheck size={14} /> : <Bookmark size={14} />}{saved ? 'Saved' : 'Save'}</button>
     </header>
     <section className="ld-sec">
       <div className="ld-who">
         <span className="ld-av" aria-hidden="true">{initials(name)}</span>
-        <div className="ld-name"><b>{name}</b><small>{lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 70)}</small></div>
+        <div className="ld-name"><b>{name}</b><small>{isGrant ? `${lead.org}${lead.grantPlan?.programNumber ? ` · ${lead.grantPlan.programNumber}` : lead.opportunityType ? ` · ${lead.opportunityType.replace('_', ' ')}` : ''}` : lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 70)}</small></div>
         <div className="ld-icons">
-          {draft && <CopyButton text={draft} label="" className="ld-ic" />}
+          <CopyButton text={emailText} label="" className="ld-ic" />
           {contactHref ? <a className="ld-ic" href={contactHref} target="_blank" rel="noreferrer" aria-label="Open contact channel"><ExternalLink size={15} /></a> : <span className="ld-ic off" title="No public channel"><ExternalLink size={15} /></span>}
           <div className="ld-more" ref={moreRef}><button className="ld-ic" aria-label="More" aria-expanded={more} onClick={() => setMore(!more)}><MoreHorizontal size={16} /></button>
             {more && <div className="ld-menu" role="menu"><button role="menuitem" onClick={() => { setMore(false); setWhy(true); }}><Lightbulb size={14} /> Why this ranking</button><button role="menuitem" onClick={() => { setMore(false); onEvidence(`Evidence · ${name}`, lead.evidence); }}><FileSearch size={14} /> All evidence</button><button role="menuitem" className="danger" onClick={() => { setMore(false); setDiscarding(true); }}><ThumbsDown size={14} /> Not a fit…</button></div>}
           </div>
         </div>
       </div>
-      <dl className="ld-grid">
+      <dl className="ld-grid c3">
         <div><dt>Status</dt><dd>{BUCKET_LABEL[lead.bucket]} · #{lead.rank}</dd></div>
-        <div><dt>Confidence</dt><dd>{CONF_EN[lead.confidence] || lead.confidence}</dd></div>
-        <div><dt>Warm path</dt><dd>{p ? `${fmtPct(p.strength)} · ${p.hopCount} hop${p.hopCount === 1 ? '' : 's'}` : 'None'}</dd></div>
-        <div><dt>Jev</dt><dd>{lead.jev ? `${lead.jev.action === 'prioritize' ? 'Prioritize' : lead.jev.action === 'investigate_more' ? 'Dig deeper' : 'Discard'} ${fmtPct(lead.jev.actionConfidence)}` : jev.state === 'not_configured' ? 'Off' : '—'}</dd></div>
+        <div><dt>{isGrant ? 'Application state' : 'Warm path'}</dt><dd>{isGrant ? (lead.grantPlan?.label || 'Review eligibility') : p ? `${fmtPct(p.strength)} · ${p.hopCount} hop${p.hopCount === 1 ? '' : 's'}` : 'None'}</dd></div>
+        <div><dt>Contact</dt><dd title={contactOf(lead, demo).value || ''}>{contactOf(lead, demo).name ? `${contactOf(lead, demo).name}${contactOf(lead, demo).channel ? ` · ${contactOf(lead, demo).channel}` : ''}` : contactOf(lead, demo).channel || 'Not published'}</dd></div>
       </dl>
       <div className="ld-prog">
         <div className="ld-prog-h"><span>Priority score</span><span>{lead.score} / 100</span></div>
@@ -179,35 +310,71 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
       {msg && <p className="x-note" role="status">{msg}</p>}
     </section>
 
-    <section className="ld-sec">
-      <header className="ld-h"><h3>Next step</h3>{draft && <CopyButton text={draft} label="Copy intro message" className="ld-link" />}</header>
-      <p className="ld-next"><b>{action.label}</b></p>
-    </section>
+    <nav className="ld-tabs" role="tablist" aria-label="Candidate sections">
+      {([['overview', 'Overview'], ['page', 'Official page'], ['path', isGrant ? 'Application plan' : 'Warm path'], ['evidence', 'Evidence']] as const).map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}{k === 'path' && p && !isGrant ? <span className="pl-badge sun">{p.hopCount}</span> : null}{k === 'evidence' && lead.evidence.length ? <span className="pl-badge sun">{lead.evidence.length}</span> : null}</button>)}
+    </nav>
 
-    <section className="ld-sec">
-      <header className="ld-h"><h3>Warm path {p && <span className="pl-badge sun">{p.hopCount}</span>}</h3>{p && <button className="ld-link" onClick={() => setWhy(true)}><Route size={14} /> Full path</button>}</header>
-      {p ? <ol className="ld-tl">
+    {tab === 'overview' && <>
+      <section className="ld-sec"><ContactCard lead={lead} demo={demo} isGrant={isGrant} /></section>
+      <section className="ld-sec">
+        <header className="ld-h"><h3>Next step</h3></header>
+        <p className="ld-next"><b>{action.label}</b></p>
+      </section>
+
+      <section className="ld-sec">
+        <header className="ld-h"><h3>{isGrant ? <FileSearch size={15} /> : <Mail size={15} />} {isGrant ? 'Application work item' : 'Email draft'}</h3><span className="ld-hint">{isGrant ? 'Not a fundraising email' : '2 paragraphs · review before sending'}</span></header>
+        <div className="ld-mail">
+          <dl className="ld-mail-h"><div><dt>To</dt><dd>{mail.to}{p?.introducer ? <em> · asks for the intro</em> : null}</dd></div><div><dt>Subject</dt><dd>{mail.subject}</dd></div></dl>
+          <pre>{mail.text}</pre>
+        </div>
+        <div className="ld-mail-a"><CopyBtn text={emailText} label={isGrant ? 'Copy work item' : 'Copy email'} />{demo && <span className="pl-chip sun">Fictional demo data</span>}<span className="ld-hint">{isGrant ? 'Contact the program officer only to resolve a specific ambiguity.' : 'Nothing is sent from the app.'}</span></div>
+      </section>
+
+      {isGrant && lead.grantPlan && <section className="ld-sec">
+        <header className="ld-h"><h3>Application checklist</h3><span className="pl-badge dark">{lead.grantPlan.checklist.filter((x) => x.done).length}/{lead.grantPlan.checklist.length}</span></header>
+        <ul className="ld-risks">{lead.grantPlan.checklist.map((item) => <li key={item.key}>{item.done ? <Check size={13} /> : <TriangleAlert size={13} />} {item.label}</li>)}</ul>
+      </section>}
+
+      <section className="ld-sec">
+        <header className="ld-h"><h3>{isGrant ? 'Why consider this call' : 'Why contact'}</h3></header>
+        <p className="ld-next">{reasonFor(lead)}</p>
+        {verified.length > 0 && <div className="ld-src found"><span className="pl-chip mint">Found</span><div><q>{clipWords(readableQuote(verified[0].quote), 170)}</q><small>{verified[0].url && !demo ? <a href={verified[0].url} target="_blank" rel="noreferrer">{verified[0].source} <ExternalLink size={11} /></a> : verified[0].source}{verified.length > 1 ? <button className="ld-link inline" onClick={() => setTab('evidence')}> +{verified.length - 1} more</button> : null}</small></div></div>}
+        {readItems.length > 0 && <div className="ld-src read"><span className="pl-chip lav">Our read</span><ul>{readItems.map((x) => <li key={x} className={/^(To confirm|Missing):/.test(x) ? 'miss' : ''}>{cleanText(x)}</li>)}</ul></div>}
+      </section>
+
+      {risks.length > 0 && <section className="ld-sec">
+        <header className="ld-h"><h3>Risks <span className="pl-badge rose">{risks.length}</span></h3></header>
+        <ul className="ld-risks">{risks.slice(0, 3).map((r) => <li key={r}><TriangleAlert size={13} /> {clip(r, 90)}</li>)}</ul>
+      </section>}
+
+      <section className="ld-sec">
+        <header className="ld-h"><h3>Notes {note && <span className="pl-badge sun">1</span>}</h3><button className="ld-link" onClick={() => setNoteOpen(!noteOpen)}><Plus size={14} /> {note ? 'Edit note' : 'Add note'}</button></header>
+        {noteOpen ? <textarea className="ld-note-in" rows={3} maxLength={1000} value={note} autoFocus onChange={(e) => { setNote(e.target.value); writeNote(job.id, lead.id, e.target.value); }} placeholder="e.g. Diego confirmed he knows her." />
+          : note ? <div className="ld-note"><MessageSquareText size={14} /><p>{note}</p></div> : <p className="ld-empty">No notes yet.</p>}
+      </section>
+    </>}
+
+    {tab === 'page' && <OfficialPageView lead={lead} job={job} demo={demo} />}
+
+    {tab === 'path' && <section className="ld-sec">
+      <header className="ld-h"><h3>{isGrant ? 'Application plan' : 'Warm path'}</h3>{p && !isGrant && <button className="ld-link" onClick={() => setWhy(true)}><Route size={14} /> Full path</button>}</header>
+      {isGrant && lead.grantPlan ? <><p className="ld-next"><b>{lead.grantPlan.label}</b></p><p className="ld-sub">{lead.grantPlan.nextAction}</p><PlanSteps lead={lead} /></> : p ? <ol className="ld-tl">
         <li><i className="ld-tl-ico ink">You</i><div><p><b>You</b></p><small>Starting point</small></div></li>
         {p.hops.map((h) => <li key={h.index}><i className="ld-tl-ico">{initials(h.to)}</i><div><p><button onClick={() => onHop(h, p)}><b>{h.to}</b></button></p><small>{RELATION_LABEL[h.kind]} · {fmtPct(h.strength)}</small><div className="ld-chips"><span className={`pl-chip ${h.status === 'verified' ? 'mint' : h.status === 'documented' ? 'sun' : 'lav'}`}>{h.status === 'verified' ? 'Verified' : h.status === 'documented' ? 'Documented' : 'Hypothesis'}</span>{p.hopCount > 1 && h === p.weakest && <span className="pl-chip gray">Weakest link</span>}</div></div></li>)}
       </ol> : <PlanSteps lead={lead} />}
       {p && warmPlanOf(lead)?.cadenceDays ? <p className="ld-keep">Then keep it warm: an update every {warmPlanOf(lead)!.cadenceDays} days until the round.</p> : null}
-    </section>
-
-    <section className="ld-sec">
-      <header className="ld-h"><h3>Evidence <span className="pl-badge sun">{lead.evidence.length}</span></h3>{lead.evidence.length > 0 && <button className="ld-link" onClick={() => onEvidence(`Evidence · ${name}`, lead.evidence)}>View all</button>}</header>
-      {primary.length ? <ul className="ld-ev">{primary.map((e) => <li key={e.id}><div><SourceTag e={e} demo={demo} /><span className={`pl-chip ${e.verified ? 'mint' : 'sun'}`}>{e.verified ? 'Verified' : 'Unverified'}</span></div><q>{clip(readableQuote(e.quote), 150)}</q></li>)}</ul> : <p className="ld-empty">No evidence.</p>}
-    </section>
-
-    {risks.length > 0 && <section className="ld-sec">
-      <header className="ld-h"><h3>Risks <span className="pl-badge rose">{risks.length}</span></h3></header>
-      <ul className="ld-risks">{risks.slice(0, 3).map((r) => <li key={r}><TriangleAlert size={13} /> {clip(r, 90)}</li>)}</ul>
     </section>}
 
-    <section className="ld-sec">
-      <header className="ld-h"><h3>Notes {note && <span className="pl-badge sun">1</span>}</h3><button className="ld-link" onClick={() => setNoteOpen(!noteOpen)}><Plus size={14} /> {note ? 'Edit note' : 'Add note'}</button></header>
-      {noteOpen ? <textarea className="ld-note-in" rows={3} maxLength={1000} value={note} autoFocus onChange={(e) => { setNote(e.target.value); writeNote(job.id, lead.id, e.target.value); }} placeholder="e.g. Diego confirmed he knows her." />
-        : note ? <div className="ld-note"><MessageSquareText size={14} /><p>{note}</p></div> : <p className="ld-empty">No notes yet.</p>}
-    </section>
+    {tab === 'evidence' && <>
+      <section className="ld-sec">
+        <header className="ld-h"><h3><span className="pl-chip mint">Found</span> <span className="ld-count">{verified.length}</span></h3>{lead.evidence.length > 0 && <button className="ld-link" onClick={() => onEvidence(`Evidence · ${name}`, lead.evidence)}>Open all</button>}</header>
+        {verified.length ? <ul className="ld-ev">{verified.slice(0, 4).map((e) => <li key={e.id}><div><SourceTag e={e} demo={demo} />{e.url && !demo && <a className="ld-ext" href={e.url} target="_blank" rel="noreferrer" aria-label="Open source"><ExternalLink size={13} /></a>}</div><q>{clipWords(readableQuote(e.quote), 200)}</q></li>)}</ul> : <p className="ld-empty">No verified source yet.</p>}
+      </section>
+      {unverified.length > 0 && <section className="ld-sec">
+        <header className="ld-h"><h3><span className="pl-chip sun">Unverified</span> <span className="ld-count">{unverified.length}</span></h3></header>
+        <ul className="ld-ev">{unverified.slice(0, 2).map((e) => <li key={e.id}><div><SourceTag e={e} demo={demo} /></div><q>{clipWords(readableQuote(e.quote), 160)}</q></li>)}</ul>
+      </section>}
+    </>}
 
     {why && <Drawer open onClose={() => setWhy(false)} title="Why this ranking" subtitle={name} width={640} tone={demo ? 'demo' : undefined}>
       <div className="ld-why">
@@ -219,7 +386,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
         <dl className="x-dl"><dt>Type</dt><dd>{fundingLabels[lead.fundingType] || lead.fundingType}</dd><dt>Status</dt><dd>{statusLabels[lead.status] || lead.status}</dd><dt>Deadline</dt><dd>{lead.deadline ? `${fmtDate(lead.deadline)}${lead.daysToDeadline != null ? ` · ${lead.daysToDeadline} days` : ''}` : 'Not published'}</dd><dt>Channel</dt><dd>{lead.contact ? (demo ? `${lead.contact.type} (fictional)` : clip(lead.contact.value, 42)) : 'Not published'}</dd></dl>
         {lead.missing.length > 0 && <><h3 className="x-h3">Missing data</h3><ul className="x-bullets">{lead.missing.map((m) => <li key={m}>{m}</li>)}</ul></>}
         {risks.length > 3 && <><h3 className="x-h3">All risks</h3><ul className="x-bullets neg">{risks.map((r) => <li key={r}>{r}</li>)}</ul></>}
-        {draft && <><h3 className="x-h3">Suggested message</h3><pre className="ld-draft">{draft}</pre><p className="x-muted">{lead.draft.warning}</p></>}
+
       </div>
     </Drawer>}
   </article>;
@@ -277,10 +444,10 @@ export function PlanSteps({ lead }: { lead: Lead }) {
   if (!w) return <p className="ld-empty">Discarded.</p>;
   return <div className="wp-plan">
     <div className="ld-chips"><span className="pl-chip sky">{w.label}</span>{w.source === 'ai' && <span className="pl-chip lav">AI angle</span>}{w.updates ? <span className="pl-chip gray">{w.updates} updates before the ask</span> : null}</div>
-    {w.hook && <p className="wp-hook">{w.hook}{w.evidence && <> <a href={w.evidence.url} target="_blank" rel="noreferrer" title={w.evidence.quote}>source</a></>}</p>}
+    {w.hook && <p className="wp-hook">{clipWords(cleanText(w.hook), 260)}{w.evidence && <> <a href={w.evidence.url} target="_blank" rel="noreferrer" title={readableQuote(w.evidence.quote)}>source</a></>}</p>}
     <ol className="ld-tl">
       <li><i className="ld-tl-ico ink">You</i><div><p><b>You</b></p><small>No network path yet</small></div></li>
-      {w.steps.map((st, i) => <li key={i}><i className="ld-tl-ico">{i + 1}</i><div><p>{st.what}</p>{st.when && <small>{st.when}</small>}</div></li>)}
+      {w.steps.map((st, i) => <li key={i}><i className="ld-tl-ico">{i + 1}</i><div><p>{cleanText(st.what)}</p>{st.when && <small>{st.when}</small>}</div></li>)}
     </ol>
   </div>;
 }

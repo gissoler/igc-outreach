@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { firecrawlSearch, linkedinPublicContent, scrapegraphExtract, webPeople, webProfileLookup, webPublicRelations, verifiedPeople } from '../server/research/webscrape.mjs';
+import { firecrawlSearch, grantWebOpportunities, linkedinPublicContent, scrapegraphExtract, webPeople, webProfileLookup, webPublicRelations, verifiedPeople } from '../server/research/webscrape.mjs';
 import { addOrgBridges, networkCandidates } from '../server/research/network.mjs';
 
 const brief = { name: 'Gisel Caicedo', company: 'Mentiva', industry: 'mental health', stage: 'pre-seed', fundingTypes: ['investment'] };
@@ -28,6 +28,27 @@ test('Firecrawl search uses bearer auth and v2 endpoint; ScrapeGraph uses SGAI-A
   assert.equal(calls[1].url, 'https://v2-api.scrapegraphai.com/api/extract');
   assert.equal(calls[1].init.headers['SGAI-APIKEY'], 'sgai-secret');
   await assert.rejects(() => firecrawlSearch('x', { env: {} }), /FIRECRAWL_API_KEY/);
+});
+
+test('grant web discovery recognizes a global challenge without using ScrapeGraph', async () => {
+  const challenge = {
+    url: 'https://challenge.example/global-challenge/',
+    title: 'Global Deep Tech Challenge',
+    description: 'Applications open for early-stage startups in digital health.',
+    markdown: '# Global Challenge\nApplications close 30 November 2026. A global competition for early-stage digital health and deep-tech startups with a cash prize.'.padEnd(300, ' '),
+  };
+  const { fetcher, calls } = mockFetch(() => ({ data: { web: [challenge] } }));
+  const results = await grantWebOpportunities(
+    { industry: 'digital health', product: 'well-being navigation', stage: 'prototype' },
+    { terms: [{ term: 'digital health' }, { term: 'mental well-being' }] },
+    { env: { FIRECRAWL_API_KEY: 'fc-secret', GRANT_WEB_MAX_SEARCHES: '1' }, fetcher },
+  );
+  assert.equal(results.length, 1);
+  assert.equal(results[0].opportunityType, 'challenge');
+  assert.equal(results[0].deadline, '2026-11-30');
+  assert.equal(results[0].org, 'challenge.example');
+  assert.equal(results.searchAudit[0].query, 'digital health startup challenge prize competition applications open 2026');
+  assert.ok(calls.every((call) => call.url.includes('firecrawl')));
 });
 
 test('only people literally present on the page survive, with a literal quote', () => {

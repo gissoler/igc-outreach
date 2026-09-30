@@ -1,8 +1,15 @@
 import { addWarmPlans } from './warmPlan.mjs';
 import { makePlan, evaluate, buildDraft } from './core.mjs';
+import { expandTerms } from './expand.mjs';
 import { demoLeads } from './demo.mjs';
 import { addConnections, addOrgBridges, networkCandidates } from './network.mjs';
-import { webPeople, webConfigured, webMissing, WEB_SOURCE } from './webscrape.mjs';
+import { runEngine, engineLeads, engineConfigured, ENGINE_SOURCE } from './engine.mjs';
+import { firecrawlConfigured, grantWebOpportunities, webPeople, webConfigured, webMissing, GRANT_WEB_SOURCE, WEB_SOURCE } from './webscrape.mjs';
+import { followUpPeople } from './followup.mjs';
+import { readCandidates } from './read.mjs';
+import { assessLeads } from './sufficiency.mjs';
+import { runAgenticLoop } from './loop.mjs';
+import { attachGrantPlans, finalizeSearchAudit } from './grantManager.mjs';
 import { createRecorder } from './liveRun.mjs';
 import { applyJevDecisions, askJev } from './jev.mjs';
 import {
@@ -17,6 +24,7 @@ import {
   webSearch,
   exaSearch,
   roundAnnouncements,
+  searchFundingQuery,
 } from './providers.mjs';
 export async function runResearch(
   job,
@@ -36,7 +44,7 @@ export async function runResearch(
     const livePhase = LEGACY_TO_LIVE[phase] || 'reading';
     live({ phase: livePhase, provider, status: livePhase === 'warning' ? 'warning' : livePhase === 'error' ? 'error' : 'running', title: livePhase === 'warning' ? 'Warning' : 'Processing', message });
   };
-  const timeoutSignal = AbortSignal.timeout(180000);
+  const timeoutSignal = AbortSignal.timeout(Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 180000));
   const signal = externalSignal ? AbortSignal.any([timeoutSignal, externalSignal]) : timeoutSignal;
   const record = (url, data) => store.source(job.id, url, data);
   const jobFrames = frames && {
@@ -72,10 +80,19 @@ export async function runResearch(
   try {
     job.plan = makePlan(b);
     emit('planning', `Strategy: ${job.plan.summary}`);
+    // Adjacent terms, each searched separately (feedback 28/09). No model call in demo mode.
+    job.plan.terms = await expandTerms(b, job.mode === 'demo' || providers ? {} : env, fetcher);
+    if (job.plan.terms.length > 1) {
+      const list = job.plan.terms.map((t) => t.term).join(' · ');
+      job.plan.items.unshift({ provider: 'Your need, expanded', query: list });
+      emit('planning', `Searching ${job.plan.terms.length} phrasings separately: ${list}`);
+    }
     let leads = [];
     let sender = [];
     let team = null;
     let failures = 0;
+    let followupResult = null;
+    const searchAudit = [];
     if (job.mode === 'demo') {
       live({ phase: 'planning', status: 'success', title: 'Search plan', message: job.plan.summary, detail: { kind: 'plan', items: job.plan.items, sources: [] } });
       live({ phase: 'warning', status: 'warning', title: 'Demo mode', message: 'EXPLICIT DEMO: fictional examples. No external sources or browser used.' });
@@ -85,6 +102,7 @@ export async function runResearch(
         'EXPLICIT DEMO: fictional examples. No external sources used.',
       );
     } else {
+      const grantsOnly = b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant';
       const enabled = providers || [
         ...(b.fundingTypes.includes('partnering')
           ? [
@@ -92,26 +110,30 @@ export async function runResearch(
               ['ClinicalTrials.gov', (c) => clinicalTrials(c, b, job.plan)],
             ]
           : []),
-        ...(b.fundingTypes.some((t) =>
-          ['grant', 'investment', 'debt'].includes(t),
-        )
+        ...(b.fundingTypes.includes('grant')
           ? [
               ['Grants.gov', (c, e) => grants(c, b, job.plan, e)],
               ['NIH RePORTER', (c) => reporter(c, b, job.plan)],
             ]
           : []),
+        ...(!providers && engineConfigured(env)
+          ? [[ENGINE_SOURCE, async () => { const r = await runEngine(b, { env, fetcher, signal }); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped })) }); }]]
+          : []),
+        ...(grantsOnly && b.useApify && firecrawlConfigured(env) && !engineConfigured(env)
+          ? [[GRANT_WEB_SOURCE, () => grantWebOpportunities(b, job.plan, { env, fetcher, signal, live: live.scope(GRANT_WEB_SOURCE), record, usageClient: client })]]
+          : []),
         ...(job.plan.alzheimer
           ? [['Official radar', (c, e) => radar(c, b, job.plan, e)]]
           : []),
-        ...(env.EXA_API_KEY ? [['Exa', (c, e) => exaSearch(c, b, job.plan, env, e)]] : []),
+        ...(!grantsOnly && env.EXA_API_KEY ? [['Exa', (c, e) => exaSearch(c, b, job.plan, env, e)]] : []),
         ...(b.fundingTypes.includes('investment') && (env.EXA_API_KEY || env.SERPER_API_KEY)
           ? [[`Funding rounds (${env.EXA_API_KEY ? 'Exa' : 'Serper'})`, (c) => roundAnnouncements(c, b, job.plan, env)]]
           : []),
-        ...(env.SERPER_API_KEY ? [['Web search (Serper)', (c) => webSearch(c, b, job.plan, env)]] : []),
+        ...(!grantsOnly && env.SERPER_API_KEY ? [['Web search (Serper)', (c) => webSearch(c, b, job.plan, env)]] : []),
       ];
       const TEAM_SOURCE = 'Sender public profile';
       const useTeamFacts = teamFactsApply(b);
-      const useApify = !providers && b.useApify && webConfigured(env);
+      const useApify = !providers && !grantsOnly && b.useApify && webConfigured(env);
       live({
         phase: 'planning',
         status: 'success',
@@ -120,15 +142,16 @@ export async function runResearch(
         detail: { kind: 'plan', items: job.plan.items, sources: [...(useTeamFacts ? [TEAM_SOURCE] : []), ...enabled.map(([name]) => name), ...(useApify ? [WEB_SOURCE] : [])] },
       });
       if (!providers) {
-        if (!env.EXA_API_KEY) {
+        if (!grantsOnly && !env.EXA_API_KEY) {
           emit('configuration', 'Exa: missing EXA_API_KEY; semantic search skipped.');
           live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: 'Exa: missing EXA_API_KEY; semantic search skipped.' });
         }
-        if (!env.SERPER_API_KEY) {
+        if (!grantsOnly && !env.SERPER_API_KEY) {
           emit('configuration', 'Serper: no SERPER_API_KEY; broad web search skipped.');
           live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: 'Serper: no SERPER_API_KEY; broad web search skipped.' });
         }
-        if (b.useApify && !webConfigured(env)) live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: `${WEB_SOURCE}: missing ${webMissing(env).join(' y ')}; research continues with available sources.` });
+        if (!grantsOnly && b.useApify && !webConfigured(env)) live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: `${WEB_SOURCE}: missing ${webMissing(env).join(' y ')}; research continues with available sources.` });
+        if (grantsOnly && b.useApify && !firecrawlConfigured(env)) live({ phase: 'planning', provider: GRANT_WEB_SOURCE, status: 'pending', title: 'Broader discovery skipped', message: 'FIRECRAWL_API_KEY is missing; official registries still run.' });
       }
       if (useTeamFacts) {
         try {
@@ -160,7 +183,15 @@ export async function runResearch(
       );
       signal.throwIfAborted();
       outcomes.forEach((result, i) => {
-        if (result.status === 'fulfilled') leads.push(...result.value);
+        if (result.status === 'fulfilled') {
+          const provider = enabled[i][0];
+          const planned = job.plan.items.find((item) => provider.startsWith(item.provider.replace(/\s*\(.*/, '')));
+          leads.push(...result.value.map((lead) => ({
+            ...lead,
+            foundBy: lead.foundBy?.length ? lead.foundBy : [{ provider, term: '', objective: lead.fundingType || '', query: planned?.query || '' }],
+          })));
+          if (Array.isArray(result.value.searchAudit)) searchAudit.push(...result.value.searchAudit);
+        }
         else {
           failures++;
           emit(
@@ -170,14 +201,34 @@ export async function runResearch(
           live({ phase: 'warning', provider: enabled[i][0], status: 'warning', title: 'Source returned nothing', message: `${enabled[i][0]}: ${result.reason?.message || 'service unavailable'}. Other sources continue.` });
         }
       });
-      if (!providers && b.useApify) {
+      if (!providers && !grantsOnly && env.AGENTIC_FOLLOWUP === '1') {
+        const name = 'Follow-up: funder → people';
+        if (!webConfigured(env)) {
+          emit('configuration', `${name}: missing ${webMissing(env).join(' and ')}; skipped.`);
+          live({ phase: 'planning', provider: name, status: 'pending', title: 'Source skipped', message: `${name}: missing ${webMissing(env).join(' and ')}.` });
+        } else {
+          try {
+            followupResult = await runSource(name, async () => {
+              const result = await followUpPeople(leads, b, { env, fetcher, signal, record, live: live.scope(name), client: client.scope(name) });
+              live({ phase: 'reading', provider: name, status: 'running', title: 'Funders followed', message: `Followed ${result.funders} funders → ${result.leads.length} people across ${result.pages} pages.` });
+              return Object.assign([...result.leads], result);
+            }, 1);
+            leads.push(...followupResult.leads);
+            emit('reading', `${name}: followed ${followupResult.funders} funders → ${followupResult.leads.length} people in ${followupResult.pages} pages.`);
+          } catch (error) {
+            failures++;
+            emit('warning', `${name}: ${error.message}. Discovery results were kept.`);
+          }
+        }
+      }
+      if (useApify && !(followupResult?.funders > 0)) {
         if (!webConfigured(env)) {
           emit('configuration', `${WEB_SOURCE}: missing ${webMissing(env).join(' y ')}; research continues with available sources.`);
         } else {
           try {
             emit('searching', `${WEB_SOURCE}: finding fund and organization teams on public pages. May use credit.`);
             const result = await runSource(WEB_SOURCE, async () => {
-              const found = await webPeople(leads, b, { env, fetcher, signal, record, live: live.scope(WEB_SOURCE) });
+              const found = await webPeople(leads, b, { env, fetcher, signal, record, live: live.scope(WEB_SOURCE), usageClient: client });
               live({ phase: 'reading', provider: WEB_SOURCE, status: 'running', title: 'People found', message: `${found.leads.length} verified people on ${found.pages} public pages (${found.queries.join(' · ')}).` });
               return Object.assign([...found.leads], found);
             }, 1);
@@ -189,6 +240,33 @@ export async function runResearch(
             live({ phase: 'warning', provider: WEB_SOURCE, status: 'warning', title: 'Source returned nothing', message: `${WEB_SOURCE}: ${e.message}. Other sources' results were kept.` });
           }
         }
+      }
+      if (!providers && env.AGENTIC_READ === '1') {
+        const name = 'Read and verify';
+        const read = await readCandidates(leads, b, { env, fetcher, signal, client: client.scope(name) });
+        leads = read.leads;
+        live({ phase: read.skipped ? 'planning' : 'reading', provider: name, status: read.skipped ? 'pending' : 'success', title: read.skipped ? 'Reading skipped' : 'Pages verified', message: read.skipped ? `Read step skipped: ${read.reason}.` : `Read ${read.documents} pages; rejected ${read.dropped} unsupported extracted facts.`, resultCount: read.documents });
+        if (read.skipped) emit('configuration', `${name}: ${read.reason}.`);
+      }
+      if (!providers && !grantsOnly && env.AGENTIC_LOOP === '1') {
+        const name = 'Agentic research loop';
+        const loop = await runAgenticLoop({
+          leads, brief: b, terms: job.plan.terms, env, fetcher, signal, usage: client.usage,
+          search: (query) => searchFundingQuery(client.scope(name), b, query, env),
+          read: env.AGENTIC_READ === '1' ? (items) => readCandidates(items, b, { env, fetcher, signal, client: client.scope('Read and verify') }) : null,
+        });
+        leads = loop.leads;
+        job.queryLedger = loop.queryLedger;
+        job.loop = { stopReason: loop.stopReason, sufficient: loop.sufficient, partial: loop.partial };
+        live({ phase: 'reading', provider: name, status: loop.partial ? 'warning' : 'success', title: 'Research loop finished', message: `${loop.queryLedger.length} follow-up queries; stopped by ${loop.stopReason}.`, resultCount: loop.queryLedger.length, detail: { kind: 'query_ledger', stopReason: loop.stopReason, queries: loop.queryLedger.slice(0, 12) } });
+        if (loop.partial) failures++;
+        if (env.AGENTIC_FOLLOWUP === '1' && webConfigured(env)) {
+          const late = await followUpPeople(leads, b, { env, fetcher, signal, record, live: live.scope('Follow-up: funder → people'), client: client.scope('Follow-up: funder → people') });
+          leads.push(...late.leads);
+        }
+      }
+      if (env.AGENTIC_READ === '1' || env.AGENTIC_LOOP === '1') {
+        leads = assessLeads(leads, b, { terms: job.plan.terms, activeWindowMonths: Number(env.ACTIVE_WINDOW_MONTHS) || 18 }).leads;
       }
       signal.throwIfAborted();
       if (['investment', 'debt'].some((t) => b.fundingTypes.includes(t)))
@@ -226,7 +304,7 @@ export async function runResearch(
         .filter(([, v]) => v.decision === 'reject')
         .map(([key]) => key),
     );
-    job.leads = evaluate(leads, b, rejected);
+    job.leads = evaluate(leads, b, rejected, new Date(), job.plan.terms || []);
     if (job.mode !== 'demo' && (env.JEV_API_KEY || env.TYPESAFE_API_KEY)) {
       const jevStarted = Date.now();
       live({ phase: 'evaluating', provider: 'Jev', status: 'running', title: 'Structured decision', message: 'Jev is scoring fit, evidence and next action.' });
@@ -253,14 +331,20 @@ export async function runResearch(
     live({ phase: 'evaluating', status: 'success', title: 'Candidates ranked', detail: { kind: 'ranking', top: byBucket('top', 8), radar: byBucket('radar', 2), discarded: byBucket('discarded', 3), counts: { top: job.leads.filter((l) => l.bucket === 'top').length, radar: job.leads.filter((l) => l.bucket === 'radar').length, discarded: job.leads.filter((l) => l.bucket === 'discarded').length } }, message: `${job.leads.filter((l) => l.bucket === 'top').length} priority, ${job.leads.filter((l) => l.bucket === 'radar').length} on radar and ${job.leads.filter((l) => l.bucket === 'discarded').length} discarded after de-duplication and scoring.`, resultCount: job.leads.length, durationMs: Date.now() - evaluationStarted });
     emit(
       'drafting',
-      'Drafts built from templates and public facts; nothing is sent.',
+      b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant' ? 'Grant work items built from official calls; no fundraising emails were created.' : 'Drafts built from templates and public facts; nothing is sent.',
     );
     // Warm path para todos: camino de la red cuando existe; si no, un plan para construirlo (consejo + updates).
     job.leads = addWarmPlans(job.leads, b);
+    job.leads = attachGrantPlans(job.leads, b).map((lead) => lead.grantPlan ? { ...lead, draft: buildDraft(lead, b, sender) } : lead);
+    job.searchAudit = finalizeSearchAudit(searchAudit, job.leads);
+    if (env.AGENTIC_READ === '1' || env.AGENTIC_LOOP === '1') {
+      job.leads = assessLeads(job.leads, b, { terms: job.plan.terms, activeWindowMonths: Number(env.ACTIVE_WINDOW_MONTHS) || 18 }).leads;
+    }
     {
       const plans = job.leads.filter((l) => l.warmPlan);
       const built = plans.filter((l) => !l.warmPlan.built).length;
-      live({ phase: 'evaluating', provider: 'Warm path plan', status: 'success', title: 'Warm paths for every candidate', message: `${plans.length - built} through your network; ${built} to build with advice and updates before the round.`, resultCount: plans.length });
+      const grantRun = b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant';
+      live({ phase: 'evaluating', provider: grantRun ? 'Application plan' : 'Warm path plan', status: 'success', title: grantRun ? 'Application plans prepared' : 'Warm paths for every candidate', message: grantRun ? `${plans.length} opportunities converted into go/no-go work plans.` : `${plans.length - built} through your network; ${built} to build with advice and updates before the round.`, resultCount: plans.length });
     }
     // Enriquecimiento dentro de la corrida: elegibilidad de grants y fondos activos (tesis revelada).
     if (job.mode !== 'demo') for (const step of enrichers) {
@@ -274,8 +358,9 @@ export async function runResearch(
       }
       store.save(job);
     }
+    job.leads = attachGrantPlans(job.leads, b).map((lead) => lead.grantPlan ? { ...lead, draft: buildDraft(lead, b, sender) } : lead);
     const first = job.leads.find((l) => l.bucket === 'top') || job.leads[0];
-    live({ phase: 'drafting', status: 'success', title: 'Drafts written', detail: first ? { kind: 'draft', to: String(first.person || first.org).slice(0, 90), org: String(first.org || '').slice(0, 90), subject: String(first.draft?.subject || '').slice(0, 160), excerpt: String(first.draft?.body || '').slice(0, 420) } : undefined, message: `${job.leads.length} drafts built from templates and public facts; nothing is sent.`, resultCount: job.leads.length });
+    live({ phase: 'drafting', status: 'success', title: b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant' ? 'Grant work items ready' : 'Drafts written', detail: first ? { kind: 'draft', to: String(first.person || first.org).slice(0, 90), org: String(first.org || '').slice(0, 90), subject: String(first.draft?.subject || '').slice(0, 160), excerpt: String(first.draft?.body || '').slice(0, 420) } : undefined, message: b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant' ? `${job.leads.filter((lead) => lead.kind === 'opportunity').length} specific grant opportunities prepared for review.` : `${job.leads.length} drafts built from templates and public facts; nothing is sent.`, resultCount: job.leads.length });
     job.status =
       job.mode === 'demo'
         ? 'done'
@@ -283,6 +368,13 @@ export async function runResearch(
           ? 'partial'
           : 'done';
     job.finishedAt = new Date().toISOString();
+    job.usage = client.usage();
+    job.budget = {
+      timeoutMs: Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 180000),
+      maxRounds: Number(env.LOOP_MAX_ROUNDS) || 2,
+      maxSearches: Number(env.LOOP_MAX_SEARCHES) || 12,
+      maxCostUsd: Number(env.LOOP_MAX_COST_USD) || null,
+    };
     emit(
       'done',
       `${job.leads.filter((l) => l.bucket === 'top').length} candidates prioritized; ${job.leads.filter((l) => l.bucket === 'radar').length} on radar. ${job.mode === 'demo' ? 'All examples are fictional.' : 'Missing results are never filled with simulated data.'}`,
@@ -301,7 +393,7 @@ export async function runResearch(
     title: job.status === 'done' ? 'Run complete' : job.status === 'partial' ? 'Done with warnings' : 'Stopped',
     message: job.status === 'failed' ? 'Research stopped before finishing.' : `${top} candidates prioritized; ${job.leads.filter((l) => l.bucket === 'radar').length} on radar.`,
     resultCount: job.leads.length,
-    detail: { jobStatus: job.status },
+    detail: { jobStatus: job.status, usage: job.usage || {}, queryLedger: job.queryLedger || [] },
   });
   store.save(job);
   live.finish(job.status);

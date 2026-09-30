@@ -1,26 +1,36 @@
-__pycache__/
-*.pyc
-.venv/
-node_modules/
-dist/
-*.egg-info/
-.pytest_cache/
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
 
-# Datos locales: NUNCA subir exports personales ni la base
+# Datos privados y bases locales
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.duckdb
 backend/data/
 backend/exports/
 backend/out/
-*.duckdb
-*.duckdb.wal
-.env
 backend/config/project.yaml
 backend/config/rounds.yaml
-
-# Base de research, capturas y salidas de trabajo (no van al servidor)
-research/data/*.sqlite
-research/data/*.sqlite-*
+research/data/
 workspace_notes/
-backend/eval/results/
-*.png
-!frontend/public/**/*.png
+
+# Resultados y cachés de evaluación (se regeneran)
+research/eval/runs/
+research/.backup-*/
+
+# Documentos personales de trabajo
+Stuff/
+
+# Dependencias y builds
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Sistema
 .DS_Store

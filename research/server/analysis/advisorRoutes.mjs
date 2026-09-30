@@ -30,7 +30,25 @@ export function createAdvisorRoutes({ store, env = process.env, authUser, fetche
     return g.id;
   };
 
-  return async function handle(req, path, body, json, res, requestUrl) {
+  /* Starts the fleet analysis for a run. Shared by the manual button and by the automatic start after research.
+     Resolves to { runId } once the first snapshot is saved, or { error, status, runId? } when it cannot start. */
+  const startDeep = async ({ job, uid, refresh = false, samples = 1, maxContacts = 20, maxSteps = 6 }) => {
+    if (!agentRole(env)) return { status: 409, error: 'No fleet model configured. Set VLLM_BASE and VLLM_CHAT_MODEL (or INTAKE_LLM_*) in research/.env.' };
+    const key = uid || 'anon';
+    if (active.has(key)) return { status: 409, error: 'An analysis is already running.', runId: active.get(key).runId };
+    const controller = new AbortController();
+    let runId = null;
+    active.set(key, { runId: null, controller }); // reserved right away so two starts can't race
+    const started = new Promise((ok) => {
+      runDeep({ job, store, userId: uid, network: store.network(job.brief, uid), update: A.updates(uid)[0] || null, env, fetcher, signal: controller.signal, refresh, samples, maxContacts, maxSteps,
+        save: (r) => { if (!runId) { runId = r.id; active.set(key, { runId, controller }); ok(r.id); } A.saveRun(r); } })
+        .catch((e) => { if (runId) { const r = A.run(runId); if (r) A.saveRun({ ...r, status: 'failed', errors: [...(r.errors || []), { contact: 'orquestador', error: e.message }] }); } ok(runId); })
+        .finally(() => active.delete(key));
+    });
+    return { status: 202, runId: await started };
+  };
+
+  async function handle(req, path, body, json, res, requestUrl) {
     if (!path.startsWith('/api/research/advisor')) return false;
     const uid = authUser(req)?.id || null;
     const q = requestUrl.searchParams;
@@ -106,19 +124,9 @@ export function createAdvisorRoutes({ store, env = process.env, authUser, fetche
     if (path === '/api/research/advisor/deep' && req.method === 'POST') {
       const job = loadJob(body.jobId, uid);
       if (!job) return json(404, { error: 'Evaluation not found.' });
-      if (!agentRole(env)) return json(409, { error: 'No fleet model configured. Set VLLM_BASE and VLLM_CHAT_MODEL (or INTAKE_LLM_*) in research/.env.' });
-      const key = uid || 'anon';
-      if (active.has(key)) return json(409, { error: 'An analysis is already running.', runId: active.get(key).runId });
-      const controller = new AbortController();
-      let runId = null;
-      const started = new Promise((ok) => {
-        runDeep({ job, store, userId: uid, network: store.network(job.brief, uid), update: A.updates(uid)[0] || null, env, fetcher, signal: controller.signal, refresh: Boolean(body.refresh), samples: Math.max(1, Math.min(3, Number(body.samples) || 1)), maxContacts: Math.max(1, Math.min(25, Number(body.maxContacts) || 20)), maxSteps: Math.max(2, Math.min(10, Number(body.maxSteps) || 6)),
-          save: (r) => { if (!runId) { runId = r.id; active.set(key, { runId, controller }); ok(r.id); } A.saveRun(r); } })
-          .catch((e) => { if (runId) { const r = A.run(runId); if (r) A.saveRun({ ...r, status: 'failed', errors: [...(r.errors || []), { contact: 'orquestador', error: e.message }] }); } ok(runId); })
-          .finally(() => active.delete(key));
-      });
-      const id = await started;
-      return json(202, { runId: id });
+      const r = await startDeep({ job, uid, refresh: Boolean(body.refresh), samples: Math.max(1, Math.min(3, Number(body.samples) || 1)), maxContacts: Math.max(1, Math.min(25, Number(body.maxContacts) || 20)), maxSteps: Math.max(2, Math.min(10, Number(body.maxSteps) || 6)) });
+      if (r.error) return json(r.status, { error: r.error, ...(r.runId ? { runId: r.runId } : {}) });
+      return json(202, { runId: r.runId });
     }
     if (path === '/api/research/advisor/deep' && req.method === 'GET') {
       const job = loadJob(q.get('jobId'), uid);
@@ -150,6 +158,21 @@ export function createAdvisorRoutes({ store, env = process.env, authUser, fetche
       return json(200, { memo: { aprobado: count('memo', 'aprobado'), editado: count('memo', 'editado'), rechazado: count('memo', 'rechazado') }, update: { aprobado: count('update', 'aprobado'), editado: count('update', 'editado'), rechazado: count('update', 'rechazado') }, total: A.generations().length, note: 'Export with scripts/advisor-trainset.mjs. With < 200 approved or edited examples, don\'t train: use the prompt.' });
     }
     return json(404, { error: 'Advisor route not found.' });
+  }
+
+  /* Automatic start: when a research run ends with candidates, the advisor begins on its own so the
+     action plan is waiting when the person opens it. Off with ADVISOR_AUTO=0. Never throws. */
+  handle.autoStart = async (job) => {
+    try {
+      if (!job || String(env.ADVISOR_AUTO || '1') === '0') return null;
+      if (!['done', 'partial'].includes(job.status)) return null;
+      if (!(job.leads || []).some((l) => l.bucket !== 'discarded')) return null;
+      const uid = job.userId || null;
+      if (A.latestRun(uid, job.id)) return null; // already analyzed (or being analyzed)
+      const r = await startDeep({ job, uid });
+      return r.runId || null;
+    } catch { return null; }
   };
+  return handle;
 }
 export { leadKeyOf };

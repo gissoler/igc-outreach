@@ -15,14 +15,15 @@ export const defaultFilters = (): ExplorerFilters => ({ q: '', buckets: new Set(
 export function CandidateCard({ lead, job, selected, compared, onSelect, onCompare }: { lead: Lead; job: Job; selected: boolean; compared: boolean; onSelect: () => void; onCompare: () => void }) {
   const p = bestPath(lead);
   const saved = lead.feedback?.decision === 'approve';
-  const name = lead.person || lead.org;
+  const isGrant = lead.fundingType === 'grant' || lead.kind === 'opportunity';
+  const name = isGrant ? lead.title : (lead.person || lead.org);
   const initials = name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
   return <li className={`cc ${selected ? 'sel' : ''} b-${lead.bucket}`}>
     <button className="cc-main" onClick={onSelect} aria-pressed={selected} aria-label={`${name}, score ${lead.score}`}>
       <span className="cc-av" aria-hidden="true">{initials}</span>
       <span className="cc-body">
         <strong>{name}{saved && <Star size={12} className="cc-star" aria-label="Saved" />}{readNote(job.id, lead.id) && <span className="cc-note" title="Has a note">nota</span>}</strong>
-        <span className="cc-role">{lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 60)}</span>
+        <span className="cc-role">{isGrant ? lead.org : lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 60)}</span>
         <span className="cc-row"><BucketBadge bucket={lead.bucket} />{p ? <span className="cc-path"><Route size={11} aria-hidden="true" />{p.hopCount} {p.hopCount === 1 ? 'hop' : 'hops'} · {fmtPct(p.strength)}</span> : <span className="cc-path none">{(() => { const w = warmPlanOf(lead); return w ? warmShort(w) : 'No warm path'; })()}</span>}</span>
       </span>
       <span className="cc-score"><b>{lead.score}</b><small>#{lead.rank}</small></span>

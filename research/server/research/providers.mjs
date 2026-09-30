@@ -1,4 +1,6 @@
 import { candidate, evidence, isIGC, norm, safeUrl, ventureOf } from './core.mjs';
+import { adjacent, fundingQuery } from './expand.mjs';
+import { diversifyGrantHits, grantQueries } from './grantManager.mjs';
 import { countRecords, noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 const TEAM = 'https://igcpharma.com/team/';
 const AUTHOR = 'https://openalex.org/A5060487287';
@@ -32,7 +34,26 @@ export function makeClient({
 } = {}) {
   const last = new Map();
   const robots = new Map();
+  const usage = new Map();
   let calls = 0;
+  const usageKey = (provider) => String(provider || 'HTTP').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_|_$/g, '').toUpperCase();
+  const price = (provider) => {
+    const known = /scrapegraph/i.test(provider) ? 'SCRAPEGRAPH' : /firecrawl/i.test(provider) ? 'FIRECRAWL' : /serper/i.test(provider) ? 'SERPER' : /exa/i.test(provider) ? 'EXA' : usageKey(provider);
+    return Number(env[`COST_${known}_PER_CALL`] || 0) || 0;
+  };
+  const addUsage = (provider, patch = {}) => {
+    const current = usage.get(provider) || { calls: 0, results: 0, ms: 0, bytes: 0, costUsd: 0 };
+    const next = {
+      calls: current.calls + Number(patch.calls || 0),
+      results: current.results + Number(patch.results || 0),
+      ms: current.ms + Number(patch.ms || 0),
+      bytes: current.bytes + Number(patch.bytes || 0),
+      costUsd: current.costUsd + Number(patch.calls || 0) * price(provider),
+    };
+    usage.set(provider, next);
+    return next;
+  };
+  const usageSnapshot = () => Object.fromEntries([...usage].map(([provider, row]) => [provider, { ...row, costUsd: Math.round(row.costUsd * 1e6) / 1e6 }]));
   const timeout = Math.min(
     30000,
     Math.max(1000, Number(env.RESEARCH_TIMEOUT_MS) || 12000),
@@ -124,9 +145,12 @@ export function makeClient({
       .get(u.origin)
       .some((path) => u.pathname.startsWith(path.split('*')[0]));
   }
-  function scoped(ev) {
+  function scoped(ev, provider = 'HTTP') {
     return {
-      scope: (provider) => scoped(live.scope(provider)),
+      scope: (name) => scoped(live.scope(name), name),
+      usage: usageSnapshot,
+      track: (name, patch) => addUsage(name || provider, patch),
+      noteResults(count) { addUsage(provider, { results: count }); },
       async json(url, body, headers) {
         const u = new URL(url);
         const method = body ? 'POST' : 'GET';
@@ -152,6 +176,7 @@ export function makeClient({
           throw e;
         }
         const resultCount = countRecords(data);
+        addUsage(provider, { calls: 1, results: resultCount || 0, ms: Date.now() - started, bytes: meta.bytes || 0 });
         ev({
           phase: 'api_response',
           status: 'success',
@@ -196,6 +221,7 @@ export function makeClient({
               ev({ phase: 'reading', status: 'running', title: 'No capture', message: 'Capture limit reached; page read without capture.', publicUrl: url, detail });
             }
             const text = plain(result.html);
+            addUsage(provider, { calls: 1, results: 1, ms: Date.now() - started, bytes: Buffer.byteLength(result.html || '') });
             ev({ phase: 'reading', status: 'running', title: 'Text extracted', message: `${u.hostname}: ${text.length.toLocaleString('en-US')} characters of text read.`, publicUrl: result.finalUrl, durationMs: Date.now() - started, detail });
             record(url, { text });
             return text;
@@ -219,13 +245,16 @@ export function makeClient({
           throw e;
         }
         const text = plain(body);
+        addUsage(provider, { calls: 1, results: 1, ms: Date.now() - started, bytes: Buffer.byteLength(body || '') });
         ev({ phase: 'reading', status: 'running', title: 'Document read over HTTP', message: `${u.hostname}: ${text.length.toLocaleString('en-US')} characters of text (no browser).`, publicUrl: url, durationMs: Date.now() - started, detail: { ...detail, via: 'http' } });
         record(url, { text });
         return text;
       },
     };
   }
-  return scoped(live);
+  const root = scoped(live);
+  root.usage = usageSnapshot;
+  return root;
 }
 export const teamFactsApply = (brief) =>
   isIGC(brief) && ['ram mukunda', 'rohit goel'].includes(norm(brief.name));
@@ -464,7 +493,7 @@ const isoDate = (value) => {
       ? value
       : null;
 };
-export function grantLead(hit, detail) {
+export function grantLead(hit, detail, foundBy = []) {
   const url = `https://www.grants.gov/search-results-detail/${hit.id}`;
   const syn = detail?.synopsis || {};
   const title = plain(hit.title);
@@ -565,29 +594,29 @@ export function grantLead(hit, detail) {
     ],
     missing: detail ? [] : ['Call details not retrieved'],
     searchText: `${title} ${plain(syn.synopsisDesc).slice(0, 5000)}`,
+    foundBy,
   });
 }
 export async function grants(client, brief, plan, emit) {
-  let data = await client.json('https://api.grants.gov/v1/api/search2', {
-    keyword: plan.query,
-    oppStatuses: 'posted|forecasted',
-    rows: 15,
-  });
-  if (data.errorcode !== 0 || !Array.isArray(data.data?.oppHits))
-    throw new Error('Grants.gov: invalid response.');
-  if (!data.data.oppHits.length) {
-    emit(
-      'searching',
-      `Grants.gov: no exact matches; widening to ${plan.topic}.`,
-    );
-    data = await client.json('https://api.grants.gov/v1/api/search2', {
-      keyword: plan.topic,
-      oppStatuses: 'posted|forecasted',
-      rows: 15,
-    });
+  const provenance = new Map();
+  const hits = [];
+  const searchAudit = [];
+  for (const search of grantQueries(brief, plan)) {
+    try {
+      const more = await client.json('https://api.grants.gov/v1/api/search2', { keyword: search.query, oppStatuses: 'posted|forecasted', rows: 15 });
+      if (more.errorcode !== 0 || !Array.isArray(more.data?.oppHits)) throw new Error('invalid response');
+      const fresh = more.data.oppHits.filter((h) => !hits.some((x) => x.id === h.id));
+      for (const hit of more.data.oppHits) provenance.set(hit.id, [...(provenance.get(hit.id) || []), { provider: 'Grants.gov', term: search.label, objective: 'grant', query: search.query, dimension: search.dimension }]);
+      hits.push(...fresh);
+      searchAudit.push({ provider: 'Grants.gov', query: search.query, dimension: search.dimension, returned: more.data.oppHits.length, discovered: fresh.length });
+      emit('searching', `Grants.gov · ${search.dimension} "${search.query}": ${fresh.length} new calls.`);
+    } catch (e) {
+      emit('warning', `Grants.gov · "${search.query}": ${e.message}`);
+    }
   }
+  if (!hits.length) emit('searching', 'Grants.gov: no open or forecasted calls matched the searched topics and geographies.');
   const leads = [];
-  for (const hit of (data.data?.oppHits || []).slice(0, 12)) {
+  for (const hit of diversifyGrantHits(hits, 16)) {
     let detail = null;
     try {
       const d = await client.json(
@@ -601,9 +630,9 @@ export async function grants(client, brief, plan, emit) {
         `Grants.gov: detail ${hit.number} unavailable; kept the basic record.`,
       );
     }
-    leads.push(grantLead(hit, detail));
+    leads.push(grantLead(hit, detail, provenance.get(hit.id) || []));
   }
-  return leads;
+  return Object.assign(leads, { searchAudit });
 }
 export function reporterLeads(data) {
   if (!Array.isArray(data.results))
@@ -794,7 +823,7 @@ const ownTokens = (b) => [...new Set([
   ...[b.organization, ventureOf(b), b.company].map((x) => norm(x).split(' ')[0]),
   ...(safeUrl(b.website) ? [norm(host(b.website)).split(' ')[0]] : []),
 ].filter((t) => t && t.length >= 3))];
-function exaLeads(results, brief, { objective, source, field, risks = [], missing = [] }) {
+function exaLeads(results, brief, { objective, source, field, query = '', term = '', risks = [], missing = [] }) {
   const own = ownTokens(brief);
   return (results || []).flatMap((r) => {
     const url = safeUrl(r?.url);
@@ -818,6 +847,7 @@ function exaLeads(results, brief, { objective, source, field, risks = [], missin
       searchText: `${r.title || ''} ${quote}`,
       risks: ['Found by semantic search: confirm mandate, timing and eligibility', ...risks],
       missing: ['No decision-maker named on the page', ...missing],
+      foundBy: [{ provider: source, term, objective, query }],
     })];
   });
 }
@@ -825,15 +855,22 @@ export async function exaSearch(client, brief, plan, env, emit = () => {}) {
   if (!env.EXA_API_KEY) throw new Error('EXA_API_KEY not set.');
   const per = Math.min(15, Math.max(3, Number(env.EXA_NUM_RESULTS) || 8));
   const leads = [];
-  for (const objective of brief.fundingTypes) {
-    const query = exaQuery(brief, objective);
+  // Full-profile query per goal + one "who is funding <term> today" query per adjacent term.
+  const extra = adjacent(plan);
+  const budget = Math.max(0, Number(env.QUERY_EXPAND_EXA_MAX ?? 4));
+  const jobs = [
+    ...brief.fundingTypes.map((objective) => ({ objective, query: exaQuery(brief, objective), label: objective })),
+    ...extra.flatMap((term) => brief.fundingTypes.map((objective) => ({ objective, query: fundingQuery(term, objective, brief), label: `${objective} · "${term}"` }))).slice(0, budget),
+  ];
+  for (const { objective, query, label } of jobs) {
     try {
       const data = await client.json(EXA, { query, type: 'auto', numResults: per, contents: { highlights: true } }, { Authorization: `Bearer ${env.EXA_API_KEY}` });
-      const found = exaLeads(data.results, brief, { objective, source: 'Exa', field: 'search_highlight' });
+      const term = label.includes('· "') ? label.split('· "')[1]?.replace(/"$/, '') || '' : '';
+      const found = exaLeads(data.results, brief, { objective, source: 'Exa', field: 'search_highlight', query, term });
       leads.push(...found);
-      emit('reading', `Exa · ${objective}: ${found.length} results.`);
+      emit('reading', `Exa · ${label}: ${found.length} results.`);
     } catch (e) {
-      emit('warning', `Exa · ${objective}: ${e.message}`);
+      emit('warning', `Exa · ${label}: ${e.message}`);
     }
   }
   return leads;
@@ -844,7 +881,7 @@ export async function roundAnnouncements(client, brief, plan, env) {
   const q = `${brief.industry} startup raised a ${brief.round || 'seed'} round led by${brief.geography ? ` (${brief.geography})` : ''}`;
   if (env.EXA_API_KEY) {
     const data = await client.json(EXA, { query: q, type: 'auto', category: 'news', numResults: 10, startPublishedDate: `${since}T00:00:00.000Z`, contents: { highlights: true } }, { Authorization: `Bearer ${env.EXA_API_KEY}` });
-    return exaLeads(data.results, brief, { objective: 'investment', source: 'Exa · news', field: 'round_announcement', risks: ['Round announcement: identify the lead investor before reaching out'] });
+    return exaLeads(data.results, brief, { objective: 'investment', source: 'Exa · news', field: 'round_announcement', query: q, risks: ['Round announcement: identify the lead investor before reaching out'] });
   }
   if (!env.SERPER_API_KEY) throw new Error('Set EXA_API_KEY or SERPER_API_KEY.');
   const data = await client.json('https://google.serper.dev/news', { q, num: 10, tbs: 'qdr:y' }, { 'X-API-KEY': env.SERPER_API_KEY });
@@ -857,6 +894,7 @@ export async function roundAnnouncements(client, brief, plan, env) {
     evidence: [evidence('Serper News: unverified lead', r.link, r.snippet || r.title, 'round_announcement', undefined, false)],
     risks: ['Round announcement: identify the lead investor before reaching out'],
     missing: ['Unverified search snippet; open the article'],
+    foundBy: [{ provider: 'Serper News', term: '', objective: 'investment', query: q }],
   }));
 }
 export async function webSearch(client, brief, plan, env) {
@@ -864,36 +902,46 @@ export async function webSearch(client, brief, plan, env) {
     throw new Error(
       'SERPER_API_KEY not set; broad web search skipped.',
     );
-  const data = await client.json(
-    'https://google.serper.dev/search',
-    {
-      q: `${plan.query} ${brief.fundingTypes.join(' ')} ${brief.geography} ${brief.criteria}`.slice(
-        0,
-        500,
-      ),
-      num: 10,
-    },
-    { 'X-API-KEY': env.SERPER_API_KEY },
-  );
-  return (data.organic || [])
-    .filter((r) => safeUrl(r.link))
-    .map((r) =>
-      candidate({
+  // Main query + one separate query per adjacent term (feedback 28/09), merged by URL.
+  const qs = [
+    `${plan.query} ${brief.fundingTypes.join(' ')} ${brief.geography} ${brief.criteria}`.slice(0, 500),
+    ...adjacent(plan).slice(0, 3).map((term) => `who is funding ${term} ${new Date().getFullYear()} ${brief.fundingTypes.join(' ')} ${brief.geography}`.slice(0, 500)),
+  ];
+  const seen = new Set();
+  const out = [];
+  for (const q of qs) {
+    const data = await client.json('https://google.serper.dev/search', { q, num: 10 }, { 'X-API-KEY': env.SERPER_API_KEY });
+    for (const r of data.organic || []) {
+      if (!safeUrl(r.link) || seen.has(r.link)) continue;
+      seen.add(r.link);
+      out.push(candidate({
         org: new URL(r.link).hostname,
         title: r.title,
         kind: 'research',
         fundingType: brief.fundingTypes[0],
-        evidence: [
-          evidence(
-            'Serper: unverified lead',
-            r.link,
-            r.snippet || r.title,
-            'search_snippet',
-            undefined,
-            false,
-          ),
-        ],
+        evidence: [evidence('Serper: unverified lead', r.link, r.snippet || r.title, 'search_snippet', undefined, false)],
         missing: ['Unverified source content; don\'t use for outreach'],
-      }),
-    );
+        foundBy: [{ provider: 'Serper', term: adjacent(plan).find((term) => q.includes(term)) || '', objective: brief.fundingTypes[0], query: q }],
+      }));
+    }
+  }
+  return out;
+}
+
+/** Ejecuta una consulta concreta para el bucle agentic conservando su procedencia. */
+export async function searchFundingQuery(client, brief, { query, term = '', gap = '', objective = 'investment' }, env) {
+  if (env.EXA_API_KEY) {
+    const data = await client.json(EXA, { query: String(query).slice(0, 900), type: 'auto', numResults: Math.min(10, Math.max(2, Number(env.LOOP_RESULTS_PER_SEARCH) || 5)), contents: { highlights: true } }, { Authorization: `Bearer ${env.EXA_API_KEY}` });
+    return exaLeads(data.results, brief, { objective, source: 'Exa · agentic loop', field: 'search_highlight', query, term, missing: gap ? [`Agentic gap: ${gap}`] : [] });
+  }
+  if (env.SERPER_API_KEY) {
+    const data = await client.json('https://google.serper.dev/search', { q: String(query).slice(0, 500), num: 10 }, { 'X-API-KEY': env.SERPER_API_KEY });
+    return (data.organic || []).flatMap((r) => safeUrl(r.link) ? [candidate({
+      externalId: `serper-loop:${r.link}`, org: host(r.link), title: r.title, kind: 'research', fundingType: objective,
+      evidence: [evidence('Serper: unverified loop lead', r.link, r.snippet || r.title, 'search_snippet', undefined, false)],
+      missing: ['Unverified source content; read before outreach'],
+      foundBy: [{ provider: 'Serper · agentic loop', term, objective, query, gap }],
+    })] : []);
+  }
+  throw new Error('No search provider configured for the agentic loop.');
 }

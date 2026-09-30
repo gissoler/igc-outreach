@@ -299,6 +299,8 @@ code { font-family: var(--x-mono); font-size: .92em; background: var(--x-sunken)
 .ow-mode button { display: grid; gap: 4px; text-align: left; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--x-line-strong) !important; font-size: 12.5px; color: var(--x-muted); }
 .ow-mode button b { font-size: 14px; color: var(--x-ink); } .ow-mode button.on { border-color: var(--x-blue) !important; background: var(--x-blue-soft) !important; }
 .ow-inline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; font-size: 13px; } .ow-inline input { width: 90px !important; } .ow-inline small { color: var(--x-muted); }
+.ow-sources { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.ow-sources li { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--x-line); font-size: 12.5px; color: var(--x-muted); display: flex; align-items: center; gap: 6px; }
 
 /* ───────── Dashboard de evaluación ───────── */
 .ev { display: grid; gap: 16px; }

@@ -1,11 +1,13 @@
 // Búsqueda y extracción web con Firecrawl (buscar + leer páginas) y ScrapeGraph (extraer personas).
 // Reemplaza a Apify. No toca LinkedIn con scraping: solo usa resultados de búsqueda públicos.
+import { readMany } from './readOpportunity.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 
 export const FIRECRAWL_URL = 'https://api.firecrawl.dev/v2';
 export const SCRAPEGRAPH_URL = 'https://v2-api.scrapegraphai.com/api';
 export const WEB_SOURCE = 'Firecrawl + ScrapeGraph';
+export const GRANT_WEB_SOURCE = 'Open web opportunities';
 
 const clamp = (value, min, max, fallback) => {
   const number = Number(value);
@@ -14,6 +16,7 @@ const clamp = (value, min, max, fallback) => {
 const firecrawlKey = (env) => env.FIRECRAWL_API_KEY || '';
 const scrapegraphKey = (env) => env.SGAI_API_KEY || env.SCRAPEGRAPH_API_KEY || '';
 export const webConfigured = (env = process.env) => Boolean(firecrawlKey(env) && scrapegraphKey(env));
+export const firecrawlConfigured = (env = process.env) => Boolean(firecrawlKey(env));
 export const webMissing = (env = process.env) => [
   ...(firecrawlKey(env) ? [] : ['FIRECRAWL_API_KEY']),
   ...(scrapegraphKey(env) ? [] : ['SGAI_API_KEY']),
@@ -63,6 +66,85 @@ export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs 
   const web = Array.isArray(data?.data?.web) ? data.data.web : Array.isArray(data?.data) ? data.data : [];
   const news = Array.isArray(data?.data?.news) ? data.data.news : [];
   return [...web, ...news].map((r) => ({ url: safeUrl(r.url || r.metadata?.url || r.metadata?.sourceURL), title: String(r.title || r.metadata?.title || ''), description: String(r.description || r.snippet || r.metadata?.description || ''), markdown: String(r.markdown || ''), date: String(r.date || r.metadata?.publishedTime || r.metadata?.['article:published_time'] || '') })).filter((r) => r.url);
+}
+
+const opportunityType = (text) => /challenge|competition/i.test(text) ? 'challenge' : /prize|award/i.test(text) ? 'prize' : /accelerator|incubator|cohort/i.test(text) ? 'accelerator' : /fellowship/i.test(text) ? 'fellowship' : 'open_call';
+const opportunityDate = (text) => {
+  const months = 'Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?';
+  const matches = [...String(text).matchAll(new RegExp(`(?:apply by|deadline|applications? close(?:s)?|closing)\\s*(?:on\\s*)?([0-9]{1,2}\\s+(?:${months})\\s+20[2-9][0-9]|(?:${months})\\s+[0-9]{1,2}(?:st|nd|rd|th)?[,]?\\s+20[2-9][0-9])`, 'ig'))];
+  for (const match of matches) { const date = new Date(match[1].replace(/(\d)(st|nd|rd|th)/i, '$1')); if (Number.isFinite(date.getTime())) return date.toISOString().slice(0, 10); }
+  return null;
+};
+const opportunityExcerpt = (text) => {
+  const clean = String(text || '').replace(/[#*_>`|]+/g, ' ').replace(/\s+/g, ' ').trim();
+  const at = clean.search(/apply|application|challenge|competition|prize|accelerator|open call/i);
+  return clean.slice(Math.max(0, at < 0 ? 0 : at - 120), Math.max(500, at + 700)).slice(0, 900);
+};
+
+/** Discovery amplio de challenges, prizes y aceleradoras. Solo Firecrawl search; no ScrapeGraph. */
+export async function grantWebOpportunities(brief, plan, { env = process.env, fetcher = fetch, signal, live = noopRecorder, record = () => {}, usageClient = null } = {}) {
+  if (!firecrawlConfigured(env)) return Object.assign([], { searchAudit: [] });
+  const focus = focusOf(brief);
+  const year = new Date().getFullYear();
+  const terms = [...new Set((plan.terms || []).map((x) => x.term).filter(Boolean))];
+  const queries = [
+    `${focus} startup challenge prize competition applications open ${year}`,
+    `${focus} startup accelerator innovation program non-dilutive funding apply ${year}`,
+    `${terms[1] || focus} early stage startup open call global prize`,
+  ].slice(0, clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 5, 3));
+  const seen = new Map();
+  const audit = [];
+  const pageText = new Map();
+  for (const query of queries) {
+    const results = await firecrawlSearch(query, { limit: clamp(env.GRANT_WEB_RESULTS_PER_QUERY, 3, 10, 6), markdown: true, env, fetcher, signal, live, record });
+    let accepted = 0;
+    for (const result of results) {
+      const hay = `${result.title} ${result.description} ${result.markdown}`;
+      if (!/(apply|applications?|challenge|competition|prize|accelerator|incubator|fellowship|open call|startup call)/i.test(hay)) continue;
+      if (BLOCKED_HOSTS.test(hostOf(result.url))) continue;
+      const excerpt = opportunityExcerpt(result.markdown || result.description);
+      if (excerpt.length < 80) continue;
+      const host = hostOf(result.url).replace(/^www\./, '');
+      const deadline = opportunityDate(hay);
+      const ev = [evidence(`${GRANT_WEB_SOURCE} · ${host}`, result.url, excerpt, 'opportunity')];
+      const lead = candidate({
+        externalId: `web-opportunity:${result.url}`,
+        org: host,
+        title: result.title || `${opportunityType(hay)} opportunity`,
+        kind: 'opportunity', fundingType: 'grant', opportunityType: opportunityType(hay),
+        status: deadline && Date.parse(`${deadline}T23:59:59Z`) < Date.now() ? 'closed' : 'open',
+        deadline,
+        contact: { type: 'source', value: result.url, provenance: 'Official or first-party opportunity page found by web search; verify before applying' },
+        evidence: ev,
+        risks: ['Open-web opportunity: confirm organizer, eligibility, terms and whether the benefit is cash, equity or access'],
+        missing: [...(deadline ? [] : ['Application deadline not confirmed']), 'Eligibility and program terms to confirm'],
+        searchText: hay.slice(0, 8000),
+        foundBy: [{ provider: GRANT_WEB_SOURCE, term: focus, objective: 'grant', query, dimension: 'opportunity_type' }],
+      });
+      if (!seen.has(result.url)) { seen.set(result.url, lead); pageText.set(result.url, { url: result.url, title: result.title, text: result.markdown || result.description }); accepted++; }
+    }
+    audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: results.length, discovered: accepted });
+  }
+  usageClient?.track?.('Firecrawl', { calls: queries.length, results: seen.size });
+  // Lectura con el modelo de la flota + verificación en código (solo con GRANT_WEB_READ=1 y flota configurada).
+  if (env.GRANT_WEB_READ === '1' && seen.size) {
+    const urls = [...seen.keys()].slice(0, clamp(env.GRANT_WEB_READ_MAX, 1, 40, 18));
+    const reads = await readMany(urls.map((u) => pageText.get(u)), brief, { env, fetcher, signal });
+    const dropped = {};
+    urls.forEach((url, i) => {
+      const r = reads[i];
+      if (!r || r.read === false) return; // sin flota o página no leída: el lead queda como estaba
+      const lead = seen.get(url);
+      if (!r.keep) { seen.delete(url); dropped[r.drop] = (dropped[r.drop] || 0) + 1; return; }
+      lead.status = r.status === 'unknown' ? 'unknown' : r.status;
+      lead.deadline = r.deadline;
+      lead.missing = [...(r.deadline ? [] : ['Application deadline not confirmed on the page']), ...(r.eligible === 'yes' ? [] : ['Eligibility to confirm'])];
+      lead.verification = { verdict: r.verdict, eligible: r.eligible, nonDilutive: r.nonDilutive, flags: r.flags, quotes: r.quotes, daysLeft: r.daysLeft, model: r.model };
+      if (r.quotes.deadline) lead.evidence.push(evidence(`${GRANT_WEB_SOURCE} · deadline quote`, url, r.quotes.deadline, 'opportunity'));
+    });
+    audit.push({ provider: GRANT_WEB_SOURCE, query: '(page reading)', dimension: 'verification', returned: urls.length, discovered: seen.size, dropped });
+  }
+  return Object.assign([...seen.values()].slice(0, 18), { searchAudit: audit });
 }
 
 /** ScrapeGraph v2 /extract sobre el markdown que ya leyó Firecrawl (o sobre una URL). */
@@ -182,8 +264,30 @@ export function webLeads(people, brief) {
   });
 }
 
+/** Extrae y verifica personas desde páginas ya leídas. Compartido por discovery y follow-up. */
+export async function peopleFromPages(pages, brief, { env = process.env, fetcher = fetch, signal, record, live = noopRecorder, maxPeople = 20, parent = null, usageClient = null } = {}) {
+  const people = [];
+  const errors = [];
+  for (const page of pages) {
+    try {
+      const started = Date.now();
+      const extracted = await scrapegraphExtract({ markdown: page.markdown, prompt: 'Extract the team members on this page (investors, partners, principals, directors, business development) with role, organization, other affiliations mentioned, and email and LinkedIn link only if they appear literally.', schema: PEOPLE_SCHEMA }, { env, fetcher, signal, live, record });
+      usageClient?.track?.('ScrapeGraph', { calls: 1, results: Array.isArray(extracted?.people) ? extracted.people.length : 0, ms: Date.now() - started, bytes: Buffer.byteLength(page.markdown || '') });
+      people.push(...verifiedPeople(extracted, page));
+    } catch (error) { errors.push(`${hostOf(page.url)}: ${error.message}`); }
+    if (people.length >= maxPeople) break;
+  }
+  const unique = [...new Map(people.map((person) => [`${norm(person.name)}|${norm(person.org)}`, person])).values()].slice(0, maxPeople);
+  const leads = webLeads(unique, brief).map((lead) => ({
+    ...lead,
+    ...(parent ? { parentKey: parent.parentKey, followUp: { from: parent.org, question: `Who decides at ${parent.org}?` } } : {}),
+    foundBy: [...(lead.foundBy || []), { provider: parent ? 'Follow-up: funder → people' : WEB_SOURCE, term: parent?.term || '', objective: lead.fundingType, query: parent?.query || '' }],
+  }));
+  return { people: unique, leads, errors };
+}
+
 /** Descubre personas decisoras en páginas públicas de fondos/empresas. Reemplaza apifyPeople. */
-export async function webPeople(leads, brief, { env = process.env, fetcher = fetch, signal, record, live = noopRecorder } = {}) {
+export async function webPeople(leads, brief, { env = process.env, fetcher = fetch, signal, record, live = noopRecorder, usageClient = null } = {}) {
   if (!brief.fundingTypes.some((t) => ['investment', 'debt', 'partnering'].includes(t))) return { queries: [], pages: 0, leads: [] };
   const maxPages = clamp(env.WEB_MAX_PAGES, 1, 10, 4);
   const maxPeople = clamp(env.WEB_MAX_PEOPLE, 1, 50, 20);
@@ -194,18 +298,10 @@ export async function webPeople(leads, brief, { env = process.env, fetcher = fet
     for (const r of results) if (!BLOCKED_HOSTS.test(hostOf(r.url)) && r.markdown.length > 200 && !pages.has(r.url)) pages.set(r.url, r);
     if (pages.size >= maxPages) break;
   }
-  const people = [];
-  const errors = [];
-  for (const page of [...pages.values()].slice(0, maxPages)) {
-    try {
-      const extracted = await scrapegraphExtract({ markdown: page.markdown, prompt: 'Extract the team members on this page (investors, partners, directors, business development) with role, organization, other affiliations mentioned (past jobs, universities, boards, portfolio companies), and email and LinkedIn link only if they appear literally.', schema: PEOPLE_SCHEMA }, { env, fetcher, signal, live, record });
-      people.push(...verifiedPeople(extracted, page));
-    } catch (error) { errors.push(`${hostOf(page.url)}: ${error.message}`); }
-    if (people.length >= maxPeople) break;
-  }
-  const unique = [...new Map(people.map((p) => [`${norm(p.name)}|${norm(p.org)}`, p])).values()].slice(0, maxPeople);
-  if (!unique.length && errors.length && errors.length === pages.size) throw new Error(errors.join('; '));
-  return { queries, pages: pages.size, errors, leads: webLeads(unique, brief) };
+  usageClient?.track?.('Firecrawl', { calls: queries.length, results: pages.size });
+  const extracted = await peopleFromPages([...pages.values()].slice(0, maxPages), brief, { env, fetcher, signal, record, live, maxPeople, usageClient });
+  if (!extracted.people.length && extracted.errors.length && extracted.errors.length === pages.size) throw new Error(extracted.errors.join('; '));
+  return { queries, pages: pages.size, errors: extracted.errors, leads: extracted.leads };
 }
 
 const handleOf = (url) => { try { return decodeURIComponent(new URL(url).pathname.match(/^\/in\/([^/]+)/i)?.[1] || '').toLowerCase(); } catch { return ''; } };

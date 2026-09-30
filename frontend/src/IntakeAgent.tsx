@@ -92,6 +92,31 @@ export function LiveProfile({ intake, onRemoveDocument }: { intake: IntakeState 
   </div>;
 }
 
+
+/* ───────── Progress (feedback 28/09): the user must know how many questions are left
+   and what they get at 100%. Visual: Plan CRM "Lead Detail" progress bar (Dstudio). ───────── */
+export function PlanProgress({ intake }: { intake: IntakeState | null }) {
+  const plan = intake?.planFields?.length ? intake.planFields : REQUIRED;
+  const missing = intake ? plan.filter((p) => intake.missing.includes(p)) : plan;
+  const done = plan.length - missing.length;
+  const pct = Math.round((done / plan.length) * 100);
+  return <div className="ia-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Plan readiness">
+    <div className="ia-progress-h">
+      <span className="ia-progress-t"><LoaderCircle size={14} className={pct < 100 ? 'spin-slow' : ''} /> Your plan</span>
+      <span><b>{pct}%</b> · {done} of {plan.length} answers</span>
+    </div>
+    <div className="ia-progress-bar"><b style={{ width: `${pct}%` }} />{pct < 100 && <s style={{ left: `${pct}%`, width: `${Math.min(100 - pct, 100 / REQUIRED.length)}%` }} />}<i style={{ left: `${pct}%` }} /></div>
+    <p>{pct < 100 ? <>At 100% we build your plan: <b>who to contact, why, and a 4-line email</b>.</> : <><Check size={13} /> Complete. Review and run the search.</>}</p>
+  </div>;
+}
+function HowItWorks() {
+  return <ol className="ia-how" aria-label="How it works">
+    <li><i>1</i><b>Answer a few short questions</b><small>or attach your deck</small></li>
+    <li><i>2</i><b>We find who funds this today</b></li>
+    <li><i>3</i><b>You get who to contact, why, and a 4-line email</b></li>
+  </ol>;
+}
+
 /* ───────── Paso 1: conversación + adjuntos ───────── */
 type Pending = { id: string; file: File; status: 'reading' | 'ready' | 'error'; text?: string; pages?: number; error?: string };
 const STARTERS = ['I want to raise a seed round', 'I\'m looking for non-dilutive health grants', 'We want a pharma licensing partner'];
@@ -128,17 +153,21 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
   const onKey = (e: KeyboardEvent<HTMLTextAreaElement>) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send(); } };
   const onDrop = (e: DragEvent) => { e.preventDefault(); setDrag(false); if (e.dataTransfer.files.length) add(e.dataTransfer.files); };
   const fresh = (intake?.messages.length || 0) <= 1;
-  const missing = intake?.missing.length ?? REQUIRED.length;
+  const missing = intake ? (intake.planFields?.length ? intake.missing.length : REQUIRED.filter((p) => intake.missing.includes(p)).length) : REQUIRED.length;
+  // "I don't know" answers stay missing (the plan is not complete) but must not lock the user in.
+  const onlyUnknown = !!intake && missing > 0 && intake.missing.every((p) => intake.skipped.includes(p));
 
   return <div className="ia-chat">
-    <div className="ia-chat-head">
+    {title && <div className="ia-chat-head">
       <div><h1>{title}</h1><p className="rl-sub">{description}</p></div>
       <span className={`ia-model ${intake?.model.configured ? 'on' : ''}`} title={intake?.model.configured ? 'Local model via OpenAI-compatible endpoint' : 'No model: rule-based extraction'}><Sparkles size={13} />{intake?.model.configured ? intake.model.model : 'Basic extraction'}</span>
-    </div>
+    </div>}
+    <PlanProgress intake={intake} />
+    {fresh && <HowItWorks />}
     <div className="ia-thread" ref={thread} aria-live="polite">
-      {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role}`}>
+      {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role} ${m.role === 'assistant' && i === intake.messages.length - 1 && missing > 0 && !busy && intake.messages.length > 1 ? 'ask' : ''}`}>
         {m.role === 'assistant' && <img src="/igc-outreach-mark.png" alt="" width={26} height={26} />}
-        <div>{m.text && <p>{m.text}</p>}{m.files?.length ? <div className="ia-files">{m.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div> : null}</div>
+        <div>{m.role === 'assistant' && i === intake!.messages.length - 1 && missing > 0 && !busy && intake!.messages.length > 1 && <span className="ia-need">Needed for your plan</span>}{m.text && <p>{m.text}</p>}{m.files?.length ? <div className="ia-files">{m.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div> : null}</div>
       </div>)}
       {sent && <div className="ia-msg user pending"><div>{sent.text && <p>{sent.text}</p>}{sent.files.length > 0 && <div className="ia-files">{sent.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div>}</div></div>}
       {busy && <div className="ia-msg assistant"><img src="/igc-outreach-mark.png" alt="" width={26} height={26} /><div><p className="ia-typing"><i /><i /><i /> {sent?.files.length ? 'Reading your documents…' : 'Thinking…'}</p></div></div>}
@@ -159,8 +188,8 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
       <input ref={input} type="file" multiple accept={ACCEPT} hidden onChange={(e) => { if (e.target.files) add(e.target.files); e.target.value = ''; }} />
     </div>
     <div className="rl-actions ia-actions">
-      <span className="ia-status">{missing ? `${missing === 1 ? '1 required field missing' : `Missing ${missing} required fields`}; finish in review.` : <><Check size={14} /> Profile complete</>}</span>
-      <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>
+      <span className="ia-status">{!missing ? <><Check size={14} /> Your plan is complete</> : onlyUnknown ? 'Some answers are still unknown; results will be less precise.' : 'Answer the assistant to complete your plan.'}</span>
+      {(!missing || onlyUnknown || !reviewRequiresConversation) && <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (!!missing && !onlyUnknown) || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>}
     </div>
   </div>;
 }

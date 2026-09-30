@@ -22,7 +22,8 @@ export type NetworkGraphData = {
 };
 export type AuthenticatedGraphResult = { query:string; people:number; direct:number; mutualPaths:number; actors:string[]; errors:string[] };
 export type AccountSession = {
-  user: { id: string; email: string; name: string };
+  /** browser: anonymous workspace tied to a key kept in this browser (no login). */
+  user: { id: string; email: string; name: string; browser?: boolean };
   profile: (ProjectConfig & { onboardingComplete?: boolean }) | null;
   sources: AccountSource[];
 };
@@ -46,6 +47,8 @@ async function request<T>(path: string, init?: RequestInit, timeout = 20_000): P
 
 export const accountApi = {
   me: () => request<AccountSession>('/auth/me'),
+  /** Opens (or creates) the workspace of this browser. No email or password. */
+  browser: (key: string) => request<AccountSession>('/auth/browser', { method: 'POST', body: JSON.stringify({ key }) }),
   register: (name: string, email: string, password: string) =>
     request<AccountSession>('/auth/register', { method: 'POST', body: JSON.stringify({ name, email, password }) }),
   login: (email: string, password: string) =>
@@ -77,6 +80,8 @@ export type IntakeState = {
   documents: IntakeDocument[];
   fields: Record<string, IntakeField>;
   missing: string[];
+  /** Fields the plan needs for this goal (server-defined). Progress = planFields filled. */
+  planFields?: string[];
   skipped: string[];
   pending: string | null;
   confirmedAt: string | null;
@@ -99,3 +104,15 @@ export const intakeApi = {
   confirm: () =>
     request<{ profile: ProjectConfig & { onboardingComplete?: boolean }; intake: IntakeState }>('/intake/confirm', { method: 'POST', body: '{}' }),
 };
+
+/* ───────── Browser workspace key (feedback 29/09: no login; progress stays in this browser) ───────── */
+const KEY = 'igc-browser-key';
+let memoryKey = '';
+const newKey = () => { const b = new Uint8Array(32); crypto.getRandomValues(b); return btoa(String.fromCharCode(...b)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+/** The key that identifies this browser's workspace; created on first use. */
+export function browserKey(): string {
+  try { let k = localStorage.getItem(KEY); if (!k) { k = newKey(); localStorage.setItem(KEY, k); } return k; }
+  catch { memoryKey ||= newKey(); return memoryKey; }
+}
+/** Forget this browser's workspace; the next visit starts a new, empty one. */
+export function resetBrowserKey() { try { localStorage.removeItem(KEY); } catch { /* no storage */ } memoryKey = ''; }

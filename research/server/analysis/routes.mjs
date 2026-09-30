@@ -15,6 +15,14 @@ const CREATIVE_ROUTES = ['portfolio_founder', 'office_hours', 'event', 'content'
 const CREATIVE_SYSTEM = `You are an ingenious fundraising strategist. The founder has NO one in their network who knows this target. Find the smartest, most specific way to become warm with THIS person before asking for money.
 Think beyond "send updates": a founder they backed, their office hours or program, an event where they speak, something they published, their stated thesis, shared research, a customer or partner in common, a co-investor, a community they run, a pilot that makes them come to you.
 Rules: use ONLY facts in "evidence" and cite one with evidence_id. No invented names, events or dates. The first move must be doable this week and ask for advice, feedback or a small yes, never money. Be concrete (name the piece, program or company from the evidence). "hook" is one sentence on why this angle works for this person. English, short.`;
+/* Model text: drop leaked citations like "(evidence_id: …)" and cut at a word boundary, never mid-word. */
+const tidy = (v, n) => {
+  const t = String(v || '').replace(/\s*[([]\s*evidence[_ ]?ids?\s*[:=][^)\]]*[)\]]/gi, '').replace(/\s*\bevidence[_ ]?id\s*[:=]\s*\S+/gi, '').replace(/\s+([.,;:])/g, '$1').replace(/\s{2,}/g, ' ').trim();
+  if (t.length <= n) return t;
+  const cut = t.slice(0, n - 1);
+  const at = Math.max(cut.lastIndexOf(' '), cut.lastIndexOf('. ') + 1);
+  return `${(at > n * 0.5 ? cut.slice(0, at) : cut).replace(/[\s,;:.\-–—(]+$/, '')}…`;
+};
 const CREATIVE_SCHEMA = { type: 'object', additionalProperties: false, required: ['route', 'label', 'hook', 'first_move', 'second_move', 'why', 'evidence_id'], properties: {
   route: { type: 'string', enum: CREATIVE_ROUTES }, label: { type: 'string' }, hook: { type: 'string' }, first_move: { type: 'string' }, second_move: { type: 'string' }, why: { type: 'string' }, evidence_id: { type: 'string' } } };
 
@@ -44,7 +52,7 @@ export function createRunEnrichers({ store, env = process.env, fetcher = fetch }
     { name: 'Creative warm paths', run: async (job, { signal }) => {
       if (!fleetConfig(env).roles.chat.ready) return { skipped: true, count: 0, message: 'Creative warm paths: no chat model configured; rule-based angles kept.' };
       const b = job.brief || {};
-      const targets = (job.leads || []).filter((l) => l.warmPlan && !l.warmPlan.built && l.warmPlan.route !== 'program_officer' && l.bucket !== 'discarded').sort((x, y) => (y.score || 0) - (x.score || 0)).slice(0, 12);
+      const targets = (job.leads || []).filter((l) => l.fundingType !== 'grant' && l.kind !== 'opportunity' && l.warmPlan && !l.warmPlan.built && l.bucket !== 'discarded').sort((x, y) => (y.score || 0) - (x.score || 0)).slice(0, 12);
       if (!targets.length) return { skipped: true, count: 0, message: 'Creative warm paths: every candidate already has a network path.' };
       let improved = 0;
       for (const lead of targets) {
@@ -62,14 +70,15 @@ export function createRunEnrichers({ store, env = process.env, fetcher = fetch }
           const plan = lead.warmPlan;
           const tail = plan.steps.filter((st) => /update|meeting/i.test(st.what));
           const day = (n) => new Date(Date.now() + n * 86400000).toISOString().slice(0, 10);
-          lead.warmPlan = { ...plan, route: CREATIVE_ROUTES.includes(json.route) ? json.route : plan.route, label: String(json.label || plan.label).slice(0, 60), hook: String(json.hook).slice(0, 220), source: 'ai', evidence: { id: hit.id, url: hit.url, quote: hit.quote.slice(0, 240) },
-            why: String(json.why || plan.why).slice(0, 400), steps: [{ when: day(0), what: String(json.first_move).slice(0, 260) }, ...(json.second_move ? [{ when: day(10), what: String(json.second_move).slice(0, 260) }] : []), ...tail] };
+          lead.warmPlan = { ...plan, route: CREATIVE_ROUTES.includes(json.route) ? json.route : plan.route, label: String(json.label || plan.label).slice(0, 60), hook: tidy(json.hook, 220), source: 'ai', evidence: { id: hit.id, url: hit.url, quote: hit.quote.slice(0, 240) },
+            why: tidy(json.why || plan.why, 400), steps: [{ when: day(0), what: tidy(json.first_move, 260) }, ...(json.second_move ? [{ when: day(10), what: tidy(json.second_move, 260) }] : []), ...tail] };
           improved += 1;
         } catch { /* se mantiene el plan por reglas */ }
       }
       return { count: improved, message: `Creative warm paths: ${improved} of ${targets.length} candidates got a specific angle from the evidence.` };
     } },
     { name: 'Active investors', run: async (job) => {
+      if (!(job.brief?.fundingTypes || []).includes('investment')) return { skipped: true, count: 0, message: 'Active investors: not requested in this run.' };
       if (!A.dealCount()) return { skipped: true, count: 0, message: 'Active investors: deals database is empty; revealed-thesis ranking skipped.' };
       const b = job.brief || {};
       const profile = [b.stage, b.industry, b.geography, b.product, b.description].filter(Boolean).join(' · ').slice(0, 2000);

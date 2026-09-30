@@ -1,0 +1,1241 @@
+{
+  "at": "2026-09-28T02:34:30.751Z",
+  "rounds": "/sessions/rcw-01h1h7g39ko91ne5ptgw3an1/mnt/REPOSITORIO/backend/eval/backtest_rounds.json",
+  "rows": [
+    {
+      "id": "latam-01",
+      "company": "Telepatia AI",
+      "announced": "2025-10-20",
+      "stage": "seed",
+      "region": "LATAM",
+      "asOf": "2025-10-19",
+      "leads": [
+        "A-Star"
+      ],
+      "covered": false,
+      "dealsBeforeT": 25,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Impact Ventures",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "Afya",
+        "OurCrowd LATAM Labs",
+        "Andreessen Horowitz"
+      ]
+    },
+    {
+      "id": "latam-02",
+      "company": "Huna",
+      "announced": "2025-06-05",
+      "stage": "pre-seed",
+      "region": "LATAM",
+      "asOf": "2025-06-04",
+      "leads": [
+        "Kortex Ventures"
+      ],
+      "covered": true,
+      "dealsBeforeT": 20,
+      "ranks": {
+        "B1_app": 23,
+        "S1_revelada": 15,
+        "S2_revelada_momento_rerank": 23
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "OurCrowd LATAM Labs",
+        "Andreessen Horowitz",
+        "ABSeed Ventures",
+        "Impact Ventures",
+        "BR Angels",
+        "QED Investors",
+        "Valor Capital",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Headline Ventures"
+      ]
+    },
+    {
+      "id": "latam-03",
+      "company": "Cycles Nutrition",
+      "announced": "2025-02-06",
+      "stage": "seed",
+      "region": "LATAM",
+      "asOf": "2025-02-05",
+      "leads": [
+        "Headline Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 13,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "General Catalyst",
+        "Coalition Operators",
+        "MVP Ventures",
+        "Tau Ventures"
+      ]
+    },
+    {
+      "id": "latam-04",
+      "company": "The Men's",
+      "announced": "2025-01-13",
+      "stage": "seed",
+      "region": "LATAM",
+      "asOf": "2025-01-12",
+      "leads": [
+        "BR Angels"
+      ],
+      "covered": false,
+      "dealsBeforeT": 12,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "Andreessen Horowitz",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "General Catalyst",
+        "Kortex Ventures",
+        "Kfund"
+      ]
+    },
+    {
+      "id": "latam-05",
+      "company": "Carecode",
+      "announced": "2025-01-08",
+      "stage": "pre-seed",
+      "region": "LATAM",
+      "asOf": "2025-01-07",
+      "leads": [
+        "Andreessen Horowitz",
+        "QED Investors"
+      ],
+      "covered": true,
+      "dealsBeforeT": 11,
+      "ranks": {
+        "B1_app": 1,
+        "S1_revelada": 2,
+        "S2_revelada_momento_rerank": 2
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "ABSeed Ventures",
+        "Andreessen Horowitz",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Kfund",
+        "General Catalyst",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars"
+      ]
+    },
+    {
+      "id": "latam-06",
+      "company": "Clinia",
+      "announced": "2024-11-28",
+      "stage": "pre-seed",
+      "region": "LATAM",
+      "asOf": "2024-11-27",
+      "leads": [
+        "ABSeed Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 9,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "AlleyCorp",
+        "Reach Capital",
+        "Kortex Ventures",
+        "Andreessen Horowitz",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars"
+      ]
+    },
+    {
+      "id": "latam-07",
+      "company": "Sofía",
+      "announced": "2024-12-17",
+      "stage": "no especificada",
+      "region": "LATAM",
+      "asOf": "2024-12-16",
+      "leads": [
+        "Kfund"
+      ],
+      "covered": false,
+      "dealsBeforeT": 10,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "AlleyCorp",
+        "Reach Capital",
+        "International Finance Corporation",
+        "Volpe Capital",
+        "General Catalyst",
+        "Kortex Ventures",
+        "Charge Ventures",
+        "GreyMatter",
+        "Andreessen Horowitz",
+        "Aeroflow Health"
+      ]
+    },
+    {
+      "id": "latam-08",
+      "company": "Biologix",
+      "announced": "2024-05-07",
+      "stage": "no especificada",
+      "region": "LATAM",
+      "asOf": "2024-05-06",
+      "leads": [
+        "Kortex Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 3,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "General Catalyst",
+        "B Capital",
+        "Co-Found Partners",
+        "Meridian Street Capital",
+        "Primetime Partners",
+        "VU Venture Partners",
+        "Coalition Operators",
+        "MVP Ventures",
+        "Tau Ventures"
+      ]
+    },
+    {
+      "id": "latam-09",
+      "company": "Genial Care",
+      "announced": "2024-01-25",
+      "stage": "no especificada",
+      "region": "LATAM",
+      "asOf": "2024-01-24",
+      "leads": [
+        "General Catalyst"
+      ],
+      "covered": true,
+      "dealsBeforeT": 1,
+      "ranks": {
+        "B1_app": 2,
+        "S1_revelada": 2,
+        "S2_revelada_momento_rerank": 2
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Coalition Operators",
+        "General Catalyst",
+        "MVP Ventures",
+        "Tau Ventures"
+      ]
+    },
+    {
+      "id": "latam-10",
+      "company": "Leona Health",
+      "announced": "2025-12-17",
+      "stage": "seed",
+      "region": "LATAM",
+      "asOf": "2025-12-16",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "covered": true,
+      "dealsBeforeT": 28,
+      "ranks": {
+        "B1_app": 1,
+        "S1_revelada": 13,
+        "S2_revelada_momento_rerank": 13
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "A-Star",
+        "Plus Partners",
+        "Shilling VC",
+        "Impact Ventures",
+        "ABSeed Ventures",
+        "Afya",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute"
+      ]
+    },
+    {
+      "id": "latam-11",
+      "company": "Marisa.Care",
+      "announced": "2025-08-26",
+      "stage": "pre-seed",
+      "region": "LATAM",
+      "asOf": "2025-08-25",
+      "leads": [
+        "Afya"
+      ],
+      "covered": false,
+      "dealsBeforeT": 22,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Andreessen Horowitz",
+        "Kortex Ventures",
+        "OurCrowd LATAM Labs",
+        "ABSeed Ventures",
+        "True Ventures",
+        "QED Investors",
+        "Valor Capital",
+        "Palta",
+        "Impact Ventures",
+        "BR Angels"
+      ]
+    },
+    {
+      "id": "latam-12",
+      "company": "Yeda Health",
+      "announced": "2025-04-29",
+      "stage": "pre-seed",
+      "region": "LATAM",
+      "asOf": "2025-04-28",
+      "leads": [
+        "OurCrowd LATAM Labs"
+      ],
+      "covered": false,
+      "dealsBeforeT": 17,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Andreessen Horowitz",
+        "ABSeed Ventures",
+        "Kfund",
+        "BR Angels",
+        "IDB Lab",
+        "Index Ventures",
+        "Kaszek",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Kortex Ventures"
+      ]
+    },
+    {
+      "id": "us-01",
+      "company": "The Path",
+      "announced": "2026-05-21",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2026-05-20",
+      "leads": [
+        "Prime Movers Lab"
+      ],
+      "covered": false,
+      "dealsBeforeT": 35,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "A-Star",
+        "Andreessen Horowitz",
+        "General Catalyst",
+        "Plus Partners",
+        "Shilling VC",
+        "Accel",
+        "Headline",
+        "Lachy Groom",
+        "Susa Ventures",
+        "Activate Venture Partners"
+      ]
+    },
+    {
+      "id": "us-02",
+      "company": "Blossom Health",
+      "announced": "2026-03-26",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2026-03-25",
+      "leads": [
+        "Headline"
+      ],
+      "covered": true,
+      "dealsBeforeT": 33,
+      "ranks": {
+        "B1_app": 43,
+        "S1_revelada": 43,
+        "S2_revelada_momento_rerank": 41
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Andreessen Horowitz",
+        "General Catalyst",
+        "A-Star",
+        "Accel",
+        "Plus Partners",
+        "Shilling VC",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute"
+      ]
+    },
+    {
+      "id": "us-03",
+      "company": "Somethings",
+      "announced": "2023-05-16",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2023-05-15",
+      "leads": [
+        "General Catalyst"
+      ],
+      "covered": false,
+      "dealsBeforeT": 0,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": []
+    },
+    {
+      "id": "us-04",
+      "company": "Isaac Health",
+      "announced": "2024-01-25",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2024-01-24",
+      "leads": [
+        "Meridian Street Capital",
+        "B Capital"
+      ],
+      "covered": false,
+      "dealsBeforeT": 1,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Coalition Operators",
+        "General Catalyst",
+        "MVP Ventures",
+        "Tau Ventures"
+      ]
+    },
+    {
+      "id": "us-05",
+      "company": "NewDays",
+      "announced": "2026-09-02",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2026-09-01",
+      "leads": [
+        "Madrona",
+        "General Catalyst"
+      ],
+      "covered": true,
+      "dealsBeforeT": 38,
+      "ranks": {
+        "B1_app": 2,
+        "S1_revelada": 7,
+        "S2_revelada_momento_rerank": 7
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Plus Partners",
+        "Shilling VC",
+        "Prime Movers Lab",
+        "Designer Fund",
+        "A-Star",
+        "Andreessen Horowitz",
+        "General Catalyst",
+        "Accel",
+        "Impact Ventures",
+        "Headline"
+      ]
+    },
+    {
+      "id": "us-06",
+      "company": "Lizzy Care",
+      "announced": "2025-02-25",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-02-24",
+      "leads": [
+        "Boomerang Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 14,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Andreessen Horowitz",
+        "Aeroflow Health",
+        "Beta Boom",
+        "General Catalyst",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "ABSeed Ventures",
+        "Coalition Operators"
+      ]
+    },
+    {
+      "id": "us-07",
+      "company": "Precise Behavioral",
+      "announced": "2026-07-29",
+      "stage": "no especificada",
+      "region": "US",
+      "asOf": "2026-07-28",
+      "leads": [
+        "A1 Health Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 37,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Activate Venture Partners",
+        "LiveOak Ventures",
+        "EO Ventures",
+        "A Squared Ventures",
+        "Esplanade Ventures",
+        "Harpoon Ventures",
+        "CRV",
+        "Prime Movers Lab",
+        "Rethink Education",
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "id": "us-08",
+      "company": "Avela Health",
+      "announced": "2026-02-10",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2026-02-09",
+      "leads": [
+        "Rethink Education"
+      ],
+      "covered": false,
+      "dealsBeforeT": 31,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Plus Partners",
+        "Shilling VC",
+        "Andreessen Horowitz",
+        "Activate Venture Partners",
+        "LiveOak Ventures",
+        "Aeroflow Health",
+        "Beta Boom",
+        "A-Star",
+        "Luminary Impact Fund",
+        "Sorenson Institute"
+      ]
+    },
+    {
+      "id": "us-09",
+      "company": "Triplemoon",
+      "announced": "2025-10-16",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-10-15",
+      "leads": [
+        "Activate Venture Partners",
+        "LiveOak Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 24,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "Lachy Groom",
+        "Susa Ventures",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "Impact Ventures",
+        "Y Combinator"
+      ]
+    },
+    {
+      "id": "us-10",
+      "company": "Pallie AI",
+      "announced": "2025-05-06",
+      "stage": "pre-seed",
+      "region": "US",
+      "asOf": "2025-05-05",
+      "leads": [
+        "True Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 18,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Andreessen Horowitz",
+        "OurCrowd LATAM Labs",
+        "ABSeed Ventures",
+        "Boomerang Ventures",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars"
+      ]
+    },
+    {
+      "id": "us-11",
+      "company": "No Barrier",
+      "announced": "2025-11-18",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-11-17",
+      "leads": [
+        "A Squared Ventures",
+        "Esplanade Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 26,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "A-Star",
+        "Impact Ventures",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "Afya",
+        "Andreessen Horowitz"
+      ]
+    },
+    {
+      "id": "us-12",
+      "company": "Proximity",
+      "announced": "2025-02-25",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-02-24",
+      "leads": [
+        "LRVHealth"
+      ],
+      "covered": false,
+      "dealsBeforeT": 14,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "General Catalyst",
+        "Andreessen Horowitz",
+        "Coalition Operators",
+        "MVP Ventures"
+      ]
+    },
+    {
+      "id": "us-13",
+      "company": "a2z Radiology AI",
+      "announced": "2025-12-16",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-12-15",
+      "leads": [
+        "Khosla Ventures",
+        "SeaX Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 28,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "A-Star",
+        "Plus Partners",
+        "Shilling VC",
+        "Sierra Ventures",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Impact Ventures",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital"
+      ]
+    },
+    {
+      "id": "us-14",
+      "company": "Valinor",
+      "announced": "2025-12-16",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-12-15",
+      "leads": [
+        "CRV",
+        "Harpoon Ventures"
+      ],
+      "covered": false,
+      "dealsBeforeT": 28,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "A-Star",
+        "Plus Partners",
+        "Shilling VC",
+        "Impact Ventures",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars"
+      ]
+    },
+    {
+      "id": "us-16",
+      "company": "Rosebud",
+      "announced": "2025-06-04",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2025-06-03",
+      "leads": [
+        "Susa Ventures",
+        "Lachy Groom"
+      ],
+      "covered": false,
+      "dealsBeforeT": 20,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "Impact Ventures",
+        "True Ventures",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "Andreessen Horowitz",
+        "Boomerang Ventures"
+      ]
+    },
+    {
+      "id": "us-17",
+      "company": "Slingshot AI",
+      "announced": "2024-08-28",
+      "stage": "no especificada",
+      "region": "US",
+      "asOf": "2024-08-27",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "covered": false,
+      "dealsBeforeT": 5,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Kortex Ventures",
+        "International Finance Corporation",
+        "Volpe Capital",
+        "B Capital",
+        "Meridian Street Capital",
+        "General Catalyst",
+        "Co-Found Partners",
+        "Primetime Partners",
+        "VU Venture Partners",
+        "Coalition Operators"
+      ]
+    },
+    {
+      "id": "us-18",
+      "company": "Canopie",
+      "announced": "2024-09-24",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2024-09-23",
+      "leads": [
+        "Beta Boom",
+        "Aeroflow Health"
+      ],
+      "covered": false,
+      "dealsBeforeT": 6,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "General Catalyst",
+        "Coalition Operators",
+        "MVP Ventures",
+        "Tau Ventures",
+        "Andreessen Horowitz",
+        "Kortex Ventures",
+        "B Capital",
+        "Meridian Street Capital",
+        "Co-Found Partners",
+        "Primetime Partners"
+      ]
+    },
+    {
+      "id": "us-19",
+      "company": "Coral Care",
+      "announced": "2024-09-24",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2024-09-23",
+      "leads": [
+        "AlleyCorp",
+        "Reach Capital"
+      ],
+      "covered": false,
+      "dealsBeforeT": 6,
+      "ranks": {
+        "B1_app": null,
+        "S1_revelada": null,
+        "S2_revelada_momento_rerank": null
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "General Catalyst",
+        "Coalition Operators",
+        "MVP Ventures",
+        "Tau Ventures",
+        "Kortex Ventures",
+        "International Finance Corporation",
+        "Volpe Capital",
+        "Andreessen Horowitz",
+        "B Capital",
+        "Meridian Street Capital"
+      ]
+    },
+    {
+      "id": "us-20",
+      "company": "Counsel Health",
+      "announced": "2024-10-22",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2024-10-21",
+      "leads": [
+        "Andreessen Horowitz"
+      ],
+      "covered": true,
+      "dealsBeforeT": 8,
+      "ranks": {
+        "B1_app": 17,
+        "S1_revelada": 15,
+        "S2_revelada_momento_rerank": 15
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Aeroflow Health",
+        "Beta Boom",
+        "Luminary Impact Fund",
+        "Sorenson Institute",
+        "Symphonic Capital",
+        "Techstars",
+        "General Catalyst",
+        "International Finance Corporation",
+        "Volpe Capital",
+        "Coalition Operators"
+      ]
+    },
+    {
+      "id": "us-21",
+      "company": "Baba",
+      "announced": "2026-03-03",
+      "stage": "seed",
+      "region": "US",
+      "asOf": "2026-03-02",
+      "leads": [
+        "General Catalyst"
+      ],
+      "covered": true,
+      "dealsBeforeT": 32,
+      "ranks": {
+        "B1_app": 2,
+        "S1_revelada": 5,
+        "S2_revelada_momento_rerank": 5
+      },
+      "contaminated": null,
+      "method": {
+        "similarity": "léxica (TF-IDF, sin flota)",
+        "rerank": "no",
+        "momentum": true
+      },
+      "top10": [
+        "Andreessen Horowitz",
+        "Plus Partners",
+        "Shilling VC",
+        "Accel",
+        "General Catalyst",
+        "A-Star",
+        "Aeroflow Health",
+        "Beta Boom",
+        "Impact Ventures",
+        "Luminary Impact Fund"
+      ]
+    }
+  ],
+  "table": {
+    "todas": {
+      "B1_app": {
+        "n": 32,
+        "hitAtK": 0.15625,
+        "mrr": 0.11329867513233807
+      },
+      "S1_revelada": {
+        "n": 32,
+        "hitAtK": 0.125,
+        "mrr": 0.04926154272084504
+      },
+      "S2_revelada_momento_rerank": {
+        "n": 32,
+        "hitAtK": 0.125,
+        "mrr": 0.04857235597559033
+      }
+    },
+    "cubiertas": {
+      "B1_app": {
+        "n": 8,
+        "hitAtK": 0.625,
+        "mrr": 0.4531947005293523
+      },
+      "S1_revelada": {
+        "n": 8,
+        "hitAtK": 0.5,
+        "mrr": 0.19704617088338017
+      },
+      "S2_revelada_momento_rerank": {
+        "n": 8,
+        "hitAtK": 0.5,
+        "mrr": 0.1942894239023613
+      }
+    },
+    "no_contaminadas": {
+      "B1_app": {
+        "n": 0,
+        "hitAtK": null,
+        "mrr": null
+      },
+      "S1_revelada": {
+        "n": 0,
+        "hitAtK": null,
+        "mrr": null
+      },
+      "S2_revelada_momento_rerank": {
+        "n": 0,
+        "hitAtK": null,
+        "mrr": null
+      }
+    },
+    "semilla": {
+      "B1_app": {
+        "n": 27,
+        "hitAtK": 0.14814814814814814,
+        "mrr": 0.11576139274943771
+      },
+      "S1_revelada": {
+        "n": 27,
+        "hitAtK": 0.1111111111111111,
+        "mrr": 0.03986553211359412
+      },
+      "S2_revelada_momento_rerank": {
+        "n": 27,
+        "hitAtK": 0.1111111111111111,
+        "mrr": 0.03904871819329224
+      }
+    },
+    "posteriores_a_2025-12-31": {
+      "B1_app": {
+        "n": 6,
+        "hitAtK": 0.3333333333333333,
+        "mrr": 0.17054263565891473
+      },
+      "S1_revelada": {
+        "n": 6,
+        "hitAtK": 0.3333333333333333,
+        "mrr": 0.0610188261351052
+      },
+      "S2_revelada_momento_rerank": {
+        "n": 6,
+        "hitAtK": 0.3333333333333333,
+        "mrr": 0.06120789779326365
+      }
+    }
+  },
+  "vsClaude": null,
+  "vsApp": {
+    "mean": -0.03125,
+    "ci95": [
+      -0.09375,
+      0
+    ]
+  },
+  "coverage": 0.25,
+  "decision": "Falta la línea base (b) Claude: correr scripts/baseline-claude.mjs."
+}

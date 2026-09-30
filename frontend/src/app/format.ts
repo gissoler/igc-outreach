@@ -42,9 +42,30 @@ export const fmtAge = (s?: string | null, now = Date.now()) => {
 export const plural = (n: number, one: string, many: string) => `${fmtInt(n)} ${n === 1 ? one : many}`;
 export const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase() || '·';
 export const clip = (s: string, n: number) => s.length > n ? `${s.slice(0, n - 1)}…` : s;
-/** Some sources store the quote as JSON: shown as "field: value · …". */
+/** Cuts at a word boundary (never mid-word) and adds "…" only when something was removed. */
+export const clipWords = (s: string, n: number) => {
+  const t = s.replace(/\s+/g, ' ').trim();
+  if (t.length <= n) return t;
+  const cut = t.slice(0, n - 1);
+  const at = Math.max(cut.lastIndexOf(' '), cut.lastIndexOf('. ') + 1);
+  return `${(at > n * 0.5 ? cut.slice(0, at) : cut).replace(/[\s,;:.\-–—(]+$/, '')}…`;
+};
+/** Model text without leaked citations such as "(evidence_id: e56fb11a…)" or "[evidence_id=…]". */
+export const cleanText = (s: string) => String(s || '')
+  .replace(/\s*[([]\s*evidence[_ ]?ids?\s*[:=]\s*[^)\]]*[)\]]/gi, '')
+  .replace(/\s*\bevidence[_ ]?id\s*[:=]\s*\S+/gi, '')
+  .replace(/\s+([.,;:])/g, '$1').replace(/\s{2,}/g, ' ').trim();
+/** Some sources store the quote as JSON, others as scraped markdown: shown as plain readable text. */
 export const readableQuote = (q: string) => {
   const t = q.trim();
-  if (!t.startsWith('{')) return q;
-  try { const o = JSON.parse(t) as Record<string, unknown>; return Object.entries(o).filter(([, v]) => v != null && v !== '').map(([k, v]) => `${k}: ${String(v)}`).join(' · '); } catch { return q; }
+  if (t.startsWith('{')) {
+    try { const o = JSON.parse(t) as Record<string, unknown>; return Object.entries(o).filter(([, v]) => v != null && v !== '').map(([k, v]) => `${k}: ${String(v)}`).join(' · '); } catch { /* falls through */ }
+  }
+  return t
+    .replace(/!\[[^\]]*\]\([^)]*\)?/g, ' ')                 // markdown images
+    .replace(/\[([^\]]*)\]\((?:https?:[^)]*|[^)]*)\)?/g, '$1') // [text](url) → text
+    .replace(/^[^\n]{0,80}?\.(?:png|jpe?g|gif|webp|svg)\)?/i, ' ') // leftover file name at the start
+    .replace(/\]?\(https?:[^)\s]*\)?/g, '')                    // dangling (url)
+    .replace(/%20/g, ' ').replace(/\\+/g, ' · ').replace(/[\[\]]/g, '')
+    .replace(/(?:\s*·\s*){2,}/g, ' · ').replace(/^[\s·]+|[\s·]+$/g, '').replace(/\s{2,}/g, ' ');
 };

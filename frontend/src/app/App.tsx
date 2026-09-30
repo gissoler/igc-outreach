@@ -1,7 +1,7 @@
 /* App root: session, hash routes, workspace and the isolated demo. */
 import { Play } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { accountApi, type AccountSession, type NetworkGraphData } from '../accountApi';
+import { accountApi, browserKey, resetBrowserKey, type AccountSession, type NetworkGraphData } from '../accountApi';
 import { LiveAgentRun } from '../LiveAgentRun';
 import type { Job } from '../researchApi';
 import { demoJob, demoNetwork } from './demoData';
@@ -21,7 +21,7 @@ import './app.css';
 import './plan.css';
 import './theme.css';
 
-type Route = { demo: boolean; view: NavKey; section: SectionId; lead: string | null; tab: OutreachTab };
+type Route = { signin: boolean; demo: boolean; view: NavKey; section: SectionId; lead: string | null; tab: OutreachTab };
 const OUTREACH_TABS: OutreachTab[] = ['pipeline', 'reunion'];
 /* Internal keys stay stable; the URL shows English slugs (old Spanish links still work). */
 const SLUG: Record<string, string> = { evaluacion: 'evaluation', analisis: 'analysis', red: 'network', ejecucion: 'runs', configuracion: 'setup', asistente: 'assistant', empresa: 'company', producto: 'product', objetivo: 'goal', evidencia: 'documents', revision: 'review', asesor: 'advisor', momento: 'momentum', acercamientos: 'outreach', reunion: 'meeting' };
@@ -32,6 +32,7 @@ function parse(hash: string): Route {
   const [path, query = ''] = hash.replace(/^#\/?/, '').split('?');
   const parts = path.split('/').filter(Boolean).map((p) => UNSLUG[p] || p);
   const demo = parts[0] === 'demo';
+  const signin = parts[0] === 'signin';
   const rest = demo ? parts.slice(1) : parts;
   // Old analysis sub-tabs for outreach and meeting prep now live in the Outreach module.
   if (rest[0] === 'analisis' && (rest[1] === 'acercamientos' || rest[1] === 'reunion')) rest.splice(0, 2, 'acercamientos', rest[1] === 'reunion' ? 'reunion' : 'pipeline');
@@ -39,7 +40,7 @@ function parse(hash: string): Route {
   const tab = (OUTREACH_TABS.includes(rest[1] as OutreachTab) ? rest[1] : 'pipeline') as OutreachTab;
   const section = (SECTIONS.some((s) => s.id === rest[1]) ? rest[1] : 'asistente') as SectionId;
   const lead = new URLSearchParams(query).get('lead');
-  return { demo, view, section, lead, tab };
+  return { signin, demo, view, section, lead, tab };
 }
 function useRoute() {
   const [route, setRoute] = useState(() => parse(window.location.hash));
@@ -57,17 +58,25 @@ export function App() {
   const [session, setSession] = useState<AccountSession | null | undefined>(undefined);
   const [route, go] = useRoute();
   const [auth, setAuth] = useState<{ email?: string; notice?: string; register?: boolean }>({});
-  useEffect(() => { void accountApi.me().then(setSession).catch(() => setSession(null)); }, []);
+  /* No login (feedback 29/09): reuse the session, else open this browser's workspace automatically.
+     Sign-in with email stays only at #/signin (team accounts) and as a fallback if the server refuses. */
+  const openBrowser = useCallback(() => accountApi.browser(browserKey()).then(setSession).catch((e: unknown) => {
+    // If this shows up, the research server is usually an old process without /auth/browser: restart it.
+    setAuth({ notice: `Couldn't open this browser's workspace automatically (${e instanceof Error ? e.message : 'server error'}). Restart the research server (research/ → npm start) and reload.` });
+    setSession(null);
+  }), []);
+  useEffect(() => { void accountApi.me().then(setSession).catch(() => (route.signin ? setSession(null) : openBrowser())); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (session) rememberWorkspace(session); }, [session]);
   const logout = useCallback(async (next: { email?: string; notice?: string; register?: boolean } = {}) => {
     try { await accountApi.logout(); } catch { /* already closed */ }
     try { sessionStorage.removeItem('igc-research-job'); } catch { /* no storage */ }
-    setAuth(next); setSession(null); go('#/evaluacion');
-  }, [go]);
+    if (session?.user.browser && !next.email && !next.register) { resetBrowserKey(); setSession(undefined); go('#/configuracion/asistente'); void openBrowser(); return; }
+    setAuth(next); setSession(null); go('#/signin');
+  }, [go, session, openBrowser]);
 
   if (route.demo) return <DemoApp route={route} go={go} session={session || null} />;
   if (session === undefined) return <div className="x-splash"><SkeletonState variant="dashboard" rows={4} label="Loading your workspace…" /></div>;
-  if (!session) return <AuthScreen key={auth.email || 'auth'} initialEmail={auth.email} notice={auth.notice} startRegister={auth.register} onReady={(s) => { setAuth({}); setSession(s); }} onDemo={() => go('#/demo')} />;
+  if (!session) return <AuthScreen key={auth.email || 'auth'} initialEmail={auth.email} notice={auth.notice} startRegister={auth.register} onReady={(s) => { setAuth({}); setSession(s); if (route.signin) go('#/evaluacion'); }} onDemo={() => go('#/demo')} />;
   return <Workspace key={session.user.id} session={session} setSession={setSession} route={route} go={go} logout={logout} />;
 }
 
@@ -160,7 +169,7 @@ function DemoApp({ route, go, session }: { route: Route; go: (h: string) => void
   if (view === 'ejecucion') body = <RunsPage onBack={() => go('#/demo/evaluacion')}><div className="run-wrap"><DemoRibbon /><LiveAgentRun jobId={job.id} events={job.run!.events} jobStatus={job.status} brief={job.brief} connection="closed" structured onShowResults={() => go('#/demo/evaluacion')} demo variant="live" startAtEnd={false} actions={[]} /></div></RunsPage>;
   else if (view === 'red') body = <NetworkView job={feedback} account={account} session={null} go={go} demo />;
   else body = <EvaluationDashboard job={feedback} history={null} account={account} onFeedback={localFeedback} onGo={() => undefined} onOpenRun={() => go('#/demo/ejecucion')} selectedLeadId={route.lead} onSelectLead={(id) => go(href({ demo: true, view: 'evaluacion', lead: id }))} />;
-  return <AppShell demo active={view} onNav={(k) => go(href({ demo: true, view: k }))} account={menu} searchItems={items} onIntegrations={() => setIntegrations(true)} onHelp={() => go(session ? '#/evaluacion' : '#/')} actions={<a className="x-btn sm" href={session ? '#/evaluacion' : '#/'}>{session ? 'Back to my workspace' : 'Create account'}</a>}>
+  return <AppShell demo active={view} onNav={(k) => go(href({ demo: true, view: k }))} account={menu} searchItems={items} onIntegrations={() => setIntegrations(true)} onHelp={() => go('#/evaluacion')} actions={<a className="x-btn sm" href="#/evaluacion">{session ? 'Back to my workspace' : 'Start my own'}</a>}>
     {body}
     <WorkspaceSwitcher open={switcher} onClose={() => setSwitcher(false)} session={session} demo onSwitchTo={() => go('#/evaluacion')} onNew={() => go('#/evaluacion')} onDemo={() => setSwitcher(false)} />
     <IntegrationsDrawer open={integrations} onClose={() => setIntegrations(false)} demo />

@@ -26,6 +26,12 @@ export function fleetConfig(env = process.env) {
   }
   // Respaldo: si no hay rol 'chat' configurado pero sí el modelo del prerregistro (INTAKE_LLM_*), se usa ese.
   if (!roles.chat.ready && env.INTAKE_LLM_BASE_URL) roles.chat = { url: trim(env.INTAKE_LLM_BASE_URL), model: String(env.INTAKE_LLM_MODEL || '').trim(), ready: Boolean(env.INTAKE_LLM_MODEL), fallback: 'INTAKE_LLM' };
+  // Rol 'engine': el modelo que PLANEA y LEE en el motor v2 (engine.mjs). Puede ser un modelo grande propio
+  // (vLLM en g355) o cualquier API compatible con OpenAI. Sin ENGINE_LLM_URL/MODEL usa el rol 'chat' (Qwen3-30B).
+  const engineUrl = trim(env.ENGINE_LLM_URL); const engineModel = String(env.ENGINE_LLM_MODEL || '').trim();
+  roles.engine = engineUrl && engineModel
+    ? { url: engineUrl, model: engineModel, ready: true, apiKey: env.ENGINE_LLM_API_KEY || '', jsonMode: env.ENGINE_LLM_JSON_MODE !== '0', reasoningEffort: String(env.ENGINE_LLM_REASONING_EFFORT || '').trim(), maxTokens: Number(env.ENGINE_LLM_MAX_TOKENS) || 0, thinking: env.ENGINE_LLM_THINKING === '0' ? false : undefined }
+    : { ...roles.chat, alias: 'chat' };
   // Modelo usado para extraer deals: 'chat' (qwen-30b), 'small' (qwen-4b) o el id de un adaptador LoRA
   // servido en el puerto de 'small' (vLLM --lora-modules nombre=ruta).
   const extractor = String(env.VLLM_EXTRACT_ROLE || 'chat');
@@ -54,7 +60,10 @@ async function post(url, body, { apiKey, timeoutMs, fetcher = fetch, signal }) {
 
 /** Primer objeto JSON del texto, sin bloques <think>. */
 export function parseJsonContent(content) {
-  const text = String(content || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+  let text = String(content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
+  // Plantillas que abren <think> en el prompt: la salida trae solo el cierre; lo que va antes es razonamiento, no JSON.
+  if (text.includes('</think>')) text = text.slice(text.lastIndexOf('</think>') + '</think>'.length);
+  text = text.trim();
   try { return JSON.parse(text); } catch { /* sigue */ }
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error('The model didn\'t return JSON.');
@@ -71,15 +80,19 @@ export function withLanguageRule(system) {
 /** Chat con salida estructurada (response_format json_schema). */
 export async function chatJSON({ system, user, schema, name = 'salida', role = 'chat', model, temperature = 0 }, { env = process.env, fetcher = fetch, signal } = {}) {
   const cfg = fleetConfig(env);
-  const target = model ? { url: cfg.roles[role].url, model } : cfg.roles[role];
+  const target = model ? { ...cfg.roles[role], model } : cfg.roles[role];
   if (!target?.url || !target.model) throw new Error(`Fleet: role not configured: ${role} (URL and model).`);
+  const jsonMode = target.jsonMode !== false;
   const data = await post(`${target.url}/chat/completions`, {
     model: target.model,
     temperature,
     stream: false,
     messages: [{ role: 'system', content: withLanguageRule(system) }, { role: 'user', content: user }],
-    ...(schema ? { response_format: { type: 'json_schema', json_schema: { name, schema } } } : { response_format: { type: 'json_object' } }),
-  }, { apiKey: cfg.apiKey, timeoutMs: cfg.timeoutMs, fetcher, signal });
+    ...(!jsonMode ? {} : schema ? { response_format: { type: 'json_schema', json_schema: { name, schema } } } : { response_format: { type: 'json_object' } }),
+    ...(target.reasoningEffort ? { reasoning_effort: target.reasoningEffort } : {}),
+    ...(target.maxTokens ? { max_tokens: target.maxTokens } : {}),
+    ...(target.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),   // ENGINE_LLM_THINKING=0: modelos Qwen con modo razonamiento
+  }, { apiKey: target.apiKey || cfg.apiKey, timeoutMs: Number(env.ENGINE_LLM_TIMEOUT_MS) && role === 'engine' ? Number(env.ENGINE_LLM_TIMEOUT_MS) : cfg.timeoutMs, fetcher, signal });
   return { json: parseJsonContent(data?.choices?.[0]?.message?.content), model: data?.model || target.model, usage: data?.usage || null };
 }
 

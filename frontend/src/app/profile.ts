@@ -22,12 +22,12 @@ export function briefFromProfile(profile: ProjectConfig & { onboardingComplete?:
   const organization=profile.founder.org;
   const venture=profile.project.venture||organization;
   const list=(v?:string[])=>(v||[]).filter(Boolean).join('; ');
-  return {name:profile.founder.name,role:profile.founder.title||'Founder',company:organization,organization,venture,relation:profile.project.relation||'same',
+  const namedCompetitors=(intake?.competitors||[]).filter((name)=>!/^\s*(apps?|tools?|classes|events?|professionals?|tests?|therapy|therapists?|coaches?|coaching|content|meditation|journaling|wellness)\b/i.test(name)&&name.trim().split(/\s+/).length<=8);
+  return {name:profile.founder.name||'Founder',role:profile.founder.title||'Founder',company:organization,organization,venture,relation:profile.project.relation||'same',
     product:profile.project.name,description:(profile.project.description||profile.project.one_liner).slice(0,3000),oneLiner:(profile.project.one_liner||'').slice(0,300),
     industry:(profile.project.sectors.join(' ')||profile.project.one_liner).slice(0,200),stage:intake?.maturity||'prototype',round:profile.project.stage||'',
     geography:(profile.project.geo.join(', ')||'Global').slice(0,200),fundingTypes:fundingTypes.length?fundingTypes:['investment'],amount:profile.project.raise_usd||'',
     criteria:list(intake?.criteria).slice(0,1000),constraints:list(intake?.constraints).slice(0,1000),useOfFunds:(intake?.use_of_funds||'').slice(0,500),
-    timeline:(intake?.timeline||'').slice(0,100),website:(intake?.website||'').slice(0,300),exclusions:(intake?.competitors||[]).join(', ').slice(0,1000),
-    event:'',minDays:30,mode:'strategic',dataMode:'live',useTeam:/\bigc\b/i.test(organization),useApify:true,excludeCompetitors:Boolean(intake?.competitors?.length),strictTypes:false,linkedinUrl:profile.founder.linkedin_url||''};
+    timeline:(intake?.timeline||'').slice(0,100),website:(intake?.website||'').slice(0,300),exclusions:namedCompetitors.join(', ').slice(0,1000),
+    event:'',minDays:30,mode:'strategic',dataMode:'live',useTeam:/\bigc\b/i.test(organization),useApify:true,excludeCompetitors:Boolean(namedCompetitors.length),strictTypes:false,linkedinUrl:profile.founder.linkedin_url||''};
 }
-

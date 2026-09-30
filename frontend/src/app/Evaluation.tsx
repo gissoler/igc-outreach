@@ -1,9 +1,8 @@
-import { Activity, AlertTriangle, ArrowRight, ArrowUpRight, BarChart3, Bot, CheckCircle2, ChevronRight, CircleDashed, CircleSlash, Clock, Coins, Eye, Network as NetIcon, Play, Route, SlidersHorizontal, Target, TrendingUp, Users, XCircle } from 'lucide-react';
+import { Activity, AlertTriangle, ArrowRight, ArrowUpRight, BarChart3, Bot, CheckCircle2, ChevronRight, CircleDashed, CircleSlash, Clock, Coins, Eye, Play, Route, SlidersHorizontal, Target, TrendingUp, Users, XCircle } from 'lucide-react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { NetworkGraphData } from '../accountApi';
 import type { Evidence, History, Job } from '../researchApi';
 import { SOURCE_META } from '../sources';
-import { CandidateExplorer, defaultFilters, type ExplorerFilters } from './Candidates';
 import { CandidatePanel, EvidenceDrawer, RelationshipDrawer } from './Detail';
 import { clip, fmtDateTime, fmtDuration, fmtInt, fmtPct, fmtShare, plural } from './format';
 import {
@@ -11,8 +10,9 @@ import {
   type ApifyStatus, type GEdge, type GNode, type JevStatus, type NormHop, type NormPath, type SourceHealthItem, type SourceState, type Summary,
   warmPlanOf, warmShort,
 } from './model';
-import { NetworkGraph, type GraphSelection } from './NetworkGraph';
+import { ContactsTable, HowWeGotHere, ResultsIntro } from './Contacts';
 import { DemoRibbon, Drawer, EmptyState, Info, LinkBadge, Meter } from './ui';
+import { advisorApi } from '../analysisApi';
 
 export function useMedia(q: string) {
   const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(q).matches);
@@ -90,7 +90,7 @@ export function EvidenceCoverage({ s }: { s: Summary }) {
 
 /* ───────── Evaluación con pestañas · sistema visual «Plan CRM» (Dstudio, Dribbble) ───────── */
 type MetricKey = 'candidates' | 'actionable' | 'paths' | 'evidence' | 'confidence' | 'risks' | 'sources' | 'apify' | 'jev' | 'time';
-type Tab = 'resumen' | 'candidatos' | 'fuentes';
+type Tab = 'contactos' | 'resumen' | 'fuentes';
 const pctOf = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
 const initialsOf = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 const TINTS = ['lav', 'mint', 'sun', 'sky'];
@@ -235,16 +235,21 @@ export function ExecutiveSummary({ job, s, apify, jev, onMetric, onSelectLead, o
 
 function SourcesTab({ job, s, apify, jev, health, onMetric }: { job: Job; s: Summary; apify: ApifyStatus; jev: JevStatus; health: SourceHealthItem[]; onMetric: (k: MetricKey) => void }) {
   const ok = health.filter((i) => i.state === 'ok').length;
+  const grantsOnly = job.brief.fundingTypes.length === 1 && job.brief.fundingTypes[0] === 'grant';
   return <div className="pl-tabpanel">
     <div className="pl-sec-head"><h2>Source health <span className="pl-count">{ok} of {health.length} responded</span></h2><button className="pl-btn" onClick={() => onMetric('time')}><Clock size={14} /> Date and duration</button></div>
     <section className="pl-card flush"><SourceHealth job={job} items={health} /></section>
+    {job.searchAudit?.length ? <section className="pl-card flush">
+      <header><h3>Search log <span className="pl-badge dark">{job.searchAudit.length}</span></h3><span className="pl-mut">Exact queries and what survived ranking</span></header>
+      <table className="x-table"><thead><tr><th>Source</th><th>Query</th><th className="num">Returned</th><th className="num">New</th><th className="num">Priority</th><th className="num">Watch</th></tr></thead><tbody>{job.searchAudit.map((row, i) => <tr key={`${row.provider}-${row.query}-${i}`}><td>{row.provider}<small className="pl-mut"> · {row.dimension}</small></td><td>{row.query}</td><td className="num">{row.returned ?? '—'}</td><td className="num">{row.discovered}</td><td className="num">{row.priority}</td><td className="num">{row.watch}</td></tr>)}</tbody></table>
+    </section> : null}
     <div className="pl-row even">
       <ApifyCard s={apify} />
       <JevCard s={jev} />
     </div>
     <div className="pl-sec-head"><h2>Evidence coverage <span className="pl-count">{fmtInt(s.evidence.total)} pieces</span></h2><span className="pl-mut">Verified = read at the original source</span></div>
     <section className="pl-card"><EvidenceCoverage s={s} /></section>
-    <p className="pl-note">Score ranks priority; it isn't a probability of investment. Nothing is sent from the app.</p>
+    <p className="pl-note">{grantsOnly ? "Score ranks review priority; it isn't a probability of winning. Nothing is submitted from the app." : "Score ranks priority; it isn't a probability of investment. Nothing is sent from the app."}</p>
   </div>;
 }
 
@@ -277,6 +282,33 @@ function MetricBody({ k, job, s, apify, jev, health, onSelectLead }: { k: Metric
 }
 const METRIC_TITLE: Record<MetricKey, string> = { candidates: 'Researched candidates', actionable: 'Actionable candidates', paths: 'Warm paths', evidence: 'Evidence quality', confidence: 'Data confidence', risks: 'Risks', sources: 'Source health', apify: 'People search', jev: 'AI second opinion (Jev)', time: 'Date and duration' };
 
+
+/* Advisor state for this run: the server starts it by itself when the research ends; here we only show where it is. */
+type AdvisorPill = { tone: 'lav' | 'mint' | 'gray' | 'rose'; label: string; title: string; live?: boolean };
+function useAdvisorPill(job: Job, enabled: boolean): AdvisorPill | null {
+  const [pill, setPill] = useState<AdvisorPill | null>(null);
+  const finished = ['done', 'partial'].includes(job.status);
+  useEffect(() => {
+    if (!enabled || !finished || !job.leads.length) { setPill(null); return; }
+    let stop = false; let t: number | undefined;
+    const tick = async () => {
+      try {
+        const r = await advisorApi.deepLatest(job.id);
+        if (stop) return;
+        const running = r.running || r.run?.status === 'running';
+        if (running) { setPill({ tone: 'lav', label: 'analyzing', title: 'The advisor is researching each contact and building your plan.', live: true }); t = window.setTimeout(tick, 4000); }
+        else if (r.run?.status === 'failed') setPill({ tone: 'rose', label: 'failed', title: 'The analysis stopped. Open the Advisor to retry.' });
+        else if (r.run?.roadmap) setPill({ tone: 'mint', label: 'plan ready', title: 'The advisor finished: open it to see the action plan.' });
+        else if (!r.role) setPill({ tone: 'gray', label: 'no model', title: 'No model configured: set VLLM_BASE and VLLM_CHAT_MODEL (or INTAKE_LLM_*) in research/.env so it can start on its own.' });
+        else { setPill({ tone: 'gray', label: 'waiting', title: 'The advisor starts right after the research finishes.' }); t = window.setTimeout(tick, 5000); }
+      } catch { /* the pill just stays hidden */ }
+    };
+    void tick();
+    return () => { stop = true; if (t) window.clearTimeout(t); };
+  }, [job.id, finished, job.leads.length, enabled]);
+  return pill;
+}
+
 /* ───────── Dashboard completo ───────── */
 export function EvaluationDashboard({ job, history, account, onSelectJob, onFeedback, onGo, onNewEvaluation, onOpenRun, onOpenAdvisor, selectedLeadId, onSelectLead }: {
   job: Job; history: History | null; account: NetworkGraphData | null; onSelectJob?: (id: string) => void;
@@ -289,17 +321,17 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
   const apify = useMemo(() => apifyStatus(job), [job]);
   const jev = useMemo(() => jevStatus(job), [job]);
   const health = useMemo(() => sourceHealth(job), [job]);
-  const [tab, setTab] = useState<Tab>(selectedLeadId ? 'candidatos' : 'resumen');
-  useEffect(() => { if (selectedLeadId) setTab('candidatos'); }, [selectedLeadId]);
+  const [tab, setTab] = useState<Tab>('contactos');
+  const advisorPill = useAdvisorPill(job, !demo && Boolean(onOpenAdvisor));
   useEffect(() => { if (!selectedLeadId) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape' && !document.querySelector('.x-drawer-layer')) onSelectLead(null); }; document.addEventListener('keydown', k); return () => document.removeEventListener('keydown', k); }, [selectedLeadId, onSelectLead]);
+  /* Changing tab starts at the tab bar, never mid-page (feedback 28/09: the page stayed scrolled and hid the header). */
+  useEffect(() => { window.scrollTo({ top: 0 }); }, [tab]);
   const [metric, setMetric] = useState<MetricKey | null>(null);
-  const [filters, setFilters] = useState<ExplorerFilters>(defaultFilters);
   const [evidence, setEvidence] = useState<{ title: string; list: Evidence[] } | null>(null);
   const [inspect, setInspect] = useState<{ edge: GEdge | null; node: GNode | null } | null>(null);
-  const wide = useMedia('(min-width: 1380px)');
   const lead = job.leads.find((l) => l.id === selectedLeadId) || null;
   const graph = useMemo(() => buildGraph(job, account, { limit: 1000, includeDiscarded: true }), [job, account]);
-  const select = (id: string | null) => { onSelectLead(id); if (id) { setTab('candidatos'); const l = job.leads.find((x) => x.id === id); if (l && !filters.buckets.has(l.bucket)) setFilters({ ...filters, buckets: new Set([...filters.buckets, l.bucket]) }); } };
+  const select = (id: string | null) => onSelectLead(id);
   const onHop = (hop: NormHop, path: NormPath) => {
     if (!lead) return;
     const idOf = (name: string, i: number) => i === 0 ? 'you' : graph.nodes.find((n) => !n.leadId && n.label === name)?.id || graph.nodes.find((n) => n.label === name)?.id || `p:${name}`;
@@ -308,43 +340,36 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
     const e = graph.edges.find((x) => x.id === `${from}>${to}`);
     setInspect({ edge: e || { id: `${from}>${to}`, from, to, type: hop.status, rel: hop.kind, label: hop.relation, strength: hop.strength, source: hop.evidence[0]?.source || '—', date: hop.latest, evidence: hop.evidence, url: hop.url, why: '', leadIds: [lead.id] }, node: null });
   };
-  const onGraphInspect = (sel: GraphSelection) => setInspect(sel.kind === 'edge' ? { edge: sel.edge, node: null } : { edge: null, node: sel.node });
   const panel = lead && <CandidatePanel lead={lead} job={job} onFeedback={onFeedback} onEvidence={(title, list) => setEvidence({ title, list })} onHop={onHop} onClose={() => onSelectLead(null)} />;
   const running = ['queued', 'running'].includes(job.status);
   const statusChip = job.status === 'partial' ? ['sun', 'Done with warnings'] : job.status === 'done' ? ['mint', 'Done'] : job.status === 'failed' ? ['rose', 'Stopped'] : ['lav', 'Running'];
   const failed = health.filter((x) => x.state === 'error' || x.state === 'not_configured').length;
-  const tabs: [Tab, string, ReactNode][] = [['resumen', 'Overview', null], ['candidatos', 'Candidates', <span key="n" className="pl-tab-n">{s.active}</span>], ['fuentes', 'Sources', failed ? <span key="f" className="pl-tab-n warn">{failed}</span> : null]];
+  const grantsOnly = job.brief.fundingTypes.length === 1 && job.brief.fundingTypes[0] === 'grant';
+  const tabs: [Tab, string, ReactNode][] = [['contactos', grantsOnly ? 'Grant pipeline' : 'Who to contact', <span key="c" className="pl-tab-n">{s.buckets.top}</span>], ['resumen', 'Analytics', null], ['fuentes', 'Sources', failed ? <span key="f" className="pl-tab-n warn">{failed}</span> : null]];
 
-  return <div className="ev pl">
+  return <div className={`ev pl${lead ? ' has-sheet' : ''}`}>
     {demo && <DemoRibbon />}
     <header className="pl-head">
-      <span className="pl-crumb">Evaluations <ChevronRight size={12} /> {job.mode === 'demo' ? 'Demo' : 'Live research'}</span>
+      <span className="pl-crumb">Evaluations <ChevronRight size={12} /> {job.brief.venture || job.brief.company}{job.mode === 'demo' ? ' · Demo' : ''}</span>
       <div className="pl-title-row">
-        <div className="pl-title"><h1>{job.brief.venture || job.brief.company}</h1><span className="pl-count">{s.total} candidates</span><span className={`pl-chip ${statusChip[0]}`}>{statusChip[1]}</span></div>
+        <div className="pl-title"><h1>{tab === 'contactos' && job.leads.length ? (grantsOnly ? 'Grant matches' : 'Who to contact') : tab === 'resumen' && job.leads.length ? 'Analytics' : tab === 'fuentes' && job.leads.length ? 'Sources' : (job.brief.venture || job.brief.company)}</h1><span className="pl-count">{tab === 'contactos' ? `${s.buckets.top + s.buckets.radar} ${grantsOnly ? 'in pipeline' : 'shortlisted'}` : `${s.total} ${grantsOnly ? 'opportunities' : 'candidates'}`}</span><span className={`pl-chip ${statusChip[0]}`}>{statusChip[1]}</span></div>
         <div className="pl-actions">
+          {job.leads.length > 0 && <div className="pl-seg" role="tablist" aria-label="Evaluation sections">{tabs.map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{k === 'contactos' ? 'List' : l}</button>)}</div>}
           {onOpenRun && <button className="pl-btn" onClick={onOpenRun}><Activity size={14} /> Run</button>}
-          {onOpenAdvisor && job.leads.length > 0 && <button className="pl-btn" onClick={onOpenAdvisor}><Bot size={14} /> Advisor</button>}
+          {onOpenAdvisor && job.leads.length > 0 && <button className="pl-btn" onClick={onOpenAdvisor} title={advisorPill?.title}><Bot size={14} /> Advisor{advisorPill && <span className={`pl-chip ${advisorPill.tone} ld-pill`}>{advisorPill.live && <span className="sh-live" />}{advisorPill.label}</span>}</button>}
           {onNewEvaluation && <button className="pl-btn dark" onClick={onNewEvaluation} disabled={running}><Play size={14} /> New evaluation</button>}
         </div>
       </div>
-      <p className="pl-meta">{job.brief.product} · {job.brief.fundingTypes.map((t) => FUND[t] || t).join(' + ')} · {job.brief.round || job.brief.stage} · {job.brief.geography}{job.brief.amount ? ` · US$${Number(job.brief.amount).toLocaleString('en-US')}` : ''} · {fmtDateTime(job.createdAt)} · {fmtDuration(s.durationMs)}</p>
     </header>
     {!job.leads.length ? <EmptyState icon={<Users size={22} />} title={running ? 'Still running' : 'No candidates found'} action={onOpenRun && <button className="pl-btn" onClick={onOpenRun}>See what happened</button>}>
       {running ? 'Results appear when it ends.' : 'No source returned candidates. Check source health or widen sector or geography.'}
       {!running && <><div className="pl-row even"><ApifyCard s={apify} /><JevCard s={jev} /></div><SourceHealth job={job} items={health} /></>}
     </EmptyState> : <>
-      <nav className="pl-tabs" role="tablist" aria-label="Evaluation sections">{tabs.map(([k, l, extra]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}{extra}</button>)}</nav>
+      {tab === 'contactos' && <div className="pl-tabpanel ct"><ResultsIntro job={job} /><ContactsTable job={job} selectedId={selectedLeadId} onOpen={(id) => select(id)} /><HowWeGotHere job={job} s={s} health={health} onSources={() => setTab('fuentes')} /></div>}
       {tab === 'resumen' && <ExecutiveSummary job={job} s={s} apify={apify} jev={jev} onMetric={setMetric} onSelectLead={select} onGo={onGo} onOpenAdvisor={onOpenAdvisor} history={history} onSelectJob={onSelectJob} />}
-      {tab === 'candidatos' && <section className={`wb pl-tabpanel ${wide ? 'wide' : ''}`} aria-label="Candidates and network">
-        <aside className="wb-list"><CandidateExplorer job={job} selectedId={selectedLeadId} onSelect={(id) => select(id)} filters={filters} setFilters={setFilters} /></aside>
-        <div className="wb-graph">
-          <div className="wb-graph-head"><h2 className="wb-title"><NetIcon size={15} /> Relationship map</h2>{lead ? <p><b>{lead.person || lead.org}</b> · best path in black <button className="pl-link" onClick={() => onSelectLead(null)}>Clear</button></p> : <p>Pick a candidate to see how to reach them.</p>}</div>
-          <NetworkGraph job={job} account={account} selectedLeadId={selectedLeadId} onSelectLead={select} onInspect={onGraphInspect} demo={demo} height={wide ? 660 : 560} inset={lead ? 480 : 0} />
-        </div>
-      </section>}
       {tab === 'fuentes' && <SourcesTab job={job} s={s} apify={apify} jev={jev} health={health} onMetric={setMetric} />}
     </>}
-    {lead && tab === 'candidatos' && <aside className="sheet" aria-label="Candidate detail">{panel}</aside>}
+    {lead && <aside className="sheet" aria-label="Candidate detail">{panel}</aside>}
     {metric && <Drawer open onClose={() => setMetric(null)} title={METRIC_TITLE[metric]} width={metric === 'sources' || metric === 'time' ? 900 : 600} tone={demo ? 'demo' : undefined}><MetricBody k={metric} job={job} s={s} apify={apify} jev={jev} health={health} onSelectLead={(id) => { setMetric(null); select(id); }} /></Drawer>}
     {evidence && <EvidenceDrawer open onClose={() => setEvidence(null)} title={evidence.title} evidence={evidence.list} demo={demo} />}
     {inspect && <RelationshipDrawer edge={inspect.edge} node={inspect.node} graph={graph} job={job} onClose={() => setInspect(null)} onEvidence={(title, list) => setEvidence({ title, list })} onSelectLead={(id) => select(id)} />}
