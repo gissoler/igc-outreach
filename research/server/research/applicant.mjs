@@ -76,7 +76,7 @@ const GLOBAL = /\b(worldwide|anywhere in the world|any country|all countries|glo
 const LATE_STAGE = /\b(series [a-c](?: or later)?|post-?revenue|revenue of at least|minimum (?:annual )?revenue|at least \$?\d[\d,.]*\s*(?:k|m|million)? (?:in )?(?:revenue|arr|sales)|at least \d+ (?:full-time )?employees|(?:operating|in business) for (?:at least )?\d+ years)\b/i;
 
 // Una frase que describe el propósito del programa ("Supports startups and small businesses…") no dice quién puede postular.
-const PURPOSE = /^\W*(?:this (?:program(?:me)?|call|initiative|fund|challenge)\s+)?(?:supports?|funds?|provides?|aims? to|helps?|enables?|fosters?|invests? in|in support of|our mission|the mission)\b/i;
+const PURPOSE = /^\W*(?:this (?:program(?:me)?|call|initiative|fund|challenge)\s+)?(?:by (?:investing|funding|supporting)|to (?:support|fund|invest)|supports?|funds?|provides?|aims? to|helps?|enables?|fosters?|invests? in|in support of|our mission|the mission)\b/i;
 const APPLY_CUE = /\b(eligib\w*|apply|applicants?|open to|submit\w*)\b/i;
 // Empresas que solo aparecen como socios de un consorcio: no son quien postula.
 const PARTNER = /\b(partners?|partner organi[sz]ations?|may (?:also )?participate|participating as|as (?:a )?partners?|subcontract\w*|collaborators?)\b/i;
@@ -116,7 +116,7 @@ export function checkApplicant(pageText, profile = applicantProfile({}), { model
   for (const x of sents) {
     if (!exclude && EXCLUDE_FP.test(x)) exclude = x;
     if (!include && INCLUDE_FP.test(x)) include = x;
-    if (COMPANY.test(x) && !STUDENT_MOD.test(x) && !NEGATED.test(x) && !(PURPOSE.test(x) && !APPLY_CUE.test(x))) {
+    if (COMPANY.test(x) && !STUDENT_MOD.test(x) && !NEGATED.test(x) && !((PURPOSE.test(x) || /\b(?:in support of this mission|relaunching|strengthens? the)\b/i.test(x)) && !APPLY_CUE.test(x))) {
       if (PARTNER.test(x) && !INCLUDE_FP.test(x)) { if (!found.partner) found.partner = x; } else if (!found.company) found.company = x;
     }
     if (STUDENT_MOD.test(x) && !found.student) found.student = x;
@@ -141,8 +141,14 @@ export function checkApplicant(pageText, profile = applicantProfile({}), { model
   if (studentLed && profile.forProfit && !include) return out('no', 'Only for student-led teams', studentLed);
   if (exclude && profile.forProfit) return out('no', 'The page excludes for-profit companies', exclude);
   // 2) Solo estudiantes / universidades / ONG / gobierno y nada que admita empresas
-  const companyOk = Boolean(include || found.company);
+  const companyOk = Boolean(include || (found.company && !(DEFER.test(s) && !APPLY_CUE.test(found.company))));
   const defers = (s.match(/[^.!?]*\b(?:see (?:the )?(?:full )?(?:program )?(?:solicitation|guidelines|call text|call document|notice of funding|nofo|rfa|terms and conditions)|refer to (?:the )?(?:solicitation|guidelines|call)|certain types of organi[sz]ations|eligibility (?:is|are) (?:defined|described|detailed|set out|specified) in)[^.!?]*[.!?]?/i) ?? [])[0]?.trim();
+  // "Small business concern" (SBIR/STTR) es una definición federal de EE. UU. que exige propiedad estadounidense: para una empresa constituida fuera no se puede dar por elegible.
+  if (profile.forProfit && profile.outside?.includes('US') && /\bsmall business concerns?\b|\bSBIR\b|\bSTTR\b/i.test(s) && !exclude) {
+    const q = sents.find((x) => /small business concern/i.test(x)) || sents.find((x) => /\bSBIR|STTR\b/.test(x)) || sents[0];
+    flags.push('us_small_business_concern');
+    return out('unclear', 'Small business concern (SBIR/STTR) is a US federal definition that requires US ownership; the venture is incorporated outside the US', q);
+  }
   const restricted = ['student', 'academic', 'nonprofit', 'government'].filter((t) => found[t]);
   if (profile.forProfit && !companyOk && found.partner) return out('unclear', 'Companies appear only as partners, not as the applicants who lead the proposal', found.partner);
   if (profile.forProfit && !companyOk && restricted.length) return out('no', `Only for ${restricted.join(' / ')} applicants; nothing admits a for-profit startup`, found[restricted[0]]);
