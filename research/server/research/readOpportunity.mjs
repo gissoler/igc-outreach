@@ -5,13 +5,15 @@ import { focusText } from '../lib/relevance.mjs';
 import { verifyOpportunity, hostKind } from './verify.mjs';
 
 const briefText = (b = {}) => Object.entries(b).filter(([, v]) => v && typeof v !== 'object').map(([k, v]) => `${k}: ${v}`).join('\n');
-const DATE_TERMS = ['deadline', 'apply by', 'applications close', 'closing date', 'due date', 'submission', 'open call', 'eligib', 'who can apply', 'closed'];
+// Ventanas del extracto: plazos, fases (LOI / propuesta completa), elegibilidad y cómo postular (varios idiomas).
+const DATE_TERMS = ['deadline', 'upcoming deadlines', 'key dates', 'important dates', 'timeline', 'apply by', 'applications close', 'closing date', 'due date', 'due by', 'letter of intent', 'pre-proposal', 'full proposal', 'invited', 'cut-off', 'rolling', 'submission', 'open call', 'how to apply', 'eligib', 'who can apply', 'open to', 'closed', 'fecha límite', 'plazo', 'cierre', 'convocatoria', 'requisitos', 'date limite', 'frist'];
 
 /** Cabeza de la página + ventanas alrededor de las palabras de plazo/elegibilidad (máx ~7 000 caracteres). */
-export function pageExcerpt(text, max = 7000) {
+export function pageExcerpt(text, max = 9000) {
   const clean = String(text || '').replace(/\s+/g, ' ').trim();
   if (clean.length <= max) return clean;
-  return `${clean.slice(0, 1800)} … ${focusText(clean.slice(1800), DATE_TERMS, { window: 700, max: 6 })}`.slice(0, max);
+  // El modelo solo ve el extracto; las FECHAS las decide el código sobre el texto completo (dates.mjs).
+  return `${clean.slice(0, 1800)} … ${focusText(clean.slice(1800), DATE_TERMS, { window: 800, max: 8 })}`.slice(0, max);
 }
 
 export const extractPrompt = ({ brief, page, today }) => ({
@@ -20,18 +22,18 @@ export const extractPrompt = ({ brief, page, today }) => ({
 });
 
 /** Página que no se pudo leer: no se descarta ni se promueve; el llamador decide (queda como "watch" sin fecha). */
-const unread = (page, today, error) => ({ ...verifyOpportunity({}, page, { today }), keep: true, drop: null, verdict: 'watch', read: false, error });
+const unread = (page, today, error, brief) => ({ ...verifyOpportunity({}, page, { today, brief, codeOnly: true }), keep: true, drop: null, verdict: 'watch', tier: 'verify', read: false, error });
 
 /** Lee y verifica una página. Devuelve null si no hay flota; nunca lanza (un fallo = "no verificado"). */
 export async function readOpportunity(page, brief, { env = process.env, fetcher = fetch, signal, today = new Date(), chat = chatJSON } = {}) {
-  if (hostKind(page.url) !== 'other') return { ...verifyOpportunity({}, page, { today }), read: true, model: null };
+  if (hostKind(page.url) !== 'other') return { ...verifyOpportunity({}, page, { today, brief }), read: true, model: null };
   if (chat === chatJSON && !fleetReady(env, 'chat')) return null;
   const day = (today instanceof Date ? today : new Date(today)).toISOString().slice(0, 10);
   try {
     const { json, model } = await chat({ ...extractPrompt({ brief, page, today: day }), name: 'opportunity', role: 'chat' }, { env, fetcher, signal });
-    return { ...verifyOpportunity(json, page, { today }), read: true, model };
+    return { ...verifyOpportunity(json, page, { today, brief }), read: true, model };
   } catch (error) {
-    return unread(page, today, error.message);
+    return unread(page, today, error.message, brief);
   }
 }
 

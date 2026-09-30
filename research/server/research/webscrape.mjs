@@ -1,6 +1,7 @@
 // Búsqueda y extracción web con Firecrawl (buscar + leer páginas) y ScrapeGraph (extraer personas).
 // Reemplaza a Apify. No toca LinkedIn con scraping: solo usa resultados de búsqueda públicos.
 import { readMany } from './readOpportunity.mjs';
+import { verifyOpportunity, compactVerification } from './verify.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 
@@ -184,15 +185,19 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
       const excerpt = opportunityExcerpt(result.markdown || result.description);
       if (excerpt.length < 80) continue;
       const host = hostOf(result.url).replace(/^www\./, '');
-      const deadline = opportunityDate(hay);
+      // Sin modelo, el código verifica lo que puede (tipo de página, plazo contra hoy, elegibilidad); nunca "open" por defecto.
+      const v = verifyOpportunity({}, { url: result.url, title: result.title, text: result.markdown || result.description || '' }, { brief, codeOnly: true });
+      const deadline = v.deadline;
       const ev = [evidence(`${GRANT_WEB_SOURCE} · ${host}`, result.url, excerpt, 'opportunity')];
+      if (v.deadline && v.deadlineQuote) ev.push(evidence(`${GRANT_WEB_SOURCE} · deadline quote`, result.url, v.deadlineQuote, 'opportunity'));
       const lead = candidate({
         externalId: `web-opportunity:${result.url}`,
         org: host,
         title: result.title || `${opportunityType(hay)} opportunity`,
         kind: 'opportunity', fundingType: 'grant', opportunityType: opportunityType(hay),
-        status: deadline && Date.parse(`${deadline}T23:59:59Z`) < Date.now() ? 'closed' : 'open',
+        status: v.status,
         deadline,
+        codeCheck: compactVerification(v),   // verificación solo-código; `verification` queda para la lectura con modelo
         contact: { type: 'source', value: result.url, provenance: 'Official or first-party opportunity page found by web search; verify before applying' },
         evidence: ev,
         risks: ['Open-web opportunity: confirm organizer, eligibility, terms and whether the benefit is cash, equity or access'],
@@ -219,7 +224,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
       lead.status = r.status === 'unknown' ? 'unknown' : r.status;
       lead.deadline = r.deadline;
       lead.missing = [...(r.deadline ? [] : ['Application deadline not confirmed on the page']), ...(r.eligible === 'yes' ? [] : ['Eligibility to confirm'])];
-      lead.verification = { verdict: r.verdict, eligible: r.eligible, nonDilutive: r.nonDilutive, flags: r.flags, quotes: r.quotes, daysLeft: r.daysLeft, model: r.model };
+      lead.verification = compactVerification(r, { nonDilutive: r.nonDilutive, quotes: r.quotes, model: r.model });
       if (r.quotes.deadline) lead.evidence.push(evidence(`${GRANT_WEB_SOURCE} · deadline quote`, url, r.quotes.deadline, 'opportunity'));
     });
     audit.push({ provider: GRANT_WEB_SOURCE, query: '(page reading)', dimension: 'verification', returned: urls.length, discovered: seen.size, dropped });
