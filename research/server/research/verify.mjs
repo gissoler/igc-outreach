@@ -29,7 +29,7 @@ export function literalIn(quote, pageText) {
 const SOCIAL = /(^|\.)(linkedin\.com|facebook\.com|instagram\.com|x\.com|twitter\.com|youtube\.com|tiktok\.com|reddit\.com|medium\.com|substack\.com|quora\.com|crunchbase\.com|pitchbook\.com|glassdoor\.com)$/i;
 const AGGREGATORS = /(^|\.)(startupgrantsindia\.com|fundsforngos\.org|fundsforcompanies\.com|fundsforindividuals\.com|opportunitydesk\.org|opportunitiesforafricans\.com|grantwatch\.com|grants\.gov\.in|vestbee\.com|f6s\.com|startupticker\.ch|dealroom\.co|eu-startups\.com|tech\.eu|startus-insights\.com|growthlist\.co|startupstash\.com|beststartup\.org|grantforward\.com|instrumentl\.com|grantstation\.com|opportunities-for-youth\.org|youthop\.com|scholarshipdb\.net)$/i;
 // Directorios, marketplaces y blogs de listas: nunca son la fuente oficial (lista heurística; ampliarla cuando aparezcan más).
-const AGGREGATORS_EXTRA = /(^|\.)(grantedai\.com|grantcompass\.ca|founderstoday\.org|access2eic\.eu|rasph\.com|freemindgroup\.com|grants\.ai|grantify\.io|fundingforgood\.org|roundfunded\.com|hellodarwin\.com|ellty\.com|spinverse\.com|wellfound\.com|angel\.co|tracxn\.com|cbinsights\.com|seedtable\.com|failory\.com|signal\.nfx\.com|openvc\.app|visible\.vc|gust\.com)$/i;
+const AGGREGATORS_EXTRA = /(^|\.)(grantedai\.com|grantcompass\.ca|founderstoday\.org|access2eic\.eu|rasph\.com|freemindgroup\.com|grants\.ai|grantify\.io|fundingforgood\.org|roundfunded\.com|hellodarwin\.com|ellty\.com|spinverse\.com|wellfound\.com|angel\.co|tracxn\.com|cbinsights\.com|seedtable\.com|failory\.com|signal\.nfx\.com|openvc\.app|visible\.vc|gust\.com|startersss\.com|grantoria\.com|failory\.com|peony\.ink|papermark\.com|startupgrantshub\.com|socialroots\.ai|healthcarevclist\.com)$/i;
 const DIRECTORY_PATH = /^https?:\/\/(www\.)?ycombinator\.com\/(companies|library)/i;
 export const hostOf = (url) => { try { return new URL(url).hostname.replace(/^www\./, '').toLowerCase(); } catch { return ''; } };
 export const hostKind = (url) => { const h = hostOf(url); return SOCIAL.test(h) ? 'social' : AGGREGATORS.test(h) || AGGREGATORS_EXTRA.test(h) || DIRECTORY_PATH.test(String(url)) ? 'aggregator' : 'other'; };
@@ -65,10 +65,10 @@ function verifyEntity(out, page, { today } = {}) {
  * Convierte la salida del modelo (o nada: `out = {}` en modo solo-código) en un hecho verificado.
  * @param out   JSON del modelo {status, deadline, official, eligible, non_dilutive, kind, page_type, quotes}
  * @param page  {url, title, text}
- * @param opts  {today, brief, profile, entity, codeOnly}
+ * @param opts  {today, brief, profile, entity, codeOnly, extraction}  extraction = salida de extractedFacts() (extract.mjs): segunda lectura con citas ya verificadas
  * @returns {{keep, drop, status, deadline, deadlineQuote, official, eligible, eligibility, nonDilutive, verdict, tier, flags, quotes, daysLeft, pageType, dates, checks, reasons, today}}
  */
-export function verifyOpportunity(out, page, { today, brief, profile, entity = false, codeOnly = false } = {}) {
+export function verifyOpportunity(out, page, { today, brief, profile, entity = false, codeOnly = false, extraction = null } = {}) {
   if (entity) return verifyEntity(out, page, { today });
   const now = todayIso(today);
   const text = String(page?.text || '');
@@ -91,7 +91,21 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
 
   // 2) Fechas: decide el código sobre el texto completo; lo del modelo solo se contrasta
   const claimed = ISO_RX.test(String(out?.deadline || '')) ? String(out.deadline) : null;
-  const dd = deadlineDecision(text, { today: now, claimed, title: page?.title, url: page?.url });
+  let dd = deadlineDecision(text, { today: now, claimed, title: page?.title, url: page?.url });
+  // 2b) Segunda lectura (extractor externo). El código solo contrasta sus citas ya verificadas como literales:
+  //     sin fechas en el texto → las adopta; coinciden → lo anota; discrepan → a verificar (nunca sube a la lista principal).
+  const ext = extraction && extraction.ok ? extraction : null;
+  let extConflict = null;
+  if (ext) {
+    const ed = ext.decision && ext.decision.status !== 'unknown' ? ext.decision : null;
+    const live = (d) => ['open', 'upcoming', 'rolling'].includes(d.status);
+    const same = (a, b) => (a.status === 'closed' && b.status === 'closed') || (live(a) && live(b) && (a.status === 'rolling') === (b.status === 'rolling') && (a.deadline || null) === (b.deadline || null));
+    if (ed && dd.status === 'unknown') { dd = { ...ed, flags: [...(dd.flags || []), ...(ed.flags || [])] }; flags.push('dates_from_extractor'); }
+    else if (ed) { if (same(dd, ed)) flags.push('extractor_confirmed'); else extConflict = `Page reading says ${dd.status}${dd.deadline ? ` (${dd.deadline})` : ''}; the extractor says ${ed.status}${ed.deadline ? ` (${ed.deadline})` : ''}`; }
+    else if (dd.deadline && live(dd)) extConflict = 'A date was found in the page text but the extractor did not confirm it as an application deadline';
+    if (!extConflict && ext.closedClaim && live(dd)) extConflict = 'The extractor reports that the page says applications are closed';
+  }
+  if (ext?.unparsed?.length && !dd.deadline && !extConflict) flags.push('date_unparsed_quote');
   flags.push(...dd.flags);
   if (claimed) {
     if (!quotes.deadline) flags.push('deadline_without_quote');
@@ -100,6 +114,7 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   }
   let deadline = dd.deadline || null;
   let status = dd.status === 'rolling' ? 'open' : dd.status;
+  if (extConflict) { status = 'unknown'; deadline = null; flags.push('extractor_conflict'); }
   if (dd.status === 'rolling') flags.push('rolling', 'open_without_deadline');
   if (deadline && daysBetween(now, deadline) > 365 * 3) { flags.push('deadline_implausible'); deadline = null; status = 'unknown'; }
   if (dd.inferredYear) flags.push('deadline_year_inferred');
@@ -108,12 +123,18 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   if (modelStatus === 'not_a_call') status = 'not_a_call';
   const deadlineQuote = dd.quote || '';
   if (deadline) quotes.deadline = deadlineQuote;
-  check('deadline', status === 'open' && Boolean(deadline), `${dd.reason} (today ${now})`, deadlineQuote);
+  check('deadline', status === 'open' && Boolean(deadline), extConflict ? `${extConflict} (today ${now})` : `${dd.reason} (today ${now})`, deadlineQuote);
+  if (ext && ext.isCall === false && pageType.isCall) flags.push('extractor_says_not_a_call');
+  if (ext) check('extractor', !extConflict && !flags.includes('extractor_says_not_a_call'), extConflict || (flags.includes('extractor_confirmed') ? 'Second reading agrees' : flags.includes('dates_from_extractor') ? 'Dates taken from the second reading (quotes found on the page)' : 'Second reading found no application deadline'), ext.decision?.quote || '');
 
   // 3) Elegibilidad del solicitante contra el brief (el "yes" del modelo nunca basta)
   const prof = profile || applicantProfile(brief || {});
   const eligibility = checkApplicant(text, prof, { modelQuote: quotes.eligible || '' });
   flags.push(...eligibility.flags);
+  if (ext?.eligibilityQuote) {
+    const e2 = checkApplicant(ext.eligibilityQuote, prof, { modelQuote: ext.eligibilityQuote });
+    if (e2.decision !== 'unclear' && (eligibility.decision === 'unclear' || (e2.decision === 'no' && eligibility.decision === 'yes'))) { flags.push(eligibility.decision === 'yes' ? 'eligibility_conflict' : 'eligibility_from_extractor'); Object.assign(eligibility, e2); }
+  }
   const modelEligible = String(out?.eligible || 'unclear');
   if (modelEligible === 'yes' && eligibility.decision !== 'yes') flags.push('model_eligibility_overruled');
   if (['yes', 'no'].includes(modelEligible) && !quotes.eligible) flags.push('eligibility_without_quote');
@@ -152,6 +173,9 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
 
   const blockers = [
     !pageType.isCall && (pageType.soft ? 'Call posted as news: confirm on the program page' : null),
+    extConflict,
+    flags.includes('date_unparsed_quote') ? `The page states a date the code could not read: "${ext.unparsed[0].quote.slice(0, 160)}"${ext.unparsed[0].date_iso ? ` (extractor reads ${ext.unparsed[0].date_iso})` : ''}` : null,
+    flags.includes('extractor_says_not_a_call') ? 'The second reading did not see an open call on this page' : null,
     status !== 'open' ? (status === 'upcoming' ? `Not open yet${dd.opens ? ` (opens ${dd.opens})` : ''}` : 'Deadline not verified on the page') : null,
     status === 'open' && !deadline ? 'Rolling / no dated deadline' : null,
     dd.inferredYear ? 'Deadline year inferred, not written' : null,

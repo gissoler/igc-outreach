@@ -14,7 +14,8 @@
    ───────────────────────────────────────────────────────────────────────────── */
 import { chatJSON, fleetReady } from '../analysis/fleet.mjs';
 import { candidate, evidence, norm } from './core.mjs';
-import { firecrawlSearch, firecrawlConfigured } from './webscrape.mjs';
+import { firecrawlSearch, firecrawlConfigured, firecrawlExtract } from './webscrape.mjs';
+import { extractedFacts, compactExtraction } from './extract.mjs';
 import { pageExcerpt } from './readOpportunity.mjs';
 import { searxSearch, searxConfigured, fetchPage } from './localSearch.mjs';
 import { multiSearch, searchApisConfigured, searchProviders, jinaRead, firecrawlRead } from './searchApis.mjs';
@@ -102,14 +103,14 @@ export const readPrompt = ({ objective, brief, page, today }) => ({
 });
 
 /* 4 · verify */
-export function verifyFinding(out, page, objective, { today, brief, profile } = {}) {
+export function verifyFinding(out, page, objective, { today, brief, profile, extraction = null } = {}) {
   const o = OBJECTIVES[objective]; const text = String(page.text || ''); const flags = [];
   const quotes = {};
   for (const [k, v] of Object.entries(out?.quotes || {})) {
     if (typeof v !== 'string' || !v.trim() || /^(null|none|n\/a|unknown)$/i.test(v.trim())) continue;
     if (literalIn(v, text)) quotes[k] = v.trim(); else flags.push(`fake_quote:${k}`);
   }
-  const base = verifyOpportunity({ status: o.dated ? out?.status : 'unknown', deadline: o.dated ? out?.deadline : null, official: out?.official, eligible: out?.eligible, non_dilutive: objective === 'grant' || objective === 'sponsorship' ? out?.non_dilutive : 'unknown', kind: out?.kind, page_type: out?.page_type, quotes }, page, { today, brief, profile, entity: !o.dated });
+  const base = verifyOpportunity({ status: o.dated ? out?.status : 'unknown', deadline: o.dated ? out?.deadline : null, official: out?.official, eligible: out?.eligible, non_dilutive: objective === 'grant' || objective === 'sponsorship' ? out?.non_dilutive : 'unknown', kind: out?.kind, page_type: out?.page_type, quotes }, page, { today, brief, profile, extraction, entity: !o.dated });
   const money = String(out?.money || 'unknown').toLowerCase();
   let drop = base.drop;
   const kind = String(out?.kind || '').toLowerCase().trim().split(/[\s|(]/)[0];
@@ -180,7 +181,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead } = opts;
-  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
+  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, extracted: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 });
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
   const range = o.dated ? (env.ENGINE_TBS ?? 'qdr:y') : '';
@@ -190,6 +191,11 @@ export async function runObjective(objective, brief, opts = {}) {
   const profile = applicantProfile(brief);
   const maxTraces = Number(env.ENGINE_TRACE_MAX) || 250;
   const maxReread = Number(env.ENGINE_DATE_REREAD_MAX ?? 12);
+  // Segunda lectura de fechas/elegibilidad con un extractor externo (Firecrawl JSON). Solo candidatas (las que siguen o se descartaron por
+  // «cerrada»), con tope por objetivo. Sin clave, sin ENGINE_EXTRACT o con `search` inyectado (pruebas) no se usa, salvo opts.extractor.
+  const extractor = opts.extractor !== undefined ? opts.extractor : (!opts.search && env.ENGINE_EXTRACT !== 'off' && firecrawlConfigured(env)) ? firecrawlExtract : null;
+  const maxExtract = Number(env.ENGINE_EXTRACT_MAX ?? 15);
+  let extractOff = false;
   const run = search || (apis
     ? async (q) => { const ck = `${recency}|${q}`; if (opts.cache?.[ck]) return opts.cache[ck]; const rows = await multiSearch(q, { env, fetcher, signal, recency, breaker }); if (opts.cache && rows.length) opts.cache[ck] = rows; for (const [p, x] of Object.entries(rows.stats || {})) { const s = stat(p); s.calls++; s.returned += x.returned; s.ms += x.ms; s.costUsd += x.costUsd || 0; if (x.error) { s.errors++; if (audit.errors.length < 20) audit.errors.push(`${p}: ${x.error}`); } if (x.disabled && !s.disabled) { s.disabled = x.disabled; audit.errors.push(`${p}: DESACTIVADO para el resto de la corrida (${x.disabled.slice(0, 120)})`); } } return rows; }
     : searxConfigured(env)
@@ -274,8 +280,23 @@ export async function runObjective(objective, brief, opts = {}) {
             if ((v2.dates?.milestones || []).length > (v.dates?.milestones || []).length || v2.drop !== v.drop) { audit.rereadImproved++; page.text = got.text; page.via = `${page.via || 'search'}+reread:${got.via}`; v = v2; }
           }
         }
+        let extractionMeta = null;
+        if (extractor && o.dated && !extractOff && audit.extracted < maxExtract && (v.keep || v.drop === 'closed')) {
+          audit.extracted++;
+          const ex = await extractor(page.url, { env, fetcher, signal }).catch(() => null);
+          if (ex?.fatal) { extractOff = true; audit.errors.push(`Extractor: ${ex.error}`); }
+          else if (ex?.json) {
+            audit.extractCredits += ex.credits || 0;
+            const extraction = extractedFacts(ex, page.text, { today });
+            const v3 = verifyFinding(json, page, objective, { today, brief, profile, extraction });
+            if (v3.tier !== v.tier || v3.status !== v.status || v3.deadline !== v.deadline || v3.drop !== v.drop) audit.extractChanged++;
+            if (v3.flags.includes('extractor_conflict')) audit.extractConflicts++;
+            extractionMeta = compactExtraction(extraction, { credits: ex.credits || 0, ms: ex.ms || 0 });
+            v = v3;
+          } else audit.errors.push(`Extractor: no result for ${page.url}`.slice(0, 200));
+        }
         for (const p of page.providers) stat(p).pagesRead++;
-        const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } };
+        const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
         if (v.keep) {
           const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
           findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++;
