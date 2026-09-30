@@ -64,6 +64,13 @@ export type GrantPlan = {
   policyThemes: string[];
   geography: string | null;
   contactQuestion: string | null;
+  /** Cómo se aplica y si la fecha es alcanzable (servidor: applicationRoute.mjs). */
+  apply?: {
+    route: string; portal: { name: string; url: string } | null; infoUrl: string | null; officialUrl: string | null;
+    steps: { key: string; label: string; days: number; required: boolean; skip: boolean }[];
+    leadDays: number; daysToDeadline: number | null; feasible: boolean; verdict: 'feasible' | 'tight' | 'not_feasible' | 'closed' | 'unknown';
+    nextDeadline: string | null; message: string; contactAdvice: string;
+  };
 };
 export type Lead = {
   warmPlan?: WarmPlan;

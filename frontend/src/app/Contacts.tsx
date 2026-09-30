@@ -53,12 +53,12 @@ export function shortDraft(lead: Lead, job: Job): { to: string; subject: string;
   const p = bestPath(lead);
   if (lead.fundingType === 'grant' || lead.kind === 'opportunity') {
     const number = lead.grantPlan?.programNumber || 'program number to confirm';
+    // Una convocatoria se aplica en el portal: el «borrador» es la hoja de cómo aplicar que arma el servidor.
+    const apply = lead.grantPlan?.apply;
     return {
-      to: lead.contact?.type === 'email' ? lead.contact.value : 'Application workspace',
-      subject: `Application review · ${number}`,
-      text: lead.grantPlan?.contactQuestion
-        ? `Official call: ${number} — ${lead.title}\n\nQuestion for the published program contact: ${lead.grantPlan.contactQuestion}`
-        : `Official call: ${number} — ${lead.title}\n\nNext action: ${lead.grantPlan?.nextAction || 'Review the official notice and make a go/no-go decision before drafting.'}`,
+      to: apply?.portal?.name || 'Official program page',
+      subject: lead.draft?.subject || `How to apply · ${number}`,
+      text: lead.draft?.body || `Official call: ${number} — ${lead.title}\n\nNext action: ${lead.grantPlan?.nextAction || 'Review the official notice and apply on the official portal.'}`,
     };
   }
   if (p?.introducer) {

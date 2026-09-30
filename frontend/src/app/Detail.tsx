@@ -122,7 +122,19 @@ function contactOf(lead: Lead, demo: boolean) {
   const value = c ? (demo ? `${channel} (fictional)` : c.type === 'email' ? c.value : channel!) : null;
   return { name: lead.person, role: lead.role, channel, href, value, type: c?.type || null };
 }
+const HELPDESK = /grantsgovsupport|support@|helpdesk|help@|webmaster|noreply|no-reply/i;
+/** Convocatoria sin contacto de programa publicado: se aplica en el portal, sin correo. */
+function ApplyCard({ lead, demo }: { lead: Lead; demo: boolean }) {
+  const a = lead.grantPlan?.apply;
+  const href = demo ? null : a?.officialUrl || a?.portal?.url || officialUrlOfLead(lead);
+  return <div className="ld-contact">
+    <span className="ld-contact-av empty" aria-hidden="true"><FileSearch size={16} /></span>
+    <div className="ld-contact-who"><small>How to apply</small><b>{a?.portal?.name || 'Official program page'}</b><span>{a?.contactAdvice || 'Apply through the official portal.'}</span></div>
+    <div className="ld-contact-a">{href ? <a className="x-btn sm" href={href} target="_blank" rel="noreferrer"><ExternalLink size={13} /> Open call</a> : <span className="pl-chip gray">No link</span>}</div>
+  </div>;
+}
 function ContactCard({ lead, demo, isGrant }: { lead: Lead; demo: boolean; isGrant: boolean }) {
+  if (isGrant && lead.kind === 'opportunity' && (!lead.contact || lead.contact.type !== 'email' || (!lead.person && HELPDESK.test(lead.contact.value)) || !lead.grantPlan?.contactQuestion)) return <ApplyCard lead={lead} demo={demo} />;
   const k = contactOf(lead, demo);
   const Icon = k.type === 'email' ? Mail : k.type === 'linkedin' ? ExternalLink : Globe;
   const who = k.name || (isGrant ? 'Program officer' : lead.org);
@@ -344,12 +356,13 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
       </section>
 
       <section className="ld-sec">
-        <header className="ld-h"><h3>{isGrant ? <FileSearch size={15} /> : <Mail size={15} />} {isGrant ? 'Application work item' : 'Email draft'}</h3><span className="ld-hint">{isGrant ? 'Not a fundraising email' : '2 paragraphs · review before sending'}</span></header>
+        <header className="ld-h"><h3>{isGrant ? <FileSearch size={15} /> : <Mail size={15} />} {isGrant ? 'How to apply' : 'Email draft'}</h3><span className="ld-hint">{isGrant ? 'Through the official portal · not an email' : '2 paragraphs · review before sending'}</span></header>
+        {isGrant && lead.grantPlan?.apply && <p className={`ld-apply-verdict ${lead.grantPlan.apply.verdict}`}><b>{({ feasible: 'On time', tight: 'Tight deadline', not_feasible: 'Not reachable for this deadline', closed: 'Closed', unknown: 'Deadline to confirm' } as const)[lead.grantPlan.apply.verdict]}</b> {lead.grantPlan.apply.message}</p>}
         <div className="ld-mail">
-          <dl className="ld-mail-h"><div><dt>To</dt><dd>{mail.to}{p?.introducer ? <em> · asks for the intro</em> : null}</dd></div><div><dt>Subject</dt><dd>{mail.subject}</dd></div></dl>
+          <dl className="ld-mail-h"><div><dt>{isGrant ? 'Where' : 'To'}</dt><dd>{mail.to}{p?.introducer ? <em> · asks for the intro</em> : null}</dd></div><div><dt>Subject</dt><dd>{mail.subject}</dd></div></dl>
           <pre>{mail.text}</pre>
         </div>
-        <div className="ld-mail-a"><CopyBtn text={emailText} label={isGrant ? 'Copy work item' : 'Copy email'} />{demo && <span className="pl-chip sun">Fictional demo data</span>}<span className="ld-hint">{isGrant ? 'Contact the program officer only to resolve a specific ambiguity.' : 'Nothing is sent from the app.'}</span></div>
+        <div className="ld-mail-a"><CopyBtn text={emailText} label={isGrant ? 'Copy steps' : 'Copy email'} />{demo && <span className="pl-chip sun">Fictional demo data</span>}<span className="ld-hint">{isGrant ? 'Writing to the program is optional and only for a specific question.' : 'Nothing is sent from the app.'}</span></div>
       </section>
 
       {isGrant && lead.grantPlan && <section className="ld-sec">

@@ -436,11 +436,19 @@ export function buildDraft(lead, brief, senderFacts = []) {
       const body = `Official call: ${number} — ${lead.title}\n\nDo not pursue: ${lead.grantMatch.summary.replace(/^Off-topic: /, '')}\nNo application draft is generated for an off-topic call.`;
       return { subject: `Not a match · ${number}`, body, sections: [], connector: null, status: 'rejected', warning: 'Rejected by the matching rubric. Do not prepare a proposal for this call.', wordCount: body.split(/\s+/).length };
     }
-    const question = lead.grantPlan?.contactQuestion;
-    const body = `${lead.demo ? '[DEMO — DO NOT USE]\n' : ''}${question
-      ? `Official call: ${number} — ${lead.title}\n\n${question}`
-      : `Official call: ${number} — ${lead.title}\n\nNext action: review the official notice, confirm eligibility, and make a go/no-go decision before drafting.`}`;
-    return { subject: `Application review · ${number}`, body, sections: [], connector: null, status: 'grant work item', warning: 'This is an application work item, not an investor outreach email. Contact a program officer only with a specific published-channel question.', wordCount: body.split(/\s+/).length };
+    // Una convocatoria se aplica en el portal; no es un correo. Solo se sugiere una pregunta si hay contacto de programa publicado.
+    const plan = lead.grantPlan || {};
+    const apply = plan.apply;
+    const question = plan.contactQuestion;
+    const steps = (apply?.steps || []).filter((x) => !x.skip).map((x, i) => `${i + 1}. ${x.label}${x.days ? ` (~${x.days} days)` : ''}`);
+    const body = [
+      `${lead.demo ? '[DEMO — DO NOT USE]\n' : ''}Official call: ${number} — ${lead.title}`,
+      `Where to apply: ${apply?.portal ? `${apply.portal.name} (${apply.portal.url})` : 'the official program page'}${apply?.officialUrl ? `\nOfficial notice: ${apply.officialUrl}` : ''}`,
+      `Deadline: ${lead.deadline || 'not published'}${apply?.message ? ` — ${apply.message}` : ''}`,
+      steps.length ? `Steps:\n${steps.join('\n')}` : null,
+      question ? `Optional question for the program contact:\n${question}` : apply?.contactAdvice || null,
+    ].filter(Boolean).join('\n\n');
+    return { subject: `How to apply · ${number}`, body, sections: [], connector: null, status: 'grant work item', warning: 'Grant applications go through the official portal. This is a work item, not an email.', wordCount: body.split(/\s+/).length };
   }
   const recipientFact = lead.evidence.find(
     (e) => e.verified && ['work', 'title', 'opportunity'].includes(e.field),

@@ -35,12 +35,20 @@ test('search audit shows which exact queries produced priority results', () => {
 
 test('grant plan is a go/no-go work item, never a fundraising pitch', () => {
   const lead = opportunity({ eligibility: { verdict: '?', questions: ['Is a foreign component allowed?'] }, daysToDeadline: 80 });
-  const plan = grantPlan(lead, brief);
+  const plan = grantPlan(lead, brief, new Date('2026-09-30'));
   assert.equal(plan.state, 'eligibility_review');
-  assert.match(plan.contactQuestion, /foreign component/i);
+  // Sin contacto de programa publicado no se sugiere escribir: se aplica en el portal.
+  assert.equal(plan.contactQuestion, null);
   const draft = buildDraft({ ...lead, grantPlan: plan }, brief);
   assert.equal(draft.status, 'grant work item');
+  assert.match(draft.body, /Where to apply: Grants\.gov Workspace or NIH ASSIST/);
   assert.doesNotMatch(draft.body, /raising|20 minutes|fits your thesis/i);
+  // Con un contacto de programa publicado, la pregunta es opcional.
+  const withOfficer = opportunity({ person: 'Dana Ruiz', role: 'Program Officer', contact: { type: 'email', value: 'dana.ruiz@nih.gov', provenance: 'Published in the official call' }, eligibility: { verdict: '?', questions: ['Is a foreign component allowed?'] } });
+  assert.match(grantPlan(withOfficer, brief, new Date('2026-09-30')).contactQuestion, /foreign component/i);
+  // Un helpdesk técnico nunca cuenta como contacto de programa.
+  const helpdesk = opportunity({ contact: { type: 'email', value: 'grantsgovsupport@nsf.gov', provenance: 'Published in the official call' }, eligibility: { verdict: '?', questions: ['x?'] } });
+  assert.equal(grantPlan(helpdesk, brief, new Date('2026-09-30')).contactQuestion, null);
 });
 
 test('closed and historical NIH records cannot become actionable grants', () => {
@@ -57,4 +65,23 @@ test('grant ranking does not require a warm path, person or public email', () =>
   assert.equal(lead.breakdown.find((x) => x.factor === 'path').max, 0);
   assert.ok(!lead.missing.includes('No named decision-maker'));
   assert.ok(!lead.missing.includes('No public email'));
+});
+
+test('NSF 26-511 (SBIR): 35 días no alcanzan para Project Pitch + registro → siguiente ciclo realista', () => {
+  const lead = opportunity({ externalId: '26-511', org: 'U.S. National Science Foundation', title: 'NSF Small Business Innovation Research / Small Business Technology Transfer Phase I, Phase II, Fast-Track Programs: A Pilot Emphasis on Scientific Instrumentation', deadline: '2026-11-04', contact: { type: 'email', value: 'grantsgovsupport@nsf.gov', provenance: 'Published in the official call' } });
+  const plan = grantPlan(lead, brief, new Date('2026-09-30T12:00:00Z'));
+  assert.equal(plan.apply.route, 'nsf_sbir');
+  assert.equal(plan.apply.portal.name, 'Research.gov');
+  assert.equal(plan.apply.verdict, 'not_feasible');
+  assert.equal(plan.apply.nextDeadline, '2027-03-04'); // primer jueves de marzo, como publica NSF 26-511
+  assert.equal(plan.label, 'Next cycle');
+  assert.match(plan.nextAction, /Project Pitch/);
+  assert.equal(plan.contactQuestion, null);
+  const draft = buildDraft({ ...lead, grantPlan: plan }, brief);
+  assert.match(draft.body, /Research\.gov/);
+  assert.match(draft.body, /No need to write to anyone/);
+  // Con la organización ya registrada sigue sin alcanzar: el Pitch solo ya son ~30 días + propuesta.
+  assert.notEqual(grantPlan(lead, { ...brief, registered: true }, new Date('2026-09-30T12:00:00Z')).apply.verdict, 'feasible');
+  // Con tiempo de sobra es factible.
+  assert.equal(grantPlan({ ...lead, deadline: '2027-07-07' }, brief, new Date('2026-09-30T12:00:00Z')).apply.verdict, 'feasible');
 });

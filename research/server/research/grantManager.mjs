@@ -1,3 +1,4 @@
+import { applicationRoute, isProgramContact } from './applicationRoute.mjs';
 const clean = (value) => String(value || '').replace(/\s+/g, ' ').trim();
 const unique = (items) => [...new Set(items.map(clean).filter(Boolean))];
 
@@ -49,6 +50,8 @@ export function finalizeSearchAudit(rows = [], leads = []) {
 }
 
 const questionFor = (lead, brief) => {
+  // Solo si la convocatoria publica un contacto de programa/científico; nunca a un helpdesk técnico.
+  if (!isProgramContact(lead.contact, lead)) return null;
   const venture = brief.venture || brief.company || 'our organization';
   const unresolved = lead.eligibility?.questions?.[0] || lead.missing?.[0];
   if (!unresolved) return null;
@@ -56,8 +59,11 @@ const questionFor = (lead, brief) => {
 };
 
 /** Convierte una convocatoria en una ficha de trabajo; no es un correo de fundraising. */
-export function grantPlan(lead, brief = {}) {
+export function grantPlan(lead, brief = {}, today = new Date()) {
   if (lead.fundingType !== 'grant' || lead.kind !== 'opportunity') return null;
+  const apply = applicationRoute(lead, brief, today);
+  const portal = apply.portal?.name || 'the official program page';
+  const firstStep = apply.steps.find((x) => !x.skip)?.label;
   const verdict = lead.eligibility?.verdict;
   const closed = lead.status === 'closed' || lead.eligibility?.closed === true || (lead.daysToDeadline != null && lead.daysToDeadline < 0);
   const forecast = lead.status === 'forecasted';
@@ -65,7 +71,7 @@ export function grantPlan(lead, brief = {}) {
   let state = 'eligibility_review';
   let decision = 'review';
   let label = 'Review eligibility';
-  let nextAction = 'Resolve the eligibility questions against the official notice before investing time in a draft.';
+  let nextAction = `Check eligibility in the official notice, then apply on ${portal}. First step: ${firstStep || 'read the notice'}.`;
   if (lead.grantMatch?.verdict === 'mismatch') {
     state = 'not_pursuing'; decision = 'no_go'; label = 'Not a match';
     nextAction = 'Do not draft: the official call funds something else. Archive it.';
@@ -75,9 +81,15 @@ export function grantPlan(lead, brief = {}) {
   } else if (forecast) {
     state = 'watching'; decision = 'watch'; label = 'Watch';
     nextAction = 'Monitor the forecast and prepare only the reusable evidence until the official notice is posted.';
+  } else if (apply.verdict === 'not_feasible') {
+    state = 'watching'; decision = 'watch'; label = 'Next cycle';
+    nextAction = `Not reachable for ${lead.deadline}: ${apply.message}${apply.nextDeadline ? '' : ' Watch for the next cycle.'} Start now: ${firstStep || 'confirm the steps on the official page'}.`;
+  } else if (apply.verdict === 'tight') {
+    state = 'decision_needed'; decision = 'conditional_go'; label = 'Tight deadline';
+    nextAction = `${apply.message} Decide now; if you go, start today: ${firstStep || 'confirm the steps on the official page'}.`;
   } else if (verdict === '✔' && !urgent) {
     state = 'preparing'; decision = 'go'; label = 'Prepare application';
-    nextAction = 'Assign an owner, confirm the application package, and work backward from the deadline.';
+    nextAction = `Apply on ${portal}. Assign an owner and work backward from the deadline, starting with: ${firstStep || 'the application package'}.`;
   } else if (urgent) {
     state = 'decision_needed'; decision = 'conditional_go'; label = 'Urgent decision';
     nextAction = 'Make a go/no-go decision now; the remaining lead time is below your minimum.';
@@ -89,7 +101,8 @@ export function grantPlan(lead, brief = {}) {
     { key: 'deadline', label: 'Deadline confirmed', done: Boolean(lead.deadline) },
     { key: 'eligibility', label: 'Eligibility resolved', done: verdict === '✔' },
     { key: 'budget', label: 'Award ceiling confirmed', done: Number(lead.amount) > 0 },
-    { key: 'contact', label: 'Official contact or application channel confirmed', done: Boolean(lead.contact) },
+    { key: 'feasible', label: apply.verdict === 'feasible' ? 'Enough time for the required steps' : `Time for the required steps (~${apply.leadDays} days)`, done: apply.verdict === 'feasible' },
+    ...apply.steps.filter((x) => !x.skip && x.days > 0).map((x) => ({ key: `step_${x.key}`, label: `${x.label} (~${x.days} days)`, done: false })),
   ];
   return {
     state, decision, label, nextAction, checklist,
@@ -100,6 +113,7 @@ export function grantPlan(lead, brief = {}) {
     policyThemes: unique((lead.foundBy || []).map((x) => x.term || x.query)).slice(0, 5),
     geography: brief.geography || null,
     contactQuestion: questionFor(lead, brief),
+    apply,
   };
 }
 

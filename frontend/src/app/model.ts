@@ -162,11 +162,18 @@ const ANGLES: { route: string; rx: RegExp; label: string; hook: string; steps: (
 ];
 
 /* ───────── Recomendación operativa (regla determinista y explícita) ───────── */
-export type NextAction = { kind: 'intro' | 'direct' | 'build' | 'cold' | 'research' | 'monitor' | 'skip'; label: string; detail: string; rule: string };
+export type NextAction = { kind: 'intro' | 'direct' | 'build' | 'cold' | 'research' | 'monitor' | 'skip' | 'apply'; label: string; detail: string; rule: string };
 export function nextAction(lead: Lead): NextAction {
   const path = bestPath(lead);
   const gap = lead.missing.find((m) => !/elegibilidad geografica|geographic eligibility/i.test(norm(m))) || lead.missing[0];
-  if (lead.bucket === 'discarded') return { kind: 'skip', label: 'Don\'t contact', detail: lead.discard || 'Discarded by rules or feedback.', rule: 'List = discarded' };
+  if (lead.bucket === 'discarded') return { kind: 'skip', label: lead.kind === 'opportunity' ? 'Don\'t apply' : 'Don\'t contact', detail: lead.discard || 'Discarded by rules or feedback.', rule: 'List = discarded' };
+  // Convocatorias: se aplica en el portal oficial, no se escribe a nadie (salvo pregunta opcional al contacto publicado).
+  const gp = lead.grantPlan;
+  if (lead.kind === 'opportunity' && gp) {
+    const a = gp.apply;
+    const label = a?.verdict === 'not_feasible' ? `Next cycle${a.nextDeadline ? ` · ${a.nextDeadline}` : ''}` : a?.verdict === 'closed' ? 'Closed' : a?.portal ? `Apply on ${a.portal.name}` : 'Apply on the official page';
+    return { kind: 'apply', label, detail: gp.nextAction, rule: 'Grant call → apply through the official portal' };
+  }
   if (lead.bucket === 'radar') return { kind: 'monitor', label: 'Monitor', detail: radarReason(lead), rule: 'List = radar' };
   if (path && path.introducer) return { kind: 'intro', label: `Ask ${path.introducer} for an intro`, detail: `${path.hopCount} hops · weakest link ${Math.round(path.weakest.strength * 100)}% (${path.weakest.from} → ${path.weakest.to}). First confirm ${path.introducer} is willing to introduce you.`, rule: 'Priority + path with connector' };
   if (path) return { kind: 'direct', label: 'Reach out directly', detail: `1-hop relationship: ${path.hops[0].relation}.`, rule: 'Priority + direct relationship' };

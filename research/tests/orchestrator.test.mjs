@@ -60,14 +60,13 @@ test('hunter: 401/cuota apaga Hunter para el resto de la corrida; presupuesto de
   await assert.rejects(h.domainSearch('y.com'), /budget/);
 });
 
-test('hunter: en grants el contacto del programa queda en la oportunidad, no como candidato aparte', async () => {
+test('hunter: en convocatorias no se buscan correos (se aplica en el portal; vale solo el contacto publicado)', async () => {
   const opp = candidate({ externalId: 'g1', org: 'Wellness Foundation', title: 'Digital mental health grant 2027', kind: 'opportunity', fundingType: 'grant', status: 'open', deadline: '2027-01-15', contact: { type: 'web', value: 'https://wellnessfoundation.org/grants' }, evidence: [evidence('t', 'https://wellnessfoundation.org/grants', 'Digital mental health grant; applications open', 'opportunity')] });
   const fetcher = async () => json(200, { data: { emails: [{ value: 'grants@wellnessfoundation.org', confidence: 90, first_name: 'Mia', last_name: 'Lopez', position: 'Program Officer' }] } });
   const gb = { ...brief, fundingTypes: ['grant'] };
   const { leads, stats } = await enrichWithHunter(evaluate([opp], gb), gb, { env: { HUNTER_API_KEY: 'k' }, fetcher });
-  assert.equal(leads.length, 1); assert.equal(stats.peopleAdded, 0); assert.equal(stats.emailsAdded, 1);
-  assert.equal(leads[0].contact.value, 'grants@wellnessfoundation.org');
-  assert.match(leads[0].contact.provenance, /Mia Lopez, Program Officer/);
+  assert.equal(leads.length, 1); assert.equal(stats.peopleAdded, 0); assert.equal(stats.emailsAdded, 0); assert.equal(stats.calls, 0);
+  assert.equal(leads[0].contact.value, 'https://wellnessfoundation.org/grants');
 });
 
 test('openjev: proveedor por defecto, localhost sin clave, https obligatorio y respuesta de error de OpenJev', async () => {

@@ -122,7 +122,8 @@ export async function enrichWithHunter(leads, brief, { env = process.env, fetche
   const known = new Set(out.filter((l) => l.person).map((l) => `${norm(l.person)}|${norm(l.org)}`));
   const knownEmails = new Set(out.filter((l) => l.contact?.type === 'email').map((l) => String(l.contact.value).toLowerCase()));
   const order = (l) => (l.bucket === 'top' ? 0 : l.bucket === 'radar' ? 1 : l.bucket === 'discarded' ? 3 : 2) * 1000 - (Number(l.score) || 0);
-  const queue = out.filter((l) => l.bucket !== 'discarded' && !l.demo).sort((a, b) => order(a) - order(b));
+  // Convocatorias: se aplica en el portal; no se buscan correos (solo vale el contacto que publique la propia convocatoria).
+  const queue = out.filter((l) => l.bucket !== 'discarded' && !l.demo && l.kind !== 'opportunity').sort((a, b) => order(a) - order(b));
   const stop = (error) => { stats.errors.push(error.message); return Boolean(error.fatal || error.budget || signal?.aborted); };
 
   // 1 · Personas sin email: email-finder.

@@ -81,6 +81,16 @@ export function AnalysisView({ job, onOpenOutreach, onOpenLead, embedded = false
   if (!jobId) body = <EmptyState title="Run an evaluation first">The advisor analyzes the contacts found by your latest run.</EmptyState>;
   else if (!loaded) body = <SkeletonState variant="dashboard" rows={4} label="Loading analysis…" />;
   else if (!run && !running) body = <EmptyState icon={<Bot size={22} />} title="No analysis yet" action={<button className="x-btn primary" disabled={!role} onClick={() => void start({})}><Play size={14} /> Analyze with AI</button>}>{role ? 'One agent per contact, a strategist and a critic.' : 'Connect the AI model first (ask your admin).'}</EmptyState>;
+  else if (!running && run?.status === 'failed' && !dossiers.length) {
+    // El análisis falló sin analizar a nadie: casi siempre el modelo de IA no respondió (conexión caída).
+    const unreachable = (run.errors || []).some((e) => /fetch failed|ECONNREFUSED|ENOTFOUND|timed? ?out|abort/i.test(e.error));
+    body = <ErrorState title="The AI analysis couldn't run" onRetry={() => void start({ refresh: true })}
+      message={unreachable
+        ? `The AI model didn't respond for ${run.errors?.length || 0} contact${run.errors?.length === 1 ? '' : 's'}: its connection is down. Check that the model is reachable (see the model settings in the server) and retry.`
+        : `${run.errors?.[0]?.error || 'Unknown error'}. Retry, and if it fails again tell your admin.`}>
+      {adv && <p className="ld-sub">The rules-based pipeline and each candidate's scorecard still work; only the AI roadmap and dossiers are missing.</p>}
+    </ErrorState>;
+  }
   else body = <>
     {running && run && <div className="an2-live" aria-live="polite"><span className="sh-live" /><b>Analyzing</b><span>{run.events.at(-1)?.message || `${run.events.at(-1)?.contact || ''} ${run.events.at(-1)?.action || ''}`}</span><i style={{ width: `${Math.min(96, 8 + dossiers.length * 9)}%` }} /></div>}
 
@@ -92,7 +102,7 @@ export function AnalysisView({ job, onOpenOutreach, onOpenLead, embedded = false
         <div><span>Strong paths</span><b>{warm}</b></div>
         {adv && <div><span>Roadshow ready</span><b>{ready}<small>/{adv.readiness.checks.length}</small></b></div>}
       </div>
-      {run?.errors?.length ? <span className="pl-chip sun" title={run.errors.map((e) => `${e.contact}: ${e.error}`).join('\n')}><AlertTriangle size={12} /> {run.errors.length} contact{run.errors.length === 1 ? '' : 's'} timed out</span> : null}
+      {run?.errors?.length ? <span className="pl-chip sun" title={run.errors.map((e) => `${e.contact}: ${e.error}`).join('\n')}><AlertTriangle size={12} /> {run.errors.length} contact{run.errors.length === 1 ? '' : 's'} failed</span> : null}
     </section>
 
     {rm && <section className="pl-card an2-road">

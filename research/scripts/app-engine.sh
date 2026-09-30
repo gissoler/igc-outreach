@@ -4,14 +4,15 @@
 #   bash research/scripts/app-engine.sh off         # vuelve al comportamiento anterior
 #   bash research/scripts/app-engine.sh status
 # Solo escribe un bloque marcado dentro de research/.env (copia previa en .env.bak-motor). Después REINICIA el servidor
-# (npm start) porque lee el .env al arrancar. El modelo llega por túnel: deja abierto  bash research/scripts/tunnel-g355.sh
+# (npm start) porque lee el .env al arrancar. El modelo se alcanza directo en g355 (host de INTAKE_LLM_BASE_URL o MODEL_HOST);
+# con MODEL_VIA=tunnel usa el túnel: deja abierto  bash research/scripts/tunnel-g355.sh
 # NO se activa nada en g355: solo se usan modelos que ya corren allí.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; ENVF="${ENV_FILE:-$ROOT/.env}"
 CMD="${1:-status}"
 BEGIN="# >>> motor v2 (app-engine.sh) — no editar a mano"; END="# <<< motor v2 (app-engine.sh)"
 [[ -f "$ENVF" ]] || { echo "No existe $ENVF"; exit 1; }
-ENVF="$ENVF" BEGIN="$BEGIN" END="$END" CMD="$CMD" python3 - <<'PY'
+ENVF="$ENVF" BEGIN="$BEGIN" END="$END" CMD="$CMD" MODEL_HOST="${MODEL_HOST:-}" MODEL_VIA="${MODEL_VIA:-}" python3 - <<'PY'
 import os, re, shutil, sys
 f, B, E, cmd = (os.environ[k] for k in ("ENVF","BEGIN","END","CMD"))
 txt = open(f).read()
@@ -41,9 +42,16 @@ lines = [B, "ENGINE_V2=1",
   "ENGINE_MAX_QUERIES=18",
   "# El pipeline aborta todo el run a los 180 s por defecto; el motor v2 necesita 2-4 min",
   "RESEARCH_RUN_TIMEOUT_MS=600000"]
-lines += ["VLLM_CHAT_URL=http://127.0.0.1:18000/v1", "VLLM_CHAT_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507"]
+# El modelo se alcanza DIRECTO en g355 (como ya hace INTAKE_LLM_BASE_URL con el 4B): mismo host, puerto 8000 (Qwen3-30B).
+# Si no hay host conocido (o MODEL_VIA=tunnel), se usa el túnel local 127.0.0.1:18000 (scripts/tunnel-g355.sh).
+host = os.environ.get("MODEL_HOST", "").strip()
+if not host and os.environ.get("MODEL_VIA", "") != "tunnel":
+    m = re.search(r"^\s*INTAKE_LLM_BASE_URL=\s*https?://([^/:\s]+)", outside, re.M)
+    if m and m.group(1) not in ("127.0.0.1", "localhost"): host = m.group(1)
+chat = f"http://{host}:8000/v1" if host else "http://127.0.0.1:18000/v1"
+lines += [f"VLLM_CHAT_URL={chat}", "VLLM_CHAT_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507"]
 lines.append(E)
 shutil.copy(f, f + ".bak-motor")
 open(f, "w").write(outside.rstrip("\n") + "\n\n" + "\n".join(lines) + "\n")
-print("motor v2 ENCENDIDO. Reinicia el servidor (npm start) y deja abierto el túnel.")
+print("motor v2 ENCENDIDO. Modelo en " + chat + ". Reinicia el servidor (npm start)" + (" y deja abierto el túnel." if "127.0.0.1" in chat else "; no hace falta túnel."))
 PY
