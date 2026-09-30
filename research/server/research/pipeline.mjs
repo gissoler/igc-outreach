@@ -20,6 +20,7 @@ import { assessLeads } from './sufficiency.mjs';
 import { runAgenticLoop } from './loop.mjs';
 import { attachGrantPlans, finalizeSearchAudit } from './grantManager.mjs';
 import { createRecorder } from './liveRun.mjs';
+import { buildRunAudit } from './runAudit.mjs';
 import { applyJevDecisions, askJev, jevProvider } from './jev.mjs';
 import {
   makeClient,
@@ -104,6 +105,7 @@ export async function runResearch(
     let failures = 0;
     let followupResult = null;
     const searchAudit = [];
+    const engineRuns = [];   // auditorías del motor (interpretación del brief, consultas, recorrido de descartes)
     if (job.mode === 'demo') {
       live({ phase: 'planning', status: 'success', title: 'Search plan', message: job.plan.summary, detail: { kind: 'plan', items: job.plan.items, sources: [] } });
       live({ phase: 'warning', status: 'warning', title: 'Demo mode', message: 'EXPLICIT DEMO: fictional examples. No external sources or browser used.' });
@@ -136,7 +138,7 @@ export async function runResearch(
             ]
           : []),
         ...(engineOn
-          ? [[ENGINE_SOURCE, async () => { const r = await runEngine(b, { env, fetcher, signal }); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped })) }); }]]
+          ? [[ENGINE_SOURCE, async () => { const r = await runEngine(b, { env, fetcher, signal }); engineRuns.push(...r.audits); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped, skipped: a.skipped })) }); }]]
           : []),
         // Grants por las APIs de búsqueda (Exa, Serper, Tavily, You, Jina, Linkup) sin depender del modelo:
         // una consulta por término («¿quién financia X?») + programas y fundaciones; las páginas se abren y confirman después.
@@ -341,6 +343,7 @@ export async function runResearch(
           for (const [objective, list] of byObjective) {
             if (engineOn) {
               const r = await runObjective(objective, b, { env, fetcher, signal: s, queries: list.map((q) => ({ query: q.query, family: 'orchestrator' })), rounds: 1, breaker });
+              engineRuns.push({ ...r.audit, attempt: 'orchestrator' });
               found.push(...engineLeads(r.findings));
             } else if (searchApisConfigured(env)) {
               await Promise.all(list.map(async (q) => {
@@ -474,6 +477,12 @@ export async function runResearch(
       store.save(job);
     }
     job.leads = attachGrantPlans(job.leads, b).map((lead) => lead.grantPlan ? { ...lead, draft: buildDraft(lead, b, sender) } : lead);
+    // Auditoría de la corrida (qué entendió el motor, qué buscó, qué leyó, qué descartó y por qué; fecha de hoy usada).
+    try {
+      job.runAudit = buildRunAudit({ engineRuns, leads: job.leads, searchAudit: job.searchAudit || [], brief: b, today: new Date().toISOString().slice(0, 10) });
+      const c = job.runAudit.counters; const why = Object.entries(c.discardReasons).sort((x, y) => y[1] - x[1]).slice(0, 4).map(([k, n]) => `${k} ${n}`).join(', ');
+      live({ phase: 'evaluating', provider: 'Run audit', status: 'success', title: 'Run audit', message: `${c.queries || job.runAudit.queries.length} queries · ${c.pagesRead} pages read by the AI · ${c.buckets.top} main list · ${c.buckets.radar} to verify · ${c.buckets.discarded} discarded${why ? ` (${why})` : ''}. Today used: ${job.runAudit.today}.`, resultCount: c.buckets.top });
+    } catch (error) { job.runAudit = { error: error.message }; }
     const first = job.leads.find((l) => l.bucket === 'top') || job.leads[0];
     live({ phase: 'drafting', status: 'success', title: b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant' ? 'Grant work items ready' : 'Drafts written', detail: first ? { kind: 'draft', to: String(first.person || first.org).slice(0, 90), org: String(first.org || '').slice(0, 90), subject: String(first.draft?.subject || '').slice(0, 160), excerpt: String(first.draft?.body || '').slice(0, 420) } : undefined, message: b.fundingTypes.length === 1 && b.fundingTypes[0] === 'grant' ? `${job.leads.filter((lead) => lead.kind === 'opportunity').length} specific grant opportunities prepared for review.` : `${job.leads.length} drafts built from templates and public facts; nothing is sent.`, resultCount: job.leads.length });
     job.status =
