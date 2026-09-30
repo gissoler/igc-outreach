@@ -38,9 +38,18 @@ const sleep = (ms, signal) => new Promise((resolve, reject) => {
 /** Breakers por proveedor para toda la vida del proceso: tras un 401/402 no seguimos gastando llamadas. */
 const disabledUntil = new Map();
 export function providerDisabled(provider) { const until = disabledUntil.get(provider) || 0; return until > Date.now() ? until : 0; }
-export function resetProviderBreakers() { disabledUntil.clear(); }
+export function resetProviderBreakers() { disabledUntil.clear(); resetFirecrawlPace(); }
 
-async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries }) {
+/** Ritmo de Firecrawl: sin límite hasta el primer 429; entonces se espacian las llamadas (se duplica el intervalo, mínimo
+ *  FIRECRAWL_RATE_BACKOFF_MS = 6 s) y se afloja despacio tras 15 éxitos seguidos. Lo comparten el scrape de respaldo y la extracción. */
+const pace = { interval: 0, nextAt: 0, ok: 0 };
+export const firecrawlPace = () => ({ ...pace });
+export function resetFirecrawlPace() { pace.interval = 0; pace.nextAt = 0; pace.ok = 0; }
+const paceGate = (signal) => async () => { const now = Date.now(); const at = Math.max(now, pace.nextAt); pace.nextAt = at + pace.interval; if (at > now) await sleep(at - now, signal); };
+const paceHit = (env) => { pace.interval = Math.min(20_000, Math.max(pace.interval * 2, clamp(env.FIRECRAWL_RATE_BACKOFF_MS, 0, 30_000, 6000))); pace.nextAt = Date.now() + pace.interval; pace.ok = 0; };
+const paceOk = () => { if (pace.interval && ++pace.ok >= 15) { pace.interval = Math.floor(pace.interval / 2); if (pace.interval < 500) pace.interval = 0; pace.ok = 0; } };
+
+async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries, gate, onRateLimit, onSuccess }) {
   const base = { kind: 'api', callId: `${provider}-${Date.now()}`, method: 'POST', host, endpoint: sanitizeUrl(url, live.secrets), params: publicParams(url, body, live.secrets) };
   base.query = queryOf(base.params);
   if (providerDisabled(provider)) throw Object.assign(new Error(`${provider}: disabled after a key/credit error; skipped until the key or plan is fixed.`), { fatal: true });
@@ -51,6 +60,7 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
   let lastError = null;
   for (let attempt = 0; attempt < attempts; attempt++) {
     if (attempt) await sleep(Math.min(8000, 700 * 2 ** (attempt - 1)) + Math.floor(Math.random() * 250), signal);
+    if (gate) await gate();
     const timeout = AbortSignal.timeout(timeoutMs || clamp(env.WEB_TIMEOUT_MS, 10_000, 180_000, 90_000));
     let response;
     try {
@@ -77,6 +87,7 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
         throw Object.assign(lastError, { fatal: true });
       }
       if (!RETRY_STATUS.has(response.status)) { fail(lastError.message, response.status); throw lastError; }
+      if (response.status === 429) onRateLimit?.();
       const wait = Number(response.headers?.get?.('retry-after'));
       if (Number.isFinite(wait) && wait > 0 && wait <= 20) await sleep(wait * 1000, signal);
       continue;
@@ -90,6 +101,7 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
       continue;
     }
     live({ phase: 'api_response', status: 'success', title: `HTTP ${response.status} · ${host}`, message: `${provider} responded in ${Date.now() - started} ms${attempt ? ` after ${attempt} retr${attempt === 1 ? 'y' : 'ies'}` : ''}.`, publicUrl: url, durationMs: Date.now() - started, detail: { ...base, httpStatus: response.status, bytes: Buffer.byteLength(text), sample: safeSample(data, { secrets: live.secrets }), preview: previewRecords(data?.data?.web || data?.json?.people || [], { secrets: live.secrets }) } });
+    onSuccess?.();
     record(url, data);
     return Object.assign(data, { __ms: Date.now() - started });
   }
@@ -121,7 +133,7 @@ export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs 
 export async function firecrawlScrape(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
   if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
   try {
-    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 1, timeoutMs: 45_000 });
+    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 2, timeoutMs: 45_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk });
     const d = data?.data || {};
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';
     return markdown.length > 80 ? { url: safeUrl(d.metadata?.sourceURL || d.metadata?.url) || url, title: String(d.metadata?.title || ''), markdown, text: markdown } : null;
@@ -140,7 +152,7 @@ export async function firecrawlExtract(url, { env = process.env, fetcher = fetch
   try {
     const timeout = clamp(env.FIRECRAWL_EXTRACT_TIMEOUT_MS, 10_000, 120_000, 50_000);
     const body = { url, formats: ['markdown', { type: 'json', schema: EXTRACT_SCHEMA, prompt: EXTRACT_PROMPT }], onlyMainContent: env.FIRECRAWL_EXTRACT_MAIN_ONLY === '1', timeout };
-    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, retries: 1, timeoutMs: timeout + 15_000 });
+    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, retries: 2, timeoutMs: timeout + 15_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk });
     const d = data?.data || {};
     const json = d.json && typeof d.json === 'object' ? d.json : d.extract && typeof d.extract === 'object' ? d.extract : null;
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';

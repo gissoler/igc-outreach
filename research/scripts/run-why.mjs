@@ -31,4 +31,8 @@ for (const audit of result.audits || []) {
     if (t.extraction) { const e = t.extraction; console.log(`   extractor: ${e.ok === false ? `FALLÓ: ${e.error}` : `estado=${e.status} plazo=${e.deadline || '-'} fases=${(e.phases || []).length} rechazadas=${(e.rejected || []).length} sin leer=${(e.unparsed || []).length} créditos=${e.credits ?? '-'}`}`); }
   }
 }
+for (const audit of result.audits || []) {
+  if (objective && audit.objective !== objective) continue;
+  for (const o of audit.overBudget || []) if (rx.test(`${o.url} ${o.title}`)) { shown++; console.log(`\n── [${audit.objective}] ${o.url}\n   ${short(o.title, 100)}\n   NO SE LEYÓ: quedó fuera del presupuesto de páginas (prioridad ${o.score}, en ${o.providers} buscador(es)). Sube ENGINE_MAX_PAGES o mejora su prioridad.`); }
+}
 if (!shown) console.log('Ninguna traza coincide. Si la página nunca se leyó, mira "skipped" en result.json (presupuesto de páginas, agregadores); las corridas anteriores al 30/09 noche guardan pocas trazas.');
