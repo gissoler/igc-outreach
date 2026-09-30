@@ -239,3 +239,13 @@ test('motor: las páginas sin leer por presupuesto quedan listadas en la auditor
   const r = await runObjective('grant', mentiva, { chat, search: async () => mkPages(30), today: TODAY, rounds: 1, env: { ENGINE_MAX_PAGES: '10' } });
   assert.equal(r.audit.overBudget.length, 20); assert.ok(r.audit.overBudget.every((x) => x.url && 'score' in x));
 });
+
+test('motor: las dudas de "cerrada" no le quitan turno del extractor a los candidatos que sí pasan', async () => {
+  const closed = mkPages(6).map((p, i) => ({ ...p, url: `https://closed${i}.example.org/call`, markdown: `Call ${i} for mental health startups. Application deadline: 15 January 2026. Open to for-profit startups.` }));
+  const keep = mkPages(3);
+  const seen = [];
+  const extractor = async (url) => { seen.push(url); return { json: { is_open_call: true, dates: [{ phase: 'application_deadline', quote: 'get their dossier in by 15 January 2027 at noon' }] }, markdown: '', credits: 5, ms: 10 }; };
+  await runObjective('grant', mentiva, { chat, search: async () => [...closed, ...keep], today: TODAY, rounds: 1, extractor, concurrency: 1, env: { ENGINE_EXTRACT_MAX: '6' } });
+  assert.ok(seen.filter((u) => u.includes('closed')).length <= 2, 'cerradas: como mucho un tercio del tope');
+  assert.equal(seen.filter((u) => /\/\/f\d/.test(u)).length, 3, 'todas las candidatas reciben segunda lectura');
+});

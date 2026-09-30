@@ -18,7 +18,8 @@ const PLACES = [
   ['UK', /\b(united kingdom|uk-based|uk-registered|uk registered|in the uk\b|england|scotland|wales|northern ireland|british)\b/i],
   ['CA', /\b(canada|canadian)\b/i], ['CH', /\b(switzerland|swiss)\b/i], ['AU', /\b(australia|australian)\b/i], ['IN', /\b(india|indian)\b/i],
   ['IL', /\b(israel|israeli)\b/i], ['SG', /\b(singapore|singaporean)\b/i], ['DE', /\b(germany|german)\b/i], ['FR', /\b(france|french)\b/i],
-  ['ES', /\b(spain|spanish|españa|espana)\b/i], ['CO', /\b(colombia|colombian[oa]?s?)\b/i], ['CL', /\b(chile|chilean[oa]?s?)\b/i], ['MX', /\b(mexico|méxico|mexican[oa]?s?)\b/i],
+  ['ES', /\b(spain|spanish|españa|espana|extremadura|arag[oó]n|catalonia|andalusia)\b/i], ['IT', /\b(italy|italian|lombardy|lombardia)\b/i], ['GR', /\b(greece|greek|central macedonia)\b/i], ['NL', /\b(netherlands|dutch)\b/i], ['PT', /\b(portugal|portuguese)\b/i],
+  ['SE', /\b(sweden|swedish)\b/i], ['DK', /\b(denmark|danish)\b/i], ['FI', /\b(finland|finnish)\b/i], ['NO', /\b(norway|norwegian)\b/i], ['RO', /\b(romania|romanian)\b/i], ['NORDIC', /\b(nordic(?: countries)?|nordforsk(?: member)?)\b/i], ['CO', /\b(colombia|colombian[oa]?s?)\b/i], ['CL', /\b(chile|chilean[oa]?s?)\b/i], ['MX', /\b(mexico|méxico|mexican[oa]?s?)\b/i],
   ['BR', /\b(brazil|brasil|brazilian)\b/i], ['JP', /\b(japan|japanese)\b/i], ['KR', /\b(korea|korean)\b/i], ['NZ', /\b(new zealand)\b/i], ['IE', /\b(ireland|irish)\b/i],
   ['LATAM', /\b(latin america(?:n)?|latam|am[eé]rica latina)\b/i], ['AFRICA', /\b(africa(?:n)?)\b/i],
   // Restricciones regionales sin país concreto (convocatorias en cascada de la UE, fondos regionales)
@@ -69,10 +70,18 @@ const TYPES = {
 const NEGATED = /\b(not (?:be )?eligible|ineligible|excluded|cannot apply|may not apply|are not allowed|no (?:se )?(?:admiten|aceptan))\b/i;
 const EXCLUDE_FP = /\b((?:for-?profit|commercial) (?:entities|organi[sz]ations|companies|businesses|firms|applicants) (?:are|is) (?:not |in)eligible|(?:are|is) not (?:open|available) to (?:for-?profit|commercial|compan|business)|not open to (?:for-?profit|commercial|compan|business)|(?:only|exclusively) (?:for |open to |available to )?(?:non-?profits?|universities|academic|students|registered charities|faculty)|must be (?:a |an )?(?:registered )?(?:non-?profit|charity|501|university|student|faculty member)|for-?profit (?:entities|organi[sz]ations|companies) (?:may|can)not|no (?:se )?(?:admiten|aceptan) empresas|excluding for-?profit)\b/i;
 const INCLUDE_FP = /\b((?:for-?profit|small business(?:es)?|compan(?:y|ies)|start-?ups?|smes?|businesses|enterprises|industry)\b[^.]{0,40}\b(?:are|is) (?:also |both )?eligible|open to (?:all )?(?:compan|start-?ups?|businesses|for-?profit|entrepreneurs|founders|innovators|smes|early-stage)|unrestricted|any type of entity|open to any (?:type of )?(?:entity|organi[sz]ation|applicant)|(?:existing )?companies and (?:new )?start-?ups|for-?profit (?:organi[sz]ations|entities|companies)|small business concerns?|empresas (?:emergentes )?(?:pueden|son elegibles)|start-?ups? (?:and|or) (?:smes|scale-?ups|companies))\b/i;
-const COUNTRY_RULE = /\b((?:must|should|need to) be (?:legally )?(?:based|located|registered|incorporated|resident|domiciled|established|headquartered) in|(?:based|located|registered|incorporated|resident|domiciled|established|headquartered) in|citizens? (?:or permanent residents? )?of|permanent residents? of|residents? of|(?:only|exclusively) (?:open to|for|available to) (?:applicants|companies|organi[sz]ations|residents|teams) (?:from|in)|applicants? from|led by (?:u\.?s\.?|us) citizens|substantive role in|with a (?:presence|base) in|(?:start-?ups?|companies|smes|applicants|teams|organi[sz]ations) (?:across|in|from)|plan to (?:develop|establish|relocate) (?:their|the) business in|non-domestic \(non-u\.?s\.?\) entities[^.;]{0,60}not eligible)\b[^.;]{0,90}/gi;
+const COUNTRY_RULE = /\b((?:in|from) (?:the )?(?:nordforsk|nordic)\b[^.;]{0,60}|(?:must|should|need to) be (?:legally )?(?:based|located|registered|incorporated|resident|domiciled|established|headquartered) in|(?:based|located|registered|incorporated|resident|domiciled|established|headquartered) in|citizens? (?:or permanent residents? )?of|permanent residents? of|residents? of|(?:only|exclusively) (?:open to|for|available to) (?:applicants|companies|organi[sz]ations|residents|teams) (?:from|in)|applicants? from|led by (?:u\.?s\.?|us) citizens|substantive role in|with a (?:presence|base) in|(?:start-?ups?|companies|smes|applicants|teams|organi[sz]ations) (?:across|in|from)|plan to (?:develop|establish|relocate) (?:their|the) business in|non-domestic \(non-u\.?s\.?\) entities[^.;]{0,60}not eligible)\b[^.;]{0,90}/gi;
 const STRONG_COUNTRY = /\b(?:must be (?:legally )?(?:established|based|registered|incorporated|located|headquartered) in|beneficiaries (?:must be )?established in|only (?:companies|applicants|organi[sz]ations|smes) (?:established|based|registered) in)\b[^.;]{0,90}/gi;
 const GLOBAL = /\b(worldwide|anywhere in the world|any country|all countries|globally|international applicants (?:are )?welcome|from around the world|no geographic restrictions?|incorporated anywhere|open to (?:applicants|teams|startups) from all)\b/i;
 const LATE_STAGE = /\b(series [a-c](?: or later)?|post-?revenue|revenue of at least|minimum (?:annual )?revenue|at least \$?\d[\d,.]*\s*(?:k|m|million)? (?:in )?(?:revenue|arr|sales)|at least \d+ (?:full-time )?employees|(?:operating|in business) for (?:at least )?\d+ years)\b/i;
+
+// Una frase que describe el propósito del programa ("Supports startups and small businesses…") no dice quién puede postular.
+const PURPOSE = /^\W*(?:this (?:program(?:me)?|call|initiative|fund|challenge)\s+)?(?:supports?|funds?|provides?|aims? to|helps?|enables?|fosters?|invests? in|in support of|our mission|the mission)\b/i;
+const APPLY_CUE = /\b(eligib\w*|apply|applicants?|open to|submit\w*)\b/i;
+// Empresas que solo aparecen como socios de un consorcio: no son quien postula.
+const PARTNER = /\b(partners?|partner organi[sz]ations?|may (?:also )?participate|participating as|as (?:a )?partners?|subcontract\w*|collaborators?)\b/i;
+// La página remite la elegibilidad a otro documento.
+const DEFER = /\b(see (?:the )?(?:full )?(?:program )?(?:solicitation|guidelines|call text|call document|notice of funding|nofo|rfa|terms and conditions)|refer to (?:the )?(?:solicitation|guidelines|call)|certain types of organi[sz]ations|eligibility (?:is|are) (?:defined|described|detailed|set out|specified) in)\b/i;
 
 // Frases que son navegación (enlaces markdown, índices con puntos): no dicen quién puede postular.
 const NAV = /\]\(https?:|\.{6,}|^\W*\[/;
@@ -101,13 +110,15 @@ export function checkApplicant(pageText, profile = applicantProfile({}), { model
   const sents = sentencesOf(s);
   if (modelQuote && !sents.includes(modelQuote)) sents.unshift(flat(modelQuote));
   const flags = [];
-  const found = { company: null, student: null, academic: null, nonprofit: null, government: null, researcher: null };
+  const found = { company: null, partner: null, student: null, academic: null, nonprofit: null, government: null, researcher: null };
   let exclude = null; let include = null; let global = null; let late = null;
   const countries = [];
   for (const x of sents) {
     if (!exclude && EXCLUDE_FP.test(x)) exclude = x;
     if (!include && INCLUDE_FP.test(x)) include = x;
-    if (!found.company && COMPANY.test(x) && !STUDENT_MOD.test(x) && !NEGATED.test(x)) found.company = x;
+    if (COMPANY.test(x) && !STUDENT_MOD.test(x) && !NEGATED.test(x) && !(PURPOSE.test(x) && !APPLY_CUE.test(x))) {
+      if (PARTNER.test(x) && !INCLUDE_FP.test(x)) { if (!found.partner) found.partner = x; } else if (!found.company) found.company = x;
+    }
     if (STUDENT_MOD.test(x) && !found.student) found.student = x;
     for (const [t, rx] of Object.entries(TYPES)) if (!found[t] && rx.test(x)) found[t] = x;
     if (!global && GLOBAL.test(x)) global = x;
@@ -117,7 +128,9 @@ export function checkApplicant(pageText, profile = applicantProfile({}), { model
   // Restricciones de país fuertes en cualquier parte de la página (no solo en las frases de elegibilidad)
   for (const m of s.matchAll(STRONG_COUNTRY)) {
     const sent = s.slice(Math.max(0, s.lastIndexOf('. ', m.index) + 1), Math.min(s.length, m.index + 220)).trim();
-    for (const code of placesIn(m[0])) if (!countries.some((c) => c.code === code)) countries.push({ code, quote: sent });
+    // "must be legally established in the following regions: Central Macedonia, Greece; Lombardy, Italy; …": los lugares vienen después.
+    const scope = /\b(?:following|these|below|listed)\b/i.test(m[0]) || /:\s*$/.test(m[0]) ? s.slice(m.index, m.index + 700) : m[0];
+    for (const code of placesIn(scope)) if (!countries.some((c) => c.code === code)) countries.push({ code, quote: sent });
   }
   const types = Object.fromEntries(Object.entries(found).filter(([, v]) => v).map(([k]) => [k, true]));
   const out = (decision, reason, quote) => ({ decision, reason, quote: quote ? String(quote).slice(0, 400) : '', types, countries: countries.map((c) => c.code), flags, sentences: sents.slice(0, 4).map((x) => x.slice(0, 300)) });
@@ -129,20 +142,22 @@ export function checkApplicant(pageText, profile = applicantProfile({}), { model
   if (exclude && profile.forProfit) return out('no', 'The page excludes for-profit companies', exclude);
   // 2) Solo estudiantes / universidades / ONG / gobierno y nada que admita empresas
   const companyOk = Boolean(include || found.company);
+  const defers = (s.match(/[^.!?]*\b(?:see (?:the )?(?:full )?(?:program )?(?:solicitation|guidelines|call text|call document|notice of funding|nofo|rfa|terms and conditions)|refer to (?:the )?(?:solicitation|guidelines|call)|certain types of organi[sz]ations|eligibility (?:is|are) (?:defined|described|detailed|set out|specified) in)[^.!?]*[.!?]?/i) ?? [])[0]?.trim();
   const restricted = ['student', 'academic', 'nonprofit', 'government'].filter((t) => found[t]);
+  if (profile.forProfit && !companyOk && found.partner) return out('unclear', 'Companies appear only as partners, not as the applicants who lead the proposal', found.partner);
   if (profile.forProfit && !companyOk && restricted.length) return out('no', `Only for ${restricted.join(' / ')} applicants; nothing admits a for-profit startup`, found[restricted[0]]);
   if (profile.forProfit && found.student && STUDENT_MOD.test(found.student) && !include) return out('no', 'Only for student-led teams', found.student);
   // 3) País
   if (countries.length && !global) {
     const codes = countries.map((c) => c.code);
     const q = countries[0].quote;
-    if (profile.outside.length && codes.every((c) => profile.outside.includes(c))) return out('no', `Restricted to ${codes.join('/')}; the venture is incorporated outside ${profile.outside.join('/')}`, q);
+    if (profile.outside.length && codes.every((c) => profile.outside.some((o) => covers(o, c)))) return out('no', `Restricted to ${codes.join('/')}; the venture is incorporated outside ${profile.outside.join('/')}`, q);
     if (profile.country && !codes.some((c) => covers(c, profile.country))) return out('no', `Restricted to ${codes.join('/')}; the venture is in ${profile.country}`, q);
     if (!profile.country) flags.push(`country_restricted:${codes.join('/')}`);
   }
   // 4) Etapa
   if (late && profile.early) flags.push('stage_requirement');
-  if (!companyOk) return out('unclear', found.researcher ? 'Addressed to researchers; does not say companies can apply' : 'Eligibility does not say whether a for-profit startup can apply', found.researcher || sents[0]);
+  if (!companyOk) return out('unclear', defers ? 'The page defers eligibility to another document (solicitation or guidelines)' : found.researcher ? 'Addressed to researchers; does not say companies can apply' : 'Eligibility does not say whether a for-profit startup can apply', defers || found.researcher || sents[0]);
   if (flags.some((f) => f.startsWith('country_restricted'))) return out('unclear', `Companies can apply, but only from ${countries.map((c) => c.code).join('/')}; the brief does not say where the venture is incorporated`, countries[0].quote);
   if (flags.includes('stage_requirement')) return out('unclear', 'Companies can apply, but there is a stage/revenue requirement to check', late);
   return out('yes', 'The eligibility statement admits companies/startups', include || found.company);
