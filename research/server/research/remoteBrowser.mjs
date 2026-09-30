@@ -99,6 +99,11 @@ export function createRemoteBrowser({
     return browserPromise;
   }
 
+  /** Si el navegador remoto se puede usar (sin arrancarlo): lo consulta la pestaña "Official page" para elegir el modo sola. */
+  function status() {
+    return closed ? { available: false, reason: 'The server is shutting down.' } : unavailable ? { available: false, reason: unavailable } : { available: true, reason: null };
+  }
+
   const enqueue = (s, fn) => { const p = s.chain.then(fn); s.chain = p.catch(() => {}); return p; };
 
   async function dispose(key) {
@@ -123,6 +128,7 @@ export function createRemoteBrowser({
   sweeper.unref?.();
 
   return {
+    status,
     /** Abre (o reutiliza) la sesión de `key` en `url`. `owner` limita a una sesión por usuario. */
     async open(key, url, { owner = key, refresh = false } = {}) {
       const start = safeUrl(url);

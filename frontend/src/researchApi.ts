@@ -75,6 +75,11 @@ export type Lead = {
   eligibility?: { verdict: '✔' | '✖' | '?'; closed: boolean; questions: string[]; method: string };
   activeFund?: { rank: number; dealsInWindow: number };
   id: string;
+  key?: string;
+  fit?: number;
+  /** Extra contacts (e.g. program staff found by Hunter for a grant). */
+  contacts?: { name: string; role: string | null; email: string; provenance: string }[];
+  hunter?: { domain: string; score: number; status: string | null };
   rank: number;
   person: string | null;
   role: string | null;
@@ -121,6 +126,7 @@ export type Lead = {
     fitConfidence: number;
     evidenceSufficient: number;
     model: string;
+    provider?: string;
   };
   draft: {
     subject: string;
@@ -314,7 +320,7 @@ export const frameUrl = (jobId: string, frameId: string) => `${API}/jobs/${encod
 
 /* Página oficial de un lead dentro de la app. `officialPage` dice si el sitio se deja embeber (iframe);
    `browsePage` maneja el navegador remoto: la página corre en el servidor y aquí se ven los fotogramas. */
-export type OfficialPage = { url: string | null; status?: number | null; embeddable: boolean; reason: string | null };
+export type OfficialPage = { url: string | null; status?: number | null; embeddable: boolean; reason: string | null; browser?: { available: boolean; reason: string | null } };
 export type BrowseShot = { url: string; title: string; image: string; width: number; height: number };
 export type BrowseAction =
   | { action: 'open'; refresh?: boolean } | { action: 'close' } | { action: 'back' } | { action: 'reload' }

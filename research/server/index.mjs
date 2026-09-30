@@ -448,7 +448,7 @@ export function createApp({
         if (!job || (job.userId && job.userId !== requestUser?.id)) return json(404, { error: 'Run not found.' });
         const lead = (job.leads || []).find((l) => l.id === pageMatch[2]);
         if (!lead) return json(404, { error: 'Item not found.' });
-        if (pageMatch[3] === 'page') return json(200, await officialPages.info(job.id, lead));
+        if (pageMatch[3] === 'page') return json(200, { ...(await officialPages.info(job.id, lead)), browser: remoteBrowser.status?.() || { available: false, reason: null } });
         const owner = requestUser?.id || 'anonymous';
         const key = `${owner}:${job.id}:${lead.id}`;
         try {

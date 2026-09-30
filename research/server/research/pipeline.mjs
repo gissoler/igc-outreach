@@ -3,7 +3,12 @@ import { makePlan, evaluate, buildDraft } from './core.mjs';
 import { expandTerms } from './expand.mjs';
 import { demoLeads } from './demo.mjs';
 import { addConnections, addOrgBridges, networkCandidates } from './network.mjs';
-import { runEngine, engineLeads, engineConfigured, ENGINE_SOURCE } from './engine.mjs';
+import { runEngine, runObjective, engineLeads, engineConfigured, ENGINE_SOURCE } from './engine.mjs';
+import { multiSearch, searchApisConfigured } from './searchApis.mjs';
+import { ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads, confirmFromPages } from './orchestrator.mjs';
+import { fetchPage } from './localSearch.mjs';
+import { jinaRead, firecrawlRead } from './searchApis.mjs';
+import { HUNTER_SOURCE, enrichWithHunter, hunterConfigured, makeHunter } from './hunter.mjs';
 import { firecrawlConfigured, grantWebOpportunities, webPeople, webConfigured, webMissing, GRANT_WEB_SOURCE, WEB_SOURCE } from './webscrape.mjs';
 import { followUpPeople } from './followup.mjs';
 import { readCandidates } from './read.mjs';
@@ -11,7 +16,7 @@ import { assessLeads } from './sufficiency.mjs';
 import { runAgenticLoop } from './loop.mjs';
 import { attachGrantPlans, finalizeSearchAudit } from './grantManager.mjs';
 import { createRecorder } from './liveRun.mjs';
-import { applyJevDecisions, askJev } from './jev.mjs';
+import { applyJevDecisions, askJev, jevProvider } from './jev.mjs';
 import {
   makeClient,
   teamFacts,
@@ -44,7 +49,9 @@ export async function runResearch(
     const livePhase = LEGACY_TO_LIVE[phase] || 'reading';
     live({ phase: livePhase, provider, status: livePhase === 'warning' ? 'warning' : livePhase === 'error' ? 'error' : 'running', title: livePhase === 'warning' ? 'Warning' : 'Processing', message });
   };
-  const timeoutSignal = AbortSignal.timeout(Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 180000));
+  const runTimeoutMs = Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 240000);
+  const runStarted = Date.now();
+  const timeoutSignal = AbortSignal.timeout(runTimeoutMs);
   const signal = externalSignal ? AbortSignal.any([timeoutSignal, externalSignal]) : timeoutSignal;
   const record = (url, data) => store.source(job.id, url, data);
   const jobFrames = frames && {
@@ -269,6 +276,85 @@ export async function runResearch(
         leads = assessLeads(leads, b, { terms: job.plan.terms, activeWindowMonths: Number(env.ACTIVE_WINDOW_MONTHS) || 18 }).leads;
       }
       signal.throwIfAborted();
+      // ── Orquestador: evalúa → reflexiona (OpenJev/Jev o reglas) → nueva estrategia → hasta 2 intentos más.
+      //    Hunter: emails de las personas y personas con email en las organizaciones encontradas.
+      if (!providers) {
+        const memoryEarly = store.feedbackFor(b, job.userId);
+        const rejectedEarly = new Set([...memoryEarly].filter(([, v]) => v.decision === 'reject').map(([key]) => key));
+        const rank = (list) => evaluate(list, b, rejectedEarly, new Date(), job.plan.terms || []);
+        const hunter = hunterConfigured(env) ? makeHunter({ env, fetcher, signal, usageClient: client }) : null;
+        const hunterSeen = { domains: new Set(), people: new Set() };
+        const hunterStats = { calls: 0, emailsAdded: 0, peopleAdded: 0, domains: 0, errors: [] };
+        const findContacts = hunter ? async (ranked, { signal: s, wide = false } = {}) => {
+          const r = await enrichWithHunter(ranked, b, { env, fetcher, signal: s || signal, hunter, seen: hunterSeen, ...(wide ? { maxDomains: Math.max(12, Number(env.HUNTER_MAX_DOMAINS) || 12) * 2 } : {}) });
+          for (const k of ['emailsAdded', 'peopleAdded', 'domains']) hunterStats[k] += r.stats[k] || 0;
+          hunterStats.calls = hunter.calls; hunterStats.errors.push(...r.stats.errors);
+          const before = new Set(ranked.map((l) => l.id));
+          return r.leads.filter((l) => !before.has(l.id) || l.hunter || (l.contacts?.length && l.contact?.type === 'email'));
+        } : null;
+        // Lector para confirmar pistas de snippet: descarga directa → Jina Reader → Firecrawl /scrape.
+        const readPage = async (url, s = signal) => {
+          let page = await fetchPage(url, { fetcher, signal: s, timeoutMs: 8000 });
+          if (!page || page.text.length < 400) { const j = await jinaRead(url, { env, fetcher, signal: s }); if (j && j.text.length > (page?.text.length || 0)) page = j; }
+          if (!page || page.text.length < 400) { const f = await firecrawlRead(url, { env, fetcher, signal: s }); if (f && f.text.length > (page?.text.length || 0)) page = f; }
+          return page;
+        };
+        if (env.CONFIRM_SNIPPETS !== '0') {
+          // Presupuesto propio: abrir pistas nunca se come el tiempo de los intentos del orquestador.
+          const confirmSignal = AbortSignal.any([signal, AbortSignal.timeout(Number(env.CONFIRM_SNIPPETS_MS) || 40000)]);
+          const confirm = await confirmFromPages(leads, b, { read: (url) => readPage(url, confirmSignal), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: confirmSignal });
+          if (confirm.tried) live({ phase: 'reading', provider: 'Page check', status: 'success', title: 'Search leads opened', message: `Opened ${confirm.tried} search results that only had a snippet; ${confirm.confirmed} confirmed with a quote from the page.`, resultCount: confirm.confirmed });
+        }
+        const breaker = {};
+        const runSearch = async (queries, { signal: s } = {}) => {
+          const byObjective = new Map();
+          for (const q of queries) byObjective.set(q.objective || b.fundingTypes[0], [...(byObjective.get(q.objective || b.fundingTypes[0]) || []), q]);
+          const found = [];
+          for (const [objective, list] of byObjective) {
+            if (engineConfigured(env)) {
+              const r = await runObjective(objective, b, { env, fetcher, signal: s, queries: list.map((q) => ({ query: q.query, family: 'orchestrator' })), rounds: 1, breaker });
+              found.push(...engineLeads(r.findings));
+            } else if (searchApisConfigured(env)) {
+              await Promise.all(list.map(async (q) => {
+                const rows = await multiSearch(q.query, { env, fetcher, signal: s, breaker });
+                for (const [provider, stat] of Object.entries(rows.stats || {})) client.track(provider, { calls: 1, results: stat.returned, ms: stat.ms });
+                found.push(...searchRowsToLeads(rows.slice(0, 8), b, { objective, query: q.query }));
+              }));
+            } else if (env.EXA_API_KEY || env.SERPER_API_KEY) {
+              for (const q of list) found.push(...await searchFundingQuery(client.scope(ORCHESTRATOR), b, { query: q.query, objective }, env).catch(() => []));
+            }
+          }
+          if (env.CONFIRM_SNIPPETS !== '0') await confirmFromPages(found, b, { read: (url) => readPage(url, s), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: s });
+          return found;
+        };
+        const orchestratorOn = env.ORCHESTRATOR !== '0' && (searchApisConfigured(env) || engineConfigured(env) || env.EXA_API_KEY || env.SERPER_API_KEY || hunter);
+        if (orchestratorOn) {
+          const provider = jevProvider(env);
+          live({ phase: 'evaluating', provider: ORCHESTRATOR, status: 'running', title: 'Reviewing the results', message: `${provider ? provider.name : 'Rules'} reviews what we found and decides whether to search again (up to ${Number(env.ORCHESTRATOR_MAX_ATTEMPTS ?? 2)} more attempts).` });
+          try {
+            const orch = await orchestrate({ leads, brief: b, terms: job.plan.terms || [], rank, runSearch, findContacts, env, fetcher, signal, deadline: runStarted + runTimeoutMs - Number(env.ORCHESTRATOR_RESERVE_MS || 40000), live: (event) => live({ provider: ORCHESTRATOR, ...event }) });
+            leads = orch.leads;
+            job.orchestrator = { attempts: orch.attempts, by: provider?.name || 'rules' };
+            for (const a of orch.attempts) if (a.queries?.length) searchAudit.push({ provider: ORCHESTRATOR, query: `(attempt ${a.attempt} · ${a.strategy}) ${a.queries.length} queries`, dimension: 'orchestrator', returned: a.added, discovered: a.added });
+          } catch (error) {
+            if (signal.aborted) throw error;
+            failures++;
+            emit('warning', `${ORCHESTRATOR}: ${error.message}. First-pass results were kept.`);
+          }
+        }
+        if (findContacts) {
+          try {
+            leads = mergeLeads(leads, await findContacts(rank(leads), { signal }));
+            live({ phase: 'reading', provider: HUNTER_SOURCE, status: hunterStats.errors.length && !(hunterStats.emailsAdded + hunterStats.peopleAdded) ? 'warning' : 'success', title: 'Emails found', message: `Hunter: ${hunterStats.emailsAdded} emails added and ${hunterStats.peopleAdded} new people across ${hunterStats.domains} organizations (${hunterStats.calls} calls).${hunterStats.errors.length ? ` Note: ${hunterStats.errors[0]}` : ''}`, resultCount: hunterStats.emailsAdded + hunterStats.peopleAdded });
+            job.hunter = { ...hunterStats, errors: hunterStats.errors.slice(0, 5) };
+          } catch (error) {
+            if (signal.aborted) throw error;
+            emit('warning', `${HUNTER_SOURCE}: ${error.message}. Results kept without new emails.`);
+          }
+        } else if (!grantsOnly) {
+          live({ phase: 'planning', provider: HUNTER_SOURCE, status: 'pending', title: 'Emails pending', message: 'Hunter: missing HUNTER_API_KEY; no email lookup for people and organizations.' });
+        }
+      }
       if (['investment', 'debt'].some((t) => b.fundingTypes.includes(t)))
       {
         emit(
@@ -305,21 +391,22 @@ export async function runResearch(
         .map(([key]) => key),
     );
     job.leads = evaluate(leads, b, rejected, new Date(), job.plan.terms || []);
-    if (job.mode !== 'demo' && (env.JEV_API_KEY || env.TYPESAFE_API_KEY)) {
+    const jevP = jevProvider(env);
+    if (job.mode !== 'demo' && jevP) {
       const jevStarted = Date.now();
-      live({ phase: 'evaluating', provider: 'Jev', status: 'running', title: 'Structured decision', message: 'Jev is scoring fit, evidence and next action.' });
+      live({ phase: 'evaluating', provider: jevP.name, status: 'running', title: 'Structured decision', message: `${jevP.name} is scoring fit, evidence and next action.` });
       try {
         const jev = await askJev(job.leads, b, { env, fetcher, signal });
         job.leads = applyJevDecisions(job.leads, jev);
-        live({ phase: 'evaluating', provider: 'Jev', status: 'success', title: 'Jev decisions applied', message: `Jev reviewed ${jev.decisions.length} candidates; uncertain ones go to radar for human review.`, resultCount: jev.decisions.length, durationMs: Date.now() - jevStarted, detail: { model: jev.model, usage: jev.usage } });
+        live({ phase: 'evaluating', provider: jevP.name, status: 'success', title: `${jevP.name} decisions applied`, message: `${jevP.name} reviewed ${jev.decisions.length} candidates; uncertain ones go to radar for human review.`, resultCount: jev.decisions.length, durationMs: Date.now() - jevStarted, detail: { model: jev.model, usage: jev.usage } });
       } catch (error) {
         failures++;
-        emit('warning', `Jev: ${error.message}. The rules ranking was kept.`);
-        live({ phase: 'warning', provider: 'Jev', status: 'warning', title: 'Jev unavailable', message: `${error.message}. The rules ranking was kept.`, durationMs: Date.now() - jevStarted });
+        emit('warning', `${jevP.name}: ${error.message}. The rules ranking was kept.`);
+        live({ phase: 'warning', provider: jevP.name, status: 'warning', title: `${jevP.name} unavailable`, message: `${error.message}. The rules ranking was kept.`, durationMs: Date.now() - jevStarted });
       }
     } else if (job.mode !== 'demo') {
-      emit('configuration', 'Jev: missing JEV_API_KEY; using rules ranking and human review.');
-      live({ phase: 'planning', provider: 'Jev', status: 'pending', title: 'Decision layer pending', message: 'Jev is integrated but JEV_API_KEY is missing. Rules ranking kept.' });
+      emit('configuration', 'OpenJev: missing OPENJEV_API_KEY; using rules ranking and human review.');
+      live({ phase: 'planning', provider: 'OpenJev', status: 'pending', title: 'Decision layer pending', message: 'OpenJev/Jev is integrated but no key is set (OPENJEV_API_KEY). Rules ranking kept.' });
     }
     job.leads = job.leads.map((l) => ({
       ...l,
@@ -370,7 +457,7 @@ export async function runResearch(
     job.finishedAt = new Date().toISOString();
     job.usage = client.usage();
     job.budget = {
-      timeoutMs: Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 180000),
+      timeoutMs: runTimeoutMs,
       maxRounds: Number(env.LOOP_MAX_ROUNDS) || 2,
       maxSearches: Number(env.LOOP_MAX_SEARCHES) || 12,
       maxCostUsd: Number(env.LOOP_MAX_COST_USD) || null,

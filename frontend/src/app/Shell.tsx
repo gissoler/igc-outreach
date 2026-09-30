@@ -1,4 +1,4 @@
-import { Activity, Building2, Check, ChevronDown, ChevronRight, CircleHelp, FlaskConical, LayoutDashboard, Lock, LogOut, Menu, Network, PanelLeftClose, PanelLeftOpen, Play, Plug, Search, Send, Settings, SlidersHorizontal, Telescope, UserPen, UserRound, X } from 'lucide-react';
+import { Activity, Building2, Check, ChevronDown, ChevronRight, CircleHelp, FlaskConical, LayoutDashboard, Lock, LogOut, Menu, PanelLeftClose, PanelLeftOpen, Play, Plug, Search, Send, Settings, SlidersHorizontal, UserPen, UserRound, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { accountApi, type AccountConnector, type AccountSession, type AccountSource } from '../accountApi';
 import { fmtDateTime, fmtInt, initials } from './format';
@@ -87,14 +87,12 @@ export function IntegrationsDrawer({ open, onClose, demo }: { open: boolean; onC
 }
 
 /* ───────── Shell: sidebar + top bar ───────── */
-export type NavKey = 'evaluacion' | 'analisis' | 'red' | 'ejecucion' | 'configuracion' | 'acercamientos';
+export type NavKey = 'evaluacion' | 'ejecucion' | 'configuracion' | 'acercamientos';
 export type SearchItem = { id: string; label: string; sub?: string; group: string; onSelect: () => void };
 const NAV: { key: NavKey; label: string; icon: ReactNode }[] = [
   { key: 'configuracion', label: 'Setup', icon: <SlidersHorizontal size={17} strokeWidth={1.6} /> },
   { key: 'ejecucion', label: 'Runs', icon: <Activity size={17} strokeWidth={1.6} /> },
-  { key: 'analisis', label: 'Analysis', icon: <Telescope size={17} strokeWidth={1.6} /> },
   { key: 'evaluacion', label: 'Evaluation', icon: <LayoutDashboard size={17} strokeWidth={1.6} /> },
-  { key: 'red', label: 'Network', icon: <Network size={17} strokeWidth={1.6} /> },
   { key: 'acercamientos', label: 'Outreach', icon: <Send size={17} strokeWidth={1.6} /> },
 ];
 

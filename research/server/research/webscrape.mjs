@@ -25,33 +25,74 @@ export const webMissing = (env = process.env) => [
 const BLOCKED_HOSTS = /(^|\.)(linkedin\.com|facebook\.com|instagram\.com|x\.com|twitter\.com|youtube\.com|tiktok\.com|crunchbase\.com|pitchbook\.com|glassdoor\.com|zoominfo\.com|rocketreach\.co|apollo\.io)$/i;
 const hostOf = (url) => { try { return new URL(url).hostname; } catch { return ''; } };
 
-async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs }) {
+/** Errores que no se arreglan reintentando: clave inválida, sin créditos, plan agotado. */
+const FATAL_STATUS = new Set([401, 402, 403]);
+const RETRY_STATUS = new Set([408, 409, 425, 429, 500, 502, 503, 504]);
+const HUMAN_ERROR = { 401: 'invalid API key', 402: 'out of credits (top up the plan)', 403: 'key not allowed for this endpoint', 408: 'timed out', 429: 'rate limited' };
+const sleep = (ms, signal) => new Promise((resolve, reject) => {
+  const timer = setTimeout(resolve, ms);
+  signal?.addEventListener?.('abort', () => { clearTimeout(timer); reject(signal.reason || new Error('aborted')); }, { once: true });
+});
+/** Breakers por proveedor para toda la vida del proceso: tras un 401/402 no seguimos gastando llamadas. */
+const disabledUntil = new Map();
+export function providerDisabled(provider) { const until = disabledUntil.get(provider) || 0; return until > Date.now() ? until : 0; }
+export function resetProviderBreakers() { disabledUntil.clear(); }
+
+async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries }) {
   const base = { kind: 'api', callId: `${provider}-${Date.now()}`, method: 'POST', host, endpoint: sanitizeUrl(url, live.secrets), params: publicParams(url, body, live.secrets) };
   base.query = queryOf(base.params);
+  if (providerDisabled(provider)) throw Object.assign(new Error(`${provider}: disabled after a key/credit error; skipped until the key or plan is fixed.`), { fatal: true });
   live({ phase: 'api_request', status: 'running', title: `POST ${host}`, message: `Querying ${provider}.`, publicUrl: url, detail: base });
   const started = Date.now();
   const fail = (message, httpStatus = null) => live({ phase: 'api_response', status: 'error', title: `Error from ${host}`, message, publicUrl: url, durationMs: Date.now() - started, detail: { ...base, httpStatus } });
-  const timeout = AbortSignal.timeout(timeoutMs || clamp(env.WEB_TIMEOUT_MS, 10_000, 180_000, 90_000));
-  let response;
-  try {
-    response = await fetcher(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'User-Agent': env.RESEARCH_USER_AGENT || 'IGCOutreachResearch/1.0', ...headers },
-      body: JSON.stringify(body),
-      signal: signal ? AbortSignal.any([signal, timeout]) : timeout,
-    });
-  } catch (error) { fail(error.message || `No response from ${provider}.`); throw new Error(`${provider}: ${error.message || 'no response'}`); }
-  const text = await response.text().catch(() => '');
-  if (!response.ok) {
-    fail(`${provider} HTTP ${response.status}`, response.status);
-    throw new Error(`${provider} HTTP ${response.status}${text ? `: ${text.slice(0, 200)}` : ''}`);
+  const attempts = 1 + clamp(retries ?? env.WEB_RETRIES, 0, 4, 2);
+  let lastError = null;
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    if (attempt) await sleep(Math.min(8000, 700 * 2 ** (attempt - 1)) + Math.floor(Math.random() * 250), signal);
+    const timeout = AbortSignal.timeout(timeoutMs || clamp(env.WEB_TIMEOUT_MS, 10_000, 180_000, 90_000));
+    let response;
+    try {
+      response = await fetcher(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'User-Agent': env.RESEARCH_USER_AGENT || 'IGCOutreachResearch/1.0', ...headers },
+        body: JSON.stringify(body),
+        signal: signal ? AbortSignal.any([signal, timeout]) : timeout,
+      });
+    } catch (error) {
+      if (signal?.aborted) throw signal.reason || error;
+      lastError = new Error(`${provider}: ${error.name === 'TimeoutError' ? 'timed out' : error.message || 'no response'}`);
+      continue; // red o timeout: reintentar
+    }
+    const text = await response.text().catch(() => '');
+    if (!response.ok) {
+      let detail = '';
+      try { const j = JSON.parse(text); detail = String(j?.error || j?.message || j?.detail?.message || '').slice(0, 200); } catch { detail = text.replace(/\s+/g, ' ').slice(0, 200); }
+      const human = HUMAN_ERROR[response.status] || `HTTP ${response.status}`;
+      lastError = Object.assign(new Error(`${provider} HTTP ${response.status} (${human})${detail ? `: ${detail}` : ''}`), { status: response.status });
+      if (FATAL_STATUS.has(response.status)) {
+        disabledUntil.set(provider, Date.now() + clamp(env.WEB_BREAKER_MS, 60_000, 86_400_000, 15 * 60_000));
+        fail(lastError.message, response.status);
+        throw Object.assign(lastError, { fatal: true });
+      }
+      if (!RETRY_STATUS.has(response.status)) { fail(lastError.message, response.status); throw lastError; }
+      const wait = Number(response.headers?.get?.('retry-after'));
+      if (Number.isFinite(wait) && wait > 0 && wait <= 20) await sleep(wait * 1000, signal);
+      continue;
+    }
+    if (Buffer.byteLength(text) > 20_000_000) { fail('Response too large.', response.status); throw new Error(`${provider} returned too large a response.`); }
+    let data;
+    try { data = JSON.parse(text); } catch { fail('Invalid JSON.', response.status); throw new Error(`${provider} returned invalid JSON.`); }
+    // Firecrawl puede responder 200 con success:false (p. ej. timeout interno de la búsqueda).
+    if (data && data.success === false) {
+      lastError = new Error(`${provider}: ${String(data.error || data.message || 'request failed').slice(0, 200)}`);
+      continue;
+    }
+    live({ phase: 'api_response', status: 'success', title: `HTTP ${response.status} · ${host}`, message: `${provider} responded in ${Date.now() - started} ms${attempt ? ` after ${attempt} retr${attempt === 1 ? 'y' : 'ies'}` : ''}.`, publicUrl: url, durationMs: Date.now() - started, detail: { ...base, httpStatus: response.status, bytes: Buffer.byteLength(text), sample: safeSample(data, { secrets: live.secrets }), preview: previewRecords(data?.data?.web || data?.json?.people || [], { secrets: live.secrets }) } });
+    record(url, data);
+    return Object.assign(data, { __ms: Date.now() - started });
   }
-  if (Buffer.byteLength(text) > 20_000_000) { fail('Response too large.', response.status); throw new Error(`${provider} returned too large a response.`); }
-  let data;
-  try { data = JSON.parse(text); } catch { fail('Invalid JSON.', response.status); throw new Error(`${provider} returned invalid JSON.`); }
-  live({ phase: 'api_response', status: 'success', title: `HTTP ${response.status} · ${host}`, message: `${provider} responded in ${Date.now() - started} ms.`, publicUrl: url, durationMs: Date.now() - started, detail: { ...base, httpStatus: response.status, bytes: Buffer.byteLength(text), sample: safeSample(data, { secrets: live.secrets }), preview: previewRecords(data?.data?.web || data?.json?.people || [], { secrets: live.secrets }) } });
-  record(url, data);
-  return data;
+  fail(lastError?.message || `${provider}: no response`, lastError?.status ?? null);
+  throw lastError || new Error(`${provider}: no response`);
 }
 
 /** Firecrawl v2 /search. Con markdown=true también lee cada página. */
@@ -61,11 +102,46 @@ export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs 
   if (!body.sources.length) body.sources = ['web'];
   // tbs según la documentación de Firecrawl v2: qdr:d|w|m|y o cdr:1,cd_min:MM/DD/YYYY,cd_max:MM/DD/YYYY.
   if (tbs && /^(qdr:[hdwmy]|cdr:1,cd_min:\d{1,2}\/\d{1,2}\/\d{4},cd_max:\d{1,2}\/\d{1,2}\/\d{4}|sbd:1)$/.test(tbs)) body.tbs = tbs;
-  if (markdown) body.scrapeOptions = { formats: ['markdown'], onlyMainContent: true };
-  const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/search`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record });
+  body.ignoreInvalidURLs = true;
+  // Firecrawl corta la búsqueda a los 60 s por defecto; con scrape de cada resultado se queda corto.
+  body.timeout = clamp(env.FIRECRAWL_SEARCH_TIMEOUT_MS, 10_000, 170_000, markdown ? 85_000 : 30_000);
+  if (markdown) body.scrapeOptions = { formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) };
+  const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/search`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, timeoutMs: body.timeout + 10_000 });
   const web = Array.isArray(data?.data?.web) ? data.data.web : Array.isArray(data?.data) ? data.data : [];
   const news = Array.isArray(data?.data?.news) ? data.data.news : [];
-  return [...web, ...news].map((r) => ({ url: safeUrl(r.url || r.metadata?.url || r.metadata?.sourceURL), title: String(r.title || r.metadata?.title || ''), description: String(r.description || r.snippet || r.metadata?.description || ''), markdown: String(r.markdown || ''), date: String(r.date || r.metadata?.publishedTime || r.metadata?.['article:published_time'] || '') })).filter((r) => r.url);
+  const seen = new Set();
+  const rows = [...web, ...news].map((r) => ({ url: safeUrl(r.url || r.metadata?.url || r.metadata?.sourceURL), title: String(r.title || r.metadata?.title || ''), description: String(r.description || r.snippet || r.metadata?.description || ''), markdown: typeof r.markdown === 'string' ? r.markdown : '', date: String(r.date || r.metadata?.publishedTime || r.metadata?.['article:published_time'] || ''), statusCode: Number(r.metadata?.statusCode) || null }))
+    .filter((r) => r.url && !seen.has(r.url) && seen.add(r.url) && !(r.statusCode && r.statusCode >= 400 && !r.markdown));
+  return Object.assign(rows, { ms: data.__ms || 0, credits: Number(data.creditsUsed) || 0 });
+}
+
+/** Firecrawl v2 /scrape: una URL → markdown. Respaldo cuando la búsqueda no trajo el contenido. Nunca lanza. */
+export async function firecrawlScrape(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
+  if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
+  try {
+    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 1, timeoutMs: 45_000 });
+    const d = data?.data || {};
+    const markdown = typeof d.markdown === 'string' ? d.markdown : '';
+    return markdown.length > 80 ? { url: safeUrl(d.metadata?.sourceURL || d.metadata?.url) || url, title: String(d.metadata?.title || ''), markdown, text: markdown } : null;
+  } catch { return null; }
+}
+
+/** Varias búsquedas; una que falla no tumba las demás. Devuelve {results, errors, calls, ms}. */
+export async function firecrawlSearchMany(queries, options = {}) {
+  const results = []; const errors = []; let ms = 0; let calls = 0;
+  for (const query of queries) {
+    try {
+      calls++;
+      const rows = await firecrawlSearch(query, options);
+      ms += rows.ms || 0;
+      results.push(...rows.map((row) => ({ ...row, query })));
+    } catch (error) {
+      if (options.signal?.aborted) throw error;
+      errors.push(`${String(query).slice(0, 80)}: ${error.message}`);
+      if (error.fatal) break; // sin créditos o clave inválida: no seguir gastando llamadas
+    }
+  }
+  return { results, errors, calls, ms };
 }
 
 const opportunityType = (text) => /challenge|competition/i.test(text) ? 'challenge' : /prize|award/i.test(text) ? 'prize' : /accelerator|incubator|cohort/i.test(text) ? 'accelerator' : /fellowship/i.test(text) ? 'fellowship' : 'open_call';
@@ -95,8 +171,11 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
   const seen = new Map();
   const audit = [];
   const pageText = new Map();
+  const searchErrors = [];
   for (const query of queries) {
-    const results = await firecrawlSearch(query, { limit: clamp(env.GRANT_WEB_RESULTS_PER_QUERY, 3, 10, 6), markdown: true, env, fetcher, signal, live, record });
+    let results = [];
+    try { results = await firecrawlSearch(query, { limit: clamp(env.GRANT_WEB_RESULTS_PER_QUERY, 3, 10, 6), markdown: true, env, fetcher, signal, live, record }); }
+    catch (error) { if (signal?.aborted) throw error; searchErrors.push(error.message); audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: 0, discovered: 0, error: error.message }); if (error.fatal) break; continue; }
     let accepted = 0;
     for (const result of results) {
       const hay = `${result.title} ${result.description} ${result.markdown}`;
@@ -126,6 +205,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
     audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: results.length, discovered: accepted });
   }
   usageClient?.track?.('Firecrawl', { calls: queries.length, results: seen.size });
+  if (!seen.size && searchErrors.length === queries.length) throw new Error(searchErrors[0]);
   // Lectura con el modelo de la flota + verificación en código (solo con GRANT_WEB_READ=1 y flota configurada).
   if (env.GRANT_WEB_READ === '1' && seen.size) {
     const urls = [...seen.keys()].slice(0, clamp(env.GRANT_WEB_READ_MAX, 1, 40, 18));
@@ -293,15 +373,23 @@ export async function webPeople(leads, brief, { env = process.env, fetcher = fet
   const maxPeople = clamp(env.WEB_MAX_PEOPLE, 1, 50, 20);
   const queries = webDiscoveryQueries(brief);
   const pages = new Map();
-  for (const query of queries) {
-    const results = await firecrawlSearch(query, { limit: maxPages, markdown: true, env, fetcher, signal, live, record });
-    for (const r of results) if (!BLOCKED_HOSTS.test(hostOf(r.url)) && r.markdown.length > 200 && !pages.has(r.url)) pages.set(r.url, r);
-    if (pages.size >= maxPages) break;
+  const found = await firecrawlSearchMany(queries, { limit: Math.min(10, maxPages + 2), markdown: true, env, fetcher, signal, live, record });
+  const thin = [];
+  for (const r of found.results) {
+    if (BLOCKED_HOSTS.test(hostOf(r.url)) || pages.has(r.url) || pages.size >= maxPages) continue;
+    if (r.markdown.length > 200) pages.set(r.url, r); else thin.push(r);
   }
-  usageClient?.track?.('Firecrawl', { calls: queries.length, results: pages.size });
+  // Búsqueda sin contenido (scrape fallido o página con JS): se lee la página con /scrape.
+  for (const r of thin) {
+    if (pages.size >= maxPages) break;
+    const got = await firecrawlScrape(r.url, { env, fetcher, signal, live, record });
+    if (got && got.markdown.length > 200) pages.set(r.url, { ...r, markdown: got.markdown, title: r.title || got.title });
+  }
+  usageClient?.track?.('Firecrawl', { calls: found.calls, results: pages.size, ms: found.ms });
+  if (!pages.size && found.errors.length) throw new Error(found.errors.join('; '));
   const extracted = await peopleFromPages([...pages.values()].slice(0, maxPages), brief, { env, fetcher, signal, record, live, maxPeople, usageClient });
   if (!extracted.people.length && extracted.errors.length && extracted.errors.length === pages.size) throw new Error(extracted.errors.join('; '));
-  return { queries, pages: pages.size, errors: extracted.errors, leads: extracted.leads };
+  return { queries, pages: pages.size, errors: [...found.errors, ...extracted.errors], leads: extracted.leads };
 }
 
 const handleOf = (url) => { try { return decodeURIComponent(new URL(url).pathname.match(/^\/in\/([^/]+)/i)?.[1] || '').toLowerCase(); } catch { return ''; } };

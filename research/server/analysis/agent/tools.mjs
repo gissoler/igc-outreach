@@ -5,7 +5,7 @@
 // los fragmentos/ítems más relevantes a la pregunta del analista. Se prueba en orden: 1) reranker cross-encoder
 // (VLLM_RERANK_MODEL) si hay uno de verdad — 2) embeddings + similitud de coseno (VLLM_EMBED_MODEL) — 3) respaldo
 // anterior por palabras clave (focusText) / los primeros N, si no hay flota para esto o falla.
-import { firecrawlSearch, FIRECRAWL_URL } from '../../research/webscrape.mjs';
+import { firecrawlSearch, firecrawlScrape } from '../../research/webscrape.mjs';
 import { fundId, personKey, normText } from '../entities.mjs';
 import { focusText, relevantText, rankItems } from '../../lib/relevance.mjs';
 
@@ -15,10 +15,9 @@ const hostOf = (u) => { try { return new URL(u).hostname; } catch { return ''; }
 async function readPage(url, { env, fetcher, signal }) {
   if (!/^https?:\/\//.test(url) || BLOCKED.test(hostOf(url))) throw new Error('URL not allowed.');
   if (env.FIRECRAWL_API_KEY) {
-    const r = await fetcher(`${FIRECRAWL_URL}/scrape`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.FIRECRAWL_API_KEY}` }, body: JSON.stringify({ url, formats: ['markdown'], onlyMainContent: true }), signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(45_000)]) : AbortSignal.timeout(45_000) });
-    if (!r.ok) throw new Error(`Firecrawl HTTP ${r.status}`);
-    const d = await r.json();
-    return { title: d?.data?.metadata?.title || '', text: d?.data?.markdown || '', date: d?.data?.metadata?.publishedTime || null };
+    // Con reintentos y errores claros; si Firecrawl falla (créditos, timeout) se cae a la descarga directa.
+    const got = await firecrawlScrape(url, { env, fetcher, signal });
+    if (got) return { title: got.title, text: got.markdown, date: null };
   }
   const r = await fetcher(url, { headers: { 'User-Agent': env.RESEARCH_USER_AGENT || 'IGC-Outreach/0.3' }, signal: AbortSignal.timeout(20_000) });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);

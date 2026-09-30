@@ -3,13 +3,15 @@
    The app drafts and logs; it never sends anything. */
 import { CalendarDays, ExternalLink, FileText, GripVertical, MessageSquare, Plus, Send, Upload, UserPlus } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState, type DragEvent, type ReactNode } from 'react';
-import { advisorApi, analysisApi, type AdvisorState, type Brief, type Claim, type Connector, type OutreachEvent, type OutreachState, type ShortItem, type Status } from '../analysisApi';
+import { advisorApi, analysisApi, type AdvisorState, type Brief, type Claim, type Connector, type DossierResult, type OutreachEvent, type OutreachState, type ShortItem, type Status } from '../analysisApi';
 import type { Job } from '../researchApi';
 import { Composer, UpdateEditor, type Target } from './Advisor';
+import { AnalysisView } from './Analysis';
+import { CandidateInsight, findDossier, findLead } from './Insight';
 import { PageHeader } from './Shell';
 import { Drawer, EmptyState, ErrorState, SkeletonState } from './ui';
 
-export type OutreachTab = 'pipeline' | 'reunion';
+export type OutreachTab = 'pipeline' | 'analisis' | 'reunion';
 const errMsg = (e: unknown) => (e instanceof Error ? e.message : 'Unexpected error');
 const initials = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]?.toUpperCase()).join('') || '?';
 const norm = (s: string | null | undefined) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -29,7 +31,7 @@ const COL_OF: Record<string, ColKey> = { enviado: 'sent', sin_respuesta: 'closed
 type Todo = { id: string; kind: 'lead'; item: ShortItem } | { id: string; kind: 'connector'; item: Connector };
 type Open = { kind: 'event'; e: OutreachEvent } | { kind: 'todo'; t: Todo } | { kind: 'log' } | { kind: 'update' } | null;
 
-export function OutreachView({ job, defaultProfile, tab, onTab }: { job: Job | null; defaultProfile: string; tab: OutreachTab; onTab: (t: OutreachTab) => void }) {
+export function OutreachView({ job, defaultProfile, tab, onTab, onOpenLead }: { job: Job | null; defaultProfile: string; tab: OutreachTab; onTab: (t: OutreachTab) => void; onOpenLead?: (id: string) => void }) {
   const [st, setSt] = useState<OutreachState | null>(null);
   const [adv, setAdv] = useState<AdvisorState | null>(null);
   const [status, setStatus] = useState<Status | null>(null);
@@ -37,12 +39,16 @@ export function OutreachView({ job, defaultProfile, tab, onTab }: { job: Job | n
   const [open, setOpen] = useState<Open>(null);
   const [notice, setNotice] = useState('');
   const [meetWith, setMeetWith] = useState('');
+  const [dossiers, setDossiers] = useState<DossierResult[]>([]);
   const jobId = job?.id || null;
   const load = useCallback(() => {
     analysisApi.outreach().then(setSt).catch((e) => setErr(errMsg(e)));
     analysisApi.status().then(setStatus).catch(() => undefined);
     if (jobId) advisorApi.state(jobId, 120).then(setAdv).catch(() => undefined);
+    // The AI analysis of each contact feeds the scorecard shown when a pipeline item is opened.
+    if (jobId) advisorApi.deepLatest(jobId).then((r) => setDossiers(r.run?.dossiers || [])).catch(() => undefined);
   }, [jobId]);
+  const insight = (q: { leadKey?: string | null; person?: string | null; org?: string | null }) => { const lead = findLead(job?.leads, q); return <CandidateInsight lead={lead} dossier={findDossier(dossiers, lead, q.person)} />; };
   useEffect(load, [load]);
 
   const move = async (e: OutreachEvent, outcome: string) => {
@@ -83,6 +89,7 @@ export function OutreachView({ job, defaultProfile, tab, onTab }: { job: Job | n
     <PageHeader crumb="Workspace" title="Outreach" badge={<span className="pl-count">{events.length} logged</span>} actions={actions} />
     <div className="pl-tabs" role="tablist">
       <button role="tab" aria-selected={tab === 'pipeline'} className={tab === 'pipeline' ? 'on' : ''} onClick={() => onTab('pipeline')}>Pipeline</button>
+      <button role="tab" aria-selected={tab === 'analisis'} className={tab === 'analisis' ? 'on' : ''} onClick={() => onTab('analisis')}>Analysis</button>
       <button role="tab" aria-selected={tab === 'reunion'} className={tab === 'reunion' ? 'on' : ''} onClick={() => onTab('reunion')}>Meeting prep</button>
     </div>
     {err && <ErrorState message={err} onRetry={() => { setErr(''); load(); }} />}
@@ -98,6 +105,7 @@ export function OutreachView({ job, defaultProfile, tab, onTab }: { job: Job | n
       <Board cols={cols} todos={todos} options={st.options} onMove={move} onOpenEvent={(e) => setOpen({ kind: 'event', e })} onOpenTodo={(t) => setOpen({ kind: 'todo', t })} />
       <Learnings st={st} />
     </>)}
+    {tab === 'analisis' && <AnalysisView embedded job={job} onOpenOutreach={() => onTab('pipeline')} onOpenLead={(id) => onOpenLead?.(id)} />}
     {tab === 'reunion' && <Meeting status={status} defaultProfile={defaultProfile} initial={meetWith} />}
 
     {open?.kind === 'log' && st && <LogDrawer st={st} onClose={() => setOpen(null)} onSaved={() => { setOpen(null); load(); }} />}
@@ -106,10 +114,11 @@ export function OutreachView({ job, defaultProfile, tab, onTab }: { job: Job | n
     </Drawer>}
     {open?.kind === 'todo' && jobId && adv && <Drawer open onClose={() => setOpen(null)} width={640} title={open.t.item.name} subtitle={open.t.kind === 'lead' ? `${open.t.item.label} · ${open.t.item.org}` : `Connector · reaches ${open.t.item.targets.length}`}
       footer={<div className="an-row"><button className="x-btn sm" onClick={() => { void logFor(open.t, open.t.kind === 'connector' ? 'intro_advisor' : 'cold_email'); setOpen(null); }}><Send size={13} /> Mark as sent</button></div>}>
+      {open.t.kind === 'lead' && insight({ leadKey: open.t.item.leadKey, person: open.t.item.person, org: open.t.item.org })}
       {open.t.kind === 'lead' && <p className="or-move">{open.t.item.move.text}</p>}
       <Composer embedded key={open.t.id} jobId={jobId} target={(open.t.kind === 'lead' ? { kind: 'lead', item: open.t.item } : { kind: 'connector', item: open.t.item }) as Target} updates={adv.updates} cadence={120} onClose={() => setOpen(null)} onSent={() => { void logFor(open.t, open.t.kind === 'connector' ? 'intro_advisor' : 'update'); }} />
     </Drawer>}
-    {open?.kind === 'event' && st && <EventDrawer e={open.e} st={st} onClose={() => setOpen(null)} onMove={(o) => { void move(open.e, o); setOpen({ kind: 'event', e: { ...open.e, outcome: o } }); }} onPrep={() => { setMeetWith(open.e.person || ''); setOpen(null); onTab('reunion'); }} />}
+    {open?.kind === 'event' && st && <EventDrawer e={open.e} st={st} insight={insight({ person: open.e.person, org: open.e.fundName })} onClose={() => setOpen(null)} onMove={(o) => { void move(open.e, o); setOpen({ kind: 'event', e: { ...open.e, outcome: o } }); }} onPrep={() => { setMeetWith(open.e.person || ''); setOpen(null); onTab('reunion'); }} />}
   </div>;
 }
 
@@ -173,9 +182,10 @@ function LogDrawer({ st, onClose, onSaved }: { st: OutreachState; onClose: () =>
   </Drawer>;
 }
 
-function EventDrawer({ e, st, onClose, onMove, onPrep }: { e: OutreachEvent; st: OutreachState; onClose: () => void; onMove: (o: string) => void; onPrep: () => void }) {
-  return <Drawer open onClose={onClose} title={e.person || e.fundName} subtitle={e.person ? e.fundName : undefined} width={480}
+function EventDrawer({ e, st, insight, onClose, onMove, onPrep }: { e: OutreachEvent; st: OutreachState; insight: ReactNode; onClose: () => void; onMove: (o: string) => void; onPrep: () => void }) {
+  return <Drawer open onClose={onClose} title={e.person || e.fundName} subtitle={e.person ? e.fundName : undefined} width={560}
     footer={<div className="an-row">{e.person && <button className="x-btn primary sm" onClick={onPrep}><MessageSquare size={13} /> Prep meeting</button>}</div>}>
+    {insight}
     <div className="an2-dr-grid">
       <div><span>Channel</span><b>{st.options.channels[e.channel] || e.channel}</b></div>
       <div><span>Sent</span><b>{e.sentAt}</b></div>

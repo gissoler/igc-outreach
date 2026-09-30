@@ -26,7 +26,7 @@ export function Md({ text }: { text: string }) {
 const plain = (s: string) => String(s || '').replace(/\*\*/g, '');
 const strength = (d: DossierResult) => Math.max(0, ...d.dossier.warm_paths.map((p) => p.strength));
 
-export function AnalysisView({ job, onOpenOutreach, onOpenLead }: { job: Job | null; onOpenOutreach: () => void; onOpenLead: (id: string) => void }) {
+export function AnalysisView({ job, onOpenOutreach, onOpenLead, embedded = false }: { job: Job | null; onOpenOutreach: () => void; onOpenLead: (id: string) => void; embedded?: boolean }) {
   const jobId = job?.id || null;
   const [run, setRun] = useState<DeepRun | null>(null);
   const [role, setRole] = useState<string | null>(null);
@@ -97,7 +97,7 @@ export function AnalysisView({ job, onOpenOutreach, onOpenLead }: { job: Job | n
 
     {rm && <section className="pl-card an2-road">
       <header><div><span className="an2-kick">Round roadmap · {run?.finishedAt?.slice(0, 10)}{run?.revised ? ' · revised after critique' : ''}</span><h3 className="an2-headline"><Md text={rm.headline} /></h3></div>
-        <button className="pl-btn sm" onClick={onOpenOutreach}>Open outreach <ArrowRight size={13} /></button></header>
+        <button className="pl-btn sm" onClick={onOpenOutreach}>{embedded ? 'Open pipeline' : 'Open outreach'} <ArrowRight size={13} /></button></header>
       <Clamp className="an2-thesis"><Md text={rm.thesis} /></Clamp>
       <div className="an2-lanes">
         {rm.first_week.length > 0 && <Lane kick="This week" title="First moves" actions={rm.first_week} refChips={refChips} now />}
@@ -137,8 +137,9 @@ export function AnalysisView({ job, onOpenOutreach, onOpenLead }: { job: Job | n
     </>}
   </>;
 
-  return <div className="pl-page an2">
-    <PageHeader crumb="Workspace" title="Analysis" badge={dossiers.length ? <span className="pl-count">{dossiers.length} contacts</span> : undefined} actions={actions} />
+  return <div className={embedded ? 'an2 an2-embedded' : 'pl-page an2'}>
+    {embedded ? <div className="an2-bar">{dossiers.length > 0 && <span className="pl-count">{dossiers.length} contacts</span>}<span className="an2-bar-a">{actions}</span></div>
+      : <PageHeader crumb="Workspace" title="Analysis" badge={dossiers.length ? <span className="pl-count">{dossiers.length} contacts</span> : undefined} actions={actions} />}
     {err && <ErrorState message={err} onRetry={() => { setErr(''); void load(); }} />}
     {body}
     {open !== null && dossiers[open] && <ContactDrawer d={dossiers[open]} id={`D${open + 1}`} edges={edges} job={job} onClose={() => setOpen(null)} onOpenLead={onOpenLead} />}

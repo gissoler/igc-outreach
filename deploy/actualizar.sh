@@ -11,6 +11,10 @@ main() {
   sudo -u outreach git -C "$APP_DIR" fetch --quiet origin "$RAMA"
   sudo -u outreach git -C "$APP_DIR" reset --hard --quiet "origin/$RAMA"
   sudo -u outreach env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 bash -lc "cd $APP_DIR/research && npm ci --omit=dev --no-audit --no-fund"
+  # Si el navegador de la app está encendido (deploy/navegador.sh), baja el Chromium que pida esta versión de Playwright.
+  if grep -q '^RESEARCH_BROWSER=on' "$APP_DIR/research/.env" 2>/dev/null; then
+    sudo -u outreach bash -lc "cd $APP_DIR/research && npx playwright install chromium" || echo "navegador: no se pudo actualizar Chromium; corre sudo bash $APP_DIR/deploy/navegador.sh"
+  fi
   sudo -u outreach bash -lc "cd $APP_DIR/frontend && npm ci --no-audit --no-fund && npm run build"
   sudo -u outreach bash -lc "$APP_DIR/.venv/bin/pip install --quiet -e $APP_DIR/backend"
   # Claves nuevas (Exa, etc.) desde tu .env local, sin pisar las del servidor (ver deploy/claves.sh).

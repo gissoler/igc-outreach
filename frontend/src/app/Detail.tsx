@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, Check, ChevronRight, Copy, ExternalLink, FileSearch, Globe, Lightbulb, Lock, Mail, MessageSquareText, MoreHorizontal, Plus, RefreshCw, Route, ThumbsDown, TriangleAlert, UserRound, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { BrowseAction, BrowseShot, Evidence, Job, Lead } from '../researchApi';
-import { browsePage, closeBrowse, fundingLabels, statusLabels } from '../researchApi';
+import { browsePage, closeBrowse, fundingLabels, officialPage, statusLabels } from '../researchApi';
 import { SOURCE_META } from '../sources';
 import { CopyBtn, reasonFor, shortDraft } from './Contacts';
 import { clip, clipWords, cleanText, fmtAge, fmtDate, fmtPct, initials, readableQuote } from './format';
@@ -214,14 +214,30 @@ const officialUrlOfLead = (lead: Lead) => {
 
 function OfficialPageView({ lead, job, demo }: { lead: Lead; job: Job; demo: boolean }) {
   const url = demo ? null : officialUrlOfLead(lead);
-  const [mode, setMode] = useState<'embed' | 'browser'>('embed');
+  // The server says whether the site can be framed and whether its Chromium is running; the view picks the mode by itself.
+  const [mode, setMode] = useState<'checking' | 'embed' | 'browser' | 'blocked'>('checking');
+  const [why, setWhy] = useState('');
   const [seen, setSeen] = useState<string | null>(null);
-  useEffect(() => { setMode('embed'); setSeen(null); }, [lead.id]);
+  useEffect(() => {
+    setSeen(null); setWhy('');
+    if (!url) return;
+    let alive = true;
+    setMode('checking');
+    officialPage(job.id, lead.id).then((info) => {
+      if (!alive) return;
+      if (info.embeddable) { setMode('embed'); return; }
+      setWhy(info.reason || '');
+      setMode(info.browser?.available === false ? 'blocked' : 'browser');
+      if (info.browser?.available === false) setWhy(`${info.reason || 'This site does not allow being shown inside other apps.'} The in-app browser is off on this server (${info.browser.reason || 'Chromium not installed'}).`);
+    }).catch(() => { if (alive) setMode('embed'); });
+    return () => { alive = false; };
+  }, [lead.id, job.id, url]);
   const host = url ? safeHost(seen || url) : '';
   const onPage = lead.evidence.filter((e) => host && e.url && safeHost(e.url) === host).slice(0, 4);
   if (demo) return <section className="ld-sec"><p className="ld-empty">Demo data uses fictional URLs, so there is no page to show.</p></section>;
   if (!url) return <section className="ld-sec"><p className="ld-empty">No official page was found for this item.</p></section>;
   return <section className="ld-sec ld-page">
+    {mode === 'checking' && <div className="ld-page-frame loading"><span>Checking how this site can be shown…</span></div>}
     {mode === 'embed' && <>
       <div className="ld-page-bar"><span className="ld-page-url"><Lock size={11} /> {clip(url.replace(/^https?:\/\//, ''), 80)}</span>
         <button className="x-btn sm" onClick={() => setMode('browser')} title="Some sites refuse to be shown inside other pages">Blank? Use remote browser</button>
@@ -229,9 +245,13 @@ function OfficialPageView({ lead, job, demo }: { lead: Lead; job: Job; demo: boo
       <iframe className="ld-page-frame" src={url} title={`Official page: ${lead.title}`} sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" referrerPolicy="no-referrer" />
     </>}
     {mode === 'browser' && <>
-      <div className="pl-seg"><button onClick={() => setMode('embed')}><ArrowLeft size={13} /> Back to direct view</button></div>
+      {why && <p className="ld-hint">{why} Showing it through the in-app browser instead.</p>}
       <RemoteBrowser key={lead.id} lead={lead} job={job} onShot={(s) => setSeen(s.url)} />
     </>}
+    {mode === 'blocked' && <div className="ld-page-blocked">
+      <p>{why}</p>
+      <a className="x-btn primary sm" href={url} target="_blank" rel="noreferrer">Open {clip(safeHost(url), 40)} <ExternalLink size={12} /></a>
+    </div>}
     {onPage.length > 0 && <div className="ld-page-ev">
       <header className="ld-h"><h3>What we read on this site</h3><span className="pl-badge sun">{onPage.length}</span></header>
       <ul className="ld-ev">{onPage.map((e) => <li key={e.id}><div><span className={`pl-chip ${e.verified ? 'mint' : 'lav'}`}>{e.verified ? 'Found' : 'Our read'}</span><small>{e.field}</small></div><q>{clipWords(readableQuote(e.quote), 200)}</q></li>)}</ul>

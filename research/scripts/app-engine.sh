@@ -37,7 +37,7 @@ if dup:
     print("Estas variables ya tienen valor en .env fuera del bloque:", ", ".join(dup)); print("Bórralas o vacíalas y repite (para no pisar tu configuración)."); sys.exit(1)
 lines = [B, "ENGINE_V2=1",
   "# Linkup sin saldo: añádelo a la lista cuando lo recargues",
-  "ENGINE_SEARCH_PROVIDERS=exa,you,tavily,jina",
+  "ENGINE_SEARCH_PROVIDERS=exa,you,tavily,jina,serper",
   "ENGINE_MAX_QUERIES=18",
   "# El pipeline aborta todo el run a los 180 s por defecto; el motor v2 necesita 2-4 min",
   "RESEARCH_RUN_TIMEOUT_MS=600000"]

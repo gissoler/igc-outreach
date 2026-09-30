@@ -14,7 +14,7 @@ import { candidate, evidence, norm } from './core.mjs';
 import { firecrawlSearch, firecrawlConfigured } from './webscrape.mjs';
 import { pageExcerpt } from './readOpportunity.mjs';
 import { searxSearch, searxConfigured, fetchPage } from './localSearch.mjs';
-import { multiSearch, searchApisConfigured, searchProviders, jinaRead } from './searchApis.mjs';
+import { multiSearch, searchApisConfigured, searchProviders, jinaRead, firecrawlRead } from './searchApis.mjs';
 import { verifyOpportunity, literalIn, hostKind, hostOf, datesIn } from './verify.mjs';
 
 export const OBJECTIVES = {
@@ -127,7 +127,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
  *  Sin `search`: SearXNG propio si hay SEARXNG_URL (y descarga directa de las páginas), si no Firecrawl. */
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
-  const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead } = opts;
+  const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead } = opts;
   const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, kept: 0, providers: {}, errors: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 });
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
@@ -138,7 +138,9 @@ export async function runObjective(objective, brief, opts = {}) {
     : searxConfigured(env)
     ? (q) => searxSearch(q, { env, fetcher, signal, timeRange: range === 'qdr:y' ? 'year' : range === 'qdr:m' ? 'month' : '' })
     : (q) => firecrawlSearch(q, { limit: 6, markdown: true, tbs: range, env, fetcher, signal }));
-  const plan = await planQueries(objective, brief, { chat, env, fetcher, signal, today, n: maxQueries });
+  // El orquestador puede pasar sus propias consultas (estrategia nueva): se usan tal cual, sin planear.
+  const injected = Array.isArray(opts.queries) ? opts.queries.map((q) => (typeof q === 'string' ? { query: q, family: 'orchestrator' } : q)).filter((q) => q?.query) : null;
+  const plan = injected?.length ? { queries: injected, planned: true } : await planQueries(objective, brief, { chat, env, fetcher, signal, today, n: maxQueries });
   audit.planned = plan.planned;
   const asked = []; const queries = []; const seenPages = new Set(); const findings = [];
   let todo = plan.queries;
@@ -162,6 +164,7 @@ export async function runObjective(objective, brief, opts = {}) {
       let got = await pageFetcher(p.url, { fetcher, signal });
       if (got) audit.fetched++;
       if (!got || got.text.length < 400) { const viaJina = await reader(p.url, { env, fetcher, signal }); if (viaJina && viaJina.text.length > (got?.text.length || 0)) { got = viaJina; audit.jinaRead++; } }
+      if ((!got || got.text.length < 400) && fallbackReader) { const viaFc = await fallbackReader(p.url, { env, fetcher, signal }); if (viaFc && viaFc.text.length > (got?.text.length || 0)) { got = viaFc; audit.firecrawlRead = (audit.firecrawlRead || 0) + 1; } }
       if (got && got.text.length > p.text.length) { p.text = got.text; p.title = p.title || got.title; } else if (!p.text) p.text = p.snippet;
     });
     list = list.filter((p) => p.text.length > 120);

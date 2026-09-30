@@ -79,7 +79,10 @@ Notas:
   espacio de trabajo, sin inicio de sesión. No se sube la local.
 - Las cookies de sesión salen con `Secure`, así que la app solo funciona por HTTPS.
 - No hay inicio de sesión: quien tenga la URL puede abrir su propio espacio y gastar tus claves de búsqueda. Si no quieres eso, ponle contraseña a nginx (basic auth) o limita la URL.
-- El navegador en vivo (Playwright) queda apagado. Para activarlo:
-  `sudo -u outreach bash -lc "cd /opt/outreach/research && npx playwright install --with-deps chromium"`
-  (el `--with-deps` necesita sudo) y cambia `RESEARCH_BROWSER=off` en el `.env`.
+- El navegador de la app (Chromium, para páginas oficiales que no se dejan embeber) viene apagado. Para
+  instalarlo y encenderlo, en el servidor:
+  `sudo bash /opt/outreach/deploy/navegador.sh`
+  Instala las librerías del sistema y Chromium, pone `RESEARCH_BROWSER=on`, reinicia y prueba que arranca.
+  Desde entonces la pestaña "Official page" elige sola: iframe si el sitio lo permite, navegador remoto si no.
+  `actualizar.sh` mantiene Chromium al día. Para apagarlo: `sudo bash /opt/outreach/deploy/navegador.sh off`.
 - En instancias de 1 GB el script crea 2 GB de swap para que compile el frontend.

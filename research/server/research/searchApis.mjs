@@ -1,5 +1,6 @@
 /* ─────────────────────────────────────────────────────────────────────────────
-   Búsqueda con APIs externas para el motor v2: Linkup, Exa, You.com, Tavily y Jina (+ Jina Reader).
+   Búsqueda con APIs externas para el motor v2: Linkup, Exa, You.com, Tavily, Jina, Serper (Google) y
+   Firecrawl (+ Jina Reader y Firecrawl /scrape como lectores).
    · Cada proveedor devuelve [{url,title,description,markdown,provider,rank,published}].
    · multiSearch lanza todos los configurados en paralelo, une por URL y ordena por consenso
      (cuántos buscadores trajeron la misma página) y luego por posición.
@@ -8,14 +9,17 @@
    ───────────────────────────────────────────────────────────────────────────── */
 import { safeUrl } from './core.mjs';
 import { isPublicUrl } from './localSearch.mjs';
+import { firecrawlSearch, firecrawlScrape } from './webscrape.mjs';
 
-export const PROVIDER_KEYS = { linkup: 'LINKUP_API_KEY', exa: 'EXA_API_KEY', you: 'YOU_API_KEY', tavily: 'TAVILY_API_KEY', jina: 'JINA_API_KEY' };
+export const PROVIDER_KEYS = { linkup: 'LINKUP_API_KEY', exa: 'EXA_API_KEY', you: 'YOU_API_KEY', tavily: 'TAVILY_API_KEY', jina: 'JINA_API_KEY', serper: 'SERPER_API_KEY', firecrawl: 'FIRECRAWL_API_KEY' };
 export const SEARCH_PROVIDERS = Object.keys(PROVIDER_KEYS);
 const key = (env, p) => String(env[PROVIDER_KEYS[p]] || '').trim();
 
 /** Proveedores activos: los de ENGINE_SEARCH_PROVIDERS (por defecto todos) que tengan clave. */
 export function searchProviders(env = process.env) {
-  const wanted = String(env.ENGINE_SEARCH_PROVIDERS || SEARCH_PROVIDERS.join(',')).split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+  // Por defecto todos los que tengan clave, salvo Firecrawl como buscador (gasta 1 crédito por página);
+  // Firecrawl sigue leyendo páginas difíciles. Para usarlo también como buscador, inclúyelo en ENGINE_SEARCH_PROVIDERS.
+  const wanted = String(env.ENGINE_SEARCH_PROVIDERS || SEARCH_PROVIDERS.filter((p) => p !== 'firecrawl').join(',')).split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
   return [...new Set(wanted)].filter((p) => PROVIDER_KEYS[p] && key(env, p));
 }
 export const searchApisConfigured = (env = process.env) => searchProviders(env).length > 0;
@@ -98,7 +102,34 @@ export async function jinaSearch(query, { env = process.env, fetcher, signal, li
   return clean(list.map((x, i) => row('jina', i + 1, { url: x.url, title: x.title, description: x.description, content: x.content })), n(env, limit));
 }
 
-export const PROVIDER_FN = { linkup: linkupSearch, exa: exaSearchApi, you: youSearch, tavily: tavilySearch, jina: jinaSearch };
+/** Serper (Google): POST /search · X-API-KEY · tbs qdr:d|w|m|y → organic[{link,title,snippet,date}]. Solo snippets: el motor descarga la página. */
+const SERPER_TBS = { day: 'qdr:d', week: 'qdr:w', month: 'qdr:m', year: 'qdr:y' };
+export async function serperSearch(query, { env = process.env, fetcher, signal, limit, recency = '' } = {}) {
+  const data = await call('Serper', 'https://google.serper.dev/search', {
+    method: 'POST', env, fetcher, signal, timeoutMs: Number(env.SERPER_TIMEOUT_MS) || 20_000,
+    headers: { 'X-API-KEY': key(env, 'serper') },
+    body: { q: str(query).slice(0, 500), num: Math.min(20, Math.max(10, n(env, limit))), ...(SERPER_TBS[recency] ? { tbs: SERPER_TBS[recency] } : {}), ...(env.SERPER_GL ? { gl: env.SERPER_GL } : {}) },
+  });
+  const organic = Array.isArray(data?.organic) ? data.organic : [];
+  const rows = clean(organic.map((x, i) => row('serper', i + 1, { url: x.link, title: x.title, description: x.snippet, published: x.date })), n(env, limit));
+  // Coste aproximado por consulta (Serper cobra por consulta, no por resultado). Configurable.
+  return Object.assign(rows, { costUsd: Number(env.COST_SERPER_PER_CALL) || 0 });
+}
+
+/** Firecrawl como buscador: trae markdown de cada resultado (1 crédito por página). Con errores claros y reintentos. */
+export async function firecrawlSearchApi(query, { env = process.env, fetcher, signal, limit, recency = '' } = {}) {
+  const rows = await firecrawlSearch(str(query), { limit: Math.min(10, n(env, limit)), markdown: env.FIRECRAWL_SEARCH_MARKDOWN !== '0', tbs: SERPER_TBS[recency] || '', env, fetcher, signal });
+  return clean(rows.map((x, i) => row('firecrawl', i + 1, { url: x.url, title: x.title, description: x.description, content: x.markdown, published: x.date })), n(env, limit));
+}
+
+export const PROVIDER_FN = { linkup: linkupSearch, exa: exaSearchApi, you: youSearch, tavily: tavilySearch, jina: jinaSearch, serper: serperSearch, firecrawl: firecrawlSearchApi };
+
+/** Lector de respaldo con Firecrawl /scrape (páginas con JavaScript). Devuelve {url,title,text} o null. */
+export async function firecrawlRead(url, { env = process.env, fetcher = fetch, signal } = {}) {
+  if (!key(env, 'firecrawl') || !isPublicUrl(url)) return null;
+  const got = await firecrawlScrape(url, { env, fetcher, signal });
+  return got ? { url: got.url, title: got.title, text: got.markdown.slice(0, 120_000) } : null;
+}
 
 /** Jina Reader: página → markdown (sirve para páginas con JavaScript y PDFs). Devuelve {url,title,text} o null; nunca lanza. */
 export async function jinaRead(url, { env = process.env, fetcher = fetch, signal } = {}) {
