@@ -41,7 +41,8 @@ export const GENERIC = new Set(`
   market markets product products experience experiences next steps step care medical
   the and for with toward towards into onto over about between among via per any all each both can may must should would could
   our your its they them you are was were been being has have had not but also than then such very well
-  los las del con para por que una uno sus entre sobre hacia desde como mas sin`.split(/\s+/).filter(Boolean));
+  los las del con para por que una uno sus entre sobre hacia desde como mas sin
+  tech driven multi modal connect connected integration integrated enabled self assistant based`.split(/\s+/).filter(Boolean));
 
 /** Amplias: pesan solo como parte de una frase completa del proyecto (p. ej. «mental health»). */
 export const BROAD = new Set(['health', 'healthcare', 'disease', 'diseases', 'digital', 'clinical', 'patient', 'patients', 'wellness',
@@ -96,11 +97,34 @@ export function briefDomains(brief = {}) {
 // Campos cercanos que no cuentan como ajenos.
 const NEAR = { health: ['bio', 'social', 'veterans'], bio: ['health'], social: ['health', 'education'], computing: ['engineering', 'innovation'], environment: ['geo', 'agriculture', 'energy'], geo: ['environment'] };
 
+/* Conceptos con sinónimos y siglas que usan las convocatorias («AD/ADRD», «behavioral health», «mHealth»…).
+   [id, cómo aparece en el brief (ES/EN), cómo aparece en el texto oficial]. Un concepto encontrado en el título o
+   el alcance cuenta como frase completa: es la señal temática más fuerte. */
+export const CONCEPTS = [
+  ['alzheimer', /alzheimer|dementia|demencia|\badrd\b/, /\balzheimer|\bdementias?\b|\badrd\b|\bad\s*\/\s*adrd\b|neurodegenerat|\bnia\b|national institute on aging/],
+  ['agitation', /agitation|agitaci/, /\bagitation\b|neuropsychiatric symptoms?|behavioral (?:and psychological )?symptoms of dementia/],
+  ['neuroscience', /neuro|brain|cerebr/, /\bneuro\w*|\bbrain\b|nervous system|cognitive (?:decline|impairment|function)|parkinson|huntington|amyotrophic|multiple sclerosis|epilep/],
+  ['mental health', /mental|salud mental|psych|well-?being|bienestar|emotional|mood|stress|estr[eé]s|anxiety|ansiedad|depress|behavioral health/,
+    /mental health|behavioral health|psychiatr|psycholog|depress|anxiety|suicid|emotional (?:health|well)|well-?being|\bstress\b|\bmood\b|serious mental illness/],
+  ['digital health', /digital health|salud digital|health ?tech|tecnolog[ií]a de la salud|mhealth|telehealth|\bapps?\b|aplicaci|mobile|m[oó]vil/,
+    /digital health|\bmhealth\b|mobile health|telehealth|telemedicine|health (?:information )?technolog|\bhealth it\b|digital (?:tools?|technolog|therapeutic|intervention)|smartphone|mobile app|informatics/],
+  ['AI', /\bai\b|\bia\b|artificial intelligence|inteligencia artificial|machine learning|agentic|\bllms?\b/, /\bai\b|artificial intelligence|machine learning|deep learning|large language model|\bllms?\b/],
+  ['data harmonization', /harmoni|armoniz|interoperab|data integration|integraci[oó]n de datos|standardi[sz]|estandariz/,
+    /harmoni[sz]|interoperab|common data elements?|data standard|data integration|data coordinat/],
+  ['therapeutics', /drug|therapeut|pharma|farmac|molecul|cannabin|biotech/, /\bdrugs?\b|therapeut|therap(?:y|ies)\b|pharmac|small molecule|biologics?\b/],
+  ['food', /food|bakery|panader|beverage|aliment|restaurant/, /\bfood\b|bakery|beverage|nutrition|agricultur/],
+];
+export function briefConcepts(brief = {}, terms = []) {
+  const text = `${brief.industry || ''} ${brief.product || ''} ${brief.description || ''} ${(terms || []).map((t) => (typeof t === 'string' ? t : t?.term)).join(' ')}`.toLowerCase();
+  return CONCEPTS.filter(([, rx]) => rx.test(text));
+}
+
 /** Frases y anclas específicas del proyecto (sin genéricas). */
 export function topicAnchors(brief = {}, terms = []) {
   const phrases = new Set();
   const anchors = new Set();
-  const sources = [brief.industry, brief.product, brief.criteria, ...(terms || []).map((t) => (typeof t === 'string' ? t : t?.term))]
+  // Los criterios son restricciones («confirmar elegibilidad…»), no temas: no aportan anclas.
+  const sources = [brief.industry, brief.product, ...(terms || []).map((t) => (typeof t === 'string' ? t : t?.term))]
     .flatMap((s) => String(s || '').split(/[,;|\n]/)).map((s) => s.trim()).filter(Boolean);
   for (const s of sources) {
     const toks = tokensOf(s).filter((t) => !GENERIC.has(t));
@@ -132,6 +156,17 @@ export function grantMatch(lead, brief = {}, terms = []) {
   const scopeToks = new Set(tokensOf(scope));
   const anchorsInTitle = anchors.filter((a) => titleToks.has(stem(a)));
   const anchorsInScope = anchors.filter((a) => scopeToks.has(stem(a)));
+  const concepts = briefConcepts(brief, terms);
+  const titleLow = title.toLowerCase(); const scopeLow = scope.toLowerCase();
+  const conceptTitle = concepts.filter(([, , rx]) => rx.test(titleLow)).map(([id]) => id);
+  const conceptScope = concepts.filter(([, , rx]) => rx.test(scopeLow)).map(([id]) => id);
+  anchorsInTitle.push(...conceptTitle.filter((c) => !anchorsInTitle.includes(c)));
+  // Un concepto solo en el alcance cuenta como una ancla (una mención de pasada no basta para prioridad).
+  anchorsInScope.push(...conceptScope.filter((c) => !anchorsInScope.includes(c)));
+  // «mental» y «mental health» son la misma señal: una palabra ya cubierta por un concepto no suma aparte.
+  const covered = (list) => list.filter((a) => !list.some((c) => c !== a && c.includes(' ') && c.split(' ').includes(a)));
+  anchorsInScope.splice(0, anchorsInScope.length, ...covered(anchorsInScope));
+  anchorsInTitle.splice(0, anchorsInTitle.length, ...covered(anchorsInTitle));
   const phraseHits = phrases.filter((p) => scopeNorm.includes(` ${p} `) || ` ${[...titleToks].join(' ')} `.includes(` ${p} `));
   const genericOnly = [...scopeToks].filter((t) => GENERIC.has(t) && sourcesMention(t, brief, terms)).slice(0, 6);
   const field = alnField(lead.facts?.aln || lead.aln || (lead.evidence || []).find((e) => e.field === 'program')?.quote);
@@ -141,8 +176,13 @@ export function grantMatch(lead, brief = {}, terms = []) {
 
   const reasons = [];
   let verdict = 'match';
+  // Si no se pudo leer el alcance oficial (texto muy corto), no se rechaza solo por tema: queda para revisar.
+  const thinScope = scope.replace(/\s+/g, ' ').trim().length - title.length < 200;
   const noTopic = !anchorsInTitle.length && !phraseHits.length && !anchorsInScope.length;
-  if (noTopic) {
+  if (noTopic && thinScope && !fieldForeign) {
+    verdict = 'weak';
+    reasons.push('The official scope could not be read; none of your topic terms appear in the title. Check the call before any draft.');
+  } else if (noTopic) {
     verdict = 'mismatch';
     reasons.push(genericOnly.length ? `Only generic words matched (${genericOnly.slice(0, 4).join(', ')}); none of your topic terms appear in the official title or scope.` : 'None of your topic terms appear in the official title or scope.');
   }

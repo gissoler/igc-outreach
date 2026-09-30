@@ -10,6 +10,9 @@ export function evaluateRun(job, gold) {
   const claims = top.flatMap((lead) => lead.evidence || []);
   const falseWarmPaths = top.filter((lead) => lead.paths?.some((path) => path.hypothesis === false && !(path.hops || []).every((hop) => hop.evidenceIds?.length))).length;
   const cost = Object.values(job.usage || {}).reduce((sum, row) => sum + Number(row.costUsd || 0), 0);
+  // Casos negativos del gold set: convocatorias que NUNCA deben quedar como prioridad ni radar.
+  const rejectedIds = new Set((gold.rejected_opportunities || []).flatMap((item) => [item.id, item.number].filter(Boolean).map(String)));
+  const falsePositives = (job.leads || []).filter((lead) => lead.bucket !== 'discarded' && rejectedIds.has(String(lead.externalId || ''))).length;
   return {
     id: gold.id,
     recallAt10: acceptable.length ? hits.length / acceptable.length : null,
@@ -17,6 +20,7 @@ export function evaluateRun(job, gold) {
     deciderCoverageAt10: top.length ? citedDecider / top.length : 0,
     verifiedCitationRate: claims.length ? claims.filter((item) => item.verified).length / claims.length : 0,
     falseWarmPaths,
+    falsePositives,
     searches: job.queryLedger?.length || 0,
     costUsd: cost,
     latencyMs: Date.parse(job.finishedAt || 0) - Date.parse(job.createdAt || 0),
@@ -26,6 +30,6 @@ export function evaluateRun(job, gold) {
 
 export function aggregateMetrics(rows) {
   const average = (field) => { const values = rows.map((row) => row[field]).filter(Number.isFinite); return values.length ? values.reduce((a, b) => a + b, 0) / values.length : null; };
-  return { cases: rows.length, ...Object.fromEntries(['recallAt10', 'precisionAt5', 'deciderCoverageAt10', 'verifiedCitationRate', 'falseWarmPaths', 'searches', 'costUsd', 'latencyMs', 'partial'].map((field) => [field, average(field)])) };
+  return { cases: rows.length, ...Object.fromEntries(['recallAt10', 'precisionAt5', 'deciderCoverageAt10', 'verifiedCitationRate', 'falseWarmPaths', 'falsePositives', 'searches', 'costUsd', 'latencyMs', 'partial'].map((field) => [field, average(field)])) };
 }
 

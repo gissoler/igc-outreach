@@ -84,3 +84,12 @@ test('Mentiva (salud mental digital): NSF oceanografía también es mismatch', (
   const m = grantMatch(grantLead(nsfHit, nsfDetail), mentiva, [{ term: 'mental health' }, { term: 'digital mental health' }]);
   assert.equal(m.verdict, 'mismatch');
 });
+
+test('gold set: el caso negativo NSF 23-525 cuenta como falso positivo si no se descarta', async () => {
+  const { evaluateRun } = await import('../eval/metrics.mjs');
+  const gold = JSON.parse((await import('node:fs')).readFileSync(new URL('../eval/gold/negative-nsf-23-525.json', import.meta.url)));
+  assert.equal(evaluateRun({ leads: [{ externalId: '23-525', bucket: 'top' }] }, gold).falsePositives, 1);
+  const brief = { exclusions: '', minDays: 30, mode: 'strategic', stage: '', geography: '', amount: null, ...gold.brief };
+  const ranked = evaluate([verifiedGrant(nsfHit, nsfDetail)], brief, new Set(), new Date('2026-09-30'), []);
+  assert.equal(evaluateRun({ leads: ranked }, gold).falsePositives, 0);
+});

@@ -1,0 +1,24 @@
+{
+  "id": "negative-nsf-23-525",
+  "as_of": "2026-09-30",
+  "about": "Caso negativo: una convocatoria de oceanografía salió como match de un proyecto de Alzheimer/armonización de datos por palabras genéricas (research, infrastructure, open science, data). Debe rechazarse y no generar propuesta.",
+  "brief": {
+    "company": "AHA",
+    "product": "AHA (Agentic Harmonization Assistant) and AHA Connect",
+    "industry": "Healthcare Neuroscience Research Infrastructure",
+    "description": "Harmonizes Alzheimer research datasets and connects investigators in an open science network.",
+    "fundingTypes": ["grant"]
+  },
+  "acceptable_funders": [],
+  "deciders": [],
+  "rejected_opportunities": [
+    {
+      "id": "344715",
+      "number": "23-525",
+      "title": "Oceanographic Facilities and Equipment Support",
+      "aln": "47.050",
+      "evidence_url": "https://www.grants.gov/search-results-detail/344715",
+      "reason": "Funds shared oceanographic facilities (vessels, marine instrumentation, winches, communications, safety). Different field (Geosciences) and no topic overlap."
+    }
+  ]
+}
