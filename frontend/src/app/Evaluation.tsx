@@ -13,6 +13,7 @@ import {
 import { ContactsTable, HowWeGotHere, ResultsIntro } from './Contacts';
 import { DemoRibbon, Drawer, EmptyState, Info, LinkBadge, Meter } from './ui';
 import { advisorApi } from '../analysisApi';
+import { RunAuditPanel } from './Audit';
 
 export function useMedia(q: string) {
   const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(q).matches);
@@ -243,6 +244,7 @@ function SourcesTab({ job, s, apify, jev, health, onMetric }: { job: Job; s: Sum
       <header><h3>Search log <span className="pl-badge dark">{job.searchAudit.length}</span></h3><span className="pl-mut">Exact queries and what survived ranking</span></header>
       <table className="x-table"><thead><tr><th>Source</th><th>Query</th><th className="num">Returned</th><th className="num">New</th><th className="num">Priority</th><th className="num">Watch</th></tr></thead><tbody>{job.searchAudit.map((row, i) => <tr key={`${row.provider}-${row.query}-${i}`}><td>{row.provider}<small className="pl-mut"> · {row.dimension}</small></td><td>{row.query}</td><td className="num">{row.returned ?? '—'}</td><td className="num">{row.discovered}</td><td className="num">{row.priority}</td><td className="num">{row.watch}</td></tr>)}</tbody></table>
     </section> : null}
+    {job.runAudit ? <RunAuditPanel audit={job.runAudit} /> : null}
     <div className="pl-row even">
       <ApifyCard s={apify} />
       <JevCard s={jev} />

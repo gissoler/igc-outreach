@@ -72,7 +72,47 @@ export type GrantPlan = {
     nextDeadline: string | null; message: string; contactAdvice: string;
   };
 };
+/** Una comprobación del código sobre la página (tipo, plazo, elegibilidad, no dilutivo, oficial). */
+export type VerifyCheck = { check: string; ok: boolean; detail: string; quote?: string };
+export type Milestone = { iso: string | null; phase: string; label: string; quote: string; tbd?: boolean; yearless?: boolean; precision?: string; ambiguous?: boolean; alt?: string; optional?: boolean };
+/** Verificación de una convocatoria: nivel (lista principal / a verificar / descartada), motivos y citas. */
+export type Verification = {
+  verdict: 'apply' | 'watch' | 'skip'; tier: 'main' | 'verify' | 'drop'; status?: string; eligible?: string; daysLeft?: number | null; flags: string[]; today?: string;
+  deadlineQuote?: string; blockers?: string[]; reasons?: string[]; drop?: string;
+  eligibility?: { decision: string; reason: string; quote: string; types?: Record<string, boolean>; countries?: string[] };
+  pageType?: { type: string; isCall: boolean; reason: string; applyQuote?: string; soft?: boolean };
+  dates?: { status: string; phase: string; reason: string; quote: string; opens?: string | null; milestones?: Milestone[] };
+  checks?: VerifyCheck[];
+};
+/** Recorrido de un resultado: consulta → buscadores → página leída → lo que extrajo el modelo → lo que verificó el código. */
+export type ResultTrace = {
+  url?: string; title?: string; query?: string; family?: string; queries?: { query: string; family?: string }[]; providers?: string[]; round?: number;
+  fetchedVia?: string; textChars?: number; today?: string; note?: string; verdict?: string; drop?: string | null; reasons?: string[]; name?: string; objective?: string;
+  read?: { model?: string; out?: Record<string, unknown> } | null;
+  verify?: { verdict?: string; tier?: string; drop?: string | null; reasons?: string[]; blockers?: string[]; flags?: string[]; checks?: VerifyCheck[]; pageType?: Verification['pageType'] | null; dates?: (Verification['dates'] & { claimed?: string | null }) | null; eligibility?: Verification['eligibility'] | null };
+};
+export type Explanation = { ai: string | null; aiRejected: string | null; facts: string; risks: string[]; unverified: string[]; today: string };
+export type BriefInterpretation = {
+  objective: string; looking_for?: string; fundType?: string; nonDilutiveOnly?: boolean; focus?: string | null; product?: string | null; geography?: string | null; stage?: string;
+  applicant?: { entity: string; forProfit: boolean; entitySource: string; country: string | null; outside: string[]; countrySource: string };
+  constraints?: string | null; exclusions?: string | null; today: string; year?: string; recency?: string; providers?: string[]; planner?: string;
+};
+export type RunAudit = {
+  today: string; error?: string;
+  brief?: Record<string, unknown>;
+  interpretations: BriefInterpretation[];
+  counters: { queries: number; queriesYearFixed: number; pagesSeen: number; pagesRead: number; pagesUnread: number; rereadForDates: number; rereadImproved: number; keptByEngine: number; droppedByEngine: Record<string, number>; skippedBeforeReading: Record<string, number>; verdicts: Record<string, number>; buckets: { top: number; radar: number; discarded: number }; discardReasons: Record<string, number>; radarReasons: Record<string, number> };
+  queries: { objective?: string; round?: number; query: string; family?: string; original?: string; returned?: number | null; newPages?: number | null; providers?: string[]; error?: string }[];
+  discarded: ResultTrace[];
+};
 export type Lead = {
+  verification?: Verification;
+  /** Verificación solo-código (sin lectura del modelo): búsqueda directa en APIs, discovery abierto. */
+  codeCheck?: Verification;
+  /** Puerta de la lista principal: main (vigencia y elegibilidad verificadas) | verify (a verificar) | drop. */
+  gate?: { tier: 'main' | 'verify' | 'drop'; reason: string; source: string; pending?: string };
+  explain?: Explanation;
+  trace?: ResultTrace;
   warmPlan?: WarmPlan;
   grantPlan?: GrantPlan;
   foundBy?: { provider: string; term: string; objective: string; query: string; gap?: string }[];
@@ -147,6 +187,8 @@ export type Lead = {
 export type RunGrant = { id: string; leadId: string; title: string; agency: string; url: string; closeDate: string | null; awardCeiling: number | null; verdict: '✔' | '✖' | '?'; closed: boolean };
 export type ActiveFund = { fundId: string; rank: number; name: string; dealsInWindow: number; leads: number; inactive: boolean; signals: { type: string; label: string; url: string | null }[]; why: { text: string; url: string } | null };
 export type Job = {
+  /** Auditoría de la corrida: qué entendió el motor, qué buscó, qué leyó, qué descartó y por qué. */
+  runAudit?: RunAudit;
   searchAudit?: { provider: string; query: string; dimension: string; returned?: number; discovered: number; priority: number; watch: number; discarded: number }[];
   grants?: { evaluations: RunGrant[]; alerts: { id: string; title: string; closeDate: string; days: number; verdict: string; level: string }[] };
   activeInvestors?: { asOf: string; funds: ActiveFund[]; universe: number };
