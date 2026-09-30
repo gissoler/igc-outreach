@@ -73,7 +73,7 @@ test('hunter: en grants el contacto del programa queda en la oportunidad, no com
 test('openjev: proveedor por defecto, localhost sin clave, https obligatorio y respuesta de error de OpenJev', async () => {
   assert.equal(jevProvider({}), null);
   assert.deepEqual(jevProvider({ OPENJEV_API_KEY: 'o' }).name, 'OpenJev');
-  assert.equal(jevProvider({ OPENJEV_API_KEY: 'o' }).url, 'https://api.codiv.ai/v1/systemone');
+  assert.equal(jevProvider({ OPENJEV_API_KEY: 'o' }).url, 'https://api.openjev.sh/v1/systemone');
   assert.equal(jevProvider({ OPENJEV_API_URL: 'http://127.0.0.1:8080/v1/systemone' }).name, 'OpenJev');
   assert.equal(jevProvider({ JEV_API_KEY: 'j' }).name, 'Jev');
   assert.equal(jevProvider({ JEV_API_KEY: 'j', OPENJEV_API_KEY: 'o', JEV_PROVIDER: 'jev' }).name, 'Jev');
@@ -81,7 +81,7 @@ test('openjev: proveedor por defecto, localhost sin clave, https obligatorio y r
   await assert.rejects(systemOne({}, { q: { type: 'noul' } }, { env: { OPENJEV_API_KEY: 'o' }, fetcher: async () => json(422, { detail: { error_type: 'invalid_request', message: 'bad question' } }) }), /OpenJev returned 422: bad question/);
   let sent;
   const r = await systemOne({ a: 1 }, { q: { type: 'noul' } }, { env: { OPENJEV_API_KEY: 'o' }, fetcher: async (url, init) => { sent = { url, init }; return json(200, { model: 'openjev-0.1', answers: { q: { noul: 0.8 } } }); } });
-  assert.equal(sent.init.headers.Authorization, 'Bearer o'); assert.equal(JSON.parse(sent.init.body).model, 'openjev-latest');
+  assert.equal(sent.init.headers.Authorization, 'Bearer o'); assert.equal(JSON.parse(sent.init.body).model, 'openjev');
   assert.equal(r.answers.q.noul, 0.8); assert.equal(r.provider, 'OpenJev');
 });
 
@@ -204,7 +204,7 @@ test('pipeline completo: Serper + orquestador (OpenJev) + Hunter → más result
       const domain = u.searchParams.get('domain');
       return json(200, { data: { organization: domain, emails: [{ value: `gp@${domain}`, confidence: 93, first_name: 'Pat', last_name: `Lee ${domain.split('.')[0]}`, position: 'General Partner', seniority: 'executive', verification: { status: 'valid' } }] } });
     }
-    if (u.hostname === 'api.codiv.ai') {
+    if (u.hostname === 'api.openjev.sh') {
       seen.openjev++;
       const body = JSON.parse(init.body);
       if (body.questions.sufficient) return json(200, { model: 'openjev-0.1', answers: { sufficient: { noul: 0.2 }, gap: { choice: 'too_few' }, strategy: { choice: 'adjacent_terms' }, quality: { score: 1 } } });

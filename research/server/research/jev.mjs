@@ -7,8 +7,8 @@
    JEV_PROVIDER=openjev|jev fuerza uno. */
 const DEFAULT_ENDPOINT = 'https://jevmodel.net/v1/systemone';
 const DEFAULT_MODEL = 'jev-latest';
-const OPENJEV_ENDPOINT = 'https://api.codiv.ai/v1/systemone';
-const OPENJEV_MODEL = 'openjev-latest';
+const OPENJEV_ENDPOINT = 'https://api.openjev.sh/v1/systemone';
+const OPENJEV_MODEL = 'openjev';
 
 const clamp01 = (value) => Math.max(0, Math.min(1, Number(value) || 0));
 const bounded = (value, max = 600) => String(value || '').slice(0, max);
