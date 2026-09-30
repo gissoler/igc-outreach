@@ -117,7 +117,8 @@ const writeNote = (job: string, lead: string, v: string) => { try { if (v) local
 function contactOf(lead: Lead, demo: boolean) {
   const c = lead.contact;
   const channel = !c ? null : c.type === 'email' ? 'Email' : c.type === 'linkedin' ? 'LinkedIn' : 'Website';
-  const href = c && !demo ? (c.type === 'email' ? `mailto:${c.value}` : c.value) : null;
+  // Nunca mailto: un clic no debe abrir la app de correo. El correo se muestra y se copia.
+  const href = c && !demo && c.type !== 'email' ? c.value : null;
   const value = c ? (demo ? `${channel} (fictional)` : c.type === 'email' ? c.value : channel!) : null;
   return { name: lead.person, role: lead.role, channel, href, value, type: c?.type || null };
 }
@@ -131,7 +132,7 @@ function ContactCard({ lead, demo, isGrant }: { lead: Lead; demo: boolean; isGra
     <div className="ld-contact-who"><small>Contact</small><b>{who}</b><span>{sub}</span></div>
     <div className="ld-contact-a">
       {k.href ? <a className="x-btn sm" href={k.href} target="_blank" rel="noreferrer"><Icon size={13} /> {k.type === 'email' ? clip(k.value || '', 28) : k.channel}</a>
-        : <span className="pl-chip gray">{k.value || 'No public channel'}</span>}
+        : <span className="pl-chip gray" title={k.type === 'email' ? k.value || '' : undefined}>{k.type === 'email' && k.value ? clip(k.value, 30) : k.value || 'No public channel'}</span>}
       {k.type === 'email' && k.value && !demo && <CopyButton text={k.value} label="" className="ld-ic" />}
     </div>
   </div>;
@@ -298,7 +299,8 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     catch (e) { setMsg(e instanceof Error ? e.message : "Couldn't save."); } finally { setBusy(false); }
   };
   const risks = lead.risks.filter((r) => !r.startsWith('DEMO')).map((r) => (r === 'competitor_conflict' ? 'Possible competitor' : r));
-  const contactHref = lead.contact && !demo ? (lead.contact.type === 'email' ? `mailto:${lead.contact.value}` : lead.contact.value) : null;
+  // El botón de abrir lleva SIEMPRE a la fuente (la página oficial o la evidencia verificada), nunca al correo.
+  const sourceHref = demo ? null : officialUrlOfLead(lead);
   return <article className={`ld${tab === 'page' ? ' page-mode' : ''}`} aria-label={`${name} detail`}>
     <header className="ld-top">
       {onClose && <button className="ld-x" onClick={onClose} aria-label="Close"><X size={18} /></button>}
@@ -311,7 +313,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
         <div className="ld-name"><b>{name}</b><small>{isGrant ? `${lead.org}${lead.grantPlan?.programNumber ? ` · ${lead.grantPlan.programNumber}` : lead.opportunityType ? ` · ${lead.opportunityType.replace('_', ' ')}` : ''}` : lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 70)}</small></div>
         <div className="ld-icons">
           <CopyButton text={emailText} label="" className="ld-ic" />
-          {contactHref ? <a className="ld-ic" href={contactHref} target="_blank" rel="noreferrer" aria-label="Open contact channel"><ExternalLink size={15} /></a> : <span className="ld-ic off" title="No public channel"><ExternalLink size={15} /></span>}
+          {sourceHref ? <a className="ld-ic" href={sourceHref} target="_blank" rel="noreferrer" aria-label="Open source" title="Open source"><ExternalLink size={15} /></a> : <span className="ld-ic off" title="No source link"><ExternalLink size={15} /></span>}
           <div className="ld-more" ref={moreRef}><button className="ld-ic" aria-label="More" aria-expanded={more} onClick={() => setMore(!more)}><MoreHorizontal size={16} /></button>
             {more && <div className="ld-menu" role="menu"><button role="menuitem" onClick={() => { setMore(false); setWhy(true); }}><Lightbulb size={14} /> Why this ranking</button><button role="menuitem" onClick={() => { setMore(false); onEvidence(`Evidence · ${name}`, lead.evidence); }}><FileSearch size={14} /> All evidence</button><button role="menuitem" className="danger" onClick={() => { setMore(false); setDiscarding(true); }}><ThumbsDown size={14} /> Not a fit…</button></div>}
           </div>

@@ -66,7 +66,10 @@ export function grantPlan(lead, brief = {}) {
   let decision = 'review';
   let label = 'Review eligibility';
   let nextAction = 'Resolve the eligibility questions against the official notice before investing time in a draft.';
-  if (closed || verdict === '✖') {
+  if (lead.grantMatch?.verdict === 'mismatch') {
+    state = 'not_pursuing'; decision = 'no_go'; label = 'Not a match';
+    nextAction = 'Do not draft: the official call funds something else. Archive it.';
+  } else if (closed || verdict === '✖') {
     state = 'not_pursuing'; decision = 'no_go'; label = 'Do not pursue';
     nextAction = closed ? 'Archive this cycle and monitor the program for the next notice.' : 'Record the blocking eligibility rule and do not start an application.';
   } else if (forecast) {
@@ -79,7 +82,9 @@ export function grantPlan(lead, brief = {}) {
     state = 'decision_needed'; decision = 'conditional_go'; label = 'Urgent decision';
     nextAction = 'Make a go/no-go decision now; the remaining lead time is below your minimum.';
   }
+  if (decision !== 'no_go' && lead.grantMatch?.verdict === 'weak') { state = 'eligibility_review'; decision = 'review'; label = 'Check topic fit'; nextAction = `${lead.grantMatch.summary} Confirm against the official objective before any draft.`; }
   const checklist = [
+    { key: 'topic_fit', label: 'Topic matches the official objective', done: lead.grantMatch ? lead.grantMatch.verdict === 'match' : false },
     { key: 'official_notice', label: 'Official notice identified', done: Boolean(lead.externalId && lead.evidence?.some((e) => e.field === 'opportunity')) },
     { key: 'deadline', label: 'Deadline confirmed', done: Boolean(lead.deadline) },
     { key: 'eligibility', label: 'Eligibility resolved', done: verdict === '✔' },
@@ -105,7 +110,7 @@ export function attachGrantPlans(leads, brief) {
     // Una convocatoria que ya cerró o tiene una regla que la excluye no puede quedar como prioridad.
     if (plan.decision === 'no_go' && lead.bucket !== 'discarded') {
       const passed = lead.daysToDeadline != null && lead.daysToDeadline < 0;
-      const why = passed ? `Closed: the deadline${lead.deadline ? ` (${lead.deadline})` : ''} has passed.`
+      const why = lead.grantMatch?.verdict === 'mismatch' ? lead.grantMatch.summary : passed ? `Closed: the deadline${lead.deadline ? ` (${lead.deadline})` : ''} has passed.`
         : lead.status === 'closed' || lead.eligibility?.closed === true ? 'Closed: the program is not accepting applications.'
         : 'Not eligible: a blocking rule in the official notice excludes Mentiva.'.replace('Mentiva', brief.venture || brief.company || 'this venture');
       return { ...lead, bucket: 'discarded', discard: lead.discard || why, grantPlan: plan };

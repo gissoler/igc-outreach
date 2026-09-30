@@ -1,3 +1,4 @@
+import { GENERIC, grantMatch } from './grantMatch.mjs';
 import { createHash } from 'node:crypto';
 
 export const norm = (s = '') =>
@@ -267,18 +268,25 @@ export function evaluate(
     { label: brief.industry, value: brief.industry },
     ...terms.map((term) => ({ label: typeof term === 'string' ? term : term.term, value: typeof term === 'string' ? term : term.term })),
   ].filter((x) => x.value);
-  const tokens = [...new Set(tokenSources.flatMap((x) => norm(x.value).split(' ').filter((t) => t.length > 2)))];
+  // Palabras genéricas («research», «data», «infrastructure»…) nunca cuentan como encaje temático.
+  const specific = (value) => norm(value).split(' ').filter((t) => t.length > 2 && !GENERIC.has(t) && !GENERIC.has(t.replace(/s$/, '')));
+  const tokens = [...new Set(tokenSources.flatMap((x) => specific(x.value)))];
   const ranked = dedupe(leads).map((l) => {
     const verified = l.evidence.filter((e) => e.verified);
     const hay = norm(
       `${l.title} ${l.searchText} ${l.evidence.map((e) => e.quote).join(' ')}`,
     );
     const hits = tokens.filter((t) => hay.includes(t));
-    const matchedTerms = tokenSources.filter((source) => norm(source.value).split(' ').filter((t) => t.length > 2).some((t) => hay.includes(t))).map((source) => source.label);
-    const fit = Math.min(
+    const matchedTerms = tokenSources.filter((source) => specific(source.value).some((t) => hay.includes(t))).map((source) => source.label);
+    const grantOpp = l.fundingType === 'grant' && l.kind === 'opportunity';
+    // Convocatorias: la rúbrica sobre campos oficiales (título, alcance, ALN) decide si hay encaje.
+    const match = grantOpp ? grantMatch(l, brief, terms) : null;
+    let fit = Math.min(
       1,
       hits.length / Math.max(2, Math.min(6, tokens.length)),
     );
+    if (match?.verdict === 'mismatch') fit = 0;
+    else if (match?.verdict === 'weak') fit = Math.min(fit, 0.35);
     const type = brief.fundingTypes.includes(l.fundingType) ? 1 : 0.15;
     const deadline = l.deadline ? Date.parse(l.deadline + 'T23:59:59Z') : NaN;
     const days = Number.isFinite(deadline)
@@ -342,7 +350,9 @@ export function evaluate(
       discard = 'Verified page indicates this organization is not a funder.';
     if (l.fundingType === 'grant' && l.kind !== 'opportunity')
       discard = 'Historical grant intelligence; not an open funding opportunity.';
+    if (match?.verdict === 'mismatch') discard = match.summary;
     const watch =
+      match?.verdict === 'weak' ||
       l.kind === 'radar' ||
       l.status === 'closed' ||
       l.status === 'forecasted' ||
@@ -355,6 +365,7 @@ export function evaluate(
         ...(!grantOpportunity && (!l.contact || l.contact.type !== 'email')
           ? ['No public email']
           : []),
+        ...(match?.verdict === 'weak' ? [match.summary] : []),
         'Geographic eligibility and stage to confirm',
         ...(brief.amount && !l.amount
           ? ['Available amount not confirmed']
@@ -362,9 +373,7 @@ export function evaluate(
       ]),
     ];
     const why = grantOpportunity ? [
-      hits.length
-        ? `The official call matches ${matchedTerms.slice(0, 3).join(', ') || hits.slice(0, 4).join(', ')}.`
-        : 'Limited topic match: review the official scope before proceeding.',
+      match.summary,
       `Specific ${l.status} grant opportunity${l.externalId ? ` (${l.externalId})` : ''}; eligibility must be resolved against the notice.`,
       l.deadline ? `Published deadline: ${l.deadline}.` : 'Deadline is not confirmed.',
       ...(brief.criteria ? [`Policy or program priorities to validate: ${brief.criteria}`] : []),
@@ -398,6 +407,7 @@ export function evaluate(
       ...l,
       fit,
       matchedTerms,
+      ...(match ? { grantMatch: match } : {}),
       score,
       breakdown,
       missing,
@@ -421,6 +431,11 @@ export function evaluate(
 export function buildDraft(lead, brief, senderFacts = []) {
   if (lead.fundingType === 'grant' || lead.kind === 'opportunity') {
     const number = lead.externalId || 'program number to confirm';
+    // Rechazada por la rúbrica: no se prepara propuesta ni borrador (caso NSF 23-525, 30/09).
+    if (lead.grantMatch?.verdict === 'mismatch') {
+      const body = `Official call: ${number} — ${lead.title}\n\nDo not pursue: ${lead.grantMatch.summary.replace(/^Off-topic: /, '')}\nNo application draft is generated for an off-topic call.`;
+      return { subject: `Not a match · ${number}`, body, sections: [], connector: null, status: 'rejected', warning: 'Rejected by the matching rubric. Do not prepare a proposal for this call.', wordCount: body.split(/\s+/).length };
+    }
     const question = lead.grantPlan?.contactQuestion;
     const body = `${lead.demo ? '[DEMO — DO NOT USE]\n' : ''}${question
       ? `Official call: ${number} — ${lead.title}\n\n${question}`

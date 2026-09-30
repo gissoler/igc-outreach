@@ -511,6 +511,11 @@ export function grantLead(hit, detail, foundBy = []) {
       'registry',
     ),
   ];
+  // Assistance Listing (ALN/CFDA): dice qué campo financia la convocatoria (47.050 = Geociencias…).
+  const alns = [...(detail?.cfdas || []).map((c) => [c.cfdaNumber, c.programTitle]), ...(hit.alnist || hit.cfdaList || []).map((n) => [n, null])]
+    .filter(([n]) => /\d{2}\.\d{3}/.test(String(n || '')));
+  const aln = alns[0]?.[0] ? String(alns[0][0]) : null;
+  if (aln) ev.push(evidence('Grants.gov', url, `${aln}${alns[0][1] ? ` — ${plain(alns[0][1])}` : ''}`, 'program'));
   if (syn.synopsisDesc)
     ev.push(
       evidence(
@@ -594,6 +599,7 @@ export function grantLead(hit, detail, foundBy = []) {
     ],
     missing: detail ? [] : ['Call details not retrieved'],
     searchText: `${title} ${plain(syn.synopsisDesc).slice(0, 5000)}`,
+    facts: { ...(aln ? { aln } : {}), ...(syn.agencyName || hit.agency ? { agency: syn.agencyName || hit.agency } : {}) },
     foundBy,
   });
 }
