@@ -170,6 +170,8 @@ export const ROLLING_RX = /\b(rolling(?: basis| deadlines?| admissions?| applica
 export const CLOSED_RX = /\b(applications? (?:are |is )?(?:now )?closed|registration (?:is )?(?:now )?closed|call (?:is )?(?:now )?closed|(?:this|the) (?:call|competition|program|opportunity) (?:is|has) (?:now )?closed|now closed|submissions? (?:are |is )?(?:now )?closed|no longer accepting|deadline has passed|(?:currently )?not (?:currently )?(?:open|accepting) (?:for )?(?:new )?(?:applications|submissions|proposals)|(?:is|are) no longer open|closed for applications|convocatoria cerrada|inscripciones cerradas|postulaciones cerradas|cerrad[oa] (?:para|a) (?:postulaciones|inscripciones)|candidatures? (?:sont )?closes?|bewerbung(?:sphase)? (?:ist )?geschlossen)\b/i;
 export const OPEN_RX = /\b(applications? (?:are |is )?(?:now )?open|now accepting|accepting (?:applications|proposals|submissions)|open for (?:applications|submissions)|call (?:is )?(?:now )?open|apply now|open call|convocatoria abierta|postulaciones abiertas|inscripciones abiertas|candidatures? ouvertes?)\b/i;
 
+const PERIOD_RX = /(?:contract|funding|funded|grant|project|award|performance|service|program(?:me)?|budget|agreement)\s+(?:period|term|year|duration)|period of performance|project duration/i;
+
 /** Hitos de la página: fechas etiquetadas + hitos "TBD". Posiciones sobre flat(text). */
 export function milestones(text) {
   const s = flat(text);
@@ -180,6 +182,13 @@ export function milestones(text) {
     const prev = items.at(-1);
     // "December 1, 2026 to January 15, 2027": la segunda fecha es el cierre de la ventana que abre la primera.
     if (prev && !prev.tbd && d.index - prev.end <= 14 && /^\s*(?:-|–|—|to|until|through|thru|al|hasta|au|bis|a)\s*$/i.test(s.slice(prev.end, d.index))) {
+      // "contract period from September 1, 2026 to August 31, 2027": es la vigencia del proyecto o contrato, no un plazo de solicitud.
+      if (PERIOD_RX.test(s.slice(Math.max(0, prev.index - 90), prev.index))) {
+        prev.phase = 'event'; prev.label = 'project period';
+        items.push({ ...d, phase: 'event', label: 'project period (end)', labelStart: prev.labelStart, optional: false, quote: s.slice(prev.labelStart, d.end).trim() });
+        prevEnd = d.end;
+        continue;
+      }
       const phase = ['loi', 'registration', 'invited', 'event', 'result'].includes(prev.phase) ? prev.phase : 'deadline';
       if (!['event', 'result', 'published'].includes(prev.phase)) { prev.phase = 'opens'; prev.rangeStart = true; }
       items.push({ ...d, phase, label: `${prev.label || 'window'} (end)`, labelStart: prev.labelStart, optional: prev.optional, quote: s.slice(prev.labelStart, d.end).trim() });
