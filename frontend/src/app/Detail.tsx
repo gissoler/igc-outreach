@@ -11,6 +11,7 @@ import {
   warmPlanOf,
 } from './model';
 import { BucketBadge, ConfBadge, Drawer, Info, LinkBadge, Meter, ScorePill } from './ui';
+import { ResultTracePanel } from './Audit';
 
 /* ───────── Evidence ───────── */
 export function SourceTag({ e, demo }: { e: Evidence; demo: boolean }) {
@@ -286,7 +287,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
   const [more, setMore] = useState(false);
   const [why, setWhy] = useState(false);
   const [level, setLevel] = useState<1 | 2 | 3>(1);
-  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence'>(isDemoJob(job) ? 'overview' : 'page');
+  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence' | 'trace'>(isDemoJob(job) ? 'overview' : 'page');
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
@@ -345,7 +346,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     </section>
 
     <nav className="ld-tabs" role="tablist" aria-label="Candidate sections">
-      {([['overview', 'Overview'], ['page', 'Official page'], ['path', isGrant ? 'Application plan' : 'Warm path'], ['evidence', 'Evidence']] as const).map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}{k === 'path' && p && !isGrant ? <span className="pl-badge sun">{p.hopCount}</span> : null}{k === 'evidence' && lead.evidence.length ? <span className="pl-badge sun">{lead.evidence.length}</span> : null}</button>)}
+      {([['overview', 'Overview'], ['page', 'Official page'], ['path', isGrant ? 'Application plan' : 'Warm path'], ['evidence', 'Evidence'], ['trace', 'How we got it']] as const).map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}{k === 'path' && p && !isGrant ? <span className="pl-badge sun">{p.hopCount}</span> : null}{k === 'evidence' && lead.evidence.length ? <span className="pl-badge sun">{lead.evidence.length}</span> : null}</button>)}
     </nav>
 
     {tab === 'overview' && <>
@@ -377,6 +378,13 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
         {readItems.length > 0 && <div className="ld-src read"><span className="pl-chip lav">Our read</span><ul>{readItems.map((x) => <li key={x} className={/^(To confirm|Missing):/.test(x) ? 'miss' : ''}>{cleanText(x)}</li>)}</ul></div>}
       </section>
 
+      {(lead.explain || lead.gate) && <section className="ld-sec">
+        <header className="ld-h"><h3>Verified summary</h3><button className="ld-link" onClick={() => setTab('trace')}>How we got it</button></header>
+        {lead.explain?.ai && <p className="ld-next">{lead.explain.ai}</p>}
+        <p className="ld-sub">{lead.explain?.facts || lead.gate?.reason}</p>
+        {lead.explain?.unverified?.length ? <p className="ld-hint">Not verified: {lead.explain.unverified.join(' · ')}.</p> : null}
+      </section>}
+
       {risks.length > 0 && <section className="ld-sec">
         <header className="ld-h"><h3>Risks <span className="pl-badge rose">{risks.length}</span></h3></header>
         <ul className="ld-risks">{risks.slice(0, 3).map((r) => <li key={r}><TriangleAlert size={13} /> {clip(r, 90)}</li>)}</ul>
@@ -390,6 +398,8 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     </>}
 
     {tab === 'page' && <OfficialPageView lead={lead} job={job} demo={demo} />}
+
+    {tab === 'trace' && <ResultTracePanel lead={lead} job={job} />}
 
     {tab === 'path' && <section className="ld-sec">
       <header className="ld-h"><h3>{isGrant ? 'Application plan' : 'Warm path'}</h3>{p && !isGrant && <button className="ld-link" onClick={() => setWhy(true)}><Route size={14} /> Full path</button>}</header>
