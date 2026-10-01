@@ -1,6 +1,8 @@
 // Búsqueda y extracción web con Firecrawl (buscar + leer páginas) y ScrapeGraph (extraer personas).
 // Reemplaza a Apify. No toca LinkedIn con scraping: solo usa resultados de búsqueda públicos.
 import { readMany } from './readOpportunity.mjs';
+import { verifyOpportunity, compactVerification } from './verify.mjs';
+import { EXTRACT_SCHEMA, EXTRACT_PROMPT } from './extract.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 
@@ -36,9 +38,18 @@ const sleep = (ms, signal) => new Promise((resolve, reject) => {
 /** Breakers por proveedor para toda la vida del proceso: tras un 401/402 no seguimos gastando llamadas. */
 const disabledUntil = new Map();
 export function providerDisabled(provider) { const until = disabledUntil.get(provider) || 0; return until > Date.now() ? until : 0; }
-export function resetProviderBreakers() { disabledUntil.clear(); }
+export function resetProviderBreakers() { disabledUntil.clear(); resetFirecrawlPace(); }
 
-async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries }) {
+/** Ritmo de Firecrawl: sin límite hasta el primer 429; entonces se espacian las llamadas (se duplica el intervalo, mínimo
+ *  FIRECRAWL_RATE_BACKOFF_MS = 6 s) y se afloja despacio tras 15 éxitos seguidos. Lo comparten el scrape de respaldo y la extracción. */
+const pace = { interval: 0, nextAt: 0, ok: 0 };
+export const firecrawlPace = () => ({ ...pace });
+export function resetFirecrawlPace() { pace.interval = 0; pace.nextAt = 0; pace.ok = 0; }
+const paceGate = (signal) => async () => { const now = Date.now(); const at = Math.max(now, pace.nextAt); pace.nextAt = at + pace.interval; if (at > now) await sleep(at - now, signal); };
+const paceHit = (env) => { pace.interval = Math.min(20_000, Math.max(pace.interval * 2, clamp(env.FIRECRAWL_RATE_BACKOFF_MS, 0, 30_000, 6000))); pace.nextAt = Date.now() + pace.interval; pace.ok = 0; };
+const paceOk = () => { if (pace.interval && ++pace.ok >= 15) { pace.interval = Math.floor(pace.interval / 2); if (pace.interval < 500) pace.interval = 0; pace.ok = 0; } };
+
+async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries, gate, onRateLimit, onSuccess }) {
   const base = { kind: 'api', callId: `${provider}-${Date.now()}`, method: 'POST', host, endpoint: sanitizeUrl(url, live.secrets), params: publicParams(url, body, live.secrets) };
   base.query = queryOf(base.params);
   if (providerDisabled(provider)) throw Object.assign(new Error(`${provider}: disabled after a key/credit error; skipped until the key or plan is fixed.`), { fatal: true });
@@ -49,6 +60,7 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
   let lastError = null;
   for (let attempt = 0; attempt < attempts; attempt++) {
     if (attempt) await sleep(Math.min(8000, 700 * 2 ** (attempt - 1)) + Math.floor(Math.random() * 250), signal);
+    if (gate) await gate();
     const timeout = AbortSignal.timeout(timeoutMs || clamp(env.WEB_TIMEOUT_MS, 10_000, 180_000, 90_000));
     let response;
     try {
@@ -75,6 +87,7 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
         throw Object.assign(lastError, { fatal: true });
       }
       if (!RETRY_STATUS.has(response.status)) { fail(lastError.message, response.status); throw lastError; }
+      if (response.status === 429) onRateLimit?.();
       const wait = Number(response.headers?.get?.('retry-after'));
       if (Number.isFinite(wait) && wait > 0 && wait <= 20) await sleep(wait * 1000, signal);
       continue;
@@ -88,6 +101,7 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
       continue;
     }
     live({ phase: 'api_response', status: 'success', title: `HTTP ${response.status} · ${host}`, message: `${provider} responded in ${Date.now() - started} ms${attempt ? ` after ${attempt} retr${attempt === 1 ? 'y' : 'ies'}` : ''}.`, publicUrl: url, durationMs: Date.now() - started, detail: { ...base, httpStatus: response.status, bytes: Buffer.byteLength(text), sample: safeSample(data, { secrets: live.secrets }), preview: previewRecords(data?.data?.web || data?.json?.people || [], { secrets: live.secrets }) } });
+    onSuccess?.();
     record(url, data);
     return Object.assign(data, { __ms: Date.now() - started });
   }
@@ -119,11 +133,32 @@ export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs 
 export async function firecrawlScrape(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
   if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
   try {
-    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 1, timeoutMs: 45_000 });
+    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 2, timeoutMs: 45_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk });
     const d = data?.data || {};
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';
     return markdown.length > 80 ? { url: safeUrl(d.metadata?.sourceURL || d.metadata?.url) || url, title: String(d.metadata?.title || ''), markdown, text: markdown } : null;
   } catch { return null; }
+}
+
+/**
+ * Firecrawl v2 /scrape con formato JSON: la página se descarga (con JavaScript si hace falta), se limpia y un modelo
+ * del proveedor devuelve fases/fechas/elegibilidad con cita. Devuelve {json, markdown, credits, ms}; si falla, {error, fatal?} (o null sin clave o host bloqueado); nunca lanza.
+ * La respuesta es dato NO confiable: extract.mjs comprueba cada cita contra el markdown antes de usarla.
+ * Coste: la extracción JSON gasta más créditos que un scrape normal (ver el plan de Firecrawl); por eso el motor la pide
+ * solo para candidatas y con tope (ENGINE_EXTRACT_MAX).
+ */
+export async function firecrawlExtract(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
+  if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
+  try {
+    const timeout = clamp(env.FIRECRAWL_EXTRACT_TIMEOUT_MS, 10_000, 120_000, 50_000);
+    const body = { url, formats: ['markdown', { type: 'json', schema: EXTRACT_SCHEMA, prompt: EXTRACT_PROMPT }], onlyMainContent: env.FIRECRAWL_EXTRACT_MAIN_ONLY === '1', timeout };
+    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, retries: 2, timeoutMs: timeout + 15_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk });
+    const d = data?.data || {};
+    const json = d.json && typeof d.json === 'object' ? d.json : d.extract && typeof d.extract === 'object' ? d.extract : null;
+    const markdown = typeof d.markdown === 'string' ? d.markdown : '';
+    if (!json) return { error: `Firecrawl answered without JSON (keys: ${Object.keys(d).slice(0, 6).join(', ') || 'none'})` };
+    return { json, markdown, credits: Number(data.creditsUsed ?? d.metadata?.creditsUsed) || 0, ms: data.__ms || 0 };
+  } catch (error) { return { error: String(error.message || error).slice(0, 200), ...(error?.fatal ? { fatal: true } : {}) }; }
 }
 
 /** Varias búsquedas; una que falla no tumba las demás. Devuelve {results, errors, calls, ms}. */
@@ -184,15 +219,19 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
       const excerpt = opportunityExcerpt(result.markdown || result.description);
       if (excerpt.length < 80) continue;
       const host = hostOf(result.url).replace(/^www\./, '');
-      const deadline = opportunityDate(hay);
+      // Sin modelo, el código verifica lo que puede (tipo de página, plazo contra hoy, elegibilidad); nunca "open" por defecto.
+      const v = verifyOpportunity({}, { url: result.url, title: result.title, text: result.markdown || result.description || '' }, { brief, codeOnly: true });
+      const deadline = v.deadline;
       const ev = [evidence(`${GRANT_WEB_SOURCE} · ${host}`, result.url, excerpt, 'opportunity')];
+      if (v.deadline && v.deadlineQuote) ev.push(evidence(`${GRANT_WEB_SOURCE} · deadline quote`, result.url, v.deadlineQuote, 'opportunity'));
       const lead = candidate({
         externalId: `web-opportunity:${result.url}`,
         org: host,
         title: result.title || `${opportunityType(hay)} opportunity`,
         kind: 'opportunity', fundingType: 'grant', opportunityType: opportunityType(hay),
-        status: deadline && Date.parse(`${deadline}T23:59:59Z`) < Date.now() ? 'closed' : 'open',
+        status: v.status,
         deadline,
+        codeCheck: compactVerification(v),   // verificación solo-código; `verification` queda para la lectura con modelo
         contact: { type: 'source', value: result.url, provenance: 'Official or first-party opportunity page found by web search; verify before applying' },
         evidence: ev,
         risks: ['Open-web opportunity: confirm organizer, eligibility, terms and whether the benefit is cash, equity or access'],
@@ -219,7 +258,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
       lead.status = r.status === 'unknown' ? 'unknown' : r.status;
       lead.deadline = r.deadline;
       lead.missing = [...(r.deadline ? [] : ['Application deadline not confirmed on the page']), ...(r.eligible === 'yes' ? [] : ['Eligibility to confirm'])];
-      lead.verification = { verdict: r.verdict, eligible: r.eligible, nonDilutive: r.nonDilutive, flags: r.flags, quotes: r.quotes, daysLeft: r.daysLeft, model: r.model };
+      lead.verification = compactVerification(r, { nonDilutive: r.nonDilutive, quotes: r.quotes, model: r.model });
       if (r.quotes.deadline) lead.evidence.push(evidence(`${GRANT_WEB_SOURCE} · deadline quote`, url, r.quotes.deadline, 'opportunity'));
     });
     audit.push({ provider: GRANT_WEB_SOURCE, query: '(page reading)', dimension: 'verification', returned: urls.length, discovered: seen.size, dropped });

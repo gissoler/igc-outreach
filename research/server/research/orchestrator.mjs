@@ -12,7 +12,7 @@
 import { chatJSON, fleetReady } from '../analysis/fleet.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { jevConfigured, systemOne } from './jev.mjs';
-import { hostKind } from './verify.mjs';
+import { hostKind, verifyOpportunity, compactVerification } from './verify.mjs';
 
 export const ORCHESTRATOR = 'Search orchestrator';
 export const STRATEGIES = {
@@ -196,13 +196,18 @@ export function searchRowsToLeads(rows, brief, { objective = 'investment', query
     const quote = clip(fromPage ? fromPage.slice(0, 700) : r.description || r.title, 700);
     if (!quote) return [];
     const providers = (r.providers || [r.provider]).filter(Boolean);
+    // Grants sin modelo: el código verifica la página que trajo el buscador (tipo, plazo contra hoy, elegibilidad).
+    // Nunca "open" por defecto; sin texto de página queda «a verificar».
+    const check = objective === 'grant' ? verifyOpportunity({}, { url, title: r.title, text: fromPage }, { brief, codeOnly: true }) : null;
     return [candidate({
       externalId: `orchestrator:${objective}:${url}`,
       org: host,
       title: clip(r.title || host, 300),
       kind: objective === 'grant' ? 'opportunity' : 'research',
       fundingType: objective,
-      status: 'unknown',
+      status: check && fromPage ? check.status : 'unknown',
+      ...(check && fromPage && check.deadline ? { deadline: check.deadline } : {}),
+      ...(check ? { codeCheck: compactVerification(fromPage ? check : { ...check, tier: 'verify', verdict: 'watch', drop: null, reasons: [], blockers: ['Only a search snippet: the page was not opened'] }), trace: { query, family: 'search APIs (no AI model)', queries: [{ query, family: objective }], providers, fetchedVia: fromPage ? 'search' : 'snippet', textChars: fromPage.length, read: null, verify: { tier: fromPage ? check.tier : 'verify', drop: fromPage ? check.drop : null, reasons: fromPage ? check.reasons : [], blockers: check.blockers, flags: check.flags, checks: check.checks, pageType: check.pageType, dates: check.dates, eligibility: { decision: check.eligibility.decision, reason: check.eligibility.reason, quote: check.eligibility.quote } }, today: check.today } } : {}),
       contact: { type: 'source', value: url, provenance: `Found by ${providers.join(' + ') || 'web search'} (orchestrator)` },
       evidence: [evidence(`${ORCHESTRATOR} · ${providers.join('+') || 'search'}`, url, quote, objective === 'grant' ? 'opportunity' : 'search_snippet', undefined, Boolean(fromPage))],
       searchText: text.slice(0, 4000),
@@ -239,6 +244,13 @@ export async function confirmFromPages(leads, brief, { read, max = 12, concurren
       const quote = page?.text ? pageQuote(page.text, brief) : '';
       if (!quote) continue;
       lead.evidence = [...(lead.evidence || []), evidence(`Page read · ${new URL(url).hostname.replace(/^www\./, '')}`, page.url || url, quote, lead.kind === 'opportunity' ? 'opportunity' : 'profile')];
+      if (lead.fundingType === 'grant' && lead.kind === 'opportunity') {
+        // Página abierta: el código re-verifica plazo, tipo de página y elegibilidad sobre el texto completo.
+        const check = verifyOpportunity({}, { url: page.url || url, title: page.title, text: page.text }, { brief, codeOnly: true });
+        lead.codeCheck = compactVerification(check);
+        lead.status = check.status; lead.deadline = check.deadline || null;
+        if (lead.trace) lead.trace = { ...lead.trace, fetchedVia: `opened (${page.via || 'direct'})`, textChars: page.text.length, verify: { tier: check.tier, drop: check.drop, reasons: check.reasons, blockers: check.blockers, flags: check.flags, checks: check.checks, pageType: check.pageType, dates: check.dates, eligibility: { decision: check.eligibility.decision, reason: check.eligibility.reason, quote: check.eligibility.quote } } };
+      }
       lead.searchText = `${lead.searchText || ''} ${quote}`.slice(0, 4000);
       lead.missing = (lead.missing || []).filter((m) => !/snippet/i.test(m));
       if (page.title && /\.[a-z]{2,}$/.test(lead.org || '')) lead.org = String(page.title).split(/[|·–—-]/)[0].trim().slice(0, 90) || lead.org;
