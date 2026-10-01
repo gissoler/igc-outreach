@@ -1,10 +1,10 @@
-import { ArrowDownWideNarrow, Columns3, Download, FileDown, Route, Search, SlidersHorizontal, Star, X } from 'lucide-react';
+import { ArrowDownWideNarrow, Building2, ChevronDown, Columns3, Download, FileDown, Route, Search, SlidersHorizontal, Star, X } from 'lucide-react';
 import { useMemo, useState, type ReactNode } from 'react';
 import type { Job, Lead } from '../researchApi';
 import { API } from '../researchApi';
 import { SOURCE_META, type SourceKey } from '../sources';
 import { clip, fmtPct } from './format';
-import { BUCKET_PLURAL, bestPath, CONF_RANK, familyOf, isDemoJob, nextAction, STATUS_LABEL, warmPlanOf, warmShort } from './model';
+import { BUCKET_PLURAL, norm, bestPath, CONF_RANK, familyOf, isDemoJob, nextAction, STATUS_LABEL, warmPlanOf, warmShort } from './model';
 import { readNote } from './Detail';
 import { BucketBadge, ConfBadge, Drawer, EmptyState, ScorePill } from './ui';
 
@@ -20,7 +20,7 @@ export function CandidateCard({ lead, job, selected, compared, onSelect, onCompa
   const initials = name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
   return <li className={`cc ${selected ? 'sel' : ''} b-${lead.bucket}`}>
     <button className="cc-main" onClick={onSelect} aria-pressed={selected} aria-label={`${name}, score ${lead.score}`}>
-      <span className="cc-av" aria-hidden="true">{initials}</span>
+      {lead.person && !isGrant ? <span className="cc-av" aria-hidden="true">{initials}</span> : <span className="cc-org" aria-hidden="true"><Building2 size={16} /></span>}
       <span className="cc-body">
         <strong>{name}{saved && <Star size={12} className="cc-star" aria-label="Saved" />}{readNote(job.id, lead.id) && <span className="cc-note" title="Has a note">nota</span>}</strong>
         <span className="cc-role">{isGrant ? lead.org : lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 60)}</span>
@@ -29,6 +29,32 @@ export function CandidateCard({ lead, job, selected, compared, onSelect, onCompa
       <span className="cc-score"><b>{lead.score}</b><small>#{lead.rank}</small></span>
     </button>
     <label className="cc-cmp" title="Compare"><input type="checkbox" checked={compared} onChange={onCompare} aria-label={`Compare ${name}`} /></label>
+  </li>;
+}
+
+export type Group = { key: string; org: string; leads: Lead[]; best: number };
+/** Una fila por organización cuando hay 2+ resultados de la misma (varias personas del fondo, varias convocatorias de una agencia). El orden de la lista se conserva por la primera aparición. */
+export function groupByOrg(list: Lead[]): Group[] {
+  const map = new Map<string, Group>();
+  for (const l of list) {
+    const key = norm(l.org) || l.id;
+    const g = map.get(key);
+    if (g) { g.leads.push(l); g.best = Math.max(g.best, l.score); } else map.set(key, { key, org: l.org, leads: [l], best: l.score });
+  }
+  return [...map.values()];
+}
+
+function GroupRow({ group, open, onToggle, children }: { group: Group; open: boolean; onToggle: () => void; children: ReactNode }) {
+  const people = group.leads.filter((l) => l.person).length;
+  const label = people ? `${group.leads.length} ${group.leads.length === 1 ? 'person' : 'people'}` : `${group.leads.length} calls`;
+  return <li className="cg">
+    <button className="cg-head" onClick={onToggle} aria-expanded={open} aria-label={`${group.org}, ${label}, best score ${group.best}`}>
+      <span className="cc-org" aria-hidden="true"><Building2 size={16} /></span>
+      <span className="cc-body"><strong>{group.org}</strong><span className="cc-role">{label} · best match</span></span>
+      <span className="cc-score"><b>{group.best}</b></span>
+      <ChevronDown size={15} className={`cg-chev ${open ? 'open' : ''}`} aria-hidden="true" />
+    </button>
+    {open && <ul className="cg-list">{children}</ul>}
   </li>;
 }
 
@@ -60,7 +86,10 @@ export function CandidateExplorer({ job, selectedId, onSelect, filters, setFilte
   const [compare, setCompare] = useState<string[]>([]);
   const [cmpOpen, setCmpOpen] = useState(false);
   const [count, setCount] = useState(20);
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
+  const toggleGroup = (k: string) => setOpenGroups((s) => { const n = new Set(s); if (n.has(k)) n.delete(k); else n.add(k); return n; });
   const list = useMemo(() => applyFilters(job, filters, sort), [job, filters, sort]);
+  const groups = useMemo(() => groupByOrg(list), [list]);
   const families = useMemo(() => [...new Set(job.leads.flatMap((l) => l.evidence.map((e) => familyOf(e, demo))))], [job, demo]);
   const set = (patch: Partial<ExplorerFilters>) => setFilters({ ...filters, ...patch });
   const toggle = (key: 'buckets' | 'confs', v: string) => { const s = new Set(filters[key]); if (s.has(v)) s.delete(v); else s.add(v); set({ [key]: s }); };
@@ -87,9 +116,9 @@ export function CandidateExplorer({ job, selectedId, onSelect, filters, setFilte
     </div>}
     <p className="ce-count" aria-live="polite">{list.length} of {job.leads.length} candidates</p>
     {compare.length > 0 && <div className="ce-cmpbar"><span>{compare.length} to compare</span><button className="x-btn sm primary" disabled={compare.length < 2} onClick={() => setCmpOpen(true)}><Columns3 size={14} /> Compare</button><button className="x-link-btn" onClick={() => setCompare([])}>Clear</button></div>}
-    {list.length ? <ul className="ce-list">{list.slice(0, count).map((l) => <CandidateCard key={l.id} lead={l} job={job} selected={l.id === selectedId} compared={compare.includes(l.id)} onSelect={() => onSelect(l.id)} onCompare={() => setCompare((c) => (c.includes(l.id) ? c.filter((x) => x !== l.id) : [...c, l.id].slice(-3)))} />)}</ul>
+    {list.length ? <ul className="ce-list">{groups.slice(0, count).map((g) => g.leads.length === 1 ? (({ l }) => <CandidateCard lead={l} job={job} selected={l.id === selectedId} compared={compare.includes(l.id)} onSelect={() => onSelect(l.id)} onCompare={() => setCompare((c) => (c.includes(l.id) ? c.filter((x) => x !== l.id) : [...c, l.id].slice(-3)))} />)({ l: g.leads[0] }) : <GroupRow key={g.key} group={g} open={openGroups.has(g.key) || g.leads.some((l) => l.id === selectedId)} onToggle={() => toggleGroup(g.key)}>{g.leads.map((l) => <CandidateCard key={l.id} lead={l} job={job} selected={l.id === selectedId} compared={compare.includes(l.id)} onSelect={() => onSelect(l.id)} onCompare={() => setCompare((c) => (c.includes(l.id) ? c.filter((x) => x !== l.id) : [...c, l.id].slice(-3)))} />)}</GroupRow>)}</ul>
       : <EmptyState title="No candidates match" action={<button className="x-btn sm" onClick={() => setFilters(defaultFilters())}>Reset filters</button>}>{filters.buckets.has('discarded') ? 'Try a lower min score.' : 'Discarded are hidden by default.'}</EmptyState>}
-    {list.length > count && <button className="x-btn sm ce-more-btn" onClick={() => setCount((c) => c + 20)}>Show 20 more ({list.length - count} left)</button>}
+    {groups.length > count && <button className="x-btn sm ce-more-btn" onClick={() => setCount((c) => c + 20)}>Show 20 more ({groups.length - count} left)</button>}
     <Drawer open={cmpOpen} onClose={() => setCmpOpen(false)} title="Compare candidates" subtitle="Side by side" width={900} tone={demo ? 'demo' : undefined}>
       <div className="cmp" style={{ gridTemplateColumns: `180px repeat(${cmpLeads.length}, minmax(0,1fr))` }}>
         {[['Candidate', (l: Lead) => <b>{l.person || l.org}</b>], ['Role · org', (l: Lead) => `${l.role || '—'} · ${l.org}`], ['List', (l: Lead) => <BucketBadge bucket={l.bucket} />], ['Score', (l: Lead) => <ScorePill score={l.score} />],
