@@ -27,6 +27,31 @@ export function discardCategory(l) {
   return 'other';
 }
 
+/**
+ * Benchmark por proveedor de búsqueda: suma los contadores de cada objetivo y calcula qué aportó cada uno.
+ * Una URL cuenta para TODOS los proveedores que la trajeron; "solo aquí" = la trajo únicamente ese proveedor.
+ * Útil = apply + watch (lo que el código verificó y conservó). Coste: solo el que el proveedor declara (costUsd); el resto es "no medido".
+ */
+export function providerBenchmark(engineRuns = []) {
+  const acc = {};
+  for (const a of engineRuns) for (const [name, p] of Object.entries(a.providers || {})) {
+    const r = (acc[name] ||= { provider: name, calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, urls: 0, onlyUrls: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0, outcomes: {}, disabled: null });
+    for (const k of ['calls', 'returned', 'errors', 'ms', 'costUsd', 'urls', 'onlyUrls', 'pagesRead', 'kept', 'keptOnlyHere']) r[k] += p[k] || 0;
+    for (const [k, v] of Object.entries(p.outcomes || {})) add(r.outcomes, k, v);
+    if (p.disabled) r.disabled = p.disabled;
+  }
+  const round = (x, d = 1) => Math.round(x * 10 ** d) / 10 ** d;
+  return Object.values(acc).map((r) => {
+    const apply = r.outcomes.apply || 0; const watch = r.outcomes.watch || 0; const useful = apply + watch;
+    const noise = ['aggregator', 'social_host', 'too_short', 'over_page_budget', 'unread', 'read_failed'].reduce((n, k) => n + (r.outcomes[k] || 0), 0);
+    return { ...r, costUsd: round(r.costUsd, 4), ms: Math.round(r.ms), apply, watch, useful,
+      usefulPct: r.urls ? round((100 * useful) / r.urls) : null, applyPct: r.urls ? round((100 * apply) / r.urls) : null,
+      noisePct: r.urls ? round((100 * noise) / r.urls) : null,
+      urlsPerCall: r.calls ? round(r.urls / r.calls) : null, costPerUseful: r.costUsd > 0 && useful ? round(r.costUsd / useful, 4) : null,
+      uniqueUseful: r.keptOnlyHere };
+  }).sort((a, b) => b.apply * 3 + b.watch + b.keptOnlyHere * 2 - (a.apply * 3 + a.watch + a.keptOnlyHere * 2) || b.urls - a.urls);
+}
+
 const add = (o, k, n = 1) => { if (k) o[k] = (o[k] || 0) + n; return o; };
 
 /**
@@ -66,6 +91,6 @@ export function buildRunAudit({ engineRuns = [], leads = [], searchAudit = [], b
   }
   return {
     today, brief: { venture: brief.venture || brief.company || null, product: brief.product || null, industry: brief.industry || null, geography: brief.geography || null, stage: brief.stage || null, round: brief.round || null, fundingTypes: brief.fundingTypes || [], constraints: brief.constraints || null },
-    interpretations, counters, queries: queries.slice(0, 200), discarded: traces,
+    interpretations, counters, queries: queries.slice(0, 200), discarded: traces, providers: providerBenchmark(engineRuns),
   };
 }

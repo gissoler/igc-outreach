@@ -212,7 +212,14 @@ export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead } = opts;
   const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
-  const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 });
+  const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0, urls: 0, onlyUrls: 0, outcomes: {} });
+  // Benchmark por proveedor: cada URL nueva se asienta UNA vez con su desenlace (apply, watch, motivo de descarte u omisión) y se acredita a TODOS los que la trajeron.
+  const settled = new Set();
+  const settle = (page, outcome) => {
+    if (!page?.url || settled.has(page.url)) return; settled.add(page.url);
+    const provs = page.providers?.length ? page.providers : [audit.search];
+    for (const p of provs) { const s = stat(p); s.urls++; if (provs.length === 1) s.onlyUrls++; s.outcomes[outcome] = (s.outcomes[outcome] || 0) + 1; }
+  };
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
   const range = o.dated ? (env.ENGINE_TBS ?? 'qdr:y') : '';
   // Recencia en origen: por defecto último año en los objetivos con fecha (ENGINE_RECENCY=off para quitarla).
@@ -266,9 +273,9 @@ export async function runObjective(objective, brief, opts = {}) {
     const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
     if (v.keep) {
       const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
-      findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++;
+      findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++; settle(page, v.verdict === 'apply' ? 'apply' : 'watch');
       for (const p of page.providers) { stat(p).kept++; if (page.providers.length === 1) stat(p).keptOnlyHere++; }
-    } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
+    } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; settle(page, v.drop || 'dropped'); keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
   };
   let todo = plan.queries;
   for (let round = 1; round <= Math.max(1, rounds) && todo.length; round++) {
@@ -281,7 +288,7 @@ export async function runObjective(objective, brief, opts = {}) {
       let added = 0;
       for (const [i, r] of rows.entries()) {
         if (!r?.url || seenPages.has(r.url)) continue;
-        if (hostKind(r.url) === 'social') { audit.skipped.social_host = (audit.skipped.social_host || 0) + 1; continue; }
+        if (hostKind(r.url) === 'social') { audit.skipped.social_host = (audit.skipped.social_host || 0) + 1; settle({ url: r.url, providers: r.providers || [r.provider || audit.search] }, 'social_host'); continue; }
         const had = pages.get(r.url);
         if (had) { for (const p of r.providers || []) if (!had.providers.includes(p)) had.providers.push(p); if (!had.queries.some((x) => x.query === query)) had.queries.push({ query, family }); if ((r.markdown || '').length > had.text.length) had.text = r.markdown; continue; }
         log.newPages++; added++;
@@ -327,12 +334,13 @@ export async function runObjective(objective, brief, opts = {}) {
     }
     let list = [...pages.values()].filter((p) => {
       if (hostKind(p.url) !== 'aggregator') return true;
-      audit.dropped.aggregator = (audit.dropped.aggregator || 0) + 1;
+      audit.dropped.aggregator = (audit.dropped.aggregator || 0) + 1; settle(p, 'aggregator');
       keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'aggregator', reasons: ['aggregator'], today: dayOf(today), note: 'Aggregator/directory host: not read' });
       return false;
     }).sort((a, b) => readPriority(b, today) - readPriority(a, today) || a.order - b.order);
     if (list.length > maxPages) audit.skipped.over_page_budget = (audit.skipped.over_page_budget || 0) + list.length - maxPages;
     for (const p of list.slice(maxPages)) { if (audit.overBudget.length < 600) audit.overBudget.push({ url: p.url, title: String(p.title || '').slice(0, 100), score: readPriority(p, today), providers: p.providers.length }); }
+    for (const p of list.slice(maxPages)) settle(p, 'over_page_budget');
     for (const p of list.slice(maxPages)) keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'over_page_budget', reasons: ['over_page_budget'], today: dayOf(today), note: `Not read: over the page budget (ENGINE_MAX_PAGES=${maxPages})` });
     list = list.slice(0, maxPages);
     await pool(list.filter((p) => p.text.length < 400), 6, async (p) => {
@@ -341,14 +349,14 @@ export async function runObjective(objective, brief, opts = {}) {
     });
     list = list.filter((p) => {
       if (p.text.length > 120) return true;
-      audit.skipped.too_short = (audit.skipped.too_short || 0) + 1;
+      audit.skipped.too_short = (audit.skipped.too_short || 0) + 1; settle(p, 'too_short');
       keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'too_short', reasons: ['too_short'], today: dayOf(today), note: 'Page text could not be read (too short)' });
       return false;
     });
     list.forEach((p) => seenPages.add(p.url)); audit.pages = seenPages.size;
     await pool(list, concurrency, async (page) => {
       const traceBase = { url: page.url, title: page.title, query: page.query, family: page.family, queries: page.queries, providers: page.providers, round, fetchedVia: page.via || 'search', textChars: page.text.length, today: dayOf(today) };
-      if (!canRead) { audit.unread++; keepTrace({ ...traceBase, read: null, verdict: 'unread', note: 'No AI model available to read the page' }); return; }
+      if (!canRead) { audit.unread++; settle(page, 'unread'); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: 'No AI model available to read the page' }); return; }
       try {
         const { json, model } = await chat({ ...readPrompt({ objective, brief, page, today }), name: 'finding', role: 'engine' }, { env, fetcher, signal });
         audit.read++;
@@ -373,7 +381,7 @@ export async function runObjective(objective, brief, opts = {}) {
         // La segunda lectura se decide DESPUÉS de leer toda la ronda: así se reparte el tope por prioridad y no por quién terminó antes.
         if (need) { pendingExtract.push({ page, json, model, v, traceBase, need }); return; }
         finalize({ page, json, model, v, traceBase }, null);
-      } catch (error) { audit.unread++; keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
+      } catch (error) { audit.unread++; settle(page, 'read_failed'); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
     });
     // Segunda lectura (Firecrawl JSON) solo de lo que puede cambiar la decisión, por prioridad: lo que entraría a la lista
     // principal, luego conflictos de fecha, luego fechas sin resolver, luego dudas de «cerrada»; dentro, readPriority.
