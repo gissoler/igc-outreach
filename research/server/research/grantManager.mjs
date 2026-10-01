@@ -126,7 +126,8 @@ export function attachGrantPlans(leads, brief) {
       const passed = lead.daysToDeadline != null && lead.daysToDeadline < 0;
       const why = lead.grantMatch?.verdict === 'mismatch' ? lead.grantMatch.summary : passed ? `Closed: the deadline${lead.deadline ? ` (${lead.deadline})` : ''} has passed.`
         : lead.status === 'closed' || lead.eligibility?.closed === true ? 'Closed: the program is not accepting applications.'
-        : 'Not eligible: a blocking rule in the official notice excludes Mentiva.'.replace('Mentiva', brief.venture || brief.company || 'this venture');
+        : lead.eligibility?.blocking ? `Not eligible: ${lead.eligibility.blocking.why}${lead.eligibility.blocking.quote ? ` (“${String(lead.eligibility.blocking.quote).slice(0, 160)}”)` : ''}`
+        : 'Not eligible: a blocking rule in the official notice excludes ' + (brief.venture || brief.company || 'this venture') + '.';
       return { ...lead, bucket: 'discarded', discard: lead.discard || why, grantPlan: plan };
     }
     return { ...lead, grantPlan: plan };

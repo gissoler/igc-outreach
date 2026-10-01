@@ -49,7 +49,8 @@ export function createRunEnrichers({ store, env = process.env, fetcher = fetch }
         signal?.throwIfAborted();
         const e = await evaluateOpportunity(opportunityFromLead(lead), { profile: eligibilityProfile(job.brief), env, fetcher });
         A.saveGrantEvaluation(String(e.id), e);
-        lead.eligibility = { verdict: e.verdict, closed: e.closed, questions: e.questions.slice(0, 3), method: e.method };
+        const blocking = e.rules.find((r) => r.verdict === '✖' && r.type !== 'deadline');
+        lead.eligibility = { verdict: e.verdict, closed: e.closed, blocking: blocking ? { type: blocking.type, why: blocking.why, quote: blocking.quote || null } : null, questions: e.questions.slice(0, 3), method: e.method };
         out.push({ id: String(e.id), leadId: lead.id, title: e.title, agency: e.agency, url: e.url, closeDate: e.closeDate, awardCeiling: e.awardCeiling, verdict: e.verdict, closed: e.closed });
       }
       job.grants = { evaluations: out, alerts: deadlineAlerts(out).slice(0, 5) };

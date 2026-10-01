@@ -222,13 +222,19 @@ export function candidate(data) {
     ...data,
   };
 }
+/** Número de convocatoria (NSF 26-512, PAR-25-297, RFA-AG-27-005…): la misma llamada llega del registro oficial y del motor web con claves distintas. */
+const CALL_NUMBER = /\b(?:(NSF)\s?(\d{2}-\d{3,4})|((?:PAR|RFA|PA|NOT|OTA|HRSA|DE-FOA|PD)-[A-Z]{0,4}-?\d{2}-\d{2,4}))\b/i;
+export const callNumber = (l) => {
+  const m = CALL_NUMBER.exec(`${l.externalId || ''} ${l.title || ''}`);
+  return m ? (m[1] ? `NSF-${m[2]}` : m[3].toUpperCase()) : null;
+};
 export function dedupe(leads) {
   const map = new Map();
   for (const l of leads) {
     const key =
       l.person && !['opportunity', 'radar'].includes(l.kind)
         ? l.personId ? `person-id:${l.personId}` : `person:${norm(l.person)}:${norm(l.org)}`
-        : `opportunity:${l.externalId || `${norm(l.org)}:${norm(l.title)}`}`;
+        : `opportunity:${callNumber(l) || l.externalId || `${norm(l.org)}:${norm(l.title)}`}`;
     if (!map.has(key)) map.set(key, { ...l, key, id: id(key) });
     else {
       const current = map.get(key);
