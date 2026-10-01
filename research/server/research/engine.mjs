@@ -354,7 +354,10 @@ export async function runObjective(objective, brief, opts = {}) {
         else if (audit.extracted + extractInFlight < maxExtract && audit.extractFailed < maxExtract && (!closedDoubt || extractClosedUsed < maxExtractClosed)) {
           if (closedDoubt) extractClosedUsed++;
           extractInFlight++;   // reserva el turno antes de esperar: con lecturas en paralelo el tope se respeta
-          const ex = await extractor(rec.page.url, fc).catch((error) => ({ error: String(error?.message || error) })).finally(() => { extractInFlight--; });
+          // El turno se libera en la MISMA continuación que suma extracted/extractFailed: con .finally() quedaba un hueco en el
+          // que otra lectura veía el turno libre y el tope se pasaba (6 de 5 medido en la regresión D).
+          const ex = await extractor(rec.page.url, fc).catch((error) => ({ error: String(error?.message || error) }));
+          extractInFlight--;
           if (ex?.possiblyCharged) audit.extractPossiblyCharged = (audit.extractPossiblyCharged || 0) + ex.possiblyCharged;
           if (ex?.budget) {
             // Tope de créditos: se apaga la segunda lectura para el resto de la corrida; la corrida sigue con la lectura normal.
