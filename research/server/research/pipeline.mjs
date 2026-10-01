@@ -7,7 +7,7 @@ import { runEngine, runObjective, engineLeads, engineConfigured, ENGINE_SOURCE }
 import { multiSearch, searchApisConfigured } from './searchApis.mjs';
 import { roleReachable } from '../analysis/fleet.mjs';
 import { fundingQuery } from './expand.mjs';
-import { ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads, confirmFromPages, templateQueries } from './orchestrator.mjs';
+import { aiReasonerOn, ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads, confirmFromPages, templateQueries } from './orchestrator.mjs';
 /** Grants buscados directo en las APIs de búsqueda cuando el motor con IA no está disponible. */
 const GRANT_API_SOURCE = 'Grant search (web APIs)';
 import { fetchPage } from './localSearch.mjs';
@@ -363,11 +363,11 @@ export async function runResearch(
         const orchestratorOn = env.ORCHESTRATOR !== '0' && (searchApisConfigured(env) || engineConfigured(env) || env.EXA_API_KEY || env.SERPER_API_KEY || hunter);
         if (orchestratorOn) {
           const provider = jevProvider(env);
-          live({ phase: 'evaluating', provider: ORCHESTRATOR, status: 'running', title: 'Reviewing the results', message: `${provider ? provider.name : 'Rules'} reviews what we found and decides whether to search again (up to ${Number(env.ORCHESTRATOR_MAX_ATTEMPTS ?? 2)} more attempts).` });
+          live({ phase: 'evaluating', provider: ORCHESTRATOR, status: 'running', title: 'Reviewing the results', message: `${aiReasonerOn(env) ? 'The AI model' : provider ? provider.name : 'Rules'} reviews what we found and decides whether to search again (up to ${Number(env.ORCHESTRATOR_MAX_ATTEMPTS ?? 2)} more attempts).` });
           try {
             const orch = await orchestrate({ leads, brief: b, terms: job.plan.terms || [], rank, runSearch, findContacts, env, fetcher, signal, deadline: runStarted + runTimeoutMs - Number(env.ORCHESTRATOR_RESERVE_MS || 40000), live: (event) => live({ provider: ORCHESTRATOR, ...event }) });
             leads = orch.leads;
-            job.orchestrator = { attempts: orch.attempts, by: provider?.name || 'rules' };
+            job.orchestrator = { attempts: orch.attempts, by: orch.attempts[0]?.by || orch.attempts[0]?.assessment?.by || provider?.name || 'rules' };
             for (const a of orch.attempts) if (a.queries?.length) searchAudit.push({ provider: ORCHESTRATOR, query: `(attempt ${a.attempt} · ${a.strategy}) ${a.queries.length} queries`, dimension: 'orchestrator', returned: a.added, discovered: a.added });
           } catch (error) {
             if (signal.aborted) throw error;
@@ -481,7 +481,7 @@ export async function runResearch(
     job.leads = attachGrantPlans(job.leads, b).map((lead) => lead.grantPlan ? { ...lead, draft: buildDraft(lead, b, sender) } : lead);
     // Auditoría de la corrida (qué entendió el motor, qué buscó, qué leyó, qué descartó y por qué; fecha de hoy usada).
     try {
-      job.runAudit = buildRunAudit({ engineRuns, leads: job.leads, searchAudit: job.searchAudit || [], brief: b, today: new Date().toISOString().slice(0, 10) });
+      job.runAudit = buildRunAudit({ engineRuns, orchestrator: job.orchestrator, leads: job.leads, searchAudit: job.searchAudit || [], brief: b, today: new Date().toISOString().slice(0, 10) });
       const c = job.runAudit.counters; const why = Object.entries(c.discardReasons).sort((x, y) => y[1] - x[1]).slice(0, 4).map(([k, n]) => `${k} ${n}`).join(', ');
       live({ phase: 'evaluating', provider: 'Run audit', status: 'success', title: 'Run audit', message: `${c.queries || job.runAudit.queries.length} queries · ${c.pagesRead} pages read by the AI · ${c.buckets.top} main list · ${c.buckets.radar} to verify · ${c.buckets.discarded} discarded${why ? ` (${why})` : ''}. Today used: ${job.runAudit.today}.`, resultCount: c.buckets.top });
     } catch (error) { job.runAudit = { error: error.message }; }
