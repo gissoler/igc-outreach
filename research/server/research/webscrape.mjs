@@ -5,6 +5,7 @@ import { verifyOpportunity, compactVerification } from './verify.mjs';
 import { EXTRACT_SCHEMA, EXTRACT_PROMPT } from './extract.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
+import { CREDIT_COST, cacheKey, defaultLedger, versionOf } from './firecrawlLedger.mjs';
 
 export const FIRECRAWL_URL = 'https://api.firecrawl.dev/v2';
 export const SCRAPEGRAPH_URL = 'https://v2-api.scrapegraphai.com/api';
@@ -49,7 +50,10 @@ const paceGate = (signal) => async () => { const now = Date.now(); const at = Ma
 const paceHit = (env) => { pace.interval = Math.min(20_000, Math.max(pace.interval * 2, clamp(env.FIRECRAWL_RATE_BACKOFF_MS, 0, 30_000, 6000))); pace.nextAt = Date.now() + pace.interval; pace.ok = 0; };
 const paceOk = () => { if (pace.interval && ++pace.ok >= 15) { pace.interval = Math.floor(pace.interval / 2); if (pace.interval < 500) pace.interval = 0; pace.ok = 0; } };
 
-async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries, gate, onRateLimit, onSuccess }) {
+/* Intentos que pudieron cobrarse aunque no trajeran nada: timeout del cliente (Firecrawl puede seguir y cobrar), 408/5xx y
+   success:false (timeout interno). Un 429 no se cobra; 401/402/403 tampoco. `tries` los cuenta para el audit. */
+const MAYBE_CHARGED = new Set([408, 500, 502, 503, 504]);
+async function callApi({ provider, host, url, headers, body, env, fetcher, signal, live = noopRecorder, record = () => {}, timeoutMs, retries, gate, onRateLimit, onSuccess, tries = null, retryTimeouts = true }) {
   const base = { kind: 'api', callId: `${provider}-${Date.now()}`, method: 'POST', host, endpoint: sanitizeUrl(url, live.secrets), params: publicParams(url, body, live.secrets) };
   base.query = queryOf(base.params);
   if (providerDisabled(provider)) throw Object.assign(new Error(`${provider}: disabled after a key/credit error; skipped until the key or plan is fixed.`), { fatal: true });
@@ -72,7 +76,11 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
       });
     } catch (error) {
       if (signal?.aborted) throw signal.reason || error;
-      lastError = new Error(`${provider}: ${error.name === 'TimeoutError' ? 'timed out' : error.message || 'no response'}`);
+      const timedOut = error.name === 'TimeoutError';
+      lastError = Object.assign(new Error(`${provider}: ${timedOut ? 'timed out' : error.message || 'no response'}`), { timedOut });
+      if (timedOut && tries) tries.possible++;
+      // Un timeout pudo cobrarse: con retryTimeouts=false (scrape y extracción) no se paga dos veces la misma página.
+      if (timedOut && !retryTimeouts) break;
       continue; // red o timeout: reintentar
     }
     const text = await response.text().catch(() => '');
@@ -87,7 +95,14 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
         throw Object.assign(lastError, { fatal: true });
       }
       if (!RETRY_STATUS.has(response.status)) { fail(lastError.message, response.status); throw lastError; }
-      if (response.status === 429) onRateLimit?.();
+      if (MAYBE_CHARGED.has(response.status) && tries) tries.possible++;
+      if (response.status === 429) {
+        if (tries) tries.rateLimited++;
+        onRateLimit?.();
+        // Un 429 solo se reintenta pasando por el ritmo adaptativo (gate); sin él, reintentar es gastar el turno en otro 429.
+        if (!gate && provider === 'Firecrawl') break;
+      }
+      if (MAYBE_CHARGED.has(response.status) && !retryTimeouts) break;
       const wait = Number(response.headers?.get?.('retry-after'));
       if (Number.isFinite(wait) && wait > 0 && wait <= 20) await sleep(wait * 1000, signal);
       continue;
@@ -98,6 +113,8 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
     // Firecrawl puede responder 200 con success:false (p. ej. timeout interno de la búsqueda).
     if (data && data.success === false) {
       lastError = new Error(`${provider}: ${String(data.error || data.message || 'request failed').slice(0, 200)}`);
+      if (tries) tries.possible++;
+      if (!retryTimeouts) break;
       continue;
     }
     live({ phase: 'api_response', status: 'success', title: `HTTP ${response.status} · ${host}`, message: `${provider} responded in ${Date.now() - started} ms${attempt ? ` after ${attempt} retr${attempt === 1 ? 'y' : 'ies'}` : ''}.`, publicUrl: url, durationMs: Date.now() - started, detail: { ...base, httpStatus: response.status, bytes: Buffer.byteLength(text), sample: safeSample(data, { secrets: live.secrets }), preview: previewRecords(data?.data?.web || data?.json?.people || [], { secrets: live.secrets }) } });
@@ -109,8 +126,44 @@ async function callApi({ provider, host, url, headers, body, env, fetcher, signa
   throw lastError || new Error(`${provider}: no response`);
 }
 
-/** Firecrawl v2 /search. Con markdown=true también lee cada página. */
-export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs = '', sources = ['web'], env = process.env, fetcher = fetch, signal, live, record } = {}) {
+/**
+ * Toda llamada de Firecrawl pasa por aquí: caché (si `cacheable`), reserva del presupuesto ANTES de llamar (síncrona, así
+ * las llamadas concurrentes no se pasan del tope), liquidación con el coste real y contadores de la corrida (`meter`).
+ * `force`: la búsqueda principal cuenta en el día pero no se bloquea. Un acierto de caché devuelve la respuesta cruda
+ * guardada: quien llama la vuelve a verificar igual que una nueva.
+ */
+async function metered(kind, { env, ledger, meter, estimate, key, url = '', force = false, cacheable = true }, call) {
+  const L = ledger || defaultLedger(env);
+  if (cacheable && key) { const hit = L.get(kind, key); if (hit) { if (meter) meter.cacheHits[kind]++; return { data: hit.value, cached: true, credits: 0, ageMs: hit.ageMs }; } }
+  const r = L.reserve(estimate, { force, meter });
+  if (!r.ok) {
+    if (meter) { meter.capReached = true; meter.capSkipped[kind]++; }
+    const why = r.run ? `run credit cap reached (FIRECRAWL_RUN_CREDITS=${meter?.cap})` : `daily credit cap reached (${Math.round(r.used)} used today + ${r.inFlight} in flight, cap ${r.cap} = FIRECRAWL_DAILY_CREDITS)`;
+    throw Object.assign(new Error(`Firecrawl: ${why}; ${kind} skipped, 0 credits spent`), { budget: true });
+  }
+  const tries = { possible: 0, rateLimited: 0 };
+  try {
+    const data = await call(tries);
+    const reported = Number(data?.creditsUsed ?? data?.data?.metadata?.creditsUsed);
+    const credits = Number.isFinite(reported) && reported >= 0 && (data?.creditsUsed != null || data?.data?.metadata?.creditsUsed != null) ? reported : estimate;
+    const possible = tries.possible * estimate;
+    L.settle(estimate, credits, { possible, meter });
+    if (meter) { meter.credits += credits; meter.possiblyCharged += possible; meter.calls[kind]++; }
+    if (cacheable && key) { const { __ms, ...raw } = data || {}; try { L.put(kind, key, raw, url); } catch { /* la caché nunca rompe la corrida */ } }
+    return { data, cached: false, credits };
+  } catch (error) {
+    const possible = tries.possible * estimate;
+    L.settle(estimate, 0, { possible, meter });
+    if (meter) { meter.possiblyCharged += possible; meter.failed++; }
+    throw Object.assign(error, { possiblyCharged: possible });
+  }
+}
+export const SCRAPE_VERSION = versionOf('scrape', ['markdown'], true);
+export const extractVersion = (env = process.env) => versionOf('extract', EXTRACT_SCHEMA, EXTRACT_PROMPT, env.FIRECRAWL_EXTRACT_MAIN_ONLY === '1');
+
+/** Firecrawl v2 /search. Con markdown=true también lee cada página. `cache: false` y `essential: true` en la búsqueda principal
+ *  del motor (no se cachea y el tope diario no la bloquea, aunque la cuenta). */
+export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs = '', sources = ['web'], env = process.env, fetcher = fetch, signal, live, record, ledger, meter, cache = true, essential = false } = {}) {
   if (!firecrawlKey(env)) throw new Error('FIRECRAWL_API_KEY not set.');
   const body = { query: String(query).slice(0, 480), limit: clamp(limit, 1, 20, 5), sources: sources.filter((x) => ['web', 'news'].includes(x)) };
   if (!body.sources.length) body.sources = ['web'];
@@ -120,23 +173,26 @@ export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs 
   // Firecrawl corta la búsqueda a los 60 s por defecto; con scrape de cada resultado se queda corto.
   body.timeout = clamp(env.FIRECRAWL_SEARCH_TIMEOUT_MS, 10_000, 170_000, markdown ? 85_000 : 30_000);
   if (markdown) body.scrapeOptions = { formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) };
-  const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/search`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, timeoutMs: body.timeout + 10_000 });
+  const key = cacheKey('search', JSON.stringify({ q: body.query, limit: body.limit, markdown, tbs: body.tbs || '', sources: body.sources }), 'v1');
+  const { data, cached, credits } = await metered('search', { env, ledger, meter, estimate: CREDIT_COST.search({ limit: body.limit, markdown }), key, cacheable: cache, force: essential },
+    (tries) => callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/search`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, timeoutMs: body.timeout + 10_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk, tries }));
   const web = Array.isArray(data?.data?.web) ? data.data.web : Array.isArray(data?.data) ? data.data : [];
   const news = Array.isArray(data?.data?.news) ? data.data.news : [];
   const seen = new Set();
   const rows = [...web, ...news].map((r) => ({ url: safeUrl(r.url || r.metadata?.url || r.metadata?.sourceURL), title: String(r.title || r.metadata?.title || ''), description: String(r.description || r.snippet || r.metadata?.description || ''), markdown: typeof r.markdown === 'string' ? r.markdown : '', date: String(r.date || r.metadata?.publishedTime || r.metadata?.['article:published_time'] || ''), statusCode: Number(r.metadata?.statusCode) || null }))
     .filter((r) => r.url && !seen.has(r.url) && seen.add(r.url) && !(r.statusCode && r.statusCode >= 400 && !r.markdown));
-  return Object.assign(rows, { ms: data.__ms || 0, credits: Number(data.creditsUsed) || 0 });
+  return Object.assign(rows, { ms: data.__ms || 0, credits, cached });
 }
 
 /** Firecrawl v2 /scrape: una URL → markdown. Respaldo cuando la búsqueda no trajo el contenido. Nunca lanza. */
-export async function firecrawlScrape(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
+export async function firecrawlScrape(url, { env = process.env, fetcher = fetch, signal, live, record, ledger, meter } = {}) {
   if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
   try {
-    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 2, timeoutMs: 45_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk });
+    const { data, cached } = await metered('scrape', { env, ledger, meter, estimate: CREDIT_COST.scrape(), key: cacheKey('scrape', url, SCRAPE_VERSION), url },
+      (tries) => callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body: { url, formats: ['markdown'], onlyMainContent: true, timeout: clamp(env.FIRECRAWL_SCRAPE_TIMEOUT_MS, 5_000, 60_000, 25_000) }, env, fetcher, signal, live, record, retries: 2, timeoutMs: 45_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk, tries, retryTimeouts: false }));
     const d = data?.data || {};
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';
-    return markdown.length > 80 ? { url: safeUrl(d.metadata?.sourceURL || d.metadata?.url) || url, title: String(d.metadata?.title || ''), markdown, text: markdown } : null;
+    return markdown.length > 80 ? { url: safeUrl(d.metadata?.sourceURL || d.metadata?.url) || url, title: String(d.metadata?.title || ''), markdown, text: markdown, ...(cached ? { cached: true } : {}) } : null;
   } catch { return null; }
 }
 
@@ -147,18 +203,21 @@ export async function firecrawlScrape(url, { env = process.env, fetcher = fetch,
  * Coste: la extracción JSON gasta más créditos que un scrape normal (ver el plan de Firecrawl); por eso el motor la pide
  * solo para candidatas y con tope (ENGINE_EXTRACT_MAX).
  */
-export async function firecrawlExtract(url, { env = process.env, fetcher = fetch, signal, live, record } = {}) {
+export async function firecrawlExtract(url, { env = process.env, fetcher = fetch, signal, live, record, ledger, meter } = {}) {
   if (!firecrawlKey(env) || !safeUrl(url) || BLOCKED_HOSTS.test(hostOf(url))) return null;
   try {
     const timeout = clamp(env.FIRECRAWL_EXTRACT_TIMEOUT_MS, 10_000, 120_000, 50_000);
     const body = { url, formats: ['markdown', { type: 'json', schema: EXTRACT_SCHEMA, prompt: EXTRACT_PROMPT }], onlyMainContent: env.FIRECRAWL_EXTRACT_MAIN_ONLY === '1', timeout };
-    const data = await callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, retries: 2, timeoutMs: timeout + 15_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk });
+    // Sin reintentos tras un timeout o 5xx: ese intento pudo costar ≈5 créditos y repetirlo los vuelve a gastar. El 429 sí se
+    // reintenta, siempre a través del ritmo adaptativo (gate).
+    const { data, cached, credits } = await metered('extract', { env, ledger, meter, estimate: CREDIT_COST.extract(), key: cacheKey('extract', url, extractVersion(env)), url },
+      (tries) => callApi({ provider: 'Firecrawl', host: 'api.firecrawl.dev', url: `${FIRECRAWL_URL}/scrape`, headers: { Authorization: `Bearer ${firecrawlKey(env)}` }, body, env, fetcher, signal, live, record, retries: 2, timeoutMs: timeout + 15_000, gate: paceGate(signal), onRateLimit: () => paceHit(env), onSuccess: paceOk, tries, retryTimeouts: false }));
     const d = data?.data || {};
     const json = d.json && typeof d.json === 'object' ? d.json : d.extract && typeof d.extract === 'object' ? d.extract : null;
     const markdown = typeof d.markdown === 'string' ? d.markdown : '';
-    if (!json) return { error: `Firecrawl answered without JSON (keys: ${Object.keys(d).slice(0, 6).join(', ') || 'none'})` };
-    return { json, markdown, credits: Number(data.creditsUsed ?? d.metadata?.creditsUsed) || 0, ms: data.__ms || 0 };
-  } catch (error) { return { error: String(error.message || error).slice(0, 200), ...(error?.fatal ? { fatal: true } : {}) }; }
+    if (!json) return { error: `Firecrawl answered without JSON (keys: ${Object.keys(d).slice(0, 6).join(', ') || 'none'})`, credits, ...(cached ? { cached: true } : {}) };
+    return { json, markdown, credits, ms: cached ? 0 : data.__ms || 0, ...(cached ? { cached: true } : {}) };
+  } catch (error) { return { error: String(error.message || error).slice(0, 200), ...(error?.fatal ? { fatal: true } : {}), ...(error?.budget ? { budget: true } : {}), ...(error?.possiblyCharged ? { possiblyCharged: error.possiblyCharged } : {}) }; }
 }
 
 /** Varias búsquedas; una que falla no tumba las demás. Devuelve {results, errors, calls, ms}. */
@@ -173,7 +232,7 @@ export async function firecrawlSearchMany(queries, options = {}) {
     } catch (error) {
       if (options.signal?.aborted) throw error;
       errors.push(`${String(query).slice(0, 80)}: ${error.message}`);
-      if (error.fatal) break; // sin créditos o clave inválida: no seguir gastando llamadas
+      if (error.fatal || error.budget) break; // sin créditos, clave inválida o tope diario: no seguir gastando llamadas
     }
   }
   return { results, errors, calls, ms };
@@ -210,7 +269,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
   for (const query of queries) {
     let results = [];
     try { results = await firecrawlSearch(query, { limit: clamp(env.GRANT_WEB_RESULTS_PER_QUERY, 3, 10, 6), markdown: true, env, fetcher, signal, live, record }); }
-    catch (error) { if (signal?.aborted) throw error; searchErrors.push(error.message); audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: 0, discovered: 0, error: error.message }); if (error.fatal) break; continue; }
+    catch (error) { if (signal?.aborted) throw error; searchErrors.push(error.message); audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: 0, discovered: 0, error: error.message }); if (error.fatal || error.budget) break; continue; }
     let accepted = 0;
     for (const result of results) {
       const hay = `${result.title} ${result.description} ${result.markdown}`;
