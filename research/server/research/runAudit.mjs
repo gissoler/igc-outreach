@@ -5,6 +5,8 @@
    Solo reorganiza datos que ya existen (audits del motor, foundBy/verification/codeCheck de los leads).
    ───────────────────────────────────────────────────────────────────────────── */
 
+import { applicantProfile } from './applicant.mjs';
+
 /** Motivo de descarte de un lead ya rankeado, en una categoría contable. */
 export function discardCategory(l) {
   const ver = l.verification || l.codeCheck;
@@ -52,6 +54,33 @@ export function providerBenchmark(engineRuns = []) {
   }).sort((a, b) => b.apply * 3 + b.watch + b.keptOnlyHere * 2 - (a.apply * 3 + a.watch + a.keptOnlyHere * 2) || b.urls - a.urls);
 }
 
+/**
+ * Prompt listo para copiar y pegar en otra IA con búsqueda web, con el MISMO brief y las MISMAS reglas que usó la corrida,
+ * para comparar resultados sin tener que redactarlo cada vez. Declara el supuesto sobre el tipo de entidad cuando el brief no lo dice.
+ */
+const ENTITY_ES = { for_profit_startup: 'empresa / startup con fines de lucro', nonprofit: 'organización sin ánimo de lucro', academic: 'entidad académica o de investigación' };
+export function comparisonPrompt(brief = {}, today = new Date().toISOString().slice(0, 10), objective = '') {
+  const kind = objective || (brief.fundingTypes || [])[0] || 'grant';
+  const p = applicantProfile(brief);
+  const line = (k, v) => (v ? `- ${k}: ${String(v).replace(/\s+/g, ' ').trim()}` : null);
+  const minDays = Number(brief.minDays) > 0 ? Number(brief.minDays) : 0;
+  const limit = new Date(Date.parse(`${today}T00:00:00Z`) + minDays * 86400000).toISOString().slice(0, 10);
+  const entity = p.entitySource.startsWith('default')
+    ? `El tipo de entidad NO está definido en el brief (el motor asumió: ${ENTITY_ES[p.entity]}). Para cada resultado dime qué tipos de entidad pueden aplicar.`
+    : `Tipo de entidad: ${ENTITY_ES[p.entity] || p.entity}.`;
+  const where = p.outside.length ? `constituida FUERA de: ${p.outside.join(', ')}` : p.country ? `constituida en ${p.country}` : 'país de constitución no indicado';
+  const about = [
+    line('Proyecto', [brief.company || brief.venture, brief.oneLiner || brief.description].filter(Boolean).join(': ')), line('Producto', brief.product), line('Sector', brief.industry),
+    line('Etapa', [brief.stage, brief.round].filter(Boolean).join(' / ')), line('Geografía', brief.geography), line('Constitución', where),
+    line('Monto objetivo', brief.amount ? `${Number(brief.amount).toLocaleString('en-US')} USD` : ''), line('Restricciones', brief.constraints), line('Uso de fondos', brief.useOfFunds),
+    line('Horizonte', brief.timeline), line('Excluir', brief.exclusions), line('Criterios adicionales', brief.criteria),
+  ].filter(Boolean).join('\n');
+  const head = `Hoy es ${today}. `;
+  if (kind === 'investment') return `${head}Actúa como investigador de capital de riesgo. Busca en la web INVERSORES (fondos, firmas de venture capital, ángeles o redes de ángeles) que invertirían en este proyecto:\n\n${about}\n\n${entity}\n\nREGLAS (estrictas):\n1. Solo páginas OFICIALES del inversor (su sitio, su portafolio o su tesis). Nada de blogs, noticias, listas ni agregadores, ni páginas de eventos.\n2. Debe invertir en esta etapa y sector, y en esta geografía. Si no es seguro, márcalo aparte.\n3. Dame la persona concreta que decide (socio o managing partner) solo si la página oficial la nombra con su cargo; si no, dime solo la firma. No incluyas ventas, marketing ni relaciones públicas.\n4. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Firma | URL oficial | Etapas y sectores en los que invierte (CITA LITERAL de su página) | Geografías | Cheque típico | Persona y cargo (si la página lo dice) | Por qué encaja | Estado (confirmado / dudoso).\nDespués una segunda tabla, «No pude confirmar». Al final, dime cuántos hay en cada tabla.`;
+  const type = kind === 'grant' ? 'GRANTS (subvenciones, premios o concursos; no inversión ni deuda)' : `oportunidades de tipo «${kind}»`;
+  return `${head}Actúa como investigador de financiación no dilutiva. Busca en la web convocatorias de ${type} a las que pueda aplicar este proyecto:\n\n${about}\n\n${entity}\n\nREGLAS (estrictas):\n1. Solo convocatorias ABIERTAS cuya fecha límite sea posterior al ${limit}${minDays ? ` (mínimo ${minDays} días desde hoy)` : ''}. Si no encuentras la fecha de cierre en la página oficial, NO la pongas en la lista principal.\n2. Solo páginas OFICIALES de la convocatoria o del financiador. Nada de blogs, noticias, agregadores ni directorios.\n3. Elegibilidad: debe poder aplicar el tipo de entidad indicado. Si la convocatoria lo excluye o no lo dice, márcala aparte.\n4. No incluyas convocatorias que contradigan las restricciones del proyecto.\n5. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Nombre | URL oficial | Fecha límite (AAAA-MM-DD) | CITA LITERAL de la página donde aparece esa fecha | Quién puede aplicar (CITA LITERAL) | Monto máximo | Encaje (una línea) | Estado (abierta / dudosa).\nDespués una segunda tabla, «No pude confirmar», con lo que podría servir pero le falta fecha, elegibilidad o monto, y qué falta. Al final, dime cuántas hay en cada tabla.`;
+}
+
 const add = (o, k, n = 1) => { if (k) o[k] = (o[k] || 0) + n; return o; };
 
 /**
@@ -93,6 +122,7 @@ export function buildRunAudit({ engineRuns = [], orchestrator = null, leads = []
   return {
     today, brief: { venture: brief.venture || brief.company || null, product: brief.product || null, industry: brief.industry || null, geography: brief.geography || null, stage: brief.stage || null, round: brief.round || null, fundingTypes: brief.fundingTypes || [], constraints: brief.constraints || null },
     interpretations, counters, queries: queries.slice(0, 200), discarded: traces, providers: providerBenchmark(engineRuns),
+    comparePrompts: Object.fromEntries((brief.fundingTypes || []).filter((t) => ['grant', 'investment'].includes(t)).map((t) => [t, comparisonPrompt(brief, today, t)])),
     orchestrator: orchestrator ? { by: orchestrator.by || null, attempts: (orchestrator.attempts || []).map((a) => ({ attempt: a.attempt, stopped: a.stopped || null, strategy: a.strategy || null, gap: a.gap || a.assessment?.gap || null, by: a.by || a.assessment?.by || null, diagnosis: a.diagnosis || null, queries: (a.queries || []).slice(0, 10), added: a.added ?? null, topBefore: a.before?.top ?? null, topAfter: a.after?.top ?? null, error: a.error || null })) } : null,
   };
 }

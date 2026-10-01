@@ -119,6 +119,11 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
         {sorted(c.skippedBeforeReading).length ? <p className="au-meta">Not read: {sorted(c.skippedBeforeReading).map(([k, n]) => `${reasonLabel(k)} ${n}`).join(' · ')}</p> : null}</div>
       <div><h4>To verify, why</h4><ul className="au-bars">{sorted(c.radarReasons).slice(0, 8).map(([k, n]) => <li key={k}><span>{k}</span><b>{n}</b></li>)}</ul></div>
     </div>
+    {audit.comparePrompts && Object.keys(audit.comparePrompts).length ? <details className="au-more"><summary>Prompt to compare with another AI</summary>
+      {Object.entries(audit.comparePrompts).map(([k, text]) => <div key={k}><p className="au-meta">{k === 'grant' ? 'Grants' : k === 'investment' ? 'Investors' : k} · same brief and rules as this run. Paste it into an AI with web search turned on.</p>
+        <textarea readOnly value={text} rows={8} style={{ width: '100%', font: 'inherit', fontSize: 12 }} onFocus={(e) => e.currentTarget.select()} />
+        <button type="button" className="pl-btn" onClick={() => { navigator.clipboard?.writeText(text).catch(() => {}); }}>Copy prompt</button></div>)}
+    </details> : null}
     {audit.orchestrator?.attempts?.length ? <details className="au-more" open><summary>Search orchestrator · decided by {audit.orchestrator.by || 'rules'}</summary>
       <ul className="au-disc">{audit.orchestrator.attempts.map((a) => <li key={a.attempt}><p><b>Attempt {a.attempt}</b> · {a.stopped === 'sufficient' ? 'results were enough, no extra search' : a.stopped === 'time' ? 'no time left for another attempt' : `${(a.strategy || '').replace(/_/g, ' ')} · ${a.added ?? 0} new results · main list ${a.topBefore ?? '—'} → ${a.topAfter ?? '—'}`}{a.by ? ` · ${a.by}` : ''}{a.error ? ` · ${a.error}` : ''}</p>
         {a.diagnosis ? <p className="au-meta">{a.diagnosis}</p> : null}{a.queries.length ? <p className="au-meta">Searched: {a.queries.join(' · ')}</p> : null}</li>)}</ul>
