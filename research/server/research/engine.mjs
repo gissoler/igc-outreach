@@ -19,6 +19,7 @@ import { extractedFacts, compactExtraction } from './extract.mjs';
 import { pageExcerpt } from './readOpportunity.mjs';
 import { searxSearch, searxConfigured, fetchPage } from './localSearch.mjs';
 import { multiSearch, searchApisConfigured, searchProviders, jinaRead, firecrawlRead } from './searchApis.mjs';
+import { verifyInvestor } from './investor.mjs';
 import { verifyOpportunity, literalIn, hostKind, hostOf, datesIn, compactVerification } from './verify.mjs';
 import { applicantProfile } from './applicant.mjs';
 import { buildExplanation } from './explain.mjs';
@@ -103,6 +104,32 @@ export const readPrompt = ({ objective, brief, page, today }) => ({
 });
 
 /* 4 · verify */
+/** Inversores: decide el código (investor.mjs). El modelo aporta nombre, tipo e identidad; no `official`, `eligible` ni «cómo postular». */
+function investorFinding(out, page, o, { today, brief, profile, quotes, flags }) {
+  const v = verifyInvestor(out, page, { today, brief, profile });
+  const money = String(out?.money || 'unknown').toLowerCase();
+  let drop = v.drop;
+  const kind = String(out?.kind || '').toLowerCase().trim().split(/[\s|(]/)[0];
+  const kindBad = Boolean(kind && o.kinds && !o.kinds.includes(kind));
+  if (drop && drop.startsWith('not_investor_page') && kindBad) drop = `wrong_kind:${kind}`;   // el tipo que dijo el modelo ya lo explica
+  if (!drop && out?.relevant === false) drop = 'not_relevant';
+  if (!drop && kindBad) drop = `wrong_kind:${kind}`;
+  if (!kind) flags.push('kind_missing');
+  const fake = flags.filter((f) => f.startsWith('fake_quote')).length;
+  if (!drop && fake >= 2) drop = 'unreliable_read';
+  if (!drop && !quotes.identity) drop = 'no_identity_quote';
+  if (!drop && !o.money.includes(money) && money !== 'unknown') drop = `wrong_money:${money}`;
+  const blockers = [...v.blockers];
+  let verdict = drop ? 'skip' : v.verdict;
+  if (verdict === 'apply' && fake > 0) { verdict = 'watch'; blockers.push('The model invented a quote'); }
+  const tier = drop ? 'drop' : verdict === 'apply' ? 'main' : 'verify';
+  return {
+    keep: !drop, drop, name: String(out?.name || '').trim(), status: 'n/a', deadline: null, deadlineQuote: '', daysLeft: null, official: v.official, eligible: v.eligible,
+    money, amount: typeof out?.amount === 'string' && literalIn(out.amount, page.text || '') ? out.amount : null, verdict, tier, flags: [...new Set([...flags, ...v.flags])],
+    quotes: { ...(quotes.identity ? { identity: quotes.identity } : {}), ...v.quotes }, eligibility: { decision: v.eligible, reason: v.checks.find((c) => c.check === 'thesis')?.detail || '', quote: v.quotes.eligible || '' },
+    checks: v.checks, reasons: drop ? [drop, ...v.reasons.filter((r) => r !== drop)] : [], blockers, today: v.today,
+  };
+}
 export function verifyFinding(out, page, objective, { today, brief, profile, extraction = null } = {}) {
   const o = OBJECTIVES[objective]; const text = String(page.text || ''); const flags = [];
   const quotes = {};
@@ -110,6 +137,7 @@ export function verifyFinding(out, page, objective, { today, brief, profile, ext
     if (typeof v !== 'string' || !v.trim() || /^(null|none|n\/a|unknown)$/i.test(v.trim())) continue;
     if (literalIn(v, text)) quotes[k] = v.trim(); else flags.push(`fake_quote:${k}`);
   }
+  if (objective === 'investment') return investorFinding(out, page, o, { today, brief, profile, quotes, flags });
   const base = verifyOpportunity({ status: o.dated ? out?.status : 'unknown', deadline: o.dated ? out?.deadline : null, official: out?.official, eligible: out?.eligible, non_dilutive: objective === 'grant' || objective === 'sponsorship' ? out?.non_dilutive : 'unknown', kind: out?.kind, page_type: out?.page_type, quotes }, page, { today, brief, profile, extraction, entity: !o.dated });
   const money = String(out?.money || 'unknown').toLowerCase();
   let drop = base.drop;
