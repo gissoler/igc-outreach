@@ -21,6 +21,7 @@ import { runAgenticLoop } from './loop.mjs';
 import { attachGrantPlans, finalizeSearchAudit } from './grantManager.mjs';
 import { createRecorder } from './liveRun.mjs';
 import { buildRunAudit } from './runAudit.mjs';
+import { webSourcePlan } from './sourcePlan.mjs';
 import { applyJevDecisions, askJev, jevProvider } from './jev.mjs';
 import {
   makeClient,
@@ -123,6 +124,7 @@ export async function runResearch(
         engineOn = false;
         live({ phase: 'warning', provider: ENGINE_SOURCE, status: 'warning', title: 'AI model not reachable', message: 'The AI model did not respond; searching the web APIs directly (without AI planning or reading).' });
       }
+      const web = webSourcePlan({ fundingTypes: b.fundingTypes, engineOn, env, providers });
       const apiSearchOn = !providers && !engineOn && searchApisConfigured(env) && b.fundingTypes.includes('grant');
       const enabled = providers || [
         ...(b.fundingTypes.includes('partnering')
@@ -162,15 +164,15 @@ export async function runResearch(
         ...(job.plan.alzheimer
           ? [['Official radar', (c, e) => radar(c, b, job.plan, e)]]
           : []),
-        ...(!grantsOnly && env.EXA_API_KEY ? [['Exa', (c, e) => exaSearch(c, b, job.plan, env, e)]] : []),
-        ...(b.fundingTypes.includes('investment') && (env.EXA_API_KEY || env.SERPER_API_KEY)
+        ...(web.exa ? [['Exa', (c, e) => exaSearch(c, b, job.plan, env, e)]] : []),
+        ...(web.rounds
           ? [[`Funding rounds (${env.EXA_API_KEY ? 'Exa' : 'Serper'})`, (c) => roundAnnouncements(c, b, job.plan, env)]]
           : []),
-        ...(!grantsOnly && env.SERPER_API_KEY ? [['Web search (Serper)', (c) => webSearch(c, b, job.plan, env)]] : []),
+        ...(web.serper ? [['Web search (Serper)', (c) => webSearch(c, b, job.plan, env)]] : []),
       ];
       const TEAM_SOURCE = 'Sender public profile';
       const useTeamFacts = teamFactsApply(b);
-      const useApify = !providers && !grantsOnly && b.useApify && webConfigured(env);
+      const useApify = web.legacy && b.useApify && webConfigured(env);
       live({
         phase: 'planning',
         status: 'success',
@@ -179,15 +181,15 @@ export async function runResearch(
         detail: { kind: 'plan', items: job.plan.items, sources: [...(useTeamFacts ? [TEAM_SOURCE] : []), ...enabled.map(([name]) => name), ...(useApify ? [WEB_SOURCE] : [])] },
       });
       if (!providers) {
-        if (!grantsOnly && !env.EXA_API_KEY) {
+        if (web.legacy && !env.EXA_API_KEY) {
           emit('configuration', 'Exa: missing EXA_API_KEY; semantic search skipped.');
           live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: 'Exa: missing EXA_API_KEY; semantic search skipped.' });
         }
-        if (!grantsOnly && !env.SERPER_API_KEY) {
+        if (web.legacy && !env.SERPER_API_KEY) {
           emit('configuration', 'Serper: no SERPER_API_KEY; broad web search skipped.');
           live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: 'Serper: no SERPER_API_KEY; broad web search skipped.' });
         }
-        if (!grantsOnly && b.useApify && !webConfigured(env)) live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: `${WEB_SOURCE}: missing ${webMissing(env).join(' y ')}; research continues with available sources.` });
+        if (web.legacy && b.useApify && !webConfigured(env)) live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: `${WEB_SOURCE}: missing ${webMissing(env).join(' y ')}; research continues with available sources.` });
         if (grantsOnly && b.useApify && !firecrawlConfigured(env)) live({ phase: 'planning', provider: GRANT_WEB_SOURCE, status: 'pending', title: 'Broader discovery skipped', message: 'FIRECRAWL_API_KEY is missing; official registries still run.' });
       }
       if (useTeamFacts) {
@@ -238,7 +240,7 @@ export async function runResearch(
           live({ phase: 'warning', provider: enabled[i][0], status: 'warning', title: 'Source returned nothing', message: `${enabled[i][0]}: ${result.reason?.message || 'service unavailable'}. Other sources continue.` });
         }
       });
-      if (!providers && !grantsOnly && env.AGENTIC_FOLLOWUP === '1') {
+      if (web.agentic && env.AGENTIC_FOLLOWUP === '1') {
         const name = 'Follow-up: funder → people';
         if (!webConfigured(env)) {
           emit('configuration', `${name}: missing ${webMissing(env).join(' and ')}; skipped.`);
@@ -285,7 +287,7 @@ export async function runResearch(
         live({ phase: read.skipped ? 'planning' : 'reading', provider: name, status: read.skipped ? 'pending' : 'success', title: read.skipped ? 'Reading skipped' : 'Pages verified', message: read.skipped ? `Read step skipped: ${read.reason}.` : `Read ${read.documents} pages; rejected ${read.dropped} unsupported extracted facts.`, resultCount: read.documents });
         if (read.skipped) emit('configuration', `${name}: ${read.reason}.`);
       }
-      if (!providers && !grantsOnly && env.AGENTIC_LOOP === '1') {
+      if (web.agentic && env.AGENTIC_LOOP === '1') {
         const name = 'Agentic research loop';
         const loop = await runAgenticLoop({
           leads, brief: b, terms: job.plan.terms, env, fetcher, signal, usage: client.usage,
