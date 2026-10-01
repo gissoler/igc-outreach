@@ -14,11 +14,19 @@
      B · Replay de corridas reales del 30/09 (eval/runs/<corrida>/result.json + search-cache.json): cada grant que el
          código anterior retuvo se re-verifica con el código nuevo, con la misma lectura guardada del modelo y
          el texto de página guardado. Cuenta cambios de clase y motivos. (No es una corrida nueva: no hay red.)
+     D · Gasto de Firecrawl (stubs, sin red): la misma corrida dos veces con las páginas guardadas y un extractor
+         Firecrawl simulado (respuesta con el formato real, citas copiadas de la página). La segunda vez debe gastar
+         0 créditos de extractor (caché en disco) y dar las mismas decisiones. Se mide también la regla anterior
+         (ENGINE_EXTRACT_POLICY=all, tope 15) sobre las mismas páginas: llamadas y créditos medidos, no estimados.
      C · Estrés: un lector crédulo (dice sí a todo, pero cita literal) sobre TODAS las páginas guardadas de consultas de grants (caché real):
          invariantes de la lista principal (fecha futura con cita literal, elegibilidad con cita, tipo convocatoria).
    Uso: node eval/regression/mentiva-grants.mjs [--json]
    ───────────────────────────────────────────────────────────────────────────── */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { firecrawlExtract, resetProviderBreakers } from '../../server/research/webscrape.mjs';
+import { createFirecrawlLedger } from '../../server/research/firecrawlLedger.mjs';
 import { runObjective, verifyFinding } from '../../server/research/engine.mjs';
 import { literalIn } from '../../server/research/verify.mjs';
 import { datesIn } from '../../server/research/dates.mjs';
@@ -161,9 +169,55 @@ export async function partC() {
   return { pages: list.length, read: r.audit.read, kept: r.findings.length, main: main.length, verify: r.findings.length - main.length, dropped: r.audit.dropped, skippedBeforeReading: r.audit.skipped, invariants, mainList: main.map((f) => ({ url: f.url, name: f.name, deadline: f.deadline, deadlineQuote: f.deadlineQuote.slice(0, 140), eligibility: f.eligibility?.quote?.slice(0, 140) })) };
 }
 
+/* D · Firecrawl simulado: responde como /v2/scrape con formato JSON, copiando frases reales de la página (5 créditos). */
+function firecrawlStub(pages, calls) {
+  const byUrl = new Map(pages.map((p) => [p.url, p]));
+  return async (url, init) => {
+    const target = JSON.parse(init.body).url; calls.push(target);
+    const text = String(byUrl.get(target)?.text || '').replace(/\s+/g, ' ');
+    const sentences = text.split(/(?<=[.!?])\s+/).filter((x) => x.length < 300);
+    const dates = sentences.filter((x) => datesIn(x).length).slice(0, 12).map((quote) => ({ phase: /deadline|clos|due|submi|apply by|until/i.test(quote) ? 'application_deadline' : 'other', quote }));
+    const eligibility_quote = sentences.find((x) => /eligib|who can apply|open to/i.test(x)) || '';
+    return new Response(JSON.stringify({ success: true, creditsUsed: 5, data: { markdown: text, json: { is_open_call: true, page_says_closed: false, dates, eligibility_quote } } }), { status: 200 });
+  };
+}
+async function spend(list, read, { env = {}, ledger }) {
+  resetProviderBreakers();
+  const calls = [];
+  const chat = async ({ name, user }) => {
+    if (name === 'plan') return { json: { queries: [{ query: 'saved pages', family: 'saved' }] } };
+    const p = list.find((x) => user.includes(`PAGE URL: ${x.url}`));
+    return { json: p ? read(p) : {}, model: 'sim' };
+  };
+  const r = await runObjective('grant', brief, { chat, search: async () => list.map((p) => ({ url: p.url, title: p.title, markdown: p.text, providers: ['saved'] })), today: TODAY, rounds: 1, maxPages: 5000, concurrency: 16,
+    extractor: firecrawlExtract, fetcher: firecrawlStub(list, calls), pageFetcher: async () => null, reader: async () => null, firecrawlLedger: ledger, env: { FIRECRAWL_API_KEY: 'stub', ...env } });
+  const decisions = r.findings.map((f) => `${f.url}|${f.verdict}|${f.tier}|${f.deadline}|${f.deadlineQuote}|${JSON.stringify(f.quotes)}`).sort();
+  const mainList = r.findings.filter((f) => f.verdict === 'apply').map((f) => ({ url: f.url, deadline: f.deadline, extraction: f.trace?.extraction ? { need: f.trace.extraction.need, status: f.trace.extraction.status } : null }));
+  return { mainList, calls: calls.length, extractCredits: r.audit.extractCredits, cacheHits: r.audit.extractCacheHits, extracted: r.audit.extracted, skipped: r.audit.extractSkipped, main: r.findings.filter((f) => f.verdict === 'apply').length, kept: r.findings.length, decisions };
+}
+export async function partD() {
+  const sets = [['gold', goldPages(), faithfulRead]];
+  const saved = cachedPages();
+  if (saved) sets.push(['guardadas', [...saved.values()].filter((p) => GRANT_FAMILY.test(p.query) && !INVEST_FAMILY.test(p.query)), lenientRead]);
+  const out = {};
+  for (const [name, list, read] of sets) {
+    const dir = mkdtempSync(join(tmpdir(), 'fc-regression-')); const path = join(dir, 'firecrawl-cache.sqlite');
+    try {
+      const unlimited = { FIRECRAWL_DAILY_CREDITS: 'unlimited' };
+      const legacy = await spend(list, read, { env: { ...unlimited, ENGINE_EXTRACT_POLICY: 'all', ENGINE_EXTRACT_MAX: '15' }, ledger: createFirecrawlLedger({ env: unlimited, cache: false }) });
+      const l1 = createFirecrawlLedger({ path, env: unlimited }); const first = await spend(list, read, { env: unlimited, ledger: l1 }); l1.close();
+      const l2 = createFirecrawlLedger({ path, env: unlimited }); const second = await spend(list, read, { env: unlimited, ledger: l2 }); l2.close();
+      out[name] = { pages: list.length, legacy: { calls: legacy.calls, credits: legacy.extractCredits, main: legacy.main, mainList: legacy.mainList }, first: { calls: first.calls, credits: first.extractCredits, main: first.main, skipped: first.skipped, mainList: first.mainList }, second: { calls: second.calls, credits: second.extractCredits, cacheHits: second.cacheHits, main: second.main },
+        sameDecisions: JSON.stringify(first.decisions) === JSON.stringify(second.decisions), pass: second.calls === 0 && second.extractCredits === 0 && JSON.stringify(first.decisions) === JSON.stringify(second.decisions) };
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+  }
+  return out;
+}
+
 export async function runRegression() {
   const A = { adversarial: await partA('adversarial'), faithful: await partA('faithful') };
-  return { today: TODAY, brief: brief.company, A, pass: PASS(A.adversarial) && PASS(A.faithful), B: partB(), C: await partC() };
+  const D = await partD();
+  return { today: TODAY, brief: brief.company, A, pass: PASS(A.adversarial) && PASS(A.faithful) && Object.values(D).every((x) => x.pass), B: partB(), C: await partC(), D };
 }
 
 if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
@@ -175,6 +229,7 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
   console.log(`A · gold, lector fiel:       ${c(out.A.faithful)}`);
   console.log(`A · criterios: ${out.pass ? 'PASAN' : 'NO PASAN'}`);
   if (out.B.skipped) console.log(`B · ${out.B.skipped}`); else { console.log(`B · replay de ${out.B.total} grants retenidos por el código anterior (${out.B.runs.length} corridas): ${JSON.stringify(out.B.changes)}`); console.log(`    motivos: ${JSON.stringify(out.B.reasons)}`); }
+  for (const [k, d] of Object.entries(out.D)) console.log(`D · Firecrawl (${k}, ${d.pages} páginas, stubs): regla anterior ${d.legacy.calls} extracciones / ${d.legacy.credits} créditos · ahora ${d.first.calls} / ${d.first.credits} (omitidas ${JSON.stringify(d.first.skipped)}) · repetición ${d.second.calls} llamadas / ${d.second.credits} créditos, ${d.second.cacheHits} de caché · mismas decisiones: ${d.sameDecisions ? 'sí' : 'NO'} · principal ${d.legacy.main}→${d.first.main}`);
   if (out.C.skipped) console.log(`C · ${out.C.skipped}`); else console.log(`C · estrés: ${out.C.pages} páginas guardadas, ${out.C.main} en principal, ${out.C.verify} a verificar; invariantes ${JSON.stringify(out.C.invariants)}; descartes ${JSON.stringify(out.C.dropped)}`);
   process.exit(out.pass ? 0 : 1);
 }
