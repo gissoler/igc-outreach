@@ -19,7 +19,8 @@ import { extractedFacts, compactExtraction } from './extract.mjs';
 import { pageExcerpt } from './readOpportunity.mjs';
 import { searxSearch, searxConfigured, fetchPage } from './localSearch.mjs';
 import { multiSearch, searchApisConfigured, searchProviders, jinaRead, firecrawlRead } from './searchApis.mjs';
-import { verifyInvestor } from './investor.mjs';
+import { verifyInvestor, NEWSHOST } from './investor.mjs';
+import { createRunMeter, defaultLedger } from './firecrawlLedger.mjs';
 import { verifyOpportunity, literalIn, hostKind, hostOf, datesIn, compactVerification } from './verify.mjs';
 import { applicantProfile } from './applicant.mjs';
 import { buildExplanation } from './explain.mjs';
@@ -222,14 +223,20 @@ export async function runObjective(objective, brief, opts = {}) {
   // Segunda lectura de fechas/elegibilidad con un extractor externo (Firecrawl JSON). Solo candidatas (las que siguen o se descartaron por
   // «cerrada»), con tope por objetivo. Sin clave, sin ENGINE_EXTRACT o con `search` inyectado (pruebas) no se usa, salvo opts.extractor.
   const extractor = opts.extractor !== undefined ? opts.extractor : (!opts.search && env.ENGINE_EXTRACT !== 'off' && firecrawlConfigured(env)) ? firecrawlExtract : null;
-  const maxExtract = Number(env.ENGINE_EXTRACT_MAX ?? 15);
+  // Tope por objetivo: 5 por defecto (antes 15). Solo se extrae lo que puede cambiar la decisión (extractNeed) y en orden de prioridad.
+  const maxExtract = Number(env.ENGINE_EXTRACT_MAX ?? 5);
   const maxExtractClosed = Math.floor(maxExtract / 3);   // dudas de 'cerrada' no le quitan turno a los candidatos que sí pasan
   let extractOff = false; let extractInFlight = 0; let extractClosedUsed = 0;
+  // Gasto de Firecrawl de esta corrida (caché, créditos, tope diario): se pasa a toda llamada de Firecrawl y termina en el audit.
+  const fcMeter = opts.firecrawlMeter || createRunMeter(env); const fcLedger = opts.firecrawlLedger || null;
+  const fc = { env, fetcher, signal, meter: fcMeter, ...(fcLedger ? { ledger: fcLedger } : {}) };
+  Object.assign(audit, { extractCacheHits: 0, scrapeCacheHits: 0, extractSkipped: {}, extractPolicy: env.ENGINE_EXTRACT_POLICY === 'all' ? 'all' : 'decisive' });
+  const pendingExtract = [];
   const run = search || (apis
     ? async (q) => { const ck = `${recency}|${q}`; if (opts.cache?.[ck]) return opts.cache[ck]; const rows = await multiSearch(q, { env, fetcher, signal, recency, breaker }); if (opts.cache && rows.length) opts.cache[ck] = rows; for (const [p, x] of Object.entries(rows.stats || {})) { const s = stat(p); s.calls++; s.returned += x.returned; s.ms += x.ms; s.costUsd += x.costUsd || 0; if (x.error) { s.errors++; if (audit.errors.length < 20) audit.errors.push(`${p}: ${x.error}`); } if (x.disabled && !s.disabled) { s.disabled = x.disabled; audit.errors.push(`${p}: DESACTIVADO para el resto de la corrida (${x.disabled.slice(0, 120)})`); } } return rows; }
     : searxConfigured(env)
     ? (q) => searxSearch(q, { env, fetcher, signal, timeRange: range === 'qdr:y' ? 'year' : range === 'qdr:m' ? 'month' : '' })
-    : (q) => firecrawlSearch(q, { limit: 6, markdown: true, tbs: range, env, fetcher, signal }));
+    : (q) => firecrawlSearch(q, { limit: 6, markdown: true, tbs: range, ...fc, cache: false, essential: true }));
   // El orquestador puede pasar sus propias consultas (estrategia nueva): se usan tal cual (con el año corregido), sin planear.
   const injected = Array.isArray(opts.queries) ? opts.queries.map((q) => (typeof q === 'string' ? { query: q, family: 'orchestrator' } : q)).filter((q) => q?.query) : null;
   const plan = injected?.length ? { queries: fixAll(injected, objective, today, env), planned: true } : await planQueries(objective, brief, { chat, env, fetcher, signal, today, n: maxQueries });
@@ -244,6 +251,17 @@ export async function runObjective(objective, brief, opts = {}) {
     const unreadSkip = t.read === null && t.verdict === 'skip';
     if (unreadSkip) { if (skippedTraces < maxSkippedTraces) { skippedTraces++; audit.traces.push(t); } return; }
     if (audit.traces.length - skippedTraces < maxTraces) audit.traces.push(t);
+  };
+  /** Traza + hallazgo o descarte de una página ya verificada (con o sin segunda lectura). */
+  const finalize = ({ page, json, model, v, traceBase }, extractionMeta) => {
+    const round = traceBase.round;
+    for (const p of page.providers) stat(p).pagesRead++;
+    const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
+    if (v.keep) {
+      const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
+      findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++;
+      for (const p of page.providers) { stat(p).kept++; if (page.providers.length === 1) stat(p).keptOnlyHere++; }
+    } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
   };
   let todo = plan.queries;
   for (let round = 1; round <= Math.max(1, rounds) && todo.length; round++) {
@@ -282,7 +300,7 @@ export async function runObjective(objective, brief, opts = {}) {
       let via = got ? 'direct' : null;
       if (got) audit.fetched++;
       if (!got || got.text.length < 400) { const viaJina = await reader(p.url, { env, fetcher, signal }); if (viaJina && viaJina.text.length > (got?.text.length || 0)) { got = viaJina; via = 'jina'; audit.jinaRead++; } }
-      if ((!got || got.text.length < 400) && fallbackReader) { const viaFc = await fallbackReader(p.url, { env, fetcher, signal }); if (viaFc && viaFc.text.length > (got?.text.length || 0)) { got = viaFc; via = 'firecrawl'; audit.firecrawlRead = (audit.firecrawlRead || 0) + 1; } }
+      if ((!got || got.text.length < 400) && fallbackReader) { const viaFc = await fallbackReader(p.url, fc); if (viaFc && viaFc.text.length > (got?.text.length || 0)) { got = viaFc; via = 'firecrawl'; audit.firecrawlRead = (audit.firecrawlRead || 0) + 1; } }
       return got ? { ...got, via } : null;
     };
     await pool(list.filter((p) => p.text.length < 400), 6, async (p) => {
@@ -318,31 +336,47 @@ export async function runObjective(objective, brief, opts = {}) {
             if ((v2.dates?.milestones || []).length > (v.dates?.milestones || []).length || v2.drop !== v.drop) { audit.rereadImproved++; page.text = got.text; page.via = `${page.via || 'search'}+reread:${got.via}`; v = v2; }
           }
         }
-        let extractionMeta = null;
-        if (extractor && o.dated && !extractOff && audit.extracted + extractInFlight < maxExtract && audit.extractFailed < maxExtract && (v.keep || (v.drop === 'closed' && extractClosedUsed < maxExtractClosed))) {
-          if (!v.keep) extractClosedUsed++;
+        const need = extractor && o.dated ? extractNeed(v, page, env) : null;
+        if (extractor && o.dated && !need) audit.extractSkipped.not_decisive = (audit.extractSkipped.not_decisive || 0) + 1;
+        // La segunda lectura se decide DESPUÉS de leer toda la ronda: así se reparte el tope por prioridad y no por quién terminó antes.
+        if (need) { pendingExtract.push({ page, json, model, v, traceBase, need }); return; }
+        finalize({ page, json, model, v, traceBase }, null);
+      } catch (error) { audit.unread++; keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
+    });
+    // Segunda lectura (Firecrawl JSON) solo de lo que puede cambiar la decisión, por prioridad: lo que entraría a la lista
+    // principal, luego conflictos de fecha, luego fechas sin resolver, luego dudas de «cerrada»; dentro, readPriority.
+    const batch = pendingExtract.splice(0).sort((a, b) => EXTRACT_RANK[a.need] - EXTRACT_RANK[b.need] || readPriority(b.page, today) - readPriority(a.page, today) || a.page.order - b.page.order);
+    await pool(batch, Math.max(1, Math.min(concurrency, 3)), async (rec) => {
+      let extractionMeta = null;
+      try {
+        const closedDoubt = rec.need === 'closed_doubt';
+        if (extractOff) { if (audit.extractBudgetStopped) { extractionMeta = { ok: false, skipped: 'credit_cap', error: 'Firecrawl credit cap reached: second reading skipped (0 credits)' }; audit.extractSkipped.credit_cap = (audit.extractSkipped.credit_cap || 0) + 1; } }
+        else if (audit.extracted + extractInFlight < maxExtract && audit.extractFailed < maxExtract && (!closedDoubt || extractClosedUsed < maxExtractClosed)) {
+          if (closedDoubt) extractClosedUsed++;
           extractInFlight++;   // reserva el turno antes de esperar: con lecturas en paralelo el tope se respeta
-          const ex = await extractor(page.url, { env, fetcher, signal }).catch((error) => ({ error: String(error?.message || error) })).finally(() => { extractInFlight--; });
-          if (ex?.fatal) { extractOff = true; audit.extractFailed++; audit.errors.push(`Extractor: ${ex.error}`); extractionMeta = { ok: false, error: String(ex.error).slice(0, 200) }; }
+          const ex = await extractor(rec.page.url, fc).catch((error) => ({ error: String(error?.message || error) })).finally(() => { extractInFlight--; });
+          if (ex?.possiblyCharged) audit.extractPossiblyCharged = (audit.extractPossiblyCharged || 0) + ex.possiblyCharged;
+          if (ex?.budget) {
+            // Tope de créditos: se apaga la segunda lectura para el resto de la corrida; la corrida sigue con la lectura normal.
+            extractOff = true; audit.extractBudgetStopped = true; audit.errors.push(`Extractor: ${ex.error}`.slice(0, 240));
+            audit.extractSkipped.credit_cap = (audit.extractSkipped.credit_cap || 0) + 1;
+            extractionMeta = { ok: false, skipped: 'credit_cap', error: String(ex.error).slice(0, 200) };
+          } else if (ex?.fatal) { extractOff = true; audit.extractFailed++; audit.errors.push(`Extractor: ${ex.error}`); extractionMeta = { ok: false, error: String(ex.error).slice(0, 200) }; }
           else if (ex?.json) {
             audit.extracted++;
-            audit.extractCredits += ex.credits || 0;
-            const extraction = extractedFacts(ex, page.text, { today });
-            const v3 = verifyFinding(json, page, objective, { today, brief, profile, extraction });
+            if (ex.cached) audit.extractCacheHits++; else audit.extractCredits += ex.credits || 0;
+            // Lo cacheado se vuelve a verificar con el código contra la fecha de hoy, igual que una respuesta nueva.
+            const extraction = extractedFacts(ex, rec.page.text, { today });
+            const v3 = verifyFinding(rec.json, rec.page, objective, { today, brief, profile, extraction });
+            const v = rec.v;
             if (v3.tier !== v.tier || v3.status !== v.status || v3.deadline !== v.deadline || v3.drop !== v.drop) audit.extractChanged++;
             if (v3.flags.includes('extractor_conflict')) audit.extractConflicts++;
-            extractionMeta = compactExtraction(extraction, { credits: ex.credits || 0, ms: ex.ms || 0 });
-            v = v3;
-          } else { audit.extractFailed++; const why = String(ex?.error || 'no JSON in the response').slice(0, 160); audit.errors.push(`Extractor: ${why} (${page.url})`.slice(0, 240)); extractionMeta = { ok: false, error: why }; }
-        }
-        for (const p of page.providers) stat(p).pagesRead++;
-        const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
-        if (v.keep) {
-          const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
-          findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++;
-          for (const p of page.providers) { stat(p).kept++; if (page.providers.length === 1) stat(p).keptOnlyHere++; }
-        } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
-      } catch (error) { audit.unread++; keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
+            extractionMeta = compactExtraction(extraction, { credits: ex.cached ? 0 : ex.credits || 0, ms: ex.ms || 0, ...(ex.cached ? { cached: true } : {}), need: rec.need });
+            rec.v = v3;
+          } else { audit.extractFailed++; const why = String(ex?.error || 'no JSON in the response').slice(0, 160); audit.errors.push(`Extractor: ${why} (${rec.page.url})`.slice(0, 240)); extractionMeta = { ok: false, error: why }; }
+        } else audit.extractSkipped.over_cap = (audit.extractSkipped.over_cap || 0) + 1;
+      } catch (error) { extractionMeta = { ok: false, error: String(error?.message || error).slice(0, 160) }; }
+      finalize(rec, extractionMeta);
     });
     todo = round < rounds && canRead ? fixAll(await followUpQueries(objective, brief, { findings, dropped: audit.dropped, asked }, { chat, env, fetcher, signal, today }), objective, today, env) : [];
   }
@@ -356,10 +390,29 @@ export async function runObjective(objective, brief, opts = {}) {
     }
   }
   audit.queries = queries.length;
+  audit.scrapeCacheHits = fcMeter.cacheHits.scrape;
+  const usesFirecrawl = Boolean(fcLedger || extractor === firecrawlExtract || (fallbackReader === firecrawlRead && firecrawlConfigured(env)) || audit.search === 'firecrawl');
+  audit.firecrawl = { credits: fcMeter.credits, extractCredits: audit.extractCredits, possiblyCharged: fcMeter.possiblyCharged, calls: { ...fcMeter.calls }, cacheHits: { ...fcMeter.cacheHits, extract: Math.max(fcMeter.cacheHits.extract, audit.extractCacheHits) }, capSkipped: { ...fcMeter.capSkipped }, capReached: fcMeter.capReached || Boolean(audit.extractBudgetStopped), daily: usesFirecrawl ? (fcLedger || defaultLedger(env)).usage() : null };
   for (const f of findings) audit.verdicts[f.verdict] = (audit.verdicts[f.verdict] || 0) + 1;
   const rank = { apply: 0, watch: 1, skip: 2 };
   findings.sort((a, b) => rank[a.verdict] - rank[b.verdict] || (a.daysLeft ?? 1e9) - (b.daysLeft ?? 1e9));
   return { findings, audit, queries };
+}
+
+/* Segunda lectura: ¿puede cambiar la decisión? Solo entonces se paga (≈5 créditos). */
+const EXTRACT_RANK = { main: 0, conflict: 1, keep: 1, unresolved: 2, closed_doubt: 3 };
+const DATE_CONFLICT = ['deadline_conflict', 'closed_marker_conflict', 'ambiguous_deadline', 'deadline_year_inferred', 'model_date_not_in_page', 'deadline_not_in_quote'];
+export function extractNeed(v, page, env = {}) {
+  if (env.ENGINE_EXTRACT_POLICY === 'all') return v.keep ? 'keep' : v.drop === 'closed' ? 'closed_doubt' : null;   // regla anterior (para medir)
+  if (NEWSHOST.test(hostOf(page?.url))) return null;                                   // host de prensa
+  // Descartada: solo la duda de «cerrada» cuando no hay OTRA causa (agregador, no elegible, no es convocatoria, no oficial…).
+  if (!v.keep) return v.drop === 'closed' && (v.reasons || []).every((r) => r === 'closed') ? 'closed_doubt' : null;
+  const pt = v.pageType || {};
+  if (pt.soft || ['news', 'blog', 'report'].includes(pt.type)) return null;                // convocatoria contada en una noticia/blog
+  if (v.tier === 'main') return 'main';                                                    // pasaría a la lista principal: se confirma
+  if ((v.flags || []).some((f) => DATE_CONFLICT.includes(f))) return 'conflict';
+  if (!v.deadline && v.status !== 'open') return 'unresolved';                             // el lector por patrones no resolvió la fecha
+  return null;
 }
 
 /**

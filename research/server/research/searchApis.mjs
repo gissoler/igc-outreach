@@ -118,16 +118,17 @@ export async function serperSearch(query, { env = process.env, fetcher, signal, 
 
 /** Firecrawl como buscador: trae markdown de cada resultado (1 crédito por página). Con errores claros y reintentos. */
 export async function firecrawlSearchApi(query, { env = process.env, fetcher, signal, limit, recency = '' } = {}) {
-  const rows = await firecrawlSearch(str(query), { limit: Math.min(10, n(env, limit)), markdown: env.FIRECRAWL_SEARCH_MARKDOWN !== '0', tbs: SERPER_TBS[recency] || '', env, fetcher, signal });
+  // Búsqueda principal: sin caché y sin bloqueo por el tope diario (sí cuenta en el gasto del día).
+  const rows = await firecrawlSearch(str(query), { cache: false, essential: true, limit: Math.min(10, n(env, limit)), markdown: env.FIRECRAWL_SEARCH_MARKDOWN !== '0', tbs: SERPER_TBS[recency] || '', env, fetcher, signal });
   return clean(rows.map((x, i) => row('firecrawl', i + 1, { url: x.url, title: x.title, description: x.description, content: x.markdown, published: x.date })), n(env, limit));
 }
 
 export const PROVIDER_FN = { linkup: linkupSearch, exa: exaSearchApi, you: youSearch, tavily: tavilySearch, jina: jinaSearch, serper: serperSearch, firecrawl: firecrawlSearchApi };
 
 /** Lector de respaldo con Firecrawl /scrape (páginas con JavaScript). Devuelve {url,title,text} o null. */
-export async function firecrawlRead(url, { env = process.env, fetcher = fetch, signal } = {}) {
+export async function firecrawlRead(url, { env = process.env, fetcher = fetch, signal, ledger, meter } = {}) {
   if (!key(env, 'firecrawl') || !isPublicUrl(url)) return null;
-  const got = await firecrawlScrape(url, { env, fetcher, signal });
+  const got = await firecrawlScrape(url, { env, fetcher, signal, ledger, meter });   // caché + tope diario (firecrawlLedger.mjs)
   return got ? { url: got.url, title: got.title, text: got.markdown.slice(0, 120_000) } : null;
 }
 

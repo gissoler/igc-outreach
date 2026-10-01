@@ -14,7 +14,7 @@ import { todayIso } from './dates.mjs';
 import { plain, literalIn } from './verify.mjs';
 
 const PLATFORM = /(^|\.)(angellist\.com|wellfound\.com|republic\.co|seedinvest\.com|wefunder\.com|crowdcube\.com|seedrs\.com|gust\.com|f6s\.com|dealroom\.co|tracxn\.com|cbinsights\.com|openvc\.app|signal\.nfx\.com|vcsheet\.com|visible\.vc)$/i;
-const NEWSHOST = /(^|\.)(prnewswire\.com|businesswire\.com|globenewswire\.com|prweb\.com|accesswire\.com|techcrunch\.com|venturebeat\.com|fiercehealthcare\.com|mobihealthnews\.com|finsmes\.com|eu-startups\.com|tech\.eu|axios\.com|forbes\.com|startuprise\.io|healthcaredive\.com|beckershospitalreview\.com)$/i;
+export const NEWSHOST = /(^|\.)(prnewswire\.com|businesswire\.com|globenewswire\.com|prweb\.com|accesswire\.com|techcrunch\.com|venturebeat\.com|fiercehealthcare\.com|mobihealthnews\.com|finsmes\.com|eu-startups\.com|tech\.eu|axios\.com|forbes\.com|startuprise\.io|healthcaredive\.com|beckershospitalreview\.com)$/i;
 const DOC_PATH = /\/wp-content\/uploads\/|\.pdf(?:$|\?)|\/reports?\/|\/whitepapers?\//i;
 
 const flat = plain;   // misma forma que usa literalIn: toda cita sale de aquí y es literal en la página
