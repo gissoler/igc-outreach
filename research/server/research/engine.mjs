@@ -225,7 +225,7 @@ export async function runObjective(objective, brief, opts = {}) {
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
   // Expansión: tras la primera ronda, lo verificado sirve de mapa (enlaces, parecidos, rutas del sitio, ángulos laterales). Apagada con `search` inyectado salvo opts.expand.
   const expandOn = opts.expand !== undefined ? Boolean(opts.expand) : (!opts.search && !Array.isArray(opts.queries) && env.ENGINE_EXPAND !== 'off' && canRead);
-  const seedPool = []; const pendingExpansion = []; let expandDone = false; let lateralQ = [];
+  const seedPool = []; const pendingExpansion = [...(Array.isArray(opts.seedPages) ? opts.seedPages : [])]; let expandDone = false; let lateralQ = [];
   if (expandOn) audit.expand = { on: true, seeds: 0, pages: 0, snowball: 0, siteDive: 0, similar: 0, lateral: null, errors: [] };
   const range = o.dated ? (env.ENGINE_TBS ?? 'qdr:y') : '';
   // Recencia en origen: por defecto último año en los objetivos con fecha (ENGINE_RECENCY=off para quitarla).
@@ -259,7 +259,7 @@ export async function runObjective(objective, brief, opts = {}) {
     : (q) => firecrawlSearch(q, { limit: 6, markdown: true, tbs: range, ...fc, cache: false, essential: true }));
   // El orquestador puede pasar sus propias consultas (estrategia nueva): se usan tal cual (con el año corregido), sin planear.
   const injected = Array.isArray(opts.queries) ? opts.queries.map((q) => (typeof q === 'string' ? { query: q, family: 'orchestrator' } : q)).filter((q) => q?.query) : null;
-  const plan = injected?.length ? { queries: fixAll(injected, objective, today, env), planned: true } : await planQueries(objective, brief, { chat, env, fetcher, signal, today, n: maxQueries });
+  const plan = opts.seedOnly ? { queries: [], planned: false } : injected?.length ? { queries: fixAll(injected, objective, today, env), planned: true } : await planQueries(objective, brief, { chat, env, fetcher, signal, today, n: maxQueries });
   audit.planned = plan.planned;
   audit.interpretation = interpretBrief(objective, brief, { today, recency, providers: apis ? searchProviders(env) : [audit.search], planned: plan.planned && !injected?.length });
   const asked = []; const queries = []; const seenPages = new Set(); const findings = [];
@@ -277,6 +277,7 @@ export async function runObjective(objective, brief, opts = {}) {
     const round = traceBase.round;
     for (const p of page.providers) stat(p).pagesRead++;
     const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
+    opts.onVerdict?.({ url: page.url, v, trace, json, model });
     if (v.keep) {
       const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
       seedPool.push({ url: page.url, text: page.text, name: v.name, verdict: v.verdict });
@@ -315,8 +316,8 @@ export async function runObjective(objective, brief, opts = {}) {
     // Páginas de la expansión (enlaces de lo verificado, parecidos, rutas del sitio): entran al mismo flujo de lectura y verificación.
     for (const e of pendingExpansion.splice(0)) {
       if (seenPages.has(e.url) || pages.has(e.url)) continue;
-      const family = `expand:${e.providers[0]}`; const query = `[from ${String(e.seed || '').replace(/^https?:\/\//, '').slice(0, 60)}]`;
-      pages.set(e.url, { url: e.url, title: e.title || '', text: e.markdown || '', snippet: e.description || '', query, family, queries: [{ query, family }], providers: [...e.providers], order: 1000 + pages.size, via: e.markdown ? 'search' : null, published: null });
+      const family = e.family || `expand:${e.providers[0]}`; const query = e.family ? `[${e.family}] ${String(e.title || '').slice(0, 80)}` : `[from ${String(e.seed || '').replace(/^https?:\/\//, '').slice(0, 60)}]`;
+      pages.set(e.url, { url: e.url, title: e.title || '', text: e.markdown || '', snippet: e.description || '', query, family, queries: [{ query, family }], providers: [...e.providers], order: (e.family ? 0 : 1000) + pages.size, via: e.markdown ? (e.fixed ? 'registry' : 'search') : null, fixed: Boolean(e.fixed), published: null });
     }
     // Consenso primero: una página que traen varios buscadores sube; luego la posición en su búsqueda.
     const fetchFull = async (p) => {
@@ -359,7 +360,7 @@ export async function runObjective(objective, brief, opts = {}) {
     for (const p of list.slice(maxPages)) settle(p, 'over_page_budget');
     for (const p of list.slice(maxPages)) keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'over_page_budget', reasons: ['over_page_budget'], today: dayOf(today), note: `Not read: over the page budget (ENGINE_MAX_PAGES=${maxPages})` });
     list = list.slice(0, maxPages);
-    await pool(list.filter((p) => p.text.length < 400), 6, async (p) => {
+    await pool(list.filter((p) => p.text.length < 400 && !p.fixed), 6, async (p) => {
       const got = await fetchFull(p);
       if (got && got.text.length > p.text.length) { p.text = got.text; p.title = p.title || got.title; p.via = got.via; } else if (!p.text) { p.text = p.snippet; p.via = 'snippet'; }
     });

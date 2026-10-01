@@ -497,6 +497,8 @@ export function grantLead(hit, detail, foundBy = []) {
   const url = `https://www.grants.gov/search-results-detail/${hit.id}`;
   const syn = detail?.synopsis || {};
   const title = plain(hit.title);
+  // Enlace «información adicional» del aviso: suele ser la página de la agencia (grants.gov/search-results-detail se arma con JavaScript y no se puede leer).
+  const officialUrl = (() => { const u = safeUrl(String(syn.fundingDescLinkUrl || '').trim()); return u && !/(^|\.)grants\.gov$/i.test(new URL(u).hostname) ? u : null; })();
   const ev = [
     evidence('Grants.gov', url, title, 'opportunity'),
     evidence(
@@ -599,7 +601,7 @@ export function grantLead(hit, detail, foundBy = []) {
     ],
     missing: detail ? [] : ['Call details not retrieved'],
     searchText: `${title} ${plain(syn.synopsisDesc).slice(0, 5000)}`,
-    facts: { ...(aln ? { aln } : {}), ...(syn.agencyName || hit.agency ? { agency: syn.agencyName || hit.agency } : {}) },
+    facts: { ...(aln ? { aln } : {}), ...(officialUrl ? { officialUrl } : {}), ...(syn.agencyName || hit.agency ? { agency: syn.agencyName || hit.agency } : {}) },
     foundBy,
   });
 }

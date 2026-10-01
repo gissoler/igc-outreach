@@ -22,6 +22,7 @@ import { attachGrantPlans, finalizeSearchAudit } from './grantManager.mjs';
 import { createRecorder } from './liveRun.mjs';
 import { buildRunAudit } from './runAudit.mjs';
 import { webSourcePlan } from './sourcePlan.mjs';
+import { verifyRegistryLeads } from './registryVerify.mjs';
 import { applyJevDecisions, askJev, jevProvider } from './jev.mjs';
 import {
   makeClient,
@@ -240,6 +241,17 @@ export async function runResearch(
           live({ phase: 'warning', provider: enabled[i][0], status: 'warning', title: 'Source returned nothing', message: `${enabled[i][0]}: ${result.reason?.message || 'service unavailable'}. Other sources continue.` });
         }
       });
+      // Convocatorias de registros (Grants.gov, radar): punteros. Se leen con el mismo motor antes de decidir nada (ver registryVerify.mjs).
+      if (engineOn && !providers && b.fundingTypes.includes('grant')) {
+        try {
+          const reg = await verifyRegistryLeads(leads, b, { env, fetcher, signal, engineRuns });
+          leads = reg.leads; job.registryCheck = reg.stats;
+          if (reg.stats.checked) live({ phase: 'reading', provider: 'Registry check', status: 'success', title: 'Registry calls read', message: `${reg.stats.checked} registry calls read like any web page: ${reg.stats.kept} kept, ${reg.stats.dropped} dropped${reg.stats.unread ? `, ${reg.stats.unread} unread` : ''}.` });
+        } catch (error) {
+          if (signal.aborted) throw error;
+          emit('warning', `Registry check: ${error.message}. Registry results kept as they were.`);
+        }
+      }
       if (web.agentic && env.AGENTIC_FOLLOWUP === '1') {
         const name = 'Follow-up: funder → people';
         if (!webConfigured(env)) {
