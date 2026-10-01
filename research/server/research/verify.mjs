@@ -20,8 +20,10 @@ import { applicantProfile, checkApplicant } from './applicant.mjs';
 export const datesIn = parseAllDates;
 
 /** ¿La cita aparece tal cual en la página? (sin distinguir mayúsculas, espacios ni markdown) */
+/** Texto sin markdown (imágenes, destinos de enlaces y signos): la forma en que se compara una cita con la página. */
+export const plain = (v) => String(v || '').replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/\]\([^)]*\)/g, ' ').replace(/[*_`#>|\[\]()]/g, ' ').replace(/\s+/g, ' ').trim();
 export function literalIn(quote, pageText) {
-  const strip = (v) => norm(String(v || '').replace(/[*_`#>|\[\]()]/g, ' ')).replace(/\s+/g, ' ').trim();
+  const strip = (v) => norm(plain(v));
   const q = strip(quote);
   return q.length >= 8 && strip(pageText).includes(q);
 }
