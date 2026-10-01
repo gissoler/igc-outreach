@@ -28,6 +28,6 @@ export function briefFromProfile(profile: ProjectConfig & { onboardingComplete?:
     industry:(profile.project.sectors.join(' ')||profile.project.one_liner).slice(0,200),stage:intake?.maturity||'prototype',round:profile.project.stage||'',
     geography:(profile.project.geo.join(', ')||'Global').slice(0,200),fundingTypes:fundingTypes.length?fundingTypes:['investment'],amount:profile.project.raise_usd||'',
     criteria:list(intake?.criteria).slice(0,1000),constraints:list(intake?.constraints).slice(0,1000),useOfFunds:(intake?.use_of_funds||'').slice(0,500),
-    timeline:(intake?.timeline||'').slice(0,100),website:(intake?.website||'').slice(0,300),exclusions:namedCompetitors.join(', ').slice(0,1000),
+    entityType:intake?.entity_type||'',timeline:(intake?.timeline||'').slice(0,100),website:(intake?.website||'').slice(0,300),exclusions:namedCompetitors.join(', ').slice(0,1000),
     event:'',minDays:30,mode:'strategic',dataMode:'live',useTeam:/\bigc\b/i.test(organization),useApify:true,excludeCompetitors:Boolean(namedCompetitors.length),strictTypes:false,linkedinUrl:profile.founder.linkedin_url||''};
 }

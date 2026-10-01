@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto';
 import { norm } from './core.mjs';
 
 export const OBJECTIVES = ['investment', 'grant', 'partnering', 'sponsorship', 'debt'];
+export const ENTITY_TYPES = ['for_profit', 'nonprofit', 'academic'];
 export const RELATIONS = ['same', 'subsidiary', 'spinout', 'sponsored', 'portfolio', 'client', 'other'];
 export const MATURITY = ['idea', 'prototype', 'preclinical', 'clinical_phase_1', 'clinical_phase_2', 'clinical_phase_3', 'marketed', 'other'];
 export const ROUNDS = ['pre-seed', 'seed', 'series-a', 'series-b', 'growth'];
@@ -30,6 +31,7 @@ export const FIELDS = [
   { path: 'competitors', label: 'Competitors', kind: 'list', ask: 'Which named companies or products are direct competitors? We use them to avoid conflicts.' },
   { path: 'constraints', label: 'Constraints', kind: 'list', ask: 'Anything to avoid: investor types, countries, conflicts or terms?' },
   { path: 'organization.name', label: 'Organization you represent', kind: 'text', ask: 'Are you raising for that company directly or from another organization? e.g. IGC seeking sponsorship for Mentiva.' },
+  { path: 'company.entity_type', label: 'Type of organization', kind: 'enum', options: ENTITY_TYPES, grant: true, ask: 'Who would receive the grant: a for-profit company, a nonprofit, or a university or research institute? Many calls only accept one of these.' },
   { path: 'company.relation', label: 'Relationship to the company', kind: 'enum', options: RELATIONS },
   { path: 'criteria', label: 'Criteria', kind: 'list' },
   { path: 'founder.title', label: 'Your role', kind: 'text' },
@@ -225,6 +227,7 @@ function sanitize(path, value) {
   const f = FIELD[path];
   if (!f || value === undefined || value === null) return null;
   if (f.kind === 'number') { const v = typeof value === 'number' ? Math.round(value) : looseAmount(value); return v && v > 0 && v < 1e12 ? v : null; }
+  if (path === 'company.entity_type') { const t = norm(value); return /non.?profit|not.for.profit|charit|foundation|\bngo\b|\bong\b|sin (?:animo|fines)/.test(t) ? 'nonprofit' : /universit|academic|college|research (?:institut|lab|cent)/.test(t) ? 'academic' : /for.?profit|compan|start.?up|corporat|\bllc\b|\binc\b|\bltd\b|\bsas\b|\bs\.?l\b/.test(t) ? 'for_profit' : null; }
   if (f.kind === 'enum') { const v = norm(value).replace(/ /g, f.path === 'funding.round' ? '-' : '_'); return f.options.includes(v) ? v : null; }
   if (f.kind === 'enumList') { const v = (Array.isArray(value) ? value : [value]).map((x) => norm(x)).filter((x) => f.options.includes(x)); return v.length ? [...new Set(v)] : null; }
   if (f.kind === 'list') { const v = uniq((Array.isArray(value) ? value : listSplit(value)).map((x) => clip(x, path === 'constraints' || path === 'criteria' ? 200 : 80)).filter(Boolean)).slice(0, 12); return v.length ? v : null; }
@@ -273,7 +276,7 @@ export function editField(s, path, value) {
    review all use this same list, so 100% means "the search has what it needs". */
 export const GOAL_FIELDS = {
   investment: ['funding.round', 'funding.amount_usd', 'company.traction'],
-  grant: ['funding.amount_usd', 'funding.use_of_funds'],
+  grant: ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type'],
   partnering: ['company.traction', 'product.differentiation'],
   sponsorship: ['funding.amount_usd', 'funding.use_of_funds'],
   debt: ['funding.amount_usd', 'company.traction'],
@@ -292,6 +295,7 @@ export function openQuestions(s) {
   const objectives = fieldValue(s, 'funding.objectives') || [];
   return ASK.filter((f) => {
     if (f.path === 'funding.round' && objectives.length && !objectives.includes('investment')) return false;
+    if (f.grant && !objectives.includes('grant')) return false;
     const times = s.asked.filter((p) => p === f.path).length;
     return !filled(s, f.path) && !s.skipped.includes(f.path) && times < (inPlan(s, f.path) ? 2 : 1);
   });
@@ -570,7 +574,7 @@ export function toProfile(s, base, user, env = {}) {
     intake: {
       objectives, maturity: v('product.maturity') || 'other', competitors, criteria: v('criteria') || [], constraints: v('constraints') || [],
       use_of_funds: v('funding.use_of_funds') || '', traction: v('company.traction') || '', team: v('company.team') || '', business_model: v('product.business_model') || '', differentiation: v('product.differentiation') || '', timeline: v('funding.timeline') || '', website: v('company.website') || '',
-      organization: v('organization.name') || '', relation: v('company.relation') || '',
+      organization: v('organization.name') || '', relation: v('company.relation') || '', entity_type: v('company.entity_type') || '',
       documents: s.documents.map((d) => ({ name: d.name, chars: d.chars, at: d.at })), evidence,
       plan: planResearch(s, env), confirmedAt: new Date().toISOString(),
     },

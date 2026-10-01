@@ -66,7 +66,7 @@ export type DeclaredContact = { name: string; org: string; linkedin_url: string;
 export type Affiliation = { name: string; kind: 'universidad' | 'empresa' | 'aceleradora' | 'comunidad' | 'grupo'; members: string[] };
 export type IntakeSummary = {
   objectives: string[]; maturity: string; competitors: string[]; criteria: string[]; constraints: string[];
-  use_of_funds: string; timeline: string; website: string; organization?: string; relation?: string;
+  use_of_funds: string; timeline: string; website: string; organization?: string; relation?: string; entity_type?: string;
   documents: { name: string; chars: number; at: string }[];
   evidence: Record<string, { origin: string; confidence: string; quote: string }>;
   plan?: { objectives: string[]; steps: { goal: string; source: string; why: string; status: string; cost: string }[]; skipped: { source: string; reason: string }[]; rules: string[] };

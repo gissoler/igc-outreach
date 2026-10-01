@@ -31,6 +31,8 @@ export type Brief = {
   round?: string;
   constraints?: string;
   useOfFunds?: string;
+  entityType?: string;
+  country?: string;
   timeline?: string;
   website?: string;
 };

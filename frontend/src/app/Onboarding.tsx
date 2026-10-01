@@ -22,12 +22,14 @@ type FieldDef = { path: string; label: string; kind: Kind; required?: boolean; p
 const OBJECTIVES: [string, string][] = [['investment', 'Investment (VC, angels)'], ['partnering', 'Partnering / licensing'], ['grant', 'Non-dilutive grants'], ['sponsorship', 'Sponsorship'], ['debt', 'Debt']];
 const MATURITY: [string, string][] = [['idea', 'Idea'], ['prototype', 'Prototype or pilot'], ['preclinical', 'Preclinical'], ['clinical_phase_1', 'Clinical phase 1'], ['clinical_phase_2', 'Clinical phase 2'], ['clinical_phase_3', 'Clinical phase 3'], ['marketed', 'On the market'], ['other', 'Other']];
 const RELATIONS: [string, string][] = [['same', 'It\'s my own company'], ['subsidiary', 'Subsidiary'], ['spinout', 'Spin-off'], ['sponsored', 'Project we sponsor'], ['portfolio', 'Portfolio company'], ['client', 'Client'], ['other', 'Other']];
+const ENTITY_TYPES: [string, string][] = [['for_profit', 'For-profit company'], ['nonprofit', 'Nonprofit'], ['academic', 'University or research institute']];
 const ROUNDS: [string, string][] = [['pre-seed', 'Pre-seed'], ['seed', 'Seed'], ['series-a', 'Series A'], ['series-b', 'Series B'], ['growth', 'Growth']];
 
 const F: Record<string, FieldDef> = {
   'company.name': { path: 'company.name', label: 'Company or project to fund', kind: 'text', required: true, placeholder: 'e.g. Mentiva', help: 'Excluded from results; heads every message.', max: 220 },
   'organization.name': { path: 'organization.name', label: 'Organization you represent', kind: 'text', placeholder: 'Only if different, e.g. IGC Pharma', help: 'Its team and relationships feed the warm paths.', max: 220 },
   'company.relation': { path: 'company.relation', label: 'Relationship', kind: 'select', options: RELATIONS, help: 'How the company is introduced in drafts.' },
+  'company.entity_type': { path: 'company.entity_type', label: 'Type of organization', kind: 'select', options: ENTITY_TYPES, help: 'Grant calls often accept only one type. If empty, we assume for-profit and mark it unconfirmed.' },
   'founder.title': { path: 'founder.title', label: 'Your role', kind: 'text', placeholder: 'CEO, founder, CSO…', max: 220 },
   'company.website': { path: 'company.website', label: 'Website', kind: 'url', placeholder: 'https://…', help: 'Public source to verify facts.' },
   'product.name': { path: 'product.name', label: 'Product or project', kind: 'text', required: true, placeholder: 'e.g. IGC-AD1 or AHA', max: 220 },
@@ -52,7 +54,7 @@ const F: Record<string, FieldDef> = {
 type SectionDef = { id: SectionId; label: string; icon: ReactNode; why: string; impact: string; fields: string[]; advanced?: string[] };
 export const SECTIONS: SectionDef[] = [
   { id: 'asistente', label: 'AI assistant', icon: <Sparkles size={16} />, why: 'Tell it in your own words — faster than a form.', impact: '', fields: [] },
-  { id: 'empresa', label: 'Company', icon: <Building2 size={16} />, why: 'Who\'s looking, and for whom.', impact: '', fields: ['company.name', 'organization.name', 'company.relation', 'founder.title', 'company.website'] },
+  { id: 'empresa', label: 'Company', icon: <Building2 size={16} />, why: 'Who\'s looking, and for whom.', impact: '', fields: ['company.name', 'organization.name', 'company.relation', 'company.entity_type', 'founder.title', 'company.website'] },
   { id: 'producto', label: 'Product', icon: <FlaskConical size={16} />, why: 'The terms the engine looks for in evidence.', impact: '', fields: ['product.name', 'product.one_liner', 'product.description', 'product.maturity', 'industry.sectors'], advanced: ['company.traction', 'product.differentiation', 'product.business_model', 'company.team'] },
   { id: 'objetivo', label: 'Goal', icon: <Target size={16} />, why: 'Decides which sources run and how funding type is scored.', impact: '', fields: ['funding.objectives', 'funding.round', 'funding.amount_usd', 'geography', 'funding.timeline', 'funding.use_of_funds'], advanced: ['competitors', 'criteria', 'constraints'] },
   { id: 'evidencia', label: 'Documents', icon: <FileText size={16} />, why: 'Your documents fill the profile with quotes.', impact: '', fields: [] },
