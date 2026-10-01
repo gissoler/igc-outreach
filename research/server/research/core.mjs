@@ -97,7 +97,7 @@ export function validateBrief(input) {
   brief.strictTypes = input.strictTypes === true;
   // Contexto opcional del perfil confirmado: quién busca (organization), para qué empresa
   // (venture) y todo lo que el prerregistro capturó (criterios, restricciones, ronda...).
-  for (const [key, max] of [['organization', 200], ['venture', 200], ['oneLiner', 300], ['round', 40], ['constraints', 1000], ['useOfFunds', 500], ['timeline', 100], ['website', 300], ['entityType', 40], ['country', 60]]) {
+  for (const [key, max] of [['organization', 200], ['venture', 200], ['oneLiner', 300], ['round', 40], ['constraints', 1000], ['useOfFunds', 500], ['timeline', 100], ['website', 300], ['entityType', 40], ['country', 60], ['state', 80], ['city', 80]]) {
     if (input[key] != null && (typeof input[key] !== 'string' || input[key].length > max))
       throw new Error(`Field ${key} is invalid.`);
     brief[key] = input[key]?.trim() || '';

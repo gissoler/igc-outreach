@@ -32,6 +32,9 @@ export const FIELDS = [
   { path: 'constraints', label: 'Constraints', kind: 'list', ask: 'Anything to avoid: investor types, countries, conflicts or terms?' },
   { path: 'organization.name', label: 'Organization you represent', kind: 'text', ask: 'Are you raising for that company directly or from another organization? e.g. IGC seeking sponsorship for Mentiva.' },
   { path: 'company.entity_type', label: 'Type of organization', kind: 'enum', options: ENTITY_TYPES, grant: true, ask: 'Who would receive the grant: a for-profit company, a nonprofit, or a university or research institute? Many calls only accept one of these.' },
+  { path: 'company.country', label: 'Country of the applicant', kind: 'text', grant: true, ask: 'In which country is the applicant based? Many calls only fund local applicants.' },
+  { path: 'company.state', label: 'State or region of the applicant', kind: 'text', grant: true, ask: 'In which state or region (and city) is the applicant based? State and regional programs fund only local applicants.' },
+  { path: 'company.city', label: 'City of the applicant', kind: 'text' },
   { path: 'company.relation', label: 'Relationship to the company', kind: 'enum', options: RELATIONS },
   { path: 'criteria', label: 'Criteria', kind: 'list' },
   { path: 'founder.title', label: 'Your role', kind: 'text' },
@@ -276,7 +279,7 @@ export function editField(s, path, value) {
    review all use this same list, so 100% means "the search has what it needs". */
 export const GOAL_FIELDS = {
   investment: ['funding.round', 'funding.amount_usd', 'company.traction'],
-  grant: ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type'],
+  grant: ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state'],
   partnering: ['company.traction', 'product.differentiation'],
   sponsorship: ['funding.amount_usd', 'funding.use_of_funds'],
   debt: ['funding.amount_usd', 'company.traction'],
@@ -574,7 +577,7 @@ export function toProfile(s, base, user, env = {}) {
     intake: {
       objectives, maturity: v('product.maturity') || 'other', competitors, criteria: v('criteria') || [], constraints: v('constraints') || [],
       use_of_funds: v('funding.use_of_funds') || '', traction: v('company.traction') || '', team: v('company.team') || '', business_model: v('product.business_model') || '', differentiation: v('product.differentiation') || '', timeline: v('funding.timeline') || '', website: v('company.website') || '',
-      organization: v('organization.name') || '', relation: v('company.relation') || '', entity_type: v('company.entity_type') || '',
+      organization: v('organization.name') || '', relation: v('company.relation') || '', entity_type: v('company.entity_type') || '', country: v('company.country') || '', state: v('company.state') || '', city: v('company.city') || '',
       documents: s.documents.map((d) => ({ name: d.name, chars: d.chars, at: d.at })), evidence,
       plan: planResearch(s, env), confirmedAt: new Date().toISOString(),
     },

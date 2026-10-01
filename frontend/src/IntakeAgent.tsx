@@ -12,6 +12,9 @@ const META: Record<string, { label: string; kind: Kind; placeholder?: string }> 
   'organization.name': { label: 'Organization you represent', kind: 'text', placeholder: 'Only if different, e.g. IGC Pharma' },
   'company.relation': { label: 'Relationship to the company', kind: 'relation' },
   'company.entity_type': { label: 'Type of organization (for grants)', kind: 'text' },
+  'company.country': { label: 'Applicant country', kind: 'text' },
+  'company.state': { label: 'Applicant state or region', kind: 'text' },
+  'company.city': { label: 'Applicant city', kind: 'text' },
   'company.name': { label: 'Company or project to fund', kind: 'text' },
   'founder.title': { label: 'Your role', kind: 'text', placeholder: 'CEO, founder, CSO…' },
   'company.website': { label: 'Website', kind: 'text' },
@@ -36,7 +39,7 @@ const META: Record<string, { label: string; kind: Kind; placeholder?: string }> 
 };
 const REQUIRED = ['company.name', 'product.name', 'funding.objectives', 'product.one_liner', 'industry.sectors', 'product.maturity', 'geography'];
 const GROUPS: [string, string[]][] = [
-  ['Who\'s looking, and for whom', ['organization.name', 'founder.title', 'company.name', 'company.relation', 'company.entity_type']],
+  ['Who\'s looking, and for whom', ['organization.name', 'founder.title', 'company.name', 'company.relation', 'company.entity_type', 'company.country', 'company.state', 'company.city']],
   ['Product', ['product.name', 'product.one_liner', 'product.description', 'company.website']],
   ['Funding', ['funding.objectives', 'funding.round', 'funding.amount_usd', 'funding.use_of_funds', 'funding.timeline']],
   ['Market and stage', ['industry.sectors', 'product.maturity', 'geography']],

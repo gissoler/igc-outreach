@@ -33,6 +33,8 @@ export type Brief = {
   useOfFunds?: string;
   entityType?: string;
   country?: string;
+  state?: string;
+  city?: string;
   timeline?: string;
   website?: string;
 };
@@ -106,6 +108,7 @@ export type RunAudit = {
   interpretations: BriefInterpretation[];
   counters: { queries: number; queriesYearFixed: number; pagesSeen: number; pagesRead: number; pagesUnread: number; rereadForDates: number; rereadImproved: number; extracted?: number; extractChanged?: number; extractConflicts?: number; extractCredits?: number; extractCacheHits?: number; scrapeCacheHits?: number; readVia?: { crawl4ai: number; jina: number; firecrawl: number }; research?: { steps: number; searches: number; opens: number; newPages: number }; firecrawl?: { credits: number; possiblyCharged: number; cacheHits: number; capReached: boolean; capSkipped: number; daily: { day: string; used: number; possiblyCharged: number; cap: number | null; capReached: boolean } | null }; keptByEngine: number; droppedByEngine: Record<string, number>; skippedBeforeReading: Record<string, number>; verdicts: Record<string, number>; buckets: { top: number; radar: number; discarded: number }; discardReasons: Record<string, number>; radarReasons: Record<string, number> };
   providers?: ProviderBench[];
+  grantSources?: { jurisdiction: string | null; portals: { name: string; url: string }[]; portalPages: { objective: string; seeds: number; pages: number; errors: string[] }[]; reporter: { projects: number; medianAward: number | null; orgTypes: { name: string; count: number }[]; institutes: { name: string; count: number }[]; notices: { id: string; projects: number; medianAward: number | null }[] } | null; nsf: { awards: number; medianAward: number | null; programs: { name: string; count: number }[] } | null; errors: string[] } | null;
   expansion?: { objective: string; seeds: number; pages: number; snowball: number; siteDive: number; similar: number; siteDiveVia: string; lateral: { openalex: number; edgar: number; ai: number }; errors: string[] }[];
   comparePrompts?: Record<string, string>;
   orchestrator?: { by: string | null; attempts: { attempt: number; stopped: string | null; strategy: string | null; gap: string | null; by: string | null; diagnosis: string | null; queries: string[]; added: number | null; topBefore: number | null; topAfter: number | null; error: string | null }[] } | null;

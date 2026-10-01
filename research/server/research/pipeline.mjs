@@ -23,6 +23,7 @@ import { createRecorder } from './liveRun.mjs';
 import { buildRunAudit } from './runAudit.mjs';
 import { webSourcePlan } from './sourcePlan.mjs';
 import { verifyRegistryLeads } from './registryVerify.mjs';
+import { grantIntel, portalSeeds, sbir } from './grantSources.mjs';
 import { applyJevDecisions, askJev, jevProvider } from './jev.mjs';
 import {
   makeClient,
@@ -125,6 +126,8 @@ export async function runResearch(
         engineOn = false;
         live({ phase: 'warning', provider: ENGINE_SOURCE, status: 'warning', title: 'AI model not reachable', message: 'The AI model did not respond; searching the web APIs directly (without AI planning or reading).' });
       }
+      let intelPromise = null;
+      const intelOnce = (c, e) => (intelPromise ||= grantIntel(c, b, job.plan, { emit: e, env }).then((x) => { job.intel = x; return x; }));
       const web = webSourcePlan({ fundingTypes: b.fundingTypes, engineOn, env, providers });
       const apiSearchOn = !providers && !engineOn && searchApisConfigured(env) && b.fundingTypes.includes('grant');
       const enabled = providers || [
@@ -136,12 +139,14 @@ export async function runResearch(
           : []),
         ...(b.fundingTypes.includes('grant')
           ? [
-              ['Grants.gov', (c, e) => grants(c, b, job.plan, e)],
-              ['NIH RePORTER', (c) => reporter(c, b, job.plan)],
+              // Inteligencia (RePORTER + NSF Awards) primero: sus avisos y programas alimentan las búsquedas de Grants.gov.
+              ['Grants.gov', async (c, e) => grants(c, b, job.plan, e, { intel: await intelOnce(c, e) })],
+              ['SBIR.gov', (c, e) => sbir(c, b, job.plan, { emit: e })],
             ]
           : []),
         ...(engineOn
-          ? [[ENGINE_SOURCE, async () => { const r = await runEngine(b, { env, fetcher, signal }); engineRuns.push(...r.audits); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped, skipped: a.skipped })) }); }]]
+          ? [[ENGINE_SOURCE, async () => { const portals = b.fundingTypes.includes('grant') ? portalSeeds(b) : []; if (portals.length) job.portals = portals.map((p) => ({ name: p.title, url: p.url }));
+          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals } }); engineRuns.push(...r.audits); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped, skipped: a.skipped })) }); }]]
           : []),
         // Grants por las APIs de búsqueda (Exa, Serper, Tavily, You, Jina, Linkup) sin depender del modelo:
         // una consulta por término («¿quién financia X?») + programas y fundaciones; las páginas se abren y confirman después.
@@ -493,7 +498,7 @@ export async function runResearch(
     job.leads = attachGrantPlans(job.leads, b).map((lead) => lead.grantPlan ? { ...lead, draft: buildDraft(lead, b, sender) } : lead);
     // Auditoría de la corrida (qué entendió el motor, qué buscó, qué leyó, qué descartó y por qué; fecha de hoy usada).
     try {
-      job.runAudit = buildRunAudit({ engineRuns, orchestrator: job.orchestrator, leads: job.leads, searchAudit: job.searchAudit || [], brief: b, today: new Date().toISOString().slice(0, 10) });
+      job.runAudit = buildRunAudit({ grantSources: b.fundingTypes.includes('grant') ? { intel: job.intel, portals: job.portals, jurisdiction: [b.city, b.state, b.country].filter(Boolean).join(', ') || null } : null, engineRuns, orchestrator: job.orchestrator, leads: job.leads, searchAudit: job.searchAudit || [], brief: b, today: new Date().toISOString().slice(0, 10) });
       const c = job.runAudit.counters; const why = Object.entries(c.discardReasons).sort((x, y) => y[1] - x[1]).slice(0, 4).map(([k, n]) => `${k} ${n}`).join(', ');
       live({ phase: 'evaluating', provider: 'Run audit', status: 'success', title: 'Run audit', message: `${c.queries || job.runAudit.queries.length} queries · ${c.pagesRead} pages read by the AI · ${c.buckets.top} main list · ${c.buckets.radar} to verify · ${c.buckets.discarded} discarded${why ? ` (${why})` : ''}. Today used: ${job.runAudit.today}.`, resultCount: c.buckets.top });
     } catch (error) { job.runAudit = { error: error.message }; }

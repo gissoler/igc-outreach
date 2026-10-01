@@ -1,6 +1,7 @@
 import { candidate, evidence, isIGC, norm, safeUrl, ventureOf } from './core.mjs';
 import { adjacent, fundingQuery } from './expand.mjs';
 import { diversifyGrantHits, grantQueries } from './grantManager.mjs';
+import { eligibilityFilter, grantsGovSearch, intelNote, intelQueries } from './grantSources.mjs';
 import { countRecords, noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 const TEAM = 'https://igcpharma.com/team/';
 const AUTHOR = 'https://openalex.org/A5060487287';
@@ -605,18 +606,29 @@ export function grantLead(hit, detail, foundBy = []) {
     foundBy,
   });
 }
-export async function grants(client, brief, plan, emit) {
+export async function grants(client, brief, plan, emit, { intel = null } = {}) {
   const provenance = new Map();
   const hits = [];
   const searchAudit = [];
-  for (const search of grantQueries(brief, plan)) {
+  const intelOf = new Map();
+  const eligible = eligibilityFilter(brief);
+  const base = grantQueries(brief, plan);
+  // Búsquedas: las del brief; las mismas con el filtro de tipo de solicitante (si hay); y las que salen de la inteligencia (avisos de proyectos parecidos, programas NSF).
+  const searches = [
+    ...base.map((s) => ({ ...s, body: { keyword: s.query } })),
+    ...(eligible ? base.slice(0, 3).map((s) => ({ ...s, dimension: 'applicant-type', label: `${s.label} · ${brief.entityType}`, body: { keyword: s.query, eligibilities: eligible } })) : []),
+    ...intelQueries(intel).map((s) => ({ ...s, body: s.body || { keyword: s.query } })),
+  ];
+  for (const search of searches) {
     try {
-      const more = await client.json('https://api.grants.gov/v1/api/search2', { keyword: search.query, oppStatuses: 'posted|forecasted', rows: 15 });
-      if (more.errorcode !== 0 || !Array.isArray(more.data?.oppHits)) throw new Error('invalid response');
-      const fresh = more.data.oppHits.filter((h) => !hits.some((x) => x.id === h.id));
-      for (const hit of more.data.oppHits) provenance.set(hit.id, [...(provenance.get(hit.id) || []), { provider: 'Grants.gov', term: search.label, objective: 'grant', query: search.query, dimension: search.dimension }]);
+      const { hits: found, filtered, fellBack } = await grantsGovSearch(client, search.body, { emit });
+      const fresh = found.filter((h) => !hits.some((x) => x.id === h.id));
+      for (const hit of found) {
+        provenance.set(hit.id, [...(provenance.get(hit.id) || []), { provider: 'Grants.gov', term: search.label, objective: 'grant', query: search.query, dimension: search.dimension }]);
+        if (search.intel && !intelOf.has(hit.id)) intelOf.set(hit.id, search.intel);
+      }
       hits.push(...fresh);
-      searchAudit.push({ provider: 'Grants.gov', query: search.query, dimension: search.dimension, returned: more.data.oppHits.length, discovered: fresh.length });
+      searchAudit.push({ provider: 'Grants.gov', query: search.query, dimension: search.dimension, returned: found.length, discovered: fresh.length, ...(filtered ? { filtered: true } : {}), ...(fellBack ? { filterRejected: true } : {}) });
       emit('searching', `Grants.gov · ${search.dimension} "${search.query}": ${fresh.length} new calls.`);
     } catch (e) {
       emit('warning', `Grants.gov · "${search.query}": ${e.message}`);
@@ -624,7 +636,7 @@ export async function grants(client, brief, plan, emit) {
   }
   if (!hits.length) emit('searching', 'Grants.gov: no open or forecasted calls matched the searched topics and geographies.');
   const leads = [];
-  for (const hit of diversifyGrantHits(hits, 16)) {
+  for (const hit of diversifyGrantHits(hits, Math.min(24, 16 + intelOf.size))) {
     let detail = null;
     try {
       const d = await client.json(
@@ -638,7 +650,10 @@ export async function grants(client, brief, plan, emit) {
         `Grants.gov: detail ${hit.number} unavailable; kept the basic record.`,
       );
     }
-    leads.push(grantLead(hit, detail, provenance.get(hit.id) || []));
+    const lead = grantLead(hit, detail, provenance.get(hit.id) || []);
+    const note = intelNote(intelOf.get(hit.id));
+    if (note) { lead.evidence.push(evidence('NIH RePORTER / NSF Awards', lead.evidence[0]?.url, note, 'intel')); lead.facts = { ...lead.facts, intel: intelOf.get(hit.id) }; }
+    leads.push(lead);
   }
   return Object.assign(leads, { searchAudit });
 }

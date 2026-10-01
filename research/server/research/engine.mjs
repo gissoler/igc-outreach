@@ -12,6 +12,7 @@
      5. leads    — lo verificado entra al pipeline con su explicación y su recorrido (traza) completo
    Un "objetivo" (OBJECTIVES) define familias, qué se extrae y cómo se verifica; añadir "users" es añadir uno.
    ───────────────────────────────────────────────────────────────────────────── */
+import { snowball } from './discovery.mjs';
 import { chatJSON, fleetReady } from '../analysis/fleet.mjs';
 import { candidate, evidence, norm } from './core.mjs';
 import { firecrawlSearch, firecrawlConfigured, firecrawlExtract } from './webscrape.mjs';
@@ -285,6 +286,15 @@ export async function runObjective(objective, brief, opts = {}) {
       for (const p of page.providers) { stat(p).kept++; if (page.providers.length === 1) stat(p).keptOnlyHere++; }
     } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; settle(page, v.drop || 'dropped'); keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
   };
+  // Páginas índice (portales de jurisdicción): no se leen como convocatorias; se recorren sus enlaces y esas páginas entran a la lectura normal.
+  if (Array.isArray(opts.mapSeeds) && opts.mapSeeds.length && canRead) {
+    audit.portals = { seeds: opts.mapSeeds.length, pages: 0, errors: [] };
+    try {
+      const rows = await (opts.snowball || snowball)(opts.mapSeeds.slice(0, Number(env.ENGINE_PORTAL_SEEDS) || 6), { fetcher, signal, perSeed: Number(env.ENGINE_PORTAL_LINKS) || 5, exclude: seenPages });
+      for (const r of rows) pendingExpansion.push({ url: r.url, title: r.title, description: `Linked from the portal ${r.seed}`, markdown: '', providers: ['portal-catalog'], family: 'portal', seed: r.seed });
+      audit.portals.pages = rows.length;
+    } catch (e) { if (signal?.aborted) throw e; audit.portals.errors.push(String(e.message).slice(0, 120)); }
+  }
   let todo = plan.queries;
   const maxRounds = Math.max(1, rounds, expandOn ? 2 : 1);
   for (let round = 1; round <= maxRounds && (todo.length || pendingExpansion.length); round++) {
@@ -505,7 +515,7 @@ export function readPriority(p, today = new Date()) {
 export async function runEngine(brief, opts = {}) {
   const objectives = (opts.objectives || brief.fundingTypes || []).filter((x) => OBJECTIVES[x]);
   const breaker = opts.breaker || {};   // compartido: un proveedor apagado en un objetivo se apaga en todos
-  const runs = await Promise.all(objectives.map((x) => runObjective(x, brief, { ...opts, breaker })));
+  const runs = await Promise.all(objectives.map((x) => runObjective(x, brief, { ...opts, breaker, mapSeeds: opts.mapSeedsBy?.[x] || opts.mapSeeds })));
   return { findings: runs.flatMap((r) => r.findings), audits: runs.map((r) => r.audit), queries: runs.flatMap((r) => r.queries) };
 }
 

@@ -16,7 +16,7 @@ const all = (lead, field) => (lead.evidence || []).filter((e) => e.field === fie
 const longDate = (iso) => { const d = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || '')); return d ? new Date(Date.UTC(+d[1], +d[2] - 1, +d[3])).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : null; };
 
 /** ¿Es una convocatoria de un registro que aún no leyó ningún modelo? */
-export const isRegistryCall = (l) => l.fundingType === 'grant' && l.kind === 'opportunity' && !l.verification && !String(l.externalId || '').startsWith('engine:') && (l.evidence || []).some((e) => /grants\.gov|official radar|nih|nsf/i.test(e.source || ''));
+export const isRegistryCall = (l) => l.fundingType === 'grant' && l.kind === 'opportunity' && !l.verification && !String(l.externalId || '').startsWith('engine:') && (l.evidence || []).some((e) => /grants\.gov|official radar|nih|nsf|sbir/i.test(e.source || ''));
 
 /** Texto de lectura con lo que dice el registro: título, número, agencia, estado, fechas, elegibilidad y descripción. */
 export function registryText(lead) {
@@ -41,7 +41,7 @@ export function seedFor(lead) {
   return { url, title: lead.title, markdown: official ? '' : text, description: text, providers: ['grants.gov'], family: 'registry', fixed: !official, seed: 'registry' };
 }
 
-export async function verifyRegistryLeads(leads, brief, { env = process.env, fetcher = fetch, signal, today = new Date(), max = Number(env.REGISTRY_VERIFY_MAX) || 20, run = runObjective, engineRuns = null, onProgress } = {}) {
+export async function verifyRegistryLeads(leads, brief, { env = process.env, fetcher = fetch, signal, today = new Date(), max = Number(env.REGISTRY_VERIFY_MAX) || 30, run = runObjective, engineRuns = null, onProgress } = {}) {
   const stats = { checked: 0, kept: 0, dropped: 0, unread: 0, withOfficialPage: 0 };
   if (env.REGISTRY_VERIFY === 'off') return { leads, stats: { ...stats, skipped: 'off' } };
   const pick = leads.filter(isRegistryCall).sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, max);
