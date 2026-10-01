@@ -111,6 +111,7 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
       <div><b>{c.buckets.radar}</b><span>to verify</span></div>
       <div><b>{c.buckets.discarded}</b><span>discarded</span></div>
       {c.research?.steps ? <div><b>{c.research.searches}</b><span>investigator searches · {c.research.opens} pages opened · {c.research.newPages} new pages ({c.research.steps} steps)</span></div> : null}
+      {c.readVia && (c.readVia.crawl4ai || c.readVia.jina || c.readVia.firecrawl) ? <div><b>{c.readVia.crawl4ai}</b><span>pages read by Crawl4AI{c.readVia.jina ? ` · ${c.readVia.jina} by Jina` : ''}{c.readVia.firecrawl ? ` · ${c.readVia.firecrawl} by Firecrawl` : ''}</span></div> : null}
       {c.firecrawl ? <div className={c.firecrawl.capReached ? 'au-warn' : undefined}><b>{c.firecrawl.credits}</b><span>Firecrawl credits{c.firecrawl.possiblyCharged ? ` · +${c.firecrawl.possiblyCharged} possibly charged (failed/timed out)` : ''} · {c.firecrawl.cacheHits} from cache{c.extractCacheHits || c.scrapeCacheHits ? ` (${c.extractCacheHits || 0} second reads, ${c.scrapeCacheHits || 0} page reads)` : ''}{c.firecrawl.daily ? ` · today ${c.firecrawl.daily.used}${c.firecrawl.daily.cap != null ? ` / ${c.firecrawl.daily.cap}` : ''}` : ''}{c.firecrawl.capReached ? ` · daily cap reached: second reads switched off${c.firecrawl.capSkipped ? ` (${c.firecrawl.capSkipped} calls skipped)` : ''}` : ''}</span></div> : null}
     </div>
     <div className="au-cols">

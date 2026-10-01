@@ -58,12 +58,13 @@ const add = (o, k, n = 1) => { if (k) o[k] = (o[k] || 0) + n; return o; };
  * @param {{ engineRuns?: object[], leads?: object[], searchAudit?: object[], brief?: object, today?: string }} input
  */
 export function buildRunAudit({ engineRuns = [], leads = [], searchAudit = [], brief = {}, today = new Date().toISOString().slice(0, 10), maxTraces = 300 } = {}) {
-  const counters = { queries: 0, queriesYearFixed: 0, pagesSeen: 0, pagesRead: 0, pagesUnread: 0, rereadForDates: 0, rereadImproved: 0, extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, extractCacheHits: 0, scrapeCacheHits: 0, research: { steps: 0, searches: 0, opens: 0, newPages: 0 }, firecrawl: { credits: 0, possiblyCharged: 0, cacheHits: 0, capReached: false, capSkipped: 0, daily: null }, keptByEngine: 0, droppedByEngine: {}, skippedBeforeReading: {}, verdicts: {}, buckets: { top: 0, radar: 0, discarded: 0 }, discardReasons: {}, radarReasons: {} };
+  const counters = { queries: 0, queriesYearFixed: 0, pagesSeen: 0, pagesRead: 0, pagesUnread: 0, rereadForDates: 0, rereadImproved: 0, extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, extractCacheHits: 0, scrapeCacheHits: 0, readVia: { crawl4ai: 0, jina: 0, firecrawl: 0 }, research: { steps: 0, searches: 0, opens: 0, newPages: 0 }, firecrawl: { credits: 0, possiblyCharged: 0, cacheHits: 0, capReached: false, capSkipped: 0, daily: null }, keptByEngine: 0, droppedByEngine: {}, skippedBeforeReading: {}, verdicts: {}, buckets: { top: 0, radar: 0, discarded: 0 }, discardReasons: {}, radarReasons: {} };
   const queries = []; const traces = []; const interpretations = [];
   for (const a of engineRuns) {
     counters.queries += a.queries || 0; counters.queriesYearFixed += a.yearFixed || 0; counters.pagesSeen += a.pages || 0; counters.pagesRead += a.read || 0; counters.pagesUnread += a.unread || 0;
     counters.rereadForDates += a.reread || 0; counters.rereadImproved += a.rereadImproved || 0; counters.extracted += a.extracted || 0; counters.extractFailed += a.extractFailed || 0; counters.extractChanged += a.extractChanged || 0; counters.extractConflicts += a.extractConflicts || 0; counters.extractCredits += a.extractCredits || 0; counters.keptByEngine += a.kept || 0;
     if (a.research) for (const k of ['steps', 'searches', 'opens', 'newPages']) counters.research[k] += a.research[k] || 0;
+    counters.readVia.crawl4ai += a.crawl4aiRead || 0; counters.readVia.jina += a.jinaRead || 0; counters.readVia.firecrawl += a.firecrawlRead || 0;
     counters.extractCacheHits += a.extractCacheHits || 0; counters.scrapeCacheHits += a.scrapeCacheHits || 0;
     // Gasto de Firecrawl de la corrida (por objetivo, sumado) y el último estado del día (tope diario).
     const fc = a.firecrawl;

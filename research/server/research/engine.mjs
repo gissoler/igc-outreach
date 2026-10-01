@@ -19,6 +19,7 @@ import { extractedFacts, compactExtraction } from './extract.mjs';
 import { pageExcerpt } from './readOpportunity.mjs';
 import { searxSearch, searxConfigured, fetchPage } from './localSearch.mjs';
 import { multiSearch, searchApisConfigured, searchProviders, jinaRead, firecrawlRead } from './searchApis.mjs';
+import { crawl4aiRead } from './crawl4ai.mjs';
 import { verifyInvestor, NEWSHOST } from './investor.mjs';
 import { createRunMeter, defaultLedger } from './firecrawlLedger.mjs';
 import { runResearcher, researchLimits } from './researcher.mjs';
@@ -210,7 +211,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
  *  Sin `search`: SearXNG propio si hay SEARXNG_URL (y descarga directa de las páginas), si no Firecrawl. */
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
-  const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead } = opts;
+  const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead, crawl4aiReader = opts.search ? null : crawl4aiRead } = opts;
   const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0, urls: 0, onlyUrls: 0, outcomes: {} });
   // Benchmark por proveedor: cada URL nueva se asienta UNA vez con su desenlace (apply, watch, motivo de descarte u omisión) y se acredita a TODOS los que la trajeron.
@@ -309,6 +310,8 @@ export async function runObjective(objective, brief, opts = {}) {
       let got = await pageFetcher(p.url, { fetcher, signal });
       let via = got ? 'direct' : null;
       if (got) audit.fetched++;
+      // Cadena de lectura (de más barato a más caro): descarga directa → Crawl4AI (propio, sin créditos) → Jina → Firecrawl (solo si no está desactivado).
+      if ((!got || got.text.length < 400) && crawl4aiReader) { const viaC4 = await crawl4aiReader(p.url, { env, fetcher, signal }); if (viaC4 && viaC4.text.length > (got?.text.length || 0)) { got = viaC4; via = 'crawl4ai'; audit.crawl4aiRead = (audit.crawl4aiRead || 0) + 1; } }
       if (!got || got.text.length < 400) { const viaJina = await reader(p.url, { env, fetcher, signal }); if (viaJina && viaJina.text.length > (got?.text.length || 0)) { got = viaJina; via = 'jina'; audit.jinaRead++; } }
       if ((!got || got.text.length < 400) && fallbackReader) { const viaFc = await fallbackReader(p.url, fc); if (viaFc && viaFc.text.length > (got?.text.length || 0)) { got = viaFc; via = 'firecrawl'; audit.firecrawlRead = (audit.firecrawlRead || 0) + 1; } }
       return got ? { ...got, via } : null;

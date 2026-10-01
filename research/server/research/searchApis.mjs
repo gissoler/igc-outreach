@@ -9,11 +9,11 @@
    ───────────────────────────────────────────────────────────────────────────── */
 import { safeUrl } from './core.mjs';
 import { isPublicUrl } from './localSearch.mjs';
-import { firecrawlSearch, firecrawlScrape } from './webscrape.mjs';
+import { firecrawlSearch, firecrawlScrape, firecrawlDisabled } from './webscrape.mjs';
 
 export const PROVIDER_KEYS = { linkup: 'LINKUP_API_KEY', exa: 'EXA_API_KEY', you: 'YOU_API_KEY', tavily: 'TAVILY_API_KEY', jina: 'JINA_API_KEY', serper: 'SERPER_API_KEY', firecrawl: 'FIRECRAWL_API_KEY' };
 export const SEARCH_PROVIDERS = Object.keys(PROVIDER_KEYS);
-const key = (env, p) => String(env[PROVIDER_KEYS[p]] || '').trim();
+const key = (env, p) => (p === 'firecrawl' && firecrawlDisabled(env) ? '' : String(env[PROVIDER_KEYS[p]] || '').trim());
 
 /** Proveedores activos: los de ENGINE_SEARCH_PROVIDERS (por defecto todos) que tengan clave. */
 export function searchProviders(env = process.env) {

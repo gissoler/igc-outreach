@@ -16,7 +16,9 @@ const clamp = (value, min, max, fallback) => {
   const number = Number(value);
   return Number.isFinite(number) ? Math.min(max, Math.max(min, Math.floor(number))) : fallback;
 };
-const firecrawlKey = (env) => env.FIRECRAWL_API_KEY || '';
+/** FIRECRAWL_DISABLED=1 apaga Firecrawl entero (lector, extracción, búsqueda, contactos) aunque la clave siga en el .env. */
+export const firecrawlDisabled = (env = process.env) => /^(1|true|yes|on)$/i.test(String(env.FIRECRAWL_DISABLED ?? '').trim());
+const firecrawlKey = (env) => (firecrawlDisabled(env) ? '' : env.FIRECRAWL_API_KEY || '');
 const scrapegraphKey = (env) => env.SGAI_API_KEY || env.SCRAPEGRAPH_API_KEY || '';
 export const webConfigured = (env = process.env) => Boolean(firecrawlKey(env) && scrapegraphKey(env));
 export const firecrawlConfigured = (env = process.env) => Boolean(firecrawlKey(env));
