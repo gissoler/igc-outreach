@@ -14,6 +14,8 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 HOST="${G355_HOST:-voltage-park}"; OBJECTIVES="${OBJECTIVES:-grant,investment}"; BRIEF="${BRIEF:-eval/briefs/mentiva.json}"
 COMPARE_30B="${COMPARE_30B:-1}"; KEEP_MODEL="${KEEP_MODEL:-0}"; REMOTE_EXISTING="${ENGINE_REMOTE_PORT:-}"; CHAT_PORT="${G355_CHAT_PORT:-8000}"; ENGINE_MODEL_MODE="${ENGINE_MODEL:-auto}"
+# Las corridas de evaluación NO gastan créditos de Firecrawl salvo que lo pidas (≈5 créditos por página, hasta 75 por corrida): ENGINE_EXTRACT=auto para activar la segunda lectura.
+export ENGINE_EXTRACT="${ENGINE_EXTRACT:-off}"
 say() { printf '\n\033[1;34m== %s\033[0m\n' "$*"; }
 fail=0; notes=()
 note() { notes+=("$*"); fail=1; printf '\033[1;31m✖ %s\033[0m\n' "$*"; }
