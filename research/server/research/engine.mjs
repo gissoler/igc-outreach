@@ -26,6 +26,7 @@ import { runResearcher, researchLimits } from './researcher.mjs';
 import { verifyOpportunity, literalIn, hostKind, hostOf, datesIn, compactVerification } from './verify.mjs';
 import { applicantProfile } from './applicant.mjs';
 import { buildExplanation } from './explain.mjs';
+import { expandRound, expandLimits } from './expansion.mjs';
 
 export const OBJECTIVES = {
   grant: {
@@ -212,7 +213,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead, crawl4aiReader = opts.search ? null : crawl4aiRead } = opts;
-  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, providers: {}, errors: [], queryLog: [], traces: [] };
+  const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, expand: null, providers: {}, errors: [], queryLog: [], traces: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0, urls: 0, onlyUrls: 0, outcomes: {} });
   // Benchmark por proveedor: cada URL nueva se asienta UNA vez con su desenlace (apply, watch, motivo de descarte u omisión) y se acredita a TODOS los que la trajeron.
   const settled = new Set();
@@ -222,6 +223,10 @@ export async function runObjective(objective, brief, opts = {}) {
     for (const p of provs) { const s = stat(p); s.urls++; if (provs.length === 1) s.onlyUrls++; s.outcomes[outcome] = (s.outcomes[outcome] || 0) + 1; }
   };
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
+  // Expansión: tras la primera ronda, lo verificado sirve de mapa (enlaces, parecidos, rutas del sitio, ángulos laterales). Apagada con `search` inyectado salvo opts.expand.
+  const expandOn = opts.expand !== undefined ? Boolean(opts.expand) : (!opts.search && !Array.isArray(opts.queries) && env.ENGINE_EXPAND !== 'off' && canRead);
+  const seedPool = []; const pendingExpansion = []; let expandDone = false; let lateralQ = [];
+  if (expandOn) audit.expand = { on: true, seeds: 0, pages: 0, snowball: 0, siteDive: 0, similar: 0, lateral: null, errors: [] };
   const range = o.dated ? (env.ENGINE_TBS ?? 'qdr:y') : '';
   // Recencia en origen: por defecto último año en los objetivos con fecha (ENGINE_RECENCY=off para quitarla).
   const recencyRaw = o.dated ? String(env.ENGINE_RECENCY ?? 'year').trim().toLowerCase() : '';
@@ -274,12 +279,14 @@ export async function runObjective(objective, brief, opts = {}) {
     const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
     if (v.keep) {
       const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
+      seedPool.push({ url: page.url, text: page.text, name: v.name, verdict: v.verdict });
       findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++; settle(page, v.verdict === 'apply' ? 'apply' : 'watch');
       for (const p of page.providers) { stat(p).kept++; if (page.providers.length === 1) stat(p).keptOnlyHere++; }
     } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; settle(page, v.drop || 'dropped'); keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
   };
   let todo = plan.queries;
-  for (let round = 1; round <= Math.max(1, rounds) && todo.length; round++) {
+  const maxRounds = Math.max(1, rounds, expandOn ? 2 : 1);
+  for (let round = 1; round <= maxRounds && (todo.length || pendingExpansion.length); round++) {
     audit.rounds = round; queries.push(...todo); asked.push(...todo.map((q) => q.query));
     audit.yearFixed += todo.filter((q) => q.original).length;
     const pages = new Map();
@@ -305,6 +312,12 @@ export async function runObjective(objective, brief, opts = {}) {
         ingest(rows, query, family, log);
       } catch (error) { audit.error = error.message; log.error = String(error.message).slice(0, 200); }
     });
+    // Páginas de la expansión (enlaces de lo verificado, parecidos, rutas del sitio): entran al mismo flujo de lectura y verificación.
+    for (const e of pendingExpansion.splice(0)) {
+      if (seenPages.has(e.url) || pages.has(e.url)) continue;
+      const family = `expand:${e.providers[0]}`; const query = `[from ${String(e.seed || '').replace(/^https?:\/\//, '').slice(0, 60)}]`;
+      pages.set(e.url, { url: e.url, title: e.title || '', text: e.markdown || '', snippet: e.description || '', query, family, queries: [{ query, family }], providers: [...e.providers], order: 1000 + pages.size, via: e.markdown ? 'search' : null, published: null });
+    }
     // Consenso primero: una página que traen varios buscadores sube; luego la posición en su búsqueda.
     const fetchFull = async (p) => {
       let got = await pageFetcher(p.url, { fetcher, signal });
@@ -424,7 +437,15 @@ export async function runObjective(objective, brief, opts = {}) {
       } catch (error) { extractionMeta = { ok: false, error: String(error?.message || error).slice(0, 160) }; }
       finalize(rec, extractionMeta);
     });
-    todo = round < rounds && canRead ? fixAll(await followUpQueries(objective, brief, { findings, dropped: audit.dropped, asked }, { chat, env, fetcher, signal, today }), objective, today, env) : [];
+    const follow = round < rounds && canRead ? fixAll(await followUpQueries(objective, brief, { findings, dropped: audit.dropped, asked }, { chat, env, fetcher, signal, today }), objective, today, env) : [];
+    if (expandOn && !expandDone && round === 1) {
+      expandDone = true;
+      const seeds = [...seedPool].sort((a, b) => (a.verdict === 'apply' ? 0 : 1) - (b.verdict === 'apply' ? 0 : 1));
+      const ex = await expandRound({ objective, brief, seeds, seen: seenPages, asked, env, fetcher, signal, chat, canRead, today, limits: expandLimits(env, opts.expandLimits), deps: opts.expandDeps });
+      pendingExpansion.push(...ex.pages); lateralQ = fixAll(ex.queries, objective, today, env);
+      Object.assign(audit.expand, ex.stats, { seeds: Math.min(seeds.length, expandLimits(env, opts.expandLimits).seeds) });
+    }
+    todo = [...follow, ...lateralQ.splice(0)];
   }
   // Conflicto de fechas entre fuentes: el mismo programa con plazos distintos en dos páginas → a verificar.
   if (o.dated) {

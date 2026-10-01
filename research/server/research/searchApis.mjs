@@ -189,3 +189,15 @@ export async function multiSearch(query, { env = process.env, fetcher = fetch, s
   const out = [...merged.values()].sort((a, b) => b.providers.length - a.providers.length || a.rank - b.rank);
   return Object.assign(out, { stats });
 }
+
+/** Exa findSimilar: páginas parecidas a una URL (fondos o convocatorias de nicho cuyas palabras no coinciden con ninguna consulta). */
+export async function exaSimilar(url, { env = process.env, fetcher = fetch, signal, limit = 6 } = {}) {
+  if (!key(env, 'exa')) return [];
+  const data = await call('Exa similar', 'https://api.exa.ai/findSimilar', {
+    method: 'POST', env, fetcher, signal,
+    headers: { 'x-api-key': key(env, 'exa') },
+    body: { url: str(url).slice(0, 2000), numResults: n(env, limit), excludeSourceDomain: true, contents: { text: { maxCharacters: Number(env.EXA_TEXT_CHARS) || 20_000 } } },
+  });
+  const rows = clean((data?.results || []).map((x, i) => row('exa-similar', i + 1, { url: x.url, title: x.title, content: x.text, published: x.publishedDate })), n(env, limit));
+  return Object.assign(rows, { costUsd: Number(data?.costDollars?.total) || 0 });
+}
