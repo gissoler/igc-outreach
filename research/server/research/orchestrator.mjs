@@ -77,7 +77,8 @@ export function ruleAssessment(m, { env = process.env, grantsOnly = false, tried
     missing_contacts: ['find_contacts', 'named_funders'],
     stale_or_closed: ['recent_deals', 'named_funders', 'geography'],
     none: ['find_contacts'],
-  }[gap];
+  }[gap].filter((s) => !(grantsOnly && s === 'find_contacts'));
+  if (!order.length) order.push('named_funders'); // los grants no tienen personas que contactar
   const strategy = order.find((s) => !tried.includes(s)) || order[0];
   return { sufficient, confidence: sufficient ? 0.7 : 0.6, gap, strategy, quality: Math.round(Math.min(4, (m.top / t.minTop) * 2 + m.emailRate * 2)), by: 'rules' };
 }
@@ -99,8 +100,8 @@ export function reflectionState(brief, ranked, m, { tried = [], queries = [], en
     recent_queries: queries.slice(-15).map((q) => clip(q, 120)),
   };
 }
-export function reflectionQuestions(tried = []) {
-  const options = Object.fromEntries(Object.entries(STRATEGIES).filter(([k]) => !tried.includes(k) || k === 'find_contacts'));
+export function reflectionQuestions(tried = [], { grantsOnly = false } = {}) {
+  const options = Object.fromEntries(Object.entries(STRATEGIES).filter(([k]) => grantsOnly ? k !== 'find_contacts' && !tried.includes(k) : !tried.includes(k) || k === 'find_contacts'));
   return {
     sufficient: { type: 'noul', instructions: 'Are these results good enough for the founder to start outreach today: enough relevant, actionable candidates of the requested funding type, most with a contact channel?', criteria: { true: 'Enough relevant, current, contactable candidates; another search round would add little.', false: 'Too few, off-target, stale or uncontactable results; another search round is worth it.' } },
     gap: { type: 'choice', instructions: 'What is the main weakness of these results?', criteria: GAPS },
@@ -184,11 +185,11 @@ async function reflectClassic(brief, ranked, { env = process.env, fetcher = fetc
   const rules = ruleAssessment(m, { env, grantsOnly, tried });
   if (!jevConfigured(env) && jev === systemOne) return { ...rules, metrics: m };
   try {
-    const { answers, model, provider } = await jev(reflectionState(brief, ranked, m, { tried, queries, env }), reflectionQuestions(tried), { env, fetcher, signal, timeoutMs: env.ORCHESTRATOR_JEV_TIMEOUT_MS || 25000 });
+    const { answers, model, provider } = await jev(reflectionState(brief, ranked, m, { tried, queries, env }), reflectionQuestions(tried, { grantsOnly }), { env, fetcher, signal, timeoutMs: env.ORCHESTRATOR_JEV_TIMEOUT_MS || 25000 });
     const suff = clamp(answers?.sufficient?.noul, 0, 1, 0);
     const gap = GAPS[answers?.gap?.choice] ? answers.gap.choice : rules.gap;
     let strategy = STRATEGIES[answers?.strategy?.choice] ? answers.strategy.choice : rules.strategy;
-    if (tried.includes(strategy) && strategy !== 'find_contacts') strategy = rules.strategy;
+    if ((tried.includes(strategy) && strategy !== 'find_contacts') || (grantsOnly && strategy === 'find_contacts')) strategy = rules.strategy;
     // El modelo puede decir "suficiente", pero no por debajo de la mitad del objetivo de accionables.
     const sufficient = suff >= 0.6 && gap === 'none' ? m.top >= Math.ceil(targets(env).minTop / 2) : suff >= 0.75 && rules.sufficient;
     return { sufficient, confidence: suff, gap, strategy, quality: clamp(answers?.quality?.score, 0, 4, rules.quality), by: provider || 'OpenJev', model, metrics: m };
@@ -361,7 +362,7 @@ export async function orchestrate({ leads, brief, terms = [], rank, runSearch, f
         live({ phase: 'planning', status: 'running', title: `Attempt ${n}: AI plan`, message: `${queries.length} AI-written queries: ${queries.slice(0, 3).map((q) => `"${q.query}"`).join(' · ')}${queries.length > 3 ? ' …' : ''}` });
         added = await runSearch(queries, { signal: attemptSignal, strategy: view.strategy });
         if (findContacts && view.contacts) added = [...added, ...await findContacts(rank([...all, ...added]), { signal: attemptSignal, wide: false })];
-      } else if (view.strategy === 'find_contacts') {
+      } else if (view.strategy === 'find_contacts' && !grantsOnly) {
         if (findContacts) added = await findContacts(ranked, { signal: attemptSignal, wide: true });
       } else {
         ({ queries, planned } = await strategyQueries(view.strategy, brief, { terms, ranked, asked, env, fetcher, signal: attemptSignal, ...(chat ? { chat } : {}) }));
