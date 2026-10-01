@@ -228,6 +228,8 @@ export const callNumber = (l) => {
   const m = CALL_NUMBER.exec(`${l.externalId || ''} ${l.title || ''}`);
   return m ? (m[1] ? `NSF-${m[2]}` : m[3].toUpperCase()) : null;
 };
+/** Juicio de encaje del modelo con la forma de la rúbrica anterior (match | weak | mismatch). */
+export const matchFromModel = (sf) => ({ verdict: sf.verdict === 'fits' ? 'match' : sf.verdict === 'does_not_fit' ? 'mismatch' : 'weak', source: 'model', anchorsInTitle: [], anchorsInScope: [], phrases: [], genericOnly: [], reasons: [], summary: `${sf.verdict === 'does_not_fit' ? 'Off-topic: ' : ''}${sf.reason || ''}${sf.excludesQuote ? ` (“${sf.excludesQuote.slice(0, 140)}”)` : ''}`.trim(), workType: sf.workType || null });
 export function dedupe(leads) {
   const map = new Map();
   for (const l of leads) {
@@ -288,7 +290,8 @@ export function evaluate(
     const matchedTerms = tokenSources.filter((source) => specific(source.value).some((t) => hay.includes(t))).map((source) => source.label);
     const grantOpp = l.fundingType === 'grant' && l.kind === 'opportunity';
     // Convocatorias: la rúbrica sobre campos oficiales (título, alcance, ALN) decide si hay encaje.
-    const match = grantOpp ? grantMatch(l, brief, terms) : null;
+    // Si un modelo ya leyó la página, su juicio de encaje (con cita) sustituye a la regla de palabras; sin lectura, queda la rúbrica anterior.
+    const match = grantOpp ? (l.verification?.scopeFit ? matchFromModel(l.verification.scopeFit) : grantMatch(l, brief, terms)) : null;
     let fit = Math.min(
       1,
       hits.length / Math.max(2, Math.min(6, tokens.length)),
@@ -456,6 +459,7 @@ const dropText = (ver) => {
   if (r === 'closed') return `Closed on ${ver.today}: ${ver.dates?.reason || 'the deadline has passed'}.`;
   if (r.startsWith('not_a_call')) return `Not a call: ${ver.pageType?.reason || r}.`;
   if (r === 'not_eligible') return `Not eligible: ${ver.eligibility?.reason || 'the page excludes this applicant'}.`;
+  if (r === 'scope_mismatch') return `Doesn't fund this kind of project: ${ver.scopeFit?.reason || 'the page excludes it'}${ver.scopeFit?.excludesQuote || ver.scopeFit?.fundsQuote ? ` (“${(ver.scopeFit.excludesQuote || ver.scopeFit.fundsQuote).slice(0, 160)}”)` : ''}.`;
   if (r === 'aggregator' || r === 'social_host') return 'Aggregator or social network, not the official source.';
   return `Discarded by verification: ${r}.`;
 };

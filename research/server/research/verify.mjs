@@ -143,6 +143,13 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   // Un "no" del modelo con cita literal se respeta (es el lado seguro), y queda marcado para revisarlo en la traza.
   const modelNo = modelEligible === 'no' && Boolean(quotes.eligible);
   if (modelNo && eligibility.decision !== 'no') flags.push('model_not_eligible');
+  // El juicio del modelo con cita literal manda sobre la regla de palabras; la regla queda como pista:
+  //  · modelo «yes» con cita y regla «unclear» → elegible (la cita debe hablar de quién puede postular);
+  //  · modelo «yes» con cita y regla «no» → desacuerdo: queda para verificar, nunca se descarta por la regla sola.
+  const APPLICANT_CUE = /\b(eligib\w*|open to|applicants?|apply|applications? (?:are )?(?:welcome|accepted)|organi[sz]ations?|compan(?:y|ies)|entities|institutions?|individuals?|start-?ups?|businesses|firms|researchers?|nonprofits?|universit\w+)\b/i;
+  const modelYes = !codeOnly && modelEligible === 'yes' && Boolean(quotes.eligible) && APPLICANT_CUE.test(quotes.eligible);
+  if (modelYes && !modelNo && eligibility.decision === 'unclear') { flags.push('eligibility_from_model'); Object.assign(eligibility, { decision: 'yes', reason: `The AI read says eligible: "${quotes.eligible.slice(0, 160)}"`, quote: quotes.eligible }); }
+  else if (modelYes && !modelNo && eligibility.decision === 'no') { flags.push('eligibility_conflict'); Object.assign(eligibility, { decision: 'unclear', reason: `The AI read says eligible ("${quotes.eligible.slice(0, 120)}") but the text rule says: ${eligibility.reason}` }); }
   const eligible = modelNo ? 'no' : eligibility.decision;
   if (modelNo && eligibility.decision !== 'no') { eligibility.decision = 'no'; eligibility.reason = `The AI read says not eligible: "${quotes.eligible.slice(0, 160)}"`; eligibility.quote = quotes.eligible; }
   if (eligible !== 'unclear') quotes.eligible = eligibility.quote;
@@ -153,6 +160,20 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   const dil = DILUTIVE_RX.exec(text);
   if (dil) flags.push('may_require_return');
   check('non_dilutive', nonDilutive !== 'no' && !dil, dil ? `Page mentions "${dil[0]}"` : nonDilutive === 'no' ? 'Model: equity or loan' : 'No sign of equity or repayment');
+
+  // 4b) Encaje con lo que el programa financia: lo juzga el MODELO leyendo la página; el código solo comprueba que las citas existan.
+  const sf = out?.scope_fit && typeof out.scope_fit === 'object' ? out.scope_fit : null;
+  let scopeFit = null;
+  if (sf) {
+    const verdict = ['fits', 'partial', 'does_not_fit', 'unclear'].includes(String(sf.verdict)) ? String(sf.verdict) : 'unclear';
+    const ok = (v) => { const t = typeof v === 'string' ? v.trim() : ''; return t && !/^(null|none|n\/a|unknown)$/i.test(t) && literalIn(t, text) ? t : ''; };
+    const fundsQuote = ok(sf.funds_quote); const excludesQuote = ok(sf.excludes_quote);
+    const quoted = Boolean(fundsQuote || excludesQuote);
+    if (verdict === 'does_not_fit' && !quoted) flags.push('scope_mismatch_without_quote');
+    if (typeof sf.excludes_quote === 'string' && sf.excludes_quote.trim() && !excludesQuote && !/^(null|none|n\/a|unknown)$/i.test(sf.excludes_quote.trim())) flags.push('fake_quote:excludes');
+    scopeFit = { verdict: verdict === 'does_not_fit' && !quoted ? 'partial' : verdict, claimed: verdict, reason: String(sf.reason || '').replace(/\s+/g, ' ').trim().slice(0, 300), fundsQuote: fundsQuote.slice(0, 300), excludesQuote: excludesQuote.slice(0, 300), workType: String(sf.work_type || 'other').slice(0, 40), quoted };
+    check('scope_fit', scopeFit.verdict === 'fits', scopeFit.reason || `Model: ${scopeFit.verdict}`, excludesQuote || fundsQuote);
+  }
 
   // 5) Oficial: el modelo lo dice y el host no es agregador; en modo solo-código no se puede afirmar
   const official = codeOnly ? kind === 'other' : Boolean(out?.official) && kind === 'other';
@@ -169,6 +190,7 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   if (!pageType.isCall && !pageType.soft) reasons.push(`not_a_call:${pageType.type}`);
   if (status === 'closed' && !closedStrong) reasons.push('closed');
   if (eligible === 'no') reasons.push('not_eligible');
+  if (scopeFit?.verdict === 'does_not_fit') reasons.push('scope_mismatch');
   if (nonDilutive === 'no') reasons.push('equity_or_loan');
   if (!official && !codeOnly) reasons.push('not_official');
   const drop = reasons[0] === 'social_host' ? 'social_host' : reasons[0] || null;
@@ -182,6 +204,7 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
     status === 'open' && !deadline ? 'Rolling / no dated deadline' : null,
     dd.inferredYear ? 'Deadline year inferred, not written' : null,
     eligible !== 'yes' ? `Eligibility unconfirmed: ${eligibility.reason}` : null,
+    scopeFit && ['partial', 'unclear'].includes(scopeFit.verdict) ? `Topic fit to confirm: ${scopeFit.reason || scopeFit.verdict}${scopeFit.claimed === 'does_not_fit' ? ' (the model saw a mismatch but gave no quote from the page)' : ''}` : null,
     flags.some((f) => f.startsWith('fake_quote')) ? 'The model invented a quote' : null,
     flags.includes('model_date_not_in_page') ? 'The model gave a date that is not on the page' : null,
     flags.includes('deadline_conflict') ? 'Model and page disagree on the deadline' : null,
@@ -194,7 +217,7 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   const verdict = tier === 'drop' ? 'skip' : tier === 'main' ? 'apply' : 'watch';
   return {
     keep: !drop, drop, status, deadline, deadlineQuote: deadline ? deadlineQuote : '', official, eligible, eligibility, nonDilutive, verdict, tier,
-    flags: [...new Set(flags)], quotes, daysLeft: deadline ? daysBetween(now, deadline) : null, today: now,
+    scopeFit, flags: [...new Set(flags)], quotes, daysLeft: deadline ? daysBetween(now, deadline) : null, today: now,
     pageType: { type: pageType.type, isCall: pageType.isCall, reason: pageType.reason, applyQuote: pageType.applyQuote, ...(pageType.soft ? { soft: true } : {}) },
     dates: { status: dd.status, phase: dd.phase, reason: dd.reason, quote: dd.quote, ...(dd.opens ? { opens: dd.opens } : {}), ...(dd.approx ? { approx: dd.approx, precision: dd.precision } : {}), claimed, milestones: dd.milestones.slice(0, 14) },
     checks, reasons, blockers,
@@ -207,6 +230,7 @@ export function compactVerification(v, extra = {}) {
     deadlineQuote: v.deadlineQuote || '', blockers: v.blockers || [], reasons: v.reasons || (v.drop ? [v.drop] : []), ...(v.drop ? { drop: v.drop } : {}),
     ...(v.eligibility ? { eligibility: { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } } : {}),
     ...(v.pageType ? { pageType: v.pageType } : {}),
+    ...(v.scopeFit ? { scopeFit: v.scopeFit } : {}),
     ...(v.dates ? { dates: { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, milestones: (v.dates.milestones || []).slice(0, 8) } } : {}),
     ...(v.checks ? { checks: v.checks } : {}),
     ...extra,

@@ -19,6 +19,7 @@ export function discardCategory(l) {
   const d = String(l.discard || '');
   if (!d) return null;
   if (/^Closed|deadline .*passed|not accepting/i.test(d)) return 'closed';
+  if (/Doesn't fund this kind/i.test(d)) return 'scope_mismatch';
   if (/Not eligible|excludes/i.test(d)) return 'not_eligible';
   if (/Off-topic|mismatch/i.test(d)) return 'off_topic';
   if (/No confirmed evidence/i.test(d)) return 'no_confirmed_evidence';
