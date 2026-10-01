@@ -4,6 +4,7 @@
 // Un "?" nunca se convierte en ✔: el global es ✔ solo si todas las reglas evaluadas son ✔.
 import { chatJSON, fleetConfig } from './fleet.mjs';
 import { plainText, quoteInPage } from './deals.mjs';
+import { applicantProfile } from '../research/applicant.mjs';
 
 export const RULE_TYPES = ['entity_type', 'small_business', 'foreign_entity', 'foreign_component', 'pi_us', 'pi_employment', 'ownership', 'cost_sharing', 'budget_cap', 'deadline', 'other'];
 
@@ -72,19 +73,42 @@ export async function llmRules(text, url, { env = process.env, fetcher = fetch }
 const dedupeRules = (rules) => [...new Map(rules.map((r) => [`${r.type}|${JSON.stringify(r.requirement)}`, r])).values()];
 const val = (p, k) => p?.[k]?.value ?? null;
 
+/** Perfil de elegibilidad a partir del brief del trabajo (no el de IGC). Lo que el brief no dice queda en null → "?" y no "✖". */
+export function profileFromBrief(brief = {}) {
+  const a = applicantProfile(brief);
+  const assumed = /^default/.test(a.entitySource);
+  const from = (value, source, extra = {}) => ({ value, source, ...extra });
+  const entityValue = a.entity === 'for_profit_startup' ? 'for_profit' : a.entity;
+  const us = a.country ? a.country === 'US' : a.outside.includes('US') ? false : null;
+  const unknown = 'Sin confirmar: el brief no lo dice';
+  return {
+    name: brief.venture || brief.organization || brief.company || brief.product || 'brief',
+    entityType: from(entityValue, a.entitySource, { assumed }),
+    usEntity: from(us, a.countrySource),
+    smallBusiness: from(null, unknown), ownershipUS51: from(null, unknown), piInUS: from(null, unknown), piPrimaryEmployment: from(null, unknown),
+    foreignComponent: from(null, unknown), canCostShare: from(null, unknown),
+    requestedBudget: from(Number.isFinite(brief.amount) && brief.amount > 0 ? brief.amount : null, brief.amount ? 'brief.amount' : unknown),
+  };
+}
+
 /** Evalúa una regla contra el perfil. */
 export function evaluateRule(rule, profile, { today = new Date() } = {}) {
   const v = (verdict, why) => ({ ...rule, verdict, why });
   switch (rule.type) {
     case 'entity_type': {
       const types = (Array.isArray(rule.requirement) ? rule.requirement : [rule.requirement]).map((t) => String(t).toLowerCase()).filter(Boolean);
-      const forProfit = val(profile, 'entityType') === 'for_profit';
+      const et = val(profile, 'entityType');
+      const forProfit = et === 'for_profit';
       const small = val(profile, 'smallBusiness');
+      const miss = profile?.entityType?.assumed ? '?' : '✖'; // un tipo de entidad supuesto nunca excluye
+      const hasType = (rx) => types.some((t) => rx.test(t));
       if (types.some((t) => /^unrestricted|open to any type/.test(t))) return v('✔', 'No applicant-type restriction.');
       if (forProfit && types.some((t) => /for.profit organizations other than small businesses/.test(t))) return v('✔', 'Accepts for-profit companies (not small).');
       if (forProfit && types.some((t) => /small business/.test(t))) return small === true ? v('✔', 'Accepts small businesses and the profile says it is one.') : small === false ? (types.some((t) => /for.profit/.test(t)) ? v('✔', 'Accepts other for-profit companies.') : v('✖', 'Small businesses only, and the profile says it isn\'t.')) : v('?', 'Small businesses only: confirm whether IGC qualifies (SBA definition).');
       if (types.some((t) => /others \(see text/.test(t))) return v('?', 'Eligibility depends on additional call text.');
-      if (forProfit) return v('✖', 'Listed applicant types exclude for-profit companies.');
+      if (et === 'nonprofit') return hasType(/non-?profit|501|charit|foundation|ngo/) ? v('✔', 'Accepts nonprofit organizations.') : hasType(/others \(see text|unrestricted/) ? v('?', 'Eligibility depends on additional call text.') : v(miss, 'Listed applicant types do not include nonprofits.');
+      if (et === 'academic') return hasType(/universit|higher education|college|academic|research institut|public and state|private institutions/) ? v('✔', 'Accepts academic institutions.') : v(miss, 'Listed applicant types do not include academic institutions.');
+      if (forProfit) return v(miss, profile?.entityType?.assumed ? 'Listed types exclude for-profit companies, but the entity type is assumed: confirm it.' : 'Listed applicant types exclude for-profit companies.');
       return v('?', 'Profile entity type unknown.');
     }
     case 'small_business': { const s = val(profile, 'smallBusiness'); return s === true ? v('✔', 'Profile indicates a small business.') : s === false ? v('✖', 'Requires a small business; the profile says it isn\'t.') : v('?', 'Requires a small business: missing from the profile.'); }

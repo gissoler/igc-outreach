@@ -6,7 +6,7 @@ import { chatJSON, fleetConfig } from './fleet.mjs';
 import { loadVehicles } from './momentum.mjs';
 import { rankRevealed } from './revealed.mjs';
 import { armsFromEvents, chooseArm, importOutreachRows, networkAggregate, summarizeOutreach, validateOutreach, CHANNELS, ARGUMENTS, OUTCOMES, OUTCOME_LABEL } from './outreach.mjs';
-import { deadlineAlerts, evaluateOpportunity, IGC_PROFILE, opportunityFromLead, toICS } from './eligibility.mjs';
+import { deadlineAlerts, evaluateOpportunity, IGC_PROFILE, opportunityFromLead, profileFromBrief, toICS } from './eligibility.mjs';
 import { meetingBrief, simulateTurn } from './voice.mjs';
 import { personKey } from './entities.mjs';
 import { parseCsv } from './extractEval.mjs';
@@ -30,7 +30,14 @@ const CREATIVE_SCHEMA = { type: 'object', additionalProperties: false, required:
 export function createRunEnrichers({ store, env = process.env, fetcher = fetch }) {
   const A = store.analysis;
   const profilePath = resolve(env.ELIGIBILITY_PROFILE_PATH || 'data/eligibility_profile.json');
-  const eligibilityProfile = () => existsSync(profilePath) ? { ...IGC_PROFILE, ...JSON.parse(readFileSync(profilePath, 'utf8')) } : IGC_PROFILE;
+  const igcProfile = () => existsSync(profilePath) ? { ...IGC_PROFILE, ...JSON.parse(readFileSync(profilePath, 'utf8')) } : IGC_PROFILE;
+  // El perfil de IGC solo vale si el trabajo es de IGC; en cualquier otro proyecto se evalúa con lo que dice el brief.
+  const eligibilityProfile = (brief) => {
+    const igc = igcProfile();
+    const name = String(igc.name || '').toLowerCase().split(/\s+/)[0];
+    const mine = [brief?.venture, brief?.organization, brief?.company, brief?.product].filter(Boolean).join(' ').toLowerCase();
+    return name && mine.includes(name) ? igc : profileFromBrief(brief || {});
+  };
   let vehicles = null;
   const getVehicles = () => (vehicles ??= loadVehicles(resolve(env.FUND_VEHICLES_PATH || 'data/fund_vehicles.json')));
   return [
@@ -40,7 +47,7 @@ export function createRunEnrichers({ store, env = process.env, fetcher = fetch }
       const out = [];
       for (const lead of leads.slice(0, 15)) {
         signal?.throwIfAborted();
-        const e = await evaluateOpportunity(opportunityFromLead(lead), { profile: eligibilityProfile(), env, fetcher });
+        const e = await evaluateOpportunity(opportunityFromLead(lead), { profile: eligibilityProfile(job.brief), env, fetcher });
         A.saveGrantEvaluation(String(e.id), e);
         lead.eligibility = { verdict: e.verdict, closed: e.closed, questions: e.questions.slice(0, 3), method: e.method };
         out.push({ id: String(e.id), leadId: lead.id, title: e.title, agency: e.agency, url: e.url, closeDate: e.closeDate, awardCeiling: e.awardCeiling, verdict: e.verdict, closed: e.closed });
