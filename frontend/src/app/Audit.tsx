@@ -110,6 +110,7 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
       <div><b>{c.buckets.top}</b><span>main list</span></div>
       <div><b>{c.buckets.radar}</b><span>to verify</span></div>
       <div><b>{c.buckets.discarded}</b><span>discarded</span></div>
+      {c.research?.steps ? <div><b>{c.research.searches}</b><span>investigator searches · {c.research.opens} pages opened · {c.research.newPages} new pages ({c.research.steps} steps)</span></div> : null}
       {c.firecrawl ? <div className={c.firecrawl.capReached ? 'au-warn' : undefined}><b>{c.firecrawl.credits}</b><span>Firecrawl credits{c.firecrawl.possiblyCharged ? ` · +${c.firecrawl.possiblyCharged} possibly charged (failed/timed out)` : ''} · {c.firecrawl.cacheHits} from cache{c.extractCacheHits || c.scrapeCacheHits ? ` (${c.extractCacheHits || 0} second reads, ${c.scrapeCacheHits || 0} page reads)` : ''}{c.firecrawl.daily ? ` · today ${c.firecrawl.daily.used}${c.firecrawl.daily.cap != null ? ` / ${c.firecrawl.daily.cap}` : ''}` : ''}{c.firecrawl.capReached ? ` · daily cap reached: second reads switched off${c.firecrawl.capSkipped ? ` (${c.firecrawl.capSkipped} calls skipped)` : ''}` : ''}</span></div> : null}
     </div>
     <div className="au-cols">
@@ -119,7 +120,7 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
     </div>
     {audit.interpretations.map((it) => <details key={it.objective} className="au-more"><summary>How your brief was read · {it.objective}</summary><Interpretation it={it} /></details>)}
     {audit.queries.length ? <details className="au-more"><summary>Queries ({audit.queries.length})</summary>
-      <table className="x-table"><thead><tr><th>Query</th><th>Family</th><th className="num">Returned</th><th className="num">New pages</th></tr></thead><tbody>{audit.queries.map((q, i) => <tr key={`${q.query}-${i}`}><td>{q.query}{q.original ? <small className="pl-mut"> (was: {q.original})</small> : null}{q.error ? <small className="pl-mut"> · error: {q.error}</small> : null}</td><td>{q.family || '—'}</td><td className="num">{q.returned ?? '—'}</td><td className="num">{q.newPages ?? '—'}</td></tr>)}</tbody></table>
+      <table className="x-table"><thead><tr><th>Query</th><th>Family</th><th className="num">Returned</th><th className="num">New pages</th></tr></thead><tbody>{audit.queries.map((q, i) => <tr key={`${q.query}-${i}`}><td>{q.query}{q.researcher ? <small className="pl-mut"> · investigator</small> : null}{q.original ? <small className="pl-mut"> (was: {q.original})</small> : null}{q.error ? <small className="pl-mut"> · error: {q.error}</small> : null}</td><td>{q.family || '—'}</td><td className="num">{q.returned ?? '—'}</td><td className="num">{q.newPages ?? '—'}</td></tr>)}</tbody></table>
     </details> : null}
     {audit.discarded.length ? <details className="au-more"><summary>Discarded pages, one by one ({audit.discarded.length})</summary>
       <ul className="au-disc">{audit.discarded.map((t, i) => <li key={`${t.url}-${i}`}><details><summary><span className="pl-chip rose">{reasonLabel(String(t.drop || t.verdict || 'discarded'))}</span> {clip(t.name || t.title || t.url || '', 80)} <small className="pl-mut">{clip(t.url || '', 60)}</small></summary>
