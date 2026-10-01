@@ -1,0 +1,22 @@
+{
+  "_about": "Startup de hardware de energía que busca deuda y patrocinio. Prueba objetivos distintos de grant/inversión.",
+  "company": "VoltCell",
+  "venture": "VoltCell",
+  "product": "Second-life battery storage units for small businesses",
+  "description": "US startup repurposing used EV batteries into modular storage for small commercial buildings, with pilot installations signed.",
+  "oneLiner": "Second-life EV battery storage for small businesses",
+  "industry": "energy storage batteries circular economy",
+  "stage": "prototype",
+  "round": "seed",
+  "geography": "United States (Delaware C-corp)",
+  "entityType": "for_profit",
+  "country": "United States",
+  "constraints": "Asset-backed financing preferred; no board seats",
+  "useOfFunds": "Manufacture 40 units for signed pilots, certification, working capital",
+  "timeline": "12 months",
+  "amount": 900000,
+  "fundingTypes": [
+    "debt",
+    "sponsorship"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_about": "Grupo universitario de ciencias del clima. Prueba entidad académica y convocatorias de investigación básica/aplicada.",
+  "company": "Climate Dynamics Lab",
+  "venture": "Climate Dynamics Lab",
+  "product": "Machine-learning downscaling of regional climate projections for coastal flood risk",
+  "description": "University research group building ML models that downscale global climate model output to street-level flood risk in coastal cities of developing countries.",
+  "oneLiner": "ML downscaling of climate projections for coastal flood risk",
+  "industry": "climate science machine learning flood risk adaptation",
+  "stage": "prototype",
+  "round": "",
+  "geography": "Netherlands (university-based, EU)",
+  "entityType": "academic",
+  "country": "Netherlands",
+  "constraints": "Open data and open-source outputs",
+  "useOfFunds": "Two PhD positions, compute, field validation in three coastal cities",
+  "timeline": "36 months",
+  "amount": 600000,
+  "fundingTypes": [
+    "grant"
+  ]
+}

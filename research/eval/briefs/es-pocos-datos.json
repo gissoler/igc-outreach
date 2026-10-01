@@ -1,0 +1,18 @@
+{
+  "_about": "Brief en español y con pocos datos. Prueba supuestos explícitos (tipo de entidad, país no dicho) y que lo desconocido salga como «?» y no como exclusión.",
+  "company": "Aula Abierta",
+  "venture": "Aula Abierta",
+  "product": "Plataforma de tutoría con IA para estudiantes de secundaria",
+  "description": "Plataforma de tutoría personalizada con IA para estudiantes de secundaria en zonas rurales de América Latina.",
+  "oneLiner": "Tutoría con IA para secundaria rural",
+  "industry": "edtech educación inteligencia artificial",
+  "stage": "idea",
+  "round": "",
+  "geography": "América Latina",
+  "constraints": "",
+  "useOfFunds": "",
+  "timeline": "",
+  "fundingTypes": [
+    "grant"
+  ]
+}

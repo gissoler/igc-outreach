@@ -1,0 +1,20 @@
+{
+  "_about": "AHA (Alzheimer's data harmonization), ONG/académica. Caso real 01/10: NSF CogNeuro (PD-24-1699) NO debe quedar (excluye poblaciones clínicas); NSF 26-512 y NIA/NIAGADS sí deben aparecer.",
+  "company": "AHA",
+  "venture": "AHA",
+  "product": "Agentic Harmonization Assistant (AHA) and AHA Connect",
+  "description": "AI-powered multi-modal data harmonization, statistical crosswalks (e.g., MMSE vs MoCA) and researcher matching for Alzheimer's disease and related dementias research in the AD Workbench. Open-science, non-profit infrastructure.",
+  "oneLiner": "AI harmonization of Alzheimer's datasets and researcher matching",
+  "industry": "alzheimer's disease research data infrastructure, AI data harmonization",
+  "stage": "prototype",
+  "round": "",
+  "geography": "Global (non-profit research infrastructure)",
+  "entityType": "nonprofit",
+  "constraints": "No equity, no commercial monetization, open-source",
+  "useOfFunds": "Core software engineering, statistical validation, security hardening and community onboarding over 24 months",
+  "timeline": "24 months",
+  "amount": 350000,
+  "fundingTypes": [
+    "grant"
+  ]
+}

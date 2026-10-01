@@ -1,0 +1,22 @@
+{
+  "_about": "Startup medtech con fines de lucro en la UE; grants de la UE e inversión. Prueba entidad for-profit, país UE y dos objetivos a la vez.",
+  "company": "CardioLoop",
+  "venture": "CardioLoop",
+  "product": "Wearable ECG patch with AI arrhythmia detection",
+  "description": "Medical device startup in Spain developing a wearable ECG patch with cloud AI to detect atrial fibrillation. CE marking in progress.",
+  "oneLiner": "Wearable ECG patch with AI arrhythmia detection",
+  "industry": "medtech cardiology wearable AI",
+  "stage": "prototype",
+  "round": "seed",
+  "geography": "Spain (EU-incorporated company)",
+  "entityType": "for_profit",
+  "country": "Spain",
+  "constraints": "Medical device regulation (MDR) compliance required",
+  "useOfFunds": "Clinical validation study, CE marking, first 500 devices",
+  "timeline": "18 months",
+  "amount": 1200000,
+  "fundingTypes": [
+    "grant",
+    "investment"
+  ]
+}

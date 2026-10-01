@@ -1,0 +1,22 @@
+{
+  "_about": "Variante comercial de AHA (misma tecnología, empresa con fines de lucro): comparar contra aha-nonprofit. Debe cambiar la elegibilidad (SBIR/STTR sí, convocatorias solo para ONG no) y puede sumar inversión.",
+  "company": "AHA Labs Inc.",
+  "venture": "AHA Labs",
+  "product": "Agentic Harmonization Assistant for pharma and CRO clinical datasets",
+  "description": "For-profit US company selling an AI harmonization layer that standardizes multi-cohort Alzheimer's datasets for pharma and CRO partners.",
+  "oneLiner": "AI harmonization of clinical datasets for pharma partners",
+  "industry": "alzheimer's disease clinical data harmonization AI",
+  "stage": "prototype",
+  "round": "seed",
+  "geography": "United States (Delaware C-corp)",
+  "entityType": "for_profit",
+  "country": "United States",
+  "constraints": "No clinical care claims",
+  "useOfFunds": "Productize the harmonization engine, security certification, two pharma pilots",
+  "timeline": "18 months",
+  "amount": 500000,
+  "fundingTypes": [
+    "grant",
+    "investment"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_about": "ONG de salud en Colombia, sin presencia en EE. UU. Prueba restricciones por país y tipo de entidad (nonprofit) en convocatorias de EE. UU./UE.",
+  "company": "Fundación Salud Rural",
+  "venture": "Fundación Salud Rural",
+  "product": "Telehealth and community health worker program for rural maternal care",
+  "description": "Nonprofit foundation in Colombia training community health workers and providing telehealth follow-up for pregnant women in rural areas.",
+  "oneLiner": "Telehealth and community health workers for rural maternal care",
+  "industry": "global health maternal care telehealth community health workers",
+  "stage": "prototype",
+  "round": "",
+  "geography": "Colombia (registered in Colombia, no US or EU entity)",
+  "entityType": "nonprofit",
+  "country": "Colombia",
+  "constraints": "Must accept applicants from Latin America; no equity",
+  "useOfFunds": "Scale from 3 to 12 municipalities, train 60 health workers, evaluate outcomes",
+  "timeline": "18 months",
+  "amount": 150000,
+  "fundingTypes": [
+    "grant"
+  ]
+}
