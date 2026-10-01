@@ -101,7 +101,7 @@ export type RunAudit = {
   today: string; error?: string;
   brief?: Record<string, unknown>;
   interpretations: BriefInterpretation[];
-  counters: { queries: number; queriesYearFixed: number; pagesSeen: number; pagesRead: number; pagesUnread: number; rereadForDates: number; rereadImproved: number; extracted?: number; extractChanged?: number; extractConflicts?: number; extractCredits?: number; keptByEngine: number; droppedByEngine: Record<string, number>; skippedBeforeReading: Record<string, number>; verdicts: Record<string, number>; buckets: { top: number; radar: number; discarded: number }; discardReasons: Record<string, number>; radarReasons: Record<string, number> };
+  counters: { queries: number; queriesYearFixed: number; pagesSeen: number; pagesRead: number; pagesUnread: number; rereadForDates: number; rereadImproved: number; extracted?: number; extractChanged?: number; extractConflicts?: number; extractCredits?: number; extractCacheHits?: number; scrapeCacheHits?: number; firecrawl?: { credits: number; possiblyCharged: number; cacheHits: number; capReached: boolean; capSkipped: number; daily: { day: string; used: number; possiblyCharged: number; cap: number | null; capReached: boolean } | null }; keptByEngine: number; droppedByEngine: Record<string, number>; skippedBeforeReading: Record<string, number>; verdicts: Record<string, number>; buckets: { top: number; radar: number; discarded: number }; discardReasons: Record<string, number>; radarReasons: Record<string, number> };
   queries: { objective?: string; round?: number; query: string; family?: string; original?: string; returned?: number | null; newPages?: number | null; providers?: string[]; error?: string }[];
   discarded: ResultTrace[];
 };

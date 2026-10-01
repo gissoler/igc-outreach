@@ -110,6 +110,7 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
       <div><b>{c.buckets.top}</b><span>main list</span></div>
       <div><b>{c.buckets.radar}</b><span>to verify</span></div>
       <div><b>{c.buckets.discarded}</b><span>discarded</span></div>
+      {c.firecrawl ? <div className={c.firecrawl.capReached ? 'au-warn' : undefined}><b>{c.firecrawl.credits}</b><span>Firecrawl credits{c.firecrawl.possiblyCharged ? ` · +${c.firecrawl.possiblyCharged} possibly charged (failed/timed out)` : ''} · {c.firecrawl.cacheHits} from cache{c.extractCacheHits || c.scrapeCacheHits ? ` (${c.extractCacheHits || 0} second reads, ${c.scrapeCacheHits || 0} page reads)` : ''}{c.firecrawl.daily ? ` · today ${c.firecrawl.daily.used}${c.firecrawl.daily.cap != null ? ` / ${c.firecrawl.daily.cap}` : ''}` : ''}{c.firecrawl.capReached ? ` · daily cap reached: second reads switched off${c.firecrawl.capSkipped ? ` (${c.firecrawl.capSkipped} calls skipped)` : ''}` : ''}</span></div> : null}
     </div>
     <div className="au-cols">
       <div><h4>Discarded by reason</h4><ul className="au-bars">{sorted({ ...c.droppedByEngine, ...Object.fromEntries(sorted(c.discardReasons).filter(([k]) => !(k in c.droppedByEngine))) }).map(([k, n]) => <li key={k}><span>{reasonLabel(k)}</span><b>{n}</b></li>)}</ul>

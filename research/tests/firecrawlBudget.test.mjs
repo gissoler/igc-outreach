@@ -141,3 +141,13 @@ test('timeout del extractor: no se reintenta y se cuenta como posiblemente cobra
   assert.equal(meter.possiblyCharged, 5); assert.equal(meter.credits, 0); assert.equal(ledger.usage().possiblyCharged, 5);
   // un 429 sin ritmo adaptativo no existe en Firecrawl: todas las llamadas pasan por el gate (ver extractor.test.mjs)
 });
+
+test('Run audit: suma créditos, aciertos de caché y si se alcanzó el tope diario', async () => {
+  const { buildRunAudit } = await import('../server/research/runAudit.mjs');
+  const a = { objective: 'grant', extractCacheHits: 2, scrapeCacheHits: 1, firecrawl: { credits: 6, possiblyCharged: 5, cacheHits: { scrape: 1, extract: 2, search: 0 }, capSkipped: { extract: 3 }, capReached: true, daily: { day: '2026-09-30', used: 100, cap: 100, capReached: true } } };
+  const b = { objective: 'investment', firecrawl: { credits: 1, possiblyCharged: 0, cacheHits: { scrape: 4 }, capSkipped: {}, capReached: false, daily: null } };
+  const c = buildRunAudit({ engineRuns: [a, b] }).counters;
+  assert.equal(c.firecrawl.credits, 7); assert.equal(c.firecrawl.possiblyCharged, 5); assert.equal(c.firecrawl.cacheHits, 7);
+  assert.equal(c.firecrawl.capReached, true); assert.equal(c.firecrawl.capSkipped, 3); assert.equal(c.firecrawl.daily.cap, 100);
+  assert.equal(c.extractCacheHits, 2); assert.equal(c.scrapeCacheHits, 1);
+});

@@ -19,6 +19,7 @@
 .au-card .au-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1px; background: var(--x-line); border: 1px solid var(--x-line); margin: 10px 0 14px; }
 .au-kpis > div { background: var(--x-surface); padding: 10px 12px; display: grid; gap: 2px; }
 .au-kpis b { font-size: 20px; font-weight: 600; } .au-kpis span { font-size: 11.5px; color: var(--x-muted); }
+.au-kpis > div.au-warn { background: var(--x-amber-soft); } .au-kpis > div.au-warn b { color: var(--x-amber); }
 .au-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
 .au-cols h4 { margin: 0 0 6px; font-size: 12.5px; font-weight: 600; }
 .au-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
