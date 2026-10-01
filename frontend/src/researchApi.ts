@@ -97,11 +97,13 @@ export type BriefInterpretation = {
   applicant?: { entity: string; forProfit: boolean; entitySource: string; country: string | null; outside: string[]; countrySource: string };
   constraints?: string | null; exclusions?: string | null; today: string; year?: string; recency?: string; providers?: string[]; planner?: string;
 };
+export type ProviderBench = { provider: string; calls: number; returned: number; errors: number; ms: number; costUsd: number; urls: number; onlyUrls: number; pagesRead: number; apply: number; watch: number; useful: number; usefulPct: number | null; applyPct: number | null; noisePct: number | null; urlsPerCall: number | null; costPerUseful: number | null; uniqueUseful: number; outcomes: Record<string, number>; disabled: string | null };
 export type RunAudit = {
   today: string; error?: string;
   brief?: Record<string, unknown>;
   interpretations: BriefInterpretation[];
   counters: { queries: number; queriesYearFixed: number; pagesSeen: number; pagesRead: number; pagesUnread: number; rereadForDates: number; rereadImproved: number; extracted?: number; extractChanged?: number; extractConflicts?: number; extractCredits?: number; extractCacheHits?: number; scrapeCacheHits?: number; research?: { steps: number; searches: number; opens: number; newPages: number }; firecrawl?: { credits: number; possiblyCharged: number; cacheHits: number; capReached: boolean; capSkipped: number; daily: { day: string; used: number; possiblyCharged: number; cap: number | null; capReached: boolean } | null }; keptByEngine: number; droppedByEngine: Record<string, number>; skippedBeforeReading: Record<string, number>; verdicts: Record<string, number>; buckets: { top: number; radar: number; discarded: number }; discardReasons: Record<string, number>; radarReasons: Record<string, number> };
+  providers?: ProviderBench[];
   queries: { objective?: string; round?: number; query: string; family?: string; original?: string; returned?: number | null; newPages?: number | null; providers?: string[]; error?: string; researcher?: boolean }[];
   discarded: ResultTrace[];
 };
