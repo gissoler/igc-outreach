@@ -21,6 +21,7 @@ import { searxSearch, searxConfigured, fetchPage } from './localSearch.mjs';
 import { multiSearch, searchApisConfigured, searchProviders, jinaRead, firecrawlRead } from './searchApis.mjs';
 import { verifyInvestor, NEWSHOST } from './investor.mjs';
 import { createRunMeter, defaultLedger } from './firecrawlLedger.mjs';
+import { runResearcher, researchLimits } from './researcher.mjs';
 import { verifyOpportunity, literalIn, hostKind, hostOf, datesIn, compactVerification } from './verify.mjs';
 import { applicantProfile } from './applicant.mjs';
 import { buildExplanation } from './explain.mjs';
@@ -230,6 +231,12 @@ export async function runObjective(objective, brief, opts = {}) {
   // Gasto de Firecrawl de esta corrida (caché, créditos, tope diario): se pasa a toda llamada de Firecrawl y termina en el audit.
   const fcMeter = opts.firecrawlMeter || createRunMeter(env); const fcLedger = opts.firecrawlLedger || null;
   const fc = { env, fetcher, signal, meter: fcMeter, ...(fcLedger ? { ledger: fcLedger } : {}) };
+  // Investigador (modo calidad): apagado por defecto; con ENGINE_RESEARCH_STEPS>0 (o opts.research) un modelo fuerte decide qué buscar y abrir tras la búsqueda inicial.
+  const rLimits = researchLimits(env, opts.research);
+  const researchOn = rLimits.steps > 0 && canRead;
+  const researchRole = env.ENGINE_RESEARCH_ROLE || 'engine';
+  const researchState = { steps: 0, searches: 0, opens: 0, newPages: 0, stopped: null, log: [], errors: [] };
+  if (researchOn) audit.research = researchState;
   Object.assign(audit, { extractCacheHits: 0, scrapeCacheHits: 0, extractSkipped: {}, extractPolicy: env.ENGINE_EXTRACT_POLICY === 'all' ? 'all' : 'decisive' });
   const pendingExtract = [];
   const run = search || (apis
@@ -268,23 +275,56 @@ export async function runObjective(objective, brief, opts = {}) {
     audit.rounds = round; queries.push(...todo); asked.push(...todo.map((q) => q.query));
     audit.yearFixed += todo.filter((q) => q.original).length;
     const pages = new Map();
+    /** Añade las filas de una búsqueda a los candidatos de la ronda (la inicial y las del investigador usan la misma). */
+    const ingest = (rows, query, family, log) => {
+      log.returned = rows.length; log.providers = Object.keys(rows.stats || {}).filter((p) => rows.stats[p].returned);
+      let added = 0;
+      for (const [i, r] of rows.entries()) {
+        if (!r?.url || seenPages.has(r.url)) continue;
+        if (hostKind(r.url) === 'social') { audit.skipped.social_host = (audit.skipped.social_host || 0) + 1; continue; }
+        const had = pages.get(r.url);
+        if (had) { for (const p of r.providers || []) if (!had.providers.includes(p)) had.providers.push(p); if (!had.queries.some((x) => x.query === query)) had.queries.push({ query, family }); if ((r.markdown || '').length > had.text.length) had.text = r.markdown; continue; }
+        log.newPages++; added++;
+        pages.set(r.url, { url: r.url, title: r.title, text: r.markdown || '', snippet: r.description || '', query, family, queries: [{ query, family }], providers: [...(r.providers || [r.provider || audit.search])], order: i, via: r.markdown ? 'search' : null, published: r.published || null });
+      }
+      return added;
+    };
     await pool(todo, 3, async ({ query, family, original }) => {
       const log = { round, query, family, ...(original ? { original } : {}), returned: 0, newPages: 0, providers: [] };
       audit.queryLog.push(log);
       try {
         const rows = await run(query);
-        log.returned = rows.length; log.providers = Object.keys(rows.stats || {}).filter((p) => rows.stats[p].returned);
-        for (const [i, r] of rows.entries()) {
-          if (!r?.url || seenPages.has(r.url)) continue;
-          if (hostKind(r.url) === 'social') { audit.skipped.social_host = (audit.skipped.social_host || 0) + 1; continue; }
-          const had = pages.get(r.url);
-          if (had) { for (const p of r.providers || []) if (!had.providers.includes(p)) had.providers.push(p); if (!had.queries.some((x) => x.query === query)) had.queries.push({ query, family }); if ((r.markdown || '').length > had.text.length) had.text = r.markdown; continue; }
-          log.newPages++;
-          pages.set(r.url, { url: r.url, title: r.title, text: r.markdown || '', snippet: r.description || '', query, family, queries: [{ query, family }], providers: [...(r.providers || [r.provider || audit.search])], order: i, via: r.markdown ? 'search' : null, published: r.published || null });
-        }
+        ingest(rows, query, family, log);
       } catch (error) { audit.error = error.message; log.error = String(error.message).slice(0, 200); }
     });
     // Consenso primero: una página que traen varios buscadores sube; luego la posición en su búsqueda.
+    const fetchFull = async (p) => {
+      let got = await pageFetcher(p.url, { fetcher, signal });
+      let via = got ? 'direct' : null;
+      if (got) audit.fetched++;
+      if (!got || got.text.length < 400) { const viaJina = await reader(p.url, { env, fetcher, signal }); if (viaJina && viaJina.text.length > (got?.text.length || 0)) { got = viaJina; via = 'jina'; audit.jinaRead++; } }
+      if ((!got || got.text.length < 400) && fallbackReader) { const viaFc = await fallbackReader(p.url, fc); if (viaFc && viaFc.text.length > (got?.text.length || 0)) { got = viaFc; via = 'firecrawl'; audit.firecrawlRead = (audit.firecrawlRead || 0) + 1; } }
+      return got ? { ...got, via } : null;
+    };
+    // Investigador: tras la búsqueda inicial, un modelo fuerte mira lo que salió y decide qué buscar y abrir (ver researcher.mjs).
+    // Todo lo que añade pasa por la misma lectura y verificación; aquí no se decide nada sobre abierto/cerrado/elegible.
+    if (researchOn && pages.size && researchState.steps < rLimits.steps) {
+      const perRound = Math.max(1, Math.ceil(rLimits.steps / Math.max(1, rounds)));
+      try {
+        await runResearcher({
+          objective, ask: o.ask, briefText: briefText(brief), today: dayOf(today), pages, asked, env, fetcher, signal, chat, role: researchRole, state: researchState,
+          limits: { ...rLimits, steps: Math.min(rLimits.steps, researchState.steps + perRound) }, kindOf: hostKind, priority: (p) => readPriority(p, today),
+          search: async (query, family) => {
+            const fixed = fixAll([{ query, family }], objective, today, env)[0];
+            const log = { round, query: fixed.query, family, researcher: true, ...(fixed.original ? { original: fixed.original } : {}), returned: 0, newPages: 0, providers: [] };
+            audit.queryLog.push(log); queries.push({ query: fixed.query, family });
+            try { return ingest(await run(fixed.query), fixed.query, family, log); } catch (error) { log.error = String(error.message).slice(0, 200); throw error; }
+          },
+          open: async (p) => { const got = await fetchFull(p).catch(() => null); if (got && got.text.length > p.text.length) { p.text = got.text; p.title = p.title || got.title; p.via = got.via; } },
+        });
+      } catch (error) { if (signal?.aborted) throw error; researchState.errors.push(String(error?.message || error).slice(0, 160)); }
+      for (const e of researchState.errors.splice(0)) if (audit.errors.length < 20) audit.errors.push(`Researcher: ${e}`);
+    }
     let list = [...pages.values()].filter((p) => {
       if (hostKind(p.url) !== 'aggregator') return true;
       audit.dropped.aggregator = (audit.dropped.aggregator || 0) + 1;
@@ -295,14 +335,6 @@ export async function runObjective(objective, brief, opts = {}) {
     for (const p of list.slice(maxPages)) { if (audit.overBudget.length < 600) audit.overBudget.push({ url: p.url, title: String(p.title || '').slice(0, 100), score: readPriority(p, today), providers: p.providers.length }); }
     for (const p of list.slice(maxPages)) keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'over_page_budget', reasons: ['over_page_budget'], today: dayOf(today), note: `Not read: over the page budget (ENGINE_MAX_PAGES=${maxPages})` });
     list = list.slice(0, maxPages);
-    const fetchFull = async (p) => {
-      let got = await pageFetcher(p.url, { fetcher, signal });
-      let via = got ? 'direct' : null;
-      if (got) audit.fetched++;
-      if (!got || got.text.length < 400) { const viaJina = await reader(p.url, { env, fetcher, signal }); if (viaJina && viaJina.text.length > (got?.text.length || 0)) { got = viaJina; via = 'jina'; audit.jinaRead++; } }
-      if ((!got || got.text.length < 400) && fallbackReader) { const viaFc = await fallbackReader(p.url, fc); if (viaFc && viaFc.text.length > (got?.text.length || 0)) { got = viaFc; via = 'firecrawl'; audit.firecrawlRead = (audit.firecrawlRead || 0) + 1; } }
-      return got ? { ...got, via } : null;
-    };
     await pool(list.filter((p) => p.text.length < 400), 6, async (p) => {
       const got = await fetchFull(p);
       if (got && got.text.length > p.text.length) { p.text = got.text; p.title = p.title || got.title; p.via = got.via; } else if (!p.text) { p.text = p.snippet; p.via = 'snippet'; }
