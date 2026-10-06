@@ -132,7 +132,7 @@ test('centros institucionales, páginas de universidad y agregadores nuevos se d
   assert.equal(screenCall({ url: 'https://www.nia.nih.gov/research/adrcs', title: "NIA-Funded Alzheimer's Disease Research Centers" }, profile)?.code, 'institutional_only');
   assert.equal(screenCall({ url: 'https://publichealth.lsuhsc.edu/x.pdf', title: '[PDF] Other Latest Update 11/10/2025 - LSU School of Public Health' }, profile)?.code, 'university_page');
   assert.equal(screenCall({ url: 'https://cancer.osu.edu/x', title: 'NIH SBIR Phase II notice' }, profile), null);
-  for (const u of ['https://atomgrants.com/collections/foundation-grants-biomedical-research', 'https://everglade.com/x']) assert.equal(verifyOpportunity({}, { url: u, title: 'Grants', text: 'Apply now' }, { codeOnly: true }).tier, 'drop');
+  for (const u of ['https://atomgrants.com/collections/foundation-grants-biomedical-research', 'https://everglade.com/x', 'https://grantcompass.co/healthcare-biotech-business-grants', 'https://www.evagarland.com/powering-cardiovascular-innovation']) assert.equal(verifyOpportunity({}, { url: u, title: 'Grants', text: 'Apply now' }, { codeOnly: true }).tier, 'drop');
   const { modelGrantQueries } = await import('../server/research/webscrape.mjs');
   const out = await modelGrantQueries({ industry: 'Pharma' }, [], { env: {}, today: new Date('2026-10-05'), chat: async () => ({ json: { queries: ['ADDF Alzheimer drug development RFP 2024 open', 'NIA SBIR Phase IIB deadline 2027'] } }) });
   assert.deepEqual(out, ['ADDF Alzheimer drug development RFP 2026 open', 'NIA SBIR Phase IIB deadline 2027']);

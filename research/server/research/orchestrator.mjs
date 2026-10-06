@@ -314,7 +314,11 @@ export function fixGenericTitle(lead, page, url) {
   if (title) lead.title = title.slice(0, 220);
 }
 export async function confirmFromPages(leads, brief, { read, max = 12, concurrency = 4, signal, modelRead = null } = {}) {
-  const todo = leads.filter((l) => !l.person && !(l.evidence || []).some((e) => e.verified) && safeUrl(l.contact?.value || l.evidence?.[0]?.url)).slice(0, max);
+  // Con lectura del modelo, también se leen las convocatorias de registros oficiales (ya traen evidencia verificada) que aún no tienen juicio
+  // del modelo: sin esa lectura el código no puede darles «Act now» («Not read by the AI model»). Primero las que aún no se leyeron.
+  const isGrant = (l) => l.fundingType === 'grant' && l.kind === 'opportunity' && !l.verification;
+  const todo = leads.filter((l) => !l.person && safeUrl(l.contact?.value || l.evidence?.[0]?.url) && (!(l.evidence || []).some((e) => e.verified) || (modelRead && isGrant(l))))
+    .sort((a, b) => Number(Boolean(modelRead && isGrant(b))) - Number(Boolean(modelRead && isGrant(a)))).slice(0, max);
   let confirmed = 0; let i = 0;
   await Promise.all(Array.from({ length: Math.min(concurrency, todo.length) }, async () => {
     while (i < todo.length) {
