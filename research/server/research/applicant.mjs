@@ -49,6 +49,7 @@ export function applicantProfile(brief = {}) {
   return {
     entity, forProfit: entity === 'for_profit_startup', entitySource,
     country, outside, countrySource: brief.country ? 'brief.country' : insideMatch ? 'brief.geography' : outside.length ? 'brief.geography (outside …)' : 'unknown (brief does not say where the company is incorporated)',
+    state: usStateOf([brief.state, brief.city, brief.geography, brief.domicile].filter(Boolean).join(', ')),
     stage: [brief.stage, brief.round].filter(Boolean).join(' / ') || 'unknown',
     early: /idea|prototype|pre-?seed|preclinical|seed/i.test(`${brief.stage || ''} ${brief.round || ''}`),
   };
@@ -167,4 +168,36 @@ export function checkApplicant(pageText, profile = applicantProfile({}), { model
   if (flags.some((f) => f.startsWith('country_restricted'))) return out('unclear', `Companies can apply, but only from ${countries.map((c) => c.code).join('/')}; the brief does not say where the venture is incorporated`, countries[0].quote);
   if (flags.includes('stage_requirement')) return out('unclear', 'Companies can apply, but there is a stage/revenue requirement to check', late);
   return out('yes', 'The eligibility statement admits companies/startups', include || found.company);
+}
+
+/* ── Pantalla previa: solo individuos y otro estado ──────────────────────────────────────────────
+   Dos descartes que el título o el dominio ya prueban, sin esperar a leer la página:
+   · becas para una persona (postdoctoral, fellowship, K/F awards, scholarship…) cuando quien postula es una empresa;
+   · programa de gobierno de OTRO estado (cirm.ca.gov, *.ny.gov…) cuando el brief dice dónde está la empresa.
+   El motivo cita el título o el dominio, para que se pueda comprobar. */
+const US_STATES = { al: 'alabama', ak: 'alaska', az: 'arizona', ar: 'arkansas', ca: 'california', co: 'colorado', ct: 'connecticut', de: 'delaware', fl: 'florida', ga: 'georgia', hi: 'hawaii', id: 'idaho', il: 'illinois', in: 'indiana', ia: 'iowa', ks: 'kansas', ky: 'kentucky', la: 'louisiana', me: 'maine', md: 'maryland', ma: 'massachusetts', mi: 'michigan', mn: 'minnesota', ms: 'mississippi', mo: 'missouri', mt: 'montana', ne: 'nebraska', nv: 'nevada', nh: 'new hampshire', nj: 'new jersey', nm: 'new mexico', ny: 'new york', nc: 'north carolina', nd: 'north dakota', oh: 'ohio', ok: 'oklahoma', or: 'oregon', pa: 'pennsylvania', ri: 'rhode island', sc: 'south carolina', sd: 'south dakota', tn: 'tennessee', tx: 'texas', ut: 'utah', vt: 'vermont', va: 'virginia', wa: 'washington', wv: 'west virginia', wi: 'wisconsin', wy: 'wyoming' };
+/** Código de estado de EE. UU. que nombra un texto («Potomac, Maryland, USA», «MD»); null si no hay uno claro. */
+export function usStateOf(text) {
+  const t = lower(text).replace(/[^a-z ]+/g, ' ');
+  const names = Object.entries(US_STATES).sort((a, b) => b[1].length - a[1].length);
+  for (const [code, name] of names) if (new RegExp(`\\b${name}\\b`).test(t)) return code;
+  const ab = /(?:^|,)\s*([A-Za-z]{2})\s*(?:,|$|\d)/.exec(String(text || '').trim());
+  return ab && US_STATES[ab[1].toLowerCase()] ? ab[1].toLowerCase() : null;
+}
+const FEDERAL_2LETTER = new Set(['va']);   // www.va.gov es federal, no Virginia
+const INDIVIDUAL_TITLE = /\b(?:post-?doctoral|pre-?doctoral|doctoral (?:fellowship|dissertation)|graduate research fellowship|(?:research |career |travel )?fellowships?|fellows? program|scholarships?|career development award|mentored (?:research )?(?:scientist )?(?:career )?(?:development )?award|training grants?|[KF]\d{2}\b)/i;
+const SMALL_BUSINESS_TITLE = /\b(?:sbir|sttr|small business|for-?profit|compan(?:y|ies)|industry)\b/i;
+/** @returns {{ code, reason }|null} */
+export function screenCall({ url = '', title = '' } = {}, profile = {}) {
+  if (profile.forProfit !== false && INDIVIDUAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) {
+    const m = INDIVIDUAL_TITLE.exec(title)[0];
+    return { code: 'individual_only', reason: `The title ("${String(title).slice(0, 110)}") is an award for an individual (${m}), not for a company` };
+  }
+  if (profile.state) {
+    let host = ''; try { host = new URL(url).hostname.toLowerCase(); } catch { /* sin URL */ }
+    const m = /^(?:[a-z0-9-]+\.)+([a-z]{2})\.gov$/.exec(host) || /\.state\.([a-z]{2})\.us$/.exec(host);
+    const code = m && US_STATES[m[1]] && !FEDERAL_2LETTER.has(m[1]) && !/^www\.[a-z]{2}\.gov$/.test(host) ? m[1] : null;
+    if (code && code !== profile.state) return { code: 'other_state', reason: `${host} is a ${US_STATES[code]} state program; the applicant is in ${US_STATES[profile.state]}` };
+  }
+  return null;
 }

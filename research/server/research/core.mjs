@@ -1,5 +1,5 @@
 import { GENERIC, grantMatch } from './grantMatch.mjs';
-import { applicantProfile, checkApplicant } from './applicant.mjs';
+import { applicantProfile, checkApplicant, screenCall } from './applicant.mjs';
 import { createHash } from 'node:crypto';
 
 export const norm = (s = '') =>
@@ -465,6 +465,8 @@ const dropText = (ver) => {
 };
 /** Puerta de la lista principal para una convocatoria: main | verify | drop, con motivo. */
 export function grantGate(l, days, profile = applicantProfile({})) {
+  const screen = screenCall({ url: l.contact?.value || '', title: l.title || '' }, profile);
+  if (screen) return { tier: 'drop', reason: `${screen.code === 'other_state' ? 'Other state' : 'Not eligible'}: ${screen.reason}.`, source: 'screen' };
   const ver = l.verification || l.codeCheck;
   if (ver?.tier) return ver.tier === 'drop' ? { tier: 'drop', reason: dropText(ver), source: l.verification ? 'read' : 'code' } : { tier: ver.tier, reason: ver.tier === 'main' ? 'Open today and eligible, both verified on the page' : (ver.blockers?.[0] || 'To verify'), source: l.verification ? 'read' : 'code' };
   // Registros oficiales (Grants.gov, radar): plazo del registro + elegibilidad del aviso oficial.
