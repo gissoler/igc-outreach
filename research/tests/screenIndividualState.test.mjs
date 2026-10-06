@@ -161,3 +161,47 @@ test('SearXNG: proveedor de búsqueda sin créditos con el mismo formato de fila
   assert.equal(viaFirecrawl.length, 2);   // sin clave de Firecrawl: el proveedor lo atiende
   await assert.rejects(searxngSearch('q', { env, fetcher: async () => new Response('', { status: 403 }) }), /enable "json"/);
 });
+
+test('páginas índice de financiadores (tipos, áreas de interés, directorio, raíz de sección) y blog de consultora no son convocatorias', async () => {
+  const cases = [
+    ['https://www.ninds.nih.gov/funding/ninds-small-business-program/types-ninds-small-business-grants', 'Types of NINDS Small Business Grants | National Institute of ...'],
+    ['https://www.ninds.nih.gov/funding/ninds-small-business-program/ninds-small-business-program-areas-interest', 'NINDS Small Business Program Areas of Interest | National Institute ...'],
+    ['https://www.nsf.gov/eng/emerging-frontiers-multidisciplinary-activities', 'ENG Emerging Frontiers and Multidisciplinary Activities - Directorate for Engineering (ENG) | NSF - U.S. National Science Foundation'],
+    ['https://department.va.gov/grants', 'VA Grants'],
+    ['https://professional.heart.org/en/research-programs', 'Research - Professional Heart Daily | American Heart Association'],
+  ];
+  for (const [url, title] of cases) assert.equal(ty(url, title, 'Apply for funding. Eligibility. Deadlines.'), 'directory', title);
+  assert.notEqual(ty('https://grants.nih.gov/grants/guide/pa-files/PAR-26-094.html', 'PAR-26-094: Research Project Cooperative Agreements', 'Apply by Jan 5, 2027'), 'directory');
+  assert.equal(verifyOpportunity({}, { url: 'https://jm-aq.com/neuroscience-funding-in-2026/', title: 'Neuroscience Funding in 2026', text: 'Apply' }, { codeOnly: true }).tier, 'drop');
+  const { fixGenericTitle } = await import('../server/research/orchestrator.mjs');
+  const a = { title: 'Part 1. Overview Information' };
+  fixGenericTitle(a, { text: 'Part 1. Overview Information Funding Opportunity Title  Genomic and Biologic Therapies for ADRD  Activity Code U01' }, 'https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-26-012.html');
+  assert.equal(a.title, 'RFA-AG-26-012: Genomic and Biologic Therapies for ADRD');
+  const b = { title: 'Part 1. Overview Information' }; fixGenericTitle(b, null, 'https://grants.nih.gov/grants/guide/pa-files/PAR-24-293.html'); assert.equal(b.title, 'PAR-24-293 (NIH funding notice)');
+  const c = { title: 'PAR-1: Real title' }; fixGenericTitle(c, null, 'https://x.gov/y'); assert.equal(c.title, 'PAR-1: Real title');
+});
+
+test('«Clinical Trial Not Allowed» descarta la convocatoria para un solicitante en fase clínica, no para uno preclínico', () => {
+  const page = { url: 'https://grants.nih.gov/grants/guide/rfa-files/RFA-TR-25-002.html', title: 'RFA-TR-25-002: Preclinical Proof of Concept Studies for Rare Diseases (R21 Clinical Trial Not Allowed)', text: 'Preclinical Proof of Concept Studies for Rare Diseases (R21 Clinical Trial Not Allowed). Application Due Date: June 2, 2027. Clinical Trials: Not Allowed: Only accepting applications that do not propose clinical trials. For-Profit Organizations eligible. Apply through ASSIST.' };
+  const clin = verifyOpportunity({}, page, { brief: { maturity: 'clinical_phase_2', industry: 'pharma' }, codeOnly: true });
+  assert.equal(clin.tier, 'drop'); assert.ok(clin.reasons.includes('scope_mismatch'));
+  const pre = verifyOpportunity({}, page, { brief: { maturity: 'preclinical', industry: 'pharma' }, codeOnly: true });
+  assert.notEqual(pre.tier, 'drop');
+});
+
+test('el modelo lee la página abierta y su juicio de alcance (con cita literal) manda sobre el del código', async () => {
+  const { confirmFromPages, searchRowsToLeads } = await import('../server/research/orchestrator.mjs');
+  const { readOpportunity } = await import('../server/research/readOpportunity.mjs');
+  const brief = { venture: 'MINT-AD', industry: 'pharma Alzheimer agitation', maturity: 'Phase 2', fundingTypes: ['grant'] };
+  const text = 'RFA-TR-25-002 Rare Diseases Preclinical Proof of Concept. Application due June 2, 2027. Eligible: for-profit organizations. Apply through ASSIST. Only rare diseases affecting fewer than 200,000 individuals are supported. ' + 'Background detail. '.repeat(40);
+  const page = { url: 'https://grants.nih.gov/grants/guide/rfa-files/RFA-TR-25-002.html', title: 'Part 1. Overview Information', text };
+  const leads = searchRowsToLeads([{ url: page.url, title: page.title, description: 'Apply now rare diseases funding opportunity', markdown: '' }], brief, { objective: 'grant', query: 'q' });
+  assert.equal(leads.length, 1);
+  const chat = async () => ({ model: 'fake', json: { status: 'open', deadline: '2027-06-02', official: true, eligible: 'yes', non_dilutive: 'yes', quotes: { deadline: 'Application due June 2, 2027', eligible: 'Eligible: for-profit organizations' }, page_type: 'call', scope_fit: { verdict: 'does_not_fit', reason: 'Rare diseases only; Alzheimer agitation is not rare.', funds_quote: null, excludes_quote: 'Only rare diseases affecting fewer than 200,000 individuals are supported.', work_type: 'applied_research' } } });
+  const modelRead = (p) => readOpportunity(p, brief, { env: {}, chat });
+  await confirmFromPages(leads, brief, { read: async () => page, modelRead });
+  assert.equal(leads[0].verification.scopeFit.verdict, 'does_not_fit');
+  assert.ok(leads[0].verification.reasons.includes('scope_mismatch')); assert.equal(leads[0].verification.tier, 'drop');
+  assert.ok(leads[0].codeCheck);
+  assert.equal(modelRead.count, 1);
+});

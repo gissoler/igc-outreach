@@ -5,7 +5,9 @@ import { demoLeads } from './demo.mjs';
 import { addConnections, addOrgBridges, networkCandidates } from './network.mjs';
 import { runEngine, runObjective, engineLeads, engineConfigured, ENGINE_SOURCE } from './engine.mjs';
 import { multiSearch, searchApisConfigured } from './searchApis.mjs';
-import { roleReachable } from '../analysis/fleet.mjs';
+import { roleReachable, fleetReady } from '../analysis/fleet.mjs';
+import { readOpportunity } from './readOpportunity.mjs';
+import { crawl4aiRead, crawl4aiConfigured } from './crawl4ai.mjs';
 import { fundingQuery } from './expand.mjs';
 import { aiReasonerOn, ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads, confirmFromPages, templateQueries } from './orchestrator.mjs';
 /** Grants buscados directo en las APIs de búsqueda cuando el motor con IA no está disponible. */
@@ -342,16 +344,31 @@ export async function runResearch(
           return r.leads.filter((l) => !before.has(l.id) || l.hunter || (l.contacts?.length && l.contact?.type === 'email'));
         } : null;
         // Lector para confirmar pistas de snippet: descarga directa → Jina Reader → Firecrawl /scrape.
+        // Lectores de páginas, en el orden de PAGE_READER_ORDER (por defecto firecrawl,crawl4ai,direct,jina): de esa lectura parte todo el
+        // análisis del modelo. Se pasa al siguiente solo si el anterior no está disponible o devuelve menos de 400 caracteres.
+        // Ej.: PAGE_READER_ORDER=crawl4ai,firecrawl,direct,jina para leer primero con Crawl4AI propio (sin créditos).
         const readPage = async (url, s = signal) => {
-          let page = await fetchPage(url, { fetcher, signal: s, timeoutMs: 8000 });
-          if (!page || page.text.length < 400) { const j = await jinaRead(url, { env, fetcher, signal: s }); if (j && j.text.length > (page?.text.length || 0)) page = j; }
-          if (!page || page.text.length < 400) { const f = await firecrawlRead(url, { env, fetcher, signal: s }); if (f && f.text.length > (page?.text.length || 0)) page = f; }
+          const readers = {
+            firecrawl: () => firecrawlRead(url, { env, fetcher, signal: s }),
+            crawl4ai: () => (crawl4aiConfigured(env) ? crawl4aiRead(url, { env, fetcher, signal: s }) : null),
+            direct: () => fetchPage(url, { fetcher, signal: s, timeoutMs: 8000 }),
+            jina: () => jinaRead(url, { env, fetcher, signal: s }),
+          };
+          const order = String(env.PAGE_READER_ORDER || 'firecrawl,crawl4ai,direct,jina').split(',').map((x) => x.trim().toLowerCase()).filter((x) => readers[x]);
+          let page = null;
+          for (const name of order) {
+            if (page && page.text.length >= 400) break;
+            let next = null; try { next = await readers[name](); } catch { next = null; }
+            if (next && next.text && next.text.length > (page?.text.length || 0)) page = { ...next, via: next.via || name };
+          }
           return page;
         };
+        // El modelo grande juzga cada convocatoria abierta (alcance, etapa, quién postula); GRANT_PAGE_MODEL=0 lo apaga.
+        const modelRead = grantsOnly && env.GRANT_PAGE_MODEL !== '0' && fleetReady(env, 'chat') ? (page) => readOpportunity(page, b, { env, fetcher, signal }) : null;
         if (env.CONFIRM_SNIPPETS !== '0') {
-          // Presupuesto propio: abrir pistas nunca se come el tiempo de los intentos del orquestador.
-          const confirmSignal = AbortSignal.any([signal, AbortSignal.timeout(Number(env.CONFIRM_SNIPPETS_MS) || 40000)]);
-          const confirm = await confirmFromPages(leads, b, { read: (url) => readPage(url, confirmSignal), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: confirmSignal });
+          // Presupuesto propio: abrir pistas nunca se come el tiempo de los intentos del orquestador (más con lectura del modelo).
+          const confirmSignal = AbortSignal.any([signal, AbortSignal.timeout(Number(env.CONFIRM_SNIPPETS_MS) || (modelRead ? 150000 : 40000))]);
+          const confirm = await confirmFromPages(leads, b, { read: (url) => readPage(url, confirmSignal), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: confirmSignal, modelRead });
           if (confirm.tried) live({ phase: 'reading', provider: 'Page check', status: 'success', title: 'Search leads opened', message: `Opened ${confirm.tried} search results that only had a snippet; ${confirm.confirmed} confirmed with a quote from the page.`, resultCount: confirm.confirmed });
         }
         const breaker = {};
@@ -374,7 +391,7 @@ export async function runResearch(
               for (const q of list) found.push(...await searchFundingQuery(client.scope(ORCHESTRATOR), b, { query: q.query, objective }, env).catch(() => []));
             }
           }
-          if (env.CONFIRM_SNIPPETS !== '0') await confirmFromPages(found, b, { read: (url) => readPage(url, s), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: s });
+          if (env.CONFIRM_SNIPPETS !== '0') await confirmFromPages(found, b, { read: (url) => readPage(url, s), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: s, modelRead });
           return found;
         };
         const orchestratorOn = env.ORCHESTRATOR !== '0' && (searchApisConfigured(env) || engineConfigured(env) || env.EXA_API_KEY || env.SERPER_API_KEY || hunter);

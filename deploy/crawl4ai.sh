@@ -18,7 +18,7 @@ unset_env() { sed -i "/^$1=/d" "$ENV_R"; }
 
 if [[ "${1:-on}" == "off" ]]; then
   docker rm -f "$NAME" >/dev/null 2>&1 || true
-  unset_env CRAWL4AI_URL; systemctl restart outreach-research
+  unset_env CRAWL4AI_URL; unset_env CRAWL4AI_TOKEN; systemctl restart outreach-research
   echo "Crawl4AI apagado (Firecrawl no se tocó)."; exit 0
 fi
 
@@ -41,12 +41,15 @@ main() {
   echo "==> Crawl4AI ($IMAGE)"
   docker pull "$IMAGE"
   docker rm -f "$NAME" >/dev/null 2>&1 || true
-  docker run -d --name "$NAME" --restart unless-stopped --shm-size=1g -p "127.0.0.1:$PORT:11235" "$IMAGE" >/dev/null
+  # Token propio y fijo (si no, el servidor genera uno temporal en cada arranque y la app no lo conoce).
+  TOKEN="$(grep '^CRAWL4AI_TOKEN=' "$ENV_R" | cut -d= -f2- || true)"; [[ -n "$TOKEN" ]] || TOKEN="$(head -c 24 /dev/urandom | od -An -tx1 | tr -d ' \n')"
+  docker run -d --name "$NAME" --restart unless-stopped --shm-size=1g -e CRAWL4AI_API_TOKEN="$TOKEN" -p "127.0.0.1:$PORT:11235" "$IMAGE" >/dev/null
   # 4) Esperar a que responda (el primer arranque tarda).
-  for i in $(seq 1 40); do curl -fsS "http://127.0.0.1:$PORT/health" >/dev/null 2>&1 && break; sleep 3; done
-  curl -fsS "http://127.0.0.1:$PORT/health" >/dev/null 2>&1 || { echo "Crawl4AI no respondió en /health:"; docker logs --tail 30 "$NAME"; exit 1; }
+  healthy() { curl -fsS "http://127.0.0.1:$PORT/health" >/dev/null 2>&1 || curl -fsS -H "Authorization: Bearer $TOKEN" "http://127.0.0.1:$PORT/health" >/dev/null 2>&1; }
+  for i in $(seq 1 60); do healthy && break; sleep 3; done
+  healthy || { echo "Crawl4AI no respondió en /health:"; docker logs --tail 30 "$NAME"; exit 1; }
   # 5) Encender en la app; Firecrawl se apaga con una variable (la clave se queda en el .env, sin usarse).
-  set_env CRAWL4AI_URL "http://127.0.0.1:$PORT"
+  set_env CRAWL4AI_URL "http://127.0.0.1:$PORT"; set_env CRAWL4AI_TOKEN "$TOKEN"
   [[ "${FIRECRAWL_OFF:-1}" == "0" ]] || set_env FIRECRAWL_DISABLED 1
   systemctl restart outreach-research
   sleep 3

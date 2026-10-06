@@ -35,6 +35,8 @@ const TITLE_MEETING = /\b(?:meetings?|workshops?|webinars?|conferences?|symposi(
 const TITLE_GUIDE = /^(?:guidance\b|(?:top|best)\b.{0,40}\b(?:grants|funding|programs|funders|investors|campaigns)|understanding|what (?:is|are)|guide to|a guide to|the (?:complete|ultimate|essential|beginner'?s) guide|navigating|ask the expert|faq\b|frequently asked|top \d+|best \d+)|\b(?:ultimate|complete|beginner'?s) guide\b|\bask the expert\b|(?<!application )\bguide\b|\bexplained\b|\bfrequently asked questions\b/i;
 const TITLE_HUB = /^(?:funding|grants?(?: (?:&|and) funding)?)\s*(?:[|\-–—:])|\b(?:funding opportunities|funding resources|grant opportunities|funding calls|active opportunities|current opportunities|open (?:funding )?calls|funding programs|funding sources|find funding|solicitations)\b|\bexplore .{0,40}opportunities\b|\bfunding announcements?\b|^about\b|^types of (?:grants|funding|awards)\b|\b(?:interest|priority) areas\b|^(?:research|grants?) (?:&|and) (?:funding|grants?)\b|^funding (?:&|and) grants?\b/i;
 
+const TITLE_HUB_SECTION = /^types of\b[^|]{0,60}\b(?:grants?|funding|awards?|programs?)\b|\b(?:areas? of interest|program areas|interest areas)\b|\bdirectorate for\b|\bdivision of\b|^(?:[A-Za-z&.]{1,12} ){1,2}grants?$/i;
+const SECTION_PATH = /^\/(?:[a-z]{2}\/)?(?:research-programs|funding-opportunities|grants-funding)\/?$/i;
 const MODEL_NOT_CALL = { news: 'news', deal_news: 'news', directory: 'directory', company: 'company', investor: 'investor', lender: 'lender', report: 'report', blog: 'blog', event: 'event', cohort: 'cohort', cohort_announcement: 'cohort' };
 
 /**
@@ -68,6 +70,10 @@ export function classifyPage({ url = '', title = '', text = '', modelKind = '', 
   if (!HAS_CALL_ID.test(title) && TITLE_MEETING.test(title) && title.length < 140 && !/\b(?:grants?|awards?|funding|request for applications)\b/i.test(title)) return { type: 'event', isCall: false, reason: 'Meeting, workshop or summary page, not a funding call', applyQuote, signals };
   // Portada de un sitio (ruta «/»): no es una convocatoria, aunque hable de becas.
   if (path === '/' && !HAS_CALL_ID.test(title) && !apply) return { type: 'home', isCall: false, reason: 'Site home page with no way to apply, not a call', applyQuote, signals };
+  // Páginas índice del financiador: «Types of NINDS Small Business Grants», «Program Areas of Interest», «Directorate for …», «VA Grants»,
+  // o la raíz de una sección (/grants, /en/research-programs). Los llamados concretos son los leads, no estas páginas.
+  if (!HAS_CALL_ID.test(title) && title.length < 220 && TITLE_HUB_SECTION.test(title)) return { type: 'directory', isCall: false, reason: 'Funder section or index page, not a specific call', applyQuote, signals };
+  if (!HAS_CALL_ID.test(title) && SECTION_PATH.test(path)) return { type: 'directory', isCall: false, reason: 'Top-level section of a funder site, not a specific call', applyQuote, signals };
   // Guías, explicaciones e índices de oportunidades: el título lo delata aunque el texto mencione «eligibility» o «deadlines».
   if (!HAS_CALL_ID.test(title) && TITLE_GUIDE.test(title)) return { type: 'blog', isCall: false, reason: 'Guide or explainer, not the call itself', applyQuote, signals };
   if (!HAS_CALL_ID.test(title) && title.length < 120 && TITLE_HUB.test(title)) return { type: 'directory', isCall: false, reason: 'Index of funding opportunities; the individual calls are the leads', applyQuote, signals };

@@ -305,7 +305,15 @@ export function pageQuote(text, brief, { max = 600 } = {}) {
   const next = sentences[best.i + 1] && (best.x.length + sentences[best.i + 1].length) < max ? ` ${sentences[best.i + 1]}` : '';
   return `${best.x}${next}`.slice(0, max);
 }
-export async function confirmFromPages(leads, brief, { read, max = 12, concurrency = 4, signal } = {}) {
+/** Títulos genéricos de las guías NIH («Part 1. Overview Information»): se reemplazan por el título de la convocatoria o, si no, por su número. */
+export function fixGenericTitle(lead, page, url) {
+  if (!/^(?:part\s*1\.?\s*)?overview information$/i.test(String(lead.title || '').trim())) return;
+  const fromText = /Funding Opportunity Title\s*[:\-]?\s*(.{8,220}?)(?=\s{2,}|\n|\s(?:Activity Code|Notice Type|Related Notices)\b)/i.exec(String(page?.text || ''))?.[1]?.trim();
+  const id = /\/guide\/(?:rfa|pa|par|pas|notice)-files\/([A-Za-z]{2,4}-(?:[A-Za-z0-9]{2}-)?\d{2}-\d{3})/i.exec(url || '')?.[1]?.toUpperCase();
+  const title = fromText ? `${id ? `${id}: ` : ''}${fromText}` : id ? `${id} (NIH funding notice)` : '';
+  if (title) lead.title = title.slice(0, 220);
+}
+export async function confirmFromPages(leads, brief, { read, max = 12, concurrency = 4, signal, modelRead = null } = {}) {
   const todo = leads.filter((l) => !l.person && !(l.evidence || []).some((e) => e.verified) && safeUrl(l.contact?.value || l.evidence?.[0]?.url)).slice(0, max);
   let confirmed = 0; let i = 0;
   await Promise.all(Array.from({ length: Math.min(concurrency, todo.length) }, async () => {
@@ -314,13 +322,21 @@ export async function confirmFromPages(leads, brief, { read, max = 12, concurren
       if (signal?.aborted) return;
       const url = safeUrl(lead.contact?.value || lead.evidence?.[0]?.url);
       const page = await read(url).catch(() => null);
+      fixGenericTitle(lead, page, url);
       const quote = page?.text ? pageQuote(page.text, brief) : '';
-      if (!quote) continue;
-      lead.evidence = [...(lead.evidence || []), evidence(`Page read · ${new URL(url).hostname.replace(/^www\./, '')}`, page.url || url, quote, lead.kind === 'opportunity' ? 'opportunity' : 'profile')];
+      // Con lectura del modelo, la página se juzga aunque no repita los términos del brief (puede ser justo una convocatoria fuera de alcance).
+      if (!quote && !(modelRead && page?.text && lead.fundingType === 'grant' && lead.kind === 'opportunity')) continue;
+      if (quote) lead.evidence = [...(lead.evidence || []), evidence(`Page read · ${new URL(url).hostname.replace(/^www\./, '')}`, page.url || url, quote, lead.kind === 'opportunity' ? 'opportunity' : 'profile')];
       if (lead.fundingType === 'grant' && lead.kind === 'opportunity') {
         // Página abierta: el código re-verifica plazo, tipo de página y elegibilidad sobre el texto completo.
-        const check = verifyOpportunity({}, { url: page.url || url, title: page.title, text: page.text }, { brief, codeOnly: true });
-        lead.codeCheck = compactVerification(check);
+        const pageIn = { url: page.url || url, title: page.title, text: page.text };
+        const codeCheck = verifyOpportunity({}, pageIn, { brief, codeOnly: true });
+        // El modelo grande lee la página y juzga el encaje (alcance, etapa, quién puede postular) con citas literales; el código las comprueba.
+        let read = null;
+        if (modelRead && !signal?.aborted) { read = await modelRead(pageIn).catch(() => null); if (!read || read.read === false) read = null; }
+        const check = read || codeCheck;
+        lead.codeCheck = compactVerification(codeCheck);
+        if (read) { lead.verification = compactVerification(read, { nonDilutive: read.nonDilutive, quotes: read.quotes, model: read.model }); modelRead.count = (modelRead.count || 0) + 1; }
         lead.status = check.status; lead.deadline = check.deadline || null;
         if (lead.trace) lead.trace = { ...lead.trace, fetchedVia: `opened (${page.via || 'direct'})`, textChars: page.text.length, verify: { tier: check.tier, drop: check.drop, reasons: check.reasons, blockers: check.blockers, flags: check.flags, checks: check.checks, pageType: check.pageType, dates: check.dates, eligibility: { decision: check.eligibility.decision, reason: check.eligibility.reason, quote: check.eligibility.quote } } };
       }
