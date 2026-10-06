@@ -142,18 +142,37 @@ const PHASES = [
   ['opens', /\b(opens?(?: for submissions)?(?: on)?|opening(?: date)?|launch(?:es|ed)?|applications? (?:will )?open|call opens|(?:accepted |open )?from|starting(?: on)?|beginning|start date for (?:applications|submissions)|apertura|abre|se abre|desde el|a partir del?|ouverture|er[oö]ffnung)\b/gi],
   ['loi', /\b(letters? of intent|LOIs?|pre-?propos(?:al|als)|preliminary (?:proposal|application)s?|concept (?:note|paper)s?|expressions? of interest|EOIs?|pre-?applications?|intent to (?:apply|submit)|white ?papers?|project pitch(?:es)?|carta(?:s)? de intenci[oó]n|manifestaci[oó]n de inter[eé]s|nota conceptual|preinscripci[oó]n|pre-?registro)\b/gi],
   ['registration', /\b(registration(?: deadline)?|register by|registrations? close|inscripci[oó]n(?:es)?|registro)\b/gi],
-  ['invited', /\b(invited (?:full )?(?:proposals?|applications?)|by invitation(?: only)?|invitation only|full (?:proposals?|applications?)|stage 2|second (?:stage|round|phase)|phase (?:ii|2) (?:application|proposal)s?|propuestas? completas?|segunda (?:fase|etapa))\b/gi],
+  ['invited', /\b(invitation to (?:submit|apply)(?: an? (?:full )?(?:application|proposal))?|invited to (?:submit|apply)|invited (?:full )?(?:proposals?|applications?)|by invitation(?: only)?|invitation only|full (?:proposals?|applications?)|stage 2|second (?:stage|round|phase)|phase (?:ii|2) (?:application|proposal)s?|propuestas? completas?|segunda (?:fase|etapa))\b/gi],
   ['deadline', /\b(deadlines?|due(?: date)?|apply by|apply before|applications? (?:close|closes|closing|due|deadline)|closing date|closes?|cut-?off(?: date)?|submission deadlines?|submissions? (?:due|close|closes)|submit by|until|through|no later than|fecha l[ií]mite|plazo|cierre|cierra|hasta el|cl[oô]ture|date limite|einsendeschluss|bewerbungsschluss|frist|scadenza|prazo|encerramento)\b/gi],
 ];
 const OPTIONAL_NEAR = /\b(optional|recommended|encouraged|not required|opcional|recomendad[oa]|facultati(?:f|ve|vo))\b/i;
 
+/** Último fin de frase del texto: ". " o "; ", salvo abreviaturas ("5:00 p.m. ET", "U.S. ", "No. 5", "Inc. "). Devuelve la posición del signo. */
+const ABBR_BEFORE_DOT = /(?:\b[ap]\.m|\bU\.S|\bNos?|\bInc|\bLtd|\bCo|\bDr|\bMrs?|\bvs|\bapprox|\be\.g|\bi\.e|\bSt|\bFig|\bEst)$/i;
+function lastBreak(before) {
+  let at = -1;
+  for (const m of before.matchAll(/[.;] /g)) { if (m[0][0] === '.' && ABBR_BEFORE_DOT.test(before.slice(0, m.index))) continue; at = m.index; }
+  return at;
+}
+// "no later than" es plazo de entrega solo si habla de enviar/postular; en "awards will be made no later than…" es el calendario de fondos, no un plazo.
+const SUBMIT_CTX = /\b(submit\w*|submission\w*|applications?|applicants?|proposals?|apply|register\w*|letters?|pitch\w*|nominat\w*|received|due|deadlines?)\b/i;
+const AWARD_CTX = /\b(awards?|funds?|funding|obligat\w*|expire\w*|disburs\w*|issued|made|allocat\w*|appropriat\w*)\b/i;
+
 function labelFor(s, d, prevEnd) {
   const from = Math.max(prevEnd, d.index - 90);
   const before = s.slice(from, d.index);
-  const cut = Math.max(before.lastIndexOf('. '), before.lastIndexOf('; '));
+  const cut = lastBreak(before);
   const window = cut >= 0 && before.length - cut > 3 ? before.slice(cut + 2) : before;
   let best = null;
   for (const [phase, rx] of PHASES) for (const m of window.matchAll(rx)) { const at = m.index + m[0].length; if (!best || at > best.at || (at === best.at && m[0].length > best.word.length)) best = { phase, at, start: m.index, word: m[0] }; }
+  if (best && best.phase === 'deadline') {
+    const pre = window.slice(0, best.start);
+    if (/^no later than$/i.test(best.word) && AWARD_CTX.test(pre) && !SUBMIT_CTX.test(pre)) best = { ...best, phase: 'result' };
+    else for (const [ph, rx] of PHASES) {   // "Pre-Application (Preproposal) Submission Deadline": el paso de entrada, no el plazo final
+      if (ph !== 'loi' && ph !== 'registration') continue;
+      for (const m of window.matchAll(rx)) { const end = m.index + m[0].length; if (end <= best.start && best.start - end <= 60 && !/[.;]\s/.test(window.slice(end, best.start))) best = { ...best, phase: ph }; }
+    }
+  }
   // Etiqueta detrás de la fecha: "September 14 (Letter of Intent)"
   if (!best) {
     const after = s.slice(d.end, d.end + 45);
@@ -204,6 +223,17 @@ export function milestones(text) {
     const l = labelFor(s, d, prevEnd);
     prevEnd = d.end;
     items.push({ ...d, ...l, quote: s.slice(l.labelStart, d.end).trim() });
+  }
+  // Un mismo plazo repetido por ciclo o convocatoria, con la etiqueta solo en la primera fecha:
+  // "September 05, 2026 for New and Renewal applications. January 05, 2027 for New and Renewal applications. April 05, 2027 for …"
+  // Las fechas sin etiqueta que siguen a un plazo, separadas solo por «for … applications» o una viñeta, son el mismo plazo.
+  const REPEAT_GAP = /^\s*(?:for\s+[^.;]{0,100}?(?:applications?|proposals?|submissions?|cycles?|rounds?|deadlines?)\.?|[-–•·*;,])?\s*[-–•·*]?\s*$/i;
+  for (let i = 1; i < items.length; i++) {
+    const it = items[i]; const p = items[i - 1];
+    if (it.phase !== 'none' || !it.iso || it.precision !== 'day' || it.yearless || p.phase !== 'deadline' || !p.iso || p.precision !== 'day') continue;
+    if (!REPEAT_GAP.test(s.slice(p.end, it.index))) continue;
+    it.phase = 'deadline'; it.label = p.label; it.labelStart = p.labelStart; it.optional = p.optional;
+    it.quote = it.end - p.labelStart <= 240 ? s.slice(p.labelStart, it.end).trim() : it.raw;
   }
   // Tablas aplanadas (NIH "Key Dates": "Application Due Dates | Review | Council | Start" → "October 05, 2026 March 2027 …"):
   // tras un encabezado de plazos, las fechas exactas sin etiqueta que siguen en cadena son plazos (las de mes/año son

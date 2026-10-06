@@ -22,6 +22,12 @@ const TEXT = [
 /** Vía para postular: cómo postular, formulario, portal, plazo, LOI, llamada a propuestas… */
 export const APPLY_RX = /\b(how to apply|apply (?:now|here|online|by|before|via|through|at|today)|application (?:form|portal|deadline|process|guidelines|window|period|site|requirements|instructions)s?|applications? (?:are|is|will be) (?:now )?(?:open|accepted|due|reviewed)|submit (?:an? |your )?(?:application|proposal|letter of intent|loi|pitch)|letters? of intent|call for (?:proposals|applications|submissions|projects)|requests? for (?:proposals|applications)|RFP|RFA|NOFO|funding opportunity announcement|solicitation|deadlines?|cut-?off(?: dates?)?|eligibility|who (?:can|may|should) apply|eligible (?:applicants|organizations|entities)|postula(?:ci[oó]n|r|ciones)|c[oó]mo (?:postular|aplicar|participar)|convocatoria|bases (?:de la convocatoria|y condiciones)|t[ée]rminos de referencia|inscripciones|appel [àa] (?:projets|candidatures)|candidatez|ausschreibung|bewerbung|bekanntmachung|f[öo]rderaufruf|antragstellung|einreichungsfrist|stichtag|date limite|edital|inscri[çc][õo]es|bando)\b/i;
 
+/* Títulos que delatan una guía o un índice, no una convocatoria concreta. Un identificador de convocatoria en el título
+   (PAR-25-383, RFA-RM-27-012, HHS-2027-…, DE-FOA-…) los exime: ahí el título sí nombra un llamado. */
+const HAS_CALL_ID = /\b(?:[A-Z]{2,6}-){1,4}[A-Z0-9]*\d{2,}[A-Z0-9-]*\b/;
+const TITLE_GUIDE = /^(?:understanding|what (?:is|are)|guide to|a guide to|the (?:complete|ultimate|essential|beginner'?s) guide|navigating|ask the expert|faq\b|frequently asked|top \d+|best \d+)|\b(?:ultimate|complete|beginner'?s) guide\b|\bask the expert\b|(?<!application )\bguide\b|\bexplained\b/i;
+const TITLE_HUB = /^(?:funding|grants?(?: (?:&|and) funding)?)\s*(?:[|\-–—:]|$)|\b(?:funding opportunities|funding resources|grant opportunities|funding calls|active opportunities|current opportunities|open (?:funding )?calls|funding programs|funding sources|find funding|solicitations)\b|\bexplore .{0,40}opportunities\b/i;
+
 const MODEL_NOT_CALL = { news: 'news', deal_news: 'news', directory: 'directory', company: 'company', investor: 'investor', lender: 'lender', report: 'report', blog: 'blog', event: 'event', cohort: 'cohort', cohort_announcement: 'cohort' };
 
 /**
@@ -46,6 +52,9 @@ export function classifyPage({ url = '', title = '', text = '', modelKind = '', 
   if (by('report', 'text') || (by('report', 'url') && !apply)) return { type: 'report', isCall: false, reason: 'Report (impact/annual report), not a call', applyQuote, signals };
   if (by('cohort', 'text') || by('cohort', 'model')) return { type: 'cohort', isCall: false, reason: 'Announces a selected cohort/winners, not an open call', applyQuote, signals };
   if (by('event', 'url') || count('event') >= 2 || (by('event', 'model') && count('event') >= 1)) return { type: 'event', isCall: false, reason: 'Event, workshop or course page, not a funding call', applyQuote, signals };
+  // Guías, explicaciones e índices de oportunidades: el título lo delata aunque el texto mencione «eligibility» o «deadlines».
+  if (!HAS_CALL_ID.test(title) && TITLE_GUIDE.test(title)) return { type: 'blog', isCall: false, reason: 'Guide or explainer, not the call itself', applyQuote, signals };
+  if (!HAS_CALL_ID.test(title) && title.length < 120 && TITLE_HUB.test(title)) return { type: 'directory', isCall: false, reason: 'Index of funding opportunities; the individual calls are the leads', applyQuote, signals };
   // Una convocatoria publicada bajo /news/ o /announcements/ del propio financiador: solo con vía para postular y sin otras señales
   // de noticia; el verificador la deja «a verificar» (nunca en la lista principal) si además tiene un plazo vigente.
   if (by('news', 'url') && apply && !by('news', 'text') && !by('news', 'model') && count('news') === 1) return { type: 'news', soft: true, isCall: false, reason: 'Call posted as a news/announcement page', applyQuote, signals };

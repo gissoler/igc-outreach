@@ -24,6 +24,9 @@ export const LEXICON = [
   [/cannabin|cannabis/, ['cannabinoid therapeutics', 'cannabinoid drug development']],
   [/machine learning|artificial intelligence|inteligencia artificial|\bai\b|\bia\b/, ['AI in healthcare', 'machine learning']],
   [/clinical trial|ensayo clinico/, ['clinical research', 'decentralized clinical trials']],
+  [/\brural\b|\bfrontier\b/, ['Rural Health Transformation Program', 'rural health care access'], true],   // true = vehículo de financiación: va antes que los términos del modelo
+  [/cognitive (screening|assessment|risk)|brain health|dementia prevention/, ['cognitive screening', 'brain health']],
+  [/(?=.*(?:\bu s\b|\busa\b|united states))(?=.*(?:for profit|small business|biotech|pharma|startup))/, ['SBIR STTR small business innovation research'], true],   // el texto llega normalizado ("u s for profit")
 ];
 
 const clean = (t) => String(t || '').replace(/["“”]/g, '').replace(/\s+/g, ' ').trim();
@@ -33,6 +36,12 @@ const valid = (t) => t.length >= 3 && t.length <= 60 && !/[{}<>]/.test(t);
 export function primaryTerms(b) {
   const tags = String(b.industry || '').split(/[,;|]/).map(clean).filter(valid);
   return (tags.length ? tags.slice(0, 2) : [clean(b.product)]).filter(valid);
+}
+
+/** Vehículos de financiación concretos (RHTP estatal, SBIR): su primera frase entra justo después de las palabras del usuario, antes que los términos del modelo. */
+export function vehicleTerms(b) {
+  const text = norm(`${b.industry} ${b.product} ${b.oneLiner || ''} ${b.description}`);
+  return LEXICON.filter(([rx, , vehicle]) => vehicle && rx.test(text)).map(([, terms]) => terms[0]);
 }
 
 export function lexiconTerms(b) {
@@ -74,6 +83,7 @@ export async function expandTerms(b, env = {}, fetchImpl = fetch) {
   const seen = new Set();
   const add = (term, source) => { const k = norm(term); if (!k || seen.has(k) || out.length >= max) return; seen.add(k); out.push({ term, source }); };
   for (const t of primaryTerms(b)) add(t, 'yours');
+  for (const t of vehicleTerms(b)) add(t, 'lexicon');
   for (const t of await modelTerms(b, env, fetchImpl)) add(t, 'model');
   for (const t of lexiconTerms(b)) add(t, 'lexicon');
   return out;

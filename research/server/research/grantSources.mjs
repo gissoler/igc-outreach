@@ -141,10 +141,22 @@ export const loadPortals = (path = new URL('./grantPortals.json', import.meta.ur
 export const resetPortals = () => { catalog = null; };
 const sameName = (a, b) => norm(a) === norm(b);
 /** Portales aplicables a la jurisdicción del brief: nacionales del país + estatales/regionales del estado indicado (+ ciudad). Coincidencia por nombre normalizado o código, no por palabras sueltas. */
+const US_RX = /\b(?:u\.?s\.?a?|united states|estados unidos)\b/i;
+/** Texto del brief sobre el que se comparan los temas de un portal (minúsculas). */
+const briefTopicText = (brief) => [brief.industry, brief.product, brief.description, brief.oneLiner, brief.useOfFunds, brief.company].map(clean).join(' ').toLowerCase();
+/** Condiciones opcionales de un portal: entityTypes (si el brief declara tipo de entidad, debe estar en la lista) y topics (algún término en el brief). */
+function portalApplies(p, brief) {
+  if (p.entityTypes?.length && brief.entityType && !p.entityTypes.includes(brief.entityType)) return false;
+  if (p.topics?.length) { const text = briefTopicText(brief); if (!p.topics.some((t) => text.includes(t))) return false; }
+  return true;
+}
 export function portalsFor(brief, portals = loadPortals()) {
-  const country = clean(brief.country); const state = clean(brief.state); const city = clean(brief.city);
+  // Sin país explícito, un brief que dice estar en EE. UU. (geografía o domicilio) usa los portales de ese país.
+  const country = clean(brief.country) || (US_RX.test(`${brief.geography || ''} ${brief.domicile || ''}`) ? 'United States' : '');
+  const state = clean(brief.state); const city = clean(brief.city);
   if (!country && !state && !city) return [];
   return portals.filter((p) => {
+    if (!portalApplies(p, brief)) return false;
     const inCountry = !country || [p.country, ...(p.countryNames || [])].some((n) => sameName(n, country));
     if (!inCountry) return false;
     if (p.scope === 'country') return true;
