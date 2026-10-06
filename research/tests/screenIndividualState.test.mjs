@@ -68,3 +68,16 @@ test('el policy brief del SIGHT Fund se reconoce por su contenido aunque la URL 
   const text = "The Supporting Innovative Global Health Technologies (SIGHT) Fund: A new proposal to drive inclusive innovation at USAID and stock the global health toolbox of the future. January 2022. Copyright 2022, PATH. Suggested reference: Rashid J, Tasneem Z, Conron C. The SIGHT Fund. Washington, DC: Global Health Technologies Coalition; 2022. This brief was authored by Julien Rashid.";
   assert.equal(ty('https://www.ghtcoalition.org/documents/pdf/sight-fund.pdf', 'The Supporting Innovative Global Health Technologies (SIGHT) Fund:', text), 'report');
 });
+
+test('centros institucionales (T42, P30), IHS, reuniones y portadas no son para una empresa', () => {
+  assert.equal(screenCall({ url: 'https://x', title: 'Occupational Safety and Health Education and Research Centers (T42)', org: 'CDC' }, igc).code, 'institutional_only');
+  assert.equal(screenCall({ url: 'https://x', title: 'Cancer Center Support Grants (CCSGs) for NCI-designated Cancer Centers (P30 Clinical Trial Optional)', org: 'NCI' }, igc).code, 'institutional_only');
+  assert.equal(screenCall({ url: 'https://x', title: 'Behavioral Health Integration Initiative', org: 'Indian Health Service' }, igc).code, 'restricted_applicant');
+  assert.equal(screenCall({ url: 'https://x', title: 'PA-27-100: NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44])', org: 'NIH' }, igc), null);
+  assert.equal(ty('https://www.fda.gov/drugs/x', 'Emerging Drug Safety Technology Meetings (EDSTM) | FDA', 'Apply'), 'event');
+  assert.equal(ty('https://r3cr.org/2026-stakeholder-meeting-executive-summary', '2026 Stakeholder Meeting Executive Summary', 'Apply'), 'event');
+  assert.equal(ty('https://www.onofound.org/', 'Ono Pharma Foundation', 'Our foundation supports pharmaceutical research in Japan.'), 'home');
+  assert.equal(ty('https://www.ninds.nih.gov/current-research/research-funded-ninds/translational-research', 'Translational Research', 'Apply'), 'directory');
+  assert.equal(ty('https://www.grants.gov/learn-grants/grant-making-agencies/u-s-department-of-health-and-human-services-hhs', 'U.S. Department of Health and Human Services (HHS) | Grants.gov', 'Apply'), 'directory');
+  assert.equal(ty('https://grants.nih.gov/grants/guide/pa-files/PAR-25-297.html', "PAR-25-297: Alzheimer's Drug-Development Program (U01 Clinical Trial Optional)", 'Application due date November 5, 2026. How to apply: submit an application.'), 'call');
+});

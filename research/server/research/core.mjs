@@ -349,8 +349,9 @@ export function evaluate(
     if (brief.mode === 'financial' && /Principal investigator/i.test(l.role || ''))
       breakdown.push({factor: 'mandate', points: -10, max: 0});
     const penalty = verified.length ? 1 : 0.5;
+    // Un encaje débil (el tema aparece solo de pasada) no puede subir por plazo lejano o monto grande: pesa un 25 % menos.
     const score = Math.round(
-      breakdown.reduce((n, x) => n + x.points, 0) * penalty,
+      breakdown.reduce((n, x) => n + x.points, 0) * penalty * (match?.verdict === 'weak' ? 0.75 : 1),
     );
     let discard = '';
     if (!verified.length && !l.demo)

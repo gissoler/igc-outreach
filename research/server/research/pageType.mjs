@@ -10,7 +10,7 @@ const PATH = [
   ['blog', /\/(blogs?|posts?|stories|story|insights?|articles?|magazine|perspectives?|opinion|voices|podcasts?)(\/|$)|\/20\d{2}\/\d{2}\/(?:\d{2}\/)?[a-z0-9-]{8,}/i],   // incluye /2026/06/02/slug (WordPress)
   ['news', /\/(news|newsroom|press|press-releases?|media-releases?|media-cent(?:er|re)|mediacentre|updates\/news|noticias|actualidad|comunicados?|announcements?|alerts?)(\/|$)/i],
   ['event', /\/(events?|event-calendar|webinars?|workshops?|courses?|trainings?|eventos?|talleres?|agenda)(\/|$)/i],
-  ['directory', /\/(directory|database|companies|portfolio|members|listings?|rankings?|top-\d+)(\/|$)/i],
+  ['directory', /\/(directory|database|companies|portfolio|members|listings?|rankings?|top-\d+|current-research|grant-making-agencies|learn-grants)(\/|$)/i],
   ['award', /sbir\.gov\/awards?\/\d+|\/awards?\/\d{4,}(\/|$)/i],        // registro de un premio ya concedido
   ['internal', /tracked-?changes|\/(?:board-?(?:meetings?|packets?)|minutes|agendas?)(\/|$)|concept-?(?:proposal|plan)[^/]*\.pdf/i],
   ['job', /\/(careers?|jobs?|job-openings?|vacancies|employment|work-with-us|join-our-team)(\/|$)/i],
@@ -30,6 +30,7 @@ export const APPLY_RX = /\b(how to apply|apply (?:now|here|online|by|before|via|
 const HAS_CALL_ID = /\b(?:[A-Z]{2,6}-){1,4}[A-Z0-9]*\d{2,}[A-Z0-9-]*\b/;
 const TITLE_JOB = /\b(?:program|project|research|grants?) (?:officer|manager|coordinator|associate)\b.*\||\b(?:we(?:'|’)re hiring|job opening|open position|careers? at)\b|^(?:senior|assistant|associate|chief|vice president|director)\b.{0,80}\b(?:officer|director|manager|coordinator|specialist)\b/i;
 const TITLE_EXPIRED = /^\s*(?:\[?expired\]?|closed|archived|inactive)\b[\s:\-–—]/i;
+const TITLE_MEETING = /\b(?:meetings?|workshops?|webinars?|conferences?|symposi(?:um|a)|stakeholder)\b/i;
 const TITLE_GUIDE = /^(?:guidance\b|(?:top|best)\b.{0,40}\b(?:grants|funding|programs|funders|investors|campaigns)|understanding|what (?:is|are)|guide to|a guide to|the (?:complete|ultimate|essential|beginner'?s) guide|navigating|ask the expert|faq\b|frequently asked|top \d+|best \d+)|\b(?:ultimate|complete|beginner'?s) guide\b|\bask the expert\b|(?<!application )\bguide\b|\bexplained\b|\bfrequently asked questions\b/i;
 const TITLE_HUB = /^(?:funding|grants?(?: (?:&|and) funding)?)\s*(?:[|\-–—:])|\b(?:funding opportunities|funding resources|grant opportunities|funding calls|active opportunities|current opportunities|open (?:funding )?calls|funding programs|funding sources|find funding|solicitations)\b|\bexplore .{0,40}opportunities\b|\bfunding announcements?\b|^about\b|^types of (?:grants|funding|awards)\b|\b(?:interest|priority) areas\b|^(?:research|grants?) (?:&|and) (?:funding|grants?)\b|^funding (?:&|and) grants?\b/i;
 
@@ -62,6 +63,9 @@ export function classifyPage({ url = '', title = '', text = '', modelKind = '', 
   if (by('internal', 'url')) return { type: 'internal_doc', isCall: false, reason: 'Internal or board document (concept, minutes), not the call', applyQuote, signals };
   if (by('award', 'url')) return { type: 'award_record', isCall: false, reason: 'Record of an award already granted, not an open call', applyQuote, signals };
   if (by('job', 'url') || TITLE_JOB.test(title)) return { type: 'job', isCall: false, reason: 'Job posting, not a funding call', applyQuote, signals };
+  if (!HAS_CALL_ID.test(title) && TITLE_MEETING.test(title) && title.length < 140 && !/\b(?:grants?|awards?|funding|request for applications)\b/i.test(title)) return { type: 'event', isCall: false, reason: 'Meeting, workshop or summary page, not a funding call', applyQuote, signals };
+  // Portada de un sitio (ruta «/»): no es una convocatoria, aunque hable de becas.
+  if (path === '/' && !HAS_CALL_ID.test(title) && !apply) return { type: 'home', isCall: false, reason: 'Site home page with no way to apply, not a call', applyQuote, signals };
   // Guías, explicaciones e índices de oportunidades: el título lo delata aunque el texto mencione «eligibility» o «deadlines».
   if (!HAS_CALL_ID.test(title) && TITLE_GUIDE.test(title)) return { type: 'blog', isCall: false, reason: 'Guide or explainer, not the call itself', applyQuote, signals };
   if (!HAS_CALL_ID.test(title) && title.length < 120 && TITLE_HUB.test(title)) return { type: 'directory', isCall: false, reason: 'Index of funding opportunities; the individual calls are the leads', applyQuote, signals };

@@ -190,7 +190,11 @@ const SMALL_BUSINESS_TITLE = /\b(?:sbir|sttr|small business|for-?profit|compan(?
 /** @returns {{ code, reason }|null} */
 const FOREIGN_AID_ORG = /\b(millennium challenge corporation|u\.?s\.? agency for international development|usaid|peace corps|inter-american foundation|african development foundation)\b/i;
 const TRIBAL_TITLE = /\b(tribal|tribes?|american indian|alaska native|native (?:american|public health|hawaiian)|indigenous)\b/i;
+const INSTITUTIONAL_TITLE = /\b(?:cancer center support|center support grants?|education and research centers?|designated (?:cancer )?centers?|institutional (?:training|career|research training)|training (?:program|grant)s?)\b|\((?:T\d{2}|P30|P50|U54|D43|R25)\b/i;
+const TRIBAL_ORG = /\bindian health service\b/i;
 export function screenCall({ url = '', title = '', org = '' } = {}, profile = {}) {
+  if (profile.forProfit !== false && INSTITUTIONAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'institutional_only', reason: `The title ("${String(title).slice(0, 110)}") is an institutional center or training award, not for a company` };
+  if (profile.forProfit !== false && TRIBAL_ORG.test(org)) return { code: 'restricted_applicant', reason: 'Indian Health Service funds tribal and urban Indian organizations, not outside companies' };
   if (profile.forProfit !== false && FOREIGN_AID_ORG.test(org)) return { code: 'foreign_aid', reason: `${String(org).slice(0, 60)} funds programs abroad, not a US company's clinical research` };
   if (profile.forProfit !== false && /(?:^|\.)research\.va\.gov$/.test((() => { try { return new URL(url).hostname; } catch { return ''; } })())) return { code: 'restricted_applicant', reason: 'VA research awards (Merit Review) are for VA investigators, not outside companies' };
   if (profile.forProfit !== false && TRIBAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'restricted_applicant', reason: `The title ("${String(title).slice(0, 110)}") is aimed at tribal or native organizations, not a for-profit company` };
