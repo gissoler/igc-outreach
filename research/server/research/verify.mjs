@@ -186,6 +186,14 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
       scopeFit = { verdict: 'does_not_fit', claimed: 'does_not_fit', reason: `The program does not accept clinical trials or clinical-stage work, and the applicant is in clinical development: "${q}"`, fundsQuote: '', excludesQuote: q, source: 'code' };
       check('scope_fit', false, scopeFit.reason, q);
     }
+    // Otro campo por completo: el solicitante es de salud/biotecnología y la página no menciona ni una sola vez enfermedad, fármacos, pacientes
+    // ni trabajo clínico/biomédico (p. ej. «Genesis Mission: AI for science and energy»). Sin ese vocabulario no puede financiar su trabajo.
+    if (!ex && /pharma|biotech|drug|therapeut|alzheimer|clinical|disease|medic|health/i.test([brief?.industry, brief?.product, brief?.description].filter(Boolean).join(' ')) && text.length >= 1500
+      && !/\b(?:disease|diseases|clinical|patients?|therapeutics?|therapies|therapy|drugs?|pharmac\w*|medicine|medical|biomedical|alzheimer\w*|dementia|neurolog\w*|neuroscience|FDA|NIH|NIA|NINDS)\b/i.test(`${page?.title || ''} ${text}`)) {
+      const q = String(page?.title || text.slice(0, 120)).replace(/\s+/g, ' ').trim().slice(0, 200);
+      scopeFit = { verdict: 'does_not_fit', claimed: 'does_not_fit', reason: 'The page never mentions disease, drugs, patients or clinical/biomedical work: it funds a different field than the applicant\'s', fundsQuote: '', excludesQuote: q, source: 'code' };
+      check('scope_fit', false, scopeFit.reason, q);
+    }
   }
 
   // 5) Oficial: el modelo lo dice y el host no es agregador; en modo solo-código no se puede afirmar
