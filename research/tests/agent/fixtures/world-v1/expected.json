@@ -1,0 +1,870 @@
+{
+  "schema_version": "fixture_expected/1",
+  "today": "2026-10-20",
+  "doc_ids": {
+    "p1": "doc-1218567e284f84cd",
+    "p2": "doc-54cf741eb58bc228",
+    "p3": "doc-710aaa6f98a44739",
+    "p4": "doc-dce0271c2145adb6",
+    "p5": "doc-ce84275e2910b2fe",
+    "p6": "doc-e132f396331d071f",
+    "p7": "doc-ee0e5c623169e640"
+  },
+  "normalized_urls": {
+    "p1": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+    "p2": "https://nsf.gov/funding/opportunities/oceanographic-facilities-equipment-support/nsf23-525",
+    "p3": "https://alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+    "p4": "https://fundsforngos.org/alzheimers-grants-roundup",
+    "p5": "https://example-news.com/2026/10/nih-launches-ad-data-center",
+    "p6": "https://alz.org/research/for_researchers/grants/part-the-cloud",
+    "p7": "https://grants.nih.gov/grants/guide/notice-files/NOT-AG-26-001.html"
+  },
+  "stable_ids": {
+    "p1": "opp:nih:RFA-AG-27-010",
+    "p2": "opp:nsf:23-525",
+    "p3": "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+    "p6": "opp:url:alz.org/research/for_researchers/grants/part-the-cloud"
+  },
+  "b0_queries": [
+    {
+      "template_id": "fed-1",
+      "query": "alzheimer's disease research grant funding opportunity 2026"
+    },
+    {
+      "template_id": "fed-2",
+      "query": "alzheimer's disease data infrastructure grant 2026"
+    },
+    {
+      "template_id": "fed-3",
+      "query": "alzheimer's disease funding opportunity announcement United States 2026"
+    },
+    {
+      "template_id": "fed-4",
+      "query": "United States government innovation grant alzheimer's disease 2026"
+    },
+    {
+      "template_id": "fed-5",
+      "query": "alzheimer's disease grants for nonprofit organizations 2026"
+    },
+    {
+      "template_id": "fed-6",
+      "query": "alzheimer's disease cooperative agreement funding 2026"
+    },
+    {
+      "template_id": "fdn-1",
+      "query": "alzheimer's disease foundation grant open call 2026"
+    },
+    {
+      "template_id": "fdn-2",
+      "query": "alzheimer's disease philanthropy request for proposals 2026"
+    },
+    {
+      "template_id": "fdn-3",
+      "query": "research data infrastructure foundation research funding 2026"
+    },
+    {
+      "template_id": "fdn-4",
+      "query": "alzheimer's disease data infrastructure foundation funding nonprofit"
+    },
+    {
+      "template_id": "prz-1",
+      "query": "alzheimer's disease innovation challenge prize 2026"
+    },
+    {
+      "template_id": "prz-2",
+      "query": "alzheimer's disease competition call for applications 2026"
+    },
+    {
+      "template_id": "prz-3",
+      "query": "research data infrastructure challenge prize apply 2026"
+    },
+    {
+      "template_id": "int-1",
+      "query": "alzheimer's disease international grant call open applications 2026"
+    },
+    {
+      "template_id": "int-2",
+      "query": "alzheimer's disease call for proposals international applicants 2026"
+    },
+    {
+      "template_id": "int-3",
+      "query": "EU funding call alzheimer's disease 2026"
+    },
+    {
+      "template_id": "work-1",
+      "query": "data infrastructure alzheimer's disease request for proposals 2026"
+    },
+    {
+      "template_id": "work-2",
+      "query": "data infrastructure funding program United States 2026"
+    },
+    {
+      "template_id": "reg-2",
+      "query": "MD alzheimer's disease grant program 2026"
+    },
+    {
+      "template_id": "gen-1",
+      "query": "alzheimer's disease research funding deadline 2026"
+    },
+    {
+      "template_id": "gen-2",
+      "query": "alzheimer's disease nonprofit grant eligibility 2026"
+    }
+  ],
+  "conditions": {
+    "B0": {
+      "stop_reason": "patience",
+      "searches": 8,
+      "fetches": 4,
+      "planner_calls": 0,
+      "tokens_discovery_nominal": 4400,
+      "searches_log": [
+        {
+          "search_index": 0,
+          "query": "alzheimer's disease research grant funding opportunity 2026",
+          "origin": "b0:fed-1",
+          "result_pages": [
+            "p1",
+            "p2",
+            "p4"
+          ],
+          "result_ids": [
+            "r000-01",
+            "r000-02",
+            "r000-03"
+          ],
+          "new_unique_docs": 3,
+          "duplicates": 0,
+          "new_official_opportunities": [
+            "opp:nih:RFA-AG-27-010",
+            "opp:nsf:23-525"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 1,
+          "query": "alzheimer's disease data infrastructure grant 2026",
+          "origin": "b0:fed-2",
+          "result_pages": [
+            "p1",
+            "p2",
+            "p3",
+            "p5"
+          ],
+          "result_ids": [
+            "r001-01",
+            "r001-02",
+            "r001-03",
+            "r001-04"
+          ],
+          "new_unique_docs": 2,
+          "duplicates": 2,
+          "new_official_opportunities": [
+            "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 2,
+          "query": "alzheimer's disease funding opportunity announcement United States 2026",
+          "origin": "b0:fed-3",
+          "result_pages": [
+            "p1",
+            "p2",
+            "p4"
+          ],
+          "result_ids": [
+            "r002-01",
+            "r002-02",
+            "r002-03"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 3,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 1
+        },
+        {
+          "search_index": 3,
+          "query": "United States government innovation grant alzheimer's disease 2026",
+          "origin": "b0:fed-4",
+          "result_pages": [
+            "p1"
+          ],
+          "result_ids": [
+            "r003-01"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 1,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 2
+        },
+        {
+          "search_index": 4,
+          "query": "alzheimer's disease grants for nonprofit organizations 2026",
+          "origin": "b0:fed-5",
+          "result_pages": [
+            "p1",
+            "p4"
+          ],
+          "result_ids": [
+            "r004-01",
+            "r004-02"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 2,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 3
+        },
+        {
+          "search_index": 5,
+          "query": "alzheimer's disease cooperative agreement funding 2026",
+          "origin": "b0:fed-6",
+          "result_pages": [
+            "p1",
+            "p4"
+          ],
+          "result_ids": [
+            "r005-01",
+            "r005-02"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 2,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 4
+        },
+        {
+          "search_index": 6,
+          "query": "alzheimer's disease foundation grant open call 2026",
+          "origin": "b0:fdn-1",
+          "result_pages": [
+            "p3",
+            "p1"
+          ],
+          "result_ids": [
+            "r006-01",
+            "r006-02"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 2,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 5
+        },
+        {
+          "search_index": 7,
+          "query": "alzheimer's disease philanthropy request for proposals 2026",
+          "origin": "b0:fdn-2",
+          "result_pages": [
+            "p3",
+            "p1"
+          ],
+          "result_ids": [
+            "r007-01",
+            "r007-02"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 2,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 6
+        }
+      ],
+      "entities_in_registration_order": [
+        "opp:nih:RFA-AG-27-010",
+        "opp:nsf:23-525",
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026"
+      ],
+      "entity_sources": {
+        "opp:nih:RFA-AG-27-010": [
+          "p1",
+          "p5"
+        ],
+        "opp:nsf:23-525": [
+          "p2"
+        ],
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": [
+          "p3"
+        ]
+      },
+      "tokens_judge_nominal": 3300,
+      "ranked": [
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+        "opp:nih:RFA-AG-27-010",
+        "opp:nsf:23-525"
+      ],
+      "abstained": false,
+      "hit_at_20": 1
+    },
+    "B1": {
+      "stop_reason": "no_more_actions",
+      "searches": 5,
+      "fetches": 5,
+      "planner_calls": 1,
+      "tokens_discovery_nominal": 6600,
+      "searches_log": [
+        {
+          "search_index": 0,
+          "query": "NIA Alzheimer's disease data coordinating center funding opportunity 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p1",
+            "p5",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "result_ids": [
+            "r000-01",
+            "r000-02",
+            "r000-03",
+            "r000-04",
+            "r000-05"
+          ],
+          "new_unique_docs": 5,
+          "duplicates": 0,
+          "new_official_opportunities": [
+            "opp:nih:RFA-AG-27-010",
+            "opp:nsf:23-525"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 1,
+          "query": "Alzheimer's data science foundation request for proposals 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p3",
+            "p1",
+            "p5"
+          ],
+          "result_ids": [
+            "r001-01",
+            "r001-02",
+            "r001-03"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 3,
+          "new_official_opportunities": [
+            "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 2,
+          "query": "Alzheimer's Association Part the Cloud challenge prize 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p6"
+          ],
+          "result_ids": [
+            "r002-01"
+          ],
+          "new_unique_docs": 1,
+          "duplicates": 0,
+          "new_official_opportunities": [
+            "opp:url:alz.org/research/for_researchers/grants/part-the-cloud"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 3,
+          "query": "open-source Alzheimer research tools grant 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "result_ids": [
+            "r003-01",
+            "r003-02",
+            "r003-03"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 3,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 1
+        },
+        {
+          "search_index": 4,
+          "query": "dementia research data infrastructure funding 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p1",
+            "p2"
+          ],
+          "result_ids": [
+            "r004-01",
+            "r004-02"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 2,
+          "new_official_opportunities": [],
+          "searches_without_new_official": 2
+        }
+      ],
+      "entities_in_registration_order": [
+        "opp:nih:RFA-AG-27-010",
+        "opp:nsf:23-525",
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+        "opp:url:alz.org/research/for_researchers/grants/part-the-cloud"
+      ],
+      "entity_sources": {
+        "opp:nih:RFA-AG-27-010": [
+          "p1",
+          "p5"
+        ],
+        "opp:nsf:23-525": [
+          "p2"
+        ],
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": [
+          "p3"
+        ],
+        "opp:url:alz.org/research/for_researchers/grants/part-the-cloud": [
+          "p6"
+        ]
+      },
+      "tokens_judge_nominal": 4400,
+      "ranked": [
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+        "opp:nih:RFA-AG-27-010",
+        "opp:url:alz.org/research/for_researchers/grants/part-the-cloud",
+        "opp:nsf:23-525"
+      ],
+      "abstained": false,
+      "hit_at_20": 1,
+      "planner_rejected": [
+        [
+          {
+            "index": 5,
+            "reason": "duplicate_query"
+          }
+        ]
+      ]
+    },
+    "B2": {
+      "stop_reason": "no_more_actions",
+      "searches": 3,
+      "fetches": 6,
+      "planner_calls": 3,
+      "tokens_discovery_nominal": 9900,
+      "searches_log": [
+        {
+          "search_index": 0,
+          "query": "NIA Alzheimer's disease data coordinating center funding opportunity 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p1",
+            "p5",
+            "p2",
+            "p3",
+            "p4"
+          ],
+          "result_ids": [
+            "r000-01",
+            "r000-02",
+            "r000-03",
+            "r000-04",
+            "r000-05"
+          ],
+          "new_unique_docs": 5,
+          "duplicates": 0,
+          "new_official_opportunities": [
+            "opp:nih:RFA-AG-27-010",
+            "opp:nsf:23-525"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 1,
+          "query": "Alzheimer's data science foundation request for proposals 2026",
+          "origin": "planner:initial_batch",
+          "result_pages": [
+            "p3",
+            "p1",
+            "p5"
+          ],
+          "result_ids": [
+            "r001-01",
+            "r001-02",
+            "r001-03"
+          ],
+          "new_unique_docs": 0,
+          "duplicates": 3,
+          "new_official_opportunities": [
+            "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026"
+          ],
+          "searches_without_new_official": 0
+        },
+        {
+          "search_index": 2,
+          "query": "Alzheimer's Association Part the Cloud challenge prize 2026",
+          "origin": "planner:adaptive_step",
+          "result_pages": [
+            "p6"
+          ],
+          "result_ids": [
+            "r002-01"
+          ],
+          "new_unique_docs": 1,
+          "duplicates": 0,
+          "new_official_opportunities": [
+            "opp:url:alz.org/research/for_researchers/grants/part-the-cloud"
+          ],
+          "searches_without_new_official": 0
+        }
+      ],
+      "entities_in_registration_order": [
+        "opp:nih:RFA-AG-27-010",
+        "opp:nsf:23-525",
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+        "opp:url:alz.org/research/for_researchers/grants/part-the-cloud"
+      ],
+      "entity_sources": {
+        "opp:nih:RFA-AG-27-010": [
+          "p1",
+          "p5",
+          "p7"
+        ],
+        "opp:nsf:23-525": [
+          "p2"
+        ],
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": [
+          "p3"
+        ],
+        "opp:url:alz.org/research/for_researchers/grants/part-the-cloud": [
+          "p6"
+        ]
+      },
+      "tokens_judge_nominal": 4400,
+      "ranked": [
+        "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+        "opp:nih:RFA-AG-27-010",
+        "opp:url:alz.org/research/for_researchers/grants/part-the-cloud",
+        "opp:nsf:23-525"
+      ],
+      "abstained": false,
+      "hit_at_20": 1,
+      "planner_rejected": [
+        [
+          {
+            "index": 2,
+            "reason": "fetch_not_allowed_in_initial_batch"
+          }
+        ],
+        [
+          {
+            "index": 0,
+            "reason": "duplicate_query"
+          },
+          {
+            "index": 1,
+            "reason": "unknown_gap"
+          },
+          {
+            "index": 3,
+            "reason": "blocked_host"
+          }
+        ],
+        []
+      ],
+      "gaps_offered_at_call_1": [
+        "g-6081c557",
+        "g-bca609ee",
+        "g-e8e0f6f2",
+        "g-ad338336"
+      ],
+      "extra_fetch": {
+        "ref": "l000-00",
+        "page": "p7",
+        "trigger": "planner"
+      }
+    }
+  },
+  "judgments": {
+    "opp:nih:RFA-AG-27-010": {
+      "eligibility_class": "eligible_pending",
+      "recommendable": true,
+      "soft_score": 1.0,
+      "hard_unknown": [
+        "G-PI",
+        "REQ-01"
+      ],
+      "route": "direct_apply",
+      "states": {
+        "G-SCOPE": "met",
+        "G-ENTITY": "met",
+        "G-GEO": "met",
+        "G-STATUS": "met",
+        "G-INSTRUMENT": "met",
+        "G-STAGE": "not_applicable",
+        "G-PI": "unknown",
+        "G-SMALLBIZ": "not_applicable",
+        "G-FOREIGN": "not_applicable",
+        "G-COSTSHARE": "not_applicable",
+        "G-PARTNER": "not_applicable",
+        "REQ-01": "unknown",
+        "P-AMOUNT": "met",
+        "P-TIMELINE": "met",
+        "P-ROUTE": "met"
+      },
+      "overrides": {
+        "B0": {
+          "G-PI": [
+            "R7_foreign_evidence",
+            "R1_no_evidence"
+          ]
+        },
+        "B1": {
+          "G-PI": [
+            "R7_foreign_evidence",
+            "R1_no_evidence"
+          ]
+        },
+        "B2": {
+          "G-PI": [
+            "R3_profile_unknown"
+          ]
+        },
+        "all": {
+          "G-STATUS": [
+            "R5_code_criterion"
+          ],
+          "P-TIMELINE": [
+            "R5_code_criterion"
+          ],
+          "P-ROUTE": [
+            "R5_code_criterion"
+          ]
+        }
+      }
+    },
+    "opp:nsf:23-525": {
+      "eligibility_class": "ineligible",
+      "recommendable": false,
+      "soft_score": 0.3333,
+      "hard_not_met": [
+        "G-SCOPE",
+        "G-ENTITY"
+      ],
+      "hard_unknown": [
+        "G-GEO",
+        "G-INSTRUMENT",
+        "G-PARTNER"
+      ],
+      "route": "not_actionable",
+      "states": {
+        "G-SCOPE": "not_met",
+        "G-ENTITY": "not_met",
+        "G-GEO": "unknown",
+        "G-STATUS": "met",
+        "G-INSTRUMENT": "unknown",
+        "G-PARTNER": "unknown",
+        "P-AMOUNT": "unknown",
+        "P-TIMELINE": "met",
+        "P-ROUTE": "not_met"
+      },
+      "overrides": {
+        "all": {
+          "G-GEO": [
+            "R4a_na_forbidden"
+          ],
+          "G-PARTNER": [
+            "R6_missing_answer"
+          ]
+        }
+      }
+    },
+    "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": {
+      "eligibility_class": "eligible",
+      "recommendable": true,
+      "soft_score": 1.0,
+      "hard_unknown": [],
+      "route": "direct_apply",
+      "states": {
+        "G-SCOPE": "met",
+        "G-ENTITY": "met",
+        "G-GEO": "met",
+        "G-STATUS": "met",
+        "G-INSTRUMENT": "met",
+        "P-AMOUNT": "met",
+        "P-TIMELINE": "met",
+        "P-ROUTE": "met"
+      }
+    },
+    "opp:url:alz.org/research/for_researchers/grants/part-the-cloud": {
+      "eligibility_class": "ineligible",
+      "recommendable": false,
+      "soft_score": 0.0,
+      "hard_not_met": [
+        "G-SCOPE",
+        "G-STATUS"
+      ],
+      "hard_unknown": [
+        "G-INSTRUMENT"
+      ],
+      "route": "not_actionable",
+      "states": {
+        "G-SCOPE": "not_met",
+        "G-ENTITY": "met",
+        "G-GEO": "met",
+        "G-STATUS": "not_met",
+        "G-INSTRUMENT": "unknown",
+        "P-AMOUNT": "unknown",
+        "P-TIMELINE": "unknown",
+        "P-ROUTE": "not_met"
+      },
+      "overrides": {
+        "all": {
+          "G-INSTRUMENT": [
+            "R2_conflict_needs_two"
+          ]
+        }
+      }
+    }
+  },
+  "validity": {
+    "opp:nih:RFA-AG-27-010": {
+      "status": "open",
+      "closes_on": "2026-11-10",
+      "deadline_doc": "p1"
+    },
+    "opp:nsf:23-525": {
+      "status": "open",
+      "closes_on": "2027-01-11",
+      "deadline_doc": "p2"
+    },
+    "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": {
+      "status": "open",
+      "closes_on": "2026-12-01",
+      "deadline_doc": "p3"
+    },
+    "opp:url:alz.org/research/for_researchers/grants/part-the-cloud": {
+      "status": "closed",
+      "closes_on": null,
+      "deadline_doc": "p6"
+    }
+  },
+  "evidence_ids": {
+    "opp:nih:RFA-AG-27-010": [
+      {
+        "criterion_id": "G-SCOPE",
+        "evidence_id": "ev-2cd4fd167999269d",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "G-SCOPE",
+        "evidence_id": "ev-0dd19c73c9ff9bee",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "G-ENTITY",
+        "evidence_id": "ev-1b019352f928793a",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "G-GEO",
+        "evidence_id": "ev-4ef5104b030e359b",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "G-INSTRUMENT",
+        "evidence_id": "ev-0617430f4dbbc29b",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "G-COSTSHARE",
+        "evidence_id": "ev-40dd6ebd83eb384c",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "P-AMOUNT",
+        "evidence_id": "ev-280cdd8639196754",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "REQ-01",
+        "evidence_id": "ev-8ed7a8c10760546e",
+        "doc": "p1"
+      },
+      {
+        "criterion_id": "G-SCOPE",
+        "evidence_id": "ev-ffc7c65d409b71d7",
+        "doc": "p5"
+      },
+      {
+        "criterion_id": "G-PI",
+        "evidence_id": "ev-b7305e33ffd2a764",
+        "doc": "p7"
+      }
+    ],
+    "opp:nsf:23-525": [
+      {
+        "criterion_id": "G-SCOPE",
+        "evidence_id": "ev-0d2669529e9b6377",
+        "doc": "p2"
+      },
+      {
+        "criterion_id": "G-ENTITY",
+        "evidence_id": "ev-4f48e359465e448f",
+        "doc": "p2"
+      }
+    ],
+    "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": [
+      {
+        "criterion_id": "G-SCOPE",
+        "evidence_id": "ev-43aa6ebcf5593e76",
+        "doc": "p3"
+      },
+      {
+        "criterion_id": "G-ENTITY",
+        "evidence_id": "ev-169f6be1929af367",
+        "doc": "p3"
+      },
+      {
+        "criterion_id": "G-GEO",
+        "evidence_id": "ev-3b7ee7d4a10fcf06",
+        "doc": "p3"
+      },
+      {
+        "criterion_id": "G-INSTRUMENT",
+        "evidence_id": "ev-a443e892c7853523",
+        "doc": "p3"
+      },
+      {
+        "criterion_id": "P-AMOUNT",
+        "evidence_id": "ev-e99a0ff4aeab3967",
+        "doc": "p3"
+      }
+    ],
+    "opp:url:alz.org/research/for_researchers/grants/part-the-cloud": [
+      {
+        "criterion_id": "G-SCOPE",
+        "evidence_id": "ev-558da8a0588e33bb",
+        "doc": "p6"
+      },
+      {
+        "criterion_id": "G-ENTITY",
+        "evidence_id": "ev-55469666169b6459",
+        "doc": "p6"
+      },
+      {
+        "criterion_id": "G-GEO",
+        "evidence_id": "ev-5aae5fdca172d42d",
+        "doc": "p6"
+      }
+    ]
+  },
+  "extract_rejections": {
+    "p1": {
+      "quotes_rejected": 1,
+      "identifiers_rejected": 0
+    }
+  },
+  "official": {
+    "p1": "suffix",
+    "p2": "suffix",
+    "p3": "curated_list",
+    "p5": "none",
+    "p6": "curated_list",
+    "p7": "suffix"
+  }
+}

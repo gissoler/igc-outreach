@@ -1,0 +1,37 @@
+{
+  "id": "b0_templates",
+  "version": "v1",
+  "description": "Static queries for condition B0. Rendered by conditions.b0Queries (ARCHITECTURE §4). A template is skipped when any placeholder it uses is null or its `requires` is not satisfied. Order matters.",
+  "templates": [
+    { "template_id": "fed-1", "family": "government", "text": "{sector} research grant funding opportunity {year}" },
+    { "template_id": "fed-2", "family": "government", "text": "{sector} {work} grant {year}" },
+    { "template_id": "fed-3", "family": "government", "text": "{sector} funding opportunity announcement {country} {year}" },
+    { "template_id": "fed-4", "family": "government", "text": "{country} government innovation grant {sector} {year}" },
+    { "template_id": "fed-5", "family": "government", "text": "{sector} grants for {entity} organizations {year}" },
+    { "template_id": "fed-6", "family": "government", "text": "{sector} cooperative agreement funding {year}" },
+    { "template_id": "fdn-1", "family": "foundation", "text": "{sector} foundation grant open call {year}" },
+    { "template_id": "fdn-2", "family": "foundation", "text": "{sector} philanthropy request for proposals {year}" },
+    { "template_id": "fdn-3", "family": "foundation", "text": "{sector2} foundation research funding {year}" },
+    { "template_id": "fdn-4", "family": "foundation", "text": "{sector} {work} foundation funding {entity}" },
+    { "template_id": "prz-1", "family": "prize", "text": "{sector} innovation challenge prize {year}" },
+    { "template_id": "prz-2", "family": "prize", "text": "{sector} competition call for applications {year}" },
+    { "template_id": "prz-3", "family": "prize", "text": "{sector2} challenge prize apply {year}" },
+    { "template_id": "int-1", "family": "international", "text": "{sector} international grant call open applications {year}" },
+    { "template_id": "int-2", "family": "international", "text": "{sector} call for proposals international applicants {year}" },
+    { "template_id": "int-3", "family": "international", "text": "EU funding call {sector} {year}" },
+    { "template_id": "sbir-1", "family": "sbir", "text": "{sector} SBIR STTR solicitation {year}", "requires": { "applicant.entity_type": ["for_profit"] } },
+    { "template_id": "acc-1", "family": "accelerator", "text": "{sector} accelerator non-dilutive funding {year}", "requires": { "applicant.entity_type": ["for_profit"] } },
+    { "template_id": "work-1", "family": "work_type", "text": "{work} {sector} request for proposals {year}" },
+    { "template_id": "work-2", "family": "work_type", "text": "{work} funding program {country} {year}" },
+    { "template_id": "reg-1", "family": "regional", "text": "convocatoria {sector} {country} {year}", "requires": { "applicant.country": ["AR", "BO", "CL", "CO", "CR", "DO", "EC", "ES", "GT", "HN", "MX", "NI", "PA", "PE", "PY", "SV", "UY", "VE"] } },
+    { "template_id": "reg-2", "family": "regional", "text": "{region} {sector} grant program {year}" },
+    { "template_id": "gen-1", "family": "generic", "text": "{sector} research funding deadline {year}" },
+    { "template_id": "gen-2", "family": "generic", "text": "{sector} {entity} grant eligibility {year}" }
+  ],
+  "COUNTRY_NAMES": {
+    "US": "United States", "CA": "Canada", "MX": "Mexico", "CO": "Colombia", "BR": "Brazil", "AR": "Argentina", "CL": "Chile", "PE": "Peru", "EC": "Ecuador", "UY": "Uruguay",
+    "CR": "Costa Rica", "PA": "Panama", "GT": "Guatemala", "DO": "Dominican Republic", "ES": "Spain", "PT": "Portugal", "FR": "France", "DE": "Germany", "IT": "Italy", "NL": "Netherlands",
+    "BE": "Belgium", "IE": "Ireland", "GB": "United Kingdom", "CH": "Switzerland", "SE": "Sweden", "NO": "Norway", "DK": "Denmark", "FI": "Finland", "AT": "Austria", "PL": "Poland",
+    "IL": "Israel", "IN": "India", "SG": "Singapore", "JP": "Japan", "KR": "South Korea", "AU": "Australia", "NZ": "New Zealand", "ZA": "South Africa", "KE": "Kenya", "NG": "Nigeria"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "case/1",
+  "case_id": "case-aha-nia-dcc",
+  "kind": "anchor",
+  "as_of": "2026-10-19",
+  "profile_path": "research/bench/cases/profiles/prof-aha-example.json",
+  "profile_sha256": "a9a2f342506f01094433aa4bffdc106b9ed0b73c964192b9b0b76cdfff206120",
+  "construction": {
+    "curator": "gisel",
+    "profile_builder": "juliana",
+    "profile_builder_saw_anchor": false,
+    "selection_order": "profile_first",
+    "profile_source_kind": "real_org_internal_docs",
+    "profile_frozen_at": "2026-10-15T15:00:00Z",
+    "anchor_chosen_at": "2026-10-17T14:00:00Z"
+  },
+  "anchor": {
+    "name": "Data Coordinating Center for AD-MAPs (example)",
+    "issuer": "NIH/NIA",
+    "identifiers": [
+      {
+        "scheme": "nih",
+        "value": "RFA-AG-27-010"
+      },
+      {
+        "scheme": "grantsgov",
+        "value": "359740"
+      }
+    ],
+    "official_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+    "closes_on": "2026-11-10",
+    "verified_open_on": "2026-10-19",
+    "winners_published": false,
+    "expected_route": "partner_subaward",
+    "why_it_fits": "Funds harmonization of multimodal AD data and open tools; applicant would need a US institution as prime."
+  },
+  "null_case": null
+}

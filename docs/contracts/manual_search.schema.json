@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/manual_search.schema.json",
+  "title": "Brief manual search for one case (human step H2) — adds items to the pool",
+  "description": "Done BEFORE any system run, by the curator, time-boxed. Items enter the pool even if no system retrieved them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "searcher", "done_at", "minutes", "queries", "items"],
+  "properties": {
+    "schema_version": { "const": "manual_search/1" },
+    "case_id": { "$ref": "common.schema.json#/$defs/caseId" },
+    "searcher": { "type": "string", "minLength": 1 },
+    "done_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "minutes": { "type": "integer", "minimum": 10, "maximum": 30 },
+    "queries": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name", "url", "identifiers"],
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "$ref": "common.schema.json#/$defs/url" },
+          "identifiers": { "type": "array", "items": { "type": "object", "required": ["scheme", "value"], "properties": { "scheme": { "type": "string" }, "value": { "type": "string" } } } }
+        }
+      }
+    }
+  }
+}

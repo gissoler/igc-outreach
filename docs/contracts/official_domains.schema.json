@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/official_domains.schema.json",
+  "title": "Curated official funder domains",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "suffixes", "domains"],
+  "properties": {
+    "schema_version": { "const": "official_domains/1" },
+    "version": { "type": "string", "pattern": "^v\\d+$" },
+    "suffixes": { "type": "array", "items": { "type": "string", "pattern": "^\\." }, "description": "Host suffixes that are official by themselves (government/intergovernmental)." },
+    "domains": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["domain", "issuer", "added_by", "added_on"],
+        "properties": { "domain": { "type": "string", "pattern": "^[a-z0-9.-]+\\.[a-z]{2,}$" }, "issuer": { "type": "string" }, "added_by": { "type": "string" }, "added_on": { "$ref": "common.schema.json#/$defs/isoDate" } } }
+    }
+  }
+}

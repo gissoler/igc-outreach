@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/preannotator_output.schema.json",
+  "title": "Preannotator raw output (response_format of prompts/preannotator/v1)",
+  "description": "The preannotator is an LLM of a DIFFERENT family than the agent. Its output only orders and stratifies human work; it is never gold. Code wraps it into a label.schema.json record with role=preannotator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "deadline", "scope", "hard_eligibility", "route", "criteria", "confidence", "notes"],
+  "properties": {
+    "status": { "$ref": "common.schema.json#/$defs/validityStatus" },
+    "deadline": { "oneOf": [{ "$ref": "common.schema.json#/$defs/isoDate" }, { "type": "null" }] },
+    "scope": { "type": "string", "enum": ["on", "partial", "off"] },
+    "hard_eligibility": { "type": "string", "enum": ["eligible", "ineligible", "undetermined"] },
+    "route": { "$ref": "common.schema.json#/$defs/route" },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["criterion_id", "state", "quote"],
+        "properties": {
+          "criterion_id": { "type": "string", "pattern": "^((G|P)-[A-Z]+|REQ-\\d{2})$" },
+          "state": { "$ref": "common.schema.json#/$defs/criterionState" },
+          "quote": { "type": ["string", "null"], "maxLength": 600 }
+        }
+      }
+    },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "notes": { "type": "string", "maxLength": 500 }
+  }
+}

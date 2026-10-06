@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/planner_output.schema.json",
+  "title": "Planner output (response_format of prompts/planner/v1)",
+  "description": "Actions only reference ids given in the input (result_id, link_id, gap_id). The planner never writes URLs. Invalid actions are dropped by code and logged as PLANNER_INVALID_ACTION.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["assessment", "actions", "stop"],
+  "properties": {
+    "assessment": { "type": "string", "maxLength": 600, "description": "Which documentary gaps matter most now and why." },
+    "actions": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object", "additionalProperties": false,
+            "required": ["type", "query", "targets", "rationale"],
+            "properties": {
+              "type": { "const": "search" },
+              "query": { "type": "string", "minLength": 8, "maxLength": 200 },
+              "targets": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "pattern": "^(g-[a-f0-9]{8}|coverage:[a-z0-9_-]{2,40})$" } },
+              "rationale": { "type": "string", "maxLength": 200 }
+            }
+          },
+          {
+            "type": "object", "additionalProperties": false,
+            "required": ["type", "ref", "targets", "rationale"],
+            "properties": {
+              "type": { "const": "fetch" },
+              "ref": { "type": "string", "pattern": "^(r\\d{3}-\\d{2}|l\\d{3}-\\d{2})$" },
+              "targets": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "pattern": "^(g-[a-f0-9]{8}|coverage:[a-z0-9_-]{2,40})$" } },
+              "rationale": { "type": "string", "maxLength": 200 }
+            }
+          }
+        ]
+      }
+    },
+    "stop": { "type": "boolean", "description": "true = nothing useful left to do (stop reason 'no_more_actions'). Ignored if actions is non-empty." }
+  }
+}

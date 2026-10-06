@@ -1,0 +1,104 @@
+{
+  "schema_version": "metrics_report/1",
+  "bench_id": "bench-v0",
+  "generated_at": "2026-10-28T10:00:00Z",
+  "run_config_sha256": "e67d23e7820c49a8051dac2831f38290f5e72f66c8db5079eeb60d82f14894c0",
+  "cases_manifest_sha256": "352b84777d8dd96ac9c0b3c170ecb2c7cca7fc2dbae41a1ec1ed4286fb2c43db",
+  "labels_sha256": "d772ebb4590212c65cc31888ee55c3a893d866d8479f84a4c0ca36918a3fa75f",
+  "per_run": [
+    {
+      "run_id": "bench-v0__case-aha-nia-dcc__B2__s101",
+      "case_id": "case-aha-nia-dcc",
+      "condition": "B2",
+      "seed": 101,
+      "hit_at_20": 1,
+      "pooled_recall_at_20": 0.6,
+      "ndcg_at_10": 0.71,
+      "hard_false_positive_rate": 0.0,
+      "status_accuracy": 1.0,
+      "deadline_accuracy": 1.0,
+      "identity_accuracy": 1.0,
+      "abstained": false,
+      "tokens_discovery_nominal": 388000,
+      "seconds_discovery_nominal": 760,
+      "searches": 14,
+      "stop_reason": "patience"
+    }
+  ],
+  "per_case": [
+    {
+      "case_id": "case-aha-nia-dcc",
+      "kind": "anchor",
+      "pool_size": 41,
+      "pool_positives": 5,
+      "by_condition": {
+        "B2": {
+          "pooled_recall_at_20": {
+            "mean": 0.6,
+            "sd": 0.1,
+            "min": 0.5,
+            "max": 0.7
+          }
+        }
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "metric": "pooled_recall_at_20",
+      "a": "B2",
+      "b": "B1",
+      "n_cases": 12,
+      "wins": 8,
+      "ties": 2,
+      "losses": 2,
+      "tie_margin": 0.05,
+      "mean_diff": 0.09,
+      "bootstrap_ci95": [
+        0.01,
+        0.17
+      ],
+      "sign_test_p_one_sided": 0.0547
+    }
+  ],
+  "labeling_quality": {
+    "adjudicated_items": 310,
+    "second_reviewed_items": 30,
+    "kappa_positive": 0.71,
+    "kappa_hard_eligibility": 0.64,
+    "agreement_raw": 0.87,
+    "preannotator_vs_human": {
+      "precision": 0.62,
+      "recall": 0.9
+    },
+    "negatives_sampled": 48,
+    "negatives_found_positive": 2
+  },
+  "criteria_eval": {
+    "B2": {
+      "met": {
+        "precision": 0.8,
+        "recall": 0.7,
+        "f1": 0.75
+      }
+    }
+  },
+  "abstention": {
+    "B2": {
+      "correct_abstentions": "2/3",
+      "false_abstentions": "0/12"
+    }
+  },
+  "decision": {
+    "rule_version": "decision_rule@v1",
+    "outcome": "INCONCLUSIVE",
+    "checks": [
+      {
+        "id": "D1",
+        "passed": false,
+        "detail": "sign test vs B1 p=0.0547 > 0.05"
+      }
+    ],
+    "label": "business_rule_exploratory"
+  }
+}

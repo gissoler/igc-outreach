@@ -1,0 +1,793 @@
+{
+  "schema_version": "fixture_llm/1",
+  "note": "Scripted responses. Transport receives meta (never sent to real APIs): extractor→{url}, eligibility_judge→{stable_id, profile_id}, planner→{condition, call_index}, preannotator→{stable_id}. Every response: model 'fixture-model', usage {prompt_tokens:1000, completion_tokens:100}, latency 10 ms.",
+  "usage": {
+    "prompt_tokens": 1000,
+    "completion_tokens": 100
+  },
+  "model": "fixture-model",
+  "latency_ms": 10,
+  "extractor": {
+    "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html": {
+      "page_type": "call",
+      "about": {
+        "name": "Data Coordinating Center for Alzheimer's Disease Research Data Harmonization",
+        "issuer_name": "National Institute on Aging",
+        "issuer_domain": "nih.gov",
+        "identifier_texts": [
+          "RFA-AG-27-010"
+        ],
+        "date_mentions": [
+          {
+            "label": "Application Due Date",
+            "quote": "Application Due Date: November 10, 2026"
+          }
+        ],
+        "amount_text": "$2,500,000 in total costs per year",
+        "instrument": "cooperative_agreement",
+        "how_to_apply_quote": "Applications must be submitted electronically through Grants.gov.",
+        "status_quote": null
+      },
+      "evidence": [
+        {
+          "criterion_id": "G-SCOPE",
+          "quote": "This funding opportunity supports a data coordinating center that will harmonize multimodal Alzheimer's disease research datasets, develop open-source tools and maintain a community data portal.",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-SCOPE",
+          "quote": "Basic research projects that do not build shared data infrastructure will be returned without review.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "quote": "Nonprofits with 501(c)(3) IRS Status (Other than Institutions of Higher Education) are eligible to apply.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-GEO",
+          "quote": "Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-INSTRUMENT",
+          "quote": "Funding Instrument: Cooperative Agreement",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-COSTSHARE",
+          "quote": "This funding opportunity does not require cost sharing.",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "P-AMOUNT",
+          "quote": "Application budgets are limited to $2,500,000 in total costs per year.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "REQ",
+          "quote": "Applicants must integrate data from at least five AD-MAPs projects.",
+          "binding": true,
+          "requirement_summary": "Integrate data from at least five AD-MAPs projects"
+        },
+        {
+          "criterion_id": "G-PI",
+          "quote": "The PI must hold an eRA Commons account and an ORCID iD.",
+          "binding": true,
+          "requirement_summary": null
+        }
+      ],
+      "mentions": [],
+      "official_links": [
+        {
+          "anchor_text": "Notice NOT-AG-26-001",
+          "url": "https://grants.nih.gov/grants/guide/notice-files/NOT-AG-26-001.html"
+        }
+      ]
+    },
+    "https://nsf.gov/funding/opportunities/oceanographic-facilities-equipment-support/nsf23-525": {
+      "page_type": "call",
+      "about": {
+        "name": "Oceanographic Facilities and Equipment Support",
+        "issuer_name": "U.S. National Science Foundation",
+        "issuer_domain": "nsf.gov",
+        "identifier_texts": [
+          "NSF 23-525"
+        ],
+        "date_mentions": [
+          {
+            "label": "Proposal Deadline",
+            "quote": "Proposal Deadline: January 11, 2027"
+          }
+        ],
+        "amount_text": "$40,000,000",
+        "instrument": "grant",
+        "how_to_apply_quote": "Proposals must be submitted via Research.gov.",
+        "status_quote": null
+      },
+      "evidence": [
+        {
+          "criterion_id": "G-SCOPE",
+          "quote": "This program supports shared-use oceanographic facilities, including research vessels, marine instrumentation, winches and shipboard communications.",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "quote": "Institutions of Higher Education and Non-profit, non-academic organizations that operate oceanographic facilities may submit proposals.",
+          "binding": true,
+          "requirement_summary": null
+        }
+      ],
+      "mentions": [],
+      "official_links": []
+    },
+    "https://alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": {
+      "page_type": "call",
+      "about": {
+        "name": "Data Science for Alzheimer's Research 2026",
+        "issuer_name": "Alzheimer's Drug Discovery Foundation",
+        "issuer_domain": "alzdiscovery.org",
+        "identifier_texts": [],
+        "date_mentions": [
+          {
+            "label": "Letter of Intent Deadline",
+            "quote": "Letter of Intent Deadline: December 1, 2026"
+          }
+        ],
+        "amount_text": "up to $500,000",
+        "instrument": "grant",
+        "how_to_apply_quote": "Apply through the online portal.",
+        "status_quote": null
+      },
+      "evidence": [
+        {
+          "criterion_id": "G-SCOPE",
+          "quote": "The Foundation funds open data resources and software tools that accelerate Alzheimer's disease research.",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "quote": "Eligibility: Nonprofit organizations, academic institutions and companies worldwide are eligible to apply.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-GEO",
+          "quote": "Eligibility: Nonprofit organizations, academic institutions and companies worldwide are eligible to apply.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-INSTRUMENT",
+          "quote": "Funding is provided as research grants.",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "P-AMOUNT",
+          "quote": "Awards of up to $500,000 are available.",
+          "binding": false,
+          "requirement_summary": null
+        }
+      ],
+      "mentions": [],
+      "official_links": []
+    },
+    "https://example-news.com/2026/10/nih-launches-ad-data-center": {
+      "page_type": "news",
+      "about": {
+        "name": "Data Coordinating Center call (RFA-AG-27-010)",
+        "issuer_name": "National Institute on Aging",
+        "issuer_domain": null,
+        "identifier_texts": [
+          "RFA-AG-27-010"
+        ],
+        "date_mentions": [],
+        "amount_text": null,
+        "instrument": "unknown",
+        "how_to_apply_quote": null,
+        "status_quote": null
+      },
+      "evidence": [
+        {
+          "criterion_id": "G-SCOPE",
+          "quote": "The National Institute on Aging opened RFA-AG-27-010, which will fund a data coordinating center.",
+          "binding": false,
+          "requirement_summary": null
+        }
+      ],
+      "mentions": [
+        {
+          "name": "Part the Cloud",
+          "identifier_text": null
+        }
+      ],
+      "official_links": []
+    },
+    "https://alz.org/research/for_researchers/grants/part-the-cloud": {
+      "page_type": "call",
+      "about": {
+        "name": "Part the Cloud Challenge",
+        "issuer_name": "Alzheimer's Association",
+        "issuer_domain": "alz.org",
+        "identifier_texts": [],
+        "date_mentions": [
+          {
+            "label": "Applications closed",
+            "quote": "Applications closed on March 1, 2026."
+          }
+        ],
+        "amount_text": null,
+        "instrument": "grant",
+        "how_to_apply_quote": null,
+        "status_quote": "Applications closed on March 1, 2026."
+      },
+      "evidence": [
+        {
+          "criterion_id": "G-SCOPE",
+          "quote": "The Part the Cloud challenge funds early-phase clinical trials of new Alzheimer's therapies.",
+          "binding": false,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "quote": "Eligibility: Investigators at nonprofit institutions worldwide may apply.",
+          "binding": true,
+          "requirement_summary": null
+        },
+        {
+          "criterion_id": "G-GEO",
+          "quote": "Eligibility: Investigators at nonprofit institutions worldwide may apply.",
+          "binding": true,
+          "requirement_summary": null
+        }
+      ],
+      "mentions": [],
+      "official_links": []
+    },
+    "https://grants.nih.gov/grants/guide/notice-files/NOT-AG-26-001.html": {
+      "page_type": "program_page",
+      "about": {
+        "name": "Data Coordinating Center for Alzheimer's Disease Research Data Harmonization",
+        "issuer_name": "National Institute on Aging",
+        "issuer_domain": "nih.gov",
+        "identifier_texts": [
+          "RFA-AG-27-010"
+        ],
+        "date_mentions": [],
+        "amount_text": null,
+        "instrument": "unknown",
+        "how_to_apply_quote": null,
+        "status_quote": null
+      },
+      "evidence": [
+        {
+          "criterion_id": "G-PI",
+          "quote": "The PD/PI must have an active eRA Commons account.",
+          "binding": true,
+          "requirement_summary": null
+        }
+      ],
+      "mentions": [],
+      "official_links": []
+    }
+  },
+  "planner": {
+    "B1": [
+      {
+        "assessment": "Initial batch across federal, foundation and prize families.",
+        "actions": [
+          {
+            "type": "search",
+            "query": "NIA Alzheimer's disease data coordinating center funding opportunity 2026",
+            "targets": [
+              "coverage:federal"
+            ],
+            "rationale": "Federal data infrastructure calls."
+          },
+          {
+            "type": "search",
+            "query": "Alzheimer's data science foundation request for proposals 2026",
+            "targets": [
+              "coverage:foundations"
+            ],
+            "rationale": "Foundation RFPs."
+          },
+          {
+            "type": "search",
+            "query": "Alzheimer's Association Part the Cloud challenge prize 2026",
+            "targets": [
+              "coverage:prizes"
+            ],
+            "rationale": "Named challenge."
+          },
+          {
+            "type": "search",
+            "query": "open-source Alzheimer research tools grant 2026",
+            "targets": [
+              "coverage:federal"
+            ],
+            "rationale": "Tools funding."
+          },
+          {
+            "type": "search",
+            "query": "dementia research data infrastructure funding 2026",
+            "targets": [
+              "coverage:federal"
+            ],
+            "rationale": "Adjacent wording."
+          },
+          {
+            "type": "search",
+            "query": "nia alzheimer's disease data coordinating center funding opportunity 2026",
+            "targets": [
+              "coverage:federal"
+            ],
+            "rationale": "Duplicate on purpose (must be rejected)."
+          }
+        ],
+        "stop": false
+      }
+    ],
+    "B2": [
+      {
+        "assessment": "Start with federal and foundation families.",
+        "actions": [
+          {
+            "type": "search",
+            "query": "NIA Alzheimer's disease data coordinating center funding opportunity 2026",
+            "targets": [
+              "coverage:federal"
+            ],
+            "rationale": "Federal data infrastructure calls."
+          },
+          {
+            "type": "search",
+            "query": "Alzheimer's data science foundation request for proposals 2026",
+            "targets": [
+              "coverage:foundations"
+            ],
+            "rationale": "Foundation RFPs."
+          },
+          {
+            "type": "fetch",
+            "ref": "r000-01",
+            "targets": [
+              "coverage:federal"
+            ],
+            "rationale": "Not allowed in initial_batch (must be rejected)."
+          }
+        ],
+        "stop": false
+      },
+      {
+        "assessment": "Resolve the program mentioned in the news and read the eligibility notice linked from RFA-AG-27-010.",
+        "actions": [
+          {
+            "type": "search",
+            "query": "NIA Alzheimer's disease data coordinating center funding opportunity 2026",
+            "targets": [
+              "g-e8e0f6f2"
+            ],
+            "rationale": "Duplicate on purpose (must be rejected: duplicate_query)."
+          },
+          {
+            "type": "search",
+            "query": "dementia research data infrastructure funding 2026",
+            "targets": [
+              "g-00000000"
+            ],
+            "rationale": "Unknown gap on purpose (must be rejected: unknown_gap)."
+          },
+          {
+            "type": "search",
+            "query": "Alzheimer's Association Part the Cloud challenge prize 2026",
+            "targets": [
+              "g-ad338336"
+            ],
+            "rationale": "Find the official page of Part the Cloud."
+          },
+          {
+            "type": "fetch",
+            "ref": "r000-05",
+            "targets": [
+              "coverage:aggregators"
+            ],
+            "rationale": "Aggregator on purpose (must be rejected: blocked_host)."
+          },
+          {
+            "type": "fetch",
+            "ref": "l000-00",
+            "targets": [
+              "g-e8e0f6f2"
+            ],
+            "rationale": "Official eligibility notice."
+          }
+        ],
+        "stop": false
+      },
+      {
+        "assessment": "No relevant gaps left.",
+        "actions": [],
+        "stop": true
+      }
+    ]
+  },
+  "eligibility_judge": {
+    "prof-fixture-aha|opp:nih:RFA-AG-27-010": {
+      "criteria": [
+        {
+          "criterion_id": "G-SCOPE",
+          "state": "met",
+          "evidence_ids": [
+            "ev-2cd4fd167999269d"
+          ],
+          "rationale": "Funds harmonization of multimodal AD datasets and open tools; matches the project."
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "state": "met",
+          "evidence_ids": [
+            "ev-1b019352f928793a"
+          ],
+          "rationale": "Nonprofits are eligible."
+        },
+        {
+          "criterion_id": "G-GEO",
+          "state": "met",
+          "evidence_ids": [
+            "ev-4ef5104b030e359b"
+          ],
+          "rationale": "Applicant is US; foreign institutions excluded."
+        },
+        {
+          "criterion_id": "G-INSTRUMENT",
+          "state": "met",
+          "evidence_ids": [
+            "ev-0617430f4dbbc29b"
+          ],
+          "rationale": "Cooperative agreement is accepted."
+        },
+        {
+          "criterion_id": "G-STAGE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "No stage requirement in the call."
+        },
+        {
+          "criterion_id": "G-PI",
+          "state": "met",
+          "evidence_ids": [
+            "ev-b7305e33ffd2a764"
+          ],
+          "rationale": "PI needs eRA Commons (rules must turn this into unknown)."
+        },
+        {
+          "criterion_id": "G-SMALLBIZ",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "No small business requirement."
+        },
+        {
+          "criterion_id": "G-FOREIGN",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "No foreign component rule beyond entity rule."
+        },
+        {
+          "criterion_id": "G-COSTSHARE",
+          "state": "not_applicable",
+          "evidence_ids": [
+            "ev-40dd6ebd83eb384c"
+          ],
+          "rationale": "Cost sharing not required."
+        },
+        {
+          "criterion_id": "G-PARTNER",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "No mandatory partner."
+        },
+        {
+          "criterion_id": "P-AMOUNT",
+          "state": "met",
+          "evidence_ids": [
+            "ev-280cdd8639196754"
+          ],
+          "rationale": "Budget well above need."
+        },
+        {
+          "criterion_id": "REQ-01",
+          "state": "unknown",
+          "evidence_ids": [],
+          "rationale": "Profile does not show access to five AD-MAPs projects."
+        }
+      ],
+      "route": "direct_apply",
+      "route_rationale": "Nonprofit US applicant can apply directly."
+    },
+    "prof-fixture-aha|opp:nsf:23-525": {
+      "criteria": [
+        {
+          "criterion_id": "G-SCOPE",
+          "state": "not_met",
+          "evidence_ids": [
+            "ev-0d2669529e9b6377"
+          ],
+          "rationale": "Funds oceanographic facilities; different field."
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "state": "not_met",
+          "evidence_ids": [
+            "ev-4f48e359465e448f"
+          ],
+          "rationale": "Only organizations operating oceanographic facilities."
+        },
+        {
+          "criterion_id": "G-GEO",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "Deliberately invalid: G-GEO is applicability=always (R4a)."
+        },
+        {
+          "criterion_id": "G-INSTRUMENT",
+          "state": "unknown",
+          "evidence_ids": [],
+          "rationale": "Instrument not quoted."
+        },
+        {
+          "criterion_id": "G-STAGE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-PI",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-SMALLBIZ",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-FOREIGN",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-COSTSHARE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "P-AMOUNT",
+          "state": "unknown",
+          "evidence_ids": [],
+          "rationale": "Total program amount only."
+        }
+      ],
+      "route": "not_actionable",
+      "route_rationale": "Out of scope."
+    },
+    "prof-fixture-aha|opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": {
+      "criteria": [
+        {
+          "criterion_id": "G-SCOPE",
+          "state": "met",
+          "evidence_ids": [
+            "ev-43aa6ebcf5593e76"
+          ],
+          "rationale": "Funds open data resources and software tools for AD research."
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "state": "met",
+          "evidence_ids": [
+            "ev-169f6be1929af367"
+          ],
+          "rationale": "Nonprofits eligible."
+        },
+        {
+          "criterion_id": "G-GEO",
+          "state": "met",
+          "evidence_ids": [
+            "ev-3b7ee7d4a10fcf06"
+          ],
+          "rationale": "Worldwide."
+        },
+        {
+          "criterion_id": "G-INSTRUMENT",
+          "state": "met",
+          "evidence_ids": [
+            "ev-a443e892c7853523"
+          ],
+          "rationale": "Research grants."
+        },
+        {
+          "criterion_id": "G-STAGE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-PI",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-SMALLBIZ",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-FOREIGN",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-COSTSHARE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-PARTNER",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "P-AMOUNT",
+          "state": "met",
+          "evidence_ids": [
+            "ev-e99a0ff4aeab3967"
+          ],
+          "rationale": "Up to $500,000."
+        }
+      ],
+      "route": "direct_apply",
+      "route_rationale": "Eligible nonprofit can apply directly."
+    },
+    "prof-fixture-aha|opp:url:alz.org/research/for_researchers/grants/part-the-cloud": {
+      "criteria": [
+        {
+          "criterion_id": "G-SCOPE",
+          "state": "not_met",
+          "evidence_ids": [
+            "ev-558da8a0588e33bb"
+          ],
+          "rationale": "Funds clinical trials, not data infrastructure."
+        },
+        {
+          "criterion_id": "G-ENTITY",
+          "state": "met",
+          "evidence_ids": [
+            "ev-55469666169b6459"
+          ],
+          "rationale": "Nonprofit institutions."
+        },
+        {
+          "criterion_id": "G-GEO",
+          "state": "met",
+          "evidence_ids": [
+            "ev-5aae5fdca172d42d"
+          ],
+          "rationale": "Worldwide."
+        },
+        {
+          "criterion_id": "G-INSTRUMENT",
+          "state": "conflict",
+          "evidence_ids": [
+            "ev-558da8a0588e33bb"
+          ],
+          "rationale": "Deliberately invalid: conflict with one evidence (R2)."
+        },
+        {
+          "criterion_id": "G-STAGE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-PI",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-SMALLBIZ",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-FOREIGN",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-COSTSHARE",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "G-PARTNER",
+          "state": "not_applicable",
+          "evidence_ids": [],
+          "rationale": "n/a"
+        },
+        {
+          "criterion_id": "P-AMOUNT",
+          "state": "unknown",
+          "evidence_ids": [],
+          "rationale": "No amount."
+        }
+      ],
+      "route": "not_actionable",
+      "route_rationale": "Closed and out of scope."
+    }
+  },
+  "preannotator": {
+    "opp:nih:RFA-AG-27-010": {
+      "status": "open",
+      "deadline": "2026-11-10",
+      "scope": "on",
+      "hard_eligibility": "undetermined",
+      "route": "direct_apply",
+      "criteria": [],
+      "confidence": "medium",
+      "notes": "PI and AD-MAPs access unknown."
+    },
+    "opp:nsf:23-525": {
+      "status": "open",
+      "deadline": "2027-01-11",
+      "scope": "off",
+      "hard_eligibility": "ineligible",
+      "route": "not_actionable",
+      "criteria": [],
+      "confidence": "high",
+      "notes": "Oceanography."
+    },
+    "opp:url:alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026": {
+      "status": "open",
+      "deadline": "2026-12-01",
+      "scope": "on",
+      "hard_eligibility": "eligible",
+      "route": "direct_apply",
+      "criteria": [],
+      "confidence": "high",
+      "notes": ""
+    },
+    "opp:url:alz.org/research/for_researchers/grants/part-the-cloud": {
+      "status": "closed",
+      "deadline": null,
+      "scope": "off",
+      "hard_eligibility": "undetermined",
+      "route": "not_actionable",
+      "criteria": [],
+      "confidence": "high",
+      "notes": "Closed; clinical trials."
+    }
+  }
+}

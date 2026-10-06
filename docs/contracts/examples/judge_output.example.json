@@ -1,0 +1,22 @@
+{
+  "criteria": [
+    {
+      "criterion_id": "G-SCOPE",
+      "state": "met",
+      "evidence_ids": [
+        "ev-4ef5104b030e359b"
+      ],
+      "rationale": "Funds harmonization of multimodal AD data, which is the project."
+    },
+    {
+      "criterion_id": "G-GEO",
+      "state": "not_met",
+      "evidence_ids": [
+        "ev-4ef5104b030e359b"
+      ],
+      "rationale": "Foreign institutions not eligible; applicant country unknown."
+    }
+  ],
+  "route": "partner_subaward",
+  "route_rationale": "Needs a domestic US institution as applicant."
+}

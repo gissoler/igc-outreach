@@ -1,0 +1,19 @@
+{
+  "doc_id": "doc-1218567e284f84cd",
+  "url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+  "normalized_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+  "host": "grants.nih.gov",
+  "registrable_domain": "nih.gov",
+  "host_kind": "other",
+  "official": true,
+  "official_basis": "suffix",
+  "fetched_at": "2026-10-20T14:03:11Z",
+  "fetch_via": "direct",
+  "ok": true,
+  "http_status": 200,
+  "text_chars": 48211,
+  "text_sha256": "3660315a9af3df255d8f19ab077e4797822b41488a0e2a04bc6af71213c23274",
+  "title": "RFA-AG-27-010: Data Coordinating Center",
+  "published_date": null,
+  "error": null
+}

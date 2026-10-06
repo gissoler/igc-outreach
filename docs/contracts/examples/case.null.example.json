@@ -1,0 +1,25 @@
+{
+  "schema_version": "case/1",
+  "case_id": "case-null-example",
+  "kind": "null",
+  "as_of": "2026-10-19",
+  "profile_path": "research/bench/cases/profiles/prof-null-example.json",
+  "profile_sha256": "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+  "construction": {
+    "curator": "gisel",
+    "profile_builder": "juliana",
+    "profile_builder_saw_anchor": false,
+    "selection_order": "profile_first",
+    "profile_source_kind": "real_org_public_docs"
+  },
+  "anchor": null,
+  "null_case": {
+    "rationale": "Individual hobbyist in a country excluded by all programs in scope; no open call admits individuals for this work type.",
+    "manual_search_minutes": 25,
+    "manual_queries": [
+      "q1 example",
+      "q2 example",
+      "q3 example"
+    ]
+  }
+}

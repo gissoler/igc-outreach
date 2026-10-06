@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/label.schema.json",
+  "title": "Label of one pool item (pre-annotation or human adjudication)",
+  "description": "Pool item = one stable_id within one case. Human labels are made BLIND: the sheet never shows which condition/seed retrieved the item nor the system's judgment. gain is computed by code from the label (BENCHMARK_PROTOCOL §4.4), never typed by hand.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "label_id", "case_id", "stable_id", "role", "annotator", "labeled_at", "status", "deadline", "identity_correct", "scope", "hard_eligibility", "route", "criteria", "confidence", "notes"],
+  "properties": {
+    "schema_version": { "const": "label/1" },
+    "label_id": { "type": "string", "pattern": "^lab-[a-f0-9]{12}$" },
+    "case_id": { "$ref": "common.schema.json#/$defs/caseId" },
+    "stable_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "role": { "type": "string", "enum": ["preannotator", "adjudicator", "second_reviewer"] },
+    "annotator": { "type": "string", "minLength": 1, "description": "Person id, or 'llm:<model_id>' for the preannotator." },
+    "labeled_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "status": { "$ref": "common.schema.json#/$defs/validityStatus" },
+    "deadline": { "oneOf": [{ "$ref": "common.schema.json#/$defs/isoDate" }, { "type": "null" }], "description": "First-step deadline per the official source, or null if none/rolling." },
+    "identity_correct": { "type": ["boolean", "null"], "description": "Does the system's record (name, issuer, identifiers, url) describe one real opportunity correctly? null for items that only came from manual search/anchor." },
+    "scope": { "type": "string", "enum": ["on", "partial", "off"] },
+    "hard_eligibility": { "type": "string", "enum": ["eligible", "ineligible", "undetermined"] },
+    "route": { "$ref": "common.schema.json#/$defs/route" },
+    "criteria": {
+      "type": "array",
+      "description": "Per-criterion labels (only for items sampled for criterion adjudication; may be empty).",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["criterion_id", "state", "evidence_url", "quote"],
+        "properties": {
+          "criterion_id": { "type": "string", "pattern": "^((G|P)-[A-Z]+|REQ-\\d{2})$" },
+          "state": { "$ref": "common.schema.json#/$defs/criterionState" },
+          "evidence_url": { "type": ["string", "null"] },
+          "quote": { "type": ["string", "null"] },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "notes": { "type": "string" }
+  }
+}

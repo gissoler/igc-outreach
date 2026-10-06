@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/run_result.schema.json",
+  "title": "Run result (result.json of one case × condition × seed)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "case_id", "condition", "seed", "today", "versions", "stop_reason", "abstained", "ranked", "entities", "judgments", "evidence", "totals", "prefix_curve"],
+  "properties": {
+    "schema_version": { "const": "run_result/1" },
+    "run_id": { "$ref": "common.schema.json#/$defs/runId" },
+    "case_id": { "$ref": "common.schema.json#/$defs/caseId" },
+    "condition": { "$ref": "common.schema.json#/$defs/condition" },
+    "seed": { "type": "integer" },
+    "today": { "$ref": "common.schema.json#/$defs/isoDate" },
+    "versions": { "$ref": "common.schema.json#/$defs/versions" },
+    "stop_reason": { "$ref": "log_entry.schema.json#/$defs/runEnd/properties/stop_reason" },
+    "abstained": { "type": "boolean", "description": "true iff no entity is recommendable." },
+    "ranked": {
+      "type": "array",
+      "description": "ALL entities in final order (ranking.mjs). Metrics use the first 10/20.",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["rank", "stable_id", "eligibility_class", "recommendable", "official", "sort_key"],
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "stable_id": { "$ref": "common.schema.json#/$defs/stableId" },
+          "eligibility_class": { "type": "string" },
+          "recommendable": { "type": "boolean" },
+          "official": { "type": "boolean" },
+          "sort_key": { "type": "array", "description": "The exact tuple used to sort (for audit)." }
+        }
+      }
+    },
+    "entities": { "type": "array", "items": { "$ref": "target_entity.schema.json" } },
+    "judgments": { "type": "array", "items": { "$ref": "judgment.schema.json" } },
+    "evidence": { "type": "array", "items": { "$ref": "evidence.schema.json" } },
+    "totals": {
+      "type": "object", "additionalProperties": false,
+      "required": ["searches", "fetches", "fetch_errors", "unique_docs", "official_opportunities", "tokens_discovery_nominal", "tokens_judge_nominal", "seconds_discovery_nominal", "seconds_judge_nominal", "planner_calls"],
+      "properties": {
+        "searches": { "type": "integer" }, "fetches": { "type": "integer" }, "fetch_errors": { "type": "integer" }, "unique_docs": { "type": "integer" },
+        "official_opportunities": { "type": "integer" }, "tokens_discovery_nominal": { "type": "integer" }, "tokens_judge_nominal": { "type": "integer" },
+        "seconds_discovery_nominal": { "type": "integer" }, "seconds_judge_nominal": { "type": "integer" }, "planner_calls": { "type": "integer" }
+      }
+    },
+    "prefix_curve": {
+      "type": "array",
+      "description": "One point per completed search: which entities had been registered by then and the cumulative nominal cost. Used for the recall-vs-cost curve (BENCHMARK_PROTOCOL §5.8).",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["search_index", "stable_ids_so_far", "tokens_nominal", "searches", "fetches"],
+        "properties": {
+          "search_index": { "type": "integer" }, "stable_ids_so_far": { "type": "array", "items": { "type": "string" } },
+          "tokens_nominal": { "type": "integer" }, "searches": { "type": "integer" }, "fetches": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

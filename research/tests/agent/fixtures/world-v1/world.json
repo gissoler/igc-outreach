@@ -1,0 +1,123 @@
+{
+  "schema_version": "fixture_world/1",
+  "today": "2026-10-20",
+  "note": "FICTIONAL fixture for offline tests. Written by the architect; Codex must not edit it.",
+  "search": {
+    "provider": "fixture",
+    "rule": "tokens = unique(norm(query).split(' ')); score(page) = |tokens ∩ page.keywords|; include pages with score >= 2; sort by score desc, then page index asc; return at most results_per_query; result = {url, title, snippet, published:null}"
+  },
+  "fetch": {
+    "rule": "fetch(url): page whose normalizeUrl equals normalizeUrl(url) → {ok:true, text:<file content>, title, via:'direct', http_status:200}; otherwise {ok:false, http_status:404, error FETCH_HTTP}. latency 10 ms."
+  },
+  "pages": [
+    {
+      "id": "p1",
+      "url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+      "title": "RFA-AG-27-010: Data Coordinating Center for Alzheimer's Disease Research Data Harmonization",
+      "keywords": [
+        "alzheimer",
+        "disease",
+        "research",
+        "grant",
+        "funding",
+        "opportunity",
+        "cooperative",
+        "agreement",
+        "data",
+        "infrastructure",
+        "coordinating",
+        "harmonization"
+      ],
+      "snippet": "Funding Opportunity Number (FON): RFA-AG-27-010. Application Due Date: November 10, 2026.",
+      "file": "pages/p1-nih-rfa.md"
+    },
+    {
+      "id": "p2",
+      "url": "https://www.nsf.gov/funding/opportunities/oceanographic-facilities-equipment-support/nsf23-525",
+      "title": "Oceanographic Facilities and Equipment Support (NSF 23-525)",
+      "keywords": [
+        "research",
+        "infrastructure",
+        "grant",
+        "funding",
+        "opportunity",
+        "oceanographic",
+        "facilities",
+        "equipment"
+      ],
+      "snippet": "This program supports shared-use oceanographic facilities.",
+      "file": "pages/p2-nsf-ocean.md"
+    },
+    {
+      "id": "p3",
+      "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/data-science-2026",
+      "title": "Request for Proposals: Data Science for Alzheimer's Research 2026",
+      "keywords": [
+        "alzheimer",
+        "foundation",
+        "philanthropy",
+        "data",
+        "science",
+        "request",
+        "proposals",
+        "open",
+        "call"
+      ],
+      "snippet": "The Foundation funds open data resources and software tools.",
+      "file": "pages/p3-addf.md"
+    },
+    {
+      "id": "p4",
+      "url": "https://www.fundsforngos.org/alzheimers-grants-roundup",
+      "title": "Alzheimer's grants roundup",
+      "keywords": [
+        "alzheimer",
+        "grants",
+        "funding",
+        "roundup",
+        "list"
+      ],
+      "snippet": "25 funding opportunities you should know about.",
+      "file": "pages/p4-aggregator.md"
+    },
+    {
+      "id": "p5",
+      "url": "https://www.example-news.com/2026/10/nih-launches-ad-data-center",
+      "title": "NIH launches a data coordinating center call for Alzheimer's research",
+      "keywords": [
+        "alzheimer",
+        "nih",
+        "data",
+        "coordinating",
+        "center",
+        "news",
+        "launches"
+      ],
+      "snippet": "The National Institute on Aging opened RFA-AG-27-010.",
+      "file": "pages/p5-news.md"
+    },
+    {
+      "id": "p6",
+      "url": "https://www.alz.org/research/for_researchers/grants/part-the-cloud",
+      "title": "Part the Cloud Challenge",
+      "keywords": [
+        "alzheimer",
+        "association",
+        "part",
+        "cloud",
+        "challenge",
+        "prize"
+      ],
+      "snippet": "The Part the Cloud challenge funds early-phase clinical trials.",
+      "file": "pages/p6-alz-ptc.md"
+    },
+    {
+      "id": "p7",
+      "url": "https://grants.nih.gov/grants/guide/notice-files/NOT-AG-26-001.html",
+      "title": "NOT-AG-26-001: Notice of Clarification for RFA-AG-27-010",
+      "keywords": [],
+      "snippet": "",
+      "file": "pages/p7-nih-notice.md"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/profile.schema.json",
+  "title": "Profile (subject seeking something) — reusable for grants, investors and users",
+  "description": "Who is searching and what they need. Every field carries value + source + as_of. value=null is UNKNOWN and must stay unknown: no code may substitute a default (the old applicantProfile() default 'for-profit startup' is NOT allowed here). Field paths are a closed list; new target types add paths in a new contract version.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "subject_type", "target_types", "as_of", "provenance", "fields"],
+  "properties": {
+    "schema_version": { "const": "profile/1" },
+    "profile_id": { "type": "string", "pattern": "^prof-[a-z0-9]+(-[a-z0-9]+)*$" },
+    "subject_type": { "type": "string", "enum": ["organization", "person"] },
+    "target_types": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/targetType" }, "minItems": 1, "uniqueItems": true },
+    "as_of": { "$ref": "common.schema.json#/$defs/isoDate" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_kind", "sources", "built_by", "builder_saw_anchor"],
+      "properties": {
+        "source_kind": { "type": "string", "enum": ["intake", "public_web", "document", "blind_transform", "legacy_brief"] },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "locator", "retrieved_at"],
+            "properties": {
+              "title": { "type": "string", "minLength": 1 },
+              "locator": { "type": "string", "minLength": 1, "description": "URL or file path" },
+              "retrieved_at": { "$ref": "common.schema.json#/$defs/isoDate" },
+              "sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+            }
+          }
+        },
+        "built_by": { "type": "string", "enum": ["human", "llm", "code"] },
+        "builder_id": { "type": "string" },
+        "builder_saw_anchor": { "type": "boolean", "description": "Benchmark cases require false (see BENCHMARK_PROTOCOL §2)." }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicant.name": { "$ref": "#/$defs/str" },
+        "applicant.entity_type": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "enum": ["for_profit", "nonprofit", "academic", "government", "individual", null] } } }] },
+        "applicant.country": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["string", "null"], "pattern": "^[A-Z]{2}$" } } }], "description": "ISO 3166-1 alpha-2 of legal incorporation/registration." },
+        "applicant.region": { "$ref": "#/$defs/str", "description": "State/province code as written (e.g. 'MD', 'Antioquia')." },
+        "applicant.small_business": { "$ref": "#/$defs/bool" },
+        "applicant.ownership_us_51": { "$ref": "#/$defs/bool" },
+        "applicant.employees": { "$ref": "#/$defs/int" },
+        "applicant.partners": { "$ref": "#/$defs/strList", "description": "Named institutions the applicant can partner with (prime/subaward routes)." },
+        "applicant.can_cost_share": { "$ref": "#/$defs/bool" },
+        "project.title": { "$ref": "#/$defs/str" },
+        "project.summary": { "$ref": "#/$defs/str" },
+        "project.sector": { "$ref": "#/$defs/strList" },
+        "project.work_type": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "enum": ["basic_research", "applied_research", "data_or_software_infrastructure", "product_development", "clinical", "training", "other", null] } } }] },
+        "project.stage": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "enum": ["idea", "prototype", "preclinical", "clinical_phase_1", "clinical_phase_2", "clinical_phase_3", "marketed", "other", null] } } }] },
+        "project.foreign_components": { "$ref": "#/$defs/bool", "description": "true if part of the work happens outside the applicant's country." },
+        "team.pi.country_residence": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["string", "null"], "pattern": "^[A-Z]{2}$" } } }] },
+        "team.pi.primary_employer_is_applicant": { "$ref": "#/$defs/bool" },
+        "team.pi.credentials": { "$ref": "#/$defs/strList", "description": "e.g. ['eRA Commons', 'ORCID', 'PhD']" },
+        "funding.amount_needed_usd": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["number", "null"], "minimum": 0 } } }] },
+        "funding.instruments_accepted": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["array", "null"], "items": { "$ref": "common.schema.json#/$defs/instrument" } } } }] },
+        "funding.routes_accepted": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["array", "null"], "items": { "$ref": "common.schema.json#/$defs/route" } } } }] },
+        "preferences.min_prep_days": { "$ref": "#/$defs/int" },
+        "preferences.excluded_funders": { "$ref": "#/$defs/strList" }
+      },
+      "required": ["applicant.name", "applicant.entity_type", "applicant.country", "project.summary", "project.sector", "project.work_type", "project.stage", "funding.instruments_accepted"]
+    }
+  },
+  "$defs": {
+    "str": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["string", "null"] } } }] },
+    "bool": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["boolean", "null"] } } }] },
+    "int": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["integer", "null"], "minimum": 0 } } }] },
+    "strList": { "allOf": [{ "$ref": "common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["array", "null"], "items": { "type": "string", "minLength": 1 } } } }] }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "case/1",
+  "case_id": "case-fixture-aha",
+  "kind": "anchor",
+  "as_of": "2026-10-20",
+  "profile_path": "research/tests/agent/fixtures/world-v1/profile.json",
+  "profile_sha256": "910623a08c8150e8dc2f86fc9b0f682eb6350506237fad0a03b1c998534e3c2c",
+  "construction": {
+    "curator": "claude-architect",
+    "profile_builder": "fixture-author",
+    "profile_builder_saw_anchor": false,
+    "selection_order": "profile_first",
+    "profile_source_kind": "real_org_internal_docs"
+  },
+  "anchor": {
+    "name": "Data Coordinating Center for Alzheimer's Disease Research Data Harmonization",
+    "issuer": "NIH/NIA",
+    "identifiers": [
+      {
+        "scheme": "nih",
+        "value": "RFA-AG-27-010"
+      },
+      {
+        "scheme": "url",
+        "value": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html"
+      }
+    ],
+    "official_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+    "closes_on": "2026-11-10",
+    "verified_open_on": "2026-10-20",
+    "winners_published": false,
+    "expected_route": "direct_apply",
+    "why_it_fits": "FIXTURE: fictional call that funds AD data harmonization infrastructure."
+  },
+  "null_case": null
+}

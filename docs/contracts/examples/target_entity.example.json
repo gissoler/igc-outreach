@@ -1,0 +1,50 @@
+{
+  "schema_version": "target_entity/1",
+  "stable_id": "opp:nih:RFA-AG-27-010",
+  "entity_type": "grant_opportunity",
+  "name": "Data Coordinating Center for AD-MAPs",
+  "issuer": {
+    "name": "National Institute on Aging",
+    "domain": "nih.gov"
+  },
+  "identifiers": [
+    {
+      "scheme": "nih",
+      "value": "RFA-AG-27-010",
+      "doc_id": "doc-1218567e284f84cd"
+    },
+    {
+      "scheme": "url",
+      "value": "grants.nih.gov/grants/guide/rfa-files/rfa-ag-27-010.html",
+      "doc_id": "doc-1218567e284f84cd"
+    }
+  ],
+  "canonical_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+  "official": true,
+  "official_basis": "suffix",
+  "validity": {
+    "status": "open",
+    "opens_on": null,
+    "closes_on": "2026-11-10",
+    "deadline_label": "Application Due Date",
+    "deadline_quote": "Application Due Date(s) November 10, 2026",
+    "deadline_doc_id": "doc-1218567e284f84cd",
+    "as_of": "2026-10-20",
+    "computed_by": "code",
+    "conflict": false
+  },
+  "amount_text": "$2.5 million",
+  "instrument": "cooperative_agreement",
+  "source_doc_ids": [
+    "doc-1218567e284f84cd"
+  ],
+  "first_seen": {
+    "step": 1,
+    "search_index": 0,
+    "query_id": "q000",
+    "order": 0
+  },
+  "query_ids": [
+    "q000"
+  ]
+}

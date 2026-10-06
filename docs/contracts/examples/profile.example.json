@@ -1,0 +1,118 @@
+{
+  "schema_version": "profile/1",
+  "profile_id": "prof-aha-example",
+  "subject_type": "organization",
+  "target_types": [
+    "grant"
+  ],
+  "as_of": "2026-10-15",
+  "provenance": {
+    "source_kind": "blind_transform",
+    "sources": [
+      {
+        "title": "AHA product one-pager",
+        "locator": "Stuff/aha-onepager.pdf",
+        "retrieved_at": "2026-10-15"
+      }
+    ],
+    "built_by": "human",
+    "builder_id": "juliana",
+    "builder_saw_anchor": false
+  },
+  "fields": {
+    "applicant.name": {
+      "value": "AHA",
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.entity_type": {
+      "value": "nonprofit",
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.country": {
+      "value": null,
+      "source": "not provided",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.region": {
+      "value": null,
+      "source": "not provided",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.partners": {
+      "value": null,
+      "source": "not provided",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.title": {
+      "value": "Agentic Harmonization Assistant",
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.summary": {
+      "value": "AI-assisted harmonization of multimodal Alzheimer's research datasets and researcher matching, open-source.",
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.sector": {
+      "value": [
+        "alzheimer's disease research",
+        "data infrastructure"
+      ],
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.work_type": {
+      "value": "data_or_software_infrastructure",
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.stage": {
+      "value": "prototype",
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "funding.amount_needed_usd": {
+      "value": 350000,
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "funding.instruments_accepted": {
+      "value": [
+        "grant",
+        "prize",
+        "cooperative_agreement"
+      ],
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "funding.routes_accepted": {
+      "value": [
+        "direct_apply",
+        "partner_subaward"
+      ],
+      "source": "AHA product one-pager (aha-onepager.pdf)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "preferences.min_prep_days": {
+      "value": null,
+      "source": "not provided",
+      "as_of": "2026-10-15",
+      "quote": null
+    }
+  }
+}

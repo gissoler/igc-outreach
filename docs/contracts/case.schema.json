@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/case.schema.json",
+  "title": "Benchmark case",
+  "description": "Created by humans (steps H1–H2). Frozen (sha256 recorded in the case manifest) before any system run.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "kind",
+    "as_of",
+    "profile_path",
+    "profile_sha256",
+    "construction",
+    "anchor",
+    "null_case"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "case/1"
+    },
+    "case_id": {
+      "$ref": "common.schema.json#/$defs/caseId"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "anchor",
+        "null"
+      ]
+    },
+    "as_of": {
+      "$ref": "common.schema.json#/$defs/isoDate",
+      "description": "Date the anchor was verified open (or the null search was done). Must equal run_config.today or be at most 2 days before it."
+    },
+    "profile_path": {
+      "type": "string",
+      "pattern": "^research/[a-z0-9_/.-]+\\.json$",
+      "description": "Repo-relative path. Benchmark cases use research/bench/cases/profiles/prof-<id>.json."
+    },
+    "profile_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "construction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "curator",
+        "profile_builder",
+        "profile_builder_saw_anchor",
+        "selection_order",
+        "profile_source_kind"
+      ],
+      "properties": {
+        "curator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Person who chose the anchor / null case."
+        },
+        "profile_builder": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Person (or 'llm:<prompt>@vN' blind transform) who built the profile. Must differ from curator when it is a person."
+        },
+        "profile_builder_saw_anchor": {
+          "const": false
+        },
+        "selection_order": {
+          "const": "profile_first",
+          "description": "Profile frozen BEFORE the anchor was chosen."
+        },
+        "profile_source_kind": {
+          "type": "string",
+          "enum": [
+            "real_founder_intake",
+            "real_org_public_docs",
+            "real_org_internal_docs"
+          ]
+        },
+        "profile_frozen_at": {
+          "$ref": "common.schema.json#/$defs/isoDateTime"
+        },
+        "anchor_chosen_at": {
+          "$ref": "common.schema.json#/$defs/isoDateTime"
+        }
+      }
+    },
+    "anchor": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "issuer",
+            "identifiers",
+            "official_url",
+            "closes_on",
+            "verified_open_on",
+            "winners_published",
+            "expected_route",
+            "why_it_fits"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "issuer": {
+              "type": "string"
+            },
+            "identifiers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "scheme",
+                  "value"
+                ],
+                "properties": {
+                  "scheme": {
+                    "type": "string",
+                    "enum": [
+                      "nih",
+                      "nsf",
+                      "grantsgov",
+                      "eu",
+                      "sbir",
+                      "ukri",
+                      "url"
+                    ]
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "description": "ALL known identifiers (official number, Grants.gov id, canonical URL). Matching uses any of them after normalization (identifiers.mjs)."
+            },
+            "official_url": {
+              "$ref": "common.schema.json#/$defs/url"
+            },
+            "closes_on": {
+              "oneOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/isoDate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verified_open_on": {
+              "$ref": "common.schema.json#/$defs/isoDate"
+            },
+            "winners_published": {
+              "const": false
+            },
+            "expected_route": {
+              "$ref": "common.schema.json#/$defs/route"
+            },
+            "why_it_fits": {
+              "type": "string",
+              "minLength": 20
+            }
+          }
+        }
+      ]
+    },
+    "null_case": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "rationale",
+            "manual_search_minutes",
+            "manual_queries"
+          ],
+          "properties": {
+            "rationale": {
+              "type": "string",
+              "minLength": 20,
+              "description": "Why no open eligible opportunity is expected (e.g. entity type and country excluded by every known program in scope)."
+            },
+            "manual_search_minutes": {
+              "type": "integer",
+              "minimum": 20
+            },
+            "manual_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 3
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "anchor"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "anchor": {
+            "type": "object"
+          },
+          "null_case": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "null"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "anchor": {
+            "type": "null"
+          },
+          "null_case": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ]
+}

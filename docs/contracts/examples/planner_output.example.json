@@ -1,0 +1,30 @@
+{
+  "assessment": "o1 lacks evidence on eligible organization types; the related notice may clarify.",
+  "actions": [
+    {
+      "type": "fetch",
+      "ref": "l001-00",
+      "targets": [
+        "g-38d930b1"
+      ],
+      "rationale": "Official notice linked from the call."
+    },
+    {
+      "type": "search",
+      "query": "RFA-AG-27-010 eligible organizations",
+      "targets": [
+        "g-38d930b1"
+      ],
+      "rationale": "Find the eligibility section."
+    },
+    {
+      "type": "search",
+      "query": "Alzheimer's Association research grant data science 2026",
+      "targets": [
+        "coverage:foundations"
+      ],
+      "rationale": "Foundations not yet covered."
+    }
+  ],
+  "stop": false
+}

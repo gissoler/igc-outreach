@@ -1,0 +1,223 @@
+{
+  "schema_version": "criteria_catalog/1",
+  "catalog_id": "criteria_catalog.grant",
+  "version": "v1",
+  "target_type": "grant",
+  "status": "proposed",
+  "criteria": [
+    {
+      "criterion_id": "G-SCOPE",
+      "label": "The opportunity funds this kind of project (topic and type of work)",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "always",
+      "profile_fields": [
+        "project.summary",
+        "project.sector",
+        "project.work_type"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met: an official quote states what is funded and the project falls inside it. not_met: a quote states what is funded or excluded and the project falls outside it (different field, excluded population or excluded work type). Sharing generic words (research, data, innovation, health) is NOT enough for met. unknown: no quote about what is funded."
+    },
+    {
+      "criterion_id": "G-ENTITY",
+      "label": "The applicant's type of organization may apply",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "always",
+      "profile_fields": [
+        "applicant.entity_type"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met: a quote lists eligible applicant types and the profile's entity_type is included (or 'any organization'). not_met: the quote lists types and excludes it, or says it is not eligible. A for-profit allowed only as a partner/subcontractor is not_met for direct application (the route may still be partner_subaward). unknown: no quote on who may apply."
+    },
+    {
+      "criterion_id": "G-GEO",
+      "label": "The applicant's country/region is allowed",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "always",
+      "profile_fields": [
+        "applicant.country"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met: a quote allows the applicant's country (explicitly, by region, or 'worldwide/any country'). not_met: a quote restricts to places that exclude it (e.g. 'only domestic US entities', 'established in an EU Member State'). unknown: no geographic quote."
+    },
+    {
+      "criterion_id": "G-STATUS",
+      "label": "Open or upcoming: first-step deadline is today or later, or rolling",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "code",
+      "applicability": "always",
+      "profile_fields": [],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Computed by code from validity (dates.mjs over the full official text): met if status in {open, upcoming, rolling} and (closes_on >= today or rolling); not_met if closed, awarded or not_a_call; unknown otherwise. The judge's output for this criterion is ignored."
+    },
+    {
+      "criterion_id": "G-INSTRUMENT",
+      "label": "The instrument is one the applicant accepts (non-dilutive by default)",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "always",
+      "profile_fields": [
+        "funding.instruments_accepted"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met: a quote shows the instrument (grant, prize, contract, cooperative agreement…) and it is in instruments_accepted. not_met: the instrument is not accepted (e.g. equity when only non-dilutive is accepted). unknown: instrument not stated."
+    },
+    {
+      "criterion_id": "G-STAGE",
+      "label": "Stage, maturity or track-record requirements are satisfied",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "project.stage"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met: a quote sets a stage/maturity/revenue/years requirement and the profile satisfies it. not_met: requirement stated and not satisfied. not_applicable: the call imposes no such requirement. unknown: unclear."
+    },
+    {
+      "criterion_id": "G-PI",
+      "label": "Principal investigator requirements (residence, employment, credentials)",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "team.pi.country_residence",
+        "team.pi.primary_employer_is_applicant",
+        "team.pi.credentials"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Only when the call names PI/PD requirements (e.g. primary employment >50% with the small business, eRA Commons, residence). met/not_met against the profile. not_applicable when the call has no PI requirements."
+    },
+    {
+      "criterion_id": "G-SMALLBIZ",
+      "label": "Small-business / ownership requirements",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "applicant.small_business",
+        "applicant.ownership_us_51"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Only when the call requires a small business concern, size limits or ownership (e.g. SBIR/STTR 51% US-owned). not_applicable otherwise."
+    },
+    {
+      "criterion_id": "G-FOREIGN",
+      "label": "Foreign entity / foreign component rules",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "applicant.country",
+        "project.foreign_components"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Only when the call states whether foreign institutions or foreign components are allowed. not_met if the profile has foreign components and they are not allowed. not_applicable when the call says nothing about it."
+    },
+    {
+      "criterion_id": "G-COSTSHARE",
+      "label": "Cost-sharing requirement",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "applicant.can_cost_share"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met if cost sharing is required and the applicant can provide it. not_met if required and the applicant cannot. not_applicable if a quote says cost sharing is not required, or the full call text says nothing about it."
+    },
+    {
+      "criterion_id": "G-PARTNER",
+      "label": "Mandatory partner, consortium or prime-institution requirement",
+      "kind": "hard",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "applicant.partners"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Only when the call requires a consortium, a partner type (e.g. a research institution as prime) or letters from contributing projects. met if the profile names a qualifying partner; unknown if the profile does not say; not_applicable if no such requirement."
+    },
+    {
+      "criterion_id": "P-AMOUNT",
+      "label": "Award size is useful for the amount needed",
+      "kind": "soft",
+      "origin": "catalog",
+      "evaluator": "llm",
+      "applicability": "conditional",
+      "profile_fields": [
+        "funding.amount_needed_usd"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "met: stated award size or ceiling is at least 25% of amount_needed_usd. not_met: below 25%. unknown: amount not stated. Preference only: never excludes."
+    },
+    {
+      "criterion_id": "P-TIMELINE",
+      "label": "Enough preparation time before the first-step deadline",
+      "kind": "soft",
+      "origin": "catalog",
+      "evaluator": "code",
+      "applicability": "conditional",
+      "profile_fields": [
+        "preferences.min_prep_days"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Computed by code: met if rolling or days(closes_on - today) >= min_prep_days (21 when the profile value is null — this is a ranking preference, not an eligibility fact, so a default is allowed here only); not_met if fewer days; unknown if no deadline."
+    },
+    {
+      "criterion_id": "P-ROUTE",
+      "label": "Route matches the applicant's accepted routes",
+      "kind": "soft",
+      "origin": "catalog",
+      "evaluator": "code",
+      "applicability": "always",
+      "profile_fields": [
+        "funding.routes_accepted"
+      ],
+      "applies_to": [
+        "grant"
+      ],
+      "guidance": "Computed by code from the judge's route: met if route is in routes_accepted; not_met otherwise; unknown when routes_accepted is null or route is missing."
+    }
+  ]
+}

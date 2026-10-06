@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/target_entity.schema.json",
+  "title": "Target entity (grant opportunity today; investor and user later)",
+  "description": "What the search finds. Identity = stable_id (+ identifiers for merging). Validity = whether it can be acted on today, computed by code with evidence. entity_type 'investor' and 'user' are reserved: v1 code must reject them with CONTRACT error.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "stable_id",
+    "entity_type",
+    "name",
+    "issuer",
+    "identifiers",
+    "canonical_url",
+    "official",
+    "official_basis",
+    "validity",
+    "amount_text",
+    "instrument",
+    "source_doc_ids",
+    "first_seen",
+    "query_ids"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "target_entity/1"
+    },
+    "stable_id": {
+      "$ref": "common.schema.json#/$defs/stableId"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "grant_opportunity",
+        "investor",
+        "user"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "issuer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "domain"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "domain": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "identifiers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scheme",
+          "value",
+          "doc_id"
+        ],
+        "properties": {
+          "scheme": {
+            "type": "string",
+            "enum": [
+              "nih",
+              "nsf",
+              "grantsgov",
+              "eu",
+              "sbir",
+              "ukri",
+              "url"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          },
+          "doc_id": {
+            "$ref": "common.schema.json#/$defs/docId"
+          }
+        }
+      }
+    },
+    "canonical_url": {
+      "$ref": "common.schema.json#/$defs/url"
+    },
+    "official": {
+      "type": "boolean",
+      "description": "true if at least one source doc is official. Only official entities count for the patience signal."
+    },
+    "official_basis": {
+      "$ref": "common.schema.json#/$defs/officialBasis"
+    },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "opens_on",
+        "closes_on",
+        "deadline_label",
+        "deadline_quote",
+        "deadline_doc_id",
+        "as_of",
+        "computed_by"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "common.schema.json#/$defs/validityStatus"
+        },
+        "opens_on": {
+          "oneOf": [
+            {
+              "$ref": "common.schema.json#/$defs/isoDate"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "closes_on": {
+          "oneOf": [
+            {
+              "$ref": "common.schema.json#/$defs/isoDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "First actionable step (LOI before full proposal)."
+        },
+        "deadline_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deadline_quote": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Literal page text containing the deadline."
+        },
+        "deadline_doc_id": {
+          "oneOf": [
+            {
+              "$ref": "common.schema.json#/$defs/docId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "as_of": {
+          "$ref": "common.schema.json#/$defs/isoDate"
+        },
+        "computed_by": {
+          "const": "code"
+        },
+        "conflict": {
+          "type": "boolean",
+          "description": "true if two source docs give different closes_on (then status stays as computed from the official doc, or unknown if none is official)."
+        }
+      }
+    },
+    "amount_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "instrument": {
+      "$ref": "common.schema.json#/$defs/instrument"
+    },
+    "source_doc_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/docId"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "first_seen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "search_index",
+        "order",
+        "query_id"
+      ],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "search_index": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "0-based ordinal of the search after which it was registered (extra fetches attach to the last search)."
+        },
+        "query_id": {
+          "oneOf": [
+            {
+              "$ref": "common.schema.json#/$defs/queryId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Registration order within the run (0,1,2…). Used as ranking tie-break."
+        }
+      }
+    },
+    "query_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/queryId"
+      },
+      "uniqueItems": true
+    }
+  }
+}

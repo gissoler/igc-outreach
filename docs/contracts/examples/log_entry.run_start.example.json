@@ -1,0 +1,65 @@
+{
+  "run_id": "bench-v0__case-aha-nia-dcc__B2__s101",
+  "seq": 0,
+  "step": 0,
+  "kind": "run_start",
+  "ts": "2026-10-20T14:03:00Z",
+  "case_id": "case-aha-nia-dcc",
+  "condition": "B2",
+  "seed": 101,
+  "versions": {
+    "model_id": "openai/gpt-oss-120b",
+    "model_family": "gpt-oss",
+    "prompts": [
+      {
+        "id": "planner",
+        "version": "v1",
+        "sha256": "244b8435061420f6b2887681bbe2d24b18fc8f790a75c5bf16937bb8417e651a"
+      },
+      {
+        "id": "extractor",
+        "version": "v1",
+        "sha256": "7488d73850bf2009e6762d270ba53bb4e2f88ec77d3dcebeeed21ebac43dca24"
+      },
+      {
+        "id": "eligibility_judge",
+        "version": "v1",
+        "sha256": "10e86c6514d40f2a3e861b31847340ee8c8ed181029a17b042f137121d28863e"
+      },
+      {
+        "id": "b0_templates",
+        "version": "v1",
+        "sha256": "c02c0b965e023abee808f2b548d8d5193a8b5229be6f3121a6f16e2d41a449b3"
+      }
+    ],
+    "code_sha": "60ff27e",
+    "contracts_version": "1",
+    "catalog_version": "criteria_catalog.grant@v1",
+    "official_domains_version": "official_domains@v1"
+  },
+  "tokens": {
+    "prompt": 0,
+    "completion": 0,
+    "total": 0,
+    "nominal_total": 0,
+    "estimated": false,
+    "cached": false
+  },
+  "latency": {
+    "actual_ms": 0,
+    "nominal_ms": 0
+  },
+  "errors": [],
+  "data": {
+    "profile_id": "prof-aha-example",
+    "profile_sha256": "a9a2f342506f01094433aa4bffdc106b9ed0b73c964192b9b0b76cdfff206120",
+    "case_sha256": "1c553122dd83442e0276f7fc807212f6861785c9897d0a0bfcaf4c7431623b30",
+    "run_config_sha256": "e67d23e7820c49a8051dac2831f38290f5e72f66c8db5079eeb60d82f14894c0",
+    "today": "2026-10-20",
+    "search_provider": "serper",
+    "budgets": {
+      "searches": 24
+    },
+    "patience_n": 6
+  }
+}

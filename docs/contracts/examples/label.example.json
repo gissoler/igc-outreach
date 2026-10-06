@@ -1,0 +1,26 @@
+{
+  "schema_version": "label/1",
+  "label_id": "lab-acac86c0e609",
+  "case_id": "case-aha-nia-dcc",
+  "stable_id": "opp:nih:RFA-AG-27-010",
+  "role": "adjudicator",
+  "annotator": "gisel",
+  "labeled_at": "2026-10-24T16:00:00Z",
+  "status": "open",
+  "deadline": "2026-11-10",
+  "identity_correct": true,
+  "scope": "on",
+  "hard_eligibility": "undetermined",
+  "route": "partner_subaward",
+  "criteria": [
+    {
+      "criterion_id": "G-GEO",
+      "state": "unknown",
+      "evidence_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+      "quote": "Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply.",
+      "note": "Applicant country not in profile."
+    }
+  ],
+  "confidence": "high",
+  "notes": ""
+}

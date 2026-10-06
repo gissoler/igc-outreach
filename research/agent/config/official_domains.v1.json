@@ -1,0 +1,20 @@
+{
+  "schema_version": "official_domains/1",
+  "version": "v1",
+  "suffixes": [".gov", ".mil", ".europa.eu", ".int", ".gc.ca", ".gov.uk", ".gov.au", ".gob.mx", ".gov.co", ".gob.es", ".gouv.fr", ".bund.de", ".go.jp", ".gov.br", ".gob.cl", ".gov.in"],
+  "domains": [
+    { "domain": "grants.gov", "issuer": "US Grants.gov registry", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "nih.gov", "issuer": "US National Institutes of Health", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "nsf.gov", "issuer": "US National Science Foundation", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "sbir.gov", "issuer": "US SBIR/STTR", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "ukri.org", "issuer": "UK Research and Innovation", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "wellcome.org", "issuer": "Wellcome Trust", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "gatesfoundation.org", "issuer": "Gates Foundation", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "alzdiscovery.org", "issuer": "Alzheimer's Drug Discovery Foundation", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "alz.org", "issuer": "Alzheimer's Association", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "chanzuckerberg.com", "issuer": "Chan Zuckerberg Initiative", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "minciencias.gov.co", "issuer": "MinCiencias Colombia", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "innpulsacolombia.com", "issuer": "iNNpulsa Colombia", "added_by": "claude-architect", "added_on": "2026-10-06" },
+    { "domain": "eic.ec.europa.eu", "issuer": "European Innovation Council", "added_by": "claude-architect", "added_on": "2026-10-06" }
+  ]
+}

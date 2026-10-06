@@ -1,0 +1,19 @@
+{
+  "evidence_id": "ev-4ef5104b030e359b",
+  "doc_id": "doc-1218567e284f84cd",
+  "url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+  "official": true,
+  "stable_id": "opp:nih:RFA-AG-27-010",
+  "criterion_id": "G-GEO",
+  "quote": "Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply.",
+  "binding": true,
+  "requirement_summary": null,
+  "retrieved_at": "2026-10-20T14:03:11Z",
+  "doc_published_date": null,
+  "step": 1,
+  "extractor": {
+    "id": "extractor",
+    "version": "v1",
+    "sha256": "7488d73850bf2009e6762d270ba53bb4e2f88ec77d3dcebeeed21ebac43dca24"
+  }
+}

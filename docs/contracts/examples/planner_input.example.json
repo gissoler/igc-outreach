@@ -1,0 +1,92 @@
+{
+  "mode": "adaptive_step",
+  "today": "2026-10-20",
+  "step": 3,
+  "budget_left": {
+    "searches": 18,
+    "fetches": 55,
+    "tokens_nominal": 420000,
+    "seconds_nominal": 900,
+    "planner_calls": 27
+  },
+  "patience": {
+    "n": 6,
+    "searches_without_new_official": 2
+  },
+  "profile": {
+    "known": {
+      "applicant.entity_type": "nonprofit",
+      "project.work_type": "data_or_software_infrastructure"
+    },
+    "unknown_fields": [
+      "applicant.country"
+    ]
+  },
+  "criteria": [
+    {
+      "criterion_id": "G-SCOPE",
+      "label": "Funds this kind of project",
+      "kind": "hard"
+    }
+  ],
+  "queries_run": [
+    {
+      "query_id": "q000",
+      "query": "NIA data coordinating center Alzheimer harmonization funding opportunity",
+      "step": 1,
+      "new_unique_docs": 8,
+      "new_official_opportunities": 1
+    }
+  ],
+  "results_unfetched": [
+    {
+      "result_id": "r000-04",
+      "title": "<page_data>AD Knowledge Portal</page_data>",
+      "host": "adknowledgeportal.org",
+      "host_kind": "other",
+      "official_domain": false,
+      "snippet": "<page_data>Portal for AD data</page_data>"
+    }
+  ],
+  "links_unfetched": [
+    {
+      "link_id": "l001-00",
+      "anchor_text": "<page_data>Related Notices</page_data>",
+      "host": "grants.nih.gov",
+      "from_opportunity": "o1"
+    }
+  ],
+  "opportunities": [
+    {
+      "ref": "o1",
+      "name": "Data Coordinating Center for AD-MAPs",
+      "issuer": "National Institute on Aging",
+      "official": true,
+      "status": "open",
+      "closes_on": "2026-11-10",
+      "coverage": {
+        "G-SCOPE": "covered",
+        "G-ENTITY": "missing",
+        "G-GEO": "covered",
+        "G-INSTRUMENT": "covered"
+      },
+      "sources": 1
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "g-38d930b1",
+      "type": "criterion_missing",
+      "opportunity_ref": "o1",
+      "criterion_id": "G-ENTITY",
+      "detail": "No verified quote on eligible organization types for o1."
+    }
+  ],
+  "last_signals": null,
+  "recent_errors": [],
+  "limits": {
+    "batch_size": 0,
+    "max_searches": 3,
+    "max_fetches": 4
+  }
+}

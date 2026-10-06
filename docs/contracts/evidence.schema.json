@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/evidence.schema.json",
+  "title": "Evidence (a verified quote linked to a criterion)",
+  "description": "Only quotes that pass literalIn(quote, docText) become Evidence. Rejected quotes are logged as QUOTE_NOT_LITERAL errors in the extract log entry, never stored as Evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "doc_id", "url", "official", "stable_id", "criterion_id", "quote", "binding", "retrieved_at", "doc_published_date", "step", "extractor"],
+  "properties": {
+    "evidence_id": { "$ref": "common.schema.json#/$defs/evidenceId", "description": "'ev-' + sha256(doc_id + '|' + criterion_id + '|' + quote).slice(0,16)" },
+    "doc_id": { "$ref": "common.schema.json#/$defs/docId" },
+    "url": { "$ref": "common.schema.json#/$defs/url" },
+    "official": { "type": "boolean" },
+    "stable_id": { "oneOf": [{ "$ref": "common.schema.json#/$defs/stableId" }, { "type": "null" }], "description": "Opportunity the evidence belongs to (the doc's 'about'); null if the doc has no 'about'." },
+    "criterion_id": { "type": "string", "pattern": "^((G|P)-[A-Z]+|REQ-\\d{2})$", "description": "Extractor 'REQ' items are renumbered REQ-01.. per opportunity in order of first appearance." },
+    "quote": { "type": "string", "minLength": 8 },
+    "binding": { "type": "boolean" },
+    "requirement_summary": { "type": ["string", "null"] },
+    "retrieved_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "doc_published_date": { "oneOf": [{ "$ref": "common.schema.json#/$defs/isoDate" }, { "type": "null" }] },
+    "step": { "type": "integer", "minimum": 0 },
+    "extractor": { "$ref": "common.schema.json#/$defs/promptRef" }
+  }
+}

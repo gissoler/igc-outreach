@@ -1,0 +1,22 @@
+{
+  "schema_version": "run_config/1",
+  "bench_id": "bench-v0",
+  "status": "draft",
+  "today": "2026-10-20",
+  "cache_namespace": "bench-v0-2026-10-20",
+  "agent_model": { "role": "engine", "family": "TO-SET-AT-FREEZE", "expected_model_id": null },
+  "preannotator_model": { "base_url_env": "PREANNOTATOR_BASE_URL", "model_env": "PREANNOTATOR_MODEL", "api_key_env": "PREANNOTATOR_API_KEY", "family": "TO-SET-AT-FREEZE" },
+  "search": { "provider": "serper", "results_per_query": 10, "recency": "none" },
+  "budgets": { "searches": 24, "fetches": 72, "tokens_nominal": 600000, "seconds_nominal": 1200, "planner_calls": 30 },
+  "patience_n": 6,
+  "default_fetch_per_search": 3,
+  "b2": { "initial_batch": 6, "max_searches_per_step": 3, "max_extra_fetches_per_step": 4 },
+  "judge": { "max_opportunities": 40, "max_evidence_per_opportunity": 24 },
+  "seeds": [101, 202, 303],
+  "temperatures": { "planner": 0.7, "extractor": 0, "judge": 0, "preannotator": 0 },
+  "max_tokens": { "planner": 2500, "extractor": 3000, "judge": 3000, "preannotator": 2000 },
+  "prompts": { "planner": "v1", "extractor": "v1", "eligibility_judge": "v1", "preannotator": "v1", "b0_templates": "v1" },
+  "catalog": "criteria_catalog.grant@v1",
+  "official_domains": "official_domains@v1",
+  "extract_max_chars": 24000
+}

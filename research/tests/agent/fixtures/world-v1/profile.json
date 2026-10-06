@@ -1,0 +1,172 @@
+{
+  "schema_version": "profile/1",
+  "profile_id": "prof-fixture-aha",
+  "subject_type": "organization",
+  "target_types": [
+    "grant"
+  ],
+  "as_of": "2026-10-15",
+  "provenance": {
+    "source_kind": "document",
+    "sources": [
+      {
+        "title": "FIXTURE profile (fictional)",
+        "locator": "research/tests/agent/fixtures/world-v1/profile.json",
+        "retrieved_at": "2026-10-15"
+      }
+    ],
+    "built_by": "human",
+    "builder_id": "claude-architect",
+    "builder_saw_anchor": false
+  },
+  "fields": {
+    "applicant.name": {
+      "value": "AHA Fixture",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.entity_type": {
+      "value": "nonprofit",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.country": {
+      "value": "US",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.region": {
+      "value": "MD",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.small_business": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.ownership_us_51": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.employees": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.partners": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "applicant.can_cost_share": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.title": {
+      "value": "Agentic Harmonization Assistant",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.summary": {
+      "value": "Open-source AI harmonization of multimodal Alzheimer's disease research datasets and researcher matching.",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.sector": {
+      "value": [
+        "alzheimer's disease",
+        "research data infrastructure"
+      ],
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.work_type": {
+      "value": "data_or_software_infrastructure",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.stage": {
+      "value": "prototype",
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "project.foreign_components": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "team.pi.country_residence": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "team.pi.primary_employer_is_applicant": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "team.pi.credentials": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "funding.amount_needed_usd": {
+      "value": 350000,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "funding.instruments_accepted": {
+      "value": [
+        "grant",
+        "cooperative_agreement",
+        "prize"
+      ],
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "funding.routes_accepted": {
+      "value": [
+        "direct_apply",
+        "partner_subaward"
+      ],
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "preferences.min_prep_days": {
+      "value": 21,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    },
+    "preferences.excluded_funders": {
+      "value": null,
+      "source": "FIXTURE profile (fictional)",
+      "as_of": "2026-10-15",
+      "quote": null
+    }
+  }
+}

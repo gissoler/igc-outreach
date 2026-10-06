@@ -1,0 +1,47 @@
+{
+  "page_type": "call",
+  "about": {
+    "name": "Data Coordinating Center for AD-MAPs",
+    "issuer_name": "National Institute on Aging",
+    "issuer_domain": "nih.gov",
+    "identifier_texts": [
+      "RFA-AG-27-010"
+    ],
+    "date_mentions": [
+      {
+        "label": "Application Due Date",
+        "quote": "Application Due Date(s) November 10, 2026"
+      }
+    ],
+    "amount_text": "$2.5 million",
+    "instrument": "cooperative_agreement",
+    "how_to_apply_quote": "Applications must be submitted electronically",
+    "status_quote": null
+  },
+  "evidence": [
+    {
+      "criterion_id": "G-GEO",
+      "quote": "Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply.",
+      "binding": true,
+      "requirement_summary": null
+    },
+    {
+      "criterion_id": "REQ",
+      "quote": "must integrate data from at least five AD-MAPs projects",
+      "binding": true,
+      "requirement_summary": "Integrate data from at least five AD-MAPs projects"
+    }
+  ],
+  "mentions": [
+    {
+      "name": "AD Knowledge Portal",
+      "identifier_text": null
+    }
+  ],
+  "official_links": [
+    {
+      "anchor_text": "Related Notices",
+      "url": "https://grants.nih.gov/grants/guide/notice-files/NOT-AG-26-001.html"
+    }
+  ]
+}

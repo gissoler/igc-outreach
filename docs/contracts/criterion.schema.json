@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/criterion.schema.json",
+  "title": "Criterion (catalog entry or call-specific requirement)",
+  "description": "A test the eligibility_judge evaluates for one (profile, target entity) pair. 'hard' = rule: not_met excludes. 'soft' = preference: only orders. Catalog criteria come from criteria_catalog.grant.v1.json; call-specific ones (REQ-xx) are created from verified evidence spans with binding=true.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["criterion_id", "label", "kind", "origin", "evaluator", "applicability", "profile_fields", "applies_to", "guidance"],
+  "properties": {
+    "criterion_id": { "$ref": "common.schema.json#/$defs/criterionId" },
+    "label": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "kind": { "type": "string", "enum": ["hard", "soft"] },
+    "origin": { "type": "string", "enum": ["catalog", "extracted"] },
+    "evaluator": {
+      "type": "string",
+      "enum": ["llm", "code"],
+      "description": "'code' criteria are computed deterministically (dates); any LLM output for them is ignored."
+    },
+    "applicability": {
+      "type": "string",
+      "enum": ["always", "conditional"],
+      "description": "'always': not_applicable is forbidden (forced to unknown). 'conditional': not_applicable allowed with a rationale; WITHOUT an evidence id it is only allowed when the opportunity has >=1 official source document with page_type=call (rule R4b)."
+    },
+    "profile_fields": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(applicant|project|team|funding|preferences)\\.[a-z_.0-9]+$" },
+      "uniqueItems": true,
+      "description": "Profile paths needed to decide. If any is null in the profile, met and not_met are forced to unknown (rule R3)."
+    },
+    "applies_to": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/targetType" }, "minItems": 1 },
+    "guidance": { "type": "string", "minLength": 10, "maxLength": 600, "description": "Shown to the judge verbatim." },
+    "source_evidence_id": { "$ref": "common.schema.json#/$defs/evidenceId", "description": "Required when origin=extracted." },
+    "requirement_text": { "type": "string", "maxLength": 300, "description": "Required when origin=extracted: the extractor's one-line summary of the binding requirement." }
+  },
+  "allOf": [
+    { "if": { "properties": { "origin": { "const": "extracted" } } }, "then": { "required": ["source_evidence_id", "requirement_text"], "properties": { "criterion_id": { "pattern": "^REQ-\\d{2}$" }, "kind": { "const": "hard" }, "evaluator": { "const": "llm" }, "applicability": { "const": "always" } } } },
+    { "if": { "properties": { "origin": { "const": "catalog" } } }, "then": { "properties": { "criterion_id": { "pattern": "^(G|P)-[A-Z]+$" } } } }
+  ]
+}

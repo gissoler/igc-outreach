@@ -1,0 +1,83 @@
+{
+  "run_id": "bench-v0__case-aha-nia-dcc__B2__s101",
+  "seq": 4,
+  "step": 1,
+  "kind": "fetch",
+  "ts": "2026-10-20T14:03:00Z",
+  "case_id": "case-aha-nia-dcc",
+  "condition": "B2",
+  "seed": 101,
+  "versions": {
+    "model_id": "openai/gpt-oss-120b",
+    "model_family": "gpt-oss",
+    "prompts": [
+      {
+        "id": "planner",
+        "version": "v1",
+        "sha256": "244b8435061420f6b2887681bbe2d24b18fc8f790a75c5bf16937bb8417e651a"
+      },
+      {
+        "id": "extractor",
+        "version": "v1",
+        "sha256": "7488d73850bf2009e6762d270ba53bb4e2f88ec77d3dcebeeed21ebac43dca24"
+      },
+      {
+        "id": "eligibility_judge",
+        "version": "v1",
+        "sha256": "10e86c6514d40f2a3e861b31847340ee8c8ed181029a17b042f137121d28863e"
+      },
+      {
+        "id": "b0_templates",
+        "version": "v1",
+        "sha256": "c02c0b965e023abee808f2b548d8d5193a8b5229be6f3121a6f16e2d41a449b3"
+      }
+    ],
+    "code_sha": "60ff27e",
+    "contracts_version": "1",
+    "catalog_version": "criteria_catalog.grant@v1",
+    "official_domains_version": "official_domains@v1"
+  },
+  "tokens": {
+    "prompt": 0,
+    "completion": 0,
+    "total": 0,
+    "nominal_total": 0,
+    "estimated": false,
+    "cached": false
+  },
+  "latency": {
+    "actual_ms": 8100,
+    "nominal_ms": 8100
+  },
+  "errors": [],
+  "budget_used": {
+    "searches": 1,
+    "fetches": 3,
+    "tokens_nominal": 21000,
+    "seconds_nominal": 40,
+    "planner_calls": 1
+  },
+  "data": {
+    "ref": "r000-01",
+    "trigger": "default",
+    "document": {
+      "doc_id": "doc-1218567e284f84cd",
+      "url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+      "normalized_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+      "host": "grants.nih.gov",
+      "registrable_domain": "nih.gov",
+      "host_kind": "other",
+      "official": true,
+      "official_basis": "suffix",
+      "fetched_at": "2026-10-20T14:03:11Z",
+      "fetch_via": "direct",
+      "ok": true,
+      "http_status": 200,
+      "text_chars": 48211,
+      "text_sha256": "3660315a9af3df255d8f19ab077e4797822b41488a0e2a04bc6af71213c23274",
+      "title": "RFA-AG-27-010: Data Coordinating Center",
+      "published_date": null,
+      "error": null
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/document.schema.json",
+  "title": "Document (one fetched URL)",
+  "description": "Metadata of a fetched page. The text itself lives in the fetch cache (key = normalized_url), never in logs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["doc_id", "url", "normalized_url", "host", "registrable_domain", "host_kind", "official", "official_basis", "fetched_at", "fetch_via", "ok", "text_chars", "text_sha256", "title"],
+  "properties": {
+    "doc_id": { "$ref": "common.schema.json#/$defs/docId" },
+    "url": { "$ref": "common.schema.json#/$defs/url" },
+    "normalized_url": { "$ref": "common.schema.json#/$defs/url" },
+    "host": { "type": "string", "minLength": 1 },
+    "registrable_domain": { "type": "string", "minLength": 3 },
+    "host_kind": { "type": "string", "enum": ["other", "aggregator", "social"], "description": "From verify.hostKind() (reused)." },
+    "official": { "type": "boolean" },
+    "official_basis": { "$ref": "common.schema.json#/$defs/officialBasis" },
+    "fetched_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "fetch_via": { "type": "string", "enum": ["direct", "crawl4ai", "jina", "none"] },
+    "ok": { "type": "boolean" },
+    "http_status": { "type": ["integer", "null"] },
+    "text_chars": { "type": "integer", "minimum": 0 },
+    "text_sha256": { "oneOf": [{ "$ref": "common.schema.json#/$defs/sha256" }, { "type": "null" }] },
+    "title": { "type": "string" },
+    "published_date": { "oneOf": [{ "$ref": "common.schema.json#/$defs/isoDate" }, { "type": "null" }], "description": "From the search result (published) or null. Never inferred by an LLM." },
+    "error": { "oneOf": [{ "$ref": "common.schema.json#/$defs/error" }, { "type": "null" }] }
+  }
+}

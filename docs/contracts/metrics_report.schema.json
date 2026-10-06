@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/metrics_report.schema.json",
+  "title": "Metrics report of a benchmark",
+  "description": "Output of `bench metrics` + `bench decide`. Definitions in BENCHMARK_PROTOCOL §5–§7. Metric names are fixed; 'pooled_recall_at_20' must never be renamed to 'recall'.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "bench_id", "generated_at", "run_config_sha256", "cases_manifest_sha256", "labels_sha256", "per_run", "per_case", "comparisons", "labeling_quality", "criteria_eval", "abstention", "decision"],
+  "properties": {
+    "schema_version": { "const": "metrics_report/1" },
+    "bench_id": { "type": "string" },
+    "generated_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "run_config_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "cases_manifest_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "labels_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "per_run": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["run_id", "case_id", "condition", "seed", "hit_at_20", "pooled_recall_at_20", "ndcg_at_10", "hard_false_positive_rate", "status_accuracy", "deadline_accuracy", "identity_accuracy", "abstained", "tokens_discovery_nominal", "seconds_discovery_nominal", "searches", "stop_reason"],
+        "properties": {
+          "run_id": { "type": "string" }, "case_id": { "type": "string" }, "condition": { "$ref": "common.schema.json#/$defs/condition" }, "seed": { "type": "integer" },
+          "hit_at_20": { "type": ["integer", "null"], "enum": [0, 1, null], "description": "null for null cases." },
+          "pooled_recall_at_20": { "type": ["number", "null"], "description": "null when the case has 0 pooled positives." },
+          "ndcg_at_10": { "type": ["number", "null"] },
+          "hard_false_positive_rate": { "type": ["number", "null"], "description": "null when the run recommends nothing adjudicated." },
+          "status_accuracy": { "type": ["number", "null"] }, "deadline_accuracy": { "type": ["number", "null"] }, "identity_accuracy": { "type": ["number", "null"] },
+          "abstained": { "type": "boolean" },
+          "tokens_discovery_nominal": { "type": "integer" }, "seconds_discovery_nominal": { "type": "integer" }, "searches": { "type": "integer" },
+          "stop_reason": { "type": "string" }
+        }
+      }
+    },
+    "per_case": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["case_id", "kind", "pool_size", "pool_positives", "by_condition"],
+        "properties": {
+          "case_id": { "type": "string" }, "kind": { "type": "string", "enum": ["anchor", "null"] },
+          "pool_size": { "type": "integer" }, "pool_positives": { "type": "integer" },
+          "by_condition": {
+            "type": "object",
+            "description": "B0/B1/B2 → mean over the 3 seeds and dispersion (sd, min, max) of each metric.",
+            "additionalProperties": { "type": "object" }
+          }
+        }
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["metric", "a", "b", "n_cases", "wins", "ties", "losses", "tie_margin", "mean_diff", "bootstrap_ci95", "sign_test_p_one_sided"],
+        "properties": {
+          "metric": { "type": "string" }, "a": { "$ref": "common.schema.json#/$defs/condition" }, "b": { "$ref": "common.schema.json#/$defs/condition" },
+          "n_cases": { "type": "integer" }, "wins": { "type": "integer" }, "ties": { "type": "integer" }, "losses": { "type": "integer" },
+          "tie_margin": { "type": "number" }, "mean_diff": { "type": "number" },
+          "bootstrap_ci95": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+          "sign_test_p_one_sided": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "labeling_quality": {
+      "type": "object", "additionalProperties": false,
+      "required": ["adjudicated_items", "second_reviewed_items", "kappa_positive", "kappa_hard_eligibility", "agreement_raw", "preannotator_vs_human", "negatives_sampled", "negatives_found_positive"],
+      "properties": {
+        "adjudicated_items": { "type": "integer" }, "second_reviewed_items": { "type": "integer" },
+        "kappa_positive": { "type": ["number", "null"] }, "kappa_hard_eligibility": { "type": ["number", "null"] }, "agreement_raw": { "type": ["number", "null"] },
+        "preannotator_vs_human": { "type": "object", "description": "Confusion of preannotated gain>=2 vs human gain>=2 (precision/recall of the preannotator)." },
+        "negatives_sampled": { "type": "integer" }, "negatives_found_positive": { "type": "integer" }
+      }
+    },
+    "criteria_eval": {
+      "type": "object",
+      "description": "Per condition: confusion matrix 5×5 (judge vs human) and P/R/F1 for 'met' and 'not_met', macro-F1, plus unknown_rate.",
+      "additionalProperties": { "type": "object" }
+    },
+    "abstention": {
+      "type": "object",
+      "description": "Per condition: {correct_abstentions:'x/y' on null cases, false_abstentions:'x/y' on anchor cases}. Reported as counts, never as a rate estimate.",
+      "additionalProperties": { "type": "object" }
+    },
+    "decision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rule_version", "outcome", "checks", "label"],
+      "properties": {
+        "rule_version": { "type": "string" },
+        "outcome": { "type": "string", "enum": ["ADOPT_B2", "DO_NOT_ADOPT", "INCONCLUSIVE"] },
+        "checks": { "type": "array", "items": { "type": "object", "required": ["id", "passed", "detail"], "properties": { "id": { "type": "string" }, "passed": { "type": "boolean" }, "detail": { "type": "string" } } } },
+        "label": { "type": "string", "enum": ["business_rule_exploratory"], "description": "Always this value: the v0 decision is an internal business rule on an exploratory harness, not a claim of statistical generality." }
+      }
+    }
+  }
+}

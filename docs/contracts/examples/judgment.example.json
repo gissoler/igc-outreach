@@ -1,0 +1,86 @@
+{
+  "schema_version": "judgment/1",
+  "stable_id": "opp:nih:RFA-AG-27-010",
+  "profile_id": "prof-aha-example",
+  "as_of": "2026-10-20",
+  "criteria": [
+    {
+      "criterion_id": "G-SCOPE",
+      "kind": "hard",
+      "evaluator": "llm",
+      "state": "met",
+      "llm_state": "met",
+      "evidence_ids": [
+        "ev-4ef5104b030e359b"
+      ],
+      "evidence_dates": [
+        "2026-10-20T14:03:11Z"
+      ],
+      "rationale": "Funds harmonization of multimodal AD data.",
+      "overrides": []
+    },
+    {
+      "criterion_id": "G-GEO",
+      "kind": "hard",
+      "evaluator": "llm",
+      "state": "unknown",
+      "llm_state": "not_met",
+      "evidence_ids": [
+        "ev-4ef5104b030e359b"
+      ],
+      "evidence_dates": [
+        "2026-10-20T14:03:11Z"
+      ],
+      "rationale": "Foreign institutions not eligible; applicant country unknown.",
+      "overrides": [
+        "R3_profile_unknown"
+      ]
+    },
+    {
+      "criterion_id": "G-STATUS",
+      "kind": "hard",
+      "evaluator": "code",
+      "state": "met",
+      "llm_state": null,
+      "evidence_ids": [],
+      "evidence_dates": [],
+      "rationale": "closes_on 2026-11-10 >= today 2026-10-20",
+      "overrides": [
+        "R5_code_criterion"
+      ]
+    }
+  ],
+  "route": "partner_subaward",
+  "route_rationale": "Needs a domestic US institution as applicant.",
+  "aggregate": {
+    "eligibility_class": "eligible_pending",
+    "hard_not_met": [],
+    "hard_conflict": [],
+    "hard_unknown": [
+      "G-GEO"
+    ],
+    "soft_score": 0.0,
+    "recommendable": true
+  },
+  "judge_call": {
+    "ok": true,
+    "tokens": {
+      "prompt": 5200,
+      "completion": 600,
+      "total": 5800,
+      "nominal_total": 5800,
+      "estimated": false,
+      "cached": false
+    },
+    "latency": {
+      "actual_ms": 8100,
+      "nominal_ms": 8100
+    },
+    "prompt": {
+      "id": "eligibility_judge",
+      "version": "v1",
+      "sha256": "10e86c6514d40f2a3e861b31847340ee8c8ed181029a17b042f137121d28863e"
+    },
+    "error": null
+  }
+}

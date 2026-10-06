@@ -1,0 +1,244 @@
+{
+  "schema_version": "run_result/1",
+  "run_id": "bench-v0__case-aha-nia-dcc__B2__s101",
+  "case_id": "case-aha-nia-dcc",
+  "condition": "B2",
+  "seed": 101,
+  "today": "2026-10-20",
+  "versions": {
+    "model_id": "openai/gpt-oss-120b",
+    "model_family": "gpt-oss",
+    "prompts": [
+      {
+        "id": "planner",
+        "version": "v1",
+        "sha256": "244b8435061420f6b2887681bbe2d24b18fc8f790a75c5bf16937bb8417e651a"
+      },
+      {
+        "id": "extractor",
+        "version": "v1",
+        "sha256": "7488d73850bf2009e6762d270ba53bb4e2f88ec77d3dcebeeed21ebac43dca24"
+      },
+      {
+        "id": "eligibility_judge",
+        "version": "v1",
+        "sha256": "10e86c6514d40f2a3e861b31847340ee8c8ed181029a17b042f137121d28863e"
+      },
+      {
+        "id": "b0_templates",
+        "version": "v1",
+        "sha256": "c02c0b965e023abee808f2b548d8d5193a8b5229be6f3121a6f16e2d41a449b3"
+      }
+    ],
+    "code_sha": "60ff27e",
+    "contracts_version": "1",
+    "catalog_version": "criteria_catalog.grant@v1",
+    "official_domains_version": "official_domains@v1"
+  },
+  "stop_reason": "patience",
+  "abstained": false,
+  "ranked": [
+    {
+      "rank": 1,
+      "stable_id": "opp:nih:RFA-AG-27-010",
+      "eligibility_class": "eligible_pending",
+      "recommendable": true,
+      "official": true,
+      "sort_key": [
+        1,
+        0,
+        1,
+        0,
+        0.0,
+        "2026-11-10",
+        0,
+        0,
+        "opp:nih:RFA-AG-27-010"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "schema_version": "target_entity/1",
+      "stable_id": "opp:nih:RFA-AG-27-010",
+      "entity_type": "grant_opportunity",
+      "name": "Data Coordinating Center for AD-MAPs",
+      "issuer": {
+        "name": "National Institute on Aging",
+        "domain": "nih.gov"
+      },
+      "identifiers": [
+        {
+          "scheme": "nih",
+          "value": "RFA-AG-27-010",
+          "doc_id": "doc-1218567e284f84cd"
+        },
+        {
+          "scheme": "url",
+          "value": "grants.nih.gov/grants/guide/rfa-files/rfa-ag-27-010.html",
+          "doc_id": "doc-1218567e284f84cd"
+        }
+      ],
+      "canonical_url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+      "official": true,
+      "official_basis": "suffix",
+      "validity": {
+        "status": "open",
+        "opens_on": null,
+        "closes_on": "2026-11-10",
+        "deadline_label": "Application Due Date",
+        "deadline_quote": "Application Due Date(s) November 10, 2026",
+        "deadline_doc_id": "doc-1218567e284f84cd",
+        "as_of": "2026-10-20",
+        "computed_by": "code",
+        "conflict": false
+      },
+      "amount_text": "$2.5 million",
+      "instrument": "cooperative_agreement",
+      "source_doc_ids": [
+        "doc-1218567e284f84cd"
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 0,
+        "query_id": "q000",
+        "order": 0
+      },
+      "query_ids": [
+        "q000"
+      ]
+    }
+  ],
+  "judgments": [
+    {
+      "schema_version": "judgment/1",
+      "stable_id": "opp:nih:RFA-AG-27-010",
+      "profile_id": "prof-aha-example",
+      "as_of": "2026-10-20",
+      "criteria": [
+        {
+          "criterion_id": "G-SCOPE",
+          "kind": "hard",
+          "evaluator": "llm",
+          "state": "met",
+          "llm_state": "met",
+          "evidence_ids": [
+            "ev-4ef5104b030e359b"
+          ],
+          "evidence_dates": [
+            "2026-10-20T14:03:11Z"
+          ],
+          "rationale": "Funds harmonization of multimodal AD data.",
+          "overrides": []
+        },
+        {
+          "criterion_id": "G-GEO",
+          "kind": "hard",
+          "evaluator": "llm",
+          "state": "unknown",
+          "llm_state": "not_met",
+          "evidence_ids": [
+            "ev-4ef5104b030e359b"
+          ],
+          "evidence_dates": [
+            "2026-10-20T14:03:11Z"
+          ],
+          "rationale": "Foreign institutions not eligible; applicant country unknown.",
+          "overrides": [
+            "R3_profile_unknown"
+          ]
+        },
+        {
+          "criterion_id": "G-STATUS",
+          "kind": "hard",
+          "evaluator": "code",
+          "state": "met",
+          "llm_state": null,
+          "evidence_ids": [],
+          "evidence_dates": [],
+          "rationale": "closes_on 2026-11-10 >= today 2026-10-20",
+          "overrides": [
+            "R5_code_criterion"
+          ]
+        }
+      ],
+      "route": "partner_subaward",
+      "route_rationale": "Needs a domestic US institution as applicant.",
+      "aggregate": {
+        "eligibility_class": "eligible_pending",
+        "hard_not_met": [],
+        "hard_conflict": [],
+        "hard_unknown": [
+          "G-GEO"
+        ],
+        "soft_score": 0.0,
+        "recommendable": true
+      },
+      "judge_call": {
+        "ok": true,
+        "tokens": {
+          "prompt": 5200,
+          "completion": 600,
+          "total": 5800,
+          "nominal_total": 5800,
+          "estimated": false,
+          "cached": false
+        },
+        "latency": {
+          "actual_ms": 8100,
+          "nominal_ms": 8100
+        },
+        "prompt": {
+          "id": "eligibility_judge",
+          "version": "v1",
+          "sha256": "10e86c6514d40f2a3e861b31847340ee8c8ed181029a17b042f137121d28863e"
+        },
+        "error": null
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev-4ef5104b030e359b",
+      "doc_id": "doc-1218567e284f84cd",
+      "url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-27-010.html",
+      "official": true,
+      "stable_id": "opp:nih:RFA-AG-27-010",
+      "criterion_id": "G-GEO",
+      "quote": "Non-domestic (non-U.S.) Entities (Foreign Institutions) are not eligible to apply.",
+      "binding": true,
+      "requirement_summary": null,
+      "retrieved_at": "2026-10-20T14:03:11Z",
+      "doc_published_date": null,
+      "step": 1,
+      "extractor": {
+        "id": "extractor",
+        "version": "v1",
+        "sha256": "7488d73850bf2009e6762d270ba53bb4e2f88ec77d3dcebeeed21ebac43dca24"
+      }
+    }
+  ],
+  "totals": {
+    "searches": 14,
+    "fetches": 44,
+    "fetch_errors": 3,
+    "unique_docs": 97,
+    "official_opportunities": 11,
+    "tokens_discovery_nominal": 388000,
+    "tokens_judge_nominal": 71000,
+    "seconds_discovery_nominal": 760,
+    "seconds_judge_nominal": 140,
+    "planner_calls": 7
+  },
+  "prefix_curve": [
+    {
+      "search_index": 0,
+      "stable_ids_so_far": [
+        "opp:nih:RFA-AG-27-010"
+      ],
+      "tokens_nominal": 21000,
+      "searches": 1,
+      "fetches": 3
+    }
+  ]
+}

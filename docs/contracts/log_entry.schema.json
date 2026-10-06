@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/log_entry.schema.json",
+  "title": "Log entry (one line of steps.jsonl)",
+  "description": "Append-only JSONL, one object per event, validated before writing (an invalid entry aborts the run with CONTRACT). `step` = planner step for B2; for B0/B1 step = search_index + 1 (step 0 = run_start / B1 batch call).",
+  "type": "object",
+  "required": ["run_id", "seq", "step", "kind", "ts", "case_id", "condition", "seed", "versions", "tokens", "latency", "errors"],
+  "properties": {
+    "run_id": { "$ref": "common.schema.json#/$defs/runId" },
+    "seq": { "type": "integer", "minimum": 0, "description": "0,1,2… without gaps." },
+    "step": { "type": "integer", "minimum": 0 },
+    "kind": { "type": "string", "enum": ["run_start", "planner_call", "search", "fetch", "extract", "judge", "run_end"] },
+    "ts": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "case_id": { "$ref": "common.schema.json#/$defs/caseId" },
+    "condition": { "$ref": "common.schema.json#/$defs/condition" },
+    "seed": { "type": "integer" },
+    "versions": { "$ref": "common.schema.json#/$defs/versions" },
+    "tokens": { "$ref": "common.schema.json#/$defs/tokens" },
+    "latency": { "$ref": "common.schema.json#/$defs/latency" },
+    "errors": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/error" } },
+    "budget_used": { "$ref": "#/$defs/budgetUsed" },
+    "data": { "type": "object" }
+  },
+  "allOf": [
+    { "if": { "properties": { "kind": { "const": "run_start" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/runStart" } }, "required": ["data"] } },
+    { "if": { "properties": { "kind": { "const": "planner_call" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/plannerCall" } }, "required": ["data", "budget_used"] } },
+    { "if": { "properties": { "kind": { "const": "search" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/search" } }, "required": ["data", "budget_used"] } },
+    { "if": { "properties": { "kind": { "const": "fetch" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/fetch" } }, "required": ["data", "budget_used"] } },
+    { "if": { "properties": { "kind": { "const": "extract" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/extract" } }, "required": ["data", "budget_used"] } },
+    { "if": { "properties": { "kind": { "const": "judge" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/judge" } }, "required": ["data"] } },
+    { "if": { "properties": { "kind": { "const": "run_end" } } }, "then": { "properties": { "data": { "$ref": "#/$defs/runEnd" } }, "required": ["data", "budget_used"] } }
+  ],
+  "$defs": {
+    "budgetUsed": {
+      "type": "object", "additionalProperties": false,
+      "required": ["searches", "fetches", "tokens_nominal", "seconds_nominal", "planner_calls"],
+      "properties": { "searches": { "type": "integer" }, "fetches": { "type": "integer" }, "tokens_nominal": { "type": "integer" }, "seconds_nominal": { "type": "integer" }, "planner_calls": { "type": "integer" } },
+      "description": "Cumulative AFTER this event."
+    },
+    "signals": {
+      "type": "object", "additionalProperties": false,
+      "required": ["new_unique_docs", "duplicates", "new_official_opportunities", "new_official_domains", "fetch_errors", "deadlines_parsed", "criteria_unknown", "searches_without_new_official"],
+      "description": "Discovery signals, computed by code only (signals.mjs). Independent of eligibility_judge.",
+      "properties": {
+        "new_unique_docs": { "type": "integer", "minimum": 0, "description": "Results whose normalized URL was never seen in this run." },
+        "duplicates": { "type": "integer", "minimum": 0, "description": "Results whose normalized URL was already seen." },
+        "new_official_opportunities": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/stableId" }, "description": "Stable IDs of official opportunities registered for the first time (attributed to this search)." },
+        "new_official_domains": { "type": "array", "items": { "type": "string" } },
+        "fetch_errors": { "type": "integer", "minimum": 0 },
+        "deadlines_parsed": { "type": "integer", "minimum": 0, "description": "Among new_official_opportunities, how many have closes_on != null or status=rolling." },
+        "criteria_unknown": { "type": "integer", "minimum": 0, "description": "Total (official opportunity × hard llm catalog criterion with applicability=always) pairs with no verified evidence, over all official opportunities so far." },
+        "searches_without_new_official": { "type": "integer", "minimum": 0, "description": "Patience counter AFTER this search." }
+      }
+    },
+    "runStart": {
+      "type": "object", "additionalProperties": false, "required": ["profile_id", "profile_sha256", "case_sha256", "run_config_sha256", "today", "search_provider", "budgets", "patience_n"],
+      "properties": {
+        "profile_id": { "type": "string" }, "profile_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "case_sha256": { "$ref": "common.schema.json#/$defs/sha256" }, "run_config_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "today": { "$ref": "common.schema.json#/$defs/isoDate" }, "search_provider": { "type": "string" },
+        "budgets": { "type": "object" }, "patience_n": { "type": "integer" }
+      }
+    },
+    "plannerCall": {
+      "type": "object", "additionalProperties": false, "required": ["mode", "prompt", "input_sha256", "output", "actions_accepted", "actions_rejected", "gaps_offered"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["initial_batch", "adaptive_step"] },
+        "prompt": { "$ref": "common.schema.json#/$defs/promptRef" },
+        "input_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "output": { "type": ["object", "null"], "description": "Planner JSON as returned (after schema validation) or null on failure." },
+        "actions_accepted": { "type": "integer" },
+        "actions_rejected": { "type": "array", "items": { "type": "object", "required": ["index", "reason"], "properties": { "index": { "type": "integer" }, "reason": { "type": "string" } } } },
+        "gaps_offered": { "type": "integer" }
+      }
+    },
+    "search": {
+      "type": "object", "additionalProperties": false, "required": ["search_index", "query_id", "query", "origin", "targets", "results", "signals"],
+      "properties": {
+        "search_index": { "type": "integer", "minimum": 0 },
+        "query_id": { "$ref": "common.schema.json#/$defs/queryId" },
+        "query": { "type": "string" },
+        "origin": { "type": "string", "pattern": "^(b0:[a-z0-9_-]+|planner:(initial_batch|adaptive_step))$" },
+        "targets": { "type": "array", "items": { "type": "string" } },
+        "results": {
+          "type": "array",
+          "items": { "type": "object", "additionalProperties": false, "required": ["result_id", "rank", "url", "title", "seen_before"],
+            "properties": { "result_id": { "$ref": "common.schema.json#/$defs/resultId" }, "rank": { "type": "integer", "minimum": 1 }, "url": { "type": "string" }, "title": { "type": "string" }, "seen_before": { "type": "boolean" } } }
+        },
+        "signals": { "$ref": "#/$defs/signals" }
+      }
+    },
+    "fetch": {
+      "type": "object", "additionalProperties": false, "required": ["ref", "trigger", "document"],
+      "properties": {
+        "ref": { "type": "string", "pattern": "^(r\\d{3}-\\d{2}|l\\d{3}-\\d{2})$" },
+        "trigger": { "type": "string", "enum": ["default", "planner"] },
+        "document": { "$ref": "document.schema.json" }
+      }
+    },
+    "extract": {
+      "type": "object", "additionalProperties": false, "required": ["doc_id", "prompt", "page_type", "about_stable_id", "new_opportunity", "evidence_ids", "quotes_rejected", "identifiers_rejected", "mentions", "official_links"],
+      "properties": {
+        "doc_id": { "$ref": "common.schema.json#/$defs/docId" },
+        "prompt": { "$ref": "common.schema.json#/$defs/promptRef" },
+        "page_type": { "$ref": "common.schema.json#/$defs/pageType" },
+        "about_stable_id": { "oneOf": [{ "$ref": "common.schema.json#/$defs/stableId" }, { "type": "null" }] },
+        "new_opportunity": { "type": "boolean" },
+        "evidence_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/evidenceId" } },
+        "quotes_rejected": { "type": "integer", "minimum": 0 },
+        "identifiers_rejected": { "type": "integer", "minimum": 0 },
+        "mentions": { "type": "integer", "minimum": 0 },
+        "official_links": { "type": "array", "items": { "type": "object", "required": ["link_id", "url"], "properties": { "link_id": { "$ref": "common.schema.json#/$defs/linkId" }, "url": { "type": "string" } } } }
+      }
+    },
+    "judge": {
+      "type": "object", "additionalProperties": false, "required": ["stable_id", "eligibility_class", "recommendable", "overrides_count"],
+      "properties": {
+        "stable_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "eligibility_class": { "type": "string" },
+        "recommendable": { "type": "boolean" },
+        "overrides_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "runEnd": {
+      "type": "object", "additionalProperties": false, "required": ["stop_reason", "searches", "fetches", "opportunities", "official_opportunities", "recommendable", "abstained"],
+      "properties": {
+        "stop_reason": { "type": "string", "enum": ["budget_searches", "budget_fetches", "budget_tokens", "budget_time", "budget_planner_calls", "patience", "no_more_actions", "planner_error", "fatal_error"] },
+        "searches": { "type": "integer" }, "fetches": { "type": "integer" }, "opportunities": { "type": "integer" },
+        "official_opportunities": { "type": "integer" }, "recommendable": { "type": "integer" }, "abstained": { "type": "boolean" }
+      }
+    }
+  }
+}

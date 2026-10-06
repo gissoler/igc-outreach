@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/judgment.schema.json",
+  "title": "Eligibility judgment for one (profile, target entity) — after code rules",
+  "description": "Produced by eligibility_judge AFTER discovery ends. Never read by the planner, signals or the stop rule. Rules R1–R7 are defined in docs/ARCHITECTURE.md §6 and are the only way a state may change after the LLM answers.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "stable_id", "profile_id", "as_of", "criteria", "route", "route_rationale", "aggregate", "judge_call"],
+  "properties": {
+    "schema_version": { "const": "judgment/1" },
+    "stable_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "profile_id": { "type": "string", "pattern": "^prof-" },
+    "as_of": { "$ref": "common.schema.json#/$defs/isoDate" },
+    "criteria": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["criterion_id", "kind", "evaluator", "state", "llm_state", "evidence_ids", "evidence_dates", "rationale", "overrides"],
+        "properties": {
+          "criterion_id": { "type": "string", "pattern": "^((G|P)-[A-Z]+|REQ-\\d{2})$" },
+          "kind": { "type": "string", "enum": ["hard", "soft"] },
+          "evaluator": { "type": "string", "enum": ["llm", "code"] },
+          "state": { "$ref": "common.schema.json#/$defs/criterionState" },
+          "llm_state": { "oneOf": [{ "$ref": "common.schema.json#/$defs/criterionState" }, { "type": "null" }], "description": "What the LLM said before rules (null for code criteria or missing answers)." },
+          "evidence_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/evidenceId" } },
+          "evidence_dates": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/isoDateTime" }, "description": "retrieved_at of each evidence id, same order." },
+          "rationale": { "type": "string" },
+          "overrides": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["R1_no_evidence", "R2_conflict_needs_two", "R3_profile_unknown", "R4a_na_forbidden", "R4b_na_needs_call_text", "R5_code_criterion", "R6_missing_answer", "R7_foreign_evidence"] }
+          }
+        }
+      }
+    },
+    "route": { "oneOf": [{ "$ref": "common.schema.json#/$defs/route" }, { "type": "null" }] },
+    "route_rationale": { "type": "string" },
+    "aggregate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["eligibility_class", "hard_not_met", "hard_conflict", "hard_unknown", "soft_score", "recommendable"],
+      "properties": {
+        "eligibility_class": { "type": "string", "enum": ["eligible", "eligible_pending", "conflict", "ineligible", "unjudged"] },
+        "hard_not_met": { "type": "array", "items": { "type": "string" } },
+        "hard_conflict": { "type": "array", "items": { "type": "string" } },
+        "hard_unknown": { "type": "array", "items": { "type": "string" } },
+        "soft_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "recommendable": { "type": "boolean" }
+      }
+    },
+    "judge_call": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ok", "tokens", "latency", "prompt"],
+      "properties": {
+        "ok": { "type": "boolean" },
+        "tokens": { "$ref": "common.schema.json#/$defs/tokens" },
+        "latency": { "$ref": "common.schema.json#/$defs/latency" },
+        "prompt": { "$ref": "common.schema.json#/$defs/promptRef" },
+        "error": { "oneOf": [{ "$ref": "common.schema.json#/$defs/error" }, { "type": "null" }] }
+      }
+    }
+  }
+}

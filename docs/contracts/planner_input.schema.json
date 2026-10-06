@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/planner_input.schema.json",
+  "title": "Planner input (the state the planner sees) — built by code",
+  "description": "Serialized as JSON into {{state_json}} of prompts/planner/v1/user.md. Contains NO judge output: only discovery-time signals and evidence coverage. Untrusted page text appears only inside snippet/title fields, wrapped by code as <page_data>…</page_data>.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mode", "today", "step", "budget_left", "patience", "profile", "criteria", "queries_run", "results_unfetched", "links_unfetched", "opportunities", "gaps", "last_signals", "recent_errors", "limits"],
+  "properties": {
+    "mode": { "type": "string", "enum": ["initial_batch", "adaptive_step"] },
+    "today": { "$ref": "common.schema.json#/$defs/isoDate" },
+    "step": { "type": "integer", "minimum": 0 },
+    "budget_left": {
+      "type": "object", "additionalProperties": false, "required": ["searches", "fetches", "tokens_nominal", "seconds_nominal", "planner_calls"],
+      "properties": { "searches": { "type": "integer" }, "fetches": { "type": "integer" }, "tokens_nominal": { "type": "integer" }, "seconds_nominal": { "type": "integer" }, "planner_calls": { "type": "integer" } }
+    },
+    "patience": {
+      "type": "object", "additionalProperties": false, "required": ["n", "searches_without_new_official"],
+      "properties": { "n": { "type": "integer", "minimum": 1 }, "searches_without_new_official": { "type": "integer", "minimum": 0 } }
+    },
+    "profile": {
+      "type": "object", "additionalProperties": false, "required": ["known", "unknown_fields"],
+      "properties": {
+        "known": { "type": "object", "description": "path → value, only non-null fields" },
+        "unknown_fields": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "criteria": { "type": "array", "items": { "type": "object", "required": ["criterion_id", "label", "kind"], "properties": { "criterion_id": { "type": "string" }, "label": { "type": "string" }, "kind": { "type": "string" } } } },
+    "queries_run": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["query_id", "query", "step", "new_unique_docs", "new_official_opportunities"],
+        "properties": { "query_id": { "type": "string" }, "query": { "type": "string" }, "step": { "type": "integer" }, "new_unique_docs": { "type": "integer" }, "new_official_opportunities": { "type": "integer" } } }
+    },
+    "results_unfetched": {
+      "type": "array", "maxItems": 30,
+      "items": { "type": "object", "additionalProperties": false, "required": ["result_id", "title", "host", "host_kind", "official_domain", "snippet"],
+        "properties": { "result_id": { "type": "string" }, "title": { "type": "string" }, "host": { "type": "string" }, "host_kind": { "type": "string" }, "official_domain": { "type": "boolean" }, "snippet": { "type": "string" } } }
+    },
+    "links_unfetched": {
+      "type": "array", "maxItems": 20,
+      "items": { "type": "object", "additionalProperties": false, "required": ["link_id", "anchor_text", "host", "from_opportunity"],
+        "properties": { "link_id": { "type": "string" }, "anchor_text": { "type": "string" }, "host": { "type": "string" }, "from_opportunity": { "type": ["string", "null"] } } }
+    },
+    "opportunities": {
+      "type": "array", "maxItems": 40,
+      "items": { "type": "object", "additionalProperties": false, "required": ["ref", "name", "issuer", "official", "status", "closes_on", "coverage", "sources"],
+        "properties": {
+          "ref": { "type": "string", "pattern": "^o\\d{1,3}$", "description": "Short handle (o1, o2…) in order of first_seen." },
+          "name": { "type": "string" }, "issuer": { "type": "string" }, "official": { "type": "boolean" },
+          "status": { "type": "string" }, "closes_on": { "type": ["string", "null"] },
+          "coverage": { "type": "object", "description": "criterion_id → 'covered' | 'missing' (verified evidence present or not). NOT a judgment." },
+          "sources": { "type": "integer" }
+        } }
+    },
+    "gaps": {
+      "type": "array", "maxItems": 40,
+      "items": { "type": "object", "additionalProperties": false, "required": ["gap_id", "type", "opportunity_ref", "criterion_id", "detail"],
+        "properties": {
+          "gap_id": { "type": "string", "pattern": "^g-[a-f0-9]{8}$" },
+          "type": { "type": "string", "enum": ["criterion_missing", "official_source_missing", "mention_unresolved", "deadline_unparsed", "link_unfetched"] },
+          "opportunity_ref": { "type": ["string", "null"] },
+          "criterion_id": { "type": ["string", "null"] },
+          "detail": { "type": "string" }
+        } }
+    },
+    "last_signals": { "type": ["object", "null"], "description": "SearchSignals of the last search (see log_entry.schema.json#/$defs/signals)." },
+    "recent_errors": { "type": "array", "maxItems": 10, "items": { "$ref": "common.schema.json#/$defs/error" } },
+    "limits": {
+      "type": "object", "additionalProperties": false, "required": ["batch_size", "max_searches", "max_fetches"],
+      "properties": { "batch_size": { "type": "integer" }, "max_searches": { "type": "integer" }, "max_fetches": { "type": "integer" } }
+    }
+  }
+}

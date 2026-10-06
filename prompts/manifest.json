@@ -1,0 +1,59 @@
+{
+  "schema_version": "prompt_manifest/1",
+  "prompts": [
+    {
+      "id": "planner",
+      "version": "v1",
+      "files": [
+        "planner/v1/system.md",
+        "planner/v1/user.md"
+      ],
+      "sha256": "eeb10f511a4aa99f501ae0977e7b664c9eca6e54073293a00a9e45b622de4fa9",
+      "author": "claude-architect",
+      "created": "2026-10-06"
+    },
+    {
+      "id": "extractor",
+      "version": "v1",
+      "files": [
+        "extractor/v1/system.md",
+        "extractor/v1/user.md"
+      ],
+      "sha256": "0b18d92ef0dc6b6c1b51685b698ebf3423ec5d2fcd5e77dce37d3f111145889c",
+      "author": "claude-architect",
+      "created": "2026-10-06"
+    },
+    {
+      "id": "eligibility_judge",
+      "version": "v1",
+      "files": [
+        "eligibility_judge/v1/system.md",
+        "eligibility_judge/v1/user.md"
+      ],
+      "sha256": "4dab4a089b92b47c21c2f7ae1d3d9e32924a7ab76ff24bee5c8e3606e7dfa625",
+      "author": "claude-architect",
+      "created": "2026-10-06"
+    },
+    {
+      "id": "preannotator",
+      "version": "v1",
+      "files": [
+        "preannotator/v1/system.md",
+        "preannotator/v1/user.md"
+      ],
+      "sha256": "f642c9cc46c79f4be89e91e8bf1670d849adf14ccecc6ea22d7e684dabcd9ee4",
+      "author": "claude-architect",
+      "created": "2026-10-06"
+    },
+    {
+      "id": "b0_templates",
+      "version": "v1",
+      "files": [
+        "b0/v1/templates.json"
+      ],
+      "sha256": "4849ce2cad6f4fea6f4286e8b7403ee43d4f4708c7483d29310c137f8eb8c3a4",
+      "author": "claude-architect",
+      "created": "2026-10-06"
+    }
+  ]
+}

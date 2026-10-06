@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/run_config.schema.json",
+  "title": "Run configuration — frozen before the benchmark (BENCHMARK_PROTOCOL §3)",
+  "description": "One file for the whole benchmark. B0, B1 and B2 read the SAME object; only `condition` and `seed` vary per run (passed separately). Any field change after freezing invalidates the benchmark.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "bench_id", "status", "today", "cache_namespace", "agent_model", "preannotator_model", "search", "budgets", "patience_n", "default_fetch_per_search", "b2", "judge", "seeds", "temperatures", "max_tokens", "prompts", "catalog", "official_domains"],
+  "properties": {
+    "schema_version": { "const": "run_config/1" },
+    "bench_id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "status": { "type": "string", "enum": ["draft", "frozen"], "description": "The harness refuses `run-all` unless status=frozen (human step H5)." },
+    "today": { "$ref": "common.schema.json#/$defs/isoDate", "description": "The date all date logic uses. Never Date.now()." },
+    "cache_namespace": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "agent_model": {
+      "type": "object", "additionalProperties": false, "required": ["role", "family"],
+      "properties": {
+        "role": { "type": "string", "enum": ["engine", "chat", "reasoning"], "description": "Role in fleet.mjs config (ENGINE_LLM_* etc.). The same model serves planner, extractor and judge." },
+        "family": { "type": "string", "minLength": 2, "description": "e.g. 'qwen', 'gpt-oss', 'llama', 'mistral', 'claude', 'gemini'." },
+        "expected_model_id": { "type": ["string", "null"], "description": "If set, a run whose API-reported model id differs aborts with CONTRACT error." }
+      }
+    },
+    "preannotator_model": {
+      "type": "object", "additionalProperties": false, "required": ["base_url_env", "model_env", "api_key_env", "family"],
+      "properties": {
+        "base_url_env": { "type": "string" }, "model_env": { "type": "string" }, "api_key_env": { "type": "string" },
+        "family": { "type": "string", "minLength": 2, "description": "MUST differ from agent_model.family (validated)." }
+      }
+    },
+    "search": {
+      "type": "object", "additionalProperties": false, "required": ["provider", "results_per_query", "recency"],
+      "properties": {
+        "provider": { "type": "string", "enum": ["searxng", "serper", "exa", "tavily", "linkup", "you", "jina", "fixture"] },
+        "results_per_query": { "type": "integer", "minimum": 5, "maximum": 20 },
+        "recency": { "type": "string", "enum": ["none", "year"] }
+      }
+    },
+    "budgets": {
+      "type": "object", "additionalProperties": false, "required": ["searches", "fetches", "tokens_nominal", "seconds_nominal", "planner_calls"],
+      "properties": {
+        "searches": { "type": "integer", "minimum": 1 },
+        "fetches": { "type": "integer", "minimum": 1 },
+        "tokens_nominal": { "type": "integer", "minimum": 1000, "description": "Discovery tokens (planner + extractor). Judge tokens are logged separately and capped by judge.max_opportunities." },
+        "seconds_nominal": { "type": "integer", "minimum": 10 },
+        "planner_calls": { "type": "integer", "minimum": 1, "description": "B2 only; B1 always makes exactly 1 planner call." }
+      }
+    },
+    "patience_n": { "type": "integer", "minimum": 1, "description": "N: stop after N consecutive searches without a new official opportunity (stable ID). Same for B0, B1, B2." },
+    "default_fetch_per_search": { "type": "integer", "minimum": 0, "maximum": 10 },
+    "b2": {
+      "type": "object", "additionalProperties": false, "required": ["initial_batch", "max_searches_per_step", "max_extra_fetches_per_step"],
+      "properties": { "initial_batch": { "type": "integer", "minimum": 1 }, "max_searches_per_step": { "type": "integer", "minimum": 1 }, "max_extra_fetches_per_step": { "type": "integer", "minimum": 0 } }
+    },
+    "judge": {
+      "type": "object", "additionalProperties": false, "required": ["max_opportunities", "max_evidence_per_opportunity"],
+      "properties": { "max_opportunities": { "type": "integer", "minimum": 20 }, "max_evidence_per_opportunity": { "type": "integer", "minimum": 5 } }
+    },
+    "seeds": { "type": "array", "items": { "type": "integer" }, "minItems": 3, "maxItems": 3, "uniqueItems": true },
+    "temperatures": {
+      "type": "object", "additionalProperties": false, "required": ["planner", "extractor", "judge", "preannotator"],
+      "properties": { "planner": { "type": "number" }, "extractor": { "type": "number" }, "judge": { "type": "number" }, "preannotator": { "type": "number" } }
+    },
+    "max_tokens": {
+      "type": "object", "additionalProperties": false, "required": ["planner", "extractor", "judge", "preannotator"],
+      "properties": { "planner": { "type": "integer" }, "extractor": { "type": "integer" }, "judge": { "type": "integer" }, "preannotator": { "type": "integer" } }
+    },
+    "prompts": {
+      "type": "object", "additionalProperties": false, "required": ["planner", "extractor", "eligibility_judge", "preannotator", "b0_templates"],
+      "properties": {
+        "planner": { "type": "string", "pattern": "^v\\d+$" }, "extractor": { "type": "string", "pattern": "^v\\d+$" },
+        "eligibility_judge": { "type": "string", "pattern": "^v\\d+$" }, "preannotator": { "type": "string", "pattern": "^v\\d+$" }, "b0_templates": { "type": "string", "pattern": "^v\\d+$" }
+      }
+    },
+    "catalog": { "type": "string", "pattern": "^criteria_catalog\\.grant@v\\d+$" },
+    "official_domains": { "type": "string", "pattern": "^official_domains@v\\d+$" },
+    "extract_max_chars": { "type": "integer", "minimum": 2000, "default": 24000 }
+  }
+}
