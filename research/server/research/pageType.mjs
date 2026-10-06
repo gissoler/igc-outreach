@@ -11,6 +11,8 @@ const PATH = [
   ['news', /\/(news|newsroom|press|press-releases?|media-releases?|media-cent(?:er|re)|mediacentre|updates\/news|noticias|actualidad|comunicados?|announcements?)(\/|$)/i],
   ['event', /\/(events?|event-calendar|webinars?|workshops?|courses?|trainings?|eventos?|talleres?|agenda)(\/|$)/i],
   ['directory', /\/(directory|database|companies|portfolio|members|listings?|rankings?|top-\d+)(\/|$)/i],
+  ['award', /sbir\.gov\/awards?\/\d+|\/awards?\/\d{4,}(\/|$)/i],        // registro de un premio ya concedido
+  ['job', /\/(careers?|jobs?|job-openings?|vacancies|employment|work-with-us|join-our-team)(\/|$)/i],
 ];
 const TEXT = [
   ['report', /\b(impact report|annual report|we(?:'|’)re proud to share (?:the|our)|this report (?:highlights|reflects|describes)|highlights the (?:network|program)(?:'|’)s progress|informe (?:de impacto|anual))\b/i],
@@ -25,8 +27,10 @@ export const APPLY_RX = /\b(how to apply|apply (?:now|here|online|by|before|via|
 /* Títulos que delatan una guía o un índice, no una convocatoria concreta. Un identificador de convocatoria en el título
    (PAR-25-383, RFA-RM-27-012, HHS-2027-…, DE-FOA-…) los exime: ahí el título sí nombra un llamado. */
 const HAS_CALL_ID = /\b(?:[A-Z]{2,6}-){1,4}[A-Z0-9]*\d{2,}[A-Z0-9-]*\b/;
+const TITLE_JOB = /\b(?:program|project|research|grants?) (?:officer|manager|coordinator|associate)\b.*\||\b(?:we(?:'|’)re hiring|job opening|open position|careers? at)\b|^(?:senior|assistant|associate|chief|vice president|director)\b.{0,80}\b(?:officer|director|manager|coordinator|specialist)\b/i;
+const TITLE_EXPIRED = /^\s*(?:\[?expired\]?|closed|archived|inactive)\b[\s:\-–—]/i;
 const TITLE_GUIDE = /^(?:understanding|what (?:is|are)|guide to|a guide to|the (?:complete|ultimate|essential|beginner'?s) guide|navigating|ask the expert|faq\b|frequently asked|top \d+|best \d+)|\b(?:ultimate|complete|beginner'?s) guide\b|\bask the expert\b|(?<!application )\bguide\b|\bexplained\b/i;
-const TITLE_HUB = /^(?:funding|grants?(?: (?:&|and) funding)?)\s*(?:[|\-–—:]|$)|\b(?:funding opportunities|funding resources|grant opportunities|funding calls|active opportunities|current opportunities|open (?:funding )?calls|funding programs|funding sources|find funding|solicitations)\b|\bexplore .{0,40}opportunities\b/i;
+const TITLE_HUB = /^(?:funding|grants?(?: (?:&|and) funding)?)\s*(?:[|\-–—:])|\b(?:funding opportunities|funding resources|grant opportunities|funding calls|active opportunities|current opportunities|open (?:funding )?calls|funding programs|funding sources|find funding|solicitations)\b|\bexplore .{0,40}opportunities\b/i;
 
 const MODEL_NOT_CALL = { news: 'news', deal_news: 'news', directory: 'directory', company: 'company', investor: 'investor', lender: 'lender', report: 'report', blog: 'blog', event: 'event', cohort: 'cohort', cohort_announcement: 'cohort' };
 
@@ -52,6 +56,10 @@ export function classifyPage({ url = '', title = '', text = '', modelKind = '', 
   if (by('report', 'text') || (by('report', 'url') && !apply)) return { type: 'report', isCall: false, reason: 'Report (impact/annual report), not a call', applyQuote, signals };
   if (by('cohort', 'text') || by('cohort', 'model')) return { type: 'cohort', isCall: false, reason: 'Announces a selected cohort/winners, not an open call', applyQuote, signals };
   if (by('event', 'url') || count('event') >= 2 || (by('event', 'model') && count('event') >= 1)) return { type: 'event', isCall: false, reason: 'Event, workshop or course page, not a funding call', applyQuote, signals };
+  // Convocatoria que el propio título marca como vencida, premio ya concedido y ofertas de empleo: nunca son un llamado abierto.
+  if (TITLE_EXPIRED.test(title)) return { type: 'expired', isCall: false, reason: 'The title marks the call as expired or closed', applyQuote, signals };
+  if (by('award', 'url')) return { type: 'award_record', isCall: false, reason: 'Record of an award already granted, not an open call', applyQuote, signals };
+  if (by('job', 'url') || TITLE_JOB.test(title)) return { type: 'job', isCall: false, reason: 'Job posting, not a funding call', applyQuote, signals };
   // Guías, explicaciones e índices de oportunidades: el título lo delata aunque el texto mencione «eligibility» o «deadlines».
   if (!HAS_CALL_ID.test(title) && TITLE_GUIDE.test(title)) return { type: 'blog', isCall: false, reason: 'Guide or explainer, not the call itself', applyQuote, signals };
   if (!HAS_CALL_ID.test(title) && title.length < 120 && TITLE_HUB.test(title)) return { type: 'directory', isCall: false, reason: 'Index of funding opportunities; the individual calls are the leads', applyQuote, signals };
