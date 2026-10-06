@@ -325,7 +325,7 @@ export function intakeTargets(env = {}) {
   const out = [];
   const big = fleetConfig(env).roles.engine;
   if (env.INTAKE_LLM_ROLE !== 'own' && env.INTAKE_LLM_ROLE !== 'small' && big?.ready && !big.alias) out.push({ name: 'engine', base: big.url, model: big.model, apiKey: big.apiKey || env.VLLM_API_KEY || '', reasoningEffort: String(env.INTAKE_LLM_REASONING_EFFORT || big.reasoningEffort || 'low'), jsonMode: big.jsonMode !== false, maxTokens: Number(env.INTAKE_LLM_MAX_TOKENS) || Math.max(big.maxTokens || 0, 4000) });
-  if (env.INTAKE_LLM_BASE_URL) out.push({ name: 'intake', base: String(env.INTAKE_LLM_BASE_URL).replace(/\/+$/, ''), model: env.INTAKE_LLM_MODEL || 'qwen3-4b', apiKey: env.INTAKE_LLM_API_KEY || '', jsonMode: true });
+  if (env.INTAKE_LLM_BASE_URL) out.push({ name: 'intake', base: String(env.INTAKE_LLM_BASE_URL).replace(/\/+$/, ''), model: env.INTAKE_LLM_MODEL || 'qwen3-4b', apiKey: env.INTAKE_LLM_API_KEY || '', jsonMode: true, ...(env.INTAKE_LLM_REASONING_EFFORT ? { reasoningEffort: String(env.INTAKE_LLM_REASONING_EFFORT) } : {}), ...(Number(env.INTAKE_LLM_MAX_TOKENS) ? { maxTokens: Number(env.INTAKE_LLM_MAX_TOKENS) } : {}) });
   return out;
 }
 export function modelInfo(env = {}) {

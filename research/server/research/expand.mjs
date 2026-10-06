@@ -52,7 +52,7 @@ export async function modelTerms(b, env = {}, fetchImpl = fetch) {
     const r = await fetchImpl(`${base}/chat/completions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...(env.INTAKE_LLM_API_KEY ? { Authorization: `Bearer ${env.INTAKE_LLM_API_KEY}` } : {}) },
-      body: JSON.stringify({ model: env.INTAKE_LLM_MODEL || 'qwen3-4b', temperature: 0.2, max_tokens: 200, messages: [{ role: 'user', content: prompt }] }),
+      body: JSON.stringify({ model: env.INTAKE_LLM_MODEL || 'qwen3-4b', temperature: 0.2, max_tokens: env.INTAKE_LLM_REASONING_EFFORT ? 1000 : 200, ...(env.INTAKE_LLM_REASONING_EFFORT ? { reasoning_effort: String(env.INTAKE_LLM_REASONING_EFFORT) } : {}), messages: [{ role: 'user', content: prompt }] }),
       signal: AbortSignal.timeout(Number(env.QUERY_EXPAND_TIMEOUT_MS) || 15_000),
     });
     if (!r.ok) return [];
