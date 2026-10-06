@@ -102,8 +102,9 @@ test('listados de reclutamiento de ensayos clínicos (paidtrials, clinicaltrials
 
 test('la búsqueda web de grants usa consultas federales para biotecnología y premios para el resto', async () => {
   const { grantWebQueries } = await import('../server/research/webscrape.mjs');
-  const bio = grantWebQueries({ industry: 'Pharmaceuticals Biotech Neuroscience', maturity: 'clinical_phase_2' }, [{}, 'Alzheimer agitation'], 2026);
-  assert.equal(bio.length, 3); assert.ok(bio.every((q) => !/prize|accelerator/i.test(q))); assert.ok(bio.some((q) => /SBIR/.test(q)) && bio.some((q) => /Phase 2 clinical trial/.test(q)));
+  const bio = grantWebQueries({ industry: 'Pharmaceuticals Biotech Neuroscience', maturity: 'clinical_phase_2', state: 'Maryland' }, ['Alzheimer agitation'], 2026);
+  assert.ok(bio.length >= 18); assert.equal(new Set(bio).size, bio.length); assert.ok(bio.every((q) => !/prize|accelerator/i.test(q)));
+  assert.ok(bio.some((q) => /PA-27-100/.test(q)) && bio.some((q) => /Maryland/.test(q)) && bio.some((q) => /Alzheimer agitation .*CDMRP/.test(q)) && bio.some((q) => /BARDA/.test(q)));
   const gen = grantWebQueries({ industry: 'mental health app', stage: 'pre-seed' }, [], 2026);
   assert.ok(gen.some((q) => /prize/.test(q)));
 });
@@ -111,4 +112,17 @@ test('la búsqueda web de grants usa consultas federales para biotecnología y p
 test('artículos científicos (doi) y el agregador scientifyresearch no son convocatorias', () => {
   assert.equal(ty('https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.082777', 'Combination therapies for Alzheimer disease', 'Apply'), 'report');
   assert.equal(verifyOpportunity({}, { url: 'https://www.scientifyresearch.org/grant/translational-research-alzheimers-disease-combination-therapies-funding-worldwide', title: 'Translational Research', text: 'Apply' }, { codeOnly: true }).tier, 'drop');
+});
+
+test('las consultas de grants las escribe el modelo desde el brief; sin modelo o con error, plantillas', async () => {
+  const { modelGrantQueries, briefDigest } = await import('../server/research/webscrape.mjs');
+  const brief = { venture: 'MINT-AD', industry: 'Pharmaceuticals', maturity: 'clinical_phase_2', state: 'Maryland', secretToken: 'abc123', contact: { email: 'x@y.com' } };
+  assert.ok(!/abc123|x@y\.com/.test(briefDigest(brief))); assert.match(briefDigest(brief), /state: Maryland/);
+  let prompt = '';
+  const chat = async ({ user }) => { prompt = user; return { json: { queries: ['NIA ADRD clinical trial RFA PA-26-123 for-profit 2026', { query: 'NIA ADRD clinical trial RFA PA-26-123 for-profit 2026' }, 'ADDF drug development RFP 2026 biotechnology', 'short'] } }; };
+  const out = await modelGrantQueries(brief, ['Alzheimer agitation'], { env: {}, chat, n: 24, today: new Date('2026-10-05') });
+  assert.deepEqual(out, ['NIA ADRD clinical trial RFA PA-26-123 for-profit 2026', 'ADDF drug development RFP 2026 biotechnology']);
+  assert.match(prompt, /2026-10-05/); assert.match(prompt, /Maryland/); assert.match(prompt, /Alzheimer agitation/);
+  assert.deepEqual(await modelGrantQueries(brief, [], { env: {}, chat: async () => { throw new Error('down'); } }), []);
+  assert.deepEqual(await modelGrantQueries(brief, [], { env: {} }), []);   // sin flota ni chat inyectado
 });

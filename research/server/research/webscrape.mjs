@@ -6,6 +6,7 @@ import { EXTRACT_SCHEMA, EXTRACT_PROMPT } from './extract.mjs';
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 import { CREDIT_COST, cacheKey, defaultLedger, versionOf } from './firecrawlLedger.mjs';
+import { chatJSON, fleetReady } from '../analysis/fleet.mjs';
 
 export const FIRECRAWL_URL = 'https://api.firecrawl.dev/v2';
 export const SCRAPEGRAPH_URL = 'https://v2-api.scrapegraphai.com/api';
@@ -257,15 +258,32 @@ const opportunityExcerpt = (text) => {
 /** Consultas de la búsqueda web de grants. Una empresa de biotecnología o salud en etapa clínica busca convocatorias federales
  *  (SBIR/STTR, NIH, DoD, BARDA), no premios ni aceleradoras de startups; las plantillas de premios quedan para el resto. */
 const LIFE_SCIENCES = /clinical|phase ?(?:[123]|i{1,3})\b|\btrials?\b|biotech|pharma|therapeut|\bdrugs?\b|medicin|alzheimer|oncolog|neuro/i;
+export const isLifeSciences = (brief = {}) => LIFE_SCIENCES.test([brief.industry, brief.product, brief.maturity, brief.stage, brief.useOfFunds, brief.use_of_funds, brief.product?.maturity].filter((x) => typeof x === 'string').join(' '));
 export function grantWebQueries(brief = {}, terms = [], year = new Date().getFullYear()) {
   const focus = focusOf(brief);
-  const text = [brief.industry, brief.product, brief.maturity, brief.stage, brief.useOfFunds, brief.use_of_funds, brief.product?.maturity].filter((x) => typeof x === 'string').join(' ');
-  if (LIFE_SCIENCES.test(text)) {
-    return [
-      `${focus} SBIR STTR NIH funding opportunity small business clinical trial ${year}`,
-      `${focus} federal grant request for applications Phase 2 clinical trial for-profit company ${year}`,
-      `${terms[1] || focus} NIA OR DoD CDMRP OR BARDA funding opportunity open ${year}`,
+  if (isLifeSciences(brief)) {
+    // Temas: los términos del plan (enfermedad, mecanismo) primero; "biotechnology pharmaceuticals" es un foco pobre.
+    const topics = [...new Set([...terms, focus].filter((x) => typeof x === 'string').map((x) => x.trim()).filter((x) => x.length > 2 && x.length < 60))].slice(0, 3);
+    const state = [brief.state, brief.city].find((x) => typeof x === 'string' && x.trim().length > 1);
+    const fixed = [
+      `NIH SBIR Phase II clinical trial small business funding opportunity open ${year}`,
+      `NIH Parent SBIR PA-27-100 STTR PA-27-101 due dates ${year}`,
+      `SBIR Phase IIB bridge award NIH small business Alzheimer's OR neurodegeneration ${year}`,
+      ...(state ? [`${String(state).trim()} biotechnology company grant funding program ${year}`] : []),
     ];
+    const templates = [
+      (t) => `${t} SBIR STTR NIH funding opportunity small business ${year}`,
+      (t) => `${t} NIH notice of funding opportunity NOFO clinical trial for-profit company ${year}`,
+      (t) => `${t} NIA funding opportunity open applications due ${year} ${year + 1}`,
+      (t) => `${t} DoD CDMRP funding opportunity program announcement ${year}`,
+      (t) => `${t} BARDA OR DARPA OR ARPA-H solicitation open ${year}`,
+      (t) => `${t} grants.gov posted OR forecasted funding opportunity ${year}`,
+      (t) => `${t} foundation request for proposals biotechnology companies Phase 2 ${year}`,
+      (t) => `${t} non-dilutive funding program biotech companies apply ${year}`,
+    ];
+    // Por plantilla y luego por tema: si un tope corta la lista, queda variedad de vehículos.
+    const rest = templates.flatMap((fn) => topics.map((t) => fn(t)));
+    return [...new Set([...fixed, ...rest])];
   }
   return [
     `${focus} startup challenge prize competition applications open ${year}`,
@@ -274,13 +292,48 @@ export function grantWebQueries(brief = {}, terms = [], year = new Date().getFul
   ];
 }
 
+/** Resumen del brief para el modelo: solo campos de negocio, recortados. */
+const DIGEST_KEYS = ['venture', 'company', 'organization', 'industry', 'product', 'description', 'summary', 'mission', 'maturity', 'stage', 'useOfFunds', 'use_of_funds', 'fundingTypes', 'geography', 'country', 'state', 'city', 'entityType', 'legalForm', 'amountUsd', 'amount_usd'];
+export function briefDigest(brief = {}) {
+  const out = [];
+  const put = (key, value) => {
+    if (value == null || value === '') return;
+    if (typeof value === 'string') out.push(`${key}: ${value.replace(/\s+/g, ' ').slice(0, 300)}`);
+    else if (typeof value === 'number' || typeof value === 'boolean') out.push(`${key}: ${value}`);
+    else if (Array.isArray(value)) out.push(`${key}: ${value.filter((x) => typeof x === 'string').join(', ').slice(0, 200)}`);
+    else if (typeof value === 'object') for (const [k, v] of Object.entries(value).slice(0, 8)) if (typeof v === 'string' || typeof v === 'number') put(`${key}.${k}`, v);
+  };
+  for (const key of DIGEST_KEYS) put(key, brief[key]);
+  return out.join('\n');
+}
+
+/** Consultas de la búsqueda web de grants escritas por el modelo grande a partir del brief (fondos y programas reales por nombre,
+ *  vehículos distintos, estado/país, etapa). Las plantillas de grantWebQueries solo se usan si no hay modelo o devuelve poco. */
+export async function modelGrantQueries(brief, terms, { env = process.env, fetcher = fetch, signal, chat = chatJSON, n = 24, today = new Date(), asked = [] } = {}) {
+  const role = fleetReady(env, 'engine') ? 'engine' : fleetReady(env, 'chat') ? 'chat' : null;
+  if (!role && chat === chatJSON) return [];
+  try {
+    const { json } = await chat({
+      system: 'You are a senior grant-funding researcher for a company. You write web search queries that surface OPEN funding calls the company can actually apply to. Reply only JSON.',
+      user: `Today is ${today.toISOString().slice(0, 10)}.\nApplicant (use every fact; the applicant is a for-profit company unless stated otherwise):\n${briefDigest(brief)}\nTopic terms from the plan: ${terms.filter((t) => typeof t === 'string').slice(0, 8).join('; ') || 'n/a'}\n\nWrite ${n} different web search queries to find OPEN non-dilutive funding (grants, SBIR/STTR, cooperative agreements, contracts, prizes, foundation and state programs) that fit this applicant's sector, stage and location. Rules:\n- Name real programs, agencies, institutes and foundations you know (for example the exact NIH institute, a specific DoD CDMRP program, BARDA, ARPA-H, a disease foundation, the state's economic or biotech agency, or the funder's NOFO/PA/RFA number) instead of generic words.\n- Cover different vehicles and funders; no two queries may target the same program with different wording.\n- Match the applicant's stage (a clinical-stage company should look for programs that fund clinical trials and company applicants, not basic research or individuals).\n- Include the current year or the words open/due/deadline where useful.\n- Skip fellowships and scholarships for individuals, jobs, news, and programs for universities only.\nReturn {"queries":["..."]}.${asked.length ? `\nAlready run (do not repeat):\n${asked.slice(-30).join('\n')}` : ''}`,
+      name: 'grant_web_queries', role: role || 'chat',
+    }, { env, fetcher, signal });
+    const seen = new Set(asked.map((q) => String(q).toLowerCase()));
+    return (Array.isArray(json?.queries) ? json.queries : []).map((q) => String(q?.query ?? q ?? '').replace(/\s+/g, ' ').trim().slice(0, 200))
+      .filter((q) => q.length >= 12 && !seen.has(q.toLowerCase()) && seen.add(q.toLowerCase())).slice(0, n);
+  } catch (error) { if (signal?.aborted) throw error; return []; }
+}
+
 /** Discovery amplio de challenges, prizes y aceleradoras. Solo Firecrawl search; no ScrapeGraph. */
 export async function grantWebOpportunities(brief, plan, { env = process.env, fetcher = fetch, signal, live = noopRecorder, record = () => {}, usageClient = null } = {}) {
   if (!firecrawlConfigured(env)) return Object.assign([], { searchAudit: [] });
   const focus = focusOf(brief);
   const year = new Date().getFullYear();
   const terms = [...new Set((plan.terms || []).map((x) => x.term).filter(Boolean))];
-  const queries = grantWebQueries(brief, terms, year).slice(0, clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 5, 3));
+  const maxSearches = clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 40, isLifeSciences(brief) ? 24 : 3);
+  // El modelo escribe las consultas; sin modelo (o con pocas), las plantillas por tipo de brief.
+  const planned = env.GRANT_WEB_MODEL_QUERIES === '0' ? [] : await modelGrantQueries(brief, terms, { env, fetcher, signal, n: maxSearches });
+  const queries = (planned.length >= Math.min(8, maxSearches) ? planned : grantWebQueries(brief, terms, year)).slice(0, maxSearches);
   const seen = new Map();
   const audit = [];
   const pageText = new Map();
