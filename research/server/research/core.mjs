@@ -231,12 +231,18 @@ export const callNumber = (l) => {
 /** Juicio de encaje del modelo con la forma de la rúbrica anterior (match | weak | mismatch). */
 export const matchFromModel = (sf) => ({ verdict: sf.verdict === 'fits' ? 'match' : sf.verdict === 'does_not_fit' ? 'mismatch' : 'weak', source: 'model', anchorsInTitle: [], anchorsInScope: [], phrases: [], genericOnly: [], reasons: [], summary: `${sf.verdict === 'does_not_fit' ? 'Off-topic: ' : ''}${sf.reason || ''}${sf.excludesQuote ? ` (“${sf.excludesQuote.slice(0, 140)}”)` : ''}`.trim(), workType: sf.workType || null });
 export function dedupe(leads) {
-  const map = new Map();
+  const map = new Map(); const seenTitle = new Map();
   for (const l of leads) {
-    const key =
+    let key =
       l.person && !['opportunity', 'radar'].includes(l.kind)
         ? l.personId ? `person-id:${l.personId}` : `person:${norm(l.person)}:${norm(l.org)}`
         : `opportunity:${callNumber(l) || l.externalId || `${norm(l.org)}:${norm(l.title)}`}`;
+    // La misma convocatoria con dos URL (NSF 26-510 con y sin «/solicitation»): mismo sitio y mismo título sin el número.
+    if (!l.person) {
+      const stripped = norm(String(l.title || '').replace(/^\s*[A-Z]{2,6}[- ]?\d{2}-\d{3,}[A-Z0-9-]*\s*[:\-–]\s*/, ''));
+      let host = ''; try { host = new URL(l.contact?.value || '').hostname.replace(/^www\./, ''); } catch { /* sin URL */ }
+      if (host && stripped.length >= 40) { const tk = `${host}|${stripped}`; if (seenTitle.has(tk)) key = seenTitle.get(tk); else seenTitle.set(tk, key); }
+    }
     if (!map.has(key)) map.set(key, { ...l, key, id: id(key) });
     else {
       const current = map.get(key);
@@ -465,8 +471,8 @@ const dropText = (ver) => {
 };
 /** Puerta de la lista principal para una convocatoria: main | verify | drop, con motivo. */
 export function grantGate(l, days, profile = applicantProfile({})) {
-  const screen = screenCall({ url: l.contact?.value || '', title: l.title || '' }, profile);
-  if (screen) return { tier: 'drop', reason: `${screen.code === 'other_state' ? 'Other state' : 'Not eligible'}: ${screen.reason}.`, source: 'screen' };
+  const screen = screenCall({ url: l.contact?.value || '', title: l.title || '', org: l.org || '' }, profile);
+  if (screen) return { tier: 'drop', reason: `${screen.code === 'other_state' ? 'Other state' : screen.code === 'foreign_aid' ? 'Not for this applicant' : 'Not eligible'}: ${screen.reason}.`, source: 'screen' };
   const ver = l.verification || l.codeCheck;
   if (ver?.tier) return ver.tier === 'drop' ? { tier: 'drop', reason: dropText(ver), source: l.verification ? 'read' : 'code' } : { tier: ver.tier, reason: ver.tier === 'main' ? 'Open today and eligible, both verified on the page' : (ver.blockers?.[0] || 'To verify'), source: l.verification ? 'read' : 'code' };
   // Registros oficiales (Grants.gov, radar): plazo del registro + elegibilidad del aviso oficial.

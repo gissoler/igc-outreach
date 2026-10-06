@@ -35,3 +35,24 @@ test('índices y listas: NIDDK, NCI, Labiotech, alerta de universidad, PDF de co
 test('convocatorias legítimas con "funding" o "research" en el título siguen siendo convocatoria', () => {
   assert.equal(ty('https://grants.nih.gov/grants/guide/pa-files/PAR-25-297.html', "PAR-25-297: Alzheimer's Drug-Development Program (U01)", 'Application due date November 5, 2026. How to apply: submit an application.'), 'call');
 });
+
+test('segunda ronda: FAQ, «About…», áreas de interés, tipos de beca y contratos de highergov', () => {
+  assert.equal(ty('https://www.nia.nih.gov/research/sbir/nia-small-business-programs-frequently-asked-questions', 'NIA Small Business Programs Frequently Asked Questions | National Institute on Aging', 'Apply'), 'blog');
+  assert.equal(ty('https://www.nia.nih.gov/research/sbir/about-nia-small-business-funding', 'About NIA Small Business Funding | National Institute on Aging', 'Apply'), 'directory');
+  assert.equal(ty('https://www.nia.nih.gov/research/sbir/nia-small-business-interest-areas', 'NIA Small Business Interest Areas | National Institute on Aging', 'Apply'), 'directory');
+  assert.equal(ty('https://www.alz.org/research/for_researchers/grants/types-of-grants', "Types of Grants | Alzheimer's Association", 'Apply'), 'directory');
+  assert.equal(ty('https://grants.nih.gov/grants/guide/pa-files/PA-27-100.html', 'PA-27-100: NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44])', 'Applications due January 5, 2027. How to apply.'), 'call');
+});
+
+test('ayuda exterior y convocatorias tribales no son para una empresa de Maryland', () => {
+  assert.equal(screenCall({ url: 'https://x.gov/y', title: 'Request for Information (RFI) - Community Engagement Services for the Solomon Islands Threshold Program', org: 'Millennium Challenge Corporation' }, igc).code, 'foreign_aid');
+  assert.equal(screenCall({ url: 'https://grants.gov/y', title: 'Native Public Health Resilience', org: 'Indian Health Service' }, igc).code, 'restricted_applicant');
+  assert.equal(screenCall({ url: 'https://grants.nih.gov/y', title: 'PA-27-100: NIH, CDC and FDA Small Business Innovation Research Grant', org: 'National Institutes of Health' }, igc), null);
+});
+test('la misma convocatoria con dos URL se junta en un solo resultado', async () => {
+  const { dedupe } = await import('../server/research/core.mjs');
+  const mk = (url, title) => ({ kind: 'opportunity', fundingType: 'grant', org: 'nsf.gov', title, contact: { type: 'source', value: url }, externalId: `orchestrator:grant:${url}`, risks: [], evidence: [], paths: [], foundBy: [], facts: {} });
+  const t = 'Small Business Innovation Research / Small Business Technology Transfer Phase I, Phase II, Fast-Track Programs SBIR/STTR: Developing Deep Technologies | NSF';
+  const out = dedupe([mk('https://www.nsf.gov/funding/opportunities/sbir', t), mk('https://www.nsf.gov/funding/opportunities/sbir/nsf26-510/solicitation', `NSF 26-510: ${t}`)]);
+  assert.equal(out.length, 1);
+});

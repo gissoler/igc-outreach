@@ -188,7 +188,11 @@ const FEDERAL_2LETTER = new Set(['va']);   // www.va.gov es federal, no Virginia
 const INDIVIDUAL_TITLE = /\b(?:post-?doctoral|pre-?doctoral|doctoral (?:fellowship|dissertation)|graduate research fellowship|(?:research |career |travel )?fellowships?|fellows? program|scholarships?|career development award|mentored (?:research )?(?:scientist )?(?:career )?(?:development )?award|training grants?|[KF]\d{2}\b)/i;
 const SMALL_BUSINESS_TITLE = /\b(?:sbir|sttr|small business|for-?profit|compan(?:y|ies)|industry)\b/i;
 /** @returns {{ code, reason }|null} */
-export function screenCall({ url = '', title = '' } = {}, profile = {}) {
+const FOREIGN_AID_ORG = /\b(millennium challenge corporation|u\.?s\.? agency for international development|usaid|peace corps|inter-american foundation|african development foundation)\b/i;
+const TRIBAL_TITLE = /\b(tribal|tribes?|american indian|alaska native|native (?:american|public health|hawaiian)|indigenous)\b/i;
+export function screenCall({ url = '', title = '', org = '' } = {}, profile = {}) {
+  if (profile.forProfit !== false && FOREIGN_AID_ORG.test(org)) return { code: 'foreign_aid', reason: `${String(org).slice(0, 60)} funds programs abroad, not a US company's clinical research` };
+  if (profile.forProfit !== false && TRIBAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'restricted_applicant', reason: `The title ("${String(title).slice(0, 110)}") is aimed at tribal or native organizations, not a for-profit company` };
   if (profile.forProfit !== false && INDIVIDUAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) {
     const m = INDIVIDUAL_TITLE.exec(title)[0];
     return { code: 'individual_only', reason: `The title ("${String(title).slice(0, 110)}") is an award for an individual (${m}), not for a company` };
