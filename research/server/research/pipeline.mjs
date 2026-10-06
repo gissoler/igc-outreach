@@ -344,9 +344,9 @@ export async function runResearch(
           return r.leads.filter((l) => !before.has(l.id) || l.hunter || (l.contacts?.length && l.contact?.type === 'email'));
         } : null;
         // Lector para confirmar pistas de snippet: descarga directa → Jina Reader → Firecrawl /scrape.
-        // Lectores de páginas, en el orden de PAGE_READER_ORDER (por defecto firecrawl,crawl4ai,direct,jina): de esa lectura parte todo el
+        // Lectores de páginas, en el orden de PAGE_READER_ORDER (por defecto: solo Crawl4AI si CRAWL4AI_URL está puesto; si no, firecrawl,direct,jina): de esa lectura parte todo el
         // análisis del modelo. Se pasa al siguiente solo si el anterior no está disponible o devuelve menos de 400 caracteres.
-        // Ej.: PAGE_READER_ORDER=crawl4ai,firecrawl,direct,jina para leer primero con Crawl4AI propio (sin créditos).
+        // Ej.: PAGE_READER_ORDER=crawl4ai,direct para añadir la descarga directa como respaldo gratuito.
         const readPage = async (url, s = signal) => {
           const readers = {
             firecrawl: () => firecrawlRead(url, { env, fetcher, signal: s }),
@@ -354,7 +354,7 @@ export async function runResearch(
             direct: () => fetchPage(url, { fetcher, signal: s, timeoutMs: 8000 }),
             jina: () => jinaRead(url, { env, fetcher, signal: s }),
           };
-          const order = String(env.PAGE_READER_ORDER || 'firecrawl,crawl4ai,direct,jina').split(',').map((x) => x.trim().toLowerCase()).filter((x) => readers[x]);
+          const order = String(env.PAGE_READER_ORDER || (crawl4aiConfigured(env) ? 'crawl4ai' : 'firecrawl,direct,jina')).split(',').map((x) => x.trim().toLowerCase()).filter((x) => readers[x]);
           let page = null;
           for (const name of order) {
             if (page && page.text.length >= 400) break;

@@ -54,6 +54,6 @@ main() {
   systemctl restart outreach-research
   sleep 3
   systemctl is-active --quiet outreach-research || { echo "El servicio no arrancó:"; journalctl -u outreach-research -n 40 --no-pager; exit 1; }
-  echo "Listo: Crawl4AI en 127.0.0.1:$PORT${FIRECRAWL_OFF:+ y Firecrawl desactivado (FIRECRAWL_DISABLED=1)}."
+  if [[ "${FIRECRAWL_OFF:-1}" == "0" ]]; then echo "Listo: Crawl4AI en 127.0.0.1:$PORT (Firecrawl sigue activo)."; else echo "Listo: Crawl4AI en 127.0.0.1:$PORT y Firecrawl desactivado (FIRECRAWL_DISABLED=1)."; fi
 }
 main "$@"

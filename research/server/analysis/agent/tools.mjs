@@ -6,6 +6,7 @@
 // (VLLM_RERANK_MODEL) si hay uno de verdad — 2) embeddings + similitud de coseno (VLLM_EMBED_MODEL) — 3) respaldo
 // anterior por palabras clave (focusText) / los primeros N, si no hay flota para esto o falla.
 import { firecrawlSearch, firecrawlScrape } from '../../research/webscrape.mjs';
+import { crawl4aiRead, crawl4aiConfigured } from '../../research/crawl4ai.mjs';
 import { fundId, personKey, normText } from '../entities.mjs';
 import { focusText, relevantText, rankItems } from '../../lib/relevance.mjs';
 
@@ -14,6 +15,12 @@ const hostOf = (u) => { try { return new URL(u).hostname; } catch { return ''; }
 
 async function readPage(url, { env, fetcher, signal }) {
   if (!/^https?:\/\//.test(url) || BLOCKED.test(hostOf(url))) throw new Error('URL not allowed.');
+  // Crawl4AI propio (sin créditos) es el lector preferido cuando está configurado.
+  if (crawl4aiConfigured(env)) {
+    const c4 = await crawl4aiRead(url, { env, fetcher, signal }).catch(() => null);
+    if (c4?.text) return { title: c4.title || '', text: c4.text, date: null };
+    throw new Error('Crawl4AI could not read the page.');
+  }
   if (env.FIRECRAWL_API_KEY) {
     // Con reintentos y errores claros; si Firecrawl falla (créditos, timeout) se cae a la descarga directa.
     const got = await firecrawlScrape(url, { env, fetcher, signal });
