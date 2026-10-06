@@ -25,7 +25,7 @@ export function fleetConfig(env = process.env) {
     roles[role] = { url, model, ready: Boolean(url && model) };
   }
   // Respaldo: si no hay rol 'chat' configurado pero sí el modelo del prerregistro (INTAKE_LLM_*), se usa ese.
-  if (!roles.chat.ready && env.INTAKE_LLM_BASE_URL) roles.chat = { url: trim(env.INTAKE_LLM_BASE_URL), model: String(env.INTAKE_LLM_MODEL || '').trim(), ready: Boolean(env.INTAKE_LLM_MODEL), fallback: 'INTAKE_LLM' };
+  if (!roles.chat.ready && env.INTAKE_LLM_BASE_URL) roles.chat = { url: trim(env.INTAKE_LLM_BASE_URL), model: String(env.INTAKE_LLM_MODEL || '').trim(), ready: Boolean(env.INTAKE_LLM_MODEL), fallback: 'INTAKE_LLM', ...(env.INTAKE_LLM_API_KEY ? { apiKey: env.INTAKE_LLM_API_KEY } : {}), ...(env.INTAKE_LLM_REASONING_EFFORT ? { reasoningEffort: String(env.INTAKE_LLM_REASONING_EFFORT).trim() } : {}), ...(Number(env.INTAKE_LLM_MAX_TOKENS) ? { maxTokens: Number(env.INTAKE_LLM_MAX_TOKENS) } : {}) };
   // Rol 'engine': el modelo que PLANEA y LEE en el motor v2 (engine.mjs). Puede ser un modelo grande propio
   // (vLLM en g355) o cualquier API compatible con OpenAI. Sin ENGINE_LLM_URL/MODEL usa el rol 'chat' (Qwen3-30B).
   const engineUrl = trim(env.ENGINE_LLM_URL); const engineModel = String(env.ENGINE_LLM_MODEL || '').trim();
