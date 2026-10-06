@@ -192,6 +192,7 @@ const FOREIGN_AID_ORG = /\b(millennium challenge corporation|u\.?s\.? agency for
 const TRIBAL_TITLE = /\b(tribal|tribes?|american indian|alaska native|native (?:american|public health|hawaiian)|indigenous)\b/i;
 export function screenCall({ url = '', title = '', org = '' } = {}, profile = {}) {
   if (profile.forProfit !== false && FOREIGN_AID_ORG.test(org)) return { code: 'foreign_aid', reason: `${String(org).slice(0, 60)} funds programs abroad, not a US company's clinical research` };
+  if (profile.forProfit !== false && /(?:^|\.)research\.va\.gov$/.test((() => { try { return new URL(url).hostname; } catch { return ''; } })())) return { code: 'restricted_applicant', reason: 'VA research awards (Merit Review) are for VA investigators, not outside companies' };
   if (profile.forProfit !== false && TRIBAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'restricted_applicant', reason: `The title ("${String(title).slice(0, 110)}") is aimed at tribal or native organizations, not a for-profit company` };
   if (profile.forProfit !== false && INDIVIDUAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) {
     const m = INDIVIDUAL_TITLE.exec(title)[0];

@@ -56,3 +56,15 @@ test('la misma convocatoria con dos URL se junta en un solo resultado', async ()
   const out = dedupe([mk('https://www.nsf.gov/funding/opportunities/sbir', t), mk('https://www.nsf.gov/funding/opportunities/sbir/nsf26-510/solicitation', `NSF 26-510: ${t}`)]);
   assert.equal(out.length, 1);
 });
+
+test('policy brief en PDF, guía de LOI y premios del VA para investigadores propios', () => {
+  assert.equal(ty('https://www.ghtcoalition.org/documents/pdf/The-Supporting-Innovative-Global-Health-Technologies-Fund-policy-brief.pdf', 'The Supporting Innovative Global Health Technologies (SIGHT) Fund:', 'Apply'), 'report');
+  assert.equal(ty('https://www.research.va.gov/isrm/shared_docs/Guidance-DrugDevelopmentLOI.pdf', 'Guidance for Submission of a Letter of Intent for a BLRD Merit Review Award', 'Apply'), 'blog');
+  assert.equal(screenCall({ url: 'https://www.research.va.gov/funding/x', title: 'BLRD Merit Review Award' }, igc).code, 'restricted_applicant');
+  assert.equal(screenCall({ url: 'https://www.va.gov/x', title: 'x' }, igc), null);
+});
+
+test('el policy brief del SIGHT Fund se reconoce por su contenido aunque la URL no lo diga', () => {
+  const text = "The Supporting Innovative Global Health Technologies (SIGHT) Fund: A new proposal to drive inclusive innovation at USAID and stock the global health toolbox of the future. January 2022. Copyright 2022, PATH. Suggested reference: Rashid J, Tasneem Z, Conron C. The SIGHT Fund. Washington, DC: Global Health Technologies Coalition; 2022. This brief was authored by Julien Rashid.";
+  assert.equal(ty('https://www.ghtcoalition.org/documents/pdf/sight-fund.pdf', 'The Supporting Innovative Global Health Technologies (SIGHT) Fund:', text), 'report');
+});

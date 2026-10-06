@@ -6,7 +6,7 @@
 import { flat } from './dates.mjs';
 
 const PATH = [
-  ['report', /\/(impact-?reports?|annual-?reports?|reports?|publications?|white-?papers?|case-stud(?:y|ies))(\/|$|-)|impact-report|annual-report/i],
+  ['report', /\/(impact-?reports?|annual-?reports?|reports?|publications?|white-?papers?|case-stud(?:y|ies))(\/|$|-)|impact-report|annual-report|policy-?briefs?|fact-?sheets?|white-?papers?/i],
   ['blog', /\/(blogs?|posts?|stories|story|insights?|articles?|magazine|perspectives?|opinion|voices|podcasts?)(\/|$)|\/20\d{2}\/\d{2}\/(?:\d{2}\/)?[a-z0-9-]{8,}/i],   // incluye /2026/06/02/slug (WordPress)
   ['news', /\/(news|newsroom|press|press-releases?|media-releases?|media-cent(?:er|re)|mediacentre|updates\/news|noticias|actualidad|comunicados?|announcements?|alerts?)(\/|$)/i],
   ['event', /\/(events?|event-calendar|webinars?|workshops?|courses?|trainings?|eventos?|talleres?|agenda)(\/|$)/i],
@@ -16,7 +16,7 @@ const PATH = [
   ['job', /\/(careers?|jobs?|job-openings?|vacancies|employment|work-with-us|join-our-team)(\/|$)/i],
 ];
 const TEXT = [
-  ['report', /\b(impact report|annual report|we(?:'|’)re proud to share (?:the|our)|this report (?:highlights|reflects|describes)|highlights the (?:network|program)(?:'|’)s progress|informe (?:de impacto|anual))\b/i],
+  ['report', /\b(impact report|annual report|this (?:policy )?brief (?:was authored|outlines|proposes|argues|describes|highlights)|policy brief|suggested reference:|a new proposal to (?:drive|fund|create|establish)|we(?:'|’)re proud to share (?:the|our)|this report (?:highlights|reflects|describes)|highlights the (?:network|program)(?:'|’)s progress|informe (?:de impacto|anual))\b/i],
   ['cohort', /\b(announce[sd]? the (?:\d{4} )?(?:members|winners|finalists|cohort|awardees|recipients|grantees|selected)|meet the (?:\d{4} )?(?:cohort|winners|finalists|awardees|grantees)|(?:members|companies|startups|teams) (?:selected|chosen) for (?:the|its|our)|welcomes? (?:its|the) (?:new |\d{4} )?cohort|congratulations to (?:the|our))\b/i],
   ['event', /\b(register for this (?:short )?course|join us for (?:a|an|our) (?:webinar|workshop|info session|event)|webinar recording|workshop schedule|session 1\b|orientation session|info(?:rmation)? session on|save the date|anmeldung zum workshop|inscr[ií]bete al taller)\b/i],
   ['news', /\b(press release|for immediate release|\(\s*(?:PR ?Newswire|Business Wire|GLOBE NEWSWIRE)\s*\)|today announced|announced today|ha anunciado hoy)\b/i],
@@ -30,7 +30,7 @@ export const APPLY_RX = /\b(how to apply|apply (?:now|here|online|by|before|via|
 const HAS_CALL_ID = /\b(?:[A-Z]{2,6}-){1,4}[A-Z0-9]*\d{2,}[A-Z0-9-]*\b/;
 const TITLE_JOB = /\b(?:program|project|research|grants?) (?:officer|manager|coordinator|associate)\b.*\||\b(?:we(?:'|’)re hiring|job opening|open position|careers? at)\b|^(?:senior|assistant|associate|chief|vice president|director)\b.{0,80}\b(?:officer|director|manager|coordinator|specialist)\b/i;
 const TITLE_EXPIRED = /^\s*(?:\[?expired\]?|closed|archived|inactive)\b[\s:\-–—]/i;
-const TITLE_GUIDE = /^(?:(?:top|best)\b.{0,40}\b(?:grants|funding|programs|funders|investors|campaigns)|understanding|what (?:is|are)|guide to|a guide to|the (?:complete|ultimate|essential|beginner'?s) guide|navigating|ask the expert|faq\b|frequently asked|top \d+|best \d+)|\b(?:ultimate|complete|beginner'?s) guide\b|\bask the expert\b|(?<!application )\bguide\b|\bexplained\b|\bfrequently asked questions\b/i;
+const TITLE_GUIDE = /^(?:guidance\b|(?:top|best)\b.{0,40}\b(?:grants|funding|programs|funders|investors|campaigns)|understanding|what (?:is|are)|guide to|a guide to|the (?:complete|ultimate|essential|beginner'?s) guide|navigating|ask the expert|faq\b|frequently asked|top \d+|best \d+)|\b(?:ultimate|complete|beginner'?s) guide\b|\bask the expert\b|(?<!application )\bguide\b|\bexplained\b|\bfrequently asked questions\b/i;
 const TITLE_HUB = /^(?:funding|grants?(?: (?:&|and) funding)?)\s*(?:[|\-–—:])|\b(?:funding opportunities|funding resources|grant opportunities|funding calls|active opportunities|current opportunities|open (?:funding )?calls|funding programs|funding sources|find funding|solicitations)\b|\bexplore .{0,40}opportunities\b|\bfunding announcements?\b|^about\b|^types of (?:grants|funding|awards)\b|\b(?:interest|priority) areas\b|^(?:research|grants?) (?:&|and) (?:funding|grants?)\b|^funding (?:&|and) grants?\b/i;
 
 const MODEL_NOT_CALL = { news: 'news', deal_news: 'news', directory: 'directory', company: 'company', investor: 'investor', lender: 'lender', report: 'report', blog: 'blog', event: 'event', cohort: 'cohort', cohort_announcement: 'cohort' };
