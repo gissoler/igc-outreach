@@ -253,17 +253,34 @@ const opportunityExcerpt = (text) => {
   return clean.slice(Math.max(0, at < 0 ? 0 : at - 120), Math.max(500, at + 700)).slice(0, 900);
 };
 
+
+/** Consultas de la búsqueda web de grants. Una empresa de biotecnología o salud en etapa clínica busca convocatorias federales
+ *  (SBIR/STTR, NIH, DoD, BARDA), no premios ni aceleradoras de startups; las plantillas de premios quedan para el resto. */
+const LIFE_SCIENCES = /clinical|phase ?(?:[123]|i{1,3})\b|\btrials?\b|biotech|pharma|therapeut|\bdrugs?\b|medicin|alzheimer|oncolog|neuro/i;
+export function grantWebQueries(brief = {}, terms = [], year = new Date().getFullYear()) {
+  const focus = focusOf(brief);
+  const text = [brief.industry, brief.product, brief.maturity, brief.stage, brief.useOfFunds, brief.use_of_funds, brief.product?.maturity].filter((x) => typeof x === 'string').join(' ');
+  if (LIFE_SCIENCES.test(text)) {
+    return [
+      `${focus} SBIR STTR NIH funding opportunity small business clinical trial ${year}`,
+      `${focus} federal grant request for applications Phase 2 clinical trial for-profit company ${year}`,
+      `${terms[1] || focus} NIA OR DoD CDMRP OR BARDA funding opportunity open ${year}`,
+    ];
+  }
+  return [
+    `${focus} startup challenge prize competition applications open ${year}`,
+    `${focus} startup accelerator innovation program non-dilutive funding apply ${year}`,
+    `${terms[1] || focus} early stage startup open call global prize`,
+  ];
+}
+
 /** Discovery amplio de challenges, prizes y aceleradoras. Solo Firecrawl search; no ScrapeGraph. */
 export async function grantWebOpportunities(brief, plan, { env = process.env, fetcher = fetch, signal, live = noopRecorder, record = () => {}, usageClient = null } = {}) {
   if (!firecrawlConfigured(env)) return Object.assign([], { searchAudit: [] });
   const focus = focusOf(brief);
   const year = new Date().getFullYear();
   const terms = [...new Set((plan.terms || []).map((x) => x.term).filter(Boolean))];
-  const queries = [
-    `${focus} startup challenge prize competition applications open ${year}`,
-    `${focus} startup accelerator innovation program non-dilutive funding apply ${year}`,
-    `${terms[1] || focus} early stage startup open call global prize`,
-  ].slice(0, clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 5, 3));
+  const queries = grantWebQueries(brief, terms, year).slice(0, clamp(env.GRANT_WEB_MAX_SEARCHES, 1, 5, 3));
   const seen = new Map();
   const audit = [];
   const pageText = new Map();

@@ -31,7 +31,7 @@ export function literalIn(quote, pageText) {
 const SOCIAL = /(^|\.)(linkedin\.com|facebook\.com|instagram\.com|x\.com|twitter\.com|youtube\.com|tiktok\.com|reddit\.com|medium\.com|substack\.com|quora\.com|crunchbase\.com|pitchbook\.com|glassdoor\.com)$/i;
 const AGGREGATORS = /(^|\.)(startupgrantsindia\.com|fundsforngos\.org|fundsforcompanies\.com|fundsforindividuals\.com|opportunitydesk\.org|opportunitiesforafricans\.com|grantwatch\.com|grants\.gov\.in|vestbee\.com|f6s\.com|startupticker\.ch|dealroom\.co|eu-startups\.com|tech\.eu|startus-insights\.com|growthlist\.co|startupstash\.com|beststartup\.org|grantforward\.com|instrumentl\.com|grantstation\.com|opportunities-for-youth\.org|youthop\.com|scholarshipdb\.net)$/i;
 // Directorios, marketplaces y blogs de listas: nunca son la fuente oficial (lista heurística; ampliarla cuando aparezcan más).
-const AGGREGATORS_EXTRA = /(^|\.)(grantedai\.com|grantcompass\.ca|founderstoday\.org|access2eic\.eu|rasph\.com|freemindgroup\.com|grants\.ai|grantify\.io|fundingforgood\.org|roundfunded\.com|hellodarwin\.com|ellty\.com|spinverse\.com|wellfound\.com|angel\.co|tracxn\.com|cbinsights\.com|seedtable\.com|failory\.com|signal\.nfx\.com|openvc\.app|visible\.vc|gust\.com|startersss\.com|grantoria\.com|failory\.com|peony\.ink|papermark\.com|startupgrantshub\.com|socialroots\.ai|healthcarevclist\.com|cleat\.ai|legalclarity\.org|bwcoconsulting\.com|billgates\.pk|grantable\.co|highergov\.com|govtribe\.com|govwin\.com|bidnet(?:direct)?\.com|usaspending\.gov|usgrants\.org|fedlaws\.org|medilaborfp\.com|layer3labs\.io|smartmdr\.com|digital\.health)$/i;
+const AGGREGATORS_EXTRA = /(^|\.)(grantedai\.com|grantcompass\.ca|founderstoday\.org|access2eic\.eu|rasph\.com|freemindgroup\.com|grants\.ai|grantify\.io|fundingforgood\.org|roundfunded\.com|hellodarwin\.com|ellty\.com|spinverse\.com|wellfound\.com|angel\.co|tracxn\.com|cbinsights\.com|seedtable\.com|failory\.com|signal\.nfx\.com|openvc\.app|visible\.vc|gust\.com|startersss\.com|grantoria\.com|failory\.com|peony\.ink|papermark\.com|startupgrantshub\.com|socialroots\.ai|healthcarevclist\.com|cleat\.ai|legalclarity\.org|bwcoconsulting\.com|billgates\.pk|grantable\.co|scientifyresearch\.org|paidtrials\.com|centerwatch\.com|antidote\.me|clinicaltrials\.gov|highergov\.com|govtribe\.com|govwin\.com|bidnet(?:direct)?\.com|usaspending\.gov|usgrants\.org|fedlaws\.org|medilaborfp\.com|layer3labs\.io|smartmdr\.com|digital\.health)$/i;
 const DIRECTORY_PATH = /^https?:\/\/(www\.)?ycombinator\.com\/(companies|library)/i;
 export const hostOf = (url) => { try { return new URL(url).hostname.replace(/^www\./, '').toLowerCase(); } catch { return ''; } };
 export const hostKind = (url) => { const h = hostOf(url); return SOCIAL.test(h) ? 'social' : AGGREGATORS.test(h) || AGGREGATORS_EXTRA.test(h) || DIRECTORY_PATH.test(String(url)) ? 'aggregator' : 'other'; };
@@ -173,6 +173,17 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
     if (typeof sf.excludes_quote === 'string' && sf.excludes_quote.trim() && !excludesQuote && !/^(null|none|n\/a|unknown)$/i.test(sf.excludes_quote.trim())) flags.push('fake_quote:excludes');
     scopeFit = { verdict: verdict === 'does_not_fit' && !quoted ? 'partial' : verdict, claimed: verdict, reason: String(sf.reason || '').replace(/\s+/g, ' ').trim().slice(0, 300), fundsQuote: fundsQuote.slice(0, 300), excludesQuote: excludesQuote.slice(0, 300), workType: String(sf.work_type || 'other').slice(0, 40), quoted };
     check('scope_fit', scopeFit.verdict === 'fits', scopeFit.reason || `Model: ${scopeFit.verdict}`, excludesQuote || fundsQuote);
+  }
+  // El propio programa dice que NO financia trabajo clínico y el solicitante está en clínica: el código lo comprueba con la frase literal.
+  // (No se aplica a avisos que permiten ensayos: «Clinical Trial Optional/Required/Allowed».)
+  if (!scopeFit || scopeFit.verdict !== 'does_not_fit') {
+    const clinicalNeed = /(?<!pre)(?<!pre-)(?<!pre )clinical|phase ?(?:[123]|i{1,3})\b|\btrial/i.test([brief?.maturity, brief?.stage, brief?.useOfFunds, brief?.use_of_funds, brief?.product?.maturity].filter(Boolean).join(' '));
+    const ex = clinicalNeed && !/clinical trials? (?:optional|required|allowed|not allowed)/i.test(text) ? /[^.]{0,160}\b(?:does|do|will|can)(?: not|n[’']t)\s+(?:fund|support|cover|invest in)\b[^.]{0,120}\b(?:clinical[- ]stage|clinical trials?|clinical development)[^.]{0,80}\./i.exec(text) : null;
+    if (ex) {
+      const q = ex[0].replace(/\s+/g, ' ').trim().slice(0, 300);
+      scopeFit = { verdict: 'does_not_fit', claimed: 'does_not_fit', reason: `The program says it does not fund clinical-stage work, and the applicant is in clinical development: "${q}"`, fundsQuote: '', excludesQuote: q, source: 'code' };
+      check('scope_fit', false, scopeFit.reason, q);
+    }
   }
 
   // 5) Oficial: el modelo lo dice y el host no es agregador; en modo solo-código no se puede afirmar

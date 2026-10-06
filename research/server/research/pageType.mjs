@@ -6,13 +6,14 @@
 import { flat } from './dates.mjs';
 
 const PATH = [
-  ['report', /\/(impact-?reports?|annual-?reports?|reports?|publications?|white-?papers?|case-stud(?:y|ies))(\/|$|-)|impact-report|annual-report|policy-?briefs?|fact-?sheets?|white-?papers?/i],
+  ['report', /\/(impact-?reports?|annual-?reports?|reports?|publications?|white-?papers?|case-stud(?:y|ies))(\/|$|-)|impact-report|annual-report|\/doi\/(?:abs\/|full\/|pdf\/)?10\.\d{4,}|pubmed\.ncbi|policy-?briefs?|fact-?sheets?|white-?papers?/i],
   ['blog', /\/(blogs?|posts?|stories|story|insights?|articles?|magazine|perspectives?|opinion|voices|podcasts?)(\/|$)|\/20\d{2}\/\d{2}\/(?:\d{2}\/)?[a-z0-9-]{8,}/i],   // incluye /2026/06/02/slug (WordPress)
   ['news', /\/(news|newsroom|press|press-releases?|media-releases?|media-cent(?:er|re)|mediacentre|updates\/news|noticias|actualidad|comunicados?|announcements?|alerts?)(\/|$)/i],
   ['event', /\/(events?|event-calendar|webinars?|workshops?|courses?|trainings?|eventos?|talleres?|agenda)(\/|$)/i],
   ['directory', /\/(directory|database|companies|portfolio|members|listings?|rankings?|top-\d+|current-research|grant-making-agencies|learn-grants)(\/|$)/i],
   ['award', /sbir\.gov\/awards?\/\d+|\/awards?\/\d{4,}(\/|$)/i],        // registro de un premio ya concedido
   ['internal', /tracked-?changes|\/(?:board-?(?:meetings?|packets?)|minutes|agendas?)(\/|$)|concept-?(?:proposal|plan)[^/]*\.pdf/i],
+  ['trial', /\/(?:clinicaltrials?|clinical-trials?|studies|study)\/[^/]*(?:study|trial|participants?|nct\d)|\/NCT\d{8}/i],
   ['job', /\/(careers?|jobs?|job-openings?|vacancies|employment|work-with-us|join-our-team)(\/|$)/i],
 ];
 const TEXT = [
@@ -61,6 +62,7 @@ export function classifyPage({ url = '', title = '', text = '', modelKind = '', 
   // Convocatoria que el propio título marca como vencida, premio ya concedido y ofertas de empleo: nunca son un llamado abierto.
   if (TITLE_EXPIRED.test(title)) return { type: 'expired', isCall: false, reason: 'The title marks the call as expired or closed', applyQuote, signals };
   if (by('internal', 'url')) return { type: 'internal_doc', isCall: false, reason: 'Internal or board document (concept, minutes), not the call', applyQuote, signals };
+  if (by('trial', 'url')) return { type: 'trial_listing', isCall: false, reason: 'Patient-recruitment listing for a clinical trial, not a funding call', applyQuote, signals };
   if (by('award', 'url')) return { type: 'award_record', isCall: false, reason: 'Record of an award already granted, not an open call', applyQuote, signals };
   if (by('job', 'url') || TITLE_JOB.test(title)) return { type: 'job', isCall: false, reason: 'Job posting, not a funding call', applyQuote, signals };
   if (!HAS_CALL_ID.test(title) && TITLE_MEETING.test(title) && title.length < 140 && !/\b(?:grants?|awards?|funding|request for applications)\b/i.test(title)) return { type: 'event', isCall: false, reason: 'Meeting, workshop or summary page, not a funding call', applyQuote, signals };

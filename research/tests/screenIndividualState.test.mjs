@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applicantProfile, screenCall, usStateOf } from '../server/research/applicant.mjs';
 import { classifyPage } from '../server/research/pageType.mjs';
+import { verifyOpportunity } from '../server/research/verify.mjs';
 import { grantGate } from '../server/research/core.mjs';
 
 const igc = applicantProfile({ state: 'Maryland', city: 'Potomac', geography: 'Potomac, Maryland, USA', entityType: 'for-profit company' });
@@ -80,4 +81,34 @@ test('centros institucionales (T42, P30), IHS, reuniones y portadas no son para 
   assert.equal(ty('https://www.ninds.nih.gov/current-research/research-funded-ninds/translational-research', 'Translational Research', 'Apply'), 'directory');
   assert.equal(ty('https://www.grants.gov/learn-grants/grant-making-agencies/u-s-department-of-health-and-human-services-hhs', 'U.S. Department of Health and Human Services (HHS) | Grants.gov', 'Apply'), 'directory');
   assert.equal(ty('https://grants.nih.gov/grants/guide/pa-files/PAR-25-297.html', "PAR-25-297: Alzheimer's Drug-Development Program (U01 Clinical Trial Optional)", 'Application due date November 5, 2026. How to apply: submit an application.'), 'call');
+});
+
+test('NSF SBIR farmacéutica: dice que no financia fármacos en etapa clínica → no encaja con un candidato en Fase 2', () => {
+  const nsf = 'NSF invests up to $2 million in seed funding and takes zero equity. Your company must be a small business located in the United States. We do not fund clinical trials, or the development of pre-clinical or clinical-stage drug candidates. Get started with a project pitch.';
+  const brief = { maturity: 'clinical_phase_2', stage: 'grant', product: 'MINT-AD' };
+  const bad = verifyOpportunity({}, { url: 'https://seedfund.nsf.gov/topics/pharmaceutical-technologies/', title: 'Pharmaceutical Technologies Grant | NSF SBIR', text: nsf }, { codeOnly: true, brief });
+  assert.equal(bad.scopeFit.verdict, 'does_not_fit'); assert.ok(bad.reasons.includes('scope_mismatch')); assert.equal(bad.tier, 'drop');
+  // sin necesidad clínica no se aplica
+  const ok = verifyOpportunity({}, { url: 'https://seedfund.nsf.gov/x', title: 'Pharmaceutical Technologies Grant | NSF SBIR', text: nsf }, { codeOnly: true, brief: { maturity: 'preclinical' } });
+  assert.notEqual(ok.scopeFit?.verdict, 'does_not_fit');
+  // un aviso NIH que permite ensayos clínicos no se descarta
+  const nih = verifyOpportunity({}, { url: 'https://grants.nih.gov/x', title: 'PA-27-100: Parent SBIR (R43/R44 Clinical Trial Optional)', text: 'Clinical Trial Optional. Phase I does not support clinical trials of new drugs in some institutes; see Section 2. Applications due January 5, 2027. How to apply.' }, { codeOnly: true, brief });
+  assert.notEqual(nih.scopeFit?.verdict, 'does_not_fit');
+});
+test('listados de reclutamiento de ensayos clínicos (paidtrials, clinicaltrials.gov) no son convocatorias', () => {
+  assert.equal(verifyOpportunity({}, { url: 'https://paidtrials.com/clinicaltrials/study-to-evaluate-bms-986368/', title: 'Study to Evaluate BMS-986368 for agitation in Alzheimer\'s', text: 'Apply to participate' }, { codeOnly: true }).tier, 'drop');
+  assert.equal(ty('https://example.org/clinicaltrials/study-to-evaluate-x-for-agitation', 'Study to evaluate X', 'Apply to participate'), 'trial_listing');
+});
+
+test('la búsqueda web de grants usa consultas federales para biotecnología y premios para el resto', async () => {
+  const { grantWebQueries } = await import('../server/research/webscrape.mjs');
+  const bio = grantWebQueries({ industry: 'Pharmaceuticals Biotech Neuroscience', maturity: 'clinical_phase_2' }, [{}, 'Alzheimer agitation'], 2026);
+  assert.equal(bio.length, 3); assert.ok(bio.every((q) => !/prize|accelerator/i.test(q))); assert.ok(bio.some((q) => /SBIR/.test(q)) && bio.some((q) => /Phase 2 clinical trial/.test(q)));
+  const gen = grantWebQueries({ industry: 'mental health app', stage: 'pre-seed' }, [], 2026);
+  assert.ok(gen.some((q) => /prize/.test(q)));
+});
+
+test('artículos científicos (doi) y el agregador scientifyresearch no son convocatorias', () => {
+  assert.equal(ty('https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.082777', 'Combination therapies for Alzheimer disease', 'Apply'), 'report');
+  assert.equal(verifyOpportunity({}, { url: 'https://www.scientifyresearch.org/grant/translational-research-alzheimers-disease-combination-therapies-funding-worldwide', title: 'Translational Research', text: 'Apply' }, { codeOnly: true }).tier, 'drop');
 });
