@@ -205,3 +205,23 @@ test('el modelo lee la página abierta y su juicio de alcance (con cita literal)
   assert.ok(leads[0].codeCheck);
   assert.equal(modelRead.count, 1);
 });
+
+test('notRecipientHost: company databases and aggregators are never investor leads', async () => {
+  const { notRecipientHost } = await import('../server/research/providers.mjs');
+  assert.equal(notRecipientHost('https://www.cbinsights.com/company/pura-mente', 'investment'), true);
+  assert.equal(notRecipientHost('https://www.crunchbase.com/organization/x', 'grant'), true);
+  assert.equal(notRecipientHost('https://www.goodwatercap.com/', 'investment'), false);
+  assert.equal(notRecipientHost('https://www.grantforward.com/x', 'investment'), true);
+});
+
+test('SearXNG as base: always first, paid APIs only complement', async () => {
+  const { searchApisConfigured, searchProviders } = await import('../server/research/searchApis.mjs');
+  const { webSourcePlan } = await import('../server/research/sourcePlan.mjs');
+  const env = { SEARCH_PROVIDER: 'searxng', SEARXNG_URL: 'http://127.0.0.1:8888', EXA_API_KEY: 'x', SERPER_API_KEY: 'y', TAVILY_API_KEY: 'z' };
+  assert.deepEqual(searchProviders(env), ['searxng', 'exa', 'serper']);
+  assert.deepEqual(searchProviders({ ...env, SEARCH_COMPLEMENT: 'none' }), ['searxng']);
+  assert.equal(searchApisConfigured({ ...env, SEARCH_COMPLEMENT: 'none' }), true);
+  const w = webSourcePlan({ fundingTypes: ['investment'], engineOn: false, env });
+  assert.deepEqual([w.exa, w.serper, w.rounds], [false, false, false]);
+  assert.equal(webSourcePlan({ fundingTypes: ['investment'], engineOn: false, env: { EXA_API_KEY: 'x' } }).exa, true);
+});

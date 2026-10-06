@@ -1,4 +1,5 @@
 import { candidate, evidence, isIGC, norm, safeUrl, ventureOf } from './core.mjs';
+import { hostKind } from './verify.mjs';
 import { adjacent, fundingQuery } from './expand.mjs';
 import { diversifyGrantHits, grantQueries } from './grantManager.mjs';
 import { eligibilityFilter, grantsGovSearch, intelNote, intelQueries } from './grantSources.mjs';
@@ -841,6 +842,9 @@ export function exaQuery(brief, objective) {
   ];
   return parts.filter(Boolean).join('. ').replace(/\s+/g, ' ').slice(0, 900);
 }
+/** Páginas de bases de datos de empresas (perfil de una startup, no del inversor ni de la convocatoria) y directorios: nunca son el destinatario. */
+const COMPANY_DB = /(^|\.)(cbinsights\.com|crunchbase\.com|pitchbook\.com|tracxn\.com|dealroom\.co|owler\.com|craft\.co|growjo\.com|zoominfo\.com|rocketreach\.co|apollo\.io|glassdoor\.com|linkedin\.com|g2\.com|capterra\.com|similarweb\.com|wikipedia\.org|app\.dealroom\.co|startupblink\.com|golden\.com|clay\.com|leadiq\.com|signalhire\.com|comparably\.com|ensun\.io)$/i;
+export const notRecipientHost = (url, objective = '') => { try { const h = new URL(url).hostname.replace(/^www\./, '').toLowerCase(); return COMPANY_DB.test(h) || (objective !== 'grant' && hostKind(url) !== 'other'); } catch { return true; } };
 const host = (url) => new URL(url).hostname.replace(/^www\./, '');
 const ownTokens = (b) => [...new Set([
   ...[b.organization, ventureOf(b), b.company].map((x) => norm(x).split(' ')[0]),
@@ -850,7 +854,7 @@ function exaLeads(results, brief, { objective, source, field, query = '', term =
   const own = ownTokens(brief);
   return (results || []).flatMap((r) => {
     const url = safeUrl(r?.url);
-    if (!url) return [];
+    if (!url || notRecipientHost(url, objective)) return [];
     const h = host(url);
     // No devolver la propia empresa ni la organización que busca como candidato.
     if (norm(h).split(' ').some((part) => own.some((t) => part.startsWith(t)))) return [];
@@ -908,7 +912,7 @@ export async function roundAnnouncements(client, brief, plan, env) {
   }
   if (!env.SERPER_API_KEY) throw new Error('Set EXA_API_KEY or SERPER_API_KEY.');
   const data = await client.json('https://google.serper.dev/news', { q, num: 10, tbs: 'qdr:y' }, { 'X-API-KEY': env.SERPER_API_KEY });
-  return (data.news || []).filter((r) => safeUrl(r.link)).map((r) => candidate({
+  return (data.news || []).filter((r) => safeUrl(r.link) && !notRecipientHost(r.link, 'investment')).map((r) => candidate({
     externalId: `serper-news:${r.link}`,
     org: host(r.link),
     title: r.title,
@@ -935,7 +939,7 @@ export async function webSearch(client, brief, plan, env) {
   for (const q of qs) {
     const data = await client.json('https://google.serper.dev/search', { q, num: 10 }, { 'X-API-KEY': env.SERPER_API_KEY });
     for (const r of data.organic || []) {
-      if (!safeUrl(r.link) || seen.has(r.link)) continue;
+      if (!safeUrl(r.link) || seen.has(r.link) || notRecipientHost(r.link, brief.fundingTypes[0])) continue;
       seen.add(r.link);
       out.push(candidate({
         org: new URL(r.link).hostname,
@@ -959,7 +963,7 @@ export async function searchFundingQuery(client, brief, { query, term = '', gap 
   }
   if (env.SERPER_API_KEY) {
     const data = await client.json('https://google.serper.dev/search', { q: String(query).slice(0, 500), num: 10 }, { 'X-API-KEY': env.SERPER_API_KEY });
-    return (data.organic || []).flatMap((r) => safeUrl(r.link) ? [candidate({
+    return (data.organic || []).flatMap((r) => safeUrl(r.link) && !notRecipientHost(r.link, objective) ? [candidate({
       externalId: `serper-loop:${r.link}`, org: host(r.link), title: r.title, kind: 'research', fundingType: objective,
       evidence: [evidence('Serper: unverified loop lead', r.link, r.snippet || r.title, 'search_snippet', undefined, false)],
       missing: ['Unverified source content; read before outreach'],

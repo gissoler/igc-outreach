@@ -8,18 +8,28 @@
    · Las claves viven solo en el servidor (.env). Nunca van en la URL salvo donde el proveedor no ofrece otra vía (ninguno aquí).
    ───────────────────────────────────────────────────────────────────────────── */
 import { safeUrl } from './core.mjs';
-import { isPublicUrl } from './localSearch.mjs';
+import { isPublicUrl, searxSearch } from './localSearch.mjs';
 import { firecrawlSearch, firecrawlScrape, firecrawlDisabled } from './webscrape.mjs';
 
-export const PROVIDER_KEYS = { linkup: 'LINKUP_API_KEY', exa: 'EXA_API_KEY', you: 'YOU_API_KEY', tavily: 'TAVILY_API_KEY', jina: 'JINA_API_KEY', serper: 'SERPER_API_KEY', firecrawl: 'FIRECRAWL_API_KEY' };
+export const PROVIDER_KEYS = { linkup: 'LINKUP_API_KEY', exa: 'EXA_API_KEY', you: 'YOU_API_KEY', tavily: 'TAVILY_API_KEY', jina: 'JINA_API_KEY', serper: 'SERPER_API_KEY', firecrawl: 'FIRECRAWL_API_KEY', searxng: 'SEARXNG_URL' };
 export const SEARCH_PROVIDERS = Object.keys(PROVIDER_KEYS);
 const key = (env, p) => (p === 'firecrawl' && firecrawlDisabled(env) ? '' : String(env[PROVIDER_KEYS[p]] || '').trim());
 
-/** Proveedores activos: los de ENGINE_SEARCH_PROVIDERS (por defecto todos) que tengan clave. */
+/** SearXNG propio como base: SEARCH_PROVIDER=searxng y SEARXNG_URL http(s). */
+export const searxngBase = (env = process.env) => String(env.SEARCH_PROVIDER || '').toLowerCase() === 'searxng' && /^https?:\/\//i.test(String(env.SEARXNG_URL || ''));
+const PAID_DEFAULT = 'exa,serper';
+
+/** Proveedores activos. Con SearXNG como base, siempre va primero y las APIs de pago solo lo COMPLEMENTAN:
+ *  SEARCH_COMPLEMENT (por defecto «exa,serper»; «none» = solo SearXNG; «all» = todas las que tengan clave). */
 export function searchProviders(env = process.env) {
+  if (searxngBase(env)) {
+    const c = String(env.SEARCH_COMPLEMENT ?? PAID_DEFAULT).trim().toLowerCase();
+    const extra = c === 'none' ? [] : c === 'all' ? SEARCH_PROVIDERS.filter((p) => !['firecrawl', 'searxng'].includes(p)) : c.split(',').map((x) => x.trim());
+    return ['searxng', ...new Set(extra.filter((p) => PROVIDER_KEYS[p] && !['firecrawl', 'searxng'].includes(p) && key(env, p)))];
+  }
   // Por defecto todos los que tengan clave, salvo Firecrawl como buscador (gasta 1 crédito por página);
   // Firecrawl sigue leyendo páginas difíciles. Para usarlo también como buscador, inclúyelo en ENGINE_SEARCH_PROVIDERS.
-  const wanted = String(env.ENGINE_SEARCH_PROVIDERS || SEARCH_PROVIDERS.filter((p) => p !== 'firecrawl').join(',')).split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+  const wanted = String(env.ENGINE_SEARCH_PROVIDERS || SEARCH_PROVIDERS.filter((p) => !['firecrawl', 'searxng'].includes(p)).join(',')).split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
   return [...new Set(wanted)].filter((p) => PROVIDER_KEYS[p] && key(env, p));
 }
 export const searchApisConfigured = (env = process.env) => searchProviders(env).length > 0;
@@ -123,7 +133,12 @@ export async function firecrawlSearchApi(query, { env = process.env, fetcher, si
   return clean(rows.map((x, i) => row('firecrawl', i + 1, { url: x.url, title: x.title, description: x.description, content: x.markdown, published: x.date })), n(env, limit));
 }
 
-export const PROVIDER_FN = { linkup: linkupSearch, exa: exaSearchApi, you: youSearch, tavily: tavilySearch, jina: jinaSearch, serper: serperSearch, firecrawl: firecrawlSearchApi };
+export async function searxngProviderSearch(query, { env = process.env, fetcher, signal, limit, recency = '' } = {}) {
+  const tr = { day: 'day', week: 'week', month: 'month', year: 'year' }[recency] || '';
+  const list = await searxSearch(query, { env, fetcher: fetcher || fetch, signal, timeRange: tr, limit: n(env, limit) });
+  return clean(list.map((x, i) => row('searxng', i + 1, { url: x.url, title: x.title, description: x.description })), n(env, limit));
+}
+export const PROVIDER_FN = { searxng: searxngProviderSearch, linkup: linkupSearch, exa: exaSearchApi, you: youSearch, tavily: tavilySearch, jina: jinaSearch, serper: serperSearch, firecrawl: firecrawlSearchApi };
 
 /** Lector de respaldo con Firecrawl /scrape (páginas con JavaScript). Devuelve {url,title,text} o null. */
 export async function firecrawlRead(url, { env = process.env, fetcher = fetch, signal, ledger, meter } = {}) {
