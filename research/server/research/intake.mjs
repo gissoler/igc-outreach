@@ -132,7 +132,16 @@ export function parseAmount(raw, unit = '') {
 const MONEY = /(?:US\$|USD|U\$S|\$)\s?(\d[\d.,]*)\s?(millones|millón|millon|million|mm|m|mil|k|bn|b)?\b|(\d[\d.,]*)\s?(millones|millón|millon|million|mm|m|mil|k)\s?(?:de\s)?(?:USD|US\$|d[oó]lares)/gi;
 const RAISE_CTX = /\b(levant\w*|buscamos|necesitamos|ronda|raise|raising|funding|financiacion|financiamiento|ask|solicitamos|recaudar|objetivo)\b/;
 const NOT_RAISE = /\b(tam|sam|som|mercado|market|valoracion|valuation|ingresos|revenue|ventas|arr|mrr|facturacion)\b/;
-const looseAmount = (text) => { const m = String(text).match(/(\d[\d.,]*)\s*(millones|millón|millon|million|mm|m|mil|k|bn|b)?\b/i); return m ? parseAmount(m[1], m[2] || '') : null; };
+const AMOUNT_RX = /(\d[\d.,]*)\s*(millones|millón|millon|million|mm|m|mil|k|bn|b)?\b/gi;
+// «$500,000 to $3 million», «500k-3M», «entre 500 mil y 3 millones»: un rango se guarda por su tope (no se descarta lo grande).
+const looseAmount = (text) => {
+  const t = String(text);
+  const found = [...t.matchAll(AMOUNT_RX)].map((m) => ({ v: parseAmount(m[1], m[2] || ''), at: m.index, end: m.index + m[0].length })).filter((x) => x.v);
+  if (!found.length) return null;
+  const [a, b] = found;
+  if (b && /^\s*(?:to|a|y|and|-|–|—|hasta|up to)\s*(?:US\$|USD|U\$S|\$)?\s*$/i.test(t.slice(a.end, b.at))) return Math.max(a.v, b.v);
+  return a.v;
+};
 
 const NAME = /^([A-ZÁÉÍÓÚÑ0-9][\wÁÉÍÓÚÑáéíóúñ&.+-]*(?:\s+(?:[A-ZÁÉÍÓÚÑ0-9][\wÁÉÍÓÚÑáéíóúñ&.+-]*|de|del|&)){0,4})/;
 const STOP_NAMES = /^(Una?|The|El|La|Los|Las|Un|Nuestro|Nuestra|Este|Esta|Es|Is|A|An)$/;
@@ -485,6 +494,13 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
       }
       if (!filled(s, 'product.description') && message.length >= 120 && applyUpdate(s, { path: 'product.description', value: message, quote: '' }, 'conversation', message)) changed.add('product.description');
     }
+  }
+
+  // Con modelo: si el turno contestaba un campo tipado (monto, ronda, madurez) y el modelo no lo devolvió, el código lo lee de la respuesta.
+  // (Sin esto el modelo podía acusar recibo —«range $500k-$3M»— sin guardar el número y el plan volvía a pedirlo.)
+  if (model.used && message && pending && !added.length && ['funding.amount_usd', 'funding.round', 'product.maturity'].includes(pending) && !filled(s, pending) && !s.skipped.includes(pending)) {
+    const answer = interpretAnswer(pending, message);
+    if (answer?.value && applyUpdate(s, { path: pending, value: answer.value, quote: message }, 'conversation', message)) changed.add(pending);
   }
 
   // La pregunta la elige el modelo entre las abiertas; si elige algo ya lleno, saltado o repetido, se usa la regla.

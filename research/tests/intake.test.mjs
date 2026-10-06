@@ -253,3 +253,20 @@ test('intake sin modelo: capta ronda y monto aunque lleguen fuera de orden; "1,2
   await runTurn(s, { text: 'about 500k USD', env: {} });
   assert.equal(s.fields['funding.amount_usd']?.value, 500000);
 });
+
+test('el modelo acusa recibo de un rango sin devolver el número: el código guarda el monto (tope del rango)', async () => {
+  const s = newIntake({});
+  s.pending = 'funding.amount_usd';
+  const modelFetch = async () => ({ ok: true, json: async () => ({ choices: [{ message: { content: JSON.stringify({ reply: 'Got it: range $500k-$3M. What will the money fund?', updates: [] }) } }] }) });
+  const turn = await runTurn(s, { text: 'Anywhere from about $500,000 to $3 million in total. Smaller awards are fine too.', env: { INTAKE_LLM_BASE_URL: 'http://127.0.0.1:11434/v1' }, fetchImpl: modelFetch });
+  assert.equal(turn.model.used, true);
+  assert.equal(s.fields['funding.amount_usd'].value, 3000000);
+});
+test('montos: rangos y cifras sueltas', () => {
+  const a = (t) => interpretAnswer('funding.amount_usd', t).value;
+  assert.equal(a('$500k-$3M'), 3000000);
+  assert.equal(a('between 500k and 3 million'), 3000000);
+  assert.equal(a('about $2 million'), 2000000);
+  assert.equal(a('entre 500 mil y 2 millones de dólares'), 2000000);
+  assert.equal(a('$750,000'), 750000);
+});
