@@ -8,7 +8,7 @@ import { parseCalendar, parseConnections, parseContactCsv } from './research/net
 import { runResearch } from './research/pipeline.mjs';
 import { webConfigured, webPublicRelations, webProfileLookup, WEB_SOURCE } from './research/webscrape.mjs';
 import { buildNetworkGraph } from './research/networkGraph.mjs';
-import { editField, missingRequired, newIntake, publicIntake, removeDocument, runTurn, toProfile } from './research/intake.mjs';
+import { editField, missingRequired, modelInfo, newIntake, publicIntake, removeDocument, runTurn, toProfile } from './research/intake.mjs';
 import { blankProfile } from './research/profileDefaults.mjs';
 import { createFrameStore, createLiveHub } from './research/liveRun.mjs';
 import { createBrowserService } from './research/browser.mjs';
@@ -178,7 +178,7 @@ export function createApp({
             jev: env.JEV_API_KEY || env.TYPESAFE_API_KEY
               ? `configured · ${env.JEV_MODEL || 'jev-latest'}`
               : 'integrated · missing JEV_API_KEY',
-            intakeModel: env.INTAKE_LLM_BASE_URL ? env.INTAKE_LLM_MODEL || 'qwen3-4b' : 'no model · basic extraction',
+            intakeModel: modelInfo(env).model || 'no model · basic extraction',
           },
         });
       /* The only way in: there is no sign-in. The browser keeps a random key in localStorage; the key is the

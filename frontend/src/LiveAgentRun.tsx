@@ -186,6 +186,7 @@ export function LiveAgentRun({ jobId, events, jobStatus, brief, connection, stru
             <span className={`lv-badge ${badge.cls}`}>{badge.text}</span>
           </header>
           <p className="ag-task">Search {brief.fundingTypes.map((t) => (fundingLabels[t] || t).toLowerCase()).join(', ')} for {brief.venture || brief.company || 'your project'}{via}</p>
+          <RunProgress pct={pct} steps={steps} running={steps.filter((st) => st.state === 'running')} finished={finished} error={Boolean(error)} elapsed={elapsed} />
           {error && <div className="lv-alert error" role="alert"><TriangleAlert size={15} /><span>{error}</span>{onRetry && <button onClick={onRetry} disabled={busy}>{busy && <LoaderCircle className="spin" size={13} />} Retry</button>}</div>}
           {demo && <div className="lv-alert demo"><AlertTriangle size={15} /><span>DEMO · All contacts are fictional.</span></div>}
           <div className="ag-counters">
@@ -199,7 +200,6 @@ export function LiveAgentRun({ jobId, events, jobStatus, brief, connection, stru
             </ol>
           )}
           <footer className="ag-foot">
-            <div className="ag-bar"><i style={{ width: `${pct * 100}%` }} /></div>
             <div className="ag-controls">
               {!finished && !player.follow && <button className="lv-ctl" onClick={() => setPlayer((pl) => ({ ...pl, follow: true, index: Math.max(0, scenes.length - 1), progress: 0 }))}><Crosshair size={14} /> Follow the agent</button>}
               {finished && !replaying && (onShowResults || onPlaybackEnd) && <button className="lv-ctl primary" onClick={onShowResults || onPlaybackEnd}><Check size={14} /> View results</button>}
@@ -228,6 +228,34 @@ export function LiveAgentRun({ jobId, events, jobStatus, brief, connection, stru
   );
 }
 
+/** Qué es cada fuente, en palabras simples (en la reunión de feedback nadie sabía qué era cada una). */
+const SOURCE_HELP: [RegExp, string][] = [
+  [/web research engine|engine/i, 'The AI opens web pages, reads them and checks dates and who can apply.'],
+  [/grants\.gov/i, 'US government grant calls, read one by one.'],
+  [/reporter|nih/i, 'Projects the NIH already funded: shows which calls pay for work like yours.'],
+  [/nsf awards/i, 'Projects the NSF already funded.'],
+  [/sbir/i, 'Open small-business research solicitations.'],
+  [/openalex/i, 'Research papers and who funds them.'],
+  [/clinicaltrials/i, 'Clinical trials and their sponsors.'],
+  [/sec|edgar|form d/i, 'Public filings that name founders and funding rounds.'],
+  [/sender|profile/i, 'Your own public profile, to find warm paths.'],
+  [/radar/i, 'Funders\' own official pages.'],
+  [/exa|serper|tavily|you\.com|jina|linkup|web search|semantic/i, 'General web search for pages about funders.'],
+  [/follow-up/i, 'Looks for the people behind each funder.'],
+];
+const sourceHelp = (title: string) => SOURCE_HELP.find(([rx]) => rx.test(title))?.[1] || '';
+
+function RunProgress({ pct, steps, running, finished, error, elapsed }: { pct: number; steps: RunStep[]; running: RunStep[]; finished: boolean; error: boolean; elapsed: number }) {
+  const closed = steps.filter((st) => st.state === 'success' || st.state === 'warning' || st.state === 'error').length;
+  const now = running.length ? (running[0].kind === 'source' ? `Searching ${running.slice(0, 2).map((r) => r.title).join(' and ')}${running.length > 2 ? ` and ${running.length - 2} more` : ''}` : running[0].title) : steps.length ? 'Starting…' : 'Getting ready…';
+  const value = Math.round(pct * 100);
+  return <div className="ag-prog" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={value} aria-label="Search progress">
+    <div className="ag-prog-h"><b>{value}%</b><span>{error ? 'Stopped' : finished ? 'Finished' : now}</span></div>
+    <div className="ag-prog-bar"><i style={{ width: `${Math.max(value, finished ? 100 : 3)}%` }} /></div>
+    <p>{finished ? `${closed} of ${steps.length} steps done in ${clock(elapsed)}.` : `${closed} of ${steps.length} steps done · ${clock(elapsed)} elapsed. A full search usually takes a few minutes.`}</p>
+  </div>;
+}
+
 function sceneTitle(scene: Scene) {
   switch (scene.kind) {
     case 'profile': return 'Read your profile and plan';
@@ -251,6 +279,7 @@ function StepItem({ step, n, current, parallel, onPick }: { step: RunStep; n: nu
         <strong>{step.title}{step.resultCount != null && <em className="ag-found">{fmt(step.resultCount)}</em>}{parallel && <em className="lv-par">in parallel</em>}</strong>
       </button>
       {state !== 'next' && logs.length > 0 && <ul>{logs.map((e, j) => <li key={e.sequence} className={`${e.phase === 'warning' || e.status === 'error' ? 'lv-warn' : ''} ${state === 'now' && j === logs.length - 1 ? 'typing' : ''}`}>{e.message}</li>)}</ul>}
+      {step.kind === 'source' && sourceHelp(step.title) && <p className="ag-what">{sourceHelp(step.title)}</p>}
       {state === 'next' && <ul><li className="lv-muted">{step.kind === 'source' ? 'Planned' : 'Pending'}</li></ul>}
     </div>
   </li>;

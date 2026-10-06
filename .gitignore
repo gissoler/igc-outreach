@@ -34,3 +34,6 @@ __pycache__/
 
 # Sistema
 .DS_Store
+
+# Claves privadas
+*.pem

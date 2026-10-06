@@ -29,7 +29,7 @@ const META: Record<string, { label: string; kind: Kind; placeholder?: string }> 
   'industry.sectors': { label: 'Sector', kind: 'tags' },
   'product.maturity': { label: 'Stage', kind: 'maturity' },
   'geography': { label: 'Geography', kind: 'tags', placeholder: 'US, CO, LATAM…' },
-  'company.traction': { label: 'Traction and key data', kind: 'long' },
+  'company.traction': { label: 'Proof it works so far', kind: 'long' },
   'product.differentiation': { label: 'Why you win', kind: 'long' },
   'product.business_model': { label: 'Business model', kind: 'text' },
   'company.team': { label: 'Team', kind: 'long' },
@@ -113,14 +113,6 @@ export function PlanProgress({ intake }: { intake: IntakeState | null }) {
     <p>{pct < 100 ? <>At 100% we build your plan: <b>who to contact, why, and a 4-line email</b>.</> : <><Check size={13} /> Complete. Review and run the search.</>}</p>
   </div>;
 }
-function HowItWorks() {
-  return <ol className="ia-how" aria-label="How it works">
-    <li><i>1</i><b>Answer a few short questions</b><small>or attach your deck</small></li>
-    <li><i>2</i><b>We find who funds this today</b></li>
-    <li><i>3</i><b>You get who to contact, why, and a 4-line email</b></li>
-  </ol>;
-}
-
 /* ───────── Paso 1: conversación + adjuntos ───────── */
 type Pending = { id: string; file: File; status: 'reading' | 'ready' | 'error'; text?: string; pages?: number; error?: string };
 const STARTERS = ['I want to raise a seed round', 'I\'m looking for non-dilutive health grants', 'We want a pharma licensing partner'];
@@ -167,7 +159,6 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
       <span className={`ia-model ${intake?.model.configured ? 'on' : ''}`} title={intake?.model.configured ? 'Local model via OpenAI-compatible endpoint' : 'No model: rule-based extraction'}><Sparkles size={13} />{intake?.model.configured ? intake.model.model : 'Basic extraction'}</span>
     </div>}
     <PlanProgress intake={intake} />
-    {fresh && <HowItWorks />}
     <div className="ia-thread" ref={thread} aria-live="polite">
       {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role} ${m.role === 'assistant' && i === intake.messages.length - 1 && missing > 0 && !busy && intake.messages.length > 1 ? 'ask' : ''}`}>
         {m.role === 'assistant' && <img src="/igc-outreach-mark.png" alt="" width={26} height={26} />}

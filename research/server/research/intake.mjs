@@ -4,6 +4,7 @@
 // el código valida rutas, enums y citas. Nada de lo extraído se usa hasta que el usuario confirma.
 import { randomUUID } from 'node:crypto';
 import { norm } from './core.mjs';
+import { fleetConfig } from '../analysis/fleet.mjs';
 
 export const OBJECTIVES = ['investment', 'grant', 'partnering', 'sponsorship', 'debt'];
 export const ENTITY_TYPES = ['for_profit', 'nonprofit', 'academic'];
@@ -23,7 +24,7 @@ export const FIELDS = [
   { path: 'geography', label: 'Geography', kind: 'list', required: true, ask: 'Where do you operate and which countries do you want funding from?' },
   { path: 'funding.amount_usd', label: 'Amount (USD)', kind: 'number', ask: 'Roughly how much do you need, in USD?' },
   { path: 'funding.round', label: 'Round', kind: 'enum', options: ROUNDS, ask: 'Is it a pre-seed, seed or Series A round?' },
-  { path: 'company.traction', label: 'Traction and key data', kind: 'text', investor: true, ask: 'What\'s your strongest proof so far: users, pilots, revenue, LOIs or study results, with numbers?' },
+  { path: 'company.traction', label: 'Proof it works so far', kind: 'text', investor: true, ask: 'What proof do you have so far that people want this or that it works? For example: 200 users, 3 pilots, $10k in revenue, a signed letter of intent or study results. Numbers help.' },
   { path: 'funding.use_of_funds', label: 'Use of funds', kind: 'text', investor: true, ask: 'What will this money get you to, concretely: which milestone, and by when?' },
   { path: 'product.differentiation', label: 'Why you win', kind: 'text', investor: true, ask: 'Why will you win against the alternatives people use today?' },
   { path: 'product.business_model', label: 'Business model', kind: 'text', investor: true, ask: 'Who pays, how much, and how do you reach them?' },
@@ -319,9 +320,17 @@ export function closingLine(s) {
 }
 
 /* ───────── Modelo (opcional) ───────── */
+/** Modelos del asistente, en orden: el modelo grande del motor (ENGINE_LLM_*) si está configurado y el asistente no pidió el suyo (INTAKE_LLM_ROLE=own), y después INTAKE_LLM_*. Si el primero falla se prueba el siguiente. */
+export function intakeTargets(env = {}) {
+  const out = [];
+  const big = fleetConfig(env).roles.engine;
+  if (env.INTAKE_LLM_ROLE !== 'own' && env.INTAKE_LLM_ROLE !== 'small' && big?.ready && !big.alias) out.push({ name: 'engine', base: big.url, model: big.model, apiKey: big.apiKey || env.VLLM_API_KEY || '', reasoningEffort: String(env.INTAKE_LLM_REASONING_EFFORT || big.reasoningEffort || 'low'), jsonMode: big.jsonMode !== false, maxTokens: Number(env.INTAKE_LLM_MAX_TOKENS) || Math.max(big.maxTokens || 0, 4000) });
+  if (env.INTAKE_LLM_BASE_URL) out.push({ name: 'intake', base: String(env.INTAKE_LLM_BASE_URL).replace(/\/+$/, ''), model: env.INTAKE_LLM_MODEL || 'qwen3-4b', apiKey: env.INTAKE_LLM_API_KEY || '', jsonMode: true });
+  return out;
+}
 export function modelInfo(env = {}) {
-  const base = env.INTAKE_LLM_BASE_URL;
-  return { configured: Boolean(base), model: base ? env.INTAKE_LLM_MODEL || 'qwen3-4b' : null, reasoning: env.INTAKE_LLM_THINK === 'true' };
+  const t = intakeTargets(env)[0];
+  return { configured: Boolean(t), model: t ? t.model : null, reasoning: env.INTAKE_LLM_THINK === 'true' || Boolean(t?.reasoningEffort) };
 }
 const SYSTEM = `You run the intake for IGC Outreach, and you think like a seasoned early-stage investor on a first screening call. The goal: build an accurate profile of what the founder wants to fund so investors, grants or partners can be researched.
 Reply ONLY with a JSON object: {"ack": string, "question": string, "asking": string|null, "skipped": string|null, "updates": [{"path": string, "value": any, "quote": string}]}
@@ -337,6 +346,8 @@ How to extract:
 How to reply:
 6. English only. No filler ("Great!", "Thanks for sharing"), no lists, never restate the whole profile.
 7. "ack": ONE short sentence (max 20 words) naming only what is NEW in this turn (a number, a date, a milestone). If they sent a document, name it. If nothing new was learned, "ack" is "".
+8a. Write for a founder who has never raised money. Use plain words; never use jargon such as "traction", "runway", "LOI" or "key data" without saying what it means in the same sentence. End with a short example answer in parentheses, e.g. (for example: "about 2 million dollars").
+8b. If the founder's last reply shows they did not understand the previous question ("what do you mean?", a confused or off-topic answer), ask the SAME open question again in simpler words with a concrete example, instead of moving on.
 8. "question": exactly ONE question, the one a sharp investor would ask next, chosen ONLY from "open_questions". Put its path in "asking". Make it specific to this company (use their product name and facts), max 30 words, ending with "?".
 9. NEVER ask for anything in "current_profile", "already_asked" or "skipped", or answered in any document. If a document answers an open question, extract it instead of asking.
 10. If the founder doesn't know, wants to skip, or answers vaguely ("no sé", "not sure", "I don't know which"), set "skipped" to the path of "pending_question", don't press, and ask a DIFFERENT open question.
@@ -344,20 +355,19 @@ How to reply:
 11b. If "open_questions" is empty, set "asking" and "question" to null/"" and say the profile is ready to review in "ack".
 12. Don't promise results, don't give legal or financial advice, and don't invent investors.`;
 
-export async function callModel({ env, system, user, fetchImpl = fetch }) {
-  const base = String(env.INTAKE_LLM_BASE_URL).replace(/\/+$/, '');
+async function askTarget(t, { env, system, user, fetchImpl }) {
   const think = env.INTAKE_LLM_THINK === 'true';
-  const model = env.INTAKE_LLM_MODEL || 'qwen3-4b';
   // Solo los Qwen3 "híbridos" (nombre sin -Instruct-/-Thinking-) responden al interruptor /no_think.
   // Los releases 2507 (Instruct-2507, Thinking-2507) ya son modelos separados: el interruptor no
   // aplica y añadirlo solo ensucia el prompt.
-  const hybridQwen = /qwen3/i.test(model) && !/instruct|thinking/i.test(model);
+  const hybridQwen = /qwen3/i.test(t.model) && !/instruct|thinking/i.test(t.model);
   const content = hybridQwen && !think ? `${user}\n/no_think` : user;
-  const response = await fetchImpl(`${base}/chat/completions`, {
+  const response = await fetchImpl(`${t.base}/chat/completions`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...(env.INTAKE_LLM_API_KEY ? { Authorization: `Bearer ${env.INTAKE_LLM_API_KEY}` } : {}) },
+    headers: { 'Content-Type': 'application/json', ...(t.apiKey ? { Authorization: `Bearer ${t.apiKey}` } : {}) },
     body: JSON.stringify({
-      model, temperature: 0.2, stream: false, response_format: { type: 'json_object' },
+      model: t.model, temperature: 0.2, stream: false, ...(t.jsonMode === false ? {} : { response_format: { type: 'json_object' } }),
+      ...(t.reasoningEffort ? { reasoning_effort: t.reasoningEffort } : {}), ...(t.maxTokens ? { max_tokens: t.maxTokens } : {}),
       messages: [{ role: 'system', content: `${system}\n\nLANGUAGE: Always reply in English, even if the founder writes in Spanish. Field values you extract should also be in English, except proper names.` }, { role: 'user', content }],
     }),
     signal: AbortSignal.timeout(Number(env.INTAKE_LLM_TIMEOUT_MS) || 90_000),
@@ -367,7 +377,14 @@ export async function callModel({ env, system, user, fetchImpl = fetch }) {
   const text = String(data?.choices?.[0]?.message?.content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error('The model didn\'t return JSON.');
-  const parsed = JSON.parse(match[0]);
+  return JSON.parse(match[0]);
+}
+export async function callModel({ env, system, user, fetchImpl = fetch }) {
+  let parsed = null; let lastError = null;
+  for (const t of intakeTargets(env)) {
+    try { parsed = await askTarget(t, { env, system, user, fetchImpl }); break; } catch (e) { lastError = e; console.error(`[intake] ${t.name} model (${t.model}) failed: ${e.message}`); }
+  }
+  if (!parsed) throw lastError || new Error('No model configured.');
   const ack = clip(parsed.ack ?? '', 400).split(/(?<=[.!])\s+/)[0] || '';
   const question = clip(parsed.question ?? '', 300);
   return { reply: clip(parsed.reply ?? '', 800), ack, question, asking: typeof parsed.asking === 'string' ? parsed.asking : null, skipped: typeof parsed.skipped === 'string' ? parsed.skipped : null, updates: Array.isArray(parsed.updates) ? parsed.updates.slice(0, 40) : [] };
