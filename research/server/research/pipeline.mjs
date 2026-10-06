@@ -13,7 +13,7 @@ const GRANT_API_SOURCE = 'Grant search (web APIs)';
 import { fetchPage } from './localSearch.mjs';
 import { jinaRead, firecrawlRead } from './searchApis.mjs';
 import { HUNTER_SOURCE, enrichWithHunter, hunterConfigured, makeHunter } from './hunter.mjs';
-import { firecrawlConfigured, grantWebOpportunities, webPeople, webConfigured, webMissing, GRANT_WEB_SOURCE, WEB_SOURCE } from './webscrape.mjs';
+import { firecrawlConfigured, searchConfigured, grantWebOpportunities, webPeople, webConfigured, webMissing, GRANT_WEB_SOURCE, WEB_SOURCE } from './webscrape.mjs';
 import { followUpPeople } from './followup.mjs';
 import { readCandidates } from './read.mjs';
 import { assessLeads } from './sufficiency.mjs';
@@ -164,7 +164,7 @@ export async function runResearch(
               return out;
             }]]
           : []),
-        ...(grantsOnly && b.useApify && firecrawlConfigured(env) && !engineOn
+        ...(grantsOnly && b.useApify && searchConfigured(env) && !engineOn
           ? [[GRANT_WEB_SOURCE, () => grantWebOpportunities(b, job.plan, { env, fetcher, signal, live: live.scope(GRANT_WEB_SOURCE), record, usageClient: client })]]
           : []),
         ...(job.plan.alzheimer
@@ -196,7 +196,7 @@ export async function runResearch(
           live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: 'Serper: no SERPER_API_KEY; broad web search skipped.' });
         }
         if (web.legacy && b.useApify && !webConfigured(env)) live({ phase: 'planning', status: 'pending', title: 'Source skipped', message: `${WEB_SOURCE}: missing ${webMissing(env).join(' y ')}; research continues with available sources.` });
-        if (grantsOnly && b.useApify && !firecrawlConfigured(env)) live({ phase: 'planning', provider: GRANT_WEB_SOURCE, status: 'pending', title: 'Broader discovery skipped', message: 'FIRECRAWL_API_KEY is missing; official registries still run.' });
+        if (grantsOnly && b.useApify && !searchConfigured(env)) live({ phase: 'planning', provider: GRANT_WEB_SOURCE, status: 'pending', title: 'Broader discovery skipped', message: 'FIRECRAWL_API_KEY is missing; official registries still run.' });
       }
       if (useTeamFacts) {
         try {

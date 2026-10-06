@@ -23,6 +23,24 @@ const firecrawlKey = (env) => (firecrawlDisabled(env) ? '' : env.FIRECRAWL_API_K
 const scrapegraphKey = (env) => env.SGAI_API_KEY || env.SCRAPEGRAPH_API_KEY || '';
 export const webConfigured = (env = process.env) => Boolean(firecrawlKey(env) && scrapegraphKey(env));
 export const firecrawlConfigured = (env = process.env) => Boolean(firecrawlKey(env));
+/** Proveedor de búsqueda web: SEARCH_PROVIDER=searxng (con SEARXNG_URL) usa un SearXNG propio, sin créditos; por defecto Firecrawl. */
+export const searxngActive = (env = process.env) => String(env.SEARCH_PROVIDER || '').toLowerCase() === 'searxng' && /^https?:\/\//i.test(String(env.SEARXNG_URL || ''));
+export const searchConfigured = (env = process.env) => searxngActive(env) || firecrawlConfigured(env);
+
+/** Búsqueda en SearXNG (JSON). Mismo formato de filas que firecrawlSearch; sin markdown (los snippets se confirman al leer la página). */
+export async function searxngSearch(query, { limit = 8, env = process.env, fetcher = fetch, signal } = {}) {
+  const base = String(env.SEARXNG_URL).replace(/\/+$/, '');
+  const url = `${base}/search?${new URLSearchParams({ q: String(query).slice(0, 400), format: 'json', language: 'en-US', safesearch: '0', ...(env.SEARXNG_ENGINES ? { engines: String(env.SEARXNG_ENGINES) } : {}) })}`;
+  const started = Date.now();
+  const res = await fetcher(url, { headers: { Accept: 'application/json' }, signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(Number(env.SEARXNG_TIMEOUT_MS) || 25_000)]) : AbortSignal.timeout(Number(env.SEARXNG_TIMEOUT_MS) || 25_000) });
+  if (!res.ok) throw Object.assign(new Error(`SearXNG answered ${res.status}${res.status === 403 ? ' (enable "json" in search.formats of settings.yml)' : ''}`), { fatal: res.status === 403 || res.status === 404 });
+  const data = await res.json();
+  const seen = new Set();
+  const rows = (Array.isArray(data?.results) ? data.results : [])
+    .map((r) => ({ url: safeUrl(r.url), title: String(r.title || ''), description: String(r.content || ''), markdown: '', date: String(r.publishedDate || ''), statusCode: null }))
+    .filter((r) => r.url && !seen.has(r.url) && seen.add(r.url)).slice(0, clamp(limit, 1, 20, 8));
+  return Object.assign(rows, { ms: Date.now() - started, credits: 0, cached: false });
+}
 export const webMissing = (env = process.env) => [
   ...(firecrawlKey(env) ? [] : ['FIRECRAWL_API_KEY']),
   ...(scrapegraphKey(env) ? [] : ['SGAI_API_KEY']),
@@ -167,6 +185,7 @@ export const extractVersion = (env = process.env) => versionOf('extract', EXTRAC
 /** Firecrawl v2 /search. Con markdown=true también lee cada página. `cache: false` y `essential: true` en la búsqueda principal
  *  del motor (no se cachea y el tope diario no la bloquea, aunque la cuenta). */
 export async function firecrawlSearch(query, { limit = 5, markdown = false, tbs = '', sources = ['web'], env = process.env, fetcher = fetch, signal, live, record, ledger, meter, cache = true, essential = false } = {}) {
+  if (searxngActive(env)) return searxngSearch(query, { limit, env, fetcher, signal });
   if (!firecrawlKey(env)) throw new Error('FIRECRAWL_API_KEY not set.');
   const body = { query: String(query).slice(0, 480), limit: clamp(limit, 1, 20, 5), sources: sources.filter((x) => ['web', 'news'].includes(x)) };
   if (!body.sources.length) body.sources = ['web'];
@@ -315,18 +334,19 @@ export async function modelGrantQueries(brief, terms, { env = process.env, fetch
   try {
     const { json } = await chat({
       system: 'You are a senior grant-funding researcher for a company. You write web search queries that surface OPEN funding calls the company can actually apply to. Reply only JSON.',
-      user: `Today is ${today.toISOString().slice(0, 10)}.\nApplicant (use every fact; the applicant is a for-profit company unless stated otherwise):\n${briefDigest(brief)}\nTopic terms from the plan: ${terms.filter((t) => typeof t === 'string').slice(0, 8).join('; ') || 'n/a'}\n\nWrite ${n} different web search queries to find OPEN non-dilutive funding (grants, SBIR/STTR, cooperative agreements, contracts, prizes, foundation and state programs) that fit this applicant's sector, stage and location. Rules:\n- Name real programs, agencies, institutes and foundations you know (for example the exact NIH institute, a specific DoD CDMRP program, BARDA, ARPA-H, a disease foundation, the state's economic or biotech agency, or the funder's NOFO/PA/RFA number) instead of generic words.\n- Cover different vehicles and funders; no two queries may target the same program with different wording.\n- Match the applicant's stage (a clinical-stage company should look for programs that fund clinical trials and company applicants, not basic research or individuals).\n- Include the current year or the words open/due/deadline where useful.\n- Skip fellowships and scholarships for individuals, jobs, news, and programs for universities only.\nReturn {"queries":["..."]}.${asked.length ? `\nAlready run (do not repeat):\n${asked.slice(-30).join('\n')}` : ''}`,
+      user: `Today is ${today.toISOString().slice(0, 10)}.\nApplicant (use every fact; the applicant is a for-profit company unless stated otherwise):\n${briefDigest(brief)}\nTopic terms from the plan: ${terms.filter((t) => typeof t === 'string').slice(0, 8).join('; ') || 'n/a'}\n\nWrite ${n} different web search queries to find OPEN non-dilutive funding (grants, SBIR/STTR, cooperative agreements, contracts, prizes, foundation and state programs) that fit this applicant's sector, stage and location. Rules:\n- Name real programs, agencies, institutes and foundations you know (for example the exact NIH institute, a specific DoD CDMRP program, BARDA, ARPA-H, a disease foundation, the state's economic or biotech agency, or the funder's NOFO/PA/RFA number) instead of generic words.\n- Cover different vehicles and funders; no two queries may target the same program with different wording.\n- Match the applicant's stage (a clinical-stage company should look for programs that fund clinical trials and company applicants, not basic research or individuals).\n- Use the year ${today.getFullYear()} (or ${today.getFullYear() + 1}) when you add a year; never an earlier year. Do not invent notice numbers (PA/RFA/NOFO): use one only if you are sure it is real and current, otherwise name the program and institute.\n- Skip fellowships and scholarships for individuals, jobs, news, and programs for universities only.\nReturn {"queries":["..."]}.${asked.length ? `\nAlready run (do not repeat):\n${asked.slice(-30).join('\n')}` : ''}`,
       name: 'grant_web_queries', role: role || 'chat',
     }, { env, fetcher, signal });
     const seen = new Set(asked.map((q) => String(q).toLowerCase()));
     return (Array.isArray(json?.queries) ? json.queries : []).map((q) => String(q?.query ?? q ?? '').replace(/\s+/g, ' ').trim().slice(0, 200))
+      .map((q) => q.replace(/\b20(?:0\d|1\d|2\d)\b/g, (y) => (Number(y) < today.getFullYear() ? String(today.getFullYear()) : y)))
       .filter((q) => q.length >= 12 && !seen.has(q.toLowerCase()) && seen.add(q.toLowerCase())).slice(0, n);
   } catch (error) { if (signal?.aborted) throw error; return []; }
 }
 
 /** Discovery amplio de challenges, prizes y aceleradoras. Solo Firecrawl search; no ScrapeGraph. */
 export async function grantWebOpportunities(brief, plan, { env = process.env, fetcher = fetch, signal, live = noopRecorder, record = () => {}, usageClient = null } = {}) {
-  if (!firecrawlConfigured(env)) return Object.assign([], { searchAudit: [] });
+  if (!searchConfigured(env)) return Object.assign([], { searchAudit: [] });
   const focus = focusOf(brief);
   const year = new Date().getFullYear();
   const terms = [...new Set((plan.terms || []).map((x) => x.term).filter(Boolean))];
@@ -334,6 +354,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
   // El modelo escribe las consultas; sin modelo (o con pocas), las plantillas por tipo de brief.
   const planned = env.GRANT_WEB_MODEL_QUERIES === '0' ? [] : await modelGrantQueries(brief, terms, { env, fetcher, signal, n: maxSearches });
   const queries = (planned.length >= Math.min(8, maxSearches) ? planned : grantWebQueries(brief, terms, year)).slice(0, maxSearches);
+  let spent = 0; const creditCap = clamp(env.GRANT_WEB_CREDITS, 10, 1000, 200);
   const seen = new Map();
   const audit = [];
   const pageText = new Map();
@@ -348,7 +369,7 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
       if (!/(apply|applications?|challenge|competition|prize|accelerator|incubator|fellowship|open call|startup call)/i.test(hay)) continue;
       if (BLOCKED_HOSTS.test(hostOf(result.url))) continue;
       const excerpt = opportunityExcerpt(result.markdown || result.description);
-      if (excerpt.length < 80) continue;
+      if (excerpt.length < (result.markdown ? 80 : 30)) continue;
       const host = hostOf(result.url).replace(/^www\./, '');
       // Sin modelo, el código verifica lo que puede (tipo de página, plazo contra hoy, elegibilidad); nunca "open" por defecto.
       const v = verifyOpportunity({}, { url: result.url, title: result.title, text: result.markdown || result.description || '' }, { brief, codeOnly: true });
@@ -373,6 +394,9 @@ export async function grantWebOpportunities(brief, plan, { env = process.env, fe
       if (!seen.has(result.url)) { seen.set(result.url, lead); pageText.set(result.url, { url: result.url, title: result.title, text: result.markdown || result.description }); accepted++; }
     }
     audit.push({ provider: GRANT_WEB_SOURCE, query, dimension: 'opportunity_type', returned: results.length, discovered: accepted });
+    // Tope de créditos de esta búsqueda (los PDF cuestan una página por crédito y una consulta puede salir en 50).
+    spent += Number(results.credits) || 0;
+    if (spent >= creditCap) { audit.push({ provider: GRANT_WEB_SOURCE, query: '(credit cap)', dimension: 'budget', returned: 0, discovered: 0, error: `GRANT_WEB_CREDITS=${creditCap} reached after ${spent} credits` }); break; }
   }
   usageClient?.track?.('Firecrawl', { calls: queries.length, results: seen.size });
   if (!seen.size && searchErrors.length === queries.length) throw new Error(searchErrors[0]);

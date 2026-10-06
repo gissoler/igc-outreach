@@ -126,3 +126,38 @@ test('las consultas de grants las escribe el modelo desde el brief; sin modelo o
   assert.deepEqual(await modelGrantQueries(brief, [], { env: {}, chat: async () => { throw new Error('down'); } }), []);
   assert.deepEqual(await modelGrantQueries(brief, [], { env: {} }), []);   // sin flota ni chat inyectado
 });
+
+test('centros institucionales, páginas de universidad y agregadores nuevos se descartan; el año del modelo se corrige', async () => {
+  const profile = applicantProfile({ organization: 'IGC Pharma', state: 'Maryland', entityType: 'for-profit company' });
+  assert.equal(screenCall({ url: 'https://www.nia.nih.gov/research/adrcs', title: "NIA-Funded Alzheimer's Disease Research Centers" }, profile)?.code, 'institutional_only');
+  assert.equal(screenCall({ url: 'https://publichealth.lsuhsc.edu/x.pdf', title: '[PDF] Other Latest Update 11/10/2025 - LSU School of Public Health' }, profile)?.code, 'university_page');
+  assert.equal(screenCall({ url: 'https://cancer.osu.edu/x', title: 'NIH SBIR Phase II notice' }, profile), null);
+  for (const u of ['https://atomgrants.com/collections/foundation-grants-biomedical-research', 'https://everglade.com/x']) assert.equal(verifyOpportunity({}, { url: u, title: 'Grants', text: 'Apply now' }, { codeOnly: true }).tier, 'drop');
+  const { modelGrantQueries } = await import('../server/research/webscrape.mjs');
+  const out = await modelGrantQueries({ industry: 'Pharma' }, [], { env: {}, today: new Date('2026-10-05'), chat: async () => ({ json: { queries: ['ADDF Alzheimer drug development RFP 2024 open', 'NIA SBIR Phase IIB deadline 2027'] } }) });
+  assert.deepEqual(out, ['ADDF Alzheimer drug development RFP 2026 open', 'NIA SBIR Phase IIB deadline 2027']);
+});
+
+test('la búsqueda web de grants se detiene al llegar al tope de créditos', async () => {
+  const { grantWebOpportunities } = await import('../server/research/webscrape.mjs');
+  let calls = 0;
+  const fetcher = async () => { calls++; return new Response(JSON.stringify({ success: true, data: { web: [] }, creditsUsed: 60 }), { status: 200, headers: { 'content-type': 'application/json' } }); };
+  const env = { FIRECRAWL_API_KEY: 'fc-test', GRANT_WEB_MODEL_QUERIES: '0', GRANT_WEB_CREDITS: '10', FIRECRAWL_DAILY_CREDITS: 'unlimited', FIRECRAWL_LEDGER: ':memory:' };
+  await grantWebOpportunities({ industry: 'biotech clinical', maturity: 'phase 2' }, { terms: [{ term: 'Alzheimer' }] }, { env, fetcher }).catch(() => {});
+  assert.ok(calls >= 1 && calls <= 2, `calls=${calls}`);
+});
+
+test('SearXNG: proveedor de búsqueda sin créditos con el mismo formato de filas', async () => {
+  const { searxngActive, searchConfigured, searxngSearch, firecrawlSearch } = await import('../server/research/webscrape.mjs');
+  const env = { SEARCH_PROVIDER: 'searxng', SEARXNG_URL: 'http://127.0.0.1:8888/' };
+  assert.equal(searxngActive(env), true); assert.equal(searchConfigured(env), true);
+  assert.equal(searxngActive({ SEARXNG_URL: 'http://x' }), false); assert.equal(searchConfigured({}), false);
+  let seenUrl = '';
+  const fetcher = async (u) => { seenUrl = String(u); return new Response(JSON.stringify({ results: [{ url: 'https://grants.nih.gov/a', title: 'PA-27-100', content: 'SBIR apply' }, { url: 'https://grants.nih.gov/a', title: 'dup', content: '' }, { url: 'not a url', title: 'x' }, { url: 'https://nia.nih.gov/b', title: 'NIA', content: 'open' }] }), { status: 200 }); };
+  const rows = await searxngSearch('NIH SBIR', { env, fetcher, limit: 8 });
+  assert.match(seenUrl, /^http:\/\/127\.0\.0\.1:8888\/search\?q=NIH\+SBIR&format=json/);
+  assert.deepEqual(rows.map((r) => r.url), ['https://grants.nih.gov/a', 'https://nia.nih.gov/b']); assert.equal(rows.credits, 0);
+  const viaFirecrawl = await firecrawlSearch('NIH SBIR', { env, fetcher, markdown: true });
+  assert.equal(viaFirecrawl.length, 2);   // sin clave de Firecrawl: el proveedor lo atiende
+  await assert.rejects(searxngSearch('q', { env, fetcher: async () => new Response('', { status: 403 }) }), /enable "json"/);
+});

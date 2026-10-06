@@ -179,7 +179,11 @@ export function grantMatch(lead, brief = {}, terms = []) {
   // Si no se pudo leer el alcance oficial (texto muy corto), no se rechaza solo por tema: queda para revisar.
   const thinScope = scope.replace(/\s+/g, ' ').trim().length - title.length < 200;
   const noTopic = !anchorsInTitle.length && !phraseHits.length && !anchorsInScope.length;
-  if (noTopic && thinScope && !fieldForeign) {
+  if (noTopic && thinScope && !fieldForeign && lead.status === 'forecasted') {
+    // Un registro previsto sin tema en el título ni texto del alcance no da nada que vigilar: fuera de tema.
+    verdict = 'mismatch';
+    reasons.push('A forecasted notice with no scope text and none of your topic terms in its title; nothing to monitor for this venture.');
+  } else if (noTopic && thinScope && !fieldForeign) {
     verdict = 'weak';
     reasons.push('The official scope could not be read; none of your topic terms appear in the title. Check the call before any draft.');
   } else if (noTopic) {
