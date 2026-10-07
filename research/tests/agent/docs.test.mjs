@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { normalizeUrl, docIdOf, registrableDomain, officialBasisOf } from '../../agent/docs.mjs';
 import { identifiersFromText, stableIdOf, urlIdentifier } from '../../agent/identifiers.mjs';
+import { createSearchTool } from '../../agent/tools/search.mjs';
 
 const F = resolve(import.meta.dirname, 'fixtures/world-v1'); const j = p => JSON.parse(readFileSync(p, 'utf8'));
 const world = j(resolve(F, 'world.json')), llm = j(resolve(F, 'llm.json')), E = j(resolve(F, 'expected.json'));
@@ -30,4 +31,16 @@ test('ACC-07 identifiers and stable ids', () => {
   assert.equal(stableIdOf([{scheme:'nih',value:'NOT-AG-26-001'},{scheme:'nih',value:'RFA-AG-27-010'},{scheme:'url',value:'x.org/a'}]), 'opp:nih:RFA-AG-27-010');
   assert.equal(stableIdOf([{scheme:'grantsgov',value:'359740'},{scheme:'nsf',value:'23-525'}]), 'opp:nsf:23-525');
   assert.deepEqual(urlIdentifier('https://www.alz.org/research/for_researchers/grants/part-the-cloud/'), {scheme:'url',value:'alz.org/research/for_researchers/grants/part-the-cloud'});
+});
+
+test('search tool only propagates ISO publication dates', async () => {
+  const transport = async () => [
+    { url: 'https://example.org/relative', published: '2 days ago' },
+    { url: 'https://example.org/date', published: '2026-10-06' },
+    { url: 'https://example.org/datetime', published: '2026-10-06T13:45:00Z' },
+  ];
+  const search = createSearchTool({ provider: 'fixture', transport });
+  const { results, error } = await search.search('publication dates');
+  assert.equal(error, null);
+  assert.deepEqual(results.map(x => x.published), [null, '2026-10-06', '2026-10-06']);
 });
