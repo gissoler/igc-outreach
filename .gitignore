@@ -37,3 +37,4 @@ __pycache__/
 
 # Claves privadas
 *.pem
+research/bench/out/

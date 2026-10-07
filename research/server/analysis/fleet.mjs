@@ -68,6 +68,13 @@ async function post(url, body, { apiKey, timeoutMs, fetcher = fetch, signal }) {
   try { return JSON.parse(text); } catch { throw new Error('vLLM returned invalid JSON.'); }
 }
 
+export async function postChat(target, body, opts = {}) {
+  return post(`${target.url}/chat/completions`, body, {
+    apiKey: target.apiKey || opts.apiKey || '', timeoutMs: opts.timeoutMs || 120_000,
+    fetcher: opts.fetcher || fetch, signal: opts.signal,
+  });
+}
+
 /** Primer objeto JSON del texto, sin bloques <think>. */
 export function parseJsonContent(content) {
   let text = String(content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
@@ -88,22 +95,24 @@ export function withLanguageRule(system) {
 }
 
 /** Chat con salida estructurada (response_format json_schema). */
-export async function chatJSON({ system, user, schema, name = 'salida', role = 'chat', model, temperature = 0 }, { env = process.env, fetcher = fetch, signal } = {}) {
+export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens }, { env = process.env, fetcher = fetch, signal } = {}) {
   const cfg = fleetConfig(env);
   const target = model ? { ...cfg.roles[role], model } : cfg.roles[role];
   if (!target?.url || !target.model) throw new Error(`Fleet: role not configured: ${role} (URL and model).`);
   const jsonMode = target.jsonMode !== false;
-  const data = await post(`${target.url}/chat/completions`, {
+  const started = Date.now();
+  const data = await postChat(target, {
     model: target.model,
     temperature,
+    ...(seed === undefined ? {} : { seed }),
     stream: false,
-    messages: [{ role: 'system', content: withLanguageRule(system) }, { role: 'user', content: user }],
+    messages: messages || [{ role: 'system', content: withLanguageRule(system) }, { role: 'user', content: user }],
     ...(!jsonMode ? {} : schema ? { response_format: { type: 'json_schema', json_schema: { name, schema } } } : { response_format: { type: 'json_object' } }),
     ...(target.reasoningEffort ? { reasoning_effort: target.reasoningEffort } : {}),
-    ...(target.maxTokens ? { max_tokens: target.maxTokens } : {}),
+    ...(maxTokens || target.maxTokens ? { max_tokens: maxTokens || target.maxTokens } : {}),
     ...(target.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),   // ENGINE_LLM_THINKING=0: modelos Qwen con modo razonamiento
   }, { apiKey: target.apiKey || cfg.apiKey, timeoutMs: Number(env.ENGINE_LLM_TIMEOUT_MS) && role === 'engine' ? Number(env.ENGINE_LLM_TIMEOUT_MS) : cfg.timeoutMs, fetcher, signal });
-  return { json: parseJsonContent(data?.choices?.[0]?.message?.content), model: data?.model || target.model, usage: data?.usage || null };
+  return { json: parseJsonContent(data?.choices?.[0]?.message?.content), model: data?.model || target.model, usage: data?.usage || null, latency_ms: Date.now() - started };
 }
 
 /** Embeddings en lotes; devuelve vectores en el orden de entrada. */

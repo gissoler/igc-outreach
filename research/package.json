@@ -9,9 +9,12 @@
     "start": "node --env-file-if-exists=.env server/index.mjs",
     "test": "node --test tests/*.test.mjs",
     "eval:search": "node scripts/eval-search.mjs",
-    "browser:install": "playwright install chromium"
+    "browser:install": "playwright install chromium",
+    "test:agent": "node --test tests/agent/*.test.mjs"
   },
   "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "playwright": "^1.63.0"
   }
 }

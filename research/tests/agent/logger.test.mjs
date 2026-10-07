@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import { createRunLogger } from '../../agent/logger.mjs';
+const versions={model_id:'pending',model_family:'fixture',prompts:[{id:'extractor',version:'v1',sha256:'a'.repeat(64)}],code_sha:'abcdef0',contracts_version:'1',catalog_version:'criteria_catalog.grant@v1',official_domains_version:'official_domains@v1'};
+const header={run_id:'bench-v0__case-fixture-aha__B0__s101',case_id:'case-fixture-aha',condition:'B0',seed:101,versions};
+const data={profile_id:'prof-fixture-aha',profile_sha256:'a'.repeat(64),case_sha256:'b'.repeat(64),run_config_sha256:'c'.repeat(64),today:'2026-10-20',search_provider:'fixture',budgets:{},patience_n:6};
+test('ACC-17 logger validates before append and writes gapless newline JSONL',()=>{const dir=mkdtempSync(resolve(tmpdir(),'logger-'));const l=createRunLogger({dir,header,clock:()=> '2026-10-20T00:00:00.000Z'});l.log('run_start',0,data);const before=readFileSync(l.path,'utf8');assert.throws(()=>l.log('run_start',0,{}));assert.equal(readFileSync(l.path,'utf8'),before);l.log('run_start',0,data);const raw=readFileSync(l.path,'utf8');assert.equal(raw.endsWith('\n'),true);assert.deepEqual(raw.trim().split('\n').map(x=>JSON.parse(x).seq),[0,1]);});
