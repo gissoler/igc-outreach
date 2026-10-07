@@ -11,7 +11,7 @@ Comprobar que el sistema completo funciona contra la web real y el modelo real c
 - `research/bench/pilot/cases/`: 2 cases construidos con `briefToProfile` a partir de `mentiva.json` y `aha-nonprofit.json`, con `kind:"null"` (para no exigir ancla) y `manual_search_minutes:20`.
 
 ## Checklist (persona)
-1. Variables de entorno: el modelo del agente (`ENGINE_LLM_*`) y la clave del buscador elegido. La guía no recomienda un proveedor concreto: se elige en H5.
+1. Variables de entorno: el modelo del agente (`ENGINE_LLM_*`) y `SEARXNG_URL=http://127.0.0.1:8888` con un túnel abierto al servidor (`ssh -N -L 8888:127.0.0.1:8888 aws`).
 2. `node research/bench/cli.mjs run --config research/bench/pilot/config.pilot.json --case … --condition B0 --seed 101`, y lo mismo para B1 y B2.
 3. Verificar:
    - los `steps.jsonl` validan;

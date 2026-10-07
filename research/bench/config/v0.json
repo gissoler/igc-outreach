@@ -6,7 +6,7 @@
   "cache_namespace": "bench-v0-2026-10-20",
   "agent_model": { "role": "engine", "family": "TO-SET-AT-FREEZE", "expected_model_id": null },
   "preannotator_model": { "base_url_env": "PREANNOTATOR_BASE_URL", "model_env": "PREANNOTATOR_MODEL", "api_key_env": "PREANNOTATOR_API_KEY", "family": "TO-SET-AT-FREEZE" },
-  "search": { "provider": "serper", "results_per_query": 10, "recency": "none" },
+  "search": { "provider": "searxng", "results_per_query": 10, "recency": "none" },
   "budgets": { "searches": 24, "fetches": 72, "tokens_nominal": 600000, "seconds_nominal": 1200, "planner_calls": 30 },
   "patience_n": 6,
   "default_fetch_per_search": 3,
