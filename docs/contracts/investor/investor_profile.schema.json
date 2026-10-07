@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_profile.schema.json",
+  "title": "Frozen startup profile for the investor benchmark",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "status", "as_of", "provenance", "fields"],
+  "properties": {
+    "schema_version": { "const": "investor_profile/1" },
+    "profile_id": { "type": "string", "pattern": "^inv-prof-[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "status": { "type": "string", "enum": ["draft", "frozen"] },
+    "as_of": { "$ref": "../common.schema.json#/$defs/isoDate" },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["documents", "built_by", "builder_id", "builder_saw_investors"],
+      "properties": {
+        "documents": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["title", "locator", "retrieved_at", "sha256"], "properties": { "title": { "type": "string", "minLength": 1 }, "locator": { "type": "string", "minLength": 1 }, "retrieved_at": { "$ref": "../common.schema.json#/$defs/isoDate" }, "sha256": { "$ref": "../common.schema.json#/$defs/sha256" } } } },
+        "built_by": { "type": "string", "enum": ["human", "llm", "code"] },
+        "builder_id": { "type": "string", "minLength": 1 },
+        "builder_saw_investors": { "const": false }
+      }
+    },
+    "fields": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "incorporation_country", "operating_regions", "sector", "subsectors", "product", "description", "customer_type", "business_model", "product_stage", "funding_stage", "round_sought", "capital_sought_usd", "revenue_or_traction", "relevant_regulation", "target_markets", "lead_preference", "accepted_investor_types", "excluded_investors", "restrictions", "known_portfolio_conflicts", "comparable_companies"],
+      "properties": {
+        "name": { "$ref": "#/$defs/stringValue" },
+        "incorporation_country": { "$ref": "#/$defs/stringValue" },
+        "operating_regions": { "$ref": "#/$defs/stringListValue" },
+        "sector": { "$ref": "#/$defs/stringValue" },
+        "subsectors": { "$ref": "#/$defs/stringListValue" },
+        "product": { "$ref": "#/$defs/stringValue" },
+        "description": { "$ref": "#/$defs/stringValue" },
+        "customer_type": { "$ref": "#/$defs/stringListValue" },
+        "business_model": { "$ref": "#/$defs/stringListValue" },
+        "product_stage": { "$ref": "#/$defs/stringValue" },
+        "funding_stage": { "$ref": "#/$defs/stringValue" },
+        "round_sought": { "$ref": "#/$defs/stringValue" },
+        "capital_sought_usd": { "$ref": "#/$defs/numberValue" },
+        "revenue_or_traction": { "$ref": "#/$defs/stringValue" },
+        "relevant_regulation": { "$ref": "#/$defs/stringListValue" },
+        "target_markets": { "$ref": "#/$defs/stringListValue" },
+        "lead_preference": { "$ref": "#/$defs/stringValue" },
+        "accepted_investor_types": { "$ref": "#/$defs/stringListValue" },
+        "excluded_investors": { "$ref": "#/$defs/stringListValue" },
+        "restrictions": { "$ref": "#/$defs/stringListValue" },
+        "known_portfolio_conflicts": { "$ref": "#/$defs/stringListValue" },
+        "comparable_companies": { "$ref": "#/$defs/stringListValue" }
+      }
+    }
+  },
+  "$defs": {
+    "stringValue": { "allOf": [{ "$ref": "../common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["string", "null"] } } }] },
+    "stringListValue": { "allOf": [{ "$ref": "../common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["array", "null"], "items": { "type": "string", "minLength": 1 } } } }] },
+    "numberValue": { "allOf": [{ "$ref": "../common.schema.json#/$defs/fieldValue" }, { "properties": { "value": { "type": ["number", "null"], "minimum": 0 } } }] }
+  }
+}

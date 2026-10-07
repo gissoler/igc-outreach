@@ -1,0 +1,26 @@
+{
+  "schema_version": "criteria_catalog/1",
+  "catalog_id": "criteria_catalog.investor",
+  "version": "v1",
+  "target_type": "investor",
+  "status": "proposed",
+  "criteria": [
+    { "criterion_id": "INV-ACTIVE", "label": "Current investing activity", "kind": "hard", "guidance": "met requires recent official evidence of new investments; a website alone is insufficient. inactive is not_met; insufficient recent evidence is unknown." },
+    { "criterion_id": "INV-TYPE", "label": "Accepted institutional investor type", "kind": "hard", "guidance": "not_met for individuals, service providers, portfolio companies, or an excluded investor type." },
+    { "criterion_id": "INV-SECTOR", "label": "Sector compatibility", "kind": "soft", "guidance": "Evaluate stated thesis against sector and subsectors; generic innovation language is insufficient." },
+    { "criterion_id": "INV-STAGE", "label": "Investment stage compatibility", "kind": "hard", "guidance": "not_met only when an explicit stage range excludes the startup; absence is unknown." },
+    { "criterion_id": "INV-GEO", "label": "Geographic compatibility", "kind": "hard", "guidance": "not_met only when an explicit geography excludes incorporation, operations, or target markets as applicable." },
+    { "criterion_id": "INV-CHECK", "label": "Check-size compatibility", "kind": "hard", "guidance": "not_met when verified limits on both sides do not overlap; missing limits are unknown." },
+    { "criterion_id": "INV-ROUND", "label": "Round-type compatibility", "kind": "soft", "guidance": "Evaluate named round types separately from stage." },
+    { "criterion_id": "INV-BUSINESS-MODEL", "label": "Business-model compatibility", "kind": "hard", "guidance": "not_met when the investor explicitly excludes the startup's company or business-model type." },
+    { "criterion_id": "INV-LEAD", "label": "Lead/follow compatibility", "kind": "soft", "guidance": "Use met/not_met only with evidence; otherwise unknown or not_applicable when the startup has no stated preference." },
+    { "criterion_id": "INV-REGULATORY", "label": "Regulatory or thematic restrictions", "kind": "hard", "guidance": "not_met for an explicit applicable restriction; missing information is unknown." },
+    { "criterion_id": "INV-PORTFOLIO-CONFLICT", "label": "Direct or significant portfolio conflict", "kind": "signal", "guidance": "A conflict is separate from eligibility and does not make the firm ineligible without an explicit exclusion." },
+    { "criterion_id": "INV-RECENCY", "label": "Sufficiently recent evidence", "kind": "soft", "guidance": "Historical investment alone does not establish current activity." }
+  ],
+  "hard_failure_policy": {
+    "automatic_not_met": ["inactive_firm", "explicitly_excluded_geography", "explicitly_excluded_stage", "explicitly_excluded_company_type", "verified_non_overlapping_check_ranges"],
+    "portfolio_conflict_is_automatic_failure": false,
+    "unknown_can_be_met": false
+  }
+}

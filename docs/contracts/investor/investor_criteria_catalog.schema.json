@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_criteria_catalog.schema.json",
+  "title": "Investor criteria catalog",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "catalog_id", "version", "target_type", "status", "criteria", "hard_failure_policy"],
+  "properties": {
+    "schema_version": { "const": "criteria_catalog/1" },
+    "catalog_id": { "const": "criteria_catalog.investor" },
+    "version": { "const": "v1" },
+    "target_type": { "const": "investor" },
+    "status": { "const": "proposed" },
+    "criteria": { "type": "array", "minItems": 12, "items": { "type": "object", "additionalProperties": false, "required": ["criterion_id", "label", "kind", "guidance"], "properties": { "criterion_id": { "type": "string", "pattern": "^INV-[A-Z-]+$" }, "label": { "type": "string", "minLength": 1 }, "kind": { "type": "string", "enum": ["hard", "soft", "signal"] }, "guidance": { "type": "string", "minLength": 20 } } } },
+    "hard_failure_policy": { "type": "object", "additionalProperties": false, "required": ["automatic_not_met", "portfolio_conflict_is_automatic_failure", "unknown_can_be_met"], "properties": { "automatic_not_met": { "type": "array", "minItems": 5, "items": { "type": "string" } }, "portfolio_conflict_is_automatic_failure": { "const": false }, "unknown_can_be_met": { "const": false } } }
+  }
+}

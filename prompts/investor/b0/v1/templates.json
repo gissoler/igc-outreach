@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "templates": [
+    { "id": "sector-vc", "template": "{{sector}} venture capital investors", "requires": ["sector"] },
+    { "id": "stage-sector", "template": "{{stage}} {{sector}} institutional investor", "requires": ["stage", "sector"] },
+    { "id": "geo-sector", "template": "{{geography}} {{sector}} venture fund", "requires": ["geography", "sector"] },
+    { "id": "comparables", "template": "companies like {{comparable}} investors", "requires": ["comparable"] },
+    { "id": "thesis", "template": "investment thesis {{subsector}} {{business_model}}", "requires": ["subsector", "business_model"] },
+    { "id": "recent-active", "template": "{{sector}} investors new investments {{year}}", "requires": ["sector", "year"] }
+  ]
+}

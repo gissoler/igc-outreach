@@ -1,0 +1,36 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-fixture-health",
+  "status": "frozen",
+  "as_of": "2026-10-07",
+  "provenance": {
+    "documents": [{ "title": "Fictional founder brief", "locator": "fixture://startup-brief", "retrieved_at": "2026-10-07", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }],
+    "built_by": "human",
+    "builder_id": "fixture-builder",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": { "value": "Salud Ficticia", "source": "fixture brief#name", "as_of": "2026-10-07" },
+    "incorporation_country": { "value": "CO", "source": "fixture brief#incorporation", "as_of": "2026-10-07" },
+    "operating_regions": { "value": ["Latin America"], "source": "fixture brief#operations", "as_of": "2026-10-07" },
+    "sector": { "value": "Healthtech", "source": "fixture brief#sector", "as_of": "2026-10-07" },
+    "subsectors": { "value": ["digital health"], "source": "fixture brief#subsector", "as_of": "2026-10-07" },
+    "product": { "value": "Clinical workflow software", "source": "fixture brief#product", "as_of": "2026-10-07" },
+    "description": { "value": "Fictional B2B clinical workflow platform", "source": "fixture brief#description", "as_of": "2026-10-07" },
+    "customer_type": { "value": ["hospitals"], "source": "fixture brief#customers", "as_of": "2026-10-07" },
+    "business_model": { "value": ["SaaS"], "source": "fixture brief#model", "as_of": "2026-10-07" },
+    "product_stage": { "value": "commercial", "source": "fixture brief#product-stage", "as_of": "2026-10-07" },
+    "funding_stage": { "value": "seed", "source": "fixture brief#funding-stage", "as_of": "2026-10-07" },
+    "round_sought": { "value": "seed", "source": "fixture brief#round", "as_of": "2026-10-07" },
+    "capital_sought_usd": { "value": 1500000, "source": "fixture brief#capital", "as_of": "2026-10-07" },
+    "revenue_or_traction": { "value": null, "source": "not provided", "as_of": "2026-10-07" },
+    "relevant_regulation": { "value": ["health data"], "source": "fixture brief#regulation", "as_of": "2026-10-07" },
+    "target_markets": { "value": ["Latin America"], "source": "fixture brief#markets", "as_of": "2026-10-07" },
+    "lead_preference": { "value": "lead", "source": "fixture brief#lead", "as_of": "2026-10-07" },
+    "accepted_investor_types": { "value": ["venture_capital", "corporate_venture_capital", "family_office"], "source": "fixture brief#types", "as_of": "2026-10-07" },
+    "excluded_investors": { "value": null, "source": "not provided", "as_of": "2026-10-07" },
+    "restrictions": { "value": null, "source": "not provided", "as_of": "2026-10-07" },
+    "known_portfolio_conflicts": { "value": ["Rival Health"], "source": "fixture brief#conflicts", "as_of": "2026-10-07" },
+    "comparable_companies": { "value": null, "source": "not provided", "as_of": "2026-10-07" }
+  }
+}

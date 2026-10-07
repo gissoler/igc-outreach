@@ -10,7 +10,8 @@
     "test": "node --test tests/*.test.mjs",
     "eval:search": "node scripts/eval-search.mjs",
     "browser:install": "playwright install chromium",
-    "test:agent": "node --test tests/agent/*.test.mjs"
+    "test:agent": "node --test tests/agent/*.test.mjs",
+    "test:investors": "node --test tests/agent/investors.test.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",
