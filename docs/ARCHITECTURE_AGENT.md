@@ -282,7 +282,7 @@ Justificación. Por qué no usar el judge para parar: un juez LLM tiende a sobre
 ### 3.4 Planner (núcleo)
 
 - Un solo prompt de planner para todos los dominios: `prompts/core/planner/v1` (A-02). Recibe dos placeholders: `state_json` (`planner_input/2`) y `domain_notes` (texto del archivo `planner_notes` del paquete). Así B1 sigue siendo «B2 sin adaptación» con el mismo prompt (`ARCHITECTURE.md:123`), y todos los dominios comparten las reglas de seguridad (sin URLs, `<page_data>`, acciones validadas).
-- `planner_notes` (texto del paquete, versionado en su manifest) solo describe: qué es la entidad, qué familias de fuentes cubrir y cómo se escriben las consultas en ese dominio. No puede cambiar reglas, límites ni formato de salida; A-02 lo revisa con la lista de §3.4 de `REFACTOR-PLAN.md`.
+- `planner_notes` (texto del paquete, versionado en su manifest) solo describe: qué es la entidad, qué familias de fuentes cubrir y cómo se escriben las consultas en ese dominio. No puede cambiar reglas, límites ni formato de salida; el arquitecto lo comprueba en la tarea A-02 de `REFACTOR-PLAN.md`.
 - `planner_output` no cambia (v1). La validación de acciones (`ARCHITECTURE.md:140-144`) no cambia.
 
 ---
