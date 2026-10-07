@@ -32,3 +32,15 @@ test('ACC-05 cache isolates namespaces and persists', () => {
   const b = createBenchCache({ path, namespace: 'b' }); assert.equal(b.get('search', 'k'), null); b.close();
   a = createBenchCache({ path, namespace: 'a' }); assert.deepEqual(a.get('search', 'k').value, { a: 1 }); a.close();
 });
+
+test('ACC-58 expected_model_id is enforced on fresh and cached responses', async () => {
+  const transport = async () => ({ content: JSON.stringify(good), model: 'm-1' });
+  transport.modelKey = 'm-1';
+  const cache = createBenchCache({ path: ':memory:', namespace: 'expected-model' });
+  await createLlm({ transport, cache, expectedModelId: 'm-1' }).call(req);
+  await assert.rejects(
+    () => createLlm({ transport, cache, expectedModelId: 'm-2' }).call(req),
+    error => error.code === 'CONTRACT' && /expected_model_id mismatch/.test(error.message),
+  );
+  cache.close();
+});

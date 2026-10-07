@@ -42,6 +42,10 @@ async function runForDigest(condition) {
       search: createSearchTool({ provider: 'fixture', transport: createFixtureSearch(F), cache, resultsPerQuery: 10, recency: 'none', clock: () => 0 }),
       fetch: createFetchTool({ transport: createFixtureFetch(F), cache, clock: () => 0 }),
       cache, catalog, domainsCfg,
+      hashes: {
+        case_sha256: 'd2e46658d93bccd2a2f073a09e0ec0e252990667dcf2d476a1a1c456a2295bf1',
+        run_config_sha256: 'e4b48626dba6da6e56315ef80f3dbedd06fcc5528acb1174551e8733d5a29095',
+      },
       clock: () => '2026-10-20T00:00:00.000Z',
       onPlannerInput: input => plannerInputs.push(structuredClone(input)),
     },

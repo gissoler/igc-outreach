@@ -12,10 +12,10 @@ export function excerptForExtraction(text, max) {
   return merged.map(([a,b])=>clean.slice(a,b)).join(' … ').slice(0,max);
 }
 
-export async function extractDocument({ doc, text, llm, prompt, catalog, today, step, fetchSeq, maxChars = 30000, temperature = 0 }) {
+export async function extractDocument({ doc, text, llm, prompt, catalog, today, step, fetchSeq, maxChars = 30000, temperature = 0, maxTokens = 8000 }) {
   const criteria = catalog.criteria.map(c => ({ criterion_id: c.criterion_id, label: c.label })); criteria.push({ criterion_id:'REQ', label:'Any other binding requirement of this call' });
   const user = render(prompt.user, { today, criteria_json: criteria, url: doc.url, title: sanitizePageText(doc.title), page_text: `<page_data>${sanitizePageText(excerptForExtraction(text,maxChars))}</page_data>` });
-  const call = await llm.call({ promptRef: prompt, system: prompt.system, user, schemaName:'extraction', temperature, seed:0, maxTokens:8000, meta:{ promptId:'extractor', url:doc.url } });
+  const call = await llm.call({ promptRef: prompt, system: prompt.system, user, schemaName:'extraction', temperature, seed:0, maxTokens, meta:{ promptId:'extractor', url:doc.url } });
   const extraction = call.json; const evidenceDrafts=[]; let quotes=0, identifiers=0;
   for(const e of extraction.evidence){ if(!literalIn(e.quote,text) || (e.criterion_id==='REQ'&&!e.requirement_summary)){quotes++;continue;} evidenceDrafts.push({...e}); }
   const aboutIdentifierTexts=[];

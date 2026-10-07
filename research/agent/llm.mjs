@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { bundle, validate } from './contracts.mjs';
-import { LlmError } from './errors.mjs';
+import { ContractError, LlmError } from './errors.mjs';
 import { fleetConfig, parseJsonContent, postChat } from '../server/analysis/fleet.mjs';
 
 const hash = s => createHash('sha256').update(String(s)).digest('hex');
@@ -16,13 +16,18 @@ export function fleetTransport(env, role) {
   };
 }
 
-export function createLlm({ env = process.env, role = 'engine', transport, cache, family, clock = Date.now }) {
+export function createLlm({ env = process.env, role = 'engine', transport, cache, family, expectedModelId, clock = Date.now }) {
   const tx = transport || fleetTransport(env, role);
   const modelKey = transport?.modelKey || fleetConfig(env).roles[role]?.model || 'fixture-model';
+  const assertExpectedModel = actual => {
+    if (expectedModelId != null && actual !== expectedModelId) {
+      throw new ContractError('run_config', [{ message: `expected_model_id mismatch: ${expectedModelId} vs ${actual}` }]);
+    }
+  };
   return { family, async call(req) {
     const key = hash([req.promptRef.id, req.promptRef.sha256, modelKey, hash(req.system), hash(req.user), req.temperature, req.seed].join('|'));
     const started = clock(); const hit = cache?.get('llm', key);
-    if (hit) return { json: hit.value.json, modelId: hit.value.modelId, tokens: { ...hit.meta.tokens_breakdown, total: 0, nominal_total: hit.meta.tokens, cached: true }, latency: { actual_ms: Math.max(0, clock() - started), nominal_ms: hit.meta.latency_ms } };
+    if (hit) { assertExpectedModel(hit.value.modelId); return { json: hit.value.json, modelId: hit.value.modelId, tokens: { ...hit.meta.tokens_breakdown, total: 0, nominal_total: hit.meta.tokens, cached: true }, latency: { actual_ms: Math.max(0, clock() - started), nominal_ms: hit.meta.latency_ms } }; }
     const schema = bundle(req.schemaName);
     let messages = [{ role: 'system', content: req.system }, { role: 'user', content: req.user }];
     let tokenPrompt = 0, tokenCompletion = 0, estimated = false, nominalLatency = 0, lastKind = 'LLM_BAD_JSON';
@@ -31,6 +36,7 @@ export function createLlm({ env = process.env, role = 'engine', transport, cache
       let response;
       try { response = await tx({ body, meta: req.meta }); }
       catch (error) { const timeout = error?.name === 'AbortError' || error?.name === 'TimeoutError'; throw new LlmError(timeout ? 'LLM_TIMEOUT' : 'LLM_HTTP', error.message); }
+      assertExpectedModel(response.model);
       nominalLatency += Number(response.latency_ms ?? Math.max(0, clock() - started));
       const usage = response.usage;
       tokenPrompt += Number(usage?.prompt_tokens ?? Math.ceil((req.system.length + req.user.length) / 4));
