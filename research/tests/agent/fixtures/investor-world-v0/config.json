@@ -1,0 +1,17 @@
+{
+  "schema_version": "investor_run_config/1",
+  "bench_id": "investors-fixture",
+  "status": "frozen",
+  "today": "2026-10-07",
+  "search": { "provider": "fixture", "results_per_query": 10 },
+  "agent_model": { "family": "fixture-a", "model_id": "fixture-a-1" },
+  "preannotator_model": { "family": "fixture-b", "model_id": "fixture-b-1" },
+  "budgets": { "searches": 8, "fetches": 30, "planner_calls": 5, "tokens_nominal": 10000, "seconds_nominal": 60 },
+  "patience_n": 3,
+  "default_fetch_per_search": 3,
+  "b2": { "initial_batch": 1, "max_searches_per_step": 1 },
+  "seeds": [101, 202, 303],
+  "prompts": { "b0_templates": "v1", "planner": "v1", "extractor": "v1", "judge": "v1", "preannotator": "v1" },
+  "catalog": "criteria_catalog.investor@v1",
+  "decision_rule": { "status": "proposed", "min_recall_gain": 0.05, "alpha": 0.05, "max_ndcg_drop": 0.03, "max_hard_false_positive_rate": 0.1, "min_correct_null_abstentions": 1 }
+}

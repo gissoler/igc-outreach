@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_extraction.schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["entity_kind", "canonical_name", "source_kind"],
+  "properties": {
+    "entity_kind": { "type": "string", "enum": ["institutional_investor", "individual", "portfolio_company", "service_provider", "accelerator_no_capital", "other"] },
+    "canonical_name": { "type": "string", "minLength": 1 },
+    "official_domain": { "type": ["string", "null"] },
+    "aliases": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "investor_type": { "type": "string", "enum": ["venture_capital", "corporate_venture_capital", "family_office", "institutional_angel_network", "accelerator", "venture_studio", "other", "not_investor", "unknown"] },
+    "parent_firm": { "type": ["string", "null"] },
+    "vehicles": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["name", "url"], "properties": { "name": { "type": "string" }, "url": { "type": ["string", "null"], "format": "uri" } } } },
+    "active_status": { "$ref": "investor_entity.schema.json#/$defs/activeStatus" },
+    "sectors": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "stages": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "rounds": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "geographies": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "check_range_usd": { "type": "object", "additionalProperties": false, "required": ["min", "max", "source_url"], "properties": { "min": { "type": ["number", "null"] }, "max": { "type": ["number", "null"] }, "source_url": { "type": ["string", "null"], "format": "uri" } } },
+    "lead_follow": { "type": "string", "enum": ["lead", "follow", "both", "unknown"] },
+    "business_models": { "type": "object", "additionalProperties": false, "required": ["accepted", "excluded"], "properties": { "accepted": { "$ref": "investor_entity.schema.json#/$defs/stringList" }, "excluded": { "$ref": "investor_entity.schema.json#/$defs/stringList" } } },
+    "regulatory_restrictions": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "relevant_portfolio": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "potential_conflicts": { "$ref": "investor_entity.schema.json#/$defs/stringList" },
+    "recent_investment": { "type": "boolean" },
+    "source_kind": { "type": "string", "enum": ["official", "regulatory", "news", "database", "directory", "other"] },
+    "published_on": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "quote": { "type": ["string", "null"] },
+    "regulatory_id": { "type": ["string", "null"] },
+    "canonical_url": { "type": ["string", "null"], "format": "uri" },
+    "contradictions": { "type": "array", "items": { "type": "string" } }
+  }
+}

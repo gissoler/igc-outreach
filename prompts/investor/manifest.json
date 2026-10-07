@@ -1,0 +1,10 @@
+{
+  "schema_version": "investor_prompt_manifest/1",
+  "prompts": [
+    { "id": "b0_templates", "version": "v1", "files": ["b0/v1/templates.json"], "sha256": "d61b4c0d7acec2a88b9e7d4aa7dfa916c8b59ea4242e9520128524023a83875b" },
+    { "id": "planner", "version": "v1", "files": ["planner/v1/system.md", "planner/v1/user.md"], "sha256": "22a9106b0d7b427fa2b097b0a99963d5a11f2e0c4e05adcbd51396f17a713076" },
+    { "id": "extractor", "version": "v1", "files": ["extractor/v1/system.md", "extractor/v1/user.md"], "sha256": "81092ff9104a1ca3786dbb1377307320788bbaf4dd0d6585317e4ca8e6a93d51" },
+    { "id": "judge", "version": "v1", "files": ["judge/v1/system.md", "judge/v1/user.md"], "sha256": "4a467e428e1b52e3db9dcf13f3908d50d7e690249e1b101305da9e15cbd3d7da" },
+    { "id": "preannotator", "version": "v1", "files": ["preannotator/v1/system.md", "preannotator/v1/user.md"], "sha256": "d441b9f7f4f0c39de26539232793e9597683d36547bc05e49546dcbbf7a9d0e8" }
+  ]
+}

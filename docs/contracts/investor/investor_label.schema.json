@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_label.schema.json",
+  "title": "Human-adjudicated investor label",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "case_id", "stable_id", "role", "annotator", "identity_correct", "entity_kind", "active_status", "sector_fit", "stage_fit", "geography_fit", "check_fit", "round_fit", "business_model_fit", "lead_fit", "hard_eligibility", "portfolio_conflict", "overall_relevance", "confidence", "criteria", "evidence", "labeled_on", "notes"],
+  "properties": {
+    "schema_version": { "const": "investor_label/1" },
+    "case_id": { "type": "string", "pattern": "^inv-case-[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "stable_id": { "type": "string", "pattern": "^inv:(domain|regulatory|url):[^\\s]+$" },
+    "role": { "type": "string", "enum": ["adjudicator", "second_reviewer"] },
+    "annotator": { "type": "string", "minLength": 1 },
+    "identity_correct": { "type": ["boolean", "null"] },
+    "entity_kind": { "type": "string", "enum": ["institutional_investor", "individual", "portfolio_company", "service_provider", "accelerator_no_capital", "other"] },
+    "active_status": { "type": "string", "enum": ["active", "possibly_active", "inactive", "unknown"] },
+    "sector_fit": { "type": "string", "enum": ["on", "partial", "off", "unknown"] },
+    "stage_fit": { "$ref": "#/$defs/fit" },
+    "geography_fit": { "$ref": "#/$defs/fit" },
+    "check_fit": { "$ref": "#/$defs/fit" },
+    "round_fit": { "$ref": "#/$defs/fit" },
+    "business_model_fit": { "$ref": "#/$defs/fitNa" },
+    "lead_fit": { "$ref": "#/$defs/fitNa" },
+    "hard_eligibility": { "type": "string", "enum": ["eligible", "ineligible", "undetermined"] },
+    "portfolio_conflict": { "type": "string", "enum": ["none", "potential", "direct", "unknown"] },
+    "overall_relevance": { "type": "string", "enum": ["strong", "plausible", "weak", "irrelevant"] },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "criteria": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["criterion_id", "state"], "properties": { "criterion_id": { "type": "string", "pattern": "^INV-[A-Z-]+$" }, "state": { "$ref": "../common.schema.json#/$defs/criterionState" } } }, "uniqueItems": true },
+    "evidence": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["criterion_id", "url", "quote", "retrieved_on"], "properties": { "criterion_id": { "type": "string" }, "url": { "type": "string", "format": "uri" }, "quote": { "type": "string", "minLength": 1 }, "retrieved_on": { "$ref": "../common.schema.json#/$defs/isoDate" } } } },
+    "labeled_on": { "$ref": "../common.schema.json#/$defs/isoDate" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "fit": { "type": "string", "enum": ["met", "not_met", "unknown"] },
+    "fitNa": { "type": "string", "enum": ["met", "not_met", "unknown", "not_applicable"] }
+  }
+}

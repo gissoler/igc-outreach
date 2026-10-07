@@ -1,0 +1,11 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-fixture-anchor",
+  "kind": "anchor",
+  "as_of": "2026-10-07",
+  "profile_path": "research/tests/agent/fixtures/investor-world-v0/profile.json",
+  "profile_sha256": "1c7f337b1546c5b0a80396cc4253af8b9a432c8dadf6dd0ad70dc103ee01369c",
+  "construction": { "curator": "fixture-curator", "profile_builder": "fixture-builder", "profile_builder_saw_investors": false, "selection_order": "profile_first", "profile_frozen_at": "2026-10-01T12:00:00Z", "curation_started_at": "2026-10-02T12:00:00Z" },
+  "anchors": [{ "stable_id": "inv:domain:alpha-ventures.test", "canonical_name": "Alpha Ventures", "official_url": "https://alpha-ventures.test/thesis", "active_status": "active", "verified_on": "2026-10-07", "compatibility_evidence": "Official fictional thesis and recent investment evidence match the frozen profile.", "found_after_profile_freeze": true, "selected_from_system_results": false, "historical_investment_control": false }],
+  "null_case": null
+}

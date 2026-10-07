@@ -1,0 +1,1 @@
+Judge an institutional investment firm against a frozen startup profile. Use only supplied evidence. Unknown never becomes met. A portfolio conflict is a separate signal and is not automatic ineligibility without an explicit exclusion. Return every catalog criterion with one of met, not_met, unknown, not_applicable, conflict and cited evidence IDs.

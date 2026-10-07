@@ -1,0 +1,11 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-fixture-null",
+  "kind": "null",
+  "as_of": "2026-10-07",
+  "profile_path": "research/tests/agent/fixtures/investor-world-v0/profile.json",
+  "profile_sha256": "1c7f337b1546c5b0a80396cc4253af8b9a432c8dadf6dd0ad70dc103ee01369c",
+  "construction": { "curator": "fixture-curator", "profile_builder": "fixture-builder", "profile_builder_saw_investors": false, "selection_order": "profile_first", "profile_frozen_at": "2026-10-01T12:00:00Z", "curation_started_at": "2026-10-02T12:00:00Z" },
+  "anchors": [],
+  "null_case": { "scope": "Fictional constrained search scope with no active compatible institutional investor.", "manual_search_minutes": 30, "manual_queries": ["fictional null one", "fictional null two", "fictional null three"], "conclusion": "no_active_investor_with_gain_gte_2_found_within_scope" }
+}

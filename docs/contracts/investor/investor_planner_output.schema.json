@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_planner_output.schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["queries", "stop"],
+  "properties": {
+    "queries": { "type": "array", "items": { "type": "string", "minLength": 3, "maxLength": 300 } },
+    "stop": { "type": "boolean" }
+  }
+}
