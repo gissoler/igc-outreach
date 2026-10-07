@@ -28,7 +28,7 @@ const domainsCfg = json(resolve(root, 'research/agent/config/official_domains.v1
 const expectedDigests = {
   B0: 'c59bd43512ddfd633f1e69a2dcd876db610433f4871b358341792295d9904f13',
   B1: 'e5eed2554c7c12539757476f28ff8e1d058fc0db0162ecf7439696336cc8ce85',
-  B2: 'ffc4bf0f22dabca69d88068d374bcdd27592fa285483cddb9885e05fe05b4423',
+  B2: '4f6e3ef667d333fab8529bde3f7f29a22cbce6e73b9d2b2d67eeaa48d51bb39a',
 };
 
 async function runForDigest(condition) {

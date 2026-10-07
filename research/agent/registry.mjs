@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { norm } from '../server/research/core.mjs';
 import { identifiersFromText, urlIdentifier, stableIdOf } from './identifiers.mjs';
 import { computeValidity } from './validity.mjs';
+import { normalizeUrl } from './docs.mjs';
 import { validate } from './contracts.mjs';
 
 const hash16=s=>createHash('sha256').update(s).digest('hex').slice(0,16);
@@ -22,7 +23,7 @@ export function createRegistry({today,catalog}){
       linksArr.push(...extractionResult.officialLinks.map(x=>({...x,stable_id:rec.entity.stable_id,fetched:false})));mentionsArr.push(...extractionResult.mentions.map(x=>({...x,stable_id:rec.entity.stable_id,step:ctx.step})));
       rec.entity.validity=computeValidity(rec.entity,docsMap,texts,today); return {stable_id:rec.entity.stable_id,isNew,newOfficial:rec.entity.official&&(isNew||!wasOfficial)};
     },
-    entities(){return records.map(r=>r.entity)}, evidenceFor(id){return records.find(r=>r.entity.stable_id===id)?.evidence||[]}, docs(){return [...docsMap.values()]}, links(){return linksArr}, mentions(){return mentionsArr}, textOf(id){return texts.get(id)||''},
+    entities(){return records.map(r=>r.entity)}, evidenceFor(id){return records.find(r=>r.entity.stable_id===id)?.evidence||[]}, docs(){return [...docsMap.values()]}, links(){return linksArr}, markFetchedUrl(normalizedUrl){for(const link of linksArr)if(normalizeUrl(link.url)===normalizedUrl)link.fetched=true}, mentions(){return mentionsArr}, textOf(id){return texts.get(id)||''},
     finalize(){for(const r of records){const old=r.entity.stable_id;r.entity.stable_id=stableIdOf(r.entity.identifiers);for(const e of r.evidence)e.stable_id=r.entity.stable_id;for(const l of linksArr)if(l.stable_id===old)l.stable_id=r.entity.stable_id;for(const m of mentionsArr)if(m.stable_id===old)m.stable_id=r.entity.stable_id;r.entity.validity=computeValidity(r.entity,docsMap,texts,today);validate('target_entity',r.entity);}return records.map(r=>r.entity)}
   };
 }
