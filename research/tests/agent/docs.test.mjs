@@ -18,6 +18,8 @@ test('ACC-06 URL normalization, ids, registrable domains and official basis', ()
   for (const p of world.pages.filter(x => E.official[x.id])) assert.equal(officialBasisOf({ url: p.url, extraction: llm.extractor[p.id] }, domains), E.official[p.id]);
   const ex = { page_type: 'call', about: { issuer_domain: 'example.org', how_to_apply_quote: 'apply' }, evidence: [] };
   assert.equal(officialBasisOf({ url: 'https://www.example.org/x', extraction: ex }, domains), 'issuer_match');
+  const unverified = { ...ex, about: { ...ex.about, how_to_apply_quote: null }, evidence: [{ criterion_id: 'G-ENTITY', quote: 'invented' }] };
+  assert.equal(officialBasisOf({ url: 'https://www.example.org/x', extraction: unverified, acceptedEvidence: [] }, domains), 'none');
   assert.equal(officialBasisOf({ url: 'https://www.example.org/x', extraction: { ...ex, page_type: 'news' } }, domains), 'none');
   assert.equal(officialBasisOf({ url: 'https://www.fundsforngos.org/x', extraction: ex }, domains), 'none');
 });

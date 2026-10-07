@@ -214,6 +214,26 @@ test('ACC-58 expected_model_id mismatch writes a valid partial result', async ()
   cache.close();
 });
 
+test('ACC-55 extractor LLM errors stay on fetch and the run continues', async () => {
+  const base = createFixtureTransport(fixtureDir, { condition: 'B0', profileId: profile.profile_id });
+  const failedUrl = 'https://www.nsf.gov/funding/opportunities/oceanographic-facilities-equipment-support/nsf23-525';
+  const transport = request => request.meta.url === failedUrl
+    ? Promise.resolve({ content: 'not json', model: 'fixture-model', usage: { prompt_tokens: 1000, completion_tokens: 100 }, latency_ms: 10 })
+    : base(request);
+  transport.modelKey = base.modelKey;
+  transport.clock = base.clock;
+  const { result, out, cache } = await run('B0', undefined, { transport });
+  const logs = readFileSync(resolve(out, 'steps.jsonl'), 'utf8').trim().split('\n').map(JSON.parse);
+  const failedFetch = logs.find(entry => entry.kind === 'fetch' && entry.data.document.doc_id === expected.doc_ids.p2);
+  assert.notEqual(result.stop_reason, 'fatal_error');
+  assert.equal(failedFetch.errors[0].code, 'LLM_BAD_JSON');
+  assert.equal(failedFetch.errors[0].ref, expected.doc_ids.p2);
+  assert.equal(logs.some(entry => entry.kind === 'extract' && entry.data.doc_id === expected.doc_ids.p2), false);
+  assert.equal(result.entities.some(item => item.stable_id === expected.stable_ids.p2), false);
+  assert.equal(result.totals.fetches, expected.conditions.B0.fetches);
+  cache.close();
+});
+
 test('ACC-58 CLI fixture timing is deterministic', () => {
   const cli = resolve(root, 'research/bench/cli.mjs');
   const execute = out => spawnSync(process.execPath, [cli, 'run', '--config', configPath, '--case', casePath, '--condition', 'B0', '--seed', '101', '--out', out], {

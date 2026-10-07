@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createPatience } from '../../agent/signals.mjs';
+import { createPatience, searchSignals } from '../../agent/signals.mjs';
 import { validateActions } from '../../agent/planner.mjs';
 import { norm } from '../../server/research/core.mjs';
 import { readFileSync, mkdtempSync } from 'node:fs';
@@ -14,6 +14,7 @@ import { createBenchCache } from '../../agent/cache.mjs';
 import { behaviorDigest, digestSha } from './helpers/digest.mjs';
 
 test('ACC-11 patience counter resets only on new official opportunities',()=>{let p=createPatience(6);assert.deepEqual([2,1,0,0,0,0,0,0].map(x=>p.afterSearch(x)),[0,0,1,2,3,4,5,6]);assert.equal(p.exhausted,true);p=createPatience(6);assert.deepEqual([0,1,0].map(x=>p.afterSearch(x)),[1,0,1]);p=createPatience(6);[0,0,0,0].forEach(x=>p.afterSearch(x));assert.equal(p.value,4);assert.equal(p.afterExtraFetches(1),0);});
+test('ACC-55 official domains are reported only once per run',()=>{const registry={entities:()=>[],evidenceFor:()=>[],links:()=>[],mentions:()=>[]};const signals=searchSignals({resultsNormUrls:[],seenBefore:new Set(),fetchResults:[{ok:true,doc:{official:true,registrable_domain:'nih.gov',text_chars:500}}],registryDelta:[],registry,catalog:{criteria:[]},patienceValue:0,seenOfficialDomains:new Set(['nih.gov'])});assert.deepEqual(signals.new_official_domains,[]);});
 test('ACC-13 planner actions reject duplicates, limits, unknown and blocked refs',()=>{const input={gaps:[{gap_id:'g-12345678'}]},refs=new Map([['r001-01',{url:'https://x.org/a',normalized_url:'https://x.org/a',fetched:true}],['r001-02',{url:'https://fundsforngos.org/a',normalized_url:'https://fundsforngos.org/a',fetched:false}]]),output={actions:[{type:'search',query:'Hello, World!',targets:['coverage:anything']},{type:'search',query:'a',targets:[]},{type:'search',query:'b',targets:[]},{type:'search',query:'c',targets:[]},{type:'fetch',ref:'r999-01',targets:[]},{type:'fetch',ref:'r001-01',targets:[]},{type:'fetch',ref:'r001-02',targets:[]},{type:'search',query:'z',targets:['g-00000000']}]};const r=validateActions(output,input,'adaptive_step',{max_searches:2,max_fetches:1},{executedQueriesNorm:new Set([norm('hello world')]),fetchedNormUrls:new Set(),refs});assert.deepEqual(r.rejected.map(x=>x.reason),['duplicate_query','over_limit','unknown_ref','already_fetched','blocked_host','unknown_gap']);});
 
 test('ACC-53 fetched links leave planner inputs and only declared digest paths change', async () => {

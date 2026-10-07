@@ -21,6 +21,6 @@ export async function extractDocument({ doc, text, llm, prompt, catalog, today, 
   const aboutIdentifierTexts=[];
   for(const t of extraction.about?.identifier_texts||[]){ if(literalIn(t,text)||String(doc.url).includes(t)){aboutIdentifierTexts.push(t);} else identifiers++; }
   const aboutIdentifiers=aboutIdentifierTexts.flatMap(identifiersFromText);
-  const officialLinks=[]; for(const [i,l] of extraction.official_links.entries()) if(String(text).includes(l.url)&&isPublicUrl(l.url)) officialLinks.push({...l,link_id:`l${String(fetchSeq).padStart(3,'0')}-${String(i).padStart(2,'0')}`});
+  const officialLinks=[]; for(const l of extraction.official_links) if(String(text).includes(l.url)&&isPublicUrl(l.url)) officialLinks.push({...l,link_id:`l${String(fetchSeq).padStart(3,'0')}-${String(officialLinks.length).padStart(2,'0')}`});
   return { extraction, evidenceDrafts, aboutIdentifiers, officialLinks, mentions: extraction.mentions, rejected:{quotes,identifiers}, tokens:call.tokens, latency:call.latency, modelId:call.modelId, fullText:text, promptRef:{id:prompt.id,version:prompt.version,sha256:prompt.sha256}, step };
 }

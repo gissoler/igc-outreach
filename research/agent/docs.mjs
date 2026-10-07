@@ -19,7 +19,7 @@ export function registrableDomain(host) {
   if (cc.length === 2 && new Set(['co','com','gov','gob','ac','org','net','edu','go','or','ne','nic']).has(sld)) return p.slice(-3).join('.');
   return p.slice(-2).join('.');
 }
-export function officialBasisOf({ url, extraction }, cfg) {
+export function officialBasisOf({ url, extraction, acceptedEvidence = [] }, cfg) {
   if (!isPublicUrl(url) || hostKind(url) !== 'other') return 'none';
   const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
   if ((cfg.suffixes || []).some(s => host === s.replace(/^\./, '') || host.endsWith(s.startsWith('.') ? s : `.${s}`))) return 'suffix';
@@ -27,7 +27,7 @@ export function officialBasisOf({ url, extraction }, cfg) {
   if ((cfg.domains || []).some(entry => { const d = typeof entry === 'string' ? entry : entry.domain; return host === d || host.endsWith(`.${d}`) || rd === d; })) return 'curated_list';
   const about = extraction?.about;
   const issuer = String(about?.issuer_domain || '').toLowerCase().replace(/^www\./, '');
-  const hasEntity = extraction?.evidence?.some(e => e.criterion_id === 'G-ENTITY');
+  const hasEntity = acceptedEvidence.some(e => e.criterion_id === 'G-ENTITY');
   if (issuer && registrableDomain(issuer) === rd && ['call', 'program_page'].includes(extraction?.page_type) && (about?.how_to_apply_quote || hasEntity)) return 'issuer_match';
   return 'none';
 }
