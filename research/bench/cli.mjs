@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { readFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { createBenchCache } from '../agent/cache.mjs';
 import { createFixtureTransport, createFixtureSearch, createFixtureFetch } from '../agent/fixtures.mjs';
@@ -12,10 +12,10 @@ import { loadPrompt } from '../agent/prompts.mjs';
 import { runCase } from '../agent/run.mjs';
 import { validateCases, runAll } from './runAll.mjs';
 import { poolBench } from './pool.mjs';
-import { sampleCase, writeSample } from './sample.mjs';
+import { sampleCase, secondReviewRows, writeSample } from './sample.mjs';
 import { importLabels } from './labels.mjs';
-import { preannotateItems } from './preannotate.mjs';
-import { buildMetricsReport } from './metrics.mjs';
+import { preannotateItems, sourceTextForItem } from './preannotate.mjs';
+import { buildMetricsReport, decisionFromReport } from './metrics.mjs';
 import { writeReport } from './report.mjs';
 
 const repo = resolve(import.meta.dirname, '../..');
@@ -29,6 +29,7 @@ const currentCodeSha = () => {
 };
 const argv = process.argv.slice(2), command = argv.shift();
 const option = name => { const i = argv.indexOf(`--${name}`); return i < 0 ? null : argv[i + 1]; };
+const requiredOption = name => { const value = option(name); if (!value) throw new Error(`--${name} is required`); return value; };
 const assets = () => ({ catalog: json(resolve(repo, 'docs/contracts/criteria_catalog.grant.v1.json')), domainsCfg: json(resolve(repo, 'research/agent/config/official_domains.v1.json')) });
 
 async function execute({ config, caseObj, profile, condition, seed, outDir, configPath, casePath, cache }) {
@@ -67,7 +68,7 @@ async function main() {
   }
   if (command === 'pool') { poolBench({ benchDir: resolve(repo, 'research/bench/out', option('bench')), casesDir: resolve(repo, 'research/bench/cases') }); return 0; }
   if (command === 'preannotate') {
-    const bench = option('bench'), base = resolve(repo, 'research/bench/out', bench), config = json(resolve(repo, 'research/bench/config/v0.json'));
+    const bench = option('bench'), base = resolve(repo, 'research/bench/out', bench), config = json(resolve(requiredOption('config')));
     if (config.agent_model.family === config.preannotator_model.family) throw new Error('Preannotator family must differ from agent family');
     const cache = createBenchCache({ path: resolve(base, 'cache.sqlite'), namespace: config.cache_namespace }), fetch = createFetchTool({ env: process.env, cache });
     const env = { ...process.env, ENGINE_LLM_URL: process.env[config.preannotator_model.base_url_env], ENGINE_LLM_MODEL: process.env[config.preannotator_model.model_env], ENGINE_LLM_API_KEY: process.env[config.preannotator_model.api_key_env] };
@@ -75,7 +76,7 @@ async function main() {
     let append = false;
     for (const f of readdirSync(resolve(base, 'pool')).filter(x => x.endsWith('.json'))) {
       const caseId = f.replace('.json', ''), caseObj = json(resolve(repo, 'research/bench/cases', `${caseId}.json`)), profile = json(resolve(repo, caseObj.profile_path)), pool = json(resolve(base, 'pool', f));
-      await preannotateItems({ benchId: bench, caseObj, profile, pool, llm, prompt: loadPrompt('preannotator', config.prompts.preannotator), catalog: assets().catalog, sourceText: async item => (await Promise.all(item.urls.slice(0, 3).map(u => fetch.fetch(u)))).filter(x => x.ok).map(x => x.text).join('\n'), outDir: base, append, temperature: config.temperatures.preannotator, maxTokens: config.max_tokens.preannotator });
+      await preannotateItems({ benchId: bench, caseObj, profile, pool, llm, prompt: loadPrompt('preannotator', config.prompts.preannotator), catalog: assets().catalog, sourceText: item => sourceTextForItem(item, fetch), outDir: base, append, temperature: config.temperatures.preannotator, maxTokens: config.max_tokens.preannotator });
       append = true;
     }
     cache.close(); return 0;
@@ -86,7 +87,7 @@ async function main() {
       const caseId = f.replace('.json', ''), caseObj = json(resolve(repo, 'research/bench/cases', `${caseId}.json`)), profile = json(resolve(repo, caseObj.profile_path)), pool = json(resolve(base, 'pool', f));
       const prePath = resolve(base, 'labels/preannotations.jsonl'), pre = existsSync(prePath) ? readFileSync(prePath, 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse).filter(x => x.case_id === caseId) : [];
       const runs = readdirSync(resolve(base, 'runs')).map(d => json(resolve(base, 'runs', d, 'result.json'))).filter(x => x.case_id === caseId), sample = sampleCase({ caseObj, profile, pool, preannotations: pre, runs, seed });
-      writeSample({ outDir: resolve(base, 'labeling'), caseId, rows: sample.rows, key: sample.key });
+      writeSample({ outDir: resolve(base, 'labeling'), caseId, rows: sample.rows, key: sample.key, secondRows: secondReviewRows(sample.rows, sample.key, seed) });
     }
     return 0;
   }
@@ -97,10 +98,10 @@ async function main() {
     importLabels({ file, role, annotator, key, outFile: resolve(base, 'labels', `${role}.jsonl`) }); return 0;
   }
   if (command === 'metrics') {
-    const bench = option('bench'), base = resolve(repo, 'research/bench/out', bench), configPath = resolve(repo, 'research/bench/config/v0.json');
+    const bench = option('bench'), base = resolve(repo, 'research/bench/out', bench), configPath = resolve(requiredOption('config'));
     const report = buildMetricsReport({ benchId: bench, baseDir: base, configPath, casesDir: resolve(repo, 'research/bench/cases') }); writeReport(report, base); return 0;
   }
-  if (command === 'decide') { const base = resolve(repo, 'research/bench/out', option('bench')), report = json(resolve(base, 'metrics_report.json')); writeReport(report, base); return 0; }
+  if (command === 'decide') { const base = resolve(repo, 'research/bench/out', option('bench')), report = json(resolve(base, 'metrics_report.json')); report.decision = decisionFromReport(report, { baseDir: base }); writeFileSync(resolve(base, 'metrics_report.json'), `${JSON.stringify(report, null, 2)}\n`); writeReport(report, base); return 0; }
   console.error(`Unknown command ${command}`); return 1;
 }
 
