@@ -5,7 +5,7 @@
  */
 import { createHash } from 'node:crypto';
 import { norm } from '../server/research/core.mjs';
-import { identifiersFromText, urlIdentifier, stableIdOf } from './identifiers.mjs';
+import { identifiersForDocument, stableIdOf } from './identifiers.mjs';
 import { computeValidity } from './validity.mjs';
 import { normalizeUrl } from './docs.mjs';
 import { validate } from './contracts.mjs';
@@ -19,6 +19,7 @@ const uniqueBy = (items, keyOf) => [...new Map(items.map(item => [keyOf(item), i
  * Crea el registro mutable de una corrida.
  * Invariante: el orden de `records` es el orden de primera aparición de las entidades.
  * Efectos: conserva documentos y resultados extraídos solo en memoria.
+ * Excepción de 60 líneas: las operaciones comparten índices privados que no se exponen fuera del cierre.
  * @param {{today:string, catalog:object}} options
  * @returns {object}
  */
@@ -137,17 +138,21 @@ export function createRegistry({ today, catalog }) {
         storeReferences(extractionResult, null, ctx.step);
         return { stable_id: null, isNew: false, newOfficial: false };
       }
-      const identifiers = uniqueBy([
-        ...extractionResult.aboutIdentifiers,
-        ...identifiersFromText(doc.url),
-        urlIdentifier(doc.url),
-      ].map(identifier => ({ ...identifier, doc_id: doc.doc_id })), identifierKey);
-      const matches = matchingRecords(identifiers);
+      const identifiers = identifiersForDocument({
+        acceptedTexts: extractionResult.acceptedIdentifierTexts || [],
+        url: doc.url,
+      });
+      if (!extractionResult.acceptedIdentifierTexts) identifiers.unshift(...extractionResult.aboutIdentifiers);
+      const identifiersWithDocument = uniqueBy(
+        identifiers.map(identifier => ({ ...identifier, doc_id: doc.doc_id })),
+        identifierKey,
+      );
+      const matches = matchingRecords(identifiersWithDocument);
       const isNew = matches.length === 0;
       const wasOfficial = matches.some(record => record.entity.official);
-      const record = matches[0] || createRecord({ about, identifiers, doc, ctx });
+      const record = matches[0] || createRecord({ about, identifiers: identifiersWithDocument, doc, ctx });
       const merged = matches.slice(1).map(source => absorbRecord(record, source));
-      record.entity.identifiers = uniqueBy([...record.entity.identifiers, ...identifiers], identifierKey);
+      record.entity.identifiers = uniqueBy([...record.entity.identifiers, ...identifiersWithDocument], identifierKey);
       if (!record.entity.source_doc_ids.includes(doc.doc_id)) record.entity.source_doc_ids.push(doc.doc_id);
       if (ctx.queryId && !record.entity.query_ids.includes(ctx.queryId)) record.entity.query_ids.push(ctx.queryId);
       if (doc.official && !record.entity.official) {

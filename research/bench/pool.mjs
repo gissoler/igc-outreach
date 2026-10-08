@@ -1,4 +1,99 @@
-import{createHash}from'node:crypto';import{readFileSync,readdirSync,mkdirSync,writeFileSync,existsSync}from'node:fs';import{resolve}from'node:path';import{identifierKeys,stableIdOf,urlIdentifier}from'../agent/identifiers.mjs';import{validate}from'../agent/contracts.mjs';
-const j=p=>JSON.parse(readFileSync(p,'utf8')),sha=s=>createHash('sha256').update(s).digest('hex').slice(0,12);
-export function buildPool({caseObj,runs=[],manual=null}){const rows=[];for(const r of runs)for(const x of r.ranked.slice(0,20)){const e=r.entities.find(y=>y.stable_id===x.stable_id);if(e)rows.push({stable_id:e.stable_id,name:e.name,urls:[e.canonical_url],official_urls:e.official?[e.canonical_url]:[],attributes:{issuer:e.issuer},identifiers:e.identifiers.map(({scheme,value})=>({scheme,value})),source_doc_ids:e.source_doc_ids,run_id:r.run_id,anchor:false,manual:false});}if(caseObj.anchor)rows.push({stable_id:stableIdOf(caseObj.anchor.identifiers.map(i=>i.scheme==='url'&&/^http/.test(i.value)?urlIdentifier(i.value):i)),name:caseObj.anchor.name,urls:[caseObj.anchor.official_url],official_urls:[caseObj.anchor.official_url],attributes:{issuer:{name:caseObj.anchor.issuer||'',domain:null}},identifiers:caseObj.anchor.identifiers,source_doc_ids:[],anchor:true,manual:false});for(const x of manual?.items||[])rows.push({stable_id:stableIdOf([...(x.identifiers||[]),urlIdentifier(x.url)]),name:x.name,urls:[x.url],official_urls:[],attributes:{},identifiers:[...(x.identifiers||[]),urlIdentifier(x.url)],source_doc_ids:[],anchor:false,manual:true});const groups=[];for(const row of rows){const keys=identifierKeys(row),hits=groups.filter(g=>[...keys].some(k=>g.keys.has(k)));if(!hits.length)groups.push({keys:new Set(keys),rows:[row]});else{const g=hits[0];g.rows.push(row);for(const k of keys)g.keys.add(k);for(const h of hits.slice(1)){g.rows.push(...h.rows);for(const k of h.keys)g.keys.add(k);groups.splice(groups.indexOf(h),1);}}}return groups.map(g=>{const ids=[...new Map(g.rows.flatMap(r=>r.identifiers).map(i=>[`${i.scheme}:${i.value}`,i])).values()],stable_id=stableIdOf(ids);return{item_key:sha(`${caseObj.case_id}|${stable_id}`),stable_id,names:[...new Set(g.rows.map(r=>r.name))],urls:[...new Set(g.rows.flatMap(r=>r.urls))],official_urls:[...new Set(g.rows.flatMap(r=>r.official_urls))],attributes:g.rows.find(r=>r.attributes?.issuer?.name)?.attributes||{},identifiers:ids,source_doc_ids:[...new Set(g.rows.flatMap(r=>r.source_doc_ids))],from:{runs:[...new Set(g.rows.map(r=>r.run_id).filter(Boolean))],anchor:g.rows.some(r=>r.anchor),manual:g.rows.some(r=>r.manual)}}});}
-export function poolBench({benchDir,casesDir}){const runsDir=resolve(benchDir,'runs'),out=resolve(benchDir,'pool');mkdirSync(out,{recursive:true});for(const f of readdirSync(casesDir).filter(x=>x.endsWith('.json')&&x!=='manifest.json').sort()){const c=j(resolve(casesDir,f)),runs=existsSync(runsDir)?readdirSync(runsDir).map(d=>resolve(runsDir,d,'result.json')).filter(existsSync).map(j).filter(r=>r.case_id===c.case_id):[],mp=resolve(casesDir,'manual',`${c.case_id}.json`),manual=existsSync(mp)?validate('manual_search',j(mp)):null,pool=buildPool({caseObj:c,runs,manual});writeFileSync(resolve(out,`${c.case_id}.json`),`${JSON.stringify(pool,null,2)}\n`);}return out}
+/**
+ * Une candidatos por identificadores para formar el pool.
+ * No etiqueta ni ordena entidades por relevancia.
+ * Contratos: casos, corridas y manual_search/1.
+ */
+import { createHash } from 'node:crypto';
+import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { identifierKeys, stableIdOf, urlIdentifier } from '../agent/identifiers.mjs';
+import { validate } from '../agent/contracts.mjs';
+const j=p=>JSON.parse(readFileSync(p,'utf8')),sha=s=>createHash('sha256').update(s).digest('hex').slice(0,
+12);
+/**
+ * Conserva el contrato público de buildPool para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
+export function buildPool( {
+  caseObj,runs=[],manual=null
+}) {
+  const rows=[];
+  for(const r of runs)for(const x of r.ranked.slice(0,20)) {
+    const e=r.entities.find(y=>y.stable_id===x.stable_id);
+    if(e)rows.push( {
+      stable_id:e.stable_id,name:e.name,urls:[e.canonical_url],official_urls:e.official?[e.canonical_url]:[],
+      attributes: {
+        issuer:e.issuer
+      },identifiers:e.identifiers.map(( {
+        scheme,value
+      })=>( {
+        scheme,value
+      })),source_doc_ids:e.source_doc_ids,run_id:r.run_id,anchor:false,manual:false
+    });
+  }
+  if(caseObj.anchor)rows.push( {
+    stable_id:stableIdOf(caseObj.anchor.identifiers.map(i=>i.scheme==='url'&&/^http/.test(i.value)?urlIdentifier(i.value):i)),
+    name:caseObj.anchor.name,urls:[caseObj.anchor.official_url],official_urls:[caseObj.anchor.official_url],
+    attributes: {
+      issuer: {
+        name:caseObj.anchor.issuer||'',domain:null
+      }
+    },identifiers:caseObj.anchor.identifiers,source_doc_ids:[],anchor:true,manual:false
+  });
+  for(const x of manual?.items||[])rows.push( {
+    stable_id:stableIdOf([...(x.identifiers||[]),urlIdentifier(x.url)]),name:x.name,urls:[x.url],official_urls:[],
+    attributes: {
+    },identifiers:[...(x.identifiers||[]),urlIdentifier(x.url)],source_doc_ids:[],anchor:false,manual:true
+  });
+  const groups=[];
+  for(const row of rows) {
+    const keys=identifierKeys(row),hits=groups.filter(g=>[...keys].some(k=>g.keys.has(k)));
+    if(!hits.length)groups.push( {
+      keys:new Set(keys),rows:[row]
+    });
+    else {
+      const g=hits[0];
+      g.rows.push(row);
+      for(const k of keys)g.keys.add(k);
+      for(const h of hits.slice(1)) {
+        g.rows.push(...h.rows);
+        for(const k of h.keys)g.keys.add(k);
+        groups.splice(groups.indexOf(h),1);
+      }
+    }
+  }
+  return groups.map(g=> {
+    const ids=[...new Map(g.rows.flatMap(r=>r.identifiers).map(i=>[`${i.scheme}:${i.value}`,i])).values()],
+    stable_id=stableIdOf(ids);return {
+      item_key:sha(`${caseObj.case_id}|${stable_id}`),stable_id,names:[...new Set(g.rows.map(r=>r.name))],
+        urls:[...new Set(g.rows.flatMap(r=>r.urls))],
+      official_urls:[...new Set(g.rows.flatMap(r=>r.official_urls))],attributes:g.rows.find(r=>r.attributes?.issuer?.name)?.attributes|| {
+      },identifiers:ids,source_doc_ids:[...new Set(g.rows.flatMap(r=>r.source_doc_ids))],from: {
+        runs:[...new Set(g.rows.map(r=>r.run_id).filter(Boolean))],anchor:g.rows.some(r=>r.anchor),manual:g.rows.some(r=>r.manual)
+      }
+    }
+  });
+}
+/**
+ * Conserva el contrato público de poolBench para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
+export function poolBench( {
+  benchDir,casesDir
+}) {
+  const runsDir=resolve(benchDir,'runs'),out=resolve(benchDir,'pool');
+  mkdirSync(out, {
+    recursive:true
+  });
+  for(const f of readdirSync(casesDir).filter(x=>x.endsWith('.json')&&x!=='manifest.json').sort()) {
+    const c=j(resolve(casesDir,f)),runs=existsSync(runsDir)?readdirSync(runsDir).map(d=>resolve(runsDir,d,
+    'result.json')).filter(existsSync).map(j).filter(r=>r.case_id===c.case_id):[],mp=resolve(casesDir,'manual',
+    `${c.case_id}.json`),manual=existsSync(mp)?validate('manual_search',j(mp)):null,pool=buildPool( {
+      caseObj:c,runs,manual
+    });
+    writeFileSync(resolve(out,`${c.case_id}.json`),`${JSON.stringify(pool,null,2)}\n`);
+  }
+  return out
+}

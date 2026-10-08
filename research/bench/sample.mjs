@@ -1,6 +1,132 @@
-import{mkdirSync,writeFileSync}from'node:fs';import{resolve}from'node:path';import{mulberry32}from'../agent/conditions.mjs';import{gain}from'./metrics.mjs';
-export const SHEET_COLUMNS=['item_key','case_id','profile_summary','name','urls','status','deadline','identity_correct','scope','hard_eligibility','route','criteria_to_label','confidence','notes'];
+/**
+ * Selecciona muestras ciegas para segundo revisor.
+ * No adjudica ni cambia la hoja principal.
+ * Contratos: etiquetas y CSV de revisión.
+ */
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { mulberry32 } from '../agent/conditions.mjs';
+import { gain } from './metrics.mjs';
+export const SHEET_COLUMNS=['item_key','case_id','profile_summary','name','urls','status','deadline',
+'identity_correct','scope','hard_eligibility','route','criteria_to_label','confidence','notes'];
 const csv=v=>`"${String(v??'').replaceAll('"','""')}"`;
-export function sampleCase({caseObj,profile,pool,preannotations=[],runs=[],seed=7}){const pre=new Map(preannotations.map(x=>[x.stable_id,x])),chosen=new Map(),strata={};const add=(x,s)=>{chosen.set(x.item_key,x);(strata[x.item_key]||=[]).push(s)};for(const x of pool.filter(x=>x.from.anchor))add(x,'S1');for(const x of pool.filter(x=>runs.some(r=>r.ranked.some(y=>y.stable_id===x.stable_id&&y.recommendable))))add(x,'S2');for(const x of pool.filter(x=>gain(pre.get(x.stable_id)||{})>=2))add(x,'S3');const r=mulberry32(seed),shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};for(const x of shuffle(pool.filter(x=>{const p=pre.get(x.stable_id);return p&&(p.hard_eligibility==='undetermined'||p.confidence==='low')&&!chosen.has(x.item_key)})).slice(0,10))add(x,'S4');const neg=pool.filter(x=>gain(pre.get(x.stable_id)||{})===0&&!chosen.has(x.item_key));for(const x of shuffle(neg).slice(0,Math.max(neg.length?3:0,Math.ceil(neg.length*.15))))add(x,'S5');const difficult=pool.filter(x=>{const p=pre.get(x.stable_id);const vals=new Set(runs.map(r=>r.judgments.find(j=>j.stable_id===x.stable_id)?.aggregate.eligibility_class).filter(Boolean));return vals.size>1||(p&&runs.some(r=>{const c=r.judgments.find(j=>j.stable_id===x.stable_id)?.aggregate.eligibility_class;return p.hard_eligibility==='ineligible'&&['eligible','eligible_pending'].includes(c)}))});for(const x of shuffle(difficult).slice(0,5))add(x,'S6');const pairCandidates=[];for(const x of chosen.values()){if(!strata[x.item_key].some(s=>['S1','S2','S3','S6'].includes(s)))continue;for(const run of runs){const judgment=run.judgments.find(j=>j.stable_id===x.stable_id);for(const criterion of judgment?.criteria||[])pairCandidates.push({item_key:x.item_key,criterion_id:criterion.criterion_id,state:criterion.state});}}const pairs=new Map(),seenStates=new Set();for(const pair of shuffle(pairCandidates).sort((a,b)=>Number(seenStates.has(a.state))-Number(seenStates.has(b.state)))){if([...pairs.values()].flat().length>=6)break;const ids=pairs.get(pair.item_key)||[];if(!ids.includes(pair.criterion_id)){ids.push(pair.criterion_id);pairs.set(pair.item_key,ids);seenStates.add(pair.state);}}const summary=Object.entries(profile.fields).filter(([,v])=>v.value!=null).slice(0,6).map(([k,v])=>`${k}: ${Array.isArray(v.value)?v.value.join(', '):v.value}`).join(' | ');const rows=shuffle([...chosen.values()]).map(x=>({item_key:x.item_key,case_id:caseObj.case_id,profile_summary:summary,name:x.names.join(' / '),urls:x.urls.join(' ; '),status:'',deadline:'',identity_correct:'',scope:'',hard_eligibility:'',route:'',criteria_to_label:(pairs.get(x.item_key)||[]).join(';'),confidence:'',notes:''}));return{rows,key:Object.fromEntries([...chosen.values()].map(x=>[x.item_key,{stable_id:x.stable_id,strata:strata[x.item_key],criteria_pairs:pairs.get(x.item_key)||[]}]))}}
-export function secondReviewRows(rows,key,seed=7){const random=mulberry32(seed),shuffle=items=>{items=[...items];for(let i=items.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}return items},selected=[],seen=new Set(),groups=[['S3'],['S5'],['S4','S6']];for(const strata of groups){const candidates=rows.filter(row=>strata.some(value=>key[row.item_key]?.strata?.includes(value))),limit=Math.min(10,candidates.length);for(const row of shuffle(candidates)){if(seen.has(row.item_key))continue;selected.push(row);seen.add(row.item_key);if(selected.filter(item=>candidates.includes(item)).length>=limit)break;}}return selected}
-export function writeSample({outDir,caseId,rows,key,secondRows=[]}){mkdirSync(outDir,{recursive:true});writeFileSync(resolve(outDir,`sheet-${caseId}.json`),JSON.stringify(rows,null,2)+'\n');writeFileSync(resolve(outDir,`sheet-${caseId}.csv`),SHEET_COLUMNS.join(',')+'\n'+rows.map(r=>SHEET_COLUMNS.map(c=>csv(r[c])).join(',')).join('\n')+'\n');writeFileSync(resolve(outDir,`second-${caseId}.csv`),SHEET_COLUMNS.join(',')+'\n'+secondRows.map(r=>SHEET_COLUMNS.map(c=>csv(r[c])).join(',')).join('\n')+'\n');writeFileSync(resolve(outDir,`key-${caseId}.json`),JSON.stringify(key,null,2)+'\n');}
+/**
+ * Conserva el contrato público de sampleCase para que sus consumidores compartan una sola implementación.
+ * Excepción de 60 líneas: mantiene juntos estratos, llave ciega y filas para evitar desalinearlos.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
+export function sampleCase( {
+  caseObj,profile,pool,preannotations=[],runs=[],seed=7
+}) {
+  const pre=new Map(preannotations.map(x=>[x.stable_id,x])),chosen=new Map(),strata= {
+  };
+  const add=(x,s)=> {
+    chosen.set(x.item_key,x);
+    (strata[x.item_key]||=[]).push(s)
+  };
+  for(const x of pool.filter(x=>x.from.anchor))add(x,'S1');
+  for(const x of pool.filter(x=>runs.some(r=>r.ranked.some(y=>y.stable_id===x.stable_id&&y.recommendable))))add(x,
+  'S2');
+  for(const x of pool.filter(x=>gain(pre.get(x.stable_id)|| {
+  })>=2))add(x,'S3');
+  const r=mulberry32(seed),shuffle=a=> {
+    a=[...a];
+    for(let i=a.length-1;i>0;i--) {
+      const j=Math.floor(r()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]]
+    }
+    return a
+  };
+  for(const x of shuffle(pool.filter(x=> {
+    const p=pre.get(x.stable_id);return p&&(p.hard_eligibility==='undetermined'||p.confidence==='low')&&!chosen.has(x.item_key)
+  })).slice(0,10))add(x,'S4');
+  const neg=pool.filter(x=>gain(pre.get(x.stable_id)|| {
+  })===0&&!chosen.has(x.item_key));
+  for(const x of shuffle(neg).slice(0,Math.max(neg.length?3:0,Math.ceil(neg.length*.15))))add(x,'S5');
+  const difficult=pool.filter(x=> {
+    const p=pre.get(x.stable_id);const vals=new Set(runs.map(r=>r.judgments.find(j=>
+      j.stable_id===x.stable_id)?.aggregate.eligibility_class).filter(Boolean));return vals.size>1||(p&&runs.some(r=> {
+      const c=r.judgments.find(j=>j.stable_id===x.stable_id)?.aggregate.eligibility_class;return p.hard_eligibility==='ineligible'
+        &&['eligible',
+      'eligible_pending'].includes(c)
+    }))
+  });
+  for(const x of shuffle(difficult).slice(0,5))add(x,'S6');
+  const pairCandidates=[];
+  for(const x of chosen.values()) {
+    if(!strata[x.item_key].some(s=>['S1','S2','S3','S6'].includes(s)))continue;
+    for(const run of runs) {
+      const judgment=run.judgments.find(j=>j.stable_id===x.stable_id);
+      for(const criterion of judgment?.criteria||[])pairCandidates.push( {
+        item_key:x.item_key,criterion_id:criterion.criterion_id,state:criterion.state
+      });
+    }
+  }
+  const pairs=new Map(),seenStates=new Set();
+  for(const pair of shuffle(pairCandidates).sort((a,b)=>Number(seenStates.has(a.state))-Number(seenStates.has(b.state)))) {
+    if([...pairs.values()].flat().length>=6)break;
+    const ids=pairs.get(pair.item_key)||[];
+    if(!ids.includes(pair.criterion_id)) {
+      ids.push(pair.criterion_id);
+      pairs.set(pair.item_key,ids);
+      seenStates.add(pair.state);
+    }
+  }
+  const summary=Object.entries(profile.fields).filter(([,v])=>v.value!=null).slice(0,6).map(([k,v])=>
+    `${k}: ${Array.isArray(v.value)?v.value.join(', '):v.value}`).join(' | ');
+  const rows=shuffle([...chosen.values()]).map(x=>( {
+    item_key:x.item_key,case_id:caseObj.case_id,profile_summary:summary,name:x.names.join(' / '),urls:x.urls.join(' ; '),
+    status:'',deadline:'',identity_correct:'',scope:'',hard_eligibility:'',route:'',criteria_to_label:(pairs.get(x.item_key)||[]).join(';'),
+    confidence:'',notes:''
+  }));
+  return {
+    rows,key:Object.fromEntries([...chosen.values()].map(x=>[x.item_key, {
+      stable_id:x.stable_id,strata:strata[x.item_key],criteria_pairs:pairs.get(x.item_key)||[]
+    }]))
+  }
+}
+/**
+ * Conserva el contrato público de secondReviewRows para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
+export function secondReviewRows(rows,key,seed=7) {
+  const random=mulberry32(seed),shuffle=items=> {
+    items=[...items];
+    for(let i=items.length-1;i>0;i--) {
+      const j=Math.floor(random()*(i+1));
+      [items[i],items[j]]=[items[j],items[i]]
+    }
+    return items
+  },selected=[],seen=new Set(),groups=[['S3'],['S5'],['S4','S6']];
+  for(const strata of groups) {
+    const candidates=rows.filter(row=>strata.some(value=>key[row.item_key]?.strata?.includes(value))),limit=Math.min(10,
+    candidates.length);
+    for(const row of shuffle(candidates)) {
+      if(seen.has(row.item_key))continue;
+      selected.push(row);
+      seen.add(row.item_key);
+      if(selected.filter(item=>candidates.includes(item)).length>=limit)break;
+    }
+  }
+  return selected
+}
+/**
+ * Conserva el contrato público de writeSample para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
+export function writeSample( {
+  outDir,caseId,rows,key,secondRows=[]
+}) {
+  mkdirSync(outDir, {
+    recursive:true
+  });
+  writeFileSync(resolve(outDir,`sheet-${caseId}.json`),JSON.stringify(rows,null,2)+'\n');
+  writeFileSync(resolve(outDir,`sheet-${caseId}.csv`),SHEET_COLUMNS.join(',')+'\n'+rows.map(r=>SHEET_COLUMNS.map(c=>
+    csv(r[c])).join(',')).join('\n')+'\n');
+  writeFileSync(resolve(outDir,`second-${caseId}.csv`),SHEET_COLUMNS.join(',')+'\n'+secondRows.map(r=>SHEET_COLUMNS.map(c=>
+    csv(r[c])).join(',')).join('\n')+'\n');
+  writeFileSync(resolve(outDir,`key-${caseId}.json`),JSON.stringify(key,null,2)+'\n');
+}

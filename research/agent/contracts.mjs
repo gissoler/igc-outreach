@@ -1,3 +1,9 @@
+/**
+ * Carga y valida los contratos JSON usados por el agente.
+ * No transforma datos ni corrige entradas inválidas.
+ * Contratos: schemas v1 registrados en este módulo.
+ * No conoce ningún dominio: todo lo específico llega por el DomainPack.
+ */
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { readdirSync, readFileSync } from 'node:fs';
@@ -7,7 +13,6 @@ import { ContractError } from './errors.mjs';
 
 const contractsUrl = new URL('../../docs/contracts/', import.meta.url);
 const contractsDir = fileURLToPath(contractsUrl);
-const repoRoot = resolve(contractsDir, '../..');
 const ajv = new Ajv2020({ allErrors: true, strict: true, strictTypes: false, strictRequired: false, allowUnionTypes: true });
 addFormats(ajv);
 const schemas = new Map();
@@ -18,10 +23,11 @@ for (const file of readdirSync(contractsDir).filter(x => x.endsWith('.schema.jso
 }
 const validators = new Map();
 
-export function loadJson(relPathFromRepoRoot) {
-  return JSON.parse(readFileSync(resolve(repoRoot, relPathFromRepoRoot), 'utf8'));
-}
-
+/**
+ * Conserva el contrato público de validate para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
 export function validate(name, obj) {
   let fn = validators.get(name);
   if (!fn) {
@@ -38,6 +44,11 @@ function pointer(root, fragment) {
   return fragment.split('/').slice(1).reduce((v, k) => v?.[k.replaceAll('~1', '/').replaceAll('~0', '~')], root);
 }
 
+/**
+ * Conserva el contrato público de bundle para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
 export function bundle(name) {
   const start = schemas.get(name);
   if (!start) throw new ContractError(name, [{ message: 'unknown contract' }]);

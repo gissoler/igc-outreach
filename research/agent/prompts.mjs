@@ -1,3 +1,9 @@
+/**
+ * Carga, verifica y renderiza prompts versionados.
+ * No llama modelos ni decide variables de dominio.
+ * Contratos: manifest de prompts y schemas asociados.
+ * No conoce ningún dominio: todo lo específico llega por el DomainPack.
+ */
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -7,6 +13,11 @@ import { PromptIntegrityError } from './errors.mjs';
 const defaultRoot = fileURLToPath(new URL('../../prompts/', import.meta.url));
 const sha = s => createHash('sha256').update(s).digest('hex');
 
+/**
+ * Conserva el contrato público de loadPrompt para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
 export function loadPrompt(id, version, { root = defaultRoot } = {}) {
   const manifest = JSON.parse(readFileSync(resolve(root, 'manifest.json'), 'utf8'));
   const entry = manifest.prompts.find(p => p.id === id && p.version === version);
@@ -20,6 +31,11 @@ export function loadPrompt(id, version, { root = defaultRoot } = {}) {
   return { ...base, system: contents.get(`${id}/${version}/system.md`), user: contents.get(`${id}/${version}/user.md`) };
 }
 
+/**
+ * Conserva el contrato público de render para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
 export function render(template, vars) {
   const used = new Set();
   const result = template.replace(/\{\{([A-Za-z0-9_]+)\}\}/g, (_, name) => {
@@ -34,6 +50,11 @@ export function render(template, vars) {
   return result;
 }
 
+/**
+ * Conserva el contrato público de sanitizePageText para que sus consumidores compartan una sola implementación.
+ * @param {unknown} input Entrada definida por el contrato de la función.
+ * @returns {unknown} Resultado definido por el contrato de la función.
+ */
 export function sanitizePageText(s) {
   return String(s ?? '').replaceAll('<page_data>', '').replaceAll('</page_data>', '').replace(/\s+/g, ' ').trim();
 }
