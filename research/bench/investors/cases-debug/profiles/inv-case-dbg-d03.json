@@ -1,0 +1,164 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-dbg-nauphos",
+  "status": "frozen",
+  "as_of": "2026-10-09",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-v4-debug-profile-builder",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Nauphos (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Nauru",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Nauru"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "sector": {
+      "value": "Industrial recycling",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "phosphate recovery",
+        "fertilizer production"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "product": {
+      "value": "Plant that recovers phosphate from mining residues and sells granulated fertilizer",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "description": {
+      "value": "Nauphos plans a processing plant in Nauru that recovers phosphate from legacy mining residues and sells granulated phosphate fertilizer. The Series A finances plant construction and working capital.",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "fertilizer distributors"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "fertilizer sales"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "pre-construction, feasibility study completed",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "series_a",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "Series A (priced equity)",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 20000000,
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: no revenue; feasibility study and site lease signed",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "Nauru environmental permitting",
+        "mining residue handling rules"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Nauru"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "impact_investor",
+        "growth_investor",
+        "climate_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    }
+  }
+}

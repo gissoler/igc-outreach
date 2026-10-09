@@ -1,0 +1,169 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-dbg-aulaqui",
+  "status": "frozen",
+  "as_of": "2026-10-09",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-v4-debug-profile-builder",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Aulaqui (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Chile",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Chile",
+        "Peru"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "sector": {
+      "value": "Edtech",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "K-12 school management software",
+        "B2B SaaS for schools",
+        "learning analytics"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "product": {
+      "value": "School operations and learning-analytics platform sold to private K-12 schools",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "description": {
+      "value": "Aulaqui gives private schools in Chile and Peru one system for enrolment, grading, attendance and parent communication, plus dashboards that flag students at risk of falling behind. Schools pay a yearly licence per enrolled student.",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "private K-12 schools"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "SaaS subscription per student"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "live product with paying customers",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "seed",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "Seed (priced equity)",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 1500000,
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: 46 private schools, 31,000 enrolled students, ~USD 38k MRR, 94% logo retention",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "Chile Ley 19.628 (personal data)",
+        "Peru Ley 29733 (personal data)",
+        "minors data protection"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Chile",
+        "Peru"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "generalist_vc",
+        "specialist_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": [
+        "Lirmi"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-09",
+      "quote": null
+    }
+  }
+}
