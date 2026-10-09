@@ -24,7 +24,7 @@ const option = (args, name) => { const i = args.indexOf(`--${name}`); return i <
 
 export function validateInvestorWorkspace({ configPath, casesDir }) {
   const rawConfig = json(configPath);
-  const config = validateInvestor(rawConfig.schema_version === 'investor_run_config/2' ? 'investor_run_config.v2' : 'investor_run_config', rawConfig);
+  const config = validateInvestor({ 'investor_run_config/2': 'investor_run_config.v2', 'investor_run_config/3': 'investor_run_config.v3' }[rawConfig.schema_version] ?? 'investor_run_config', rawConfig);
   const promptOpts = config.prompts.manifest ? { manifest: config.prompts.manifest } : {};
   if (config.agent_model.family === config.preannotator_model.family) throw new Error('Preannotator family must differ from agent family');
   if (config.status === 'frozen' && JSON.stringify(config).includes('TO-APPROVE')) throw new Error('Frozen config contains unapproved placeholders');

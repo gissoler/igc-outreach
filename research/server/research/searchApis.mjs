@@ -74,8 +74,12 @@ export async function linkupSearch(query, { env = process.env, fetcher, signal, 
 }
 
 /** Exa: POST /search · x-api-key · type auto · contents.text → results[{url,title,text,publishedDate}] */
-export async function exaSearchApi(query, { env = process.env, fetcher, signal, limit, recency = '' } = {}) {
+/* V5 (bench investors, solo con flags): EXA_HIGHLIGHTS='1' pide contents.highlights:true (guía de Exa: tamaño por relevancia)
+   e includeDomains (opción) restringe el dominio como filtro duro. Sin ellos la petición es idéntica a la anterior. */
+export async function exaSearchApi(query, { env = process.env, fetcher, signal, limit, recency = '', includeDomains = null } = {}) {
   const since = sinceIso(recency);
+  const contents = env.EXA_INCLUDE_CONTENTS === '0' ? null : { text: { maxCharacters: Number(env.EXA_TEXT_CHARS) || 20_000 }, ...(env.EXA_HIGHLIGHTS === '1' ? { highlights: true } : {}) };
+  const domains = Array.isArray(includeDomains) ? includeDomains.map(str).filter(Boolean).slice(0, 20) : [];
   const data = await call('Exa', 'https://api.exa.ai/search', {
     method: 'POST', env, fetcher, signal,
     headers: { 'x-api-key': key(env, 'exa') },
@@ -83,7 +87,8 @@ export async function exaSearchApi(query, { env = process.env, fetcher, signal, 
       query: str(query).slice(0, 1000),
       type: env.EXA_SEARCH_TYPE || 'auto',
       numResults: n(env, limit),
-      ...(env.EXA_INCLUDE_CONTENTS === '0' ? {} : { contents: { text: { maxCharacters: Number(env.EXA_TEXT_CHARS) || 20_000 } } }),
+      ...(contents ? { contents } : {}),
+      ...(domains.length ? { includeDomains: domains } : {}),
       ...(since ? { startPublishedDate: `${since}T00:00:00.000Z` } : {}),
     },
   });

@@ -65,7 +65,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const opts = config.prompts.manifest ? { manifest: config.prompts.manifest } : {};
   const cache = createBenchCache({ path: resolve(out, 'cache.sqlite'), namespace: `investors-find-${config.bench_id}` });
   try {
-    const search = createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query, exaContentsChars: config.search.exa_contents_chars ?? null });
+    const search = createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query, exaContentsChars: config.search.exa_contents_chars ?? null, exaType: config.search.exa_type ?? null, exaHighlights: config.search.exa_highlights === true });
     const fetch = createFetchTool({ env: process.env, cache }), llm = createInvestorLlm({ env: process.env, cache, family: config.agent_model.family });
     const deps = createLiveInvestorDeps({ search, fetch, llm, plannerPrompt: loadInvestorPrompt('planner', config.prompts.planner, opts), extractorPrompt: loadInvestorPrompt('extractor', config.prompts.extractor, opts), judgePrompt: (config.engine_v ?? 1) >= 2 ? loadInvestorPrompt('judge', config.prompts.judge, opts) : null, config, seed });
     const catalog = JSON.parse(readFileSync(resolve(repo, 'docs/contracts/investor/criteria_catalog.investor.v1.json'), 'utf8'));

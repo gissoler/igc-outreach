@@ -1,0 +1,11 @@
+{
+  "version": "v2",
+  "templates": [
+    { "id": "sector-vc", "template": "venture capital firm that invests in {{sector}} startups", "requires": ["sector"] },
+    { "id": "stage-sector", "template": "institutional investor that funds {{stage}} {{sector}} companies", "requires": ["stage", "sector"] },
+    { "id": "geo-sector", "template": "venture fund investing in {{sector}} startups in {{geography}}", "requires": ["geography", "sector"] },
+    { "id": "comparables", "template": "investment firm that backed {{comparable}} and similar companies", "requires": ["comparable"] },
+    { "id": "thesis", "template": "investment firm whose thesis covers {{subsector}} companies with a {{business_model}} business model", "requires": ["subsector", "business_model"] },
+    { "id": "recent-active", "template": "{{sector}} investor that made new investments in {{year}}", "requires": ["sector", "year"] }
+  ]
+}

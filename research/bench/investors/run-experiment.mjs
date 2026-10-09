@@ -35,7 +35,7 @@ jobs = shuffle(jobs, 20261008).slice(0, maxRuns);
 
 const cache = createBenchCache({ path: resolve(outDir, 'cache.sqlite'), namespace: `investors-${config.bench_id}` });
 const search = config.search.provider === 'failover'
-  ? createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query, exaContentsChars: config.search.exa_contents_chars ?? null })
+  ? createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query, exaContentsChars: config.search.exa_contents_chars ?? null, exaType: config.search.exa_type ?? null, exaHighlights: config.search.exa_highlights === true })
   : createSearchTool({ provider: config.search.provider, env: process.env, cache, resultsPerQuery: config.search.results_per_query });
 const fetch = createFetchTool({ env: process.env, cache });
 const llm = createInvestorLlm({ env: process.env, cache, family: config.agent_model.family });
