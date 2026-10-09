@@ -1,0 +1,19 @@
+{
+  "schema_version": "incremental_tool_ablation/1",
+  "condition": "B3",
+  "base_condition": "B2",
+  "classification": "incremental_tool_ablation",
+  "apollo": {
+    "tool": "organization_search",
+    "max_calls_per_run": 2,
+    "max_calls_global": 90,
+    "hard_credit_cap_global": 90,
+    "read_only": true,
+    "people_search": false,
+    "contacts": false,
+    "warm_paths": false
+  },
+  "capital_strategy_context": false,
+  "budget_accounting": "Apollo Organization Search counts as one search and is not free.",
+  "comparison": "B3_vs_B2_only"
+}

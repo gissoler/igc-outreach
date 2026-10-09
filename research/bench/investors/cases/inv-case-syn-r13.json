@@ -1,0 +1,27 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-r13",
+  "kind": "null",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-r13.json",
+  "profile_sha256": "8138d657ff1978c924ffb491a8cc5f08f9a2cb19745271506f3c0457a781065c",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "codex-context-A6-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T11:26:10-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [],
+  "null_case": {
+    "scope": "Institutional equity investors active for an Equatorial Guinea funeral and mortuary services operator seeking a USD 16M Series A.",
+    "manual_search_minutes": 20,
+    "manual_queries": [
+      "Equatorial Guinea funeral services private equity",
+      "CEMAC death care investor",
+      "Africa healthcare services fund Equatorial Guinea"
+    ],
+    "conclusion": "no_active_investor_with_gain_gte_2_found_within_scope"
+  }
+}

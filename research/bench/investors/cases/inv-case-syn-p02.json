@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p02",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p02.json",
+  "profile_sha256": "59e3477642bbbf165f8bc4c38e740c4690eadbf08d900db0f8f9d39d7aea9fc5",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:lightrock.com",
+      "canonical_name": "Lightrock",
+      "official_url": "https://www.lightrock.com/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "The fund will invest in health, education, renewable energy, sustainable agriculture and food, efficient mobility",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

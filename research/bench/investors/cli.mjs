@@ -2,7 +2,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { validateInvestor, investorRepoRoot as repo } from './contracts.mjs';
 import { loadInvestorPrompt } from './prompts.mjs';
 import { runInvestorDiscovery } from './engine.mjs';
@@ -15,6 +15,7 @@ import { createBenchCache } from '../../agent/cache.mjs';
 import { createSearchTool } from '../../agent/tools/search.mjs';
 import { createFetchTool } from '../../agent/tools/fetch.mjs';
 import { createInvestorLlm, createLiveInvestorDeps } from './external.mjs';
+import { createFailoverSearchTool } from './search-failover.mjs';
 
 const json = path => JSON.parse(readFileSync(path, 'utf8'));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -54,7 +55,8 @@ async function runAllCommand({ configPath, casesDir, worldPath }) {
   const base = resolve(repo, 'research/bench/investors/out', config.bench_id); mkdirSync(resolve(base, 'runs'), { recursive: true });
   const cache = createBenchCache({ path: resolve(base, 'cache.sqlite'), namespace: `investors-${config.bench_id}` });
   try {
-    const search = config.search.provider === 'searxng' ? createSearchTool({ provider: 'searxng', env: process.env, cache, resultsPerQuery: config.search.results_per_query }) : null, fetch = config.search.provider === 'searxng' ? createFetchTool({ env: process.env, cache }) : null, llm = config.search.provider === 'searxng' ? createInvestorLlm({ env: process.env, cache, family: config.agent_model.family }) : null;
+    const live = config.search.provider !== 'fixture';
+    const search = !live ? null : config.search.provider === 'failover' ? createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query }) : createSearchTool({ provider: config.search.provider, env: process.env, cache, resultsPerQuery: config.search.results_per_query }), fetch = live ? createFetchTool({ env: process.env, cache }) : null, llm = live ? createInvestorLlm({ env: process.env, cache, family: config.agent_model.family }) : null;
     for (const file of readdirSync(casesDir).filter(x => x.endsWith('.json') && x !== 'manifest.json')) {
       const caseObj = json(resolve(casesDir, file)), profile = json(resolve(repo, caseObj.profile_path));
       for (const condition of ['B0','B1','B2']) for (const seed of config.seeds) {
@@ -93,4 +95,4 @@ async function main(args = process.argv.slice(2)) {
   throw new Error(`Unknown investor command ${command}`);
 }
 
-if (process.argv[1] === new URL(import.meta.url).pathname) main().catch(error => { console.error(error.message); process.exitCode = 1; });
+if (resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch(error => { console.error(error.message); process.exitCode = 1; });

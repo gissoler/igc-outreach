@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p09",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p09.json",
+  "profile_sha256": "05d598b517a5dac80858bb9e77f98d7d419be0f8ed02f9e1d5c02dbdade3d5b9",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:a91partners.com",
+      "canonical_name": "A91 Partners",
+      "official_url": "https://www.a91partners.com/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "The firm focuses on investing across sectors such as consumer, healthcare, financial services, and technology.",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}
