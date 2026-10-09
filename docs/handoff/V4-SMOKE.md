@@ -256,3 +256,31 @@ Por criterio: SECTOR 84,7 %, STAGE 57,6 %, GEO 59,3 %, TYPE 86,4 %. Profundizaci
 ## V5-DBG-3 (la última permitida) — cambio
 
 Autorizada por la usuaria (2026-10-09 13:44). Único cambio: `deepening.max_firms_per_run` 8 → 16 en `config/v5-2026-10-09.json` (entrada 18 de DECISIONS_PENDING actualizada: hasta 32 búsquedas y 64 lecturas extra por corrida; sigue sin aprobación). Motivo medido: en v5dbg2 las 18 celdas núcleo vacías de firmas no profundizadas son de D3 (14 aceptadas, tope 8). No se cambian umbrales, juez, normalization, prompts ni la definición de rechazadas/fetches.
+
+## V5-DBG-3 — resultados (`ITER=v5dbg3`, código `3866861`), 2026-10-09 ~13:5x, Mac de la usuaria
+
+6 corridas válidas, 59 firmas aceptadas. **No pasa. Tercera iteración usada: se detiene el smoke y no se ejecutan las 90 corridas.**
+
+| Criterio | Umbral | dbg1 | dbg2 | dbg3 | Estado |
+|---|---|---|---|---|---|
+| 4 núcleo ≠ unknown | ≥ 60 % | 33,9 % | 33,9 % | 40,7 % (24/59) | FALLA |
+| ≥ 1 núcleo ≠ unknown | ≥ 85 % | 98,3 % | 98,3 % | 100 % | pasa |
+| Citas literales | 100 % | 99,5 % | 100 % | 100 % (212/212) | pasa |
+| D1/B2 y D2/B2 con ganancia ≥ 2 | ambos | sí | sí | sí (1 firma cada uno) | pasa |
+| D3 abstención válida | no_candidates / all_hard_not_met | insufficient_evidence | insufficient_evidence | insufficient_evidence (B1 y B2) | FALLA |
+| FETCH_EMPTY | ≤ 10 % | 0,6 % | 0,6 % | 0,6 % (1,3 % combinado) | pasa |
+| rechazadas/fetches | ≤ 0,75 | 0,644 | 0,644 | 0,644 (0,301 combinado) | pasa |
+| Revisión manual | sin fallos | — | — | no hecha (criterios automáticos fallan) | pendiente |
+
+Por criterio (dbg3): SECTOR 88,1 %, STAGE 62,7 %, GEO 66,1 %, TYPE 94,9 %. Profundización: 57 firmas, 69 búsquedas, 205 lecturas, 650 953 tokens; campos llenados SECTOR 8, STAGE 14, GEO 19, TYPE 17.
+Firmas por número de núcleo en unknown: 0 → 24, 1 → 22, 2 → 9, 3 → 4.
+
+### Diagnóstico final
+- Subir el tope a 16 firmas dio +6,8 puntos (33,9 → 40,7 %), como se estimó. El tope ya no limita: se profundizaron 57 de 59 firmas. Lo que falta no se arregla con más presupuesto de la misma ronda.
+- D3: 10 de 14 firmas `ineligible` y 4 `undetermined` en B1 y en B2. Las 4 indeterminadas tienen ACTIVE, CHECK, BUSINESS-MODEL y REGULATORY en unknown (todos duros) y, además, GEO en unknown: sin geografía publicada (`circularinnovationfund.com`, `oneplanetventures.vc`, `lichen.vc`), con ciudad sede (`climactic.vc`: "New York City", "San Francisco") o con geografía vaga/global (`blueearth.capital`: "emerging and developed markets"; `wastevc.com`: "Global", "North America", "Europe", "Netherlands"). El juez no produce `not_met` con valores vagos (regla V4-DBG-4, `normalization.v1`), y no hay forma legítima de pasar de unknown a not_met sin dato publicado.
+- Los 22 casos con un solo criterio faltante dependen sobre todo de valores vagos de etapa y geografía; la ronda no puede resolverlos sin cambiar la definición del criterio o del juez, que están congelados.
+- Las rutas habituales adivinadas y las páginas `other` (grupo matriz, portafolio, contacto, notas de participadas) no aportan; aceptarlas arriesga atribuir datos ajenos a la firma.
+
+### Qué queda decidido
+- No se congela v5, no se genera `fingerprint.json` y no se ejecutan las 90 corridas.
+- Las decisiones para continuar son de la usuaria y requieren tocar lo congelado: (a) cómo tratar valores vagos de etapa/geografía en el juez (`normalization.v1`), (b) si el umbral de núcleo 60 % y la abstención de D3 siguen siendo exigibles tal como están definidos, (c) aprobación de la entrada 18 (hoy 16 firmas, sin aprobación registrada).
