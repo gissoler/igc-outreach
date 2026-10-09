@@ -74,8 +74,11 @@ function tracedDeps(base, { runId, condition, apollo }) {
         }
       }
       append({ event: 'search_start', run_id: runId, query });
-      const value = await base.search(query, options);
-      append({ event: 'search_end', run_id: runId, query, results: value.results?.length || 0, urls: (value.results || []).map(x => x.url), provider: value.provider || null, attempts: value.attempts || [], searches_consumed: value.searches_consumed ?? 1, error: value.error || null, latency: value.latency || null });
+      const { triage, ...searchOptions } = options ?? {};
+      const value = await base.search(query, searchOptions);
+      // V5-2: el triage previo al fetch (qué se descarta o baja y por qué) va en el propio search_end.
+      if (triage) value.triage = triage(value.results ?? []);
+      append({ event: 'search_end', run_id: runId, query, results: value.results?.length || 0, urls: (value.results || []).map(x => x.url), provider: value.provider || null, attempts: value.attempts || [], searches_consumed: value.searches_consumed ?? 1, error: value.error || null, latency: value.latency || null, ...(searchOptions.includeDomains ? { include_domains: searchOptions.includeDomains } : {}), ...(triage ? { triage: value.triage } : {}) });
       return value;
     },
     async fetch(url) { append({ event: 'fetch_start', run_id: runId, url }); const value = await base.fetch(url); append({ event: 'fetch_end', run_id: runId, url, ok: value.ok !== false, via: value.via || 'unknown', text_chars: value.text?.length || 0, error: value.error || null, error_code: value.error?.code || null, cached: value.cached ?? null, reader_attempts: value.reader_attempts || null, latency: value.latency || null }); return value; },

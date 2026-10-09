@@ -10,6 +10,7 @@ import { validateInvestor } from './contracts.mjs';
 import { classifyActivity } from './activity.mjs';
 import { loadNormalization } from './normalize.mjs';
 import { resolveCandidate, candidateKey } from './resolve.mjs';
+import { triageSearchResults } from './triage.mjs';
 
 const FIRMISH = /\b(ventures?|capital|partners|fund|vc|investments?)\b|\.vc$/i;
 const lc = v => String(v ?? '').toLowerCase();
@@ -50,6 +51,8 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
   const resourceHit = () => totals.tokens_nominal >= config.budgets.tokens_nominal ? 'budget_tokens' : totals.seconds_nominal >= config.budgets.seconds_nominal ? 'budget_seconds' : null;
   const budgetHit = () => totals.searches >= config.budgets.searches ? 'budget_searches' : totals.fetches >= config.budgets.fetches ? 'budget_fetches' : resourceHit() ?? (totals.planner_calls >= config.budgets.planner_calls && condition === 'B2' ? 'budget_planner_calls' : null);
   const entityCount = () => dedupeInvestors(rawEntities, { v2: true }).length;
+  const knownFirmHosts = () => [...new Set(rawEntities.map(e => e.official_domain).filter(Boolean))];
+  if (config.triage?.enabled === true) stats.triage = { version: 'triage.v1', discarded: 0, demoted_opened: 0, demoted_skipped: 0, by_reason: {} };
   const knownNames = () => new Set(dedupeInvestors(rawEntities, { v2: true }).flatMap(e => [e.canonical_name, ...(e.aliases ?? [])].map(candidateKey)));
 
   const enqueue = (cand, origin, source_url = null, query_id = null) => {
@@ -98,7 +101,10 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
     const before = budgetHit(); if (before) { stop_reason = before; return; }
     const query_id = `q${String(queryCounter++).padStart(3, '0')}`;
     const foundBefore = entityCount();
-    const response = await deps.search(action.query, { remainingSearches: config.budgets.searches - totals.searches }); totals.searches += response.searches_consumed ?? 1; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
+    // V5-2: con config.triage.enabled el triage se calcula sobre la respuesta y queda en el evento search_end (vía options.triage).
+    const triageOn = config.triage?.enabled === true;
+    const triageFn = triageOn ? results => triageSearchResults(results, { knownFirmHosts: knownFirmHosts() }) : null;
+    const response = await deps.search(action.query, { remainingSearches: config.budgets.searches - totals.searches, ...(triageFn ? { triage: triageFn } : {}) }); totals.searches += response.searches_consumed ?? 1; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
     const afterSearch = resourceHit(); if (afterSearch) stop_reason = afterSearch;
     const results = (response.results ?? []).map((r, i) => ({ ...r, _i: i }));
     const usable = [];
@@ -110,8 +116,23 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
       if ((emptyHosts.get(h) ?? 0) >= 2) { stats.skipped_empty_hosts++; continue; }
       usable.push(r);
     }
-    usable.sort((a, b) => (hostsSeen.has(host(a.url)) - hostsSeen.has(host(b.url))) || ((FIRMISH.test(b.title ?? '') || FIRMISH.test(host(b.url))) - (FIRMISH.test(a.title ?? '') || FIRMISH.test(host(a.url)))) || a._i - b._i);
-    const toOpen = stop_reason ? [] : usable.slice(0, config.default_fetch_per_search);
+    let toOpen;
+    if (triageFn) {
+      const tri = response.triage ?? triageFn(response.results ?? []);
+      const discarded = new Set(tri.discarded.map(x => x.i)), demoted = new Set(tri.demoted.map(x => x.i));
+      stats.triage.discarded += usable.filter(r => discarded.has(r._i)).length;
+      for (const x of tri.discarded) if (usable.some(r => r._i === x.i)) stats.triage.by_reason[x.reason] = (stats.triage.by_reason[x.reason] ?? 0) + 1;
+      const kept = usable.filter(r => !discarded.has(r._i)), score = r => tri.scores[r._i] ?? 0;
+      kept.sort((a, b) => (demoted.has(a._i) - demoted.has(b._i)) || (hostsSeen.has(host(a.url)) - hostsSeen.has(host(b.url))) || (score(b) - score(a)) || a._i - b._i);
+      // Los bajados de prioridad solo rellenan huecos, y como mucho uno por consulta.
+      const keeps = kept.filter(r => !demoted.has(r._i)), lows = kept.filter(r => demoted.has(r._i)).slice(0, 1);
+      toOpen = stop_reason ? [] : [...keeps, ...lows].slice(0, config.default_fetch_per_search);
+      stats.triage.demoted_opened += toOpen.filter(r => demoted.has(r._i)).length;
+      stats.triage.demoted_skipped += kept.filter(r => demoted.has(r._i) && !toOpen.includes(r)).length;
+    } else {
+      usable.sort((a, b) => (hostsSeen.has(host(a.url)) - hostsSeen.has(host(b.url))) || ((FIRMISH.test(b.title ?? '') || FIRMISH.test(host(b.url))) - (FIRMISH.test(a.title ?? '') || FIRMISH.test(host(a.url)))) || a._i - b._i);
+      toOpen = stop_reason ? [] : usable.slice(0, config.default_fetch_per_search);
+    }
     log({ event: 'search_opened', query_id, query: action.query, origin: action.origin ?? null, urls: results.map(x => x.url), opened: toOpen.map(x => x._i) });
     let read = false, fetched = 0, accepted = 0; const rejected_by_kind = {};
     for (const result of toOpen) {

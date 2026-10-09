@@ -88,3 +88,42 @@ test('V5-1c config v5 valida (draft), usa manifest.v5 con planner v3 y b0 v2 ver
   for (const [id, v] of [['planner', 'v2'], ['extractor', 'v3'], ['judge', 'v2']]) assert.equal(loadInvestorPrompt(id, v, { manifest: 'manifest.v5.json' }).sha256, loadInvestorPrompt(id, v, { manifest: 'manifest.v4.json' }).sha256);
   assert.equal(json(cfgPath('v4-2026-10-09')).schema_version, 'investor_run_config/2');
 });
+
+// ───────── V5-2 — Triage previo al fetch ─────────
+import { triageResult, triageSearchResults } from '../../bench/investors/triage.mjs';
+
+test('V5-2a una lista "Top 20 VCs in Chile" no se abre; el sitio de la firma sí; el descarte no cuenta como fetch ni como rechazada', async () => {
+  const list = 'https://vcblog.test/top-20-vcs-in-chile', firm = 'https://andesfund.test/';
+  const pages = {
+    [list]: { title: 'Top 20 VCs in Chile (2026)', text: 'Top 20 VCs in Chile. Andes Fund invests in seed fintech startups in Mexico. '.repeat(5), extraction: fullV2({ entity_kind: 'other', canonical_name: 'VC blog' }) },
+    [firm]: firmPage('Andes Fund', 'Andes Fund invests in seed fintech startups in Mexico.', { investor_type: 'venture_capital', sectors: ['fintech'], stages: ['seed'], geographies: ['Mexico'], evidence: { sectors: 'invests in seed fintech startups', stages: 'invests in seed', geographies: 'startups in Mexico', investor_type: 'Andes Fund invests' } })
+  };
+  const q = 'venture capital firm investing in seed fintech startups in Mexico';
+  const w = world({ pages, searches: { [q]: [list, firm] }, plans: { initial: { queries: [q], stop: false, candidate_firms: [] } } });
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile: fintechProfile(), condition: 'B1', config: v5Config({ deepening: { ...v5Config().deepening, enabled: false } }), templates, catalog, deps: w.deps });
+  assert.ok(!w.calls.fetch.includes(list), 'la lista no se abre'); assert.ok(w.calls.fetch.includes(firm), 'la firma sí');
+  assert.equal(r.totals.fetches, 1); assert.equal(r.totals.rejected_non_investors, 0);
+  assert.equal(r.v2_stats.triage.discarded, 1); assert.equal(r.v2_stats.triage.by_reason.list_or_directory, 1);
+  // El motor entrega la función de triage al buscador para que quede en search_end, con qué se descartó y por qué.
+  const call = w.calls.search.find(c => c.q === q); assert.equal(typeof call.options.triage, 'function');
+  const logged = call.options.triage([{ url: list, title: 'Top 20 VCs in Chile (2026)' }, { url: firm, title: 'Andes Fund' }]);
+  assert.deepEqual(logged.discarded, [{ i: 0, url: list, reason: 'list_or_directory' }]); assert.equal(logged.demoted.length, 0);
+});
+
+test('V5-2b reglas: agregadores y directorios se descartan; noticias se bajan; host de firma conocida nunca se descarta', () => {
+  assert.equal(triageResult({ url: 'https://shizune.co/investors/edtech-vc-funds-chile', title: 'Edtech VC funds in Chile' }).action, 'discard');
+  assert.equal(triageResult({ url: 'https://www.vcbacked.co/company/lirmi', title: 'Lirmi' }).action, 'discard');
+  assert.equal(triageResult({ url: 'https://news.test/best-edtech-investors', title: 'Best edtech investors' }).action, 'discard');
+  assert.equal(triageResult({ url: 'https://dailynews.test/2026/05/acme-raises-5m', title: 'Acme raises $5M seed' }).action, 'demote');
+  assert.equal(triageResult({ url: 'https://zentrocapital.test/strategy', title: 'Strategy' }).action, 'keep');
+  assert.equal(triageResult({ url: 'https://zentrocapital.test/news/top-10-lessons', title: 'Top 10 lessons' }, { knownFirmHosts: ['zentrocapital.test'] }).action, 'keep');
+  const t = triageSearchResults([{ url: 'https://zentrocapital.test/', title: 'Zentro Capital' }, { url: 'https://zentrocapital.test/about', title: 'About' }]);
+  assert.ok(t.scores[0] >= 2 && t.scores[1] >= 1);
+});
+
+test('V5-2c sin triage (config v4) el motor no pasa la función al buscador y abre como antes', async () => {
+  const list = 'https://vcblog.test/top-20-vcs-in-chile';
+  const w = world({ pages: { [list]: { title: 'Top 20 VCs in Chile', text: 'x'.repeat(400), extraction: fullV2({ entity_kind: 'other', canonical_name: 'VC blog' }) } }, searches: { 'q fintech': [list] }, plans: { initial: { queries: ['q fintech'], stop: false, candidate_firms: [] } } });
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile: fintechProfile(), condition: 'B1', config: v4Config(), templates, catalog, deps: w.deps });
+  assert.ok(w.calls.fetch.includes(list)); assert.equal(w.calls.search[0].options.triage, undefined); assert.equal(r.v2_stats.triage, undefined);
+});
