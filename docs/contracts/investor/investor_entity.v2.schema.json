@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_entity.v2.schema.json",
+  "title": "Institutional investor entity v2 (field_evidence per source)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "stable_id",
+    "canonical_name",
+    "official_domain",
+    "aliases",
+    "investor_type",
+    "parent_firm",
+    "vehicles",
+    "active_status",
+    "verified_on",
+    "sectors",
+    "stages",
+    "rounds",
+    "geographies",
+    "check_range_usd",
+    "lead_follow",
+    "business_models",
+    "regulatory_restrictions",
+    "relevant_portfolio",
+    "potential_conflicts",
+    "recent_investment_evidence",
+    "sources",
+    "first_seen",
+    "query_ids"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "investor_entity/1",
+        "investor_entity/2"
+      ]
+    },
+    "stable_id": {
+      "type": "string",
+      "pattern": "^inv:(domain|regulatory|url):[^\\s]+$"
+    },
+    "canonical_name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "official_domain": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "investor_type": {
+      "type": "string",
+      "enum": [
+        "venture_capital",
+        "corporate_venture_capital",
+        "family_office",
+        "institutional_angel_network",
+        "accelerator",
+        "venture_studio",
+        "other",
+        "not_investor",
+        "unknown"
+      ]
+    },
+    "parent_firm": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vehicles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "url"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "active_status": {
+      "$ref": "#/$defs/activeStatus"
+    },
+    "verified_on": {
+      "$ref": "../common.schema.json#/$defs/isoDate"
+    },
+    "sectors": {
+      "$ref": "#/$defs/stringList"
+    },
+    "stages": {
+      "$ref": "#/$defs/stringList"
+    },
+    "rounds": {
+      "$ref": "#/$defs/stringList"
+    },
+    "geographies": {
+      "$ref": "#/$defs/stringList"
+    },
+    "check_range_usd": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max",
+        "source_url"
+      ],
+      "properties": {
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "lead_follow": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "follow",
+        "both",
+        "unknown"
+      ]
+    },
+    "business_models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted",
+        "excluded"
+      ],
+      "properties": {
+        "accepted": {
+          "$ref": "#/$defs/stringList"
+        },
+        "excluded": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "regulatory_restrictions": {
+      "$ref": "#/$defs/stringList"
+    },
+    "relevant_portfolio": {
+      "$ref": "#/$defs/stringList"
+    },
+    "potential_conflicts": {
+      "$ref": "#/$defs/stringList"
+    },
+    "recent_investment_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "first_seen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "search_index",
+        "order",
+        "query_id"
+      ],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "search_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "query_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^q\\d{3}$"
+        }
+      }
+    },
+    "query_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^q\\d{3}$"
+      },
+      "uniqueItems": true
+    },
+    "regulatory_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "canonical_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "activeStatus": {
+      "type": "string",
+      "enum": [
+        "active",
+        "possibly_active",
+        "inactive",
+        "unknown"
+      ]
+    },
+    "stringList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "title",
+        "source_kind",
+        "retrieved_on",
+        "quote"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_kind": {
+          "type": "string",
+          "enum": [
+            "official",
+            "regulatory",
+            "news",
+            "database",
+            "directory",
+            "other"
+          ]
+        },
+        "retrieved_on": {
+          "$ref": "../common.schema.json#/$defs/isoDate"
+        },
+        "published_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "quote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "field_evidence": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_extraction.v2.schema.json",
+  "title": "Investor page extraction v2 (all keys required, per-field evidence, candidates)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entity_kind",
+    "canonical_name",
+    "official_domain",
+    "aliases",
+    "investor_type",
+    "parent_firm",
+    "vehicles",
+    "active_status",
+    "sectors",
+    "stages",
+    "rounds",
+    "geographies",
+    "check_range_usd",
+    "lead_follow",
+    "business_models",
+    "regulatory_restrictions",
+    "relevant_portfolio",
+    "potential_conflicts",
+    "recent_investment",
+    "source_kind",
+    "published_on",
+    "quote",
+    "regulatory_id",
+    "canonical_url",
+    "contradictions",
+    "evidence",
+    "candidates"
+  ],
+  "properties": {
+    "entity_kind": {
+      "type": "string",
+      "enum": [
+        "institutional_investor",
+        "individual",
+        "portfolio_company",
+        "service_provider",
+        "accelerator_no_capital",
+        "other"
+      ]
+    },
+    "canonical_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "official_domain": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "aliases": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "investor_type": {
+      "type": "string",
+      "enum": [
+        "venture_capital",
+        "corporate_venture_capital",
+        "family_office",
+        "institutional_angel_network",
+        "accelerator",
+        "venture_studio",
+        "other",
+        "not_investor",
+        "unknown"
+      ]
+    },
+    "parent_firm": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vehicles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "url"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "active_status": {
+      "$ref": "investor_entity.schema.json#/$defs/activeStatus"
+    },
+    "sectors": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "stages": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "rounds": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "geographies": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "check_range_usd": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max",
+        "source_url"
+      ],
+      "properties": {
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "lead_follow": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "follow",
+        "both",
+        "unknown"
+      ]
+    },
+    "business_models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted",
+        "excluded"
+      ],
+      "properties": {
+        "accepted": {
+          "$ref": "investor_entity.schema.json#/$defs/stringList"
+        },
+        "excluded": {
+          "$ref": "investor_entity.schema.json#/$defs/stringList"
+        }
+      }
+    },
+    "regulatory_restrictions": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "relevant_portfolio": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "potential_conflicts": {
+      "$ref": "investor_entity.schema.json#/$defs/stringList"
+    },
+    "recent_investment": {
+      "type": "boolean"
+    },
+    "source_kind": {
+      "type": "string",
+      "enum": [
+        "official",
+        "regulatory",
+        "news",
+        "database",
+        "directory",
+        "other"
+      ]
+    },
+    "published_on": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "quote": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 600
+    },
+    "regulatory_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "canonical_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "investor_type",
+        "sectors",
+        "stages",
+        "rounds",
+        "geographies",
+        "check_range_usd",
+        "lead_follow",
+        "business_models",
+        "active_status",
+        "published_on"
+      ],
+      "properties": {
+        "investor_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "sectors": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "stages": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "rounds": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "geographies": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "check_range_usd": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "lead_follow": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "business_models": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "active_status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
+        "published_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "quote",
+          "domain_on_page"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 400
+          },
+          "domain_on_page": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -87,7 +87,7 @@
     "entities": {
       "type": "array",
       "items": {
-        "$ref": "investor_entity.schema.json"
+        "$ref": "investor_entity.v2.schema.json"
       }
     },
     "judgments": {
