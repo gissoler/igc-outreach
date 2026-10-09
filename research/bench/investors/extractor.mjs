@@ -276,7 +276,14 @@ export function extractFixtureInvestorV2({ document, extraction, today, firstSee
   const rejection = investorExtractionRejectionV2({ document, extraction: identity });
   const grounded = groundFieldsV2({ document, extraction: identity });
   const meta = { quote_source: identity?.quote_source ?? 'none', official_domain_source: identity?.official_domain_source ?? 'none', fields_dropped_by_grounding: grounded.fields_dropped_by_grounding ?? [] };
-  if (rejection) return { entity: null, ...rejection, meta };
+  // V5-3: campos ya anclados (cita literal) de la página, aunque el gate la rechace. Solo los usa la ronda de profundización
+  // (config v5) sobre páginas del dominio oficial de una firma ya aceptada; el resto del motor no los lee.
+  const deepening_fields = {
+    entity_kind: identity?.entity_kind ?? null, canonical_name: normalized(identity?.canonical_name), aliases: (identity?.aliases ?? []).map(normalized).filter(Boolean),
+    investor_type: grounded.investor_type ?? 'unknown', sectors: [...new Set(grounded.sectors ?? [])], stages: [...new Set(grounded.stages ?? [])], geographies: [...new Set(grounded.geographies ?? [])],
+    published_on: grounded.published_on ?? null, field_evidence: grounded.field_evidence ?? {}, quote: rejection ? null : (identity?.quote ?? null)
+  };
+  if (rejection) return { entity: null, ...rejection, meta, deepening_fields };
   const source = { url: document.url, title: document.title || document.url, source_kind: identity.source_kind, retrieved_on: today, published_on: grounded.published_on ?? null, quote: identity.quote ?? null, field_evidence: grounded.field_evidence };
   const entity = {
     schema_version: 'investor_entity/2', stable_id: 'inv:url:pending', canonical_name: normalized(identity.canonical_name),
@@ -291,6 +298,6 @@ export function extractFixtureInvestorV2({ document, extraction, today, firstSee
   };
   entity.stable_id = stableInvestorId(entity);
   validateInvestor('investor_entity.v2', entity);
-  return { entity, rejected_kind: null, candidates: rejection?.candidates ?? verifiedCandidates({ document, extraction }), meta };
+  return { entity, rejected_kind: null, candidates: rejection?.candidates ?? verifiedCandidates({ document, extraction }), meta, deepening_fields };
 }
 export { nameMatchesDomain, sameDomain, hostname as investorHostname };

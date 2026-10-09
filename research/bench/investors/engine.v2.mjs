@@ -11,6 +11,7 @@ import { classifyActivity } from './activity.mjs';
 import { loadNormalization } from './normalize.mjs';
 import { resolveCandidate, candidateKey } from './resolve.mjs';
 import { triageSearchResults } from './triage.mjs';
+import { runDeepening } from './deepening.mjs';
 
 const FIRMISH = /\b(ventures?|capital|partners|fund|vc|investments?)\b|\.vc$/i;
 const lc = v => String(v ?? '').toLowerCase();
@@ -59,6 +60,7 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
     const key = candidateKey(cand.name); if (!key || candidateKeys.has(key) || knownNames().has(key)) return;
     candidateKeys.add(key); candidates.push({ ...cand, origin, source_url, query_id }); stats.candidates_seen++;
   };
+  const pageTexts = new Map(); // V5-3: texto de las páginas leídas, para los enlaces internos de la ronda de profundización.
   const fetchPage = async (url, fallbackText = null) => {
     seenUrls.add(canonicalInvestorUrl(url) ?? url);
     const page = await deps.fetch(url); totals.fetches++; totals.nominal_cost += page.nominal_cost ?? 1; recordUsage(page);
@@ -67,6 +69,7 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
       if (fallbackText && fallbackText.length >= 400) { text = fallbackText; via = 'search_contents'; stats.fetch_fallback_search_contents++; log({ event: 'fetch_fallback', url, via, text_chars: text.length }); }
       else { stats.fetch_empty++; const h = host(url); emptyHosts.set(h, (emptyHosts.get(h) ?? 0) + 1); }
     }
+    if (config.deepening?.enabled && text.length >= 200) pageTexts.set(canonicalInvestorUrl(url) ?? url, text);
     return { ...page, text, via };
   };
   const extractDoc = async (document, firstSeen) => {
@@ -214,7 +217,29 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
     }
   }
 
-  const entities = dedupeInvestors(rawEntities, { v2: true }).map(e => ({ ...e, ...deriveActivity(e, { today: config.today, recencyDays: config.activity?.recency_days ?? 540 }) }));
+  const discovered = dedupeInvestors(rawEntities, { v2: true });
+  // V5-3 — ronda de profundización con presupuesto propio (config.deepening); no consume los topes del descubrimiento
+  // y se cuenta aparte en v2_stats.deepening. Sin deepening.enabled el motor es idéntico a v4.
+  let deepeningStats = null;
+  if (config.deepening?.enabled) {
+    const activity = e => deriveActivity(e, { today: config.today, recencyDays: config.activity?.recency_days ?? 540 });
+    const io = {
+      search: (q, options) => deps.search(q, options),
+      fetch: async (url, fallbackText) => {
+        const page = await deps.fetch(url); let text = page.text ?? '', via = page.via ?? null;
+        if (text.length < 200 && fallbackText && fallbackText.length >= 400) { text = fallbackText; via = 'search_contents'; log({ event: 'fetch_fallback', url, via, text_chars: text.length, phase: 'deepening' }); }
+        return { ...page, text, via };
+      },
+      extract: async document => {
+        const entity = discovered.find(e => document.url && e.official_domain && sameDomain(host(document.url), e.official_domain));
+        return (deps.extract ?? (input => extractFixtureInvestorV2({ ...input, extraction: input.extraction })))({ document, extraction: document.extraction, today: config.today, firstSeen: entity?.first_seen ?? { step: 0, search_index: 0, order: 0, query_id: null } });
+      },
+      seen: url => seenUrls.has(canonicalInvestorUrl(url) ?? url), markSeen: url => seenUrls.add(canonicalInvestorUrl(url) ?? url),
+      pageTexts, log, deriveActivity: activity
+    };
+    deepeningStats = (await runDeepening({ entities: discovered, profile, catalog, normalization, config, io })).stats;
+  }
+  const entities = discovered.map(e => ({ ...e, ...deriveActivity(e, { today: config.today, recencyDays: config.activity?.recency_days ?? 540 }) }));
   const sectorFits = new Map();
   for (const entity of entities) {
     if (!deps.sectorFit || stats.sector_llm_calls >= (config.judge?.max_llm_calls ?? 0)) break;
@@ -226,5 +251,6 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
   const ranked = rankInvestors(entities, judgments);
   const abstained = !ranked.some(x => x.gain >= 2);
   const abstention_reason = !abstained ? null : !judgments.length ? 'no_candidates' : judgments.every(j => j.hard_eligibility === 'ineligible' || j.overall_relevance === 'irrelevant') ? 'all_hard_not_met' : 'insufficient_evidence';
+  if (deepeningStats) return validateInvestor('investor_run_result.v3', { schema_version: 'investor_run_result/3', case_id: caseObj.case_id, condition, stop_reason, abstained, abstention_reason, ranked, entities, judgments, totals, prefix_curve, actions_rejected, v2_stats: { ...stats, candidates_pending: candidates.length, deepening: deepeningStats } });
   return validateInvestor('investor_run_result.v2', { schema_version: 'investor_run_result/2', case_id: caseObj.case_id, condition, stop_reason, abstained, abstention_reason, ranked, entities, judgments, totals, prefix_curve, actions_rejected, v2_stats: { ...stats, candidates_pending: candidates.length } });
 }

@@ -46,3 +46,13 @@ Aprobadas por la usuaria el 2026-10-09, tal como están escritas arriba:
 Las entradas 16 y 17 no formaron parte de esta aprobación explícita; quedan descritas pero sin aprobación registrada.
 
 Versión aprobada: `normalization.v1.json` sha256 `ce332e4073878ada476802ef908252b1c1f879ea3c430aa98a2245a62df58b07`, código en `main@e81d1ad`.
+
+## Entrada v5 (2026-10-09) — requiere aprobación antes de la corrida formal (PROMPT-v5 Cambio 3)
+
+18. **Presupuesto de la ronda de profundización** (`config/v5-2026-10-09.json`, `deepening`). Cambia el presupuesto frente a v3/v4:
+    * además de los topes de descubrimiento de v4 (18 búsquedas, 54 fetches, 300k tokens nominales por corrida), cada corrida puede profundizar hasta `max_firms_per_run = 8` firmas aceptadas, con `max_queries_per_firm = 2` búsquedas (Exa con `includeDomains` del dominio oficial) y `max_fetches_per_firm = 4` páginas propias (incluido `sitemap.xml` si se pide);
+    * tope adicional por corrida: 16 búsquedas y 32 fetches; los tokens de la ronda no tienen tope propio y se reportan aparte;
+    * búsquedas, fetches, tokens y firmas profundizadas se cuentan aparte en `v2_stats.deepening` (`investor_run_result.v3`); `totals` sigue siendo solo descubrimiento, así que `rejected_non_investors/fetches` conserva su definición;
+    * sustituye al enriquecimiento de v4 (`enrichment.enabled = false` en v5).
+
+    **Sin aprobación registrada.** No se presenta como aprobada; las 90 corridas no se lanzan hasta que la usuaria la apruebe.

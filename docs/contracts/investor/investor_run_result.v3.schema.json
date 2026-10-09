@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_run_result.v3.schema.json",
+  "title": "Investor benchmark run result v3 (config v5: v2_stats.deepening)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "condition",
+    "stop_reason",
+    "abstained",
+    "ranked",
+    "entities",
+    "judgments",
+    "totals",
+    "prefix_curve",
+    "actions_rejected",
+    "abstention_reason",
+    "v2_stats"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "investor_run_result/3"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^inv-case-"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "B0",
+        "B1",
+        "B2"
+      ]
+    },
+    "stop_reason": {
+      "type": "string",
+      "enum": [
+        "budget_searches",
+        "budget_fetches",
+        "budget_planner_calls",
+        "budget_tokens",
+        "budget_seconds",
+        "patience",
+        "queries_exhausted",
+        "no_more_actions"
+      ]
+    },
+    "abstained": {
+      "type": "boolean"
+    },
+    "ranked": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rank",
+          "stable_id",
+          "gain",
+          "hard_eligibility",
+          "active_status"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "stable_id": {
+            "type": "string"
+          },
+          "gain": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "hard_eligibility": {
+            "type": "string"
+          },
+          "active_status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "investor_entity.v2.schema.json"
+      }
+    },
+    "judgments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "searches",
+        "fetches",
+        "planner_calls",
+        "rejected_non_investors",
+        "portfolio_companies_rejected",
+        "nominal_cost",
+        "tokens_nominal",
+        "seconds_nominal",
+        "latency_actual_ms",
+        "latency_nominal_ms"
+      ],
+      "properties": {
+        "searches": {
+          "type": "integer"
+        },
+        "fetches": {
+          "type": "integer"
+        },
+        "planner_calls": {
+          "type": "integer"
+        },
+        "rejected_non_investors": {
+          "type": "integer"
+        },
+        "portfolio_companies_rejected": {
+          "type": "integer"
+        },
+        "nominal_cost": {
+          "type": "number"
+        },
+        "tokens_nominal": {
+          "type": "integer"
+        },
+        "seconds_nominal": {
+          "type": "number"
+        },
+        "latency_actual_ms": {
+          "type": "number"
+        },
+        "latency_nominal_ms": {
+          "type": "number"
+        }
+      }
+    },
+    "prefix_curve": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "actions_rejected": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "abstention_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "no_candidates",
+        "all_hard_not_met",
+        "insufficient_evidence",
+        null
+      ]
+    },
+    "v2_stats": {
+      "type": "object",
+      "required": [
+        "deepening"
+      ],
+      "properties": {
+        "deepening": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "max_firms_per_run",
+            "max_queries_per_firm",
+            "max_fetches_per_firm",
+            "firms",
+            "searches",
+            "fetches",
+            "fetch_empty",
+            "extract_calls",
+            "tokens_nominal",
+            "latency_actual_ms",
+            "latency_nominal_ms",
+            "fields_filled",
+            "contradictions",
+            "per_firm"
+          ],
+          "properties": {
+            "enabled": {
+              "const": true
+            },
+            "max_firms_per_run": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_queries_per_firm": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_fetches_per_firm": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "firms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "searches": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "fetches": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "fetch_empty": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "extract_calls": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tokens_nominal": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "latency_actual_ms": {
+              "type": "number"
+            },
+            "latency_nominal_ms": {
+              "type": "number"
+            },
+            "fields_filled": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "contradictions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "per_firm": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "stable_id",
+                  "name",
+                  "domain",
+                  "missing_before",
+                  "missing_after",
+                  "queries",
+                  "fetches",
+                  "pages"
+                ],
+                "properties": {
+                  "stable_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "missing_before": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "missing_after": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "queries": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "fetches": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "pages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

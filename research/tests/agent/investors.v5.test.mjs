@@ -127,3 +127,82 @@ test('V5-2c sin triage (config v4) el motor no pasa la función al buscador y ab
   const r = await runInvestorDiscovery({ caseObj: anchorCase, profile: fintechProfile(), condition: 'B1', config: v4Config(), templates, catalog, deps: w.deps });
   assert.ok(w.calls.fetch.includes(list)); assert.equal(w.calls.search[0].options.triage, undefined); assert.equal(r.v2_stats.triage, undefined);
 });
+
+// ───────── V5-3 — Ronda de profundización ─────────
+import { deepeningQuery, mergeDeepening } from '../../bench/investors/deepening.mjs';
+import { isLiteralEvidence } from '../../bench/investors/extractor.mjs';
+
+const QUILL_HOME = 'https://quillfund.test/', QUILL_STRATEGY = 'https://quillfund.test/strategy';
+const quillHome = (extraLinks = '') => ({ title: 'Quill Fund', text: `Quill Fund invests at seed in startups in Mexico. Read [Our strategy](/strategy) and [Team](/team).${extraLinks} ${filler('Quill Fund')}`,
+  extraction: fullV2({ canonical_name: 'Quill Fund', quote: 'Quill Fund invests at seed in startups in Mexico.', investor_type: 'venture_capital', stages: ['seed'], geographies: ['Mexico'], evidence: { investor_type: 'Quill Fund invests', stages: 'invests at seed', geographies: 'startups in Mexico' } }) });
+const quillStrategy = (sentence, extra) => ({ title: 'Strategy', text: `${sentence} ${filler('Quill Fund')}`, extraction: fullV2({ canonical_name: 'Quill Fund', quote: sentence, ...extra }) });
+const runQuill = async (pages, { config = v5Config(), searches = {} } = {}) => {
+  const q = 'venture capital firm investing at seed in Mexico';
+  const w = world({ pages, searches: { [q]: [QUILL_HOME], ...searches }, plans: { initial: { queries: [q], stop: false, candidate_firms: [] } } });
+  const logs = []; w.deps.log = row => logs.push(row);
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile: fintechProfile(), condition: 'B1', config, templates, catalog, deps: w.deps });
+  return { r, w, logs, e: r.entities.find(x => x.stable_id === 'inv:domain:quillfund.test'), j: r.judgments.find(x => x.stable_id === 'inv:domain:quillfund.test') };
+};
+const st = (j, id) => j.criteria.find(c => c.criterion_id === id).state;
+
+test('V5-3a sector desconocido en la portada y publicado en /strategy → el campo se llena con cita literal de esa página', async () => {
+  const strategy = quillStrategy('Quill Fund invests in fintech companies that serve small businesses.', { sectors: ['fintech'], evidence: { sectors: 'invests in fintech companies' } });
+  const { r, w, logs, e, j } = await runQuill({ [QUILL_HOME]: quillHome(), [QUILL_STRATEGY]: strategy });
+  assert.equal(r.schema_version, 'investor_run_result/3'); validateInvestor('investor_run_result.v3', r);
+  assert.ok(e.sectors.includes('fintech')); assert.equal(st(j, 'INV-SECTOR'), 'met');
+  const src = e.sources.find(s => s.url === QUILL_STRATEGY);
+  assert.equal(src.source_kind, 'official'); assert.equal(src.field_evidence.sectors, 'invests in fintech companies');
+  assert.ok(isLiteralEvidence(strategy.text, src.field_evidence.sectors));
+  const s1 = w.calls.search.find(c => c.options.includeDomains); assert.deepEqual(s1.options.includeDomains, ['quillfund.test']); assert.ok(!/site:/.test(s1.q));
+  assert.equal(s1.q, deepeningQuery('Quill Fund', ['INV-SECTOR'], 1));
+  const start = logs.find(x => x.event === 'deepening_start'), end = logs.find(x => x.event === 'deepening_end');
+  assert.ok(start.missing_before.includes('INV-SECTOR')); assert.ok(!end.missing_after.includes('INV-SECTOR'));
+  assert.ok(end.urls.some(u => u.url === QUILL_STRATEGY && u.outcome === 'merged'));
+  const d = r.v2_stats.deepening; assert.equal(d.firms, 1); assert.equal(d.fields_filled['INV-SECTOR'], 1);
+  // Presupuesto aparte: los fetches de la ronda no suman a los del descubrimiento.
+  assert.equal(r.totals.fetches, 1); assert.ok(d.fetches >= 1); assert.equal(r.totals.searches, 1); assert.equal(d.searches, 1);
+});
+
+test('V5-3b una página propia sin el dato deja el campo en unknown (nunca not_met inventado)', async () => {
+  const strategy = quillStrategy('Quill Fund partners with founders for the long term.', {});
+  const { e, j, r } = await runQuill({ [QUILL_HOME]: quillHome(), [QUILL_STRATEGY]: strategy });
+  assert.deepEqual(e.sectors, []); assert.equal(st(j, 'INV-SECTOR'), 'unknown');
+  assert.ok(!e.sources.some(s => s.url === QUILL_STRATEGY));
+  assert.ok(r.v2_stats.deepening.per_firm[0].missing_after.includes('INV-SECTOR'));
+});
+
+test('V5-3c el tope por firma se respeta (≤ 4 fetches y ≤ 2 consultas aunque haya más páginas)', async () => {
+  const links = ' ' + ['about', 'approach', 'focus', 'thesis', 'portfolio', 'funds', 'what-we-do', 'invest'].map(p => `[${p}](/${p})`).join(' ');
+  const pages = { [QUILL_HOME]: quillHome(links) };
+  for (const p of ['strategy', 'team', 'about', 'approach', 'focus', 'thesis', 'portfolio', 'funds', 'what-we-do', 'invest']) pages[`https://quillfund.test/${p}`] = quillStrategy(`Quill Fund ${p} page with general text.`, {});
+  const { r, w } = await runQuill(pages);
+  const deepFetches = w.calls.fetch.filter(u => u !== QUILL_HOME);
+  assert.equal(deepFetches.length, 4); assert.equal(r.v2_stats.deepening.per_firm[0].fetches, 4);
+  assert.ok(r.v2_stats.deepening.per_firm[0].queries <= 2);
+  assert.equal(w.calls.search.filter(c => c.options.includeDomains).length, r.v2_stats.deepening.per_firm[0].queries);
+  const r2 = (await runQuill(pages, { config: v5Config({ deepening: { enabled: true, max_firms_per_run: 0, max_queries_per_firm: 2, max_fetches_per_firm: 4 } }) })).r;
+  assert.equal(r2.v2_stats.deepening.firms, 0);
+});
+
+test('V5-3d un campo ya conocido no se sobrescribe; la contradicción se registra', () => {
+  const entity = { canonical_name: 'Quill Fund', aliases: [], official_domain: 'quillfund.test', investor_type: 'venture_capital', sectors: [], stages: ['seed'], geographies: ['Mexico'], contradictions: [], sources: [{ url: QUILL_HOME, title: 'Q', source_kind: 'official', retrieved_on: '2026-10-09', published_on: null, quote: 'x', field_evidence: { geographies: 'startups in Mexico' } }] };
+  const text = 'Quill Fund invests in Brazil only, in fintech companies. More text here to make the page long enough.';
+  const extracted = { deepening_fields: { entity_kind: 'institutional_investor', canonical_name: 'Quill Fund', aliases: [], investor_type: 'unknown', sectors: ['fintech'], stages: [], geographies: ['Brazil'], published_on: null, field_evidence: { geographies: 'invests in Brazil only', sectors: 'in fintech companies' }, quote: null } };
+  const out = mergeDeepening(entity, { url: QUILL_STRATEGY, title: 'S', text, extracted, today: '2026-10-09' }, ['INV-SECTOR']);
+  assert.deepEqual(entity.geographies, ['Mexico']); assert.deepEqual(entity.sectors, ['fintech']);
+  assert.equal(out.contradictions.length, 1); assert.match(entity.contradictions[0], /Brazil/);
+  // Evidencia que no es literal en la página: no llena nada.
+  const e2 = { ...structuredClone(entity), sectors: [] };
+  const bad = mergeDeepening(e2, { url: QUILL_STRATEGY, title: 'S', text, extracted: { deepening_fields: { ...extracted.deepening_fields, field_evidence: { sectors: 'invests in fintech and edtech' } } }, today: '2026-10-09' }, ['INV-SECTOR']);
+  assert.deepEqual(e2.sectors, []); assert.equal(bad.outcome, 'no_new_data');
+  // Otra firma en el mismo dominio: se rechaza.
+  assert.equal(mergeDeepening(structuredClone(entity), { url: QUILL_STRATEGY, title: 'S', text, extracted: { deepening_fields: { ...extracted.deepening_fields, canonical_name: 'Acme Robotics' } }, today: '2026-10-09' }, ['INV-SECTOR']).outcome, 'rejected:different_firm');
+});
+
+test('V5-3e sin deepening.enabled (ni triage) el resultado es idéntico al de v4', async () => {
+  const strategy = quillStrategy('Quill Fund invests in fintech companies that serve small businesses.', { sectors: ['fintech'], evidence: { sectors: 'invests in fintech companies' } });
+  const pages = { [QUILL_HOME]: quillHome(), [QUILL_STRATEGY]: strategy };
+  const v4 = (await runQuill(pages, { config: v4Config() })).r;
+  const off = (await runQuill(pages, { config: v5Config({ deepening: { ...v5Config().deepening, enabled: false }, triage: { enabled: false }, enrichment: v4Config().enrichment }) })).r;
+  assert.deepEqual(off, v4); assert.equal(off.schema_version, 'investor_run_result/2');
+});
