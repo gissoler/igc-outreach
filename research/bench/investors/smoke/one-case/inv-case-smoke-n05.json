@@ -1,0 +1,27 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-smoke-n05",
+  "kind": "null",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/smoke-inv-case-syn-n05.json",
+  "profile_sha256": "aee59780b623654dd4e2ebe0938565b7d594f8a7177147ad314613fa5312c4fd",
+  "construction": {
+    "curator": "technical-smoke-only",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:59:52-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [],
+  "null_case": {
+    "scope": "Technical smoke fixture excluded from the final internal gold and not used for benchmark metrics.",
+    "manual_search_minutes": 20,
+    "manual_queries": [
+      "technical smoke investor query one",
+      "technical smoke investor query two",
+      "technical smoke investor query three"
+    ],
+    "conclusion": "no_active_investor_with_gain_gte_2_found_within_scope"
+  }
+}

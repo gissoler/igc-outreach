@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p12",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p12.json",
+  "profile_sha256": "086363baf35c688ab3915e7d264a47bae1d84ab55b689009c9e6cbd15179c8e9",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:sginnovate.com",
+      "canonical_name": "SGInnovate",
+      "official_url": "https://www.sginnovate.com/",
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "From Agrifood to Advanced Manufacturing, Cleantech to Quantum Computing",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

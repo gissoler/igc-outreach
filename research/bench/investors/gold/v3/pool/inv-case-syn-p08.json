@@ -1,0 +1,122 @@
+[
+  {
+    "stable_id": "inv:domain:abgdventures.com",
+    "name": "ABGD Ventures",
+    "urls": [
+      "https://www.abgdventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:awakapital.vc",
+    "name": "Awakapital",
+    "urls": [
+      "https://www.awakapital.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:biosisventures.com",
+    "name": "Biosis Ventures",
+    "urls": [
+      "https://biosisventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:care9.com",
+    "name": "CARE9 Ventures",
+    "urls": [
+      "https://care9.com/about/ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:firstcheck.africa",
+    "name": "FirstCheck Africa",
+    "urls": [
+      "https://www.firstcheck.africa/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:healthcap.co",
+    "name": "HealthCap Africa",
+    "urls": [
+      "https://healthcap.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:labcorp.com",
+    "name": "Labcorp Venture Fund",
+    "urls": [
+      "https://www.labcorp.com/venture-fund"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:sanofiventures.com",
+    "name": "Sanofi Ventures",
+    "urls": [
+      "https://www.sanofiventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:scrubcapital.com",
+    "name": "Scrub Capital",
+    "urls": [
+      "https://www.scrubcapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:standardventures.ng",
+    "name": "Standard Ventures",
+    "urls": [
+      "https://standardventures.ng/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:venturesplatform.com",
+    "name": "Ventures Platform",
+    "urls": [
+      "https://www.venturesplatform.com/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:weventurecapital.com",
+    "name": "We Venture Capital",
+    "urls": [
+      "https://weventurecapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

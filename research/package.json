@@ -9,6 +9,7 @@
     "start": "node --env-file-if-exists=.env server/index.mjs",
     "test": "node --test tests/*.test.mjs",
     "eval:search": "node scripts/eval-search.mjs",
+    "preflight:apollo": "node --env-file-if-exists=.env scripts/apollo-preflight.mjs",
     "browser:install": "playwright install chromium",
     "test:agent": "node --test tests/agent/*.test.mjs",
     "test:investors": "node --test tests/agent/investors.test.mjs"

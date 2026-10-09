@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p05",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p05.json",
+  "profile_sha256": "d1073de01a920a611e3f587bd5c8f35f4371c017b8d44292e87866c3d7e62c1f",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:worldfund.vc",
+      "canonical_name": "World Fund",
+      "official_url": "https://www.worldfund.vc/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "energy, buildings, manufacturing, transport, food, agriculture, and land use.",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

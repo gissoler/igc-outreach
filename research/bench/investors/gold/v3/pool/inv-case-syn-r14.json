@@ -1,0 +1,102 @@
+[
+  {
+    "stable_id": "inv:domain:abgdventures.com",
+    "name": "ABGD Ventures",
+    "urls": [
+      "https://www.abgdventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:altasemper.com",
+    "name": "Alta Semper",
+    "urls": [
+      "https://www.altasemper.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:care9.com",
+    "name": "CARE9 Ventures",
+    "urls": [
+      "https://care9.com/about/ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:healthcap.co",
+    "name": "HealthCap Africa",
+    "urls": [
+      "https://healthcap.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:highlandcapitalpartners.com",
+    "name": "Highland Capital",
+    "urls": [
+      "https://www.highlandcapitalpartners.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:lifescienceventures.co",
+    "name": "Lifescience Ventures",
+    "urls": [
+      "https://lifescienceventures.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:mandala-capital.com",
+    "name": "Mandala Capital",
+    "urls": [
+      "https://mandala-capital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:merck-animal-health.com",
+    "name": "Merck Animal Health",
+    "urls": [
+      "https://www.merck-animal-health.com/research-and-innovation/business-development/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:pyramidiaventures.com",
+    "name": "Pyramidia",
+    "urls": [
+      "https://www.pyramidiaventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:refood.co",
+    "name": "Re:food",
+    "urls": [
+      "https://www.refood.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

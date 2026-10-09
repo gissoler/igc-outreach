@@ -1,0 +1,27 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-r14",
+  "kind": "null",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-r14.json",
+  "profile_sha256": "172eff410956b5cefd0e9bd9ba0468f8498a786aea82e20ed795f8df4be8d281",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "codex-context-A7-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T11:27:10-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [],
+  "null_case": {
+    "scope": "Institutional equity investors active for a Turkmenistan veterinary diagnostics and food-safety laboratory network seeking a USD 14M Series A.",
+    "manual_search_minutes": 20,
+    "manual_queries": [
+      "Turkmenistan veterinary diagnostics investor",
+      "Central Asia animal health private equity",
+      "Turkmenistan agrifood laboratory investment fund"
+    ],
+    "conclusion": "no_active_investor_with_gain_gte_2_found_within_scope"
+  }
+}

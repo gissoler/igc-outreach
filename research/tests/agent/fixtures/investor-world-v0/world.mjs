@@ -4,7 +4,7 @@ const src = (name, overrides = {}) => ({
   lead_follow: 'lead', business_models: { accepted: ['SaaS'], excluded: [] }, regulatory_restrictions: [], relevant_portfolio: [], potential_conflicts: [], recent_investment: true,
   source_kind: 'official', published_on: '2026-08-01', quote: `${name} is making new seed investments.`, regulatory_id: null, contradictions: [], ...overrides
 });
-const page = (url, title, extraction) => [url, { title, extraction }];
+const page = (url, title, extraction) => [url, { title, text: extraction.quote ? `${extraction.quote} ${extraction.quote} ${extraction.quote}` : `${title}. ${title}. ${title}. This page does not describe an investment firm.`, extraction }];
 
 export const pages = Object.fromEntries([
   page('https://alpha-ventures.test/thesis', 'Alpha Ventures thesis', src('Alpha Ventures', { official_domain: 'alpha-ventures.test', regulatory_id: 'REG-ALPHA', aliases: ['Alpha Health Ventures'], canonical_url: 'https://alpha-ventures.test/', vehicles: [{ name: 'Alpha Seed I', url: 'https://alpha-ventures.test/seed-i' }] })),

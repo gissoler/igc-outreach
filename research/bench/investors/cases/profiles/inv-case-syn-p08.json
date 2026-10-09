@@ -1,0 +1,168 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-syn-labanje-health",
+  "status": "frozen",
+  "as_of": "2026-10-08",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-context-A-profile-builder",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Labanje Health (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Nigeria",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Nigeria"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "sector": {
+      "value": "Digital health",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "diagnostics access",
+        "home sample collection",
+        "healthcare marketplace"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product": {
+      "value": "Marketplace that books accredited diagnostic-lab tests with home sample collection in Lagos",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "description": {
+      "value": "Labanje Health lets patients and clinicians order lab tests from accredited labs, with trained phlebotomists collecting samples at home. Results are delivered digitally and labs pay a commission per order. Pre-seed funding will scale phlebotomist coverage across Lagos.",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "consumers",
+        "clinics",
+        "diagnostic labs"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "marketplace commission",
+        "home-collection fee"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "early revenue",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "pre-seed",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "SAFE pre-seed",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 350000,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: 14 partner labs, 2,900 tests booked in last 6 months, ~USD 9k monthly GMV, 31% month-over-month growth",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "Nigeria Data Protection Act 2023",
+        "Medical Laboratory Science Council of Nigeria rules",
+        "Lagos State health facility regulations"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Nigeria"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "impact_investor",
+        "generalist_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": null,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    }
+  }
+}

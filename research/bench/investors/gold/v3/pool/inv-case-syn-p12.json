@@ -1,0 +1,262 @@
+[
+  {
+    "stable_id": "inv:domain:antares.ventures",
+    "name": "Antares Ventures",
+    "urls": [
+      "https://antares.ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:astanor.com",
+    "name": "Astanor",
+    "urls": [
+      "https://astanor.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:atlassian.com",
+    "name": "Atlassian Ventures",
+    "urls": [
+      "https://www.atlassian.com/blog/announcements/atlassian-ventures-convertible-note"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:berkah.vc",
+    "name": "Berkah Ventures",
+    "urls": [
+      "https://berkah.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:betagroventures.com",
+    "name": "Betagro Ventures",
+    "urls": [
+      "https://betagroventures.com/en"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:cradle.com.my",
+    "name": "Cradle Seed Ventures",
+    "urls": [
+      "https://www.cradle.com.my/csv-2/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ehsankapital.vc",
+    "name": "Ehsan Kapital PLT",
+    "urls": [
+      "https://www.ehsankapital.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:essentia.vc",
+    "name": "Essentia Ventures",
+    "urls": [
+      "https://www.essentia.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:germin8ventures.com",
+    "name": "Germin8 Ventures",
+    "urls": [
+      "https://germin8ventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:grosvenor.com",
+    "name": "Grosvenor",
+    "urls": [
+      "https://www.grosvenor.com/food-agtech"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:indelible.vc",
+    "name": "Indelible Ventures",
+    "urls": [
+      "https://indelible.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:indogencapital.com",
+    "name": "Indogen Capital",
+    "urls": [
+      "https://indogencapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:jeriko.vc",
+    "name": "Jeriko",
+    "urls": [
+      "https://jeriko.vc/en"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:kompas.vc",
+    "name": "KOMPAS VC",
+    "urls": [
+      "https://www.kompas.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:livinglab.ventures",
+    "name": "Living Lab Ventures",
+    "urls": [
+      "https://www.livinglab.ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:mandalay.vc",
+    "name": "Mandalay Venture Partners",
+    "urls": [
+      "https://www.mandalay.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:monozukuri.vc",
+    "name": "Monozukuri Ventures",
+    "urls": [
+      "https://monozukuri.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:monsoon-ventures.com",
+    "name": "Monsoon Ventures",
+    "urls": [
+      "https://www.monsoon-ventures.com/about"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:openspacecapital.com",
+    "name": "Openspace Capital",
+    "urls": [
+      "https://www.openspacecapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:prochain.vc",
+    "name": "proChain Ventures",
+    "urls": [
+      "https://www.prochain.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:qualgro.com",
+    "name": "Qualgro",
+    "urls": [
+      "https://qualgro.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:seedscapital.sg",
+    "name": "SEEDS",
+    "urls": [
+      "https://www.seedscapital.sg/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:sginnovate.com",
+    "name": "SGInnovate",
+    "urls": [
+      "https://www.sginnovate.com/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:tinmen.asia",
+    "name": "Tin Men Capital",
+    "urls": [
+      "https://www.tinmen.asia/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:trive.vc",
+    "name": "TRIVE",
+    "urls": [
+      "https://www.trive.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:wavemakerpartners.com",
+    "name": "Wavemaker Partners",
+    "urls": [
+      "https://wavemakerpartners.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

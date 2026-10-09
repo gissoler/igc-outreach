@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/contact_bridge_result/1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "as_of", "organization", "status", "people", "relations", "limits", "errors"],
+  "properties": {
+    "schema_version": { "const": "contact_bridge_result/1" },
+    "as_of": { "type": "string", "format": "date" },
+    "organization": { "type": "object", "additionalProperties": false, "required": ["stable_id", "canonical_name", "official_domain", "match_method", "confidence"], "properties": { "stable_id": { "type": "string" }, "canonical_name": { "type": "string" }, "official_domain": { "type": "string" }, "match_method": { "enum": ["exact_domain", "name_location", "not_found"] }, "confidence": { "type": "number", "minimum": 0, "maximum": 1 } } },
+    "status": { "enum": ["resolved", "partial", "not_found", "not_configured", "insufficient_credits", "unsupported_by_plan", "error"] },
+    "people": { "type": "array", "items": { "$ref": "#/$defs/person" } },
+    "relations": { "type": "array", "items": { "$ref": "#/$defs/relation" } },
+    "limits": { "type": "object", "additionalProperties": false, "required": ["calls", "credits_estimated", "cache_hits"], "properties": { "calls": { "type": "integer", "minimum": 0 }, "credits_estimated": { "type": "number", "minimum": 0 }, "cache_hits": { "type": "integer", "minimum": 0 } } },
+    "errors": { "type": "array", "items": { "type": "string", "maxLength": 300 } }
+  },
+  "$defs": {
+    "evidence": { "type": "object", "additionalProperties": false, "required": ["source", "url", "retrieved_at", "quote"], "properties": { "source": { "type": "string" }, "url": { "type": "string" }, "retrieved_at": { "type": "string", "format": "date" }, "quote": { "type": "string", "maxLength": 1000 } } },
+    "person": { "type": "object", "additionalProperties": false, "required": ["person_id", "name", "title", "organization", "reason", "channel", "verification_status", "route_type", "confidence", "evidence", "next_action"], "properties": { "person_id": { "type": "string" }, "name": { "type": "string" }, "title": { "type": ["string", "null"] }, "organization": { "type": "string" }, "reason": { "type": "string" }, "channel": { "type": ["object", "null"] }, "verification_status": { "enum": ["verified", "unverified", "not_available"] }, "route_type": { "enum": ["direct_contact", "public_affiliation", "possible_bridge", "verified_network_path", "unresolved"] }, "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }, "next_action": { "type": "string" } } },
+    "relation": { "type": "object", "additionalProperties": false, "required": ["from", "to", "direction", "type", "route_type", "confidence", "source", "observed_at"], "properties": { "from": { "type": "string" }, "to": { "type": "string" }, "direction": { "enum": ["outbound", "inbound", "undirected"] }, "type": { "type": "string" }, "route_type": { "enum": ["direct_contact", "public_affiliation", "possible_bridge", "verified_network_path", "unresolved"] }, "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "source": { "type": "string" }, "observed_at": { "type": "string", "format": "date" } } }
+  }
+}

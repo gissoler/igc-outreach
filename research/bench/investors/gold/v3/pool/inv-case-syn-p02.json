@@ -1,0 +1,92 @@
+[
+  {
+    "stable_id": "inv:domain:barninvest.com.br",
+    "name": "Barn Investimentos",
+    "urls": [
+      "https://barninvest.com.br/en/blog/investing-in-more-efficient-and-green-logistics-why-we-invested-in-origem"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:boldtcapital.com",
+    "name": "Bold.t Capital",
+    "urls": [
+      "https://boldtcapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ccapitalventures.com",
+    "name": "C Capital Ventures",
+    "urls": [
+      "https://www.ccapitalventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:lightrock.com",
+    "name": "Lightrock",
+    "urls": [
+      "https://www.lightrock.com/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:maniv.com",
+    "name": "Maniv",
+    "urls": [
+      "https://www.maniv.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:mobility.fund",
+    "name": "MobilityFund",
+    "urls": [
+      "https://www.mobility.fund/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:mobility.vc",
+    "name": "MobilityVC",
+    "urls": [
+      "https://www.mobility.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:parceiroventures.com",
+    "name": "Parceiro Ventures",
+    "urls": [
+      "https://parceiroventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:rethinkventures.com",
+    "name": "Rethink Ventures",
+    "urls": [
+      "https://rethinkventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

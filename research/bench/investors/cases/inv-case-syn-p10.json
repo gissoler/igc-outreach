@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p10",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p10.json",
+  "profile_sha256": "6ef863dfe94859882c5ca41f2fbc3733a15c418174240e4f7f10fb3551979061",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:endiya.com",
+      "canonical_name": "Endiya Partners",
+      "official_url": "https://www.endiya.com/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "Digital Health, Biotech, Medical Devices, and Lifesciences",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p11",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p11.json",
+  "profile_sha256": "f28ce8e235888464b4c163e55f0e9908a6e9f4e2c0a20d4edcc1746e8087529d",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:seacef.org",
+      "canonical_name": "Clime Capital Management (manager of SEACEF I and SEACEF II)",
+      "official_url": "https://www.seacef.org/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "commercial and industrial (C&I) rooftop solar",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

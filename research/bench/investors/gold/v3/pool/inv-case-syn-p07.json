@@ -1,0 +1,92 @@
+[
+  {
+    "stable_id": "inv:domain:agrifrontier.com",
+    "name": "Agri Frontier Growth Fund",
+    "urls": [
+      "https://www.agrifrontier.com/growth-fund/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ajimcapital.com",
+    "name": "Ajim Capital",
+    "urls": [
+      "https://ajimcapital.com/east-africa-venture-capital"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:av-ventures.com",
+    "name": "AV Ventures",
+    "urls": [
+      "https://av-ventures.com/our_funds/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:daraventurepartners.com",
+    "name": "Dara Venture Partners",
+    "urls": [
+      "https://daraventurepartners.com/investment/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:innova.ag",
+    "name": "Innova",
+    "urls": [
+      "https://www.innova.ag/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:marulasquare.com",
+    "name": "Marula Square",
+    "urls": [
+      "https://marulasquare.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:novastarventures.com",
+    "name": "Novastar Ventures",
+    "urls": [
+      "https://www.novastarventures.com/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:standardventures.ng",
+    "name": "Standard Ventures",
+    "urls": [
+      "https://standardventures.ng/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:swedfund.se",
+    "name": "Swedfund",
+    "urls": [
+      "https://www.swedfund.se/en/investments-and-projects/apollo-agriculture"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

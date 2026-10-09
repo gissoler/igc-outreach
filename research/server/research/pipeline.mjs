@@ -5,7 +5,7 @@ import { demoLeads } from './demo.mjs';
 import { addConnections, addOrgBridges, networkCandidates } from './network.mjs';
 import { runEngine, runObjective, engineLeads, engineConfigured, ENGINE_SOURCE } from './engine.mjs';
 import { multiSearch, searchApisConfigured } from './searchApis.mjs';
-import { roleReachable, fleetReady } from '../analysis/fleet.mjs';
+import { chatJSON, roleReachable, fleetReady } from '../analysis/fleet.mjs';
 import { readOpportunity } from './readOpportunity.mjs';
 import { crawl4aiRead, crawl4aiConfigured } from './crawl4ai.mjs';
 import { fundingQuery } from './expand.mjs';
@@ -14,7 +14,7 @@ import { aiReasonerOn, ORCHESTRATOR, orchestrate, searchRowsToLeads, mergeLeads,
 const GRANT_API_SOURCE = 'Grant search (web APIs)';
 import { fetchPage } from './localSearch.mjs';
 import { jinaRead, firecrawlRead } from './searchApis.mjs';
-import { HUNTER_SOURCE, enrichWithHunter, hunterConfigured, makeHunter } from './hunter.mjs';
+import { HUNTER_SOURCE, enrichWithHunter, hunterConfigured, leadDomain, makeHunter } from './hunter.mjs';
 import { firecrawlConfigured, searchConfigured, grantWebOpportunities, webPeople, webConfigured, webMissing, GRANT_WEB_SOURCE, WEB_SOURCE } from './webscrape.mjs';
 import { followUpPeople } from './followup.mjs';
 import { readCandidates } from './read.mjs';
@@ -24,6 +24,9 @@ import { attachGrantPlans, finalizeSearchAudit } from './grantManager.mjs';
 import { createRecorder } from './liveRun.mjs';
 import { buildRunAudit } from './runAudit.mjs';
 import { webSourcePlan } from './sourcePlan.mjs';
+import { buildCapitalStrategyContext, capitalQueries, attachCapitalEvidence, recordCapitalToolResults } from '../../capital/strategy.mjs';
+import { ApolloBudget, createApolloClient, sharedApolloCache } from '../../capital/apollo.mjs';
+import { resolveApolloContacts } from '../../capital/resolver.mjs';
 import { verifyRegistryLeads } from './registryVerify.mjs';
 import { grantIntel, portalSeeds, sbir } from './grantSources.mjs';
 import { applyJevDecisions, askJev, jevProvider } from './jev.mjs';
@@ -104,6 +107,21 @@ export async function runResearch(
       job.plan.items.unshift({ provider: 'Your need, expanded', query: list });
       emit('planning', `Searching ${job.plan.terms.length} phrasings separately: ${list}`);
     }
+    if (env.CAPITAL_STRATEGY_CONTEXT === '1' && job.mode !== 'demo') {
+      const name = 'Capital strategy context';
+      live({ phase: 'planning', provider: name, status: 'running', title: 'Exploring capital strategies', message: 'Building evidence-seeking routes before discovery without changing the confirmed profile.' });
+      job.capitalStrategyContext = await buildCapitalStrategyContext(b, {
+        asOf: new Date().toISOString().slice(0, 10),
+        maxRoutes: Number(env.CAPITAL_STRATEGY_MAX_ROUTES) || 6,
+        maxQueries: Number(env.CAPITAL_STRATEGY_MAX_QUERIES) || 18,
+        maxCalls: Number(env.CAPITAL_STRATEGY_MAX_CALLS) || 24,
+        maxMs: Number(env.CAPITAL_STRATEGY_MAX_MS) || 120000,
+        maxCostUsd: Number(env.CAPITAL_STRATEGY_MAX_COST_USD) || 1,
+        available: { apollo: env.APOLLO_ENABLED === '1' && Boolean(env.APOLLO_API_KEY), authorized_network: true, official_grants: b.fundingTypes.includes('grant'), funding_round_sources: b.fundingTypes.includes('investment'), searxng: Boolean(env.SEARXNG_URL), page_reader: true, llm: fleetReady(env, 'engine') },
+        plan: fleetReady(env, 'engine') ? async ({ system, input }) => (await chatJSON({ system, user: JSON.stringify(input), name: 'capital_strategy_context', role: 'engine' }, { env, fetcher, signal })).json : null,
+      });
+      live({ phase: 'planning', provider: name, status: 'success', title: 'Capital routes prepared', message: `${job.capitalStrategyContext.proposed_routes.length} routes and ${capitalQueries(job.capitalStrategyContext, { tools: ['searxng', 'official_grants', 'funding_round_sources'] }).length} concrete queries prepared. Adjacent routes remain hypotheses until evidence is found.`, resultCount: job.capitalStrategyContext.proposed_routes.length });
+    }
     let leads = [];
     let sender = [];
     let team = null;
@@ -111,6 +129,9 @@ export async function runResearch(
     let followupResult = null;
     const searchAudit = [];
     const engineRuns = [];   // auditorías del motor (interpretación del brief, consultas, recorrido de descartes)
+    const capitalFindings = [];
+    const capitalExecutions = [];
+    let authorizedNetwork = [];
     if (job.mode === 'demo') {
       live({ phase: 'planning', status: 'success', title: 'Search plan', message: job.plan.summary, detail: { kind: 'plan', items: job.plan.items, sources: [] } });
       live({ phase: 'warning', status: 'warning', title: 'Demo mode', message: 'EXPLICIT DEMO: fictional examples. No external sources or browser used.' });
@@ -148,7 +169,30 @@ export async function runResearch(
           : []),
         ...(engineOn
           ? [[ENGINE_SOURCE, async () => { const portals = b.fundingTypes.includes('grant') ? portalSeeds(b) : []; if (portals.length) job.portals = portals.map((p) => ({ name: p.title, url: p.url }));
-          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals } }); engineRuns.push(...r.audits); return Object.assign(engineLeads(r.findings), { searchAudit: r.audits.map((a) => ({ provider: ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped, skipped: a.skipped })) }); }]]
+          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals } });
+          engineRuns.push(...r.audits);
+          if (job.capitalStrategyContext) {
+            const strategyQueries = capitalQueries(job.capitalStrategyContext, { tools: ['searxng', 'official_grants', 'funding_round_sources'] }).slice(0, Math.max(1, Number(env.CAPITAL_STRATEGY_EXECUTE_MAX) || 6));
+            const grouped = new Map();
+            for (const query of strategyQueries) {
+              const objective = query.recommended_tool === 'official_grants' && b.fundingTypes.includes('grant') ? 'grant' : b.fundingTypes.includes('investment') ? 'investment' : b.fundingTypes.find((item) => ['grant', 'investment', 'debt', 'sponsorship', 'partnering'].includes(item));
+              if (!objective) continue;
+              grouped.set(objective, [...(grouped.get(objective) || []), { ...query, family: `capital_strategy:${query.route_id}` }]);
+            }
+            for (const [objective, queries] of grouped) {
+              const started = Date.now();
+              try {
+                const extra = await runObjective(objective, b, { env, fetcher, signal, queries, rounds: 1, maxQueries: queries.length, expand: false, maxPages: Math.max(6, queries.length * 3) });
+                engineRuns.push({ ...extra.audit, capitalStrategy: true }); capitalFindings.push(...extra.findings);
+                for (const query of queries) capitalExecutions.push({ query_id: query.query_id, new_evidence: extra.findings.filter((finding) => String(finding.query || '').toLowerCase() === query.query.toLowerCase()).length, latency_ms: Date.now() - started, error: null });
+              } catch (error) {
+                for (const query of queries) capitalExecutions.push({ query_id: query.query_id, new_evidence: 0, latency_ms: Date.now() - started, error: error.message });
+              }
+            }
+            job.capitalStrategyContext = recordCapitalToolResults(attachCapitalEvidence(job.capitalStrategyContext, capitalFindings), capitalExecutions);
+          }
+          const allFindings = [...r.findings, ...capitalFindings];
+          return Object.assign(engineLeads(allFindings), { searchAudit: engineRuns.map((a) => ({ provider: a.capitalStrategy ? 'Capital strategy context' : ENGINE_SOURCE, query: `(${a.objective}) ${a.queries} queries · ${a.pages} pages · ${a.read} read`, dimension: a.capitalStrategy ? 'capital_strategy' : 'engine', returned: a.pages, discovered: a.kept, dropped: a.dropped, skipped: a.skipped })) }); }]]
           : []),
         // Grants por las APIs de búsqueda (Exa, Serper, Tavily, You, Jina, Linkup) sin depender del modelo:
         // una consulta por término («¿quién financia X?») + programas y fundaciones; las páginas se abren y confirman después.
@@ -431,6 +475,7 @@ export async function runResearch(
         live({ phase: 'warning', status: 'warning', title: 'Limited coverage', message: 'Limited equity/debt coverage: SEC placement agents aren\'t integrated. Other categories are marked adjacent.' });
       }
       const network = store.network(b, job.userId);
+      authorizedNetwork = network;
       const NETWORK_SOURCE = 'Your network (warm paths)';
       const networkStarted = Date.now();
       live({ phase: 'source_started', provider: NETWORK_SOURCE, status: 'running', title: 'Network match', message: network.length ? `Comparing ${leads.length} candidates with ${network.length} imported contacts.` : 'No imported contacts: warm paths can\'t be computed.', detail: { parallel: 1 } });
@@ -458,6 +503,31 @@ export async function runResearch(
         .map(([key]) => key),
     );
     job.leads = evaluate(leads, b, rejected, new Date(), job.plan.terms || []);
+    job.contactResolution = [];
+    if (env.APOLLO_ENABLED === '1' && job.mode !== 'demo') {
+      const selectedOrganizations = job.leads.filter((lead) => !lead.person && ['top', 'radar'].includes(lead.bucket) && leadDomain(lead)).slice(0, Math.max(1, Number(env.APOLLO_MAX_ORGS_PER_RUN) || 3));
+      if (!env.APOLLO_API_KEY) {
+        job.apollo = { status: 'not_configured', organizations: selectedOrganizations.length, message: 'Apollo is disabled for this run because APOLLO_API_KEY is not configured. Research continued without it.' };
+        live({ phase: 'planning', provider: 'Apollo', status: 'pending', title: 'Apollo not configured', message: job.apollo.message });
+      } else {
+        sharedApolloCache.ttlMs = (Number(env.APOLLO_CACHE_TTL_HOURS) || 24) * 3600_000;
+        const apollo = createApolloClient({
+          apiKey: env.APOLLO_API_KEY, fetcher, timeoutMs: Number(env.APOLLO_TIMEOUT_MS) || 15000,
+          cache: sharedApolloCache,
+          budget: new ApolloBudget({ perRun: Number(env.APOLLO_MAX_CREDITS_PER_RUN) || 8, perOrganization: Number(env.APOLLO_MAX_CREDITS_PER_ORG) || 3, perDay: Number(env.APOLLO_MAX_CREDITS_PER_DAY) || 30 }),
+        });
+        for (const organization of selectedOrganizations) {
+          const domain = leadDomain(organization);
+          const result = await resolveApolloContacts({ organization_stable_id: organization.key || organization.externalId || organization.id, canonical_name: organization.org, official_domain: domain, target_roles: ['partner', 'principal', 'investment director', 'managing director'], as_of: new Date().toISOString().slice(0, 10) }, {
+            client: apollo, maxPeople: Number(env.APOLLO_PEOPLE_PER_ORG) || 5,
+            networkLookup: async ({ name }) => authorizedNetwork.filter((row) => ['linkedin_authenticated', 'linkedin_mutual_path'].includes(row.source) && String(row.name || row.path?.targetName || '').toLowerCase() === name.toLowerCase()).map((row) => ({ verified: true, evidence: [{ source: row.source, url: row.url || row.path?.targetUrl || '', quote: row.source === 'linkedin_mutual_path' ? 'Authorized shared-connection path; willingness to introduce is not established.' : 'Authorized first-degree network record; willingness to introduce is not established.', observed_at: new Date().toISOString().slice(0, 10) }] })),
+          });
+          job.contactResolution.push(result);
+        }
+        job.apollo = { status: job.contactResolution.some((item) => item.status === 'resolved') ? 'connected' : job.contactResolution.some((item) => item.status === 'partial') ? 'connected_limited' : job.contactResolution[0]?.status || 'connected_limited', organizations: selectedOrganizations.length, calls: apollo.stats.calls, creditsEstimated: apollo.stats.creditsEstimated, message: 'Apollo was used only after organization selection and did not change relevance or ranking.' };
+        live({ phase: 'reading', provider: 'Apollo', status: job.apollo.status === 'connected' ? 'success' : 'warning', title: 'People and contact routes resolved', message: `${job.contactResolution.flatMap((item) => item.people).length} people found across ${selectedOrganizations.length} selected organizations. Public affiliations were not labeled as warm paths.`, resultCount: job.contactResolution.flatMap((item) => item.people).length });
+      }
+    }
     const jevP = jevProvider(env);
     if (job.mode !== 'demo' && jevP) {
       const jevStarted = Date.now();

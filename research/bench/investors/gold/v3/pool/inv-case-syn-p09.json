@@ -1,0 +1,133 @@
+[
+  {
+    "stable_id": "inv:domain:a91partners.com",
+    "name": "A91 Partners",
+    "urls": [
+      "https://www.a91partners.com/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:araliventures.in",
+    "name": "Arali Ventures",
+    "urls": [
+      "https://www.araliventures.in/about"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ashikaprivateequity.com",
+    "name": "Ashika Private Equity",
+    "urls": [
+      "https://ashikaprivateequity.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:beepeesyndicate.com",
+    "name": "Beepee Syndicate",
+    "urls": [
+      "https://www.beepeesyndicate.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:capria.vc",
+    "name": "Capria Ventures India",
+    "urls": [
+      "https://capria.vc/regions/india/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:getvantage.co",
+    "name": "GetVantage",
+    "urls": [
+      "https://getvantage.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:growthcap.vc",
+    "name": "GrowthCap Ventures",
+    "urls": [
+      "https://growthcap.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:innovencapital.com",
+    "name": "InnoVen Capital",
+    "urls": [
+      "https://www.innovencapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:mandala-capital.com",
+    "name": "Mandala Capital",
+    "urls": [
+      "https://mandala-capital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:norwest.com",
+    "name": "Norwest",
+    "urls": [
+      "https://www.norwest.com/india/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:pdsventures.com",
+    "name": "PDS Ventures",
+    "urls": [
+      "https://pdsventures.com/",
+      "https://pdsventures.com/strategy/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:propelcredit.ai",
+    "name": "Propel Credit",
+    "urls": [
+      "https://propelcredit.ai/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:trifectacapital.in",
+    "name": "Trifecta Capital",
+    "urls": [
+      "https://www.trifectacapital.in/venture-debt"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

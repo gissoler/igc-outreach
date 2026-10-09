@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/apollo_preflight/1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "as_of", "status", "configured", "read_only", "test_domain", "checks", "quota", "scope", "latency_ms", "errors", "documentation"],
+  "properties": {
+    "schema_version": { "const": "apollo_preflight/1" },
+    "as_of": { "type": "string", "format": "date" },
+    "status": { "enum": ["connected", "connected_limited", "not_configured", "authentication_failed", "insufficient_credits", "quota_unknown", "unsupported_by_plan", "error"] },
+    "configured": { "type": "boolean" },
+    "read_only": { "const": true },
+    "test_domain": { "type": ["string", "null"] },
+    "checks": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["name", "ok", "http_status", "latency_ms", "records", "error"], "properties": { "name": { "type": "string" }, "ok": { "type": "boolean" }, "http_status": { "type": ["integer", "null"] }, "latency_ms": { "type": "integer", "minimum": 0 }, "records": { "type": "integer", "minimum": 0 }, "error": { "type": ["string", "null"] } } } },
+    "quota": { "type": "object", "additionalProperties": false, "required": ["known", "credit_types", "cycle"], "properties": { "known": { "type": "boolean" }, "credit_types": { "type": "object", "additionalProperties": { "type": "object", "required": ["limit", "consumed", "left_over"], "properties": { "limit": { "type": ["number", "null"] }, "consumed": { "type": ["number", "null"] }, "left_over": { "type": ["number", "null"] } } } }, "cycle": { "type": ["object", "null"] } } },
+    "scope": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "latency_ms": { "type": "integer", "minimum": 0 },
+    "errors": { "type": "array", "items": { "type": "string", "maxLength": 300 } },
+    "documentation": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["url", "consulted_at"], "properties": { "url": { "type": "string", "format": "uri" }, "consulted_at": { "type": "string", "format": "date" } } } }
+  }
+}

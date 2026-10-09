@@ -1,0 +1,154 @@
+[
+  {
+    "stable_id": "inv:domain:blueskycapital.vc",
+    "name": "Blue Sky Capital",
+    "urls": [
+      "https://blueskycapital.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:celesta.vc",
+    "name": "Celesta Capital",
+    "urls": [
+      "https://www.celesta.vc/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:cottonwood.vc",
+    "name": "Cottonwood Technology Fund",
+    "urls": [
+      "https://www.cottonwood.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:essentia.vc",
+    "name": "Essentia Ventures",
+    "urls": [
+      "https://www.essentia.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:harpoon.vc",
+    "name": "Harpoon Ventures",
+    "urls": [
+      "https://www.harpoon.vc/",
+      "https://www.harpoon.vc/post/announcing-harpoon-ventures-fund-iv"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:hyosungventures.net",
+    "name": "Hyosung Ventures",
+    "urls": [
+      "https://www.hyosungventures.net/en"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:lamcapital.com",
+    "name": "Lam Capital",
+    "urls": [
+      "https://www.lamcapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:micron.com",
+    "name": "Micron Ventures",
+    "urls": [
+      "https://www.micron.com/about/company/ventures"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:oncorcapital.com",
+    "name": "Oncor Capital",
+    "urls": [
+      "https://oncorcapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:petram.vc",
+    "name": "Petram Ventures",
+    "urls": [
+      "https://www.petram.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:photonventures.vc",
+    "name": "PhotonVentures",
+    "urls": [
+      "https://www.photonventures.vc/",
+      "https://www.photonventures.vc/portfolio.php"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:samsungventures.com",
+    "name": "Samsung Ventures",
+    "urls": [
+      "https://www.samsungventures.com/en/main.do"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:schematicventures.com",
+    "name": "Schematic Ventures",
+    "urls": [
+      "https://www.schematicventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:semiconventures.com",
+    "name": "Semicon Ventures",
+    "urls": [
+      "https://semiconventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:tesinvestment.co.kr",
+    "name": "TES Investment Partners",
+    "urls": [
+      "https://www.tesinvestment.co.kr/index-en.html"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

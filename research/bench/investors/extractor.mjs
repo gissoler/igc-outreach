@@ -1,8 +1,61 @@
 import { validateInvestor } from './contracts.mjs';
 import { stableInvestorId } from './identity.mjs';
 
+const PLACEHOLDER_NAME = /^(?:null|unknown|n\/?a|none|not specified|unnamed)$/i;
+const COLLECTION_NAME = /\b(?:best|top|list|directory|database|firms?|investors?|funding|trends?|report|guide|survey|article|news|podcast|companies)\b/i;
+const INVESTMENT_EVIDENCE = /\b(?:venture capital|private equity|growth equity|impact investing|investment fund|fund manager|portfolio companies|back(?:s|ed|ing) (?:companies|startups|founders)|invest(?:s|ed|ing)? in (?:companies|startups|founders)|mak(?:e|es|ing) new [^.]{0,60}investments|deploy(?:s|ed|ing) capital|provid(?:e|es|ed|ing) equity|(?:venture|growth) financing)\b/i;
+
+const normalized = value => String(value ?? '').replace(/\s+/g, ' ').trim();
+const hostname = value => {
+  try { return new URL(value).hostname.toLowerCase().replace(/^www\./, ''); }
+  catch { return null; }
+};
+const sameDomain = (a, b) => a && b && (a === b || a.endsWith(`.${b}`) || b.endsWith(`.${a}`));
+const nameMatchesDomain = (name, domain) => {
+  const nameKey = normalized(name).toLocaleLowerCase().replace(/[^a-z0-9]/g, '');
+  const domainKey = String(domain ?? '').split('.')[0].replace(/[^a-z0-9]/g, '');
+  return nameKey.length >= 5 && domainKey.length >= 5 && (nameKey === domainKey || nameKey.includes(domainKey) || domainKey.includes(nameKey));
+};
+
+export function groundInvestorExtraction({ document, extraction }) {
+  if (!extraction || typeof extraction !== 'object') return extraction;
+  const out = structuredClone(extraction), text = normalized(document?.text), name = normalized(out.canonical_name);
+  const literalQuote = normalized(out.quote);
+  if (!literalQuote || !text.toLocaleLowerCase().includes(literalQuote.toLocaleLowerCase())) {
+    const sentences = text.split(/(?<=[.!?])\s+|\n+/).map(normalized).filter(Boolean);
+    out.quote = sentences.find(sentence => sentence.toLocaleLowerCase().includes(name.toLocaleLowerCase()) && INVESTMENT_EVIDENCE.test(sentence)) ?? null;
+  }
+  const pageHost = hostname(document?.url);
+  if (!out.official_domain && out.source_kind === 'official' && nameMatchesDomain(name, pageHost)) out.official_domain = pageHost;
+  return out;
+}
+
+/** Deterministic acceptance gate. The LLM proposes facts; quoted page evidence decides identity. */
+export function investorExtractionRejection({ document, extraction }) {
+  if (!extraction || extraction.entity_kind !== 'institutional_investor') return extraction?.entity_kind ?? 'unknown';
+  const name = normalized(extraction.canonical_name), text = normalized(document?.text), quote = normalized(extraction.quote);
+  if (!name || PLACEHOLDER_NAME.test(name)) return 'missing_identity';
+  if (COLLECTION_NAME.test(name) && !/\b(?:ventures?|capital|partners?|fund|holdings|investments?)\b/i.test(name)) return 'collection_page';
+
+  // Offline fixtures created before this guard do not include page text. Live pages always do.
+  if (Object.hasOwn(document ?? {}, 'text')) {
+    if (text.length < 80) return 'insufficient_page_text';
+    if (!quote || !text.toLocaleLowerCase().includes(quote.toLocaleLowerCase())) return 'missing_literal_quote';
+    const identityTerms = [name, ...(extraction.aliases ?? [])].map(normalized).filter(x => x.length >= 3);
+    const identityInQuote = identityTerms.some(term => quote.toLocaleLowerCase().includes(term.toLocaleLowerCase()));
+    const pageHost = hostname(document.url), officialHost = extraction.official_domain ? hostname(`https://${extraction.official_domain}`) : null;
+    const officialFirstParty = Boolean(officialHost) && extraction.source_kind === 'official' && sameDomain(pageHost, officialHost);
+    if (!identityInQuote && !officialFirstParty) return 'identity_not_in_quote';
+    if (!INVESTMENT_EVIDENCE.test(quote)) return 'no_investment_evidence';
+    if (!extraction.official_domain && !extraction.regulatory_id && !officialFirstParty) return 'unresolved_firm_identity';
+  }
+  return null;
+}
+
 export function extractFixtureInvestor({ document, extraction, today, firstSeen }) {
-  if (!extraction || extraction.entity_kind !== 'institutional_investor') return { entity: null, rejected_kind: extraction?.entity_kind ?? 'unknown' };
+  extraction = groundInvestorExtraction({ document, extraction });
+  const rejected = investorExtractionRejection({ document, extraction });
+  if (rejected) return { entity: null, rejected_kind: rejected };
   const source = { url: document.url, title: document.title, source_kind: extraction.source_kind, retrieved_on: today, published_on: extraction.published_on ?? null, quote: extraction.quote ?? null };
   const entity = {
     schema_version: 'investor_entity/1', stable_id: 'inv:url:pending', canonical_name: extraction.canonical_name,

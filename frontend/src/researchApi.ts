@@ -196,12 +196,21 @@ export type Lead = {
 };
 export type RunGrant = { id: string; leadId: string; title: string; agency: string; url: string; closeDate: string | null; awardCeiling: number | null; verdict: '✔' | '✖' | '?'; closed: boolean };
 export type ActiveFund = { fundId: string; rank: number; name: string; dealsInWindow: number; leads: number; inactive: boolean; signals: { type: string; label: string; url: string | null }[]; why: { text: string; url: string } | null };
+export type CapitalEvidence = { source: string; url: string; quote: string; retrieved_at: string; supports: string };
+export type CapitalQuery = { query_id: string; question: string; query: string; recommended_tool: string; reason: string; estimated_cost_usd: number };
+export type CapitalRoute = { route_id: string; segment: string; status: 'evidence_backed' | 'hypothesis' | 'rejected'; rationale: string; comparables: string[]; funding_mechanisms: string[]; example_funders: string[]; queries: CapitalQuery[]; recommended_tools: string[]; evidence: CapitalEvidence[]; risks: string[]; open_questions: string[] };
+export type CapitalStrategyContext = { schema_version: 'capital_strategy_context/1'; as_of: string; declared_segment: { name: string; source: string; confirmed: boolean }; proposed_routes: CapitalRoute[] };
+export type ContactPerson = { person_id: string; name: string; title: string | null; organization: string; reason: string; channel: { type: string; value: string } | null; verification_status: 'verified' | 'unverified' | 'not_available'; route_type: 'direct_contact' | 'public_affiliation' | 'possible_bridge' | 'verified_network_path' | 'unresolved'; confidence: number; evidence: { source: string; url: string; retrieved_at: string; quote: string }[]; next_action: string };
+export type ContactResolution = { schema_version: 'contact_bridge_result/1'; as_of: string; organization: { stable_id: string; canonical_name: string; official_domain: string; match_method: string; confidence: number }; status: string; people: ContactPerson[]; errors: string[] };
 export type Job = {
   /** Auditoría de la corrida: qué entendió el motor, qué buscó, qué leyó, qué descartó y por qué. */
   runAudit?: RunAudit;
   searchAudit?: { provider: string; query: string; dimension: string; returned?: number; discovered: number; priority: number; watch: number; discarded: number }[];
   grants?: { evaluations: RunGrant[]; alerts: { id: string; title: string; closeDate: string; days: number; verdict: string; level: string }[] };
   activeInvestors?: { asOf: string; funds: ActiveFund[]; universe: number };
+  capitalStrategyContext?: CapitalStrategyContext;
+  contactResolution?: ContactResolution[];
+  apollo?: { status: string; organizations: number; calls?: number; creditsEstimated?: number; message: string };
   id: string;
   brief: Brief;
   mode: 'live' | 'demo';

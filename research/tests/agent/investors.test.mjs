@@ -6,7 +6,7 @@ import { validateInvestor } from '../../bench/investors/contracts.mjs';
 import { loadInvestorPrompt } from '../../bench/investors/prompts.mjs';
 import { stableInvestorId, dedupeInvestors, investorIdentityKeys } from '../../bench/investors/identity.mjs';
 import { classifyActivity } from '../../bench/investors/activity.mjs';
-import { extractFixtureInvestor } from '../../bench/investors/extractor.mjs';
+import { extractFixtureInvestor, investorExtractionRejection } from '../../bench/investors/extractor.mjs';
 import { judgeInvestor, assertUnknownNeverMet } from '../../bench/investors/judge.mjs';
 import { investorGain, rankInvestors } from '../../bench/investors/ranking.mjs';
 import { investorB0Queries, validatePlannerBatch } from '../../bench/investors/conditions.mjs';
@@ -18,6 +18,7 @@ import { hitAt20, pooledRecallAt20, ndcgAt10, classificationMetrics, recallCostC
 import { proposedInvestorDecision } from '../../bench/investors/decide.mjs';
 import { preannotateInvestorItems } from '../../bench/investors/preannotate.mjs';
 import { createInvestorLlm } from '../../bench/investors/external.mjs';
+import { createFailoverSearchTool } from '../../bench/investors/search-failover.mjs';
 import { pages, searches, fixtureDeps, fixtureConfig } from './fixtures/investor-world-v0/world.mjs';
 
 const repo = resolve(import.meta.dirname, '../../..');
@@ -52,6 +53,20 @@ test('INV-ACC-02e external LLM composition validates investor-specific schemas w
   const result = await llm.call({ prompt, user: 'fixture', schemaName: 'investor_planner_output' }); assert.deepEqual(result.json, { queries: ['health investors'], stop: false }); assert.equal(result.tokens_nominal, 5);
 });
 
+test('INV-ACC-02s failover search is ordered, stops on first nonempty provider and counts real calls', async () => {
+  const calls = [];
+  const fetcher = async (url, init) => {
+    calls.push(url);
+    if (url.includes('exa.ai')) return new Response(JSON.stringify({ results: [] }), { status: 200 });
+    if (url.includes('serper.dev')) return new Response(JSON.stringify({ organic: [{ link: 'https://fund.test/', title: 'Fund', snippet: 'Investor' }] }), { status: 200 });
+    throw new Error('Tavily must not run after Serper succeeds');
+  };
+  const search = createFailoverSearchTool({ providers: ['exa','serper','tavily'], env: { EXA_API_KEY: 'x', SERPER_API_KEY: 's', TAVILY_API_KEY: 't' }, resultsPerQuery: 10 });
+  const originalFetch = globalThis.fetch; globalThis.fetch = fetcher;
+  try { const out = await search.search('health investors', { remainingSearches: 3 }); assert.equal(out.provider, 'serper'); assert.equal(out.searches_consumed, 2); assert.equal(out.results.length, 1); assert.equal(calls.length, 2); }
+  finally { globalThis.fetch = originalFetch; }
+});
+
 test('INV-ACC-03 stable IDs and conservative dedup cover aliases, rename, domains, vehicles and similar names', () => {
   const alpha = entityAt('https://alpha-ventures.test/thesis', 0), vehicle = entityAt('https://alpha-ventures.test/seed-i', 1), renamed = entityAt('https://alpha-health.test/about', 2), similar = entityAt('https://alpha-capital.test/thesis', 3);
   assert.equal(stableInvestorId(alpha), 'inv:domain:alpha-ventures.test');
@@ -65,6 +80,20 @@ test('INV-ACC-04 extraction rejects portfolio companies, individuals and acceler
   for (const [url, kind] of [['https://rival-health.test/about','portfolio_company'],['https://alex-angel.test/bio','individual'],['https://launch-school.test/program','accelerator_no_capital']]) {
     const out = extractFixtureInvestor({ document: { url, title: pages[url].title }, extraction: pages[url].extraction, today: '2026-10-07', firstSeen: firstSeen() }); assert.equal(out.entity, null); assert.equal(out.rejected_kind, kind);
   }
+});
+
+test('INV-ACC-04g live extraction requires literal identity and investment evidence', () => {
+  const base = pages['https://alpha-ventures.test/thesis'].extraction;
+  const goodText = 'Alpha Ventures is making new seed investments. We back health founders.';
+  assert.equal(investorExtractionRejection({ document: { url: 'https://alpha-ventures.test/thesis', text: goodText.repeat(3) }, extraction: base }), null);
+  assert.equal(investorExtractionRejection({ document: { url: 'https://news.test/story', text: 'Government announces a new hospital policy. '.repeat(4) }, extraction: { ...base, canonical_name: 'null', quote: null, source_kind: 'news', official_domain: null } }), 'missing_identity');
+  assert.equal(investorExtractionRejection({ document: { url: 'https://directory.test/vcs', text: 'Top healthcare investors and venture firms. '.repeat(4) }, extraction: { ...base, canonical_name: 'Healthcare VC Firms 2026 List', quote: 'Top healthcare investors and venture firms.', source_kind: 'directory', official_domain: null } }), 'collection_page');
+  assert.equal(investorExtractionRejection({ document: { url: 'https://news.test/story', text: 'Alpha Ventures attended the conference. '.repeat(4) }, extraction: { ...base, quote: 'Alpha Ventures attended the conference.', source_kind: 'news' } }), 'no_investment_evidence');
+  assert.equal(investorExtractionRejection({ document: { url: 'https://who.int/platform', text: 'The European Investment Bank and WHO are founding partners. Invest in global health. '.repeat(3) }, extraction: { ...base, canonical_name: 'European Investment Bank', official_domain: null, canonical_url: 'https://who.int/platform', quote: 'The European Investment Bank and WHO are founding partners.', source_kind: 'official' } }), 'no_investment_evidence');
+  const groundedQuote = extractFixtureInvestor({ document: { url: 'https://news.test/story', title: 'Story', text: 'Alpha Ventures raised a fund to invest in startups. '.repeat(3) }, extraction: { ...base, quote: null, source_kind: 'news' }, today: '2026-10-08', firstSeen: firstSeen() });
+  assert.equal(groundedQuote.entity.sources[0].quote, 'Alpha Ventures raised a fund to invest in startups.');
+  const noGrounding = extractFixtureInvestor({ document: { url: 'https://news.test/story', title: 'Story', text: 'The government announced a hospital policy. '.repeat(3) }, extraction: { ...base, quote: null, source_kind: 'news' }, today: '2026-10-08', firstSeen: firstSeen() });
+  assert.equal(noGrounding.entity, null); assert.equal(noGrounding.rejected_kind, 'missing_literal_quote');
 });
 
 test('INV-ACC-05 activity requires evidence beyond website existence and uses injected date', () => {

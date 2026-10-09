@@ -17,7 +17,7 @@ export async function runInvestorDiscovery({ caseObj, profile, condition, config
     const before = budgetHit(); if (before) { stop_reason = before; return; }
     const query_id = `q${String(queryCounter++).padStart(3, '0')}`;
     const foundBefore = dedupeInvestors(rawEntities).length;
-    const response = await deps.search(action.query); totals.searches++; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
+    const response = await deps.search(action.query, { remainingSearches: config.budgets.searches - totals.searches }); totals.searches += response.searches_consumed ?? 1; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
     const afterSearch = resourceHit(); if (afterSearch) stop_reason = afterSearch;
     for (const result of (stop_reason ? [] : response.results ?? []).slice(0, config.default_fetch_per_search)) {
       if (totals.fetches >= config.budgets.fetches) { stop_reason = 'budget_fetches'; break; }

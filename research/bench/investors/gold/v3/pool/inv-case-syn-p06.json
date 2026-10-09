@@ -1,0 +1,82 @@
+[
+  {
+    "stable_id": "inv:domain:ecapital.vc",
+    "name": "eCAPITAL entrepreneurial Partners (eCAPITAL)",
+    "urls": [
+      "https://ecapital.vc/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:felsen.ventures",
+    "name": "Felsen Ventures",
+    "urls": [
+      "https://www.felsen.ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:glilotcapital.com",
+    "name": "Glilot Capital",
+    "urls": [
+      "https://glilotcapital.com/cyberhubs/cybersecurity-venture-capital/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:kompas.vc",
+    "name": "KOMPAS VC",
+    "urls": [
+      "https://www.kompas.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:senovo.vc",
+    "name": "Senovo",
+    "urls": [
+      "https://senovo.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:trumpf.com",
+    "name": "TRUMPF Venture II mbH",
+    "urls": [
+      "https://www.trumpf.com/en_INT/company/additional-fields-of-activity/trumpf-venture/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:vorwerkventures.com",
+    "name": "Vorwerk Ventures",
+    "urls": [
+      "https://vorwerkventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ylventures.com",
+    "name": "YL Ventures",
+    "urls": [
+      "https://www.ylventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

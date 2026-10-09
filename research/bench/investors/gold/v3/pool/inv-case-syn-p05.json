@@ -1,0 +1,62 @@
+[
+  {
+    "stable_id": "inv:domain:azora.com",
+    "name": "Azora",
+    "urls": [
+      "https://www.azora.com/en/our-strategies/climate-solutions/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:eneco.nl",
+    "name": "Eneco Ventures",
+    "urls": [
+      "https://www.eneco.nl/en/about-us/what-we-do/ventures/eneco-ventures-is-looking-for-startups/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:kiiltoventures.com",
+    "name": "Kiilto Ventures",
+    "urls": [
+      "https://kiiltoventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:klimavest.de",
+    "name": "klimaVest",
+    "urls": [
+      "https://klimavest.de/en/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:lichen.vc",
+    "name": "Lichen Ventures",
+    "urls": [
+      "https://www.lichen.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:worldfund.vc",
+    "name": "World Fund",
+    "urls": [
+      "https://www.worldfund.vc/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  }
+]

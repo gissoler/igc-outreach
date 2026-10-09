@@ -79,7 +79,13 @@ export async function exaSearchApi(query, { env = process.env, fetcher, signal, 
   const data = await call('Exa', 'https://api.exa.ai/search', {
     method: 'POST', env, fetcher, signal,
     headers: { 'x-api-key': key(env, 'exa') },
-    body: { query: str(query).slice(0, 1000), type: env.EXA_SEARCH_TYPE || 'auto', numResults: n(env, limit), contents: { text: { maxCharacters: Number(env.EXA_TEXT_CHARS) || 20_000 } }, ...(since ? { startPublishedDate: `${since}T00:00:00.000Z` } : {}) },
+    body: {
+      query: str(query).slice(0, 1000),
+      type: env.EXA_SEARCH_TYPE || 'auto',
+      numResults: n(env, limit),
+      ...(env.EXA_INCLUDE_CONTENTS === '0' ? {} : { contents: { text: { maxCharacters: Number(env.EXA_TEXT_CHARS) || 20_000 } } }),
+      ...(since ? { startPublishedDate: `${since}T00:00:00.000Z` } : {}),
+    },
   });
   const rows = clean((data?.results || []).map((x, i) => row('exa', i + 1, { url: x.url, title: x.title, content: x.text, description: Array.isArray(x.highlights) ? x.highlights.join(' … ') : '', published: x.publishedDate })), n(env, limit));
   return Object.assign(rows, { costUsd: Number(data?.costDollars?.total) || 0 });
@@ -99,7 +105,7 @@ export async function tavilySearch(query, { env = process.env, fetcher, signal, 
   const data = await call('Tavily', 'https://api.tavily.com/search', {
     method: 'POST', env, fetcher, signal,
     headers: { Authorization: `Bearer ${key(env, 'tavily')}` },
-    body: { query: str(query).slice(0, 400), max_results: n(env, limit), search_depth: env.TAVILY_DEPTH || 'basic', include_raw_content: 'markdown', topic: 'general', ...(recency ? { time_range: recency } : {}) },
+    body: { query: str(query).slice(0, 400), max_results: n(env, limit), search_depth: env.TAVILY_DEPTH || 'basic', include_raw_content: env.TAVILY_INCLUDE_RAW_CONTENT === '0' ? false : 'markdown', topic: 'general', ...(recency ? { time_range: recency } : {}) },
   });
   return clean((data?.results || []).map((x, i) => row('tavily', i + 1, { url: x.url, title: x.title, description: x.content, content: x.raw_content })), n(env, limit));
 }
