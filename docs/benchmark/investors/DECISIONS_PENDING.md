@@ -55,4 +55,4 @@ Versión aprobada: `normalization.v1.json` sha256 `ce332e4073878ada476802ef90825
     * búsquedas, fetches, tokens y firmas profundizadas se cuentan aparte en `v2_stats.deepening` (`investor_run_result.v3`); `totals` sigue siendo solo descubrimiento, así que `rejected_non_investors/fetches` conserva su definición;
     * sustituye al enriquecimiento de v4 (`enrichment.enabled = false` en v5).
 
-    **Sin aprobación registrada.** No se presenta como aprobada; las 90 corridas no se lanzan hasta que la usuaria la apruebe.
+    **Aprobada por la usuaria el 2026-10-09 14:17 (America/Bogota)** (PROMPT-v6, sección 0, autorización 2) con `max_firms_per_run = 16`, `max_queries_per_firm = 2`, `max_fetches_per_firm = 4`. No se amplía el alcance. Las 90 corridas formales se lanzan aunque el smoke v5 no pasó (autorización 1); los resultados del smoke se reportan tal cual como limitación conocida.

@@ -1,7 +1,7 @@
 {
   "schema_version": "investor_run_config/3",
   "bench_id": "investors-internal-2026-10-09-v5",
-  "status": "draft",
+  "status": "frozen",
   "today": "2026-10-09",
   "search": {
     "provider": "failover",
