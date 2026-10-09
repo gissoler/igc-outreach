@@ -17,8 +17,10 @@ import { fleetTransport } from '../../../agent/llm.mjs';
 import { parseJsonContent } from '../../../server/analysis/fleet.mjs';
 import { loadInvestorPrompt } from '../prompts.mjs';
 import { bundleInvestor, validateInvestor, investorRepoRoot as repo } from '../contracts.mjs';
-import { extractFixtureInvestor, groundInvestorExtraction, describeInvestorExtraction } from '../extractor.mjs';
-import { judgeInvestor } from '../judge.mjs';
+import { extractFixtureInvestor, groundInvestorExtraction, describeInvestorExtraction, extractFixtureInvestorV2 } from '../extractor.mjs';
+import { judgeInvestor, judgeInvestorV2 } from '../judge.mjs';
+import { deriveActivity } from '../engine.v2.mjs';
+import { createInvestorLlm } from '../external.mjs';
 import { investorGain } from '../ranking.mjs';
 
 const arg = (name, d = null) => { const i = process.argv.indexOf(`--${name}`); return i < 0 ? d : process.argv[i + 1]; };
@@ -132,6 +134,40 @@ if (flag('strong')) {
   report.strong = { model, spent_usd: +spent.toFixed(4), cap_usd: CAP, valid: ok.length, ...summarize(ok), rows };
 }
 
+// (c') mismo gpt-oss-120b con el diseño v4 (schema investor_extraction.v2 + prompt extractor v3). Medición única, sin ajustar el prompt.
+if (flag('variant-v2')) {
+  const p3 = loadInvestorPrompt('extractor', 'v3', { manifest: 'manifest.v4.json' });
+  const llm = createInvestorLlm({ env: process.env, family: 'openai-gpt-oss' });
+  const rows = [];
+  for (const row of sample) {
+    const document = { url: row.url, title: row.page.title || row.url, text: row.page.text };
+    const user = render(p3.user, { today: '2026-10-08', url: row.url, page_text: sanitizePageText(row.page.text).replaceAll('{{', '{ {').replaceAll('}}', '} }').slice(0, 24000) });
+    let raw = null, error = null, tokens = 0;
+    try { const r = await llm.call({ prompt: p3, user, schemaName: 'investor_extraction.v2', temperature: 0, seed: 0, maxTokens: 3000 }); raw = r.json; tokens = r.tokens_nominal; } catch (e) { error = String(e.message).slice(0, 200); }
+    if (!raw) { rows.push({ url: row.url, error }); continue; }
+    const ex = extractFixtureInvestorV2({ document, extraction: raw, today: '2026-10-08', firstSeen: { step: 0, search_index: 0, order: 0, query_id: 'q000' } });
+    const FACT = ['investor_type', 'sectors', 'stages', 'geographies', 'check_range_usd', 'rounds', 'lead_follow', 'business_models', 'published_on', 'quote', 'official_domain'];
+    const filled = FACT.filter(f => { const v = raw[f]; return Array.isArray(v) ? v.length : v && typeof v === 'object' ? Object.values(v).some(x => Array.isArray(x) ? x.length : x != null) : v != null && v !== 'unknown'; });
+    const evidence_filled = Object.entries(raw.evidence ?? {}).filter(([, v]) => v).map(([k]) => k);
+    let core_known = [], gain = 0;
+    if (ex.entity) {
+      const entity = { ...ex.entity, ...deriveActivity(ex.entity, { today: '2026-10-08', recencyDays: 540 }) };
+      const j = judgeInvestorV2({ entity, profile: profileOf(row.case_id), catalog });
+      core_known = CORE.filter(id => j.criteria.find(c => c.criterion_id === id)?.state !== 'unknown'); gain = investorGain({ ...j, identity_correct: true, entity_kind: 'institutional_investor' });
+    }
+    rows.push({ url: row.url, tokens, accepted: Boolean(ex.entity), rejected_kind: ex.rejected_kind ?? null, raw_filled: filled, evidence_filled, kept_after_grounding: Object.keys(ex.entity?.sources?.[0]?.field_evidence ?? {}), dropped_by_grounding: ex.meta?.fields_dropped_by_grounding ?? [], core_known, gain, raw });
+  }
+  const ok = rows.filter(r => !r.error), n = ok.length, s = f => ok.reduce((a, r) => a + f(r), 0);
+  report.gpt_oss_120b_v4_design = {
+    model: 'openai/gpt-oss-120b, schema investor_extraction.v2 + prompt extractor v3 (sin cambios)', pages: rows.length, errors: rows.length - n,
+    core_criteria_known_pct_over_all: rows.length ? +(100 * s(r => r.core_known.length) / (4 * rows.length)).toFixed(1) : null,
+    pages_all4_core_known: s(r => r.core_known.length === 4 ? 1 : 0), accepted_by_gate_v2: s(r => r.accepted ? 1 : 0), gain_ge2: s(r => r.gain >= 2 ? 1 : 0),
+    raw_field_filled: Object.fromEntries(['investor_type', 'sectors', 'stages', 'geographies', 'quote', 'official_domain'].map(f => [f, s(r => r.raw_filled.includes(f) ? 1 : 0)])),
+    kept_after_grounding: Object.fromEntries(['investor_type', 'sectors', 'stages', 'geographies'].map(f => [f, s(r => r.kept_after_grounding.includes(f) ? 1 : 0)])),
+    per_criterion_known: Object.fromEntries(CORE.map(id => [id, s(r => r.core_known.includes(id) ? 1 : 0)])), tokens_mean: n ? Math.round(s(r => r.tokens) / n) : null, rows
+  };
+}
+
 // (d) ¿decodificación guiada estricta en la flota?
 if (flag('guided')) {
   const tx = fleetTransport(process.env, 'engine');
@@ -154,6 +190,6 @@ if (flag('guided')) {
 
 db.close();
 const strip = r => { const { raw, ...rest } = r; return { ...rest, raw_keys: raw ? Object.keys(raw) : null }; };
-const printable = { ...report, gpt_oss_120b: { ...report.gpt_oss_120b, rows: report.gpt_oss_120b.rows.map(strip) }, ...(report.strong ? { strong: { ...report.strong, rows: report.strong.rows.map(strip) } } : {}) };
+const printable = { ...report, gpt_oss_120b: { ...report.gpt_oss_120b, rows: report.gpt_oss_120b.rows.map(strip) }, ...(report.strong ? { strong: { ...report.strong, rows: report.strong.rows.map(strip) } } : {}), ...(report.gpt_oss_120b_v4_design ? { gpt_oss_120b_v4_design: { ...report.gpt_oss_120b_v4_design, rows: report.gpt_oss_120b_v4_design.rows.map(strip) } } : {}) };
 writeFileSync(resolve(OUTDIR, 'llm_vs_design.json'), `${JSON.stringify(report, null, 2)}\n`);
-console.log(JSON.stringify(printable, (k, v) => k === 'rows' ? undefined : v, 2));
+console.log(JSON.stringify({ ...printable, sample: undefined }, (k, v) => k === 'rows' ? undefined : v, 2));

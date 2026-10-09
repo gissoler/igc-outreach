@@ -292,3 +292,28 @@ test('V4-FIX-14 config v4 validates; v3 config still uses engine v1', () => {
   assert.equal(r.config.engine_v, 2);
   const v3 = json(resolve(repo, 'research/bench/investors/config/v3-2026-10-08.json')); assert.equal(v3.engine_v, undefined);
 });
+
+test('V4-FIX-11 reader preflight fails with READER_UNAVAILABLE without reader variables', async () => {
+  const { readerPreflight } = await import('../../bench/investors/preflight-reader.mjs');
+  const out = await readerPreflight({ env: {}, fetcher: async () => new Response('<html><body></body></html>', { status: 200, headers: { 'content-type': 'text/html' } }) });
+  assert.equal(out.status, 'READER_UNAVAILABLE');
+  const ok = await readerPreflight({ env: { JINA_API_KEY: 'k' }, fetcher: async url => String(url).startsWith('https://r.jina.ai/') ? new Response(JSON.stringify({ data: { content: 'x'.repeat(900), title: 't' } }), { status: 200 }) : new Response('<html></html>', { status: 200, headers: { 'content-type': 'text/html' } }) });
+  assert.equal(ok.status, 'passed');
+});
+
+test('V4-FIX-17 report has one row per entity and every non-unknown core criterion cites a literal quote from its source', async () => {
+  const { renderInvestorReport, criterionCitation } = await import('../../bench/investors/find.mjs');
+  const pages = {
+    'https://condor-seed.test/': { title: 'Condor Seed', text: 'Condor Seed is a venture capital firm. Condor Seed invests in seed-stage fintech startups in Mexico and Colombia. We lead rounds and support founders with hiring and go-to-market across the region, from first check to Series A.', extraction: fullV2({ canonical_name: 'Condor Seed', quote: 'Condor Seed invests in seed-stage fintech startups in Mexico and Colombia.', investor_type: 'venture_capital', sectors: ['fintech'], stages: ['seed'], geographies: ['Mexico', 'Colombia'], evidence: { investor_type: 'Condor Seed is a venture capital firm.', sectors: 'seed-stage fintech startups', stages: 'invests in seed-stage', geographies: 'in Mexico and Colombia' } }) }
+  };
+  const w = world({ pages, searches: { 'fintech seed mexico fund': ['https://condor-seed.test/'] }, plans: { initial: { queries: ['fintech seed mexico fund'], stop: false, candidate_firms: [] } } });
+  const p = fintechProfile();
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile: p, condition: 'B2', config: v4Config(), templates, catalog, deps: w.deps });
+  assert.equal(r.ranked.length, 1); assert.ok(r.ranked[0].gain >= 2, JSON.stringify(r.judgments[0].criteria));
+  const md = renderInvestorReport(r, p);
+  assert.equal((md.match(/^\| \d+ \|/gm) ?? []).length, r.entities.length);
+  const e = r.entities[0], j = r.judgments[0];
+  for (const c of j.criteria.filter(c => ['INV-SECTOR', 'INV-STAGE', 'INV-GEO', 'INV-TYPE'].includes(c.criterion_id) && c.state !== 'unknown')) {
+    const cit = criterionCitation(e, c); assert.ok(cit, c.criterion_id); assert.ok(pages[cit.url].text.includes(cit.quote), cit.quote); assert.ok(md.includes(cit.quote));
+  }
+});

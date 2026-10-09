@@ -38,3 +38,18 @@ export function latencyMetrics(runs) {
 export function agreement(labelsA, labelsB) { const b = new Map(labelsB.map(x => [`${x.case_id}|${x.stable_id}`, x])), table = [[0,0],[0,0]]; let same = 0, n = 0; for (const a of labelsA) { const other = b.get(`${a.case_id}|${a.stable_id}`); if (!other) continue; const ai = investorGain(a) >= 2 ? 0 : 1, bi = investorGain(other) >= 2 ? 0 : 1; table[ai][bi]++; same += ai === bi; n++; } return { reviewed: n, agreement_raw: n ? same / n : null, cohen_kappa: n ? cohenKappa(table) : null }; }
 
 export function abstentionMetrics(cases, runs) { const out = {}; for (const condition of ['B0','B1','B2']) { let correct = 0, nulls = 0, falseA = 0, anchors = 0; for (const c of cases) { const rr = runs.filter(x => x.case_id === c.case_id && x.condition === condition); const abstained = rr.length ? rr.filter(x => x.abstained).length >= Math.ceil(rr.length / 2) : false; if (c.kind === 'null') { nulls++; if (abstained) correct++; } else { anchors++; if (abstained) falseA++; } } out[condition] = { correct_abstentions: `${correct}/${nulls}`, false_abstentions: `${falseA}/${anchors}` }; } return out; }
+
+// ───── FIX-15: métricas v4 (solo reporte; la regla de decisión no cambia) ─────
+export const CORE_CRITERIA = ['INV-SECTOR', 'INV-STAGE', 'INV-GEO', 'INV-TYPE'];
+const stateOf = (j, id) => j.criteria.find(c => c.criterion_id === id)?.state ?? 'unknown';
+export function criteriaKnownRate(run) { const js = run.judgments ?? []; return js.length ? js.filter(j => CORE_CRITERIA.every(id => stateOf(j, id) !== 'unknown')).length / js.length : null; }
+export function anyCoreKnownRate(run) { const js = run.judgments ?? []; return js.length ? js.filter(j => CORE_CRITERIA.some(id => stateOf(j, id) !== 'unknown')).length / js.length : null; }
+export function systemGain2Count(run) { return (run.ranked ?? []).filter(x => x.gain >= 2).length; }
+export function gain2LabelAgreement(run, labels) { const byId = new Map(labels.map(x => [x.stable_id, x])), rec = (run.ranked ?? []).filter(x => x.gain >= 2 && byId.has(x.stable_id)); return rec.length ? rec.filter(x => investorGain(byId.get(x.stable_id)) >= 2).length / rec.length : null; }
+export function recallByOrigin(run, labels) {
+  const positives = new Set(labels.filter(x => investorGain(x) >= 2).map(x => x.stable_id)); if (!positives.size) return null;
+  const top = (run.ranked ?? []).slice(0, 20).map(x => x.stable_id), origin = new Map((run.entities ?? []).map(e => [e.stable_id, e.first_seen?.origin ?? 'search']));
+  const out = {}; for (const id of top) if (positives.has(id)) out[origin.get(id)] = (out[origin.get(id)] ?? 0) + 1;
+  return Object.fromEntries(Object.entries(out).map(([k, v]) => [k, v / positives.size]));
+}
+export const formatHardFalsePositiveRate = v => v == null ? 'no_evaluable' : v;

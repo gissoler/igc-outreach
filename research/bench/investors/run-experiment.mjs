@@ -29,7 +29,8 @@ const append = row => appendFileSync(eventsPath, `${JSON.stringify({ timestamp: 
 const rand = seed => { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
 const shuffle = (rows, seed) => { const r = rand(seed), out = [...rows]; for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; } return out; };
 const caseFiles = readdirSync(casesDir).filter(x => x.endsWith('.json') && x !== 'manifest.json').sort();
-let jobs = caseFiles.flatMap(file => conditions.flatMap(condition => config.seeds.map(seed => ({ file, condition, seed }))));
+const seeds = arg('seeds') ? arg('seeds').split(',').map(Number) : config.seeds;
+let jobs = caseFiles.flatMap(file => conditions.flatMap(condition => seeds.map(seed => ({ file, condition, seed }))));
 jobs = shuffle(jobs, 20261008).slice(0, maxRuns);
 
 const cache = createBenchCache({ path: resolve(outDir, 'cache.sqlite'), namespace: `investors-${config.bench_id}` });
@@ -86,7 +87,7 @@ function tracedDeps(base, { runId, condition, apollo }) {
 }
 
 const manifest = new Array(jobs.length);
-const writeManifest = () => writeFileSync(resolve(outDir, 'runs_manifest.json'), `${JSON.stringify({ schema_version: 'runs_manifest/1', expected_runs: caseFiles.length * conditions.length * config.seeds.length, scheduled_runs: jobs.length, order_seed: 20261008, concurrency, conditions, seeds: config.seeds, runs: manifest.filter(Boolean).sort((a, b) => a.ordinal - b.ordinal) }, null, 2)}\n`);
+const writeManifest = () => writeFileSync(resolve(outDir, 'runs_manifest.json'), `${JSON.stringify({ schema_version: 'runs_manifest/1', expected_runs: caseFiles.length * conditions.length * seeds.length, scheduled_runs: jobs.length, order_seed: 20261008, concurrency, conditions, seeds, runs: manifest.filter(Boolean).sort((a, b) => a.ordinal - b.ordinal) }, null, 2)}\n`);
 try {
   async function runJob(job, ordinal) {
     const caseObj = JSON.parse(readFileSync(resolve(casesDir, job.file), 'utf8'));

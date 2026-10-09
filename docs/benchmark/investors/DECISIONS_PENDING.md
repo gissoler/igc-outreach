@@ -14,3 +14,21 @@
 12. Tratamiento de firmas multi-marca o plataformas con equipos de inversión realmente independientes.
 
 Hasta aprobarlos, la regla de decisión conserva `status: proposed` y ninguna corrida puede presentarse como formal.
+
+## Entrada v4 (2026-10-09) — requiere aprobación antes de la corrida formal (FIX_SPEC §2 FIX-06/07/09)
+
+13. **Regla `plausible` (FIX-07)**, en `judgeInvestorV2`:
+    * `irrelevant` si es inelegible o sector `off`;
+    * `strong` si actividad `met`, sector `on`, etapa `met`, geografía `met` y `eligible`;
+    * `plausible` si sector ∈ {on, partial} y (etapa `met` o geografía `met`);
+    * si no, `weak`.
+
+    Sustituye a "menos de 5 unknown de 12". La función de gain (`ranking.mjs`) no cambia.
+14. **Tablas `normalization.v1`** (`docs/contracts/investor/vocab/normalization.v1.json`, FIX-06). Son las del spec, con estas desviaciones explícitas:
+    * (a) `seed` y `series a` no casan dentro de `pre-seed` / `pre-series a`;
+    * (b) geografía: una cadena se expande por las regiones y países que nombra como palabra completa ("Latin America and the Caribbean" → Latin America);
+    * (c) una cadena que no nombra ninguna región ni país conocido es `unknown`, nunca `not_met`;
+    * (d) Nauru añadido a Pacific Islands y Oceania.
+15. **`activity.recency_days = 540`** (FIX-09).
+16. **Comparación literal de citas** (FIX-03/04): página y cita se comparan tras NFKC, quitar marcas markdown y unificar comillas y guiones tipográficos. No cambia palabras.
+17. **Evidencia de inversión atribuida** (FIX-04): el verbo de inversión debe ir después del nombre de la firma, o la firma debe ser el agente ("led/backed by X"). Es más estricto que el spec; resuelve el caso Acme/Northwind.

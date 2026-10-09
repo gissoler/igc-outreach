@@ -55,8 +55,8 @@ async function readWithFallbacks(url, env, transport) {
     if (env.CRAWL4AI_URL) {
       const got = await crawl4aiRead(url, { env, fetcher: recordingFetcher(attempt) });
       attempt.chars = got?.text?.length ?? null;
-      result = got || result;
-      if (result) via = 'crawl4ai';
+      // via nombra el lector que produjo el texto (antes quedaba 'crawl4ai'/'jina' aunque fallaran).
+      if (got) { result = got; via = 'crawl4ai'; }
     }
   }
   if ((!result || result.text?.length < 400) && !transport) {
@@ -66,8 +66,7 @@ async function readWithFallbacks(url, env, transport) {
     const onError = e => { attempt.error = `${e.code}: ${e.message}`; };
     const got = await jinaRead(url, { env, fetcher: recordingFetcher(attempt), onError });
     attempt.chars = got?.text?.length ?? null;
-    result = got || result;
-    if (result) via = 'jina';
+    if (got) { result = got; via = 'jina'; }
   }
   return { result, via, attempts };
 }
