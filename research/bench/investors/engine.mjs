@@ -19,7 +19,9 @@ export async function runInvestorDiscovery({ caseObj, profile, condition, config
     const foundBefore = dedupeInvestors(rawEntities).length;
     const response = await deps.search(action.query, { remainingSearches: config.budgets.searches - totals.searches }); totals.searches += response.searches_consumed ?? 1; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
     const afterSearch = resourceHit(); if (afterSearch) stop_reason = afterSearch;
-    for (const result of (stop_reason ? [] : response.results ?? []).slice(0, config.default_fetch_per_search)) {
+    const toOpen = (stop_reason ? [] : response.results ?? []).slice(0, config.default_fetch_per_search);
+    deps.log?.({ event: 'search_opened', query_id, query: action.query, origin: action.origin ?? null, urls: (response.results ?? []).map(x => x.url), opened: toOpen.map((_, i) => i) });
+    for (const result of toOpen) {
       if (totals.fetches >= config.budgets.fetches) { stop_reason = 'budget_fetches'; break; }
       const page = await deps.fetch(result.url); totals.fetches++; totals.nominal_cost += page.nominal_cost ?? 1; recordUsage(page);
       const extracted = await (deps.extract ?? extractFixtureInvestor)({ document: { url: result.url, title: result.title ?? page.title ?? result.url, text: page.text ?? '' }, extraction: page.extraction, today: config.today, firstSeen: { step: totals.planner_calls, search_index: totals.searches - 1, order: order++, query_id } });
@@ -53,5 +55,15 @@ export async function runInvestorDiscovery({ caseObj, profile, condition, config
     }
   }
   const entities = dedupeInvestors(rawEntities), judgments = entities.map(entity => judgeInvestor({ entity, profile, catalog })), ranked = rankInvestors(entities, judgments);
-  return validateInvestor('investor_run_result', { schema_version: 'investor_run_result/1', case_id: caseObj.case_id, condition, stop_reason, abstained: !ranked.some(x => x.gain >= 2), ranked, entities, judgments, totals, prefix_curve, actions_rejected });
+  const result = { schema_version: 'investor_run_result/1', case_id: caseObj.case_id, condition, stop_reason, abstained: !ranked.some(x => x.gain >= 2), ranked, entities, judgments, totals, prefix_curve, actions_rejected };
+  if ((config.engine_v ?? 1) >= 2) return validateInvestor('investor_run_result.v2', { ...result, schema_version: 'investor_run_result/2', abstention_reason: abstentionReason(ranked, judgments) });
+  return validateInvestor('investor_run_result', result);
+}
+
+/** FIX-13: por qué se abstiene una corrida (null si no se abstiene). */
+export function abstentionReason(ranked, judgments) {
+  if (ranked.some(x => x.gain >= 2)) return null;
+  if (!judgments.length) return 'no_candidates';
+  if (judgments.every(j => j.hard_eligibility === 'ineligible' || j.overall_relevance === 'irrelevant')) return 'all_hard_not_met';
+  return 'insufficient_evidence';
 }

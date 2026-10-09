@@ -72,3 +72,27 @@ export function extractFixtureInvestor({ document, extraction, today, firstSeen 
   validateInvestor('investor_entity', entity);
   return { entity, rejected_kind: null };
 }
+
+const FACT_FIELDS = ['canonical_name', 'official_domain', 'aliases', 'investor_type', 'parent_firm', 'vehicles', 'active_status', 'sectors', 'stages', 'rounds', 'geographies', 'check_range_usd', 'lead_follow', 'business_models', 'regulatory_restrictions', 'relevant_portfolio', 'potential_conflicts', 'recent_investment', 'regulatory_id', 'published_on', 'quote'];
+const isFilled = value => {
+  if (value == null) return false;
+  if (typeof value === 'string') return !!value.trim() && !PLACEHOLDER_NAME.test(value.trim());
+  if (Array.isArray(value)) return value.length > 0;
+  if (typeof value === 'object') return Object.values(value).some(isFilled);
+  return value !== false;
+};
+
+/** FIX-13: describe qué trajo el modelo y qué sobrevivió. Solo observabilidad; no decide nada. */
+export function describeInvestorExtraction({ document, raw, grounded, entity }) {
+  const text = normalized(document?.text).toLocaleLowerCase();
+  const rawQuote = normalized(raw?.quote);
+  const quote_source = rawQuote && text.includes(rawQuote.toLocaleLowerCase()) ? 'model' : normalized(grounded?.quote) ? 'fallback' : 'none';
+  const pageHost = hostname(document?.url);
+  let official_domain_source = 'none';
+  if (normalized(raw?.official_domain)) official_domain_source = 'model';
+  else if (normalized(grounded?.official_domain)) official_domain_source = nameMatchesDomain(grounded.canonical_name, pageHost) ? 'host_match' : 'alias_match';
+  const fields_present = FACT_FIELDS.filter(f => isFilled(raw?.[f]));
+  const keptSource = entity ? { ...entity, quote: entity.sources?.[0]?.quote, published_on: entity.sources?.[0]?.published_on, recent_investment: entity.recent_investment_evidence?.length > 0 } : null;
+  const fields_kept = keptSource ? FACT_FIELDS.filter(f => isFilled(keptSource[f])) : [];
+  return { kind: raw?.entity_kind ?? null, source_kind: raw?.source_kind ?? null, canonical_name: raw?.canonical_name ?? null, fields_present, fields_kept, quote_source, candidates: Array.isArray(raw?.candidates) ? raw.candidates.length : 0, official_domain_source, page_chars: normalized(document?.text).length };
+}

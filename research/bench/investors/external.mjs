@@ -3,7 +3,7 @@ import { fleetTransport } from '../../agent/llm.mjs';
 import { render, sanitizePageText } from '../../agent/prompts.mjs';
 import { parseJsonContent } from '../../server/analysis/fleet.mjs';
 import { bundleInvestor, validateInvestor } from './contracts.mjs';
-import { extractFixtureInvestor } from './extractor.mjs';
+import { describeInvestorExtraction, extractFixtureInvestor, groundInvestorExtraction } from './extractor.mjs';
 
 const sha = value => createHash('sha256').update(String(value)).digest('hex');
 const schemaForVllm = value => {
@@ -59,7 +59,9 @@ export function createLiveInvestorDeps({ search, fetch, llm, plannerPrompt, extr
       const safePageText = sanitizePageText(document.text).replaceAll('{{', '{ {').replaceAll('}}', '} }').slice(0, 24000);
       const user = render(extractorPrompt.user, { today, url: document.url, page_text: safePageText });
       const result = await llm.call({ prompt: extractorPrompt, user, schemaName: 'investor_extraction', temperature: 0, seed: 0, maxTokens: 8000 });
-      return { ...extractFixtureInvestor({ document, extraction: result.json, today, firstSeen }), tokens_nominal: result.tokens_nominal, latency: result.latency };
+      const extracted = extractFixtureInvestor({ document, extraction: result.json, today, firstSeen });
+      const diagnostics = describeInvestorExtraction({ document, raw: result.json, grounded: groundInvestorExtraction({ document, extraction: result.json }), entity: extracted.entity });
+      return { ...extracted, diagnostics, tokens_nominal: result.tokens_nominal, latency: result.latency };
     }
   };
 }

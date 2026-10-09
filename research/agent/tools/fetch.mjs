@@ -23,18 +23,52 @@ function failure(code, message, latency, extras = {}) {
   };
 }
 
+/**
+ * Envuelve fetch para registrar, sin cambiar el resultado, qué devolvió cada lector
+ * (status HTTP, content-type o error). Solo observabilidad (FIX-13).
+ */
+function recordingFetcher(attempt) {
+  return async (input, init) => {
+    try {
+      const res = await fetch(input, init);
+      attempt.http_status = res.status;
+      attempt.content_type = res.headers?.get?.('content-type')?.split(';')[0] || null;
+      return res;
+    } catch (error) {
+      attempt.error = (/timeout|abort/i.test(error?.message || error?.name || '') ? 'TIMEOUT: ' : 'NETWORK: ') + String(error?.message || error).slice(0, 160);
+      throw error;
+    }
+  };
+}
+
 async function readWithFallbacks(url, env, transport) {
-  let result = transport ? await transport(url) : await fetchPage(url, { env });
+  const attempts = [];
+  const direct = { reader: 'direct', http_status: null, content_type: null, error: null, chars: null };
+  attempts.push(direct);
+  let result = transport ? await transport(url) : await fetchPage(url, { env, fetcher: recordingFetcher(direct) });
+  direct.chars = result?.text?.length ?? null;
   let via = result?.via || 'direct';
-  if ((!result || result.text?.length < 400) && !transport && env.CRAWL4AI_URL) {
-    result = await crawl4aiRead(url, { env }) || result;
-    if (result) via = 'crawl4ai';
+  if ((!result || result.text?.length < 400) && !transport) {
+    const attempt = { reader: 'crawl4ai', http_status: null, content_type: null, error: null, chars: null };
+    attempt.skipped = env.CRAWL4AI_URL ? null : 'CRAWL4AI_URL unset';
+    attempts.push(attempt);
+    if (env.CRAWL4AI_URL) {
+      const got = await crawl4aiRead(url, { env, fetcher: recordingFetcher(attempt) });
+      attempt.chars = got?.text?.length ?? null;
+      result = got || result;
+      if (result) via = 'crawl4ai';
+    }
   }
   if ((!result || result.text?.length < 400) && !transport) {
-    result = await jinaRead(url, { env }) || result;
+    const attempt = { reader: 'jina', http_status: null, content_type: null, error: null, chars: null };
+    attempt.skipped = env.JINA_API_KEY ? null : 'JINA_API_KEY unset';
+    attempts.push(attempt);
+    const got = await jinaRead(url, { env, fetcher: recordingFetcher(attempt) });
+    attempt.chars = got?.text?.length ?? null;
+    result = got || result;
     if (result) via = 'jina';
   }
-  return { result, via };
+  return { result, via, attempts };
 }
 
 /**
@@ -63,7 +97,7 @@ export function createFetchTool({ env = process.env, transport, cache, clock = D
         };
       }
       try {
-        const { result, via } = await readWithFallbacks(url, env, transport);
+        const { result, via, attempts } = await readWithFallbacks(url, env, transport);
         const milliseconds = clock() - started;
         const latency = { actual_ms: milliseconds, nominal_ms: milliseconds };
         if (!result || String(result.text || '').length < 200) {
@@ -73,6 +107,7 @@ export function createFetchTool({ env = process.env, transport, cache, clock = D
             title: result?.title || '',
             via,
             http_status: result?.http_status || null,
+            reader_attempts: attempts,
           };
         }
         const value = {
@@ -82,6 +117,7 @@ export function createFetchTool({ env = process.env, transport, cache, clock = D
           via,
           http_status: result.http_status || 200,
           text_sha256: createHash('sha256').update(result.text).digest('hex'),
+          reader_attempts: attempts,
         };
         cache?.put('fetch', key, value, { latency_ms: milliseconds });
         return { ...value, latency, cached: false };

@@ -5,7 +5,7 @@ import { createBenchCache } from '../../agent/cache.mjs';
 import { createSearchTool } from '../../agent/tools/search.mjs';
 import { createFetchTool } from '../../agent/tools/fetch.mjs';
 import { createApolloClient, ApolloBudget, ApolloCache } from '../../capital/apollo.mjs';
-import { runInvestorDiscovery } from './engine.mjs';
+import { abstentionReason, runInvestorDiscovery } from './engine.mjs';
 import { loadInvestorPrompt } from './prompts.mjs';
 import { createInvestorLlm, createLiveInvestorDeps } from './external.mjs';
 import { createFailoverSearchTool } from './search-failover.mjs';
@@ -72,12 +72,13 @@ function tracedDeps(base, { runId, condition, apollo }) {
       }
       append({ event: 'search_start', run_id: runId, query });
       const value = await base.search(query, options);
-      append({ event: 'search_end', run_id: runId, query, results: value.results?.length || 0, provider: value.provider || null, attempts: value.attempts || [], searches_consumed: value.searches_consumed ?? 1, error: value.error || null, latency: value.latency || null });
+      append({ event: 'search_end', run_id: runId, query, results: value.results?.length || 0, urls: (value.results || []).map(x => x.url), provider: value.provider || null, attempts: value.attempts || [], searches_consumed: value.searches_consumed ?? 1, error: value.error || null, latency: value.latency || null });
       return value;
     },
-    async fetch(url) { append({ event: 'fetch_start', run_id: runId, url }); const value = await base.fetch(url); append({ event: 'fetch_end', run_id: runId, url, ok: value.ok !== false, via: value.via || 'unknown', text_chars: value.text?.length || 0, error: value.error || null, latency: value.latency || null }); return value; },
+    async fetch(url) { append({ event: 'fetch_start', run_id: runId, url }); const value = await base.fetch(url); append({ event: 'fetch_end', run_id: runId, url, ok: value.ok !== false, via: value.via || 'unknown', text_chars: value.text?.length || 0, error: value.error || null, error_code: value.error?.code || null, cached: value.cached ?? null, reader_attempts: value.reader_attempts || null, latency: value.latency || null }); return value; },
     async plan(input) { append({ event: 'planner_start', run_id: runId, mode: input.mode }); const value = await base.plan(input); append({ event: 'planner_end', run_id: runId, mode: input.mode, queries: value.queries || [], stop: value.stop, latency: value.latency || null }); return value; },
-    async extract(input) { const value = await base.extract(input); append({ event: 'extract_end', run_id: runId, url: input.document.url, accepted: Boolean(value.entity), rejected_kind: value.rejected_kind || null, latency: value.latency || null }); return value; },
+    async extract(input) { const value = await base.extract(input); append({ event: 'extract_end', run_id: runId, url: input.document.url, accepted: Boolean(value.entity), rejected_kind: value.rejected_kind || null, ...(value.diagnostics || {}), latency: value.latency || null }); return value; },
+    log(row) { append({ ...row, run_id: runId }); },
   };
 }
 
@@ -103,7 +104,7 @@ try {
       const output = { ...result, condition: job.condition, seed: job.seed, run_id: runId, ablation: job.condition === 'B3' ? 'incremental_tool_ablation' : null, capital_strategy_context: false, apollo: job.condition === 'B3' ? { calls: apollo.stats.calls, credits_estimated: apollo.stats.creditsEstimated, max_calls_per_run: 2 } : { calls: 0, credits_estimated: 0 } };
       writeFileSync(resultPath, `${JSON.stringify(output, null, 2)}\n`);
       manifest[ordinal - 1] = { run_id: runId, status: 'valid', ordinal, stop_reason: output.stop_reason, apollo_calls: output.apollo.calls, result_path: resultPath };
-      append({ event: 'run_end', run_id: runId, status: 'valid', stop_reason: output.stop_reason, totals: output.totals, apollo: output.apollo });
+      append({ event: 'run_end', run_id: runId, status: 'valid', stop_reason: output.stop_reason, abstention_reason: output.abstention_reason ?? abstentionReason(output.ranked, output.judgments), totals: output.totals, apollo: output.apollo });
     } catch (error) {
       const failure = { run_id: runId, status: 'failed', ordinal, error: { name: error.name, code: error.code || null, message: error.message } };
       writeFileSync(resolve(runDir, 'failure.json'), `${JSON.stringify(failure, null, 2)}\n`);
