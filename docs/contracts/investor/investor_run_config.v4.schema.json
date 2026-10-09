@@ -1,0 +1,527 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_run_config.v4.schema.json",
+  "title": "Investor benchmark run configuration v4 (config v6: v5 + filtro de relevancia por embeddings, condici\u00f3n B2E, apagado por defecto)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bench_id",
+    "status",
+    "today",
+    "search",
+    "agent_model",
+    "preannotator_model",
+    "budgets",
+    "patience_n",
+    "default_fetch_per_search",
+    "b2",
+    "seeds",
+    "prompts",
+    "catalog",
+    "decision_rule",
+    "engine_v",
+    "judge_impl",
+    "extraction_schema",
+    "extractor_max_tokens",
+    "patience_conditions",
+    "resolution",
+    "planner",
+    "judge",
+    "activity",
+    "normalization",
+    "fetch_denylist",
+    "capital_strategy_context",
+    "triage",
+    "deepening",
+    "relevance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "investor_run_config/4"
+    },
+    "bench_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "frozen"
+      ]
+    },
+    "today": {
+      "$ref": "../common.schema.json#/$defs/isoDate"
+    },
+    "search": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "results_per_query"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": [
+            "searxng",
+            "fixture",
+            "failover"
+          ]
+        },
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "exa",
+              "serper",
+              "tavily"
+            ]
+          }
+        },
+        "fallback_policy": {
+          "type": "string",
+          "enum": [
+            "first_nonempty"
+          ]
+        },
+        "results_per_query": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 50
+        },
+        "exa_contents_chars": {
+          "type": "integer",
+          "minimum": 400,
+          "maximum": 20000
+        },
+        "exa_type": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "instant"
+          ]
+        },
+        "exa_highlights": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "provider": {
+                "const": "failover"
+              }
+            },
+            "required": [
+              "provider"
+            ]
+          },
+          "then": {
+            "required": [
+              "providers",
+              "fallback_policy"
+            ]
+          }
+        }
+      ]
+    },
+    "agent_model": {
+      "$ref": "#/$defs/model"
+    },
+    "preannotator_model": {
+      "$ref": "#/$defs/model"
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "searches",
+        "fetches",
+        "planner_calls",
+        "tokens_nominal",
+        "seconds_nominal"
+      ],
+      "properties": {
+        "searches": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fetches": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "planner_calls": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tokens_nominal": {
+          "type": "integer",
+          "minimum": 1000
+        },
+        "seconds_nominal": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "patience_n": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "default_fetch_per_search": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "b2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "initial_batch",
+        "max_searches_per_step"
+      ],
+      "properties": {
+        "initial_batch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_searches_per_step": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "seeds": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer"
+      }
+    },
+    "prompts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest",
+        "b0_templates",
+        "planner",
+        "extractor",
+        "judge",
+        "preannotator"
+      ],
+      "properties": {
+        "manifest": {
+          "const": "manifest.v6.json"
+        },
+        "b0_templates": {
+          "enum": [
+            "v1",
+            "v2"
+          ]
+        },
+        "planner": {
+          "enum": [
+            "v1",
+            "v2",
+            "v3"
+          ]
+        },
+        "extractor": {
+          "enum": [
+            "v1",
+            "v2",
+            "v3"
+          ]
+        },
+        "judge": {
+          "enum": [
+            "v1",
+            "v2"
+          ]
+        },
+        "preannotator": {
+          "const": "v1"
+        }
+      }
+    },
+    "catalog": {
+      "const": "criteria_catalog.investor@v1"
+    },
+    "decision_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "min_recall_gain",
+        "alpha",
+        "max_ndcg_drop",
+        "max_hard_false_positive_rate",
+        "min_correct_null_abstentions"
+      ],
+      "properties": {
+        "status": {
+          "const": "proposed"
+        },
+        "min_recall_gain": {
+          "type": "number",
+          "minimum": 0
+        },
+        "alpha": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "max_ndcg_drop": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_hard_false_positive_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "min_correct_null_abstentions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "engine_v": {
+      "const": 2
+    },
+    "judge_impl": {
+      "const": "v2"
+    },
+    "extraction_schema": {
+      "const": "investor_extraction.v2"
+    },
+    "extractor_max_tokens": {
+      "type": "integer",
+      "minimum": 500,
+      "maximum": 16000
+    },
+    "patience_conditions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "B0",
+          "B1",
+          "B2"
+        ]
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "per_query",
+        "max_per_run",
+        "suffix"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "per_query": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_per_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "suffix": {
+          "type": "string"
+        }
+      }
+    },
+    "planner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allow_candidate_names"
+      ],
+      "properties": {
+        "allow_candidate_names": {
+          "type": "boolean"
+        }
+      }
+    },
+    "judge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_llm_calls"
+      ],
+      "properties": {
+        "max_llm_calls": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recency_days"
+      ],
+      "properties": {
+        "recency_days": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "normalization": {
+      "const": "normalization.v1"
+    },
+    "fetch_denylist": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "capital_strategy_context": {
+      "const": false
+    },
+    "enrichment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "max_per_run",
+        "suffix"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "max_per_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "suffix": {
+          "type": "string"
+        }
+      }
+    },
+    "triage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "deepening": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "max_firms_per_run",
+        "max_queries_per_firm",
+        "max_fetches_per_firm"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "max_firms_per_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_queries_per_firm": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_fetches_per_firm": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "relevance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "embeddings"
+      ],
+      "properties": {
+        "embeddings": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "model",
+            "results_per_query",
+            "top_k",
+            "block_size",
+            "prompt"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "model": {
+              "type": "string",
+              "minLength": 3
+            },
+            "results_per_query": {
+              "type": "integer",
+              "minimum": 10,
+              "maximum": 50
+            },
+            "top_k": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20
+            },
+            "block_size": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20
+            },
+            "prompt": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family",
+        "model_id"
+      ],
+      "properties": {
+        "family": {
+          "type": "string",
+          "minLength": 2
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": "investor_prompt_manifest/1",
+  "prompts": [
+    {
+      "id": "b0_templates",
+      "version": "v1",
+      "files": [
+        "b0/v1/templates.json"
+      ],
+      "sha256": "d61b4c0d7acec2a88b9e7d4aa7dfa916c8b59ea4242e9520128524023a83875b"
+    },
+    {
+      "id": "planner",
+      "version": "v1",
+      "files": [
+        "planner/v1/system.md",
+        "planner/v1/user.md"
+      ],
+      "sha256": "22a9106b0d7b427fa2b097b0a99963d5a11f2e0c4e05adcbd51396f17a713076"
+    },
+    {
+      "id": "extractor",
+      "version": "v1",
+      "files": [
+        "extractor/v1/system.md",
+        "extractor/v1/user.md"
+      ],
+      "sha256": "81092ff9104a1ca3786dbb1377307320788bbaf4dd0d6585317e4ca8e6a93d51"
+    },
+    {
+      "id": "extractor",
+      "version": "v2",
+      "files": [
+        "extractor/v2/system.md",
+        "extractor/v2/user.md"
+      ],
+      "sha256": "5ab466981f70128575e4be009f61427504d177852a9ed48583f7e609607fa031"
+    },
+    {
+      "id": "judge",
+      "version": "v1",
+      "files": [
+        "judge/v1/system.md",
+        "judge/v1/user.md"
+      ],
+      "sha256": "4a467e428e1b52e3db9dcf13f3908d50d7e690249e1b101305da9e15cbd3d7da"
+    },
+    {
+      "id": "preannotator",
+      "version": "v1",
+      "files": [
+        "preannotator/v1/system.md",
+        "preannotator/v1/user.md"
+      ],
+      "sha256": "d441b9f7f4f0c39de26539232793e9597683d36547bc05e49546dcbbf7a9d0e8"
+    },
+    {
+      "id": "extractor",
+      "version": "v3",
+      "files": [
+        "extractor/v3/system.md",
+        "extractor/v3/user.md"
+      ],
+      "sha256": "ba9ad13d545ec1c6444f40558ea56a4e9226f9c1d353fd592ab3fab88f828f5a"
+    },
+    {
+      "id": "planner",
+      "version": "v2",
+      "files": [
+        "planner/v2/system.md",
+        "planner/v2/user.md"
+      ],
+      "sha256": "b638d5a4fc7d0f3e88529757de547ecede01fd32f3736fff5a6038f1b955c9bf"
+    },
+    {
+      "id": "judge",
+      "version": "v2",
+      "files": [
+        "judge/v2/system.md",
+        "judge/v2/user.md"
+      ],
+      "sha256": "17a175e9b7891da38e7340d19baf3034fda62df0e706076b5c540ffc7690498b"
+    },
+    {
+      "id": "b0_templates",
+      "version": "v2",
+      "files": [
+        "b0/v2/templates.json"
+      ],
+      "sha256": "2d07b21740517f1fd5ef2924cda9fba4c0a436d1865726b3feeb54772cbaeb78"
+    },
+    {
+      "id": "planner",
+      "version": "v3",
+      "files": [
+        "planner/v3/system.md",
+        "planner/v3/user.md"
+      ],
+      "sha256": "ed43d9e52d35720cab340afdad679a4d2cbe19139b3e2911e1eacea33a13ffd3"
+    },
+    {
+      "id": "relevance",
+      "version": "v1",
+      "files": [
+        "relevance/v1/system.md",
+        "relevance/v1/user.md"
+      ],
+      "sha256": "126100b22852002540906dea4d9f479c545b2a8e57ab38f2859bbf2bda8d81c6"
+    }
+  ]
+}

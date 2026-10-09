@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_relevance.v1.schema.json",
+  "title": "LLM relevance filter output: which search results talk about investment (config v6, B2E)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["i", "about_investment"],
+        "properties": { "i": { "type": "integer", "minimum": 0 }, "about_investment": { "type": "boolean" } }
+      }
+    }
+  }
+}
