@@ -154,7 +154,7 @@
             },
             "manual_search_minutes": {
               "type": "integer",
-              "minimum": 20
+              "minimum": 1
             },
             "manual_queries": {
               "type": "array",
@@ -165,6 +165,9 @@
             },
             "conclusion": {
               "const": "no_active_investor_with_gain_gte_2_found_within_scope"
+            },
+            "notes": {
+              "type": "string"
             }
           }
         }

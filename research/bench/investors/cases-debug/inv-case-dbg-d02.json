@@ -1,0 +1,18 @@
+{
+  "schema_version": "investor_case/2",
+  "case_id": "inv-case-dbg-d02",
+  "kind": "debug",
+  "as_of": "2026-10-09",
+  "profile_path": "research/bench/investors/cases-debug/profiles/inv-case-dbg-d02.json",
+  "profile_sha256": "221819cbab7c545c4add96638cde490385743207f6757704b0198c51421a43c2",
+  "construction": {
+    "curator": "v4-debug-2026-10-09",
+    "profile_builder": "claude-v4-debug-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-09T00:10:00-05:00",
+    "curation_started_at": "2026-10-09T00:20:00-05:00"
+  },
+  "anchors": [],
+  "null_case": null
+}

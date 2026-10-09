@@ -1,0 +1,28 @@
+{
+  "schema_version": "investor_case/2",
+  "case_id": "inv-case-dbg-d03",
+  "kind": "null",
+  "as_of": "2026-10-09",
+  "profile_path": "research/bench/investors/cases-debug/profiles/inv-case-dbg-d03.json",
+  "profile_sha256": "127017dc44a5f12d905809feb6f2272e2759fc9e0ac045a8112d58de156bec81",
+  "construction": {
+    "curator": "v4-debug-2026-10-09",
+    "profile_builder": "claude-v4-debug-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-09T00:10:00-05:00",
+    "curation_started_at": "2026-10-09T00:20:00-05:00"
+  },
+  "anchors": [],
+  "null_case": {
+    "scope": "Institutional equity investors active for a Nauru-incorporated phosphate-recovery and fertilizer plant seeking a USD 20M Series A.",
+    "manual_search_minutes": 5,
+    "manual_queries": [
+      "Nauru phosphate recycling plant equity investor",
+      "Pacific islands impact fund fertilizer phosphate recovery Series A",
+      "venture capital fund invests Nauru startups"
+    ],
+    "conclusion": "no_active_investor_with_gain_gte_2_found_within_scope",
+    "notes": "Búsqueda manual hecha con la herramienta web de la sesión el 2026-10-09 tras congelar el perfil (commit 100df12). Duró unos 5 minutos, no 20: por eso el campo baja a 5 y se usa el schema v2. Los resultados fueron historia del fosfato, prensa regional, gacetas y fondos de NZ/Australia sin mandato en Nauru; no apareció ninguna firma institucional que invierta en este alcance."
+  }
+}
