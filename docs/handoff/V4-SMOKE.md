@@ -34,3 +34,39 @@ Cambios, uno por causa:
 6. `extractor_max_tokens` = 6000, y una salida inválida del modelo rechaza la página en vez de tumbar la corrida.
 
 Ningún umbral cambió.
+
+## Iteración 1 — resultados (2026-10-09 00:3x)
+
+6/6 corridas válidas.
+
+| Criterio | Umbral | Resultado | ¿Cumple? |
+|---|---|---|---|
+| Firmas con los 4 criterios núcleo ≠ unknown | ≥ 60 % | 11,4 % (4/35) | no |
+| Citas literales | 100 % | 99,1 % (106/107) con verificación por tramos | no |
+| D1 con gain ≥ 2 en B2 | ≥ 1 | 2 | sí |
+| D2 con gain ≥ 2 en B2 | ≥ 1 | 2 | sí |
+| D3 nulo | 0 gain ≥ 2 | **4 en B2** (falso positivo) | no |
+| FETCH_EMPTY | ≤ 10 % | 0,5 % | sí |
+| Rechazados / fetches | ≤ 0,75 | 0,81 | no |
+
+### Causas medidas
+
+1. **D3 da gain 2 a firmas sin mandato geográfico.** La causa es la regla `plausible` del spec ("etapa o geografía"): Stephen Industries, Archipelago Ventures, Impact Ventures e Investible tenían "early-stage" genérico, geografía `unknown` y sector `partial` (greentech/climate frente a fosfatos).
+2. **La única cita no literal** venía del LLM de sector, que citó un tramo que cruzaba la unión entre dos citas distintas de la firma (Grey Silo Ventures).
+3. **Geografía conocida solo en el 40 % de las firmas.** Muchas portadas no la publican, y los países fuera de la tabla (p. ej. "Australia") quedaban `unknown` en vez de `not_met`.
+
+## Iteración 2 (V4-DBG-2)
+
+1. `plausible` exige geografía `met`, o sector `on` + etapa explícita cuando la geografía es `unknown` (DECISIONS_PENDING #13).
+2. La cita del LLM de sector debe caber en una sola cita de la firma.
+3. Enriquecimiento: hasta 4 firmas por corrida a las que les falta etapa, geografía o tipo reciben una búsqueda `"<firma>" investment focus stage` y se abre una página propia más, dentro del mismo presupuesto.
+4. Lista de países del mundo y alias en `normalization.v1`.
+5. `v4_check` verifica por tramos ("…") contra el texto del lector y el del buscador.
+
+**Re-juicio sin red de las corridas de la iteración 1 con las reglas 1, 2 y 4:**
+
+| Caso | gain ≥ 2 en B2 | Resultado |
+|---|---|---|
+| D1 | 2 | — |
+| D2 | 1 | — |
+| D3 | 0 | se abstiene, pero con `insufficient_evidence` (firmas sin geografía publicada) |

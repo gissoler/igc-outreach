@@ -34,6 +34,13 @@ export function stageState(profileStage, entityStages, n = DEFAULT) {
   if (explicit.size) return 'not_met';
   return 'unknown';
 }
+/** V4-DBG-2: ¿la etapa del perfil está cubierta por evidencia explícita (no solo "early-stage"/"growth")? */
+export function stageExplicitMet(profileStage, entityStages, n = DEFAULT) {
+  const p = n.stage_ordinal[lc(profileStage)];
+  if (!p || !entityStages?.length) return false;
+  const { explicit } = stageOrdinals(entityStages, n);
+  return p.some(o => explicit.has(o));
+}
 
 /**
  * Geografía: cada cadena de la firma se expande a países por las regiones y países que nombra (palabra completa).
@@ -43,7 +50,7 @@ export function geoState(profileCountries, entityGeos, n = DEFAULT) {
   const profile = new Set((profileCountries ?? []).filter(Boolean).map(lc));
   if (!profile.size || !entityGeos?.length) return 'unknown';
   const regions = Object.entries(n.geo_regions);
-  const known = new Set([...regions.flatMap(([, cs]) => cs), ...[...profile]].map(lc));
+  const known = new Set([...regions.flatMap(([, cs]) => cs), ...(n.countries ?? []), ...[...profile]].map(lc));
   const expanded = new Set(); let vague = false;
   const aliases = Object.entries(n.geo_aliases ?? {}).sort((a, b) => b[0].length - a[0].length);
   const deaccent = v => v.normalize('NFD').replace(/[\u0300-\u036f]/g, '');

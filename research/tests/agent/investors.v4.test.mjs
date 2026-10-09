@@ -349,3 +349,34 @@ test('V4-DBG-1d participation lists attribute investing to the listed firm', () 
   assert.ok(!attributedInvestmentV2('Pine Capital announced a new office in Oslo.', ['Pine Capital']));
   assert.ok(hasInv('Invertimos en startups B2B de Chile y Perú.')); assert.ok(!hasInv('Somos un equipo con oficinas en Lima.'));
 });
+
+test('V4-DBG-2a sector quote cannot straddle two firm quotes', () => {
+  const quotes = 'We back food startups in the B2B field.\nOur team knows agribusiness well.';
+  assert.equal(guardSectorFit({ sector_fit: 'on', quote: 'in the B2B field. Our team knows' }, quotes).sector_fit, 'unknown');
+  assert.equal(guardSectorFit({ sector_fit: 'on', quote: 'We back food startups in the B2B field.' }, quotes).sector_fit, 'on');
+});
+
+test('V4-DBG-2b plausible needs geo met, or sector on + explicit stage when geo is unknown', () => {
+  const p = fintechProfile();
+  const vague = judgeInvestorV2({ entity: v2Entity({ stages: ['early-stage'], geographies: [] }), profile: p, catalog });
+  assert.equal(vague.stage_fit, 'met'); assert.equal(vague.overall_relevance, 'weak', 'only "early-stage" and no geography');
+  const explicit = judgeInvestorV2({ entity: v2Entity({ stages: ['seed'], geographies: [] }), profile: p, catalog });
+  assert.equal(explicit.overall_relevance, 'plausible');
+  const partialNoGeo = judgeInvestorV2({ entity: v2Entity({ sectors: ['technology'], stages: ['seed'] }), profile: p, catalog, sectorFit: { sector_fit: 'partial', quote: 'x' } });
+  assert.equal(partialNoGeo.overall_relevance, 'weak');
+  const partialGeo = judgeInvestorV2({ entity: v2Entity({ sectors: ['technology'], geographies: ['Latin America'] }), profile: p, catalog, sectorFit: { sector_fit: 'partial', quote: 'x' } });
+  assert.equal(partialGeo.overall_relevance, 'plausible');
+});
+
+test('V4-DBG-2c enrichment fetches one more first-party page for firms missing geography/stage', async () => {
+  const home = 'https://quillfund.test/', thesis = 'https://quillfund.test/thesis';
+  const pages = {
+    [home]: firmPage('quillfund.test', 'Quill Fund', 'Quill Fund invests in fintech startups. We are a small partnership with a long track record.', { investor_type: 'venture_capital', sectors: ['fintech'], evidence: { sectors: 'invests in fintech startups' } }),
+    [thesis]: { title: 'Thesis', text: 'Quill Fund invests at seed in fintech companies in Mexico and Colombia. We lead rounds of up to two million dollars and we answer every founder that writes to us within one week of contact, always with a clear yes or no.', extraction: fullV2({ canonical_name: 'Quill Fund', quote: 'Quill Fund invests at seed in fintech companies in Mexico and Colombia.', stages: ['seed'], geographies: ['Mexico', 'Colombia'], evidence: { stages: 'invests at seed', geographies: 'in Mexico and Colombia' } }) }
+  };
+  const w = world({ pages, searches: { 'fintech fund mexico': [home], '"Quill Fund" investment focus stage': ['https://other.test/x', thesis] }, plans: { initial: { queries: ['fintech fund mexico'], stop: false, candidate_firms: [] } } });
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile: fintechProfile(), condition: 'B1', config: { ...v4Config(), enrichment: { enabled: true, max_per_run: 4, suffix: 'investment focus stage' } }, templates, catalog, deps: w.deps });
+  const e = r.entities.find(x => x.stable_id === 'inv:domain:quillfund.test');
+  assert.deepEqual(e.geographies.sort(), ['Colombia', 'Mexico']); assert.equal(r.v2_stats.enrichments[0].outcome, 'merged');
+  assert.ok(r.ranked[0].gain >= 2);
+});

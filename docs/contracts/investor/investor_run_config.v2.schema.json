@@ -377,6 +377,27 @@
     },
     "capital_strategy_context": {
       "const": false
+    },
+    "enrichment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "max_per_run",
+        "suffix"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "max_per_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "suffix": {
+          "type": "string"
+        }
+      }
     }
   },
   "$defs": {

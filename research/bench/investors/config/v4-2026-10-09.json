@@ -89,5 +89,10 @@
     "pipeseed.com",
     "crunchbase.com"
   ],
-  "capital_strategy_context": false
+  "capital_strategy_context": false,
+  "enrichment": {
+    "enabled": true,
+    "max_per_run": 4,
+    "suffix": "investment focus stage"
+  }
 }

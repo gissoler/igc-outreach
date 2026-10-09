@@ -164,6 +164,33 @@ export async function runInvestorDiscoveryV2({ caseObj, profile, condition, conf
 
   // Post-descubrimiento: actividad (FIX-09), sector LLM (FIX-08), juez v2 (FIX-06/07).
   const normalization = loadNormalization(config.normalization ?? 'normalization.v1');
+
+  // V4-DBG-2 — enriquecimiento: a las firmas aceptadas que siguen sin etapa, geografía o tipo se les busca UNA página
+  // propia más (tesis/enfoque) dentro del mismo presupuesto. Solo cuenta una página del dominio oficial de la firma.
+  if (config.enrichment?.enabled) {
+    const pre = dedupeInvestors(rawEntities, { v2: true });
+    const targets = pre.map(entity => ({ entity, j: judgeInvestorV2({ entity, profile, catalog, normalization }) }))
+      .filter(({ entity, j }) => entity.official_domain && j.hard_eligibility !== 'ineligible' && j.sector_fit !== 'off' && ['INV-STAGE', 'INV-GEO', 'INV-TYPE'].some(id => j.criteria.find(c => c.criterion_id === id)?.state === 'unknown'))
+      .sort((a, b) => a.entity.first_seen.order - b.entity.first_seen.order).slice(0, config.enrichment.max_per_run);
+    for (const { entity } of targets) {
+      if (totals.searches >= config.budgets.searches || totals.fetches >= config.budgets.fetches || resourceHit()) break;
+      const response = await deps.search(`"${entity.canonical_name}" ${config.enrichment.suffix}`, { remainingSearches: config.budgets.searches - totals.searches });
+      totals.searches += response.searches_consumed ?? 1; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
+      const hit = (response.results ?? []).find(r => { const h = host(r.url); return h && sameDomain(h, entity.official_domain) && !seenUrls.has(canonicalInvestorUrl(r.url) ?? r.url); });
+      let outcome = 'no_first_party_result';
+      if (hit) {
+        const page = await fetchPage(hit.url, hit.text ?? null);
+        if ((page.text ?? '').length >= 200) {
+          const extracted = await extractDoc({ url: hit.url, title: hit.title ?? page.title ?? hit.url, text: page.text, extraction: page.extraction }, { ...entity.first_seen, order: order++ });
+          if (extracted.entity && sameDomain(host(`https://${extracted.entity.official_domain}`), entity.official_domain)) { rawEntities.push(extracted.entity); outcome = 'merged'; }
+          else outcome = `rejected:${extracted.rejected_kind ?? 'other_firm'}`;
+        } else outcome = 'fetch_empty';
+      }
+      (stats.enrichments ??= []).push({ name: entity.canonical_name, outcome, url: hit?.url ?? null });
+      log({ event: 'enrichment_end', name: entity.canonical_name, outcome, url: hit?.url ?? null });
+    }
+  }
+
   const entities = dedupeInvestors(rawEntities, { v2: true }).map(e => ({ ...e, ...deriveActivity(e, { today: config.today, recencyDays: config.activity?.recency_days ?? 540 }) }));
   const sectorFits = new Map();
   for (const entity of entities) {

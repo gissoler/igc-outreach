@@ -9,7 +9,7 @@ import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { DatabaseSync } from 'node:sqlite';
 import { normalizeUrl } from '../../../agent/docs.mjs';
-import { isLiteralIn, matchText } from '../extractor.mjs';
+import { isLiteralIn, isLiteralEvidence } from '../extractor.mjs';
 import { CORE_CRITERIA, criteriaKnownRate, anyCoreKnownRate } from '../metrics.mjs';
 
 const arg = n => { const i = process.argv.indexOf(`--${n}`); return i < 0 ? null : process.argv[i + 1]; };
@@ -27,7 +27,8 @@ for (const r of db.prepare("SELECT kind, key, value_json FROM entries WHERE kind
   if (r.kind === 'search' && Array.isArray(v)) for (const row of v) if (row.text) searchText.set(normalizeUrl(row.url), row.text);
 }
 db.close();
-const textFor = url => { const k = normalizeUrl(url); const f = fetchText.get(k); return f && f.length >= 200 ? f : searchText.get(k) ?? f ?? null; };
+// El extractor vio el texto del lector o, si salió vacío, el texto del buscador (FIX-11b): se aceptan ambos.
+const textFor = url => { const k = normalizeUrl(url); return [fetchText.get(k), searchText.get(k)].filter(Boolean).join('\n\u241E\n'); };
 
 // Criterio → campo de evidencia. PORTFOLIO-CONFLICT es una señal del perfil (no de la página) y se reporta aparte.
 const FIELD = { 'INV-SECTOR': 'sectors', 'INV-STAGE': 'stages', 'INV-GEO': 'geographies', 'INV-TYPE': 'investor_type', 'INV-LEAD': 'lead_follow', 'INV-CHECK': 'check_range_usd', 'INV-ROUND': 'rounds', 'INV-BUSINESS-MODEL': 'business_models', 'INV-RECENCY': 'published_on' };
@@ -41,9 +42,9 @@ for (const run of runs) {
       if (['unknown', 'not_applicable'].includes(c.state) || c.criterion_id === 'INV-PORTFOLIO-CONFLICT') continue;
       citations.checked++;
       let ok = false, quote = null, url = null;
-      if (c.criterion_id === 'INV-ACTIVE') { const s = e.sources.find(s => s.quote); quote = s?.quote; url = s?.url; ok = Boolean(s && isLiteralIn(textFor(s.url) ?? '', s.quote)); }
-      else if (c.criterion_id === 'INV-SECTOR' && /^Sector quote: /.test(c.rationale)) { quote = c.rationale.replace(/^Sector quote: /, ''); ok = e.sources.some(s => { url = s.url; return isLiteralIn(textFor(s.url) ?? '', quote); }); }
-      else { const f = FIELD[c.criterion_id]; for (const s of e.sources) { const ev = s.field_evidence?.[f]; if (ev) { quote = ev; url = s.url; if (isLiteralIn(textFor(s.url) ?? '', ev)) { ok = true; break; } } } }
+      if (c.criterion_id === 'INV-ACTIVE') { const s = e.sources.find(s => s.quote); quote = s?.quote; url = s?.url; ok = Boolean(s && isLiteralEvidence(textFor(s.url) ?? '', s.quote)); }
+      else if (c.criterion_id === 'INV-SECTOR' && /^Sector quote: /.test(c.rationale)) { quote = c.rationale.replace(/^Sector quote: /, ''); ok = e.sources.some(s => { url = s.url; return isLiteralEvidence(textFor(s.url) ?? '', quote); }); }
+      else { const f = FIELD[c.criterion_id]; for (const s of e.sources) { const ev = s.field_evidence?.[f]; if (ev) { quote = ev; url = s.url; if (isLiteralEvidence(textFor(s.url) ?? '', ev)) { ok = true; break; } } } }
       if (ok) citations.verified++; else citations.failures.push({ run_id: run.run_id, stable_id: j.stable_id, criterion: c.criterion_id, state: c.state, quote, url });
     }
   }

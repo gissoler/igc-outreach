@@ -50,7 +50,7 @@ export function assertUnknownNeverMet(inputState, finalState) {
 }
 
 // ───────────────────────────── v2 (config v4): FIX-06, FIX-07, FIX-08 ─────────────────────────────
-import { typeState, stageState, geoState, leadState, loadNormalization } from './normalize.mjs';
+import { typeState, stageState, stageExplicitMet, geoState, leadState, loadNormalization } from './normalize.mjs';
 
 const tokenRelated = (sectorValues, entitySectors) => sectorValues.some(x => entitySectors.some(y => norm(x).split(/[^a-z0-9]+/).some(token => token.length >= 5 && norm(y).includes(token))));
 /** Sector determinista v2: exacto → on; relación por token → partial; nunca produce off (un falso off es peor que unknown). */
@@ -87,7 +87,10 @@ export function judgeInvestorV2({ entity, profile, catalog, sectorFit = null, no
   let overall_relevance;
   if (hard_eligibility === 'ineligible' || sector_fit === 'off') overall_relevance = 'irrelevant';
   else if (active === 'met' && sector_fit === 'on' && stage === 'met' && geo === 'met' && hard_eligibility === 'eligible') overall_relevance = 'strong';
-  else if (['on', 'partial'].includes(sector_fit) && (stage === 'met' || geo === 'met')) overall_relevance = 'plausible';
+  // V4-DBG-2 (pendiente de aprobación, DECISIONS_PENDING #13): plausible exige geografía met, o bien sector on +
+  // etapa met con evidencia explícita cuando la geografía es unknown. En D3 (nulo) las firmas sin mandato geográfico
+  // con "early-stage" y sector "partial" salían como gain 2.
+  else if ((['on', 'partial'].includes(sector_fit) && geo === 'met') || (sector_fit === 'on' && geo === 'unknown' && stage === 'met' && stageExplicitMet(f.funding_stage.value, entity.stages, n))) overall_relevance = 'plausible';
   else overall_relevance = 'weak';
   const unknowns = criteria.filter(x => x.state === 'unknown').length;
   return { ...base, criteria, sector_fit, stage_fit: stage, geography_fit: geo, lead_fit: states['INV-LEAD'], hard_eligibility, overall_relevance, unknown_count: unknowns, sector_fit_source: det === 'on' ? 'deterministic' : sectorFit?.sector_fit && sectorFit.sector_fit !== 'unknown' ? 'llm' : 'deterministic' };
@@ -98,13 +101,15 @@ const squash = s => String(s ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim(
 /** FIX-08 guarda determinista sobre la respuesta del LLM de sector. */
 export function guardSectorFit(answer, quotes) {
   if (!answer || !['on', 'partial', 'off'].includes(answer.sector_fit)) return { sector_fit: 'unknown', quote: null, guard: 'no_answer' };
-  if (!answer.quote || !squash(quotes).includes(squash(answer.quote))) return { sector_fit: 'unknown', quote: null, guard: 'quote_not_literal' };
+  // V4-DBG-2: la cita debe estar dentro de UNA sola cita de la firma (no puede cruzar la unión entre dos).
+  const pieces = String(quotes ?? '').split('\n').map(squash).filter(Boolean);
+  if (!answer.quote || !pieces.some(piece => piece.includes(squash(answer.quote)))) return { sector_fit: 'unknown', quote: null, guard: 'quote_not_literal' };
   if (answer.sector_fit === 'off' && !OFF_GUARD.test(answer.quote)) return { sector_fit: 'unknown', quote: null, guard: 'off_without_exclusive_language' };
   return { sector_fit: answer.sector_fit, quote: answer.quote, guard: 'ok' };
 }
 /** Citas de la firma que ve el LLM de sector (máx. 1.500 caracteres). */
 export function sectorQuotes(entity) {
   const parts = [];
-  for (const s of entity.sources ?? []) { if (s.quote) parts.push(s.quote); if (s.field_evidence?.sectors) parts.push(s.field_evidence.sectors); }
+  for (const s of entity.sources ?? []) { if (s.quote) parts.push(s.quote.replace(/\s+/g, ' ')); if (s.field_evidence?.sectors) parts.push(...s.field_evidence.sectors.split(/\s*(?:\.{3,}|…)\s*/).map(x => x.replace(/\s+/g, ' '))); }
   return [...new Set(parts)].join('\n').slice(0, 1500);
 }
