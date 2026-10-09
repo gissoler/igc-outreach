@@ -1,0 +1,2029 @@
+{
+  "schema_version": "investor_run_result/3",
+  "case_id": "inv-case-syn-n04",
+  "condition": "B1",
+  "stop_reason": "queries_exhausted",
+  "abstained": true,
+  "abstention_reason": "insufficient_evidence",
+  "ranked": [
+    {
+      "rank": 1,
+      "stable_id": "inv:domain:equinor.com",
+      "gain": 1,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 2,
+      "stable_id": "inv:domain:adi.fund",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 3,
+      "stable_id": "inv:domain:xplorventures.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 4,
+      "stable_id": "inv:domain:orsted.ventures",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 5,
+      "stable_id": "inv:domain:cleancapital.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 6,
+      "stable_id": "inv:domain:climatesmartventures.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 7,
+      "stable_id": "inv:domain:greenbackercapital.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 8,
+      "stable_id": "inv:domain:climatefundmanagers.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 9,
+      "stable_id": "inv:domain:innogy.ventures",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    }
+  ],
+  "entities": [
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:climatesmartventures.com",
+      "canonical_name": "Climate Smart Ventures Pte. Ltd.",
+      "official_domain": "climatesmartventures.com",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "distributed renewable energy"
+      ],
+      "stages": [],
+      "rounds": [],
+      "geographies": [
+        "Southeast Asia"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://climatesmartventures.com/who-we-are/",
+          "title": "Who We Are - Climate Smart Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "In 2023, CSV launched the Asia Energy Transition Platform (AETP), a venture capital fund investing in next generation distributed renewable energy projects in Southeast Asia.",
+          "field_evidence": {
+            "investor_type": "In 2023, CSV launched the Asia Energy Transition Platform (AETP), a venture capital fund investing in next generation distributed renewable energy projects in Southeast Asia.",
+            "sectors": "In 2023, CSV launched the Asia Energy Transition Platform (AETP), a venture capital fund investing in next generation distributed renewable energy projects in Southeast Asia.",
+            "geographies": "In 2023, CSV launched the Asia Energy Transition Platform (AETP), a venture capital fund investing in next generation distributed renewable energy projects in Southeast Asia."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 0,
+        "order": 2,
+        "query_id": "q000",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q000"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://climatesmartventures.com/who-we-are/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:greenbackercapital.com",
+      "canonical_name": "Greenbacker Capital",
+      "official_domain": "greenbackercapital.com",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Infrastructure",
+        "IPP",
+        "solar",
+        "wind",
+        "battery storage",
+        "EV charging infrastructure",
+        "hydro",
+        "microgrids",
+        "mobility",
+        "green molecules"
+      ],
+      "stages": [
+        "every stage of the investment lifecycle"
+      ],
+      "rounds": [],
+      "geographies": [
+        "US"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.greenbackercapital.com/",
+          "title": "Greenbacker Capital: Accelerating the energy transition ...",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "As a multi‑strategy investment manager and independent power producer, Greenbacker connects individuals and institutions with opportunities to put their capital to work building the infrastructure of the energy transition.",
+          "field_evidence": {
+            "investor_type": "As a multi‑strategy investment manager and independent power producer, Greenbacker connects individuals and institutions with opportunities to put their capital to work building the infrastructure of the energy transition.",
+            "sectors": "Year 2023 Sector Infrastructure ... Year 2022 Sector IPP ..."
+          }
+        },
+        {
+          "url": "https://www.greenbackercapital.com/approach",
+          "title": "Creating value with a differentiated approach to sustainable investing | Greenbacker Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Infrastructure Developing, owning, and operating clean power projects, including solar, wind, battery storage, EV charging infrastructure, and other energy transition assets"
+          }
+        },
+        {
+          "url": "https://www.greenbackercapital.com/capital-management",
+          "title": "Energy transition-focused investment manager | Greenbacker Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "stages": "Providing an asset management platform that offers direct investments in the sustainability asset class, seeking to deliver compelling risk‑adjusted returns across every stage of the investment lifecycle.",
+            "geographies": "GCM generates revenue as an advisor to hundreds of millions in AUM across multiple energy‑transition focused strategies with a broad footprint in the US."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 1,
+        "order": 4,
+        "query_id": "q001",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q001"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.greenbackercapital.com/",
+      "contradictions": [
+        "geographies: [US] vs [United States] (https://www.greenbackercapital.com/infrastructure)",
+        "geographies: [US] vs [U.S., North America, Canada] (https://www.greenbackercapital.com/private-equity)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:adi.fund",
+      "canonical_name": "Australian Development Investments",
+      "official_domain": "adi.fund",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "climate",
+        "gender equality",
+        "renewable energy",
+        "emissions reduction"
+      ],
+      "stages": [],
+      "rounds": [],
+      "geographies": [
+        "South Asia",
+        "Southeast Asia",
+        "Pacific",
+        "Vietnam",
+        "Indonesia",
+        "Philippines",
+        "Bangladesh"
+      ],
+      "check_range_usd": {
+        "min": 13000000,
+        "max": 13000000,
+        "source_url": "https://adi.fund/"
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://adi.fund/",
+          "title": "ADI - Australia's $250M Climate & Development Investment Fund",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Australian Development Investments (ADI) has invested US$13 million in Circulate Capital Asia Fund II to support businesses developing…",
+          "field_evidence": {
+            "investor_type": "ADI is Australia’s AUD $250 million impact investment fund of funds.",
+            "sectors": "ADI makes early-stage and concessional investments into promising impact investment funds ... deliver climate and gender equality outcomes for the region.",
+            "geographies": "ADI makes impact investments in South Asia, Southeast Asia, and the Pacific. Its current geographic exposure includes Vietnam, Indonesia, the Philippines, and Bangladesh.",
+            "check_range_usd": "Australian Development Investments (ADI) has invested US$13 million in Circulate Capital Asia Fund II to support businesses developing…"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 1,
+        "order": 5,
+        "query_id": "q001",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q001"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://adi.fund/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:xplorventures.com",
+      "canonical_name": "Xplor Ventures",
+      "official_domain": "xplorventures.com",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": "PTTEP",
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "energy transition",
+        "decarbonization technologies"
+      ],
+      "stages": [
+        "Series B+",
+        "Preferred Stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Southeast Asia"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.xplorventures.com/",
+          "title": "https://www.xplorventures.com/",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Xplor Ventures Xplor Ventures is a Corporate Venture Capital arm (CVC) of PTTEP, a Southeast Asia's Leading energy company with a global presence.",
+          "field_evidence": {
+            "investor_type": "Xplor Ventures is a Corporate Venture Capital arm (CVC) of PTTEP, a Southeast Asia's Leading energy company with a global presence.",
+            "sectors": "Xplor Ventures invests in innovative energy transition and decarbonization technologies to drive sustainable growth and align with PTTEP's Net Zero 2050 ambitions.",
+            "stages": "Series B+ Preferred Stage Portfolio",
+            "geographies": "Southeast Asia's Leading energy company"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 2,
+        "order": 8,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.xplorventures.com/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:orsted.ventures",
+      "canonical_name": "Ørsted Ventures",
+      "official_domain": "orsted.ventures",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": "Ørsted",
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "green tech",
+        "deep tech",
+        "offshore wind",
+        "onshore wind",
+        "solar",
+        "P2X assets",
+        "bioenergy"
+      ],
+      "stages": [
+        "Seed to Series B",
+        "early-stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Denmark"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://orsted.ventures/",
+          "title": "Ørsted Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech.",
+          "field_evidence": {
+            "investor_type": "Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech.",
+            "sectors": "Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech.",
+            "stages": "We invest across a range of stages and solutions * Seed to Series B",
+            "geographies": "Kraftværksvej 53 Skærbæk 7000 Fredericia Denmark"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 2,
+        "order": 9,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://orsted.ventures/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:innogy.ventures",
+      "canonical_name": "Innogy Ventures",
+      "official_domain": "innogy.ventures",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [],
+      "stages": [
+        "First or second institutional round of financing",
+        "follow-on rounds"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Europe",
+        "Israel",
+        "North America"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.innogy.ventures/",
+          "title": "Innogy Ventures | innogy Ventures GmbH",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "## About us innogy Ventures is the venture capital arm of innogy SE, one of Europe’s largest utility companies.",
+          "field_evidence": {
+            "investor_type": "Although we are a corporate VC, we approach each investment opportunity much like a financial investor.",
+            "stages": "Stage: First or second institutional round of financing.",
+            "geographies": "Geography: Europe, Israel, North America."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 2,
+        "order": 10,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.innogy.ventures/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:equinor.com",
+      "canonical_name": "Equinor Ventures",
+      "official_domain": "equinor.com",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": "Equinor",
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "renewables",
+        "low‑carbon solutions",
+        "future business opportunities"
+      ],
+      "stages": [
+        "Seed",
+        "early-phase",
+        "growth"
+      ],
+      "rounds": [],
+      "geographies": [
+        "London"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.equinor.com/energy/ventures",
+          "title": "Equinor Ventures - Equinor",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Photo: RayGen ## Equinor Ventures invests in and supports innovative companies to shape the future of energy.",
+          "field_evidence": {
+            "sectors": "We are looking to invest predominantly in renewables, low-carbon solutions and future business opportunities."
+          }
+        },
+        {
+          "url": "https://www.equinor.com/news/ev/equinor-ventures-invests-in-space-intelligence",
+          "title": "https://www.equinor.com/news/ev/equinor-ventures-invests-in-space-intelligence",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "stages": "Space Intelligence has completed a Seed Round led by Equinor Ventures."
+          }
+        },
+        {
+          "url": "https://www.equinor.com/news/ev/equinor-ventures-invests-in-counteract",
+          "title": "https://www.equinor.com/news/ev/equinor-ventures-invests-in-counteract",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "geographies": "London-based carbon removal venture capital fund"
+          }
+        },
+        {
+          "url": "https://www.equinor.com/energy/equinor-ventures-portfolio",
+          "title": "https://www.equinor.com/energy/equinor-ventures-portfolio",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "investor_type": "Equinor Ventures is an active corporate venture partner dedicated to investing in and supporting innovative companies shaping the future of energy."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 2,
+        "order": 11,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.equinor.com/energy/ventures",
+      "contradictions": [
+        "sectors: [renewables, low‑carbon solutions, future business opportunities] vs [renewable energy, mobility, cybersecurity, battery storage, critical infrastructure, climate resiliency] (https://www.equinor.com/news/ev/invests-energize-ventures-fund-ii)",
+        "sectors: [renewables, low‑carbon solutions, future business opportunities] vs [data analytics, software-as-a-service (SaaS), Measurement Reporting and Verification (MRV)] (https://www.equinor.com/news/ev/equinor-ventures-invests-in-space-intelligence)",
+        "sectors: [renewables, low‑carbon solutions, future business opportunities] vs [carbon removal] (https://www.equinor.com/news/ev/equinor-ventures-invests-in-counteract)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:cleancapital.com",
+      "canonical_name": "CleanCapital",
+      "official_domain": "cleancapital.com",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "solar",
+        "energy storage",
+        "clean energy"
+      ],
+      "stages": [
+        "all stages of the project life cycle",
+        "early-stage",
+        "new build",
+        "late-stage development",
+        "fully operational"
+      ],
+      "rounds": [],
+      "geographies": [
+        "30 states and U.S. territories"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://cleancapital.com/",
+          "title": "CleanCapital: Leaders in Clean Energy Investment",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "## Our Team Over the last decade CleanCapital has leveraged our team’s deep expertise in distributed clean energy to invest more than $1 billion in projects and companies across 30 states and U.S.",
+          "field_evidence": {
+            "stages": "Today, we develop and build solar and energy storage projects, invest in developer partners, and acquire projects at all stages of the project life cycle.",
+            "geographies": "Over the last decade CleanCapital has leveraged our team’s deep expertise in distributed clean energy to invest more than $1 billion in projects and companies across 30 states and U.S. territories."
+          }
+        },
+        {
+          "url": "https://cleancapital.com/about/",
+          "title": "About | CleanCapital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "We Are Accelerating Investment In Middle Market Solar And Energy Storage",
+            "stages": "Today, in addition to our diverse portfolio of operating assets, we are investing in early-stage development, as well as partnering with developers in emerging and new markets to foster future pipeline opportunities."
+          }
+        },
+        {
+          "url": "https://cleancapital.com/project-acquisition/why-cleancapital/",
+          "title": "Why Work with CleanCapital?",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "stages": "From new build and late-stage development projects to fully operational sites, DG solar and storage projects in the C+I and community sectors are our specialty.",
+            "investor_type": "And we are one of the few investors with the reputation, expertise, and access to efficient sources of capital to make projects work in nascent markets like Alaska or Guam."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 4,
+        "order": 17,
+        "query_id": "q004",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q004"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://cleancapital.com/",
+      "contradictions": [
+        "sectors: [solar, energy storage, clean energy] vs [solar sector, renewable energy assets] (https://cleancapital.com/about/our-story/)",
+        "geographies: [30 states and U.S. territories] vs [Alaska] (https://cleancapital.com/about/our-story/)",
+        "sectors: [solar, energy storage, clean energy] vs [clean energy assets, DG solar and storage projects, C+I and community sectors, renewable energy] (https://cleancapital.com/project-acquisition/why-cleancapital/)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:climatefundmanagers.com",
+      "canonical_name": "Climate Fund Managers",
+      "official_domain": "climatefundmanagers.com",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "renewable energy"
+      ],
+      "stages": [],
+      "rounds": [],
+      "geographies": [
+        "Africa",
+        "Latin America",
+        "Asia"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://climatefundmanagers.com/funds/",
+          "title": "Climate Fund Managers",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "CI3 is currently investing through two country-specific affiliates: SDG Namibia One (also known as CI3 Namibia ): an energy transition and green hydrogen fund focused on Namibia, managed by a partnership between Climate Fund Managers, the Environmental Investment Fund of Namibia (EIF) and Invest International.",
+          "field_evidence": {
+            "investor_type": "Climate Fund Managers second blended finance facility, delivering water, waste and oceans infrastructure projects in emerging markets."
+          }
+        },
+        {
+          "url": "https://climatefundmanagers.com/investment-approach/",
+          "title": "Investment Approach &#8211; Climate Fund Managers",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Are you a Developer seeking funding for a renewable energy project in Africa, Latin America or Asia?",
+            "geographies": "Are you a Developer seeking funding for a renewable energy project in Africa, Latin America or Asia?"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 4,
+        "order": 19,
+        "query_id": "q004",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q004"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://climatefundmanagers.com/funds/",
+      "contradictions": []
+    }
+  ],
+  "judgments": [
+    {
+      "stable_id": "inv:domain:climatesmartventures.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: In 2023, CSV launched the Asia Energy Transition Platform (AETP), a venture capital fund investing in next generation distributed renewable energy projects in Southeast Asia."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "unknown",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 8,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:greenbackercapital.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Infrastructure Developing, owning, and operating clean power projects, including solar, wind, battery storage, EV charging infrastructure, and other energy transition assets"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "unknown",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 8,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:adi.fund",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "not_met",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "unknown",
+      "geography_fit": "not_met",
+      "check_fit": "not_met",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:xplorventures.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Xplor Ventures invests in innovative energy transition and decarbonization technologies to drive sustainable growth and align with PTTEP's Net Zero 2050 ambitions."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:orsted.ventures",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:innogy.ventures",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "unknown",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "unknown",
+      "stage_fit": "unknown",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 9,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:equinor.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: We are looking to invest predominantly in renewables, low-carbon solutions and future business opportunities."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "unknown",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "weak",
+      "unknown_count": 8,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:cleancapital.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: We Are Accelerating Investment In Middle Market Solar And Energy Storage"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:climatefundmanagers.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Are you a Developer seeking funding for a renewable energy project in Africa, Latin America or Asia?"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "unknown",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 8,
+      "sector_fit_source": "llm"
+    }
+  ],
+  "totals": {
+    "searches": 6,
+    "fetches": 24,
+    "planner_calls": 1,
+    "rejected_non_investors": 15,
+    "portfolio_companies_rejected": 0,
+    "nominal_cost": 24,
+    "tokens_nominal": 112389,
+    "seconds_nominal": 0,
+    "latency_actual_ms": 14231,
+    "latency_nominal_ms": 374039
+  },
+  "prefix_curve": [
+    {
+      "search_index": 0,
+      "stable_ids_so_far": [
+        "inv:domain:climatesmartventures.com"
+      ],
+      "nominal_cost": 4,
+      "searches": 1,
+      "fetches": 4
+    },
+    {
+      "search_index": 1,
+      "stable_ids_so_far": [
+        "inv:domain:climatesmartventures.com",
+        "inv:domain:greenbackercapital.com",
+        "inv:domain:adi.fund"
+      ],
+      "nominal_cost": 8,
+      "searches": 2,
+      "fetches": 8
+    },
+    {
+      "search_index": 2,
+      "stable_ids_so_far": [
+        "inv:domain:climatesmartventures.com",
+        "inv:domain:greenbackercapital.com",
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:innogy.ventures",
+        "inv:domain:equinor.com"
+      ],
+      "nominal_cost": 12,
+      "searches": 3,
+      "fetches": 12
+    },
+    {
+      "search_index": 3,
+      "stable_ids_so_far": [
+        "inv:domain:climatesmartventures.com",
+        "inv:domain:greenbackercapital.com",
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:innogy.ventures",
+        "inv:domain:equinor.com"
+      ],
+      "nominal_cost": 16,
+      "searches": 4,
+      "fetches": 16
+    },
+    {
+      "search_index": 4,
+      "stable_ids_so_far": [
+        "inv:domain:climatesmartventures.com",
+        "inv:domain:greenbackercapital.com",
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:innogy.ventures",
+        "inv:domain:equinor.com",
+        "inv:domain:cleancapital.com",
+        "inv:domain:climatefundmanagers.com"
+      ],
+      "nominal_cost": 20,
+      "searches": 5,
+      "fetches": 20
+    },
+    {
+      "search_index": 5,
+      "stable_ids_so_far": [
+        "inv:domain:climatesmartventures.com",
+        "inv:domain:greenbackercapital.com",
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:innogy.ventures",
+        "inv:domain:equinor.com",
+        "inv:domain:cleancapital.com",
+        "inv:domain:climatefundmanagers.com"
+      ],
+      "nominal_cost": 24,
+      "searches": 6,
+      "fetches": 24
+    }
+  ],
+  "actions_rejected": [],
+  "v2_stats": {
+    "fetch_empty": 0,
+    "fetch_fallback_search_contents": 0,
+    "denied_urls": 1,
+    "deduped_urls": 2,
+    "skipped_empty_hosts": 0,
+    "reads": 24,
+    "resolutions": [],
+    "sector_llm_calls": 9,
+    "candidates_seen": 0,
+    "rejected_by_kind": {
+      "other": 6,
+      "missing_literal_quote": 9
+    },
+    "triage": {
+      "version": "triage.v1",
+      "discarded": 3,
+      "demoted_opened": 0,
+      "demoted_skipped": 7,
+      "by_reason": {
+        "aggregator_host": 1,
+        "aggregator_profile": 1,
+        "list_or_directory": 1
+      }
+    },
+    "candidates_pending": 0,
+    "deepening": {
+      "enabled": true,
+      "max_firms_per_run": 16,
+      "max_queries_per_firm": 2,
+      "max_fetches_per_firm": 4,
+      "firms": 7,
+      "searches": 8,
+      "fetches": 27,
+      "fetch_empty": 2,
+      "extract_calls": 25,
+      "tokens_nominal": 80785,
+      "latency_actual_ms": 189263,
+      "latency_nominal_ms": 333109,
+      "fields_filled": {
+        "INV-SECTOR": 3,
+        "INV-STAGE": 2,
+        "INV-GEO": 2,
+        "INV-TYPE": 2,
+        "INV-ACTIVE": 0
+      },
+      "contradictions": 8,
+      "per_firm": [
+        {
+          "stable_id": "inv:domain:equinor.com",
+          "name": "Equinor Ventures",
+          "domain": "equinor.com",
+          "missing_before": [
+            "INV-STAGE",
+            "INV-GEO",
+            "INV-TYPE"
+          ],
+          "missing_after": [
+            "INV-GEO"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Equinor Ventures investment criteria: stages and geographies (countries and regions) they invest in, and what type of investor Equinor Ventures is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://www.equinor.com/news/ev/invests-energize-ventures-fund-ii",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "sectors: [renewables, low‑carbon solutions, future business opportunities] vs [renewable energy, mobility, cybersecurity, battery storage, critical infrastructure, climate resiliency] (https://www.equinor.com/news/ev/invests-energize-ventures-fund-ii)"
+              ]
+            },
+            {
+              "url": "https://www.equinor.com/news/ev/equinor-ventures-invests-in-space-intelligence",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-STAGE"
+              ],
+              "contradictions": [
+                "sectors: [renewables, low‑carbon solutions, future business opportunities] vs [data analytics, software-as-a-service (SaaS), Measurement Reporting and Verification (MRV)] (https://www.equinor.com/news/ev/equinor-ventures-invests-in-space-intelligence)"
+              ]
+            },
+            {
+              "url": "https://www.equinor.com/news/ev/equinor-ventures-invests-in-counteract",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-GEO"
+              ],
+              "contradictions": [
+                "sectors: [renewables, low‑carbon solutions, future business opportunities] vs [carbon removal] (https://www.equinor.com/news/ev/equinor-ventures-invests-in-counteract)"
+              ]
+            },
+            {
+              "url": "https://www.equinor.com/energy/equinor-ventures-portfolio",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-TYPE"
+              ],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:greenbackercapital.com",
+          "name": "Greenbacker Capital",
+          "domain": "greenbackercapital.com",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-STAGE",
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-STAGE"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Greenbacker Capital investment criteria: sectors, stages and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://www.greenbackercapital.com/approach",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.greenbackercapital.com/capital-management",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-STAGE",
+                "INV-GEO"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.greenbackercapital.com/infrastructure",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "geographies: [US] vs [United States] (https://www.greenbackercapital.com/infrastructure)"
+              ]
+            },
+            {
+              "url": "https://www.greenbackercapital.com/private-equity",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "geographies: [US] vs [U.S., North America, Canada] (https://www.greenbackercapital.com/private-equity)"
+              ]
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:climatefundmanagers.com",
+          "name": "Climate Fund Managers",
+          "domain": "climatefundmanagers.com",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-STAGE",
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-STAGE"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Climate Fund Managers investment criteria: sectors, stages and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://climatefundmanagers.com/funding-criteria-checklist/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://climatefundmanagers.com/investment-approach/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR",
+                "INV-GEO"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://impact.climatefundmanagers.com/funds/laudantium",
+              "origin": "search1",
+              "outcome": "rejected:different_firm",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://climatefundmanagers.com/for-developers/",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:climatesmartventures.com",
+          "name": "Climate Smart Ventures Pte. Ltd.",
+          "domain": "climatesmartventures.com",
+          "missing_before": [
+            "INV-STAGE"
+          ],
+          "missing_after": [
+            "INV-STAGE"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "url": "https://climatesmartventures.com/what-we-do/",
+              "origin": "link",
+              "outcome": "fetch_empty",
+              "filled": []
+            },
+            {
+              "query": "Climate Smart Ventures Pte. Ltd. investment criteria: stages they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://climatesmartventures.com/the-case-for-coal-retirement-pilots-insights-from-asset-owners-and-investors/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://climatesmartventures.com/scoping-of-indonesian-independent-power-producers-for-energy-transition-transactions-via-sustainable-financing/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://climatesmartventures.com/the-future-of-transition-finance-initiative/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:adi.fund",
+          "name": "Australian Development Investments",
+          "domain": "adi.fund",
+          "missing_before": [
+            "INV-STAGE"
+          ],
+          "missing_after": [
+            "INV-STAGE"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Australian Development Investments investment criteria: stages they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://adi.fund/strategy/",
+              "origin": "search1",
+              "outcome": "rejected:different_firm",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://adi.fund/investors/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://adi.fund/about/",
+              "origin": "search1",
+              "outcome": "rejected:different_firm",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://adi.fund/portfolio/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:innogy.ventures",
+          "name": "Innogy Ventures",
+          "domain": "innogy.ventures",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-STAGE"
+          ],
+          "missing_after": [
+            "INV-SECTOR",
+            "INV-STAGE"
+          ],
+          "queries": 2,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Innogy Ventures investment criteria: sectors and stages they invest in",
+              "origin": "search1",
+              "results": 1,
+              "in_domain": 1
+            },
+            {
+              "query": "Page describing Innogy Ventures's investment strategy and focus: the sectors and stages it targets",
+              "origin": "search2",
+              "results": 1,
+              "in_domain": 1
+            },
+            {
+              "url": "https://innogy.ventures/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "fetch_empty"
+            },
+            {
+              "url": "https://innogy.ventures/strategy",
+              "origin": "guess",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://innogy.ventures/investment-focus",
+              "origin": "guess",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://innogy.ventures/approach",
+              "origin": "guess",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:cleancapital.com",
+          "name": "CleanCapital",
+          "domain": "cleancapital.com",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-STAGE",
+            "INV-TYPE"
+          ],
+          "missing_after": [],
+          "queries": 1,
+          "fetches": 3,
+          "pages": [
+            {
+              "query": "CleanCapital investment criteria: sectors and stages they invest in, and what type of investor CleanCapital is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://cleancapital.com/about/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR",
+                "INV-STAGE"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://cleancapital.com/about/our-story/",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "sectors: [solar, energy storage, clean energy] vs [solar sector, renewable energy assets] (https://cleancapital.com/about/our-story/)",
+                "geographies: [30 states and U.S. territories] vs [Alaska] (https://cleancapital.com/about/our-story/)"
+              ]
+            },
+            {
+              "url": "https://cleancapital.com/project-acquisition/why-cleancapital/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-STAGE",
+                "INV-TYPE"
+              ],
+              "contradictions": [
+                "sectors: [solar, energy storage, clean energy] vs [clean energy assets, DG solar and storage projects, C+I and community sectors, renewable energy] (https://cleancapital.com/project-acquisition/why-cleancapital/)"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "seed": 101,
+  "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-n04__B1__s101",
+  "ablation": null,
+  "capital_strategy_context": false,
+  "apollo": {
+    "calls": 0,
+    "credits_estimated": 0
+  }
+}

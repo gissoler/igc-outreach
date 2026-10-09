@@ -1,0 +1,1601 @@
+{
+  "schema_version": "investor_run_result/3",
+  "case_id": "inv-case-syn-n04",
+  "condition": "B2",
+  "stop_reason": "no_more_actions",
+  "abstained": true,
+  "abstention_reason": "insufficient_evidence",
+  "ranked": [
+    {
+      "rank": 1,
+      "stable_id": "inv:domain:nosterracapital.com",
+      "gain": 1,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 2,
+      "stable_id": "inv:domain:adi.fund",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 3,
+      "stable_id": "inv:domain:xplorventures.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 4,
+      "stable_id": "inv:domain:orsted.ventures",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 5,
+      "stable_id": "inv:domain:climatecapital.co",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 6,
+      "stable_id": "inv:domain:sosteneo.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 7,
+      "stable_id": "inv:domain:windsailcapital.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    }
+  ],
+  "entities": [
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:adi.fund",
+      "canonical_name": "ADI",
+      "official_domain": "adi.fund",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "climate",
+        "gender equality",
+        "clean energy transition"
+      ],
+      "stages": [
+        "early-stage",
+        "growth"
+      ],
+      "rounds": [],
+      "geographies": [
+        "South Asia",
+        "Southeast Asia",
+        "the Pacific",
+        "Indonesia",
+        "Vietnam"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://adi.fund/strategy/",
+          "title": "Mobilizing Capital for Indo-Pacific Climate Solutions - ADI",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "## Technical Assistance with Ascend Vietnam Ventures With support from ADI Technical Assistance Partner, Sagana, Ascend Vietnam Ventures (AVV) developed the Startup Impact Score (SIS).",
+          "field_evidence": {
+            "sectors": "ADI invests in SMEs that deliver climate and gender equality outcomes",
+            "geographies": "ADI makes impact investments in countries across South Asia, Southeast Asia, and the Pacific."
+          }
+        },
+        {
+          "url": "https://adi.fund/about/",
+          "title": "About ADI - Australia's $250M Climate &amp; Development Fund",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "## What We Do ADI is Australia’s AUD $250 million impact investment fund of funds.",
+          "field_evidence": {}
+        },
+        {
+          "url": "https://adi.fund/apply/",
+          "title": "Apply for ADI Investment: Climate &amp; Gender Finance Funding",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "stages": "An SME Fund is a financial intermediary that is focused on providing early-stage capital or growth capital to SMEs.",
+            "investor_type": "ADI Invests in SME Funds with a substantial presence in our target countries."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 0,
+        "order": 0,
+        "query_id": "q000",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q000"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://adi.fund/strategy/",
+      "contradictions": [
+        "sectors: [climate, gender equality, clean energy transition] vs [impact investment] (https://adi.fund/about/)",
+        "sectors: [climate, gender equality, clean energy transition] vs [SME Funds, climate action, gender equity] (https://adi.fund/apply/)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:xplorventures.com",
+      "canonical_name": "Xplor Ventures",
+      "official_domain": "xplorventures.com",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": "PTTEP",
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "energy transition",
+        "decarbonization technologies"
+      ],
+      "stages": [
+        "Series B+",
+        "Preferred Stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Southeast Asia"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.xplorventures.com/",
+          "title": "https://www.xplorventures.com/",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Xplor Ventures Xplor Ventures is a Corporate Venture Capital arm (CVC) of PTTEP, a Southeast Asia's Leading energy company with a global presence.",
+          "field_evidence": {
+            "investor_type": "Xplor Ventures is a Corporate Venture Capital arm (CVC) of PTTEP, a Southeast Asia's Leading energy company with a global presence.",
+            "sectors": "Xplor Ventures invests in innovative energy transition and decarbonization technologies to drive sustainable growth and align with PTTEP's Net Zero 2050 ambitions.",
+            "stages": "Series B+ Preferred Stage Portfolio",
+            "geographies": "Southeast Asia's Leading energy company"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 2,
+        "order": 8,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.xplorventures.com/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:orsted.ventures",
+      "canonical_name": "Ørsted Ventures",
+      "official_domain": "orsted.ventures",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": "Ørsted",
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "green tech",
+        "deep tech",
+        "offshore wind",
+        "onshore wind",
+        "solar",
+        "P2X assets",
+        "bioenergy"
+      ],
+      "stages": [
+        "Seed to Series B",
+        "early-stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Denmark"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://orsted.ventures/",
+          "title": "Ørsted Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech.",
+          "field_evidence": {
+            "investor_type": "Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech.",
+            "sectors": "Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech.",
+            "stages": "We invest across a range of stages and solutions * Seed to Series B",
+            "geographies": "Kraftværksvej 53 Skærbæk 7000 Fredericia Denmark"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 2,
+        "order": 9,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://orsted.ventures/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:sosteneo.com",
+      "canonical_name": "Sosteneo",
+      "official_domain": "sosteneo.com",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": "Generali Investments",
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "construction-ready infrastructure",
+        "greenfield infrastructure",
+        "energy transition"
+      ],
+      "stages": [
+        "Construction-ready stage",
+        "construction-ready stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Germany",
+        "Australia",
+        "Europe"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://sosteneo.com/",
+          "title": "Sosteneo: Construction-Ready Energy Transition Infrastructure",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Backed by Generali Investments Sosteneo is part of Generali Investments’ platform of asset management firms.",
+          "field_evidence": {
+            "investor_type": "Sosteneo is part of Generali Investments’ platform of asset management firms.",
+            "sectors": "Sosteneo focuses on construction-ready projects, where specialist capability across construction, financing and operations is critical to long-term asset delivery and performance.",
+            "stages": "Take a closer look Construction-ready stage Physical infrastructure Contracted cash flows Active value creation",
+            "geographies": "Sosteneo signs agreement to acquire a wind repowering portfolio in Germany"
+          }
+        },
+        {
+          "url": "https://sosteneo.com/strategy",
+          "title": "Strategy | Sosteneo: Construction-Ready Energy Transition Infrastructure",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "stages": "We specialise in infrastructure at the construction-ready stage – a focused part of the value chain where we believe investors can achieve attractive risk-adjusted returns while contributing meaningfully to system buildout."
+          }
+        },
+        {
+          "url": "https://sosteneo.com/about-us",
+          "title": "About Us | Sosteneo: Construction-Ready Energy Transition Infrastructure",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Sosteneo is a specialist infrastructure investment manager focused on construction-ready energy infrastructure across European markets, investing after development risk and before operation - where capability across construction, financing and revenue contracting supports asset resilience and long-term value creation.",
+          "field_evidence": {}
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 4,
+        "order": 16,
+        "query_id": "q003",
+        "origin": "resolution"
+      },
+      "query_ids": [
+        "q003"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://sosteneo.com/",
+      "contradictions": [
+        "sectors: [construction-ready infrastructure, greenfield infrastructure, energy transition] vs [construction-ready energy infrastructure] (https://sosteneo.com/about-us)",
+        "geographies: [Germany, Australia, Europe] vs [European markets] (https://sosteneo.com/about-us)",
+        "sectors: [construction-ready infrastructure, greenfield infrastructure, energy transition] vs [clean energy delivery] (https://sosteneo.com/projects)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:climatecapital.co",
+      "canonical_name": "Climate Capital",
+      "official_domain": "climatecapital.co",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "climate tech",
+        "Energy",
+        "Physical Infrastructure",
+        "Resilience and Adaptation"
+      ],
+      "stages": [
+        "early-stage",
+        "seed"
+      ],
+      "rounds": [],
+      "geographies": [
+        "worldwide"
+      ],
+      "check_range_usd": {
+        "min": 5000,
+        "max": 25000,
+        "source_url": "https://www.climatecapital.co/"
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.climatecapital.co/",
+          "title": "Climate Capital - Early Stage Climate VC Fund",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Invest in climate's next breakouts before they're obvious Early stakes in 50+ climate tech startups per year building critical infrastructure for the next decade, plus priority access when we double down on winners.",
+          "field_evidence": {
+            "investor_type": "Most active venture investor in climate tech",
+            "sectors": "Infrastructure is climate tech",
+            "stages": "Early stakes in 50+ climate tech startups per year",
+            "check_range_usd": "Minimum investment: $5,000 ... $25K checks get us into rounds you can't access alone."
+          }
+        },
+        {
+          "url": "https://www.climatecapital.co/about",
+          "title": "Climate Capital - Early Stage Climate VC Fund",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "geographies": "and a diverse investing team worldwide — all of which now make up the Climate Capital platform."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 5,
+        "order": 17,
+        "query_id": "q004",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q004"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.climatecapital.co/",
+      "contradictions": [
+        "sectors: [climate tech, Energy, Physical Infrastructure, Resilience and Adaptation] vs [climate startups] (https://www.climatecapital.co/network-fund-disclosures)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:nosterracapital.com",
+      "canonical_name": "NosTerra Venture Capital",
+      "official_domain": "nosterracapital.com",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "energy",
+        "digital infrastructure"
+      ],
+      "stages": [],
+      "rounds": [],
+      "geographies": [],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://nosterracapital.com/",
+          "title": "Energy + AI Infrastructure VC | NosTerra Venture Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "NosTerra Venture Capital backs entrepreneurs innovating at the intersection of energy and AI infrastructure.",
+          "field_evidence": {
+            "investor_type": "NosTerra Venture Capital backs entrepreneurs innovating at the intersection of energy and AI infrastructure."
+          }
+        },
+        {
+          "url": "https://nosterracapital.com/blog/",
+          "title": "https://nosterracapital.com/blog/",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "At NosTerra Venture Capital, we invest in innovation at the intersection of energy and digital infrastructure."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 5,
+        "order": 19,
+        "query_id": "q004",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q004"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://nosterracapital.com/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:windsailcapital.com",
+      "canonical_name": "WindSail Capital Group",
+      "official_domain": "windsailcapital.com",
+      "aliases": [],
+      "investor_type": "other",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "clean energy",
+        "energy innovation",
+        "sustainability",
+        "climate technology"
+      ],
+      "stages": [],
+      "rounds": [],
+      "geographies": [
+        "Great Falls, MT"
+      ],
+      "check_range_usd": {
+        "min": 2000000,
+        "max": 5000000,
+        "source_url": "https://windsailcapital.com/"
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://windsailcapital.com/",
+          "title": "WindSail Capital Group",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "## A Different Kind of Growth Capital Partner WindSail Capital Group is a leading provider of growth capital to companies advancing energy innovation and sustainability across a wide range of industries.",
+          "field_evidence": {
+            "investor_type": "WindSail Capital Group is a leading provider of growth capital to companies advancing energy innovation and sustainability across a wide range of industries.",
+            "sectors": "WindSail Capital provides flexible debt solutions to companies advancing sustainability and clean energy — accelerating growth without unnecessary dilution.",
+            "check_range_usd": "Our investments typically range from $2 million to $5 million and are in the form of a secured loan."
+          }
+        },
+        {
+          "url": "https://www.windsailcapital.com/cycle-horseshoe-bend-wind",
+          "title": "https://www.windsailcapital.com/cycle-horseshoe-bend-wind",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "geographies": "Headquarters: Great Falls, MT"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 5,
+        "order": 20,
+        "query_id": "q004",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q004"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://windsailcapital.com/",
+      "contradictions": [
+        "sectors: [clean energy, energy innovation, sustainability, climate technology] vs [Wind Farm] (https://www.windsailcapital.com/cycle-horseshoe-bend-wind)"
+      ]
+    }
+  ],
+  "judgments": [
+    {
+      "stable_id": "inv:domain:adi.fund",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: ADI invests in SMEs that deliver climate and gender equality outcomes"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:xplorventures.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Xplor Ventures invests in innovative energy transition and decarbonization technologies to drive sustainable growth and align with PTTEP's Net Zero 2050 ambitions."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:orsted.ventures",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Ørsted Ventures, the corporate venture capital group of Ørsted, invests in and partners with early-stage startups innovating within green tech and deep tech."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:sosteneo.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Sosteneo is a specialist infrastructure investment manager focused on construction-ready energy infrastructure across European markets, investing after development risk and before operation - where capability across construction, financing and revenue contracting supports asset resilience and long-term value creation."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "unknown",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 8,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:climatecapital.co",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "not_met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "not_met",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "not_met",
+      "geography_fit": "unknown",
+      "check_fit": "not_met",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:nosterracapital.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: NosTerra Venture Capital backs entrepreneurs innovating at the intersection of energy and AI infrastructure."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "unknown",
+      "geography_fit": "unknown",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "weak",
+      "unknown_count": 9,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:windsailcapital.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: WindSail Capital provides flexible debt solutions to companies advancing sustainability and clean energy — accelerating growth without unnecessary dilution."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "unknown",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "not_met",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "unknown",
+      "geography_fit": "unknown",
+      "check_fit": "not_met",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 8,
+      "sector_fit_source": "llm"
+    }
+  ],
+  "totals": {
+    "searches": 7,
+    "fetches": 25,
+    "planner_calls": 2,
+    "rejected_non_investors": 18,
+    "portfolio_companies_rejected": 0,
+    "nominal_cost": 25,
+    "tokens_nominal": 110208,
+    "seconds_nominal": 0,
+    "latency_actual_ms": 26293,
+    "latency_nominal_ms": 403072
+  },
+  "prefix_curve": [
+    {
+      "search_index": 0,
+      "stable_ids_so_far": [
+        "inv:domain:adi.fund"
+      ],
+      "nominal_cost": 4,
+      "searches": 1,
+      "fetches": 4
+    },
+    {
+      "search_index": 1,
+      "stable_ids_so_far": [
+        "inv:domain:adi.fund"
+      ],
+      "nominal_cost": 8,
+      "searches": 2,
+      "fetches": 8
+    },
+    {
+      "search_index": 2,
+      "stable_ids_so_far": [
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures"
+      ],
+      "nominal_cost": 12,
+      "searches": 3,
+      "fetches": 12
+    },
+    {
+      "search_index": 4,
+      "stable_ids_so_far": [
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:sosteneo.com"
+      ],
+      "nominal_cost": 17,
+      "searches": 5,
+      "fetches": 17
+    },
+    {
+      "search_index": 5,
+      "stable_ids_so_far": [
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:sosteneo.com",
+        "inv:domain:climatecapital.co",
+        "inv:domain:nosterracapital.com",
+        "inv:domain:windsailcapital.com"
+      ],
+      "nominal_cost": 21,
+      "searches": 6,
+      "fetches": 21
+    },
+    {
+      "search_index": 6,
+      "stable_ids_so_far": [
+        "inv:domain:adi.fund",
+        "inv:domain:xplorventures.com",
+        "inv:domain:orsted.ventures",
+        "inv:domain:sosteneo.com",
+        "inv:domain:climatecapital.co",
+        "inv:domain:nosterracapital.com",
+        "inv:domain:windsailcapital.com"
+      ],
+      "nominal_cost": 25,
+      "searches": 7,
+      "fetches": 25
+    }
+  ],
+  "actions_rejected": [],
+  "v2_stats": {
+    "fetch_empty": 0,
+    "fetch_fallback_search_contents": 5,
+    "denied_urls": 0,
+    "deduped_urls": 0,
+    "skipped_empty_hosts": 0,
+    "reads": 24,
+    "resolutions": [
+      {
+        "name": "Sosteneo",
+        "origin": "page_candidate",
+        "outcome": "accepted",
+        "url": "https://sosteneo.com/"
+      }
+    ],
+    "sector_llm_calls": 7,
+    "candidates_seen": 1,
+    "rejected_by_kind": {
+      "missing_literal_quote": 9,
+      "other": 8,
+      "unresolved_firm_identity": 1
+    },
+    "triage": {
+      "version": "triage.v1",
+      "discarded": 2,
+      "demoted_opened": 1,
+      "demoted_skipped": 15,
+      "by_reason": {
+        "aggregator_host": 2
+      }
+    },
+    "candidates_pending": 0,
+    "deepening": {
+      "enabled": true,
+      "max_firms_per_run": 16,
+      "max_queries_per_firm": 2,
+      "max_fetches_per_firm": 4,
+      "firms": 5,
+      "searches": 7,
+      "fetches": 20,
+      "fetch_empty": 4,
+      "extract_calls": 15,
+      "tokens_nominal": 44035,
+      "latency_actual_ms": 112368,
+      "latency_nominal_ms": 199586,
+      "fields_filled": {
+        "INV-SECTOR": 1,
+        "INV-STAGE": 1,
+        "INV-GEO": 0,
+        "INV-TYPE": 1,
+        "INV-ACTIVE": 2
+      },
+      "contradictions": 7,
+      "per_firm": [
+        {
+          "stable_id": "inv:domain:nosterracapital.com",
+          "name": "NosTerra Venture Capital",
+          "domain": "nosterracapital.com",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-STAGE",
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-STAGE",
+            "INV-GEO"
+          ],
+          "queries": 2,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "NosTerra Venture Capital investment criteria: sectors, stages and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://nosterracapital.com/contact/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://nosterracapital.com/blog/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR"
+              ],
+              "contradictions": []
+            },
+            {
+              "query": "Page describing NosTerra Venture Capital's investment strategy and focus: the stages and geographies (countries and regions) it targets",
+              "origin": "search2",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://nosterracapital.com/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "links:0"
+            },
+            {
+              "url": "https://nosterracapital.com/strategy",
+              "origin": "guess",
+              "outcome": "fetch_empty",
+              "filled": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:sosteneo.com",
+          "name": "Sosteneo",
+          "domain": "sosteneo.com",
+          "missing_before": [
+            "INV-STAGE",
+            "INV-ACTIVE"
+          ],
+          "missing_after": [
+            "INV-STAGE"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Sosteneo investment criteria: stages they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://sosteneo.com/strategy",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-STAGE"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://sosteneo.com/about-us",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-ACTIVE:thesis_quote"
+              ],
+              "contradictions": [
+                "sectors: [construction-ready infrastructure, greenfield infrastructure, energy transition] vs [construction-ready energy infrastructure] (https://sosteneo.com/about-us)",
+                "geographies: [Germany, Australia, Europe] vs [European markets] (https://sosteneo.com/about-us)"
+              ]
+            },
+            {
+              "url": "https://sosteneo.com/projects",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "sectors: [construction-ready infrastructure, greenfield infrastructure, energy transition] vs [clean energy delivery] (https://sosteneo.com/projects)"
+              ]
+            },
+            {
+              "url": "https://sosteneo.com/sustainability",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:climatecapital.co",
+          "name": "Climate Capital",
+          "domain": "climatecapital.co",
+          "missing_before": [
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-GEO"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "url": "https://www.climatecapital.co/about",
+              "origin": "link",
+              "outcome": "merged",
+              "filled": [
+                "INV-GEO"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.climatecapital.co/portfolio",
+              "origin": "link",
+              "outcome": "fetch_empty",
+              "filled": []
+            },
+            {
+              "url": "https://www.climatecapital.co/team",
+              "origin": "link",
+              "outcome": "fetch_empty",
+              "filled": []
+            },
+            {
+              "query": "Climate Capital investment criteria: geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://www.climatecapital.co/network-fund-disclosures",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "sectors: [climate tech, Energy, Physical Infrastructure, Resilience and Adaptation] vs [climate startups] (https://www.climatecapital.co/network-fund-disclosures)"
+              ]
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:windsailcapital.com",
+          "name": "WindSail Capital Group",
+          "domain": "windsailcapital.com",
+          "missing_before": [
+            "INV-STAGE",
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-STAGE",
+            "INV-GEO"
+          ],
+          "queries": 2,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "WindSail Capital Group investment criteria: stages and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 4,
+              "in_domain": 4
+            },
+            {
+              "url": "https://www.windsailcapital.com/carbonwave-portfolio-page",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.windsailcapital.com/elpis2",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.windsailcapital.com/cycle-horseshoe-bend-wind",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-GEO"
+              ],
+              "contradictions": [
+                "sectors: [clean energy, energy innovation, sustainability, climate technology] vs [Wind Farm] (https://www.windsailcapital.com/cycle-horseshoe-bend-wind)"
+              ]
+            },
+            {
+              "query": "Page describing WindSail Capital Group's investment strategy and focus: the stages and geographies (countries and regions) it targets",
+              "origin": "search2",
+              "results": 4,
+              "in_domain": 4
+            },
+            {
+              "url": "https://windsailcapital.com/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "fetch_empty"
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:adi.fund",
+          "name": "ADI",
+          "domain": "adi.fund",
+          "missing_before": [
+            "INV-STAGE",
+            "INV-TYPE",
+            "INV-ACTIVE"
+          ],
+          "missing_after": [],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "ADI investment criteria: stages they invest in, and what type of investor ADI is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://adi.fund/about/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-ACTIVE:thesis_quote"
+              ],
+              "contradictions": [
+                "sectors: [climate, gender equality, clean energy transition] vs [impact investment] (https://adi.fund/about/)"
+              ]
+            },
+            {
+              "url": "https://adi.fund/investors/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://adi.fund/portfolio/",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://adi.fund/apply/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-STAGE",
+                "INV-TYPE"
+              ],
+              "contradictions": [
+                "sectors: [climate, gender equality, clean energy transition] vs [SME Funds, climate action, gender equity] (https://adi.fund/apply/)"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "seed": 101,
+  "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-n04__B2__s101",
+  "ablation": null,
+  "capital_strategy_context": false,
+  "apollo": {
+    "calls": 0,
+    "credits_estimated": 0
+  }
+}

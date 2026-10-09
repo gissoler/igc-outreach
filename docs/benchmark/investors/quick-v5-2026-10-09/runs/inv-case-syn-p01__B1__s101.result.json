@@ -1,0 +1,2506 @@
+{
+  "schema_version": "investor_run_result/3",
+  "case_id": "inv-case-syn-p01",
+  "condition": "B1",
+  "stop_reason": "queries_exhausted",
+  "abstained": false,
+  "abstention_reason": null,
+  "ranked": [
+    {
+      "rank": 1,
+      "stable_id": "inv:domain:finnovista.com",
+      "gain": 2,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 2,
+      "stable_id": "inv:domain:3triangulo.com",
+      "gain": 2,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 3,
+      "stable_id": "inv:domain:cometa.vc",
+      "gain": 2,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 4,
+      "stable_id": "inv:domain:ignia.vc",
+      "gain": 2,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 5,
+      "stable_id": "inv:domain:lucero.vc",
+      "gain": 2,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 6,
+      "stable_id": "inv:domain:knollventures.com",
+      "gain": 1,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 7,
+      "stable_id": "inv:domain:nascent.vc",
+      "gain": 1,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 8,
+      "stable_id": "inv:domain:menlovc.com",
+      "gain": 1,
+      "hard_eligibility": "undetermined",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 9,
+      "stable_id": "inv:domain:acventures.vc",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 10,
+      "stable_id": "inv:domain:roquinventures.com",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "possibly_active"
+    },
+    {
+      "rank": 11,
+      "stable_id": "inv:domain:marathon.vc",
+      "gain": 0,
+      "hard_eligibility": "ineligible",
+      "active_status": "active"
+    }
+  ],
+  "entities": [
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:cometa.vc",
+      "canonical_name": "Cometa",
+      "official_domain": "cometa.vc",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "technology",
+        "Fintech",
+        "SaaS",
+        "Marketplace",
+        "E-commerce"
+      ],
+      "stages": [
+        "early-stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Spanish-speaking markets globally",
+        "Spain",
+        "Latin America",
+        "Mexico",
+        "Colombia",
+        "USA",
+        "Global"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.cometa.vc/about",
+          "title": "Cometa - About",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "COMETA is a venture capital firm that invests in early-stage technology companies targeting Spanish-speaking markets globally.",
+          "field_evidence": {
+            "investor_type": "COMETA is a venture capital firm that invests in early-stage technology companies targeting Spanish-speaking markets globally.",
+            "sectors": "COMETA is a venture capital firm that invests in early-stage technology companies targeting Spanish-speaking markets globally.",
+            "stages": "COMETA is a venture capital firm that invests in early-stage technology companies targeting Spanish-speaking markets globally.",
+            "geographies": "COMETA is a venture capital firm that invests in early-stage technology companies targeting Spanish-speaking markets globally."
+          }
+        },
+        {
+          "url": "https://www.cometa.vc/portfolio",
+          "title": "Cometa - Portfolio",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Atani B2C Spain Fintech Seed ... Bewe B2B Latin America SaaS Series A ... Wallapop B2C Spain Marketplace Seed ... Quinio B2B2C Latin America E-commerce Seed",
+            "geographies": "Atani B2C Spain Fintech Seed ... Bewe B2B Latin America SaaS Series A ... Bitso B2C Latin America Fintech Series A ... Cabify B2C Latin America Spain Marketplace Series B"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 0,
+        "order": 0,
+        "query_id": "q000",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q000"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.cometa.vc/about",
+      "contradictions": [
+        "stages: [early-stage] vs [Seed, Series A, Series B, Pre-Seed] (https://www.cometa.vc/portfolio)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:finnovista.com",
+      "canonical_name": "Finnovista.vc",
+      "official_domain": "finnovista.com",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Fintech"
+      ],
+      "stages": [
+        "pre-seed",
+        "seed"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Spanish-speaking Latin America"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "lead",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.finnovista.com/en/what-we-do/finnovista-vc-venture-capital/",
+          "title": "Finnovista.vc - Finnovista",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Finnovista.vc is a venture capital firm that leads rounds in pre-seed and seed stage Fintech companies in Spanish-speaking Latin America.",
+          "field_evidence": {
+            "investor_type": "Finnovista.vc is a venture capital firm that leads rounds in pre-seed and seed stage Fintech companies in Spanish-speaking Latin America.",
+            "sectors": "Finnovista.vc is a venture capital firm that leads rounds in pre-seed and seed stage Fintech companies in Spanish-speaking Latin America.",
+            "stages": "Finnovista.vc is a venture capital firm that leads rounds in pre-seed and seed stage Fintech companies in Spanish-speaking Latin America.",
+            "geographies": "Finnovista.vc is a venture capital firm that leads rounds in pre-seed and seed stage Fintech companies in Spanish-speaking Latin America.",
+            "lead_follow": "Finnovista.vc is a venture capital firm that leads rounds in pre-seed and seed stage Fintech companies in Spanish-speaking Latin America."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 0,
+        "order": 1,
+        "query_id": "q000",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q000"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.finnovista.com/en/what-we-do/finnovista-vc-venture-capital/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:acventures.vc",
+      "canonical_name": "AC Ventures",
+      "official_domain": "acventures.vc",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Sector-agnostic – from AI & Deeptech to Consumer & Frontier Tech",
+        "AI",
+        "deeptech",
+        "consumer",
+        "frontier technologies",
+        "PropTech",
+        "D2C",
+        "Digital Public Infrastructure (DPI)",
+        "Manufacturing",
+        "SpaceTech",
+        "AdTech",
+        "Electric Mobility",
+        "Defence-Tech",
+        "Edtech",
+        "Healthtech",
+        "Fintech",
+        "Agritech",
+        "SaaS",
+        "Gen AI",
+        "Gaming",
+        "Metaverse",
+        "NFT",
+        "Web3"
+      ],
+      "stages": [
+        "Pre-Seed to Series A"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Indian founders building for India and the world"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "follow",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://acventures.vc/",
+          "title": "AC Ventures &#8211; Invest More than Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "At AC Ventures, we are building on the Indian Dream : ambitious, opportunist and relentless pursuit. ## We aren’t just investing in companies,we are investing in India’s rise as the world’s next great powerhouse.",
+          "field_evidence": {
+            "sectors": "Sector-agnostic – from AI & Deeptech to Consumer & Frontier Tech",
+            "stages": "Stage Pre-Seed to Series A",
+            "geographies": "Geography Investing in Indian founders building for India and the world",
+            "lead_follow": "We only co-invest and usually don’t do follow-on’s"
+          }
+        },
+        {
+          "url": "https://acventures.vc/about/",
+          "title": "About &#8211; AC Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Our portfolio spans AI, deeptech, consumer, and frontier technologies.",
+            "investor_type": "sector-agnostic venture firm"
+          }
+        },
+        {
+          "url": "https://acventures.vc/portfolio/",
+          "title": "Portfolio &#8211; AC Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Our portfolio spans across AI, PropTech, D2C, Digital Public Infrastructure (DPI), Manufacturing, SpaceTech, AdTech, Electric Mobility, and Defence-Tech, among others."
+          }
+        },
+        {
+          "url": "https://acventures.vc/team/",
+          "title": "Team &#8211; AC Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "supporting their portfolio companies in Edtech, Healthtech, Fintech, Agritech, D2C, SaaS, Gen AI, Gaming, Metaverse, NFT, and Web3"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 1,
+        "order": 4,
+        "query_id": "q000",
+        "origin": "resolution"
+      },
+      "query_ids": [
+        "q000"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://acventures.vc/",
+      "contradictions": [
+        "stages: [Pre-Seed to Series A] vs [Pre-Seed, Series A, Pre-Series A] (https://acventures.vc/about/)",
+        "geographies: [Indian founders building for India and the world] vs [India, U.S., Middle East, SEA] (https://acventures.vc/about/)",
+        "geographies: [Indian founders building for India and the world] vs [India, U.S., Middle East, SEA] (https://acventures.vc/portfolio/)",
+        "stages: [Pre-Seed to Series A] vs [early-stage, unicorn, decacorn] (https://acventures.vc/team/)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:nascent.vc",
+      "canonical_name": "Nascent VC",
+      "official_domain": "nascent.vc",
+      "aliases": [],
+      "investor_type": "unknown",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "FinTech",
+        "PropTech",
+        "marketplaces",
+        "E-commerce"
+      ],
+      "stages": [
+        "Early stage",
+        "PowerPoint stage"
+      ],
+      "rounds": [],
+      "geographies": [],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "lead",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.nascent.vc/",
+          "title": "https://www.nascent.vc/",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Nascent VC: Early stage investment fund.",
+          "field_evidence": {
+            "sectors": "We only invest in what we deeply understand: FinTech, PropTech, marketplaces and E-commerce.",
+            "stages": "We invest up to USD $600k at the “PowerPoint stage”.",
+            "lead_follow": "Lead with conviction"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 3,
+        "order": 6,
+        "query_id": "q001",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q001"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.nascent.vc/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:roquinventures.com",
+      "canonical_name": "Roquin Ventures",
+      "official_domain": "roquinventures.com",
+      "aliases": [],
+      "investor_type": "corporate_venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "service industry",
+        "entertainment",
+        "betting",
+        "gaming",
+        "digital media",
+        "tecnología",
+        "entretenimiento"
+      ],
+      "stages": [
+        "early stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Monterrey, México"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.roquinventures.com/",
+          "title": "Roquin Ventures: Capital de Riesgo en Monterrey | Roquin Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Roquin ventures is the corporate venture capital arm of the Foliatti Casino Group. We seek to invest in early stage startups with the best founding teams and a determined vision of the future.",
+          "field_evidence": {
+            "investor_type": "Roquin ventures is the corporate venture capital arm of the Foliatti Casino Group.",
+            "sectors": "Our team integrates professionals in the entertainment and service industry, with experience in betting, gaming, and digital media.",
+            "stages": "We seek to invest in early stage startups with the best founding teams and a determined vision of the future."
+          }
+        },
+        {
+          "url": "https://www.roquinventures.com/about-us",
+          "title": "Roquin Ventures: Capital de riesgo en Monterrey, México. | Roquin Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "geographies": "Roquin Ventures: Capital de riesgo en Monterrey, México."
+          }
+        },
+        {
+          "url": "https://www.roquinventures.com/portfolio",
+          "title": "Inversiones en startups de tecnología y entretenimiento | Roquin Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Inversiones en startups de tecnología y entretenimiento"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 4,
+        "order": 10,
+        "query_id": "q002",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q002"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.roquinventures.com/",
+      "contradictions": [
+        "geographies: [Monterrey, México] vs [Monterrey, N.L. , México] (https://www.roquinventures.com/team)",
+        "geographies: [Monterrey, México] vs [México] (https://www.roquinventures.com/portfolio)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:menlovc.com",
+      "canonical_name": "Menlo Ventures",
+      "official_domain": "menlovc.com",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Fintech"
+      ],
+      "stages": [
+        "early-stage",
+        "Series A"
+      ],
+      "rounds": [],
+      "geographies": [],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://menlovc.com/focus-areas/fintech/",
+          "title": "Fintech | Menlo Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Menlo Ventures | Fintech Venture Capital Firm",
+          "field_evidence": {
+            "investor_type": "Fintech Venture Capital Firm",
+            "sectors": "Fintech Venture Capital Firm",
+            "stages": "We invest in transformative, early‑stage fintech companies ... Series A Investment in Numeric"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 6,
+        "order": 14,
+        "query_id": "q003",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q003"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://menlovc.com/focus-areas/fintech/",
+      "contradictions": [
+        "sectors: [Fintech] vs [Supply Chain + Automation] (https://menlovc.com/focus-areas/supply-chain/)",
+        "sectors: [Fintech] vs [Consumer AI, consumer technology] (https://menlovc.com/focus-areas/consumer/)"
+      ]
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:3triangulo.com",
+      "canonical_name": "3Triangulo Capital",
+      "official_domain": "3triangulo.com",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Fintech",
+        "Payments Infrastructure",
+        "B2B Financial Services",
+        "B2C Access & Inclusion",
+        "Backend Financial Systems",
+        "Embedded Finance"
+      ],
+      "stages": [
+        "Pre-Seed",
+        "Seed"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Latin America",
+        "LatAm & Beyond"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "lead",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://3triangulo.com/",
+          "title": "3Triangulo Capital — Pre-Seed & Seed Fintech Investors",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "3Triangulo Capital was founded by practitioners — people who have built and scaled fintech products, managed payments compliance, closed enterprise deals, and sat on both sides of the cap table. We invest at pre-seed and seed, writing initial checks and leading rounds in companies building the next generation of payment rails, financial infrastructure, and embedded finance products.",
+          "field_evidence": {
+            "sectors": "Pre-Seed & Seed · Fintech · Latin America # Capital that moves with founders ... Payments Infrastructure B2B Financial Services",
+            "stages": "We invest at pre-seed and seed, writing initial checks and leading rounds in companies building the next generation of payment rails, financial infrastructure, and embedded finance products.",
+            "geographies": "Fintech · Latin America ... LatAm & Beyond",
+            "lead_follow": "We invest at pre-seed and seed, writing initial checks and leading rounds in companies building the next generation of payment rails, financial infrastructure, and embedded finance products."
+          }
+        },
+        {
+          "url": "https://3triangulo.com/portfolio",
+          "title": "3Triangulo Capital — Pre-Seed & Seed Fintech Investors",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "investor_type": "3Triangulo Capital — Pre-Seed & Seed Fintech Investors"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 6,
+        "order": 16,
+        "query_id": "q003",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q003"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://3triangulo.com/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:marathon.vc",
+      "canonical_name": "Marathon Venture Capital",
+      "official_domain": "marathon.vc",
+      "aliases": [],
+      "investor_type": "unknown",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "active",
+      "verified_on": "2026-10-09",
+      "sectors": [],
+      "stages": [
+        "seed",
+        "Series A",
+        "Series B"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Greece"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [
+        {
+          "url": "https://marathon.vc/",
+          "title": "Marathon Venture Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": "2026-10-02",
+          "quote": "We back the founders building the future we need. You build. We back you, from the first cheque to the last mile. We lead seed rounds and roll up the sleeves."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://marathon.vc/",
+          "title": "Marathon Venture Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": "2026-10-02",
+          "quote": "We back the founders building the future we need. You build. We back you, from the first cheque to the last mile. We lead seed rounds and roll up the sleeves.",
+          "field_evidence": {
+            "geographies": "We have hosted events across 25 countries . Oct 02, 2026 🇬🇷 ### Open Coffee Athens #129 Athens Event completed Sep 01, 2026 🇺🇸 ### Greeks In Tech SF San Francisco Event completed Jun 11, 2026 🇬🇧 ### Greeks In Tech London Summer Vibes London Event completed",
+            "published_on": "Oct 02, 2026"
+          }
+        },
+        {
+          "url": "https://marathon.vc/approach/",
+          "title": "Our Approach | Marathon Venture Capital",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "stages": "We lead seed rounds and offer industry-standard, founder-friendly terms . We follow up to maintain our pro-rata in Series A and Series B rounds."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 7,
+        "order": 17,
+        "query_id": "q003",
+        "origin": "resolution"
+      },
+      "query_ids": [
+        "q003"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://marathon.vc/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:knollventures.com",
+      "canonical_name": "Knoll Ventures",
+      "official_domain": "knollventures.com",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "B2B software",
+        "AI-First Software Products",
+        "AI-Enabled Professional Services Companies",
+        "B2B technology",
+        "technology sector"
+      ],
+      "stages": [
+        "pre-seed",
+        "seed",
+        "Pre-Series A"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Atlanta",
+        "Atlanta, GA"
+      ],
+      "check_range_usd": {
+        "min": 500000,
+        "max": 3000000,
+        "source_url": "https://www.knollventures.com/"
+      },
+      "lead_follow": "lead",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.knollventures.com/",
+          "title": "Knoll Ventures | Strategic Capital For Early-Stage Tech Companies",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Knoll Ventures — Pre-Series A Venture Capital # Pre-Series A Capital for Companies Redefining B2B Software We lead or co-lead $500K–$3M rounds in B2B technology-enabled companies at the pre-seed and seed stages",
+          "field_evidence": {
+            "investor_type": "Knoll Ventures — Pre-Series A Venture Capital # Pre-Series A Capital for Companies Redefining B2B Software We lead or co-lead $500K–$3M rounds in B2B technology-enabled companies at the pre-seed and seed stages",
+            "sectors": "Knoll Ventures — Pre-Series A Venture Capital # Pre-Series A Capital for Companies Redefining B2B Software",
+            "stages": "We lead or co-lead $500K–$3M rounds in B2B technology-enabled companies at the pre-seed and seed stages",
+            "check_range_usd": "We lead or co-lead $500K–$3M rounds in B2B technology-enabled companies at the pre-seed and seed stages",
+            "lead_follow": "We lead or co-lead $500K–$3M rounds in B2B technology-enabled companies at the pre-seed and seed stages"
+          }
+        },
+        {
+          "url": "https://www.knollventures.com/contact",
+          "title": "Page Not Found — Knoll Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Atlanta-based venture capital firm investing $500K–$1M in pre-Series A B2B technology companies.",
+            "geographies": "Atlanta-based venture capital firm investing $500K–$1M in pre-Series A B2B technology companies."
+          }
+        },
+        {
+          "url": "https://www.knollventures.com/team.html",
+          "title": "Team — Knoll Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": null,
+          "field_evidence": {
+            "sectors": "Andrew has an established background in the technology sector, including several board and mentor positions as well as a panelist or judge for a variety of events hosted by notable institutions.",
+            "geographies": "Founded in 2018 in Atlanta, GA."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 8,
+        "order": 18,
+        "query_id": "q004",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q004"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.knollventures.com/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:ignia.vc",
+      "canonical_name": "IGNIA",
+      "official_domain": "ignia.vc",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Fintech",
+        "Health tech",
+        "E - commerce",
+        "Software",
+        "Marketplaces",
+        "Web 3.0"
+      ],
+      "stages": [
+        "early stage",
+        "early-stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Mexico",
+        "USA",
+        "Colombia",
+        "Brazil",
+        "Uruguay",
+        "Argentina",
+        "Chile",
+        "Sweden",
+        "Spain",
+        "Israel",
+        "Latin America",
+        "emerging markets"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://ignia.vc/",
+          "title": "IGNIA | Investing in Global Entrepreneurs",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "IGNIA | Investing in Global Entrepreneurs",
+          "field_evidence": {
+            "investor_type": "IGNIA | Investing in Global Entrepreneurs",
+            "sectors": "Some of our focus areas include: Fintech Health tech E - commerce Software Marketplaces Web 3.0",
+            "stages": "At IGNIA, we are committed to empowering early stage visionary tech entrepreneurs who are poised to revolutionize industries",
+            "geographies": "Mexico USA Colombia Brazil Uruguay Argentina Chile Sweden Spain Israel"
+          }
+        },
+        {
+          "url": "https://www.ignia.vc/about",
+          "title": "About",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Impact Fund I Closing of IGNIA’s Impact Fund I from Institutional Investors as Mexico’s first VC fund.",
+          "field_evidence": {
+            "investor_type": "We invest in global, early-stage startups striving to solve fundamental pain points in emerging markets. IGNIA is the fund of choice for startups’ expansion into Latin America, serving as a bridge to support regional startups in their international journey and guiding global startups as they navigate Latin America.",
+            "stages": "We invest in global, early-stage startups striving to solve fundamental pain points in emerging markets.",
+            "geographies": "IGNIA is the fund of choice for startups’ expansion into Latin America, serving as a bridge to support regional startups in their international journey and guiding global startups as they navigate Latin America."
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 8,
+        "order": 22,
+        "query_id": "q004",
+        "origin": "resolution"
+      },
+      "query_ids": [
+        "q004",
+        "q005"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://ignia.vc/",
+      "contradictions": []
+    },
+    {
+      "schema_version": "investor_entity/2",
+      "stable_id": "inv:domain:lucero.vc",
+      "canonical_name": "Lucero Ventures",
+      "official_domain": "lucero.vc",
+      "aliases": [],
+      "investor_type": "venture_capital",
+      "parent_firm": null,
+      "vehicles": [],
+      "active_status": "possibly_active",
+      "verified_on": "2026-10-09",
+      "sectors": [
+        "Web3 Infrastructure",
+        "AI Applications",
+        "Fintech Innovation"
+      ],
+      "stages": [
+        "pre-seed",
+        "seed",
+        "early-stage"
+      ],
+      "rounds": [],
+      "geographies": [
+        "Latin America",
+        "Argentina",
+        "Brazil",
+        "Mexico",
+        "Colombia",
+        "Chile"
+      ],
+      "check_range_usd": {
+        "min": null,
+        "max": null,
+        "source_url": null
+      },
+      "lead_follow": "unknown",
+      "business_models": {
+        "accepted": [],
+        "excluded": []
+      },
+      "regulatory_restrictions": [],
+      "relevant_portfolio": [],
+      "potential_conflicts": [],
+      "recent_investment_evidence": [],
+      "sources": [
+        {
+          "url": "https://www.lucero.vc/",
+          "title": "Lucero Ventures",
+          "source_kind": "official",
+          "retrieved_on": "2026-10-09",
+          "published_on": null,
+          "quote": "Early-stage venture fund investing at pre-seed & seed stage.",
+          "field_evidence": {
+            "investor_type": "Early-stage venture fund",
+            "sectors": "Web3 Infrastructure AI Applications Fintech Innovation",
+            "stages": "investing at pre-seed & seed stage",
+            "geographies": "Geographic Reach Argentina Brazil Mexico Colombia Chile"
+          }
+        }
+      ],
+      "first_seen": {
+        "step": 1,
+        "search_index": 9,
+        "order": 27,
+        "query_id": "q005",
+        "origin": "search"
+      },
+      "query_ids": [
+        "q005"
+      ],
+      "regulatory_id": null,
+      "canonical_url": "https://www.lucero.vc/",
+      "contradictions": []
+    }
+  ],
+  "judgments": [
+    {
+      "stable_id": "inv:domain:cometa.vc",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "plausible",
+      "unknown_count": 7,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:finnovista.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "met",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "met",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "plausible",
+      "unknown_count": 6,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:acventures.vc",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "not_met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "not_met",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "not_met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "not_met",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 6,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:nascent.vc",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "unknown",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "met",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "unknown",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "met",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "weak",
+      "unknown_count": 8,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:roquinventures.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "not_met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Inversiones en startups de tecnología y entretenimiento"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:menlovc.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "unknown",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "weak",
+      "unknown_count": 8,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:3triangulo.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "met",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "met",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "plausible",
+      "unknown_count": 6,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:marathon.vc",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "met",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "unknown",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "unknown",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "not_met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "met",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "active",
+      "sector_fit": "unknown",
+      "stage_fit": "met",
+      "geography_fit": "not_met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "ineligible",
+      "portfolio_conflict": "none",
+      "overall_relevance": "irrelevant",
+      "unknown_count": 7,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:knollventures.com",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: We lead or co-lead $500K–$3M rounds in B2B technology-enabled companies at the pre-seed and seed stages"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "unknown",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "met",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "met",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "partial",
+      "stage_fit": "met",
+      "geography_fit": "unknown",
+      "check_fit": "met",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "met",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "weak",
+      "unknown_count": 6,
+      "sector_fit_source": "llm"
+    },
+    {
+      "stable_id": "inv:domain:ignia.vc",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Deterministic sector match."
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "plausible",
+      "unknown_count": 7,
+      "sector_fit_source": "deterministic"
+    },
+    {
+      "stable_id": "inv:domain:lucero.vc",
+      "criteria": [
+        {
+          "criterion_id": "INV-ACTIVE",
+          "state": "unknown",
+          "rationale": "Derived from activity evidence, not website existence."
+        },
+        {
+          "criterion_id": "INV-TYPE",
+          "state": "met",
+          "rationale": "normalization.v1 investor_type_map."
+        },
+        {
+          "criterion_id": "INV-SECTOR",
+          "state": "met",
+          "rationale": "Sector quote: Web3 Infrastructure AI Applications Fintech Innovation"
+        },
+        {
+          "criterion_id": "INV-STAGE",
+          "state": "met",
+          "rationale": "normalization.v1 stage ordinal."
+        },
+        {
+          "criterion_id": "INV-GEO",
+          "state": "met",
+          "rationale": "normalization.v1 regions."
+        },
+        {
+          "criterion_id": "INV-CHECK",
+          "state": "unknown",
+          "rationale": "Compared only when both limits and amount are known."
+        },
+        {
+          "criterion_id": "INV-ROUND",
+          "state": "unknown",
+          "rationale": "Compared with published round types."
+        },
+        {
+          "criterion_id": "INV-BUSINESS-MODEL",
+          "state": "unknown",
+          "rationale": "Explicit accepted and excluded models only."
+        },
+        {
+          "criterion_id": "INV-LEAD",
+          "state": "unknown",
+          "rationale": "normalization.v1 lead_map."
+        },
+        {
+          "criterion_id": "INV-REGULATORY",
+          "state": "unknown",
+          "rationale": "Explicit restrictions only."
+        },
+        {
+          "criterion_id": "INV-PORTFOLIO-CONFLICT",
+          "state": "met",
+          "rationale": "Signal only; never an automatic hard failure."
+        },
+        {
+          "criterion_id": "INV-RECENCY",
+          "state": "unknown",
+          "rationale": "Historical investment alone is insufficient."
+        }
+      ],
+      "active_status": "possibly_active",
+      "sector_fit": "on",
+      "stage_fit": "met",
+      "geography_fit": "met",
+      "check_fit": "unknown",
+      "round_fit": "unknown",
+      "business_model_fit": "unknown",
+      "lead_fit": "unknown",
+      "hard_eligibility": "undetermined",
+      "portfolio_conflict": "none",
+      "overall_relevance": "plausible",
+      "unknown_count": 7,
+      "sector_fit_source": "llm"
+    }
+  ],
+  "totals": {
+    "searches": 10,
+    "fetches": 28,
+    "planner_calls": 1,
+    "rejected_non_investors": 16,
+    "portfolio_companies_rejected": 0,
+    "nominal_cost": 28,
+    "tokens_nominal": 96997,
+    "seconds_nominal": 0,
+    "latency_actual_ms": 8381,
+    "latency_nominal_ms": 378795
+  },
+  "prefix_curve": [
+    {
+      "search_index": 2,
+      "stable_ids_so_far": [
+        "inv:domain:cometa.vc",
+        "inv:domain:finnovista.com",
+        "inv:domain:acventures.vc"
+      ],
+      "nominal_cost": 5,
+      "searches": 3,
+      "fetches": 5
+    },
+    {
+      "search_index": 3,
+      "stable_ids_so_far": [
+        "inv:domain:cometa.vc",
+        "inv:domain:finnovista.com",
+        "inv:domain:acventures.vc",
+        "inv:domain:nascent.vc"
+      ],
+      "nominal_cost": 9,
+      "searches": 4,
+      "fetches": 9
+    },
+    {
+      "search_index": 5,
+      "stable_ids_so_far": [
+        "inv:domain:cometa.vc",
+        "inv:domain:finnovista.com",
+        "inv:domain:acventures.vc",
+        "inv:domain:nascent.vc",
+        "inv:domain:roquinventures.com"
+      ],
+      "nominal_cost": 13,
+      "searches": 6,
+      "fetches": 13
+    },
+    {
+      "search_index": 7,
+      "stable_ids_so_far": [
+        "inv:domain:cometa.vc",
+        "inv:domain:finnovista.com",
+        "inv:domain:acventures.vc",
+        "inv:domain:nascent.vc",
+        "inv:domain:roquinventures.com",
+        "inv:domain:menlovc.com",
+        "inv:domain:3triangulo.com",
+        "inv:domain:marathon.vc"
+      ],
+      "nominal_cost": 18,
+      "searches": 8,
+      "fetches": 18
+    },
+    {
+      "search_index": 8,
+      "stable_ids_so_far": [
+        "inv:domain:cometa.vc",
+        "inv:domain:finnovista.com",
+        "inv:domain:acventures.vc",
+        "inv:domain:nascent.vc",
+        "inv:domain:roquinventures.com",
+        "inv:domain:menlovc.com",
+        "inv:domain:3triangulo.com",
+        "inv:domain:marathon.vc",
+        "inv:domain:knollventures.com",
+        "inv:domain:ignia.vc"
+      ],
+      "nominal_cost": 24,
+      "searches": 9,
+      "fetches": 24
+    },
+    {
+      "search_index": 9,
+      "stable_ids_so_far": [
+        "inv:domain:cometa.vc",
+        "inv:domain:finnovista.com",
+        "inv:domain:acventures.vc",
+        "inv:domain:nascent.vc",
+        "inv:domain:roquinventures.com",
+        "inv:domain:menlovc.com",
+        "inv:domain:3triangulo.com",
+        "inv:domain:marathon.vc",
+        "inv:domain:knollventures.com",
+        "inv:domain:ignia.vc",
+        "inv:domain:lucero.vc"
+      ],
+      "nominal_cost": 28,
+      "searches": 10,
+      "fetches": 28
+    }
+  ],
+  "actions_rejected": [],
+  "v2_stats": {
+    "fetch_empty": 0,
+    "fetch_fallback_search_contents": 0,
+    "denied_urls": 6,
+    "deduped_urls": 4,
+    "skipped_empty_hosts": 0,
+    "reads": 24,
+    "resolutions": [
+      {
+        "name": "AC Ventures",
+        "origin": "page_candidate",
+        "outcome": "accepted",
+        "url": "https://acventures.vc/"
+      },
+      {
+        "name": "Finnovista",
+        "origin": "page_candidate",
+        "outcome": "already_seen",
+        "url": "https://www.finnovista.com/en/what-we-do/finnovista-vc-venture-capital/"
+      },
+      {
+        "name": "Bimbo Ventures",
+        "origin": "page_candidate",
+        "outcome": "no_domain",
+        "url": null
+      },
+      {
+        "name": "Marathon Ventures",
+        "origin": "page_candidate",
+        "outcome": "accepted",
+        "url": "https://marathon.vc/"
+      },
+      {
+        "name": "IGNIA",
+        "origin": "page_candidate",
+        "outcome": "accepted",
+        "url": "https://ignia.vc/"
+      },
+      {
+        "name": "Accion Venture Lab",
+        "origin": "page_candidate",
+        "outcome": "rejected:missing_literal_quote",
+        "url": "https://accion.org/"
+      }
+    ],
+    "sector_llm_calls": 4,
+    "candidates_seen": 7,
+    "rejected_by_kind": {
+      "unresolved_firm_identity": 7,
+      "missing_literal_quote": 6,
+      "other": 3
+    },
+    "triage": {
+      "version": "triage.v1",
+      "discarded": 4,
+      "demoted_opened": 0,
+      "demoted_skipped": 2,
+      "by_reason": {
+        "aggregator_host": 3,
+        "aggregator_profile": 1
+      }
+    },
+    "candidates_pending": 1,
+    "deepening": {
+      "enabled": true,
+      "max_firms_per_run": 16,
+      "max_queries_per_firm": 2,
+      "max_fetches_per_firm": 4,
+      "firms": 8,
+      "searches": 12,
+      "fetches": 27,
+      "fetch_empty": 5,
+      "extract_calls": 20,
+      "tokens_nominal": 70153,
+      "latency_actual_ms": 157414,
+      "latency_nominal_ms": 271755,
+      "fields_filled": {
+        "INV-SECTOR": 2,
+        "INV-STAGE": 1,
+        "INV-GEO": 2,
+        "INV-TYPE": 2,
+        "INV-ACTIVE": 0
+      },
+      "contradictions": 9,
+      "per_firm": [
+        {
+          "stable_id": "inv:domain:menlovc.com",
+          "name": "Menlo Ventures",
+          "domain": "menlovc.com",
+          "missing_before": [
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-GEO"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Menlo Ventures investment criteria: geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://menlovc.com/focus-areas/supply-chain/",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "sectors: [Fintech] vs [Supply Chain + Automation] (https://menlovc.com/focus-areas/supply-chain/)"
+              ]
+            },
+            {
+              "url": "https://menlovc.com/focus-areas/consumer/",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "sectors: [Fintech] vs [Consumer AI, consumer technology] (https://menlovc.com/focus-areas/consumer/)"
+              ]
+            },
+            {
+              "url": "https://menlovc.com/focus-areas/saas/",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://menlovc.com/perspective/menlo-ventures-launches-the-menlo-inflection-fund/",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:nascent.vc",
+          "name": "Nascent VC",
+          "domain": "nascent.vc",
+          "missing_before": [
+            "INV-GEO",
+            "INV-TYPE"
+          ],
+          "missing_after": [
+            "INV-GEO",
+            "INV-TYPE"
+          ],
+          "queries": 2,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Nascent VC investment criteria: geographies (countries and regions) they invest in, and what type of investor Nascent VC is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 1,
+              "in_domain": 1
+            },
+            {
+              "query": "Page describing Nascent VC's investment strategy and focus: the geographies (countries and regions) it targets, what kind of investor it is",
+              "origin": "search2",
+              "results": 1,
+              "in_domain": 1
+            },
+            {
+              "url": "https://nascent.vc/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "fetch_empty"
+            },
+            {
+              "url": "https://nascent.vc/strategy",
+              "origin": "guess",
+              "outcome": "fetch_empty",
+              "filled": []
+            },
+            {
+              "url": "https://nascent.vc/investment-focus",
+              "origin": "guess",
+              "outcome": "fetch_empty",
+              "filled": []
+            },
+            {
+              "url": "https://nascent.vc/about",
+              "origin": "guess",
+              "outcome": "fetch_empty",
+              "filled": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:3triangulo.com",
+          "name": "3Triangulo Capital",
+          "domain": "3triangulo.com",
+          "missing_before": [
+            "INV-TYPE"
+          ],
+          "missing_after": [],
+          "queries": 2,
+          "fetches": 3,
+          "pages": [
+            {
+              "query": "About 3Triangulo Capital: what type of investor 3Triangulo Capital is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 1,
+              "in_domain": 1
+            },
+            {
+              "query": "Page describing 3Triangulo Capital's investment strategy and focus: what kind of investor it is",
+              "origin": "search2",
+              "results": 1,
+              "in_domain": 1
+            },
+            {
+              "url": "https://3triangulo.com/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "links:0"
+            },
+            {
+              "url": "https://3triangulo.com/about",
+              "origin": "guess",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://3triangulo.com/portfolio",
+              "origin": "guess",
+              "outcome": "merged",
+              "filled": [
+                "INV-TYPE"
+              ],
+              "contradictions": []
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:cometa.vc",
+          "name": "Cometa",
+          "domain": "cometa.vc",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-GEO"
+          ],
+          "missing_after": [],
+          "queries": 1,
+          "fetches": 1,
+          "pages": [
+            {
+              "query": "Cometa investment criteria: sectors and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://www.cometa.vc/portfolio",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR",
+                "INV-GEO"
+              ],
+              "contradictions": [
+                "stages: [early-stage] vs [Seed, Series A, Series B, Pre-Seed] (https://www.cometa.vc/portfolio)"
+              ]
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:knollventures.com",
+          "name": "Knoll Ventures",
+          "domain": "knollventures.com",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-SECTOR",
+            "INV-GEO"
+          ],
+          "queries": 2,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Knoll Ventures investment criteria: sectors and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 2,
+              "in_domain": 2
+            },
+            {
+              "url": "https://www.knollventures.com/contact",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR",
+                "INV-GEO"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.knollventures.com/portfolio.html",
+              "origin": "link",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.knollventures.com/team.html",
+              "origin": "link",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR",
+                "INV-GEO"
+              ],
+              "contradictions": []
+            },
+            {
+              "query": "Page describing Knoll Ventures's investment strategy and focus: the sectors and geographies (countries and regions) it targets",
+              "origin": "search2",
+              "results": 2,
+              "in_domain": 2
+            },
+            {
+              "url": "https://knollventures.com/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "fetch_empty"
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:roquinventures.com",
+          "name": "Roquin Ventures",
+          "domain": "roquinventures.com",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-GEO"
+          ],
+          "missing_after": [
+            "INV-SECTOR"
+          ],
+          "queries": 2,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Roquin Ventures investment criteria: sectors and geographies (countries and regions) they invest in",
+              "origin": "search1",
+              "results": 3,
+              "in_domain": 3
+            },
+            {
+              "url": "https://www.roquinventures.com/about-us",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-GEO"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://www.roquinventures.com/team",
+              "origin": "search1",
+              "outcome": "no_new_data",
+              "filled": [],
+              "contradictions": [
+                "geographies: [Monterrey, México] vs [Monterrey, N.L. , México] (https://www.roquinventures.com/team)"
+              ]
+            },
+            {
+              "query": "Page describing Roquin Ventures's investment strategy and focus: the sectors it targets",
+              "origin": "search2",
+              "results": 3,
+              "in_domain": 3
+            },
+            {
+              "url": "https://roquinventures.com/sitemap.xml",
+              "origin": "sitemap",
+              "outcome": "links:3"
+            },
+            {
+              "url": "https://www.roquinventures.com/portfolio",
+              "origin": "sitemap",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR"
+              ],
+              "contradictions": [
+                "geographies: [Monterrey, México] vs [México] (https://www.roquinventures.com/portfolio)"
+              ]
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:acventures.vc",
+          "name": "AC Ventures",
+          "domain": "acventures.vc",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-TYPE"
+          ],
+          "missing_after": [],
+          "queries": 1,
+          "fetches": 3,
+          "pages": [
+            {
+              "query": "AC Ventures investment criteria: sectors they invest in, and what type of investor AC Ventures is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://acventures.vc/about/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR",
+                "INV-TYPE"
+              ],
+              "contradictions": [
+                "stages: [Pre-Seed to Series A] vs [Pre-Seed, Series A, Pre-Series A] (https://acventures.vc/about/)",
+                "geographies: [Indian founders building for India and the world] vs [India, U.S., Middle East, SEA] (https://acventures.vc/about/)"
+              ]
+            },
+            {
+              "url": "https://acventures.vc/portfolio/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR"
+              ],
+              "contradictions": [
+                "geographies: [Indian founders building for India and the world] vs [India, U.S., Middle East, SEA] (https://acventures.vc/portfolio/)"
+              ]
+            },
+            {
+              "url": "https://acventures.vc/team/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-SECTOR"
+              ],
+              "contradictions": [
+                "stages: [Pre-Seed to Series A] vs [early-stage, unicorn, decacorn] (https://acventures.vc/team/)"
+              ]
+            }
+          ]
+        },
+        {
+          "stable_id": "inv:domain:marathon.vc",
+          "name": "Marathon Venture Capital",
+          "domain": "marathon.vc",
+          "missing_before": [
+            "INV-SECTOR",
+            "INV-STAGE",
+            "INV-TYPE"
+          ],
+          "missing_after": [
+            "INV-SECTOR",
+            "INV-TYPE"
+          ],
+          "queries": 1,
+          "fetches": 4,
+          "pages": [
+            {
+              "query": "Marathon Venture Capital investment criteria: sectors and stages they invest in, and what type of investor Marathon Venture Capital is (venture capital fund, corporate venture arm, public fund, angel network)",
+              "origin": "search1",
+              "results": 10,
+              "in_domain": 10
+            },
+            {
+              "url": "https://marathon.vc/approach/",
+              "origin": "search1",
+              "outcome": "merged",
+              "filled": [
+                "INV-STAGE"
+              ],
+              "contradictions": []
+            },
+            {
+              "url": "https://marathon.vc/portfolio",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://marathon.vc/team",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            },
+            {
+              "url": "https://marathon.vc/contact",
+              "origin": "search1",
+              "outcome": "rejected:other",
+              "filled": [],
+              "contradictions": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "seed": 101,
+  "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B1__s101",
+  "ablation": null,
+  "capital_strategy_context": false,
+  "apollo": {
+    "calls": 0,
+    "credits_estimated": 0
+  }
+}

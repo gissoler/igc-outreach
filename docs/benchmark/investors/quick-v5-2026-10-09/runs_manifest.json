@@ -1,0 +1,48 @@
+{
+  "schema_version": "runs_manifest/1",
+  "expected_runs": 4,
+  "scheduled_runs": 4,
+  "order_seed": 20261008,
+  "concurrency": 4,
+  "conditions": [
+    "B1",
+    "B2"
+  ],
+  "seeds": [
+    101
+  ],
+  "runs": [
+    {
+      "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B1__s101",
+      "status": "valid",
+      "ordinal": 1,
+      "stop_reason": "queries_exhausted",
+      "apollo_calls": 0,
+      "result_path": "/Users/gcaicedo/Documents/PROJECTS/AGENT/research/bench/investors/out/quick-v5-2026-10-09/runs/investors-internal-2026-10-09-v5__inv-case-syn-p01__B1__s101/result.json"
+    },
+    {
+      "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-n04__B1__s101",
+      "status": "valid",
+      "ordinal": 2,
+      "stop_reason": "queries_exhausted",
+      "apollo_calls": 0,
+      "result_path": "/Users/gcaicedo/Documents/PROJECTS/AGENT/research/bench/investors/out/quick-v5-2026-10-09/runs/investors-internal-2026-10-09-v5__inv-case-syn-n04__B1__s101/result.json"
+    },
+    {
+      "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-n04__B2__s101",
+      "status": "valid",
+      "ordinal": 3,
+      "stop_reason": "no_more_actions",
+      "apollo_calls": 0,
+      "result_path": "/Users/gcaicedo/Documents/PROJECTS/AGENT/research/bench/investors/out/quick-v5-2026-10-09/runs/investors-internal-2026-10-09-v5__inv-case-syn-n04__B2__s101/result.json"
+    },
+    {
+      "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B2__s101",
+      "status": "valid",
+      "ordinal": 4,
+      "stop_reason": "no_more_actions",
+      "apollo_calls": 0,
+      "result_path": "/Users/gcaicedo/Documents/PROJECTS/AGENT/research/bench/investors/out/quick-v5-2026-10-09/runs/investors-internal-2026-10-09-v5__inv-case-syn-p01__B2__s101/result.json"
+    }
+  ]
+}
