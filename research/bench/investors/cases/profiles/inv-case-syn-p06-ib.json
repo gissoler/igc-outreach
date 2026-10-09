@@ -1,0 +1,173 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-syn-vorlicht-security-ib",
+  "status": "frozen",
+  "as_of": "2026-10-08",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-v6-intent-rewrite",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Vorlicht Security (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Germany",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Germany",
+        "Austria",
+        "Switzerland"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "sector": {
+      "value": "Cybersecurity",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "OT security",
+        "compliance automation",
+        "asset inventory"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product": {
+      "value": "Software that automatically finds the machines on a factory's operational-technology network and prepares the documentation that NIS2 compliance requires, for mid-sized manufacturers",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "description": {
+      "value": "Mid-sized manufacturers without their own security staff still have to show NIS2 compliance. Vorlicht Security listens passively to factory networks to build an inventory of operational-technology assets, then automatically produces the risk register and the evidence needed for NIS2. The seed round pays for selling in the DACH region.",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "mid-market manufacturers"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "SaaS subscription (per site)",
+        "onboarding services"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "live product with paying customers",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "seed",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "Seed (priced equity)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 3000000,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: 21 paying sites, EUR 520k ARR, 2 channel partners (system integrators), net revenue retention 128%",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "EU NIS2 Directive",
+        "German IT-Sicherheitsgesetz 2.0",
+        "IEC 62443",
+        "GDPR"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Germany",
+        "Austria",
+        "Switzerland"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "specialist_vc",
+        "generalist_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": [
+        "Claroty"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    }
+  }
+}

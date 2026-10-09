@@ -1,0 +1,35 @@
+{
+  "schema_version": "intent_pair_briefs/1",
+  "written_at": "2026-10-09",
+  "author": "claude (v6, sin haber leído inversionistas ni oro de estos casos)",
+  "definition": {
+    "semantically_equivalent": "Mismo significado literal: los mismos hechos sobre producto, clientes, modelo de ingresos y uso de la ronda; no se añade ni se quita ningún hecho, cifra ni restricción. Los campos estructurados (sector, subsectores, etapa, mercados, tipos de inversor aceptados, etc.) no cambian.",
+    "pragmatically_distinct": "Distinto énfasis, vocabulario o intención comunicativa: la variante A describe el producto; la variante B parte del problema del cliente o del incentivo que lo mueve y usa otro vocabulario (p. ej. «brecha de caja» frente a «capital de trabajo»)."
+  },
+  "pairs": {
+    "p01": {
+      "product": "Working-capital credit and invoice-payment service that lets small independent restaurants buy from their food suppliers now and pay later",
+      "description": "Independent restaurants struggle with the cash gap between receiving supplies and paying for them, while their food distributors want to be paid immediately. Tandoval Pay closes that gap: the restaurant pays the distributor 30 days later and the distributor is paid upfront. It reads CFDI electronic-invoice records to digitise each invoice and sets short-term credit limits from the restaurant's purchase history. It earns money from fees charged to distributors and from the interest spread on the credit."
+    },
+    "p02": {
+      "product": "Rental of electric three-wheeled cargo vehicles to last-mile delivery fleets, together with a network of stations where drivers exchange a depleted battery for a charged one",
+      "description": "Fleets that deliver the last mile can run electric vehicles without waiting for them to charge. Corvanta Mobility builds and assembles electric three-wheeled cargo vehicles in the state of Sao Paulo and operates the battery-exchange stations where a depleted battery is swapped for a charged one. A fleet rents each vehicle for a monthly fee and pays an energy fee every time it swaps a battery. The Series B money is for a second assembly line and for entering four more metropolitan areas."
+    },
+    "p03": {
+      "product": "In-line optical measurement equipment that uses laser interferometry to detect warped wafers and uneven solder bumps while chips are being packaged",
+      "description": "Chipmakers lose yield when wafers and panels warp, or when bump heights are uneven, during advanced packaging, especially when assembling chiplets. Quorvel Photonics sells an optical measurement system that sits in the production line and measures warpage and bump coplanarity to sub-micron precision on wafers and panels. The Series A pays for two beta tools installed at packaging fabs and for a design that is ready for production."
+    },
+    "p04": {
+      "product": "Hands-free voice assistant for repair technicians in the field that finds the answer to a maintenance question in the company's own manuals and earlier job records",
+      "description": "HVAC and elevator technicians working on site cannot stop to search through manuals, so Brintle Labs lets them ask by voice and hear answers drawn from manuals, schematics and the history of past job tickets. It connects to the field-service software that companies already use. The pre-seed round pays for the first deployments in production and for preparing to pass a SOC 2 audit."
+    },
+    "p05": {
+      "product": "A heating service for apartment buildings sold for a fixed monthly fee: the company installs and operates the heat pumps, and its software shifts the buildings' electricity use to help the grid",
+      "description": "Housing associations that want to stop heating apartment blocks with gas boilers can buy heat from Heliwarm Systems for a fixed monthly fee instead of buying equipment: Heliwarm installs, owns and runs centralised heat pumps in the buildings. Its control software pools the buildings into a virtual power plant and sells their ability to shift electricity demand to grid operators. The Series B pays for growth into Germany and for the platform team."
+    },
+    "p06": {
+      "product": "Software that automatically finds the machines on a factory's operational-technology network and prepares the documentation that NIS2 compliance requires, for mid-sized manufacturers",
+      "description": "Mid-sized manufacturers without their own security staff still have to show NIS2 compliance. Vorlicht Security listens passively to factory networks to build an inventory of operational-technology assets, then automatically produces the risk register and the evidence needed for NIS2. The seed round pays for selling in the DACH region."
+    }
+  }
+}

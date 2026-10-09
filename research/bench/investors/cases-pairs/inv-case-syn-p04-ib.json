@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p04-ib",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p04-ib.json",
+  "profile_sha256": "f53be56740423ccadc23e462e3af21efbe0444348429b02929e05a989b67fce6",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:golden.ventures",
+      "canonical_name": "Golden Ventures",
+      "official_url": "https://golden.ventures/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "Internal-gold adjudication records Golden Ventures as a defensible retrieval anchor.",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

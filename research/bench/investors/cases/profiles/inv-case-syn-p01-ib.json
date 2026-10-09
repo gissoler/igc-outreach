@@ -1,0 +1,173 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-syn-tandoval-pay-ib",
+  "status": "frozen",
+  "as_of": "2026-10-08",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-v6-intent-rewrite",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Tandoval Pay (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Mexico",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Mexico"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "sector": {
+      "value": "Fintech",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "B2B payments",
+        "SME working capital",
+        "embedded lending"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product": {
+      "value": "Working-capital credit and invoice-payment service that lets small independent restaurants buy from their food suppliers now and pay later",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "description": {
+      "value": "Independent restaurants struggle with the cash gap between receiving supplies and paying for them, while their food distributors want to be paid immediately. Tandoval Pay closes that gap: the restaurant pays the distributor 30 days later and the distributor is paid upfront. It reads CFDI electronic-invoice records to digitise each invoice and sets short-term credit limits from the restaurant's purchase history. It earns money from fees charged to distributors and from the interest spread on the credit.",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "SME",
+        "B2B distributors"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "transaction fees",
+        "interest spread",
+        "SaaS subscription"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "live product with paying customers",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "seed",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "Seed (priced equity)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 2500000,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: USD 1.1M monthly payment volume, 640 active restaurants, 38 distributors, ~USD 45k MRR, 0.9% 90-day default rate",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "Mexican Ley Fintech",
+        "CNBV oversight for lending activity",
+        "SAT CFDI e-invoicing rules",
+        "AML/KYC (LFPIORPI)"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Mexico"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "generalist_vc",
+        "specialist_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [
+        "credit facility to be raised separately as debt; equity round not for loan book"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": [
+        "Konfio"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    }
+  }
+}

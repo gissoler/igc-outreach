@@ -1,0 +1,166 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-syn-brintle-labs-ib",
+  "status": "frozen",
+  "as_of": "2026-10-08",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-v6-intent-rewrite",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Brintle Labs (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Canada",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Canada",
+        "United States"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "sector": {
+      "value": "Enterprise software",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "field service management",
+        "AI assistants",
+        "knowledge management"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product": {
+      "value": "Hands-free voice assistant for repair technicians in the field that finds the answer to a maintenance question in the company's own manuals and earlier job records",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "description": {
+      "value": "HVAC and elevator technicians working on site cannot stop to search through manuals, so Brintle Labs lets them ask by voice and hear answers drawn from manuals, schematics and the history of past job tickets. It connects to the field-service software that companies already use. The pre-seed round pays for the first deployments in production and for preparing to pass a SOC 2 audit.",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "mid-market enterprises",
+        "field service companies"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "SaaS subscription (per seat)"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "MVP with design partners",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "pre-seed",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "SAFE pre-seed (post-money)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 600000,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: 3 design partners, 140 active technician seats in pilot, 1 signed LOI for USD 48k ARR",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "PIPEDA",
+        "SOC 2 (customer requirement)"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Canada",
+        "United States"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "generalist_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": null,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    }
+  }
+}

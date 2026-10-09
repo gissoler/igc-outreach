@@ -1,0 +1,30 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-p01-ib",
+  "kind": "anchor",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-p01-ib.json",
+  "profile_sha256": "94772ac4c2adeb12dd323293256427f5250d808e4c61afae95c9fd0a2c1cbbc0",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:26:48-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [
+    {
+      "stable_id": "inv:domain:magmapartners.com",
+      "canonical_name": "Magma Partners",
+      "official_url": "https://magmapartners.com/",
+      "active_status": "active",
+      "verified_on": "2026-10-08",
+      "compatibility_evidence": "While we're best known for fintech, insurtech and marketplaces,",
+      "found_after_profile_freeze": true,
+      "selected_from_system_results": false,
+      "historical_investment_control": false
+    }
+  ],
+  "null_case": null
+}

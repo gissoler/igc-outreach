@@ -1,0 +1,171 @@
+{
+  "schema_version": "investor_profile/1",
+  "profile_id": "inv-prof-syn-corvanta-mobility-ib",
+  "status": "frozen",
+  "as_of": "2026-10-08",
+  "provenance": {
+    "documents": [],
+    "built_by": "llm",
+    "builder_id": "claude-v6-intent-rewrite",
+    "builder_saw_investors": false
+  },
+  "fields": {
+    "name": {
+      "value": "Corvanta Mobility (SYN)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "incorporation_country": {
+      "value": "Brazil",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "operating_regions": {
+      "value": [
+        "Brazil"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "sector": {
+      "value": "Electric mobility",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "subsectors": {
+      "value": [
+        "electric cargo vehicles",
+        "battery swapping",
+        "urban logistics"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product": {
+      "value": "Rental of electric three-wheeled cargo vehicles to last-mile delivery fleets, together with a network of stations where drivers exchange a depleted battery for a charged one",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "description": {
+      "value": "Fleets that deliver the last mile can run electric vehicles without waiting for them to charge. Corvanta Mobility builds and assembles electric three-wheeled cargo vehicles in the state of Sao Paulo and operates the battery-exchange stations where a depleted battery is swapped for a charged one. A fleet rents each vehicle for a monthly fee and pays an energy fee every time it swaps a battery. The Series B money is for a second assembly line and for entering four more metropolitan areas.",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "customer_type": {
+      "value": [
+        "enterprise fleets",
+        "logistics companies"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "business_model": {
+      "value": [
+        "vehicle leasing",
+        "energy-as-a-service",
+        "hardware sales"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "product_stage": {
+      "value": "scaling commercial deployment",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "funding_stage": {
+      "value": "series_b",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "round_sought": {
+      "value": "Series B (priced equity)",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "capital_sought_usd": {
+      "value": 30000000,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "revenue_or_traction": {
+      "value": "synthetic: 2,300 vehicles deployed, 85 swap stations, USD 14M annualised revenue, 2.4x YoY growth, 7 enterprise fleet contracts",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "relevant_regulation": {
+      "value": [
+        "INMETRO vehicle homologation",
+        "CONTRAN road-safety rules",
+        "ANEEL rules on energy resale"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "target_markets": {
+      "value": [
+        "Brazil"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "lead_preference": {
+      "value": "seeking lead",
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "accepted_investor_types": {
+      "value": [
+        "growth_investor",
+        "climate_vc",
+        "generalist_vc"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "excluded_investors": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "restrictions": {
+      "value": [
+        "vehicle asset finance expected via separate debt facility"
+      ],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "known_portfolio_conflicts": {
+      "value": [],
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    },
+    "comparable_companies": {
+      "value": null,
+      "source": "synthetic",
+      "as_of": "2026-10-08",
+      "quote": null
+    }
+  }
+}
