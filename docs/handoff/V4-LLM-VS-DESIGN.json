@@ -1,0 +1,617 @@
+{
+  "as_of": "2026-10-09T04:19:21.511Z",
+  "sample": [
+    {
+      "case_id": "inv-case-syn-p01",
+      "stable_id": "inv:domain:blustone.capital",
+      "url": "https://blustone.capital/en/",
+      "chars": 4499
+    },
+    {
+      "case_id": "inv-case-syn-p02",
+      "stable_id": "inv:domain:barninvest.com.br",
+      "url": "https://barninvest.com.br/en/blog/investing-in-more-efficient-and-green-logistics-why-we-invested-in-origem",
+      "chars": 8401
+    },
+    {
+      "case_id": "inv-case-syn-p03",
+      "stable_id": "inv:domain:blueskycapital.vc",
+      "url": "https://blueskycapital.vc/",
+      "chars": 7707
+    },
+    {
+      "case_id": "inv-case-syn-p04",
+      "stable_id": "inv:domain:actions.capital",
+      "url": "https://www.actions.capital/",
+      "chars": 9279
+    },
+    {
+      "case_id": "inv-case-syn-p05",
+      "stable_id": "inv:domain:eneco.nl",
+      "url": "https://www.eneco.nl/en/about-us/what-we-do/ventures/",
+      "chars": 5197
+    },
+    {
+      "case_id": "inv-case-syn-p06",
+      "stable_id": "inv:domain:glilotcapital.com",
+      "url": "https://glilotcapital.com/cyberhubs/cybersecurity-venture-capital/",
+      "chars": 12349
+    },
+    {
+      "case_id": "inv-case-syn-p07",
+      "stable_id": "inv:domain:av-ventures.com",
+      "url": "https://av-ventures.com/our_funds/",
+      "chars": 8034
+    },
+    {
+      "case_id": "inv-case-syn-p08",
+      "stable_id": "inv:domain:awakapital.vc",
+      "url": "https://www.awakapital.vc/",
+      "chars": 7021
+    },
+    {
+      "case_id": "inv-case-syn-p09",
+      "stable_id": "inv:domain:ashikaprivateequity.com",
+      "url": "https://ashikaprivateequity.com/",
+      "chars": 7379
+    },
+    {
+      "case_id": "inv-case-syn-p10",
+      "stable_id": "inv:domain:3one4capital.com",
+      "url": "https://www.3one4capital.com/",
+      "chars": 5642
+    },
+    {
+      "case_id": "inv-case-syn-p11",
+      "stable_id": "inv:domain:antares.ventures",
+      "url": "https://antares.ventures/",
+      "chars": 6181
+    },
+    {
+      "case_id": "inv-case-syn-p01",
+      "stable_id": "inv:domain:cometa.vc",
+      "url": "https://www.cometa.vc/",
+      "chars": 3968
+    },
+    {
+      "case_id": "inv-case-syn-p02",
+      "stable_id": "inv:domain:boldtcapital.com",
+      "url": "https://boldtcapital.com/",
+      "chars": 4098
+    },
+    {
+      "case_id": "inv-case-syn-p03",
+      "stable_id": "inv:domain:cottonwood.vc",
+      "url": "https://www.cottonwood.vc/",
+      "chars": 10213
+    },
+    {
+      "case_id": "inv-case-syn-p04",
+      "stable_id": "inv:domain:altventures.ca",
+      "url": "https://altventures.ca/",
+      "chars": 4825
+    },
+    {
+      "case_id": "inv-case-syn-p06",
+      "stable_id": "inv:domain:senovo.vc",
+      "url": "https://senovo.vc/",
+      "chars": 1669
+    },
+    {
+      "case_id": "inv-case-syn-p07",
+      "stable_id": "inv:domain:standardventures.ng",
+      "url": "https://standardventures.ng/",
+      "chars": 5881
+    },
+    {
+      "case_id": "inv-case-syn-p08",
+      "stable_id": "inv:domain:biosisventures.com",
+      "url": "https://biosisventures.com/",
+      "chars": 10486
+    },
+    {
+      "case_id": "inv-case-syn-p09",
+      "stable_id": "inv:domain:norwest.com",
+      "url": "https://www.norwest.com/india/",
+      "chars": 13741
+    },
+    {
+      "case_id": "inv-case-syn-p10",
+      "stable_id": "inv:domain:4point0.vc",
+      "url": "https://4point0.vc/",
+      "chars": 6806
+    }
+  ],
+  "gpt_oss_120b": {
+    "model": "openai/gpt-oss-120b (cache v3, temperature 0)",
+    "cache_hits": 20,
+    "pages": 20,
+    "core_criteria_known_pct": 0,
+    "all12_criteria_known_pct": 8.8,
+    "pages_all4_core_known": 0,
+    "fact_fields_filled_pct": 0.4,
+    "per_field_filled": {
+      "investor_type": 0,
+      "sectors": 0,
+      "stages": 0,
+      "geographies": 0,
+      "check_range_usd": 0,
+      "rounds": 0,
+      "lead_follow": 0,
+      "business_models": 0,
+      "active_status": 1,
+      "published_on": 0,
+      "quote": 0,
+      "official_domain": 0
+    },
+    "accepted_by_gate": 18,
+    "gain_ge2": 0,
+    "page_states_stage": 17,
+    "page_states_type": 18,
+    "rows": [
+      {
+        "url": "https://blustone.capital/en/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://barninvest.com.br/en/blog/investing-in-more-efficient-and-green-logistics-why-we-invested-in-origem",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://blueskycapital.vc/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.actions.capital/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.eneco.nl/en/about-us/what-we-do/ventures/",
+        "cache_hit": true,
+        "accepted": false,
+        "rejected_kind": "missing_literal_quote",
+        "judged_with_gate_bypass": true,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://glilotcapital.com/cyberhubs/cybersecurity-venture-capital/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://av-ventures.com/our_funds/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": false,
+          "investor_type": false
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.awakapital.vc/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://ashikaprivateequity.com/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.3one4capital.com/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://antares.ventures/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.cometa.vc/",
+        "cache_hit": true,
+        "accepted": false,
+        "rejected_kind": "missing_literal_quote",
+        "judged_with_gate_bypass": true,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": false,
+          "investor_type": false
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://boldtcapital.com/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": false,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.cottonwood.vc/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://altventures.ca/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://senovo.vc/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://standardventures.ng/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [
+          "active_status"
+        ],
+        "core_known": [],
+        "all_known": 2,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "active_status",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://biosisventures.com/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://www.norwest.com/india/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      },
+      {
+        "url": "https://4point0.vc/",
+        "cache_hit": true,
+        "accepted": true,
+        "rejected_kind": null,
+        "judged_with_gate_bypass": false,
+        "facts_filled": [],
+        "core_known": [],
+        "all_known": 1,
+        "gain": 1,
+        "page_says": {
+          "stages": true,
+          "investor_type": true
+        },
+        "raw_keys": [
+          "entity_kind",
+          "canonical_name",
+          "aliases",
+          "source_kind",
+          "canonical_url",
+          "contradictions"
+        ]
+      }
+    ]
+  }
+}
