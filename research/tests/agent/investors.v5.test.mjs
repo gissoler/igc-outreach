@@ -76,9 +76,9 @@ test('V5-1b failover: v4 sigue en instant sin highlights; v5 usa auto + highligh
   assert.equal(Object.hasOwn(out.v4.results[0], 'highlights'), false);
 });
 
-test('V5-1c config v5 valida (draft), usa manifest.v5 con planner v3 y b0 v2 verificados; v4 no cambia', () => {
+test('V5-1c config v5 valida (frozen desde V6-1), usa manifest.v5 con planner v3 y b0 v2 verificados; v4 no cambia', () => {
   const v5 = validateInvestor('investor_run_config.v3', json(cfgPath('v5-2026-10-09')));
-  assert.equal(v5.status, 'draft'); assert.equal(v5.search.exa_type, 'auto'); assert.equal(v5.search.exa_highlights, true);
+  assert.equal(v5.status, 'frozen'); assert.equal(v5.search.exa_type, 'auto'); assert.equal(v5.search.exa_highlights, true);
   assert.deepEqual(v5.deepening, { enabled: true, max_firms_per_run: 16, max_queries_per_firm: 2, max_fetches_per_firm: 4 });
   assert.deepEqual(v5.budgets, json(cfgPath('v4-2026-10-09')).budgets);
   const planner = loadInvestorPrompt('planner', 'v3', { manifest: 'manifest.v5.json' });
