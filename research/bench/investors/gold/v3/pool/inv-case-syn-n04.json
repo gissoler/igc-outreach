@@ -1,0 +1,22 @@
+[
+  {
+    "stable_id": "inv:domain:captona.com",
+    "name": "Captona",
+    "urls": [
+      "https://captona.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:vestas.com",
+    "name": "Vestas Ventures",
+    "urls": [
+      "https://www.vestas.com/en/about/vestas-ventures"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

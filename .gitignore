@@ -41,3 +41,6 @@ research/bench/out/
 
 # Datos de cuenta de integraciones (cuotas Apollo, etc.)
 research/artifacts/
+
+# Salidas de corrida del benchmark (evidencia fuera del repo)
+research/bench/investors/out/

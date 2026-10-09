@@ -1,0 +1,253 @@
+[
+  {
+    "stable_id": "inv:domain:actions.capital",
+    "name": "Actions Capital",
+    "urls": [
+      "https://www.actions.capital/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:altventures.ca",
+    "name": "Alt Ventures",
+    "urls": [
+      "https://altventures.ca/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:array.vc",
+    "name": "Array Ventures",
+    "urls": [
+      "https://www.array.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:attack.capital",
+    "name": "Attack Capital",
+    "urls": [
+      "https://attack.capital/investment-thesis/invest-in-voice-ai"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:aventracapital.com",
+    "name": "Aventra Capital",
+    "urls": [
+      "https://www.aventracapital.com/",
+      "https://aventracapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:bcfventures.vc",
+    "name": "BCF Ventures",
+    "urls": [
+      "https://bcfventures.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:capitalone.com",
+    "name": "Capital One Ventures",
+    "urls": [
+      "https://www.capitalone.com/tech/ai/capital-one-ventures-why-we-invest-in-tech-startups/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:cerbert.com",
+    "name": "CERBERT Investment Fund",
+    "urls": [
+      "https://www.cerbert.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:deloitte.com",
+    "name": "Deloitte Ventures",
+    "urls": [
+      "https://www.deloitte.com/ca/en/services/program/ventures.html"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:designerfund.com",
+    "name": "Designer Fund",
+    "urls": [
+      "https://designerfund.com/about"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:everywhere.vc",
+    "name": "Everywhere Ventures",
+    "urls": [
+      "https://www.everywhere.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:firstascentventures.com",
+    "name": "First Ascent Ventures",
+    "urls": [
+      "https://firstascentventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:firstbyte.vc",
+    "name": "FirstByte",
+    "urls": [
+      "https://www.firstbyte.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:foundersedge.com",
+    "name": "FoundersEdge",
+    "urls": [
+      "https://www.foundersedge.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:golden.ventures",
+    "name": "Golden Ventures",
+    "urls": [
+      "https://golden.ventures/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:investnovascotia.ca",
+    "name": "Invest Nova Scotia",
+    "urls": [
+      "https://investnovascotia.ca/incentives-programs-services/invest-nova-scotia-accelerate"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:johnsoncontrols.com",
+    "name": "Johnson Controls Ventures",
+    "urls": [
+      "https://www.johnsoncontrols.com/ventures"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:kiiltoventures.com",
+    "name": "Kiilto Ventures",
+    "urls": [
+      "https://kiiltoventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:kindredventures.com",
+    "name": "Kindred Ventures",
+    "urls": [
+      "https://kindredventures.com/announcement/playai-kindredventures-seedinvestment/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:knollventures.com",
+    "name": "Knoll Ventures",
+    "urls": [
+      "https://www.knollventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:mcrockcapital.com",
+    "name": "McRock Capital",
+    "urls": [
+      "https://mcrockcapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:quadri.vc",
+    "name": "Quadri",
+    "urls": [
+      "https://quadri.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:servicenow.com",
+    "name": "ServiceNow Ventures",
+    "urls": [
+      "https://www.servicenow.com/company/ventures.html"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:startupignition.com",
+    "name": "Startup Ignition Ventures",
+    "urls": [
+      "https://www.startupignition.com/ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:varion.vc",
+    "name": "Varion Ventures",
+    "urls": [
+      "https://varion.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

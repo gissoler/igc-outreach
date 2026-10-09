@@ -1,0 +1,173 @@
+[
+  {
+    "stable_id": "inv:domain:alacritymexico.com",
+    "name": "Alacrity Mexico",
+    "urls": [
+      "https://www.alacritymexico.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:blustone.capital",
+    "name": "BluStone Capital",
+    "urls": [
+      "https://blustone.capital/en/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:cometa.vc",
+    "name": "Cometa",
+    "urls": [
+      "https://www.cometa.vc/about"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ejfventures.com",
+    "name": "EJF Ventures",
+    "urls": [
+      "https://www.ejfventures.com/",
+      "https://www.ejfventures.com/portfolio/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:finnovista.com",
+    "name": "Finnovista.vc",
+    "urls": [
+      "https://www.finnovista.com/en/what-we-do/finnovista-vc-venture-capital/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:foundationcapital.com",
+    "name": "Foundation Capital",
+    "urls": [
+      "https://foundationcapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:getvantage.co",
+    "name": "GetVantage",
+    "urls": [
+      "https://getvantage.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:krealo.pe",
+    "name": "Krealo",
+    "urls": [
+      "https://krealo.pe/en"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:kuipervc.com",
+    "name": "Kuiper",
+    "urls": [
+      "https://www.kuipervc.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:magmapartners.com",
+    "name": "Magma Partners",
+    "urls": [
+      "https://magmapartners.com/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:newavenue.vc",
+    "name": "New Avenue Capital",
+    "urls": [
+      "https://newavenue.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:parceiroventures.com",
+    "name": "Parceiro Ventures",
+    "urls": [
+      "https://parceiroventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:pionerocapital.com",
+    "name": "Pionero Capital",
+    "urls": [
+      "https://www.pionerocapital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:souschef.vc",
+    "name": "Souschef Ventures",
+    "urls": [
+      "https://souschef.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:toroventures.mx",
+    "name": "TORO VENTURES",
+    "urls": [
+      "https://www.toroventures.mx/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:upper90.io",
+    "name": "Upper90",
+    "urls": [
+      "https://upper90.io/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:venturesur.com",
+    "name": "Venture Sur",
+    "urls": [
+      "https://www.venturesur.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

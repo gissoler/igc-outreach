@@ -1,0 +1,112 @@
+[
+  {
+    "stable_id": "inv:domain:antares.ventures",
+    "name": "Antares Ventures",
+    "urls": [
+      "https://antares.ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:carbonzerovc.com",
+    "name": "Carbon Zero",
+    "urls": [
+      "https://carbonzerovc.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:circlecapitalvc.com",
+    "name": "Circle Capital",
+    "urls": [
+      "https://www.circlecapitalvc.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:climactic.vc",
+    "name": "Climactic",
+    "urls": [
+      "https://www.climactic.vc/?tpcc=NL_Marketing"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:doventures.vc",
+    "name": "Do Ventures",
+    "urls": [
+      "https://doventures.vc/en/focus"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:leapfroginvest.com",
+    "name": "LeapFrog Investments",
+    "urls": [
+      "https://leapfroginvest.com/press-release/leapfrog-temasek-eib-join-forces-to-deliver-500m-pledge-for-green-solutions-in-developing-countries/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:octerracapital.com",
+    "name": "Octerra Capital",
+    "urls": [
+      "https://octerracapital.com/investments/rivy"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:ogic40.com",
+    "name": "OGIC 4.0",
+    "urls": [
+      "https://ogic40.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:seacef.org",
+    "name": "Clime Capital Management (manager of SEACEF I and SEACEF II)",
+    "urls": [
+      "https://www.seacef.org/"
+    ],
+    "origins": [
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:seventures.com",
+    "name": "SE Ventures",
+    "urls": [
+      "https://www.seventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:virescent.vc",
+    "name": "Virescent Ventures",
+    "urls": [
+      "https://www.virescent.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

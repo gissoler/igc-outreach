@@ -1,0 +1,113 @@
+[
+  {
+    "stable_id": "inv:domain:3one4capital.com",
+    "name": "3one4 Capital",
+    "urls": [
+      "https://www.3one4capital.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:4point0.vc",
+    "name": "4point0",
+    "urls": [
+      "https://4point0.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:abgdventures.com",
+    "name": "ABGD Ventures",
+    "urls": [
+      "https://www.abgdventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:aleap.no",
+    "name": "Aleap Ventures",
+    "urls": [
+      "https://www.aleap.no/ventures"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:arteria.vc",
+    "name": "Arteria Capital",
+    "urls": [
+      "https://arteria.vc/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:care9.com",
+    "name": "CARE9 Ventures",
+    "urls": [
+      "https://care9.com/about/ventures/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:endiya.com",
+    "name": "Endiya Partners",
+    "urls": [
+      "https://www.endiya.com/"
+    ],
+    "origins": [
+      "system_top20",
+      "anchor"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:onesix8ventures.com",
+    "name": "One Six 8 Ventures",
+    "urls": [
+      "https://www.onesix8ventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:sanofiventures.com",
+    "name": "Sanofi Ventures",
+    "urls": [
+      "https://www.sanofiventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:shimadzu.com",
+    "name": "Shimadzu Future Innovation Fund",
+    "urls": [
+      "https://www.shimadzu.com/research_and_development/cvc/index.html"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:tullaventures.com",
+    "name": "Tulla Ventures",
+    "urls": [
+      "https://tullaventures.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]

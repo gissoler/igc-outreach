@@ -1,0 +1,73 @@
+[
+  {
+    "stable_id": "inv:domain:africinvest.com",
+    "name": "AfricInvest",
+    "urls": [
+      "https://www.africinvest.com/the-firm/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:altasemper.com",
+    "name": "Alta Semper",
+    "urls": [
+      "https://www.altasemper.com/",
+      "https://www.altasemper.com/approach/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:balladventures.io",
+    "name": "Ballad Ventures",
+    "urls": [
+      "https://balladventures.io/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:campea.org",
+    "name": "CAMPEA",
+    "urls": [
+      "https://campea.org/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:healthcap.co",
+    "name": "HealthCap Africa",
+    "urls": [
+      "https://healthcap.co/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:honeybadger.africa",
+    "name": "Honeybadger Family Office",
+    "urls": [
+      "https://honeybadger.africa/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  },
+  {
+    "stable_id": "inv:domain:talantonimpact.com",
+    "name": "Talanton",
+    "urls": [
+      "https://www.talantonimpact.com/"
+    ],
+    "origins": [
+      "system_top20"
+    ]
+  }
+]
