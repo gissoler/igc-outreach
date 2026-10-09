@@ -48,3 +48,63 @@ export function assertUnknownNeverMet(inputState, finalState) {
   if (inputState === 'unknown' && finalState === 'met') throw new Error('unknown cannot become met');
   return finalState;
 }
+
+// ───────────────────────────── v2 (config v4): FIX-06, FIX-07, FIX-08 ─────────────────────────────
+import { typeState, stageState, geoState, leadState, loadNormalization } from './normalize.mjs';
+
+const tokenRelated = (sectorValues, entitySectors) => sectorValues.some(x => entitySectors.some(y => norm(x).split(/[^a-z0-9]+/).some(token => token.length >= 5 && norm(y).includes(token))));
+/** Sector determinista v2: exacto → on; relación por token → partial; nunca produce off (un falso off es peor que unknown). */
+export function deterministicSectorFit(profile, entity) {
+  const f = profile.fields, sectorValues = [f.sector.value, ...(list(f.subsectors) ?? [])].filter(Boolean);
+  if (!sectorValues.length || !entity.sectors.length) return 'unknown';
+  if (overlap(sectorValues, entity.sectors)) return 'on';
+  return tokenRelated(sectorValues, entity.sectors) ? 'partial' : 'unknown';
+}
+
+/**
+ * Juez v2. Igual que judgeInvestor salvo TYPE/STAGE/GEO/LEAD (normalize.mjs), SECTOR (determinista o LLM con guarda)
+ * y overall_relevance alineada con PROTOCOL.md:48-49 / LABELING_GUIDE.md:32.
+ * @param sectorFit resultado ya guardado de sectorFitLLM ({sector_fit, quote}) o null.
+ */
+export function judgeInvestorV2({ entity, profile, catalog, sectorFit = null, normalization = null }) {
+  const n = normalization ?? loadNormalization();
+  const base = judgeInvestor({ entity, profile, catalog }), f = profile.fields;
+  const det = deterministicSectorFit(profile, entity);
+  const sector_fit = det === 'on' ? 'on' : sectorFit?.sector_fit && sectorFit.sector_fit !== 'unknown' ? sectorFit.sector_fit : det;
+  const states = {
+    'INV-TYPE': typeState(list(f.accepted_investor_types), entity.investor_type, n),
+    'INV-SECTOR': sector_fit === 'unknown' ? 'unknown' : sector_fit === 'off' ? 'not_met' : 'met',
+    'INV-STAGE': stageState(f.funding_stage.value, entity.stages, n),
+    'INV-GEO': geoState([f.incorporation_country.value, ...(list(f.operating_regions) ?? []), ...(list(f.target_markets) ?? [])], entity.geographies, n),
+    'INV-LEAD': leadState(f.lead_preference.value, entity.lead_follow, n)
+  };
+  const rationale = { 'INV-TYPE': 'normalization.v1 investor_type_map.', 'INV-SECTOR': sectorFit?.quote ? `Sector quote: ${sectorFit.quote}` : 'Deterministic sector match.', 'INV-STAGE': 'normalization.v1 stage ordinal.', 'INV-GEO': 'normalization.v1 regions.', 'INV-LEAD': 'normalization.v1 lead_map.' };
+  const criteria = base.criteria.map(c => Object.hasOwn(states, c.criterion_id) ? criterion(c.criterion_id, states[c.criterion_id], rationale[c.criterion_id]) : c);
+  const catalogKinds = new Map(catalog.criteria.map(x => [x.criterion_id, x.kind]));
+  const hard = criteria.filter(x => catalogKinds.get(x.criterion_id) === 'hard');
+  const hard_eligibility = hard.some(x => x.state === 'not_met') ? 'ineligible' : hard.every(x => ['met', 'not_applicable'].includes(x.state)) ? 'eligible' : 'undetermined';
+  const active = criteria.find(x => x.criterion_id === 'INV-ACTIVE').state, stage = states['INV-STAGE'], geo = states['INV-GEO'];
+  let overall_relevance;
+  if (hard_eligibility === 'ineligible' || sector_fit === 'off') overall_relevance = 'irrelevant';
+  else if (active === 'met' && sector_fit === 'on' && stage === 'met' && geo === 'met' && hard_eligibility === 'eligible') overall_relevance = 'strong';
+  else if (['on', 'partial'].includes(sector_fit) && (stage === 'met' || geo === 'met')) overall_relevance = 'plausible';
+  else overall_relevance = 'weak';
+  const unknowns = criteria.filter(x => x.state === 'unknown').length;
+  return { ...base, criteria, sector_fit, stage_fit: stage, geography_fit: geo, lead_fit: states['INV-LEAD'], hard_eligibility, overall_relevance, unknown_count: unknowns, sector_fit_source: det === 'on' ? 'deterministic' : sectorFit?.sector_fit && sectorFit.sector_fit !== 'unknown' ? 'llm' : 'deterministic' };
+}
+
+const OFF_GUARD = /\b(only|exclusively|solely|dedicated to|focused (?:solely|exclusively))\b/i;
+const squash = s => String(s ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase();
+/** FIX-08 guarda determinista sobre la respuesta del LLM de sector. */
+export function guardSectorFit(answer, quotes) {
+  if (!answer || !['on', 'partial', 'off'].includes(answer.sector_fit)) return { sector_fit: 'unknown', quote: null, guard: 'no_answer' };
+  if (!answer.quote || !squash(quotes).includes(squash(answer.quote))) return { sector_fit: 'unknown', quote: null, guard: 'quote_not_literal' };
+  if (answer.sector_fit === 'off' && !OFF_GUARD.test(answer.quote)) return { sector_fit: 'unknown', quote: null, guard: 'off_without_exclusive_language' };
+  return { sector_fit: answer.sector_fit, quote: answer.quote, guard: 'ok' };
+}
+/** Citas de la firma que ve el LLM de sector (máx. 1.500 caracteres). */
+export function sectorQuotes(entity) {
+  const parts = [];
+  for (const s of entity.sources ?? []) { if (s.quote) parts.push(s.quote); if (s.field_evidence?.sectors) parts.push(s.field_evidence.sectors); }
+  return [...new Set(parts)].join('\n').slice(0, 1500);
+}

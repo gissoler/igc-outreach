@@ -1,0 +1,27 @@
+{
+ "version": "normalization.v1",
+ "investor_type_map": {
+  "generalist_vc": ["venture_capital"], "specialist_vc": ["venture_capital"], "climate_vc": ["venture_capital"],
+  "hardtech_vc": ["venture_capital"], "growth_investor": ["venture_capital","other"],
+  "impact_investor": ["venture_capital","family_office","other"], "institutional family office": ["family_office"],
+  "strategic energy corporates": ["corporate_venture_capital"], "strategic diagnostics corporate": ["corporate_venture_capital"],
+  "healthcare services investor": ["venture_capital","other"], "healthcare or agrifood specialist": ["venture_capital","other"]
+ },
+ "stage_ordinal": { "pre-seed": [0], "seed": [1], "series_a": [2], "series_b": [3], "series_c": [4] },
+ "stage_patterns": [
+  ["\\bpre-?series[ -]?a\\b", [0,1], "explicit"], ["\\bpre-?seed\\b", [0], "explicit"], ["(?<!pre-)(?<!pre )(?<!pre)\\bseed\\b", [1], "explicit"],
+  ["(?<!pre-)(?<!pre )\\bseries[ -]?a\\b", [2], "explicit"], ["\\bseries[ -]?b\\b", [3], "explicit"], ["\\bseries[ -]?[c-e]\\b", [4], "explicit"],
+  ["\\bearly[- ]stage\\b", [0,1,2], "vague"], ["\\b(?:growth|scale-?up|late)[- ]?(?:stage)?\\b", [3,4], "vague"]
+ ],
+ "geo_regions": {
+  "Latin America": ["Mexico","Brazil","Colombia","Chile","Peru","Argentina"], "Spanish-speaking Latin America": ["Mexico","Colombia","Chile","Peru","Argentina"],
+  "North America": ["United States","Canada","Mexico"], "Europe": ["Netherlands","Germany","Belgium","Austria","Switzerland","Sweden","Finland","Poland"],
+  "DACH": ["Germany","Austria","Switzerland"], "Benelux": ["Netherlands","Belgium"], "Nordics": ["Sweden","Finland","Norway","Denmark"],
+  "Africa": ["Kenya","Uganda","Tanzania","Nigeria","Equatorial Guinea","South Africa","Egypt"], "East Africa": ["Kenya","Uganda","Tanzania"],
+  "West Africa": ["Nigeria"], "Southeast Asia": ["Singapore","Vietnam","Philippines","Malaysia","Indonesia"],
+  "South Asia": ["India"], "Asia": ["India","Singapore","Vietnam","Philippines","Malaysia","Indonesia","Taiwan","South Korea"],
+  "Central Asia": ["Turkmenistan"], "Pacific Islands": ["Palau","Nauru"], "Oceania": ["Palau","Nauru"]
+ },
+ "geo_unknown_terms": ["global","worldwide","emerging markets","international"],
+ "lead_map": { "seeking lead": "lead", "lead": "lead", "follow": "follow", "either": "both" }
+}
