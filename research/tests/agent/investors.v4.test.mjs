@@ -189,3 +189,106 @@ test('V4-FIX-08 sector LLM guard: off needs exclusive language, quote must be li
   assert.equal(llm.sector_fit, 'partial'); assert.equal(llm.sector_fit_source, 'llm');
   assert.match(sectorQuotes(v2Entity()), /seed fintech/);
 });
+
+// ───────── FIX-05/09/10/11b/12/14 motor v2 ─────────
+import { validatePlannerBatchV2 } from '../../bench/investors/conditions.mjs';
+import { plannerCoverage, deriveActivity } from '../../bench/investors/engine.v2.mjs';
+import { createFailoverSearchTool } from '../../bench/investors/search-failover.mjs';
+import { validateInvestorWorkspace } from '../../bench/investors/cli.mjs';
+
+const v4Config = () => ({ ...json(resolve(repo, 'research/bench/investors/config/v4-2026-10-09.json')), search: { provider: 'fixture', results_per_query: 10 }, judge: { max_llm_calls: 0 } });
+// Mundo sintético: páginas → texto + extracción v2 que "devolvería" el modelo.
+function world({ pages = {}, searches = {}, plans = {} } = {}) {
+  const calls = { search: [], fetch: [] }; let adaptive = 0;
+  return {
+    calls,
+    deps: {
+      search: async q => { calls.search.push(q); return { results: (searches[q] ?? []).map((u, i) => (typeof u === 'string' ? { rank: i + 1, url: u, title: pages[u]?.title ?? u } : { rank: i + 1, ...u })), nominal_cost: 1 }; },
+      fetch: async url => { calls.fetch.push(url); const p = pages[url]; return p ? { ok: true, text: p.text, title: p.title, nominal_cost: 1 } : { ok: false, text: '', error: { code: 'FETCH_EMPTY' }, nominal_cost: 1 }; },
+      extract: async ({ document, today, firstSeen }) => extractFixtureInvestorV2({ document, extraction: pages[document.url]?.extraction ?? fullV2({ entity_kind: 'other', canonical_name: 'Unknown page' }), today, firstSeen }),
+      plan: async ({ mode }) => mode === 'initial_batch' ? (plans.initial ?? { queries: [], stop: true, candidate_firms: [] }) : (plans.adaptive?.[adaptive++] ?? { queries: [], stop: true, candidate_firms: [] })
+    }
+  };
+}
+const firmPage = (domain, name, sentence, extra = {}) => ({ title: name, text: `${sentence} ${name} has a small team and publishes its portfolio on this website for founders who want to learn more about how the partnership works day to day.`, extraction: fullV2({ canonical_name: name, quote: sentence, ...extra }) });
+
+test('V4-FIX-10 B1 runs all queries (no patience), same URL fetched once, denylisted hosts are not fetched, firm results are triaged first', async () => {
+  const words = ['alpha','bravo','charlie','delta','echo','foxtrot','golf','hotel','india','juliet','kilo','lima','mike','november','oscar','papa','quebec','romeo'];
+  const queries = words.map(w => `${w} investors fintech`);
+  const searches = Object.fromEntries(queries.map(q => [q, ['https://news.test/a']]));
+  searches[queries[0]] = ['https://pitchbook.com/x', 'https://agg1.test/a', 'https://agg2.test/b', 'https://agg3.test/c', 'https://agg4.test/d', 'https://agg5.test/e', 'https://orca-ventures.test/'];
+  const w = world({ searches, plans: { initial: { queries, stop: false, candidate_firms: [] } } });
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile, condition: 'B1', config: v4Config(), templates, catalog, deps: w.deps });
+  assert.equal(r.totals.searches, 18); assert.ok(['budget_searches', 'queries_exhausted'].includes(r.stop_reason));
+  assert.equal(w.calls.fetch.filter(u => u === 'https://news.test/a').length, 1, 'dedupe by URL');
+  assert.ok(!w.calls.fetch.includes('https://pitchbook.com/x'), 'denylist'); assert.ok(w.calls.fetch.includes('https://orca-ventures.test/'), 'triage opens firm result at position 7');
+});
+
+test('V4-FIX-10b B2 does not stop by patience when fetches are empty', async () => {
+  const qs = ['q a one', 'q b two', 'q c three', 'q d four', 'q e five', 'q f six'];
+  const searches = Object.fromEntries(qs.map((q, i) => [q, [`https://spa${i}.test/`]]));
+  const w = world({ searches, plans: { initial: { queries: qs.slice(0, 6), stop: false, candidate_firms: [] } } });
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile, condition: 'B2', config: { ...v4Config(), b2: { initial_batch: 6, max_searches_per_step: 3 } }, templates, catalog, deps: w.deps });
+  assert.notEqual(r.stop_reason, 'patience');
+});
+
+test('V4-FIX-05 candidate from a third-party page is resolved to its official site; no budget → no resolution', async () => {
+  const news = 'https://dailynews.test/round';
+  const pages = {
+    [news]: { title: 'Round news', text: 'Acme Robotics raised $5M led by Northwind Ventures. The round will fund hiring of engineers and expansion to new markets next year. Acme builds warehouse robots for mid-size distributors and plans to open an office in Monterrey.', extraction: fullV2({ entity_kind: 'other', canonical_name: 'Daily News', source_kind: 'news', candidates: [{ name: 'Northwind Ventures', quote: 'Acme Robotics raised $5M led by Northwind Ventures.', domain_on_page: null }] }) },
+    'https://northwind.vc/': firmPage('northwind.vc', 'Northwind Ventures', 'Northwind Ventures invests in seed-stage robotics startups in Mexico.')
+  };
+  const searches = { 'robotics seed rounds mexico': [news], '"Northwind Ventures" venture capital': ['https://directory.test/northwind', 'https://northwind.vc/'] };
+  const w = world({ pages, searches, plans: { initial: { queries: ['robotics seed rounds mexico'], stop: false, candidate_firms: [] } } });
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile, condition: 'B1', config: v4Config(), templates, catalog, deps: w.deps });
+  const e = r.entities.find(x => x.stable_id === 'inv:domain:northwind.vc');
+  assert.ok(e, JSON.stringify(r.v2_stats.resolutions)); assert.equal(e.first_seen.origin, 'resolution');
+  const w2 = world({ pages, searches, plans: { initial: { queries: ['robotics seed rounds mexico'], stop: false, candidate_firms: [] } } });
+  const r2 = await runInvestorDiscovery({ caseObj: anchorCase, profile, condition: 'B1', config: { ...v4Config(), budgets: { ...v4Config().budgets, searches: 1 } }, templates, catalog, deps: w2.deps });
+  assert.equal(r2.entities.length, 0); assert.equal(r2.stop_reason, 'budget_searches');
+});
+
+test('V4-FIX-11b empty fetch falls back to search text ≥400 chars', async () => {
+  const long = 'Lynx Seed Partners invests in pre-seed and seed startups in Chile and Peru. ' + 'We back founders building software for schools and universities across the Andean region. '.repeat(5);
+  const url = 'https://lynxseed.test/';
+  const w = world({ pages: {}, searches: { 'edtech seed fund chile': [{ url, title: 'Lynx Seed Partners', text: long }] }, plans: { initial: { queries: ['edtech seed fund chile'], stop: false, candidate_firms: [] } } });
+  w.deps.extract = async ({ document, today, firstSeen }) => extractFixtureInvestorV2({ document, extraction: fullV2({ canonical_name: 'Lynx Seed Partners', quote: 'Lynx Seed Partners invests in pre-seed and seed startups in Chile and Peru.' }), today, firstSeen });
+  const logs = []; w.deps.log = row => logs.push(row);
+  const r = await runInvestorDiscovery({ caseObj: anchorCase, profile, condition: 'B1', config: v4Config(), templates, catalog, deps: w.deps });
+  assert.ok(r.entities.some(e => e.stable_id === 'inv:domain:lynxseed.test'));
+  assert.ok(logs.some(x => x.event === 'fetch_fallback' && x.via === 'search_contents'));
+});
+
+test('V4-FIX-11b failover keeps text only when exa_contents_chars is set', async () => {
+  const fetcher = async () => new Response(JSON.stringify({ results: [{ url: 'https://a.test/', title: 'A', text: 'x'.repeat(5000) }] }), { status: 200 });
+  const orig = globalThis.fetch; globalThis.fetch = fetcher;
+  try {
+    const withText = await createFailoverSearchTool({ providers: ['exa'], env: { EXA_API_KEY: 'k' }, exaContentsChars: 4000 }).search('q');
+    assert.equal(withText.results[0].text.length, 4000);
+    const without = await createFailoverSearchTool({ providers: ['exa'], env: { EXA_API_KEY: 'k' } }).search('q');
+    assert.equal(Object.hasOwn(without.results[0], 'text'), false);
+  } finally { globalThis.fetch = orig; }
+});
+
+test('V4-FIX-09 activity derived from sources', () => {
+  const base = { official_domain: 'zentrocapital.test', active_status: 'unknown', sources: [{ url: 'https://zentrocapital.test/', source_kind: 'official', quote: 'Zentro Capital invests in seed startups.', published_on: null }] };
+  assert.equal(deriveActivity(base, { today: '2026-10-08', recencyDays: 540 }).active_status, 'possibly_active');
+  const press = { ...base, sources: [...base.sources, { url: 'https://zentrocapital.test/news/x', source_kind: 'news', quote: 'Zentro Capital led the seed round of Kite.', published_on: '2026-06-30' }] };
+  const a = deriveActivity(press, { today: '2026-10-08', recencyDays: 540 }); assert.equal(a.active_status, 'active'); assert.equal(a.recent_investment_evidence.length, 1);
+  assert.equal(deriveActivity({ ...base, active_status: 'inactive' }, { today: '2026-10-08', recencyDays: 540 }).active_status, 'inactive');
+});
+
+test('V4-FIX-12 near-duplicate queries rejected; coverage computed from executed queries', () => {
+  const seen = new Set(['government backed funds fintech and payments mexico']);
+  const b = validatePlannerBatchV2({ mode: 'adaptive_step', queries: ['government backed funds fintech payments Mexico seed stage', 'fintech seed fund Mexico'], stop: false, candidate_firms: [{ name: 'Kite', why: 'x' }] }, seen, 3);
+  assert.equal(b.rejected[0].reason, 'near_duplicate'); assert.equal(b.accepted.length, 1); assert.equal(b.candidate_firms.length, 1);
+  const p = structuredClone(profile); p.fields.comparable_companies.value = ['Konfio'];
+  assert.equal(plannerCoverage(p, ['fintech seed fund mexico']).comparables, false);
+  assert.equal(plannerCoverage(p, ['investors in Konfio']).comparables, true);
+});
+
+test('V4-FIX-14 config v4 validates; v3 config still uses engine v1', () => {
+  const r = validateInvestorWorkspace({ configPath: resolve(repo, 'research/bench/investors/config/v4-2026-10-09.json'), casesDir: resolve(repo, 'research/bench/investors/cases') });
+  assert.equal(r.config.engine_v, 2);
+  const v3 = json(resolve(repo, 'research/bench/investors/config/v3-2026-10-08.json')); assert.equal(v3.engine_v, undefined);
+});

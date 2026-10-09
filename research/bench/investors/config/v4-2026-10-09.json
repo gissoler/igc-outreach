@@ -1,0 +1,93 @@
+{
+  "schema_version": "investor_run_config/2",
+  "bench_id": "investors-internal-2026-10-09-v4",
+  "status": "draft",
+  "today": "2026-10-09",
+  "search": {
+    "provider": "failover",
+    "providers": [
+      "exa",
+      "serper",
+      "tavily"
+    ],
+    "fallback_policy": "first_nonempty",
+    "results_per_query": 10,
+    "exa_contents_chars": 4000
+  },
+  "agent_model": {
+    "family": "openai-gpt-oss",
+    "model_id": "openai/gpt-oss-120b"
+  },
+  "preannotator_model": {
+    "family": "unavailable-independent-family",
+    "model_id": "omitted-no-independent-model-available"
+  },
+  "budgets": {
+    "searches": 18,
+    "fetches": 54,
+    "planner_calls": 8,
+    "tokens_nominal": 300000,
+    "seconds_nominal": 1800
+  },
+  "patience_n": 5,
+  "patience_conditions": [
+    "B2"
+  ],
+  "default_fetch_per_search": 4,
+  "b2": {
+    "initial_batch": 6,
+    "max_searches_per_step": 3
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "prompts": {
+    "manifest": "manifest.v4.json",
+    "b0_templates": "v1",
+    "planner": "v2",
+    "extractor": "v3",
+    "judge": "v2",
+    "preannotator": "v1"
+  },
+  "catalog": "criteria_catalog.investor@v1",
+  "decision_rule": {
+    "status": "proposed",
+    "min_recall_gain": 0.05,
+    "alpha": 0.05,
+    "max_ndcg_drop": 0.03,
+    "max_hard_false_positive_rate": 0.1,
+    "min_correct_null_abstentions": 2
+  },
+  "engine_v": 2,
+  "judge_impl": "v2",
+  "extraction_schema": "investor_extraction.v2",
+  "extractor_max_tokens": 3000,
+  "resolution": {
+    "enabled": true,
+    "per_query": 2,
+    "max_per_run": 6,
+    "suffix": "venture capital"
+  },
+  "planner": {
+    "allow_candidate_names": true
+  },
+  "judge": {
+    "max_llm_calls": 20
+  },
+  "activity": {
+    "recency_days": 540
+  },
+  "normalization": "normalization.v1",
+  "fetch_denylist": [
+    "pitchbook.com",
+    "app.dealroom.co",
+    "f4.fund",
+    "fundraisingfox.com",
+    "foundersuite.com",
+    "pipeseed.com",
+    "crunchbase.com"
+  ],
+  "capital_strategy_context": false
+}

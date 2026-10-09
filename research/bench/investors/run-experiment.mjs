@@ -34,14 +34,16 @@ jobs = shuffle(jobs, 20261008).slice(0, maxRuns);
 
 const cache = createBenchCache({ path: resolve(outDir, 'cache.sqlite'), namespace: `investors-${config.bench_id}` });
 const search = config.search.provider === 'failover'
-  ? createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query })
+  ? createFailoverSearchTool({ providers: config.search.providers, env: process.env, cache, resultsPerQuery: config.search.results_per_query, exaContentsChars: config.search.exa_contents_chars ?? null })
   : createSearchTool({ provider: config.search.provider, env: process.env, cache, resultsPerQuery: config.search.results_per_query });
 const fetch = createFetchTool({ env: process.env, cache });
 const llm = createInvestorLlm({ env: process.env, cache, family: config.agent_model.family });
-const templates = loadInvestorPrompt('b0_templates', config.prompts.b0_templates).templates;
+const promptOpts = config.prompts.manifest ? { manifest: config.prompts.manifest } : {};
+const templates = loadInvestorPrompt('b0_templates', config.prompts.b0_templates, promptOpts).templates;
 const catalog = JSON.parse(readFileSync(resolve(repo, 'docs/contracts/investor/criteria_catalog.investor.v1.json'), 'utf8'));
-const plannerPrompt = loadInvestorPrompt('planner', config.prompts.planner);
-const extractorPrompt = loadInvestorPrompt('extractor', config.prompts.extractor);
+const plannerPrompt = loadInvestorPrompt('planner', config.prompts.planner, promptOpts);
+const extractorPrompt = loadInvestorPrompt('extractor', config.prompts.extractor, promptOpts);
+const judgePrompt = (config.engine_v ?? 1) >= 2 ? loadInvestorPrompt('judge', config.prompts.judge, promptOpts) : null;
 const globalApolloLedger = new Map();
 const apolloCache = new ApolloCache({ ttlMs: 24 * 3600_000 });
 
@@ -79,6 +81,7 @@ function tracedDeps(base, { runId, condition, apollo }) {
     async plan(input) { append({ event: 'planner_start', run_id: runId, mode: input.mode }); const value = await base.plan(input); append({ event: 'planner_end', run_id: runId, mode: input.mode, queries: value.queries || [], stop: value.stop, latency: value.latency || null }); return value; },
     async extract(input) { const value = await base.extract(input); append({ event: 'extract_end', run_id: runId, url: input.document.url, accepted: Boolean(value.entity), rejected_kind: value.rejected_kind || null, ...(value.diagnostics || {}), latency: value.latency || null }); return value; },
     log(row) { append({ ...row, run_id: runId }); },
+    ...(base.sectorFit ? { async sectorFit(input) { const value = await base.sectorFit(input); append({ event: 'sector_fit_llm', run_id: runId, stable_id: input.entity.stable_id, sector_fit: value.sector_fit, guard: value.guard, raw: value.raw, latency: value.latency || null }); return value; } } : {}),
   };
 }
 
@@ -95,7 +98,7 @@ try {
     mkdirSync(runDir, { recursive: true });
     append({ event: 'run_start', run_id: runId, ordinal, mode, case_id: caseObj.case_id, condition: job.condition, seed: job.seed, capital_strategy_context: false });
     const b3Prompt = job.condition === 'B3' ? { ...plannerPrompt, user: `${plannerPrompt.user}\n\nAdditional read-only tool for this ablation only: emit a query exactly as APOLLO_ORG: <official-domain-or-organization-name> | reason=<brief reason> only to resolve a partially found organization, search by domain, cover an institutional gap, or check a firm suggested by other evidence. Maximum two. Do not use people, contacts, email or warm paths.` } : plannerPrompt;
-    const base = createLiveInvestorDeps({ search, fetch, llm, plannerPrompt: b3Prompt, extractorPrompt, config, seed: job.seed });
+    const base = createLiveInvestorDeps({ search, fetch, llm, plannerPrompt: b3Prompt, extractorPrompt, judgePrompt, config, seed: job.seed });
     const apollo = job.condition === 'B3' ? createApolloClient({ apiKey: process.env.APOLLO_API_KEY, cache: apolloCache, budget: new ApolloBudget({ perRun: 2, perOrganization: 2, perDay: 90, dailyLedger: globalApolloLedger }) }) : null;
     const deps = tracedDeps(base, { runId, condition: job.condition, apollo });
     try {

@@ -23,14 +23,16 @@ const jsonl = path => existsSync(path) ? readFileSync(path, 'utf8').trim().split
 const option = (args, name) => { const i = args.indexOf(`--${name}`); return i < 0 ? null : args[i + 1]; };
 
 export function validateInvestorWorkspace({ configPath, casesDir }) {
-  const config = validateInvestor('investor_run_config', json(configPath));
+  const rawConfig = json(configPath);
+  const config = validateInvestor(rawConfig.schema_version === 'investor_run_config/2' ? 'investor_run_config.v2' : 'investor_run_config', rawConfig);
+  const promptOpts = config.prompts.manifest ? { manifest: config.prompts.manifest } : {};
   if (config.agent_model.family === config.preannotator_model.family) throw new Error('Preannotator family must differ from agent family');
   if (config.status === 'frozen' && JSON.stringify(config).includes('TO-APPROVE')) throw new Error('Frozen config contains unapproved placeholders');
   const catalog = validateInvestor('investor_criteria_catalog', json(resolve(repo, 'docs/contracts/investor/criteria_catalog.investor.v1.json')));
-  for (const id of ['b0_templates','planner','extractor','judge','preannotator']) loadInvestorPrompt(id, config.prompts[id]);
+  for (const id of ['b0_templates','planner','extractor','judge','preannotator']) loadInvestorPrompt(id, config.prompts[id], promptOpts);
   const files = existsSync(casesDir) ? readdirSync(casesDir).filter(x => x.endsWith('.json') && x !== 'manifest.json') : [];
   for (const file of files) {
-    const item = validateInvestor('investor_case', json(resolve(casesDir, file))), profilePath = resolve(repo, item.profile_path), bytes = readFileSync(profilePath);
+    const rawCase = json(resolve(casesDir, file)), item = validateInvestor(rawCase.schema_version === 'investor_case/2' ? 'investor_case.v2' : 'investor_case', rawCase), profilePath = resolve(repo, item.profile_path), bytes = readFileSync(profilePath);
     if (sha(bytes) !== item.profile_sha256) throw new Error(`Profile hash mismatch for ${item.case_id}`);
     const profile = validateInvestor('investor_profile', JSON.parse(bytes));
     if (config.status === 'frozen' && profile.status !== 'frozen') throw new Error(`Profile ${profile.profile_id} is not frozen`);
