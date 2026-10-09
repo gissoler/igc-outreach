@@ -154,14 +154,18 @@ export async function firecrawlRead(url, { env = process.env, fetcher = fetch, s
 }
 
 /** Jina Reader: página → markdown (sirve para páginas con JavaScript y PDFs). Devuelve {url,title,text} o null; nunca lanza. */
-export async function jinaRead(url, { env = process.env, fetcher = fetch, signal } = {}) {
+export async function jinaRead(url, { env = process.env, fetcher = fetch, signal, onError } = {}) {
   if (!key(env, 'jina') || !isPublicUrl(url)) return null;
   try {
     const data = await call('Jina Reader', `https://r.jina.ai/${url}`, { env, fetcher, signal, timeoutMs: Number(env.JINA_TIMEOUT_MS) || 60_000, headers: { Authorization: `Bearer ${key(env, 'jina')}`, 'X-Retain-Images': 'none', 'X-Timeout': '25' } });
     const d = data?.data || data || {};
     const text = str(d.content).trim();
     return text.length > 80 ? { url: safeUrl(str(d.url)) || url, title: str(d.title).trim(), text: text.slice(0, 120_000) } : null;
-  } catch { return null; }
+  } catch (error) {
+    // Sin onError el comportamiento es el de siempre (null silencioso); el benchmark lo usa para registrar la causa.
+    if (onError) { const status = /HTTP (\d{3})/.exec(String(error?.message))?.[1]; onError({ code: status ? `JINA_${status}` : /timeout|abort/i.test(String(error?.name) + error?.message) ? 'JINA_TIMEOUT' : 'JINA_ERROR', message: String(error?.message || error).slice(0, 200) }); }
+    return null;
+  }
 }
 
 /** Clave de fusión: sin www, sin #, sin utm_*, sin barra final. */

@@ -63,7 +63,8 @@ async function readWithFallbacks(url, env, transport) {
     const attempt = { reader: 'jina', http_status: null, content_type: null, error: null, chars: null };
     attempt.skipped = env.JINA_API_KEY ? null : 'JINA_API_KEY unset';
     attempts.push(attempt);
-    const got = await jinaRead(url, { env, fetcher: recordingFetcher(attempt) });
+    const onError = e => { attempt.error = `${e.code}: ${e.message}`; };
+    const got = await jinaRead(url, { env, fetcher: recordingFetcher(attempt), onError });
     attempt.chars = got?.text?.length ?? null;
     result = got || result;
     if (result) via = 'jina';
