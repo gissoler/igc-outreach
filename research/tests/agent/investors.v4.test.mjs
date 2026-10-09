@@ -317,3 +317,35 @@ test('V4-FIX-17 report has one row per entity and every non-unknown core criteri
     const cit = criterionCitation(e, c); assert.ok(cit, c.criterion_id); assert.ok(pages[cit.url].text.includes(cit.quote), cit.quote); assert.ok(md.includes(cit.quote));
   }
 });
+
+// ───────── V4-DBG-1 (causas medidas en el smoke D1–D3) ─────────
+import { isLiteralEvidence, attributedInvestmentV2, hasInvestmentEvidenceV2 as hasInv } from '../../bench/investors/extractor.mjs';
+
+test('V4-DBG-1a evidence stitched with "..." counts only if every passage is literal', () => {
+  const page = 'Lince Fund is an early-stage investor. Our team is in Santiago. We back seed-stage companies in Chile and Peru.';
+  assert.equal(isLiteralEvidence(page, 'Lince Fund is an early-stage investor ... We back seed-stage companies in Chile and Peru'), true);
+  assert.equal(isLiteralEvidence(page, 'Lince Fund is an early-stage investor ... We back seed-stage companies in Bolivia'), false);
+  assert.equal(isLiteralEvidence(page, 'Lince … ok'), false, 'needs at least one long literal passage');
+});
+
+test('V4-DBG-1b third-party page never creates the entity; it becomes a candidate', () => {
+  const doc = { url: 'https://startup-news.test/raise', title: 'Raise', text: 'Pizarra Labs raised USD 2M led by Mirlo Ventures (mirlo.test). The company sells to private schools and plans to hire twenty engineers in Lima this year.' };
+  const r = extractFixtureInvestorV2({ document: doc, extraction: fullV2({ canonical_name: 'Mirlo Ventures', official_domain: 'mirlo.test', source_kind: 'news', quote: 'Pizarra Labs raised USD 2M led by Mirlo Ventures (mirlo.test).', stages: ['seed'], evidence: { stages: 'raised USD 2M' } }), today: '2026-10-09', firstSeen: fs0() });
+  assert.equal(r.entity, null); assert.equal(r.rejected_kind, 'unresolved_firm_identity'); assert.equal(r.candidate.domain_on_page, 'mirlo.test');
+});
+
+test('V4-DBG-1c own homepage labelled "other" by the model is first party and official', () => {
+  const doc = { url: 'https://www.lincefund.test/', title: 'Lince', text: 'Lince Fund es un fondo de venture capital que invierte en startups B2B de Chile y Perú en etapa semilla. Acompañamos a fundadores desde el primer cheque con un equipo cercano.' };
+  const r = extractFixtureInvestorV2({ document: doc, extraction: fullV2({ canonical_name: 'Lince Fund', source_kind: 'other', quote: 'Lince Fund es un fondo de venture capital que invierte en startups B2B de Chile y Perú en etapa semilla.' }), today: '2026-10-09', firstSeen: fs0() });
+  assert.ok(r.entity, r.rejected_kind); assert.equal(r.entity.sources[0].source_kind, 'official'); assert.equal(r.entity.official_domain, 'lincefund.test');
+  assert.equal(deriveActivity(r.entity, { today: '2026-10-09', recencyDays: 540 }).active_status, 'possibly_active');
+});
+
+test('V4-DBG-1d participation lists attribute investing to the listed firm', () => {
+  assert.ok(attributedInvestmentV2('Additional backing came from Chalk Ventures and Pine Capital.', ['Pine Capital']));
+  assert.ok(attributedInvestmentV2('The round was led by Swedish deeptech investor Orbit Fund, with participation from Kite VC.', ['Orbit Fund']));
+  assert.ok(attributedInvestmentV2('Other investors include Moss Ventures, Fern Capital.', ['Fern Capital']));
+  assert.ok(attributedInvestmentV2('La ronda fue liderada por Cóndor Capital.', ['Cóndor Capital']));
+  assert.ok(!attributedInvestmentV2('Pine Capital announced a new office in Oslo.', ['Pine Capital']));
+  assert.ok(hasInv('Invertimos en startups B2B de Chile y Perú.')); assert.ok(!hasInv('Somos un equipo con oficinas en Lima.'));
+});

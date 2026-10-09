@@ -67,13 +67,17 @@ export function createLiveInvestorDeps({ search, fetch, llm, plannerPrompt, extr
       const safePageText = sanitizePageText(document.text).replaceAll('{{', '{ {').replaceAll('}}', '} }').slice(0, 24000);
       const user = render(extractorPrompt.user, { today, url: document.url, page_text: safePageText });
       const schemaName = config.extraction_schema ?? 'investor_extraction';
-      const result = await llm.call({ prompt: extractorPrompt, user, schemaName, temperature: 0, seed: 0, maxTokens: config.extractor_max_tokens ?? 8000 });
       if (schemaName === 'investor_extraction.v2') {
+        // V4-DBG-1: una salida inválida o truncada del modelo rechaza la página; no tumba la corrida.
+        let result;
+        try { result = await llm.call({ prompt: extractorPrompt, user, schemaName, temperature: 0, seed: 0, maxTokens: config.extractor_max_tokens ?? 8000 }); }
+        catch (error) { return { entity: null, rejected_kind: 'llm_invalid_output', candidates: [], diagnostics: { kind: null, error: String(error.message).slice(0, 200) }, tokens_nominal: 0, latency: null }; }
         const extracted = extractFixtureInvestorV2({ document, extraction: result.json, today, firstSeen });
         const base = describeInvestorExtraction({ document, raw: result.json, grounded: null, entity: extracted.entity });
         const diagnostics = { ...base, quote_source: extracted.meta.quote_source, official_domain_source: extracted.meta.official_domain_source, fields_dropped_by_grounding: extracted.meta.fields_dropped_by_grounding, candidates: extracted.candidates?.length ?? 0, candidates_raw: Array.isArray(result.json?.candidates) ? result.json.candidates.length : 0 };
         return { ...extracted, diagnostics, tokens_nominal: result.tokens_nominal, latency: result.latency };
       }
+      const result = await llm.call({ prompt: extractorPrompt, user, schemaName, temperature: 0, seed: 0, maxTokens: config.extractor_max_tokens ?? 8000 });
       const extracted = extractFixtureInvestor({ document, extraction: result.json, today, firstSeen });
       const diagnostics = describeInvestorExtraction({ document, raw: result.json, grounded: groundInvestorExtraction({ document, extraction: result.json }), entity: extracted.entity });
       return { ...extracted, diagnostics, tokens_nominal: result.tokens_nominal, latency: result.latency };

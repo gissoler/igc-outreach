@@ -45,8 +45,12 @@ export function geoState(profileCountries, entityGeos, n = DEFAULT) {
   const regions = Object.entries(n.geo_regions);
   const known = new Set([...regions.flatMap(([, cs]) => cs), ...[...profile]].map(lc));
   const expanded = new Set(); let vague = false;
+  const aliases = Object.entries(n.geo_aliases ?? {}).sort((a, b) => b[0].length - a[0].length);
+  const deaccent = v => v.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   for (const raw of entityGeos) {
-    const s = lc(raw);
+    let s = lc(raw);
+    for (const [from, to] of aliases) if (s === from || wordIn(s, from) || deaccent(s) === deaccent(from) || wordIn(deaccent(s), deaccent(from))) s = `${s} ${lc(to)}`;
+    s = deaccent(s);
     if (n.geo_unknown_terms.some(t => s.includes(lc(t)))) { vague = true; continue; }
     let recognized = false;
     for (const [name, countries] of regions) if (s === lc(name) || wordIn(s, name)) { countries.forEach(c => expanded.add(lc(c))); recognized = true; }

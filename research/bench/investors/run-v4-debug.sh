@@ -26,12 +26,16 @@ if ! node $ENVS bench/investors/preflight-reader.mjs --out "$OUT/preflight-reade
 fi
 grep -E '"(status|crawl4ai_ok|jina_ok)"' "$OUT/preflight-reader.json"
 
-step "3/5 Smoke: B1 y B2 × D1–D3 × semilla 101 (6 corridas)"
-node $ENVS bench/investors/run-experiment.mjs --config bench/investors/config/v4-2026-10-09.json --cases bench/investors/cases-debug --out "$OUT/smoke" --conditions B1,B2 --seeds 101 --concurrency 3 --mode debug 2>&1 | grep -v ExperimentalWarning | tail -3
+SMOKE="$OUT/smoke${ITER:+-$ITER}"
+# Cada iteración (ITER=dbg1, dbg2…) va en su carpeta; se reutiliza la caché de búsquedas/páginas/LLM de la anterior
+# (mismas claves → mismas respuestas), así que solo se paga lo que cambió.
+if [[ -n "${ITER:-}" && ! -f "$SMOKE/cache.sqlite" ]]; then mkdir -p "$SMOKE"; PREV=$(ls -td "$OUT"/smoke*/ 2>/dev/null | grep -v "$SMOKE/" | head -1); [[ -n "$PREV" && -f "$PREV/cache.sqlite" ]] && cp "$PREV/cache.sqlite" "$SMOKE/cache.sqlite" && echo "(caché copiada de $PREV)"; fi
+step "3/5 Smoke: B1 y B2 × D1–D3 × semilla 101 (6 corridas) → $SMOKE"
+node $ENVS bench/investors/run-experiment.mjs --config bench/investors/config/v4-2026-10-09.json --cases bench/investors/cases-debug --out "$SMOKE" --conditions B1,B2 --seeds 101 --concurrency 3 --mode debug 2>&1 | grep -v ExperimentalWarning | tail -3
 
 step "4/5 Verificación (criterios, citas literales, gain, nulos, lector)"
-node bench/investors/analysis/v4_check.mjs --out "$OUT/smoke" --cases bench/investors/cases-debug --json "$OUT/v4_check.json" 2>/dev/null | head -60
+node bench/investors/analysis/v4_check.mjs --out "$SMOKE" --cases bench/investors/cases-debug --json "$SMOKE/v4_check.json" 2>/dev/null | head -60
 
 step "5/5 Informes por corrida (report.md)"
-node bench/investors/analysis/render_reports.mjs --out "$OUT/smoke" --cases bench/investors/cases-debug 2>/dev/null
-echo; echo "Listo. Resultados en research/$OUT"
+node bench/investors/analysis/render_reports.mjs --out "$SMOKE" --cases bench/investors/cases-debug 2>/dev/null
+echo; echo "Listo. Resultados en research/$SMOKE"

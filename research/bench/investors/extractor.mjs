@@ -103,7 +103,10 @@ export function describeInvestorExtraction({ document, raw, grounded, entity }) 
 export const INVESTMENT_EVIDENCE_V2 = [
   INVESTMENT_EVIDENCE,
   /\b(?:invest(?:s|ed|ing)?|back(?:s|ed|ing)?|fund(?:s|ed|ing)?|lead(?:s|ing)?|co-?lead(?:s)?|writ(?:e|es|ing) (?:the )?(?:first )?(?:check|cheque|ticket)s?)\b[^.]{0,120}\b(?:pre-?seed|seed|series [a-e]|early[- ]stage|growth[- ]stage|start-?ups?|founders?|companies|businesses|entrepreneurs|ventures|rounds?)\b/i,
-  /\b(?:venture (?:fund|firm|investor|arm)|vc (?:firm|fund)|seed fund|investment (?:firm|company|manager)|fund manager|asset manager)\b/i
+  /\b(?:venture (?:fund|firm|investor|arm)|vc (?:firm|fund)|seed fund|investment (?:firm|company|manager)|fund manager|asset manager)\b/i,
+  // V4-DBG-1: páginas en español/portugués (D1 Chile/Perú). Mismas exigencias: verbo de inversión + objeto, o tipo de vehículo.
+  /\b(?:invert(?:imos|ir)|invierte(?:n)?|invest(?:e|imos|em)|financia(?:mos|n)?|respalda(?:mos|n)?|apoya(?:mos|n)? financieramente|lidera(?:mos|n)? rondas)\b[^.]{0,120}\b(?:pre-?seed|seed|semilla|serie [a-e]|etapa temprana|startups?|emprendedor(?:es|as)?|empresas|compa[ñn][ií]as|fundador(?:es|as)?|rondas?)\b/i,
+  /\b(?:fondo de (?:venture capital|capital de riesgo|inversi[oó]n|capital emprendedor)|capital de riesgo|administradora de fondos|gestora de fondos|fundo de (?:venture capital|investimento))\b/i
 ];
 export const hasInvestmentEvidenceV2 = text => INVESTMENT_EVIDENCE_V2.some(re => re.test(String(text ?? '')));
 /**
@@ -119,7 +122,15 @@ export function attributedInvestmentV2(quote, terms) {
       from = q.indexOf(term, from + 1);
     }
     const esc = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    if (new RegExp(`\\b(?:led|co-?led|backed|funded|financed|invested in)\\b[^.]{0,40}\\bby\\s+(?:the\\s+)?${esc}`).test(q) || new RegExp(`\\b(?:led|co-?led) by\\s+(?:the\\s+)?${esc}`).test(q)) return true;
+    // La firma es el agente: "led/backed/funded by … X", "with participation from … X", "investors include … X", "joined by … X".
+    const agent = [
+      `\\b(?:led|co-?led|backed|funded|financed|joined|supported)\\b[^.]{0,40}\\bby\\b[^.]{0,80}?${esc}`,
+      `\\b(?:participation|backing|investment|funding|support|capital) (?:came )?from\\b[^.]{0,120}?${esc}`,
+      `\\b(?:other |existing |new |returning )?(?:investors|backers|participants) (?:include|included|including|are|were)\\b[^.]{0,160}?${esc}`,
+      `\\b(?:liderad[ao]|co-?liderad[ao]|respaldad[ao]|financiad[ao]) por\\b[^.]{0,80}?${esc}`,
+      `\\bparticipaci[oó]n de\\b[^.]{0,120}?${esc}`
+    ];
+    if (agent.some(re => new RegExp(re).test(q))) return true;
   }
   return false;
 }
@@ -137,13 +148,24 @@ export function matchText(value) {
     .replace(/\s+/g, ' ').trim().toLocaleLowerCase();
 }
 export const isLiteralIn = (pageText, s) => s != null && matchText(s).length >= 3 && matchText(pageText).includes(matchText(s));
+/**
+ * V4-DBG-1: el modelo une pasajes literales con "..." o "…". La evidencia vale solo si CADA tramo es literal en la página
+ * (tramos de ≥ 12 caracteres; los más cortos no aportan evidencia y se ignoran solo si hay al menos un tramo largo).
+ */
+export function evidenceSegments(s) { return String(s ?? '').split(/\s*(?:\.{3,}|…)\s*/).map(x => x.trim()).filter(x => matchText(x).length >= 3); }
+export function isLiteralEvidence(pageText, s) {
+  if (s == null) return false;
+  if (isLiteralIn(pageText, s)) return true;
+  const segs = evidenceSegments(s), long = segs.filter(x => matchText(x).length >= 12);
+  return segs.length > 1 && long.length > 0 && long.every(x => isLiteralIn(pageText, x)) && segs.filter(x => matchText(x).length < 12).every(x => isLiteralIn(pageText, x));
+}
 
 const LIST_FIELDS_V2 = ['sectors', 'stages', 'rounds', 'geographies', 'regulatory_restrictions', 'relevant_portfolio'];
 
 /** FIX-03: cada valor se conserva solo si su evidencia es literal en la página. */
 export function groundFieldsV2({ document, extraction }) {
   const out = structuredClone(extraction ?? {}), text = document?.text ?? '', evidence = out.evidence ?? {};
-  const lit = s => isLiteralIn(text, s);
+  const lit = s => isLiteralEvidence(text, s);
   for (const f of LIST_FIELDS_V2) {
     const values = Array.isArray(out[f]) ? out[f] : [];
     if (!lit(evidence[f])) out[f] = [];
@@ -208,10 +230,13 @@ export function groundIdentityV2({ document, extraction }) {
   const pageHost = hostname(document?.url);
   out.official_domain_source = out.official_domain ? 'model' : 'none';
   if (out.official_domain && !isLiteralIn(text, out.official_domain) && !sameDomain(pageHost, hostname(`https://${out.official_domain}`))) { out.official_domain = null; out.official_domain_source = 'none'; }
-  if (!out.official_domain && ['official', 'news'].includes(out.source_kind)) {
+  // V4-DBG-1: el modelo etiqueta a menudo la portada propia como source_kind=other. El host decide la primera parte.
+  if (!out.official_domain) {
     if (nameMatchesDomain(name, pageHost)) { out.official_domain = pageHost; out.official_domain_source = 'host_match'; }
     else if ((out.aliases ?? []).some(a => nameMatchesDomain(a, pageHost))) { out.official_domain = pageHost; out.official_domain_source = 'alias_match'; }
   }
+  out.first_party = Boolean(out.official_domain) && sameDomain(pageHost, hostname(`https://${out.official_domain}`));
+  if (out.first_party && out.source_kind !== 'news' && out.source_kind !== 'regulatory') out.source_kind = 'official';
   return out;
 }
 
@@ -230,6 +255,12 @@ export function investorExtractionRejectionV2({ document, extraction }) {
   const officialFirstParty = Boolean(officialHost) && ['official', 'news'].includes(extraction.source_kind) && sameDomain(pageHost, officialHost);
   if (!identityInQuote && !officialFirstParty) return reject('identity_not_in_quote');
   if (!(identityInQuote ? attributedInvestmentV2(quote, identityTerms) : hasInvestmentEvidenceV2(quote))) return reject('no_investment_evidence');
+  // V4-DBG-1: una página de terceros nunca crea la entidad (sus hechos suelen ser de la ronda o de la startup).
+  // La firma pasa a candidato y solo cuenta si se verifica en su propio sitio (FIX-05).
+  if (!officialFirstParty && !extraction.regulatory_id) {
+    const domain_on_page = officialHost && isLiteralIn(document.text, extraction.official_domain) ? officialHost : null;
+    return { rejected_kind: 'unresolved_firm_identity', candidates, candidate: { name, quote, domain_on_page } };
+  }
   if (!extraction.official_domain && !extraction.regulatory_id && !officialFirstParty) {
     return { rejected_kind: 'unresolved_firm_identity', candidates, candidate: { name, quote, domain_on_page: null } };
   }

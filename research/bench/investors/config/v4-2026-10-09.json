@@ -63,7 +63,7 @@
   "engine_v": 2,
   "judge_impl": "v2",
   "extraction_schema": "investor_extraction.v2",
-  "extractor_max_tokens": 3000,
+  "extractor_max_tokens": 6000,
   "resolution": {
     "enabled": true,
     "per_query": 2,
