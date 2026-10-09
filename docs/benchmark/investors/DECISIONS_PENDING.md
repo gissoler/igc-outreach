@@ -34,3 +34,15 @@ Hasta aprobarlos, la regla de decisión conserva `status: proposed` y ninguna co
 15. **`activity.recency_days = 540`** (FIX-09).
 16. **Comparación literal de citas** (FIX-03/04): página y cita se comparan tras NFKC, quitar marcas markdown y unificar comillas y guiones tipográficos. No cambia palabras.
 17. **Evidencia de inversión atribuida** (FIX-04): el verbo de inversión debe ir después del nombre de la firma, o la firma debe ser el agente ("led/backed by X"). Es más estricto que el spec; resuelve el caso Acme/Northwind.
+
+## Aprobación de la usuaria (2026-10-09) — entradas 13, 14 y 15
+
+Aprobadas por la usuaria el 2026-10-09, tal como están escritas arriba:
+
+* **#13 — Regla `plausible` (FIX-07):** `irrelevant` si es inelegible o el sector no encaja (`off`); `strong` si actividad `met`, sector `on`, etapa `met`, geografía `met` y `eligible`; `plausible` si (sector ∈ {on, partial} y geografía `met`) o (sector `on`, geografía `unknown` y etapa `met` con evidencia explícita); si no, `weak`. **Aprobada.**
+* **#14 — Tablas `normalization.v1`** (`docs/contracts/investor/vocab/normalization.v1.json`), tal como están, con las desviaciones (a)–(f). **Aprobada.**
+* **#15 — `activity.recency_days = 540`** (540 días). **Aprobada.**
+
+Las entradas 16 y 17 no formaron parte de esta aprobación explícita; quedan descritas pero sin aprobación registrada.
+
+Versión aprobada: `normalization.v1.json` sha256 `ce332e4073878ada476802ef908252b1c1f879ea3c430aa98a2245a62df58b07`, código en `main@e81d1ad`.
