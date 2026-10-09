@@ -157,3 +157,30 @@ Las citas se compararon contra el texto guardado de cada página: todas existen 
 2. Si la cita literal del modelo no muestra a la firma invirtiendo, se busca otra en la página.
 3. En una noticia, aunque esté en el dominio propio, la cita debe nombrar a la firma.
 4. Un país reconocido decide la geografía aunque haya subdivisiones no reconocidas ("California, US" → US).
+
+## Iteración 4 — resultados del smoke con el código DBG-4 (`e81d1ad`), 2026-10-09 ~09:5x, Mac de la usuaria
+
+Corrida aprobada por la usuaria el 2026-10-09 como verificación previa al congelamiento (`ITER=dbg4`, caché copiada de `smoke-dbg3`). Preflight del lector: `passed` (Crawl4AI ok, Jina no). 6/6 corridas válidas. Salida: `research/bench/investors/out/debug-v4-2026-10-09/smoke-dbg4/`.
+
+| Criterio (§3.4) | Umbral | DBG-3 | DBG-4 | ¿Cumple? |
+|---|---|---|---|---|
+| Firmas con SECTOR/STAGE/GEO/TYPE ≠ unknown | ≥ 60 % | 18,8 % (6/32) | 20,0 % (7/35) | no |
+| Al menos uno ≠ unknown | (≥ 85 % en §5.3) | 100 % | 100 % | sí |
+| Citas literales verificadas | 100 % | 100 % (109/109) | 100 % (117/117) | sí |
+| D1 con ≥ 1 gain ≥ 2 en B2 | ≥ 1 | 2 | 1 (Taram Capital) | sí |
+| D2 con ≥ 1 gain ≥ 2 en B2 | ≥ 1 | 1 (EIT Food, falso) | **0** (`insufficient_evidence`) | **no** |
+| D3: 0 gain ≥ 2 | 0 | B1: 1 (Elemental Impact) | B1: 0 · B2: 0 | sí |
+| D3: abstención `no_candidates`/`all_hard_not_met` | ambas | B2 `insufficient_evidence` | B1 `all_hard_not_met` · B2 `insufficient_evidence` | no (1/2) |
+| FETCH_EMPTY | ≤ 10 % | 0,5 % | 1,0 % | sí |
+| Rechazados / fetches | ≤ 0,75 | 0,793 | 0,789 | no |
+
+Por corrida (entidades · gain ≥ 2 · parada · búsquedas/fetches · tokens):
+
+* D1/B1: 4 · 1 (Taram Capital) · `queries_exhausted` · 13/28 · 93.598
+* D1/B2: 7 · 1 (Taram Capital) · `no_more_actions` · 13/28 · 101.556. Corfo "Early Stage Tech Fund" baja a gain 1 (sector `unknown`).
+* D2/B1: 5 · 1 (Be8 Ventures: sector `partial`, geografía "Europe, Israel, North America" `met`, etapa `unknown`) · `queries_exhausted` · 15/30 · 119.461
+* D2/B2: 3 · 0 · `no_more_actions` · 14/30 · 120.343. EIT Food ya no es entidad; Industrifonden (sector `unknown`) y Purple Orange (geografía `unknown`) quedan `weak`. Be8 no aparece en B2.
+* D3/B1: 3 · 0 · `all_hard_not_met` (geografía `not_met` en las 3) · 12/26 · 94.114
+* D3/B2: 13 · 0 · `insufficient_evidence` · `budget_searches` · 18/52 · 170.635. Cinco firmas `weak` con geografía `unknown`.
+
+Lectura: DBG-4 eliminó los 3 fallos de la revisión manual (Corfo, EIT Food, Elemental Impact), pero con ello D2/B2 se queda sin gain ≥ 2. El gate §3.4 sigue sin cumplirse en 4 criterios (núcleo 20 %, D2/B2, abstención D3/B2, rechazados 0,789). No se cambió código ni umbral. Revisión manual: las citas se verificaron contra el texto en caché (117/117); no se abrieron las URLs en vivo. La cita de identidad de Be8 ("Lisa is an Investment Analyst at Be8 Ventures…") no muestra inversión por sí sola; la de tipo ("Venture capital fund investing in and building food companies…") sí.
