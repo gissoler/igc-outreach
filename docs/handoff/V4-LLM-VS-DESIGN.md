@@ -46,3 +46,23 @@ El modelo no omite al azar: siempre devuelve el mínimo que el schema exige, aun
 **Con (d):** la gramática del servidor permite omitir toda clave no obligatoria, y el schema v1 solo exige 3. El objeto mínimo es una salida válida que el prompt v1 ("use null or unknown when absent") empuja a elegir. Es decir, la omisión la permite y la favorece el diseño (schema + prompt). No queda probado que el modelo sea incapaz.
 
 Lo que sigue sin medirse es si gpt-oss-120b llena los valores, y no solo las claves, cuando el schema las exige (FIX-01) y el prompt las pide con cita (FIX-02). Esa es la prueba que separa modelo de diseño sin gastar en otro modelo.
+
+## (c') Mismo gpt-oss-120b con el diseño v4 — EJECUTADO en el Mac (2026-10-08 23:5x)
+
+Schema `investor_extraction.v2` y prompt `extractor v3`, literales del spec y sin ajustes, sobre las mismas 20 páginas. Medición única.
+
+| | v1 (b) | v4 (c') |
+|---|---|---|
+| Páginas con el campo lleno por el modelo: tipo / sector / etapa / geo / cita / dominio | 0 / 0 / 0 / 0 / 0 / 0 | 18 / 20 / 18 / 19 / 20 / 20 |
+| Campo conservado tras el anclaje literal: tipo / sector / etapa / geo | — | 10 / 11 / 6 / 5 |
+| Aceptadas por el gate | 18 (v1) | 13 (v2) |
+| SECTOR/STAGE/GEO/TYPE ≠ unknown (80 criterios) | 0 % | 33,8 % |
+| gain ≥ 2 | 0/20 | 1/20 |
+| Errores de decodificación | — | 0 |
+| Tokens medios por extracción | ≈ 2,15k | 4,09k |
+
+**Conclusión: la causa era el diseño (schema y prompt), no el modelo.** Con el mismo modelo, los campos pasan de 0/20 a 18–20/20. No se propone cambiar de modelo.
+
+**Pérdida nueva, aún no explicada: el anclaje literal.** Se pierden etapa (18 → 6) y geografía (19 → 5), y el gate v2 rechaza 7/20. No inspecciono el contenido de estas 20 páginas del gold para no depurar con él. La causa se mide en D1–D3 con `fields_dropped_by_grounding` (evento `extract_end`) y `rejected_kind`.
+
+**Los tokens por extracción casi se duplican.** Se espera ≈ 4,1k frente a los 2,8k que estimaba el spec. Hay que revisar el presupuesto de tokens antes de la corrida formal.
