@@ -98,6 +98,12 @@ function mjsFiles(root) {
 }
 test('B0/B1/B2 code cannot import Apollo or capital strategy context', () => {
   const roots = [new URL('../agent', import.meta.url).pathname, new URL('../bench', import.meta.url).pathname];
-  const offenders = roots.flatMap(mjsFiles).filter((file) => /capital\/|apollo|capitalStrategyContext/.test(readFileSync(file, 'utf8')));
+  // El arnés B3 (run-experiment.mjs) y su preflight importan Apollo a propósito; la garantía es que
+  // ningún otro módulo de agent/ o bench/ lo importe y que el arnés solo lo instancie para B3.
+  const harness = new Set(['bench/investors/run-experiment.mjs', 'bench/investors/preflight-chain.mjs']);
+  const importRe = /^\s*import\b[^;]*from\s+['"][^'"]*(?:capital\/|apollo)[^'"]*['"]|capitalStrategyContext|buildCapitalStrategyContext/m;
+  const offenders = roots.flatMap(mjsFiles).filter((file) => !harness.has(file.split('/research/').pop()) && importRe.test(readFileSync(file, 'utf8')));
   assert.deepEqual(offenders, []);
+  const runner = readFileSync(new URL('../bench/investors/run-experiment.mjs', import.meta.url), 'utf8');
+  assert.match(runner, /const apollo = job\.condition === 'B3' \? createApolloClient\(/);
 });
