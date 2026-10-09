@@ -40,7 +40,8 @@ export function deepeningQuery(name, missing, n = 1) {
 }
 
 const DEEP_PATH = /\/(?:about|about-us|who-we-are|strategy|investment-strategy|investment-focus|investment-criteria|criteria|focus|thesis|approach|what-we-do|how-we-invest|invest|investing|funds?|portfolio|team|nosotros|quienes-somos|qui[eé]nes-somos|estrategia|enfoque|tesis|portafolio|sobre|sobre-nos|sobre-n[oó]s|estrat[eé]gia|foco|criterios)(?:\/|$|[-_.])/i;
-const ITEM = /\/(?:portfolio|portafolio|company|companies|investments?|inversiones|startups?|news|blog|press|noticias|prensa)\/[^/]+\/?$/i;
+const ITEM = /\/(?:portfolio|portafolio|company|companies|investments?|inversiones|startups?|news|blog|press|press-releases?|noticias|prensa|insights?|stories|articles?|events?|resources|thought-leadership|media-hub|updates)\/[^/]+\/?$/i;
+const DATED = /\/(?:19|20)\d{2}\/\d{1,2}(?:\/|$)/;
 const GUESSES = {
   en: ['/strategy', '/investment-focus', '/about', '/approach', '/focus', '/portfolio', '/team'],
   es: ['/estrategia', '/enfoque', '/nosotros', '/quienes-somos', '/portafolio', '/about', '/strategy'],
@@ -51,7 +52,8 @@ const lang = text => /\b(?:invertimos|fondo de|nosotros|inversión|etapa tempran
 /** Puntuación de una URL candidata según lo que falta (estrategia/foco para sector-etapa-geografía, about para tipo). */
 export function rankDeepUrl(url, missing) {
   let path = '/'; try { path = new URL(url).pathname.toLowerCase(); } catch { return -9; }
-  if (ITEM.test(path) && path.split('/').filter(Boolean).length >= 2) return -1;
+  const onlyActive = missing.length > 0 && missing.every(id => id === 'INV-ACTIVE');
+  if (DATED.test(path) || (ITEM.test(path) && path.split('/').filter(Boolean).length >= 2)) return onlyActive ? 1 : -1;
   let s = 0;
   if (/strategy|focus|thesis|approach|criteria|what-we-do|how-we-invest|invest|estrategia|enfoque|tesis|foco|criterios|estrat/.test(path) && missing.some(id => ['INV-SECTOR', 'INV-STAGE', 'INV-GEO'].includes(id))) s += 3;
   if (/about|who-we-are|nosotros|quienes|quiénes|sobre/.test(path)) s += missing.includes('INV-TYPE') ? 3 : 2;
@@ -109,7 +111,8 @@ export function mergeDeepening(entity, { url, title, text, extracted, today }, m
   const quote = missing.includes('INV-ACTIVE') && g.quote && lit(g.quote) ? g.quote : null;
   if (contradictions.length) entity.contradictions = unique([...(entity.contradictions ?? []), ...contradictions]);
   if (!Object.keys(evidence).length && !quote) return { outcome: 'no_new_data', filled, contradictions };
-  entity.sources = [...entity.sources, { url, title: title || url, source_kind: 'official', retrieved_on: today, published_on: g.published_on ?? null, quote, field_evidence: evidence }];
+  // V5-DBG-1: una fuente que solo respalda un campo no puede contar como inversión reciente (deriveActivity exige cita); la fecha solo se guarda junto a una cita literal verificada.
+  entity.sources = [...entity.sources, { url, title: title || url, source_kind: 'official', retrieved_on: today, published_on: quote ? (g.published_on ?? null) : null, quote, field_evidence: evidence }];
   return { outcome: 'merged', filled: quote ? [...filled, 'INV-ACTIVE:thesis_quote'] : filled, contradictions };
 }
 
@@ -165,8 +168,13 @@ export async function runDeepening({ entities, profile, catalog, normalization, 
     };
     const ownPages = [...io.pageTexts.entries()].filter(([u]) => sameDomain(host(u), domain));
     // (a) Exa dentro del dominio + (b) enlaces internos de las páginas propias ya leídas.
+    // V5-DBG-1: sin ninguna página propia leída, la portada aporta la navegación (enlaces a estrategia/acerca) en vez de gastar lecturas en notas de prensa.
+    const home = `https://${domain}/`;
+    if (!ownPages.length && !io.seen(home) && !queued.has(home) && canFetch()) { queued.add(home); io.markSeen(home); await open(home, 'home'); }
+    const linkRows = () => queue([...io.pageTexts.entries()].filter(([u]) => sameDomain(host(u), domain)).flatMap(([u, t]) => internalLinks(t, u, domain)).filter(u => { try { return DEEP_PATH.test(new URL(u).pathname); } catch { return false; } })).map(url => ({ url }));
+    if (canFetch()) await runList(linkRows(), 'link');
     await searchPhase(1);
-    if (canFetch()) await runList(queue(ownPages.flatMap(([u, t]) => internalLinks(t, u, domain)).filter(u => DEEP_PATH.test(new URL(u).pathname))).map(url => ({ url })), 'link');
+    if (canFetch()) await runList(linkRows(), 'link');
     await searchPhase(2);
     // sitemap.xml (si el lector lo devuelve) y, al final, rutas habituales en el idioma del sitio.
     if (canFetch()) {
@@ -181,7 +189,7 @@ export async function runDeepening({ entities, profile, catalog, normalization, 
       }
     }
     if (canFetch()) {
-      const l = lang(ownPages.map(([, t]) => t).join(' ').slice(0, 20000));
+      const l = lang([...io.pageTexts.entries()].filter(([u]) => sameDomain(host(u), domain)).map(([, t]) => t).join(' ').slice(0, 20000));
       await runList(queue(GUESSES[l].map(p => `https://${domain}${p}`)).map(url => ({ url })), 'guess');
     }
     const after = missing;

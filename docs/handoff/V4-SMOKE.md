@@ -184,3 +184,44 @@ Por corrida (entidades · gain ≥ 2 · parada · búsquedas/fetches · tokens):
 * D3/B2: 13 · 0 · `insufficient_evidence` · `budget_searches` · 18/52 · 170.635. Cinco firmas `weak` con geografía `unknown`.
 
 Lectura: DBG-4 eliminó los 3 fallos de la revisión manual (Corfo, EIT Food, Elemental Impact), pero con ello D2/B2 se queda sin gain ≥ 2. El gate §3.4 sigue sin cumplirse en 4 criterios (núcleo 20 %, D2/B2, abstención D3/B2, rechazados 0,789). No se cambió código ni umbral. Revisión manual: las citas se verificaron contra el texto en caché (117/117); no se abrieron las URLs en vivo. La cita de identidad de Be8 ("Lisa is an Investment Analyst at Be8 Ventures…") no muestra inversión por sí sola; la de tipo ("Venture capital fund investing in and building food companies…") sí.
+
+---
+
+# Smoke v5 (PROMPT-v5) — iteraciones V5-DBG (máximo 3, solo D1–D3, semilla 101)
+
+## V5-DBG-1 — resultados (`ITER=v5dbg1`, código `2037559`), 2026-10-09 ~11:4x, Mac de la usuaria
+
+6 corridas válidas, 0 fallidas, 59 firmas aceptadas. **No pasa.**
+
+| Criterio | Umbral | Medido | Estado |
+|---|---|---|---|
+| 4 núcleo ≠ unknown en firmas aceptadas | ≥ 60 % | 33,9 % (20/59) | FALLA |
+| ≥ 1 núcleo ≠ unknown | ≥ 85 % | 98,3 % | pasa |
+| Citas literales verificadas | 100 % | 99,5 % (197/198) | FALLA |
+| D1 y D2 con ≥ 1 ganancia ≥ 2 en B2 | ambos | D1 2 firmas, D2 1 firma | pasa |
+| D3: 0 ganancia ≥ 2 y abstención ∈ {no_candidates, all_hard_not_met} | ambos | 0 ganancias, `insufficient_evidence` (B1 y B2) | FALLA |
+| FETCH_EMPTY | ≤ 10 % | 0,6 % (descubrimiento), 1,5 % combinado | pasa |
+| rechazadas/fetches | ≤ 0,75 | 0,644 (descubrimiento, definición sin cambios); 0,338 combinado | pasa |
+| Revisión manual | sin fallos | no hecha: la iteración no pasa los criterios automáticos | pendiente |
+
+Por criterio núcleo (conocido): SECTOR 84,7 %, STAGE 57,6 %, GEO 57,6 %, TYPE 84,7 %.
+Profundización: 45 firmas, 52 búsquedas, 163 lecturas (4 vacías), 527 244 tokens nominales; campos llenados SECTOR 5, STAGE 11, GEO 14, TYPE 11, ACTIVE 1. Triage: 65 resultados descartados (no cuentan como fetch ni rechazo).
+
+### Causa medida de cada fallo
+
+1. **Cita sin verificar (1/198):** `INV-RECENCY` = met sin cita en `agthia.com` (D2/B1). `mergeDeepening` guardaba `published_on` en una fuente que solo respaldaba un campo (`quote: null`); `deriveActivity` cuenta cualquier fuente oficial con fecha reciente como inversión reciente. Defecto de la ronda de profundización, no del extractor.
+2. **Núcleo 33,9 %:** de las 68 celdas núcleo en unknown, 22 son de firmas no profundizadas, 27 profundizadas sin ningún valor y 19 profundizadas con valores vagos.
+   - El tope de 8 firmas solo limita en D3 (14 aceptadas); en las demás corridas se profundizaron todas las candidatas. Subir el tope no es la palanca principal: las firmas profundizadas llegan a 16/45 (35,6 %) con los 4 núcleo conocidos.
+   - De las ~150 páginas leídas en profundización, 44 fueron rechazadas por el extractor como `other` y 25 más aportaron poco: las 4 lecturas por firma se gastaban en los primeros resultados de Exa (notas de prensa con fecha, `/insights/`, informes PDF, portafolio), no en estrategia o acerca. Ejemplos: `danoneventures.com/2018/10/02/...`, `taaleri.com/press-release/...`, `archipelagoventures.vc/insights/...`.
+   - Las rutas habituales adivinadas devolvieron páginas de ~535 caracteres (sin contenido) para `oneplanetventures.vc` y `mudcake.com`.
+   - Valores vagos que el juez (normalization.v1, congelada) deja en unknown por diseño: etapa "early"/"growth"/"first-time founders"; geografías que son ciudades sede ("Stockholm", "Paris", "San Francisco") o "globally"/"pan-European".
+3. **D3 `insufficient_evidence`:** B1 tiene 7 firmas con elegibilidad dura `undetermined` de 14; B2, 5 de 14. Todas con GEO unknown (sin geografías publicadas leídas). Para llegar a `all_hard_not_met` hace falta geografía explícita en cada firma; es la misma palanca que el núcleo.
+
+### Cambios de V5-DBG-2 (solo `deepening.mjs`; umbrales, config, prompts y archivos congelados sin tocar)
+
+- `mergeDeepening`: `published_on` solo se guarda junto a una cita literal verificada.
+- `rankDeepUrl`: URLs con fecha (`/YYYY/MM/`) y páginas-ítem de `press-release`, `insights`, `news`, `stories`, `articles`, `events`, `media-hub`, etc. quedan fuera (rango < 0) salvo que lo único que falte sea actividad.
+- Orden de la ronda: si no hay página propia leída, se abre la portada; se siguen los enlaces a estrategia/acerca (también antes de la búsqueda 1); luego Exa dentro del dominio, enlaces, sitemap y rutas adivinadas.
+- Tests: V5-DBG-1a/b/c (11 → 14 en el archivo v5); `investors.test` 21/21, v4 34/34, v5 14/14.
+
+No se cambió el presupuesto de la entrada 18 (8 firmas, 2 consultas y 4 lecturas por firma).

@@ -147,7 +147,9 @@ const st = (j, id) => j.criteria.find(c => c.criterion_id === id).state;
 
 test('V5-3a sector desconocido en la portada y publicado en /strategy → el campo se llena con cita literal de esa página', async () => {
   const strategy = quillStrategy('Quill Fund invests in fintech companies that serve small businesses.', { sectors: ['fintech'], evidence: { sectors: 'invests in fintech companies' } });
-  const { r, w, logs, e, j } = await runQuill({ [QUILL_HOME]: quillHome(), [QUILL_STRATEGY]: strategy });
+  // La portada no enlaza a la estrategia: la página se descubre con Exa dentro del dominio (con enlaces, la ronda se ahorra la consulta; ver V5-DBG-1c).
+  const home = { ...quillHome(), text: `Quill Fund invests at seed in startups in Mexico. ${filler('Quill Fund')}` };
+  const { r, w, logs, e, j } = await runQuill({ [QUILL_HOME]: home, [QUILL_STRATEGY]: strategy }, { searches: { [deepeningQuery('Quill Fund', ['INV-SECTOR'], 1)]: [QUILL_STRATEGY] } });
   assert.equal(r.schema_version, 'investor_run_result/3'); validateInvestor('investor_run_result.v3', r);
   assert.ok(e.sectors.includes('fintech')); assert.equal(st(j, 'INV-SECTOR'), 'met');
   const src = e.sources.find(s => s.url === QUILL_STRATEGY);
@@ -205,4 +207,35 @@ test('V5-3e sin deepening.enabled (ni triage) el resultado es idéntico al de v4
   const v4 = (await runQuill(pages, { config: v4Config() })).r;
   const off = (await runQuill(pages, { config: v5Config({ deepening: { ...v5Config().deepening, enabled: false }, triage: { enabled: false }, enrichment: v4Config().enrichment }) })).r;
   assert.deepEqual(off, v4); assert.equal(off.schema_version, 'investor_run_result/2');
+});
+
+// ───────── V5-DBG-1 — correcciones medidas en el smoke v5dbg1 ─────────
+import { rankDeepUrl } from '../../bench/investors/deepening.mjs';
+
+test('V5-DBG-1a una fuente que respalda solo un campo no guarda published_on (no cuenta como inversión reciente sin cita)', () => {
+  const base = () => ({ canonical_name: 'Quill Fund', aliases: [], official_domain: 'quillfund.test', investor_type: 'venture_capital', sectors: [], stages: ['seed'], geographies: ['Mexico'], contradictions: [], sources: [] });
+  const text = 'Quill Fund invests in fintech companies that serve small businesses. More text here to make the page long enough.';
+  const fields = quote => ({ deepening_fields: { entity_kind: 'institutional_investor', canonical_name: 'Quill Fund', aliases: [], investor_type: 'unknown', sectors: ['fintech'], stages: [], geographies: [], published_on: '2026-02-26', field_evidence: { sectors: 'invests in fintech companies' }, quote } });
+  const e1 = base(); mergeDeepening(e1, { url: 'https://quillfund.test/press', title: 'P', text, extracted: fields(null), today: '2026-10-09' }, ['INV-SECTOR']);
+  assert.equal(e1.sources.at(-1).published_on, null); assert.equal(e1.sources.at(-1).quote, null);
+  const e2 = base(); mergeDeepening(e2, { url: 'https://quillfund.test/press', title: 'P', text, extracted: fields('Quill Fund invests in fintech companies that serve small businesses.'), today: '2026-10-09' }, ['INV-SECTOR', 'INV-ACTIVE']);
+  assert.equal(e2.sources.at(-1).published_on, '2026-02-26'); assert.ok(e2.sources.at(-1).quote);
+});
+
+test('V5-DBG-1b ranking: estrategia/acerca arriba; notas de prensa, insights y URLs con fecha fuera (salvo que solo falte actividad)', () => {
+  const miss = ['INV-STAGE', 'INV-GEO'];
+  assert.ok(rankDeepUrl('https://x.test/strategy', miss) > 0); assert.ok(rankDeepUrl('https://x.test/about', miss) > 0);
+  for (const u of ['https://x.test/press-release/fund-invests-in-acme', 'https://x.test/insights/some-story', 'https://x.test/2018/10/02/danone-invests-in-acme/', 'https://x.test/news/acme-raises'])
+    assert.ok(rankDeepUrl(u, miss) < 0, u);
+  assert.ok(rankDeepUrl('https://x.test/news/acme-raises', ['INV-ACTIVE']) > 0);
+});
+
+test('V5-DBG-1c sin página propia leída, la ronda abre la portada y sigue sus enlaces (no gasta lecturas en notas de prensa)', async () => {
+  const strategy = quillStrategy('Quill Fund invests in fintech companies that serve small businesses.', { sectors: ['fintech'], evidence: { sectors: 'invests in fintech companies' } });
+  const news = quillStrategy('Quill Fund announces an investment.', {});
+  const homeNoLinks = { ...quillHome(), text: `Quill Fund invests at seed in startups in Mexico. [Our strategy](/strategy) ${filler('Quill Fund')}` };
+  const pages = { [QUILL_HOME]: homeNoLinks, [QUILL_STRATEGY]: strategy, 'https://quillfund.test/press-release/quill-invests-in-acme': news };
+  const { w, e } = await runQuill(pages, { searches: { 'Quill Fund investment criteria: sectors they invest in': ['https://quillfund.test/press-release/quill-invests-in-acme'] } });
+  assert.ok(e.sectors.includes('fintech'));
+  assert.ok(!w.calls.fetch.includes('https://quillfund.test/press-release/quill-invests-in-acme'));
 });
