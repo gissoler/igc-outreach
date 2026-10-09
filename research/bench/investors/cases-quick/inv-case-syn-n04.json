@@ -1,0 +1,27 @@
+{
+  "schema_version": "investor_case/1",
+  "case_id": "inv-case-syn-n04",
+  "kind": "null",
+  "as_of": "2026-10-08",
+  "profile_path": "research/bench/investors/cases/profiles/inv-case-syn-n04.json",
+  "profile_sha256": "2f1426fa29cf7191c1c9c692532f8899c2ad2fcd522e1a7d7725709fcffdc5b1",
+  "construction": {
+    "curator": "internal-gold-2026-10-08",
+    "profile_builder": "claude-context-A-profile-builder",
+    "profile_builder_saw_investors": false,
+    "selection_order": "profile_first",
+    "profile_frozen_at": "2026-10-08T01:59:52-05:00",
+    "curation_started_at": "2026-10-08T12:38:00-05:00"
+  },
+  "anchors": [],
+  "null_case": {
+    "scope": "Institutional equity investors active for a Palau-incorporated utility-scale solar and battery IPP seeking a USD 28M Series B.",
+    "manual_search_minutes": 20,
+    "manual_queries": [
+      "Palau solar IPP equity investor",
+      "Pacific islands climate infrastructure fund equity",
+      "Palau battery storage project investor"
+    ],
+    "conclusion": "no_active_investor_with_gain_gte_2_found_within_scope"
+  }
+}
