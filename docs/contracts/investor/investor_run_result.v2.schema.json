@@ -167,6 +167,9 @@
         "insufficient_evidence",
         null
       ]
+    },
+    "v2_stats": {
+      "type": "object"
     }
   }
 }

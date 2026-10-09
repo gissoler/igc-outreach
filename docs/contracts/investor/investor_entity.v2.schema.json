@@ -228,6 +228,14 @@
             "null"
           ],
           "pattern": "^q\\d{3}$"
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "search",
+            "resolution",
+            "planner_candidate"
+          ]
         }
       }
     },

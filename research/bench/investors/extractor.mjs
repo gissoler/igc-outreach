@@ -259,3 +259,4 @@ export function extractFixtureInvestorV2({ document, extraction, today, firstSee
   validateInvestor('investor_entity.v2', entity);
   return { entity, rejected_kind: null, candidates: rejection?.candidates ?? verifiedCandidates({ document, extraction }), meta };
 }
+export { nameMatchesDomain, sameDomain, hostname as investorHostname };

@@ -4,8 +4,10 @@ import { investorB0Queries, validatePlannerBatch } from './conditions.mjs';
 import { judgeInvestor } from './judge.mjs';
 import { rankInvestors } from './ranking.mjs';
 import { validateInvestor } from './contracts.mjs';
+import { runInvestorDiscoveryV2 } from './engine.v2.mjs';
 
 export async function runInvestorDiscovery({ caseObj, profile, condition, config, templates, catalog, deps }) {
+  if ((config.engine_v ?? 1) >= 2) return runInvestorDiscoveryV2({ caseObj, profile, condition, config, templates, catalog, deps });
   const totals = { searches: 0, fetches: 0, planner_calls: 0, rejected_non_investors: 0, portfolio_companies_rejected: 0, nominal_cost: 0, tokens_nominal: 0, seconds_nominal: 0, latency_actual_ms: 0, latency_nominal_ms: 0 };
   const seenQueries = new Set(), rawEntities = [], prefix_curve = [], actions_rejected = [];
   let noNew = 0, stop_reason = null, order = 0, queryCounter = 0;

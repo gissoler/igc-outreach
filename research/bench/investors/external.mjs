@@ -4,6 +4,7 @@ import { render, sanitizePageText } from '../../agent/prompts.mjs';
 import { parseJsonContent } from '../../server/analysis/fleet.mjs';
 import { bundleInvestor, validateInvestor } from './contracts.mjs';
 import { describeInvestorExtraction, extractFixtureInvestor, extractFixtureInvestorV2, groundInvestorExtraction } from './extractor.mjs';
+import { guardSectorFit } from './judge.mjs';
 
 const sha = value => createHash('sha256').update(String(value)).digest('hex');
 const schemaForVllm = value => {
@@ -47,14 +48,21 @@ export function createInvestorLlm({ env = process.env, role = 'engine', cache, f
   } };
 }
 
-export function createLiveInvestorDeps({ search, fetch, llm, plannerPrompt, extractorPrompt, config, seed }) {
+export function createLiveInvestorDeps({ search, fetch, llm, plannerPrompt, extractorPrompt, judgePrompt = null, config, seed }) {
   return {
     search: (query, options) => search.search(query, options),
     fetch: url => fetch.fetch(url),
     async plan({ mode, profile, state, limit }) {
       const user = render(plannerPrompt.user, { mode, profile, state, limits: { max_queries: limit } });
-      const result = await llm.call({ prompt: plannerPrompt, user, schemaName: 'investor_planner_output', temperature: 0, seed, maxTokens: 2000 }); return { ...result.json, tokens_nominal: result.tokens_nominal, latency: result.latency };
+      const schemaName = config.planner?.allow_candidate_names ? 'investor_planner_output.v2' : 'investor_planner_output';
+      const result = await llm.call({ prompt: plannerPrompt, user, schemaName, temperature: 0, seed, maxTokens: 2000 }); return { ...result.json, tokens_nominal: result.tokens_nominal, latency: result.latency };
     },
+    ...(judgePrompt ? { async sectorFit({ entity, profile, quotes }) {
+      // FIX-08: una llamada por entidad; la respuesta pasa por la guarda determinista antes de usarse.
+      const user = render(judgePrompt.user, { sector: profile.fields.sector.value ?? '', subsectors: (profile.fields.subsectors?.value ?? []).join(', '), quotes });
+      const result = await llm.call({ prompt: judgePrompt, user, schemaName: 'investor_sector_fit.v1', temperature: 0, seed: 0, maxTokens: 1500 });
+      return { ...guardSectorFit(result.json, quotes), raw: result.json, stable_id: entity.stable_id, tokens_nominal: result.tokens_nominal, latency: result.latency };
+    } } : {}),
     async extract({ document, today, firstSeen }) {
       const safePageText = sanitizePageText(document.text).replaceAll('{{', '{ {').replaceAll('}}', '} }').slice(0, 24000);
       const user = render(extractorPrompt.user, { today, url: document.url, page_text: safePageText });

@@ -42,7 +42,19 @@ export function stableInvestorId(entity) {
 }
 
 const unique = xs => [...new Set(xs.filter(x => x != null))];
-function merge(a, b) {
+// v2 (config v4): al fusionar, un escalar desconocido se completa con el de la otra fuente. v1 no lo usa.
+function fillScalarsV2(merged, a, b) {
+  if (merged.investor_type === 'unknown' && b.investor_type !== 'unknown') merged.investor_type = b.investor_type;
+  if (merged.lead_follow === 'unknown' && b.lead_follow !== 'unknown') merged.lead_follow = b.lead_follow;
+  if (merged.check_range_usd?.min == null && merged.check_range_usd?.max == null && (b.check_range_usd?.min != null || b.check_range_usd?.max != null)) merged.check_range_usd = b.check_range_usd;
+  merged.business_models = { accepted: unique([...(a.business_models?.accepted ?? []), ...(b.business_models?.accepted ?? [])]), excluded: unique([...(a.business_models?.excluded ?? []), ...(b.business_models?.excluded ?? [])]) };
+  merged.regulatory_restrictions = unique([...(a.regulatory_restrictions ?? []), ...(b.regulatory_restrictions ?? [])]);
+  if (a.active_status === 'inactive' || b.active_status === 'inactive') merged.active_status = 'inactive';
+  if (a.first_seen && b.first_seen && b.first_seen.order < a.first_seen.order) merged.first_seen = b.first_seen;
+  return merged;
+}
+
+function merge(a, b, v2 = false) {
   const sources = unique([...(a.sources ?? []), ...(b.sources ?? [])].map(x => JSON.stringify(x))).map(JSON.parse);
   const merged = {
     ...a,
@@ -62,21 +74,22 @@ function merge(a, b) {
     query_ids: unique([...(a.query_ids ?? []), ...(b.query_ids ?? [])]),
     contradictions: unique([...(a.contradictions ?? []), ...(b.contradictions ?? [])])
   };
+  if (v2) fillScalarsV2(merged, a, b);
   merged.stable_id = stableInvestorId(merged);
   return merged;
 }
 
-export function dedupeInvestors(entities) {
+export function dedupeInvestors(entities, { v2 = false } = {}) {
   const groups = [];
   for (const raw of entities) {
     const entity = { ...structuredClone(raw), stable_id: stableInvestorId(raw) };
     const keys = investorIdentityKeys(entity);
     const indexes = groups.map((g, i) => [...keys].some(k => g.keys.has(k)) ? i : -1).filter(i => i >= 0);
     if (!indexes.length) { groups.push({ entity, keys }); continue; }
-    const first = indexes[0]; groups[first].entity = merge(groups[first].entity, entity);
+    const first = indexes[0]; groups[first].entity = merge(groups[first].entity, entity, v2);
     groups[first].keys = new Set([...groups[first].keys, ...keys, ...investorIdentityKeys(groups[first].entity)]);
     for (const i of indexes.slice(1).sort((x, y) => y - x)) {
-      groups[first].entity = merge(groups[first].entity, groups[i].entity);
+      groups[first].entity = merge(groups[first].entity, groups[i].entity, v2);
       groups[first].keys = new Set([...groups[first].keys, ...groups[i].keys]); groups.splice(i, 1);
     }
   }
