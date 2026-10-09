@@ -38,7 +38,7 @@ test('UW-Madison I-Corps: evento/cohorte para estudiantes y faculty → cerrado,
   const p = page('uw');
   const v = verifyFinding(fx.modelReads.uw, p, 'grant', { today: TODAY, brief: mentiva });
   assert.equal(v.keep, false);
-  assert.deepEqual(v.reasons, ['closed', 'not_a_call:event', 'not_eligible']);
+  assert.deepEqual(v.reasons, ['closed', 'not_a_call:event', 'not_eligible', 'scope_mismatch']);
   assert.equal(v.deadline, '2026-09-09');
   assert.ok(literalIn(v.deadlineQuote, p.text) && v.deadlineQuote.includes('September 9th, 2026'));
   assert.ok(v.flags.includes('deadline_conflict'), 'el modelo propuso la sesión final (12/11) como plazo');

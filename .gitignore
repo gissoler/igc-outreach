@@ -38,3 +38,6 @@ __pycache__/
 # Claves privadas
 *.pem
 research/bench/out/
+
+# Datos de cuenta de integraciones (cuotas Apollo, etc.)
+research/artifacts/

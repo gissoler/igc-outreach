@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/capital_strategy_context/1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "as_of", "declared_segment", "proposed_routes", "tool_calls", "limits"],
+  "properties": {
+    "schema_version": { "const": "capital_strategy_context/1" },
+    "as_of": { "type": "string", "format": "date" },
+    "declared_segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source", "confirmed"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "source": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "confirmed": { "type": "boolean" }
+      }
+    },
+    "proposed_routes": {
+      "type": "array", "minItems": 3, "maxItems": 6,
+      "items": { "$ref": "#/$defs/route" }
+    },
+    "tool_calls": { "type": "array", "items": { "$ref": "#/$defs/tool_call" } },
+    "limits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_routes", "max_queries", "max_calls", "max_ms", "max_cost_usd"],
+      "properties": {
+        "max_routes": { "type": "integer", "minimum": 3, "maximum": 6 },
+        "max_queries": { "type": "integer", "minimum": 1 },
+        "max_calls": { "type": "integer", "minimum": 1 },
+        "max_ms": { "type": "integer", "minimum": 1 },
+        "max_cost_usd": { "type": "number", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source", "url", "quote", "retrieved_at", "supports"],
+      "properties": {
+        "source": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "quote": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "retrieved_at": { "type": "string", "format": "date" },
+        "supports": { "type": "string", "minLength": 1, "maxLength": 240 }
+      }
+    },
+    "query": {
+      "type": "object", "additionalProperties": false,
+      "required": ["query_id", "question", "query", "recommended_tool", "reason", "estimated_cost_usd"],
+      "properties": {
+        "query_id": { "type": "string", "pattern": "^query:[a-z0-9_-]+$" },
+        "question": { "type": "string", "minLength": 4, "maxLength": 300 },
+        "query": { "type": "string", "minLength": 4, "maxLength": 300 },
+        "recommended_tool": { "enum": ["searxng", "page_reader", "official_grants", "funding_round_sources", "apollo", "authorized_network", "llm"] },
+        "reason": { "type": "string", "minLength": 4, "maxLength": 300 },
+        "estimated_cost_usd": { "type": "number", "minimum": 0 }
+      }
+    },
+    "route": {
+      "type": "object", "additionalProperties": false,
+      "required": ["route_id", "segment", "status", "rationale", "comparables", "funding_mechanisms", "example_funders", "queries", "recommended_tools", "evidence", "risks", "open_questions"],
+      "properties": {
+        "route_id": { "type": "string", "pattern": "^route:[a-z0-9_-]+$" },
+        "segment": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "status": { "enum": ["evidence_backed", "hypothesis", "rejected"] },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 800 },
+        "comparables": { "type": "array", "items": { "type": "string", "maxLength": 200 }, "maxItems": 12 },
+        "funding_mechanisms": { "type": "array", "items": { "type": "string", "maxLength": 160 }, "maxItems": 12 },
+        "example_funders": { "type": "array", "items": { "type": "string", "maxLength": 200 }, "maxItems": 12 },
+        "queries": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "$ref": "#/$defs/query" } },
+        "recommended_tools": { "type": "array", "items": { "enum": ["searxng", "page_reader", "official_grants", "funding_round_sources", "apollo", "authorized_network", "llm"] }, "uniqueItems": true },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" }, "maxItems": 20 },
+        "risks": { "type": "array", "items": { "type": "string", "maxLength": 300 }, "maxItems": 12 },
+        "open_questions": { "type": "array", "items": { "type": "string", "maxLength": 300 }, "maxItems": 12 }
+      }
+    },
+    "tool_call": {
+      "type": "object", "additionalProperties": false,
+      "required": ["call_id", "question", "tool", "reason", "estimated_cost_usd", "result", "new_evidence", "error", "latency_ms"],
+      "properties": {
+        "call_id": { "type": "string", "pattern": "^call:[a-z0-9_-]+$" },
+        "question": { "type": "string" },
+        "tool": { "type": "string" },
+        "reason": { "type": "string" },
+        "estimated_cost_usd": { "type": "number", "minimum": 0 },
+        "result": { "enum": ["planned", "success", "empty", "skipped", "error"] },
+        "new_evidence": { "type": "integer", "minimum": 0 },
+        "error": { "type": ["string", "null"] },
+        "latency_ms": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
