@@ -225,3 +225,30 @@ Profundización: 45 firmas, 52 búsquedas, 163 lecturas (4 vacías), 527 244 tok
 - Tests: V5-DBG-1a/b/c (11 → 14 en el archivo v5); `investors.test` 21/21, v4 34/34, v5 14/14.
 
 No se cambió el presupuesto de la entrada 18 (8 firmas, 2 consultas y 4 lecturas por firma).
+
+## V5-DBG-2 — resultados (`ITER=v5dbg2`, código `ca8e893`), 2026-10-09 ~12:0x, Mac de la usuaria
+
+6 corridas válidas, 59 firmas aceptadas. Caché de descubrimiento copiada de v5dbg1 (el descubrimiento es idéntico; solo cambió la ronda de profundización). **No pasa.**
+
+| Criterio | Umbral | v5dbg1 | v5dbg2 | Estado |
+|---|---|---|---|---|
+| 4 núcleo ≠ unknown | ≥ 60 % | 33,9 % | 33,9 % (20/59) | FALLA |
+| ≥ 1 núcleo ≠ unknown | ≥ 85 % | 98,3 % | 98,3 % | pasa |
+| Citas literales | 100 % | 99,5 % | 100 % (198/198) | pasa (corregido) |
+| D1/B2 y D2/B2 con ganancia ≥ 2 | ambos | sí | sí (1 firma cada uno) | pasa |
+| D3 abstención válida | no_candidates / all_hard_not_met | insufficient_evidence | insufficient_evidence (B1 y B2) | FALLA |
+| FETCH_EMPTY | ≤ 10 % | 0,6 % | 0,6 % | pasa |
+| rechazadas/fetches | ≤ 0,75 | 0,644 | 0,644 | pasa |
+
+Por criterio: SECTOR 84,7 %, STAGE 57,6 %, GEO 59,3 %, TYPE 86,4 %. Profundización: 45 firmas, 54 búsquedas, 162 lecturas, 515 532 tokens; campos llenados SECTOR 4, STAGE 11, GEO 15, TYPE 12 (antes 5/11/14/11).
+
+### Causa medida
+- El cambio de ranking y de orden no movió el núcleo. Páginas abiertas en profundización por origen: búsqueda 1 → 59 fusionadas, 28 sin datos nuevos, 43 rechazadas `other`, 5 `different_firm`; enlaces → 1; portada → 0 (siempre había una página propia leída, así que nunca se abrió); rutas adivinadas → 10 `other` y 4 vacías.
+- Firmas por número de núcleo en unknown: 0 → 20, 1 → 19, 2 → 14, 3 → 5, 4 → 1. Las 19 con un solo faltante: STAGE 8, GEO 6, SECTOR 4, TYPE 1.
+- Celdas núcleo en unknown (66): vacías en firmas profundizadas 27, con valores vagos en firmas profundizadas 17, vacías en no profundizadas 18, vagas en no profundizadas 4. Las no profundizadas son de D3 (14 aceptadas, tope 8).
+- Valores vagos (etapa "growth"/"early", geografías "globally"/"pan-European" o ciudades sede) el juez los deja en unknown por diseño (normalization.v1, congelada). Mucho de lo que queda no depende de alcanzar más páginas.
+- Páginas `other` típicas: `/about` de un grupo matriz (`marvelous-group.com`), `/portfolio`, `/contact`, notas de empresas del portafolio. Aceptarlas arriesga atribuir datos del grupo o de una participada a la firma; no se hizo.
+- D3: las firmas indeterminadas tienen además CHECK y ACTIVE en unknown (ambos duros). `all_hard_not_met` solo se alcanza si cada firma tiene al menos un criterio duro `not_met` explícito (en la práctica, geografía publicada que no incluye Nauru). Quedan 6 (B1) y 4 (B2) firmas sin ninguna geografía publicada encontrada.
+
+### Estado
+2 de 3 iteraciones usadas. No se ha hecho la revisión manual (los criterios automáticos no pasan). No se ejecutaron las 90 corridas.
