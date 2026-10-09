@@ -1,3 +1,5 @@
+> En pausa R-08…R-15 para inversionistas: ver [DECISION-2026-10-08-agente-inversionistas.md](DECISION-2026-10-08-agente-inversionistas.md).
+
 # Plan de refactor: un agente y un benchmark para todos los dominios
 
 Estado: **propuesta** (07/10/2026). Autor: arquitecto. Lo implementa Codex, tarea por tarea, **sin interpretar**. Si algo no está escrito aquí, en `docs/ARCHITECTURE_AGENT.md`, en `docs/ARCHITECTURE_BENCHMARK.md` o en un contrato, se pregunta en el PR y no se decide.
