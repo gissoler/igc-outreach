@@ -23,11 +23,18 @@ En las 20 páginas el modelo devolvió exactamente `{entity_kind, canonical_name
 
 No hay en esta sesión ninguna clave ni endpoint de un modelo más fuerte (`.env` no contiene claves de OpenAI, Anthropic ni OpenRouter). El script lo soporta con `--strong` y un tope de gasto `--cap-usd 5`.
 
-## (d) Decodificación guiada estricta del servidor — NO EJECUTADO
+## (d) Decodificación guiada estricta del servidor — EJECUTADO en el Mac de la usuaria (2026-10-08 23:26)
 
-El servidor de la flota (`147.185.41.229:8016`) no es alcanzable desde la VM de la sesión ni desde la nube (allowlist de red). El script lo soporta con `--guided`: hace 4 sondas (enum inválido, clave extra, falta un campo obligatorio, `maxLength`) con `strict:true`.
+Servidor `openai/gpt-oss-120b`, `response_format: json_schema` con `strict:true`. Resultado: 4/4 sondas salen conformes aunque el prompt pedía violar el schema.
 
-## Lectura provisional
+* `enum_violation` → `"institutional_investor"`.
+* `extra_key` → la clave extra quedó cortada (`"X,"`).
+* `missing_required` → se emitieron las dos claves obligatorias.
+* `maxlength` → 20 caracteres.
+
+**El servidor impone el schema durante la generación.**
+
+## Lectura (actualizada con d)
 
 El modelo no omite al azar: siempre devuelve el mínimo que el schema exige, aunque la página tenga los datos. Eso es compatible con dos causas que (b) solo no separa:
 
@@ -35,3 +42,7 @@ El modelo no omite al azar: siempre devuelve el mínimo que el schema exige, aun
 2. El modelo.
 
 (c) separa estas dos. (d) dice si poner los campos como obligatorios en el schema (FIX-01) basta para forzarlos o si depende solo del prompt.
+
+**Con (d):** la gramática del servidor permite omitir toda clave no obligatoria, y el schema v1 solo exige 3. El objeto mínimo es una salida válida que el prompt v1 ("use null or unknown when absent") empuja a elegir. Es decir, la omisión la permite y la favorece el diseño (schema + prompt). No queda probado que el modelo sea incapaz.
+
+Lo que sigue sin medirse es si gpt-oss-120b llena los valores, y no solo las claves, cuando el schema las exige (FIX-01) y el prompt las pide con cita (FIX-02). Esa es la prueba que separa modelo de diseño sin gastar en otro modelo.
