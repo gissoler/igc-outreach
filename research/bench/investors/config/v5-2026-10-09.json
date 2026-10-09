@@ -102,7 +102,7 @@
   },
   "deepening": {
     "enabled": true,
-    "max_firms_per_run": 8,
+    "max_firms_per_run": 16,
     "max_queries_per_firm": 2,
     "max_fetches_per_firm": 4
   }

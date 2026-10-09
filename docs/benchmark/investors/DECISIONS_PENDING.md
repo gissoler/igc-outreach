@@ -50,8 +50,8 @@ Versión aprobada: `normalization.v1.json` sha256 `ce332e4073878ada476802ef90825
 ## Entrada v5 (2026-10-09) — requiere aprobación antes de la corrida formal (PROMPT-v5 Cambio 3)
 
 18. **Presupuesto de la ronda de profundización** (`config/v5-2026-10-09.json`, `deepening`). Cambia el presupuesto frente a v3/v4:
-    * además de los topes de descubrimiento de v4 (18 búsquedas, 54 fetches, 300k tokens nominales por corrida), cada corrida puede profundizar hasta `max_firms_per_run = 8` firmas aceptadas, con `max_queries_per_firm = 2` búsquedas (Exa con `includeDomains` del dominio oficial) y `max_fetches_per_firm = 4` páginas propias (incluido `sitemap.xml` si se pide);
-    * tope adicional por corrida: 16 búsquedas y 32 fetches; los tokens de la ronda no tienen tope propio y se reportan aparte;
+    * además de los topes de descubrimiento de v4 (18 búsquedas, 54 fetches, 300k tokens nominales por corrida), cada corrida puede profundizar hasta `max_firms_per_run = 16` firmas (propuesto en V5-DBG-3; era 8 en V5-DBG-1/2, donde el tope solo limitaba en D3 con 14 firmas aceptadas) aceptadas, con `max_queries_per_firm = 2` búsquedas (Exa con `includeDomains` del dominio oficial) y `max_fetches_per_firm = 4` páginas propias (incluido `sitemap.xml` si se pide);
+    * tope adicional por corrida: 32 búsquedas y 64 fetches (16 firmas × 2 y × 4); los tokens de la ronda no tienen tope propio y se reportan aparte;
     * búsquedas, fetches, tokens y firmas profundizadas se cuentan aparte en `v2_stats.deepening` (`investor_run_result.v3`); `totals` sigue siendo solo descubrimiento, así que `rejected_non_investors/fetches` conserva su definición;
     * sustituye al enriquecimiento de v4 (`enrichment.enabled = false` en v5).
 

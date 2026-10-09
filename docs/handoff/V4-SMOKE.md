@@ -252,3 +252,7 @@ Por criterio: SECTOR 84,7 %, STAGE 57,6 %, GEO 59,3 %, TYPE 86,4 %. Profundizaci
 
 ### Estado
 2 de 3 iteraciones usadas. No se ha hecho la revisión manual (los criterios automáticos no pasan). No se ejecutaron las 90 corridas.
+
+## V5-DBG-3 (la última permitida) — cambio
+
+Autorizada por la usuaria (2026-10-09 13:44). Único cambio: `deepening.max_firms_per_run` 8 → 16 en `config/v5-2026-10-09.json` (entrada 18 de DECISIONS_PENDING actualizada: hasta 32 búsquedas y 64 lecturas extra por corrida; sigue sin aprobación). Motivo medido: en v5dbg2 las 18 celdas núcleo vacías de firmas no profundizadas son de D3 (14 aceptadas, tope 8). No se cambian umbrales, juez, normalization, prompts ni la definición de rechazadas/fetches.
