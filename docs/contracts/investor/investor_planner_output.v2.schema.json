@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_planner_output.v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "queries",
+    "stop",
+    "candidate_firms"
+  ],
+  "properties": {
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 300
+      }
+    },
+    "stop": {
+      "type": "boolean"
+    },
+    "candidate_firms": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "why"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "why": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      }
+    }
+  }
+}

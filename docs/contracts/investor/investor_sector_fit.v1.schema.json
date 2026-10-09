@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/investor/investor_sector_fit.v1.schema.json",
+  "title": "LLM sector fit with verbatim quote",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sector_fit",
+    "quote"
+  ],
+  "properties": {
+    "sector_fit": {
+      "type": "string",
+      "enum": [
+        "on",
+        "partial",
+        "off",
+        "unknown"
+      ]
+    },
+    "quote": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 600
+    }
+  }
+}

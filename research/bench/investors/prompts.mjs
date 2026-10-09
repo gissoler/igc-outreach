@@ -5,8 +5,8 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '../../../prompts/investor');
 const hash = value => createHash('sha256').update(value).digest('hex');
 
-export function loadInvestorPrompt(id, version = 'v1', { promptRoot = root } = {}) {
-  const manifest = JSON.parse(readFileSync(resolve(promptRoot, 'manifest.json'), 'utf8'));
+export function loadInvestorPrompt(id, version = 'v1', { promptRoot = root, manifest: manifestFile = 'manifest.json' } = {}) {
+  const manifest = JSON.parse(readFileSync(resolve(promptRoot, manifestFile), 'utf8'));
   const entry = manifest.prompts.find(x => x.id === id && x.version === version);
   if (!entry) throw new Error(`Unknown investor prompt ${id}@${version}`);
   const files = [...entry.files].sort();
