@@ -120,7 +120,8 @@ test('V4-FIX-03 fields survive only with literal evidence', () => {
 test('V4-FIX-04 gate v2: adversarial identity cases', () => {
   const acme = { url: 'https://acmerobotics.test/news', title: 'Acme', text: 'Acme Robotics raised $5M led by Northwind Ventures. The round will fund hiring and new factories in the region over the next year.' };
   const a = investorExtractionRejectionV2({ document: acme, extraction: groundIdentityV2({ document: acme, extraction: fullV2({ canonical_name: 'Acme Robotics', source_kind: 'news', quote: 'Acme Robotics raised $5M led by Northwind Ventures.' }) }) });
-  assert.ok(['identity_not_in_quote', 'no_investment_evidence'].includes(a.rejected_kind), a.rejected_kind);
+  // V4-DBG-4: la cita que no muestra a Acme invirtiendo se descarta antes; el rechazo llega como missing_literal_quote.
+  assert.ok(['identity_not_in_quote', 'no_investment_evidence', 'missing_literal_quote'].includes(a.rejected_kind), a.rejected_kind);
   const b = investorExtractionRejectionV2({ document: acme, extraction: groundIdentityV2({ document: acme, extraction: fullV2({ canonical_name: 'Northwind Ventures', source_kind: 'news', quote: 'Acme Robotics raised $5M led by Northwind Ventures.' }) }) });
   assert.equal(b.rejected_kind, 'unresolved_firm_identity'); assert.equal(b.candidate.name, 'Northwind Ventures');
   const listDoc = { url: 'https://startupnews.test/top-seed-funds-peru', title: 'Top 20 seed funds in Peru', text: 'Top 20 seed funds in Peru. Andes Spark Ventures invests in pre-seed startups across Peru and Chile. Condor Seed Fund backs founders in Lima at seed stage.' };
@@ -394,4 +395,23 @@ test('V4-DBG-3b own-domain press release with investing language makes the firm 
   assert.equal(deriveActivity(e, { today: '2026-10-09', recencyDays: 540 }).active_status, 'possibly_active');
   const third = { ...e, sources: [{ ...e.sources[0], url: 'https://news.test/a' }] };
   assert.equal(deriveActivity(third, { today: '2026-10-09', recencyDays: 540 }).active_status, 'unknown');
+});
+
+// ───────── V4-DBG-4 (revisión manual del smoke dbg3) ─────────
+test('V4-DBG-4a the noun "Fund" is not investing evidence; "we fund startups" is', () => {
+  assert.ok(!hasInv('Early Stage Tech Fund - Corfo ### Early Stage Tech Fund'));
+  assert.ok(hasInv('We fund early-stage startups in Chile.'));
+  assert.ok(hasInv('The program funds startups at seed.'));
+});
+
+test('V4-DBG-4b a news page on the firm\'s own domain must name the firm in the quote', () => {
+  const doc = { url: 'https://www.foodcommunity.test/news/perfx-raises', title: 'News', text: 'PerfX raises EUR 2.5M. The round was co-led by Newtree Impact and Beyond Impact, with participation from Nordic Science Investments and other early-stage funds that back food startups.' };
+  const r = extractFixtureInvestorV2({ document: doc, extraction: fullV2({ canonical_name: 'Food Community', official_domain: 'foodcommunity.test', source_kind: 'news', quote: 'The round was co-led by Newtree Impact and Beyond Impact, with participation from Nordic Science Investments and other early-stage funds that back food startups.' }), today: '2026-10-09', firstSeen: fs0() });
+  assert.equal(r.entity, null); assert.equal(r.rejected_kind, 'identity_not_in_quote');
+});
+
+test('V4-DBG-4c a listed country decides geography even if a sub-national region is not in the table', () => {
+  assert.equal(geoState(['Nauru'], ['California', 'US', 'Nevada']), 'not_met');
+  assert.equal(geoState(['United States'], ['California', 'US']), 'met');
+  assert.equal(geoState(['Nauru'], ['Mars colonies']), 'unknown');
 });

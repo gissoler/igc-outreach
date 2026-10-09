@@ -51,7 +51,7 @@ export function geoState(profileCountries, entityGeos, n = DEFAULT) {
   if (!profile.size || !entityGeos?.length) return 'unknown';
   const regions = Object.entries(n.geo_regions);
   const known = new Set([...regions.flatMap(([, cs]) => cs), ...(n.countries ?? []), ...[...profile]].map(lc));
-  const expanded = new Set(); let vague = false;
+  const expanded = new Set(); let vague = false, unrecognized = 0;
   const aliases = Object.entries(n.geo_aliases ?? {}).sort((a, b) => b[0].length - a[0].length);
   const deaccent = v => v.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   for (const raw of entityGeos) {
@@ -62,8 +62,10 @@ export function geoState(profileCountries, entityGeos, n = DEFAULT) {
     let recognized = false;
     for (const [name, countries] of regions) if (s === lc(name) || wordIn(s, name)) { countries.forEach(c => expanded.add(lc(c))); recognized = true; }
     for (const c of known) if (s === c || wordIn(s, c)) { expanded.add(c); recognized = true; }
-    if (!recognized) vague = true;
+    if (!recognized) unrecognized++;
   }
+  // V4-DBG-4: una subdivisión no reconocida ("California") no vuelve vaga una lista que sí nombra países ("US").
+  if (unrecognized && !expanded.size) vague = true;
   if ([...profile].some(c => expanded.has(c))) return 'met';
   if (expanded.size && !vague) return 'not_met';
   return 'unknown';

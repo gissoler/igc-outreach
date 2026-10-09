@@ -102,7 +102,7 @@ export function describeInvestorExtraction({ document, raw, grounded, entity }) 
 
 export const INVESTMENT_EVIDENCE_V2 = [
   INVESTMENT_EVIDENCE,
-  /\b(?:invest(?:s|ed|ing)?|back(?:s|ed|ing)?|fund(?:s|ed|ing)?|lead(?:s|ing)?|co-?lead(?:s)?|writ(?:e|es|ing) (?:the )?(?:first )?(?:check|cheque|ticket)s?)\b[^.]{0,120}\b(?:pre-?seed|seed|series [a-e]|early[- ]stage|growth[- ]stage|start-?ups?|founders?|companies|businesses|entrepreneurs|ventures|rounds?)\b/i,
+  /\b(?:invest(?:s|ed|ing)?|back(?:s|ed|ing)?|fund(?:s|ed|ing)|(?:we|they|to|that|which|who) fund|lead(?:s|ing)?|(?:co-?)?led|co-?lead(?:s)?|writ(?:e|es|ing) (?:the )?(?:first )?(?:check|cheque|ticket)s?)\b(?!\s+by\b)[^.]{0,120}\b(?:pre-?seed|seed|series [a-e]|early[- ]stage|growth[- ]stage|start-?ups?|founders?|companies|businesses|entrepreneurs|ventures|rounds?)\b/i,
   /\b(?:venture (?:fund|firm|investor|arm)|vc (?:firm|fund)|seed fund|investment (?:firm|company|manager)|fund manager|asset manager)\b/i,
   // V4-DBG-1: páginas en español/portugués (D1 Chile/Perú). Mismas exigencias: verbo de inversión + objeto, o tipo de vehículo.
   /\b(?:invert(?:imos|ir)|invierte(?:n)?|invest(?:e|imos|em)|financia(?:mos|n)?|respalda(?:mos|n)?|apoya(?:mos|n)? financieramente|lidera(?:mos|n)? rondas)\b[^.]{0,120}\b(?:pre-?seed|seed|semilla|serie [a-e]|etapa temprana|startups?|emprendedor(?:es|as)?|empresas|compa[ñn][ií]as|fundador(?:es|as)?|rondas?)\b/i,
@@ -222,7 +222,8 @@ export function groundIdentityV2({ document, extraction }) {
   const out = structuredClone(extraction), text = document?.text ?? '', name = normalized(out.canonical_name);
   const terms = [name, ...(out.aliases ?? [])].map(normalized).filter(x => x.length >= 3);
   out.quote_source = 'none';
-  if (out.quote && isLiteralIn(text, out.quote)) out.quote_source = 'model';
+  // V4-DBG-4: una cita literal del modelo que no muestra a la firma invirtiendo no sirve de prueba: se busca otra en la página.
+  if (out.quote && isLiteralIn(text, out.quote) && (attributedInvestmentV2(out.quote, terms) || (!terms.some(t => matchText(out.quote).includes(matchText(t))) && hasInvestmentEvidenceV2(out.quote)))) out.quote_source = 'model';
   else {
     out.quote = sentenceWindows(text).find(w => attributedInvestmentV2(w, terms)) ?? null;
     if (out.quote) out.quote_source = 'fallback';
@@ -253,7 +254,9 @@ export function investorExtractionRejectionV2({ document, extraction }) {
   const identityInQuote = identityTerms.some(term => matchText(quote).includes(matchText(term)));
   const pageHost = hostname(document.url), officialHost = extraction.official_domain ? hostname(`https://${extraction.official_domain}`) : null;
   const officialFirstParty = Boolean(officialHost) && ['official', 'news'].includes(extraction.source_kind) && sameDomain(pageHost, officialHost);
-  if (!identityInQuote && !officialFirstParty) return reject('identity_not_in_quote');
+  // V4-DBG-4: en una noticia (aunque sea del dominio propio) la cita debe nombrar a la firma: las notas de ronda
+  // hablan a menudo de otros inversores (caso EIT Food en D2).
+  if (!identityInQuote && (!officialFirstParty || extraction.source_kind === 'news')) return reject('identity_not_in_quote');
   if (!(identityInQuote ? attributedInvestmentV2(quote, identityTerms) : hasInvestmentEvidenceV2(quote))) return reject('no_investment_evidence');
   // V4-DBG-1: una página de terceros nunca crea la entidad (sus hechos suelen ser de la ronda o de la startup).
   // La firma pasa a candidato y solo cuenta si se verifica en su propio sitio (FIX-05).

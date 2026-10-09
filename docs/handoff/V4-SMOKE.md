@@ -107,3 +107,53 @@ Ningún umbral cambió.
 | D1 | 1 | 2 |
 | D2 | 1 | 1 (EIT Food) |
 | D3 | 0 | 0 (`insufficient_evidence`) |
+
+## Iteración 3 — resultados (2026-10-09 00:5x)
+
+6/6 corridas válidas.
+
+| Criterio | Umbral | Resultado | ¿Cumple? |
+|---|---|---|---|
+| Firmas con los 4 criterios núcleo ≠ unknown | ≥ 60 % | 18,8 % | no |
+| Citas literales | 100 % | 100 % (109/109) | sí |
+| D1 con gain ≥ 2 en B2 | ≥ 1 | 2 | sí |
+| D2 con gain ≥ 2 en B2 | ≥ 1 | 1 | sí |
+| D3 nulo | 0 gain ≥ 2 | B2: 0 (`insufficient_evidence`); **B1: 1** (Elemental Impact) | no |
+| FETCH_EMPTY | ≤ 10 % | 0,5 % | sí |
+| Rechazados / fetches | ≤ 0,75 | 0,793 | no |
+
+## Revisión manual 3.5 (D1/B2, D2/B2 y el falso positivo de D3/B1)
+
+Las citas se compararon contra el texto guardado de cada página: todas existen literalmente (verificación automática 109/109). No pude abrir las URLs en vivo desde la sesión porque no tiene red.
+
+**D1/B2**
+
+| # | Firma | Estado | Veredicto |
+|---|---|---|---|
+| 1 | Taram Capital | gain 2 | **Correcta.** Fondo VC chileno; "Late Seed y Serie A", Chile/Latinoamérica. El sector `partial` (SaaS B2B frente a edtech) es razonable. |
+| 2 | Early Stage Tech Fund (Corfo) | gain 2 | **Fallo.** La cita de identidad ("Early Stage Tech Fund - Corfo ### Early Stage Tech Fund") no muestra a nadie invirtiendo; la regex tomó el sustantivo "Fund" como verbo. Es un programa público de cofinanciamiento, no un inversor institucional que invierta directamente. |
+| 3 | Nazca | gain 1 | Correcta (VC de Latinoamérica hispana). Sector desconocido, así que `weak`. |
+| 4 | Prosus Ventures | gain 0 | Exclusión correcta (Series A ≠ seed). |
+| 5 | Futura Fund | gain 0 | Exclusión correcta: la página dice "It is not traditional venture capital". |
+
+**D2/B2**
+
+| # | Firma | Estado | Veredicto |
+|---|---|---|---|
+| 1 | EIT Food | gain 2 | **Fallo.** La cita habla de otros inversores (Newtree Impact, Beyond Impact) en una noticia del dominio de EIT Food. Ni la identidad ni la etapa son de EIT Food. |
+| 2 | Industrifonden | gain 1 | Hechos correctos (VC sueco, Series A, Estocolmo). Sector `unknown`, así que `weak`. |
+| 3 | Purple Orange Ventures | gain 1 | Hechos correctos (alt-protein, early-stage, global). |
+| 4 | Beiersdorf VC | gain 0 | Exclusión correcta (CVC fuera de los tipos aceptados). |
+
+**D3/B1**
+
+| Firma | Estado | Veredicto |
+|---|---|---|
+| Elemental Impact | gain 2 | **Fallo.** Geografía "California, US, Nevada": "California" no está en la tabla y volvía vaga toda la lista, aunque "US" ≠ Nauru. |
+
+## V4-DBG-4 (fuera del límite de 3 iteraciones; requiere aprobación de la usuaria para correrlo)
+
+1. "Fund" sustantivo no es evidencia de inversión; sí lo son "we/that/to fund", "funds" y "funded". Se añadió "led/co-led" activo. Las pasivas ("backed by X", "led by X") ya no se atribuyen a la startup.
+2. Si la cita literal del modelo no muestra a la firma invirtiendo, se busca otra en la página.
+3. En una noticia, aunque esté en el dominio propio, la cita debe nombrar a la firma.
+4. Un país reconocido decide la geografía aunque haya subdivisiones no reconocidas ("California, US" → US).
