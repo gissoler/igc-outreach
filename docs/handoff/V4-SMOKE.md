@@ -70,3 +70,40 @@ Ningún umbral cambió.
 | D1 | 2 | — |
 | D2 | 1 | — |
 | D3 | 0 | se abstiene, pero con `insufficient_evidence` (firmas sin geografía publicada) |
+
+## Iteración 2 — resultados (2026-10-09 00:4x)
+
+6/6 corridas válidas.
+
+| Criterio | Umbral | Resultado | ¿Cumple? |
+|---|---|---|---|
+| Firmas con los 4 criterios núcleo ≠ unknown | ≥ 60 % | 18,8 % (6/32) | no |
+| Citas literales | 100 % | 100 % (109/109) | sí |
+| D1 con gain ≥ 2 en B2 | ≥ 1 | 1 (Taram Capital) | sí |
+| D2 con gain ≥ 2 en B2 | ≥ 1 | 0 | no |
+| D3 nulo | 0 gain ≥ 2; abstención `no_candidates` o `all_hard_not_met` | 0 gain ≥ 2, pero `insufficient_evidence` | parcial |
+| FETCH_EMPTY | ≤ 10 % | 0,5 % | sí |
+| Rechazados / fetches | ≤ 0,75 | 0,793 | no |
+
+### Causas medidas
+
+1. **El LLM de sector pierde respuestas válidas.**
+   * De 31 llamadas, 3 terminaron en `quote_not_literal`: el modelo quita los "…" de una evidencia con tramos (Industrifonden en D2/B2, Corfo y Impact Ventures).
+   * 10 respuestas fueron `unknown`.
+   * En D2/B2, Industrifonden pasó de `partial` (B1) a `unknown` por esta razón.
+2. **EIT Food (D2/B2) es `plausible`, pero tiene gain 1** porque su actividad quedó `unknown`. Su única fuente es una nota de prensa en su propio dominio, y FIX-09 solo cuenta como tesis las fuentes `official`.
+3. **D3 se abstiene por `insufficient_evidence`.** Las 5 firmas restantes no publican geografía (Stephen Industries, Archipelago, Investible "globally", Impact Ventures, One Planet): sin evidencia no pueden ser `not_met`. No hay corrección legítima: inventar `not_met` sería falso.
+4. **Los 4 criterios a la vez solo se conocen en el 18,8 %.** La geografía se conoce en el 56 % y el sector en el 59 %. El enriquecimiento encontró una página propia útil en 4 de 10 intentos.
+
+## Iteración 3 (V4-DBG-3, la última permitida)
+
+1. La cita del LLM de sector se acepta si se descompone en ≤ 4 tramos literales consecutivos de una **misma** cita. Se guarda con " … " para que la verificación por tramos la compruebe. Cruzar dos citas distintas sigue prohibido.
+2. Una nota de prensa en el dominio propio con lenguaje de inversión cuenta como tesis de primera parte (`possibly_active`).
+
+**Re-juicio sin red de la iteración 2 con estos cambios:**
+
+| Caso | B1 | B2 |
+|---|---|---|
+| D1 | 1 | 2 |
+| D2 | 1 | 1 (EIT Food) |
+| D3 | 0 | 0 (`insufficient_evidence`) |

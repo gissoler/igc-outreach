@@ -380,3 +380,18 @@ test('V4-DBG-2c enrichment fetches one more first-party page for firms missing g
   assert.deepEqual(e.geographies.sort(), ['Colombia', 'Mexico']); assert.equal(r.v2_stats.enrichments[0].outcome, 'merged');
   assert.ok(r.ranked[0].gain >= 2);
 });
+
+test('V4-DBG-3a sector quote may drop the "…" of a multi-passage evidence, never cross two different quotes', () => {
+  const quotes = ['Zentro invests in seed fintech.', ['OUR STRATEGIES LIFE SCIENCE', 'Software growth', 'Deep tech & planetary health'].join(' ⁣')].join('\n');
+  const ok = guardSectorFit({ sector_fit: 'partial', quote: 'OUR STRATEGIES LIFE SCIENCE Deep tech & planetary health' }, quotes);
+  assert.equal(ok.sector_fit, 'partial'); assert.match(ok.quote, / … /);
+  assert.equal(guardSectorFit({ sector_fit: 'partial', quote: 'seed fintech. OUR STRATEGIES LIFE SCIENCE' }, quotes).sector_fit, 'unknown');
+  assert.equal(guardSectorFit({ sector_fit: 'partial', quote: 'OUR STRATEGIES LIFE SCIENCE and also biotech' }, quotes).sector_fit, 'unknown');
+});
+
+test('V4-DBG-3b own-domain press release with investing language makes the firm possibly_active', () => {
+  const e = { official_domain: 'kitefund.test', active_status: 'unknown', sources: [{ url: 'https://kitefund.test/news/a', source_kind: 'news', quote: 'Kite Fund co-led the seed round of Pizarra Labs.', published_on: null }] };
+  assert.equal(deriveActivity(e, { today: '2026-10-09', recencyDays: 540 }).active_status, 'possibly_active');
+  const third = { ...e, sources: [{ ...e.sources[0], url: 'https://news.test/a' }] };
+  assert.equal(deriveActivity(third, { today: '2026-10-09', recencyDays: 540 }).active_status, 'unknown');
+});

@@ -101,15 +101,32 @@ const squash = s => String(s ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim(
 /** FIX-08 guarda determinista sobre la respuesta del LLM de sector. */
 export function guardSectorFit(answer, quotes) {
   if (!answer || !['on', 'partial', 'off'].includes(answer.sector_fit)) return { sector_fit: 'unknown', quote: null, guard: 'no_answer' };
-  // V4-DBG-2: la cita debe estar dentro de UNA sola cita de la firma (no puede cruzar la unión entre dos).
-  const pieces = String(quotes ?? '').split('\n').map(squash).filter(Boolean);
-  if (!answer.quote || !pieces.some(piece => piece.includes(squash(answer.quote)))) return { sector_fit: 'unknown', quote: null, guard: 'quote_not_literal' };
+  // V4-DBG-2/3: la cita debe salir de UNA sola cita de la firma. Si el modelo quitó los "…" de una evidencia con tramos,
+  // se acepta solo si se descompone en ≤ 4 tramos literales consecutivos de esa misma cita (≥ 12 caracteres cada uno),
+  // y se guarda con " … " para que la verificación literal por tramos la pueda comprobar.
+  const groups = String(quotes ?? '').split('\n').filter(Boolean).map(g => g.split('\u2063').map(squash).filter(Boolean));
+  const stitched = answer.quote ? groups.map(g => stitchQuote(squash(answer.quote), g)).find(Boolean) : null;
+  if (!stitched) return { sector_fit: 'unknown', quote: null, guard: 'quote_not_literal' };
+  answer = { ...answer, quote: stitched.length === 1 ? answer.quote : stitched.join(' … ') };
   if (answer.sector_fit === 'off' && !OFF_GUARD.test(answer.quote)) return { sector_fit: 'unknown', quote: null, guard: 'off_without_exclusive_language' };
   return { sector_fit: answer.sector_fit, quote: answer.quote, guard: 'ok' };
+}
+/** Descompone q en tramos literales de una misma cita (en orden de la cita), o null. */
+function stitchQuote(q, parts) {
+  if (parts.some(p => p.includes(q))) return [q];
+  const out = []; let rest = q;
+  while (rest && out.length < 4) {
+    let best = '';
+    for (const p of parts) for (let len = rest.length; len >= 12; len--) { const seg = rest.slice(0, len).trim(); if (seg.length >= 12 && p.includes(seg)) { if (seg.length > best.length) best = seg; break; } }
+    if (!best) return null;
+    out.push(best); rest = rest.slice(rest.indexOf(best) + best.length).replace(/^[\s.,;:–—-]+/, '');
+  }
+  return rest ? null : out;
 }
 /** Citas de la firma que ve el LLM de sector (máx. 1.500 caracteres). */
 export function sectorQuotes(entity) {
   const parts = [];
-  for (const s of entity.sources ?? []) { if (s.quote) parts.push(s.quote.replace(/\s+/g, ' ')); if (s.field_evidence?.sectors) parts.push(...s.field_evidence.sectors.split(/\s*(?:\.{3,}|…)\s*/).map(x => x.replace(/\s+/g, ' '))); }
+  // Una línea por cita; los tramos de una evidencia con "…" van en la misma línea separados por U+2063 (invisible).
+  for (const s of entity.sources ?? []) { if (s.quote) parts.push(s.quote.replace(/\s+/g, ' ')); if (s.field_evidence?.sectors) parts.push(s.field_evidence.sectors.split(/\s*(?:\.{3,}|…)\s*/).map(x => x.replace(/\s+/g, ' ')).join(' \u2063')); }
   return [...new Set(parts)].join('\n').slice(0, 1500);
 }

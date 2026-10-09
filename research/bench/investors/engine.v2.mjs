@@ -25,7 +25,9 @@ export function plannerCoverage(profile, executed) {
 }
 
 export function deriveActivity(entity, { today, recencyDays }) {
-  const officialThesis = entity.sources.some(s => s.source_kind === 'official' && s.quote && hasInvestmentEvidenceV2(s.quote));
+  // V4-DBG-3: una nota de prensa en el dominio propio que describe inversión también es tesis de primera parte.
+  const firstParty = s => s.source_kind === 'official' || (s.source_kind === 'news' && entity.official_domain && sameDomain(host(s.url), entity.official_domain));
+  const officialThesis = entity.sources.some(s => firstParty(s) && s.quote && hasInvestmentEvidenceV2(s.quote));
   const recent = entity.sources.filter(s => s.published_on).map(s => ({ ...s, source_kind: s.source_kind === 'news' && entity.official_domain && sameDomain(host(s.url), entity.official_domain) ? 'official' : s.source_kind }));
   const active_status = classifyActivity({ explicitInactive: entity.active_status === 'inactive', currentOfficialThesis: officialThesis, recentEvidence: recent, asOf: today, recencyDays });
   const days = d => Math.floor((Date.parse(today) - Date.parse(d)) / 86400000);
