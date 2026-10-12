@@ -2,7 +2,9 @@
 // Gasto estimado en Exa a partir de events.jsonl: solo cuentan las llamadas NO cacheadas (attempts[].cached === false).
 // Tarifa (exa.ai/pricing, 2026-10-11): búsqueda auto 7 USD/1.000 hasta 10 resultados (+1 USD/1.000 por resultado extra);
 // contenido 1 USD/1.000 páginas por tipo (texto y highlights = 2 tipos). Es una estimación: el cobro real lo da el panel de Exa.
-// Uso: node exa_spend.mjs --dirs outA,outB [--since 2026-10-11T22:00:00Z] [--json]
+// Uso: node exa_spend.mjs --dirs outA,outB [--since 2026-10-11T22:00:00Z] [--json] [--usd-per-call 0.0089]
+// V7: --usd-per-call usa el costo real medio por llamada pagada (0.0089 USD = 7 USD del panel / 789 llamadas, diagnóstico 12/10)
+// en lugar de la tarifa nominal (~0.027 USD por consulta de 10 resultados con texto y highlights). Sin la opción, igual que antes.
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 const arg = n => { const i = process.argv.indexOf(`--${n}`); return i < 0 ? null : process.argv[i + 1]; };
@@ -22,6 +24,8 @@ for (const d of dirs) {
     }
   }
 }
-const out = { paid_searches: paid, cached_searches: cached, results_returned: results, failed_calls_counted: failed, estimated_usd: +usd.toFixed(2) };
+const perCall = arg('usd-per-call') != null ? Number(arg('usd-per-call')) : null;
+if (perCall != null && !(perCall > 0)) { console.error('--usd-per-call inválido'); process.exit(2); }
+const out = { paid_searches: paid, cached_searches: cached, results_returned: results, failed_calls_counted: failed, estimated_usd: +(perCall != null ? paid * perCall : usd).toFixed(perCall != null ? 3 : 2), ...(perCall != null ? { usd_per_call: perCall, nominal_tariff_usd: +usd.toFixed(2) } : {}) };
 console.log(process.argv.includes('--json') ? JSON.stringify(out) : `${out.estimated_usd}`);
 if (!process.argv.includes('--json') && process.argv.includes('--verbose')) console.error(JSON.stringify(out));

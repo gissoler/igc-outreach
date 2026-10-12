@@ -1,0 +1,153 @@
+{
+  "schema_version": "investor_fixed_initial_batch/1",
+  "source": "v5 B2 semilla 101, variante A (planner v3, manifest.v5.json)",
+  "seed": 101,
+  "prompt_sha256": "ed43d9e52d35720cab340afdad679a4d2cbe19139b3e2911e1eacea33a13ffd3",
+  "cases": {
+    "inv-case-syn-p01": {
+      "source_run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B2__s101",
+      "source_events": "quick-v5-2026-10-09",
+      "source_cache": "quick-v5-2026-10-09/cache.sqlite",
+      "llm_cache_key": "e477baa94c6c390258e3f1da94f2bbed49f5e6074af8bb940abae08a056bbcb1",
+      "output": {
+        "queries": [
+          "website of a venture‑capital firm that invests in seed‑stage fintech companies building B2B payments and embedded‑lending platforms for Mexican SMEs",
+          "about page of a corporate venture arm of a Mexican bank that funds early‑stage supplier‑financing or accounts‑payable solutions for restaurants and food distributors in Mexico",
+          "investment‑focus page of an impact‑oriented fund that targets financial‑inclusion fintechs providing working‑capital and credit‑line products to small businesses in Latin America, especially Mexico",
+          "portfolio page of a specialist VC that has backed Konfio and other Mexican fintech lenders and is looking to lead seed‑stage equity rounds in fintech infrastructure",
+          "home page of a Latin‑American venture capital fund that invests in early‑stage fintech platforms offering transaction‑fee and interest‑spread business models for B2B distributors in Mexico",
+          "strategy page of a European venture‑capital firm that invests in fintech infrastructure and B2B payments startups expanding into the Mexican market"
+        ],
+        "stop": false,
+        "candidate_firms": []
+      },
+      "tokens_nominal": 2380,
+      "latency_ms": 4017
+    },
+    "inv-case-syn-p02": {
+      "source_run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p02__B2__s101",
+      "source_events": "investors-internal-2026-10-09-v5-pairs",
+      "source_cache": "investors-internal-2026-10-09-v5-pairs/cache.sqlite",
+      "llm_cache_key": "8bdd2d4ca871e77589ada1fc1ce2363515280f45fbc61c5c6f6a1e67f16e439a",
+      "output": {
+        "queries": [
+          "home page of a Brazilian venture‑capital fund that leads Series B growth‑stage investments in electric cargo three‑wheelers and battery‑swap network operators serving urban logistics fleets in Brazil",
+          "about page of a European climate‑impact venture‑capital firm that invests $10‑50 million in Series B‑stage electric mobility companies in Latin America, with a focus on battery‑swapping and last‑mile delivery vehicles",
+          "investment‑focus page of a corporate venture arm of a major automotive manufacturer that backs electric three‑wheel delivery vehicle manufacturers and battery‑swap infrastructure providers operating in Brazil",
+          "strategy page of a development‑finance institution that provides growth‑equity to clean‑transport startups in Brazil, including electric cargo vehicles and battery‑swap station networks",
+          "portfolio page of a generalist US venture‑capital firm that has recently led Series B rounds for electric‑mobility and logistics‑technology companies in emerging markets such as Brazil",
+          "website of a sovereign‑wealth fund that runs a climate‑focused growth‑stage fund targeting electric‑mobility and energy‑as‑a‑service businesses in South America"
+        ],
+        "stop": false,
+        "candidate_firms": []
+      },
+      "tokens_nominal": 2473,
+      "latency_ms": 3939
+    },
+    "inv-case-syn-p03": {
+      "source_run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p03__B2__s101",
+      "source_events": "investors-internal-2026-10-09-v5-pairs",
+      "source_cache": "investors-internal-2026-10-09-v5-pairs/cache.sqlite",
+      "llm_cache_key": "a73ac021a40df90776ec032b6f30950f6dd60cc6ba06a45c23da4eddf31f812f",
+      "output": {
+        "queries": [
+          "homepage of a venture‑capital firm that leads Series A rounds (up to $20 million) in hard‑tech semiconductor equipment, metrology and photonics startups based in the United States",
+          "investment‑focus page of Intel Capital describing its interest in advanced‑packaging and inline metrology tools for semiconductor fabs and its willingness to be the lead investor in a Series A round",
+          "corporate‑venture‑capital site of Samsung Ventures that outlines a strategy to invest in early‑stage advanced‑packaging and metrology companies operating in South Korea and the United States, with the ability to lead a $15 M Series A",
+          "website of TSMC’s venture arm that details investments in semiconductor‑equipment and metrology technologies for Taiwanese and Korean fabs, seeking to lead Series A financing",
+          "about page of Lux Capital that mentions a focus on deep‑tech hardware, photonics and semiconductor manufacturing tools, and typical Series A lead check sizes of $10‑$25 million",
+          "investment‑thesis page of Advanced Technology Ventures (ATV) that describes funding of early‑stage semiconductor‑equipment companies, including metrology and advanced‑packaging solutions, with a preference for US‑based founders and lead Series A participation"
+        ],
+        "stop": false,
+        "candidate_firms": [
+          {
+            "name": "Lux Capital",
+            "why": "hard‑tech VC, Series A lead, photonics & semiconductor equipment"
+          },
+          {
+            "name": "Intel Capital",
+            "why": "corporate VC of a major chipmaker, invests in advanced packaging & metrology"
+          },
+          {
+            "name": "Samsung Ventures",
+            "why": "corporate VC with focus on advanced packaging and metrology in Korea/US"
+          },
+          {
+            "name": "TSMC Ventures",
+            "why": "TSMC’s venture arm targeting semiconductor equipment for Taiwan/Korea"
+          },
+          {
+            "name": "Advanced Technology Ventures (ATV)",
+            "why": "specialist VC in semiconductor equipment, early‑stage, US focus"
+          },
+          {
+            "name": "Khosla Ventures",
+            "why": "deep‑tech VC that leads $10‑$20 M Series A rounds in hardware and photonics"
+          }
+        ]
+      },
+      "tokens_nominal": 3075,
+      "latency_ms": 7170
+    },
+    "inv-case-syn-p04": {
+      "source_run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p04__B2__s101",
+      "source_events": "investors-internal-2026-10-09-v5-pairs",
+      "source_cache": "investors-internal-2026-10-09-v5-pairs/cache.sqlite",
+      "llm_cache_key": "d0044d4088d1adcea4d4c4c156c3c1bab68aa3e80c133052992083f453d25560",
+      "output": {
+        "queries": [
+          "website of a venture capital firm that leads pre‑seed and seed‑stage investments in enterprise‑software SaaS companies operating in Canada and the United States",
+          "home page of a corporate venture arm of a large North‑American equipment‑oriented company that backs AI‑driven field‑service management startups in the United States",
+          "about page of a Canadian government‑supported venture fund that invests in early‑stage B2B SaaS and AI assistants for industrial workers across Canada",
+          "investment‑focus page of a U.S. seed‑stage fund that specializes in voice‑first AI applications for field‑service and knowledge‑management platforms",
+          "profile of a generalist North‑American VC that makes lead pre‑seed SAFE investments in AI‑enabled productivity tools for mid‑market enterprises",
+          "strategy page of an impact‑oriented venture fund that targets AI‑assistant technologies for field technicians in the United States and Canada"
+        ],
+        "stop": false,
+        "candidate_firms": []
+      },
+      "tokens_nominal": 2304,
+      "latency_ms": 3396
+    },
+    "inv-case-syn-p05": {
+      "source_run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p05__B2__s101",
+      "source_events": "investors-internal-2026-10-09-v5-pairs",
+      "source_cache": "investors-internal-2026-10-09-v5-pairs/cache.sqlite",
+      "llm_cache_key": "0af61b14b6cd896516a5e1e28b5250caf73fbb4869c14d380f5d58ab92a74657",
+      "output": {
+        "queries": [
+          "website of a European venture‑capital firm that leads Series B growth‑stage investments in building‑decarbonisation companies, especially heat‑pump‑as‑a‑service and demand‑response platforms operating in the Netherlands, Germany and Belgium",
+          "home page of a corporate venture arm of a major European utility that backs energy‑as‑a‑service and virtual‑power‑plant software startups targeting multi‑family housing in the Benelux region",
+          "about page of an impact‑focused climate‑tech fund that provides Series B equity to companies commercialising heat‑pump installations and flexibility services for housing associations across Europe",
+          "investment‑focus page of a European public development bank or sovereign wealth fund that offers growth‑equity to climate‑tech firms scaling heat‑pump‑as‑a‑service and demand‑response solutions in Germany and the wider EU",
+          "profile of a family‑office‑type growth investor that prefers to be the lead investor in Series B rounds for heat‑pump‑owned‑as‑service platforms and virtual‑power‑plant operators in the Netherlands",
+          "strategy page of a pan‑European clean‑energy fund that targets energy‑as‑a‑service business models, including centralized heat‑pump deployments and grid‑flexibility services for multi‑family buildings in the EU"
+        ],
+        "stop": false,
+        "candidate_firms": []
+      },
+      "tokens_nominal": 2438,
+      "latency_ms": 3623
+    },
+    "inv-case-syn-p06": {
+      "source_run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p06__B2__s101",
+      "source_events": "investors-internal-2026-10-09-v5-pairs",
+      "source_cache": "investors-internal-2026-10-09-v5-pairs/cache.sqlite",
+      "llm_cache_key": "4d63c67f866ff2bd01929ad622435fdbae243abffe9b35cdd799a921e046d80e",
+      "output": {
+        "queries": [
+          "website of a European venture‑capital firm that invests in seed‑stage cybersecurity startups focused on operational‑technology (OT) security and compliance automation for manufacturers in Germany, Austria and Switzerland",
+          "home page of a German corporate‑venture fund that backs early‑stage OT‑security and asset‑inventory SaaS platforms helping mid‑market manufacturers meet NIS2 and IEC 62443 requirements",
+          "about page of a specialist European VC that provides seed‑stage capital (up to €5 million) to SaaS companies building compliance‑automation and asset‑visibility solutions for regulated industrial sectors in the DACH region",
+          "investment‑focus page of a venture‑capital firm that has led seed rounds for companies comparable to Claroty, targeting industrial cybersecurity and OT risk‑management in Europe",
+          "profile of a Swiss‑based early‑stage venture fund that concentrates on industrial‑cybersecurity SaaS (OT asset inventory, compliance automation) for mid‑size manufacturers in Germany, Austria and Switzerland",
+          "strategy page of a pan‑European generalist VC that invests in seed‑stage cybersecurity startups delivering NIS2 compliance platforms for mid‑market manufacturers in the DACH market"
+        ],
+        "stop": false,
+        "candidate_firms": []
+      },
+      "tokens_nominal": 2330,
+      "latency_ms": 3388
+    }
+  }
+}
