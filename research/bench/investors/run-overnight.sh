@@ -4,16 +4,25 @@
 # Se detiene sola al llegar a CAP_USD (estimado desde events.jsonl; el cobro real lo da el panel de Exa).
 # Uso, desde la raíz del repo:   CAP_USD=14 bash research/bench/investors/run-overnight.sh        (DRY_RUN=1 solo lista, no gasta)
 set -uo pipefail
-if [[ -z "${CAFFEINATED:-}" ]] && command -v caffeinate >/dev/null 2>&1 && [[ -z "${DRY_RUN:-}" ]]; then exec env CAFFEINATED=1 caffeinate -i bash "$0" "$@"; fi
+if [[ -z "${CAFFEINATED:-}" ]] && command -v caffeinate >/dev/null 2>&1 && [[ -z "${DRY_RUN:-}" ]]; then exec env CAFFEINATED=1 caffeinate -is bash "$0" "$@"; fi
 cd "$(dirname "$0")/../.."            # → research/
-CAP_USD="${CAP_USD:-14}"; CONC="${CONCURRENCY:-3}"
+CAP_USD="${CAP_USD:-14}"; CONC="${CONCURRENCY:-3}"; RESERVE_USD="${RESERVE_USD:-2}"   # no se empiezan corridas nuevas al llegar a CAP_USD - RESERVE_USD (reserva para las que están en curso)
 INV=bench/investors; V5=$INV/config/v5-2026-10-09.json; V6=$INV/config/v6-2026-10-09.json
 OUT5=$INV/out/investors-internal-2026-10-09-v5; QUICK=$INV/out/quick-v5-2026-10-09; OUTP=$INV/out/investors-internal-2026-10-09-v5-pairs; OUT6=$INV/out/investors-internal-2026-10-09-v6
 LOG=$INV/out/overnight-$(date +%Y%m%d-%H%M).log; START=$(date -u +%Y-%m-%dT%H:%M:%SZ); ENVS="--env-file=.env --env-file-if-exists=.env.crawl4ai"
 mkdir -p "$OUT5" "$OUTP" "$OUT6"
 say() { printf '[%s] %s\n' "$(date +%H:%M:%S)" "$*" | tee -a "$LOG"; }
 spend() { node $INV/analysis/exa_spend.mjs --dirs "$OUT5,$OUTP,$OUT6" --since "$START"; }
-over() { local s; s=$(spend); say "gasto Exa estimado esta noche: US\$ $s (tope $CAP_USD)"; awk -v s="$s" -v c="$CAP_USD" 'BEGIN{exit !(s>=c)}'; }
+# over(): verdadero si se llegó al tope o si el gasto no se pudo medir (falla cerrado).
+over() { local s; s=$(spend 2>/dev/null); [[ "$s" =~ ^[0-9]+(\.[0-9]+)?$ ]] || { say "NO SE PUDO MEDIR EL GASTO ('$s'): se trata como tope alcanzado"; return 0; }
+  say "gasto Exa estimado esta noche: US\$ $s (tope $CAP_USD, reserva $RESERVE_USD)"; [[ -e "$STOP" ]] || awk -v s="$s" -v c="$CAP_USD" -v r="$RESERVE_USD" 'BEGIN{exit !(s>=c-r)}'; }
+STOP=$INV/out/.overnight-stop; rm -f "$STOP"
+# Dos niveles: entre lotes (un par A+B por lote) se para en CAP_USD - RESERVE_USD, así ningún par queda a medias;
+# el vigilante es el freno duro: cada 20 s mide el gasto y al llegar a CAP_USD crea $STOP y run-experiment.v6 (--stop-file) no empieza más corridas.
+if [[ -z "${DRY_RUN:-}" ]]; then
+  ( while sleep 20; do s=$(spend 2>/dev/null); if ! [[ "$s" =~ ^[0-9]+(\.[0-9]+)?$ ]] || awk -v s="$s" -v c="$CAP_USD" 'BEGIN{exit !(s>=c)}'; then [[ -e "$STOP" ]] || { touch "$STOP"; say "VIGILANTE: gasto US\$ ${s:-?} >= tope $CAP_USD: no se empiezan más corridas"; }; fi; done ) &
+  WATCH=$!; trap 'kill $WATCH 2>/dev/null' EXIT
+fi
 
 if [[ -z "${DRY_RUN:-}" ]]; then
   grep -q '"status": "frozen"' "$V5" || { say "La config v5 no está frozen."; exit 1; }
@@ -28,7 +37,7 @@ batch() {
   local name=$1 cfg=$2 cases=$3 out=$4 conds=$5 seeds=$6 only=$7; shift 7
   if [[ -z "${DRY_RUN:-}" ]] && over; then say "TOPE alcanzado: se omite '$name' y lo que sigue"; return 1; fi
   say "== $name ($conds × $seeds × $only)"
-  local cmd=(node $ENVS $INV/run-experiment.v6.mjs --config "$cfg" --cases "$cases" --out "$out" --conditions "$conds" --seeds "$seeds" --only-cases "$only" --concurrency "$CONC" "$@")
+  local cmd=(node $ENVS $INV/run-experiment.v6.mjs --config "$cfg" --cases "$cases" --out "$out" --conditions "$conds" --seeds "$seeds" --only-cases "$only" --concurrency "$CONC" --stop-file "$STOP" "$@")
   if [[ -n "${DRY_RUN:-}" ]]; then "${cmd[@]}" --dry-run 2>&1 | grep -v Warning | python3 -c "import sys,json; d=json.load(sys.stdin); print('   programadas',d['scheduled'],'ya hechas',d['already_done'],'por correr',d['to_run'])"; return 0; fi
   "${cmd[@]}" 2>&1 | grep -v ExperimentalWarning | tail -2 | tee -a "$LOG"
   "${cmd[@]}" 2>&1 | grep -v ExperimentalWarning | tail -1 | tee -a "$LOG"     # reintento de las que fallaron por infraestructura (reutiliza las válidas)
@@ -40,9 +49,12 @@ PC=$OUTP/_cases; mkdir -p "$PC"; cp $INV/cases/inv-case-syn-p0[1-6].json $INV/ca
 # Reutiliza corridas YA hechas con la misma config v5 congelada (mismo run_id): ahorra búsquedas pagadas. Se declara en el informe.
 for src in "$OUT5" "$QUICK"; do for d in "$src"/runs/*__inv-case-syn-p0[1-6]__B[12]__s101; do
   [[ -f "$d/result.json" && ! -e "$OUTP/runs/$(basename "$d")/result.json" ]] || continue
-  [[ -n "${DRY_RUN:-}" ]] || { mkdir -p "$OUTP/runs/$(basename "$d")" && cp "$d/result.json" "$OUTP/runs/$(basename "$d")/result.json" && say "reutilizada: $(basename "$d") (de ${src##*/})"; }
+  [[ -n "${DRY_RUN:-}" ]] && { say "reutilizable (DRY_RUN no copia): $(basename "$d") (de ${src##*/})"; continue; }
+  { mkdir -p "$OUTP/runs/$(basename "$d")" && cp "$d/result.json" "$OUTP/runs/$(basename "$d")/result.json" && say "reutilizada: $(basename "$d") (de ${src##*/})"; }
 done; done
 ALL6=p01,p02,p03,p04,p05,p06,p01-ib,p02-ib,p03-ib,p04-ib,p05-ib,p06-ib
+# pairs <nombre> <condición> <semilla>: un lote por par (A y B juntos); el tope se revisa entre pares.
+pairs() { local name=$1 cond=$2 seed=$3 p; for p in p01 p02 p03 p04 p05 p06; do batch "$name · $p" $V5 $PC $OUTP $cond $seed "$p,$p-ib" || return 1; done; }
 
 # 0) Compuerta B2E: un caso, para saber si el filtro funciona con el modelo real antes de gastar más en él.
 GATE=0
@@ -58,13 +70,13 @@ console.log(JSON.stringify({gate:ok?'OK':'FALLA',results_in:f?.results_in,kept:f
   else GATE=1; fi
 fi
 # 1) Pares de intenciones, B2, semilla 101 (A y B juntos).
-batch "1 pares · B2 · s101" $V5 $PC $OUTP B2 101 $ALL6 || true
+pairs "1 pares · B2 · s101" B2 101 || true
 # 2) Filtro B2E en más casos; la línea base B2 s101 de p01, p03 y p05 sale del lote 1.
 [[ $GATE == 1 ]] && { batch "2 B2E · s101 · p01,p03" $V6 $INV/cases $OUT6 B2E 101 p01,p03 --enable-embeddings || true; }
 # 3) Semillas 202 y 303 de los pares con B2 (la regla de sensibilidad pre-registrada usa las 3).
-for S in 202 303; do batch "3 pares · B2 · s$S" $V5 $PC $OUTP B2 $S $ALL6 || break; done
+for S in 202 303; do pairs "3 pares · B2 · s$S" B2 $S || break; done
 # 4) Si sobra presupuesto: pares con B1.
-batch "4 pares · B1 · s101" $V5 $PC $OUTP B1 101 $ALL6 || true
+pairs "4 pares · B1 · s101" B1 101 || true
 
 say "FIN. $(spend) USD estimados gastados esta noche."
 if [[ -z "${DRY_RUN:-}" ]]; then

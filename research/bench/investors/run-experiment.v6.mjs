@@ -138,8 +138,10 @@ try {
     writeManifest();
   }
   let next = 0;
-  const worker = async () => { while (true) { const index = next++; if (index >= jobs.length) return; await runJob(jobs[index], index + 1); } };
+  // --stop-file: si el archivo existe (lo crea run-overnight.sh al acercarse al tope de gasto), no se empieza ninguna corrida nueva; las que están en curso terminan.
+  const stopFile = arg('stop-file') ? resolve(arg('stop-file')) : null;
+  const worker = async () => { while (true) { const index = next++; if (index >= jobs.length) return; if (stopFile && existsSync(stopFile)) { append({ event: 'run_skipped', reason: 'spend_cap', ordinal: index + 1 }); continue; } await runJob(jobs[index], index + 1); } };
   await Promise.all(Array.from({ length: Math.min(concurrency, jobs.length) }, worker));
 } finally { cache.close(); }
 
-console.log(JSON.stringify({ mode, scheduled: jobs.length, concurrency, valid: manifest.filter(x => x && ['valid','reused'].includes(x.status)).length, failed: manifest.filter(x => x?.status === 'failed').length }));
+console.log(JSON.stringify({ mode, scheduled: jobs.length, concurrency, skipped_by_cap: jobs.length - manifest.filter(Boolean).length, valid: manifest.filter(x => x && ['valid','reused'].includes(x.status)).length, failed: manifest.filter(x => x?.status === 'failed').length }));

@@ -53,7 +53,7 @@ export function createRelevanceFilter({ embedder, llm, prompt, config, profile, 
       while (pos < ranked.length && !kept.length) {
         const size = pos === 0 ? topK : blockSize, block = ranked.slice(pos, pos + size); pos += size;
         const user = render(prompt.user, { intent, results: block.map((x, j) => `[${j}] ${docs[x.i]}`).join('\n') });
-        const out = await llm.call({ prompt, user, schemaName: 'investor_relevance.v1', temperature: 0, seed, maxTokens: 800 });
+        const out = await llm.call({ prompt, user, schemaName: 'investor_relevance.v1', temperature: 0, seed, maxTokens: 2000 });
         stats.llm_calls++; stats.blocks_read++; stats.llm_tokens += out.tokens_nominal ?? 0; stats.llm_ms += out.latency?.actual_ms ?? 0;
         const yes = new Set((out.json.items ?? []).filter(x => x.about_investment === true && Number.isInteger(x.i) && x.i >= 0 && x.i < block.length).map(x => x.i));
         blocks.push({ indices: block.map(x => x.i), kept: block.filter((_, j) => yes.has(j)).map(x => x.i) });
