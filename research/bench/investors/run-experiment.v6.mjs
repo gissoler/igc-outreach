@@ -33,10 +33,17 @@ const append = row => appendFileSync(eventsPath, `${JSON.stringify({ timestamp: 
 
 const rand = seed => { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
 const shuffle = (rows, seed) => { const r = rand(seed), out = [...rows]; for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; } return out; };
-const caseFiles = readdirSync(casesDir).filter(x => x.endsWith('.json') && x !== 'manifest.json').sort();
+const onlyCases = arg('only-cases') ? arg('only-cases').split(',').map(x => x.trim()).filter(Boolean) : null;   // p. ej. p01,p05 o inv-case-syn-p01-ib
+const caseFiles = readdirSync(casesDir).filter(x => x.endsWith('.json') && x !== 'manifest.json').filter(x => !onlyCases || onlyCases.some(id => { const b = x.replace(/\.json$/, ''); return b === id || b === `inv-case-syn-${id}`; })).sort();
 const seeds = arg('seeds') ? arg('seeds').split(',').map(Number) : config.seeds;
 let jobs = caseFiles.flatMap(file => conditions.flatMap(condition => seeds.map(seed => ({ file, condition, seed }))));
 jobs = shuffle(jobs, 20261008).slice(0, maxRuns);
+// --dry-run: lista las corridas programadas (y cuáles ya tienen resultado) sin cache, sin red y sin gastar nada.
+if (process.argv.includes('--dry-run')) {
+  const rows = jobs.map(j => { const id = `${config.bench_id}__${j.file.replace(/\.json$/, '')}__${j.condition}__s${j.seed}`; return { run_id: id, reuse: existsSync(resolve(outDir, 'runs', id, 'result.json')) }; });
+  console.log(JSON.stringify({ dry_run: true, scheduled: rows.length, already_done: rows.filter(r => r.reuse).length, to_run: rows.filter(r => !r.reuse).length, runs: rows }));
+  process.exit(0);
+}
 
 const cache = createBenchCache({ path: resolve(outDir, 'cache.sqlite'), namespace: `investors-${config.bench_id}` });
 const search = config.search.provider === 'failover'

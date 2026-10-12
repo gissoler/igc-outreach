@@ -110,7 +110,7 @@
     "embeddings": {
       "enabled": false,
       "model": "Xenova/multilingual-e5-small",
-      "results_per_query": 30,
+      "results_per_query": 20,
       "top_k": 10,
       "block_size": 10,
       "prompt": "v1"
