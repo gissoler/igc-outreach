@@ -1,11 +1,11 @@
 # V9 — Prueba de nombres (candidatos del modelo, sin Exa)
 
-Ejecutada: 2026-10-13T16:14:59.438Z. Prompt candidates/v1, hasta 40 fondos por caso. Regla (V9-PREREGISTRO.md §6): GO si el proveedor elegido nombra el oro en ≥ 4 de 6 casos de p01–p06.
+Ejecutada: 2026-10-13T16:45:42.940Z. Prompt candidates/v1, hasta 40 fondos por caso. Regla (V9-PREREGISTRO.md §6): GO si el proveedor elegido nombra el oro en ≥ 4 de 6 casos de p01–p06.
 
 | Proveedor | Modelo | Búsqueda web | Oro nombrado p01–p06 | p07–p12 | Firmas gain ≥ 2 nombradas | Errores | Segundos |
 |---|---|---|---|---|---|---|---|
 | fleet | — | no | 0 | 0 | 0 de 0 | 12 (candidatos (fleet): The operation was aborted due to timeout) | 360 |
-| fleet_lists | — | no | 0 | 0 | 0 de 0 | 12 (candidatos (fleet): The operation was aborted due to timeout) | 361 |
+| fleet_lists | — | no | 0 | 0 | 0 de 0 | 12 (candidatos (fleet): The operation was aborted due to timeout) | 365 |
 
 | Caso | fleet: puesto del oro | fleet_lists: puesto del oro | Oro entre los nombres de las listas (puesto) |
 |---|---|---|---|
