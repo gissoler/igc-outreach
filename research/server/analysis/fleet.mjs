@@ -32,6 +32,18 @@ export function fleetConfig(env = process.env) {
   roles.engine = engineUrl && engineModel
     ? { url: engineUrl, model: engineModel, ready: true, apiKey: env.ENGINE_LLM_API_KEY || '', jsonMode: env.ENGINE_LLM_JSON_MODE !== '0', reasoningEffort: String(env.ENGINE_LLM_REASONING_EFFORT || '').trim(), maxTokens: Number(env.ENGINE_LLM_MAX_TOKENS) || 0, thinking: env.ENGINE_LLM_THINKING === '0' ? false : undefined }
     : { ...roles.chat, alias: 'chat' };
+  // V13 · Roles 'compiler' (recopila: lee la página y devuelve hechos con cita) y 'judge' (valida los hechos del compilador contra la
+  // página y el brief). Cada uno con su propio modelo. Sin URL y modelo el rol NO está listo y NO se sustituye por otro: el respaldo
+  // existe solo si se pide con COMPILER_LLM_FALLBACK / JUDGE_LLM_FALLBACK = engine | chat (y queda anotado en `fallback`).
+  for (const [role, P] of [['compiler', 'COMPILER'], ['judge', 'JUDGE']]) {
+    const url = trim(env[`${P}_LLM_URL`]); const model = String(env[`${P}_LLM_MODEL`] || '').trim();
+    const fb = String(env[`${P}_LLM_FALLBACK`] || '').trim().toLowerCase();
+    roles[role] = url && model
+      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
+      : ['engine', 'chat'].includes(fb) && roles[fb]?.ready
+        ? { ...roles[fb], alias: fb, fallback: fb }
+        : { url: '', model: '', ready: false, fallback: null };
+  }
   // Modelo usado para extraer deals: 'chat' (qwen-30b), 'small' (qwen-4b) o el id de un adaptador LoRA
   // servido en el puerto de 'small' (vLLM --lora-modules nombre=ruta).
   const extractor = String(env.VLLM_EXTRACT_ROLE || 'chat');
@@ -111,7 +123,7 @@ export async function chatJSON({ system, user, messages, schema, name = 'salida'
     ...(target.reasoningEffort ? { reasoning_effort: target.reasoningEffort } : {}),
     ...(maxTokens || target.maxTokens ? { max_tokens: maxTokens || target.maxTokens } : {}),
     ...(target.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),   // ENGINE_LLM_THINKING=0: modelos Qwen con modo razonamiento
-  }, { apiKey: target.apiKey || cfg.apiKey, timeoutMs: Number(env.ENGINE_LLM_TIMEOUT_MS) && role === 'engine' ? Number(env.ENGINE_LLM_TIMEOUT_MS) : cfg.timeoutMs, fetcher, signal });
+  }, { apiKey: target.apiKey || cfg.apiKey, timeoutMs: Number(target.timeoutMs) || (Number(env.ENGINE_LLM_TIMEOUT_MS) && role === 'engine' ? Number(env.ENGINE_LLM_TIMEOUT_MS) : cfg.timeoutMs), fetcher, signal });
   return { json: parseJsonContent(data?.choices?.[0]?.message?.content), model: data?.model || target.model, usage: data?.usage || null, latency_ms: Date.now() - started };
 }
 
