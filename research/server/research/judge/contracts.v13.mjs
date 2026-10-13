@@ -28,7 +28,12 @@ function clipTo(value, schema) {
   if (typeof value === 'object' && schema.properties) return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, clipTo(v, schema.properties[k])]));
   return value;
 }
-const cleanDates = (list) => (Array.isArray(list) ? list.filter((d) => d && typeof d === 'object').map((d) => ({ ...d, role: roleOf(d.role), date: typeof d.date === 'string' && d.date.trim() ? d.date.trim() : d.date === undefined ? undefined : d.date === '' ? null : d.date, quote: str(d.quote), ...(typeof d.estimated === 'string' ? { estimated: /^(true|yes)$/i.test(d.estimated) } : {}) })) : list);
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+const KEY_ROLES = ['application_deadline', 'loi_deadline', 'opens'];
+/** Más de 20 fechas: se conservan primero las de cierre, carta de intención y apertura. */
+const capDates = (list) => (Array.isArray(list) && list.length > 20 ? [...list.filter((d) => KEY_ROLES.includes(d.role)), ...list.filter((d) => !KEY_ROLES.includes(d.role))].slice(0, 20) : list);
+const cleanDates = (list) => (Array.isArray(list) ? capDates(list.filter((d) => d && typeof d === 'object').map((d) => ({ ...d, role: roleOf(d.role), date: typeof d.date === 'string' && d.date.trim() ? d.date.trim() : d.date === undefined ? undefined : d.date === '' ? null : d.date, quote: typeof d.quote === 'string' ? d.quote.trim() : d.quote == null ? '' : d.quote, ...(typeof d.estimated === 'string' ? { estimated: /^(true|yes)$/i.test(d.estimated) } : {}) }))
+  .map((d) => (typeof d.date === 'string' && !ISO_DAY.test(d.date) ? { ...d, date: null } : d))) : list);
 const errorsOf = (fn) => (fn.errors || []).slice(0, 8).map((e) => `${e.instancePath || '/'} ${e.message}`);
 
 /** Forma mínima antes de validar: no inventa campos; recorta lo que excede el esquema y manda roles de fecha desconocidos a «other». */

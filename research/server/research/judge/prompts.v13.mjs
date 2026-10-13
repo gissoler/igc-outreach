@@ -26,7 +26,7 @@ const CRITERION_HELP = {
   topic_fit: 'topic_fit: is the applicant\'s project the kind of work the page funds or invests in? no only when the page states what it funds or excludes and the project falls outside it.',
 };
 
-const SCALARS = ['organization', 'company', 'venture', 'industry', 'product', 'description', 'entityType', 'country', 'state', 'geography', 'stage', 'round', 'maturity', 'amount', 'useOfFunds', 'minDays', 'deadlineFrom', 'deadlineTo', 'constraints'];
+const SCALARS = ['organization', 'company', 'venture', 'industry', 'product', 'oneLiner', 'description', 'entityType', 'country', 'state', 'geography', 'stage', 'round', 'maturity', 'amount', 'useOfFunds', 'minDays', 'deadlineFrom', 'deadlineTo', 'constraints'];
 export function briefBlock(brief = {}) {
   const out = [];
   for (const k of SCALARS) { const v = brief?.[k]; if (v !== undefined && v !== null && typeof v !== 'object' && String(v).trim()) out.push(`${k}: ${String(v).replace(/\s+/g, ' ').trim().slice(0, 600)}`); }

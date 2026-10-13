@@ -60,3 +60,9 @@ test('V13-52 validateBrief: ventana opcional, fechas reales, from <= to', () => 
   assert.throws(() => validateBrief({ ...base, deadlineFrom: '2026-02-30' }), /YYYY-MM-DD/);
   assert.throws(() => validateBrief({ ...base, deadlineTo: 'mañana' }), /YYYY-MM-DD/);
 });
+
+test('V13-56 el brief que ven compilador y juez incluye oneLiner (sin él, "mint ad" se lee como publicidad)', async () => {
+  const { briefBlock } = await import('../server/research/judge/prompts.v13.mjs');
+  const b = briefBlock({ product: 'mint ad', oneLiner: 'stratification tool that tells the risk of a patient to develop AD', industry: 'healthcare' });
+  assert.ok(b.includes('oneLiner: stratification tool that tells the risk of a patient to develop AD'));
+});

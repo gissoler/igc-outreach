@@ -17,9 +17,9 @@ test('V13-5 compilation contract accepts a valid record and normalizes enum case
   assert.deepEqual([r.value.page_type, r.value.dates[0].role, r.value.dates[0].date, r.value.dates[0].estimated], ['forecast_notice', 'application_deadline', '2026-11-01', true]);
 });
 
-test('V13-6 invalid compilation is rejected (an unknown date role is no longer a rejection: see V13-53)', () => {
+test('V13-6 invalid compilation is rejected (unknown date role and non-ISO date are no longer rejections: see V13-53, V13-55)', () => {
   for (const bad of [null, [], 'x', compilation({ page_type: 'webinar' }),
-    compilation({ dates: [{ role: 'application_deadline', date: 'November 1, 2026', quote: 'q' }] }), { page_type: 'call' }]) {
+    { page_type: 'call' }]) {
     const r = validateCompilation(bad); assert.equal(r.ok, false); assert.equal(r.value, null); assert.ok(Array.isArray(r.errors));
   }
 });
@@ -70,4 +70,15 @@ test('V13-54 compilador: citas y listas que exceden el esquema se recortan y val
   const base = { page_type: 'call', relevant: true, official: true, money: 'grant', non_dilutive: 'yes', summary: 's', identity: { name: 'n', org: null, kind: 'program', quote: 'q' }, dates: [], eligibility: { applicant_types: [], applicant_types_quote: long, countries: Array.from({ length: 45 }, (_, i) => `c${i}`), countries_quote: long, stage: null, stage_quote: null, for_profit_allowed: 'unknown', for_profit_quote: null }, amount: { text: null, quote: null }, how_to_apply_quote: long };
   const r = validateCompilation(base);
   assert.equal(r.ok, true, r.errors.join(';')); assert.equal(r.value.how_to_apply_quote.length, 600); assert.equal(r.value.eligibility.countries.length, 30); assert.equal(r.value.eligibility.applicant_types_quote, long.slice(0, 600));
+});
+
+test('V13-55 fechas: no ISO pasa a null, cita nula a vacía, más de 20 conserva primero las de cierre', () => {
+  const base = { page_type: 'call', relevant: true, official: true, money: 'grant', non_dilutive: 'yes', summary: 's', identity: { name: 'n', org: null, kind: 'program', quote: 'q' }, eligibility: { applicant_types: [], applicant_types_quote: null, countries: [], countries_quote: null, stage: null, stage_quote: null, for_profit_allowed: 'unknown', for_profit_quote: null }, amount: { text: null, quote: null }, how_to_apply_quote: null };
+  const many = [...Array.from({ length: 25 }, (_, i) => ({ role: 'other', date: '2026-01-0' + ((i % 9) + 1), estimated: false, quote: 'x' })), { role: 'application_deadline', date: '2027-02-01', estimated: false, quote: 'Feb 1, 2027' }];
+  const c = validateCompilation({ ...base, dates: [{ role: 'application_deadline', date: 'TBD', estimated: false, quote: null }, ...many] });
+  assert.equal(c.ok, true, c.errors.join(';'));
+  assert.equal(c.value.dates.length, 20); assert.equal(c.value.dates[0].date, null); assert.equal(c.value.dates[0].quote, '');
+  assert.ok(c.value.dates.some((d) => d.date === '2027-02-01'));
+  const j = validateJudgment({ page_type: 'call', dates: many, criteria: { deadline: { verdict: 'yes', quote: 'q', reason: 'r', compiler: 'agree' } } });
+  assert.equal(j.ok, true, j.errors.join(';')); assert.equal(j.value.dates.length, 20);
 });
