@@ -56,9 +56,10 @@ Con C (modelos simulados en pruebas V13-23..34) las dos NIA salen `forecast` / �
 - Fallas previas, no causadas por V13: Apollo y ACC-58.
 - Con `*_LLM_FALLBACK=engine`, compilador y juez pueden ser el mismo modelo; la independencia se pierde.
 
-## Pregunta abierta para Gisel (no implementada)
+## Ventana de cierre en el brief (agregado 13/10)
 
-Cambio de intake/brief: ¿agregar ventana de cierre aceptable `deadlineFrom` / `deadlineTo` además de `minDays`, y las convocatorias `forecast` van (a) a «a verificar» o (b) a una lista aparte «avisos previos»? Hoy: `forecast` sin fecha ni días, y no entra a la lista principal.
+El brief acepta `deadlineFrom` y `deadlineTo` (YYYY-MM-DD, opcionales, ambos incluidos; from <= to). El juez las recibe en el brief y en la regla del criterio deadline. El código aplica la ventana sobre la fecha de cierre con cita literal: fuera de la ventana → descarte `outside_window`; el veredicto del juez no la reemplaza. Aviso previo (`forecast`) no se descarta por la ventana y sigue sin entrar a la lista principal. Sin ventana, nada cambia. Pantalla Research: dos campos de fecha. Pruebas V13-44..52 (9) pasan; suite 481 / 479 pasan / 1 falla (Apollo) / 1 omitida; Mentiva sin cambios.
+Sin decidir: destino de los avisos previos (hoy «a verificar» sin fecha ni días).
 
 ## Commits
 

@@ -261,12 +261,12 @@ export async function runObjective(objective, brief, opts = {}) {
       judg = await call('judge', judgePrompt({ objective, brief, page, today, claims: comp.ok ? comp.value : null }), validateJudgment);
     }
     const jr = { compilation: comp.value || null, judgment: judg.value || null, failure: { compiler: comp.ok ? null : comp.failure, judge: judg.ok ? null : judg.failure }, blind: Boolean(jm.blind), models: { compiler: comp.model || null, judge: judg.model || null }, ms: t, judgeSawClaims: !jm.blind && comp.ok };
-    jr.audit = auditPage({ objective, page, today, compilation: jr.compilation, judgment: jr.judgment, failure: jr.failure, blind: jr.blind });
+    jr.audit = auditPage({ objective, page, today, compilation: jr.compilation, judgment: jr.judgment, failure: jr.failure, blind: jr.blind, window: { from: brief?.deadlineFrom, to: brief?.deadlineTo } });
     return jr;
   };
   /** Verifica la página con la lectura del juez; la auditoría corre sobre el texto que se le pasa (puede ser el completo tras la segunda descarga). */
   const verifyJudged = (jr, pg) => {
-    jr.audit = auditPage({ objective, page: pg, today, compilation: jr.compilation, judgment: jr.judgment, failure: jr.failure, blind: jr.blind });
+    jr.audit = auditPage({ objective, page: pg, today, compilation: jr.compilation, judgment: jr.judgment, failure: jr.failure, blind: jr.blind, window: { from: brief?.deadlineFrom, to: brief?.deadlineTo } });
     return applyAudit(verifyFinding(legacyOut(jr.compilation, jr.audit), pg, objective, { today, brief, profile, dateOverride: dateOverrideOf(jr.audit) }), jr.audit);
   };
   const countJudge = (jr, v) => {

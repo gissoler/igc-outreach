@@ -62,7 +62,7 @@ export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, 
 }
 
 /** Auditoría de una página. `compilation`/`judgment` son salidas ya validadas por contracts.v13 o null; `failure` explica por qué falta una. */
-export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false } = {}) {
+export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null } = {}) {
   const now = todayIso(today); const text = String(page?.text || ''); const dated = hasDeadline(objective);
   const flags = []; const disagreements = []; const blockers = [];
   const base = { version: JUDGE_AUDIT_VERSION, objective, today: now, blind: Boolean(blind), compilerOk: Boolean(compilation), judgeOk: Boolean(judgment), compilerFailure: failure.compiler || null, judgeFailure: failure.judge || null };
@@ -96,7 +96,10 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   // Razones de descarte: solo un «no» con cita literal en la página.
   const NO_TO_DROP = { eligibility: 'not_eligible', region: 'not_eligible', entity_type: 'not_eligible', stage: 'not_eligible', topic_fit: 'scope_mismatch' };
   const noWithQuote = Object.entries(criteria).find(([id, c]) => id !== 'deadline' && c.verdict === 'no' && c.quoteOk);
-  const dropReason = st.state === 'closed' ? 'closed' : noWithQuote ? NO_TO_DROP[noWithQuote[0]] : null;
+  const win = window && (window.from || window.to) ? { from: window.from || null, to: window.to || null } : null;
+  const outsideWindow = Boolean(win && dated && (st.state === 'open' || st.state === 'upcoming') && st.deadline && ((win.from && st.deadline < win.from) || (win.to && st.deadline > win.to)));
+  if (outsideWindow) flags.push('deadline_outside_window');
+  const dropReason = st.state === 'closed' ? 'closed' : outsideWindow ? 'outside_window' : noWithQuote ? NO_TO_DROP[noWithQuote[0]] : null;
   for (const [id, c] of Object.entries(criteria)) if (id !== 'deadline' && c.claimed === 'no' && c.verdict === 'unknown') blockers.push(`The judge says "no" for ${id} without a quote from the page`);
 
   const requiredYes = dated ? ['eligibility', 'topic_fit'] : ['topic_fit'];
@@ -115,7 +118,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   return {
     ...base, state: st.state, deadline: st.deadline, deadlineQuote: st.quote, daysLeft: st.daysLeft, estimatedDeadline: st.estimatedDeadline, opensOn: st.opensOn || null,
     pageType: { judge: judgment.page_type, compiler: compilation?.page_type || null, agree: !compilation ? false : pageClass(judgment.page_type, dated) === pageClass(compilation.page_type, dated) },
-    dates: { judge: jDates, compiler: cDates }, criteria, flags: [...new Set(flags)], disagreements, blockers, dropReason, mainOk,
+    dates: { judge: jDates, compiler: cDates }, criteria, flags: [...new Set(flags)], disagreements, blockers, dropReason, mainOk, window: win,
   };
 }
 

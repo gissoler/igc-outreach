@@ -15,6 +15,9 @@ export type Brief = {
   exclusions: string;
   event: string;
   minDays: number;
+  /** Ventana de cierre aceptable (YYYY-MM-DD), opcional. */
+  deadlineFrom?: string;
+  deadlineTo?: string;
   mode: 'strategic' | 'financial';
   dataMode: 'live' | 'demo';
   useTeam: boolean;

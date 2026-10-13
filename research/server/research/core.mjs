@@ -78,6 +78,15 @@ export function validateBrief(input) {
     brief.minDays > 730
   )
     throw new Error('Lead time must be 0–730 days.');
+  for (const key of ['deadlineFrom', 'deadlineTo']) {
+    const raw = input[key];
+    if (raw === undefined || raw === null || raw === '') continue;
+    const ok = typeof raw === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(raw) && !Number.isNaN(Date.parse(`${raw}T00:00:00Z`)) && new Date(`${raw}T00:00:00Z`).toISOString().slice(0, 10) === raw;
+    if (!ok) throw new Error(`${key} must be a date YYYY-MM-DD.`);
+    brief[key] = raw;
+  }
+  if (brief.deadlineFrom && brief.deadlineTo && brief.deadlineFrom > brief.deadlineTo)
+    throw new Error('deadlineFrom must not be after deadlineTo.');
   brief.useTeam = input.useTeam === true;
   brief.useApify = input.useApify !== false;
   if (
@@ -467,6 +476,7 @@ const dropText = (ver) => {
   if (r.startsWith('not_a_call')) return `Not a call: ${ver.pageType?.reason || r}.`;
   if (r === 'not_eligible') return `Not eligible: ${ver.eligibility?.reason || 'the page excludes this applicant'}.`;
   if (r === 'scope_mismatch') return `Doesn't fund this kind of project: ${ver.scopeFit?.reason || 'the page excludes it'}${ver.scopeFit?.excludesQuote || ver.scopeFit?.fundsQuote ? ` (“${(ver.scopeFit.excludesQuote || ver.scopeFit.fundsQuote).slice(0, 160)}”)` : ''}.`;
+  if (r === 'outside_window') return `Deadline ${ver.dates?.deadline || ''} is outside the window requested in the brief.`;
   if (r === 'aggregator' || r === 'social_host') return 'Aggregator or social network, not the official source.';
   return `Discarded by verification: ${r}.`;
 };

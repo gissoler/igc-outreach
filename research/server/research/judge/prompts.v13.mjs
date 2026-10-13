@@ -18,7 +18,7 @@ export const criteriaFor = (objective) => CRITERIA[objective] || CRITERIA.grant;
 export const hasDeadline = (objective) => criteriaFor(objective).includes('deadline');
 
 const CRITERION_HELP = {
-  deadline: 'deadline: is there an APPLICATION deadline on the page that is on or after today and not marked estimated or forecast? yes = a firm future application deadline; no = the page says the call is closed or its application deadline is before today; unknown = no application deadline, only estimated or forecast dates, or an announcement that applications are not being solicited yet.',
+  deadline: 'deadline: is there an APPLICATION deadline on the page that is on or after today and not marked estimated or forecast? yes = a firm future application deadline; no = the page says the call is closed or its application deadline is before today; unknown = no application deadline, only estimated or forecast dates, or an announcement that applications are not being solicited yet. If the brief gives deadlineFrom and/or deadlineTo, the firm application deadline must fall inside that window (both days included); a firm deadline outside it is no.',
   eligibility: 'eligibility: can this applicant apply to this page overall (who may apply, restrictions, exclusions)? yes only with a quote that says who may apply.',
   region: 'region: does the page allow the applicant\'s country / state / region? A foreign-institution allowance counts as yes only if the page says it.',
   entity_type: 'entity_type: does the page allow the applicant\'s type of entity (for-profit company, startup, small business, nonprofit, university...)?',
@@ -26,7 +26,7 @@ const CRITERION_HELP = {
   topic_fit: 'topic_fit: is the applicant\'s project the kind of work the page funds or invests in? no only when the page states what it funds or excludes and the project falls outside it.',
 };
 
-const SCALARS = ['organization', 'company', 'venture', 'industry', 'product', 'description', 'entityType', 'country', 'state', 'geography', 'stage', 'round', 'maturity', 'amount', 'useOfFunds', 'minDays', 'constraints'];
+const SCALARS = ['organization', 'company', 'venture', 'industry', 'product', 'description', 'entityType', 'country', 'state', 'geography', 'stage', 'round', 'maturity', 'amount', 'useOfFunds', 'minDays', 'deadlineFrom', 'deadlineTo', 'constraints'];
 export function briefBlock(brief = {}) {
   const out = [];
   for (const k of SCALARS) { const v = brief?.[k]; if (v !== undefined && v !== null && typeof v !== 'object' && String(v).trim()) out.push(`${k}: ${String(v).replace(/\s+/g, ' ').trim().slice(0, 600)}`); }

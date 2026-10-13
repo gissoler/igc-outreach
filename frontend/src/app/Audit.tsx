@@ -13,7 +13,7 @@ const TIER_LABEL = { main: 'Main list · open and eligible, verified', verify: '
 const TIER_CHIP = { main: 'mint', verify: 'sun', drop: 'rose' } as const;
 const CHECK_LABEL: Record<string, string> = { host: 'Source', page_type: 'Is it a call?', deadline: 'Deadline vs today', eligibility: 'Who can apply', non_dilutive: 'Non-dilutive', official: 'Official page' };
 const REASON_LABEL: Record<string, string> = {
-  closed: 'Closed (deadline passed)', not_eligible: 'Not eligible', scope_mismatch: 'Doesn\'t fund this kind of project', aggregator: 'Aggregator / directory', social_host: 'Social network', not_official: 'Not the official source',
+  closed: 'Closed (deadline passed)', outside_window: 'Deadline outside the requested window', not_eligible: 'Not eligible', scope_mismatch: 'Doesn\'t fund this kind of project', aggregator: 'Aggregator / directory', social_host: 'Social network', not_official: 'Not the official source',
   'not_a_call:report': 'Report, not a call', 'not_a_call:blog': 'Blog post', 'not_a_call:news': 'News', 'not_a_call:event': 'Event / workshop', 'not_a_call:cohort': 'Cohort announcement',
   'not_a_call:directory': 'Directory', 'not_a_call:program_page': 'No way to apply on the page', not_a_call: 'Not a call', unreliable_read: 'AI read unreliable (invented quotes)',
   no_identity_quote: 'No quote for what it is', not_relevant: 'Not relevant', equity_or_loan: 'Equity or loan', off_topic: 'Off-topic', no_confirmed_evidence: 'No confirmed evidence',
