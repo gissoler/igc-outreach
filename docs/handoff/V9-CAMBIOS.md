@@ -99,3 +99,7 @@ Petición del usuario: que la búsqueda quede como si se usara Claude o Gemini. 
 | `freeze.mjs` | Rama para configs /6 con b2.model_candidates (añade los módulos v9 y el prompt); v5, v7, v8 y v9-diagnóstico idénticas |
 
 Tests: v5–v9 69/69 (v9: 16). No se gastó nada en este paso. Desde la VM no se puede llamar a ningún modelo ni a Exa: la prueba de nombres corre en el Mac con go-v9.sh.
+
+## Veredicto del brazo de candidatos del modelo (12-10, 21:53)
+
+Prueba de nombres con gpt-oss-120b, sin Exa: oro nombrado en 0 de 6 (p01–p06) solo con su conocimiento y 1 de 6 leyendo las listas (3 de 6 en p07–p12 en ambos modos). Regla §6: NO-GO, no se lanzó la corrida. El nombre del oro llega al modelo en 10 de 12 casos. Cuello de botella: el LLM. Detalle: docs/benchmark/investors/V9-DIAGNOSTICO-COMPLETO.md §4.

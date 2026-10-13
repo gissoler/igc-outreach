@@ -35,3 +35,24 @@ El 44% del gasto (108 de 244 llamadas) fue a resolver nombres de listas y no dio
 4. Después sigue el planner como en v8.
 
 Lo único que no se puede medir desde aquí es si gpt-oss elige el oro entre esos nombres. go-v9.sh lo mide primero, sin gastar Exa, en los 12 casos, y solo lanza la corrida si lo nombra en ≥ 4 de 6. Si no llega, el cuello de botella queda probado: es el modelo (le llega el nombre y no lo elige). Costo Exa de la corrida: hasta US$ 3.49, tope US$ 5.
+
+## 4. Veredicto (prueba de nombres ejecutada por el usuario, 12-10, 21:53; V9-NOMBRES.md)
+
+NO-GO. El cuello de botella es el LLM (openai/gpt-oss-120b). Sin Exa gastado.
+
+| Caso | Oro entre los nombres de las listas que recibe el LLM (puesto) | gpt-oss solo con su conocimiento | gpt-oss leyendo las listas |
+|---|---|---|---|
+| p01 | 20 | no | no |
+| p02 | 101 | no | no |
+| p03 | 77 | no | no |
+| p04 | 70 | no | 9 |
+| p05 | no está | no | no |
+| p06 | 27 | no | no |
+| p07 | 35 | 1 | 3 |
+| p08 | 4 | 1 | 1 |
+| p09 | 99 | no | no |
+| p10 | 20 | 9 | 10 |
+| p11 | 3 | no | no |
+| p12 | no está | no | no |
+
+El nombre del oro le llega al LLM en 10 de 12 casos y lo elige en 4 (1 de 6 en p01–p06). En p11 está en el puesto 3 de lo que recibe y no lo elige. Firmas gain ≥ 2 nombradas: 8 de 64 leyendo listas, 6 de 64 sin ellas. Exa (12/12 por nombre), la verificación (10/12) y las consultas quedan descartados como límite.
