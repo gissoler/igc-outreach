@@ -120,12 +120,32 @@ export function buildRunAudit({ engineRuns = [], orchestrator = null, grantSourc
     // Descartes que no vienen del motor (búsqueda sin modelo, registros): también con su recorrido
     if (l.bucket === 'discarded' && l.trace && traces.length < maxTraces && !traces.some((t) => t.url === l.trace.url)) traces.push({ objective: l.fundingType, url: l.contact?.value || l.trace.url, title: l.title, ...l.trace, verdict: 'skip', drop: discardCategory(l), reasons: [l.discard] });
   }
+  // V13 · agentes de compilación y juez: totales por modelo y detalle por página (modelos, criterios, citas, desacuerdos, tiempo, llamadas).
+  const judge = judgeSummary(engineRuns, leads, maxTraces);
   return {
-    today, brief: { venture: brief.venture || brief.company || null, product: brief.product || null, industry: brief.industry || null, geography: brief.geography || null, stage: brief.stage || null, round: brief.round || null, fundingTypes: brief.fundingTypes || [], constraints: brief.constraints || null },
+    today, judge, brief: { venture: brief.venture || brief.company || null, product: brief.product || null, industry: brief.industry || null, geography: brief.geography || null, stage: brief.stage || null, round: brief.round || null, fundingTypes: brief.fundingTypes || [], constraints: brief.constraints || null },
     interpretations, counters, queries: queries.slice(0, 200), discarded: traces, providers: providerBenchmark(engineRuns),
     expansion: engineRuns.filter((a) => a.expand).map((a) => ({ objective: a.objective, seeds: a.expand.seeds || 0, pages: a.expand.pages || 0, snowball: a.expand.snowball || 0, siteDive: a.expand.siteDive || 0, similar: a.expand.similar || 0, siteDiveVia: a.expand.siteDiveVia || '', lateral: { openalex: a.expand.lateral?.openalex || 0, edgar: a.expand.lateral?.edgar || 0, ai: a.expand.lateral?.ai || 0 }, errors: (a.expand.errors || []).slice(0, 6) })),
     grantSources: grantSources ? { jurisdiction: grantSources.jurisdiction || null, portals: grantSources.portals || [], portalPages: engineRuns.filter((a) => a.portals).map((a) => ({ objective: a.objective, seeds: a.portals.seeds, pages: a.portals.pages, errors: a.portals.errors || [] })), reporter: grantSources.intel?.reporter ? { projects: grantSources.intel.reporter.all.n, medianAward: grantSources.intel.reporter.all.medianAward, orgTypes: grantSources.intel.reporter.all.orgTypes, institutes: grantSources.intel.reporter.all.institutes, notices: grantSources.intel.reporter.notices.slice(0, 8).map((n) => ({ id: n.id, projects: n.projects, medianAward: n.medianAward })) } : null, nsf: grantSources.intel?.nsf ? { awards: grantSources.intel.nsf.n, medianAward: grantSources.intel.nsf.medianAward, programs: grantSources.intel.nsf.programs } : null, errors: grantSources.intel?.errors || [] } : null,
     comparePrompts: Object.fromEntries((brief.fundingTypes || []).filter((t) => ['grant', 'investment'].includes(t)).map((t) => [t, comparisonPrompt(brief, today, t)])),
     orchestrator: orchestrator ? { by: orchestrator.by || null, attempts: (orchestrator.attempts || []).map((a) => ({ attempt: a.attempt, stopped: a.stopped || null, strategy: a.strategy || null, gap: a.gap || a.assessment?.gap || null, by: a.by || a.assessment?.by || null, diagnosis: a.diagnosis || null, queries: (a.queries || []).slice(0, 10), added: a.added ?? null, topBefore: a.before?.top ?? null, topAfter: a.after?.top ?? null, error: a.error || null })) } : null,
   };
+}
+
+const sumInto = (acc, src) => { for (const [k, v] of Object.entries(src || {})) acc[k] = (acc[k] || 0) + (typeof v === 'number' ? v : 0); return acc; };
+function judgeSummary(engineRuns, leads, maxTraces) {
+  const runs = engineRuns.filter((a) => a.judge);
+  if (!runs.length) return null;
+  const j = { on: true, ready: runs.every((a) => a.judge.ready), blind: runs.some((a) => a.judge.blind), sameModel: runs.some((a) => a.judge.sameModel), notices: [...new Set(runs.map((a) => a.judge.notice).filter(Boolean))], prompts: runs[0].judge.prompts, models: { compiler: null, judge: null }, calls: { compiler: 0, judge: 0 }, ms: { compiler: 0, judge: 0 }, invalid: { compiler: 0, judge: 0 }, errors: { compiler: 0, judge: 0 }, pages: 0, states: {}, disagreed: 0, failClosed: 0, patternDisagrees: 0, perPage: [] };
+  for (const a of runs) {
+    const x = a.judge;
+    for (const k of ['calls', 'ms', 'invalid', 'errors']) sumInto(j[k], x[k]);
+    sumInto(j.states, x.states); j.pages += x.pages || 0; j.disagreed += x.disagreed || 0; j.failClosed += x.failClosed || 0; j.patternDisagrees += x.patternDisagrees || 0;
+    for (const r of ['compiler', 'judge']) if (x.models?.[r] && !j.models[r]) j.models[r] = x.models[r];
+  }
+  const page = (url, title, objective, bucket, jd, extra = {}) => ({ url, title: title || '', objective, bucket, models: jd.models, state: jd.state, deadline: jd.deadline, estimatedDeadline: jd.estimatedDeadline, daysLeft: jd.daysLeft, blind: jd.blind, judgeSawClaims: jd.judgeSawClaims, pageType: jd.pageType, criteria: jd.criteria, dates: jd.dates, disagreements: jd.disagreements, flags: jd.flags, blockers: jd.blockers, failure: jd.failure, ms: jd.ms, calls: jd.calls, dropReason: jd.dropReason, ...extra });
+  const seen = new Set();
+  for (const l of leads) { const jd = l.trace?.judge; const url = l.contact?.value || l.trace?.url; if (!jd || !url || seen.has(url) || j.perPage.length >= maxTraces) continue; seen.add(url); j.perPage.push(page(url, l.title, l.fundingType, l.bucket || null, jd)); }
+  for (const a of runs) for (const t of a.traces || []) { if (!t.judge || !t.url || seen.has(t.url) || j.perPage.length >= maxTraces) continue; seen.add(t.url); j.perPage.push(page(t.url, t.title, a.objective, t.verdict === 'unread' ? 'unread' : 'discarded', t.judge, { drop: t.drop || null, note: t.note || null })); }
+  return j;
 }

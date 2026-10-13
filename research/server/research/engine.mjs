@@ -13,7 +13,7 @@
    Un "objetivo" (OBJECTIVES) define familias, qué se extrae y cómo se verifica; añadir "users" es añadir uno.
    ───────────────────────────────────────────────────────────────────────────── */
 import { snowball } from './discovery.mjs';
-import { chatJSON, fleetReady } from '../analysis/fleet.mjs';
+import { chatJSON, fleetReady, fleetConfig } from '../analysis/fleet.mjs';
 import { candidate, evidence, norm } from './core.mjs';
 import { firecrawlSearch, firecrawlConfigured, firecrawlExtract } from './webscrape.mjs';
 import { extractedFacts, compactExtraction } from './extract.mjs';
@@ -28,6 +28,9 @@ import { verifyOpportunity, literalIn, hostKind, hostOf, datesIn, compactVerific
 import { applicantProfile } from './applicant.mjs';
 import { buildExplanation } from './explain.mjs';
 import { expandRound, expandLimits } from './expansion.mjs';
+import { compilerPrompt, judgePrompt, COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERSION } from './judge/prompts.v13.mjs';
+import { validateCompilation, validateJudgment } from './judge/contracts.v13.mjs';
+import { auditPage, applyAudit, dateOverrideOf, legacyOut, judgeMode, slimJudge } from './judge/audit.v13.mjs';
 
 export const OBJECTIVES = {
   grant: {
@@ -224,6 +227,54 @@ export async function runObjective(objective, brief, opts = {}) {
     for (const p of provs) { const s = stat(p); s.urls++; if (provs.length === 1) s.onlyUrls++; s.outcomes[outcome] = (s.outcomes[outcome] || 0) + 1; }
   };
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
+  // V13 · Agente de compilación + agente juez + auditor por código (ENGINE_JUDGE=1; apagado por defecto). Sin los dos roles el
+  // comportamiento no cambia y el audit lo avisa. opts.judge (true|false) fuerza el modo en pruebas.
+  const jm = opts.judge !== undefined ? { on: Boolean(opts.judge), ready: Boolean(opts.judge), blind: Boolean(opts.judgeBlind), sameModel: false, notice: null } : judgeMode(env, fleetConfig(env));
+  const judgeOn = jm.on && jm.ready && canRead;
+  if (jm.on) {
+    audit.judge = { on: true, ready: judgeOn, blind: Boolean(jm.blind), sameModel: Boolean(jm.sameModel), notice: jm.notice || (!canRead ? 'ENGINE_JUDGE=1 but no AI model can read pages in this run' : null), prompts: { compiler: COMPILER_PROMPT_VERSION, judge: JUDGE_PROMPT_VERSION }, pages: 0, states: {}, disagreed: 0, failClosed: 0, patternDisagrees: 0, calls: { compiler: 0, judge: 0 }, ms: { compiler: 0, judge: 0 }, invalid: { compiler: 0, judge: 0 }, errors: { compiler: 0, judge: 0 }, models: { compiler: null, judge: null } };
+    if (audit.judge.notice) audit.errors.push(audit.judge.notice);
+  }
+  /** Compilador → juez (ciego o informado) → auditor. Nunca lanza por un modelo: una falla queda en `failure` y el auditor falla cerrado. */
+  const readWithJudge = async (page) => {
+    const st = audit.judge; const t = { compiler: 0, judge: 0 };
+    const call = async (role, prompt, validator) => {
+      const t0 = Date.now(); st.calls[role]++;
+      try {
+        const { json, model } = await chat({ system: prompt.system, user: prompt.user, name: role, role }, { env, fetcher, signal });
+        t[role] = Date.now() - t0; st.ms[role] += t[role]; if (model) st.models[role] = model;
+        const r = validator(json);
+        if (!r.ok) { st.invalid[role]++; return { ok: false, model, failure: `invalid_json: ${r.errors.slice(0, 3).join('; ')}` }; }
+        return { ok: true, model, value: r.value };
+      } catch (e) {
+        if (signal?.aborted) throw e;
+        t[role] = Date.now() - t0; st.ms[role] += t[role]; st.errors[role]++;
+        return { ok: false, model: null, failure: String(e?.message || e).slice(0, 160) };
+      }
+    };
+    const cp = compilerPrompt({ objective, brief, page, today });
+    let comp; let judg;
+    if (jm.blind) {
+      [comp, judg] = await Promise.all([call('compiler', cp, validateCompilation), call('judge', judgePrompt({ objective, brief, page, today, blind: true }), validateJudgment)]);
+    } else {
+      comp = await call('compiler', cp, validateCompilation);
+      judg = await call('judge', judgePrompt({ objective, brief, page, today, claims: comp.ok ? comp.value : null }), validateJudgment);
+    }
+    const jr = { compilation: comp.value || null, judgment: judg.value || null, failure: { compiler: comp.ok ? null : comp.failure, judge: judg.ok ? null : judg.failure }, blind: Boolean(jm.blind), models: { compiler: comp.model || null, judge: judg.model || null }, ms: t, judgeSawClaims: !jm.blind && comp.ok };
+    jr.audit = auditPage({ objective, page, today, compilation: jr.compilation, judgment: jr.judgment, failure: jr.failure, blind: jr.blind });
+    return jr;
+  };
+  /** Verifica la página con la lectura del juez; la auditoría corre sobre el texto que se le pasa (puede ser el completo tras la segunda descarga). */
+  const verifyJudged = (jr, pg) => {
+    jr.audit = auditPage({ objective, page: pg, today, compilation: jr.compilation, judgment: jr.judgment, failure: jr.failure, blind: jr.blind });
+    return applyAudit(verifyFinding(legacyOut(jr.compilation, jr.audit), pg, objective, { today, brief, profile, dateOverride: dateOverrideOf(jr.audit) }), jr.audit);
+  };
+  const countJudge = (jr, v) => {
+    const st = audit.judge; st.pages++; st.states[jr.audit.state] = (st.states[jr.audit.state] || 0) + 1;
+    if (jr.audit.disagreements?.length) st.disagreed++;
+    if (!jr.judgment) st.failClosed++;
+    if (v.flags?.includes('date_pattern_disagrees')) st.patternDisagrees++;
+  };
   // Expansión: tras la primera ronda, lo verificado sirve de mapa (enlaces, parecidos, rutas del sitio, ángulos laterales). Apagada con `search` inyectado salvo opts.expand.
   const expandOn = opts.expand !== undefined ? Boolean(opts.expand) : (!opts.search && !Array.isArray(opts.queries) && env.ENGINE_EXPAND !== 'off' && canRead);
   const seedPool = []; const pendingExpansion = [...(Array.isArray(opts.seedPages) ? opts.seedPages : [])]; let expandDone = false; let lateralQ = [];
@@ -274,10 +325,11 @@ export async function runObjective(objective, brief, opts = {}) {
     if (audit.traces.length - skippedTraces < maxTraces) audit.traces.push(t);
   };
   /** Traza + hallazgo o descarte de una página ya verificada (con o sin segunda lectura). */
-  const finalize = ({ page, json, model, v, traceBase }, extractionMeta) => {
+  const finalize = ({ page, json, model, v, traceBase, jr = null }, extractionMeta) => {
     const round = traceBase.round;
     for (const p of page.providers) stat(p).pagesRead++;
-    const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}) };
+    const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}), ...(jr ? { judge: slimJudge(jr) } : {}) };
+    if (jr) countJudge(jr, v);
     opts.onVerdict?.({ url: page.url, v, trace, json, model });
     if (v.keep) {
       const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
@@ -385,9 +437,14 @@ export async function runObjective(objective, brief, opts = {}) {
       const traceBase = { url: page.url, title: page.title, query: page.query, family: page.family, queries: page.queries, providers: page.providers, round, fetchedVia: page.via || 'search', textChars: page.text.length, today: dayOf(today) };
       if (!canRead) { audit.unread++; settle(page, 'unread'); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: 'No AI model available to read the page' }); return; }
       try {
-        const { json, model } = await chat({ ...readPrompt({ objective, brief, page, today }), name: 'finding', role: 'engine' }, { env, fetcher, signal });
+        let json; let model; let jr = null;
+        if (judgeOn) {
+          jr = await readWithJudge(page);
+          if (!jr.compilation) { audit.unread++; settle(page, 'read_failed'); audit.judge.pages++; keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Compiler agent failed: ${jr.failure.compiler}`, judge: slimJudge(jr) }); return; }
+          model = jr.models.compiler;
+        } else ({ json, model } = await chat({ ...readPrompt({ objective, brief, page, today }), name: 'finding', role: 'engine' }, { env, fetcher, signal }));
         audit.read++;
-        let v = verifyFinding(json, page, objective, { today, brief, profile });
+        let v = jr ? verifyJudged(jr, page) : verifyFinding(json, page, objective, { today, brief, profile });
         // Segunda lectura de fechas: una convocatoria sin ninguna fecha en el texto que tenemos (recortado por el
         // buscador o renderizado con JavaScript) se descarga completa y se vuelve a verificar con la MISMA lectura
         // del modelo (sin coste de modelo). Presupuesto: ENGINE_DATE_REREAD_MAX por objetivo (12 por defecto).
@@ -398,16 +455,20 @@ export async function runObjective(objective, brief, opts = {}) {
           audit.reread++;
           const got = await fetchFull(page).catch(() => null);
           if (got && got.text.length > page.text.length * 1.2) {
-            const v2 = verifyFinding(json, { ...page, text: got.text }, objective, { today, brief, profile });
+            const prevAudit = jr?.audit;
+            const v2 = jr ? verifyJudged(jr, { ...page, text: got.text }) : verifyFinding(json, { ...page, text: got.text }, objective, { today, brief, profile });
             // Se queda con la lectura sobre la página completa si aporta fechas o cambia la decisión.
             if ((v2.dates?.milestones || []).length > (v.dates?.milestones || []).length || v2.drop !== v.drop) { audit.rereadImproved++; page.text = got.text; page.via = `${page.via || 'search'}+reread:${got.via}`; v = v2; }
+            else if (jr) jr.audit = prevAudit;
           }
         }
-        const need = extractor && o.dated ? extractNeed(v, page, env) : null;
-        if (extractor && o.dated && !need) audit.extractSkipped.not_decisive = (audit.extractSkipped.not_decisive || 0) + 1;
+        // En modo juez la segunda lectura es el juez: no se pide el extractor externo.
+        const need = extractor && o.dated && !jr ? extractNeed(v, page, env) : null;
+        if (extractor && o.dated && jr) audit.extractSkipped.judge_mode = (audit.extractSkipped.judge_mode || 0) + 1;
+        else if (extractor && o.dated && !need) audit.extractSkipped.not_decisive = (audit.extractSkipped.not_decisive || 0) + 1;
         // La segunda lectura se decide DESPUÉS de leer toda la ronda: así se reparte el tope por prioridad y no por quién terminó antes.
         if (need) { pendingExtract.push({ page, json, model, v, traceBase, need }); return; }
-        finalize({ page, json, model, v, traceBase }, null);
+        finalize({ page, json: jr ? legacyOut(jr.compilation, jr.audit) : json, model, v, traceBase, jr }, null);
       } catch (error) { audit.unread++; settle(page, 'read_failed'); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
     });
     // Segunda lectura (Firecrawl JSON) solo de lo que puede cambiar la decisión, por prioridad: lo que entraría a la lista
@@ -530,7 +591,7 @@ export function engineLeads(findings) {
     return candidate({
       externalId: `engine:${f.objective}:${f.url}`, org: f.name || host, title: f.name || f.title || host,
       kind: o.kind === 'opportunity' ? 'opportunity' : 'research', fundingType: f.objective,
-      status: f.status === 'n/a' ? 'unknown' : f.status, deadline: f.deadline, amount: f.amount,
+      status: f.forecast ? 'forecasted' : f.status === 'n/a' ? 'unknown' : f.status, deadline: f.deadline, amount: f.amount,
       contact: { type: 'web', value: f.url, provenance: `Read and verified on ${host}` },
       evidence: ev,
       risks: [...new Set([...(f.blockers || []), f.eligible === 'yes' ? null : 'Fit to confirm with the counterpart', ...f.flags.map((x) => `Check: ${x}`)].filter(Boolean))],

@@ -5,7 +5,7 @@
    ───────────────────────────────────────────────────────────────────────────── */
 import { Check, ChevronRight, CircleSlash, Search, TriangleAlert } from 'lucide-react';
 import { Fragment } from 'react';
-import type { BriefInterpretation, Job, Lead, ResultTrace, RunAudit, VerifyCheck } from '../researchApi';
+import type { BriefInterpretation, Job, JudgeAudit, JudgeTrace, Lead, ResultTrace, RunAudit, VerifyCheck } from '../researchApi';
 import { clip } from './format';
 import './audit.css';
 
@@ -60,6 +60,7 @@ export function TraceBody({ t, interpretation }: { t: ResultTrace; interpretatio
       <p className="au-meta">Returned by: {t.providers?.length ? t.providers.join(', ') : '—'}{t.round ? ` · round ${t.round}` : ''}</p></div></li>
     <li><span className="au-n">3</span><div><h4>Page read</h4><p className="au-meta">{t.url ? <a href={t.url} target="_blank" rel="noreferrer">{clip(t.url, 90)}</a> : '—'} · via {t.fetchedVia || 'search'}{t.textChars ? ` · ${t.textChars.toLocaleString()} characters` : ''}</p>{t.note ? <p className="au-meta">{t.note}</p> : null}</div></li>
     <li><span className="au-n">4</span><div><h4>What the AI extracted</h4>{t.read?.out ? <><ModelRead out={t.read.out} /><p className="au-meta">Model: {t.read.model || '—'}. The page is untrusted data; the code decides below.</p></> : <p className="ld-empty">No AI read (code-only checks or not read).</p>}</div></li>
+    {t.judge ? <li><span className="au-n">J</span><div><h4>What the compiler and judge agents decided</h4><JudgeStep j={t.judge} /></div></li> : null}
     <li><span className="au-n">5</span><div><h4>What the code verified {t.today ? <small className="pl-mut">· today = {t.today}</small> : null}</h4>
       {v?.checks?.length ? <ul className="au-checks">{v.checks.map((c) => <CheckRow key={c.check} c={c} />)}</ul> : <p className="ld-empty">No checks recorded.</p>}
       {v?.dates?.milestones?.length ? <details className="au-more"><summary>Dates found on the page ({v.dates.milestones.length})</summary><ul className="au-list">{v.dates.milestones.map((m, i) => <li key={i}><b>{m.iso || (m.tbd ? 'TBD' : 'no year')}</b> <small className="pl-mut">{m.phase}{m.optional ? ' (optional)' : ''}</small> <q>{clip(m.quote, 120)}</q></li>)}</ul></details> : null}
@@ -68,6 +69,36 @@ export function TraceBody({ t, interpretation }: { t: ResultTrace; interpretatio
       {v?.tier ? <p><span className={`pl-chip ${TIER_CHIP[v.tier as keyof typeof TIER_CHIP] || 'gray'}`}>{TIER_LABEL[v.tier as keyof typeof TIER_LABEL] || v.tier}</span>{' '}{(v.reasons?.length ? v.reasons : t.reasons || []).map((r) => <span key={r} className="pl-chip gray">{reasonLabel(r)}</span>)}</p> : t.drop ? <p><span className="pl-chip rose">{reasonLabel(String(t.drop))}</span></p> : null}
       {v?.blockers?.length ? <ul className="ld-risks">{v.blockers.slice(0, 5).map((b) => <li key={b}><TriangleAlert size={13} /> {b}</li>)}</ul> : null}</div></li>
   </ol>;
+}
+
+const STATE_LABEL: Record<string, string> = { open: 'Open', closed: 'Closed', forecast: 'Forecast notice (not open yet)', unknown: 'No deadline verified', unverified: 'Judge unavailable', 'n/a': 'No deadline for this type' };
+const secs = (ms?: number) => (ms ? `${(ms / 1000).toFixed(1)} s` : '—');
+/** V13 · lo que decidieron el agente de compilación y el agente juez para una página, y lo que auditó el código. */
+export function JudgeStep({ j }: { j: JudgeTrace }) {
+  return <div className="au-judge">
+    <p className="au-meta">Compiler: {j.models.compiler || '—'} ({secs(j.ms?.compiler)}) · Judge: {j.models.judge || '—'} ({secs(j.ms?.judge)}) · {j.blind ? 'judge did not see the compiler\'s conclusions' : j.judgeSawClaims ? 'judge checked the compiler\'s claims' : 'judge read the page alone'} · calls: compiler {j.calls?.compiler ?? 0}, judge {j.calls?.judge ?? 0}</p>
+    {j.failure?.compiler || j.failure?.judge ? <p className="au-warn"><TriangleAlert size={13} /> {j.failure.judge ? `Judge: ${j.failure.judge}` : ''} {j.failure.compiler ? `Compiler: ${j.failure.compiler}` : ''}</p> : null}
+    <p><span className={`pl-chip ${j.state === 'open' ? 'mint' : j.state === 'closed' ? 'rose' : 'sun'}`}>{STATE_LABEL[j.state] || j.state}</span> {j.deadline ? <>deadline <b>{j.deadline}</b>{j.daysLeft != null ? ` · ${j.daysLeft} days left` : ''}</> : j.estimatedDeadline ? <>estimated <b>{j.estimatedDeadline}</b> (not a deadline yet)</> : null}</p>
+    {Object.keys(j.criteria || {}).length ? <table className="x-table"><thead><tr><th>Criterion</th><th>Verdict</th><th>Quote from the page</th><th>vs compiler</th></tr></thead><tbody>{Object.entries(j.criteria).map(([k, c]) => <tr key={k}><th scope="row">{k.replace(/_/g, ' ')}</th><td>{c.verdict}{c.claimed && c.claimed !== c.verdict ? <small className="pl-mut"> (judge said {c.claimed}, no quote on the page)</small> : null}</td><td>{c.quote ? <q>{clip(c.quote, 140)}</q> : <span className="pl-mut">{c.reason ? clip(c.reason, 120) : '—'}</span>}</td><td>{c.compiler}</td></tr>)}</tbody></table> : null}
+    {(j.dates?.judge?.length || j.dates?.compiler?.length) ? <details className="au-more"><summary>Dates: compiler {j.dates.compiler.length} · judge {j.dates.judge.length}</summary>
+      {(['compiler', 'judge'] as const).map((who) => <ul key={who} className="au-list">{j.dates[who].map((d, i) => <li key={`${who}-${i}`}><b>{who}</b> · {d.role}: {d.date || 'no date'}{d.estimated ? ' (estimated)' : ''} · {d.verified ? 'quote found on the page' : `not verified (${(d.why || '').replace(/_/g, ' ')})`}{d.quote ? <> · <q>{clip(d.quote, 100)}</q></> : null}</li>)}</ul>)}
+    </details> : null}
+    {j.disagreements?.length ? <ul className="ld-risks">{j.disagreements.map((d) => <li key={d}><TriangleAlert size={13} /> {d}</li>)}</ul> : null}
+  </div>;
+}
+
+function JudgePanel({ j }: { j: JudgeAudit }) {
+  const states = Object.entries(j.states || {}).sort((a, b) => b[1] - a[1]);
+  return <details className="au-more" open><summary>Compiler + judge agents · {j.pages} pages{j.failClosed ? ` · ${j.failClosed} without judge` : ''}</summary>
+    {j.notices.map((n) => <p key={n} className="au-warn"><TriangleAlert size={13} /> {n}</p>)}
+    <table className="x-table"><thead><tr><th>Agent</th><th>Model</th><th className="num">Calls</th><th className="num">Seconds</th><th className="num">Invalid JSON</th><th className="num">Errors</th></tr></thead><tbody>
+      {(['compiler', 'judge'] as const).map((r) => <tr key={r}><th scope="row">{r}</th><td>{j.models[r] || '—'}</td><td className="num">{j.calls[r]}</td><td className="num">{(j.ms[r] / 1000).toFixed(1)}</td><td className="num">{j.invalid[r]}</td><td className="num">{j.errors[r]}</td></tr>)}
+    </tbody></table>
+    <p className="au-meta">{states.map(([k, n]) => `${STATE_LABEL[k] || k} ${n}`).join(' · ') || '—'} · compiler and judge disagreed on {j.disagreed} · the pattern date reader disagreed on {j.patternDisagrees} (alarm only){j.blind ? ' · blind judge' : ''}{j.sameModel ? ' · same model for both agents (no independence)' : ''}</p>
+    {j.perPage.length ? <details className="au-more"><summary>Page by page ({j.perPage.length})</summary>
+      <ul className="au-disc">{j.perPage.map((p) => <li key={p.url}><details><summary><span className={`pl-chip ${p.bucket === 'top' ? 'mint' : p.bucket === 'discarded' || p.bucket === 'unread' ? 'rose' : 'sun'}`}>{p.bucket || p.state}</span> {clip(p.title || p.url, 90)}</summary><JudgeStep j={p} /></details></li>)}</ul>
+    </details> : null}
+  </details>;
 }
 
 /** Sección del detalle: explicación verificada + recorrido. */
@@ -124,6 +155,7 @@ export function RunAuditPanel({ audit }: { audit: RunAudit }) {
         <textarea readOnly value={text} rows={8} style={{ width: '100%', font: 'inherit', fontSize: 12 }} onFocus={(e) => e.currentTarget.select()} />
         <button type="button" className="pl-btn" onClick={() => { navigator.clipboard?.writeText(text).catch(() => {}); }}>Copy prompt</button></div>)}
     </details> : null}
+    {audit.judge ? <JudgePanel j={audit.judge} /> : null}
     {audit.orchestrator?.attempts?.length ? <details className="au-more" open><summary>Search orchestrator · decided by {audit.orchestrator.by || 'rules'}</summary>
       <ul className="au-disc">{audit.orchestrator.attempts.map((a) => <li key={a.attempt}><p><b>Attempt {a.attempt}</b> · {a.stopped === 'sufficient' ? 'results were enough, no extra search' : a.stopped === 'time' ? 'no time left for another attempt' : `${(a.strategy || '').replace(/_/g, ' ')} · ${a.added ?? 0} new results · main list ${a.topBefore ?? '—'} → ${a.topAfter ?? '—'}`}{a.by ? ` · ${a.by}` : ''}{a.error ? ` · ${a.error}` : ''}</p>
         {a.diagnosis ? <p className="au-meta">{a.diagnosis}</p> : null}{a.queries.length ? <p className="au-meta">Searched: {a.queries.join(' · ')}</p> : null}</li>)}</ul>

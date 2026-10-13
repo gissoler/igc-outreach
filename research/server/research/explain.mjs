@@ -34,7 +34,8 @@ export function verifiedFacts(v, { name = '', url = '', amount = null } = {}) {
   const org = hostOf(url);
   const parts = [];
   parts.push(`${name || org}${org && name ? ` (${org})` : ''}${amount ? ` · ${amount}` : ''}.`);
-  if (v.deadline) parts.push(`${v.status === 'upcoming' ? `Abre ${v.dates?.opens || 'pronto'}; cierra` : 'Cierra'} el ${v.deadline} («${clip(v.deadlineQuote, 140)}»), ${v.daysLeft} días desde hoy (${v.today}).`);
+  if (v.forecast) parts.push(`Aviso previo: la convocatoria aún no se publica y sus fechas son estimadas${v.estimatedDeadline ? ` (cierre estimado ${v.estimatedDeadline}, no es un plazo)` : ''}; no se cuentan días restantes (hoy ${v.today}).`);
+  else if (v.deadline) parts.push(`${v.status === 'upcoming' ? `Abre ${v.dates?.opens || 'pronto'}; cierra` : 'Cierra'} el ${v.deadline} («${clip(v.deadlineQuote, 140)}»), ${v.daysLeft} días desde hoy (${v.today}).`);
   else if (v.flags?.includes('rolling')) parts.push(`Postulación continua (rolling) con señal de vigencia («${clip(v.dates?.quote, 140)}»), sin fecha de cierre.`);
   else if (v.status === 'closed') parts.push(`Cerrada: ${v.dates?.reason || 'plazo vencido'}${v.dates?.quote ? ` («${clip(v.dates.quote, 140)}»)` : ''}.`);
   else parts.push(`Sin fecha de cierre verificable en la página (hoy ${v.today}).`);

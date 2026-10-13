@@ -88,11 +88,29 @@ export type Verification = {
   dates?: { status: string; phase: string; reason: string; quote: string; opens?: string | null; milestones?: Milestone[] };
   checks?: VerifyCheck[];
 };
+/** V13 · agentes de compilación y juez: lo que se guarda por página. */
+export type JudgeDate = { role: string; date: string | null; estimated: boolean; verified: boolean; why: string | null; quote: string };
+export type JudgeCriterion = { verdict: 'yes' | 'no' | 'unknown'; claimed: 'yes' | 'no' | 'unknown' | null; quote: string; reason: string; compiler: string };
+export type JudgeTrace = {
+  version?: string; blind: boolean; judgeSawClaims?: boolean; models: { compiler: string | null; judge: string | null }; failure: { compiler: string | null; judge: string | null };
+  calls: { compiler: number; judge: number }; ms: { compiler: number; judge: number };
+  state: string; deadline: string | null; estimatedDeadline: string | null; daysLeft: number | null; mainOk: boolean; dropReason: string | null;
+  pageType: { judge: string | null; compiler: string | null; agree: boolean } | null; dates: { compiler: JudgeDate[]; judge: JudgeDate[] };
+  criteria: Record<string, JudgeCriterion>; disagreements: string[]; flags: string[]; blockers: string[];
+};
+export type JudgeAudit = {
+  on: boolean; ready: boolean; blind: boolean; sameModel: boolean; notices: string[]; prompts?: { compiler: string; judge: string };
+  models: { compiler: string | null; judge: string | null }; calls: { compiler: number; judge: number }; ms: { compiler: number; judge: number };
+  invalid: { compiler: number; judge: number }; errors: { compiler: number; judge: number };
+  pages: number; states: Record<string, number>; disagreed: number; failClosed: number; patternDisagrees: number;
+  perPage: (JudgeTrace & { url: string; title: string; objective?: string; bucket: string | null; drop?: string | null; note?: string | null })[];
+};
 /** Recorrido de un resultado: consulta → buscadores → página leída → lo que extrajo el modelo → lo que verificó el código. */
 export type ResultTrace = {
   url?: string; title?: string; query?: string; family?: string; queries?: { query: string; family?: string }[]; providers?: string[]; round?: number;
   fetchedVia?: string; textChars?: number; today?: string; note?: string; verdict?: string; drop?: string | null; reasons?: string[]; name?: string; objective?: string;
   read?: { model?: string; out?: Record<string, unknown> } | null;
+  judge?: JudgeTrace;
   verify?: { verdict?: string; tier?: string; drop?: string | null; reasons?: string[]; blockers?: string[]; flags?: string[]; checks?: VerifyCheck[]; pageType?: Verification['pageType'] | null; dates?: (Verification['dates'] & { claimed?: string | null }) | null; eligibility?: Verification['eligibility'] | null };
 };
 export type Explanation = { ai: string | null; aiRejected: string | null; facts: string; risks: string[]; unverified: string[]; today: string };
@@ -104,6 +122,7 @@ export type BriefInterpretation = {
 export type ProviderBench = { provider: string; calls: number; returned: number; errors: number; ms: number; costUsd: number; urls: number; onlyUrls: number; pagesRead: number; apply: number; watch: number; useful: number; usefulPct: number | null; applyPct: number | null; noisePct: number | null; urlsPerCall: number | null; costPerUseful: number | null; uniqueUseful: number; outcomes: Record<string, number>; disabled: string | null };
 export type RunAudit = {
   today: string; error?: string;
+  judge?: JudgeAudit | null;
   brief?: Record<string, unknown>;
   interpretations: BriefInterpretation[];
   counters: { queries: number; queriesYearFixed: number; pagesSeen: number; pagesRead: number; pagesUnread: number; rereadForDates: number; rereadImproved: number; extracted?: number; extractChanged?: number; extractConflicts?: number; extractCredits?: number; extractCacheHits?: number; scrapeCacheHits?: number; readVia?: { crawl4ai: number; jina: number; firecrawl: number }; research?: { steps: number; searches: number; opens: number; newPages: number }; firecrawl?: { credits: number; possiblyCharged: number; cacheHits: number; capReached: boolean; capSkipped: number; daily: { day: string; used: number; possiblyCharged: number; cap: number | null; capReached: boolean } | null }; keptByEngine: number; droppedByEngine: Record<string, number>; skippedBeforeReading: Record<string, number>; verdicts: Record<string, number>; buckets: { top: number; radar: number; discarded: number }; discardReasons: Record<string, number>; radarReasons: Record<string, number> };

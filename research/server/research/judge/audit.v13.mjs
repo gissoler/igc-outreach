@@ -167,3 +167,18 @@ export function judgeMode(env = process.env, fleet = null) {
     ? { on: true, ready: false, missing, notice: `ENGINE_JUDGE=1 but the role(s) ${missing.join(', ')} are not configured: the current behaviour is used and no page is checked by the compiler/judge agents` }
     : { on: true, ready: true, blind: String(env.ENGINE_JUDGE_BLIND || '') === '1', sameModel: roles.compiler.model === roles.judge.model && roles.compiler.url === roles.judge.url, notice: null };
 }
+
+const clip = (v, n = 220) => String(v || '').slice(0, n);
+/** Lo que se guarda por página en la traza / Run audit: modelos, veredicto por criterio, citas, desacuerdos, tiempo y llamadas. */
+export function slimJudge(jr) {
+  const a = jr.audit || {};
+  const dates = (list) => (list || []).slice(0, 12).map((d) => ({ role: d.role, date: d.date, estimated: d.estimated, verified: d.verified, why: d.why, quote: clip(d.quote) }));
+  return {
+    version: a.version, blind: Boolean(jr.blind), judgeSawClaims: Boolean(jr.judgeSawClaims), models: jr.models, failure: jr.failure,
+    calls: { compiler: 1, judge: 1 }, ms: jr.ms,
+    state: a.state, deadline: a.deadline || null, estimatedDeadline: a.estimatedDeadline || null, daysLeft: a.daysLeft ?? null, mainOk: Boolean(a.mainOk), dropReason: a.dropReason || null,
+    pageType: a.pageType || null, dates: { compiler: dates(a.dates?.compiler), judge: dates(a.dates?.judge) },
+    criteria: Object.fromEntries(Object.entries(a.criteria || {}).map(([k, c]) => [k, { verdict: c.verdict, claimed: c.claimed, quote: clip(c.quote), reason: clip(c.reason, 200), compiler: c.compiler }])),
+    disagreements: a.disagreements || [], flags: a.flags || [], blockers: (a.blockers || []).slice(0, 8),
+  };
+}
