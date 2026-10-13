@@ -1,0 +1,657 @@
+{
+ "resolutions_v8": {
+  "no_domain": 109,
+  "accepted": 92,
+  "rejected:missing_literal_quote": 16,
+  "rejected:other": 19,
+  "already_seen": 1,
+  "rejected:fetch_empty": 2,
+  "rejected:collection_page": 1,
+  "rejected:unresolved_firm_identity": 2
+ },
+ "no_domain": {
+  "resolutions": 109,
+  "names": 53,
+  "type_tail": 36,
+  "v9_matcher_picks": 23,
+  "v9_matcher_names": 14
+ },
+ "gold_resolution_attempts_v8": 0,
+ "name_searches_cached": [
+  {
+   "dir": "investors-internal-2026-10-12-v7",
+   "case": "p05",
+   "query": "World Fund investment criteria: sectors and stages they invest in",
+   "provider": "exa",
+   "gold_rank": 1
+  },
+  {
+   "dir": "investors-internal-2026-10-09-v5-pairs",
+   "case": "p01",
+   "query": "Magma Partners investment criteria: sectors and geographies (countries",
+   "provider": "exa",
+   "gold_rank": 1
+  },
+  {
+   "dir": "investors-internal-2026-10-09-v6",
+   "case": "p01",
+   "query": "Magma Partners investment criteria: sectors, stages and geographies (c",
+   "provider": "exa",
+   "gold_rank": 1
+  }
+ ],
+ "v8_failed_attempt_gold": [
+  {
+   "run": "inv-case-syn-p05 B2 s202",
+   "url": "https://www.worldfund.vc/"
+  }
+ ],
+ "cases": [
+  {
+   "case": "p01",
+   "gold": "magmapartners.com",
+   "diag_pages": 20,
+   "diag_named": 6,
+   "diag_pages_mode": {
+    "names": 470,
+    "rank": 21
+   },
+   "diag_firm": {
+    "names": 319,
+    "rank": 15
+   },
+   "diag_position": {
+    "names": 319,
+    "rank": 5
+   },
+   "full_pages": 10,
+   "full_named": 2,
+   "full_pages_mode": {
+    "names": 1105,
+    "rank": 343
+   },
+   "full_firm": {
+    "names": 153,
+    "rank": 19
+   },
+   "full_position": {
+    "names": 153,
+    "rank": 27
+   },
+   "union_firm": {
+    "names": 352,
+    "rank": 14
+   }
+  },
+  {
+   "case": "p02",
+   "gold": "lightrock.com",
+   "diag_pages": 20,
+   "diag_named": 0,
+   "diag_pages_mode": {
+    "names": 507,
+    "rank": null
+   },
+   "diag_firm": {
+    "names": 248,
+    "rank": null
+   },
+   "diag_position": {
+    "names": 248,
+    "rank": null
+   },
+   "full_pages": 14,
+   "full_named": 1,
+   "full_pages_mode": {
+    "names": 1379,
+    "rank": 630
+   },
+   "full_firm": {
+    "names": 292,
+    "rank": 113
+   },
+   "full_position": {
+    "names": 292,
+    "rank": 134
+   },
+   "union_firm": {
+    "names": 377,
+    "rank": 361
+   }
+  },
+  {
+   "case": "p03",
+   "gold": "celesta.vc",
+   "diag_pages": 20,
+   "diag_named": 0,
+   "diag_pages_mode": {
+    "names": 569,
+    "rank": null
+   },
+   "diag_firm": {
+    "names": 242,
+    "rank": null
+   },
+   "diag_position": {
+    "names": 242,
+    "rank": null
+   },
+   "full_pages": 14,
+   "full_named": 1,
+   "full_pages_mode": {
+    "names": 994,
+    "rank": 462
+   },
+   "full_firm": {
+    "names": 308,
+    "rank": 86
+   },
+   "full_position": {
+    "names": 308,
+    "rank": 126
+   },
+   "union_firm": {
+    "names": 429,
+    "rank": 256
+   }
+  },
+  {
+   "case": "p04",
+   "gold": "golden.ventures",
+   "diag_pages": 19,
+   "diag_named": 2,
+   "diag_pages_mode": {
+    "names": 554,
+    "rank": 108
+   },
+   "diag_firm": {
+    "names": 289,
+    "rank": 71
+   },
+   "diag_position": {
+    "names": 289,
+    "rank": 3
+   },
+   "full_pages": 12,
+   "full_named": 1,
+   "full_pages_mode": {
+    "names": 1275,
+    "rank": 864
+   },
+   "full_firm": {
+    "names": 321,
+    "rank": 79
+   },
+   "full_position": {
+    "names": 321,
+    "rank": 71
+   },
+   "union_firm": {
+    "names": 428,
+    "rank": 32
+   }
+  },
+  {
+   "case": "p05",
+   "gold": "worldfund.vc",
+   "diag_pages": 20,
+   "diag_named": 0,
+   "diag_pages_mode": {
+    "names": 498,
+    "rank": null
+   },
+   "diag_firm": {
+    "names": 258,
+    "rank": null
+   },
+   "diag_position": {
+    "names": 258,
+    "rank": null
+   },
+   "full_pages": 14,
+   "full_named": 1,
+   "full_pages_mode": {
+    "names": 1470,
+    "rank": 1075
+   },
+   "full_firm": {
+    "names": 604,
+    "rank": 561
+   },
+   "full_position": {
+    "names": 604,
+    "rank": 599
+   },
+   "union_firm": {
+    "names": 690,
+    "rank": 591
+   }
+  },
+  {
+   "case": "p06",
+   "gold": "ecapital.vc",
+   "diag_pages": 20,
+   "diag_named": 2,
+   "diag_pages_mode": {
+    "names": 777,
+    "rank": 126
+   },
+   "diag_firm": {
+    "names": 345,
+    "rank": 42
+   },
+   "diag_position": {
+    "names": 345,
+    "rank": 120
+   },
+   "full_pages": 13,
+   "full_named": 2,
+   "full_pages_mode": {
+    "names": 907,
+    "rank": 124
+   },
+   "full_firm": {
+    "names": 310,
+    "rank": 29
+   },
+   "full_position": {
+    "names": 310,
+    "rank": 95
+   },
+   "union_firm": {
+    "names": 397,
+    "rank": 50
+   }
+  },
+  {
+   "case": "p07",
+   "gold": "novastarventures.com",
+   "diag_pages": 20,
+   "diag_named": 2,
+   "diag_pages_mode": {
+    "names": 534,
+    "rank": 82
+   },
+   "diag_firm": {
+    "names": 280,
+    "rank": 35
+   },
+   "diag_position": {
+    "names": 280,
+    "rank": 149
+   }
+  },
+  {
+   "case": "p08",
+   "gold": "venturesplatform.com",
+   "diag_pages": 19,
+   "diag_named": 6,
+   "diag_pages_mode": {
+    "names": 656,
+    "rank": 17
+   },
+   "diag_firm": {
+    "names": 302,
+    "rank": 5
+   },
+   "diag_position": {
+    "names": 302,
+    "rank": 19
+   }
+  },
+  {
+   "case": "p09",
+   "gold": "a91partners.com",
+   "diag_pages": 20,
+   "diag_named": 1,
+   "diag_pages_mode": {
+    "names": 463,
+    "rank": 257
+   },
+   "diag_firm": {
+    "names": 196,
+    "rank": 99
+   },
+   "diag_position": {
+    "names": 196,
+    "rank": 129
+   }
+  },
+  {
+   "case": "p10",
+   "gold": "endiya.com",
+   "diag_pages": 20,
+   "diag_named": 5,
+   "diag_pages_mode": {
+    "names": 570,
+    "rank": 31
+   },
+   "diag_firm": {
+    "names": 316,
+    "rank": 20
+   },
+   "diag_position": {
+    "names": 316,
+    "rank": 36
+   }
+  },
+  {
+   "case": "p11",
+   "gold": "seacef.org",
+   "diag_pages": 20,
+   "diag_named": 6,
+   "diag_pages_mode": {
+    "names": 313,
+    "rank": 16
+   },
+   "diag_firm": {
+    "names": 180,
+    "rank": 3
+   },
+   "diag_position": {
+    "names": 180,
+    "rank": 12
+   }
+  },
+  {
+   "case": "p12",
+   "gold": "sginnovate.com",
+   "diag_pages": 19,
+   "diag_named": 0,
+   "diag_pages_mode": {
+    "names": 665,
+    "rank": null
+   },
+   "diag_firm": {
+    "names": 275,
+    "rank": null
+   },
+   "diag_position": {
+    "names": 275,
+    "rank": null
+   }
+  }
+ ],
+ "replicas": [
+  {
+   "case": "p01",
+   "rep": "s101",
+   "pages": 10,
+   "named": 2,
+   "names": 153,
+   "rank": 20
+  },
+  {
+   "case": "p01",
+   "rep": "s202",
+   "pages": 10,
+   "named": 2,
+   "names": 153,
+   "rank": 20
+  },
+  {
+   "case": "p01",
+   "rep": "s303",
+   "pages": 10,
+   "named": 2,
+   "names": 153,
+   "rank": 19
+  },
+  {
+   "case": "p02",
+   "rep": "s101",
+   "pages": 12,
+   "named": 1,
+   "names": 276,
+   "rank": 96
+  },
+  {
+   "case": "p02",
+   "rep": "s202",
+   "pages": 12,
+   "named": 1,
+   "names": 276,
+   "rank": 96
+  },
+  {
+   "case": "p02",
+   "rep": "s303",
+   "pages": 12,
+   "named": 1,
+   "names": 281,
+   "rank": 101
+  },
+  {
+   "case": "p03",
+   "rep": "s101",
+   "pages": 12,
+   "named": 1,
+   "names": 294,
+   "rank": 79
+  },
+  {
+   "case": "p03",
+   "rep": "s202",
+   "pages": 12,
+   "named": 1,
+   "names": 291,
+   "rank": 76
+  },
+  {
+   "case": "p03",
+   "rep": "s303",
+   "pages": 12,
+   "named": 1,
+   "names": 292,
+   "rank": 77
+  },
+  {
+   "case": "p04",
+   "rep": "s101",
+   "pages": 10,
+   "named": 0,
+   "names": 304,
+   "rank": null
+  },
+  {
+   "case": "p04",
+   "rep": "s202",
+   "pages": 10,
+   "named": 1,
+   "names": 314,
+   "rank": 70
+  },
+  {
+   "case": "p04",
+   "rep": "s303",
+   "pages": 10,
+   "named": 0,
+   "names": 304,
+   "rank": null
+  },
+  {
+   "case": "p05",
+   "rep": "s101",
+   "pages": 12,
+   "named": 0,
+   "names": 167,
+   "rank": null
+  },
+  {
+   "case": "p05",
+   "rep": "s202",
+   "pages": 12,
+   "named": 0,
+   "names": 167,
+   "rank": null
+  },
+  {
+   "case": "p05",
+   "rep": "s303",
+   "pages": 12,
+   "named": 1,
+   "names": 563,
+   "rank": 558
+  },
+  {
+   "case": "p06",
+   "rep": "s101",
+   "pages": 12,
+   "named": 2,
+   "names": 280,
+   "rank": 27
+  },
+  {
+   "case": "p06",
+   "rep": "s202",
+   "pages": 12,
+   "named": 2,
+   "names": 280,
+   "rank": 27
+  },
+  {
+   "case": "p06",
+   "rep": "s303",
+   "pages": 12,
+   "named": 2,
+   "names": 303,
+   "rank": 29
+  }
+ ],
+ "selection_by_K": {
+  "8": [],
+  "16": [],
+  "32": [
+   "p01",
+   "p06"
+  ],
+  "64": [
+   "p01",
+   "p06"
+  ],
+  "128": [
+   "p01",
+   "p02",
+   "p03",
+   "p06"
+  ],
+  "256": [
+   "p01",
+   "p02",
+   "p03",
+   "p06"
+  ]
+ },
+ "selection_B_diag_firm": {
+  "8": [
+   "p08",
+   "p11"
+  ],
+  "16": [
+   "p08",
+   "p11"
+  ],
+  "32": [
+   "p08",
+   "p10",
+   "p11"
+  ],
+  "64": [
+   "p07",
+   "p08",
+   "p10",
+   "p11"
+  ],
+  "128": [
+   "p07",
+   "p08",
+   "p09",
+   "p10",
+   "p11"
+  ]
+ },
+ "gain2": [
+  {
+   "case": "p01",
+   "gain2": 8,
+   "v7_union": 2,
+   "v7_median": 2,
+   "v8_union": 2,
+   "v8_median": 2
+  },
+  {
+   "case": "p02",
+   "gain2": 3,
+   "v7_union": 0,
+   "v7_median": 0,
+   "v8_union": 0,
+   "v8_median": 0
+  },
+  {
+   "case": "p03",
+   "gain2": 9,
+   "v7_union": 3,
+   "v7_median": 3,
+   "v8_union": 3,
+   "v8_median": 3
+  },
+  {
+   "case": "p04",
+   "gain2": 11,
+   "v7_union": 2,
+   "v7_median": 1,
+   "v8_union": 0,
+   "v8_median": 0
+  },
+  {
+   "case": "p05",
+   "gain2": 2,
+   "v7_union": 2,
+   "v7_median": 1,
+   "v8_union": 1,
+   "v8_median": 1
+  },
+  {
+   "case": "p06",
+   "gain2": 4,
+   "v7_union": 0,
+   "v7_median": 0,
+   "v8_union": 0,
+   "v8_median": 0
+  }
+ ],
+ "gain2_B": [
+  {
+   "case": "p07",
+   "gain2": 4
+  },
+  {
+   "case": "p08",
+   "gain2": 5
+  },
+  {
+   "case": "p09",
+   "gain2": 2
+  },
+  {
+   "case": "p10",
+   "gain2": 4
+  },
+  {
+   "case": "p11",
+   "gain2": 3
+  },
+  {
+   "case": "p12",
+   "gain2": 9
+  }
+ ],
+ "budget": {
+  "cap_usd": 5,
+  "diag_usd": 0.107,
+  "planner_usd_v7_like": 1.353,
+  "left_usd": 3.54,
+  "resolutions_total": 397,
+  "resolutions_per_case": 66
+ }
+}

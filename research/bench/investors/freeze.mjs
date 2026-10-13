@@ -1,5 +1,6 @@
 // Genera out/<bench_id>/fingerprint.json (sha256 de los archivos que definen la corrida formal).
 // Uso, desde research/: node bench/investors/freeze.mjs --config bench/investors/config/v5-2026-10-09.json
+// V9: con la config del diagnóstico v9 (investor_diag_config/1) la huella se genera aparte (out/v9-diagnostico-…), sin tocar v5, v7 ni v8.
 // V8: con una config investor_run_config/6 (brazo v8) la huella se genera aparte (out/<bench_id v8>), sin tocar v5 ni v7.
 // V7: --check compara con el fingerprint existente SIN escribir (sale 1 si algún archivo cambió; no toca out/ de v5).
 //     Con una config investor_run_config/5 (brazo v7) se añaden los archivos v7; la lista v5 no cambia.
@@ -31,6 +32,11 @@ if (config.schema_version === 'investor_run_config/6') {
   for (const f of ['extractor.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'engine.v8.mjs', 'list-discovery.v8.mjs', 'workspace.v8.mjs', 'run-experiment.v8.mjs', 'engine.v2.mjs', 'conditions.mjs', 'identity.mjs', 'triage.mjs', 'activity.mjs', 'ranking.mjs', 'search-failover.mjs']) files.add(resolve(inv, f));
   if (config.b2?.fixed_initial_batch) files.add(resolve(inv, 'config', config.b2.fixed_initial_batch));
   files.add(resolve(repo, 'docs/contracts/investor/investor_run_config.v6.schema.json'));
+}
+if (config.schema_version === 'investor_diag_config/1') {
+  // V9: diagnóstico (paso 0 y techo L128). Módulos v7/v8 que reutiliza para descargar y extraer, y los v9 nuevos.
+  for (const f of ['extractor.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'exa-direct.v8.mjs', 'list-discovery.v8.mjs', 'list-names.v9.mjs', 'resolve-match.v9.mjs', 'resolve.v9.mjs', 'analysis/v9/data.v9.mjs', 'analysis/v9/ceiling_lists.mjs', 'analysis/v9/ceiling_replicas.mjs', 'analysis/v9/diagnostico.v9.mjs', 'analysis/v9/diagnostico_report.v9.mjs', 'analysis/v8/queries.v8.mjs']) files.add(resolve(inv, f));
+  files.add(resolve(inv, 'config', config.base_config));
 }
 if (config.schema_version === 'investor_run_config/5') {
   for (const f of ['extractor.v7.mjs', 'engine.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'workspace.v7.mjs', 'run-experiment.v7.mjs', 'engine.v2.mjs', 'conditions.mjs', 'identity.mjs', 'triage.mjs', 'activity.mjs', 'ranking.mjs', 'search-failover.mjs']) files.add(resolve(inv, f));

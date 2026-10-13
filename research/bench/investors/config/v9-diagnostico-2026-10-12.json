@@ -1,0 +1,27 @@
+{
+  "schema_version": "investor_diag_config/1",
+  "bench_id": "v9-diagnostico-2026-10-12",
+  "status": "frozen",
+  "today": "2026-10-09",
+  "base_config": "v8-2026-10-12.json",
+  "prompts": { "manifest": "manifest.v7.json", "extractor": "v3" },
+  "extraction_schema": "investor_extraction.v2",
+  "extractor_max_tokens": 6000,
+  "extractor_impl": "v7",
+  "resolution": { "suffix": "venture capital", "strip_type_tail": true },
+  "names": {
+    "exa": { "numResults": 10, "textChars": 4000, "highlights": true },
+    "serper": { "num": 10 }
+  },
+  "lists": { "fetch_per_query": 6, "max_per_host": 2, "rank_mode": "firm_pages", "cupo_k": 128 },
+  "caps": { "exa_usd": 0.25, "exa_usd_per_call": 0.0089, "serper_queries": 12, "llm_calls": 60, "fetches": 200 },
+  "fetch_denylist": ["pitchbook.com", "app.dealroom.co", "f4.fund", "fundraisingfox.com", "foundersuite.com", "pipeseed.com", "crunchbase.com"],
+  "cache_layers": [
+    { "path": "out/investors-internal-2026-10-12-v8/cache.sqlite", "namespace": "investors-investors-internal-2026-10-12-v8" },
+    { "path": "out/investors-internal-2026-10-12-v7/cache.sqlite", "namespace": "investors-investors-internal-2026-10-12-v7" },
+    { "path": "out/investors-internal-2026-10-09-v6/cache.sqlite", "namespace": "investors-investors-internal-2026-10-09-v6" },
+    { "path": "out/investors-internal-2026-10-09-v5/cache.sqlite", "namespace": "investors-investors-internal-2026-10-09-v5" },
+    { "path": "out/investors-internal-2026-10-09-v5-pairs/cache.sqlite", "namespace": "investors-investors-internal-2026-10-09-v5" },
+    { "path": "out/quick-v5-2026-10-09/cache.sqlite", "namespace": "investors-investors-internal-2026-10-09-v5" }
+  ]
+}
