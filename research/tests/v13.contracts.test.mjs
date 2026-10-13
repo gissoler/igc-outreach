@@ -17,8 +17,8 @@ test('V13-5 compilation contract accepts a valid record and normalizes enum case
   assert.deepEqual([r.value.page_type, r.value.dates[0].role, r.value.dates[0].date, r.value.dates[0].estimated], ['forecast_notice', 'application_deadline', '2026-11-01', true]);
 });
 
-test('V13-6 invalid compilation is rejected and never corrected', () => {
-  for (const bad of [null, [], 'x', compilation({ page_type: 'webinar' }), compilation({ dates: [{ role: 'deadline', date: '2026-11-01', quote: 'q' }] }),
+test('V13-6 invalid compilation is rejected (an unknown date role is no longer a rejection: see V13-53)', () => {
+  for (const bad of [null, [], 'x', compilation({ page_type: 'webinar' }),
     compilation({ dates: [{ role: 'application_deadline', date: 'November 1, 2026', quote: 'q' }] }), { page_type: 'call' }]) {
     const r = validateCompilation(bad); assert.equal(r.ok, false); assert.equal(r.value, null); assert.ok(Array.isArray(r.errors));
   }
@@ -58,4 +58,16 @@ test('V13-9 criteria catalog differs by domain: deadline only for dated objectiv
   assert.deepEqual(criteriaFor('investment'), ['region', 'entity_type', 'stage', 'topic_fit']);
   const j = judgePrompt({ objective: 'investment', brief: {}, page: { url: 'u', text: 't' }, today: '2026-10-12' });
   assert.doesNotMatch(j.user, /"deadline":\{/);
+});
+
+test('V13-53 compilador: rol de fecha desconocido pasa a other y nunca a application_deadline', () => {
+  const base = { page_type: 'call', relevant: true, official: true, money: 'grant', non_dilutive: 'yes', summary: 's', identity: { name: 'n', org: null, kind: 'program', quote: 'q' }, eligibility: { applicant_types: [], applicant_types_quote: null, countries: [], countries_quote: null, stage: null, stage_quote: null, for_profit_allowed: 'unknown', for_profit_quote: null }, amount: { text: null, quote: null }, how_to_apply_quote: null };
+  const r = validateCompilation({ ...base, dates: [{ role: 'Submission Deadline', date: '2027-01-05', estimated: false, quote: 'Due Jan 5, 2027' }, { role: 'application_deadline', date: '2027-02-01', estimated: false, quote: 'Feb 1, 2027' }] });
+  assert.equal(r.ok, true); assert.deepEqual(r.value.dates.map((d) => d.role), ['other', 'application_deadline']);
+});
+test('V13-54 compilador: citas y listas que exceden el esquema se recortan y validan', () => {
+  const long = 'x'.repeat(900);
+  const base = { page_type: 'call', relevant: true, official: true, money: 'grant', non_dilutive: 'yes', summary: 's', identity: { name: 'n', org: null, kind: 'program', quote: 'q' }, dates: [], eligibility: { applicant_types: [], applicant_types_quote: long, countries: Array.from({ length: 45 }, (_, i) => `c${i}`), countries_quote: long, stage: null, stage_quote: null, for_profit_allowed: 'unknown', for_profit_quote: null }, amount: { text: null, quote: null }, how_to_apply_quote: long };
+  const r = validateCompilation(base);
+  assert.equal(r.ok, true, r.errors.join(';')); assert.equal(r.value.how_to_apply_quote.length, 600); assert.equal(r.value.eligibility.countries.length, 30); assert.equal(r.value.eligibility.applicant_types_quote, long.slice(0, 600));
 });

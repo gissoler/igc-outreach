@@ -45,7 +45,7 @@ Con C (modelos simulados en pruebas V13-23..34) las dos NIA salen `forecast` / �
 
 ## No se pudo medir
 
-- B y C de T7 con endpoints reales, y T8 (repetición del brief IGC con `ENGINE_JUDGE=1`; referencia: `2026-10-13-19-37-repro-jefe`, 1727 s, 12 verificadas, 0 apply). Los endpoints (puertos 8016/8017 en g355) no son alcanzables desde este entorno: `tunnel-g355.sh dual-bg` falla con «Could not resolve hostname voltage-park». Hay que correrlo desde el Mac con el túnel abierto:
+- B y C de T7 con endpoints reales (T8 se corrió el 13/10, ver más abajo). Los endpoints (puertos 8016/8017 en g355) no son alcanzables desde este entorno: `tunnel-g355.sh dual-bg` falla con «Could not resolve hostname voltage-park». Hay que correrlo desde el Mac con el túnel abierto:
   `node --env-file-if-exists=.env scripts/dates-ab.mjs --report docs/handoff/V13-T7-fechas.md`
   `ENGINE_JUDGE=1 node --env-file-if-exists=.env scripts/engine-run.mjs --brief eval/briefs/jefe-igc-mint-ad-2026-10-12.json --objectives grant --today 2026-10-12 --no-cache`
 - Duración y llamadas por modelo de T8: sin dato.
@@ -60,6 +60,19 @@ Con C (modelos simulados en pruebas V13-23..34) las dos NIA salen `forecast` / �
 
 El brief acepta `deadlineFrom` y `deadlineTo` (YYYY-MM-DD, opcionales, ambos incluidos; from <= to). El juez las recibe en el brief y en la regla del criterio deadline. El código aplica la ventana sobre la fecha de cierre con cita literal: fuera de la ventana → descarte `outside_window`; el veredicto del juez no la reemplaza. Aviso previo (`forecast`) no se descarta por la ventana y sigue sin entrar a la lista principal. Sin ventana, nada cambia. Pantalla Research: dos campos de fecha. Pruebas V13-44..52 (9) pasan; suite 481 / 479 pasan / 1 falla (Apollo) / 1 omitida; Mentiva sin cambios.
 Sin decidir: destino de los avisos previos (hoy «a verificar» sin fecha ni días).
+
+## T8: corrida del brief IGC con ENGINE_JUDGE=1 (13/10, carpeta eval/runs/2026-10-13-22-44-v13-jefe)
+
+Condiciones: motor y compilador en Qwen3-30B (puerto 8017), juez gpt-oss-120b (8016); la repetición anterior usó Qwen3-235B como motor (el 235B se apagó para liberar GPU 6 y 7). Búsqueda sin caché. El resultado no separa el efecto de los agentes del efecto del cambio de modelo del motor.
+- Duración 632 s (anterior: 1727 s). Verificadas: 0 (anterior: 12). Apply: 0 (igual).
+- 80 páginas leídas con compilador + juez: 80 llamadas por modelo. Suma de tiempos de llamada: compilador 547 s, juez 1230 s (en paralelo; no es tiempo de pared).
+- JSON inválido: compilador 20 de 80 (25 %), juez 0. Causas del compilador: rol de fecha fuera del catálogo y citas o listas por encima del largo del esquema. Errores de llamada: 1 compilador, 1 juez. Falla cerrada por juez caído: 0 páginas.
+- Estado por página: unknown 36, closed 10, open 7, upcoming 3, forecast 3. Compilador y juez en desacuerdo: 45 de 80. Alarma de `dates.mjs` (date_pattern_disagrees): 23.
+- NIA b19c89bb: salió `forecast` (fecha estimada 2026-10-06), no `open`, sin días restantes. NIA 7a4a9822: no apareció en esta búsqueda, sin dato.
+- 0 verificadas: la causa no está medida página por página. Bloqueos más repetidos en las 7 `open`: elegibilidad y encaje temático sin «sí» con cita del juez, y compilador inválido (5 de las 7).
+- Jina sin saldo (HTTP 402), apagado desde la tercera llamada; no afectó al juez.
+
+Corrección posterior a esta corrida (commit aparte): el normalizador del compilador manda un rol de fecha desconocido a `other` y recorta citas y listas al largo del esquema. Pruebas V13-53 y V13-54. Sin repetir la corrida con modelos reales: el efecto sobre el 25 % de inválidos no está medido.
 
 ## Commits
 
