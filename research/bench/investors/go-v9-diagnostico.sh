@@ -14,7 +14,7 @@ spend() { node $INV/analysis/exa_spend.mjs --dirs "$OUT" --usd-per-call $RATE 2>
 fail() { say "PARADA: $* (no se gastó nada en este paso)"; exit 1; }
 
 say "== 1/7 tests y huellas"
-node --test tests/agent/investors.v5.test.mjs tests/agent/investors.v6.test.mjs tests/agent/investors.v6-r4.test.mjs tests/agent/investors.v7.test.mjs tests/agent/investors.v8.test.mjs tests/agent/investors.v9.test.mjs >"$T/go-v9d-tests.txt" 2>&1 \
+node --test --test-reporter=tap tests/agent/investors.v5.test.mjs tests/agent/investors.v6.test.mjs tests/agent/investors.v6-r4.test.mjs tests/agent/investors.v7.test.mjs tests/agent/investors.v8.test.mjs tests/agent/investors.v9.test.mjs >"$T/go-v9d-tests.txt" 2>&1 \
   && say "tests: $(grep -E '^# pass' "$T/go-v9d-tests.txt") $(grep -E '^# fail' "$T/go-v9d-tests.txt")" || fail "tests (ver $T/go-v9d-tests.txt)"
 node $INV/freeze.mjs --config $INV/config/v5-2026-10-09.json --check >"$T/go-v9d-fp5.txt" 2>&1 && say "huella v5 idéntica" || fail "la huella v5 cambió (ver $T/go-v9d-fp5.txt)"
 node $INV/freeze.mjs --config $INV/config/v7-2026-10-12.json --check >"$T/go-v9d-fp7.txt" 2>&1 && say "huella v7 idéntica" || fail "la huella v7 cambió (ver $T/go-v9d-fp7.txt)"

@@ -1,0 +1,2 @@
+Startup brief (JSON):
+{{brief}}

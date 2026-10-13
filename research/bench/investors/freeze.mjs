@@ -38,6 +38,12 @@ if (config.schema_version === 'investor_diag_config/1') {
   for (const f of ['extractor.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'exa-direct.v8.mjs', 'list-discovery.v8.mjs', 'list-names.v9.mjs', 'resolve-match.v9.mjs', 'resolve.v9.mjs', 'analysis/v9/data.v9.mjs', 'analysis/v9/ceiling_lists.mjs', 'analysis/v9/ceiling_replicas.mjs', 'analysis/v9/diagnostico.v9.mjs', 'analysis/v9/diagnostico_report.v9.mjs', 'analysis/v8/queries.v8.mjs']) files.add(resolve(inv, f));
   files.add(resolve(inv, 'config', config.base_config));
 }
+if (config.schema_version === 'investor_run_config/6' && config.b2?.model_candidates) {
+  // V9 (brazo de candidatos del modelo): además de lo de v8, los módulos v9 y el prompt candidates (manifest v9).
+  for (const f of ['engine.v9.mjs', 'name-candidates.v9.mjs', 'resolve.v9.mjs', 'resolve-match.v9.mjs', 'workspace.v9.mjs', 'run-experiment.v9.mjs']) files.add(resolve(inv, f));
+  const m9 = resolve(prompts, config.b2.model_candidates.manifest ?? 'manifest.v9.json'); files.add(m9);
+  for (const p of JSON.parse(readFileSync(m9, 'utf8')).prompts) for (const f of p.files) files.add(resolve(prompts, f));
+}
 if (config.schema_version === 'investor_run_config/5') {
   for (const f of ['extractor.v7.mjs', 'engine.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'workspace.v7.mjs', 'run-experiment.v7.mjs', 'engine.v2.mjs', 'conditions.mjs', 'identity.mjs', 'triage.mjs', 'activity.mjs', 'ranking.mjs', 'search-failover.mjs']) files.add(resolve(inv, f));
   if (config.b2?.fixed_initial_batch) files.add(resolve(inv, 'config', config.b2.fixed_initial_batch));

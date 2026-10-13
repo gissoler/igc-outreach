@@ -118,3 +118,115 @@ test('V9-10 diagnóstico de punta a punta en modo simulado (sin red ni LLM): 12 
   const tight = spawnSync(process.execPath, ['--no-warnings', 'bench/investors/analysis/v9/diagnostico.v9.mjs', '--dry-run', '--cap-usd', '0.05'], { cwd: research, env, encoding: 'utf8' });
   assert.equal(tight.status, 4);   // costo esperado 0.107 > tope: no se ejecuta
 });
+
+// ───────── Motor v9: candidatos del modelo ─────────
+import { validateInvestor } from '../../bench/investors/contracts.mjs';
+import { loadInvestorPrompt } from '../../bench/investors/prompts.mjs';
+import { runInvestorDiscoveryV8 } from '../../bench/investors/engine.v8.mjs';
+import { runInvestorDiscoveryV9 } from '../../bench/investors/engine.v9.mjs';
+import { extractFixtureInvestorV7 } from '../../bench/investors/extractor.v7.mjs';
+import { validateWorkspaceV9 } from '../../bench/investors/workspace.v9.mjs';
+import { createNameCandidates, normalizeFirms, briefFor, availableProviders } from '../../bench/investors/name-candidates.v9.mjs';
+import { createBenchCache } from '../../agent/cache.mjs';
+const repo = resolve(research, '..'), F = resolve(import.meta.dirname, 'fixtures/investor-world-v0');
+const json = p => JSON.parse(readFileSync(p, 'utf8'));
+const cfg8 = () => json(resolve(inv, 'config/v8-2026-10-12.json')), cfg9 = () => json(resolve(inv, 'config/v9-2026-10-13.json'));
+const fprofile = json(resolve(F, 'profile.json')), anchorCase = json(resolve(F, 'cases/case-anchor.json'));
+const catalog = json(resolve(repo, 'docs/contracts/investor/criteria_catalog.investor.v1.json'));
+const templates = loadInvestorPrompt('b0_templates', 'v2', { manifest: 'manifest.v7.json' }).templates;
+const engineCfg = (base, o = {}) => ({ ...base, search: { provider: 'fixture', results_per_query: 10 }, judge: { max_llm_calls: 0 }, deepening: { ...base.deepening, enabled: false }, ...o });
+const EV0 = { investor_type: null, sectors: null, stages: null, rounds: null, geographies: null, check_range_usd: null, lead_follow: null, business_models: null, active_status: null, published_on: null };
+const fullV2 = (o = {}) => ({ entity_kind: 'institutional_investor', canonical_name: 'X', official_domain: null, aliases: [], investor_type: 'unknown', parent_firm: null, vehicles: [], active_status: 'unknown',
+  sectors: [], stages: [], rounds: [], geographies: [], check_range_usd: { min: null, max: null, source_url: null }, lead_follow: 'unknown', business_models: { accepted: [], excluded: [] },
+  regulatory_restrictions: [], relevant_portfolio: [], potential_conflicts: [], recent_investment: false, source_kind: 'official', published_on: null, quote: null, regulatory_id: null,
+  canonical_url: null, contradictions: [], evidence: { ...EV0 }, candidates: [], ...o, evidence: { ...EV0, ...(o.evidence ?? {}) } });
+const fintech = () => { const p = structuredClone(fprofile); p.fields.sector.value = 'Fintech'; p.fields.funding_stage.value = 'seed'; p.fields.accepted_investor_types.value = ['generalist_vc']; p.fields.incorporation_country.value = 'Mexico'; p.fields.operating_regions.value = ['Mexico']; p.fields.target_markets.value = ['Mexico']; p.fields.subsectors.value = ['B2B payments']; return p; };
+const filler = n => `${n} has a small team and publishes its portfolio on this website for founders who want to learn more about how the partnership works day to day.`;
+const firmPage = (name, dom) => ({ title: name, text: `${name} invests in seed fintech startups in Mexico. ${filler(name)}`, extraction: fullV2({ canonical_name: name, official_domain: dom, quote: `${name} invests in seed fintech startups in Mexico.` }) });
+function world({ pages = {}, searchFn = () => [], plans = {}, firms = null }) {
+  const calls = { search: [], fetch: [], plan: [], names: 0 };
+  return { calls, deps: {
+    search: async q => { calls.search.push(q); return { results: searchFn(q).map((u, i) => ({ rank: i + 1, url: u, title: u })), nominal_cost: 1 }; },
+    fetch: async url => { calls.fetch.push(url); const p = pages[url]; return p ? { ok: true, text: p.text, title: p.title, nominal_cost: 1 } : { ok: false, text: '', error: { code: 'FETCH_HTTP' }, nominal_cost: 1 }; },
+    extract: async ({ document, today, firstSeen }) => extractFixtureInvestorV7({ document, extraction: pages[document.url]?.extraction ?? fullV2({ entity_kind: 'other', canonical_name: 'Unknown page' }), today, firstSeen }),
+    plan: async input => { calls.plan.push(input.mode); return input.mode === 'initial_batch' ? (plans.initial ?? { queries: [], stop: true, candidate_firms: [] }) : { queries: [], stop: true, candidate_firms: [] }; },
+    ...(firms ? { nameCandidates: async () => { calls.names++; return { provider: 'test', model: 'm', web: false, cached: false, firms, tokens: 10 }; } } : {})
+  } };
+}
+
+test('V9-11 config v9: igual a v8 salvo bench_id, manifest v9, lista apagada, b2.model_candidates y dos capas de caché; el workspace la valida', () => {
+  const c = cfg9(), b = cfg8();
+  assert.equal(c.status, 'frozen'); assert.equal(c.bench_id, 'investors-internal-2026-10-13-v9'); assert.equal(c.prompts.manifest, 'manifest.v7.json'); assert.equal(c.b2.model_candidates.manifest, 'manifest.v9.json');
+  assert.equal(c.b2.list_discovery.enabled, false); assert.equal(c.b2.model_candidates.enabled, true); assert.equal(c.b2.model_candidates.provider, 'auto');
+  const { model_candidates, list_discovery, ...b2 } = c.b2; const { list_discovery: l8, ...b28 } = b.b2; assert.deepEqual(b2, b28);
+  const strip = x => { const { bench_id, b2, cache_layers, ...r } = x; return r; }; assert.deepEqual(strip(c), strip(b));
+  assert.deepEqual(c.cache_layers.slice(0, b.cache_layers.length), b.cache_layers);
+  const { model_candidates: _m, ...b2v } = c.b2; validateInvestor('investor_run_config.v6', { ...c, b2: b2v });
+  assert.equal(validateWorkspaceV9({ configPath: resolve(inv, 'config/v9-2026-10-13.json'), casesDir: resolve(inv, 'cases') }).config.bench_id, 'investors-internal-2026-10-13-v9');
+});
+
+test('V9-12 sin b2.model_candidates el motor v9 da lo mismo que el v8 sin fase de listas', async () => {
+  const z = 'https://zentro.test/', qs = ['alpha bravo charlie'];
+  const mk = () => world({ pages: { [z]: firmPage('Zentro Capital', 'zentro.test') }, searchFn: q => q === qs[0] ? [z] : [], plans: { initial: { queries: qs, stop: false, candidate_firms: [] } } });
+  const off8 = engineCfg(cfg8(), { b2: { ...cfg8().b2, list_discovery: { ...cfg8().b2.list_discovery, enabled: false } } });
+  const off9 = engineCfg(cfg9(), { b2: { ...cfg9().b2, model_candidates: { ...cfg9().b2.model_candidates, enabled: false } } });
+  const a = await runInvestorDiscoveryV8({ caseObj: anchorCase, profile: fintech(), condition: 'B2', config: off8, templates, catalog, deps: mk().deps });
+  const b = await runInvestorDiscoveryV9({ caseObj: anchorCase, profile: fintech(), condition: 'B2', config: off9, templates, catalog, deps: mk().deps });
+  assert.deepEqual(b.entities.map(e => e.stable_id), a.entities.map(e => e.stable_id)); assert.deepEqual(b.totals, a.totals); assert.equal(b.v2_stats.model_phase, undefined);
+});
+
+test('V9-13 candidatos del modelo: dominio propuesto, respaldo por búsqueda, inventados fuera, regla de cita intacta y planner con su presupuesto', async () => {
+  const pages = { 'https://alfa.test/': firmPage('Alfa Ventures', 'alfa.test'), 'https://beta.test/': firmPage('Beta Capital', 'beta.test'), 'https://gamma.test/': { title: 'Gamma', text: `Gamma Partners is a company. ${filler('Gamma')}`, extraction: fullV2({ canonical_name: 'Gamma Partners', official_domain: 'gamma.test', quote: 'Gamma Partners is a company.' }) } };
+  const firms = [{ name: 'Alfa Ventures', domain: 'alfa.test' }, { name: 'Beta Capital', domain: 'wrong-beta.test' }, { name: 'Ghost Fund', domain: null }, { name: 'Gamma Partners', domain: 'gamma.test' }];
+  const pq = ['pq one', 'pq two', 'pq three', 'pq four'];
+  const w = world({ pages, firms, plans: { initial: { queries: pq, stop: false, candidate_firms: [] } }, searchFn: q => q === '"Beta Capital" venture capital' ? ['https://www.linkedin.com/x', 'https://beta.test/'] : [] });
+  const cfg = engineCfg(cfg9(), { budgets: { ...cfg9().budgets, searches: 4 } });
+  const r = await runInvestorDiscoveryV9({ caseObj: anchorCase, profile: fintech(), condition: 'B2', config: cfg, templates, catalog, deps: w.deps });
+  const doms = r.entities.map(e => e.official_domain).sort();
+  assert.deepEqual(doms, ['alfa.test', 'beta.test'], JSON.stringify(r.v2_stats.model_phase));
+  const mp = r.v2_stats.model_phase; assert.equal(mp.proposed, 4); assert.equal(mp.accepted, 2); assert.equal(mp.via_domain, 1); assert.equal(mp.via_search, 1);
+  assert.ok(r.entities.every(e => e.sources.every(s => s.quote && pages[s.url]?.text.includes(s.quote))));
+  assert.equal(Object.entries(mp.outcomes).filter(([k]) => k.startsWith('rejected:')).reduce((a, [, v]) => a + v, 0), 1, `Gamma sin verbo de inversión no entra: ${JSON.stringify(mp.outcomes)}`);
+  assert.equal(r.totals.searches, mp.searches + 4, 'el planner conserva sus 4 búsquedas');
+  assert.ok(w.calls.search.indexOf(pq[0]) > w.calls.search.indexOf('"Ghost Fund" venture capital'));
+  assert.equal(w.calls.names, 1); assert.ok(r.entities.every(e => e.first_seen.origin === 'resolution'));
+});
+
+test('V9-14 no-fuga del brazo v9: ni nombres ni dominios del oro en engine.v9, name-candidates.v9, prompt candidates, runner, workspace ni config v9', () => {
+  const files = ['engine.v9.mjs', 'name-candidates.v9.mjs', 'run-experiment.v9.mjs', 'workspace.v9.mjs', 'config/v9-2026-10-13.json', '../../../prompts/investor/candidates/v1/system.md', '../../../prompts/investor/candidates/v1/user.md'].map(f => [f, readFileSync(resolve(inv, f), 'utf8').toLowerCase()]);
+  for (const c of ALL) {
+    const k = loadCase(c), anchor = JSON.parse(readFileSync(resolve(inv, `cases/inv-case-syn-${c}.json`), 'utf8')).anchors[0];
+    const needles = [...GOLD_ALIASES[c], GOLD_QUERY_NAME[c], anchor.canonical_name.replace(/\s*\(.*$/, ''), k.gold.domain, k.gold.domain.split('.')[0]].map(s => s.toLowerCase()).filter(s => s.length >= 4);
+    for (const [f, text] of files) for (const n of needles) assert.ok(!new RegExp(`(^|[^a-z0-9])${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`).test(text), `${c}: "${n}" aparece en ${f}`);
+  }
+});
+
+test('V9-15 proveedores de nombres: Anthropic y Gemini (con y sin búsqueda web), caché entre réplicas, errores de clave', async () => {
+  const p = JSON.parse(readFileSync(resolve(inv, 'cases/profiles/inv-case-syn-p01.json'), 'utf8'));
+  assert.ok(!JSON.stringify(briefFor(p)).includes('(SYN)'));
+  assert.deepEqual(normalizeFirms({ firms: [{ name: 'A Capital', domain: 'https://www.a.vc/x' }, { name: 'a capital', domain: null }, { name: 'B', domain: 'not a domain' }] }, 40).map(f => [f.name, f.domain]), [['A Capital', 'a.vc'], ['B', null]]);
+  const d = mkdtempSync(resolve(tmpdir(), 'v9n-')), cache = createBenchCache({ path: resolve(d, 'c.sqlite'), namespace: 't' });
+  let n = 0, bodies = [];
+  const anth = async (u, o) => { n++; const b = JSON.parse(o.body); bodies.push(b); if (b.tools) return { ok: false, status: 400, text: async () => 'tool not allowed' }; return { ok: true, status: 200, text: async () => JSON.stringify({ model: 'claude-x', content: [{ type: 'text', text: '{"firms":[{"name":"Uno VC","domain":"uno.vc","reason":"r"}]}' }], usage: { input_tokens: 5, output_tokens: 5 } }) }; };
+  const nc = createNameCandidates({ provider: 'anthropic', env: { ANTHROPIC_API_KEY: 'k'.repeat(20) }, cache, fetcher: anth, models: ['m1'] });
+  const r1 = await nc({ profile: p }); assert.equal(r1.firms[0].domain, 'uno.vc'); assert.equal(r1.web, false); assert.equal(n, 2, 'con búsqueda web da 400 → sin búsqueda');
+  const r2 = await nc({ profile: p }); assert.equal(r2.cached, true); assert.equal(n, 2);
+  const gem = async (u, o) => { assert.match(u, /models\/g1:generateContent$/); const b = JSON.parse(o.body); assert.ok(b.tools?.[0]?.google_search); return { ok: true, status: 200, text: async () => JSON.stringify({ candidates: [{ content: { parts: [{ text: '```json\n{"firms":[{"name":"Dos Capital","domain":null,"reason":"r"}]}\n```' }] } }] }) }; };
+  assert.equal((await createNameCandidates({ provider: 'gemini', env: { GEMINI_API_KEY: 'g'.repeat(20) }, fetcher: gem, models: ['g1'] })({ profile: p })).firms[0].name, 'Dos Capital');
+  const bad = async () => ({ ok: false, status: 401, text: async () => 'invalid x-api-key' });
+  await assert.rejects(createNameCandidates({ provider: 'anthropic', env: { ANTHROPIC_API_KEY: 'k'.repeat(20) }, fetcher: bad, models: ['m1', 'm2'] })({ profile: p }), /401/);
+  assert.deepEqual(availableProviders({ ENGINE_LLM_URL: 'http://x:1/v1', GEMINI_API_KEY: 'g'.repeat(20) }), ['fleet', 'gemini']);
+  cache.close();
+});
+
+test('V9-16 prueba de nombres: puntuación por nombre o dominio y elección del proveedor (GO con ≥ 4 de 6 en p01–p06)', async () => {
+  const { scoreCase, choose } = await import('../../bench/investors/analysis/v9/names_check.mjs');
+  const k = loadCase('p01');
+  assert.equal(scoreCase('p01', [{ name: 'Otra Capital', domain: 'otra.vc' }, { name: 'X', domain: k.gold.domain }]).gold_rank, 2);
+  assert.equal(scoreCase('p01', [{ name: `${GOLD_QUERY_NAME.p01} LLC`, domain: null }]).gold_rank, 1);
+  assert.equal(scoreCase('p01', [{ name: 'Otra Capital', domain: null }]).gold_rank, null);
+  const s = { fleet: { A_gold: 2, B_gold: 3, gain2_named: 5 }, anthropic: { A_gold: 5, B_gold: 4, gain2_named: 9 }, gemini: { error: 'x', A_gold: 0, B_gold: 0, gain2_named: 0 } };
+  assert.deepEqual(choose(s), { provider: 'anthropic', go: true, A_gold: 5, B_gold: 4 });
+  assert.equal(choose({ fleet: { A_gold: 3, B_gold: 6, gain2_named: 1 } }).go, false);
+  assert.equal(choose({ fleet: { A_gold: 4, B_gold: 1, gain2_named: 1 }, anthropic: { A_gold: 4, B_gold: 1, gain2_named: 1 } }).provider, 'fleet', 'empate: el propio, que es gratis');
+});

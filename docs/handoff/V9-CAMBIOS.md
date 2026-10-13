@@ -1,6 +1,6 @@
 # V9 — Cambios (PROMPT-v11, solución del oro)
 
-Estado: pasos 0 a 3 hechos sin gasto. Resultado: NO-GO para cualquier diseño solo con Exa (techo 2 de 6). El único diseño con techo ≥ 4 (L128, resolución por Serper) tiene techo exacto 4 de 6 con tres capas sin medir; queda un diagnóstico de un comando (US$ 0.107 de Exa) que completa el paso 0 y decide si se implementa. No hay motor v9 ni go-v9.sh: la regla del encargo (techo < 4 → no implementar) aplica hasta que el diagnóstico dé GO condicional. Pre-registro: `docs/handoff/V9-PREREGISTRO.md`. Cifras: `docs/benchmark/investors/V9-TECHOS-SIN-GASTO.md`.
+Estado: cerrado con NO-GO (diagnóstico ejecutado por el usuario el 2026-10-12, 21:11–21:20; ver al final). Pasos 0 a 3 hechos sin gasto. Resultado: NO-GO para cualquier diseño solo con Exa (techo 2 de 6). El único diseño con techo ≥ 4 (L128, resolución por Serper) tiene techo exacto 4 de 6 con tres capas sin medir; queda un diagnóstico de un comando (US$ 0.107 de Exa) que completa el paso 0 y decide si se implementa. No hay motor v9 ni go-v9.sh: la regla del encargo (techo < 4 → no implementar) aplica hasta que el diagnóstico dé GO condicional. Pre-registro: `docs/handoff/V9-PREREGISTRO.md`. Cifras: `docs/benchmark/investors/V9-TECHOS-SIN-GASTO.md`.
 
 Ningún archivo congelado se editó (config v5, manifest.v5, normalization.v1, extractor.mjs, judge.mjs, engine.mjs, normalize.mjs, resolve.mjs, deepening.mjs, prompts, run-experiment.mjs, run-experiment.v6.mjs, gold/, cases/, archivos .v7 y .v8). Ninguna carpeta de resultados v5–v8 se escribió (solo lectura). El único archivo existente modificado es `freeze.mjs` (rama nueva para la config del diagnóstico v9; las ramas v5, v7 y v8 no cambian).
 
@@ -60,3 +60,42 @@ Prueba de no-fuga (V9-1): ni el nombre (alias de cases/, nombre del ancla, nombr
 ## Siguiente paso
 
 El usuario confirma el saldo en el panel de Exa y lanza `bash research/bench/investors/go-v9-diagnostico.sh` desde el Mac. Con `docs/benchmark/investors/V9-DIAGNOSTICO.md`: si da NO-GO, se cierra con la evidencia y el cambio de benchmark o producto del informe; si da GO condicional, se implementa el brazo v9 del §4 del pre-registro y se pide aprobar el gasto de Serper antes de go-v9.sh.
+
+## Resultado del diagnóstico (ejecutado por el usuario; `docs/benchmark/investors/V9-DIAGNOSTICO.md`)
+
+NO-GO según la regla pre-registrada. No se implementa motor v9 ni go-v9.sh.
+
+| Capa | p01–p06 | p07–p12 |
+|---|---|---|
+| Sitio del oro en el puesto 1 de Exa al buscarlo por nombre | 6 | 6 |
+| Oro seleccionado con K = 128 | 4 (p01 p02 p03 p06) | 4 (p08 p09 p10 p11) |
+| Seleccionado y aceptado, resolución por Exa | 3 | 2 |
+| Seleccionado y aceptado, resolución por Serper | 3 (p01 p02 p06) | 3 (p08 p10 p11) |
+
+Costo: 12 unidades Exa = US$ 0.107 al medidor (costDollars 0.084); 12 consultas Serper; 16 llamadas LLM; 78 descargas. Gasto Exa total v9: US$ 0.107 de 5. Panel: 8 → 8 USD (sin decimales: no sirve para calibrar 12 llamadas).
+
+Causa: (ii). Exa encuentra el sitio de los 12 oros por su nombre (puesto 1) y el sitio pasa el extractor en 10 de 12 con alguno de los dos buscadores. Lo que falla es llegar al nombre: por tema Exa no devuelve el sitio (≤ 1 de 6), y en las páginas de listas el oro es 1 nombre entre 150 y 560, citado en 1 o 2 páginas, en los puestos 19 a 101 (p04 70 y p05 558 en una sola réplica).
+
+Cambio necesario (benchmark o producto), con cifras:
+1. Más oros por caso: medir el recall sobre las 37 firmas con gain ≥ 2 ya etiquetadas en p01–p06 (hoy 9 en v7, 24%; 6 en v8) en lugar de un solo oro por caso. No requiere etiquetar.
+2. Etiquetado: v8 aceptó 166 pares caso–firma sin etiqueta (v7 173). Etiquetarlos (unas 170 adjudicaciones) haría que M1 mida lo que el motor sí encuentra.
+3. Otra fuente para el descubrimiento: directorios estructurados que filtren por país, etapa y sector del brief (en p01 el oro es la primera fila de una tabla de agregador filtrada por país y sector). Hay que medir su alcance antes de diseñar: no hay datos v9 de eso.
+4. Aceptación: 4 de 12 portadas del oro (p03, p04, p08, p09) no pasan la cita literal con verbo de inversión. Revisar ese patrón es un cambio de la regla de aceptación, fuera de este encargo.
+
+Corrección menor posterior: go-v9-diagnostico.sh usa `--test-reporter=tap` para que la línea de tests muestre los conteos (en el Mac salió vacía; los tests pasaron).
+
+## Brazo v9 de candidatos del modelo (12-10, después del diagnóstico)
+
+Petición del usuario: que la búsqueda quede como si se usara Claude o Gemini. El diagnóstico muestra que con el nombre todo lo demás funciona (sitio en el puesto 1 en 12 de 12, aceptado en 10 de 12). Diseño y regla: V9-PREREGISTRO.md §6.
+
+| Archivo | Qué es |
+|---|---|
+| `prompts/investor/candidates/v1/{system,user}.md`, `prompts/investor/manifest.v9.json` | Prompt nuevo (manifest.v7 + candidates; ningún prompt existente cambia) |
+| `research/bench/investors/name-candidates.v9.mjs` | Proveedores fleet / anthropic / gemini, búsqueda web opcional, normalización y caché |
+| `research/bench/investors/engine.v9.mjs` | Copia de engine.v8 + fase de candidatos del modelo; sin la clave es igual a v8 (V9-12) |
+| `workspace.v9.mjs`, `run-experiment.v9.mjs`, `config/v9-2026-10-13.json` | Validación, runner y config (proveedor "auto" = el que elige la prueba de nombres) |
+| `analysis/v9/names_check.mjs`, `analysis/v9/v9_results.mjs` | Prueba de nombres (sin Exa) e informe de la corrida |
+| `run-v9.sh`, `go-v9.sh` | Corrida con tope y un comando que lo hace todo |
+| `freeze.mjs` | Rama para configs /6 con b2.model_candidates (añade los módulos v9 y el prompt); v5, v7, v8 y v9-diagnóstico idénticas |
+
+Tests: v5–v9 69/69 (v9: 16). No se gastó nada en este paso. Desde la VM no se puede llamar a ningún modelo ni a Exa: la prueba de nombres corre en el Mac con go-v9.sh.
