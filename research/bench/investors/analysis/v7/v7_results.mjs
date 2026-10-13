@@ -36,11 +36,12 @@ function metrics(run, textFor) {
     stop_rejected: ev.filter(e => e.event === 'planner_stop_rejected').length, fetch_skipped_domain: ev.filter(e => e.event === 'fetch_skipped_domain').length, ids
   };
 }
-const arm = (dir, filter, layers) => { const tf = textIndex(layers); return loadRuns(dir).filter(filter).map(run => metrics(run, tf)); };
+// evDirs: carpetas donde buscar events.jsonl. El brazo v7 debe leer sus propios eventos (antes se buscaban solo en v5/v6/quick y las secundarias de v7 salían en 0).
+const arm = (dir, filter, layers, evDirs) => { const tf = textIndex(layers); return loadRuns(dir, evDirs).filter(filter).map(run => metrics(run, tf)); };
 const v5Layers = READ_LAYERS.slice(0, 3).map(openReadOnlyCache);
 const base = arm(DIRS.pairs, r => r.cond === 'B2' && r.variant === 'A' && CASES.includes(r.case) && SEEDS.includes(r.seed), v5Layers);
 const v7Layers = V7 && existsSync(resolve(V7, 'cache.sqlite')) ? [openReadOnlyCache({ path: resolve(V7, 'cache.sqlite'), namespace: 'investors-investors-internal-2026-10-12-v7' })] : [];
-const v7 = V7 ? arm(V7, r => r.cond === 'B2' && r.variant === 'A' && CASES.includes(r.case) && SEEDS.includes(r.seed), v7Layers) : [];
+const v7 = V7 ? arm(V7, r => r.cond === 'B2' && r.variant === 'A' && CASES.includes(r.case) && SEEDS.includes(r.seed), v7Layers, [V7]) : [];
 const jac = (a, b) => { const A = new Set(a), B = new Set(b); const u = new Set([...A, ...B]).size; return u ? [...A].filter(x => B.has(x)).length / u : 1; };
 const KEYS = ['gain2_labeled', 'firms_verified_quote', 'firms', 'searches_discovery', 'searches_deepening', 'fetches_events', 'exa_paid', 'fetch_empty', 'rejected_quote'];
 const perCase = rows => Object.fromEntries(CASES.map(c => { const rs = rows.filter(r => r.case === c); const o = { runs: rs.length };

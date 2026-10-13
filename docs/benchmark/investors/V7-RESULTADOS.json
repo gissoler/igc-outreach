@@ -1,0 +1,1468 @@
+{
+ "baseline": "v5 B2 p01–p06 variante A s101/202/303 (investors-internal-2026-10-09-v5-pairs)",
+ "v7_dir": "/sessions/rcw-01yeuvc6nqz4mn2hze7e3xdg/mnt/AGENT/research/bench/investors/out/investors-internal-2026-10-12-v7",
+ "citations_verified_pct_v7": 100,
+ "verdict": "MEJORA SOLO EN M2 (volumen con cita)",
+ "rule_M1": {
+  "sum_medians_v5": 7,
+  "sum_medians_v7": 7,
+  "cases_v7_geq": 5,
+  "cases_v7_gt": 1,
+  "cases_v7_lt": 1,
+  "improves": false,
+  "worsens": false
+ },
+ "rule_M2": {
+  "sum_medians_v5": 84,
+  "sum_medians_v7": 131,
+  "cases_v7_geq": 6,
+  "cases_v7_gt": 6,
+  "cases_v7_lt": 0,
+  "improves": true,
+  "worsens": false
+ },
+ "totals_v5": {
+  "runs": 18,
+  "gain2_labeled": {
+   "total": 22,
+   "per_run_mean": 1.22,
+   "per_run_median": 1
+  },
+  "firms_verified_quote": {
+   "total": 260,
+   "per_run_mean": 14.44,
+   "per_run_median": 13.5
+  },
+  "firms": {
+   "total": 260,
+   "per_run_mean": 14.44,
+   "per_run_median": 13.5
+  },
+  "searches_discovery": {
+   "total": 204,
+   "per_run_mean": 11.33,
+   "per_run_median": 10.5
+  },
+  "searches_deepening": {
+   "total": 264,
+   "per_run_mean": 14.67,
+   "per_run_median": 14.5
+  },
+  "fetches_events": {
+   "total": 1413,
+   "per_run_mean": 78.5,
+   "per_run_median": 77
+  },
+  "exa_paid": {
+   "total": 306,
+   "per_run_mean": 17,
+   "per_run_median": 15
+  },
+  "fetch_empty": {
+   "total": 167,
+   "per_run_mean": 9.28,
+   "per_run_median": 8.5
+  },
+  "rejected_quote": {
+   "total": 368,
+   "per_run_mean": 20.44,
+   "per_run_median": 21
+  },
+  "exa_usd_at_0_0089": 2.723,
+  "stop_reason": {
+   "no_more_actions": 16,
+   "budget_searches": 1,
+   "budget_fetches": 1
+  },
+  "stop_rejected": 0,
+  "fetch_skipped_domain": 0,
+  "unique_firms": 170,
+  "unlabeled_unique_firms": 148
+ },
+ "totals_v7": {
+  "runs": 18,
+  "gain2_labeled": {
+   "total": 22,
+   "per_run_mean": 1.22,
+   "per_run_median": 1
+  },
+  "firms_verified_quote": {
+   "total": 380,
+   "per_run_mean": 21.11,
+   "per_run_median": 21.5
+  },
+  "firms": {
+   "total": 380,
+   "per_run_mean": 21.11,
+   "per_run_median": 21.5
+  },
+  "searches_discovery": {
+   "total": 299,
+   "per_run_mean": 16.61,
+   "per_run_median": 16.5
+  },
+  "searches_deepening": {
+   "total": 167,
+   "per_run_mean": 9.28,
+   "per_run_median": 9.5
+  },
+  "fetches_events": {
+   "total": 1347,
+   "per_run_mean": 74.83,
+   "per_run_median": 76
+  },
+  "exa_paid": {
+   "total": 152,
+   "per_run_mean": 8.44,
+   "per_run_median": 8.5
+  },
+  "fetch_empty": {
+   "total": 128,
+   "per_run_mean": 7.11,
+   "per_run_median": 7
+  },
+  "rejected_quote": {
+   "total": 263,
+   "per_run_mean": 14.61,
+   "per_run_median": 14.5
+  },
+  "exa_usd_at_0_0089": 1.353,
+  "stop_reason": {
+   "no_more_actions": 11,
+   "budget_fetches": 2,
+   "budget_searches": 5
+  },
+  "stop_rejected": 17,
+  "fetch_skipped_domain": 7,
+  "unique_firms": 190,
+  "unlabeled_unique_firms": 173
+ },
+ "per_case_v5": {
+  "p01": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 2,
+    "min": 2,
+    "max": 2
+   },
+   "firms_verified_quote": {
+    "median": 14,
+    "min": 10,
+    "max": 17
+   },
+   "firms": {
+    "median": 14,
+    "min": 10,
+    "max": 17
+   },
+   "searches_discovery": {
+    "median": 10,
+    "min": 8,
+    "max": 17
+   },
+   "searches_deepening": {
+    "median": 11,
+    "min": 7,
+    "max": 14
+   },
+   "fetches_events": {
+    "median": 61,
+    "min": 48,
+    "max": 87
+   },
+   "exa_paid": {
+    "median": 9,
+    "min": 7,
+    "max": 25
+   },
+   "fetch_empty": {
+    "median": 10,
+    "min": 5,
+    "max": 20
+   },
+   "rejected_quote": {
+    "median": 13,
+    "min": 8,
+    "max": 24
+   },
+   "jaccard_between_replicates": {
+    "median": 0.2916666666666667,
+    "min": 0.22727272727272727,
+    "max": 0.3333333333333333
+   }
+  },
+  "p02": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 0,
+    "min": 0,
+    "max": 1
+   },
+   "firms_verified_quote": {
+    "median": 14,
+    "min": 12,
+    "max": 22
+   },
+   "firms": {
+    "median": 14,
+    "min": 12,
+    "max": 22
+   },
+   "searches_discovery": {
+    "median": 9,
+    "min": 9,
+    "max": 18
+   },
+   "searches_deepening": {
+    "median": 18,
+    "min": 14,
+    "max": 21
+   },
+   "fetches_events": {
+    "median": 80,
+    "min": 72,
+    "max": 109
+   },
+   "exa_paid": {
+    "median": 27,
+    "min": 12,
+    "max": 31
+   },
+   "fetch_empty": {
+    "median": 15,
+    "min": 6,
+    "max": 16
+   },
+   "rejected_quote": {
+    "median": 19,
+    "min": 15,
+    "max": 29
+   },
+   "jaccard_between_replicates": {
+    "median": 0.25925925925925924,
+    "min": 0.2,
+    "max": 0.3
+   }
+  },
+  "p03": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 4,
+    "min": 3,
+    "max": 4
+   },
+   "firms_verified_quote": {
+    "median": 13,
+    "min": 10,
+    "max": 17
+   },
+   "firms": {
+    "median": 13,
+    "min": 10,
+    "max": 17
+   },
+   "searches_discovery": {
+    "median": 12,
+    "min": 7,
+    "max": 12
+   },
+   "searches_deepening": {
+    "median": 16,
+    "min": 12,
+    "max": 21
+   },
+   "fetches_events": {
+    "median": 74,
+    "min": 61,
+    "max": 97
+   },
+   "exa_paid": {
+    "median": 16,
+    "min": 14,
+    "max": 24
+   },
+   "fetch_empty": {
+    "median": 4,
+    "min": 3,
+    "max": 8
+   },
+   "rejected_quote": {
+    "median": 19,
+    "min": 13,
+    "max": 22
+   },
+   "jaccard_between_replicates": {
+    "median": 0.22727272727272727,
+    "min": 0.21052631578947367,
+    "max": 0.5789473684210527
+   }
+  },
+  "p04": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 1,
+    "min": 0,
+    "max": 2
+   },
+   "firms_verified_quote": {
+    "median": 18,
+    "min": 13,
+    "max": 21
+   },
+   "firms": {
+    "median": 18,
+    "min": 13,
+    "max": 21
+   },
+   "searches_discovery": {
+    "median": 16,
+    "min": 10,
+    "max": 16
+   },
+   "searches_deepening": {
+    "median": 18,
+    "min": 13,
+    "max": 18
+   },
+   "fetches_events": {
+    "median": 111,
+    "min": 70,
+    "max": 111
+   },
+   "exa_paid": {
+    "median": 23,
+    "min": 11,
+    "max": 27
+   },
+   "fetch_empty": {
+    "median": 7,
+    "min": 6,
+    "max": 12
+   },
+   "rejected_quote": {
+    "median": 24,
+    "min": 13,
+    "max": 31
+   },
+   "jaccard_between_replicates": {
+    "median": 0.10714285714285714,
+    "min": 0.08333333333333333,
+    "max": 0.6190476190476191
+   }
+  },
+  "p05": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 0,
+    "min": 0,
+    "max": 1
+   },
+   "firms_verified_quote": {
+    "median": 13,
+    "min": 10,
+    "max": 17
+   },
+   "firms": {
+    "median": 13,
+    "min": 10,
+    "max": 17
+   },
+   "searches_discovery": {
+    "median": 7,
+    "min": 7,
+    "max": 14
+   },
+   "searches_deepening": {
+    "median": 15,
+    "min": 9,
+    "max": 16
+   },
+   "fetches_events": {
+    "median": 63,
+    "min": 56,
+    "max": 88
+   },
+   "exa_paid": {
+    "median": 22,
+    "min": 0,
+    "max": 24
+   },
+   "fetch_empty": {
+    "median": 10,
+    "min": 4,
+    "max": 13
+   },
+   "rejected_quote": {
+    "median": 22,
+    "min": 20,
+    "max": 27
+   },
+   "jaccard_between_replicates": {
+    "median": 0.15384615384615385,
+    "min": 0.15,
+    "max": 0.5882352941176471
+   }
+  },
+  "p06": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "firms_verified_quote": {
+    "median": 12,
+    "min": 11,
+    "max": 16
+   },
+   "firms": {
+    "median": 12,
+    "min": 11,
+    "max": 16
+   },
+   "searches_discovery": {
+    "median": 11,
+    "min": 8,
+    "max": 13
+   },
+   "searches_deepening": {
+    "median": 14,
+    "min": 11,
+    "max": 16
+   },
+   "fetches_events": {
+    "median": 80,
+    "min": 54,
+    "max": 91
+   },
+   "exa_paid": {
+    "median": 12,
+    "min": 8,
+    "max": 14
+   },
+   "fetch_empty": {
+    "median": 9,
+    "min": 4,
+    "max": 15
+   },
+   "rejected_quote": {
+    "median": 24,
+    "min": 16,
+    "max": 29
+   },
+   "jaccard_between_replicates": {
+    "median": 0.22727272727272727,
+    "min": 0.21052631578947367,
+    "max": 0.6470588235294118
+   }
+  }
+ },
+ "per_case_v7": {
+  "p01": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 2,
+    "min": 2,
+    "max": 2
+   },
+   "firms_verified_quote": {
+    "median": 22,
+    "min": 21,
+    "max": 24
+   },
+   "firms": {
+    "median": 22,
+    "min": 21,
+    "max": 24
+   },
+   "searches_discovery": {
+    "median": 17,
+    "min": 16,
+    "max": 18
+   },
+   "searches_deepening": {
+    "median": 8,
+    "min": 8,
+    "max": 8
+   },
+   "fetches_events": {
+    "median": 74,
+    "min": 73,
+    "max": 77
+   },
+   "exa_paid": {
+    "median": 8,
+    "min": 8,
+    "max": 9
+   },
+   "fetch_empty": {
+    "median": 8,
+    "min": 6,
+    "max": 11
+   },
+   "rejected_quote": {
+    "median": 12,
+    "min": 10,
+    "max": 15
+   },
+   "jaccard_between_replicates": {
+    "median": 0.6538461538461539,
+    "min": 0.6428571428571429,
+    "max": 0.6666666666666666
+   }
+  },
+  "p02": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "firms_verified_quote": {
+    "median": 22,
+    "min": 19,
+    "max": 22
+   },
+   "firms": {
+    "median": 22,
+    "min": 19,
+    "max": 22
+   },
+   "searches_discovery": {
+    "median": 18,
+    "min": 18,
+    "max": 18
+   },
+   "searches_deepening": {
+    "median": 10,
+    "min": 10,
+    "max": 11
+   },
+   "fetches_events": {
+    "median": 78,
+    "min": 76,
+    "max": 80
+   },
+   "exa_paid": {
+    "median": 11,
+    "min": 10,
+    "max": 12
+   },
+   "fetch_empty": {
+    "median": 7,
+    "min": 6,
+    "max": 10
+   },
+   "rejected_quote": {
+    "median": 20,
+    "min": 19,
+    "max": 20
+   },
+   "jaccard_between_replicates": {
+    "median": 0.5769230769230769,
+    "min": 0.4666666666666667,
+    "max": 0.7083333333333334
+   }
+  },
+  "p03": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 3,
+    "min": 3,
+    "max": 3
+   },
+   "firms_verified_quote": {
+    "median": 14,
+    "min": 12,
+    "max": 15
+   },
+   "firms": {
+    "median": 14,
+    "min": 12,
+    "max": 15
+   },
+   "searches_discovery": {
+    "median": 15,
+    "min": 15,
+    "max": 18
+   },
+   "searches_deepening": {
+    "median": 10,
+    "min": 10,
+    "max": 10
+   },
+   "fetches_events": {
+    "median": 65,
+    "min": 63,
+    "max": 74
+   },
+   "exa_paid": {
+    "median": 4,
+    "min": 4,
+    "max": 8
+   },
+   "fetch_empty": {
+    "median": 6,
+    "min": 4,
+    "max": 7
+   },
+   "rejected_quote": {
+    "median": 10,
+    "min": 7,
+    "max": 14
+   },
+   "jaccard_between_replicates": {
+    "median": 0.7058823529411765,
+    "min": 0.6875,
+    "max": 0.7333333333333333
+   }
+  },
+  "p04": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 1,
+    "min": 0,
+    "max": 2
+   },
+   "firms_verified_quote": {
+    "median": 26,
+    "min": 22,
+    "max": 27
+   },
+   "firms": {
+    "median": 26,
+    "min": 22,
+    "max": 27
+   },
+   "searches_discovery": {
+    "median": 16,
+    "min": 16,
+    "max": 18
+   },
+   "searches_deepening": {
+    "median": 9,
+    "min": 9,
+    "max": 10
+   },
+   "fetches_events": {
+    "median": 79,
+    "min": 79,
+    "max": 82
+   },
+   "exa_paid": {
+    "median": 10,
+    "min": 8,
+    "max": 11
+   },
+   "fetch_empty": {
+    "median": 3,
+    "min": 2,
+    "max": 4
+   },
+   "rejected_quote": {
+    "median": 11,
+    "min": 11,
+    "max": 13
+   },
+   "jaccard_between_replicates": {
+    "median": 0.4411764705882353,
+    "min": 0.43243243243243246,
+    "max": 0.5483870967741935
+   }
+  },
+  "p05": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 1,
+    "min": 1,
+    "max": 2
+   },
+   "firms_verified_quote": {
+    "median": 27,
+    "min": 21,
+    "max": 28
+   },
+   "firms": {
+    "median": 27,
+    "min": 21,
+    "max": 28
+   },
+   "searches_discovery": {
+    "median": 16,
+    "min": 14,
+    "max": 17
+   },
+   "searches_deepening": {
+    "median": 10,
+    "min": 9,
+    "max": 11
+   },
+   "fetches_events": {
+    "median": 80,
+    "min": 64,
+    "max": 81
+   },
+   "exa_paid": {
+    "median": 8,
+    "min": 3,
+    "max": 10
+   },
+   "fetch_empty": {
+    "median": 11,
+    "min": 11,
+    "max": 11
+   },
+   "rejected_quote": {
+    "median": 18,
+    "min": 14,
+    "max": 20
+   },
+   "jaccard_between_replicates": {
+    "median": 0.53125,
+    "min": 0.4864864864864865,
+    "max": 0.5483870967741935
+   }
+  },
+  "p06": {
+   "runs": 3,
+   "gain2_labeled": {
+    "median": 0,
+    "min": 0,
+    "max": 0
+   },
+   "firms_verified_quote": {
+    "median": 20,
+    "min": 18,
+    "max": 20
+   },
+   "firms": {
+    "median": 20,
+    "min": 18,
+    "max": 20
+   },
+   "searches_discovery": {
+    "median": 16,
+    "min": 15,
+    "max": 18
+   },
+   "searches_deepening": {
+    "median": 8,
+    "min": 8,
+    "max": 8
+   },
+   "fetches_events": {
+    "median": 74,
+    "min": 72,
+    "max": 76
+   },
+   "exa_paid": {
+    "median": 10,
+    "min": 8,
+    "max": 10
+   },
+   "fetch_empty": {
+    "median": 7,
+    "min": 5,
+    "max": 9
+   },
+   "rejected_quote": {
+    "median": 16,
+    "min": 15,
+    "max": 18
+   },
+   "jaccard_between_replicates": {
+    "median": 0.5833333333333334,
+    "min": 0.5384615384615384,
+    "max": 0.6521739130434783
+   }
+  }
+ },
+ "runs_v5": [
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B2__s101",
+   "case": "p01",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 17,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 17,
+   "searches_discovery": 10,
+   "searches_deepening": 14,
+   "searches_all_events": 24,
+   "fetches_events": 61,
+   "exa_paid": 7,
+   "fetch_empty": 10,
+   "rejected_quote": 8,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B2__s202",
+   "case": "p01",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 14,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 14,
+   "searches_discovery": 17,
+   "searches_deepening": 11,
+   "searches_all_events": 28,
+   "fetches_events": 87,
+   "exa_paid": 25,
+   "fetch_empty": 20,
+   "rejected_quote": 24,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p01__B2__s303",
+   "case": "p01",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 10,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 10,
+   "searches_discovery": 8,
+   "searches_deepening": 7,
+   "searches_all_events": 15,
+   "fetches_events": 48,
+   "exa_paid": 9,
+   "fetch_empty": 5,
+   "rejected_quote": 13,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p02__B2__s101",
+   "case": "p02",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 14,
+   "gain2_labeled": 0,
+   "labeled": 0,
+   "firms_verified_quote": 14,
+   "searches_discovery": 9,
+   "searches_deepening": 18,
+   "searches_all_events": 27,
+   "fetches_events": 80,
+   "exa_paid": 27,
+   "fetch_empty": 15,
+   "rejected_quote": 15,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p02__B2__s202",
+   "case": "p02",
+   "seed": 202,
+   "stop_reason": "budget_searches",
+   "firms": 22,
+   "gain2_labeled": 1,
+   "labeled": 3,
+   "firms_verified_quote": 22,
+   "searches_discovery": 18,
+   "searches_deepening": 21,
+   "searches_all_events": 39,
+   "fetches_events": 109,
+   "exa_paid": 31,
+   "fetch_empty": 16,
+   "rejected_quote": 29,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p02__B2__s303",
+   "case": "p02",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 12,
+   "gain2_labeled": 0,
+   "labeled": 0,
+   "firms_verified_quote": 12,
+   "searches_discovery": 9,
+   "searches_deepening": 14,
+   "searches_all_events": 23,
+   "fetches_events": 72,
+   "exa_paid": 12,
+   "fetch_empty": 6,
+   "rejected_quote": 19,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p03__B2__s101",
+   "case": "p03",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 10,
+   "gain2_labeled": 3,
+   "labeled": 4,
+   "firms_verified_quote": 10,
+   "searches_discovery": 12,
+   "searches_deepening": 12,
+   "searches_all_events": 24,
+   "fetches_events": 61,
+   "exa_paid": 24,
+   "fetch_empty": 3,
+   "rejected_quote": 13,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p03__B2__s202",
+   "case": "p03",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 13,
+   "gain2_labeled": 4,
+   "labeled": 5,
+   "firms_verified_quote": 13,
+   "searches_discovery": 7,
+   "searches_deepening": 16,
+   "searches_all_events": 23,
+   "fetches_events": 74,
+   "exa_paid": 16,
+   "fetch_empty": 8,
+   "rejected_quote": 22,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p03__B2__s303",
+   "case": "p03",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 17,
+   "gain2_labeled": 4,
+   "labeled": 6,
+   "firms_verified_quote": 17,
+   "searches_discovery": 12,
+   "searches_deepening": 21,
+   "searches_all_events": 33,
+   "fetches_events": 97,
+   "exa_paid": 14,
+   "fetch_empty": 4,
+   "rejected_quote": 19,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p04__B2__s101",
+   "case": "p04",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 13,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 13,
+   "searches_discovery": 10,
+   "searches_deepening": 13,
+   "searches_all_events": 23,
+   "fetches_events": 70,
+   "exa_paid": 23,
+   "fetch_empty": 6,
+   "rejected_quote": 13,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p04__B2__s202",
+   "case": "p04",
+   "seed": 202,
+   "stop_reason": "budget_fetches",
+   "firms": 18,
+   "gain2_labeled": 2,
+   "labeled": 4,
+   "firms_verified_quote": 18,
+   "searches_discovery": 16,
+   "searches_deepening": 18,
+   "searches_all_events": 34,
+   "fetches_events": 111,
+   "exa_paid": 27,
+   "fetch_empty": 12,
+   "rejected_quote": 31,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p04__B2__s303",
+   "case": "p04",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 21,
+   "gain2_labeled": 1,
+   "labeled": 3,
+   "firms_verified_quote": 21,
+   "searches_discovery": 16,
+   "searches_deepening": 18,
+   "searches_all_events": 34,
+   "fetches_events": 111,
+   "exa_paid": 11,
+   "fetch_empty": 7,
+   "rejected_quote": 24,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p05__B2__s101",
+   "case": "p05",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 13,
+   "gain2_labeled": 1,
+   "labeled": 1,
+   "firms_verified_quote": 13,
+   "searches_discovery": 7,
+   "searches_deepening": 15,
+   "searches_all_events": 22,
+   "fetches_events": 63,
+   "exa_paid": 22,
+   "fetch_empty": 13,
+   "rejected_quote": 20,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p05__B2__s202",
+   "case": "p05",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 17,
+   "gain2_labeled": 0,
+   "labeled": 1,
+   "firms_verified_quote": 17,
+   "searches_discovery": 14,
+   "searches_deepening": 16,
+   "searches_all_events": 30,
+   "fetches_events": 88,
+   "exa_paid": 24,
+   "fetch_empty": 10,
+   "rejected_quote": 27,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p05__B2__s303",
+   "case": "p05",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 10,
+   "gain2_labeled": 0,
+   "labeled": 0,
+   "firms_verified_quote": 10,
+   "searches_discovery": 7,
+   "searches_deepening": 9,
+   "searches_all_events": 16,
+   "fetches_events": 56,
+   "exa_paid": 0,
+   "fetch_empty": 4,
+   "rejected_quote": 22,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p06__B2__s101",
+   "case": "p06",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 11,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 11,
+   "searches_discovery": 8,
+   "searches_deepening": 11,
+   "searches_all_events": 19,
+   "fetches_events": 54,
+   "exa_paid": 14,
+   "fetch_empty": 4,
+   "rejected_quote": 16,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p06__B2__s202",
+   "case": "p06",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 12,
+   "gain2_labeled": 0,
+   "labeled": 1,
+   "firms_verified_quote": 12,
+   "searches_discovery": 11,
+   "searches_deepening": 14,
+   "searches_all_events": 25,
+   "fetches_events": 80,
+   "exa_paid": 12,
+   "fetch_empty": 15,
+   "rejected_quote": 24,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-09-v5__inv-case-syn-p06__B2__s303",
+   "case": "p06",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 16,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 16,
+   "searches_discovery": 13,
+   "searches_deepening": 16,
+   "searches_all_events": 29,
+   "fetches_events": 91,
+   "exa_paid": 8,
+   "fetch_empty": 9,
+   "rejected_quote": 29,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  }
+ ],
+ "runs_v7": [
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p01__B2__s101",
+   "case": "p01",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 22,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 22,
+   "searches_discovery": 17,
+   "searches_deepening": 8,
+   "searches_all_events": 25,
+   "fetches_events": 73,
+   "exa_paid": 8,
+   "fetch_empty": 8,
+   "rejected_quote": 12,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p01__B2__s202",
+   "case": "p01",
+   "seed": 202,
+   "stop_reason": "budget_fetches",
+   "firms": 21,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 21,
+   "searches_discovery": 18,
+   "searches_deepening": 8,
+   "searches_all_events": 26,
+   "fetches_events": 77,
+   "exa_paid": 8,
+   "fetch_empty": 11,
+   "rejected_quote": 10,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 2
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p01__B2__s303",
+   "case": "p01",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 24,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 24,
+   "searches_discovery": 16,
+   "searches_deepening": 8,
+   "searches_all_events": 24,
+   "fetches_events": 74,
+   "exa_paid": 9,
+   "fetch_empty": 6,
+   "rejected_quote": 15,
+   "stop_rejected": 2,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p02__B2__s101",
+   "case": "p02",
+   "seed": 101,
+   "stop_reason": "budget_searches",
+   "firms": 22,
+   "gain2_labeled": 0,
+   "labeled": 1,
+   "firms_verified_quote": 22,
+   "searches_discovery": 18,
+   "searches_deepening": 11,
+   "searches_all_events": 29,
+   "fetches_events": 80,
+   "exa_paid": 11,
+   "fetch_empty": 6,
+   "rejected_quote": 19,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p02__B2__s202",
+   "case": "p02",
+   "seed": 202,
+   "stop_reason": "budget_searches",
+   "firms": 22,
+   "gain2_labeled": 0,
+   "labeled": 0,
+   "firms_verified_quote": 22,
+   "searches_discovery": 18,
+   "searches_deepening": 10,
+   "searches_all_events": 28,
+   "fetches_events": 78,
+   "exa_paid": 12,
+   "fetch_empty": 7,
+   "rejected_quote": 20,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p02__B2__s303",
+   "case": "p02",
+   "seed": 303,
+   "stop_reason": "budget_searches",
+   "firms": 19,
+   "gain2_labeled": 0,
+   "labeled": 1,
+   "firms_verified_quote": 19,
+   "searches_discovery": 18,
+   "searches_deepening": 10,
+   "searches_all_events": 28,
+   "fetches_events": 76,
+   "exa_paid": 10,
+   "fetch_empty": 10,
+   "rejected_quote": 20,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p03__B2__s101",
+   "case": "p03",
+   "seed": 101,
+   "stop_reason": "budget_searches",
+   "firms": 15,
+   "gain2_labeled": 3,
+   "labeled": 4,
+   "firms_verified_quote": 15,
+   "searches_discovery": 18,
+   "searches_deepening": 10,
+   "searches_all_events": 28,
+   "fetches_events": 74,
+   "exa_paid": 8,
+   "fetch_empty": 7,
+   "rejected_quote": 10,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 5
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p03__B2__s202",
+   "case": "p03",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 12,
+   "gain2_labeled": 3,
+   "labeled": 4,
+   "firms_verified_quote": 12,
+   "searches_discovery": 15,
+   "searches_deepening": 10,
+   "searches_all_events": 25,
+   "fetches_events": 65,
+   "exa_paid": 4,
+   "fetch_empty": 4,
+   "rejected_quote": 14,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p03__B2__s303",
+   "case": "p03",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 14,
+   "gain2_labeled": 3,
+   "labeled": 5,
+   "firms_verified_quote": 14,
+   "searches_discovery": 15,
+   "searches_deepening": 10,
+   "searches_all_events": 25,
+   "fetches_events": 63,
+   "exa_paid": 4,
+   "fetch_empty": 6,
+   "rejected_quote": 7,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p04__B2__s101",
+   "case": "p04",
+   "seed": 101,
+   "stop_reason": "budget_fetches",
+   "firms": 22,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 22,
+   "searches_discovery": 18,
+   "searches_deepening": 9,
+   "searches_all_events": 27,
+   "fetches_events": 82,
+   "exa_paid": 10,
+   "fetch_empty": 3,
+   "rejected_quote": 13,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p04__B2__s202",
+   "case": "p04",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 26,
+   "gain2_labeled": 2,
+   "labeled": 4,
+   "firms_verified_quote": 26,
+   "searches_discovery": 16,
+   "searches_deepening": 10,
+   "searches_all_events": 26,
+   "fetches_events": 79,
+   "exa_paid": 8,
+   "fetch_empty": 4,
+   "rejected_quote": 11,
+   "stop_rejected": 2,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p04__B2__s303",
+   "case": "p04",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 27,
+   "gain2_labeled": 1,
+   "labeled": 3,
+   "firms_verified_quote": 27,
+   "searches_discovery": 16,
+   "searches_deepening": 9,
+   "searches_all_events": 25,
+   "fetches_events": 79,
+   "exa_paid": 11,
+   "fetch_empty": 2,
+   "rejected_quote": 11,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p05__B2__s101",
+   "case": "p05",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 28,
+   "gain2_labeled": 1,
+   "labeled": 2,
+   "firms_verified_quote": 28,
+   "searches_discovery": 17,
+   "searches_deepening": 11,
+   "searches_all_events": 28,
+   "fetches_events": 81,
+   "exa_paid": 3,
+   "fetch_empty": 11,
+   "rejected_quote": 20,
+   "stop_rejected": 0,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p05__B2__s202",
+   "case": "p05",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 27,
+   "gain2_labeled": 1,
+   "labeled": 2,
+   "firms_verified_quote": 27,
+   "searches_discovery": 16,
+   "searches_deepening": 10,
+   "searches_all_events": 26,
+   "fetches_events": 80,
+   "exa_paid": 10,
+   "fetch_empty": 11,
+   "rejected_quote": 18,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p05__B2__s303",
+   "case": "p05",
+   "seed": 303,
+   "stop_reason": "no_more_actions",
+   "firms": 21,
+   "gain2_labeled": 2,
+   "labeled": 2,
+   "firms_verified_quote": 21,
+   "searches_discovery": 14,
+   "searches_deepening": 9,
+   "searches_all_events": 23,
+   "fetches_events": 64,
+   "exa_paid": 8,
+   "fetch_empty": 11,
+   "rejected_quote": 14,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p06__B2__s101",
+   "case": "p06",
+   "seed": 101,
+   "stop_reason": "no_more_actions",
+   "firms": 20,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 20,
+   "searches_discovery": 15,
+   "searches_deepening": 8,
+   "searches_all_events": 23,
+   "fetches_events": 72,
+   "exa_paid": 8,
+   "fetch_empty": 9,
+   "rejected_quote": 16,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p06__B2__s202",
+   "case": "p06",
+   "seed": 202,
+   "stop_reason": "no_more_actions",
+   "firms": 20,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 20,
+   "searches_discovery": 16,
+   "searches_deepening": 8,
+   "searches_all_events": 24,
+   "fetches_events": 76,
+   "exa_paid": 10,
+   "fetch_empty": 5,
+   "rejected_quote": 15,
+   "stop_rejected": 1,
+   "fetch_skipped_domain": 0
+  },
+  {
+   "run_id": "investors-internal-2026-10-12-v7__inv-case-syn-p06__B2__s303",
+   "case": "p06",
+   "seed": 303,
+   "stop_reason": "budget_searches",
+   "firms": 18,
+   "gain2_labeled": 0,
+   "labeled": 2,
+   "firms_verified_quote": 18,
+   "searches_discovery": 18,
+   "searches_deepening": 8,
+   "searches_all_events": 26,
+   "fetches_events": 74,
+   "exa_paid": 10,
+   "fetch_empty": 7,
+   "rejected_quote": 18,
+   "stop_rejected": 2,
+   "fetch_skipped_domain": 0
+  }
+ ]
+}
