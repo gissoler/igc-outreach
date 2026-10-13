@@ -1,5 +1,6 @@
 // Genera out/<bench_id>/fingerprint.json (sha256 de los archivos que definen la corrida formal).
 // Uso, desde research/: node bench/investors/freeze.mjs --config bench/investors/config/v5-2026-10-09.json
+// V8: con una config investor_run_config/6 (brazo v8) la huella se genera aparte (out/<bench_id v8>), sin tocar v5 ni v7.
 // V7: --check compara con el fingerprint existente SIN escribir (sale 1 si algún archivo cambió; no toca out/ de v5).
 //     Con una config investor_run_config/5 (brazo v7) se añaden los archivos v7; la lista v5 no cambia.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, existsSync } from 'node:fs';
@@ -25,6 +26,12 @@ for (const f of ['investor_run_config.v3', 'investor_run_result.v3', 'investor_e
 files.add(resolve(repo, 'docs/contracts/investor/vocab/normalization.v1.json'));
 for (const f of ['extractor', 'judge', 'engine', 'normalize', 'resolve', 'deepening']) files.add(resolve(inv, `${f}.mjs`));
 for (const d of ['cases', 'gold']) for (const p of walk(resolve(inv, d))) files.add(p);
+if (config.schema_version === 'investor_run_config/6') {
+  // V8: huella aparte (brazo v8 = v7 + fase de listas). Incluye los módulos v7 que reutiliza, los v8 nuevos y el esquema v6.
+  for (const f of ['extractor.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'engine.v8.mjs', 'list-discovery.v8.mjs', 'workspace.v8.mjs', 'run-experiment.v8.mjs', 'engine.v2.mjs', 'conditions.mjs', 'identity.mjs', 'triage.mjs', 'activity.mjs', 'ranking.mjs', 'search-failover.mjs']) files.add(resolve(inv, f));
+  if (config.b2?.fixed_initial_batch) files.add(resolve(inv, 'config', config.b2.fixed_initial_batch));
+  files.add(resolve(repo, 'docs/contracts/investor/investor_run_config.v6.schema.json'));
+}
 if (config.schema_version === 'investor_run_config/5') {
   for (const f of ['extractor.v7.mjs', 'engine.v7.mjs', 'external.v7.mjs', 'cache-layers.v7.mjs', 'workspace.v7.mjs', 'run-experiment.v7.mjs', 'engine.v2.mjs', 'conditions.mjs', 'identity.mjs', 'triage.mjs', 'activity.mjs', 'ranking.mjs', 'search-failover.mjs']) files.add(resolve(inv, f));
   if (config.b2?.fixed_initial_batch) files.add(resolve(inv, 'config', config.b2.fixed_initial_batch));

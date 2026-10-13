@@ -1,6 +1,6 @@
 # V8 — Cambios (PROMPT-v10, alcanzabilidad del oro)
 
-Estado: pasos 1 y 2 listos (diagnóstico preparado y pre-registrado, sin gastar). Pasos 3 a 5 pendientes del resultado del diagnóstico. Pre-registro: `docs/handoff/V8-PREREGISTRO.md`.
+Estado: pasos 1 a 4 hechos (diagnóstico ejecutado por el usuario, motor v8 implementado, corrida formal lista con `go-v8.sh`, sin lanzar). `V8-RESULTADOS.md` se escribe después de la corrida. Pre-registro: `docs/handoff/V8-PREREGISTRO.md`.
 
 Ningún archivo congelado se editó (config v5, manifest.v5, normalization.v1, extractor.mjs, judge.mjs, engine.mjs, normalize.mjs, resolve.mjs, deepening.mjs, prompts v5, run-experiment.mjs, run-experiment.v6.mjs, gold/, cases/, archivos .v7). Las carpetas de resultados v5, v6 y v7 no se escribieron. `freeze.mjs --check` con la config v5: 89 de 89 archivos idénticos.
 
@@ -28,4 +28,44 @@ Tests: v5 14/14, v6 6/6, v6-r4 3/3, v7 16/16, v8 8/8.
 
 Simulacro del diagnóstico (sin red): fase A 108 unidades = 0.961 USD; fase B entre 0.320 y 0.961 USD; máximo 1.922 USD; tope 2 USD.
 
-No se pudo ejecutar desde esta máquina: Exa solo es alcanzable desde el Mac.
+
+## Resultado del diagnóstico (paso 1; detalle en `docs/benchmark/investors/V8-DIAGNOSTICO.md`)
+
+156 unidades pagadas = US$ 1.388 a 0.0089; tarifa nominal US$ 3.24; `costDollars` de Exa, suma, US$ 2.818. Casos con el oro: base 1 de 6 (A) y 2 de 6 (B); b30, b50, a10, a25, e10, e25: 1 de 6 cada una en A (igual que la base); c: 0 de 6; d: 3 de 6 en A y 5 de 6 en B. Elegida y confirmada: solo d (páginas de listas). Por dominio, d alcanza 1 de 6 en A y 1 de 6 en B; el resto de los aciertos de d son el nombre del oro en el texto de la página.
+
+## Pasos 3 y 4 — brazo v8 (variante d)
+
+| Archivo | Qué es |
+|---|---|
+| `research/bench/investors/list-discovery.v8.mjs` | Plantilla de las 2 consultas de listas (una sola copia; `analysis/v8/queries.v8.mjs` la importa) |
+| `research/bench/investors/engine.v8.mjs` | Copia de engine.v7.mjs + fase de listas antes del planner (`b2.list_discovery`); sin esa clave es idéntico a v7 (prueba V8-11) |
+| `research/bench/investors/workspace.v8.mjs`, `run-experiment.v8.mjs` | Validación y runner de la config v8 (copias de los v7 con el motor v8) |
+| `research/bench/investors/config/v8-2026-10-12.json` | Config v8 (`investor_run_config/6`, bench_id `investors-internal-2026-10-12-v8`, frozen) |
+| `docs/contracts/investor/investor_run_config.v6.schema.json` | Esquema v6 = v5 + `b2.list_discovery` (el esquema v5 no se tocó: está en la huella v7) |
+| `research/bench/investors/analysis/v8/v8_results.mjs` | Informe v8 frente a v7: O1, O2, M1, M2, secundarias y veredicto |
+| `research/bench/investors/run-v8.sh`, `go-v8.sh` | Corrida con tope y vigilante; comando único con tests, huellas v5/v7/v8, claves, Crawl4AI, LLM, simulacro, commit y lanzamiento |
+
+Cambios de comportamiento frente a v7 (todos detrás de `b2.list_discovery.enabled`):
+
+| Id | Cambio | Motivo |
+|---|---|---|
+| D1 | 2 consultas de listas antes del lote inicial del planner, con la plantilla del diagnóstico | Variante d: 3 de 6 (A) y 5 de 6 (B) frente a 1 y 2 de la base |
+| D2 | Esas consultas saltan el triage y abren hasta 6 páginas por puesto, 2 por sitio como máximo | El triage descarta títulos "top … VC" y rutas de lista, y los hosts agregadores; la mayoría de los aciertos del diagnóstico estaban ahí (prueba V8-12 lo detectó) |
+| D3 | Los nombres que el extractor saca de esas páginas se resuelven a su sitio oficial con la resolución de siempre; cupo de la fase 8 resoluciones, 10 búsquedas, 20 fetches | Sin cambiar la regla: solo cuenta la firma cuyo sitio oficial pasa el extractor con cita literal |
+| D4 | Al terminar la fase, los topes de búsquedas y fetches y `min_searches_before_stop` suben en lo gastado | El planner conserva las 18 búsquedas y 54 fetches de v7 (prueba V8-13) |
+| D5 | Capa de lectura de caché añadida: la caché de la corrida v7 | Las páginas y extracciones ya hechas en v7 no se repiten ni se repagan |
+
+No se implementó (no pasó la regla de elección): category "company", 30 y 50 resultados, búsqueda por inversiones (c), consultas largas del brief. Tampoco B2E ni filtros de embeddings.
+
+Huella: `freeze.mjs --config config/v8-2026-10-12.json` genera `out/investors-internal-2026-10-12-v8/fingerprint.json` (111 archivos) aparte. v5: 89 de 89 idénticos; v7: 110 de 110 idénticos.
+
+Tests: v5 14/14, v6 6/6, v6-r4 3/3, v7 16/16, v8 14/14 (V8-9 a V8-14: config, huellas, equivalencia con v7 sin la fase, firma que solo sale de una lista, presupuesto de la fase, consultas iguales a las medidas).
+
+Costo esperado de la corrida formal: US$ 2.96 (18 × 18.5 × 0.0089); cota alta sin caché US$ 7.05; más US$ 1.388 del diagnóstico, total esperado US$ 4.35 y cota alta US$ 8.44, tope 9.
+
+## Lo que no se pudo verificar
+
+- Que el extractor saque al oro como candidato con cita literal desde esas páginas, y que la resolución encuentre su sitio: el diagnóstico mide el nombre en el texto de Exa, no esa cadena. Solo lo mide la corrida formal (no se llamó al LLM ni a Crawl4AI desde aquí).
+- El cobro real del diagnóstico: mi medida es US$ 1.388, `costDollars` de Exa suma US$ 2.818. Con la misma tasa de v7 (panel 7 USD frente a 20.89 de tarifa nominal) el cobro real sería menor que ambas, pero no está medido: hay que mirar el saldo en el panel de Exa.
+- Que `category: "company"` no cambie el precio: la documentación de Exa no lo indica.
+- La corrida v8 completa: no se lanzó (lo hace el usuario).
