@@ -74,7 +74,8 @@ export function createNameCandidates({ provider = 'fleet', env = process.env, ca
   return async function nameCandidates({ profile, hints = null }) {
     const brief = briefFor(profile), system = prompt.system.replaceAll('{{max}}', String(max));
     const user = prompt.user.replace('{{brief}}', JSON.stringify(brief, null, 1)).replace('{{hints}}', hints?.length ? hints.join('; ') : '(none)');
-    const key = sha(['candidates', prompt.sha256, provider, list.join(','), web, max, user].join('|'));
+    const served = provider === 'fleet' ? `${String(env.ENGINE_LLM_MODEL ?? '').trim()}@${String(env.ENGINE_LLM_URL ?? '').trim()}` : '';
+    const key = sha(['candidates', prompt.sha256, provider, list.join(','), served, web, max, user].join('|'));
     const hit = cache?.get('llm', key); if (hit) return { ...hit.value, cached: true, tokens: 0 };
     let last = null;
     for (const model of list) {
