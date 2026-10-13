@@ -4,7 +4,7 @@ import { validateCompilation, validateJudgment, DATE_ROLES, CRITERIA_IDS } from 
 import { compilerPrompt, judgePrompt, criteriaFor, hasDeadline, COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERSION } from '../server/research/judge/prompts.v13.mjs';
 
 const compilation = (over = {}) => ({
-  page_type: 'forecast_notice',
+  page_type: 'forecast_notice', official: true,
   identity: { name: 'NIA call', org: 'NIA', kind: 'program', quote: 'intends to publish' },
   dates: [{ role: 'application_deadline', date: '2026-11-01', estimated: true, quote: 'Estimated Application Due Date: November 1, 2026' }],
   eligibility: { applicant_types: ['Small businesses'], applicant_types_quote: 'Small businesses', countries: [], countries_quote: null, stage: null, stage_quote: null, for_profit_allowed: 'yes', for_profit_quote: null },

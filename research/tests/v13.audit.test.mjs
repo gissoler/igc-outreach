@@ -192,3 +192,15 @@ test('V13-22 judgeMode: off by default; on without roles warns and keeps the cur
   const e2 = { ENGINE_JUDGE: '1', ENGINE_LLM_URL: 'http://e/v1', ENGINE_LLM_MODEL: 'm', COMPILER_LLM_FALLBACK: 'engine', JUDGE_LLM_FALLBACK: 'engine' };
   assert.equal(judgeMode(e2, fleetConfig(e2)).sameModel, true);
 });
+
+test('V13-35 a judge deadline without a valid quote is not ignored even if another one is valid', () => {
+  const j = openJ({ dates: [D('application_deadline', '2027-03-15', 'Applications are due March 15, 2027 at 5 pm ET'), D('application_deadline', '2026-12-01', 'Applications are due December 1, 2026 at noon')] });
+  const { a, v } = run(openC(), j);
+  assert.equal(a.state, 'open'); assert.equal(a.mainOk, false); assert.notEqual(v.tier, 'main');
+  assert.ok(a.blockers.some((b) => /no valid quote/.test(b)));
+});
+
+test('V13-36 compilation without "official" is invalid (it would silently drop everything as not official)', () => {
+  const c = compilation(pageOf('niagads')); delete c.official;
+  assert.equal(validateCompilation(c).ok, false);
+});

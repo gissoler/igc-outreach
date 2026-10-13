@@ -104,6 +104,8 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
     else if (st.state === 'closed') blockers.push('All application deadlines on the page are before today');
     if (!CALL_TYPES.has(judgment.page_type)) blockers.push(`Judge reads the page as ${judgment.page_type}, not as a call`);
   }
+  // Un plazo que el juez dio sin cita válida podría ser el que importa: no se ignora en silencio.
+  if (dated && jDates.some((d) => d.role === 'application_deadline' && !d.verified && d.why !== 'no_date')) blockers.push('A deadline reported by the judge has no valid quote on the page');
   blockers.push(...disagreements);
   const mainOk = !dropReason && blockers.length === 0 && (!dated || st.state === 'open');
   return {
