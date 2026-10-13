@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/v13/page_judgment.schema.json",
+  "title": "page_judgment/v13 · salida del agente juez (rol judge)",
+  "description": "Veredicto por criterio contra la página y el brief, y su propia lectura del tipo de página y de los roles de fecha. No calcula estado ni días: lo hace el auditor en código.",
+  "type": "object",
+  "required": ["page_type", "dates", "criteria"],
+  "properties": {
+    "page_type": { "enum": ["call", "forecast_notice", "program_page", "report", "blog", "news", "event", "cohort_announcement", "directory", "funder_about", "other"] },
+    "dates": {
+      "type": "array", "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["role", "date", "quote"],
+        "properties": {
+          "role": { "enum": ["application_deadline", "loi_deadline", "opens", "award", "project_start", "posted", "other"] },
+          "date": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+          "estimated": { "type": "boolean" },
+          "quote": { "type": "string", "maxLength": 600 }
+        }
+      }
+    },
+    "criteria": {
+      "type": "object",
+      "propertyNames": { "enum": ["deadline", "eligibility", "region", "entity_type", "stage", "topic_fit"] },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["verdict", "reason"],
+        "properties": {
+          "verdict": { "enum": ["yes", "no", "unknown"] },
+          "quote": { "type": ["string", "null"], "maxLength": 600 },
+          "reason": { "type": "string", "maxLength": 500 },
+          "compiler": { "enum": ["agree", "disagree", "not_shown"] }
+        }
+      }
+    }
+  }
+}

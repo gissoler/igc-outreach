@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://outreach.local/contracts/v13/page_compilation.schema.json",
+  "title": "page_compilation/v13 · salida del agente de compilación (rol compiler)",
+  "description": "Hechos de UNA página con cita literal. No contiene veredictos, estado ni días restantes: eso lo hacen el juez y el auditor.",
+  "type": "object",
+  "required": ["page_type", "identity", "dates", "eligibility"],
+  "properties": {
+    "page_type": { "enum": ["call", "forecast_notice", "program_page", "report", "blog", "news", "event", "cohort_announcement", "directory", "funder_about", "other"] },
+    "identity": {
+      "type": "object",
+      "required": ["name", "kind"],
+      "properties": {
+        "name": { "type": "string", "maxLength": 300 },
+        "org": { "type": ["string", "null"], "maxLength": 300 },
+        "kind": { "enum": ["program", "funder", "investor", "lender", "partner", "company", "deal_news", "directory", "news", "other"] },
+        "quote": { "type": ["string", "null"], "maxLength": 600 }
+      }
+    },
+    "dates": {
+      "type": "array", "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["role", "date", "quote"],
+        "properties": {
+          "role": { "enum": ["application_deadline", "loi_deadline", "opens", "award", "project_start", "posted", "other"] },
+          "date": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+          "estimated": { "type": "boolean" },
+          "quote": { "type": "string", "maxLength": 600 }
+        }
+      }
+    },
+    "eligibility": {
+      "type": "object",
+      "properties": {
+        "applicant_types": { "type": "array", "maxItems": 30, "items": { "type": "string", "maxLength": 200 } },
+        "applicant_types_quote": { "type": ["string", "null"], "maxLength": 600 },
+        "countries": { "type": "array", "maxItems": 30, "items": { "type": "string", "maxLength": 200 } },
+        "countries_quote": { "type": ["string", "null"], "maxLength": 600 },
+        "stage": { "type": ["string", "null"], "maxLength": 300 },
+        "stage_quote": { "type": ["string", "null"], "maxLength": 600 },
+        "for_profit_allowed": { "enum": ["yes", "no", "unknown"] },
+        "for_profit_quote": { "type": ["string", "null"], "maxLength": 600 }
+      }
+    },
+    "amount": {
+      "type": "object",
+      "properties": { "text": { "type": ["string", "null"], "maxLength": 300 }, "quote": { "type": ["string", "null"], "maxLength": 600 } }
+    },
+    "how_to_apply_quote": { "type": ["string", "null"], "maxLength": 600 }
+  }
+}
