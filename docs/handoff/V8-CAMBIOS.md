@@ -1,6 +1,6 @@
 # V8 — Cambios (PROMPT-v10, alcanzabilidad del oro)
 
-Estado: pasos 1 a 4 hechos (diagnóstico ejecutado por el usuario, motor v8 implementado, corrida formal lista con `go-v8.sh`, sin lanzar). `V8-RESULTADOS.md` se escribe después de la corrida. Pre-registro: `docs/handoff/V8-PREREGISTRO.md`.
+Estado: pasos 1 a 5 hechos. Diagnóstico y corrida formal ejecutados por el usuario; resultado de la regla pre-registrada: SIN CAMBIO (ver abajo y `docs/benchmark/investors/V8-RESULTADOS.md`). Pre-registro: `docs/handoff/V8-PREREGISTRO.md`.
 
 Ningún archivo congelado se editó (config v5, manifest.v5, normalization.v1, extractor.mjs, judge.mjs, engine.mjs, normalize.mjs, resolve.mjs, deepening.mjs, prompts v5, run-experiment.mjs, run-experiment.v6.mjs, gold/, cases/, archivos .v7). Las carpetas de resultados v5, v6 y v7 no se escribieron. `freeze.mjs --check` con la config v5: 89 de 89 archivos idénticos.
 
@@ -65,7 +65,14 @@ Costo esperado de la corrida formal: US$ 2.96 (18 × 18.5 × 0.0089); cota alta 
 
 ## Lo que no se pudo verificar
 
-- Que el extractor saque al oro como candidato con cita literal desde esas páginas, y que la resolución encuentre su sitio: el diagnóstico mide el nombre en el texto de Exa, no esa cadena. Solo lo mide la corrida formal (no se llamó al LLM ni a Crawl4AI desde aquí).
+- (Resuelto por la corrida) Que el extractor saque al oro como candidato con cita literal y que la resolución encuentre su sitio: no ocurre; ver el resultado.
 - El cobro real del diagnóstico: mi medida es US$ 1.388, `costDollars` de Exa suma US$ 2.818. Con la misma tasa de v7 (panel 7 USD frente a 20.89 de tarifa nominal) el cobro real sería menor que ambas, pero no está medido: hay que mirar el saldo en el panel de Exa.
 - Que `category: "company"` no cambie el precio: la documentación de Exa no lo indica.
-- La corrida v8 completa: no se lanzó (lo hace el usuario).
+
+## Resultado de la corrida formal (paso 5)
+
+SIN CAMBIO según la regla pre-registrada. Oro aceptado en 0 de 18 corridas (v7: 1 de 18); dominio del oro en resultados en 0 de 18 (v7: 1 de 18). M1 7 → 6, M2 131 → 137, citas verificadas 100%. Costo medido US$ 3.658 en total (diagnóstico 1.388 + corrida 2.270). La fase de listas aportó 112 firmas aceptadas y ninguna fue el oro. Cifras y lectura: `docs/benchmark/investors/V8-RESULTADOS.md`; embudo: `docs/benchmark/investors/V8-EMBUDO-LISTAS.md` (`analysis/v8/list_funnel.mjs`).
+
+Qué pasó: el diagnóstico midió el nombre del oro en el texto que devuelve Exa; en el motor el nombre pasa por tres filtros que el diagnóstico no medía y el oro no pasa ninguno: (1) el modelo lista como máximo 10 firmas por página y el oro entra en 3 de 6 casos; (2) la verificación de cita de candidatos (cita literal con el nombre completo y un verbo de inversión) lo descarta en esos 3; (3) la resolución solo toma 8 firmas. Los candidatos de la fase están en `extractor.mjs` y su prompt, que están congelados y no se tocaron.
+
+No se hizo: ningún cambio posterior a la corrida (una sola corrida formal), ni se relajó la verificación de candidatos.

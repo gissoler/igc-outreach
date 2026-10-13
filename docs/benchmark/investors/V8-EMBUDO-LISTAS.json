@@ -1,0 +1,96 @@
+{
+ "rows": [
+  {
+   "case": "p01",
+   "gold": "magmapartners.com",
+   "list_pages_unique": 10,
+   "pages_with_gold_name": 2,
+   "candidates_raw": 50,
+   "candidates_verified": 7,
+   "gold_raw_candidate": 1,
+   "gold_verified_candidate": 0,
+   "gold_resolution_attempts": 0
+  },
+  {
+   "case": "p02",
+   "gold": "lightrock.com",
+   "list_pages_unique": 14,
+   "pages_with_gold_name": 1,
+   "candidates_raw": 56,
+   "candidates_verified": 10,
+   "gold_raw_candidate": 1,
+   "gold_verified_candidate": 0,
+   "gold_resolution_attempts": 0
+  },
+  {
+   "case": "p03",
+   "gold": "celesta.vc",
+   "list_pages_unique": 14,
+   "pages_with_gold_name": 1,
+   "candidates_raw": 40,
+   "candidates_verified": 9,
+   "gold_raw_candidate": 0,
+   "gold_verified_candidate": 0,
+   "gold_resolution_attempts": 0
+  },
+  {
+   "case": "p04",
+   "gold": "golden.ventures",
+   "list_pages_unique": 12,
+   "pages_with_gold_name": 1,
+   "candidates_raw": 30,
+   "candidates_verified": 10,
+   "gold_raw_candidate": 0,
+   "gold_verified_candidate": 0,
+   "gold_resolution_attempts": 0
+  },
+  {
+   "case": "p05",
+   "gold": "worldfund.vc",
+   "list_pages_unique": 14,
+   "pages_with_gold_name": 1,
+   "candidates_raw": 49,
+   "candidates_verified": 10,
+   "gold_raw_candidate": 0,
+   "gold_verified_candidate": 0,
+   "gold_resolution_attempts": 0
+  },
+  {
+   "case": "p06",
+   "gold": "ecapital.vc",
+   "list_pages_unique": 13,
+   "pages_with_gold_name": 2,
+   "candidates_raw": 60,
+   "candidates_verified": 22,
+   "gold_raw_candidate": 1,
+   "gold_verified_candidate": 0,
+   "gold_resolution_attempts": 0
+  }
+ ],
+ "detail": [
+  {
+   "case": "p01",
+   "name": "Magma Partners",
+   "quote": "Magma specializes in finding, investing, and support the best technology startups in Latin America that want to launch and scale in the US and Latin America.",
+   "quote_literal_in_page": true,
+   "name_in_quote": false,
+   "verified": false
+  },
+  {
+   "case": "p02",
+   "name": "Lightrock",
+   "quote": "Current shareholders QED Investors, VEF, SoftBank Vision Fund 1, SoftBank Latin America Fund, Kaszek Ventures, Lightock, Headline, Wellington Management and Adv",
+   "quote_literal_in_page": false,
+   "name_in_quote": false,
+   "verified": false
+  },
+  {
+   "case": "p06",
+   "name": "eCAPITAL ENTREPRENEURIAL PARTNERS",
+   "quote": "They have been involved in significant transactions in the cybersecurity domain, including multiple funding rounds for VMRay, a company dedicated to threat dete",
+   "quote_literal_in_page": false,
+   "name_in_quote": false,
+   "verified": false
+  }
+ ]
+}
