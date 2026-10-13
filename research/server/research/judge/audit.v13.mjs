@@ -1,0 +1,169 @@
+/* V13 · Auditor por código del agente de compilación + agente juez.
+   El MODELO asigna el rol de cada fecha y da el veredicto por criterio; el CÓDIGO audita:
+     · la cita está literal en la página (literalIn);
+     · la cita contiene la fecha y solo esa (la fecha se lee de la cita con el lector existente de dates.mjs; aquí NO hay patrones de fechas ni clasificación de fechas);
+     · la resta contra HOY (daysBetween);
+     · la regla de estado: closed | open | forecast | unknown.
+   Falla cerrado: juez caído o inválido → nada entra a la lista principal. Compilador y juez en desacuerdo → «a verificar».
+   Funciones puras (sin red, disco ni reloj). */
+import { literalIn } from '../verify.mjs';
+import { datesIn, daysBetween, todayIso } from '../dates.mjs';
+import { criteriaFor, hasDeadline } from './prompts.v13.mjs';
+
+export const JUDGE_AUDIT_VERSION = 'v13.1';
+const CALL_TYPES = new Set(['call', 'forecast_notice']);
+const pageClass = (type, dated) => (!dated ? 'other' : type === 'forecast_notice' ? 'forecast' : type === 'call' ? 'call' : 'other');
+
+/** ¿Se puede sostener esta fecha? Cita literal en la página, que contenga la fecha pedida y ninguna otra. */
+export function verifyDate(d, pageText) {
+  const base = { role: d.role, date: d.date || null, estimated: Boolean(d.estimated), quote: String(d.quote || '') };
+  if (!d.date) return { ...base, verified: false, why: 'no_date' };
+  if (!literalIn(d.quote, pageText)) return { ...base, verified: false, why: 'quote_not_in_page' };
+  const found = datesIn(d.quote);
+  if (!found.includes(d.date)) return { ...base, verified: false, why: 'date_not_in_quote' };
+  if (found.length > 1) return { ...base, verified: false, why: 'quote_has_several_dates' };
+  return { ...base, verified: true, why: null };
+}
+const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map((d) => verifyDate(d, pageText));
+const appDatesOf = (dates) => dates.filter((d) => d.role === 'application_deadline' && d.verified);
+const uniqSorted = (xs) => [...new Set(xs)].sort();
+
+/** Veredicto por criterio con la cita auditada: un sí/no sin cita literal en la página queda en «unknown» y se anota. */
+function auditCriteria(judgment, objective, pageText, flags) {
+  const out = {};
+  for (const id of criteriaFor(objective)) {
+    const c = judgment?.criteria?.[id];
+    if (!c) { out[id] = { verdict: 'unknown', claimed: null, quote: '', quoteOk: false, reason: 'The judge did not answer this criterion', compiler: 'not_shown', missing: true }; flags.push(`criterion_missing:${id}`); continue; }
+    const quote = typeof c.quote === 'string' ? c.quote.trim() : '';
+    const quoteOk = Boolean(quote) && literalIn(quote, pageText);
+    let verdict = c.verdict;
+    if (verdict !== 'unknown' && !quoteOk) { flags.push(quote ? `fake_quote:${id}` : `quote_missing:${id}`); verdict = 'unknown'; }
+    out[id] = { verdict, claimed: c.verdict, quote: quoteOk ? quote : '', quoteOk, reason: String(c.reason || '').slice(0, 300), compiler: c.compiler || 'not_shown' };
+  }
+  return out;
+}
+
+/** Estado por código a partir de los roles de fecha del juez ya auditados. */
+export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, today, dated }) {
+  if (!dated) return { state: 'n/a', deadline: null, quote: '', daysLeft: null, estimatedDeadline: null };
+  const app = appDatesOf(judgeDates);
+  const anyEstimated = app.some((d) => d.estimated) || appDatesOf(compilerDates || []).some((d) => d.estimated);
+  const forecast = judgeType === 'forecast_notice' || compilerType === 'forecast_notice' || anyEstimated;
+  const first = (xs) => [...xs].sort((a, b) => a.date.localeCompare(b.date))[0];
+  if (forecast) { const e = app.length ? first(app) : null; return { state: 'forecast', deadline: null, quote: e?.quote || '', daysLeft: null, estimatedDeadline: e?.date || null }; }
+  if (!app.length) return { state: 'unknown', deadline: null, quote: '', daysLeft: null, estimatedDeadline: null };
+  const future = app.filter((d) => d.date >= today);
+  if (!future.length) { const last = [...app].sort((a, b) => b.date.localeCompare(a.date))[0]; return { state: 'closed', deadline: last.date, quote: last.quote, daysLeft: null, estimatedDeadline: null }; }
+  const next = first(future);
+  return { state: 'open', deadline: next.date, quote: next.quote, daysLeft: daysBetween(today, next.date), estimatedDeadline: null };
+}
+
+/** Auditoría de una página. `compilation`/`judgment` son salidas ya validadas por contracts.v13 o null; `failure` explica por qué falta una. */
+export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false } = {}) {
+  const now = todayIso(today); const text = String(page?.text || ''); const dated = hasDeadline(objective);
+  const flags = []; const disagreements = []; const blockers = [];
+  const base = { version: JUDGE_AUDIT_VERSION, objective, today: now, blind: Boolean(blind), compilerOk: Boolean(compilation), judgeOk: Boolean(judgment), compilerFailure: failure.compiler || null, judgeFailure: failure.judge || null };
+  if (!judgment) {
+    // Falla cerrado: sin juez no hay veredicto, ni estado, ni lista principal.
+    return { ...base, state: 'unverified', deadline: null, deadlineQuote: '', daysLeft: null, estimatedDeadline: null, pageType: { judge: null, compiler: compilation?.page_type || null, agree: false }, dates: { judge: [], compiler: auditDates(compilation?.dates, text) }, criteria: {}, flags: ['judge_unavailable'], disagreements: [], blockers: [`Judge unavailable (${failure.judge || 'no answer'}): nothing verified by the second agent`], dropReason: null, mainOk: false };
+  }
+  const jDates = auditDates(judgment.dates, text);
+  const cDates = auditDates(compilation?.dates, text);
+  for (const d of jDates) if (!d.verified && d.why !== 'no_date') flags.push(`date_${d.why}:${d.role}`);
+  const st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated });
+  const criteria = auditCriteria(judgment, objective, text, flags);
+
+  // Desacuerdos: nunca suben a la lista principal.
+  if (!compilation) disagreements.push(`Compiler unavailable (${failure.compiler || 'no answer'})`);
+  else {
+    if (pageClass(judgment.page_type, dated) !== pageClass(compilation.page_type, dated)) disagreements.push(`Page type: compiler ${compilation.page_type}, judge ${judgment.page_type}`);
+    if (dated) {
+      const a = uniqSorted(appDatesOf(cDates).map((d) => d.date)); const b = uniqSorted(appDatesOf(jDates).map((d) => d.date));
+      if (a.join() !== b.join()) disagreements.push(`Application deadline: compiler ${a.join(', ') || 'none'}, judge ${b.join(', ') || 'none'}`);
+      if (appDatesOf(cDates).some((d) => d.estimated) !== appDatesOf(jDates).some((d) => d.estimated) && a.length && b.length) disagreements.push('Estimated flag differs between compiler and judge');
+    }
+  }
+  for (const [id, c] of Object.entries(criteria)) if (c.compiler === 'disagree') disagreements.push(`Criterion ${id}: the judge disagrees with the compiler`);
+  const dl = criteria.deadline;
+  if (dated && dl) {
+    if (dl.verdict === 'yes' && st.state !== 'open') disagreements.push(`Judge says the deadline is open; dates audited as ${st.state}`);
+    if (dl.verdict === 'no' && st.state === 'open') disagreements.push('Judge says the deadline is closed; dates audited as open');
+  }
+
+  // Razones de descarte: solo un «no» con cita literal en la página.
+  const NO_TO_DROP = { eligibility: 'not_eligible', region: 'not_eligible', entity_type: 'not_eligible', stage: 'not_eligible', topic_fit: 'scope_mismatch' };
+  const noWithQuote = Object.entries(criteria).find(([id, c]) => id !== 'deadline' && c.verdict === 'no' && c.quoteOk);
+  const dropReason = st.state === 'closed' ? 'closed' : noWithQuote ? NO_TO_DROP[noWithQuote[0]] : null;
+  for (const [id, c] of Object.entries(criteria)) if (id !== 'deadline' && c.claimed === 'no' && c.verdict === 'unknown') blockers.push(`The judge says "no" for ${id} without a quote from the page`);
+
+  const requiredYes = dated ? ['eligibility', 'topic_fit'] : ['topic_fit'];
+  for (const id of requiredYes) if (criteria[id]?.verdict !== 'yes') blockers.push(`${id === 'topic_fit' ? 'Topic fit' : 'Eligibility'} not confirmed by the judge with a quote from the page`);
+  if (dated) {
+    if (st.state === 'forecast') blockers.push(`Forecast notice: applications are not open yet${st.estimatedDeadline ? ` (estimated deadline ${st.estimatedDeadline})` : ''}`);
+    else if (st.state === 'unknown') blockers.push('No application deadline verified on the page');
+    else if (st.state === 'closed') blockers.push('All application deadlines on the page are before today');
+    if (!CALL_TYPES.has(judgment.page_type)) blockers.push(`Judge reads the page as ${judgment.page_type}, not as a call`);
+  }
+  blockers.push(...disagreements);
+  const mainOk = !dropReason && blockers.length === 0 && (!dated || st.state === 'open');
+  return {
+    ...base, state: st.state, deadline: st.deadline, deadlineQuote: st.quote, daysLeft: st.daysLeft, estimatedDeadline: st.estimatedDeadline,
+    pageType: { judge: judgment.page_type, compiler: compilation?.page_type || null, agree: !compilation ? false : pageClass(judgment.page_type, dated) === pageClass(compilation.page_type, dated) },
+    dates: { judge: jDates, compiler: cDates }, criteria, flags: [...new Set(flags)], disagreements, blockers, dropReason, mainOk,
+  };
+}
+
+/** Lo que `verifyOpportunity` necesita para fijar estado y fecha desde la auditoría (null = no aplica o juez caído: estado desconocido). */
+export function dateOverrideOf(audit) {
+  if (!audit || audit.state === 'n/a') return null;
+  const state = audit.state === 'unverified' ? 'unknown' : audit.state;
+  return { state, deadline: audit.deadline, quote: audit.deadlineQuote, reason: audit.state === 'unverified' ? 'Judge agent unavailable: no date verified' : `Audited reading of the judge agent: ${audit.state}${audit.deadline ? ` (${audit.deadline})` : audit.estimatedDeadline ? ` (estimated ${audit.estimatedDeadline})` : ''}` };
+}
+
+const OK_ELIGIBLE = { yes: 'yes', no: 'no', unknown: 'unclear' };
+/** Registro con la forma de la lectura heredada (la que consume `verifyFinding`), armado con el compilador y los criterios YA auditados. */
+export function legacyOut(compilation, audit) {
+  const c = compilation || {}; const crit = audit?.criteria || {}; const el = c.eligibility || {};
+  const noOne = ['eligibility', 'region', 'entity_type', 'stage'].map((id) => [id, crit[id]]).find(([, x]) => x?.verdict === 'no' && x.quoteOk);
+  const elig = crit.eligibility;
+  const eligible = noOne ? 'no' : elig ? OK_ELIGIBLE[elig.verdict] : 'unclear';
+  const eligibleQuote = noOne ? noOne[1].quote : elig?.verdict === 'yes' ? elig.quote : '';
+  const tf = crit.topic_fit;
+  const judgeType = audit?.pageType?.judge || c.page_type || 'other';
+  return {
+    relevant: c.relevant !== false, kind: c.identity?.kind || '', name: c.identity?.name || '', official: c.official === true,
+    status: 'unknown', deadline: null, eligible, non_dilutive: c.non_dilutive || 'unknown', money: c.money || 'unknown',
+    amount: c.amount?.text || null, page_type: judgeType === 'forecast_notice' ? 'call' : judgeType,
+    applicants: { entity_types: el.applicant_types || [], for_profit_allowed: el.for_profit_allowed || 'unknown', countries: el.countries || [], stage: el.stage || null },
+    dates: (audit?.dates?.judge || []).map((d) => ({ label: d.role, date: d.date, quote: d.quote })),
+    scope_fit: tf ? { verdict: tf.verdict === 'yes' ? 'fits' : tf.verdict === 'no' ? 'does_not_fit' : 'unclear', reason: tf.reason, funds_quote: tf.verdict === 'yes' ? tf.quote : null, excludes_quote: tf.verdict === 'no' ? tf.quote : null, work_type: 'other' } : undefined,
+    summary: c.summary || '',
+    quotes: { ...(c.identity?.quote ? { identity: c.identity.quote } : {}), ...(eligibleQuote ? { eligible: eligibleQuote } : {}), ...(c.how_to_apply_quote ? { how_to_apply: c.how_to_apply_quote } : {}) },
+  };
+}
+
+/** Une el resultado de `verifyFinding(..., { dateOverride })` con la auditoría. El juez puede corregir fecha/estado, bajar de nivel o descartar con cita; nunca sube un caso que el resto del código no sostiene. */
+export function applyAudit(v, audit) {
+  const flags = new Set([...(v.flags || []), ...(audit.flags || []).map((f) => `judge:${f}`)]);
+  let drop = v.drop || audit.dropReason || null;
+  const reasons = [...(v.reasons || [])];
+  if (drop && !reasons.includes(drop)) reasons.unshift(drop);
+  const blockers = [...new Set([...(v.blockers || []), ...(audit.blockers || [])])];
+  const tier = drop ? 'drop' : v.tier === 'main' && audit.mainOk ? 'main' : 'verify';
+  const forecast = audit.state === 'forecast';
+  return {
+    ...v, keep: !drop, drop, tier, verdict: tier === 'drop' ? 'skip' : tier === 'main' ? 'apply' : 'watch', flags: [...flags], reasons, blockers,
+    ...(forecast ? { forecast: true, estimatedDeadline: audit.estimatedDeadline } : {}), judge: audit,
+  };
+}
+
+/** Configuración del modo juez: bandera, roles listos y aviso visible. */
+export function judgeMode(env = process.env, fleet = null) {
+  const on = String(env.ENGINE_JUDGE || '') === '1';
+  if (!on) return { on: false, ready: false, notice: null };
+  const roles = fleet?.roles || {};
+  const missing = ['compiler', 'judge'].filter((r) => !roles[r]?.ready);
+  return missing.length
+    ? { on: true, ready: false, missing, notice: `ENGINE_JUDGE=1 but the role(s) ${missing.join(', ')} are not configured: the current behaviour is used and no page is checked by the compiler/judge agents` }
+    : { on: true, ready: true, blind: String(env.ENGINE_JUDGE_BLIND || '') === '1', sameModel: roles.compiler.model === roles.judge.model && roles.compiler.url === roles.judge.url, notice: null };
+}

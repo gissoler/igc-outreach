@@ -135,7 +135,7 @@ function investorFinding(out, page, o, { today, brief, profile, quotes, flags })
     checks: v.checks, reasons: drop ? [drop, ...v.reasons.filter((r) => r !== drop)] : [], blockers, today: v.today,
   };
 }
-export function verifyFinding(out, page, objective, { today, brief, profile, extraction = null } = {}) {
+export function verifyFinding(out, page, objective, { today, brief, profile, extraction = null, dateOverride = null } = {}) {
   const o = OBJECTIVES[objective]; const text = String(page.text || ''); const flags = [];
   const quotes = {};
   for (const [k, v] of Object.entries(out?.quotes || {})) {
@@ -143,7 +143,7 @@ export function verifyFinding(out, page, objective, { today, brief, profile, ext
     if (literalIn(v, text)) quotes[k] = v.trim(); else flags.push(`fake_quote:${k}`);
   }
   if (objective === 'investment') return investorFinding(out, page, o, { today, brief, profile, quotes, flags });
-  const base = verifyOpportunity({ status: o.dated ? out?.status : 'unknown', deadline: o.dated ? out?.deadline : null, official: out?.official, eligible: out?.eligible, non_dilutive: objective === 'grant' || objective === 'sponsorship' ? out?.non_dilutive : 'unknown', kind: out?.kind, page_type: out?.page_type, scope_fit: out?.scope_fit, quotes }, page, { today, brief, profile, extraction, entity: !o.dated });
+  const base = verifyOpportunity({ status: o.dated ? out?.status : 'unknown', deadline: o.dated ? out?.deadline : null, official: out?.official, eligible: out?.eligible, non_dilutive: objective === 'grant' || objective === 'sponsorship' ? out?.non_dilutive : 'unknown', kind: out?.kind, page_type: out?.page_type, scope_fit: out?.scope_fit, quotes }, page, { today, brief, profile, extraction, entity: !o.dated, dateOverride });
   const money = String(out?.money || 'unknown').toLowerCase();
   let drop = base.drop;
   const kind = String(out?.kind || '').toLowerCase().trim().split(/[\s|(]/)[0];

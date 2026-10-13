@@ -28,6 +28,7 @@ export function normalizeCompilation(raw) {
     ...raw, page_type: low(raw.page_type),
     ...(raw.identity && typeof raw.identity === 'object' ? { identity: { ...raw.identity, kind: low(raw.identity.kind), name: str(raw.identity.name) } } : {}),
     dates: cleanDates(raw.dates),
+    ...(raw.money === undefined ? {} : { money: low(raw.money) }), ...(raw.non_dilutive === undefined ? {} : { non_dilutive: low(raw.non_dilutive) }),
     ...(raw.eligibility && typeof raw.eligibility === 'object' ? { eligibility: { ...raw.eligibility, for_profit_allowed: raw.eligibility.for_profit_allowed === undefined ? undefined : low(raw.eligibility.for_profit_allowed) } } : {}),
   };
 }

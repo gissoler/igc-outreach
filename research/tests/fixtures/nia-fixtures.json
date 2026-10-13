@@ -1,0 +1,36 @@
+{
+  "note": "Fixtures de los dos avisos previos de NIA (corrida de producción 98eccb69, 12/10/2026). Hoy de la corrida: 2026-10-12. Verdad: aviso previo (forecast); ninguno de los dos es una convocatoria abierta.",
+  "today": "2026-10-12",
+  "pages": [
+    {
+      "id": "niagads",
+      "file": "nia-niagads-7a4a9822.md",
+      "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+      "title": "The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+      "reconstructed": false,
+      "source": "Caché de Firecrawl (research/data/firecrawl-cache.sqlite, clave extract|…|7a4a9822), markdown sin imágenes",
+      "truth": "forecast",
+      "dates": {
+        "posted": "2026-09-01",
+        "application_deadline": "2026-11-01",
+        "award": "2027-07-31",
+        "project_start": "2027-07-31"
+      }
+    },
+    {
+      "id": "precision-aging",
+      "file": "nia-precision-aging-b19c89bb.md",
+      "url": "https://simpler.grants.gov/opportunity/b19c89bb-baf4-4121-a24f-28891f9b1111",
+      "title": "Novel Approaches to Advance Precision Aging and Cognitive Health",
+      "reconstructed": true,
+      "source": "El texto de esta página no está guardado en el repo. Reconstrucción: plantilla de la página real de NIAGADS (misma plantilla de simpler.grants.gov) con los valores de fecha que el modelo citó el 12/10 (result.json, trace.read.out.dates), confirmados en una lectura del 13/10, y las frases de descripción que el modelo citó o que la lectura del 13/10 devolvió. El número de convocatoria es inventado y no se usa.",
+      "truth": "forecast",
+      "dates": {
+        "posted": "2026-08-06",
+        "application_deadline": "2026-10-06",
+        "award": "2027-07-06",
+        "project_start": "2027-07-06"
+      }
+    }
+  ]
+}

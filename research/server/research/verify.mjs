@@ -70,7 +70,7 @@ function verifyEntity(out, page, { today } = {}) {
  * @param opts  {today, brief, profile, entity, codeOnly, extraction}  extraction = salida de extractedFacts() (extract.mjs): segunda lectura con citas ya verificadas
  * @returns {{keep, drop, status, deadline, deadlineQuote, official, eligible, eligibility, nonDilutive, verdict, tier, flags, quotes, daysLeft, pageType, dates, checks, reasons, today}}
  */
-export function verifyOpportunity(out, page, { today, brief, profile, entity = false, codeOnly = false, extraction = null } = {}) {
+export function verifyOpportunity(out, page, { today, brief, profile, entity = false, codeOnly = false, extraction = null, dateOverride = null } = {}) {
   if (entity) return verifyEntity(out, page, { today });
   const now = todayIso(today);
   const text = String(page?.text || '');
@@ -94,6 +94,16 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   // 2) Fechas: decide el código sobre el texto completo; lo del modelo solo se contrasta
   const claimed = ISO_RX.test(String(out?.deadline || '')) ? String(out.deadline) : null;
   let dd = deadlineDecision(text, { today: now, claimed, title: page?.title, url: page?.url });
+  // V13 · Con `dateOverride` (auditoría del juez, ver judge/audit.v13.mjs) el estado y la fecha los fija esa auditoría; el lector por
+  // patrones queda solo como alarma (`date_pattern_disagrees`) y su lectura se conserva tal cual en `dates`.
+  const patternDd = dd;
+  let patternDisagrees = false;
+  if (dateOverride) {
+    const ov = dateOverride; const st = ov.state === 'open' ? 'open' : ov.state === 'closed' ? 'closed' : ov.state === 'forecast' ? 'upcoming' : 'unknown';
+    const pat = patternDd.status === 'rolling' ? 'open' : patternDd.status;
+    patternDisagrees = pat !== st || (st === 'open' && (patternDd.deadline || null) !== (ov.deadline || null));
+    dd = { status: st, deadline: st === 'open' || st === 'closed' ? ov.deadline || null : null, quote: st === 'open' || st === 'closed' ? ov.quote || '' : '', phase: st === 'closed' ? 'deadline' : 'none', reason: ov.reason || `Audited reading of the judge agent: ${ov.state}`, flags: [], opens: null, milestones: patternDd.milestones || [], inferredYear: false };
+  }
   // 2b) Segunda lectura (extractor externo). El código solo contrasta sus citas ya verificadas como literales:
   //     sin fechas en el texto → las adopta; coinciden → lo anota; discrepan → a verificar (nunca sube a la lista principal).
   const ext = extraction && extraction.ok ? extraction : null;
@@ -108,7 +118,8 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
     if (!extConflict && ext.closedClaim && live(dd)) extConflict = 'The extractor reports that the page says applications are closed';
   }
   if (ext?.unparsed?.length && !dd.deadline && !extConflict) flags.push('date_unparsed_quote');
-  flags.push(...dd.flags);
+  flags.push(...(dateOverride ? (patternDd.flags || []).map((f) => `pattern:${f}`) : dd.flags));
+  if (patternDisagrees) flags.push('date_pattern_disagrees');
   if (claimed) {
     if (!quotes.deadline) flags.push('deadline_without_quote');
     else if (!datesIn(quotes.deadline).includes(claimed)) flags.push('deadline_not_in_quote');
@@ -240,7 +251,7 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
     keep: !drop, drop, status, deadline, deadlineQuote: deadline ? deadlineQuote : '', official, eligible, eligibility, nonDilutive, verdict, tier,
     scopeFit, flags: [...new Set(flags)], quotes, daysLeft: deadline ? daysBetween(now, deadline) : null, today: now,
     pageType: { type: pageType.type, isCall: pageType.isCall, reason: pageType.reason, applyQuote: pageType.applyQuote, ...(pageType.soft ? { soft: true } : {}) },
-    dates: { status: dd.status, phase: dd.phase, reason: dd.reason, quote: dd.quote, ...(dd.opens ? { opens: dd.opens } : {}), ...(dd.approx ? { approx: dd.approx, precision: dd.precision } : {}), claimed, milestones: dd.milestones.slice(0, 14) },
+    dates: { status: patternDd.status, phase: patternDd.phase, reason: patternDd.reason, quote: patternDd.quote, ...(patternDd.opens ? { opens: patternDd.opens } : {}), ...(patternDd.approx ? { approx: patternDd.approx, precision: patternDd.precision } : {}), claimed, milestones: patternDd.milestones.slice(0, 14) },
     checks, reasons, blockers,
   };
 }
