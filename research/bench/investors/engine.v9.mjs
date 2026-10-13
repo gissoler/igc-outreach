@@ -40,6 +40,7 @@ import { runDeepening } from './deepening.mjs';
 import { listDiscoveryQueries } from './list-discovery.v8.mjs';
 import { resolveCandidateV9 } from './resolve.v9.mjs';
 import { nameMatchesDomainV9 } from './resolve-match.v9.mjs';
+import { rankVariant } from './list-names.v9.mjs';
 
 const FIRMISH = /\b(ventures?|capital|partners|fund|vc|investments?)\b|\.vc$/i;
 const lc = v => String(v ?? '').toLowerCase();
@@ -221,9 +222,31 @@ export async function runInvestorDiscoveryV9({ caseObj, profile, condition, conf
   if (MC) {
     const base0 = { searches: config.budgets.searches, fetches: config.budgets.fetches, tokens: config.budgets.tokens_nominal }, baseMin0 = config.b2.min_searches_before_stop ?? 0;
     config = { ...config, budgets: { ...config.budgets, searches: base0.searches + MC.max_searches, fetches: base0.fetches + MC.max_fetches, tokens_nominal: base0.tokens + (MC.max_tokens ?? 0) } };
+    // Con hints_from_lists: las 2 consultas de listas (plantilla v8), páginas abiertas con la política de v8 y nombres sin LLM;
+    // el modelo los recibe y elige con su conocimiento (como un asistente que lee los resultados de su búsqueda web).
+    let hints = null;
+    if (MC.hints_from_lists) {
+      const pages = [], qs = listDiscoveryQueries(profile, 2);
+      for (const q of qs) {
+        if (totals.searches >= config.budgets.searches) break;
+        seenQueries.add(lc(q));
+        const response = await deps.search(q, { remainingSearches: config.budgets.searches - totals.searches }); totals.searches += response.searches_consumed ?? 1; totals.nominal_cost += response.nominal_cost ?? 1; recordUsage(response);
+        const perHost = new Map(); let n = 0;
+        for (const r of [...(response.results ?? [])].sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0))) {
+          const h = host(r.url); if (!h || denied(h) || n >= (MC.list_fetch_per_query ?? 6) || (perHost.get(h) ?? 0) >= 2 || seenUrls.has(canonicalInvestorUrl(r.url) ?? r.url)) continue;
+          if (totals.fetches >= config.budgets.fetches) break;
+          perHost.set(h, (perHost.get(h) ?? 0) + 1); n++;
+          const page = await fetchPage(r.url, r.text ?? null); if ((page.text ?? '').length >= 200) pages.push({ url: r.url, text: page.text });
+        }
+      }
+      const f = profile.fields ?? {}, v = x => x?.value ?? x;
+      const extra = [v(f.sector), ...(v(f.subsectors) ?? []), ...(v(f.target_markets) ?? [])].filter(Boolean);
+      hints = rankVariant(pages, 'firm_pages', { extraGeneric: extra }).slice(0, MC.max_hints ?? 300).map(x => x.name);
+      log({ event: 'list_hints', queries: qs, pages: pages.length, names: hints.length });
+    }
     let proposal;
-    try { proposal = await deps.nameCandidates({ profile }); } catch (e) { proposal = { firms: [], error: String(e.message ?? e).slice(0, 300) }; }
-    const mstats = { provider: proposal.provider ?? null, model: proposal.model ?? null, web: proposal.web ?? null, cached: proposal.cached ?? null, error: proposal.error ?? null, proposed: proposal.firms?.length ?? 0, tried: 0, accepted: 0, via_domain: 0, via_search: 0, outcomes: {}, searches: 0, fetches: 0, entities_found: 0 };
+    try { proposal = await deps.nameCandidates({ profile, hints }); } catch (e) { proposal = { firms: [], error: String(e.message ?? e).slice(0, 300) }; }
+    const mstats = { hints: hints?.length ?? null, provider: proposal.provider ?? null, model: proposal.model ?? null, web: proposal.web ?? null, cached: proposal.cached ?? null, error: proposal.error ?? null, proposed: proposal.firms?.length ?? 0, tried: 0, accepted: 0, via_domain: 0, via_search: 0, outcomes: {}, searches: 0, fetches: 0, entities_found: 0 };
     log({ event: 'model_candidates', provider: mstats.provider, model: mstats.model, web: mstats.web, cached: mstats.cached, error: mstats.error, firms: (proposal.firms ?? []).map(f => ({ name: f.name, domain: f.domain })) });
     const s0 = { searches: totals.searches, fetches: totals.fetches }, e0 = entityCount();
     const ctx = () => ({

@@ -31,8 +31,10 @@ if (conditions.some(c => c !== 'B2')) throw new Error('run-experiment.v9 solo co
 const maxRuns = Number(arg('max-runs') || Infinity), concurrency = Math.max(1, Number(arg('concurrency') || 1)), mode = arg('mode') || 'formal';
 const config = JSON.parse(readFileSync(configPath, 'utf8'));
 validateWorkspaceV9({ configPath, casesDir });
-const MC = config.b2.model_candidates;
-const candProvider = MC.provider === 'auto' ? (process.env.CANDIDATES_PROVIDER || 'fleet') : MC.provider;
+const candMode = config.b2.model_candidates.provider === 'auto' ? (process.env.CANDIDATES_PROVIDER || 'fleet') : config.b2.model_candidates.provider;
+const candProvider = candMode.replace(/_lists$/, ''), candLists = candMode.endsWith('_lists') || config.b2.model_candidates.hints_from_lists === true;
+const MC = { ...config.b2.model_candidates, hints_from_lists: candLists, prompt: candLists ? 'v2' : (config.b2.model_candidates.prompt ?? 'v1') };
+const runConfig = { ...config, b2: { ...config.b2, model_candidates: MC } };   // modo de candidatos elegido por la prueba de nombres (go-v9.sh)
 const stopFile = arg('stop-file') ? resolve(arg('stop-file')) : null;
 
 const rand = seed => { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
@@ -108,7 +110,7 @@ try {
     const runDir = resolve(outDir, 'runs', runId), resultPath = resolve(runDir, 'result.json');
     if (existsSync(resultPath)) { manifest[ordinal - 1] = { run_id: runId, status: 'reused', ordinal, result_path: resultPath }; writeManifest(); return; }
     mkdirSync(runDir, { recursive: true });
-    append({ event: 'run_start', run_id: runId, ordinal, mode, candidates_provider: MC.enabled ? candProvider : null, case_id: caseObj.case_id, condition: job.condition, seed: job.seed, capital_strategy_context: false });
+    append({ event: 'run_start', run_id: runId, ordinal, mode, candidates_provider: MC.enabled ? candMode : null, case_id: caseObj.case_id, condition: job.condition, seed: job.seed, capital_strategy_context: false });
     const live = createLiveInvestorDepsV7({ search, fetch, llm, plannerPrompt, extractorPrompt, judgePrompt, config, seed: job.seed });
     const fixedCase = fixed?.cases[caseObj.case_id] ?? null;
     // C6: la primera llamada (initial_batch) devuelve la salida congelada de v5 B2 s101 sin llamar al LLM.
@@ -116,7 +118,7 @@ try {
     const nameCandidates = MC.enabled ? createNameCandidates({ provider: candProvider, env: process.env, cache, max: MC.max_firms, web: MC.web !== false, manifest: MC.manifest ?? 'manifest.v9.json', promptVersion: MC.prompt ?? 'v1' }) : null;
     const deps = { ...tracedDeps(base, { runId }), ...(nameCandidates ? { nameCandidates } : {}) };
     try {
-      const result = await runInvestorDiscoveryV9({ caseObj, profile, condition: 'B2', config, templates, catalog, deps });
+      const result = await runInvestorDiscoveryV9({ caseObj, profile, condition: 'B2', config: runConfig, templates, catalog, deps });
       const output = { ...result, condition: job.condition, seed: job.seed, run_id: runId, replicate_label: `s${job.seed}`, fixed_initial_batch: fixedCase?.source_run_id ?? null, ablation: null, capital_strategy_context: false, apollo: { calls: 0, credits_estimated: 0 } };
       writeFileSync(resultPath, `${JSON.stringify(output, null, 2)}\n`);
       manifest[ordinal - 1] = { run_id: runId, status: 'valid', ordinal, stop_reason: output.stop_reason, result_path: resultPath };

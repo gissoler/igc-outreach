@@ -1,7 +1,9 @@
 // V9: candidatos por conocimiento del modelo ("como Claude o Gemini"). Un modelo recibe el brief y propone hasta N fondos con
 // nombre y dominio oficial. Son PISTAS: cada uno entra solo si su sitio oficial pasa el extractor con cita literal (regla sin cambios).
 // Proveedores: fleet (el LLM propio del motor, gpt-oss), anthropic (ANTHROPIC_API_KEY, con búsqueda web si la API la acepta) y
-// gemini (GEMINI_API_KEY, con Google Search). Resultado en caché: las réplicas reciben la misma lista. Sin nombres de firma en el código.
+// gemini (GEMINI_API_KEY, con Google Search). Con el prompt candidates/v2 el modelo recibe además los nombres que aparecen en las
+// páginas de listas que devolvió la búsqueda (hints) y elige con su conocimiento los que encajan, como hace un asistente con búsqueda web.
+// Resultado en caché: las réplicas reciben la misma lista. Sin nombres de firma en el código.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -69,8 +71,9 @@ async function callGemini({ env, system, user, model, web, fetcher }) {
 export function createNameCandidates({ provider = 'fleet', env = process.env, cache = null, max = 40, web = true, models = null, fetcher = fetch, manifest = 'manifest.v9.json', promptVersion = 'v1' } = {}) {
   const prompt = loadInvestorPrompt('candidates', promptVersion, { manifest });
   const list = models ?? (env.CANDIDATES_MODEL ? [env.CANDIDATES_MODEL] : DEFAULT_MODELS[provider]);
-  return async function nameCandidates({ profile }) {
-    const brief = briefFor(profile), system = prompt.system.replaceAll('{{max}}', String(max)), user = prompt.user.replace('{{brief}}', JSON.stringify(brief, null, 1));
+  return async function nameCandidates({ profile, hints = null }) {
+    const brief = briefFor(profile), system = prompt.system.replaceAll('{{max}}', String(max));
+    const user = prompt.user.replace('{{brief}}', JSON.stringify(brief, null, 1)).replace('{{hints}}', hints?.length ? hints.join('; ') : '(none)');
     const key = sha(['candidates', prompt.sha256, provider, list.join(','), web, max, user].join('|'));
     const hit = cache?.get('llm', key); if (hit) return { ...hit.value, cached: true, tokens: 0 };
     let last = null;

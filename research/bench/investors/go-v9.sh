@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # V9: candidatos del modelo ("como Claude o Gemini"). Un comando, desde cualquier sitio:
 #   bash ~/Documents/PROJECTS/AGENT/research/bench/investors/go-v9.sh
-# 1) tests y huellas; 2) claves (sin mostrarlas; ANTHROPIC_API_KEY y GEMINI_API_KEY son opcionales); 3) Docker, Crawl4AI y LLM;
-# 4) commit; 5) prueba de nombres SIN Exa: cada modelo disponible propone 40 fondos por caso y se mide si el oro está;
+# 1) tests y huellas; 2) claves (sin mostrarlas); 3) Docker, Crawl4AI y LLM;
+# 4) commit; 5) prueba de nombres SIN Exa: tu LLM (gpt-oss en Voltage Park) propone 40 fondos por caso, solo con su conocimiento y
+#    leyendo los nombres de las páginas de listas de Exa (de la caché v8), y se mide si el oro está;
 # 6) si el mejor nombra el oro en ≥ 4 de 6 casos: simulacro y corrida formal en segundo plano (tope Exa US$ 5 sobre todo v9).
 # Cualquier fallo antes de gastar: se para sin gastar.
 set -uo pipefail
@@ -21,8 +22,8 @@ else node $INV/freeze.mjs --config "$CFG" | sed 's/^/  /'; fi
 echo "2/6 claves (sin mostrarlas)"
 [[ -f .env ]] || fail "no existe research/.env"
 for k in EXA_API_KEY ENGINE_LLM_URL ENGINE_LLM_MODEL; do grep -qE "^$k=.+" .env || fail "falta $k en research/.env"; done
-PROV="fleet"; for k in ANTHROPIC_API_KEY GEMINI_API_KEY; do if grep -qE "^$k=.{8,}" .env; then ok "$k presente"; PROV="$PROV,$( [[ $k == ANTHROPIC_API_KEY ]] && echo anthropic || echo gemini )"; else echo "  --   $k no está (opcional: con ella se prueba también ese modelo)"; fi; done
-ok "modelos que se van a probar: $PROV"
+PROV="fleet,fleet_lists"
+ok "se prueba tu LLM ($(grep -E '^ENGINE_LLM_MODEL=' .env | cut -d= -f2-)) en dos modos: solo con su conocimiento (fleet) y leyendo los nombres de las páginas de listas de Exa (fleet_lists)"
 
 echo "3/6 Docker, Crawl4AI y LLM propio"
 docker info >/dev/null 2>&1 || { open -a Docker 2>/dev/null; echo "  esperando a Docker…"; for i in $(seq 1 30); do sleep 4; docker info >/dev/null 2>&1 && break; done; }
@@ -33,18 +34,19 @@ node --env-file=.env --env-file-if-exists=.env.crawl4ai $INV/preflight-reader.mj
 echo "4/6 commit (sin atribuciones)"
 git -C .. add research/bench/investors/{engine.v9.mjs,name-candidates.v9.mjs,workspace.v9.mjs,run-experiment.v9.mjs,run-v9.sh,go-v9.sh,go-v9-diagnostico.sh,freeze.mjs,resolve.v9.mjs,resolve-match.v9.mjs} \
   research/bench/investors/config/v9-2026-10-13.json research/bench/investors/analysis/v9 research/tests/agent/investors.v9.test.mjs \
-  prompts/investor/candidates prompts/investor/manifest.v9.json docs/handoff/{V9-PREREGISTRO.md,V9-CAMBIOS.md} docs/benchmark/investors/V9-DIAGNOSTICO.md 2>/dev/null
+  prompts/investor/candidates prompts/investor/manifest.v9.json docs/handoff/{V9-PREREGISTRO.md,V9-CAMBIOS.md} docs/benchmark/investors/V9-DIAGNOSTICO.md docs/benchmark/investors/V9-DIAGNOSTICO-COMPLETO.md 2>/dev/null
 git -C .. diff --cached --quiet || git -C .. commit -q -m "V9: brazo de candidatos del modelo (engine.v9), prueba de nombres y go-v9.sh" && ok "commit $(git -C .. log -1 --format=%h)" || fail "git commit"
 
-echo "5/6 prueba de nombres (sin Exa; puede tardar unos minutos con búsqueda web)"
+echo "5/6 prueba de nombres con tu LLM (sin Exa; unos minutos)"
 node --no-warnings --env-file=.env $INV/analysis/v9/names_check.mjs --providers "$PROV" --md ../docs/benchmark/investors/V9-NOMBRES.md 2>&1 | grep -v '^{' | sed 's/^/   /'; rc=${PIPESTATUS[0]}
 CHOSEN=$(cat $NOUT/chosen_provider.txt 2>/dev/null | tr -d '[:space:]')
 sed -n '/^| Proveedor/,/^$/p' ../docs/benchmark/investors/V9-NOMBRES.md | sed 's/^/   /'; tail -1 ../docs/benchmark/investors/V9-NOMBRES.md | sed 's/^/   /'
 git -C .. add docs/benchmark/investors/V9-NOMBRES.md && git -C .. commit -q -m "V9: prueba de nombres" 2>/dev/null
+if [[ $rc == 6 ]]; then echo; echo "Tu LLM no respondió en ningún caso (ver errores arriba): no es un veredicto. Revisa ENGINE_LLM_URL / el servidor de Voltage Park y vuelve a correr."; exit 6; fi
 if [[ $rc != 0 ]]; then
-  echo; echo "NO-GO de la prueba de nombres: ningún modelo nombra el oro en 4 de 6 casos. No se gastó nada en Exa."
-  echo "Para probar con Claude o Gemini, añade a research/.env  ANTHROPIC_API_KEY=...  o  GEMINI_API_KEY=...  y vuelve a correr este comando"
-  echo "(las listas ya pedidas quedan en caché; solo se piden las nuevas)."; exit 5
+  echo; echo "VEREDICTO: NO-GO. El cuello de botella es el LLM. Con las páginas de Exa el nombre del oro le llega a tu LLM en 5 de 6 casos"
+  echo "(columna 'Oro entre los nombres de las listas'), y aun así no lo pone entre sus 40 en 4 de 6. Exa, la resolución por nombre (12/12)"
+  echo "y la verificación (10/12) no son el límite. Ver docs/benchmark/investors/V9-NOMBRES.md. No se gastó nada en Exa."; exit 5
 fi
 
 echo "6/6 corrida formal (18 corridas, candidatos: $CHOSEN, tope Exa US\$ ${CAP_USD:-5} sobre todo v9)"

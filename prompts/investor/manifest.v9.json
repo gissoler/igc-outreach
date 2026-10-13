@@ -106,6 +106,15 @@
         "candidates/v1/user.md"
       ],
       "sha256": "14e52fce82661105dcfa4c83880aca3aadaaf437f0941ff560561a67a3aee15b"
+    },
+    {
+      "id": "candidates",
+      "version": "v2",
+      "files": [
+        "candidates/v2/system.md",
+        "candidates/v2/user.md"
+      ],
+      "sha256": "6df887023c4278f136458b5b95bc1d986d80e284363366b17702fe62fa27d260"
     }
   ]
 }

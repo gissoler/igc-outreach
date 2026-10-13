@@ -193,7 +193,7 @@ test('V9-13 candidatos del modelo: dominio propuesto, respaldo por búsqueda, in
 });
 
 test('V9-14 no-fuga del brazo v9: ni nombres ni dominios del oro en engine.v9, name-candidates.v9, prompt candidates, runner, workspace ni config v9', () => {
-  const files = ['engine.v9.mjs', 'name-candidates.v9.mjs', 'run-experiment.v9.mjs', 'workspace.v9.mjs', 'config/v9-2026-10-13.json', '../../../prompts/investor/candidates/v1/system.md', '../../../prompts/investor/candidates/v1/user.md'].map(f => [f, readFileSync(resolve(inv, f), 'utf8').toLowerCase()]);
+  const files = ['engine.v9.mjs', 'name-candidates.v9.mjs', 'run-experiment.v9.mjs', 'workspace.v9.mjs', 'config/v9-2026-10-13.json', '../../../prompts/investor/candidates/v1/system.md', '../../../prompts/investor/candidates/v1/user.md', '../../../prompts/investor/candidates/v2/system.md', '../../../prompts/investor/candidates/v2/user.md'].map(f => [f, readFileSync(resolve(inv, f), 'utf8').toLowerCase()]);
   for (const c of ALL) {
     const k = loadCase(c), anchor = JSON.parse(readFileSync(resolve(inv, `cases/inv-case-syn-${c}.json`), 'utf8')).anchors[0];
     const needles = [...GOLD_ALIASES[c], GOLD_QUERY_NAME[c], anchor.canonical_name.replace(/\s*\(.*$/, ''), k.gold.domain, k.gold.domain.split('.')[0]].map(s => s.toLowerCase()).filter(s => s.length >= 4);
@@ -229,4 +229,17 @@ test('V9-16 prueba de nombres: puntuación por nombre o dominio y elección del 
   assert.deepEqual(choose(s), { provider: 'anthropic', go: true, A_gold: 5, B_gold: 4 });
   assert.equal(choose({ fleet: { A_gold: 3, B_gold: 6, gain2_named: 1 } }).go, false);
   assert.equal(choose({ fleet: { A_gold: 4, B_gold: 1, gain2_named: 1 }, anthropic: { A_gold: 4, B_gold: 1, gain2_named: 1 } }).provider, 'fleet', 'empate: el propio, que es gratis');
+});
+
+test('V9-17 modo con listas: el motor busca las 2 listas, abre sus páginas y pasa los nombres al modelo, que elige; la regla de cita no cambia', async () => {
+  const { listDiscoveryQueries } = await import('../../bench/investors/list-discovery.v8.mjs');
+  const lq = listDiscoveryQueries(fintech(), 2), L = 'https://lists.test/top';
+  const pages = { [L]: { title: 'Top', text: `| Investor | Deals |\n| --- | --- |\n| Zeta Ventures VC Fund | 4 |\n| Eta Capital VC Fund | 3 |\n${filler('Directory')}` }, 'https://zeta.test/': firmPage('Zeta Ventures', 'zeta.test') };
+  let seenHints = null;
+  const w = world({ pages, searchFn: q => q === lq[0] ? [L] : [] });
+  w.deps.nameCandidates = async ({ hints }) => { seenHints = hints; return { provider: 'fleet', model: 'm', web: false, cached: false, firms: [{ name: 'Zeta Ventures', domain: 'zeta.test' }], tokens: 1 }; };
+  const cfg = engineCfg(cfg9(), { b2: { ...cfg9().b2, model_candidates: { ...cfg9().b2.model_candidates, hints_from_lists: true } } });
+  const r = await runInvestorDiscoveryV9({ caseObj: anchorCase, profile: fintech(), condition: 'B2', config: cfg, templates, catalog, deps: w.deps });
+  assert.deepEqual(w.calls.search.slice(0, 2), lq); assert.ok(seenHints.includes('Zeta Ventures') && seenHints.includes('Eta Capital'), JSON.stringify(seenHints));
+  assert.deepEqual(r.entities.map(e => e.official_domain), ['zeta.test']); assert.equal(r.v2_stats.model_phase.hints, seenHints.length);
 });
