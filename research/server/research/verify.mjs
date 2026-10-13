@@ -99,10 +99,11 @@ export function verifyOpportunity(out, page, { today, brief, profile, entity = f
   const patternDd = dd;
   let patternDisagrees = false;
   if (dateOverride) {
-    const ov = dateOverride; const st = ov.state === 'open' ? 'open' : ov.state === 'closed' ? 'closed' : ov.state === 'forecast' ? 'upcoming' : 'unknown';
+    const ov = dateOverride; const st = ov.state === 'open' ? 'open' : ov.state === 'closed' ? 'closed' : ov.state === 'forecast' || ov.state === 'upcoming' ? 'upcoming' : 'unknown';
+    const withDate = ['open', 'closed', 'upcoming'].includes(ov.state);   // el aviso previo (forecast) no tiene plazo firme
     const pat = patternDd.status === 'rolling' ? 'open' : patternDd.status;
-    patternDisagrees = pat !== st || (st === 'open' && (patternDd.deadline || null) !== (ov.deadline || null));
-    dd = { status: st, deadline: st === 'open' || st === 'closed' ? ov.deadline || null : null, quote: st === 'open' || st === 'closed' ? ov.quote || '' : '', phase: st === 'closed' ? 'deadline' : 'none', reason: ov.reason || `Audited reading of the judge agent: ${ov.state}`, flags: [], opens: null, milestones: patternDd.milestones || [], inferredYear: false };
+    patternDisagrees = pat !== st || ((st === 'open' || st === 'upcoming') && withDate && (patternDd.deadline || null) !== (ov.deadline || null));
+    dd = { status: st, deadline: withDate ? ov.deadline || null : null, quote: withDate ? ov.quote || '' : '', phase: st === 'closed' ? 'deadline' : 'none', reason: ov.reason || `Audited reading of the judge agent: ${ov.state}`, flags: [], opens: ov.opensOn || null, milestones: patternDd.milestones || [], inferredYear: false };
   }
   // 2b) Segunda lectura (extractor externo). El código solo contrasta sus citas ya verificadas como literales:
   //     sin fechas en el texto → las adopta; coinciden → lo anota; discrepan → a verificar (nunca sube a la lista principal).

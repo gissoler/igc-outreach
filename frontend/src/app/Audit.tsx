@@ -71,7 +71,7 @@ export function TraceBody({ t, interpretation }: { t: ResultTrace; interpretatio
   </ol>;
 }
 
-const STATE_LABEL: Record<string, string> = { open: 'Open', closed: 'Closed', forecast: 'Forecast notice (not open yet)', unknown: 'No deadline verified', unverified: 'Judge unavailable', 'n/a': 'No deadline for this type' };
+const STATE_LABEL: Record<string, string> = { open: 'Open', upcoming: 'Not open yet', closed: 'Closed', forecast: 'Forecast notice (not open yet)', unknown: 'No deadline verified', unverified: 'Judge unavailable', 'n/a': 'No deadline for this type' };
 const secs = (ms?: number) => (ms ? `${(ms / 1000).toFixed(1)} s` : '—');
 /** V13 · lo que decidieron el agente de compilación y el agente juez para una página, y lo que auditó el código. */
 export function JudgeStep({ j }: { j: JudgeTrace }) {

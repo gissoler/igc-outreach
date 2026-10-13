@@ -204,3 +204,18 @@ test('V13-36 compilation without "official" is invalid (it would silently drop e
   const c = compilation(pageOf('niagads')); delete c.official;
   assert.equal(validateCompilation(c).ok, false);
 });
+
+test('V13-37 a firm deadline but a future opening date: not open yet, to verify, deadline and days kept', () => {
+  const text = `${OPEN_TEXT}\nApplications open on January 5, 2027.\n`;
+  const page = { ...openPage, text };
+  const j = openJ({ dates: [D('opens', '2027-01-05', 'Applications open on January 5, 2027'), D('application_deadline', '2027-03-15', 'Applications are due March 15, 2027 at 5 pm ET')] });
+  const c = openC({ dates: j.dates });
+  const a = auditPage({ page, today: TODAY, compilation: c, judgment: j });
+  assert.equal(a.state, 'upcoming'); assert.equal(a.deadline, '2027-03-15'); assert.equal(a.opensOn, '2027-01-05'); assert.equal(a.mainOk, false);
+  const v = applyAudit(verifyFinding(legacyOut(c, a), page, 'grant', { today: TODAY, brief: BRIEF, dateOverride: dateOverrideOf(a) }), a);
+  assert.equal(v.status, 'upcoming'); assert.equal(v.deadline, '2027-03-15'); assert.equal(v.tier, 'verify'); assert.ok(v.blockers.some((b) => /Not open yet/.test(b)));
+  // apertura ya pasada: abierta
+  const past = openJ({ dates: [D('opens', '2026-09-01', 'Applications open on September 1, 2026'), D('application_deadline', '2027-03-15', 'Applications are due March 15, 2027 at 5 pm ET')] });
+  const page2 = { ...openPage, text: `${OPEN_TEXT}\nApplications open on September 1, 2026.\n` };
+  assert.equal(auditPage({ page: page2, today: TODAY, compilation: openC({ dates: past.dates }), judgment: past }).state, 'open');
+});

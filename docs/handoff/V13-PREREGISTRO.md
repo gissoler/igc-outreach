@@ -56,3 +56,13 @@ Regla de promoción de C: C se recomienda como camino por defecto solo si (error
 ## Pregunta abierta para Gisel (no se implementa hasta responder)
 
 Brief: ¿qué falta de la fecha? Propuesta: ventana de cierre aceptable `deadlineFrom`/`deadlineTo` además de `minDays`, y qué pasa con convocatorias `forecast` (opciones: ocultar, mostrar como «a verificar», o mostrar en una sección aparte). V13 no cambia `intake` ni `brief`; `forecast` se trata como «a verificar» (no `main`) hasta que se decida.
+
+## Adenda (13/10/2026, antes de correr T7)
+
+Al armar el corpus de T7 con los datos del repo aparecieron dos hechos que el pre-registro no recogía. Se registran aquí antes de ejecutar nada de T7.
+
+1. Clases de verdad: `closed`, `open`, `upcoming` (plazo firme, la convocatoria abre después de hoy; el auditor la devuelve como `upcoming`, no `open`), `forecast`, `not_a_call`, `unknown`. Reglas de verdad: las del gold del banco (`eval/bench/mentiva-gold.json`) y las de `eval/regression/mentiva-grants.mjs` (biohub informe y uw evento = `not_a_call`; addf = `closed`; startupgrantsindia = `closed` por plazo 2026-09-15 < 2026-09-30); las dos NIA = `forecast`.
+2. Corpus real: 16 páginas = closed 8, upcoming 2, forecast 2, not_a_call 3, unknown 1, open 0. No hay ninguna página con verdad «abierta» en el repo: el error «abierta como cerrada» no se puede medir y se informará como «no medido», no como 0.
+3. Se añade la columna «otras abierta mal» (abierta predicha donde la verdad es upcoming, not_a_call o unknown) y «citas inválidas que sostienen la decisión». Los «errores graves» siguen siendo los tres pre-registrados.
+4. Por la clase `upcoming`, el auditor ganó el estado `upcoming` (fecha de apertura verificada posterior a hoy): sin él habría clasificado como abiertas las dos páginas de esa clase, que el código heredado trata como «a verificar».
+5. Variante A = `verifyOpportunity` en modo solo-código con la fecha de hoy de cada página (camino heredado completo, incluido el tipo de página). Variante B se corre una vez por modelo (rol compiler y rol judge).

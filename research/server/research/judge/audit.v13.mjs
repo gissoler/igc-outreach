@@ -55,6 +55,9 @@ export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, 
   const future = app.filter((d) => d.date >= today);
   if (!future.length) { const last = [...app].sort((a, b) => b.date.localeCompare(a.date))[0]; return { state: 'closed', deadline: last.date, quote: last.quote, daysLeft: null, estimatedDeadline: null }; }
   const next = first(future);
+  // Aún no abre: el juez dio una fecha de apertura verificada posterior a hoy. Hay plazo firme, pero no se puede postular todavía.
+  const opening = judgeDates.filter((d) => d.role === 'opens' && d.verified && !d.estimated && d.date > today).sort((a, b) => a.date.localeCompare(b.date))[0];
+  if (opening) return { state: 'upcoming', deadline: next.date, quote: next.quote, daysLeft: daysBetween(today, next.date), estimatedDeadline: null, opensOn: opening.date };
   return { state: 'open', deadline: next.date, quote: next.quote, daysLeft: daysBetween(today, next.date), estimatedDeadline: null };
 }
 
@@ -102,6 +105,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
     if (st.state === 'forecast') blockers.push(`Forecast notice: applications are not open yet${st.estimatedDeadline ? ` (estimated deadline ${st.estimatedDeadline})` : ''}`);
     else if (st.state === 'unknown') blockers.push('No application deadline verified on the page');
     else if (st.state === 'closed') blockers.push('All application deadlines on the page are before today');
+    else if (st.state === 'upcoming') blockers.push(`Not open yet (opens ${st.opensOn})`);
     if (!CALL_TYPES.has(judgment.page_type)) blockers.push(`Judge reads the page as ${judgment.page_type}, not as a call`);
   }
   // Un plazo que el juez dio sin cita válida podría ser el que importa: no se ignora en silencio.
@@ -109,7 +113,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   blockers.push(...disagreements);
   const mainOk = !dropReason && blockers.length === 0 && (!dated || st.state === 'open');
   return {
-    ...base, state: st.state, deadline: st.deadline, deadlineQuote: st.quote, daysLeft: st.daysLeft, estimatedDeadline: st.estimatedDeadline,
+    ...base, state: st.state, deadline: st.deadline, deadlineQuote: st.quote, daysLeft: st.daysLeft, estimatedDeadline: st.estimatedDeadline, opensOn: st.opensOn || null,
     pageType: { judge: judgment.page_type, compiler: compilation?.page_type || null, agree: !compilation ? false : pageClass(judgment.page_type, dated) === pageClass(compilation.page_type, dated) },
     dates: { judge: jDates, compiler: cDates }, criteria, flags: [...new Set(flags)], disagreements, blockers, dropReason, mainOk,
   };
@@ -119,7 +123,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
 export function dateOverrideOf(audit) {
   if (!audit || audit.state === 'n/a') return null;
   const state = audit.state === 'unverified' ? 'unknown' : audit.state;
-  return { state, deadline: audit.deadline, quote: audit.deadlineQuote, reason: audit.state === 'unverified' ? 'Judge agent unavailable: no date verified' : `Audited reading of the judge agent: ${audit.state}${audit.deadline ? ` (${audit.deadline})` : audit.estimatedDeadline ? ` (estimated ${audit.estimatedDeadline})` : ''}` };
+  return { state, deadline: audit.deadline, quote: audit.deadlineQuote, opensOn: audit.opensOn || null, reason: audit.state === 'unverified' ? 'Judge agent unavailable: no date verified' : `Audited reading of the judge agent: ${audit.state}${audit.deadline ? ` (${audit.deadline})` : audit.estimatedDeadline ? ` (estimated ${audit.estimatedDeadline})` : ''}` };
 }
 
 const OK_ELIGIBLE = { yes: 'yes', no: 'no', unknown: 'unclear' };
@@ -178,7 +182,7 @@ export function slimJudge(jr) {
   return {
     version: a.version, blind: Boolean(jr.blind), judgeSawClaims: Boolean(jr.judgeSawClaims), models: jr.models, failure: jr.failure,
     calls: { compiler: 1, judge: 1 }, ms: jr.ms,
-    state: a.state, deadline: a.deadline || null, estimatedDeadline: a.estimatedDeadline || null, daysLeft: a.daysLeft ?? null, mainOk: Boolean(a.mainOk), dropReason: a.dropReason || null,
+    state: a.state, deadline: a.deadline || null, estimatedDeadline: a.estimatedDeadline || null, opensOn: a.opensOn || null, daysLeft: a.daysLeft ?? null, mainOk: Boolean(a.mainOk), dropReason: a.dropReason || null,
     pageType: a.pageType || null, dates: { compiler: dates(a.dates?.compiler), judge: dates(a.dates?.judge) },
     criteria: Object.fromEntries(Object.entries(a.criteria || {}).map(([k, c]) => [k, { verdict: c.verdict, claimed: c.claimed, quote: clip(c.quote), reason: clip(c.reason, 200), compiler: c.compiler }])),
     disagreements: a.disagreements || [], flags: a.flags || [], blockers: (a.blockers || []).slice(0, 8),
