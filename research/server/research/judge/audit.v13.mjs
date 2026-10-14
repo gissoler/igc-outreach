@@ -29,9 +29,9 @@ const appDatesOf = (dates) => dates.filter((d) => d.role === 'application_deadli
 const uniqSorted = (xs) => [...new Set(xs)].sort();
 
 /** Veredicto por criterio con la cita auditada: un sí/no sin cita literal en la página queda en «unknown» y se anota. */
-function auditCriteria(judgment, objective, pageText, flags) {
+function auditCriteria(judgment, objective, pageText, flags, criteriaIds = null) {
   const out = {};
-  for (const id of criteriaFor(objective)) {
+  for (const id of criteriaIds || criteriaFor(objective)) {
     const c = judgment?.criteria?.[id];
     if (!c) { out[id] = { verdict: 'unknown', claimed: null, quote: '', quoteOk: false, reason: 'The judge did not answer this criterion', compiler: 'not_shown', missing: true }; flags.push(`criterion_missing:${id}`); continue; }
     const quote = typeof c.quote === 'string' ? c.quote.trim() : '';
@@ -62,7 +62,7 @@ export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, 
 }
 
 /** Auditoría de una página. `compilation`/`judgment` son salidas ya validadas por contracts.v13 o null; `failure` explica por qué falta una. */
-export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null } = {}) {
+export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null, criteriaIds = null } = {}) {
   const now = todayIso(today); const text = String(page?.text || ''); const dated = hasDeadline(objective);
   const flags = []; const disagreements = []; const blockers = [];
   const base = { version: JUDGE_AUDIT_VERSION, objective, today: now, blind: Boolean(blind), compilerOk: Boolean(compilation), judgeOk: Boolean(judgment), compilerFailure: failure.compiler || null, judgeFailure: failure.judge || null };
@@ -74,7 +74,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const cDates = auditDates(compilation?.dates, text);
   for (const d of jDates) if (!d.verified && d.why !== 'no_date') flags.push(`date_${d.why}:${d.role}`);
   const st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated });
-  const criteria = auditCriteria(judgment, objective, text, flags);
+  const criteria = auditCriteria(judgment, objective, text, flags, criteriaIds);
 
   // Desacuerdos: nunca suben a la lista principal.
   if (!compilation) disagreements.push(`Compiler unavailable (${failure.compiler || 'no answer'})`);
@@ -94,7 +94,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   }
 
   // Razones de descarte: solo un «no» con cita literal en la página.
-  const NO_TO_DROP = { eligibility: 'not_eligible', region: 'not_eligible', entity_type: 'not_eligible', stage: 'not_eligible', topic_fit: 'scope_mismatch' };
+  const NO_TO_DROP = { eligibility: 'not_eligible', region: 'not_eligible', entity_type: 'not_eligible', stage: 'not_eligible', topic_fit: 'scope_mismatch', non_dilutive: 'equity_or_loan', official: 'not_official', recent_activity: 'scope_mismatch', contact_route: 'scope_mismatch' };
   const noWithQuote = Object.entries(criteria).find(([id, c]) => id !== 'deadline' && c.verdict === 'no' && c.quoteOk);
   const win = window && (window.from || window.to) ? { from: window.from || null, to: window.to || null } : null;
   const outsideWindow = Boolean(win && dated && (st.state === 'open' || st.state === 'upcoming') && st.deadline && ((win.from && st.deadline < win.from) || (win.to && st.deadline > win.to)));
@@ -102,7 +102,8 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const dropReason = st.state === 'closed' ? 'closed' : outsideWindow ? 'outside_window' : noWithQuote ? NO_TO_DROP[noWithQuote[0]] : null;
   for (const [id, c] of Object.entries(criteria)) if (id !== 'deadline' && c.claimed === 'no' && c.verdict === 'unknown') blockers.push(`The judge says "no" for ${id} without a quote from the page`);
 
-  const requiredYes = dated ? ['eligibility', 'topic_fit'] : ['topic_fit'];
+  const extraRequired = criteriaIds ? criteriaIds.filter((id) => ['non_dilutive', 'official', 'recent_activity', 'contact_route'].includes(id)) : [];
+  const requiredYes = [...(dated ? ['eligibility', 'topic_fit'] : ['topic_fit']), ...extraRequired];
   for (const id of requiredYes) if (criteria[id]?.verdict !== 'yes') blockers.push(`${id === 'topic_fit' ? 'Topic fit' : 'Eligibility'} not confirmed by the judge with a quote from the page`);
   if (dated) {
     if (st.state === 'forecast') blockers.push(`Forecast notice: applications are not open yet${st.estimatedDeadline ? ` (estimated deadline ${st.estimatedDeadline})` : ''}`);
