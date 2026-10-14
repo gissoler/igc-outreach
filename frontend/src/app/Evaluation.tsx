@@ -1,4 +1,4 @@
-import { Activity, AlertTriangle, ArrowRight, ArrowUpRight, BarChart3, Bot, CheckCircle2, ChevronRight, CircleDashed, CircleSlash, Clock, Coins, Eye, Play, Route, SlidersHorizontal, Target, TrendingUp, Users, XCircle } from 'lucide-react';
+import { Activity, AlertTriangle, ArrowRight, ArrowUpRight, BarChart3, Bot, CheckCircle2, ChevronRight, CircleDashed, CircleSlash, Clock, Coins, Eye, MessageSquare, Play, Route, SlidersHorizontal, Target, TrendingUp, Users, XCircle } from 'lucide-react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { NetworkGraphData } from '../accountApi';
 import type { Evidence, History, Job } from '../researchApi';
@@ -14,6 +14,7 @@ import { ContactsTable, HowWeGotHere, ResultsIntro } from './Contacts';
 import { DemoRibbon, Drawer, EmptyState, Info, LinkBadge, Meter } from './ui';
 import { advisorApi } from '../analysisApi';
 import { RunAuditPanel } from './Audit';
+import { RunChat } from './RunChat';
 
 export function useMedia(q: string) {
   const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(q).matches);
@@ -329,6 +330,7 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
   /* Changing tab starts at the tab bar, never mid-page (feedback 28/09: the page stayed scrolled and hid the header). */
   useEffect(() => { window.scrollTo({ top: 0 }); }, [tab]);
   const [metric, setMetric] = useState<MetricKey | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
   const [evidence, setEvidence] = useState<{ title: string; list: Evidence[] } | null>(null);
   const [inspect, setInspect] = useState<{ edge: GEdge | null; node: GNode | null } | null>(null);
   const lead = job.leads.find((l) => l.id === selectedLeadId) || null;
@@ -357,6 +359,7 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
         <div className="pl-title"><h1>{tab === 'contactos' && job.leads.length ? (grantsOnly ? 'Grant matches' : 'Who to contact') : tab === 'resumen' && job.leads.length ? 'Analytics' : tab === 'fuentes' && job.leads.length ? 'Sources' : (job.brief.venture || job.brief.company)}</h1><span className="pl-count">{tab === 'contactos' ? `${s.buckets.top + s.buckets.radar} ${grantsOnly ? 'in pipeline' : 'shortlisted'}` : `${s.total} ${grantsOnly ? 'opportunities' : 'candidates'}`}</span><span className={`pl-chip ${statusChip[0]}`}>{statusChip[1]}</span></div>
         <div className="pl-actions">
           {job.leads.length > 0 && <div className="pl-seg" role="tablist" aria-label="Evaluation sections">{tabs.map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{k === 'contactos' ? 'List' : l}</button>)}</div>}
+          {!demo && job.leads.length > 0 && <button className="pl-btn" onClick={() => setChatOpen(true)}><MessageSquare size={14} /> Ask</button>}
           {onOpenRun && <button className="pl-btn" onClick={onOpenRun}><Activity size={14} /> Run</button>}
           {onOpenAdvisor && job.leads.length > 0 && <button className="pl-btn" onClick={onOpenAdvisor} title={advisorPill?.title}><Bot size={14} /> Advisor{advisorPill && <span className={`pl-chip ${advisorPill.tone} ld-pill`}>{advisorPill.live && <span className="sh-live" />}{advisorPill.label}</span>}</button>}
           {onNewEvaluation && <button className="pl-btn dark" onClick={onNewEvaluation} disabled={running}><Play size={14} /> New evaluation</button>}
@@ -372,6 +375,7 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
       {tab === 'fuentes' && <SourcesTab job={job} s={s} apify={apify} jev={jev} health={health} onMetric={setMetric} />}
     </>}
     {lead && <aside className="sheet" aria-label="Candidate detail">{panel}</aside>}
+    {chatOpen && <RunChat job={job} open={chatOpen} onClose={() => setChatOpen(false)} onSelectLead={(id) => { setChatOpen(false); select(id); }} />}
     {metric && <Drawer open onClose={() => setMetric(null)} title={METRIC_TITLE[metric]} width={metric === 'sources' || metric === 'time' ? 900 : 600} tone={demo ? 'demo' : undefined}><MetricBody k={metric} job={job} s={s} apify={apify} jev={jev} health={health} onSelectLead={(id) => { setMetric(null); select(id); }} /></Drawer>}
     {evidence && <EvidenceDrawer open onClose={() => setEvidence(null)} title={evidence.title} evidence={evidence.list} demo={demo} />}
     {inspect && <RelationshipDrawer edge={inspect.edge} node={inspect.node} graph={graph} job={job} onClose={() => setInspect(null)} onEvidence={(title, list) => setEvidence({ title, list })} onSelectLead={(id) => select(id)} />}

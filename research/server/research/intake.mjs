@@ -321,11 +321,23 @@ export function nextQuestion(s) {
 }
 export const isPlanQuestion = inPlan;
 /** Closing message when nothing is left to ask: either the plan is complete, or what is still missing and why. */
+/* Por qué cada dato cambia la búsqueda: se dice UNA vez, con UNA pregunta (antes: lista genérica «To build your plan I still need: …»). */
+const WHY_IT_MATTERS = {
+  'funding.amount_usd': 'it filters out calls and funds whose size does not fit',
+  'funding.round': 'investors are matched by the round they invest in',
+  'company.traction': 'investors and the drafts lean on it',
+  'funding.use_of_funds': 'it decides which programs fund this kind of work',
+  'company.entity_type': 'many calls accept only one type of applicant',
+  'company.state': 'state and regional programs fund only local applicants',
+  'company.country': 'most calls fund only applicants from their country',
+  'product.differentiation': 'partners screen on it',
+};
 export function closingLine(s) {
   const missing = missingRequired(s);
   if (!missing.length) return 'Your plan is complete. Press “Review and run” to start the search.';
-  const labels = missing.map((p) => FIELD[p]?.label.toLowerCase()).filter(Boolean);
-  return `To build your plan I still need: ${labels.join(', ')}. Tell me here when you have ${labels.length > 1 ? 'them' : 'it'} — even a rough estimate works.`;
+  const p = missing[0]; const f = FIELD[p] || {};
+  const ask = String(f.ask || `What is your ${String(f.label || p).toLowerCase()}?`).trim();
+  return `${ask} It changes the search: ${WHY_IT_MATTERS[p] || 'it narrows what we look for'}. A rough answer is fine — or press “Review and run” and I will search without it.`;
 }
 
 /* ───────── Modelo (opcional) ───────── */

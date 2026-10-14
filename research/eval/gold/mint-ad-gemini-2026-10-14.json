@@ -1,0 +1,88 @@
+{
+ "about": "Mundo de simulación de MINT AD (brief jefe-igc-mint-ad-2026-10-12). Lista mínima entregada por Gemini según la dueña del proyecto. Las URL de tedcomd.com y de los avisos federales salen del log real de GPT Researcher del 14-10 (log-engine-013838); NSF y MIPS no aparecieron en ningún log: sus URL son marcadores example.test solo para la simulación.",
+ "today": "2026-10-14",
+ "brief": "eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+ "registry": [
+  {
+   "opportunity_id": "00000000-0000-4000-8000-0000000a0100",
+   "opportunity_number": "PA-27-100",
+   "opportunity_title": "NIH SBIR omnibus parent solicitation (fixture record)",
+   "agency_name": "National Institutes of Health",
+   "agency_code": "HHS-NIH11",
+   "opportunity_status": "posted",
+   "summary": {
+    "close_date": "2027-01-05",
+    "post_date": "2026-05-29",
+    "award_ceiling": 314363,
+    "applicant_types": [
+     "small_businesses"
+    ],
+    "applicant_eligibility_description": "Only United States small business concerns are eligible to apply.",
+    "summary_description": "Supports small business research and development of health technologies, including dementia and aging. Standard due dates January 5, 2027 and April 5, 2027.",
+    "additional_info_url": "https://seed.nih.gov/small-business-funding/find-funding/sbir-sttr-funding-opportunities",
+    "agency_email_address": "sbir-help@example.test",
+    "agency_contact_description": "Small business program help desk (fixture)"
+   }
+  },
+  {
+   "opportunity_id": "00000000-0000-4000-8000-0000000b0200",
+   "opportunity_number": "NSF-SBIR-PHASE-I-FIXTURE",
+   "opportunity_title": "NSF SBIR Phase I (fixture record)",
+   "agency_name": "National Science Foundation",
+   "agency_code": "NSF",
+   "opportunity_status": "posted",
+   "summary": {
+    "close_date": "2026-11-04",
+    "post_date": "2026-06-01",
+    "award_ceiling": 305000,
+    "applicant_types": [
+     "small_businesses"
+    ],
+    "applicant_eligibility_description": "For-profit United States small businesses.",
+    "summary_description": "Grants to startups for deep technology including biomedical and health technology, risk prediction and artificial intelligence.",
+    "additional_info_url": null,
+    "agency_email_address": null,
+    "agency_contact_description": null
+   }
+  }
+ ],
+ "pages": {
+  "https://www.tedcomd.com/sites/default/files/2026-01/MII%20Company%20Formation-RFA_FY2026_v4.pdf": {
+   "title": "MII Company Formation RFA FY2026",
+   "text": "TEDCO Maryland Innovation Initiative: Company Formation grant RFA FY2026.\nApplications due: October 15, 2026\nEligible applicants: for-profit companies located in Maryland that license university technology.\nAwards support life science and health technology commercialization."
+  },
+  "https://example.test/fixture-mips-rfp": {
+   "title": "MIPS request for proposals (fixture)",
+   "text": "Maryland Industrial Partnerships (MIPS): request for proposals.\nProposal deadline: October 15, 2026\nEligible: companies located in Maryland partnering with university faculty.\nAwards fund technology and health product development."
+  }
+ },
+ "extra_log_urls": [
+  "https://example.test/fixture-mips-rfp"
+ ],
+ "gold": [
+  {
+   "id": "nih-sbir-parent",
+   "label": "NIH SBIR parent PA-27-100 (cierres 5-ene-2027 y 5-abr-2027)",
+   "match": "PA-27-100",
+   "deadline": "2027-01-05"
+  },
+  {
+   "id": "nsf-sbir",
+   "label": "NSF SBIR (cierre 4-nov-2026)",
+   "match": "NSF|seedfund",
+   "deadline": "2026-11-04"
+  },
+  {
+   "id": "tedco-mii",
+   "label": "TEDCO Maryland Innovation Initiative, RFA (cierre 15-oct-2026)",
+   "match": "tedco|Maryland Innovation Initiative|Company%20Formation",
+   "deadline": "2026-10-15"
+  },
+  {
+   "id": "mips",
+   "label": "MIPS (cierre 15-oct-2026)",
+   "match": "mips|Industrial Partnerships",
+   "deadline": "2026-10-15"
+  }
+ ]
+}

@@ -12,6 +12,7 @@
      5. leads    — lo verificado entra al pipeline con su explicación y su recorrido (traza) completo
    Un "objetivo" (OBJECTIVES) define familias, qué se extrae y cómo se verifica; añadir "users" es añadir uno.
    ───────────────────────────────────────────────────────────────────────────── */
+import { runGptr } from './gptr.mjs';
 import { snowball } from './discovery.mjs';
 import { chatJSON, fleetReady, fleetConfig } from '../analysis/fleet.mjs';
 import { candidate, evidence, norm } from './core.mjs';
@@ -220,8 +221,15 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const agentRequested = String(env.ENGINE_AGENT || '') === '1'; const agentRole = fleetConfig(env).roles.agent;
-  if (agentRequested && agentRole.ready && !(opts.queries?.length)) {
+  if (String(env.ENGINE_GPTR || '') === '1') console.log(`[gptr ${new Date().toISOString().slice(11, 19)}] runObjective(${objective}): ${!(opts.queries?.length) && !opts.seedOnly && !opts.seedPages?.length ? 'usa GPT Researcher' : `NO usa GPT Researcher (queries=${opts.queries?.length || 0} seedOnly=${Boolean(opts.seedOnly)} seedPages=${opts.seedPages?.length || 0})`}`);
+  if (String(env.ENGINE_GPTR || '') === '1' && !(opts.queries?.length) && !opts.seedOnly && !opts.seedPages?.length) {   // GPT Researcher + verificación en código como motor web
+    const appTrace = !opts.trace && env.ENGINE_AGENT_TRACE_DIR ? createTrace({ dir: join(env.ENGINE_AGENT_TRACE_DIR, `${objective}-gptr-${Date.now()}`), runId: `app-${objective}-${Date.now()}`, objective }) : null;
+    console.log(`[engine ${new Date().toTimeString().slice(0, 8)}] ${objective}: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)`);
+    return (opts.gptrRunner ? (o, b, x) => runGptr(o, b, x) : runGptr)(objective, brief, { ...opts, env, ...(appTrace ? { trace: appTrace } : {}) });
+  }
+  if (agentRequested && agentRole.ready && !(opts.queries?.length) && !opts.seedOnly && !opts.seedPages?.length) {   // la verificación del registro (seedOnly) lee páginas dadas: no relanza el agente
     const appTrace = !opts.trace && env.ENGINE_AGENT_TRACE_DIR ? createTrace({ dir: join(env.ENGINE_AGENT_TRACE_DIR, `${objective}-${Date.now()}`), runId: `app-${objective}-${Date.now()}`, objective }) : null;   // trazas de las corridas desde el frontend
+    console.log(`[engine ${new Date().toTimeString().slice(0, 8)}] ${objective}: motor = agente iterativo`);
     return (opts.agentRunner || runAgentObjective)(objective, brief, { ...opts, env, ...(appTrace ? { trace: appTrace } : {}) });
   }
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead, crawl4aiReader = opts.search ? null : crawl4aiRead } = opts;
@@ -677,10 +685,14 @@ export function engineLeads(findings) {
       risks: [...new Set([...(f.blockers || []), f.eligible === 'yes' ? null : 'Fit to confirm with the counterpart', ...f.flags.map((x) => `Check: ${x}`)].filter(Boolean))],
       missing: [...(o.dated && !f.deadline ? ['Deadline not confirmed on the page'] : []), ...(f.quotes.eligible && f.eligible === 'yes' ? [] : [o.dated ? 'Eligibility for a for-profit startup not confirmed on the page' : 'Eligibility / thesis not stated on the page'])],
       searchText: [f.name, f.title, f.quotes.identity, f.quotes.eligible].filter(Boolean).join(' ').slice(0, 4000),
-      foundBy: (f.trace?.queries?.length ? f.trace.queries : [{ query: f.query, family: f.family }]).map((q) => ({ provider: ENGINE_SOURCE, term: q.family || f.family || f.objective, objective: f.objective, query: q.query, dimension: 'read_and_verified', ...(f.providers?.length ? { searchedWith: f.providers.join(', ') } : {}) })),
+      foundBy: (f.trace?.queries?.length ? f.trace.queries : [{ query: f.query, family: f.family }]).map((q) => ({ provider: f.registry ? 'Grants.gov' : ENGINE_SOURCE, term: q.family || f.family || f.objective, objective: f.objective, query: q.query, dimension: 'read_and_verified', ...(f.providers?.length ? { searchedWith: f.providers.join(', ') } : {}) })),
       verification: compactVerification({ ...f, tier: f.tier || (f.verdict === 'apply' ? 'main' : 'verify') }),
       ...(f.explain ? { explain: f.explain } : {}),
       ...(f.trace ? { trace: f.trace } : {}),
+      // Contactos (Apollo y el contacto oficial del registro) y la ficha del registro llegan a la interfaz; antes se perdían aquí.
+      ...(Array.isArray(f.contacts) ? { contacts: f.contacts.filter((c) => c?.name || c?.email).map((c) => ({ name: c.name || 'Unnamed contact', role: c.title || c.role || null, email: c.email || null, organization: c.organization || null, linkedin: c.linkedin_url || c.linkedin || null, provenance: c.source === 'registry' ? 'Official registry contact' : 'Apollo (people search)', source: c.source || 'apollo' })) } : {}),
+      ...(f.registry ? { registry: f.registry, externalId: `engine:${f.objective}:${f.registry.number || f.url}` } : {}),
+      ...(f.quotes ? { quotes: f.quotes } : {}),
     });
   });
 }

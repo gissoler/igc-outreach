@@ -274,6 +274,66 @@ function OfficialPageView({ lead, job, demo }: { lead: Lead; job: Job; demo: boo
 }
 const safeHost = (u: string) => { try { return new URL(u).host.replace(/^www\./, ''); } catch { return ''; } };
 
+/* ───────── Lo esencial del candidato (14-10): por qué se eligió, qué hacer, a quién escribir ───────── */
+const DAY = 86_400_000;
+const longDay = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+type PlanStep = { label: string; days?: number; skip?: boolean };
+/** Pasos con fecha límite sugerida, hacia atrás desde el cierre (dos días de margen al final). */
+export function datedSteps(steps: PlanStep[], deadline: string | null): { label: string; by: string | null; days: number | null }[] {
+  const list = steps.filter((x) => !x.skip);
+  if (!deadline) return list.map((x) => ({ label: x.label, by: null, days: x.days ?? null }));
+  let end = Date.parse(`${deadline}T12:00:00Z`) - 2 * DAY;
+  const out = [...list].reverse().map((x) => { const by = new Date(end).toISOString().slice(0, 10); end -= (x.days || 0) * DAY; return { label: x.label, by, days: x.days ?? null }; });
+  return out.reverse();
+}
+export function Essentials({ lead, demo, isGrant, mailText }: { lead: Lead; demo: boolean; isGrant: boolean; mailText: string }) {
+  const v = lead.verification;
+  const q = (field: string) => lead.evidence.find((e) => e.field === field && e.verified)?.quote || '';
+  const deadlineQ = v?.deadlineQuote || q('deadline');
+  const eligQ = v?.eligibility?.quote || q('eligibility');
+  const identityQ = q('opportunity') || q('profile') || lead.evidence.find((e) => e.verified)?.quote || '';
+  const verified = v?.tier === 'main';
+  const firstBlocker = (v?.blockers || [])[0];
+  const steps = datedSteps((lead.grantPlan?.apply?.steps || []) as PlanStep[], lead.deadline);
+  const portal = lead.grantPlan?.apply?.portal?.name;
+  const contacts = lead.contacts || [];
+  const source = demo ? null : officialUrlOfLead(lead);
+  return <>
+    <section className="ld-sec ld-ess">
+      <header className="ld-h"><h3>Why it was picked</h3>{verified ? <span className="pl-chip mint">Verified on the page</span> : <span className="pl-chip sun" title={firstBlocker || ''}>To verify</span>}</header>
+      <ul className="ld-why">
+        {isGrant && lead.deadline && <li><b>Deadline {longDay(lead.deadline)}</b>{lead.daysToDeadline != null ? ` · ${lead.daysToDeadline} days left` : ''}{deadlineQ && <q>{clipWords(readableQuote(deadlineQ), 160)}</q>}</li>}
+        {isGrant && !lead.deadline && <li><b>No deadline confirmed on the page.</b>{lead.status === 'forecasted' ? ' It is a forecast: applications are not open yet.' : ''}</li>}
+        {eligQ ? <li><b>Who can apply</b><q>{clipWords(readableQuote(eligQ), 180)}</q></li> : isGrant ? <li><b>Eligibility not stated on the page</b> — check it before you start.</li> : null}
+        {!isGrant && identityQ && <li><b>What they do</b><q>{clipWords(readableQuote(identityQ), 180)}</q></li>}
+        {!verified && firstBlocker && <li className="miss">Still open: {cleanText(firstBlocker)}</li>}
+      </ul>
+    </section>
+    <section className="ld-sec ld-ess">
+      <header className="ld-h"><h3>What to do</h3>{source && <a className="ld-link" href={source} target="_blank" rel="noreferrer">{isGrant ? 'Official call' : 'Source'} <ExternalLink size={12} /></a>}</header>
+      {isGrant ? <>
+        {lead.grantPlan?.nextAction && <p className="ld-next">{cleanText(lead.grantPlan.nextAction)}</p>}
+        {steps.length > 0 && <ol className="ld-steps">{steps.map((st, i) => <li key={i}><span>{cleanText(st.label)}</span>{st.by ? <small>by {longDay(st.by)}{st.days ? ` · ~${st.days} days` : ''}</small> : st.days ? <small>~{st.days} days</small> : null}</li>)}</ol>}
+        {lead.deadline && <p className="ld-sub">Submit {portal ? `on ${portal} ` : ''}before {longDay(lead.deadline)}.</p>}
+      </> : <>
+        <pre className="ld-msg">{mailText}</pre>
+        <div className="ld-mail-a"><CopyBtn text={mailText} label="Copy message" /><span className="ld-hint">Nothing is sent from the app.</span></div>
+      </>}
+    </section>
+    <section className="ld-sec ld-ess">
+      <header className="ld-h"><h3>Contacts {contacts.length > 0 && <span className="pl-badge dark">{contacts.length}</span>}</h3></header>
+      {contacts.length ? <ul className="ld-people">{contacts.map((c, i) => <li key={`${c.name}-${i}`}>
+        <span className="ld-contact-av" aria-hidden="true">{initials(c.name || '?')}</span>
+        <div><b>{c.name}</b><small>{[c.role, c.organization].filter(Boolean).join(' · ') || 'Role not listed'}</small><small className="ld-prov">{c.provenance || c.source || ''}</small></div>
+        <div className="ld-people-a">
+          {c.linkedin && !demo && <a className="x-btn sm" href={c.linkedin} target="_blank" rel="noreferrer">LinkedIn <ExternalLink size={11} /></a>}
+          {c.email && <><a className="x-btn sm" href={`mailto:${c.email}`}>{clip(c.email, 26)}</a><CopyButton text={c.email} label="" className="ld-ic" /></>}
+        </div>
+      </li>)}</ul> : <ContactCard lead={lead} demo={demo} isGrant={isGrant} />}
+    </section>
+  </>;
+}
+
 export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClose }: {
   lead: Lead; job: Job; onFeedback: ((id: string, d: 'approve' | 'reject', reason: string, note: string) => Promise<unknown>) | null;
   onEvidence: (title: string, ev: Evidence[]) => void; onHop: (hop: NormHop, path: NormPath) => void; onClose?: () => void;
@@ -287,11 +347,11 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
   const [more, setMore] = useState(false);
   const [why, setWhy] = useState(false);
   const [level, setLevel] = useState<1 | 2 | 3>(1);
-  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence' | 'trace'>(isDemoJob(job) ? 'overview' : 'page');
+  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence' | 'trace'>('overview');
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { setNote(readNote(job.id, lead.id)); setDiscarding(false); setMsg(''); setNoteOpen(false); setMore(false); setTab(isDemoJob(job) ? 'overview' : 'page'); }, [lead.id, job.id]);
+  useEffect(() => { setNote(readNote(job.id, lead.id)); setDiscarding(false); setMsg(''); setNoteOpen(false); setMore(false); setTab('overview'); }, [lead.id, job.id]);
   useEffect(() => { if (!more) return; const f = (e: MouseEvent) => { if (!moreRef.current?.contains(e.target as Node)) setMore(false); }; document.addEventListener('mousedown', f); return () => document.removeEventListener('mousedown', f); }, [more]);
   const action = nextAction(lead);
   const paths = pathsOf(lead);
@@ -337,10 +397,6 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
         <div><dt>{isGrant ? 'Application state' : 'Warm path'}</dt><dd>{isGrant ? (lead.grantPlan?.label || 'Review eligibility') : p ? `${fmtPct(p.strength)} · ${p.hopCount} hop${p.hopCount === 1 ? '' : 's'}` : 'None'}</dd></div>
         <div><dt>Contact</dt><dd title={contactOf(lead, demo).value || ''}>{contactOf(lead, demo).name ? `${contactOf(lead, demo).name}${contactOf(lead, demo).channel ? ` · ${contactOf(lead, demo).channel}` : ''}` : contactOf(lead, demo).channel || 'Not published'}</dd></div>
       </dl>
-      <div className="ld-prog">
-        <div className="ld-prog-h"><span>Priority score</span><span>{lead.score} / 100</span></div>
-        <div className="ld-bar" aria-hidden="true"><b style={{ width: `${lead.score}%` }} /><i style={{ left: `${lead.score}%` }} /></div>
-      </div>
       {discarding && <div className="ld-discard"><label className="x-field"><span>Why isn't it a fit?</span><select value={reason} onChange={(e) => setReason(e.target.value)}><option value="not_relevant">Not relevant</option><option value="wrong_person">Wrong person</option><option value="not_now">Bad timing</option><option value="competitor_conflict">Competitor</option><option value="ineligible">Not eligible</option><option value="bad_contact">Wrong channel</option><option value="other">Other</option></select></label><div className="x-row"><button className="x-btn danger sm" disabled={busy} onClick={() => void save('reject')}>Discard</button><button className="x-btn sm" onClick={() => setDiscarding(false)}>Cancel</button></div></div>}
       {msg && <p className="x-note" role="status">{msg}</p>}
     </section>
@@ -350,40 +406,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     </nav>
 
     {tab === 'overview' && <>
-      <section className="ld-sec"><ContactCard lead={lead} demo={demo} isGrant={isGrant} /></section>
-      <section className="ld-sec">
-        <header className="ld-h"><h3>Next step</h3></header>
-        <p className="ld-next"><b>{action.label}</b></p>
-      </section>
-
-      <section className="ld-sec">
-        <header className="ld-h"><h3>{isGrant ? <FileSearch size={15} /> : <Mail size={15} />} {isGrant ? 'How to apply' : 'Email draft'}</h3><span className="ld-hint">{isGrant ? 'Through the official portal · not an email' : '2 paragraphs · review before sending'}</span></header>
-        {isGrant && lead.grantPlan?.apply && <p className={`ld-apply-verdict ${lead.grantPlan.apply.verdict}`}><b>{({ feasible: 'On time', tight: 'Tight deadline', not_feasible: 'Not reachable for this deadline', closed: 'Closed', unknown: 'Deadline to confirm' } as const)[lead.grantPlan.apply.verdict]}</b> {lead.grantPlan.apply.message}</p>}
-        <div className="ld-mail">
-          <dl className="ld-mail-h"><div><dt>{isGrant ? 'Where' : 'To'}</dt><dd>{mail.to}{p?.introducer ? <em> · asks for the intro</em> : null}</dd></div><div><dt>Subject</dt><dd>{mail.subject}</dd></div></dl>
-          <pre>{mail.text}</pre>
-        </div>
-        <div className="ld-mail-a"><CopyBtn text={emailText} label={isGrant ? 'Copy steps' : 'Copy email'} />{demo && <span className="pl-chip sun">Fictional demo data</span>}<span className="ld-hint">{isGrant ? 'Writing to the program is optional and only for a specific question.' : 'Nothing is sent from the app.'}</span></div>
-      </section>
-
-      {isGrant && lead.grantPlan && <section className="ld-sec">
-        <header className="ld-h"><h3>Application checklist</h3><span className="pl-badge dark">{lead.grantPlan.checklist.filter((x) => x.done).length}/{lead.grantPlan.checklist.length}</span></header>
-        <ul className="ld-risks">{lead.grantPlan.checklist.map((item) => <li key={item.key}>{item.done ? <Check size={13} /> : <TriangleAlert size={13} />} {item.label}</li>)}</ul>
-      </section>}
-
-      <section className="ld-sec">
-        <header className="ld-h"><h3>{isGrant ? 'Why consider this call' : 'Why contact'}</h3></header>
-        <p className="ld-next">{reasonFor(lead)}</p>
-        {verified.length > 0 && <div className="ld-src found"><span className="pl-chip mint">Found</span><div><q>{clipWords(readableQuote(verified[0].quote), 170)}</q><small>{verified[0].url && !demo ? <a href={verified[0].url} target="_blank" rel="noreferrer">{verified[0].source} <ExternalLink size={11} /></a> : verified[0].source}{verified.length > 1 ? <button className="ld-link inline" onClick={() => setTab('evidence')}> +{verified.length - 1} more</button> : null}</small></div></div>}
-        {readItems.length > 0 && <div className="ld-src read"><span className="pl-chip lav">Our read</span><ul>{readItems.map((x) => <li key={x} className={/^(To confirm|Missing):/.test(x) ? 'miss' : ''}>{cleanText(x)}</li>)}</ul></div>}
-      </section>
-
-      {(lead.explain || lead.gate) && <section className="ld-sec">
-        <header className="ld-h"><h3>Verified summary</h3><button className="ld-link" onClick={() => setTab('trace')}>How we got it</button></header>
-        {lead.explain?.ai && <p className="ld-next">{lead.explain.ai}</p>}
-        <p className="ld-sub">{lead.explain?.facts || lead.gate?.reason}</p>
-        {lead.explain?.unverified?.length ? <p className="ld-hint">Not verified: {lead.explain.unverified.join(' · ')}.</p> : null}
-      </section>}
+      <Essentials lead={lead} demo={demo} isGrant={isGrant} mailText={emailText} />
 
       {risks.length > 0 && <section className="ld-sec">
         <header className="ld-h"><h3>Risks <span className="pl-badge rose">{risks.length}</span></h3></header>

@@ -11,7 +11,7 @@ import { Check, ChevronRight, Copy, ExternalLink, Mail, Route, Search, UserRound
 import { useMemo, useState } from 'react';
 import type { Job, Lead } from '../researchApi';
 import { clip, clipWords, fmtPct } from './format';
-import { bestPath, isDemoJob, warmPlanOf, warmShort, type Summary, type SourceHealthItem } from './model';
+import { bestPath, isDemoJob, NOT_A_CALL_REASON, notACall, warmPlanOf, warmShort, type Summary, type SourceHealthItem } from './model';
 
 const TINTS = ['lav', 'mint', 'sun', 'sky'];
 const initialsOf = (s: string) => s.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
@@ -145,11 +145,12 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
   const demo = isDemoJob(job);
   const grantsOnly = job.brief.fundingTypes.length === 1 && job.brief.fundingTypes[0] === 'grant';
   const [view, setView] = useState<View>('all');
-  const by = (b: string) => job.leads.filter((l) => l.bucket === b);
+  const shown = (l: Lead) => !notACall(l);
+  const by = (b: string) => job.leads.filter((l) => (b === 'discarded' ? l.bucket === b || !shown(l) : l.bucket === b && shown(l)));
   const counts = { top: by('top').length, radar: by('radar').length, out: by('discarded').length };
   const shortlisted = counts.top + counts.radar;
   const leads = useMemo(() => {
-    const pick = view === 'all' ? job.leads.filter((l) => l.bucket === 'top' || l.bucket === 'radar') : job.leads.filter((l) => l.bucket === (view === 'out' ? 'discarded' : view));
+    const pick = view === 'all' ? job.leads.filter((l) => (l.bucket === 'top' || l.bucket === 'radar') && shown(l)) : by(view === 'out' ? 'discarded' : view);
     return [...pick].sort((a, z) => a.rank - z.rank);
   }, [job, view]);
   const noun = grantsOnly ? 'opportunities' : 'candidates';
@@ -175,11 +176,11 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
       const name = grantsOnly ? l.title : (l.person || l.org);
       const found = l.evidence.filter((e) => e.verified);
       const st = stageOf(l, grantsOnly);
-      const out = l.bucket === 'discarded';
+      const out = l.bucket === 'discarded' || !shown(l);
       const sub = out ? null
         : grantsOnly ? `${l.grantPlan?.checklist.filter((x) => x.done).length || 0}/${l.grantPlan?.checklist.length || 5} checks`
         : p ? (p.introducer ? `Ask ${p.introducer}` : 'You know them') : w ? warmShort(w) : null;
-      const why = out ? (l.discard || 'Not enough evidence') : grantsOnly ? (l.grantPlan?.nextAction || l.grantPlan?.label || reasonFor(l)) : reasonFor(l);
+      const why = !shown(l) && l.bucket !== 'discarded' ? NOT_A_CALL_REASON : out ? (l.discard || 'Not enough evidence') : grantsOnly ? (l.grantPlan?.nextAction || l.grantPlan?.label || reasonFor(l)) : reasonFor(l);
       const reach = grantsOnly
         ? { icon: null, main: l.deadline || 'No deadline published', small: l.daysToDeadline != null ? `${l.daysToDeadline} days left` : l.status }
         : l.contact ? { icon: l.contact.type === 'email' ? <Mail size={13} /> : <ExternalLink size={13} />, main: l.contact.type === 'email' ? 'Email' : l.contact.type === 'linkedin' ? 'LinkedIn' : 'Website', small: found.length ? `Found · ${found.length}` : 'Our read' }

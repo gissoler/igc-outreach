@@ -564,3 +564,9 @@ export function oneLiner(lead: Lead, job: Job) {
   const top = [...lead.breakdown].sort((x, y) => y.points - x.points)[0];
   return `${lead.person || lead.org} is ${BUCKET_LABEL[lead.bucket]?.toLowerCase()} (#${lead.rank}) with priority ${lead.score}/100, driven mostly by ${FACTOR_LABEL[top?.factor || '']?.toLowerCase() || 'its factors'}; data confidence ${CONF_LABEL[lead.confidence]?.toLowerCase() || lead.confidence}; ${p ? `${STATUS_LABEL[p.status].toLowerCase()} path of ${p.hopCount} ${p.hopCount === 1 ? 'hop' : 'hops'}` : 'no warm path'}. Next step: ${a.label.toLowerCase()}.${isDemoJob(job) ? ' (Demo data.)' : ''}`;
 }
+
+/* Listas de grants: solo convocatorias. Una fila de grant que no es una oportunidad (persona, página de programa sin plazo ni estado)
+   no se muestra como convocatoria: pasa a «Ruled out» con este motivo (14-10: cargos y páginas sin plazo llenaban Watch). */
+export const isGrantLead = (l: Lead) => l.fundingType === 'grant' || l.kind === 'opportunity';
+export const notACall = (l: Lead) => isGrantLead(l) && (l.kind !== 'opportunity' || (!l.deadline && !['open', 'forecasted', 'upcoming', 'rolling'].includes(l.status)));
+export const NOT_A_CALL_REASON = 'Not a call: no deadline or way to apply was found on the page.';

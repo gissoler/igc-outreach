@@ -37,7 +37,7 @@ export function fleetConfig(env = process.env) {
     const url = trim(env[`${P}_LLM_URL`]); const model = String(env[`${P}_LLM_MODEL`] || '').trim();
     const fb = String(env[`${P}_LLM_FALLBACK`] || '').trim().toLowerCase();
     roles[role] = url && model
-      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
+      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', schemaLoose: env[`${P}_LLM_SCHEMA_LOOSE`] === '1', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
       : ['engine', 'chat'].includes(fb) && roles[fb]?.ready
         ? { ...roles[fb], alias: fb, fallback: fb }
         : { url: '', model: '', ready: false, fallback: null };
@@ -105,6 +105,15 @@ export function withLanguageRule(system) {
 }
 
 /** Chat con salida estructurada (response_format json_schema). */
+/** Quita las cotas de longitud de cadena (maxLength/minLength; las de arrays se conservan para que el modelo no liste sin fin) del esquema que se envía al servidor: vLLM las expande al compilar la gramática y se cuelga. Los validadores del motor siguen exigiéndolas. */
+function looseSchema(node) {
+  if (Array.isArray(node)) return node.map(looseSchema);
+  if (!node || typeof node !== 'object') return node;
+  const out = {};
+  for (const [k, v] of Object.entries(node)) if (!['maxLength', 'minLength'].includes(k)) out[k] = looseSchema(v);
+  return out;
+}
+
 export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens }, { env = process.env, fetcher = fetch, signal } = {}) {
   const cfg = fleetConfig(env);
   const target = model ? { ...cfg.roles[role], model } : cfg.roles[role];
@@ -117,7 +126,7 @@ export async function chatJSON({ system, user, messages, schema, name = 'salida'
     ...(seed === undefined ? {} : { seed }),
     stream: false,
     messages: messages || [{ role: 'system', content: withLanguageRule(system) }, { role: 'user', content: user }],
-    ...(!jsonMode ? {} : schema ? { response_format: { type: 'json_schema', json_schema: { name, schema } } } : { response_format: { type: 'json_object' } }),
+    ...(!jsonMode ? {} : schema ? { response_format: { type: 'json_schema', json_schema: { name, schema: target.schemaLoose ? looseSchema(schema) : schema } } } : { response_format: { type: 'json_object' } }),
     ...(target.reasoningEffort ? { reasoning_effort: target.reasoningEffort } : {}),
     ...(maxTokens || target.maxTokens ? { max_tokens: maxTokens || target.maxTokens } : {}),
     ...(target.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),   // ENGINE_LLM_THINKING=0: modelos Qwen con modo razonamiento

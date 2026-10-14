@@ -157,7 +157,9 @@ export type Lead = {
   key?: string;
   fit?: number;
   /** Extra contacts (e.g. program staff found by Hunter for a grant). */
-  contacts?: { name: string; role: string | null; email: string; provenance: string }[];
+  contacts?: { name: string; role: string | null; email: string | null; provenance: string; organization?: string | null; linkedin?: string | null; source?: string }[];
+  /** Ficha del registro oficial (Simpler Grants / Grants.gov) cuando el hallazgo salió de ahí. */
+  registry?: { number: string | null; agency: string | null; closeDate: string | null; forecastClose?: string | null; status?: string | null; url?: string | null; moreInfoUrl?: string | null; via?: string };
   hunter?: { domain: string; score: number; status: string | null };
   rank: number;
   person: string | null;

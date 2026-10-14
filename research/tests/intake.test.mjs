@@ -225,7 +225,9 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
   await runTurn(s, { text: 'no sé', env, fetchImpl: answer({ ack: 'Ok.', question: '', asking: null, skipped: 'funding.amount_usd', updates: [] }) });
   assert.ok(missingRequired(s).includes('funding.amount_usd'));
   await runTurn(s, { text: '1,200 beta users', env, fetchImpl: answer({ ack: 'Great traction.', question: '', asking: null, updates: [{ path: 'company.traction', value: '1,200 beta users', quote: '1,200 beta users' }] }) });
-  assert.match(s.messages.at(-1).text, /still need: amount/i);
+  assert.match(s.messages.at(-1).text, /how much do you need/i);
+  assert.match(s.messages.at(-1).text, /It changes the search/);
+  assert.equal((s.messages.at(-1).text.match(/\?/g) || []).length, 1, 'one question at a time');
   assert.doesNotMatch(s.messages.at(-1).text, /complete/);
   await runTurn(s, { text: 'about 500k', env, fetchImpl: answer({ ack: 'USD 500k.', question: '', asking: null, updates: [{ path: 'funding.amount_usd', value: 500000, quote: '500k' }] }) });
   assert.deepEqual(missingRequired(s), []);

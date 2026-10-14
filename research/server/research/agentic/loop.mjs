@@ -6,6 +6,9 @@ import { judgePrompt } from '../judge/prompts.v13.mjs';
 import { validateAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
 import { AGENT_CRITERIA, assessPrompt, criterionHelp, stepPrompt, understandPrompt } from './prompts.v14.mjs';
 import { createTools } from './tools.mjs';
+import { runDiscovery } from './discovery.mjs';
+import { contactStage } from './contacts.mjs';
+import { deadlineDecision } from '../dates.mjs';
 
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
@@ -23,7 +26,7 @@ const compilerOf = (a) => ({
 export async function runAgentObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = opts.today || new Date().toISOString().slice(0, 10); const trace = opts.trace || noopTrace;
   const tools = opts.tools || createTools({ env, fetcher: opts.fetcher, signal: opts.signal, trace, limits: opts.limits || {
-    searches: Number(env.ENGINE_AGENT_SEARCHES) || 20, opens: Number(env.ENGINE_AGENT_OPENS) || 30,
+    searches: Number(env.ENGINE_AGENT_SEARCHES) || 20, opens: Math.max(Number(env.ENGINE_AGENT_OPENS) || 30, (opts.seedUrls || []).length),
     apolloCredits: Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25, exaUsdCap: opts.exaUsdCap,
   }, apollo: opts.apollo, readers: opts.readers });
   const chat = opts.chat || chatJSON; const maxSteps = Number(opts.maxSteps ?? env.ENGINE_AGENT_STEPS) || 40;
@@ -33,7 +36,12 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const hardSeconds = parallel ? Math.max(maxSeconds, Number(opts.hardSeconds ?? env.ENGINE_AGENT_HARD_SECONDS) || 540) : maxSeconds;
   const reserveSeconds = parallel ? Number(opts.reserveSeconds ?? env.ENGINE_AGENT_JUDGE_RESERVE_SECONDS) || 60 : 0;
   const maxOpensPerStep = Number(env.ENGINE_AGENT_OPENS_PER_STEP) || 8; const maxSearchesPerStep = Number(env.ENGINE_AGENT_SEARCHES_PER_STEP) || 4;
-  const assessConcurrency = Number(env.ENGINE_AGENT_ASSESS_CONCURRENCY) || 8; const judgeConcurrency = Number(env.ENGINE_AGENT_JUDGE_CONCURRENCY) || 8;
+  const seeded = Boolean(opts.seedUrls?.length);
+  // Modo solo juez: no hay pasos del agente compitiendo por el modelo, así que se lee y juzga con más concurrencia por defecto.
+  const assessConcurrency = Number(env.ENGINE_AGENT_ASSESS_CONCURRENCY) || (seeded ? 12 : 8); const judgeConcurrency = Number(env.ENGINE_AGENT_JUDGE_CONCURRENCY) || (seeded ? 12 : 8);
+  // Plazo duro que pone quien llama (el pipeline): lo que no alcanzó a leerse o juzgarse antes se omite y se entrega lo demás.
+  const deadlineAt = Number(opts.deadlineAt) || 0; const pastDeadline = (marginMs = 0) => Boolean(deadlineAt) && Date.now() > deadlineAt - marginMs;
+  const skippedForTime = []; const droppedPages = []; let triageStats = null;
   const elapsed = () => (Date.now() - started) / 1000; let lastCandidateStep = 0;
   const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const pages = new Map(); const candidates = new Map();
   const findings = []; const leads = []; const queries = []; const decisions = []; let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
@@ -41,12 +49,14 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   async function model(prompt, role, validate, pageRef = null) {
     for (let retry = 0; retry < 2; retry++) {
       const at = Date.now(); let response = null; let error = null;
-      const callRole = role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role;
-      const callSignal = parallel && role !== 'judge' ? anySignal([opts.signal, AbortSignal.timeout(Math.max(5000, (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started)))]) : opts.signal;
+      const callRole = role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role === 'coverage' ? 'agent' : role;
+      const callSignal = anySignal([parallel && role !== 'judge' ? anySignal([opts.signal, AbortSignal.timeout(Math.max(5000, (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started)))]) : opts.signal,
+        deadlineAt ? AbortSignal.timeout(Math.max(1000, deadlineAt - Date.now())) : null]);
+      if (pastDeadline()) return null;
       try { response = await chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole }, { env, fetcher: opts.fetcher, signal: callSignal }); }
       catch (e) { error = e; }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
-      trace.event('model_call', { role, model: response?.model || env[role === 'agent' || (role === 'understand' && !parallel) ? 'ENGINE_AGENT_LLM_MODEL' : role === 'assess' || role === 'understand' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL'] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      trace.event('model_call', { role, model: response?.model || env[role === 'agent' || role === 'coverage' || (role === 'understand' && !parallel) ? 'ENGINE_AGENT_LLM_MODEL' : role === 'assess' || role === 'understand' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL'] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : !checked.ok ? { error: 'INVALID: ' + (checked.errors || []).join('; ').slice(0, 500) } : {}) });
       if (checked.ok) return checked.value ?? raw;
     }
     return null;
@@ -54,11 +64,13 @@ export async function runAgentObjective(objective, brief, opts = {}) {
 
   function ingest(obs, assessment, step, nextTool) {
     const pageText = unpage(obs.text); const a = structuredClone(assessment);
+    // modo solo juez (seeded): el compilador no decide qué llega al juez; toda página de convocatoria o programa pasa
+    if (seeded && !a.candidate && ['call', 'program_page'].includes(a.page_type)) a.candidate = true;
     for (const c of Object.values(a.criteria || {})) if (c.verdict !== 'unknown' && !literalIn(c.quote, pageText)) c.verdict = 'unknown';
-    const dates = (a.dates || []).map((d) => verifyDate(d, pageText));
+    const dates = [...new Map((a.dates || []).map((d) => [`${d.role}|${d.date}`, d])).values()].map((d) => verifyDate(d, pageText));
     const decision = { step, page_ref: a.ref, by: 'agent', verdict: a.candidate ? 'candidate' : 'none', reason: a.candidate ? 'agent_candidate' : 'agent_rejected', page_type: a.page_type, dates, criteria: a.criteria, days_left: null, next_action: nextTool || null };
     decisions.push(decision); trace.event('decision', decision); pages.set(a.ref, { ...obs, text: pageText, assessment: a });
-    if (a.candidate && !Object.values(a.criteria || {}).some((c) => c.verdict === 'no' && literalIn(c.quote, pageText))) { candidates.set(a.ref, pages.get(a.ref)); lastCandidateStep = step; }
+    if (a.candidate && (seeded || !Object.values(a.criteria || {}).some((c) => c.verdict === 'no' && literalIn(c.quote, pageText)))) { candidates.set(a.ref, pages.get(a.ref)); lastCandidateStep = step; }
     let leadId = null;
     if (a.lead?.quote && literalIn(a.lead.quote, pageText)) {
       const lead = { id: `L${leads.length + 1}`, page_ref: a.ref, kind: a.lead.kind, funder: a.lead.funder, recipient: a.lead.recipient, amount: a.lead.amount, quote: a.lead.quote, url: obs.url, found_at_step: step, followups: [], produced: [] };
@@ -67,12 +79,16 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return { a, dates, leadId };
   }
 
-  async function openMany(args, step, nextTool, understoodBrief) {
-    const wanted = [...new Set([...(Array.isArray(args.refs) ? args.refs : []), args.ref].filter(Boolean).map(String))].slice(0, maxOpensPerStep);
+  async function openMany(args, step, nextTool, understoodBrief, limit = maxOpensPerStep) {
+    const wanted = [...new Set([...(Array.isArray(args.refs) ? args.refs : []), args.ref].filter(Boolean).map(String))].slice(0, limit);
     const opened = await Promise.all(wanted.map((ref) => tools.open({ ref })));
+    return assessOpened(opened.map((r, i) => [wanted[i], r]), step, nextTool, understoodBrief);
+  }
+  async function assessOpened(pairs, step, nextTool, understoodBrief) {
     const out = { type: 'pages', pages: [], failed: [] };
-    await pool(opened.map((r, i) => [wanted[i], r]), assessConcurrency, async ([ref, r]) => {
+    await pool(pairs, assessConcurrency, async ([ref, r]) => {
       if (!r?.ref) { out.failed.push({ ref, error: r?.error || 'open_failed' }); return; }
+      if (pastDeadline(20000)) { skippedForTime.push(r.url); trace.event('drop', { url: r.url, page_ref: r.ref, reason: 'time_budget', decided_by: 'code', read: true }); return; }
       const obs = { type: 'page', ...r };
       const a = await model(assessPrompt({ objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text: unpage(r.text) }, ref: r.ref, today }), 'assess', validateAssess, r.ref);
       if (!a) { out.failed.push({ ref: r.ref, error: 'assess_invalid' }); return; }
@@ -84,7 +100,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   }
 
   async function searchMany(args, action) {
-    const qs = [...new Set((args.queries || []).map((q) => String(q || '').trim()).filter(Boolean))].slice(0, maxSearchesPerStep);
+    const qs = [...new Set((args.queries || []).map((q) => String((q && typeof q === 'object' ? q.query ?? q.q ?? q.text ?? '' : q) || '').trim()).filter(Boolean))].slice(0, maxSearchesPerStep);
     for (const q of qs) queries.push({ query: q, family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
     const found = await Promise.all(qs.map((q) => tools.search({ query: q, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
     const seen = new Set(); const results = [];
@@ -104,10 +120,44 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   if (doubts.length) { questions = doubts.length; await tools.ask_user({ questions: doubts.map((d) => ({ q: d.question, options: d.options })) }); }
 
   let observation = opts.initialObservation || { type: 'start', understood }; let finalRefs = [];
-  for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
+  // Descubrimiento (ENGINE_DISCOVERY=1): búsqueda ligera, plan de cobertura por niveles de financiador y abanico de consultas en paralelo, antes del primer paso.
+  let coverage = null; let discoveryQueries = 0;
+  if (!opts.initialObservation && !opts.seedUrls?.length && (opts.discovery === true || String(env.ENGINE_DISCOVERY || '') === '1')) {
+    const d = await runDiscovery({ brief, understood, objective, today, model, searchMany, tools, trace, env });
+    coverage = d.plan; discoveryQueries = d.queries.length;
+    if (d.observation?.result?.results?.length) observation = d.observation;
+  }
+  // Modo solo juez (opts.seedUrls): otro motor trajo las URLs; aquí solo se abren, se leen en paralelo y pasan por juez, segundo juez y auditoría.
+  const seedUrls = (opts.seedUrls || []).map((u) => (typeof u === 'string' ? { url: u } : u)).filter((u) => u?.url);
+  const seedReg = new Map(seedUrls.filter((u) => u.registry).map((u) => [u.url, u.registry]));
+  if (seedUrls.length) {
+    // Una semilla puede traer su texto (registro oficial): se lee tal cual, sin descargar nada.
+    const refs = seedUrls.map((u, i) => { const ref = `seed${i + 1}`; tools.refs.set(ref, { url: u.url, title: u.title || '', ...(u.text ? { markdown: u.text, official: Boolean(u.registry) } : {}) }); return ref; });
+    const cap = Number(opts.assessMax) || refs.length;
+    if (refs.length <= cap) await openMany({ refs }, 1, 'finish', understood, refs.length);
+    else {
+      // Triage por código antes del modelo: se abren todas (barato) y se evalúan primero las que traen un plazo futuro según el
+      // lector de fechas (dates.mjs), luego las sin fecha y al final las que el código ya ve cerradas. Las del registro van siempre.
+      const opened = await pool(refs, Number(env.GPTR_OPEN_CONCURRENCY) || 24, (ref, i) => (pastDeadline(60000) ? null : tools.open({ ref, ...(i >= cap ? { cheap: true } : {}) })));
+      const RANK = { open: 3, upcoming: 3, rolling: 2, unknown: 1, closed: 0 };
+      const rows = refs.map((ref, i) => {
+        const r = opened[i]; if (!r?.ref) return { ref, r, i, score: -1, status: 'unread' };
+        const status = seedUrls[i].text ? 'registry' : deadlineDecision(unpage(r.text), { today }).status;
+        return { ref, r, i, status, score: status === 'registry' ? 9 : RANK[status] ?? 1 };
+      }).sort((a, b) => b.score - a.score || a.i - b.i);
+      const chosen = rows.slice(0, cap).filter((x) => x.score >= 0); const left = rows.filter((x) => !chosen.includes(x));
+      for (const x of left) if (x.r?.ref) trace.event('drop', { url: x.r.url, page_ref: x.r.ref, reason: `triage_${x.status}`, decided_by: 'code', read: true });
+      triageStats = { opened: rows.filter((x) => x.score >= 0).length, assessed: chosen.length, by_status: rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), {}) };
+      trace.event('tool_call', { tool: 'triage', args: { opened: rows.filter((x) => x.score >= 0).length, assessed: chosen.length }, results_n: chosen.length, ms_call: 0, counts: rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), {}) });
+      await assessOpened(chosen.sort((a, b) => a.i - b.i).map((x) => [x.ref, x.r]), 1, 'finish', understood);
+    }
+    stopReason = 'seeded'; trace.event('finish', { reason: 'seeded' });
+  }
+  for (let step = 1; step <= maxSteps && !seedUrls.length && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
     stepsRun = step;
     const used = tools.usage?.() || {};
-    const state = { objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
+    const state = { today, objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
+      ...(coverage ? { coverage: coverage.levels.map((l) => ({ level: l.level, why: l.why, queries: l.queries })) } : {}),
       ...(parallel ? { parallel: true } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
     const prompt = stepPrompt({ state, observation });
     const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null);
@@ -136,7 +186,8 @@ export async function runAgentObjective(objective, brief, opts = {}) {
 
   const selected = (finalRefs.length ? finalRefs : [...candidates.keys()]).filter((ref) => candidates.has(ref));
   let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map();
-  const secondMax = opts.secondJudge === undefined ? Number(env.ENGINE_AGENT_JUDGE_SECOND ?? 10) : Number(opts.secondJudge);
+  // El segundo juez ciego solo mide acuerdo (no cambia hallazgos): en modo solo juez se apaga por defecto para no restar GPU al primero.
+  const secondMax = opts.secondJudge !== undefined && opts.secondJudge !== null ? Number(opts.secondJudge) : Number(env.ENGINE_AGENT_JUDGE_SECOND ?? (seeded ? 0 : 10));
   const secondRefs = selected.slice(0, Math.max(0, secondMax));
   const judgeFirst = (ref) => { const row = candidates.get(ref); const a = row.assessment; const page = { url: row.url, title: row.title, text: row.text };
     const prompt = judgePrompt({ objective, brief, page, today, claims: a, blind: String(env.ENGINE_JUDGE_BLIND || '') === '1', criteriaIds: ids, help: criterionHelp });
@@ -147,18 +198,31 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   for (const [idx, ref] of selected.entries()) {
     const { prompt, page, a, run: runFirst } = judgeFirst(ref);
     const judgment = preFirst ? preFirst[idx] : await runFirst(); judgeCalls++; firstJudgments.set(ref, judgment);
-    const audit = auditPage({ objective, page, today, compilation: compilerOf(a), judgment, failure: judgment ? {} : { judge: 'invalid' }, blind: prompt.blind, criteriaIds: ids });
-    trace.event('decision', { page_ref: ref, by: 'judge', verdict: audit.dropReason ? 'drop' : audit.mainOk ? 'keep' : 'verify', reason: audit.dropReason || (audit.mainOk ? 'audited' : 'blocked'), page_type: audit.pageType?.judge || a.page_type, dates: audit.dates?.judge || [], criteria: audit.criteria, days_left: audit.daysLeft, next_action: null });
-    if (audit.dropReason) { trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true }); continue; }
+    if (!judgment && pastDeadline()) { skippedForTime.push(page.url); trace.event('drop', { url: page.url, page_ref: ref, reason: 'time_budget', decided_by: 'code', read: true }); continue; }
+    const audit = auditPage({ objective, page, today, compilation: compilerOf(a), judgment, failure: judgment ? {} : { judge: 'invalid' }, blind: prompt.blind, criteriaIds: ids, requireCall: seeded });
+    trace.event('decision', { page_ref: ref, by: 'judge', verdict: audit.dropReason ? 'drop' : audit.mainOk ? 'keep' : 'verify', reason: audit.dropReason || (audit.mainOk ? 'audited' : 'blocked'), page_type: audit.pageType?.judge || a.page_type, dates: audit.dates?.judge || [], criteria: audit.criteria, days_left: audit.daysLeft, blocked_by: audit.mainOk ? [] : Object.entries(audit.criteria || {}).filter(([, v]) => v?.verdict !== 'yes').map(([k, v]) => `${k}:${v?.verdict || 'unknown'}`), next_action: null });
+    if (audit.dropReason) {
+      trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true });
+      // Para el asistente («¿por qué descartaste X?»): motivo y la cita que lo sostiene, sin el texto de la página.
+      const why = audit.dropReason === 'closed' ? audit.deadlineQuote : Object.values(audit.criteria || {}).find((c) => c.verdict === 'no' && c.quoteOk)?.quote;
+      droppedPages.push({ url: page.url, title: String(page.title || a.about || '').slice(0, 160), reason: audit.dropReason, quote: String(why || '').slice(0, 300), deadline: audit.deadline || null });
+      continue;
+    }
     const eligible = ['eligibility', 'region', 'entity_type', 'stage'].some((id) => audit.criteria[id]?.verdict === 'no') ? 'no' : audit.criteria.eligibility?.verdict === 'yes' ? 'yes' : 'unclear';
     const identity = a.lead?.quote && literalIn(a.lead.quote, page.text) ? a.lead.quote : a.about;
-    findings.push({ objective, url: page.url, title: page.title, name: a.about, query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries } });
+    const reg = seedReg.get(page.url);
+    findings.push({ objective, url: page.url, title: page.title, name: reg ? [reg.number, reg.title].filter(Boolean).join(' · ') : a.about, ...(reg ? { registry: { number: reg.number, agency: reg.agency, closeDate: reg.closeDate, forecastClose: reg.forecastClose, status: reg.status, url: reg.url, moreInfoUrl: reg.moreInfoUrl, via: reg.source } } : {}),
+      ...(reg?.contactEmail ? { contacts: [{ name: reg.contactText || 'Agency contact', title: 'Contact listed in the official registry', organization: reg.agency, email: reg.contactEmail, linkedin_url: null, source: 'registry' }] } : {}), query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries },
+      // El tema lo decide el juez con su cita; sin esto, el filtro de palabras de evaluate() descartaba convocatorias ya auditadas (14-10).
+      scopeFit: (() => { const tf = audit.criteria.topic_fit || {}; return { verdict: tf.verdict === 'yes' ? 'fits' : tf.verdict === 'no' ? 'does_not_fit' : 'unclear', reason: tf.reason || '', fundsQuote: tf.verdict === 'yes' ? tf.quote : null, excludesQuote: tf.verdict === 'no' ? tf.quote : null, source: 'judge' }; })() });
   }
   for (const [idx, ref] of secondRefs.entries()) {
     const second = preSecond ? preSecond[idx] : await judgeSecond(ref)(); secondCalls++;
     const first = firstJudgments.get(ref);
     if (!second || !first || ids.some((id) => second.criteria[id]?.verdict !== first.criteria[id]?.verdict)) changed++;
   }
+  // Apollo en código: contactos de los financiadores que sobrevivieron al juez (el modelo ya no decide si se gasta).
+  const contacts = pastDeadline() ? { orgs: 0, people: 0, credits: 0, skipped: 'time_budget', domains: [] } : await contactStage({ findings, objective, tools, trace, env, configured: Boolean(env.APOLLO_API_KEY || opts.apollo) });
   const usage = tools.usage?.() || {};
-  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: usage.opens || 0, unread: 0, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
+  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: usage.opens || 0, unread: 0, dropped: {}, kept: findings.length, errors: skippedForTime.length ? [`TIME_BUDGET: ${skippedForTime.length} pages not judged before the run deadline`] : [], skipped_for_time: skippedForTime.length, dropped_pages: droppedPages.slice(0, 120), triage: triageStats, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, questions, assumptions: (understood.assumptions || []).length, ...usage }, discovery: { on: Boolean(coverage), levels: coverage ? coverage.levels.length : 0, queries: discoveryQueries }, contacts, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }

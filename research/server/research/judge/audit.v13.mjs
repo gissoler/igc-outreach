@@ -24,7 +24,17 @@ export function verifyDate(d, pageText) {
   if (found.length > 1) return { ...base, verified: false, why: 'quote_has_several_dates' };
   return { ...base, verified: true, why: null };
 }
-const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map((d) => verifyDate(d, pageText));
+/* El juez a veces etiqueta la fecha de cierre con otro nombre («deadline», «expiration»…): se normaliza a application_deadline.
+   Diagnóstico 14-10: PAR-17-067 («Expiration Date September 6, 2019») quedó «a verificar» en vez de cerrado por el rol «deadline». */
+const DEADLINE_ALIASES = /^(deadline|due|due_date|close|closes|closing|close_date|closing_date|expiration|expiration_date|expires|expiry|submission_deadline|application_due|application_due_date|application_close|proposal_deadline|full_proposal_deadline|end_date)$/i;
+export const normRole = (d) => (d && DEADLINE_ALIASES.test(String(d.role || '').trim()) ? { ...d, role: 'application_deadline' } : d);
+const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map(normRole).map((d) => verifyDate(d, pageText));
+/** Una cita de cierre con VARIAS fechas no sirve para fijar un plazo, pero si TODAS son anteriores a hoy prueba que está cerrado. */
+function pastOnly(d, pageText, today) {
+  if (d.role !== 'application_deadline' || d.why !== 'quote_has_several_dates' || !literalIn(d.quote, pageText)) return d;
+  const found = datesIn(d.quote); if (!found.length || !found.every((x) => x < today)) return d;
+  return { ...d, date: found.includes(d.date) ? d.date : found.sort().at(-1), verified: true, why: null, past_only: true };
+}
 const appDatesOf = (dates) => dates.filter((d) => d.role === 'application_deadline' && d.verified);
 const uniqSorted = (xs) => [...new Set(xs)].sort();
 
@@ -62,7 +72,7 @@ export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, 
 }
 
 /** Auditoría de una página. `compilation`/`judgment` son salidas ya validadas por contracts.v13 o null; `failure` explica por qué falta una. */
-export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null, criteriaIds = null } = {}) {
+export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null, criteriaIds = null, requireCall = false } = {}) {
   const now = todayIso(today); const text = String(page?.text || ''); const dated = hasDeadline(objective);
   const flags = []; const disagreements = []; const blockers = [];
   const base = { version: JUDGE_AUDIT_VERSION, objective, today: now, blind: Boolean(blind), compilerOk: Boolean(compilation), judgeOk: Boolean(judgment), compilerFailure: failure.compiler || null, judgeFailure: failure.judge || null };
@@ -70,11 +80,19 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
     // Falla cerrado: sin juez no hay veredicto, ni estado, ni lista principal.
     return { ...base, state: 'unverified', deadline: null, deadlineQuote: '', daysLeft: null, estimatedDeadline: null, pageType: { judge: null, compiler: compilation?.page_type || null, agree: false }, dates: { judge: [], compiler: auditDates(compilation?.dates, text) }, criteria: {}, flags: ['judge_unavailable'], disagreements: [], blockers: [`Judge unavailable (${failure.judge || 'no answer'}): nothing verified by the second agent`], dropReason: null, mainOk: false };
   }
-  const jDates = auditDates(judgment.dates, text);
+  const jDates = auditDates(judgment.dates, text).map((d) => pastOnly(d, text, now));
   const cDates = auditDates(compilation?.dates, text);
   for (const d of jDates) if (!d.verified && d.why !== 'no_date') flags.push(`date_${d.why}:${d.role}`);
-  const st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated });
+  let st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated });
   const criteria = auditCriteria(judgment, objective, text, flags, criteriaIds);
+  // Sin plazo verificado, pero la página prueba que ya cerró: el juez dice «no» al plazo con una cita literal cuyas fechas son todas pasadas,
+  // o el título lo marca como vencido. Nunca abre nada: solo puede cerrar.
+  if (dated && st.state === 'unknown') {
+    const dq = criteria.deadline; const qd = dq?.verdict === 'no' && dq.quoteOk ? datesIn(dq.quote) : [];
+    const pastQuote = qd.length && qd.every((x) => x < now);
+    const label = /^\s*(expired|closed|archived|inactive)\b/i.test(String(page?.title || ''));
+    if (pastQuote || label) { st = { state: 'closed', deadline: pastQuote ? qd.sort().at(-1) : null, quote: pastQuote ? dq.quote : String(page.title), daysLeft: null, estimatedDeadline: null }; flags.push(pastQuote ? 'closed_by_deadline_quote' : 'closed_by_title'); }
+  }
 
   // Desacuerdos: nunca suben a la lista principal.
   if (!compilation) disagreements.push(`Compiler unavailable (${failure.compiler || 'no answer'})`);
@@ -99,7 +117,14 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const win = window && (window.from || window.to) ? { from: window.from || null, to: window.to || null } : null;
   const outsideWindow = Boolean(win && dated && (st.state === 'open' || st.state === 'upcoming') && st.deadline && ((win.from && st.deadline < win.from) || (win.to && st.deadline > win.to)));
   if (outsideWindow) flags.push('deadline_outside_window');
-  const dropReason = st.state === 'closed' ? 'closed' : outsideWindow ? 'outside_window' : noWithQuote ? NO_TO_DROP[noWithQuote[0]] : null;
+  let dropReason = st.state === 'closed' ? 'closed' : outsideWindow ? 'outside_window' : noWithQuote ? NO_TO_DROP[noWithQuote[0]] : null;
+  // Modo «solo convocatorias» (motor GPT Researcher + juez): una página que el juez no pudo leer o que no es una convocatoria ni da plazo
+  // no es un hallazgo; antes caía en «a verificar» y llenaba Watch con portadas, listados y páginas de programa sin fecha.
+  if (requireCall && dated && !dropReason) {
+    const known = Object.values(criteria).some((c) => c.verdict !== 'unknown') || jDates.some((d) => d.verified);
+    if (!known) dropReason = 'too_short';
+    else if (st.state === 'unknown' && !CALL_TYPES.has(judgment.page_type) && criteria.deadline?.verdict !== 'yes') dropReason = `not_a_call:${judgment.page_type || 'other'}`;
+  }
   for (const [id, c] of Object.entries(criteria)) if (id !== 'deadline' && c.claimed === 'no' && c.verdict === 'unknown') blockers.push(`The judge says "no" for ${id} without a quote from the page`);
 
   const extraRequired = criteriaIds ? criteriaIds.filter((id) => ['non_dilutive', 'official', 'recent_activity', 'contact_route'].includes(id)) : [];

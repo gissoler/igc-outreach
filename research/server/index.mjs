@@ -6,6 +6,7 @@ import { createStore } from './research/store.mjs';
 import { validateBrief, csvFor } from './research/core.mjs';
 import { parseCalendar, parseConnections, parseContactCsv } from './research/network.mjs';
 import { runResearch } from './research/pipeline.mjs';
+import { askRun, chatReady } from './research/runChat.mjs';
 import { webConfigured, webPublicRelations, webProfileLookup, WEB_SOURCE } from './research/webscrape.mjs';
 import { buildNetworkGraph } from './research/networkGraph.mjs';
 import { editField, missingRequired, modelInfo, newIntake, publicIntake, removeDocument, runTurn, toProfile } from './research/intake.mjs';
@@ -439,6 +440,19 @@ export function createApp({
             void advisorRoutes.autoStart(store.get(job.id) || job);
           });
         return json(202, { jobId: job.id });
+      }
+      // Asistente de la corrida: conversación con memoria sobre UNA corrida (GET historial, POST mensaje). Solo datos de la corrida.
+      const chatMatch = path.match(/^\/api\/research\/jobs\/([a-f0-9-]+)\/chat$/);
+      if (chatMatch && ['GET', 'POST'].includes(req.method)) {
+        const job = store.get(chatMatch[1]); const requestUser = authUser(req);
+        if (!job || (job.userId && job.userId !== requestUser?.id)) return json(404, { error: 'Run not found.' });
+        if (req.method === 'GET') return json(200, { ready: chatReady(env), messages: job.chat || [] });
+        if (!chatReady(env)) return json(503, { error: 'The AI model is not configured on the server.' });
+        try {
+          const out = await askRun(job, body.message, { env, fetcher: modelFetch });
+          const fresh = store.get(job.id) || job; fresh.chat = job.chat; store.save(fresh);
+          return json(200, { reply: out.reply, cites: out.cites, removed: out.removed, messages: fresh.chat });
+        } catch (e) { return json(e?.message === 'Empty message.' ? 400 : 502, { error: e?.message === 'Empty message.' ? 'Write a question.' : `The AI model did not answer: ${String(e?.message || e).slice(0, 160)}` }); }
       }
       // Página oficial de un lead dentro de la app: si se puede embeber (GET) o navegador remoto (POST).
       const pageMatch = path.match(/^\/api\/research\/jobs\/([a-f0-9-]+)\/leads\/([A-Za-z0-9_:.-]{1,200})\/(page|browse)$/);

@@ -4,7 +4,7 @@ import type { Job, Lead } from '../researchApi';
 import { API } from '../researchApi';
 import { SOURCE_META, type SourceKey } from '../sources';
 import { clip, fmtPct } from './format';
-import { BUCKET_PLURAL, norm, bestPath, CONF_RANK, familyOf, isDemoJob, nextAction, STATUS_LABEL, warmPlanOf, warmShort } from './model';
+import { BUCKET_PLURAL, norm, bestPath, CONF_RANK, familyOf, isDemoJob, nextAction, notACall, STATUS_LABEL, warmPlanOf, warmShort } from './model';
 import { readNote } from './Detail';
 import { BucketBadge, ConfBadge, Drawer, EmptyState, ScorePill } from './ui';
 
@@ -61,7 +61,8 @@ function GroupRow({ group, open, onToggle, children }: { group: Group; open: boo
 export function applyFilters(job: Job, f: ExplorerFilters, sort: Sort) {
   const demo = isDemoJob(job);
   const q = f.q.trim().toLowerCase();
-  return job.leads.filter((l) => f.buckets.has(l.bucket) && f.confs.has(l.confidence) && l.score >= f.minScore
+  // Filas de grant que no son convocatorias solo aparecen junto a las descartadas.
+  return job.leads.filter((l) => (notACall(l) ? f.buckets.has('discarded') : f.buckets.has(l.bucket)) && f.confs.has(l.confidence) && l.score >= f.minScore
     && (f.path === 'any' || (f.path === 'yes') === (l.paths.length > 0))
     && (f.family === 'any' || l.evidence.some((e) => familyOf(e, demo) === f.family))
     && (!f.saved || l.feedback?.decision === 'approve')

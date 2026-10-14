@@ -82,6 +82,11 @@ export async function runResearch(
   });
   const b = job.brief;
   job.status = 'running';
+  // Entrega parcial: lo que cada fuente ya devolvió se guarda aquí; si el tope de tiempo corta la corrida, se evalúa y se entrega igual.
+  let leads = [];
+  const collected = [];
+  // Plazo para el motor: termina (y entrega lo juzgado) antes del tope global, dejando margen para evaluar y guardar.
+  const engineDeadlineAt = runStarted + runTimeoutMs - Math.max(20000, Number(env.PIPELINE_RESERVE_MS) || 60000);
   /** Ejecuta una fuente con eventos de inicio y fin reales (duración, resultados, error). */
   const runSource = async (name, run, parallel) => {
     signal.throwIfAborted();
@@ -122,7 +127,6 @@ export async function runResearch(
       });
       live({ phase: 'planning', provider: name, status: 'success', title: 'Capital routes prepared', message: `${job.capitalStrategyContext.proposed_routes.length} routes and ${capitalQueries(job.capitalStrategyContext, { tools: ['searxng', 'official_grants', 'funding_round_sources'] }).length} concrete queries prepared. Adjacent routes remain hypotheses until evidence is found.`, resultCount: job.capitalStrategyContext.proposed_routes.length });
     }
-    let leads = [];
     let sender = [];
     let team = null;
     let failures = 0;
@@ -160,7 +164,9 @@ export async function runResearch(
               ['ClinicalTrials.gov', (c) => clinicalTrials(c, b, job.plan)],
             ]
           : []),
-        ...(b.fundingTypes.includes('grant')
+        // Con el motor GPT Researcher, el registro federal (Simpler Grants / Grants.gov) se consulta DENTRO del motor y cada oportunidad
+        // pasa por el mismo juez (ver registry/simplerGrants.mjs); aquí ya no se agregan punteros sin leer (14-10: pesca, mortinatos en Watch).
+        ...(b.fundingTypes.includes('grant') && !(engineOn && String(env.ENGINE_GPTR || '') === '1')
           ? [
               // Inteligencia (RePORTER + NSF Awards) primero: sus avisos y programas alimentan las búsquedas de Grants.gov.
               ['Grants.gov', async (c, e) => grants(c, b, job.plan, e, { intel: await intelOnce(c, e) })],
@@ -169,8 +175,11 @@ export async function runResearch(
           : []),
         ...(engineOn
           ? [[ENGINE_SOURCE, async () => { const portals = b.fundingTypes.includes('grant') ? portalSeeds(b) : []; if (portals.length) job.portals = portals.map((p) => ({ name: p.title, url: p.url }));
-          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals } });
+          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals }, deadlineAt: engineDeadlineAt, plan: job.plan });
           engineRuns.push(...r.audits);
+          job.engineDrops = r.audits.flatMap((a) => (a.dropped_pages || []).map((d) => ({ ...d, objective: a.objective })));
+          // Resumen por objetivo para el banco nocturno y el asistente: tiempos, URLs, triage, juez y créditos de Apollo.
+          job.engineAudit = r.audits.map((a) => ({ objective: a.objective, gptr: a.gptr || null, triage: a.triage || null, judge: a.judge || null, contacts: a.contacts || null, seconds: a.agent?.seconds ?? null, opens: a.agent?.opens ?? a.pages ?? null, skipped_for_time: a.skipped_for_time || 0, errors: a.errors || [] }));
           if (job.capitalStrategyContext) {
             const strategyQueries = capitalQueries(job.capitalStrategyContext, { tools: ['searxng', 'official_grants', 'funding_round_sources'] }).slice(0, Math.max(1, Number(env.CAPITAL_STRATEGY_EXECUTE_MAX) || 6));
             const grouped = new Map();
@@ -213,7 +222,8 @@ export async function runResearch(
         ...(grantsOnly && b.useApify && searchConfigured(env) && !engineOn
           ? [[GRANT_WEB_SOURCE, () => grantWebOpportunities(b, job.plan, { env, fetcher, signal, live: live.scope(GRANT_WEB_SOURCE), record, usageClient: client })]]
           : []),
-        ...(job.plan.alzheimer
+        // «Official radar» tiene financiadores escritos en el código: queda apagado salvo OFFICIAL_RADAR=1 (regla: cero financiadores en código).
+        ...(job.plan.alzheimer && env.OFFICIAL_RADAR === '1'
           ? [['Official radar', (c, e) => radar(c, b, job.plan, e)]]
           : []),
         ...(web.exa ? [['Exa', (c, e) => exaSearch(c, b, job.plan, env, e)]] : []),
@@ -261,17 +271,21 @@ export async function runResearch(
       }
       job.senderEvidence = sender;
       // A bounded set of providers; individual errors cannot erase successful results.
-      const outcomes = await Promise.allSettled(
+      // Una fuente que ignora la señal no puede colgar la corrida: al vencer el tope se sale con lo ya recogido (entrega parcial).
+      const aborted = new Promise((_, reject) => { if (signal.aborted) reject(signal.reason); else signal.addEventListener('abort', () => reject(signal.reason || new Error('aborted')), { once: true }); });
+      aborted.catch(() => {});
+      const outcomes = await Promise.race([aborted, Promise.allSettled(
         enabled.map(async ([name, run]) => {
           emit('searching', `${name}: query started.`);
           const found = await runSource(name, () => run(client.scope(name), emitFor(name)), enabled.length);
+          collected.push(...found.map((lead) => ({ ...lead, foundBy: lead.foundBy?.length ? lead.foundBy : [{ provider: name, term: '', objective: lead.fundingType || '', query: '' }] })));
           emit(
             'reading',
             `${name}: ${found.length} candidates with provenance.`,
           );
           return found;
         }),
-      );
+      )]);
       signal.throwIfAborted();
       outcomes.forEach((result, i) => {
         if (result.status === 'fulfilled') {
@@ -610,11 +624,25 @@ export async function runResearch(
       `${job.leads.filter((l) => l.bucket === 'top').length} candidates prioritized; ${job.leads.filter((l) => l.bucket === 'radar').length} on radar. ${job.mode === 'demo' ? 'All examples are fictional.' : 'Missing results are never filled with simulated data.'}`,
     );
   } catch (e) {
-    job.status = 'failed';
     const cancelled = externalSignal?.aborted;
-    const message = cancelled ? 'Stopped by the user.' : `Research couldn't finish: ${e.message}`;
-    emit('error', message);
-    live({ phase: 'error', status: 'error', title: cancelled ? 'Search stopped' : 'Research stopped', message });
+    const partial = !cancelled && timeoutSignal.aborted ? (leads.length ? leads : collected) : [];
+    if (partial.length) {
+      // Tope de tiempo: no se pierde lo encontrado. Se evalúa sin red (reglas) y se entrega como parcial.
+      try {
+        const memory = store.feedbackFor(b, job.userId);
+        const rejected = new Set([...memory].filter(([, v]) => v.decision === 'reject').map(([key]) => key));
+        job.leads = attachGrantPlans(addWarmPlans(evaluate(partial, b, rejected, new Date(), job.plan?.terms || []), b), b).map((l) => ({ ...l, feedback: memory.get(l.key) || null, draft: buildDraft(l, b, []) }));
+        job.status = 'partial'; job.finishedAt = new Date().toISOString(); job.usage = client.usage(); job.timedOut = true;
+        const message = `Time limit (${Math.round(runTimeoutMs / 1000)} s) reached: showing the ${job.leads.length} candidates found so far.`;
+        emit('warning', message);
+        live({ phase: 'warning', status: 'warning', title: 'Partial results', message });
+      } catch (inner) { job.status = 'failed'; emit('error', `Research couldn't finish: ${e.message} (partial delivery failed: ${inner.message})`); }
+    } else {
+      job.status = 'failed';
+      const message = cancelled ? 'Stopped by the user.' : `Research couldn't finish: ${e.message}`;
+      emit('error', message);
+      live({ phase: 'error', status: 'error', title: cancelled ? 'Search stopped' : 'Research stopped', message });
+    }
   }
   const top = job.leads.filter((l) => l.bucket === 'top').length;
   live({

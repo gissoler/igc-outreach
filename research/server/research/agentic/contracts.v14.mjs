@@ -38,7 +38,18 @@ const ajv = new Ajv({ allErrors: true, strict: false });
 const checkUnderstand = ajv.compile(UNDERSTAND_SCHEMA); const checkStep = ajv.compile(STEP_SCHEMA); const checkAssess = ajv.compile(ASSESS_SCHEMA);
 const result = (check, raw) => check(raw) ? { ok: true, value: raw, errors: [] } : { ok: false, value: null, errors: (check.errors || []).map((e) => `${e.instancePath || '/'} ${e.message}`) };
 export const validateUnderstand = (raw) => result(checkUnderstand, raw);
-export const validateAssess = (raw) => result(checkAssess, raw);
+/** Recorta textos y listas a los topes del contrato en vez de rechazar la página entera (14-10: una razón de 600 caracteres tiró una página). */
+export function clipToSchema(value, schema) {
+  if (!schema || value === null || value === undefined) return value;
+  if (typeof value === 'string') return Number.isFinite(schema.maxLength) && value.length > schema.maxLength ? value.slice(0, schema.maxLength) : value;
+  if (Array.isArray(value)) { const out = Number.isFinite(schema.maxItems) ? value.slice(0, schema.maxItems) : value; return schema.items ? out.map((v) => clipToSchema(v, schema.items)) : out; }
+  if (typeof value === 'object') {
+    const out = {}; for (const [k, v] of Object.entries(value)) { const sub = schema.properties?.[k] || (typeof schema.additionalProperties === 'object' ? schema.additionalProperties : null); out[k] = sub ? clipToSchema(v, sub) : v; }
+    return out;
+  }
+  return value;
+}
+export const validateAssess = (raw) => result(checkAssess, raw && typeof raw === 'object' ? clipToSchema(raw, ASSESS_SCHEMA) : raw);
 export function validateStep(raw, { lastObservation = null } = {}) {
   const out = result(checkStep, raw);
   if (out.ok && lastObservation === 'page' && raw.assessment === null) return { ok: false, value: null, errors: ['/assessment required after page'] };
