@@ -339,3 +339,17 @@ test('ROUND: «Series E», «IGC is public», PIPE y ATM se entienden; «public 
   s.pending = 'funding.round'; await runTurn(s, { text: 'IGC is public', env: {} });
   assert.equal(s.fields['funding.round']?.value, 'public');
 });
+
+/* ───────── ASISTENTE: respuesta vacía del modelo → un reintento antes de la extracción básica ───────── */
+import { callModel } from '../server/research/intake.mjs';
+test('INTAKE-RETRY: contenido vacío (gpt-oss sin presupuesto) → reintenta con más tokens y responde; un 4xx no se reintenta', async () => {
+  const bodies = [];
+  const fetchImpl = async (_u, init) => { bodies.push(JSON.parse(init.body)); const first = bodies.length === 1;
+    return { ok: true, json: async () => ({ choices: [{ finish_reason: first ? 'length' : 'stop', message: { content: first ? '' : '{"ack":"ok","question":"","asking":null,"skipped":null,"updates":[]}' } }] }) }; };
+  const env = { INTAKE_LLM_BASE_URL: 'http://x/v1', INTAKE_LLM_MODEL: 'openai/gpt-oss-120b', INTAKE_LLM_ROLE: 'own', INTAKE_LLM_MAX_TOKENS: '4000' };
+  const out = await callModel({ env, system: 's', user: 'u', fetchImpl });
+  assert.equal(out.ack, 'ok'); assert.equal(bodies.length, 2);
+  assert.equal(bodies[1].max_tokens, 8000); assert.match(bodies[1].messages[1].content, /ONLY the JSON/);
+  let calls = 0; const bad = async () => { calls++; return { ok: false, status: 401, json: async () => ({}) }; };
+  await assert.rejects(() => callModel({ env, system: 's', user: 'u', fetchImpl: bad }), /401/); assert.equal(calls, 1);
+});

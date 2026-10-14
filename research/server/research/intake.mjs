@@ -391,23 +391,37 @@ async function askTarget(t, { env, system, user, fetchImpl }) {
   // Los releases 2507 (Instruct-2507, Thinking-2507) ya son modelos separados: el interruptor no
   // aplica y añadirlo solo ensucia el prompt.
   const hybridQwen = /qwen3/i.test(t.model) && !/instruct|thinking/i.test(t.model);
-  const content = hybridQwen && !think ? `${user}\n/no_think` : user;
-  const response = await fetchImpl(`${t.base}/chat/completions`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...(t.apiKey ? { Authorization: `Bearer ${t.apiKey}` } : {}) },
-    body: JSON.stringify({
-      model: t.model, temperature: 0.2, stream: false, ...(t.jsonMode === false ? {} : { response_format: { type: 'json_object' } }),
-      ...(t.reasoningEffort ? { reasoning_effort: t.reasoningEffort } : {}), ...(t.maxTokens ? { max_tokens: t.maxTokens } : {}),
-      messages: [{ role: 'system', content: `${system}\n\nLANGUAGE: Always reply in English, even if the founder writes in Spanish. Field values you extract should also be in English, except proper names.` }, { role: 'user', content }],
-    }),
-    signal: AbortSignal.timeout(Number(env.INTAKE_LLM_TIMEOUT_MS) || 90_000),
-  });
-  if (!response.ok) throw new Error(`The model returned ${response.status}.`);
-  const data = await response.json();
-  const text = String(data?.choices?.[0]?.message?.content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
-  const match = text.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('The model didn\'t return JSON.');
-  return JSON.parse(match[0]);
+  // gpt-oss a veces gasta todo el presupuesto razonando y devuelve el contenido vacío (finish_reason=length), o texto sin JSON:
+  // un reintento con más presupuesto y la orden explícita casi siempre lo resuelve (15-10: «The model didn't return JSON»).
+  let lastError = null;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const base = hybridQwen && !think ? `${user}\n/no_think` : user;
+    const content = attempt ? `${base}\n\nReply with ONLY the JSON object, no other text.` : base;
+    const maxTokens = t.maxTokens ? (attempt ? t.maxTokens * 2 : t.maxTokens) : (attempt ? 8000 : undefined);
+    try {
+      const response = await fetchImpl(`${t.base}/chat/completions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...(t.apiKey ? { Authorization: `Bearer ${t.apiKey}` } : {}) },
+        body: JSON.stringify({
+          model: t.model, temperature: attempt ? 0 : 0.2, stream: false, ...(t.jsonMode === false ? {} : { response_format: { type: 'json_object' } }),
+          ...(t.reasoningEffort ? { reasoning_effort: t.reasoningEffort } : {}), ...(maxTokens ? { max_tokens: maxTokens } : {}),
+          messages: [{ role: 'system', content: `${system}\n\nLANGUAGE: Always reply in English, even if the founder writes in Spanish. Field values you extract should also be in English, except proper names.` }, { role: 'user', content }],
+        }),
+        signal: AbortSignal.timeout(Number(env.INTAKE_LLM_TIMEOUT_MS) || 90_000),
+      });
+      if (!response.ok) throw new Error(`The model returned ${response.status}.`);
+      const data = await response.json();
+      const text = String(data?.choices?.[0]?.message?.content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
+      const match = text.match(/\{[\s\S]*\}/);
+      if (!match) throw new Error(`The model didn't return JSON (finish_reason=${data?.choices?.[0]?.finish_reason || '?'}, ${text.length} chars).`);
+      return JSON.parse(match[0]);
+    } catch (e) {
+      lastError = e;
+      if (/returned 4\d\d/.test(e.message) || e.name === 'TimeoutError') break;   // un 4xx o un timeout no se arregla reintentando
+      if (attempt === 0) console.error(`[intake] ${t.name} model (${t.model}) attempt 1 failed: ${e.message}; retrying once`);
+    }
+  }
+  throw lastError;
 }
 export async function callModel({ env, system, user, fetchImpl = fetch }) {
   let parsed = null; let lastError = null;
