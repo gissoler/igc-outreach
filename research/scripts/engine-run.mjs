@@ -135,7 +135,7 @@ function coverageSummary() {
 function writeSummary() {
   if (!traceOn) return;
   const events = readFileSync(join(outDir, 'events.jsonl'), 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
-  const summary = { v: 'summary/1', run_id: events[0]?.run_id || '', case: objectives.join(','), fase: 'F1', git_commit: commit,
+  const summary = { v: 'summary/1', run_id: events[0]?.run_id || '', case: objectives.join(','), fase: process.env.ENGINE_AGENT === '1' ? 'F2' : 'F1', git_commit: commit,
     flags: { ENGINE_JUDGE: env.ENGINE_JUDGE || '', ENGINE_AGENT: env.ENGINE_AGENT || '', ENGINE_JUDGE_BLIND: env.ENGINE_JUDGE_BLIND || '' }, today, seconds,
     pages: { seen: 0, read: 0, unread_by_reason: {} }, model_calls: {}, tools: {}, searches: { total: 0, repeated_normalized: 0 }, drops: {},
     findings: { main: r.findings.filter((f) => f.tier === 'main').length, verify: r.findings.filter((f) => f.tier !== 'main').length },
@@ -145,12 +145,12 @@ function writeSummary() {
   for (const e of events) {
     if (e.type === 'page') { summary.pages.seen++; if (e.read) summary.pages.read++; }
     if (e.type === 'model_call') { const x = (summary.model_calls[e.role] ||= { calls: 0, invalid: 0, errors: 0, tokens_prompt: 0, tokens_completion: 0, ms: 0 }); x.calls++; x.invalid += e.invalid ? 1 : 0; x.errors += e.ok ? 0 : 1; x.tokens_prompt += e.tokens.prompt; x.tokens_completion += e.tokens.completion; x.ms += e.ms_call; if (e.role === 'judge') summary.judge.calls++; }
-    if (e.type === 'tool_call') { const key = e.provider || e.tool; const x = (summary.tools[key] ||= { calls: 0, results: 0, ms: 0, cost_usd: 0, credits: 0, errors: 0 }); x.calls++; x.results += e.results_n; x.ms += e.ms_call; x.cost_usd += e.cost_usd || 0; x.credits += e.credits || 0; x.errors += e.error ? 1 : 0; if (e.tool === 'search') searches.push(String(e.args?.query || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()); }
+    if (e.type === 'tool_call') { const key = e.provider || e.tool; const x = (summary.tools[key] ||= { calls: 0, results: 0, ms: 0, cost_usd: 0, credits: 0, errors: 0 }); x.calls++; x.results += e.results_n; x.ms += e.ms_call; x.cost_usd += e.cost_usd || 0; x.credits += e.credits || 0; x.errors += e.error ? 1 : 0; if (e.tool === 'search') searches.push(`${e.provider || ''}|${String(e.args?.query || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()}`); }
     if (e.type === 'drop') { const x = (summary.drops[e.reason] ||= {}); x[e.decided_by] = (x[e.decided_by] || 0) + 1; if (!e.read) summary.pages.unread_by_reason[e.reason] = (summary.pages.unread_by_reason[e.reason] || 0) + 1; }
     if (e.type === 'lead') summary.leads.total++;
     if (e.type === 'lead_followup') followups.add(e.lead_id);
   }
-  summary.leads.with_followup = followups.size; summary.searches.total = searches.length; summary.searches.repeated_normalized = searches.length - new Set(searches).size;
+  summary.leads.with_followup = followups.size; summary.searches.total = new Set(searches.map((x) => x.split('|').slice(1).join('|'))).size; summary.searches.repeated_normalized = searches.length - new Set(searches).size;   // total = consultas distintas; repetidas = misma consulta al mismo proveedor
   const agentAudits = r.audits.filter((a) => a.agent?.on);
   if (agentAudits.length) {
     summary.agent = agentAudits.reduce((x, a) => ({ steps: x.steps + (a.agent.steps || 0), invalid_steps: x.invalid_steps + (a.agent.invalid_steps || 0), rejected_ref: x.rejected_ref + (a.agent.rejected_ref || 0), stop_reason: [x.stop_reason, a.agent.stop_reason].filter(Boolean).join(','), questions: x.questions + (a.agent.questions || 0), assumptions: x.assumptions + (a.agent.assumptions || 0) }), { steps: 0, invalid_steps: 0, rejected_ref: 0, stop_reason: '', questions: 0, assumptions: 0 });

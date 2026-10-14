@@ -133,3 +133,15 @@ Motivo: Gisel puede calificar como máximo 10 casos y pidió Excel en lugar de C
 - Criterio 6 nuevo: sobre los 10 casos, F2 no acierta menos casos que F1 (acierto = el sistema lo verifica si es positivo y lo descarta si es «No sirve»; pistas: el sistema la marca como pista si Gisel dijo «Sí»). Con 10 casos, una diferencia de 1 caso no se interpreta como mejora; se informa caso por caso.
 - Se mide cuando están las 10 filas llenas. Sin ellas, criterio 6 «pendiente» y F3 no empieza.
 - Lo que F1 o F2 verifiquen fuera de los 10 se informa como «sin referencia». No hay segunda ronda de etiquetado.
+
+## Adenda 2 (13/10/2026, 21:40 hora de Bogotá) · primera corrida F2 fallida y prompt v14.2
+
+Hecho: la primera corrida F2 de grant (`eval/runs/v14-f2-grant`, prompt `agent.v14.1`) terminó en 192 s con 1 búsqueda, 1 página abierta (un archivo de pago de thegrantportal.com con 433 caracteres) y `finish` en el paso 3. 0 verificadas, 0 pistas. Es un defecto del prompt de paso (decía «Stop when further work only repeats prior work» y no mostraba presupuesto ni páginas ya juzgadas), no una medición del enfoque.
+
+Cambios, hechos después de ver esa corrida y antes de repetirla (no se esconde el orden):
+1. Prompt `agent.v14.2`: se quita esa frase; se dice que una página sola, o un agregador o archivo de pago, nunca basta; el estado incluye `budget_left` (pasos, búsquedas, aperturas, segundos) y `judged_pages` (ref, tema, tipo, candidata, últimas 30) y `candidates`.
+2. Código: el primer `finish` con 0 candidatas, menos de 5 aperturas y menos de la mitad de los pasos usados se rechaza una vez (`tool_call` con `error: refused_early`) y el bucle sigue. Es un tope de presupuesto del bucle, no una regla de contenido.
+3. Prompt de comprensión: las `options` de una duda son las respuestas posibles, no etiquetas de impacto (el modelo las confundió en v14.1).
+4. `summary.json`: `fase` pasa a «F2» con `ENGINE_AGENT=1`; `searches.total` cuenta consultas distintas y `repeated_normalized` solo repeticiones de la misma consulta al mismo proveedor (antes contaba una consulta enviada a 5 proveedores como 4 repetidas).
+
+Se informan las dos corridas F2 de grant: v14.1 (fallida) y v14.2. Los criterios del §6 se evalúan sobre v14.2. Una sola corrección de este tipo está permitida; si v14.2 también falla por un defecto del bucle, se informa y se para, sin segunda iteración.

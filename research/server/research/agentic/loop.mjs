@@ -27,7 +27,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const chat = opts.chat || chatJSON; const maxSteps = Number(opts.maxSteps ?? env.ENGINE_AGENT_STEPS) || 40;
   const maxSeconds = Number(opts.maxSeconds ?? env.ENGINE_AGENT_SECONDS) || 1200; const started = Date.now();
   const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const pages = new Map(); const candidates = new Map();
-  const findings = []; const leads = []; const queries = []; const decisions = []; let invalidSteps = 0; let questions = 0; let stopReason = ''; let stepsRun = 0;
+  const findings = []; const leads = []; const queries = []; const decisions = []; let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
 
   async function model(prompt, role, validate, pageRef = null) {
     for (let retry = 0; retry < 2; retry++) {
@@ -56,7 +56,10 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   let observation = opts.initialObservation || { type: 'start', understood }; let finalRefs = [];
   for (let step = 1; step <= maxSteps && (Date.now() - started) / 1000 < maxSeconds; step++) {
     stepsRun = step;
-    const prompt = stepPrompt({ state: { objective, brief, understood, leads, queries, step }, observation });
+    const used = tools.usage?.() || {};
+    const state = { objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - (Date.now() - started) / 1000)) },
+      judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
+    const prompt = stepPrompt({ state, observation });
     const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null);
     if (!value) { invalidSteps++; observation = { type: 'invalid_step' }; continue; }
     if (value.assessment && observation?.type === 'page') {
@@ -72,6 +75,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       }
     }
     const action = value.action;
+    if (action.tool === 'finish' && !finishRefused && candidates.size === 0 && (used.opens || 0) < 5 && step < maxSteps / 2) { finishRefused = true; trace.event('tool_call', { tool: 'finish', args: action.args || {}, results_n: 0, ms_call: 0, error: 'refused_early' }); observation = { type: 'finish_refused', message: 'No candidate yet and most of the budget is unused. Search with different queries or open more results before finishing.' }; continue; }
     if (action.tool === 'finish') { finalRefs = action.args?.finalists || []; stopReason = action.args?.reason || 'agent'; await tools.finish(action.args); break; }
     const args = { ...(action.args || {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) };
     if (action.tool === 'search') queries.push({ query: String(args.query || ''), family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });

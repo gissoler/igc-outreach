@@ -33,3 +33,9 @@ test('F2.4 yes con cita inventada pasa a unknown', async () => { const bad = str
 test('F2.4 finalista pasa juez y auditor con fecha y días calculados', async () => { const { result } = await run([understood, step({ tool: 'finish', args: { reason: 'done', finalists: ['p1'] } }, assessment), judgment()], { initialObservation: initial }); assert.equal(result.findings.length, 1); assert.equal(result.findings[0].deadline, '2026-12-15'); assert.equal(result.findings[0].daysLeft, 64); });
 test('F2.4 no con cita del juez descarta por judge', async () => { const { result, trace } = await run([understood, step({ tool: 'finish', args: { reason: 'done', finalists: ['p1'] } }, assessment), judgment('no')], { initialObservation: initial }); assert.equal(result.findings.length, 0); assert.equal(trace.events.some((e) => e.type === 'drop' && e.decided_by === 'judge'), true); });
 test('F2.4 hallazgos conservan la forma de engineLeads', async () => { const { result } = await run([understood, step({ tool: 'finish', args: { reason: 'done', finalists: ['p1'] } }, assessment), judgment()], { initialObservation: initial }); assert.doesNotThrow(() => engineLeads(result.findings)); });
+test('F2.4 un finish prematuro sin candidatas se rechaza una vez y el bucle sigue', async () => {
+  const fin = step({ tool: 'finish', args: { reason: 'done', finalists: [] } });
+  const { result, trace } = await run([understood, fin, fin]);
+  assert.equal(trace.events.filter((e) => e.type === 'tool_call' && e.error === 'refused_early').length, 1);
+  assert.equal(result.audit.agent.steps, 2);
+});
