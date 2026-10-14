@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from '../server/research/store.mjs';
 import { createApp } from '../server/index.mjs';
-import { applyUpdate, missingRequired, planFields, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
+import { applyUpdate, closingLine, missingRequired, planFields, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
 import { blankProfile } from '../server/research/profileDefaults.mjs';
 import { createServer } from 'node:http';
 
@@ -225,7 +225,7 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
   await runTurn(s, { text: 'no sé', env, fetchImpl: answer({ ack: 'Ok.', question: '', asking: null, skipped: 'funding.amount_usd', updates: [] }) });
   assert.ok(missingRequired(s).includes('funding.amount_usd'));
   await runTurn(s, { text: '1,200 beta users', env, fetchImpl: answer({ ack: 'Great traction.', question: '', asking: null, updates: [{ path: 'company.traction', value: '1,200 beta users', quote: '1,200 beta users' }] }) });
-  assert.match(s.messages.at(-1).text, /still need: amount/i);
+  assert.match(s.messages.at(-1).text, /missing one useful detail.*amount/i);
   assert.doesNotMatch(s.messages.at(-1).text, /complete/);
   await runTurn(s, { text: 'about 500k', env, fetchImpl: answer({ ack: 'USD 500k.', question: '', asking: null, updates: [{ path: 'funding.amount_usd', value: 500000, quote: '500k' }] }) });
   assert.deepEqual(missingRequired(s), []);
@@ -252,6 +252,16 @@ test('intake sin modelo: capta ronda y monto aunque lleguen fuera de orden; "1,2
   s.pending = null;
   await runTurn(s, { text: 'about 500k USD', env: {} });
   assert.equal(s.fields['funding.amount_usd']?.value, 500000);
+});
+
+test('intake: el cierre usa el contexto y ofrece continuar con un dato desconocido', () => {
+  const s = newIntake();
+  applyUpdate(s, { path: 'company.name', value: 'Mentiva', quote: 'Mentiva' }, 'conversation', 'Mentiva');
+  applyUpdate(s, { path: 'product.name', value: 'Compass', quote: 'Compass' }, 'conversation', 'Compass');
+  const line = closingLine(s);
+  assert.match(line, /Compass/);
+  assert.match(line, /I don't know/);
+  assert.doesNotMatch(line, /To build your plan I still need:/);
 });
 
 test('el modelo acusa recibo de un rango sin devolver el número: el código guarda el monto (tope del rango)', async () => {

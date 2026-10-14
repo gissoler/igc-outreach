@@ -2,7 +2,7 @@ import { candidate, evidence, isIGC, norm, safeUrl, ventureOf } from './core.mjs
 import { hostKind } from './verify.mjs';
 import { adjacent, fundingQuery } from './expand.mjs';
 import { diversifyGrantHits, grantQueries } from './grantManager.mjs';
-import { eligibilityFilter, grantsGovSearch, intelNote, intelQueries } from './grantSources.mjs';
+import { eligibilityFilter, grantsGovSearch, intelNote, intelQueries, simplerGrantsSearch } from './grantSources.mjs';
 import { countRecords, noopRecorder, previewRecords, publicParams, queryOf, safeSample, sanitizeUrl } from './liveRun.mjs';
 const TEAM = 'https://igcpharma.com/team/';
 const AUTHOR = 'https://openalex.org/A5060487287';
@@ -496,15 +496,16 @@ const isoDate = (value) => {
       : null;
 };
 export function grantLead(hit, detail, foundBy = []) {
-  const url = `https://www.grants.gov/search-results-detail/${hit.id}`;
+  const url = hit.url || `https://www.grants.gov/search-results-detail/${hit.id}`;
+  const source = hit.provider || 'Grants.gov';
   const syn = detail?.synopsis || {};
   const title = plain(hit.title);
   // Enlace «información adicional» del aviso: suele ser la página de la agencia (grants.gov/search-results-detail se arma con JavaScript y no se puede leer).
   const officialUrl = (() => { const u = safeUrl(String(syn.fundingDescLinkUrl || '').trim()); return u && !/(^|\.)grants\.gov$/i.test(new URL(u).hostname) ? u : null; })();
   const ev = [
-    evidence('Grants.gov', url, title, 'opportunity'),
+    evidence(source, url, title, 'opportunity'),
     evidence(
-      'Grants.gov',
+      source,
       url,
       JSON.stringify({
         agency: hit.agency,
@@ -519,11 +520,11 @@ export function grantLead(hit, detail, foundBy = []) {
   const alns = [...(detail?.cfdas || []).map((c) => [c.cfdaNumber, c.programTitle]), ...(hit.alnist || hit.cfdaList || []).map((n) => [n, null])]
     .filter(([n]) => /\d{2}\.\d{3}/.test(String(n || '')));
   const aln = alns[0]?.[0] ? String(alns[0][0]) : null;
-  if (aln) ev.push(evidence('Grants.gov', url, `${aln}${alns[0][1] ? ` — ${plain(alns[0][1])}` : ''}`, 'program'));
+  if (aln) ev.push(evidence(source, url, `${aln}${alns[0][1] ? ` — ${plain(alns[0][1])}` : ''}`, 'program'));
   if (syn.synopsisDesc)
     ev.push(
       evidence(
-        'Grants.gov',
+        source,
         url,
         plain(syn.synopsisDesc).slice(0, 1000),
         'scope',
@@ -532,7 +533,7 @@ export function grantLead(hit, detail, foundBy = []) {
   if (syn.applicantTypes?.length)
     ev.push(
       evidence(
-        'Grants.gov',
+        source,
         url,
         syn.applicantTypes.map((a) => a.description).join('; '),
         'eligibility',
@@ -549,18 +550,18 @@ export function grantLead(hit, detail, foundBy = []) {
       : null;
   if (namedContact)
     ev.push(
-      evidence('Grants.gov', url, String(syn.agencyContactName), 'person'),
+      evidence(source, url, String(syn.agencyContactName), 'person'),
     );
   const email = syn.agencyContactEmail;
   const publishedEmail =
     typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
       ? email
       : null;
-  if (publishedEmail) ev.push(evidence('Grants.gov', url, email, 'contact'));
+  if (publishedEmail) ev.push(evidence(source, url, email, 'contact'));
   if (syn.applicantEligibilityDesc)
     ev.push(
       evidence(
-        'Grants.gov',
+        source,
         url,
         plain(syn.applicantEligibilityDesc),
         'eligibility',
@@ -568,7 +569,7 @@ export function grantLead(hit, detail, foundBy = []) {
     );
   const amount = Number(syn.awardCeiling);
   if (amount > 0)
-    ev.push(evidence('Grants.gov', url, String(syn.awardCeiling), 'amount'));
+    ev.push(evidence(source, url, String(syn.awardCeiling), 'amount'));
   return candidate({
     person: namedContact,
     role: namedContact ? contactLines.slice(1).join(' ') : null,
@@ -607,7 +608,7 @@ export function grantLead(hit, detail, foundBy = []) {
     foundBy,
   });
 }
-export async function grants(client, brief, plan, emit, { intel = null } = {}) {
+export async function grants(client, brief, plan, emit, { intel = null, env = process.env } = {}) {
   const provenance = new Map();
   const hits = [];
   const searchAudit = [];
@@ -622,15 +623,26 @@ export async function grants(client, brief, plan, emit, { intel = null } = {}) {
   ];
   for (const search of searches) {
     try {
-      const { hits: found, filtered, fellBack } = await grantsGovSearch(client, search.body, { emit });
+      const useSimpler = Boolean(env.SIMPLER_GRANTS_API_KEY) && env.GRANTS_SOURCE !== 'legacy';
+      let result;
+      if (useSimpler) {
+        try { result = await simplerGrantsSearch(client, search.body, { apiKey: env.SIMPLER_GRANTS_API_KEY, emit }); }
+        catch (error) {
+          if (env.GRANTS_SOURCE === 'simpler_only') throw error;
+          emit('warning', `Simpler.Grants.gov · "${search.query}": ${error.message}. Falling back to Grants.gov.`);
+        }
+      }
+      result ||= await grantsGovSearch(client, search.body, { emit });
+      const { hits: found, filtered, fellBack } = result;
       const fresh = found.filter((h) => !hits.some((x) => x.id === h.id));
       for (const hit of found) {
-        provenance.set(hit.id, [...(provenance.get(hit.id) || []), { provider: 'Grants.gov', term: search.label, objective: 'grant', query: search.query, dimension: search.dimension }]);
+        provenance.set(hit.id, [...(provenance.get(hit.id) || []), { provider: hit.provider || 'Grants.gov', term: search.label, objective: 'grant', query: search.query, dimension: search.dimension }]);
         if (search.intel && !intelOf.has(hit.id)) intelOf.set(hit.id, search.intel);
       }
       hits.push(...fresh);
-      searchAudit.push({ provider: 'Grants.gov', query: search.query, dimension: search.dimension, returned: found.length, discovered: fresh.length, ...(filtered ? { filtered: true } : {}), ...(fellBack ? { filterRejected: true } : {}) });
-      emit('searching', `Grants.gov · ${search.dimension} "${search.query}": ${fresh.length} new calls.`);
+      const provider = found[0]?.provider || (useSimpler ? 'Simpler.Grants.gov' : 'Grants.gov');
+      searchAudit.push({ provider, query: search.query, dimension: search.dimension, returned: found.length, discovered: fresh.length, ...(filtered ? { filtered: true } : {}), ...(fellBack ? { filterRejected: true } : {}) });
+      emit('searching', `${provider} · ${search.dimension} "${search.query}": ${fresh.length} new calls.`);
     } catch (e) {
       emit('warning', `Grants.gov · "${search.query}": ${e.message}`);
     }
@@ -638,18 +650,20 @@ export async function grants(client, brief, plan, emit, { intel = null } = {}) {
   if (!hits.length) emit('searching', 'Grants.gov: no open or forecasted calls matched the searched topics and geographies.');
   const leads = [];
   for (const hit of diversifyGrantHits(hits, Math.min(24, 16 + intelOf.size))) {
-    let detail = null;
-    try {
-      const d = await client.json(
-        'https://api.grants.gov/v1/api/fetchOpportunity',
-        { opportunityId: Number(hit.id) },
-      );
-      if (d.errorcode === 0) detail = d.data;
-    } catch {
-      emit(
-        'warning',
-        `Grants.gov: detail ${hit.number} unavailable; kept the basic record.`,
-      );
+    let detail = hit._simplerDetail || null;
+    if (!detail) {
+      try {
+        const d = await client.json(
+          'https://api.grants.gov/v1/api/fetchOpportunity',
+          { opportunityId: Number(hit.id) },
+        );
+        if (d.errorcode === 0) detail = d.data;
+      } catch {
+        emit(
+          'warning',
+          `Grants.gov: detail ${hit.number} unavailable; kept the basic record.`,
+        );
+      }
     }
     const lead = grantLead(hit, detail, provenance.get(hit.id) || []);
     const note = intelNote(intelOf.get(hit.id));

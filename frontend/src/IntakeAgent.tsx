@@ -152,6 +152,7 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
   const missing = intake ? (intake.planFields?.length ? intake.missing.length : REQUIRED.filter((p) => intake.missing.includes(p)).length) : REQUIRED.length;
   // "I don't know" answers stay missing (the plan is not complete) but must not lock the user in.
   const onlyUnknown = !!intake && missing > 0 && intake.missing.every((p) => intake.skipped.includes(p));
+  const canReview = !missing || onlyUnknown || intake?.pending === null || !reviewRequiresConversation;
 
   return <div className="ia-chat">
     {title && <div className="ia-chat-head">
@@ -183,8 +184,8 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
       <input ref={input} type="file" multiple accept={ACCEPT} hidden onChange={(e) => { if (e.target.files) add(e.target.files); e.target.value = ''; }} />
     </div>
     <div className="rl-actions ia-actions">
-      <span className="ia-status">{!missing ? <><Check size={14} /> Your plan is complete</> : onlyUnknown ? 'Some answers are still unknown; results will be less precise.' : 'Answer the assistant to complete your plan.'}</span>
-      {(!missing || onlyUnknown || !reviewRequiresConversation) && <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (!!missing && !onlyUnknown) || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>}
+      <span className="ia-status">{!missing ? <><Check size={14} /> Your plan is complete</> : onlyUnknown || intake?.pending === null ? 'You can review now; missing details will stay unknown.' : 'Answer one question at a time, or say “I don’t know”.'}</span>
+      {canReview && <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>}
     </div>
   </div>;
 }

@@ -1,0 +1,42 @@
+{
+  "schema_version": "profile/1",
+  "profile_id": "prof-pilot-igc-mint-ad",
+  "subject_type": "organization",
+  "target_types": ["grant"],
+  "as_of": "2026-10-12",
+  "provenance": {
+    "source_kind": "legacy_brief",
+    "sources": [{
+      "title": "jefe-igc-mint-ad-2026-10-12.json",
+      "locator": "research/eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+      "retrieved_at": "2026-10-12"
+    }],
+    "built_by": "code",
+    "builder_saw_anchor": false
+  },
+  "fields": {
+    "applicant.name": {"value": "IGC Pharma", "source": "legacy_brief#company", "as_of": "2026-10-12", "quote": null},
+    "applicant.entity_type": {"value": "for_profit", "source": "legacy_brief#entityType", "as_of": "2026-10-12", "quote": null},
+    "applicant.country": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "applicant.region": {"value": "Maryland", "source": "legacy_brief#state", "as_of": "2026-10-12", "quote": null},
+    "applicant.small_business": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "applicant.ownership_us_51": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "applicant.employees": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "applicant.partners": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "applicant.can_cost_share": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "project.title": {"value": "Mint AD", "source": "legacy_brief#product", "as_of": "2026-10-12", "quote": null},
+    "project.summary": {"value": "Risk stratification tool for Alzheimer's disease that suggests interventions intended to delay onset.", "source": "legacy_brief#oneLiner", "as_of": "2026-10-12", "quote": null},
+    "project.sector": {"value": ["Alzheimer's disease risk stratification", "healthcare"], "source": "legacy_brief#industry", "as_of": "2026-10-12", "quote": null},
+    "project.work_type": {"value": "product_development", "source": "legacy_brief#useOfFunds", "as_of": "2026-10-12", "quote": null},
+    "project.stage": {"value": "marketed", "source": "legacy_brief#stage", "as_of": "2026-10-12", "quote": null},
+    "project.foreign_components": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "team.pi.country_residence": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "team.pi.primary_employer_is_applicant": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "team.pi.credentials": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "funding.amount_needed_usd": {"value": 8000000, "source": "legacy_brief#amount", "as_of": "2026-10-12", "quote": null},
+    "funding.instruments_accepted": {"value": ["grant", "cooperative_agreement"], "source": "legacy_brief#fundingTypes", "as_of": "2026-10-12", "quote": null},
+    "funding.routes_accepted": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null},
+    "preferences.min_prep_days": {"value": 30, "source": "legacy_brief#minDays", "as_of": "2026-10-12", "quote": null},
+    "preferences.excluded_funders": {"value": null, "source": "not provided", "as_of": "2026-10-12", "quote": null}
+  }
+}

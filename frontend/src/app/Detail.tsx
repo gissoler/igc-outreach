@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, Check, ChevronRight, Copy, ExternalLink, FileSearch, Globe, Lightbulb, Lock, Mail, MessageSquareText, MoreHorizontal, Plus, RefreshCw, Route, ThumbsDown, TriangleAlert, UserRound, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import type { BrowseAction, BrowseShot, Evidence, Job, Lead } from '../researchApi';
+import type { BrowseAction, BrowseShot, ContactPerson, Evidence, Job, Lead } from '../researchApi';
 import { browsePage, closeBrowse, fundingLabels, officialPage, statusLabels } from '../researchApi';
 import { SOURCE_META } from '../sources';
 import { CopyBtn, reasonFor, shortDraft } from './Contacts';
@@ -151,6 +151,30 @@ function ContactCard({ lead, demo, isGrant }: { lead: Lead; demo: boolean; isGra
   </div>;
 }
 
+const orgKey = (value: string) => value.toLowerCase().replace(/\b(inc|llc|ltd|limited|corp|corporation|ventures?|capital|partners?)\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+function ApolloContacts({ lead, job, demo }: { lead: Lead; job: Job; demo: boolean }) {
+  if (demo) return null;
+  const target = orgKey(lead.org);
+  if (!target) return null;
+  const people: ContactPerson[] = (job.contactResolution || [])
+    .filter((row) => {
+      const candidate = orgKey(row.organization.canonical_name);
+      return candidate === target || (candidate.length > 4 && (candidate.includes(target) || target.includes(candidate)));
+    })
+    .flatMap((row) => row.people)
+    .slice(0, 3);
+  if (!people.length) return null;
+  return <div className="ld-apollo">
+    <header><span><b>Apollo contacts</b><small>Found after this organization was selected</small></span><em>{people.length}</em></header>
+    {people.map((person) => <article key={person.person_id}>
+      <span className="ld-contact-av" aria-hidden="true">{initials(person.name)}</span>
+      <div><b>{person.name}</b><small>{person.title || 'Role not confirmed'} · {person.organization}</small><p>{person.reason}</p></div>
+      <div className="ld-apollo-a">{person.channel ? (person.channel.type === 'email' ? <><span>{clip(person.channel.value, 30)}</span><CopyButton text={person.channel.value} label="" className="ld-ic" /></> : <a className="x-btn sm" href={person.channel.value} target="_blank" rel="noreferrer">Open {person.channel.type} <ExternalLink size={12} /></a>) : <span className="pl-chip gray">No public channel</span>}<small>{person.verification_status === 'verified' ? 'Verified contact data' : 'Review contact data'}</small></div>
+    </article>)}
+    <p>Apollo confirms a public role or channel. It does not prove a warm relationship or willingness to introduce you.</p>
+  </div>;
+}
+
 /* ───────── Official page inside the app ─────────
    Two ways to browse without leaving the app:
    · Live: the site allows framing, so it is embedded directly.
@@ -287,11 +311,11 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
   const [more, setMore] = useState(false);
   const [why, setWhy] = useState(false);
   const [level, setLevel] = useState<1 | 2 | 3>(1);
-  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence' | 'trace'>(isDemoJob(job) ? 'overview' : 'page');
+  const [tab, setTab] = useState<'overview' | 'page' | 'path' | 'evidence' | 'trace'>('overview');
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { setNote(readNote(job.id, lead.id)); setDiscarding(false); setMsg(''); setNoteOpen(false); setMore(false); setTab(isDemoJob(job) ? 'overview' : 'page'); }, [lead.id, job.id]);
+  useEffect(() => { setNote(readNote(job.id, lead.id)); setDiscarding(false); setMsg(''); setNoteOpen(false); setMore(false); setTab('overview'); }, [lead.id, job.id]);
   useEffect(() => { if (!more) return; const f = (e: MouseEvent) => { if (!moreRef.current?.contains(e.target as Node)) setMore(false); }; document.addEventListener('mousedown', f); return () => document.removeEventListener('mousedown', f); }, [more]);
   const action = nextAction(lead);
   const paths = pathsOf(lead);
@@ -350,14 +374,15 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     </nav>
 
     {tab === 'overview' && <>
-      <section className="ld-sec"><ContactCard lead={lead} demo={demo} isGrant={isGrant} /></section>
+      <section className="ld-sec"><ContactCard lead={lead} demo={demo} isGrant={isGrant} />{!isGrant && <ApolloContacts lead={lead} job={job} demo={demo} />}</section>
       <section className="ld-sec">
-        <header className="ld-h"><h3>Next step</h3></header>
-        <p className="ld-next"><b>{action.label}</b></p>
+        <header className="ld-h"><h3>{isGrant ? 'Why this grant' : 'Why this candidate'}</h3><button className="ld-link" onClick={() => setWhy(true)}>See full reasoning</button></header>
+        <p className="ld-next">{reasonFor(lead)}</p>
+        <div className="x-callout"><b>What to do next</b><span>{action.label}</span></div>
       </section>
 
       <section className="ld-sec">
-        <header className="ld-h"><h3>{isGrant ? <FileSearch size={15} /> : <Mail size={15} />} {isGrant ? 'How to apply' : 'Email draft'}</h3><span className="ld-hint">{isGrant ? 'Through the official portal · not an email' : '2 paragraphs · review before sending'}</span></header>
+        <header className="ld-h"><h3>{isGrant ? <FileSearch size={15} /> : <Mail size={15} />} {isGrant ? 'Application' : 'Message to send'}</h3><span className="ld-hint">{isGrant ? 'Apply through the official portal' : 'Review and copy · nothing is sent'}</span></header>
         {isGrant && lead.grantPlan?.apply && <p className={`ld-apply-verdict ${lead.grantPlan.apply.verdict}`}><b>{({ feasible: 'On time', tight: 'Tight deadline', not_feasible: 'Not reachable for this deadline', closed: 'Closed', unknown: 'Deadline to confirm' } as const)[lead.grantPlan.apply.verdict]}</b> {lead.grantPlan.apply.message}</p>}
         <div className="ld-mail">
           <dl className="ld-mail-h"><div><dt>{isGrant ? 'Where' : 'To'}</dt><dd>{mail.to}{p?.introducer ? <em> · asks for the intro</em> : null}</dd></div><div><dt>Subject</dt><dd>{mail.subject}</dd></div></dl>
@@ -372,8 +397,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
       </section>}
 
       <section className="ld-sec">
-        <header className="ld-h"><h3>{isGrant ? 'Why consider this call' : 'Why contact'}</h3></header>
-        <p className="ld-next">{reasonFor(lead)}</p>
+        <header className="ld-h"><h3>Evidence behind this choice</h3></header>
         {verified.length > 0 && <div className="ld-src found"><span className="pl-chip mint">Found</span><div><q>{clipWords(readableQuote(verified[0].quote), 170)}</q><small>{verified[0].url && !demo ? <a href={verified[0].url} target="_blank" rel="noreferrer">{verified[0].source} <ExternalLink size={11} /></a> : verified[0].source}{verified.length > 1 ? <button className="ld-link inline" onClick={() => setTab('evidence')}> +{verified.length - 1} more</button> : null}</small></div></div>}
         {readItems.length > 0 && <div className="ld-src read"><span className="pl-chip lav">Our read</span><ul>{readItems.map((x) => <li key={x} className={/^(To confirm|Missing):/.test(x) ? 'miss' : ''}>{cleanText(x)}</li>)}</ul></div>}
       </section>

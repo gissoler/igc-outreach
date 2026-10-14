@@ -37,6 +37,76 @@ export async function grantsGovSearch(client, body, { emit = () => {} } = {}) {
   }
 }
 
+/**
+ * Simpler.Grants.gov adapter. The official API uses UUIDs and snake_case while
+ * the existing pipeline expects the compact Grants.gov hit shape. Keep the
+ * translation here so ranking, evidence and eligibility remain source-agnostic.
+ */
+const simplerDate = (value) => {
+  const match = String(value || '').match(/^(\d{4}-\d{2}-\d{2})/);
+  return match ? match[1] : null;
+};
+const simplerApplicantTypes = (row) => {
+  const values = row?.applicant_types || row?.applicantTypes || row?.current_opportunity_summary?.applicant_types || [];
+  return (Array.isArray(values) ? values : []).map((value) => ({ description: clean(value?.description || value?.applicant_type || value) })).filter((value) => value.description);
+};
+export function simplerOpportunity(row) {
+  const id = clean(row?.opportunity_id || row?.opportunityId);
+  if (!id) return null;
+  const number = clean(row?.opportunity_number || row?.opportunityNumber) || id;
+  const title = clean(row?.opportunity_title || row?.opportunityTitle) || number;
+  const agency = clean(row?.agency_name || row?.agencyName || row?.agency_code || row?.agencyCode) || 'Federal agency';
+  const status = clean(row?.opportunity_status || row?.opportunityStatus).toLowerCase();
+  const summary = clean(row?.summary || row?.description || row?.synopsis || row?.opportunity_summary?.summary_description);
+  const eligibility = clean(row?.applicant_eligibility_description || row?.applicantEligibilityDescription);
+  const hit = {
+    id,
+    number,
+    title,
+    agency,
+    oppStatus: status,
+    closeDate: simplerDate(row?.close_date || row?.closeDate),
+    url: `https://simpler.grants.gov/opportunity/${id}`,
+    provider: 'Simpler.Grants.gov',
+  };
+  const detail = {
+    synopsis: {
+      synopsisDesc: summary,
+      applicantTypes: simplerApplicantTypes(row),
+      applicantEligibilityDesc: eligibility,
+      awardCeiling: Number(row?.award_ceiling ?? row?.awardCeiling) || null,
+      awardFloor: Number(row?.award_floor ?? row?.awardFloor) || null,
+      agencyName: agency,
+      fundingDescLinkUrl: safeUrl(clean(row?.additional_info_url || row?.additionalInfoUrl)) || null,
+    },
+    cfdas: (row?.assistance_listings || row?.assistanceListings || []).map((item) => ({
+      cfdaNumber: clean(item?.assistance_listing_number || item?.program_number || item?.number || item),
+      programTitle: clean(item?.program_title || item?.title),
+    })).filter((item) => item.cfdaNumber),
+  };
+  return { hit, detail };
+}
+
+export async function simplerGrantsSearch(client, body, { apiKey, emit = () => {} } = {}) {
+  if (!apiKey) throw new Error('SIMPLER_GRANTS_API_KEY is not configured');
+  const query = clean(body?.keyword || body?.oppNum).slice(0, 100);
+  const payload = {
+    ...(query ? { query } : {}),
+    query_operator: 'AND',
+    filters: { opportunity_status: { one_of: ['posted', 'forecasted'] } },
+    pagination: {
+      page_offset: 1,
+      page_size: Math.min(100, Math.max(1, Number(body?.rows) || 15)),
+      sort_order: [{ order_by: query ? 'relevancy' : 'close_date', sort_direction: query ? 'descending' : 'ascending' }],
+    },
+  };
+  const data = await client.json('https://api.simpler.grants.gov/v1/opportunities/search', payload, { 'X-API-Key': apiKey });
+  if (!Array.isArray(data?.data)) throw new Error(`invalid response${data?.message ? `: ${clean(data.message).slice(0, 80)}` : ''}`);
+  const rows = data.data.map(simplerOpportunity).filter(Boolean);
+  emit('searching', `Simpler.Grants.gov: ${rows.length} official opportunities returned.`);
+  return { hits: rows.map(({ hit, detail }) => ({ ...hit, _simplerDetail: detail })), filtered: true, filters: ['opportunity_status'] };
+}
+
 /* ── NIH RePORTER como inteligencia ─────────────────────────────────── */
 export async function reporterIntel(client, brief, plan, { years = 3, limit = 50 } = {}) {
   const now = new Date().getFullYear();

@@ -324,8 +324,25 @@ export const isPlanQuestion = inPlan;
 export function closingLine(s) {
   const missing = missingRequired(s);
   if (!missing.length) return 'Your plan is complete. Press “Review and run” to start the search.';
-  const labels = missing.map((p) => FIELD[p]?.label.toLowerCase()).filter(Boolean);
-  return `To build your plan I still need: ${labels.join(', ')}. Tell me here when you have ${labels.length > 1 ? 'them' : 'it'} — even a rough estimate works.`;
+  const path = missing[0];
+  const field = FIELD[path];
+  const subject = fieldValue(s, 'product.name') || fieldValue(s, 'company.name') || 'your project';
+  const why = {
+    'funding.objectives': 'so I search the right kind of funding',
+    'product.one_liner': 'so I can match the actual work, not just the sector',
+    'industry.sectors': 'so I use the terms funders use',
+    'product.maturity': 'because funders support different stages',
+    'geography': 'because eligibility often depends on location',
+    'funding.amount_usd': 'so I can exclude opportunities that are too small or too large',
+    'funding.round': 'so I compare investors at the right stage',
+    'company.traction': 'so I can explain why an investor should take the meeting',
+    'funding.use_of_funds': 'so the message has a concrete milestone',
+    'company.entity_type': 'because many grants limit who may apply',
+    'company.country': 'because grant eligibility depends on the applicant country',
+  }[path] || 'so the search is specific';
+  const example = field?.ask?.match(/(?:For example|e\.g\.)[: ]+(.+?)(?:[.?]|$)/i)?.[1];
+  const prompt = field?.ask || `What should I know about ${field?.label?.toLowerCase() || 'this'}?`;
+  return `I'm missing one useful detail about ${subject}: ${field?.label?.toLowerCase() || 'the funding request'}, ${why}. ${prompt}${example ? ` For example: “${example}”.` : ''} If you don't know yet, say “I don't know” and I'll keep it unknown.`;
 }
 
 /* ───────── Modelo (opcional) ───────── */
@@ -358,6 +375,7 @@ How to reply:
 8a. Write for a founder who has never raised money. Use plain words; never use jargon such as "traction", "runway", "LOI" or "key data" without saying what it means in the same sentence. End with a short example answer in parentheses, e.g. (for example: "about 2 million dollars").
 8b. If the founder's last reply shows they did not understand the previous question ("what do you mean?", a confused or off-topic answer), ask the SAME open question again in simpler words with a concrete example, instead of moving on.
 8. "question": exactly ONE question, the one a sharp investor would ask next, chosen ONLY from "open_questions". Put its path in "asking". Make it specific to this company (use their product name and facts), max 30 words, ending with "?".
+8c. Use "current_profile" as durable memory. Connect the question to the product, goal or stage already known; never emit a generic list of missing field labels.
 9. NEVER ask for anything in "current_profile", "already_asked" or "skipped", or answered in any document. If a document answers an open question, extract it instead of asking.
 10. If the founder doesn't know, wants to skip, or answers vaguely ("no sé", "not sure", "I don't know which"), set "skipped" to the path of "pending_question", don't press, and ask a DIFFERENT open question.
 11. If the founder asks "what's your question?" or seems lost, just ask the next open question clearly.
@@ -447,6 +465,14 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
     const open = openQuestions(s);
     const user = JSON.stringify({
       current_profile: compact(s),
+      conversation_context: {
+        company: fieldValue(s, 'company.name') || null,
+        product: fieldValue(s, 'product.name') || null,
+        goals: fieldValue(s, 'funding.objectives') || [],
+        stage: fieldValue(s, 'product.maturity') || null,
+        answered: planFields(s).filter((path) => filled(s, path)).length,
+        total: planFields(s).length,
+      },
       open_questions: open.map((f) => ({ path: f.path, label: f.label, required: inPlan(s, f.path) })),
       already_asked: [...new Set(s.asked)].map((p) => FIELD[p]?.label).filter(Boolean),
       skipped: s.skipped.map((p) => FIELD[p]?.label).filter(Boolean),
