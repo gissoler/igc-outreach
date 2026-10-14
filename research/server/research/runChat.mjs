@@ -15,13 +15,14 @@ const MAX_TOOL_STEPS = 4; const HISTORY = 12;
 const leadName = (l) => clip(l.kind === 'opportunity' || l.fundingType === 'grant' ? l.title || l.org : [l.person, l.org].filter(Boolean).join(' · ') || l.title, 120);
 const quoteOf = (l, field) => (l.evidence || []).find((e) => e.field === field)?.quote || '';
 export function indexRow(l) {
-  return { id: l.id, name: leadName(l), type: l.fundingType, kind: l.kind, list: l.bucket, score: l.score, status: l.status, deadline: l.deadline || null, ...(l.registry?.number ? { number: l.registry.number } : {}), why: clip(l.why?.[0] || l.discard || '', 160) };
+  return { id: l.id, name: leadName(l), type: l.fundingType, kind: l.kind, list: l.bucket, score: l.score, status: l.status, deadline: l.deadline || null, estimated_due_date: l.estimatedDeadline || l.registry?.forecastClose || null, ...(l.registry?.number ? { number: l.registry.number } : {}), why: clip(l.why?.[0] || l.discard || '', 160) };
 }
 export function candidateDetail(l) {
   const v = l.verification || {};
+  const forecast = ['forecast', 'forecasted'].includes(String(l.status || '').toLowerCase()) || l.registry?.status === 'forecasted' || l.registry?.isForecast === true;
   return {
     id: l.id, name: leadName(l), organization: l.org, title: l.title, type: l.fundingType, list: l.bucket, discard_reason: l.discard || null, score: l.score, confidence: l.confidence,
-    status: l.status, deadline: l.deadline, days_to_deadline: l.daysToDeadline ?? null, amount: l.amount,
+    status: l.status, deadline: forecast ? null : l.deadline, days_to_deadline: forecast ? null : (l.daysToDeadline ?? null), estimated_due_date: l.estimatedDeadline || l.registry?.forecastClose || null, estimated_date_passed: Boolean(l.grantPlan?.estimatedDatePassed), amount: l.amount,
     url: l.contact?.type === 'web' ? l.contact.value : (l.evidence || [])[0]?.url || null,
     registry: l.registry || null,
     deadline_quote: v.deadlineQuote || quoteOf(l, 'deadline') || l.quotes?.deadline || null,
@@ -31,7 +32,7 @@ export function candidateDetail(l) {
     contacts: (l.contacts || []).slice(0, 8).map((c) => ({ name: c.name, role: c.role || c.title || null, organization: c.organization || null, email: c.email || null, linkedin: c.linkedin || c.linkedin_url || null, source: c.provenance || c.source || null })),
     person: l.person ? { name: l.person, role: l.role, contact: l.contact?.type === 'email' ? l.contact.value : null } : null,
     warm_path: l.paths?.[0] ? { via: l.paths[0].nodes, strength: l.paths[0].strength } : null,
-    application_plan: l.grantPlan ? { decision: l.grantPlan.label, next_action: clip(l.grantPlan.nextAction, 300), portal: l.grantPlan.apply?.portal?.name || null, steps: (l.grantPlan.apply?.steps || []).filter((x) => !x.skip).slice(0, 8).map((x) => `${clip(x.label, 160)}${x.days ? ` (~${x.days} days)` : ''}`), open_items: (l.grantPlan.checklist || []).filter((x) => !x.done).map((x) => clip(x.label, 120)).slice(0, 8) } : null,
+    application_plan: l.grantPlan ? { decision: l.grantPlan.label, next_action: clip(l.grantPlan.nextAction, 300), portal: forecast ? null : (l.grantPlan.apply?.portal?.name || null), steps: forecast ? [] : (l.grantPlan.apply?.steps || []).filter((x) => !x.skip).slice(0, 8).map((x) => `${clip(x.label, 160)}${x.days ? ` (~${x.days} days)` : ''}`), open_items: (l.grantPlan.checklist || []).filter((x) => !x.done).map((x) => clip(x.label, 120)).slice(0, 8) } : null,
     draft: l.draft?.body ? { subject: l.draft.subject, body: clip(l.draft.body, 1500) } : null,
     found_by: (l.foundBy || []).slice(0, 3).map((f) => ({ source: f.provider, query: clip(f.query, 120) })),
   };

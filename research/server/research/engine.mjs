@@ -679,7 +679,7 @@ export function engineLeads(findings) {
     return candidate({
       externalId: `engine:${f.objective}:${f.url}`, org: f.name || host, title: f.name || f.title || host,
       kind: o.kind === 'opportunity' ? 'opportunity' : 'research', fundingType: f.objective,
-      status: f.forecast ? 'forecasted' : f.status === 'n/a' ? 'unknown' : f.status, deadline: f.deadline, amount: f.amount,
+      status: f.forecast || f.status === 'forecast' ? 'forecasted' : f.status === 'n/a' ? 'unknown' : f.status, deadline: f.forecast || f.status === 'forecast' ? null : f.deadline, ...(f.estimatedDeadline ? { estimatedDeadline: f.estimatedDeadline } : {}), amount: f.amount,
       contact: { type: 'web', value: f.url, provenance: `Read and verified on ${host}` },
       evidence: ev,
       risks: [...new Set([...(f.blockers || []), f.eligible === 'yes' ? null : 'Fit to confirm with the counterpart', ...f.flags.map((x) => `Check: ${x}`)].filter(Boolean))],

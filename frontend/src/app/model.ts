@@ -170,6 +170,7 @@ export function nextAction(lead: Lead): NextAction {
   // Convocatorias: se aplica en el portal oficial, no se escribe a nadie (salvo pregunta opcional al contacto publicado).
   const gp = lead.grantPlan;
   if (lead.kind === 'opportunity' && gp) {
+    if (['forecast', 'forecasted'].includes(lead.status) || lead.registry?.status === 'forecasted') return { kind: 'monitor', label: 'Watch', detail: gp.nextAction, rule: 'Forecast → wait for the posted notice' };
     const a = gp.apply;
     const label = a?.verdict === 'not_feasible' ? `Next cycle${a.nextDeadline ? ` · ${a.nextDeadline}` : ''}` : a?.verdict === 'closed' ? 'Closed' : a?.portal ? `Apply on ${a.portal.name}` : 'Apply on the official page';
     return { kind: 'apply', label, detail: gp.nextAction, rule: 'Grant call → apply through the official portal' };
@@ -185,7 +186,7 @@ export function nextAction(lead: Lead): NextAction {
 export function radarReason(lead: Lead): string {
   if (lead.jev && lead.missing.some((m) => /decision agent/i.test(m))) return lead.missing.find((m) => /decision agent/i.test(m))!;
   if (lead.status === 'closed') return 'Closed or past deadline: wait for the next cycle.';
-  if (lead.status === 'forecasted') return 'Forecast, not open yet.';
+  if (lead.status === 'forecasted' || lead.status === 'forecast') return 'Forecast, not open yet.';
   if (lead.kind === 'radar') return 'Radar source: future cycle or no open call.';
   if (lead.daysToDeadline != null) return `Closes in ${lead.daysToDeadline} days, under your minimum.`;
   return 'Timing doesn\'t meet your minimum.';
@@ -568,5 +569,5 @@ export function oneLiner(lead: Lead, job: Job) {
 /* Listas de grants: solo convocatorias. Una fila de grant que no es una oportunidad (persona, página de programa sin plazo ni estado)
    no se muestra como convocatoria: pasa a «Ruled out» con este motivo (14-10: cargos y páginas sin plazo llenaban Watch). */
 export const isGrantLead = (l: Lead) => l.fundingType === 'grant' || l.kind === 'opportunity';
-export const notACall = (l: Lead) => isGrantLead(l) && (l.kind !== 'opportunity' || (!l.deadline && !['open', 'forecasted', 'upcoming', 'rolling'].includes(l.status)));
+export const notACall = (l: Lead) => isGrantLead(l) && (l.kind !== 'opportunity' || (!l.deadline && !['open', 'forecast', 'forecasted', 'upcoming', 'rolling'].includes(l.status)));
 export const NOT_A_CALL_REASON = 'Not a call: no deadline or way to apply was found on the page.';

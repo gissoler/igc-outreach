@@ -294,7 +294,9 @@ export function Essentials({ lead, demo, isGrant, mailText }: { lead: Lead; demo
   const identityQ = q('opportunity') || q('profile') || lead.evidence.find((e) => e.verified)?.quote || '';
   const verified = v?.tier === 'main';
   const firstBlocker = (v?.blockers || [])[0];
-  const steps = datedSteps((lead.grantPlan?.apply?.steps || []) as PlanStep[], lead.deadline);
+  const forecast = ['forecast', 'forecasted'].includes(lead.status) || lead.registry?.status === 'forecasted';
+  const estimated = lead.grantPlan?.estimatedDeadline || lead.estimatedDeadline || lead.registry?.forecastClose || null;
+  const steps = forecast ? [] : datedSteps((lead.grantPlan?.apply?.steps || []) as PlanStep[], lead.deadline);
   const portal = lead.grantPlan?.apply?.portal?.name;
   const contacts = lead.contacts || [];
   const source = demo ? null : officialUrlOfLead(lead);
@@ -302,8 +304,9 @@ export function Essentials({ lead, demo, isGrant, mailText }: { lead: Lead; demo
     <section className="ld-sec ld-ess">
       <header className="ld-h"><h3>Why it was picked</h3>{verified ? <span className="pl-chip mint">Verified on the page</span> : <span className="pl-chip sun" title={firstBlocker || ''}>To verify</span>}</header>
       <ul className="ld-why">
-        {isGrant && lead.deadline && <li><b>Deadline {longDay(lead.deadline)}</b>{lead.daysToDeadline != null ? ` · ${lead.daysToDeadline} days left` : ''}{deadlineQ && <q>{clipWords(readableQuote(deadlineQ), 160)}</q>}</li>}
-        {isGrant && !lead.deadline && <li><b>No deadline confirmed on the page.</b>{lead.status === 'forecasted' ? ' It is a forecast: applications are not open yet.' : ''}</li>}
+        {isGrant && forecast && <li><b>{estimated ? `Estimated due date: ${longDay(estimated)} (not open yet)` : 'Forecast (not open yet)'}</b>{lead.grantPlan?.estimatedDatePassed ? ' · Estimated date already passed' : ''}</li>}
+        {isGrant && !forecast && lead.deadline && <li><b>Deadline {longDay(lead.deadline)}</b>{lead.daysToDeadline != null ? ` · ${lead.daysToDeadline} days left` : ''}{deadlineQ && <q>{clipWords(readableQuote(deadlineQ), 160)}</q>}</li>}
+        {isGrant && !forecast && !lead.deadline && <li><b>No deadline confirmed on the page.</b></li>}
         {eligQ ? <li><b>Who can apply</b><q>{clipWords(readableQuote(eligQ), 180)}</q></li> : isGrant ? <li><b>Eligibility not stated on the page</b> — check it before you start.</li> : null}
         {!isGrant && identityQ && <li><b>What they do</b><q>{clipWords(readableQuote(identityQ), 180)}</q></li>}
         {!verified && firstBlocker && <li className="miss">Still open: {cleanText(firstBlocker)}</li>}
@@ -314,7 +317,7 @@ export function Essentials({ lead, demo, isGrant, mailText }: { lead: Lead; demo
       {isGrant ? <>
         {lead.grantPlan?.nextAction && <p className="ld-next">{cleanText(lead.grantPlan.nextAction)}</p>}
         {steps.length > 0 && <ol className="ld-steps">{steps.map((st, i) => <li key={i}><span>{cleanText(st.label)}</span>{st.by ? <small>by {longDay(st.by)}{st.days ? ` · ~${st.days} days` : ''}</small> : st.days ? <small>~{st.days} days</small> : null}</li>)}</ol>}
-        {lead.deadline && <p className="ld-sub">Submit {portal ? `on ${portal} ` : ''}before {longDay(lead.deadline)}.</p>}
+        {!forecast && lead.deadline && <p className="ld-sub">Submit {portal ? `on ${portal} ` : ''}before {longDay(lead.deadline)}.</p>}
       </> : <>
         <pre className="ld-msg">{mailText}</pre>
         <div className="ld-mail-a"><CopyBtn text={mailText} label="Copy message" /><span className="ld-hint">Nothing is sent from the app.</span></div>
@@ -451,7 +454,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
         <ExecutiveExplain lead={lead} job={job} level={level} onLevel={setLevel} />
         <WarmPathPanel lead={lead} job={job} onEvidence={onEvidence} onHop={onHop} />
         <h3 className="x-h3">Opportunity</h3>
-        <dl className="x-dl"><dt>Type</dt><dd>{fundingLabels[lead.fundingType] || lead.fundingType}</dd><dt>Status</dt><dd>{statusLabels[lead.status] || lead.status}</dd><dt>Deadline</dt><dd>{lead.deadline ? `${fmtDate(lead.deadline)}${lead.daysToDeadline != null ? ` · ${lead.daysToDeadline} days` : ''}` : 'Not published'}</dd><dt>Channel</dt><dd>{lead.contact ? (demo ? `${lead.contact.type} (fictional)` : clip(lead.contact.value, 42)) : 'Not published'}</dd></dl>
+        <dl className="x-dl"><dt>Type</dt><dd>{fundingLabels[lead.fundingType] || lead.fundingType}</dd><dt>Status</dt><dd>{statusLabels[lead.status] || lead.status}</dd><dt>{['forecast', 'forecasted'].includes(lead.status) ? 'Estimated due date' : 'Deadline'}</dt><dd>{['forecast', 'forecasted'].includes(lead.status) ? (lead.grantPlan?.estimatedDeadline || lead.estimatedDeadline || lead.registry?.forecastClose || 'Not published') : lead.deadline ? `${fmtDate(lead.deadline)}${lead.daysToDeadline != null ? ` · ${lead.daysToDeadline} days` : ''}` : 'Not published'}</dd><dt>Channel</dt><dd>{lead.contact ? (demo ? `${lead.contact.type} (fictional)` : clip(lead.contact.value, 42)) : 'Not published'}</dd></dl>
         {lead.missing.length > 0 && <><h3 className="x-h3">Missing data</h3><ul className="x-bullets">{lead.missing.map((m) => <li key={m}>{m}</li>)}</ul></>}
         {risks.length > 3 && <><h3 className="x-h3">All risks</h3><ul className="x-bullets neg">{risks.map((r) => <li key={r}>{r}</li>)}</ul></>}
 

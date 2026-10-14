@@ -44,7 +44,9 @@ export function CandidateInsight({ lead, dossier }: { lead: Lead | null; dossier
   const score = lead ? lead.score : 0;
   const path = Math.max(0, ...(lead?.paths || []).map((p) => p.strength), ...(d?.warm_paths || []).map((p) => p.strength));
   const email = lead?.contact?.type === 'email' ? lead.contact : null;
-  const timing = lead?.deadline ? (lead.daysToDeadline != null ? (lead.daysToDeadline < 0 ? 'Closed' : `${lead.daysToDeadline} days left`) : lead.deadline) : lead?.status === 'open' ? 'Open' : lead?.status === 'closed' ? 'Closed' : 'No deadline';
+  const forecast = Boolean(lead && (['forecast', 'forecasted'].includes(lead.status) || lead.registry?.status === 'forecasted'));
+  const estimated = lead?.grantPlan?.estimatedDeadline || lead?.estimatedDeadline || lead?.registry?.forecastClose || null;
+  const timing = forecast ? (lead?.grantPlan?.estimatedDatePassed ? 'Estimated date already passed' : estimated ? `Estimated due ${estimated} · not open yet` : 'Forecast · not open yet') : lead?.deadline ? (lead.daysToDeadline != null ? (lead.daysToDeadline < 0 ? 'Closed' : `${lead.daysToDeadline} days left`) : lead.deadline) : lead?.status === 'open' ? 'Open' : lead?.status === 'closed' ? 'Closed' : 'No deadline';
   const verdict = lead ? (lead.bucket === 'top' ? { t: 'Contact now', tone: 'mint' } : lead.bucket === 'radar' ? { t: 'Later', tone: 'sun' } : { t: 'Ruled out', tone: 'rose' }) : null;
   const why = [...(d?.fit.reasons || []).map((r) => r.text), ...(lead?.why || [])].map((w) => clip(w, 150)).filter(Boolean).slice(0, 3);
   const watch = clip(d?.risks?.[0] || lead?.discard || (lead?.missing || []).find((m) => !/geographic eligibility/i.test(m)) || '', 140);

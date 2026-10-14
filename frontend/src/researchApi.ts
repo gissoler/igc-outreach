@@ -68,6 +68,8 @@ export type GrantPlan = {
   agency: string | null;
   deadline: string | null;
   daysToDeadline: number | null;
+  estimatedDeadline?: string | null;
+  estimatedDatePassed?: boolean;
   policyThemes: string[];
   geography: string | null;
   contactQuestion: string | null;
@@ -171,6 +173,7 @@ export type Lead = {
   opportunityType?: 'challenge' | 'prize' | 'accelerator' | 'fellowship' | 'open_call' | string;
   status: string;
   deadline: string | null;
+  estimatedDeadline?: string | null;
   amount: number | null;
   contact: { type: string; value: string; provenance: string } | null;
   evidence: Evidence[];
@@ -373,6 +376,7 @@ export const statusLabels: Record<string, string> = {
   open: 'Open',
   closed: 'Closed',
   unknown: 'Unconfirmed',
+  forecast: 'Forecast',
   forecasted: 'Forecast',
   active: 'Recent activity',
 };

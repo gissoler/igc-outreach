@@ -17,7 +17,7 @@ const pageClass = (type, dated) => (!dated ? 'other' : type === 'forecast_notice
 
 /** ¿Se puede sostener esta fecha? Cita literal en la página, que contenga la fecha pedida y ninguna otra. */
 export function verifyDate(d, pageText) {
-  const base = { role: d.role, date: d.date || null, estimated: Boolean(d.estimated), quote: String(d.quote || '') };
+  const base = { role: d.role, ...(d.role_fixed_from ? { role_fixed_from: d.role_fixed_from } : {}), date: d.date || null, estimated: Boolean(d.estimated), quote: String(d.quote || '') };
   if (!d.date) return { ...base, verified: false, why: 'no_date' };
   if (!literalIn(d.quote, pageText)) return { ...base, verified: false, why: 'quote_not_in_page' };
   const found = datesIn(d.quote);
@@ -32,7 +32,15 @@ const DEADLINE_ALIASES = /^(deadline|due|due_date|close|closes|closing|close_dat
 const EXPIRY_ALIASES = /^(expiration|expiration_date|expires|expiry|end_date)$/i;
 const EXPIRY_QUOTE = /\bexpir(?:ation|es|y)\b/i;
 export const normRole = (d) => { if (!d) return d; const r = String(d.role || '').trim(); if (EXPIRY_ALIASES.test(r) || (r === 'application_deadline' && EXPIRY_QUOTE.test(String(d.quote || '')) && !/\b(due|deadline|submit)/i.test(String(d.quote || '')))) return { ...d, role: 'expiration' }; return DEADLINE_ALIASES.test(r) ? { ...d, role: 'application_deadline' } : d; };
-const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map(normRole).map((d) => verifyDate(d, pageText));
+const AWARD_LABEL = /\b(award|awards|awarded|project start|start date|period of performance|decision|notification|notified)\b/i;
+const DEADLINE_LABEL = /\b(due|deadline|close|closes|closing|submit|submission|receipt|expir\w*|apply by|no later than)\b/i;
+export const fixRole = (d) => {
+  if (!d || d.role !== 'application_deadline') return d;
+  const quote = String(d.quote || '');
+  if (!AWARD_LABEL.test(quote) || DEADLINE_LABEL.test(quote)) return d;
+  return { ...d, role: /start/i.test(quote) ? 'project_start' : 'award', role_fixed_from: d.role };
+};
+const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map(normRole).map(fixRole).map((d) => verifyDate(d, pageText));
 /** Una cita de cierre con VARIAS fechas no sirve para fijar un plazo, pero si TODAS son anteriores a hoy prueba que está cerrado. */
 function pastOnly(d, pageText, today) {
   if (!['application_deadline', 'expiration'].includes(d.role) || d.why !== 'quote_has_several_dates' || !literalIn(d.quote, pageText)) return d;
@@ -58,13 +66,13 @@ function auditCriteria(judgment, objective, pageText, flags, criteriaIds = null)
 }
 
 /** Estado por código a partir de los roles de fecha del juez ya auditados. */
-export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, today, dated }) {
+export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, today, dated, registryForecast = null }) {
   if (!dated) return { state: 'n/a', deadline: null, quote: '', daysLeft: null, estimatedDeadline: null };
   const app = appDatesOf(judgeDates);
   const anyEstimated = app.some((d) => d.estimated) || appDatesOf(compilerDates || []).some((d) => d.estimated);
-  const forecast = judgeType === 'forecast_notice' || compilerType === 'forecast_notice' || anyEstimated;
+  const forecast = Boolean(registryForecast) || judgeType === 'forecast_notice' || compilerType === 'forecast_notice' || anyEstimated;
   const first = (xs) => [...xs].sort((a, b) => a.date.localeCompare(b.date))[0];
-  if (forecast) { const e = app.length ? first(app) : null; return { state: 'forecast', deadline: null, quote: e?.quote || '', daysLeft: null, estimatedDeadline: e?.date || null }; }
+  if (forecast) { const e = app.length ? first(app) : null; return { state: 'forecast', deadline: null, quote: e?.quote || '', daysLeft: null, estimatedDeadline: e?.date || registryForecast?.estimated || null }; }
   if (!app.length) return { state: 'unknown', deadline: null, quote: '', daysLeft: null, estimatedDeadline: null };
   const future = app.filter((d) => d.date >= today);
   if (!future.length) { const last = [...app].sort((a, b) => b.date.localeCompare(a.date))[0]; return { state: 'closed', deadline: last.date, quote: last.quote, daysLeft: null, estimatedDeadline: null }; }
@@ -76,7 +84,7 @@ export function stateFrom({ judgeType, compilerType, judgeDates, compilerDates, 
 }
 
 /** Auditoría de una página. `compilation`/`judgment` son salidas ya validadas por contracts.v13 o null; `failure` explica por qué falta una. */
-export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null, criteriaIds = null, requireCall = false } = {}) {
+export function auditPage({ objective = 'grant', page, today, compilation = null, judgment = null, failure = {}, blind = false, window = null, criteriaIds = null, requireCall = false, registryForecast = null } = {}) {
   const now = todayIso(today); const text = String(page?.text || ''); const dated = hasDeadline(objective);
   const flags = []; const disagreements = []; const blockers = [];
   const base = { version: JUDGE_AUDIT_VERSION, objective, today: now, blind: Boolean(blind), compilerOk: Boolean(compilation), judgeOk: Boolean(judgment), compilerFailure: failure.compiler || null, judgeFailure: failure.judge || null };
@@ -87,7 +95,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const jDates = auditDates(judgment.dates, text).map((d) => pastOnly(d, text, now));
   const cDates = auditDates(compilation?.dates, text);
   for (const d of jDates) if (!d.verified && d.why !== 'no_date') flags.push(`date_${d.why}:${d.role}`);
-  let st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated });
+  let st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated, registryForecast });
   const criteria = auditCriteria(judgment, objective, text, flags, criteriaIds);
   // Sin plazo verificado, pero la página prueba que ya cerró: el juez dice «no» al plazo con una cita literal cuyas fechas son todas pasadas,
   // o el título lo marca como vencido. Nunca abre nada: solo puede cerrar.
@@ -215,7 +223,7 @@ const clip = (v, n = 220) => String(v || '').slice(0, n);
 /** Lo que se guarda por página en la traza / Run audit: modelos, veredicto por criterio, citas, desacuerdos, tiempo y llamadas. */
 export function slimJudge(jr) {
   const a = jr.audit || {};
-  const dates = (list) => (list || []).slice(0, 12).map((d) => ({ role: d.role, date: d.date, estimated: d.estimated, verified: d.verified, why: d.why, quote: clip(d.quote) }));
+  const dates = (list) => (list || []).slice(0, 12).map((d) => ({ role: d.role, ...(d.role_fixed_from ? { role_fixed_from: d.role_fixed_from } : {}), date: d.date, estimated: d.estimated, verified: d.verified, why: d.why, quote: clip(d.quote) }));
   return {
     version: a.version, blind: Boolean(jr.blind), judgeSawClaims: Boolean(jr.judgeSawClaims), models: jr.models, failure: jr.failure,
     calls: { compiler: 1, judge: 1 }, ms: jr.ms,

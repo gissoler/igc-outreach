@@ -61,13 +61,16 @@ const questionFor = (lead, brief) => {
 /** Convierte una convocatoria en una ficha de trabajo; no es un correo de fundraising. */
 export function grantPlan(lead, brief = {}, today = new Date()) {
   if (lead.fundingType !== 'grant' || lead.kind !== 'opportunity') return null;
+  const forecast = ['forecast', 'forecasted'].includes(String(lead.status || '').toLowerCase()) || lead.registry?.status === 'forecasted' || lead.registry?.isForecast === true;
+  const estimatedDeadline = forecast ? (lead.estimatedDeadline || lead.registry?.forecastClose || null) : null;
+  const todayIso = (today instanceof Date ? today : new Date(`${today}T12:00:00Z`)).toISOString().slice(0, 10);
+  const estimatedDatePassed = Boolean(estimatedDeadline && estimatedDeadline < todayIso);
   const apply = applicationRoute(lead, brief, today);
   const portal = apply.portal?.name || 'the official program page';
   const firstStep = apply.steps.find((x) => !x.skip)?.label;
   const verdict = lead.eligibility?.verdict;
-  const closed = lead.status === 'closed' || lead.eligibility?.closed === true || (lead.daysToDeadline != null && lead.daysToDeadline < 0);
-  const forecast = lead.status === 'forecasted';
-  const urgent = lead.daysToDeadline != null && lead.daysToDeadline < Math.max(14, Number(brief.minDays) || 30);
+  const closed = !forecast && (lead.status === 'closed' || lead.eligibility?.closed === true || (lead.daysToDeadline != null && lead.daysToDeadline < 0));
+  const urgent = !forecast && lead.daysToDeadline != null && lead.daysToDeadline < Math.max(14, Number(brief.minDays) || 30);
   let state = 'eligibility_review';
   let decision = 'review';
   let label = 'Review eligibility';
@@ -80,7 +83,9 @@ export function grantPlan(lead, brief = {}, today = new Date()) {
     nextAction = closed ? 'Archive this cycle and monitor the program for the next notice.' : 'Record the blocking eligibility rule and do not start an application.';
   } else if (forecast) {
     state = 'watching'; decision = 'watch'; label = 'Watch';
-    nextAction = 'Monitor the forecast and prepare only the reusable evidence until the official notice is posted.';
+    nextAction = estimatedDatePassed
+      ? 'Estimated date already passed. Monitor for a revised or posted notice; do not start an application.'
+      : `Monitor the forecast and prepare only reusable evidence until the official notice is posted${estimatedDeadline ? ` (estimated due date ${estimatedDeadline})` : ''}.`;
   } else if (apply.verdict === 'not_feasible') {
     state = 'watching'; decision = 'watch'; label = 'Next cycle';
     nextAction = `Not reachable for ${lead.deadline}: ${apply.message}${apply.nextDeadline ? '' : ' Watch for the next cycle.'} Start now: ${firstStep || 'confirm the steps on the official page'}.`;
@@ -108,8 +113,10 @@ export function grantPlan(lead, brief = {}, today = new Date()) {
     state, decision, label, nextAction, checklist,
     programNumber: /^web-opportunity:/.test(lead.externalId || '') ? null : (lead.externalId || null),
     agency: lead.org || null,
-    deadline: lead.deadline || null,
-    daysToDeadline: lead.daysToDeadline ?? null,
+    deadline: forecast ? null : (lead.deadline || null),
+    daysToDeadline: forecast ? null : (lead.daysToDeadline ?? null),
+    estimatedDeadline,
+    estimatedDatePassed,
     policyThemes: unique((lead.foundBy || []).map((x) => x.term || x.query)).slice(0, 5),
     geography: brief.geography || null,
     contactQuestion: questionFor(lead, brief),

@@ -516,6 +516,16 @@ export function buildDraft(lead, brief, senderFacts = []) {
     }
     // Una convocatoria se aplica en el portal; no es un correo. Solo se sugiere una pregunta si hay contacto de programa publicado.
     const plan = lead.grantPlan || {};
+    if (['forecast', 'forecasted'].includes(String(lead.status || '').toLowerCase()) || lead.registry?.status === 'forecasted' || lead.registry?.isForecast === true) {
+      const estimated = plan.estimatedDeadline || lead.estimatedDeadline || lead.registry?.forecastClose || null;
+      const body = [
+        `${lead.demo ? '[DEMO — DO NOT USE]\n' : ''}Forecast: ${number} — ${lead.title}`,
+        estimated ? `Estimated due date: ${estimated} (not open yet).` : 'Applications are not open yet; no firm deadline is published.',
+        plan.estimatedDatePassed ? 'Estimated date already passed.' : null,
+        plan.nextAction || 'Monitor for the posted notice.',
+      ].filter(Boolean).join('\n\n');
+      return { subject: `Forecast · ${number}`, body, sections: [], connector: null, status: 'watch', warning: 'This is a forecast, not an open application.', wordCount: body.split(/\s+/).length };
+    }
     const apply = plan.apply;
     const question = plan.contactQuestion;
     const steps = (apply?.steps || []).filter((x) => !x.skip).map((x, i) => `${i + 1}. ${x.label}${x.days ? ` (~${x.days} days)` : ''}`);

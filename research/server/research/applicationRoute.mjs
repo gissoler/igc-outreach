@@ -94,16 +94,18 @@ const ROUTES = [
  */
 export function applicationRoute(lead, brief = {}, today = new Date()) {
   const route = ROUTES.find((r) => r.test(lead));
+  const forecast = ['forecast', 'forecasted'].includes(String(lead.status || '').toLowerCase()) || lead.registry?.status === 'forecasted' || lead.registry?.isForecast === true;
   const registered = brief.registered === true || /\b(sam|uei|registered)\b/i.test(String(brief.registrations || ''));
   const steps = route.steps.map((s) => ({ ...s, skip: Boolean(registered && s.registration) }));
   const leadDays = steps.filter((s) => !s.skip).reduce((n, s) => Math.max(n, 0) + s.days, 0);
-  const deadline = lead.deadline ? new Date(`${lead.deadline}T23:59:59Z`) : null;
+  const deadline = !forecast && lead.deadline ? new Date(`${lead.deadline}T23:59:59Z`) : null;
   const days = deadline ? Math.floor((deadline - today) / DAY) : null;
   const officialUrl = (lead.evidence || []).find((e) => e.verified && /^https?:/.test(e.url))?.url || (lead.evidence || []).find((e) => /^https?:/.test(e.url))?.url || null;
   let verdict = 'unknown';
   let nextDeadline = null;
   let message;
-  if (days === null) message = 'No deadline published: confirm the dates on the official page.';
+  if (forecast) message = 'Forecast notice: applications are not open yet; do not treat an estimated date as a live deadline.';
+  else if (days === null) message = 'No deadline published: confirm the dates on the official page.';
   else if (days < 0) { verdict = 'closed'; message = 'The deadline has passed.'; }
   else if (days >= leadDays) { verdict = 'feasible'; message = `${days} days left; the steps before submitting take about ${leadDays}.`; }
   else { verdict = days >= Math.round(leadDays * 0.6) ? 'tight' : 'not_feasible'; message = `${days} days left, but the required steps usually take about ${leadDays}.`; }

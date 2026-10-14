@@ -10,6 +10,9 @@ import { contactStage } from '../server/research/agentic/contacts.mjs';
 import { briefCountry, foreignHost } from '../server/research/geo.mjs';
 import { fromSimpler, fromLegacy, opportunityPage, searchRegistry, noticeNumbers, stillOpen, applicantOk, registrySeeds, registryQueries } from '../server/research/registry/simplerGrants.mjs';
 import { datesIn } from '../server/research/dates.mjs';
+import { grantPlan } from '../server/research/grantManager.mjs';
+import { buildDraft } from '../server/research/core.mjs';
+import { candidateDetail } from '../server/research/runChat.mjs';
 
 const TODAY = '2026-10-14';
 const LOG = readFileSync(new URL('./fixtures/v14fix/gptr-log-mintad-20261014-013838.txt', import.meta.url), 'utf8');
@@ -47,6 +50,38 @@ test('BUG-1 prompt: geografía explícita, niveles genéricos, sin operadores si
 
 /* ── Bug 2: el juez. Avisos vencidos quedaban «a verificar» porque el rol de la fecha no era application_deadline. ── */
 const crit = (over = {}) => ({ deadline: { verdict: 'unknown', quote: null, reason: '' }, eligibility: { verdict: 'unknown', quote: null, reason: '' }, region: { verdict: 'unknown', quote: null, reason: '' }, entity_type: { verdict: 'unknown', quote: null, reason: '' }, stage: { verdict: 'unknown', quote: null, reason: '' }, topic_fit: { verdict: 'unknown', quote: null, reason: '' }, ...over });
+test('AWARD-1 award date no es plazo; el forecast del registro manda y la UI recibe Watch sin días ni plan de aplicación', () => {
+  const quote = 'Estimated Award Date: July 6, 2027';
+  const page = { url: 'https://registry.example/opportunity/forecast', title: 'Forecast notice', text: quote };
+  const judgment = { page_type: 'call', dates: [{ role: 'application_deadline', date: '2027-07-06', estimated: true, quote }], criteria: crit() };
+  const audit = auditPage({ page, today: TODAY, judgment, registryForecast: { estimated: '2026-10-06' } });
+  assert.equal(audit.state, 'forecast');
+  assert.equal(audit.deadline, null);
+  assert.equal(audit.daysLeft, null);
+  assert.equal(audit.estimatedDeadline, '2026-10-06');
+  assert.equal(audit.dates.judge[0].role, 'award');
+  assert.equal(audit.dates.judge[0].role_fixed_from, 'application_deadline');
+
+  const withoutRegistry = auditPage({ page, today: TODAY, judgment });
+  assert.notEqual(withoutRegistry.deadline, '2027-07-06');
+
+  const lead = {
+    id: 'forecast-1', fundingType: 'grant', kind: 'opportunity', status: 'forecasted', title: 'Forecast notice', org: 'Agency', externalId: 'F-27-001',
+    deadline: '2027-07-06', daysToDeadline: 265, estimatedDeadline: '2026-10-06', registry: { status: 'forecasted', forecastClose: '2026-10-06' },
+    eligibility: { verdict: '?', closed: false, questions: [] }, grantMatch: { verdict: 'match' }, evidence: [], missing: [], risks: [], contacts: [], paths: [], foundBy: [], quotes: {}, score: 0, bucket: 'radar', confidence: 'baja', why: [], amount: null, contact: null,
+  };
+  lead.grantPlan = grantPlan(lead, {}, new Date(`${TODAY}T12:00:00Z`));
+  assert.equal(lead.grantPlan.label, 'Watch');
+  assert.equal(lead.grantPlan.decision, 'watch');
+  assert.equal(lead.grantPlan.deadline, null);
+  assert.equal(lead.grantPlan.daysToDeadline, null);
+  assert.equal(lead.grantPlan.estimatedDatePassed, true);
+  assert.doesNotMatch(lead.grantPlan.nextAction, /days left|submit before/i);
+  const detail = candidateDetail(lead);
+  assert.equal(detail.deadline, null); assert.equal(detail.days_to_deadline, null); assert.equal(detail.application_plan.portal, null); assert.deepEqual(detail.application_plan.steps, []);
+  const draft = buildDraft(lead, {});
+  assert.match(draft.subject, /^Forecast/); assert.doesNotMatch(draft.body, /2027-07-06|days left|submit before|where to apply/i);
+});
 test('BUG-2 juez: rol «deadline» con fecha pasada → cerrado (PAR-17-067 «Expiration Date September 6, 2019»)', () => {
   const page = { url: 'https://x.gov/par', title: 'Tools for care (R43/R44)', text: 'Posted Date December 2, 2016\nExpiration Date September 6, 2019\nSmall businesses may apply.' };
   const a = auditPage({ page, today: TODAY, judgment: { page_type: 'call', dates: [{ role: 'deadline', date: '2019-09-06', estimated: false, quote: 'Expiration Date September 6, 2019' }], criteria: crit() } });

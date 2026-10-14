@@ -583,7 +583,8 @@ export function grantLead(hit, detail, foundBy = []) {
         : hit.oppStatus === 'forecasted'
           ? 'forecasted'
           : 'unknown',
-    deadline: isoDate(hit.closeDate),
+    deadline: hit.oppStatus === 'forecasted' ? null : isoDate(hit.closeDate),
+    ...(hit.oppStatus === 'forecasted' && isoDate(hit.closeDate) ? { estimatedDeadline: isoDate(hit.closeDate) } : {}),
     amount: amount > 0 ? amount : null,
     contact: {
       type: publishedEmail ? 'email' : 'source',

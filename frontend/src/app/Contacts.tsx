@@ -128,9 +128,12 @@ export function HowWeGotHere({ job, s, health, onSources }: { job: Job; s: Summa
    (columns never drift): #, who, fit, stage, why, reach. Above it, the funnel shows
    how much work the system did: found → shortlisted (and ruled out) → ready. */
 type Stage = { label: string; tone: 'mint' | 'sun' | 'lav' | 'sky' | 'gray' };
+const isForecast = (l: Lead) => ['forecast', 'forecasted'].includes(l.status) || l.registry?.status === 'forecasted';
+const estimatedDue = (l: Lead) => l.grantPlan?.estimatedDeadline || l.estimatedDeadline || l.registry?.forecastClose || null;
 function stageOf(l: Lead, grantsOnly: boolean): Stage {
   if (l.bucket === 'discarded') return { label: 'Ruled out', tone: 'gray' };
   if (grantsOnly) {
+    if (isForecast(l)) return { label: 'Watch', tone: 'sky' };
     const d = l.grantPlan?.decision;
     if (d === 'go' || d === 'conditional_go') return { label: 'Apply now', tone: 'mint' };
     if (d === 'watch') return { label: 'Watch', tone: 'sky' };
@@ -181,8 +184,11 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
         : grantsOnly ? `${l.grantPlan?.checklist.filter((x) => x.done).length || 0}/${l.grantPlan?.checklist.length || 5} checks`
         : p ? (p.introducer ? `Ask ${p.introducer}` : 'You know them') : w ? warmShort(w) : null;
       const why = !shown(l) && l.bucket !== 'discarded' ? NOT_A_CALL_REASON : out ? (l.discard || 'Not enough evidence') : grantsOnly ? (l.grantPlan?.nextAction || l.grantPlan?.label || reasonFor(l)) : reasonFor(l);
+      const estimate = estimatedDue(l);
       const reach = grantsOnly
-        ? { icon: null, main: l.deadline || 'No deadline published', small: l.daysToDeadline != null ? `${l.daysToDeadline} days left` : l.status }
+        ? isForecast(l)
+          ? { icon: null, main: estimate ? `Estimated due date: ${estimate}` : 'Forecast', small: l.grantPlan?.estimatedDatePassed ? 'Estimated date already passed' : 'Not open yet' }
+          : { icon: null, main: l.deadline || 'No deadline published', small: l.daysToDeadline != null ? `${l.daysToDeadline} days left` : l.status }
         : l.contact ? { icon: l.contact.type === 'email' ? <Mail size={13} /> : <ExternalLink size={13} />, main: l.contact.type === 'email' ? 'Email' : l.contact.type === 'linkedin' ? 'LinkedIn' : 'Website', small: found.length ? `Found · ${found.length}` : 'Our read' }
         : { icon: null, main: 'Not public', small: 'Ask via intro' };
       const C = 2 * Math.PI * 17;
