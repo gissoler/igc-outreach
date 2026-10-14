@@ -1,0 +1,58 @@
+{
+ "id": "g3-ngo-latam",
+ "kind": "grant",
+ "objective": "grant",
+ "brief": "eval/briefs/ngo-latam-health.json",
+ "why": "ONG en Colombia: no debe usar el registro de EE. UU. ni traer convocatorias solo-EE. UU.",
+ "dry": false,
+ "ok": true,
+ "status": "done",
+ "error": null,
+ "started": "2026-10-14T16:28:28.712Z",
+ "seconds": 361,
+ "stages": {
+  "search_s": 224,
+  "judge_s": 134,
+  "engine_s": 358,
+  "contacts_s": null,
+  "evaluator_s": 1,
+  "total_s": 361
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 96,
+  "assessed": 40,
+  "by_status": {
+   "open": 11,
+   "rolling": 3,
+   "unknown": 47,
+   "closed": 35,
+   "unread": 54
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 1
+ },
+ "lists": {
+  "top": 0,
+  "radar": 1,
+  "discarded": 0
+ },
+ "apollo_credits": 1,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+   "list": "radar",
+   "deadline": "2026-10-19",
+   "verified": false,
+   "url": "https://www.hrsa.gov/grants/find-funding",
+   "contacts": 0
+  }
+ ]
+}

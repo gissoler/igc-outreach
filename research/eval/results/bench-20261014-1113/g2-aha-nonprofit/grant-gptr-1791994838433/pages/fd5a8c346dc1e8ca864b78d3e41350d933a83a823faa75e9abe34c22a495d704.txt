@@ -1,0 +1,71 @@
+European Health Data Space | European Health Information Portal
+
+Skip to main content
+
+## European Health Data Space
+
+### HealthData@EU Pilot: Outputs and Contributions to the European Health Data Space
+
+ 
+
+###### About the European Health Data Space
+
+The European Health Data Space (EHDS) is an EU regulation adopted in 2025 . It provides a legal framework for the use, sharing, and secondary use of health data across the European Union. The EHDS empowers individuals to control their health data, supports healthcare delivery through secure, cross-border data exchange, and unlock the potential of and facilitates the use of health data for secondary purposes — such as research, innovation, policy-making, and regulatory activities — while ensuring privacy, security, and interoperability. It aims to create a secure, interoperable infrastructure that ensures privacy and compliance with EU regulations.
+
+###### About HealthData@EU
+
+HealthData@EU is the European-level infrastructure envisioned by the EHDS. It connects national health data platforms to enable secure, cross-border access to health data for secondary use. It provides the technical and organisational framework to ensure data quality, privacy, and compliance with the EHDS regulation, while supporting efficient data discovery, access management, and federated analysis across Member States.
+
+###### About the HealthData@EU Pilot
+
+The HealthData@EU Pilot (2022–2024) was an EU-funded project under the EU4Health Programme (project number 101079839) that tested the first version of the HealthData@EU infrastructure. The pilot connected national data platforms from 12 European countries to:
+
+Demonstrate the feasibility of cross-border health data exchange
+
+Develop services such as a metadata discovery system and a common data access request process
+
+Provide practical guidance on data standards, quality, security, and transfer
+
+Collect lessons for future EHDS implementations
+
+Below is a summary of the pilot’s verified outputs , organised by theme.
+
+Infrastructure and Architecture To enable seamless cross-border health data exchange, the HealthData@EU Pilot developed a technical infrastructure connecting national data platforms with a central European system. The outputs in this section define the architecture, standards, and core components required to build a scalable and interoperable EHDS.
+
+Target Architecture and Minimum Viable Product : Defines the architecture and key steps for the pilot’s minimum viable product.
+
+Architecture Definition Document : Details the architecture of national components, selected standards, and core technological building blocks.
+
+Metadata: Health DCAT-AP Standard To make health data findable, accessible, and interoperable across Europe, the HealthData@EU Pilot developed Health DCAT-AP, a standardised metadata framework for health datasets. This section includes the standard itself, tools to validate compliance, and recommendations for its EU-wide adoption.
+
+Health DCAT-AP Extension : The standardised metadata framework for health datasets.
+
+Health DCAT-AP Validator : Tool to validate metadata compliance.
+
+Recommendations for EU-wide Adoption : Guidelines for implementing Health DCAT-AP.
+
+Legal and Regulatory Compliance Cross-border health data sharing requires clear legal frameworks, harmonised procedures, and GDPR compliance. The outputs in this section provide guidelines, forms, and analyses to standardise data access and ensure ethical and secure use of health data.
+
+Legal Landscape Analysis : Overview of legal and regulatory similarities and differences across participating countries.
+
+Common Data Access Application Form : Harmonised form for data access requests in the EHDS.
+
+Data Interoperability and Quality For health data to be useful across borders, it must be interoperable, high-quality, and protected. The outputs in this section address these challenges, offering recommendations, best practices, and technical insights to ensure data is reliable, secure, and ready for research and innovation.
+
+Recommendations for Data Interoperability : Assesses the feasibility and challenges of cross-border data sharing.
+
+Privacy-Enhancing Technologies Report : Insights on applying privacy-enhancing technologies for secure data access.
+
+Use Cases and Lessons Learned The HealthData@EU Pilot tested five use cases to demonstrate the value and feasibility of the EHDS infrastructure. This section summarises the experiences, challenges, and findings from these use cases, offering valuable lessons for future EHDS implementations.
+
+Use Cases Report : Overview of experiences, challenges, and findings from the pilot’s use cases.
+
+###### Legacy and Next Steps
+
+The HealthData@EU Pilot’s outputs provide a foundation for the EHDS, emphasising the need for robust infrastructure, clear governance, and sustainable funding. Ongoing initiatives continue to build on these results, including:
+
+TEHDAS2 : Preparing delegated acts for the EHDS regulation.
+
+SHAIPED : Mobilising the EHDS framework for AI in medical devices.
+
+QUANTUM : Improving healthcare data interoperability and standardisation.

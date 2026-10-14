@@ -1,0 +1,533 @@
+Digital Health Startups funded by Y Combinator (YC) 2026 | Y Combinator
+
+# Digital Health Startups funded by Y Combinator (YC) 2026
+October 2026
+Browse 103 of the top Digital Health startups funded by Y Combinator.
+We also have a Startup Directory where you can search through over 5,000 companies .
+
+Ascenix F2026
+
+ •  Active  •  7 employees  •  Toronto, ON, Canada Ascenix is the all-in-one incident platform that turns unstructured EHR data into automated reporting, reimbursement recovery, compliance flagging, and clinical insight. We’re already live in 50 homes and scaling across North America. We connect to systems like PointClickCare and analyze the notes nurses already write, adapting to any note structure and any compliance or reporting requirement.
+
+We help teams identify documentation gaps, uncover missed revenue opportunities and spot emerging resident risks, while reducing time spent reviewing charts and building spreadsheets. Our goal is to improve residents’ quality of life by helping care homes reach their full clinical, financial and operational potential.
+digital-health
+healthcare-it
+
+Omanta S2026
+
+ •  Active  •  6 employees  •  San Francisco Omanta is a personalized research lab for patients who have exhausted standard options, want to prepare proactively for recurrence, or are living with an unresolved diagnosis.
+
+We direct the full operational infrastructure, personnel, expertise, and technology of a large research program toward understanding and addressing the challenges of individual patients across oncology, rare disease, and undiagnosed conditions.
+
+For clinicians, we act as a collaborative partner, providing a living roadmap for ongoing patient care built on a rigorous and evolving scientific evidence base.
+
+We fully operationalize patient-specific research programs, covering tissue logistics, diagnostic follow-up, data integration, multiomic analysis, therapeutic strategy development, and more.
+
+Omanta brings context and clarity to complex cases, helping clinicians see more of the scientific picture as they decide how best to care for their patients.
+healthcare
+digital-health
+oncology
+health-&-wellness
+artificial-intelligence
+
+Floracene S2026
+
+ •  Active  •  2 employees  •  New York City Floracene lets any healthcare operator describe the internal tool they need and deploy it in one click - connected to production data, with read and write access scoped by the user. Think Lovable or Retool, except purpose-built for the needs of healthcare business that has no engineering team.
+
+The bottleneck in healthcare isn&#x27;t building anymore. Anyone can vibecode an 80% solution in an afternoon, custom to their own workflow, with people already on staff. The tool then dies locally on the builder’s computer, because IT (correctly) won&#x27;t let anyone deploy a tool touching PHI without first-class authentication and permissioning. Our first customer had multiple employees who had each built useful tools and dashboards locally, but couldn’t actually share these with coworkers or connect to their core practice data. Within weeks of implementing Floracene, they were able to consolidate their BI tooling into Floracene and shipped 4 net-new to production.
+
+A staggering ~$200B is spent on administrative software in healthcare every year in the US. Tens of thousands of those companies still run core operations on spreadsheets, and we&#x27;re at the top of the first inning of AI adoption.
+
+Asaph and Jonah met on the hospitals team at Palantir two years ago, and have each spent the last four years in the plumbing of US healthcare: claims, eligibility, and payor contracting. Asaph was an early PM at Garner. Jonah was a founding engineer at Metriport (YC S22) after starting his own fax-automation startup for fertility clinics.
+medical-devices
+healthcare-it
+digital-health
+enterprise-software
+health-tech
+
+Imperfect P2026
+
+ •  Active  •  5 employees  •  San Francisco An adaptive training coach to help runners, cyclists, and triathletes set and achieve goals. It adapts your training, recovery, and nutrition to how your body is actually responding.
+ai-assistant
+health-&-wellness
+digital-health
+ai
+
+ClaimGlide W2026
+
+ •  Active  •  1 employees  •  Seattle We automate the entire end-to-end prior-authorization process for private practices for cheaper, and more accurately than they&#x27;re doing today.
+healthcare
+digital-health
+ai-assistant
+ai
+
+Kaigo Health F2025
+
+ •  Active  •  3 employees  •  San Francisco Kaigo Health provides an AI-powered outpatient care management platform that automates and scales remote care management for Medicare patients including post-discharge followups, ongoing check-ins, and monitoring. Using phone calls as an age-friendly interface, we aggregate patient responses, voice biomarkers, and remote patient monitoring data for powerful preventative and proactive healthcare.
+health-tech
+digital-health
+healthcare-it
+
+Rovi Health F2025
+
+ •  Active  •  3 employees  •  New York City We deliver high-quality, cost-effective healthcare to employees through text. Employers cut 10–20% of healthcare spend. Employees get concierge care that improves outcomes.
+
+Our AI agents analyze clinical data to identify care needs. We treat common conditions through our integrated virtual clinic. For more complex care, our agents find the best in-network providers using millions of price and quality data points, and handle end-to-end appointment booking.
+healthcare
+health-tech
+health-insurance
+digital-health
+consumer-health-services
+
+Nori F2025
+
+ •  Active  •  3 employees  •  New York City Nori is a concierge-level AI health coach in your pocket. 
+
+It takes all of your health data—Apple Health, medical records, wearables, everything—and boils it down into a personalized daily plan.
+
+Users love it: “It&#x27;s truly one of the best apps and I check it first every day. Since using Nori, I&#x27;ve been limiting devices in bed and eating earlier—and I&#x27;ll be damned if it&#x27;s not working... I started getting more deep sleep, my resting HR dropped to 43, my recovery improved.”—Jen, Nori user"
+
+digital-health
+health-tech
+consumer-health-services
+health-&-wellness
+artificial-intelligence
+
+Lucis P2025
+
+ •  Active  •  17 employees  •  Paris, France Think Function Health for Europe. We combine medical expertise and AI to transform regular blood testing into actionable insights to help people live healthier, longer.
+
+digital-health
+health-&-wellness
+telehealth
+ai
+
+Paratus Health W2025
+
+ •  Active  •  4 employees  •  New York City Voice agents for outpatient facilities.
+digital-health
+healthcare-it
+sales
+sales-enablement
+
+G LNK W2025
+
+ •  Active  •  2 employees  •  New York City G LNK is an AI-powered platform simplifying how healthcare companies connect with the relevant medical professionals. Our proprietary matching and ranking models instantly identify the most qualified experts, accelerating drug development and commercialization. Designed with compliance at its core, G LNK ensures every connection meets strict regulatory and ethical standards—empowering companies to innovate faster with confidence.
+ai-assistant
+b2b
+saas
+digital-health
+health-tech
+
+Amby Health W2025
+
+ •  Active  •  2 employees  •  San Francisco Your wearable tells you what happened. Amby texts you what to do next, checks in, and adjusts when life gets in the way.
+saas
+health-tech
+health-&-wellness
+healthcare
+digital-health
+
+Cenote W2025
+
+ •  Active  •  2 employees  •  San Francisco Cenote helps online D2C brands convert more shoppers through AI sales reps that can call and text.
+
+Online stores rely on static websites, one-way email and SMS campaigns, and inside sales teams with limited availability. But many purchases are better suited to a conversation: shoppers have questions, need guidance, or simply are not excited to buy based on what&#x27;s on the site alone.
+
+Today, those shoppers are poorly served. Abandoned-checkout campaigns are generic, call centers close, and slow human follow-up allows high-intent leads to go cold. Our customers often see conversion rates below 1% from traditional abandoned-checkout outreach.
+
+Cenote&#x27;s AI reps reach shoppers immediately, remember their context, and continue the conversation across channels and over time. This gives every interested shopper access to a personalized sales rep and helps brands recover revenue from leads they have already paid to acquire.
+b2b
+ai
+e-commerce
+digital-health
+
+HealthSpark F2024
+
+ •  Active  •  1 employees  •  San Francisco HealthSpark empowers physical therapists (PTs) to start, run, and grow their own independent practices. Our AI-native “business-in-a-box” takes care of the administrative work—credentialing, insurance billing, patient onboarding, documentation, and scheduling—so PTs can focus on patient care, not paperwork.
+health-tech
+digital-health
+healthcare
+ai
+
+FutureClinic F2024
+
+ •  Active  •  4 employees  •  New York City FutureClinic is a platform that makes it easy for any doctor to open their own digital clinic. Our AI assistant takes a comprehensive medical history using an empathic chat or voice-based interface, uses sophisticated medical reasoning to narrow down likely diagnoses, and produces evidence-based treatment suggestions for each patient. Licensed doctors then review the text-based summaries of the cases our AI provides, and choose how to manage the patients. In this fashion, we&#x27;re able to deliver end-to-end healthcare in a way that makes personalized, expert healthcare scalable to 8 billion people around the world.
+healthcare
+digital-health
+health-tech
+
+HYBRD F2024
+
+ •  Active  •  5 employees  •  Boston The mission of HYBRD is to take world-class coaching and make it universally available. 
+
+Health data has never been more abundant. GPS watches track pace and heart rate, wearables monitor sleep and recovery, and voice logging has made it easier than ever to capture weightlifting and HYROX. 
+
+And yet most athletes are still following static PDF plans they found online, or "adaptive" apps that fall apart the moment cross-training enters the picture.
+
+Existing tools feel disappointing because they don’t actually know your goals and constraints, so they can’t do anything meaningful with the data they collect. 
+HYBRD can. 
+
+We aggregate your wearable data, fill the gaps with a simple AI logger, and use that complete picture to build personalized training programs from the best coaches in the world, like Alex Viada, who coined the term "hybrid athlete." 
+
+From there, the HYBRD agent keeps you on track, adjusting your schedule around weather, travel, and fatigue as you progress. Everything you&#x27;d get from a $500/month coach, at a 50x lower price. 
+
+Founded in 2024 by WHOOP and AWS alumni, HYBRD is built by hybrid athletes. Join us for a workout every Monday morning in San Francisco and Boston.
+fitness
+digital-health
+consumer
+ai
+health-tech
+
+Vera Health S2024
+
+ •  Active  •  6 employees  •  San Francisco We empower healthcare providers, starting with emergency physicians, with instant access to up-to-date evidence-based answers. Our platform cuts through the noise to deliver trustworthy medical information 10x faster, revolutionizing clinical decision-support.
+digital-health
+healthcare
+artificial-intelligence
+
+Mito Health S2024
+
+ •  Active  •  5 employees  •  San Francisco Mito Health is a U.S. service that lets individuals order 12,000+ lab tests, scans, supplements, genetics, home kits, and Rx without a traditional doctor’s visit. Members pay $9 per month to access every product at cost and get itemized receipts with no hidden markups.
+
+The average member saves about $300 a year on a full baseline panel.
+
+What the $9/mth Mito membership gets you:
+
+- 11,000+ practitioner-grade supplements at 35% below Amazon (Thorne, Pure Encapsulations, Life Extension, Ritual, Momentous, Seed)
+- 1,200+ lab tests from Quest, Labcorp and BioReference at cost · 49 states · HSA/FSA eligible
+- DEXA body composition, bone density, coronary calcium (CAC), whole-body MRI, 30x whole genome sequencing, gut microbiome, multi-cancer early detection
+- Every result in one longitudinal record, ordered and reviewed by a partner clinician over concierge
+- No markups on tests. No commissions from labs or brands.
+- No padded "wellness panels," no upsells, no annual contract; you can cancel anytime.
+
+consumer-health-services
+digital-health
+artificial-intelligence
+
+Copper Health W2024
+
+ •  Active  •  2 employees  •  San Francisco All-in-one RTM platform designed for physical therapy and powered by AI
+b2b
+ai
+digital-health
+health-tech
+telehealth
+
+Clarion W2024
+
+ •  Active  •  16 employees  •  New York City Clarion is building the most advanced AI communication layer for healthcare. Our AI agents handle the overwhelming volume of calls and messages that clinics face daily—from scheduling to billing to prescription refills—freeing staff to focus on patient care. We&#x27;re an in-person company based in New York.
+
+Today, clinics miss 30-40% of inbound calls due to staffing shortages. We&#x27;re solving this by automating complex workflows end-to-end, already serving tens of thousands of patients monthly across virtual care companies, health systems, and a $5B health insurance company.
+
+We&#x27;ve raised $5.4M from Accel, Y Combinator, Sequoia (scout), and healthcare founders from Ophelia, Medallion, and Counsel Health. 
+
+Our founders bring both clinical and technical expertise—our CEO Ryan is a Stanford/Harvard-trained physician who was on the founding teams of Two Chairs and Ophelia, while our CTO Jeffrey built voice AI at Amazon Alexa and led AI/ML teams at Salesforce.
+
+Join us as we transform healthcare communication—creating a future where patients get faster resolutions and providers reclaim time for what matters most.
+digital-health
+healthcare
+health-tech
+artificial-intelligence
+
+Kabilah W2024
+
+ •  Active Kabilah is the most trusted enterprise-grade AI platform designed specifically for nursing workflows. We reduce burnout, enhance system efficiency, and enable high quality care.
+healthcare
+generative-ai
+digital-health
+ai
+
+Sonia W2024
+
+ •  Active  •  7 employees  •  San Francisco We&#x27;re on a mission to build safe, voice-based AI that makes high quality mental health support accessible to anyone. Founded by a team of MIT and ETH researchers who published papers at top AI conferences like NeurIPS, ICML, EMNLP and more.
+digital-health
+consumer-health-services
+ai
+
+Aidy W2024
+
+ •  Active  •  2 employees  •  San Francisco Aidy is a mobile app that helps people live fuller lives with chronic health conditions, beginning with Inflammatory Bowel Disease (Crohn’s Disease and Ulcerative Colitis). Our app lets users easily log their symptoms, diet, and treatments, then uses clinical indices to track disease severity and trends over time. Aidy excels at identifying patterns between diet, treatment adherence, and symptoms, giving our users a much more comprehensive and up-to-date picture of their condition to supplement clinician care. 
+
+Previously in our careers, both Max and Peter worked in health in different capacities. At the Rockefeller Foundation and the United States Senate, Max worked in public health policy and COVID-19 response, while Peter worked as an ML researcher for a number of biotech companies. After a lengthy “pivot hell” we decided to finally listen to a friend with IBD who insisted that there weren’t any decent apps to help people live with the disease. Pretty quickly, we discovered how LLMs and regular structured questionnaire responses could provide a level of patient empowerment not possible before for chronic diseases. From there, Aidy was (re)born!
+consumer-health-services
+digital-health
+
+Adapted W2024
+
+ •  Active  •  2 employees  •  San Francisco Adapted is an AI physical therapist for athletes. Tell it your injury history, your sport, and your goals - it builds a personalized program to rehab and prevent injuries, bulletproof your body, and improve mobility and flexibility. No generic exercises. Just training and prehab that actually adapts to you.
+
+Available now on the iOS App Store.
+fitness
+health-&-wellness
+digital-health
+artificial-intelligence
+
+Elythea S2023
+
+ •  Active  •  2 employees  •  San Diego, CA, USA Over 80% of maternal mortalities were preventable with earlier intervention. Currently, doctors miss >50% of moms who have life-threatening complications and wait until labor to start doing manual risk assessments, at which point it&#x27;s too late.
+
+Elythea&#x27;s proprietary ML models catch life-threatening obstetric complications (like postpartum hemorrhage, preeclampsia/eclampsia, emergency c-section, preterm labor, and more) as soon as the first visit. We automatically analyze relevant demographic and clinical risk factors, flag high-risk patients, and provide evidence-based interventions, giving doctors months in advance to intervene and prevent complications from ever happening.
+
+Our global clinical studies have shown that we can catch 3x more complications than clinical judgment 10x sooner.
+digital-health
+health-tech
+ml
+women&#x27;s-health
+ai
+
+Shasta Health S2023
+
+ •  Active  •  5 employees  •  San Francisco Shasta Health builds AI agents that run the front office for rehab therapy groups. We handle calls, texts, insurance verification, prior authorizations, and more - helping turn patient interest into completed, billable visits. Your team gets more time to focus on the patients in front of them.
+ai
+healthcare
+digital-health
+health-tech
+healthcare-it
+
+MediSearch S2023
+
+ •  Active  •  6 employees  •  London MediSearch gives direct answers to medical questions based on trustworthy sources.
+consumer-health-services
+generative-ai
+digital-health
+healthcare
+artificial-intelligence
+
+Decoda Health S2023
+
+ •  Active  •  19 employees  •  Toronto, ON, Canada Med spas, wellness clinics, and aesthetics practices run on 5-10 disconnected tools — separate systems for scheduling, charting, payments, patient communication, and more. It&#x27;s expensive, error-prone, and holds teams back.
+
+Decoda is the all-in-one EMR and practice management platform purpose-built for elective care. AI is woven into every workflow — from an AI front desk that answers calls and books patients 24/7, to an ambient scribe that generates clinical notes in real time, to automated patient follow-ups that keep calendars full. Scheduling, payments, memberships, inventory, and analytics all live in one place.
+
+Live in 150+ clinics, processing $100M+ in annual transactions.
+saas
+healthcare-it
+digital-health
+ai
+
+Healthtech 1 S2023
+
+ •  Active  •  40 employees  •  London Healthtech-1 builds clinical AI that navigates patients to the right place, first time. Today we automate eligibility checks, triage and appointment booking for 1,600+ NHS GP practices.
+
+Tomorrow, every healthcare appointment - GP, pharmacy, dentist, physio - is instantly bookable on bookable.health.
+
+Why now?
+The NHS has come a long way, but access to it hasn&#x27;t. Patient satisfaction is at a 25-year low. Automating access to care - eligibility, triage, booking - is how we reverse the trend.
+digital-health
+health-tech
+healthcare
+healthcare-it
+workflow-automation
+
+Overlord W2023
+
+ •  Active  •  2 employees  •  New York City Overlord knows everything about you (location, Mac data, health data, +dozens more), and can take actions (block Mac/iOS/Android, text/call you, text your friends, take your money) to force you to stay on track with your habits.
+consumer
+fitness
+mental-health-tech
+productivity
+digital-health
+
+Loula W2023
+
+ •  Active  •  7 employees  •  New York City Loula is a software platform and national provider network for independent birth & postpartum doulas to boost their practices by accepting health insurance. Doulas typically operate outside of the traditional healthcare system and face an enormous learning curve and administrative burden when trying to accept insurance. This is why we created Loula. Starting with doulas in California, Loula handles their credentialing, contracting, and revenue cycle management so that they can focus on delivering the best quality care to their clients.
+digital-health
+health-tech
+health-insurance
+healthcare
+women&#x27;s-health
+
+Kivo Health W2023
+
+ •  Active  •  40 employees  •  San Francisco Kivo Health provides AI-powered virtual care for seniors with chronic disease, starting with lung care. We keep people out of the hospital and save payers $8k+ on average per patient. We work with major health systems like Stanford, UCLA and Optum Health. We just raised our $10M Series A and are growing quickly.
+digital-health
+healthcare
+telehealth
+consumer-health-services
+
+Glass Health W2023
+
+ •  Active  •  7 employees We empower clinicians with our AI platform for developing differential diagnoses and drafting clinical plans.
+digital-health
+health-tech
+saas
+healthcare
+artificial-intelligence
+
+KemNet S2022
+
+ •  Active  •  2 employees  •  Victoria, BC, Canada KemNet supplies pharmacies with premium reformulations of popular drugs that are more useful for specific groups of patients. For example, more than 30 pharmacies rely on KemNet to supply reformulated products for erectile dysfunction that work up to 8 times faster than alternatives. In addition to sexual function, products reformulated for novel drug delivery and supplied on KemNet include medications for hair growth, pain, weight loss and women&#x27;s health.
+
+digital-health
+b2b
+therapeutics
+marketplace
+e-commerce
+
+Knowtex S2022
+
+ •  Active  •  San Francisco We’re on a mission to leverage AI and voice technology to solve inefficiencies and revenue leakage in our healthcare system. With the rise of EHRs, the manual documentation burden on doctors has never been higher, leading to burnout and fatigue and high attrition rates. Assigning the correct diagnosis and billing codes is crucial for proper reimbursement and patient care, but medical coding is becoming more and more complex each year with growing numbers of codes (over 145,000 now), and doctors are unsupported by current technology to keep up with its ever increasing requirements. $125 billion is left on the table each year by healthcare organizations due to improper documentation and coding. 
+
+Knowtex creates visit notes with up-to-date and accurate reimbursement codes from doctor-patient conversations, allowing the doctor to focus on patient care and preventing revenue leakage for hospital systems through standardized, transparent, and accurate documentation.
+b2b
+health-tech
+productivity
+digital-health
+artificial-intelligence
+
+Malama Health S2022
+
+ •  Active  •  35 employees  •  San Francisco Malama offers doula-led holistic support during and after pregnancy at no cost to patients. Malama is in-network with Aetna, UnitedHealthcare, Anthem, Kaiser, and several Medicaid Managed Care Plans. 
+
+Malama is backed by the Stanford d.school, Y Combinator (S22), Alpine Investors and more.
+health-tech
+healthcare
+digital-health
+femtech
+
+Dr. Treat S2022
+
+ •  Active  •  21 employees  •  San Francisco Dr. Treat is a tech enabled modern veterinary care company offering virtual and in-clinic services to pet parents. We are building the largest pet health company powered by technology and driven by data to offer highly personalized & preventative care for every pet.
+digital-health
+telehealth
+consumer
+
+Metriport S2022
+
+ •  Active  •  29 employees  •  San Francisco Metriport provides real-time access to medical data for 340 million individuals across the US. Its open-source platform turns scattered patient records across all major healthcare IT systems into structured information that gives clinicians what they need, exactly when they need it, to provide the best possible care. 
+
+Metriport manages dozens of connections across all national HIEs and QHINs, state and regional HIEs, ADT networks, pharmacies, labs, and EHRs. It then matches, extracts, standardizes, deduplicates, and enriches records, and converts them into a unified data model, accessible through a single API, data warehouse, or apps directly within an EHR.
+
+In addition to providing longitudinal patient clinical data at the point of care, Metriport offers ambient monitoring, alerting providers in real time as patients are moved through the healthcare system to assist with transitions of care. Metriport also delivers insights on top of the data, like AI medical record summarization, condition suspecting, and surfacing care gaps.
+
+Founded in 2022 and headquartered in San Francisco, Metriport processes 4.2 billion network requests a month and returns the first structured record in under 15 seconds. Teams across care delivery, value-based programs, and health tech platforms build on Metriport, including Amazon One Medical, Strive Health, Color, Sollis Health, and Canvas Medical.
+api
+b2b
+healthcare
+digital-health
+ai
+
+Junction W2020
+
+ •  Active  •  19 employees  •  London Junction is an API for at-home health data that makes it easy for health tech companies to collect data from 100&#x27;s of wearable devices and deliver at-home test kits to their users. Healthtech companies need lab data as well as wearable data, and we give them access to both through a single line of code.
+
+digital-health
+health-&-wellness
+health-tech
+api
+
+Clinikally S2022
+
+ •  Active  •  125 employees  •  Gurugram, Haryana, India India&#x27;s leading digital health destination for Dermatology, Nutrition & Wellness. A multi-condition health platform providing Telehealth, AI-powered treatment plans, and Rx-grade products. Our virtual care is entirely science-based and personalized to each patient, based on prescription history, medical parameters, family history, lifestyle, surroundings and preexisting health issues.
+consumer-health-services
+digital-health
+telehealth
+e-commerce
+consumer
+
+Nest Genomics W2022
+
+ •  Active  •  14 employees  •  New York City Nest is a lab-agnostic, comprehensive solution for organizations to launch and implement large-scale genomic programs. The platform includes the ability to triage, consent, and counsel patients for genetic testing, provide EMR-integrated clinical decision support for providers managing patients with genetic results, and manage patients’ clinical needs across the continuum of care.
+health-tech
+genomics
+digital-health
+saas
+primary-care
+
+Mederva W2022
+
+ •  Active  •  13 employees  •  San Francisco Mederva is bringing AI-enabled healthspan care to primary care. We partner with clinics to turn lifestyle and behavior change into continuous, reimbursed care, extending healthy years of life between visits.
+digital-health
+consumer-health-services
+telehealth
+healthcare
+
+RTHM W2022
+
+ •  Active  •  10 employees  •  San Francisco RTHM is the self-learning digital clinic for medicine&#x27;s new normal: complex patients with lots of data and/or multiple chronic conditions. We are focused on infection-associated chronic conditions and autoimmune conditions impacting 70M individuals in the US.
+digital-health
+consumer-health-services
+health-tech
+telemedicine
+artificial-intelligence
+
+Ankr Health W2022
+
+ •  Active  •  30 employees  •  Houston, TX, USA Adoption of Telehealth 1.0 has dropped to <5% because it&#x27;s inefficient and unintelligent. Ankr uses generative AI to recreate functions of clinic staff including front desk, medical assistants and scribe. This allows Doctors to "spin-up" virtual clinics on-demand, anytime, anywhere. 
+
+An average clinic using Ankr generates $1M in new revenue/year. We integrate with all top EHRs and work with all types of clinics in mid- to large-sized healthcare organizations.
+telehealth
+b2b
+generative-ai
+telemedicine
+digital-health
+
+Tuva Health W2022
+
+ •  Active  •  3 employees  •  Salt Lake City, UT, USA At Tuva Health, we make open source software that cleans and transforms messy healthcare data. We’re founded by Aaron Neiderhiser and Coco Zuloaga, former senior execs from Health Catalyst and Strive Health. We realized data transformation and data quality is the fundamental problem preventing the healthcare industry from building scalable data products. We launched Tuva and joined the W22 batch of Y Combinator to solve this problem for the entire industry. Since January 1st, we signed our first customer (paying $10k per month) and completed the first major release of the Tuva Project. At Tuva, our goal is to (1) become the open standard for healthcare data transformation and (2) build the data network for multi-site benchmarking, research, and machine learning on top of this open standard.
+saas
+digital-health
+b2b
+
+Craniometrix W2022
+
+ •  Active  •  64 employees  •  New York City Dementia is tough – but it can be easier. Turns out, if you give families the right non-clinical coaching and support, you can avoid 30% of hospitalizations for these patients. And Medicare has recently started paying for that coaching.
+
+We leverage AI to provide best-in-class care, alleviating the burden on providers. Come help us build!
+health-tech
+neurotechnology
+digital-health
+
+Starling W2022
+
+ •  Active  •  5 employees  •  Houston, TX, USA Starling is building a urine diagnostic remote patient monitoring platform that seamlessly integrates into anyone&#x27;s bathroom routine. By detecting early changes in a patient&#x27;s urine using our toilet indwelling mass spectroscopy device, our platform is aiming to prevent hospitalizations from numerous conditions like recurrent UTIs, BPH exacerbations, or diabetes. We do this while creating significant new annual revenues for our clinician partners from remote patient monitoring reimbursements without requiring any significant changes in a staff&#x27;s day to day schedule.
+machine-learning
+digital-health
+medical-devices
+
+Synapticure S2020
+
+ •  Active  •  115 employees  •  Chicago, IL, USA Personalized virtual clinical care is finally here for neurodegenerative diseases like Alzheimer&#x27;s and related Dementias (Cognitive), Parkinson&#x27;s and Huntington&#x27;s (Movement), and ALS (Motor neuron).
+
+We provide a novel approach to care in these diseases, centering a patient and caregiver around a coordinator who quarterbacks patients through our full Multi-Disciplinary Care Resources to local aid, PT/OT and home health support. When you leave our clinic, it&#x27;s not with a handful of paper referrals, but with our coordinators helping you book and find the best physicians, DME, trials, and even cheapest prescriptions. We are devoted to helping patients, from guidance on care and insurance to providing the full spectrum of investigational and clinical testing to improve outcomes. 
+
+Synapticure was built by leading patient and caregiver advocates alongside leading clinicians, biotech executives and telemedicine executives to bring the neurodegenerative disease care and treatment experience into the 21st century, and is backed by the leading Venture funds and investors in the remote health and life sciences space.
+telehealth
+digital-health
+health-tech
+mental-health
+healthcare
+
+Selia W2022
+
+ •  Active  •  20 employees  •  Miami, FL, USA Selia Connects individuals and certified psychologists and psychiatrists with an online platform for one-on-one therapy delivered via video call. 
+
+Selia offers convenient and affordable access to a fully-credentialed network of highly qualified providers while giving individuals self-guided tools, journaling and mood tracking to help them achieve their goals. 
+
+We created Selia to address the unmet and growing demand for mental health services for Spanish speaking Latam everywhere.
+Our business-to-consumer (“B2C”) channel, made of individual consumers who pay directly to our platform, and our business-to-business (“B2B”) channel, that consist from start ups to enterprise clients such as Experian, Starbucks, Habi and more
+mental-health-tech
+consumer-health-services
+health-&-wellness
+digital-health
+
+LunaJoy Health W2022
+
+ •  Active  •  6 employees  •  Atlanta, GA, USA LunaJoy is building the AI-powered care platform for precision mental health—starting with women.
+We integrate intelligent automation with specialized clinical services to deliver scalable, life-stage-specific care—from adolescence to pregnancy, postpartum, infertility, miscarriage, perimenopause, and aging. By embedding AI agents into care navigation, triage, and decision support, we reduce costs, accelerate outcomes, and personalize treatment at scale.
+
+Our hybrid care model blends targeted psychotherapy, psychiatric medication management, genetic testing, coaching, and holistic wellness—delivered by a curated workforce of women’s mental health specialists. Through continuous feedback loops, AI segmentation, and predictive insights, LunaJoy is built to scale.
+
+We’re expanding our in-network footprint to make this care accessible across commercial and Medicaid populations—closing equity gaps for women of color, LGBTQ+ individuals, and those most at risk.
+
+Women are twice as likely to experience mental health conditions, and 3x more likely to endure trauma. Yet the system is still built for the “average” patient—ignoring the biological, emotional, and social complexity of women’s lives. LunaJoy is rearchitecting that system with AI at its core—because when we invest in women’s mental health, entire communities thrive.
+mental-health-tech
+femtech
+digital-health
+
+Loading more companies...
+
+### Hottest Startup Categories
+B2B Startups in San Francisco
+Fintech Startups in New York

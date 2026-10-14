@@ -1,0 +1,9 @@
+[gptr 15:24:46] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 15:24:46] prompt (2595 caracteres): /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-soIvfK/prompt.txt · log de GPT Researcher: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-soIvfK/gptr.log
+[gptr 15:24:46] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 15:24:46] búsqueda terminada en 0s
+[gptr 15:24:46] URLs para el juez: 150 (0 del informe) → https://portal.alzimpact.org/storage/resources/media-items/Fiscal%20Year%202027%20Alzheimer's%20Research%20Funding%20(April%202026).pdf | https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf | https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/360c4588-1512-4fa4-9b61-52a3f1d6c368/attachments/16b08ada-0c75-4e4d-bf70-e1485a9a381d/RFA-RM-27-013-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/d07ebcd7-96cf-40cb-8ae3-f401b6274080/attachments/e4789627-8735-47c0-80e4-43fc7384f5d1/RFA-RM-27-012-Full-Announcement.html …
+[gptr 15:24:46] registro: 6 búsquedas + 0 números → 3 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 2 al juez (vía simpler)
+[gptr 15:24:46] registro: 0 búsquedas + 12 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler)
+[gptr 15:24:46] juez de Node: 152 páginas (2 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 42 elegidas por fechas
+[gptr 15:24:46] juez listo: 4 hallazgos (4 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s

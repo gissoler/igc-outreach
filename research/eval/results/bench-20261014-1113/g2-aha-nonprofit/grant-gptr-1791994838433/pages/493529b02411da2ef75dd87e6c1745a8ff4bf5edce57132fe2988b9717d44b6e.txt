@@ -1,0 +1,614 @@
+Open funding calls | EIBIR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Upcoming and open funding calls
+We're continuously updating this page with calls relevant to biomedical imaging Below are the full call texts for open and forthcoming calls relevant to biomedical imaging. This includes information on the budget and prospective estimates on how many projects will be funded. You can scroll down, or use the quick menu on the right side of the screen to navigate.
+
+Calls for Funding
+The Horizon Europe 2026–2027 work programme may be found  here . For Digital Europe, download the 2025–2027 programme (See section 2.3.3, Apply AI for Health, p. 75) here .
+
+IHI Call 13: A two-stage call with 3 topics to integrate health research and care
+
+HORIZON-CL4-2027-04-DIGITAL-EMERGING-04:  Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)
+
+HORIZON-MISS-2027-02-CANCER-03:  Phase 1 Including First-in-Human Clinical Trials to Test Biomarker-Guided Medicines or Multi-Modal Treatment Interventions for Patients with Rare or Very Rare Cancers
+
+HORIZON-MISS-2027-02-CANCER-04:   Improving Equitable Health Outcomes and Added Value for and with Cancer Patients Through Health-Economics, Health Systems, and Outcomes Research
+
+HORIZON-HLTH-2027-02-DISEASE-01-two-stage:  Innovative healthcare interventions for non-communicable diseases
+
+HORIZON-HLTH-2027-01-DISEASE-10:  Prevention and management of chronic non-communicable diseases in children and young people (GACD)
+
+HORIZON-HLTH-2027-02-DISEASE-14-two-stage:  Clinical trials for advancing innovative interventions for neurodegenerative diseases
+
+HORIZON-HLTH-2027-01-CARE-02:  Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications
+
+HORIZON-HLTH-2027-02-TOOL-01-two-stage:  Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases
+
+HORIZON-HLTH-2027-03-TOOL-04:  Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis
+
+HORIZON-HLTH-2027-03-TOOL-08:  Towards Artificial General Intelligence (AGI) for healthcare
+
+DI-p-25-69:   Development, deployment and operations of the central services of the infrastructure on secondary uses of health data (HealthData@EU)
+
+## IHI Call 13 – for a Competitive European Health Ecosystem
+
+Estimated total budget : €53.2 million
+
+Opening: 2 July 2026
+
+1st-stage deadline: 8 October 2026
+
+2nd-stage deadline: 21 April 2027
+
+Innovative Health Initiative (IHI) call 13 is now open to participation by international academic, industrial and regulatory actors, in order to benefit from wider access to data and expertise, respond to emerging health threats and achieve the necessary societal impact, in particular improved health outcomes for EU citizens.
+
+The IHI Joint Undertaking is established to address complex cross-border challenges that require an integrated approach, making it possible to address the transformational, systemic and market failures, and to contribute to strengthening the competitiveness of the EU’s health industry, a cornerstone of the EU’s knowledge-based economy, to an increased economic activity in the development of health technologies, in particular of integrated health solutions, and thus serve as a tool for increasing technological leadership and fostering the digital transformation of our societies.
+
+Only the applicant consortium whose proposal is ranked first at the first stage is invited for the second stage. Applicant consortia must ensure that at least 45% of the action’s eligible costs and costs for additional activities related to the action are provided by contributions (IKOP, FC, IKAA) from private members which are members of IHI Joint Undertaking, their constituent or affiliated entities, and contributing partners. This must be declared in writing in the second stage.
+
+Topic 1: A network to boost the next wave of European innovations in healthcare
+
+Topic 2: An AI foundation toxicology model and framework to support waiving a second species in drug safety studies
+
+Topic 3: Decode the immuno-science of age-related immune-mediated diseases
+
+Who Can Apply Legal entities based in all countries associated to Horizon Europe, including Canada, Switzerland, the UK, and South Korea, will be eligible to receive funding.
+
+For the call texts and more information, visit the official IHI Call 13 page or contact us directly.
+
+## HORIZON-CL4-2027-04-DIGITAL-EMERGING-04
+
+## Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)
+
+Estimated total budget : €42 million
+
+Opening: 17 November 2026
+
+Deadline: 18 March 2027
+
+Expected outcome
+
+The Apply AI Strategy proposes a comprehensive set of measures to notably harness the transformative potential of AI. It lays down targeted measures to boost AI use in key strategic sectors of the EU economy including healthcare, mobility and manufacturing for example. With challenges designed to spark breakthroughs in such strategic sectors, the current topic will directly support key activities of the Apply AI Strategy.
+
+Project results are expected to contribute to all of the following expected outcomes:
+
+Significant technological progress and innovation in Apply AI Strategy's prioritised sectors driven by challenge-oriented, AI-powered solutions.
+
+Increase competitiveness and visibility of the relevant AI community within key application domains, and promote collaborative approaches for AI development in these domains, fostering the ecosystem.
+
+Increase adoption of AI technologies across the following three key application domains: healthcare, advanced manufacturing (including AI-powered robotics) and in-vehicle autonomous driving.
+
+Scope
+
+The Challenge-Driven AI Innovation Booster aims to drive significant technological progress and innovation in Apply AI prioritised sectors through challenge-oriented, AI-powered solutions. This initiative seeks to boost Europe's developer community and the adoption of powerful, trustworthy AI solutions in three strategic domains such as:
+
+In healthcare - advanced AI will accelerate diagnostics and treatment plans, enhance robotic surgery, or improve patient care through predictive analytics.
+
+In advanced manufacturing - advanced AI will optimize production processes, improve quality control and product design, or enable predictive maintenance.
+
+In autonomous driving - advanced AI will enhance vehicle safety, improve navigation systems, or optimize traffic management. Provided sufficient quality of the proposals received, at least one selected project will focus on in-vehicle autonomous driving applications, in line with the Automotive Action Plan, ensuring coordination with the announced Connected and Autonomous Vehicle Alliance.
+
+Each proposal should focus exclusively on one of the three key sectors mentioned above.
+
+It is expected to focus primarily on the definition and organization of a multi-stage competition in the chosen sector, as well as on the accompanying support to the SMEs/teams taking part in each of the challenges.
+
+User-industry companies from the strategic sector targeted by the proposal should be core partners in each consortium. They should demonstrate a genuine interest in the project results and therefore support the challenge participants to reach the most powerful and exploitable results benefiting their industry. The expected results are pre-competitive, but the proposal must include a draft exploitation plan focused on how the solutions developed by the third parties will be taken up, with support from the user-industry partners for their future exploitation.
+
+The consortium leading the project is responsible for the various stages of the challenges. This consortium should provide the necessary support resources during each stage of the competition (including technical assistance and business support to develop an exploitation strategy) and, most importantly, the consortium should ensure that the teams competing for and receiving financial support to third parties have access to relevant data to fine-tune models and build high-impact solutions meeting industry needs.
+
+Proposals should be driven by impactful use-cases where advanced AI can make the difference: a number of industries from the targeted sector are expected to join forces to define challenging problems to solve with advanced AI solutions, which then drive the rest of the project. Based on such challenges, each project consortium should organize a multi-staged competition with an increasing level of complexity. In the different stages (see below), third parties, either single SMEs or small teams of organisations led by an SME, compete to address the challenges with advanced AI solutions.
+
+The consortium launches an open call for proposals. A challenge, open to all, will allow the selection for Stage 2 of the 10 highest-ranked proposals according to a pre-defined selection process and criteria. Each solution is expected to be submitted either by a single SME, developer of advanced AI solutions, or a small team of organizations led by such SME.
+
+## HORIZON-MISS-2027-02-CANCER-03
+
+## Phase 1 Including First-in-Human Clinical Trials to Test Biomarker-Guided Medicines or Multi-Modal Treatment Interventions for Patients with Rare or Very Rare Cancers
+
+Estimated total budget : €24 million
+
+Opening: 10 February 2027
+
+Deadline: 21 September 2027
+
+Expected outcome
+
+Patients with rare or very rare cancers gain access to promising biomarker-guided medicines or multi-modal interventions via clinical trials or compassionate use programmes;
+
+Researchers, clinicians, innovators, SMEs, charities, and other professionals have access to innovative medicines, medical devices, and technologies for further validation or commercialisation;
+
+National healthcare providers and policymakers gain early safety and efficacy evidence to support further testing and implementation in healthcare systems.
+
+Scope
+
+Finalise preclinical validation of biomarker-guided drugs or multi-modal interventions using in vivo, ex vivo, and in silico models; consider drug repurposing;
+
+Conduct phase 1, first-in-human, multi-centre clinical trials with innovative designs (basket, umbrella, adaptive, decentralised) for patients and caregivers;
+
+Define primary and secondary endpoints, including safety, efficacy, and patient-reported outcomes, with patient and caregiver input;
+
+Ensure all datasets are FAIR and integrated with UNCAN.eu; follow open science principles;
+
+Include regulatory advice, multi-disciplinary stakeholders, and details of clinical studies in the annex;
+
+Participate in the ‘Diagnosis and Treatment’ project cluster for coordination and networking.
+
+## HORIZON-MISS-2027-02-CANCER-04
+
+## Improving Equitable Health Outcomes and Added Value for and with Cancer Patients Through Health-Economics, Health Systems, and Outcomes Research
+
+Estimated total budget : €10 million
+
+Opening: 10 February 2027
+
+Deadline: 21 September 2027
+
+Expected outcome
+
+People at risk of cancer, patients, and caregivers benefit from more effective, cost-efficient cancer control programmes across EU Member States and Associated Countries;
+
+Researchers, clinicians, SMEs, and innovators gain access to health-economic, epidemiological, and registry data for research, commercialisation, and policy purposes;
+
+Healthcare providers, policymakers, and authorities obtain evidence to improve equitable health outcomes, value-driven care, and organisational efficiency.
+
+Scope
+
+Develop, validate, or refine health-economics, health systems, and outcomes research methods and models for comparative cost-effectiveness and epidemiological analyses;
+
+Integrate socio-economic, cultural, organisational, and behavioural factors; engage patients and caregivers using participative research models;
+
+Assess cancer-control healthcare expenditures and link to value-driven outcomes for patients and populations;
+
+Improve access to, organisation of, and outcomes from evidence-based, cost-effective cancer care in hospitals, centres, community settings, or at home;
+
+Build on KCC resources and join the ‘Understanding’ project cluster for coordination, networking, and joint activities.
+
+## HORIZON-HLTH-2027-02-DISEASE-01-two-stage
+
+## Innovative healthcare interventions for non-communicable diseases
+
+Estimated total budget : €63.8 million
+
+Opening: 10 February 2027
+
+First deadline: 13 April 2027
+
+Second deadline: 22 September 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Tackling diseases and reducing disease burden.” To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+Researchers, developers and clinical practitioners have access to state-of-the-art knowledge, data, technologies, tools, methods, best practices, and trainings to develop innovative healthcare interventions aimed at reducing burden of the following specific Non-Communicable Diseases (NCDs): cardiovascular diseases, diabetes, chronic respiratory diseases or chronic kidney diseases.
+
+Scientific and clinical communities can use innovative healthcare interventions to generate meaningful advances in clinical practice and care for patients with NCDs following validation in late-stage clinical trials.
+
+Scientific and clinical communities make wide use of relevant databases and/or integrate them with existing infrastructures for storage and sharing of collected data according to FAIR principles, thereby encouraging further use of the data.
+
+Policymakers, scientific and clinical communities, developers, patient organisations, regulators, and other relevant bodies are informed of the research advances made and the requirements for a widespread implementation of the innovative therapeutic interventions and complementary approaches.
+
+Patients and caregivers are constructively engaged with the research, ensuring that their needs are catered for, with the aim of tangibly benefitting from the interventions.
+
+Scope
+
+NCDs represent over 80% of the disease burden in Europe and the leading cause of avoidable premature deaths. Innovative and effective healthcare interventions are required to provide treatment and disease management solutions and assure best quality of care for patients suffering from NCDs when prevention strategies have failed.
+
+Proposals should address all the following aspects:
+
+Perform rigorous early stage clinical trial(s) to validate novel or refined healthcare interventions for treatment and/or disease management solutions for patients suffering from the following specific NCDs: cardiovascular diseases, diabetes, chronic respiratory diseases or chronic kidney diseases. Whenever relevant, existing co- and multimorbidities should be addressed in the trial design.
+
+Clinical trial(s) should be supported by completed proof-of-concept of clinical safety and efficacy.
+
+Both preclinical research and the draft clinical trial protocol should be completed at the time of submission of the proposal. Proposals should also demonstrate evidence of preliminary consultations with ethics and regulatory authorities at the time of submission.
+
+A sound feasibility assessment, including an appropriate patient selection and realistic recruitment plans, justified by publications or preliminary results should be provided.
+
+Take into account sex and gender differences in all relevant aspects throughout the research process, and consider stratification criteria such as age, disability, racial or ethnic origin, socio-economic status, genetic and epigenetic variations, etc., where relevant.
+
+Use and/or develop technologies, including digital ones (e.g. (generative) Artificial Intelligence, wearable technologies) to help implement and monitor the long-term efficacy of the intervention(s), as well as manage the disease and/or monitor their progression (e.g. with unobtrusive technologies suitable for patient monitoring at home and in real-world conditions), whilst also ensuring they are bias-free, inclusive, and ethically sound. Hardware and software should be interoperable in line with internationally accepted standards. The use of virtual human twins could also be considered, where relevant.
+
+Exploit existing data, health data infrastructures, biobanks, registries and/or cohorts, together with the generation of new data that should be managed in line with the FAIR principles and contribute to emerging research infrastructures established in the framework of the European Health Data Space (EHDS), when relevant.
+
+Advance research by leveraging already existing and emerging state-of-the-art research infrastructures as well as results stemming from EU-supported research projects, where applicable.
+
+Engage all relevant stakeholders (especially patients and patients’ representatives, caregivers, clinicians, counsellors, regulators, etc.) to design end-user optimised interventions.
+
+Engage with national public health authorities and regulators to ensure a robust development pathway and further uptake of the intervention.
+
+Present a thorough health-economic assessment and Real-World Data (RWD) analysis to enhance sustainability and scalability of novel interventions.
+
+The participation of start-ups, micro, small and medium-sized enterprises (SMEs) is encouraged with the aim of strengthening their scientific and technological foundations, enhancing their innovation potential, and exploring possibilities for commercial exploitation.
+
+This topic requires the effective contribution of social sciences and humanities (SSH) disciplines and the involvement of SSH experts, institutions as well as the inclusion of relevant SSH expertise, in order to produce meaningful and significant effects enhancing the societal impact of the related research activities.
+
+All projects funded under this topic are encouraged to participate in networking and joint activities, as appropriate and explore potential synergies with projects funded under the EU4Health Programme (2021-2027) in the area of NCDs.
+
+Applicants invited to the second stage should provide details of their clinical studies in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+## HORIZON-HLTH-2027-01-DISEASE-10
+
+## Prevention and management of chronic non-communicable diseases in children and young people (GACD)
+
+Estimated total budget : €11.8 million
+
+Opening: 10 February 2027
+
+Deadline: 13 April 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Tackling diseases and reducing disease burden.” To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to some of the following expected outcomes:
+
+Researchers, healthcare practitioners and providers in low- and middle-income countries (LMICs) and/or those in high-income countries (HICs) serving disadvantaged populations have access to improved insights and evidence on how to equitably promote the early prevention, risk reduction, and timely diagnosis of Non-Communicable Diseases (NCDs) in children and/or young people.
+
+Policymakers, public health managers and authorities, parents and their children, and young adults have access to evidence and recommendations for national programmes and policies to improve quality of life in children and/or young people and extend healthy life expectancy.
+
+Researchers, clinicians, policymakers, public health managers and authorities have an improved understanding how to effectively adapt and/or scale up interventions for prevention and management of chronic NCDs in children and/or young people at local, regional, and national levels.
+
+Communities, parents and their children, young adults, local stakeholders and authorities are fully engaged in implementing and taking up interventions that tackle NCDs in children and/or young people.
+
+Scope
+
+The Commission is a member of the Global Alliance for Chronic Diseases (GACD). The GACD specifically addresses NCDs and supports implementation research to improve health outcomes. This topic is launched in concertation with the other GACD members (international funding agencies) and aligned with the 12 th  GACD call.
+
+Chronic NCDs that begin in childhood have an impact on both quality of life and life expectancy. Onset of many NCDs diseases occurs at younger ages in LMICs, and this is further accompanied by a longer duration of disease and a higher rate of complications, including multimorbidity. The conditions in which people are born, grow and live (the social determinants of health) including access to good nutrition, education, housing, and healthcare are major contributors to health and ill health.
+
+Up to 70% of preventable adult deaths from NCDs are linked to risk factors originating in childhood and adolescence, and interventions that can successfully control or prevent chronic disease in young people can dramatically improve health outcomes later in life. Childhood and adolescence are critical periods, when behaviours associated with NCD risk are adopted including tobacco use, alcohol use, substance abuse, unhealthy diets and sedentary lifestyles and children and young people are often targeted by commercial marketing of unhealthy products.
+
+The aim of this topic is to fund implementation research, exploring strategies, evidence-based program and policy interventions across prevention, diagnosis, screening and management of chronic NCDs, centred on the critical life stages spanning early childhood to young adulthood (1-24 years of age) living in LMICs, and/or underserved populations in HICs.
+
+In this regard, proposals focused on implementation research should explore implementation strategies on evidence-based interventions, adaptations of interventions and tailored interventions, or initiatives including (though not limited to) those focussed on one or more of the following:
+
+Policy evaluation to tackle childhood- and/or youth-relevant social, economic, political, structural or commercial determinants of chronic NCD conditions.
+
+Prevention of NCDs using children and/or young people targeted implementation strategies (e.g. educational strategies, vaccination strategies, promotion of behavioural and lifestyle changes).
+
+Screening and diagnosis of NCDs (or risk factors) in children and/or young people (in particular use of digital tools).
+
+Cost effective and patient-centred management of NCDs in children and/or young people (including access to medicines and equipment; integrated care pathways; continuity of care for adolescents with existing non-communicable diseases who "age out" of paediatrics, caregiver health and support, citizen science approaches).
+
+Multiple interventions focus on prevention of NCDs in children and young people, yet relatively few have focussed on strategies for management of chronic conditions in these critical life stages, and a limited number of studies have been carried out to study implementation of these in LMIC contexts or with underserved communities. In this instance it would be anticipated that proposals should explore implementation strategies using the appropriate hybrid design study incorporating effectiveness and implementation research outcomes. Therefore, it may be important to undertake formative research as a part of the proposal to support readiness for implementation.
+
+The proposed implementation research should be focused on one or more evidence-based interventions (or complex interventions), providing existing evidence of the intervention’s effectiveness, cost-effectiveness, sustainability, scalability and potential for long-term health and other impacts (and in what context this evidence has been generated).
+
+Applicants should provide rationale and explore the implementation of proposed intervention(s) for a selected study population(s) based in one or more LMICs, and/or underserved populations experiencing health disparities, including Indigenous populations, in HICs, considering the unique social, political, economic, and cultural context(s) in which the study will take place. Applicants should justify why any adaptation will not compromise the known effectiveness of the selected intervention(s).
+
+Proposals should address all the following implementation research activities:
+
+Clearly describe the implementation research methodology, including the statistical design.
+
+Have an appropriate strategy for measuring implementation research outcomes and real-world effectiveness outcomes and indicators.
+
+Specifically address issues of equitable implementation to ensure interventions reach the populations that need them the most.
+
+Engage an appropriately expert and skilled research team which can ensure a suitable multidisciplinary approach and that demonstrates equitable partnership and shared leadership between HIC-LMIC, and/or non-Indigenous-Indigenous members of the project team and external stakeholders through a clear governance strategy.
+
+Provide a stakeholder engagement strategy with evidence of support/engagement from key stakeholders for delivering the intervention and a pathway to sustain the proposed intervention (if proven effective) after the funding from the GACD grant ends.
+
+Provide opportunities for NCD-focused implementation research capacity building for early career researchers and team members from lower resourced environments, such as LMICs or disadvantaged communities.
+
+Ensure meaningful involvement of early career team members, including at least one early career member as a co-investigator.
+
+The study population may include children and/or young people in the general population, with one or more existing NCDs, those currently without NCDs, or a combination of any of the above. Applicants may propose implementation research focused on interventions that are implemented at the individual, family, community (e.g. work or school), population, and/or structural level. With regard to NCDs, applicants are encouraged to explore any chronic non-communicable condition (or combination of conditions), including mental health disorders, autoimmune conditions, musculoskeletal conditions, neurological disorders and sleep disorders and/or any risk factor (or combination of risk factors). Additionally, whenever relevant, applicants are also encouraged to take a life course approach, adapting interventions for particular life stages with the goal of promoting life-long health.
+
+Proposals should use an appropriate implementation research design and framework, before and after studies, and additional implementation science classifications of study designs (e.g. hybrid designs), noting that applicants are not limited to any particular design.
+
+Proposals would be expected to generate evidence that is of direct relevance to policymakers, communities and practitioners. Proposed work should identify and engage all key stakeholders necessary and relevant to the development, undertaking and knowledge translation phases of the project, including meaningful collaboration with young people themselves (and their families). Proposals should also consider using co-development and co-design approaches, involving policymakers, local authorities, community groups, educators, healthcare providers, and other individuals or organisations necessary to the delivery and sustainability of the study outcomes. Project partners should be engaged from the beginning to contribute to the sustainability of the intervention after the end of project. Proposals should demonstrate sustainability of the strategy, beyond the lifespan of the project.
+
+Poverty, discrimination based on sex, racial or ethnic origin, religion or belief, disability, age, and other inequities are directly associated with reduced potential for equitable access to quality care. Proposals should consider relevant determinants of health (e.g. social, structural, commercial, economic) and discuss their potential impact on the effective implementation of the intervention(s). If there is a focus on a particular population (e.g. gender, racial or ethnic origin, etc.), then the reason for this should be justified.
+
+This topic requires the effective contribution of social sciences and humanities (SSH) disciplines and the involvement of SSH experts, institutions as well as the inclusion of relevant SSH expertise, in order to produce meaningful and significant effects enhancing the societal impact of the related research activities.
+
+All projects funded under this topic are strongly encouraged to participate in networking and joint activities, including internationally, as appropriate. These activities could, for example, involve the participation in joint workshops, the Annual Scientific Meetings of the GACD, the exchange of knowledge, the development and adoption of best practices, or joint communication activities. Therefore, proposals are expected to include a budget for such activities and may consider covering the costs of any other potential joint activities without the prerequisite to detail concrete joint activities at this stage. The details of these joint activities will be defined during the grant agreement preparation phase.
+
+Applicants should provide details of their clinical studies in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+## HORIZON-HLTH-2027-02-DISEASE-14-two-stage
+
+## Clinical trials for advancing innovative interventions for neurodegenerative diseases
+
+Estimated total budget : €39.3 million
+
+Opening: 10 February 2027
+
+First deadline: 13 April 2027
+
+Second deadline: 22 September 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Tackling diseases and reducing disease burden.” To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+The scientific and clinical communities make effective use of state-of-the-art knowledge, data, technologies, tools, methods, best practices, and trainings to underpin and complement the development of innovative interventions aimed at more effective treatments for neurodegenerative diseases.
+
+The scientific and clinical communities benefit from the exchange of data, knowledge and best practices, thereby strengthening their collaboration in the EU, the Associated Countries and beyond.
+
+The scientific and clinical communities make wide use of relevant databases and/or integrate them with existing infrastructures for storage and sharing of collected data according to FAIR [1]  principles, thereby encouraging further use of the data.
+
+Policymakers, funders, scientific and clinical communities, patient organisations, regulators, and other relevant bodies are informed of the research advances made and the requirements for a widespread implementation of the innovative therapeutic interventions and complementary approaches.
+
+Patients and caregivers are constructively engaged with the research, ensuring that their needs are catered for, with the aim of tangibly benefitting from the interventions.
+
+Scope
+
+Neurodegenerative diseases are a high burden for patients, caregivers, health systems and society. Given the limitations with current therapeutic solutions, including that they primarily address symptoms rather than underlying causes and can have serious side effects, together with the increasing prevalence of neurodegenerative diseases in an aging population, there is a huge need to develop more innovative, safer and more effective therapeutic solutions for these diseases. To further enhance their safety and effectiveness, the therapeutic solution based on an active substance should be combined/complemented with another multidisciplinary approach (e.g. lifestyle changes, cognitive training, rehabilitation therapies). Together this innovative intervention should lead to an improved quality of life and reduce the societal impact of these diseases.
+
+Rare neurodegenerative diseases are excluded.
+
+Proposals should address most of the following aspects:
+
+Perform rigorous early-stage clinical trials into the safety and efficacy of the innovative interventions and their mode of administration, ensuring adequate cohorts/sample sizes with adequate representation of the patient population, including in terms of age, sex and ethnicity.
+
+Through the clinical trials and to the extent possible of additional studies, gain further insight into the potentially novel mechanism(s) of action of the innovative therapies and complementary approaches. This could entail analyses of imaging (e.g. MRI, ultrasound, nuclear imaging), as well as physiological, molecular, biochemical or omics signatures revealing potential perturbations prior to the intervention and recovery/improvement thereafter, and it could lead to the development of surrogate endpoints. This insight should open the path to more personalised interventions and approaches.
+
+Use and/or develop technologies, including digital ones (e.g. (generative) artificial intelligence, wearable technologies) to help implement and monitor the long-term efficacy of the intervention(s), as well as manage the disorder and/or monitor their progression (e.g. with unobtrusive technologies suitable for patient monitoring at home and in real-world conditions), whilst also ensuring they are bias-free, inclusive, and ethically sound.
+
+Utilise existing data, biobanks, registries and/or cohorts, together with the generation of new data that should be managed in line with the FAIR principles.
+
+Engage all relevant stakeholders (especially patients and patients’ representatives for the disease, caregivers, clinicians, counsellors, regulators, etc.) to design end-user optimised interventions, applying gender-sensitive and intersectional approaches.
+
+Advance research by leveraging already existing and emerging state-of-the-art research infrastructures (e.g. EuroBioImaging, European Genomic Data Infrastructure, ECRIN, EATRIS, EBRAINS, BBMRI, etc.), as well as results stemming from EU-supported research projects, where applicable.
+
+Engage with national public health authorities and regulators to ensure a robust development pathway and further uptake of the intervention.
+
+The participation of start-ups, micro, small and medium-sized enterprises (SMEs) is encouraged with the aim of strengthening their scientific and technological foundations, enhancing their innovation potential, and exploring possibilities for commercial exploitation.
+
+Funded projects should liaise with the future co-funded European Partnership for Brain Health (covered by topic HORIZON-HLTH-2025-02-DISEASE-01: “European Partnership for Brain Health”) once launched.
+
+The topic requires the effective contribution of social sciences and humanities (SSH) disciplines and the involvement of SSH experts, institutions as well as the inclusion of relevant SSH expertise, in order to produce meaningful and significant effects enhancing the societal impact of the related research activities.
+
+All projects funded under this topic are strongly encouraged to participate in networking and joint activities, as appropriate. Therefore, proposals should include a budget for the attendance to regular joint meetings and may consider covering the costs of any other potential joint activities without the prerequisite to detail concrete joint activities at this stage. The details of these joint activities will be defined during the grant agreement preparation phase.
+
+Applicants should provide details of their clinical studies in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+## HORIZON-HLTH-2027-01-CARE-02
+
+## Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medications
+
+Estimated total budget : €38 million
+
+Opening: 10 February 2027
+
+Deadline: 13 April 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Ensuring equal access to innovative, sustainable, and high-quality healthcare”. To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+Patients benefit from decreased incidence of Adverse Drug Reactions (ADRs) caused by the administration of multiple medications (three or more medicinal products) and enhanced health outcomes by ensuring safer and more effective use of medication.
+
+Healthcare professionals can adopt adverse drug reactions prevention and reduction strategies to integrate genetic and other biomarker information into clinical decision-making to optimise the use of medication, especially in situations of comorbidities.
+
+Healthcare systems benefit from cost savings thanks to reduced hospital admissions and other costs associated with ADRs related to the intake of multiple medicines.
+
+Clinical and regulatory guidelines and policies for medication management in case of multiple medications can be revised supported by robust evidence.
+
+Educational programs for healthcare providers and patients benefit from improved awareness and management of polypharmacy and ADRs.
+
+Scope
+
+While medicinal products contribute considerably to the health of EU citizens, they can also have adverse reactions. It is estimated that around 5% of all hospital deaths are due to an adverse drug reaction. On average, 16% of hospitalised older patients experience significant ADRs, varying in severity and mostly preventable, with commonly prescribed drug classes (such as diuretics, anti-bacterials, antithrombotic agents, analgesics, antineoplastics, etc.) accounting for most ADRs. Overall, ADRs increase morbidity, mortality, hospitalisations, and healthcare costs.
+
+ADRs from multiple medications contribute significantly to healthcare costs due to increased hospitalisations and treatments, making this an area of focus to achieve cost efficiency.
+
+Initial failure to recognise ADRs can generate inappropriate prescription cascades, in which the side effects of drugs are misdiagnosed as symptoms of new problems, resulting in further prescriptions and further side effects that tend to accumulate, confusing and complicating the diagnostic while aggravating the evolution. Therefore, there is a distinct need for research to help identify and prevent such prescription cascades, possibly by maximising the use of technology, as well as to improve multiple drug management in order to reduce patient harm. Furthermore, it is also possible that aside from the ADRs specific to individual drugs taken in combination, new ADRs can emerge as results from the drug combinations themselves.
+
+Research activities under this topic should make use of the constantly improving health technologies and data analytics that provide new opportunities to address these issues more effectively, by better integrating medication management into healthcare practices, including into Electronic Health Records (EHR) and decision support systems.
+
+Identifying and validating relevant biomarkers for better patient stratification can contribute to significantly decreasing the risk of adverse drug reactions. Biomarkers can also help to detect adverse drug reactions early before occurrence of clinical symptoms and enable early countermeasures. Generating knowledge on the interaction and complexity of biochemical pathways can improve the understanding of patients' response to ADRs and thus provide better tailored treatments and early responses to adverse reactions.
+
+For this purpose, any biomedical strategy that allows a better stratification of patients to identify drug response patterns in well-defined patient groups could be used, including in-vitro or in-silico models for adverse drug reactions, imaging biomarkers, drug-drug/drug-gene/drug-food interactions, therapeutic dose reduction and pharmaco-exposomics, nutrition and beverage interference, smoking, vaping, pollution etc. De-escalation studies in view of improving multiple drug management can be also considered. Proposals should be sufficiently robust to examine differences across various populations, and also consider sex difference in drug reactions.
+
+The further use of results generated by the projects funded under this topic should be ensured through data sharing with the relevant stakeholders and the European Medicines Agency (EMA), in view of possible adoption of deprescribing or adjusted-prescribing guidelines by relevant authorities at EU and national levels.
+
+Where applicable, applicants are strongly encouraged to follow all relevant guidelines in the relevant scientific fields, including but not limited to:
+
+Joint EMA/Heads of Medicines Agencies (HMA)/EC Workshop recommendations on pharmacogenomics in medicines regulation and on implementation into clinical practice.
+
+Pharmaceutical development of medicines for use in the older population, Scientific guideline from the EMA.
+
+Guidelines from the Clinical Pharmacogenetics Implementation Consortium (‘CPIC guidelines’).
+
+Proposals funded under this topic should address all the following aspects:
+
+Leverage the role of pharmacogenomics, pharmacokinetics and pharmacodynamics in predicting and preventing adverse drug reactions in situations of multiple medications (three or more drugs administered concomitantly), and propose personalised medicine approaches, such as targeted therapies and biomarker-driven treatment strategies, to reduce the rate of adverse drug reactions and limit multiple medications.
+
+Maximise the use of technology, such as electronic health records, artificial intelligence and clinical decision support systems, to support safe medication use and prevent adverse drug reactions.
+
+Address the ethical, regulatory, and implementation challenges associated with integrating personalised medicine into clinical practice to address adverse drug reactions due to the administration of multiple medications.
+
+Generate evidence on the clinical utility and cost-effectiveness of treatment guided by pharmacogenomics and other relevant biomarkers-based approach, for single drugs and for combinations of drugs.
+
+Develop and implement strategies, including regulatory science approaches, for efficient integration of project results into daily healthcare.
+
+Align with similar work in other EU-funded projects or partnerships, such as the co-funded European Partnership for Personalised Medicine, the co-funded European Partnership on Transforming Health and Care System ,  etc. while avoiding any potential overlaps.
+
+The participation of start-ups, micro, small and medium-sized enterprises (SMEs )  is encouraged with the aim of strengthening their scientific and technological foundations, enhancing their innovation potential, and exploring possibilities for commercial exploitation.
+
+Applicants should provide details of their clinical studies in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+## HORIZON-HLTH-2027-02-TOOL-01-two-stage
+
+## Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases
+
+Estimated total budget : €44.2 million
+
+Opening: 10 February 2027
+
+First deadline: 13 April 2027
+
+Second deadline: 22 September 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Developing and using new tools, technologies and digital solutions for a healthy society.” To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+Clinical researchers and developers have access to novel predictive biomarkers to guide a more accurate assessment of disease progression and treatment response and tackle the unmet clinical needs of non-communicable chronic diseases.
+
+Clinicians and healthcare professionals use clinically validated predictive biomarkers for implementing more effective clinical research and personalised medicine with better health outcomes in chronic non-communicable diseases.
+
+Key stakeholders have access to trustworthy Artificial Intelligence (AI) tools to guide the development of multimodal predictive biomarkers of higher accuracy and clinical value when compared to the established practice.
+
+The citizens benefit of better health outcomes thanks to improved clinical guidelines and the implementation of effective biomarker-guided clinical research and personalised healthcare.
+
+Scope
+
+Biomarkers are invaluable tools for improving patient outcomes, guiding treatment decisions, accelerating personalised medicine, more effective clinical research and the development of better medicines.
+
+However, despite the scientific discoveries of many clinically relevant biomarkers, estimated on the scale of tens of thousands, only a few biomarkers have been implemented in clinical practice. The traditional ‘one biomarker’ paradigm is insufficient for addressing the unmet clinical needs of chronic, progressive and multifactorial diseases, due to the complexity of the clinical phenotypes characterised by broad inter-and intra-patient heterogeneity. The established biomarkers have limitations in their use as prognostic and predictive indicators, for the assessment of the disease progression and the choices of the optimal therapeutic interventions tailored to the patients’ characteristics.
+
+Therefore, the topic focuses on the clinical development of predictive biomarkers of disease progression and treatment response for chronic non-communicable diseases (excluding cancer) by using established AI methodologies able to combine data of clinically used and candidate biomarkers, with available data from relevant clinical studies, longitudinal and Real-World Data (RWD). This topic is expected to support collaborative projects paving the way for future innovations in personalised medicine and enabling more timely and effective therapeutic interventions.
+
+The proposals should address all the following research and innovation activities:
+
+Set-up a multidisciplinary collaboration to map and evaluate the available information and data on biomarkers currently used in the clinical setting, candidate biomarkers from past and ongoing clinical studies, which are scientifically proven as clinically relevant to the disease progression and treatment response for the chronic non-communicable diseases under study. This should include stratification by biological sex, and where feasible, integration of gender-related variables and sociodemographic determinants that may modulate disease trajectories or treatment efficacy.
+
+Adapt and apply of established AI methods rather than developing novel ones from scratch, to deliver novel predictive biomarkers of disease progression and treatment response, by integrating data of currently used and candidate biomarkers, with suitable data from available longitudinal and other relevant clinical studies, including RWD, as necessary. To guarantee a solid and fast optimisation and training of the AI tools, the applicants should provide information in their proposal that the appropriate high-quality clinical data are readily available, and when necessary generate small-scale new data for the AI optimisation needs. The biomarkers under study should be multimodal, covering for instance molecular, cellular, physiological, imaging, behavioural and digital markers, and/or their combinations. The applicants should justify why the development of the biomarkers proposed is imperative to tackle the unmet clinical needs of the chronic non-communicable diseases under study.
+
+Use AI and, where needed, other relevant data and knowledge integration methods, to describe the relationships among different biomarkers and support the robust prioritisation of predictive biomarkers tailored to the characteristics of the patients’ and their disease stage and treatment response. Proposals should have strong emphasis on the AI trustworthiness and develop the adequate performance metrics to assess their accuracy, reliability, reproducibility, including the assessment of possible inherent bias. Use of AI and dataset should comply with existing privacy-preserving legislation. Moreover, proposals should consider the development of user-friendly and fit-for-purpose visualisation and decision-support tools to guide clinicians in evaluating the clinical plausibility of the biomarkers under study across diverse patient groups.
+
+Establish a biomarker validation platform to assess the clinical utility of the predictive biomarkers identified. To this end, the applicants should implement clinical validation studies in independent disease cohorts, RWD and exploratory clinical studies, as appropriate, to demonstrate their clinical value as prognostic and predictive indicators for more effective clinical research and better patient health outcomes as compared to the established clinical practice of chronic non-communicable diseases. Prospective clinical studies are expected to be led by entities in the EU/EFTA and/or Associated Countries.
+
+Develop a comprehensive exploitation plan for the valorisation of the research outputs and a regulatory strategy to support the alignment to the regulatory requirements for the qualification of the biomarkers and/or AI tools and engage with the regulators in a timely manner. The applicants should prioritise the exploitation of their research results in the EU. Participation of small and medium-sized enterprises (SMEs) is encouraged with the aim to strengthen the scientific and technological basis of SMEs and valorise their health innovations.
+
+Proposals should apply good practices for GDPR compliant personal data protection.
+
+Proposals are encouraged, where relevant, to exploit the available data services, expertise and digital tools offered by the relevant European research infrastructures and/or data infrastructures in the area of health funded under the Digital Europe Programme.
+
+All proposals selected for funding under this topic will be strongly encouraged to participate in networking and joint activities (e.g. participation in joint workshops, development of best practices, or joint communication activities), which may also involve networking with projects funded under Horizon Europe, or other EU programmes (e.g. the Digital Europe Programme). The proposals should allocate a sufficient budget for networking and joint activities, without the prerequisite to detail such activities at the proposal stage.
+
+Applicants should provide details of their clinical studies in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+## HORIZON-HLTH-2027-03-TOOL-04
+
+## Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis
+
+Estimated total budget : €39.3 million
+
+Opening: 3 June 2027
+
+Deadline: 22 September 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Developing and using new tools, technologies and digital solutions for a healthy society.” To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+Healthcare professionals have access to multi-scale, multi-organ models of individual patients that aim to improve prevention and diagnosis in high disease burden areas.
+
+Health professionals benefit from enhanced knowledge of complex diseases and co-morbidities by recourse to multi-scale, multi-organ models.
+
+Patients with diverse characteristics (e.g. of any sex, age group, racial or ethnic origin) benefit from improved, integrated and personalised prevention and diagnostics tools.
+
+Health professionals and patients benefit from the use of “Virtual Human Twin” (VHT) models which enable integration of other preventive and diagnostic tools and modalities.
+
+Scope
+
+VHTs are digital representations and in-silico models of an individual’s health and disease state at different levels of anatomy. Multi-scale, multi-organ VHT solutions have a potential for tailored prevention and diagnosis, particularly in areas of high disease burden, and can significantly benefit citizens' health and the efficiency of EU health systems.
+
+Proposals should take into account the work of projects funded under topic HORIZON-HLTH-2023-TOOL-05-03: “Integrated, multi-scale computational models of patient patho-physiology (‘virtual twins’) for personalised disease management”, which had a predominant focus on disease management, and focus on high-potential multi-disciplinary approaches at greater complexity (multiscale, multiorgan, longitudinal), strengthening their deployment in health and care, including the integration into care pathways and links with other decision support tools.
+
+The proposals should address all the following activities:
+
+Select clinical use cases to deliver multi-disciplinary, high impact solutions requiring multi-organ, multi-scale approaches to modelling complex pathophysiology over time, as a basis from where prevention and diagnosis of diseases with high morbidity and mortality could be enhanced. Proposals can put forward use cases in any areas of high disease burden; examples include co-morbidities, chronic cardiovascular conditions, infection and (auto)immunity, inflammation and cancer, diabetes and related conditions, rare diseases, degenerative diseases (including their interaction with mental health conditions), the exposome and its impact on human health and disease.
+
+Building on current approaches, standards, data repositories (e.g. biobanks, environmental data, others) and modelling assets (e.g. those of the EDITH CSA and the Platform for Advanced VHT Models), and new data if relevant, design, develop, extend and validate multi-organ, multi-scale, dynamic computational models that accurately simulate a person’s health and disease states, as necessary.
+
+Evaluate, select, extend and validate diverse modelling methodologies, resulting in integrated, advanced, interoperable, patient-specific VHT models that can integrate diverse data sources and methodologies, addressing the chosen clinical use case requirements. Methodologies may include and are not limited to biophysics-based modelling, artificial intelligence (AI) that should be interpretable or allow explainability of outcomes, generative AI and in-silico modelling, agent-based and network physiology approaches. Evaluation, selection and extension of these should be documented during the design phase. Availability and integration of the multi-modal data should be documented, and the ethical and sex dimensions be investigated.
+
+Demonstrate integration of these models with other advanced preventive and diagnostic modalities, tools and techniques enabling integration across pathways.
+
+Generate evidence, including clinical validation, that the solutions deliver clinically meaningful decision support, addressing use case requirements. Document lessons-learned for broader application. Gather evidence via health economic and/or feasibility studies in real-world healthcare settings confirming cost-effectiveness vis-à-vis current practice (e.g. cost-effectiveness analysis). Produce an exploitation plan on regulatory compliance and intellectual property.
+
+Proposals should be multidisciplinary; solution design and development should be end-user-focused and draw on user and non-user input. Best practice in VHT software development including responsible AI development should be followed (e.g. risk assessment and management, requirements definition process).
+
+Participation of small and medium-sized enterprises (SMEs) is encouraged.
+
+Proposals should contribute to the objectives of the European VHT Initiative and to the Platform for Advanced VHT Models, with project assets made available on the Platform and interoperable with its technical specifications; relevant consortia members should join its User Community. Budget should be reserved for these activities. Projects are expected to collaborate with other EU-funded projects on VHTs and align with relevant EU initiatives funded under Horizon Europe, the Digital Europe Programme and the EU4Health Programme (2021-2027), e.g. European Cancer Imaging Initiative, 1+Million Genomes Initiative, Intensive Care Unit Data Space, co-funded European Partnership for Personalised Medicine, and projects on advancing AI in health where relevant.
+
+This topic requires the effective contribution of social sciences and humanities (SSH) disciplines and the inclusion of relevant SSH expertise, in order to produce meaningful and significant effects enhancing the societal impact of the related research activities.
+
+Applicants should provide details of their clinical studies in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+## HORIZON-HLTH-2027-03-TOOL-08
+
+## Towards Artificial General Intelligence (AGI) for healthcare
+
+Estimated total budget : €2.9 million
+
+Opening: 3 June 2027
+
+Deadline: 22 September 2027
+
+Expected outcome
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Developing and using new tools, technologies and digital solutions for a healthy society." To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+Researchers and innovators benefit from an improved understanding of how to develop and use the next generation of frontier Artificial Intelligence (AI) models for healthcare, including how to leverage AI Factories and how to combine and expand the capabilities of existing foundation models towards inclusive and personalised medicine.
+
+Researchers and innovators benefit from an improved understanding of how to leverage highly heterogeneous and multimodal health data spanning a range of anatomical scales (i.e. the micro to the macro level).
+
+Multidisciplinary stakeholders have access to a collaboratively created roadmap for developing the next generation of frontier AI models for healthcare, towards Artificial General Intelligence (AGI) for healthcare.
+
+Scope
+
+The AI Continent Action Plan identifies the health sector, encompassing life sciences, medical devices and healthcare delivery, as one of the key strategic sectors. The action will contribute to making European life sciences and healthcare more impactful and productive by fostering the full integration of advanced AI in the health sector and biomedical research, along the objectives of the AI in Science strategy and Apply AI strategy.
+
+Healthcare typically involves the combining of multimodal data, ranging from electronic health records through imaging and laboratory to molecular and omics data. This information combination is performed by specialists and is often challenging towards optimised patient care. In Europe, the growing amount of accessible multimodal health data, including via the forthcoming European Health Data Space (EHDS), combined with the increasing availability of high-performance computing facilities (e.g. AI Factories), presents a unique opportunity to develop the next generation of frontier AI models for healthcare. This action anticipates and operationalises the use of such federated infrastructures for research and innovation. Moreover, regulations such as the EHDS regulation and AI Act steer the direction into building an ecosystem fostering ethical and safe innovation on AI in healthcare.
+
+AI models are becoming increasingly complex and able to tackle increasingly challenging tasks. The next generation of frontier AI models are expected to make strides towards AGI, a type of AI capable of tackling highly complex and diverse tasks with proficiency comparable to that of humans. This topic will lay the foundation for the development of the next generation of frontier AI models, paving the way for new, advanced AI-powered solutions to increase efficiency and efficacy in the health sector towards improved patient outcomes. It will leverage results, methodologies, data etc. of other relevant EU-funded projects.
+
+Proposals should include all the following coordination and support activities, ensuring multidisciplinary approaches and a broad representation of stakeholders in the consortium (e.g. healthcare professionals, patients, biomedical scientists, AI developers, data engineers, ethics experts):
+
+Community building: build a large-scale and diverse pan-European community of stakeholders with the multidisciplinary expertise united as required to develop the next generation of frontier AI models for healthcare, towards AGI for healthcare, with a view to leveraging as a community the potential of AI Factories. Where relevant, this should build on and strengthen existing EU-funded communities and networks, and could pave the way for a formalised long-term collaboration under one of the available EU instruments.
+
+Roadmap creation: review previous research to identify the most promising AI models and model development approaches. In addition, risk assess and review evidence on safety and efficacy of existing AI models with reference to the AI Act, related regulatory provisions (including any jurisprudence) and ethical and security considerations, so that frontier AI model development can proceed on a well-informed basis. Finally, create a roadmap for developing the next generation of frontier AI models.
+
+Dataset identification, curation, expansion and use: i) identification: identify the most suitable existing datasets for the development of frontier AI models for healthcare, ii) curation: identify how to validate the datasets, ensure dataset interoperability, and convert datasets into formats suitable for frontier AI model development, iii) expansion: identify additional datasets and/or annotations required for frontier AI model development, especially to ensure that datasets are representative and iv) use: identify methods and required infrastructure to allow privacy-preserving use and further expansion of the datasets in alignment with and through the EHDS.
+
+Frontier AI model preparatory activities: mapping approaches for training and evaluating frontier AI models (e.g. approaches to combine foundation models for life sciences and healthcare delivery in order to develop more advanced and multidisciplinary models towards personalised medicine). The approaches should cover all trustworthy AI aspects.
+
+This action should take into account the results of other relevant projects on AI in health, in particular in the two GenAI4EU topics HORIZON-HLTH-2025-01-CARE-01: “End user-driven application of Generative Artificial Intelligence models in healthcare (GenAI4EU)” and HORIZON-HLTH-2025-01-TOOL-03: “Leveraging multimodal data to advance Generative Artificial Intelligence applicability in biomedical research (GenAI4EU)”, and leverage the AI Factories and specialised health data infrastructures funded under the Digital Europe Programme, biobanks, relevant ERICs, as well as the data resources accessible through the EHDS infrastructure starting in 2029, funded under EU4Health Programme (2021-2027).
+
+### DI-p-25-69
+
+## Development, deployment and operations of the central services of the infrastructure on secondary uses of health data (HealthData@EU)
+
+Total Budget: €1 million
+
+Opening Date: To be announced
+
+Deadline: To be announced
+
+### Expected Outcomes:
+
+The European Commission is launching a call to support the development, maintenance, and operation of the HealthData@EU central services. This infrastructure is a core component of the European Health Data Space (EHDS), aiming to enable secure, efficient, and cross-border access to health data for research, innovation (including AI development), policy-making, and regulatory activities across Member States.
+
+Key objectives include:
+
+Developing and operating the central services that coordinate a federated network of Member States’ Health Data Access Bodies (HDABs)
+
+Providing an EU-wide dataset catalogue and a system to manage data access applications
+
+Facilitating seamless exchange and reuse of health data across multiple countries and authorised entities within the EHDS framework
+
+Enhancing readiness for the full rollout of the HealthData@EU infrastructure
+
+### Scope
+
+This action complements ongoing initiatives under the Digital Europe Programme and Horizon Europe, supporting strategic health and biotech technologies such as AI through improved health data access.
+
+Back to top
+
+## Sign up to the EIBIR Newsletter and receive the latest updates on open and upcoming funding calls

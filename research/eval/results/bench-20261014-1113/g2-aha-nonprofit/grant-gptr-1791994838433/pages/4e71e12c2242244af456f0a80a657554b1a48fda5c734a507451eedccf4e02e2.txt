@@ -1,0 +1,453 @@
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP | TopicTree (by Ideal-ist)
+
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP
+
+#
+Deployment of cutting-edge multi-modal AI-based solutions in medical imaging
+-
+
+Call text
+
+Linked topics
+
+Info base
+
+Events
+
+Timing
+
+Projects
+
+Bubbles
+
+## Related topics
+
+Drag to rearrange · hover a topic or connection to preview why it's linked, click to pin that panel open
+
+&times;
+
+Connected via , not directly to the current topic
+
+WHY IT'S LINKED
+
+0">
+No motivation recorded.
+
+Center graph on this topic &rarr;
+
+### Topics in this graph
+
+DIGITAL-2022-CLOUD-AI-02-CANCER-IMAGE — Federated European infrastructure for cancer images data
+
+Activities should build on results from projects funded under former calls
+
+DIGITAL-2022-CLOUD-AI-02-TEF-HEALTH — Testing and Experimentation Facility for Health
+
+The Testing and Experimentation Facility offers technical and scientific support for Health AI providers and notified bodies. Collaboration with the TEF is suggested.
+
+HORIZON-HLTH-2021-CARE-05-02 — Data-driven decision-support tools for better health care delivery and policy-making with a focus on cancer
+
+Proposals could use results from projects funded under this topic
+
+HORIZON-MISS-2024-CANCER-01-01 — Use cases for the UNCAN.eu research data platform
+
+Proposals should consider synergies with UNCAN.eu platform. Proposals could benefit from collaboration with the project funded under this topic as it provides a decentralized collaborative network for cancer research
+
+IMI2-2019-18-01 — Central repository of digital pathology slides to support the development of artificial intelligence tools
+
+Outcomes of EU-funded projects dealing with other imaging modalities, such as digital pathology, as funded under this topic, should be considered.
+
+DIGITAL-2024-CLOUD-DATA-06-HEALTHCARE-AI — Support for Health Data Access Bodies to foster efficient pathways for AI in healthcare
+
+Consider synergies with ongoing AI related activities of the Health Data Access Bodies, as funded under this topic
+
+DIGITAL-2026-AI-PILOTING-10-SCREENING — Apply AI: Piloting AI-based image screening in medical centres
+
+Collaboration with the network of advanced screening centres for medical imaging-based and multi-modal AI-based screening to be established under this topic is required
+
+DIGITAL-2025-AI-08-DS-SUPPORT — Data Spaces Support Centre
+
+Connected via DIGITAL-2022-CLOUD-AI-02-CANCER-IMAGE, not directly to the current topic.
+
+Data Spaces Support Centre provides the technical base (e.g. blueprints) for all data spaces
+
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL — Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data tools
+
+Connected via DIGITAL-2022-CLOUD-AI-02-CANCER-IMAGE, not directly to the current topic.
+
+Relevant projects to consider in proposals
+
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE — Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity
+
+Connected via DIGITAL-2022-CLOUD-AI-02-CANCER-IMAGE, not directly to the current topic.
+
+Relevant projects to consider in proposals
+
+DIGITAL-2023-CLOUD-AI-04-COORDINATEF — Coordination of AI sectorial testing and experimentation facilities
+
+Connected via DIGITAL-2022-CLOUD-AI-02-TEF-HEALTH, not directly to the current topic.
+
+The coordinating CSA should support the sectorial TEFs (Health, Manu, AgriFood, Smart Cities) funded under DIGITAL WP21-22 to develop complementary cross-TEF activities. Help them link better to other EU projects/initiatives and stakeholders in the AI ecosystem.
+
+DIGITAL-2025-AI-08-SUPPLY-AI — Apply AI: GenAI for the public administrations
+
+Connected via DIGITAL-2022-CLOUD-AI-02-TEF-HEALTH, not directly to the current topic.
+
+Call topic requests to foster synergies with TEFs
+
+HORIZON-CL4-2026-05-DIGITAL-EMERGING-02 — Next-Generation AI Agents for Real-World Applications in the Apply AI sectors (RIA) (Partnership in AI, Data and Robotics)
+
+Connected via DIGITAL-2022-CLOUD-AI-02-TEF-HEALTH, not directly to the current topic.
+
+Projects under HORIZON-CL4-2026-05-DIGITAL-EMERGING-02 should link to Testing and Experimentation Facilities (TEFs) funded under DIGITAL-2022-CLOUD-AI-02-TEF-HEALTH.
+
+Bold node = current topic · node color = call status · hover for details, click to pin · smaller, lighter topics are two steps away
+
+## Call text (as on F&T portal)
+
+View on F&T
+portal
+
+Expected Outcome:
+New data services and user tools for the Cancer Image Europe platform covering data curation / inclusion by data providers, data quality assurance and compliance checks, and risk/security management in alignment with agreed standards, procedures and requirements, including the framework of the European Health Data Space.
+Multi-centre validation of AI-driven solutions in the field of medical imaging, including also evidence generation for clinical utility and cost efficiency.
+Deployment of multi-modal, cutting-edge AI-driven solutions in the field of medical imaging in healthcare and research settings, leveraging different types of data (at least one imaging modality and one other data type e.g. genomics, other omics, laboratory results, real-world data etc.) and building on the achievements of the Cancer Image Europe platform.
+Training and upskilling of medical imaging personnel and/or healthcare professionals for the deployed technology and further use.
+Objective:
+Accelerate the uptake of EU AI-driven solutions that are ready to be deployed in healthcare settings for patient care and for research purposes. This will facilitate the paradigm shift in the digital transformation of healthcare towards personalised medical solutions;
+Facilitate the deployment of EU cutting-edge AI-driven solutions in medical imaging, combined with other health data, for increased efficiency and better patient outcomes, leveraging the Cancer Image Europe platform;
+Further develop the data, testing and validation services and user tools of Cancer Image Europe platform in alignment with the legal and technical framework of the European Health Data Space, also towards supporting the development and uptake of EU cutting-edge multi-modal AI-based solutions in medical imaging (including Deep learning and Generative AI solutions) for healthcare;
+Ensure alignment and inter-operability of the Cancer Image Europe platform with the HealthData@EU infrastructure of the EHDS;
+Conduct multi-centre validation studies of promising medical imaging-based and multi-modal AI solutions for screening, early detection, diagnosis and care, generating evidence for clinical utility and cost effectiveness of tested solutions.
+Scope:
+By building on, extending and leveraging the Cancer Image Europe platform, this action is expected to facilitate the uptake of EU AI-driven solutions in medical imaging (including Machine Learning and Generative AI), towards their deployment in clinical settings. It should also include upskilling of healthcare professionals and evidence generation to evaluate the performance of the deployed AI-driven solutions and engage patients.
+The action should also contribute to upgrading and enhancing the uptake of the Cancer Image Europe platform through deployment of tools, application programming interfaces (APIs) and interfaces enabling high-quality data services for the users of the Cancer Image Europe platform. The solutions should cover, at least, data quality assessment, including security, data access and analysis, as well as services for AI developers supporting their regulatory compliance pathway, including the EHDS Regulation, if applicable. Moreover, data services will cover comprehensive data quality assessment—including security, data access, and analysis. Specifically, tools will be deployed to ensure that datasets federated in Cancer Image Europe are fully compliant with EHDS, utilizing Health DCAT-AP for metadata descriptions and adhering to the data quality and utility label standards set by the EHDS Regulation.
+Moreover, the action should consider synergies and cross-fertilisation of tools with other relevant health data infrastructures: HealthData@EU, 1+Million Genomes (1+MG), Intensive Care Unit data infrastructure, the European Virtual Human Twins Initiative, and UNCAN.eu platform to further facilitate the integration and processing of different types of health data. Also, the outcomes of EU-funded projects dealing with other imaging modalities, such as digital pathology (e.g. BigPicture project), should be considered. Finally, synergies with the ongoing AI related activities of the Health Data Access Bodies (HDABs) in the EHDS, the SHAIPED project and the TEF-Health project should be leveraged.
+
+## News flashes
+
+2026-10-14
+
+FLASH INFORMATION ON THE CALL RESULTS (FLASH CALL INFO)
+Call for proposals: DIGITAL-2026-AI-09
+Published: 09/10/2025 Deadline: 3/3/2026
+Total budget for the call: EUR 60 200 000
+The Commission has now completed the evaluation of the proposals submitted to the above-mentioned call.
+The results of the evaluation are as follows:
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP
+Number of proposals submitted: 6
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 4
+Total budget requested for above-threshold proposals: EUR 32 763 475.46
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP
+Number of proposals submitted: 4
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 3
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 12 285 268
+DIGITAL-2026-AI-09-GENAI-PA
+Number of proposals submitted: 36
+Number of inadmissible proposals: 2
+Number of ineligible proposals: 6
+Number of above-threshold proposals: 14
+Total budget requested for above-threshold proposals: EUR 25 069 141.26
+DIGITAL-2026-AI-09-ECAVA
+Number of proposals submitted: 2
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 2
+Total budget requested for above-threshold proposals: EUR 1 998 202.53
+DIGITAL-2026-AI-09-AUTOMOTIVE
+Number of proposals submitted: 1
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 2 622 395.6
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL
+Number of proposals submitted: 4
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 4 997 612.09
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE
+Number of proposals submitted: 3
+Number of inadmissible proposals: 2
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 17 499 999.8
+
+It is expected that the first grant agreements will be signed by 15/10/2026
+Please note that the number of proposals that can finally be funded will depend on the finally available budget and the formal selection by the Commission.
+For further details please see the DIGITAL Europe Programme
+
+2026-10-14
+
+Call DIGITAL-2026-AI-09 has closed on 03/03/2026.
+56 proposals have been submitted.
+The breakdown per topic is:
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP – 6 proposals
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP - 4 proposals
+DIGITAL-2026-AI-09-GENAI-PA - 36 proposals
+DIGITAL-2026-AI-09-ECAVA - 2 proposals
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL - 4 proposals
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE - 3 proposals
+DIGITAL-2026-AI-09-AUTOMOTIVE - 1 proposal
+Evaluation results are expected to be communicated end of June 2026.
+
+2026-10-14
+
+The submission session is now available for: DIGITAL-2026-AI-09-DS-HEALTH-TOOL, DIGITAL-2026-AI-09-DS-HEALTH-STORAGE, DIGITAL-2026-AI-09-GENAI-PA, DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP, DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP, DIGITAL-2026-AI-09-ECAVA, DIGITAL-2026-AI-09-AUTOMOTIVE
+
+Found 3 annotations in info base
+
+click to see
+
+call topic details
+
+Call status: Closed
+
+Opening date: 2025-11-04 (11 months ago)
+
+Closing date: 2026-03-03 (7 months ago)
+
+Procedure: single-stage
+
+Budget: 14,400,000
+
+Expected grants: 1
+
+News flashes
+
+This call topic has been appended 3 times by the EC with news.
+
+2026-10-14
+
+flash information on the call results (f...
+
+2026-10-14
+
+call digital-2026-ai-09 has closed on 03...
+
+2026-10-14
+
+the submission session is now available...
+
+Call
+
+DIGITAL-2026-AI-09
+
+Call topics are often grouped together in a call. Sometimes this is for a thematic reason, but often it is also for practical reasons.
+
+There are 6 other topics in this call:
+
+DIGITAL-2026-AI-09-AUTOMOTIVE
+
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE
+
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL
+
+DIGITAL-2026-AI-09-ECAVA
+
+DIGITAL-2026-AI-09-GENAI-PA
+
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP
+
+Source information
+
+Showing the latest information.
+Found 6 versions of this call topic in the F&T portal.
+
+Information from
+
+2026-07-09_06-20-23
+
+2026-03-13_06-20-12
+
+2026-03-04_06-20-16
+
+2025-11-04_06-20-07
+
+2025-10-31_06-20-07
+
+2025-10-28_15-26-55
+
+Check the differences between the versions.
+
+## Annotations
+
+You must be logged in to add annotations
+
+STEP policy
+
+Added 9 months ago by Aurelija
+
+PolicyBriefing_STEP_V2.pdf (213.1 KB)
+
+Call is related to the STEP.
+
+Related policy
+
+Added 10 months ago by Patricia Trinkl
+
+PolicyBriefing_EHDS_updated.pdf (203.45 KB)
+
+Concrete alignment with emerging EHDS structures and bodies need to be ensured
+
+Work Programme info
+
+Added 11 months ago by Daniela Hackl
+
+DEP_LF_INFOSHEET_Restricted calls and other security issues in DEP.pdf (161.2 KB)
+
+Call restricted on the basis of Article 12(6) of the Regulation (EU) 2021/694
+
+## Events
+
+Hand-picked events relevant to this call topic.
+
+### Past
+
+Nov
+17
+2025
+
+### Info Day on digital health topics under DEP - Call 9
+
+Past
+
+17 Nov 2025
+
+10:00
+
+Online
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+This online info session will provide participants with information on the new calls for proposals related to digital health.
+Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data tools (DIGITAL-2026-AI-09-DS-HEALTH-TOOLS )
+
+Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity (DIGITAL-2026-AI-09-DS-HEALTH-STORAGE)
+
+Deployment of cutting-edge multi-modal AI-based solutions in medical imaging (DIGITAL-2026-AI-09-AI-SOLUTIONS-CANCER-STEP)
+
+Organisations potentially interested in the DIGITAL-2026-AI-09-AI-SOLUTIONS-CANCER-STEP topic will have the possibility to present their organisations/ideas in a dedicated pitching session
+
+More info
+
+Events are added by the ideal-ist NCP community and are hand-picked. Would you like to suggest an event? Contact
+idealist@ffg.at .
+
+## Timeline
+
+Track where this call stands in its lifecycle, from work programme to grant signature, and see what's likely
+to happen next.
+
+Outcome expected
+&middot; 03 Aug 2026 (2 months ago)
+
+Next: Grant agreement signed, 2 weeks from now (03 Nov 2026, estimated)
+
+Today
+
+Work programme published
+
+28 Oct 2025
+
+Call published
+
+28 Oct 2025
+
+Call opens
+
+04 Nov 2025
+
+Call closes
+
+03 Mar 2026
+
+Outcome expected
+
+03 Aug 2026 &middot; est.
+
+Grant agreement signed
+
+03 Nov 2026 &middot; est.
+
+Preparation
+Open for submission
+Evaluation
+Grant preparation
+Not yet reached
+
+Work programme published
+
+28 Oct 2025 &middot; 11 months ago
+
+Topics are listed in the Work Programme before the call opens. Spotting this early gives you a head start on partner search and proposal planning.
+
+Call published
+
+28 Oct 2025 &middot; 11 months ago
+
+This topic was first published in TopicTree.
+
+Call opens
+
+04 Nov 2025 &middot; 11 months ago
+
+Submissions can be made from this date.
+
+Call closes
+
+03 Mar 2026 &middot; 7 months ago
+
+Deadline to submit a proposal.
+
+Outcome expected
+Estimated
+
+03 Aug 2026 &middot; 2 months ago
+
+The maximum time to inform applicants of the evaluation outcome is five months after the call closes.
+
+Today &middot; 14 Oct 2026
+
+Grant agreement signed
+Estimated
+
+03 Nov 2026 &middot; 2 weeks from now
+
+The maximum time to sign the grant agreement is three months after applicants are informed of the outcome.
+
+## Funded Projects
+
+Loading...
+
+Project information comes from CORDIS
+(for Horizon 2020 and Horizon Europe)
+and will be sourced from F&T Portal
+(for Digital Europe projects)
+
+## Ecosystem bubbles
+
+This call topic is part of the following thematic bubbles.
+
+1 bubble
+
+### AI, Data & Robotics
+
+This large ecosystem bubble includes all the call topics in the field of AI, data and robotics from H2020, Horizon Europe Cluster 4 and Digital Europe...
+
+270 call topics
+
+View bubble
+
+## Call document info
+
+This section will come soon and contain the scraped information from the call document, such as the expected impact, scope, and other relevant sections.
+
+In the meantime, you can find this information in the call text section or directly on the F&T portal.
+
+View on F&T
+portal

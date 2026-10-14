@@ -1,0 +1,444 @@
+Qué busca realmente un Business Angel en una startup deeptech en 2026 – Business Angels News
+
+Business Angels , Inversión
+
+## Qué busca realmente un Business Angel en una startup deeptech en 2026
+
+Qué valora un business angel en deeptech en 2026: métricas early stage, due diligence técnica y financiera, SPVs, casos reales en España/EU y claves de inversión. Del “pitch brillante” al “riesgo modelado” 2026 llega con una lección clara para los inversores en startups de base científica: la narrativa ya no basta. El business angel que&hellip;
+
+VALORE GROUP
+
+noviembre 11, 2025
+
+Qué valora un business angel en deeptech en 2026: métricas early stage, due diligence técnica y financiera, SPVs, casos reales en España/EU y claves de inversión.
+
+## Del “pitch brillante” al “riesgo modelado”
+
+2026 llega con una lección clara para los inversores en startups de base científica: la narrativa ya no basta. El business angel que opera en deeptech —IA de frontera, biotecnología, computación cuántica, sensores, fotónica, new space, defensa dual-use— exige dos cosas en fases early stage : pruebas de inflexión tecnológica (no solo TRLs) y diseño financiero serio que anticipe el “scaleup gap” europeo. La buena noticia: el dealflow es abundante y el apoyo público-privado crece (EIC, ENISA, fondos regionales); la mala: la escasez de capital growth sigue tensionando valoraciones, sindicación y tiempos a PMF/industrialización. Según Crunchbase , Europa mantuvo un pulso sólido en early stage a lo largo de 2025, con foco en deeptech , biotech e IA , aunque la cuota de Europa en el capital global se desplazó hacia primeras etapas y retrocedió en las rondas tardías.
+
+A la vez, Europa está redoblando su apuesta estratégica: el EIC Accelerator reforzó su atractivo —con fuerte demanda de blended finance (grant + equity)— y más de 900 solicitudes completas en el último corte de 2025, evidenciando el apetito por instrumentos que des-riesgan tecnología de alto impacto.
+
+Este es el mapa para invertir mejor en 2026: qué due diligence funciona, qué métricas importan de verdad en ronda seed , cómo estructurar SPVs , dónde encontrar coinversión y qué esperar del ciclo.
+
+## 2026: por qué el deeptech exige otro playbook
+
+### El contexto macro: más seed, menos late stage
+
+El año pasado Europa vio estabilidad en early stage y presión en growth. Para el business angel , esto implica dos movimientos: (1) entrar con mayor convicción y rigor en pre-seed/seed; (2) asegurar vías de capital “downstream” (EIC, deuda, coinversión corporativa y fondos regionales) para no quedar atrapado entre el prototipo y la industrialización.
+
+### La ventana deeptech
+
+El 2025 European Deep Tech Report (Dealroom/Hello Tomorrow) subraya el tirón profundo del sector y el déficit aún latente de capital de crecimiento, con cerca de la mitad del growth aportado por inversores fuera de Europa. En 2024 el deeptech europeo atrajo alrededor de €15.000 millones , cerca de un tercio del VC del continente. Para 2026, la tesis se consolida: autonomía estratégica , defensa dual-use y transición climática como palancas.
+
+### España: más músculo y más opciones público-privadas
+
+España dobla su valor ecosistémico desde 2020 y supera los €110.000 millones en 2025; IA y climate tech lideran la captación. En paralelo, ENISA aprobó 508 préstamos en 2024 por €83,6 millones , y ha comenzado a operar con mayor continuidad presupuestaria; instrumentos autonómicos como el ICF lanzaron nuevos fondos para ciencia avanzada, y territorios como Gipuzkoa activaron vehículos para deeptech . Todo suma para el angel que quiera coinvertir o apalancar su ticket con financiación no dilutiva.
+
+## Qué busca un Business Angel en deeptech (2026): 12 criterios irrenunciables
+
+Idea fuerza: el “moat” tecnológico debe traducirse en hojas de ruta de des-riesgo , economías unitarias creíbles y rutas de capital hasta la industrialización.
+
+### 1) Tesis técnica verificable (TRL+/IRL)
+
+TRL objetivo y evidencias : no basta con decir TRL 5. Se piden logs, bench tests, curvas de rendimiento y comparativas con SOTA.
+
+IRL (Integration Readiness Level) : capacidad para integrarse en pilas existentes (software/hardware), estándares, certificaciones incipientes.
+
+Equipo con liderazgo técnico : datos mostraron que, en seed/Serie A, equipos con CEOs muy técnicos captaron más capital que equipos liderados por perfiles solo de negocio.
+
+### 2) Defensibilidad de la IP
+
+Freedom to Operate inicial, estrategia de patentes (familias, jurisdicciones, divisionales), y “trade secrets”/datasets propietarios (especialmente en IA y biotech).
+
+Mapa de licencias si la IP nace en universidad/centro (TTO, royalties, restricciones de campo).
+
+### 3) Inflection milestones claros (de-risk plan)
+
+Milestones técnicos con impacto económico: p.ej., reducir costes de wafer un X% , multiplicar sensibilidad de sensor Yx , o alcanzar TRL 7 con validación por cliente.
+
+Diseño de experimentos y KPIs asociados (tiempo, CAPEX/OPEX, % yield, MTBF).
+
+### 4) Economics desde el prototipo
+
+Unidades piloto con BOM transparente, rutas a margen bruto >50% en las primeras series, y plan de contract manufacturing /foundry.
+
+Unit economics “versionados” por escenario regulatorio (medtech, dual-use, energía).
+
+### 5) Ruta regulatoria / certificación
+
+Plan CE/FDA/EMA/ESA según vertical; cronograma y coste estimado; riesgos binarios explicitados.
+
+En defensa dual-use, compliance export y mapeo de procurement público.
+
+### 6) Go-to-market realista para ciencia
+
+Pilotos pagados (no solo LoIs), co-desarrollo con integradores, y pipeline con probabilidad ponderada .
+
+Design partners con métricas de aprendizaje: qué cambia en el producto tras cada piloto.
+
+### 7) Capital stack orquestado (no solo equity)
+
+Blended finance (grant + equity) del EIC Accelerator ; cofinanciación con ENISA (préstamo participativo), y líneas autonómicas/regionales (ICF, programas forales). En 2025, el EIC mantuvo fuerte demanda de blended; España reforzó ENISA con 508 operaciones y los primeros desembolsos de nuevas líneas en 2025; Cataluña anunció fondos específicos para ciencia avanzada.
+
+### 8) Roadmap de talento y “hands-on governance”
+
+CTO/VP Engineering con experiencia industrial, calendario de contrataciones por milestone y advisory board con operadores de primer nivel.
+
+Incentivos en equity alineados (ESOP, vesting, cliff, acceleration limitado).
+
+### 9) Sinergias dual-use (cuando aplique)
+
+Claridad sobre cliente civil vs. defensa , evitando sobreexposición a “hype cycles” (p.ej., saturación en drones mientras faltan soluciones en defensa aérea).
+
+### 10) Unit test de “operabilidad comercial”
+
+TCO para el cliente final, comparado con alternativas legacy; payback en <24 meses en B2B industrial como regla de pulgar.
+
+### 11) Estrategia de follow-on y sindicación
+
+Mapa de fondos seed/Series A especializados, corporates, y SPVs para ampliar tickets sin dilución de gobernanza.
+
+Derechos pro rata negociados y reserva de capital del propio ángel.
+
+### 12) Ética y seguridad
+
+En IA/biotech/dual-use, políticas de seguridad , auditorías de modelo/datos, y evaluación de externalidades.
+
+## Frameworks de due diligence (prácticos y accionables)
+
+### 1) El “Deeptech Seed Scorecard 2026” (12 ítems, 100 puntos)
+
+Tecnología (30)
+
+Madurez y validaciones (12)
+
+Defensibilidad/IP (10)
+
+Ruta regulatoria (8)
+
+Mercado (20)
+
+Urgencia del problema / “must-have” (8)
+
+Calidad de los design partners (6)
+
+Barriers to adoption / switching cost (6)
+
+Equipo (20)
+
+Liderazgo técnico probado (8)
+
+Capacidad de producto y delivery (6)
+
+Advisory/operadores (6)
+
+Economics (15)
+
+BOM / margen bruto esperable (7)
+
+TCO y payback del cliente (8)
+
+Capital stack (10)
+
+Viabilidad EIC/ENISA/ICF y coinversión (10)
+
+Gov./ESG/Safety (5)
+
+Seguridad y cumplimiento (5)
+
+Umbrales orientativos :
+85–100 = Prioridad alta; 70–84 = Invertible con condiciones; 55–69 = Esperar milestone; <55 = Declinar.
+
+### 2) “De-risk ladder” por inflexiones
+
+Ciencia → Ingeniería : pasar de “paper/prototype” a PoC repetible con métricas comparables a SOTA.
+
+Ingeniería → Producción piloto : validar yield , coste por unidad y tiempo de ciclo.
+
+Piloto → Escala : asegurar orden de magnitud en unidad vendida o contratos marco; certificar.
+
+Escala → Industrialización : acuerdos de fabricación/ensamblaje, logística, mantenimiento y servitización .
+
+Cada paso debe tener medibles y capital necesario , con hipótesis de riesgo y plan B . Este desglose reduce el “valle de la muerte” antes del growth, especialmente en Europa donde el capital de escalado aún está por debajo de la media global.
+
+### 3) Checklist de diligencia técnica (deeptech)
+
+Reproducibilidad : datasets, protocolos, notebooks, versiones de firmware, trazabilidad de test benches.
+
+Comparativa SOTA : métricas públicas/benchmarks y “ablation” del aporte propio.
+
+Fiabilidad : MTBF, tolerancias térmicas, degradación y planes de recalibración.
+
+Manufacturabilidad : DFM/DFX, disponibilidad de componentes, alternativos homologables.
+
+Seguridad/Regulación : pre-auditorías internas; certificaciones requeridas.
+
+IP y FTO : búsquedas preliminares, acuerdos con TTOs, cláusulas de sublicencia.
+
+Roadmap : hitos y recursos; riesgos binarios y mitigaciones.
+
+### 4) Diligencia financiera avanzada (legible)
+
+Modelo por cohortes de pilotos : cada piloto con CAC implícito, tiempo a conversión y variación de margen.
+
+Escenarios de CAPEX (A/B/C) con sensibilidad a volumen y aprendizaje (curva de experiencia).
+
+Cash bridge a Serie A : runway ≥18 meses tras seed , contemplando grants y préstamos participativos .
+
+Cláusulas clave del term sheet en 2025/2026 (límites de preferencias, antidilución, ESOP pool, pro rata). Referencias del mercado muestran que el “estándar” europeo 2025 ha sido conservador en fases tempranas, con más escrutinio en governance y control de burn.
+
+## Dónde coinvertir y apalancar: el capital “stackable” en 2026
+
+### ENISA (España)
+
+Préstamos participativos sin garantías, compatibles con equity, útiles para extender runway post-seed. En 2024 aprobó 508 operaciones por €83,6M y reforzó su capacidad en 2025 con flujo más continuo.
+
+### EIC Accelerator (UE)
+
+Grant hasta ~€2,5M y equity (blended) canalizado por el EIC Fund; fuerte demanda en 2025 (923 aplicaciones completas, 74% pidiendo blended). Además, el EIC STEP Scale-Up añade foco en tecnologías estratégicas. Para angels , reduce riesgo tecnológico y cataliza rondas.
+
+### Vehículos y fondos regionales
+
+ICF (Cataluña) ha elevado recursos para respaldar capital riesgo y lanzó un fondo específico para transferencia en salud/tecnologías avanzadas .
+
+Iniciativas forales como Deeptek Gipuzkoa articulan inversión y aceleración deeptech.
+
+TIP : como ángel, diseña tu memoria de coinversión : ¿qué tracciona la autoridad financiadora?, ¿qué KPI técnicos pide?, ¿cómo sincronizas convocatorias con tu calendario de hitos?
+
+## Casos y señales del mercado (España/EU)
+
+Kabilio (España, IA aplicada a contabilidad) cerró €4M en pre-seed (nov. 2025) con VC internacionales y ENISA como apoyo público, ejemplo de cómo combinar equity + instrumento público para acelerar go-to-market.
+
+Quantum Systems (Alemania, dual-use drones) alcanzó estatus de unicornio en 2025 con una Serie C de €160M , validando la tesis dual-use bien ejecutada con contratos relevantes.
+
+Ecosistema español : valor > €110.000M y aumento de inversión en IA/climate tech; dealflow temprano abundante pero con brecha en mega-rondas.
+
+## Cómo estructurar SPVs para deeptech (2026)
+
+### ¿Por qué SPV?
+
+Alinear tickets de varios business angels que comparten tesis;
+
+Velocidad de cierre (una firma/vehículo);
+
+Economía de gestión y pro rata agregada negociada en bloque.
+
+### Estructura tipo
+
+SPV (SL/LLC/LP según jurisdicción) con LPA simple: objetivo, fees, carry (10–20%), período de inversión, derechos informativos, tratamiento de pro rata .
+
+Lead angel como GP/gestor (o director) con mandato de negociación limitado.
+
+Side letters para coinversión, derechos de información extendidos o “most-favored nation”.
+
+Buenas prácticas
+
+Transparencia de costes (set-up, KYC/AML, administración, reporting).
+
+Reserva de follow-on : mínimo 30–50% del SPV si prevés melees de crecimiento.
+
+Carve-out de carry por hitos (p.ej., reducción si no se alcanza una Serie A en X meses).
+
+### Riesgos y mitigaciones
+
+Concentración : deeptech tiene colas gruesas; limita exposición por vertical y por riesgo binario regulatorio.
+
+Tiempo a liquidez : amplía horizonte y define ventas secundarias parciales si el cap table lo permite.
+
+Gobernanza : protege derechos informativos y pro rata con side letters firmadas por la compañía.
+
+## Term sheets en 2026: qué cambia para deeptech
+
+Preferencias de liquidación : presión a 1x non-participating, con “stacks” sencillos; evita acumulaciones asimétricas en rondas posteriores.
+
+Milestone-based : en hardware/biotech es habitual tramos condicionados a validaciones técnicas.
+
+Reservas de ESOP : 10–15% post-money en seed si el plan de talento es intensivo.
+
+Información y control : derechos razonables, sin bloquear la agilidad de I+D.
+
+Valuations : disciplina mayor; Europa vive seed sólido pero late stage más selectivo, lo que empuja a ser prudente con precio en seed y a proteger la capacidad de extensión.
+
+## Sectores calientes (y cómo filtrar el ruido)
+
+### H3. IA aplicada + infra (MLOps, agentes verticales, edge/neuromórfica)
+
+Señal : early stage robusto; cuidado con modas. Pide evidencias de datos propietarios y ventaja de inferencia (latencia/coste/accuracy).
+
+### Climate & energía (baterías, materiales, captura, hidrógeno)
+
+Enfoque en economías unitarias desde la celda/pila hasta el sistema. Pilotaje con utilities e integradores.
+
+### Biotech/healthtech regulado
+
+Ruta regulatoria como parte de la tesis, no post-data. Pilotos clínicos con endpoints claros.
+
+### Seguridad/defensa dual-use
+
+Picos de “hype” en drones ; falta capital en defensa aérea y sistemas C-UAS. Equipo con expertise operativo marca la diferencia. Financial Times
+
+## Playbook para founders: cómo enamorar a un Business Angel deeptech
+
+### La “sala de datos” que convierte
+
+Technical memo de 10–12 páginas (no solo deck): arquitectura, benchmarks, riesgos y mitigaciones.
+
+Vídeo de validación (test bench / field test) con métricas superpuestas.
+
+Plan de certificación con coste y calendario.
+
+Modelo financiero con sensibilidad (componentes críticos, yields, CAPEX escalado).
+
+Carta de un design partner con objetivos y criterios de éxito.
+
+### El arte de pedir la cantidad justa
+
+Seed de deeptech ≠ software puro. Alinea milestones con el capital: menos “runway por meses”, más “runway por aprendizaje”.
+
+Mapea cofinanciación: EIC (grant + equity), ENISA , programas autonómicos (p.ej., ICF ) y corporates .
+
+### Gobernanza que atrae ángeles serios
+
+Reporting mensual (técnico/financiero);
+
+Comité técnico trimestral;
+
+OKRs que conectan ciencia y negocio;
+
+Cap table limpio, ESOP razonable y cláusulas “market”.
+
+## Mini-casos (España/EU)
+
+Pre-seed con tracción real : Kabilio (IA para automatización contable) cerró €4M pre-seed con fondos europeos de referencia y apoyo de ENISA : ejemplo de cómo un activo técnico aplicado a un dolor de mercado obtiene validación y “stack” de financiación mezclada.
+
+Dual-use scale : Quantum Systems (Alemania) alcanzó unicornio con €160M Serie C , ilustrando que la combinación de tecnología diferencial , contratos públicos y foco en autonomía europea puede escalar.
+
+Políticas regionales pro-deeptech : ICF consolida recursos para capital riesgo con un fondo específico de conocimiento en salud y tecnologías avanzadas; Gipuzkoa lanza fondo para IA, cuántica y biotecnología.
+
+## Errores comunes del inversor ángel en deeptech (y cómo evitarlos)
+
+Comprar la historia sin reproducibilidad → Pide datasets, protocolos y test externas.
+
+Ignorar la manufactura → Valora DFM/DFX, yields y cadena de suministro desde seed.
+
+Valorar como software → Ajusta múltiplos a riesgo técnico y CAPEX.
+
+No reservar follow-on → En deeptech, el follow-on es parte de la tesis, no un “nice to have”.
+
+Sobreexposición a hype → Equilibra drones con defensa aérea; IA aplicación vs. infraestructura.
+
+## Checklist express para decidir en 30 minutos
+
+¿Qué inflexión compro? (una, clara)
+
+¿Qué mata el proyecto? (riesgo binario y plan B)
+
+¿Quién paga el piloto? (ticket, KPIs, conversión)
+
+¿Qué grant/loan encaja? (EIC/ENISA/ICF; calendario y elegibilidad)
+
+¿Quién pone la A? (fondos target y probabilidad real)
+
+¿Cuál es el moat de IP/datos? (FTO, trade secrets, datasets)
+
+## 2026 será del ángel operador con disciplina
+
+El business angel que gane en 2026 no será el que más tuitee, sino quien lea bancos de pruebas , domine estructuras de capital y orqueste sindicación inteligente (incluyendo SPVs ) alrededor de inflexiones técnicas con impacto económico. El capital público-privado europeo está para acompañar; la disciplina en due diligence y la creatividad en stacking de instrumentos marcarán el retorno. Europa ha demostrado que el early stage late —sobre todo en deeptech—; toca convertir esa energía en compañías industrializadas .
+
+Únete a CAP TABLE , la comunidad exclusiva de inversores privados.
+
+Forma parte de BUILDERS , el grupo de founders y creadores de startups de alto potencial.
+
+La inteligencia del capital privado comienza aquí.
+
+## Fuentes consultadas
+
+Dealroom / Hello Tomorrow – 2025 European Deep Tech Report . Dealroom.co
+
+European Innovation Council (EIC) – EIC Accelerator y demanda 2025. European Innovation Council+1
+
+TechCrunch – EIC STEP Scale-Up y deeptech en Europa. TechCrunch+1
+
+Crunchbase News – Estado del VC europeo 2025 (Q1–Q3). Crunchbase News+2Crunchbase News+2
+
+Cinco Días / El País – Valor del ecosistema español 2025. Cinco Días
+
+ENISA – Notas y cifras 2024–2025. ENISA+2ENISA+2
+
+El Referente – Informe AEBAN y actividad de inversión. El Referente
+
+El País / Cataluña – Fondo ICF para ciencia avanzada. El País
+
+Cadena SER – Iniciativa deeptech en Gipuzkoa. Cadena SER
+
+Cinco Días – Ronda pre-seed de Kabilio (IA). Cinco Días
+
+TechCrunch – Quantum Systems unicorn (según PitchBook). TechCrunch
+
+Sifted – Tendencias de term sheets y actividad inversora. Sifted+1
+
+### Comparte esto:
+
+Compartir en X (Se abre en una ventana nueva)
+X
+
+Comparte en Facebook (Se abre en una ventana nueva)
+Facebook
+
+Me gusta Cargando…
+
+### Descubre más desde Business Angels News
+
+Suscríbete y recibe las últimas entradas en tu correo electrónico.
+
+Watch
+
+Más popular
+
+## ¿Qué fue de las 1.700 startups de Lanzadera? La cifra que revela cuántas sobreviven realmente
+
+octubre 14, 2026
+
+## Anaconda Biomed capta 49 millones para revolucionar el tratamiento del ictus desde Barcelona
+
+septiembre 30, 2026
+
+## Ignis aplaza una salida a Bolsa de hasta 600 millones: la regulación de centros de datos sacude la inversión
+
+septiembre 29, 2026
+
+## Dónde estudiaron los fundadores de las startups más importantes de España
+
+septiembre 21, 2026
+
+### 2 respuestas a «Qué busca realmente un Business Angel en una startup deeptech en 2026»
+
+Mistral AI capta 3.000 millones: claves para inversores
+
+septiembre 10, 2026 at 9:39 am
+
+[…] Si estás comenzando en este mercado, nuestra guía sobre qué es un business angel y cuál es su función explica las bases. Para evaluar proyectos tecnológicos incipientes, también puede ayudarte el análisis sobre qué busca un inversor en una startup deeptech. […]
+
+Me gusta Me gusta
+
+Responder
+
+HeyDiga capta 5,5 millones para sus agentes de IA
+
+septiembre 11, 2026 at 8:56 am
+
+[…] la guía sobre qué es un business angel explica el papel del inversor privado. El análisis sobre qué debe comprobar en una startup tecnológica ayuda a ordenar la due […]
+
+Me gusta Me gusta
+
+Responder
+
+### Deja una respuesta Cancelar la respuesta
+
+## Descubre más desde Business Angels News
+
+Suscríbete ahora para seguir leyendo y obtener acceso al archivo completo.
+
+Seguir leyendo
+
+%d

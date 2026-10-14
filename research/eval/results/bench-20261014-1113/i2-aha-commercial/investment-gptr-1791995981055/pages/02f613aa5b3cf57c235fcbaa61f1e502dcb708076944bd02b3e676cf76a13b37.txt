@@ -1,0 +1,80 @@
+IGC Pharma’s AHA Agentic AI Platform Reduces Alzheimer’s Data Harmonization Time by 90% in Representative Workflow - IGC Pharma, INC.
+
+
+
+
+
+Skip to content
+
+Press
+
+## Releases
+
+June 23, 2026
+
+IGC Pharma’s AHA Agentic AI Platform Reduces Alzheimer’s Data Harmonization Time by 90% in Representative Workflow  
+
+Patent-pending multi-agent architecture targets fragmented biomedical data and expands toward imaging, omics, and broader health-data applications ahead of planned AAIC 2026 demonstration in London  
+
+POTOMAC, Maryland  –  June 23, 2026  –  IGC Pharma, Inc. (NYSE American: IGC) (“IGC” or the “Company”) , a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled healthcare technologies, today announced the beta version of its proprietary Agentic Harmonization Assistant (“AHA”), an enterprise software platform designed to accelerate the harmonization of fragmented Alzheimer’s and aging-related datasets.  
+
+  “Artificial intelligence is changing how medicines are discovered and developed, but AI models are only as powerful as the data they can learn from,” said Ram Mukunda, CEO of IGC Pharma. “Our vision is for AHA to become a trusted infrastructure layer that helps pharmaceutical companies, academic institutions, government agencies, and healthcare data organizations convert fragmented biomedical datasets into interoperable, reusable, and AI-ready discovery assets.”  
+
+In internal testing using an Alzheimer’s structured-data workflow involving 100 variables, AHA reduced harmonization time from 28 hours of manual processing to 2.5 hours, including human verification of results – a 90% reduction in workflow time for that representative test case. The result reflects this specific workflow, and performance may vary depending on dataset complexity, data quality, and user workflow. The Company has also received feedback from external beta testers reporting similar time-saving potential in comparable data environments.  
+
+AHA was developed from an operational bottleneck IGC encountered while building MINT-AD, the Company’s predictive Alzheimer’s risk-stratification engine. Training and deploying disease-specific AI models requires large, harmonized datasets; however, preparing those datasets manually proved slow, repetitive, and difficult to scale. AHA was created to solve that bottleneck for IGC’s own discovery work and is now being positioned for broader pharmaceutical, academic, government, and healthcare data applications where fragmented datasets can slow biomarker discovery, cohort generation, cross-study analysis, and clinical development.  
+
+AHA addresses this challenge through a patent-pending multi-agent architecture that coordinates specialized digital agents to profile datasets, identify and prioritize related variables, propose mappings, generate transformation logic, score confidence, flag uncertain matches for human review, and produce validation-ready outputs. The system is designed to accelerate discovery by reducing the repetitive manual work required to make complex datasets interoperable.  
+
+IGC Pharma expects to demonstrate AHA in connection with the Alzheimer’s Disease Data Initiative’s AD Workbench ecosystem during the Alzheimer’s Association International Conference (“AAIC”) 2026, scheduled for July 12–15 in London. The planned showcase is intended to demonstrate AHA’s ability to support rapid cohort generation, cross-study analysis, and accelerated open-science collaboration.  
+
+The Company believes AHA’s neurodegenerative focus represents a high-value entry point into a broader healthcare data challenge. IGC Pharma is expanding AHA’s architecture to support additional biomedical modalities, including imaging such as MRI, PET, and CT, as well as omics, including genomics and proteomics. The Company believes the platform may support future software licensing, cloud-infrastructure partnerships, and disease-specific deployments across pharmaceutical, academic, government, and healthcare data sectors.  
+
+Separately, the Company’s lead therapeutic asset, IGC-AD1, is currently being evaluated in the Phase 2 CALMA clinical trial for agitation associated with Alzheimer’s dementia. As previously announced, CALMA has reached 100% of its baseline randomization target. The Company is currently completing limited over-enrollment and expects to proceed thereafter with patient follow-up, database activities, and topline analysis.  
+
+About IGC Pharma  
+
+IGC Pharma, Inc . (NYSE American: IGC) is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The Company’s lead asset, IGC-AD1, is being evaluated in the Phase 2  CALMA  clinical trial for agitation associated with Alzheimer’s dementia. The Company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, and clinical development.  
+
+Forward-Looking Statements  
+
+This press release contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995, including statements regarding the development, capabilities, performance, testing results, demonstration, deployment, potential utility, commercialization, and future applications of AHA; expansion into additional data modalities, including imaging and omics; planned activities at AAIC 2026 and any relationship with the Alzheimer’s Disease Data Initiative or AD Workbench ecosystem; potential collaborations, licensing, partnerships, and disease-specific deployment opportunities; and the Company’s clinical development programs, including IGC-AD1 and the CALMA trial. These statements are based on current expectations and involve risks and uncertainties that could cause actual results to differ materially, including risks related to software development, internal and external testing results and their reproducibility, validation, third-party and ecosystem adoption, data access and rights, intellectual property protection, regulatory considerations, commercialization, clinical trial timelines and outcomes, financing needs, and other factors discussed in the Company’s filings with the U.S. Securities and Exchange Commission, including its most recent Annual Report on Form 10-KT. The Company undertakes no obligation to update these statements except as required by law.  
+
+Contact Information  
+
+Andres Sanchez  
+Investor Relations  
+info@igcpharma.com  
++1 301-983-0998 / +1 (202) 569-2566  
+
+Facebook
+
+X
+
+LinkedIn
+
+## Related Posts
+
+###
+
+IGC Pharma Unveils PRISM™ AI Platform to Move Alzheimer’s Risk Prediction to Brain-Health Action and Commercial Deployment 
+
+October 13, 2026
+
+Read More »
+
+###
+
+IGC Pharma Completes Enrollment in Phase 2 CALMA Alzheimer’s Trial; Topline Results Expected Q4 2026 
+
+September 28, 2026
+
+Read More »
+
+###
+
+Ascendiant Capital Markets Raises IGC Pharma Price Target to $6.00, Citing CALMA Progress and Q4 2026 Topline Catalyst 
+
+August 28, 2026
+
+Read More »

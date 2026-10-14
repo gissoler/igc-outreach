@@ -1,0 +1,569 @@
+How AI is transforming clinical practice in 2026 | Tandem Health 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We’ve raised a $100M Series B to bring European healthcare into the AI era
+
+Read more
+
+Product
+
+Resources
+
+Company
+
+Log in
+
+Try for free
+
+Book a demo
+
+We’ve raised a $100M Series B to bring European healthcare into the AI era
+
+Read more
+
+Book a demo
+
+We’ve raised a $100M Series B to bring European healthcare into the AI era
+
+Read more
+
+Book a demo
+
+7 Sept 2026
+
+·
+
+·
+
+15
+
+min read
+
+# How AI is transforming clinical practice in 2026
+
+Explore how AI tools are reducing documentation burden and transforming clinical workflows across European primary and secondary care in 2026
+
+Across European primary and secondary care, clinicians are using AI tools in live consultations, on ward rounds, and in specialist workflows. What's changed isn't the ambition of the technology but the convergence of conditions that make real adoption possible: regulatory frameworks have matured, integration with medical record systems has deepened, and a critical mass of clinicians have moved from scepticism to selective, evidence-informed use.
+
+## The core problem AI is solving for clinicians
+The foundational driver of AI adoption in clinical settings isn't technological novelty. It's a workforce crisis expressed through documentation burden . Studies have found physicians can spend up to half or more of their workday on medical record system tasks , a pattern that compounds cognitive load (the mental effort required to process and act on information), erodes the quality of patient interaction, and accelerates burnout.
+In the UK, the pressures are structural. General Practitioner (GP) shortages, growing waiting lists, and the administrative weight of NHS documentation requirements have created a system where clinicians routinely complete notes after hours, sacrificing time that would otherwise go to rest, reflection, or patients. The term " admin burden " has become shorthand for a phenomenon that is, in practice, a clinical safety issue as much as a wellbeing one.
+The European picture is consistent. The first World Health Organization (WHO)/Europe snapshot of AI in healthcare across all 27 EU Member States identified workforce training gaps and governance as priorities precisely because demand for AI tools has outpaced the infrastructure to support them responsibly. The problem AI is being asked to solve is real, measurable, and urgent, which is why the tools receiving the most attention are those that address documentation burden directly.
+
+## Ambient voice technology and AI medical assistants: the shift away from the keyboard
+The most significant category of AI tools in clinical practice right now is ambient voice technology (AVT) , which refers to systems that listen to a natural clinical conversation and generate structured clinical notes in real time, without the clinician stopping to type. The clinician speaks to the patient; the AI assistant works in the background.
+This is a meaningful departure from earlier speech-to-text tools, which required dictation rather than conversation and produced raw transcripts that still needed significant editing. Ambient voice technology understands clinical context, distinguishes clinically relevant content from conversational noise, and produces draft notes that are ready for review rather than reconstruction.
+The adoption trajectory reflects genuine clinical value. Doctors and clinics across Europe are using AI tools to manage note-taking and referrals, with the explicit goal of restoring patient-facing time. In the UK, commercial AI scribe products are already in use in NHS-partner pilots , with the Medicines and Healthcare products Regulatory Agency (MHRA) classifying them as software as a medical device, a classification that signals regulatory seriousness rather than novelty.
+Clinicians consistently report the same effect on the consultation dynamic: eye contact replaces screen time, and the interaction returns to something closer to its intended form. Whether this translates into measurable improvements in patient outcomes remains an active area of research, but the clinician experience data is accumulating.
+
+## Clinical documentation: from transcription to structured, coded output
+The distinction between a tool that records and one that understands clinical context determines whether the output is useful or merely raw material for further work. Leading AI medical assistants in 2026 don't simply transcribe. They produce structured notes, suggest clinical codes (SNOMED, ICD) , and can populate medical record system fields automatically.
+This matters for several reasons. Structured, coded output is what enables downstream clinical use: audit, population health analysis, referral generation, and billing. A note that is well-written prose but unstructured is still a documentation burden shifted rather than reduced. The tools gaining traction are those that close the loop between the spoken consultation and the coded, filed record.
+A cross-sectional evaluation published in Annals of Internal Medicine compared the quality of AI-generated clinical notes with human-produced notes across five standardised care cases in a US simulation, finding that AI-generated notes scored lower on quality than human-generated notes in every case — a reminder that ambient AI scribes still require careful clinician review rather than being treated as a drop-in replacement. The study also highlighted that prior evaluations had been vendor-specific and that independent quality assessment remains important.
+A study conducted in a Dutch academic hospital assessed a medical record system-integrated large language model (LLM) tool, meaning an AI system trained on large volumes of text to generate and summarise written content, for discharge summaries. The findings showed that AI can reduce administrative burden in generating discharge summaries, but the authors noted that robust validation of fully automated systems in real-world practice is still limited, an honest signal that the technology is capable but not yet operating without meaningful clinical oversight.
+
+## AI tools across care settings: primary care, secondary care, and beyond
+The use cases for AI tools vary significantly by setting, and the evidence base is unevenly distributed across them. Primary care has the most developed evidence, partly because the consultation structure, a clinician, a patient, a defined encounter, maps cleanly onto what ambient voice technology does well.
+
+### Primary care
+GPs are using AI assistants to generate consultation notes, draft patient letters, and reduce after-hours documentation. The time saved per consultation is modest in absolute terms but significant in aggregate across a full clinical day.
+
+### Secondary care
+Hospital teams are beginning to use AI tools on ward rounds, where the documentation demands are higher and the clinical complexity greater. Discharge summaries are a particular focus, a document that is time-consuming to produce, clinically important, and structurally consistent enough to lend itself to AI generation.
+
+### Specialist care
+Referral drafting, outpatient letters, and specialty-specific templates are emerging use cases. The challenge here is accuracy across specialties. A tool trained primarily on general practice data may perform less well in dermatology or psychiatry without specialty-specific validation.
+
+### Remote and virtual consultations
+AI tools that work from audio or video input extend naturally to telehealth settings, where the absence of a shared physical space has historically made documentation harder. The Stanford–Harvard State of Clinical AI report documented a substantial boom in clinical AI research activity, with no single area dominating; primary care, clinical decision support, and remote care are all active areas of application in practice.
+
+## Advice & Guidance and referral workflows: AI reducing the friction between care levels
+One of the less visible but clinically significant applications of AI tools is in the workflows that sit between care levels. These include Advice & Guidance (A&G) exchanges, where GPs seek clinical input from specialists without a formal referral, and the referral letters that initiate secondary care pathways.
+These workflows are currently a source of considerable friction. A GP drafting a referral must synthesise patient history, articulate the clinical question, and present it in a format that a specialist can act on quickly. Done poorly, this results in rejection, requests for more information, or delayed care. Done well, it requires time that is often not available.
+AI tools are beginning to assist with both ends of this process: helping GPs draft structured, complete referrals, and helping specialists respond to A&G requests with less administrative overhead. The potential to reduce the back-and-forth that delays patient care is real, though the evidence base for this specific application is thinner than for consultation documentation.
+
+## Clinical decision support: where AI assists judgment without replacing it
+Clinical decision support (CDS) in 2026 means something more specific than a pop-up alert. It means AI tools that surface relevant patient history at the point of care, flag risk factors that might otherwise be missed in a time-pressured consultation, and suggest next steps based on clinical guidelines and the patient's record.
+The distinction between augmentation and automation is the critical one here. A risk-stratified framework published in BMJ Health Care Informatics addresses LLM integration into clinical practice directly, covering documentation, decision support, and patient communication, and proposes a structured approach to managing the risks of model accuracy, data privacy, and regulatory responsibility. The framework reflects a consensus position in the literature: AI assists clinical judgment; it does not replace it.
+Research on passive clinical decision support tools in paediatric intensive care , including note writing support, order sets, and laboratory result flagging, found that adoption and penetrance of these tools varies significantly by context. The design of the tool, whether interruptive or passive, affects how clinicians engage with it. This is a useful reminder that the effectiveness of CDS isn't just a question of algorithmic accuracy but of workflow integration.
+Clinical accountability remains with the clinician. This isn't a caveat. It's a design principle. The tools gaining regulatory approval and clinical trust are those built on this premise.
+
+## Regulatory and safety frameworks governing AI tools in clinical practice
+For clinicians and clinical leads evaluating AI tools, the regulatory landscape is a baseline, not a bonus. In Europe, the relevant frameworks are:
+Medical Device Regulation (MDR): AI tools that influence clinical decisions are classified as medical devices under EU MDR and must meet conformity requirements before deployment in clinical settings.
+
+AI Act: In force since August 2024 , the EU AI Act classifies AI systems that qualify as medical devices requiring notified-body conformity assessment as high-risk, requiring transparency, human oversight, and ongoing monitoring, with these obligations now phased in from August 2028 following the AI Act Omnibus Regulation (2026/1744).
+
+European Health Data Space (EHDS): The EHDS entered into force in 2025 and governs how health data is shared and used across EU Member States, with direct implications for AI tools that process patient data.
+
+General Data Protection Regulation (GDPR) and data residency: Tools that process patient data must comply with GDPR, and data residency requirements, covering where data is stored and processed, are a procurement-level question with clinical governance implications.
+
+ISO 27001: Information security certification that is increasingly a baseline expectation for clinical AI vendors.
+
+In the UK, the MHRA classifies AI scribe tools as software as a medical device , and NHS England has issued information governance guidance for their use. Compliance with these frameworks isn't a differentiator among vendors. It's the minimum threshold for consideration.
+
+## What clinicians actually need to evaluate an AI tool
+The criteria that matter for a clinician or clinical lead evaluating an AI tool differ from those on a procurement checklist. In practice, the questions worth asking are:
+Does it integrate with the medical record system already in use? A tool that requires parallel documentation or manual data transfer adds burden rather than reducing it. Integration with the medical record system is a practical constraint that eliminates many options early.
+
+Has it been validated in the relevant specialty? A tool performing well in general practice may not perform to the same standard in psychiatry, dermatology, or paediatrics. Specialty-specific validation evidence should be requested, not assumed.
+
+What is the accuracy profile, and how are errors handled? The UCLA randomised controlled trial found that AI-generated notes occasionally contained clinically significant inaccuracies, underscoring the need for active physician oversight. Understanding the error rate and the review workflow is essential.
+
+What is the data security and privacy posture? Where is patient data processed? Who has access? How long is it retained? These aren't IT questions. They're clinical governance questions.
+
+Is there evidence of real-world clinical validation, not just vendor claims? Peer-reviewed studies, independent evaluations, and NHS or equivalent health system pilots carry more weight than marketing materials.
+
+Does it fit the actual workflow? A tool that requires behavioural change from every clinician in a practice is a change management project, not a software deployment. The best tools reduce friction; they don't introduce new forms of it.
+
+## The measurable impact: what the evidence shows so far
+The evidence base for AI tools in clinical practice is growing, and the signals are broadly positive. The quality and scale of evidence varies, though, and it's worth being precise about what has been demonstrated and what remains a promising signal.
+
+### On burnout reduction
+A multi-centre quality improvement study of 263 physicians across six health systems found that after 30 days with an ambient AI scribe, clinician burnout dropped from 51.9 per cent to 38.8 per cent, with improvements in cognitive load, after-hours documentation, and patient attention. A study across Emory Healthcare and Mass General Brigham found a 21.2 per cent absolute reduction in burnout prevalence at 84 days. These are substantial effects, though both studies were conducted in specific health system contexts and may not generalise uniformly.
+
+### On documentation quality
+A scoping review of AI speech recognition for clinical documentation found frequent and clinically significant errors shaped by linguistic complexity, context, and speaker variation, concluding that unsupervised use of these tools is not currently safe; some individual studies reported workload reductions, but accuracy and reliability varied substantially across tools and clinical contexts.
+
+### On cognitive load
+The UCLA randomised controlled trial found modest but measurable improvements in burnout scores, cognitive workload, and work exhaustion, alongside the important caveat that AI-generated notes require active oversight.
+
+### Where the evidence is thinner
+Long-term outcomes, effects on patient safety, and performance across the full range of clinical specialties remain areas where the evidence base is still developing. A systematic review of AI's impact on medical record system-related burnout found consistent signals across studies from 2019 to 2025 but noted the methodological variation that limits direct comparison. The direction of evidence is clear. The magnitude and durability of effects at scale are not yet fully established.
+
+## What's next: the direction AI in clinical practice is heading
+The credible near-term developments in clinical AI are extensions of what is already working, not departures from it.
+
+### Deeper medical record system integration
+Tools that currently generate notes alongside medical record systems are moving toward native integration, populating structured fields, triggering workflows, and reducing the number of systems a clinician needs to interact with. The European Health Data Space will accelerate interoperability requirements across EU Member States.
+
+### Expansion into more specialties
+The tools with the broadest deployment today are generalist. Specialty-specific models, trained on the language, coding conventions, and clinical patterns of dermatology, psychiatry, oncology, and others, are in development, with varying levels of validation evidence.
+
+### AI-native operating systems for clinical workflows
+Platforms where AI isn't a bolt-on tool but the underlying infrastructure through which documentation, decision support, referrals, and patient communication are managed represent the longer-term direction. This is a significant architectural shift from the current model of AI tools added to existing systems.
+
+### Governance and workforce readiness
+Will shape the pace of adoption as much as the technology itself. The WHO/Europe report identified training gaps as a priority finding, a signal that the limiting factor in many health systems isn't the availability of tools but the capacity to deploy them safely and effectively.
+
+## AI as infrastructure, not innovation theatre
+The frame that makes most sense of where clinical AI sits in 2026 is infrastructure, not innovation. Medical record systems were once described as new technology; they are now the unremarkable substrate of clinical practice. AI tools are following a similar trajectory, from novelty, through contested adoption, toward the point where their absence will be the anomaly.
+The Stanford–Harvard report documents both the boom in clinical AI research and the risks of over-reliance, a pairing that reflects the maturity of the conversation rather than its immaturity.
+For clinicians, the practical implication is straightforward. The question is no longer whether AI tools will become part of clinical practice, but which tools, evaluated against what evidence, with what governance in place. Engaging critically with that question now, rather than waiting for the technology to become standard before examining it, is the position from which informed, safe adoption is possible.
+
+### Frequently asked questions
+
+#### ▶ What problem are AI tools actually solving for clinicians?
+The primary driver is documentation burden. Research shows physicians spend more than half of their workday on medical record system tasks. This compounds cognitive load (the mental effort required to process and act on information), reduces the quality of patient interaction, and accelerates burnout. AI tools that reduce the time spent on clinical documentation are addressing a problem that is both a wellbeing issue and a clinical safety concern.
+
+#### ▶ What is ambient voice technology and how does it differ from older speech-to-text tools?
+Ambient voice technology (AVT) refers to systems that listen to a natural clinical conversation and generate structured clinical notes in real time, without the clinician stopping to type. Earlier speech-to-text tools required dictation rather than conversation and produced raw transcripts that still needed significant editing. Ambient voice technology understands clinical context, distinguishes clinically relevant content from conversational noise, and produces draft notes that are ready for review.
+
+#### ▶ Do AI-generated clinical notes just transcribe speech, or do they produce structured, coded output?
+Leading AI medical assistants in 2026 go beyond transcription. They produce structured notes, suggest clinical codes such as SNOMED and ICD, and can populate medical record system fields automatically. This matters because structured, coded output is what enables downstream clinical use, including audit, referral generation, and billing. A well-written but unstructured note shifts documentation burden rather than reducing it.
+
+#### ▶ Which care settings are AI tools being used in?
+AI tools are in use across primary care, secondary care, specialist care, and remote or virtual consultations. General Practitioners (GPs) use them to generate consultation notes and draft patient letters. Hospital teams are applying them to ward rounds and discharge summaries. Referral drafting and specialty-specific templates are emerging in specialist settings. Remote care is identified as a growth area in the Stanford–Harvard State of Clinical AI report.
+
+#### ▶ What does the evidence show about AI tools reducing clinician burnout?
+A multi-centre quality improvement study of 263 physicians across six health systems found that after 30 days with an ambient AI scribe, clinician burnout dropped from 51.9 per cent to 38.8 per cent. A separate study across Emory Healthcare and Mass General Brigham found a 21.2 per cent absolute reduction in burnout prevalence at 84 days. Both studies were conducted in specific health system contexts and may not generalise uniformly to all settings.
+
+#### ▶ What regulatory frameworks govern AI tools used in clinical practice in Europe?
+Several frameworks apply. The EU Medical Device Regulation (MDR) classifies AI tools that influence clinical decisions as medical devices, requiring conformity before deployment. The EU AI Act, in force since August 2024, classifies AI systems that qualify as medical devices requiring notified-body conformity assessment as high-risk, requiring transparency, human oversight, and ongoing monitoring, with these obligations now phased in from August 2028 following the AI Act Omnibus Regulation (2026/1744). The European Health Data Space (EHDS), which entered into force in 2025, governs how health data is shared across EU Member States. General Data Protection Regulation (GDPR) and data residency requirements also apply to any tool processing patient data. In the UK, the Medicines and Healthcare products Regulatory Agency (MHRA) classifies AI scribe tools as software as a medical device.
+
+#### ▶ What should clinicians ask when evaluating an AI tool?
+The article identifies six practical questions: whether the tool integrates with the medical record system already in use; whether it has been validated in the relevant specialty; what the accuracy profile is and how errors are handled; what the data security and privacy posture is, including where patient data is processed and retained; whether there is independent clinical validation evidence beyond vendor claims; and whether the tool fits the actual workflow without requiring significant behavioural change from clinicians.
+
+#### ▶ Does clinical accountability shift to the AI when these tools are used?
+No. Clinical accountability remains with the clinician. The article describes this not as a caveat but as a design principle. A risk-stratified framework published in BMJ Health Care Informatics proposes that AI assists clinical judgment rather than replaces it. The UCLA randomised controlled trial also found that AI-generated notes occasionally contained clinically significant inaccuracies, which reinforces the need for active physician oversight of any AI-generated output.
+
+#### ▶ Where is the evidence on AI tools still limited?
+Long-term outcomes, effects on patient safety, and performance across the full range of clinical specialties remain areas where the evidence base is still developing. A systematic review of AI's impact on medical record system-related burnout found consistent signals across studies from 2019 to 2025 but noted methodological variation that limits direct comparison. The direction of evidence is broadly positive. The magnitude and durability of effects at scale are not yet fully established.
+
+#### ▶ What is the likely direction of AI tools in clinical practice over the near term?
+The article identifies four credible near-term developments. First, deeper integration with medical record systems, moving from generating notes alongside existing systems to natively populating structured fields and triggering workflows. Second, expansion into more specialties, with models trained on the language and coding conventions of fields such as dermatology and psychiatry. Third, the development of AI-native operating systems for clinical workflows, where AI is the underlying infrastructure rather than a bolt-on tool. Fourth, governance and workforce readiness, which the WHO/Europe report identifies as a limiting factor in many health systems.
+
+← GDPR compliance in healthcare: a practical guide for clinicians
+
+Coding accuracy & reimbursement in European healthcare →
+
+## Get started with Tandem today
+
+Join thousands of clinicians enjoying stress-free documentation.
+
+Book a demo
+
+Try for free
+
+## Get started with Tandem today
+
+Join thousands of clinicians enjoying stress-free documentation.
+
+Book a demo
+
+Try for free
+
+## Get started with Tandem today
+
+Join thousands of clinicians enjoying stress-free documentation.
+
+Book a demo
+
+Try for free
+
+Product
+
+Overview
+
+AI scribe
+
+Coding Assistant
+
+Clinical Decision Support
+
+Dictate Anywhere
+
+Integrations
+
+Customers
+
+Data & Security
+
+Pricing
+
+Built for
+
+Medicine
+
+Mental health
+
+Nurses
+
+Social services
+
+Physiotherapy
+
+Dentistry
+
+Pharmacy
+
+Veterinary care
+
+Resources
+
+News
+
+Knowledge
+
+Research
+
+Product updates
+
+Help center
+
+Trust center
+
+Downloads
+
+Order microphones
+
+Instruction for use
+
+Product label
+
+Company
+
+About us
+
+Clinical team
+
+Careers
+
+Contact
+
+Brand guidelines
+
+Legal
+
+Terms of Service
+
+Privacy Policy
+
+Cookie Policy
+
+Acceptable Use Policy
+
+Accessibility Statement
+
+Whistleblowing
+
+Impressum
+
+© Tandem Health AB 2026
+
+Find us at
+
+LinkedIn
+
+Youtube
+
+Language
+
+Select Language English
+English
+
+Product
+
+Overview
+
+AI scribe
+
+Coding Assistant
+
+Clinical Decision Support
+
+Dictate Anywhere
+
+Integrations
+
+Customers
+
+Data & Security
+
+Pricing
+
+Built for
+
+Medicine
+
+Mental health
+
+Nurses
+
+Social services
+
+Physiotherapy
+
+Dentistry
+
+Pharmacy
+
+Veterinary care
+
+Resources
+
+News
+
+Knowledge
+
+Research
+
+Product updates
+
+Help center
+
+Trust center
+
+Downloads
+
+Order microphones
+
+Instruction for use
+
+Product label
+
+Company
+
+About us
+
+Clinical team
+
+Careers
+
+Contact
+
+Brand guidelines
+
+Legal
+
+Terms of Service
+
+Privacy Policy
+
+Cookie Policy
+
+Acceptable Use Policy
+
+Accessibility Statement
+
+Whistleblowing
+
+Impressum
+
+© Tandem Health AB 2026
+
+Find us at
+
+LinkedIn
+
+Youtube
+
+Language
+
+Select Language English
+English
+
+Product
+
+Overview
+
+AI scribe
+
+Coding Assistant
+
+Clinical Decision Support
+
+Dictate Anywhere
+
+Integrations
+
+Customers
+
+Data & Security
+
+Pricing
+
+Built for
+
+Medicine
+
+Mental health
+
+Nurses
+
+Social services
+
+Physiotherapy
+
+Dentistry
+
+Pharmacy
+
+Veterinary care
+
+Resources
+
+News
+
+Knowledge
+
+Research
+
+Product updates
+
+Help center
+
+Trust center
+
+Downloads
+
+Order microphones
+
+Instruction for use
+
+Product label
+
+Company
+
+About us
+
+Clinical team
+
+Careers
+
+Contact
+
+Brand guidelines
+
+Legal
+
+Terms of Service
+
+Privacy Policy
+
+Cookie Policy
+
+Acceptable Use Policy
+
+Accessibility Statement
+
+Whistleblowing
+
+Impressum
+
+© Tandem Health AB 2026
+
+Find us at
+
+LinkedIn
+
+Youtube
+
+Language
+
+Select Language English
+English

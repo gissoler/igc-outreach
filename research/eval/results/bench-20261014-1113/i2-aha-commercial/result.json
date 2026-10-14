@@ -1,0 +1,133 @@
+{
+ "id": "i2-aha-commercial",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/aha-commercial.json",
+ "why": "empresa de EE. UU., datos de salud / IA",
+ "dry": false,
+ "ok": true,
+ "status": "partial",
+ "error": null,
+ "started": "2026-10-14T16:39:40.072Z",
+ "seconds": 367,
+ "stages": {
+  "search_s": 270,
+  "judge_s": 90,
+  "engine_s": 360,
+  "contacts_s": null,
+  "evaluator_s": 3,
+  "total_s": 367
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 105,
+  "assessed": 40,
+  "by_status": {
+   "upcoming": 3,
+   "open": 2,
+   "rolling": 3,
+   "unknown": 80,
+   "closed": 17,
+   "unread": 45
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 10
+ },
+ "lists": {
+  "top": 4,
+  "radar": 15,
+  "discarded": 0
+ },
+ "apollo_credits": 10,
+ "apollo_people": 9,
+ "errors": [
+  "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent."
+ ],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Finance Director at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s d",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "contacts": 0
+  },
+  {
+   "title": "Principal Scientist at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "contacts": 0
+  },
+  {
+   "title": "Purchasing Manager at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "contacts": 0
+  },
+  {
+   "title": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enable",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "contacts": 0
+  },
+  {
+   "title": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other ind",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "contacts": 0
+  },
+  {
+   "title": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company ",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+   "contacts": 0
+  },
+  {
+   "title": "Managing Director at research2guidance is a platform that connects HealthTech startups with strategic partners, includin",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "contacts": 0
+  },
+  {
+   "title": "Digital Health Partnership Manager at research2guidance is a platform that connects HealthTech startups with strategic p",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "contacts": 0
+  },
+  {
+   "title": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospital",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "contacts": 3
+  },
+  {
+   "title": "AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://dealforma.com/ai-machine-learning-rd-ma-ventures-ipos-h1-2026-review/",
+   "contacts": 3
+  }
+ ]
+}

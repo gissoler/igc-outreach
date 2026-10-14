@@ -1,0 +1,116 @@
+{
+ "id": "i2-aha-commercial",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/aha-commercial.json",
+ "why": "empresa de EE. UU., datos de salud / IA",
+ "dry": false,
+ "ok": true,
+ "status": "partial",
+ "error": null,
+ "started": "2026-10-14T17:49:10.429Z",
+ "seconds": 331,
+ "stages": {
+  "search_s": 204,
+  "judge_s": 113,
+  "engine_s": 317,
+  "contacts_s": null,
+  "evaluator_s": 10,
+  "total_s": 331
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 107,
+  "assessed": 40,
+  "by_status": {
+   "upcoming": 2,
+   "open": 1,
+   "unknown": 80,
+   "closed": 24,
+   "unread": 43
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 2
+ },
+ "lists": {
+  "top": 0,
+  "radar": 8,
+  "discarded": 0
+ },
+ "apollo_credits": 8,
+ "apollo_people": 6,
+ "errors": [
+  "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent."
+ ],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Program Director at U.S. National Science Foundation",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+   "contacts": 0
+  },
+  {
+   "title": "Director at U.S. National Science Foundation",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+   "contacts": 0
+  },
+  {
+   "title": "Program Director at U.S. National Science Foundation",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+   "contacts": 0
+  },
+  {
+   "title": "U.S. National Science Foundation",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+   "contacts": 3
+  },
+  {
+   "title": "Venture Partner at Menlo Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://menlovc.com/focus-areas/healthcare/",
+   "contacts": 0
+  },
+  {
+   "title": "Partner at Menlo Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://menlovc.com/focus-areas/healthcare/",
+   "contacts": 0
+  },
+  {
+   "title": "Partner at Menlo Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://menlovc.com/focus-areas/healthcare/",
+   "contacts": 0
+  },
+  {
+   "title": "Menlo Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://menlovc.com/focus-areas/healthcare/",
+   "contacts": 3
+  }
+ ]
+}

@@ -1,0 +1,620 @@
+Alzheimer’s Disease Sequencing Project Phenotype Harmonization Consortium (ADSP-PHC) – ADSP
+
+Skip to content
+
+< Back to Funded Programs
+
+Quick Navigation:
+Description
+PIs
+Cohorts
+Grants
+Acknowledgment
+Related Publications
+
+## Description
+
+Learn more:
+vmacdata.org/adsp-phc
+
+The Alzheimer’s Disease (AD) Sequencing Project (ADSP) was initiated in 2012 with a focus on identifying novel genes driving risk and resilience in AD and related dementias (ADRD). To date, the ADSP has curated sequencing data from 20,000+ individuals from 39 cohorts, which will increase to 100,000 participants across 70+ cohorts by 2023. The ADSP has focused primarily on AD case/control phenotypes derived from clinical data; however, advancements in our understanding of AD and movement toward a biological definition that integrates pathological and neurodegenerative aspects of the disease, many of which precede clinical symptoms by decades, has presented an opportunity and pressing need to integrate rich endophenotypic data and characterize the genetic architecture of these complex biological cascades in ADRD.
+
+The ADSP Phenotype Harmonization Consortium (ADSP-PHC, U24-AG074855) was established in response to PAR-20-099 to harmonize the rich endophenotype data across cohort studies to enable modern genomic analyses of ADRD. The mission of the ADSP-PHC is to work in coordination with other ADSP workgroups and initiatives to streamline access to endophenotype data, provide high quality phenotype harmonization across domains, and provide comprehensive documentation of both data availability and harmonization procedures, with the goal of generating harmonized data that will become a “legacy” dataset perpetually curated and shared through NIAGADS.
+
+The aims of the ADSP-PHC are below:
+
+Procure , collate and curate endophenotype data from ADSP cohort studies.
+
+Harmonize data from ADSP cohort studies leveraging advanced statistical approaches.
+
+Disseminate harmonized phenotypes and harmonization protocols to the research community.
+
+Educate the research community on available harmonized resources and best practices.
+
+Current Documentation:
+
+ADSP-PHC Read Me
+
+ADSP-PHC Cognitive Harmonization Read Me and Cohort White Papers
+
+ADSP-PHC Demographic Diagnosis Harmonization Read Me and White Paper
+
+ADSP-PHC Fluid Biomarker-CSF Harmonization Read Me
+
+ADSP-PHC Fluid Biomarker-Plasma Harmonization Read Me and White Paper
+
+ADSP-PHC Neuropathology Harmonization Read Me
+
+ADSP-PHC Cardiovascular Risk Factors Harmonization Read Me
+
+ADSP-PHC DTI Harmonization Read Me
+
+ADSP-PHC FLAIR Harmonization Read Me and White Paper
+
+ADSP-PHC MRI Harmonization Read Me
+
+ADSP-PHC PET Harmonization Read Me and White Paper
+
+## PIs
+
+MPI:
+
+Cuccaro, Michael
+
+Hohman, Timothy J.
+
+Toga, Arthur
+
+Domain Leads:
+
+Beecham, Gary
+
+Brickman, Adam
+
+Crane, Paul
+
+Cruchaga, Carlos
+
+Davatzikos, Christos
+
+Habes, Mohamad
+
+Landman, Bennett
+
+Mayeux, Richard
+
+Mez, Jesse
+
+Montine, Thomas
+
+Mormino, Elizabeth
+
+Risacher, Shannon
+
+Saykin, Andrew
+
+Thompson, Paul
+
+Tosun-Turgut, Duygu
+
+## Cohorts
+
+Cohort
+Autopsy
+Cardiovascular Risk
+Cognition
+Diagnosis
+Fluid Bio-CSF
+Fluid Bio-Plasma
+Diffusion
+FLAIR
+T1-FS
+T1-MUSE
+PET-Amyloid
+PET-Tau
+
+TOTAL
+7,699
+24,399
+32,874
+37,107
+1,665
+4,114
+1,969
+7,493
+6,153
+6,522
+6,395
+2,035
+
+A4
+0
+0
+3,345
+3,345
+0
+3,114
+0
+1,418
+1,400
+804
+3,340
+338
+
+ACT
+502
+0
+1,337
+1,337
+0
+0
+0
+0
+0
+0
+0
+0
+
+Case Western Autopsy
+106
+0
+0
+106
+0
+0
+0
+0
+0
+0
+0
+0
+
+EFIGA
+0
+4,296
+4,563
+4,730
+0
+0
+0
+0
+0
+0
+0
+0
+
+HABS-HD
+0
+1,325
+1,325
+1,325
+0
+650
+1,231
+1,312
+1,275
+1,314
+923
+630
+
+KBASE
+0
+0
+603
+603
+0
+0
+0
+602
+508
+601
+602
+180
+
+Knight ADRC
+0
+0
+870
+903
+558
+0
+190
+297
+433
+428
+458
+159
+
+Miami HIHG
+85
+0
+0
+85
+0
+0
+0
+0
+0
+0
+0
+0
+
+MARS-Rush
+13
+48
+48
+48
+0
+0
+17
+20
+19
+20
+0
+0
+
+Miami Brain Bank
+306
+0
+0
+306
+0
+0
+0
+0
+0
+0
+0
+0
+
+NACC
+5,211
+12,216
+11,955
+14,319
+836
+350
+354
+1,809
+1,190
+1,836
+587
+263
+
+NIA-AD FBS
+381
+0
+1,650
+2,819
+0
+0
+0
+0
+0
+0
+0
+0
+
+TARCC
+0
+1,161
+1,161
+1,161
+0
+0
+0
+0
+0
+0
+0
+0
+
+WHICAP
+0
+3,142
+3,795
+3,798
+0
+0
+0
+1,306
+659
+767
+0
+0
+
+WRAP
+0
+989
+1,000
+1,000
+271
+0
+121
+585
+579
+608
+485
+465
+
+ROSMAP-Rush
+1,095
+1,222
+1,222
+1,222
+0
+0
+56
+144
+90
+144
+0
+0
+
+Sample sizes reflect harmonized data from individuals with ADSP sequencing.
+
+Anti-Amyloid Treatment in Asymptomatic Alzheimer’s study (A4 Study)
+Adult Changes in Thought (ACT)
+Alzheimer’s Disease Neuroimaging Initiative (ADNI)
+Case Western Reserve University (CWRU)
+Estudio Familiar de Influencia Genetica en Alzheimer (EFIGA)
+Health and Aging Brain Study – Health Disparities (HABS-HD)
+Korean Brain Aging Study for the Early Diagnosis and Prediction of AD (KBASE)
+Memory & Aging Project at Knight Alzheimer’s Disease Research Center (MAP at Knight ADRC)
+University of Miami HIHG (MIA)
+Minority Aging Research Study (MARS)
+University of Miami Brain Bank (MBB)
+National Alzheimer’s Coordinating Center (NACC)
+National Institute on Aging Alzheimer’s Disease Family Based Study (NIA-AD FBS)
+Religious Orders Study/Memory and Aging Project (ROS, MAP – Rush)
+Texas Alzheimer’s Research and Care Consortium (TARCC)
+Washington Heights/Inwood Columbia Aging Project (WHICAP)
+Wisconsin Registry for Alzheimer’s Prevention (WRAP)
+
+## Grants
+
+PAR-20-099 Harmonization of Alzheimer’s Disease and Related Dementias (AD/ADRD) Genetic, Epidemiologic, and Clinical Data to Enhance Therapeutic Target Discovery (U24 Clinical Trial Not Allowed)
+
+Alzheimer’s Disease Sequencing Project Phenotype Harmonization Consortium (ADSP-PHC), U24-AG074855; MPI: Timothy J. Hohman, Michael Cuccaro, Arthur Toga; Project Period: September 30, 2021 – August 31, 2026
+
+PAR-22-110 NIA Renewal and Revision Cooperative Agreements in AD/ADRD Research (U24 Clinical Trial Not Allowed)
+
+MVP Data Integration into the ADSP Phenotype Harmonization Consortium (ADSP-PHC), U24-AG074855; PI: Timothy J. Hohman; Project Period: May 15, 2024 – August 31, 2026
+
+## Acknowledgment
+
+The ADSP Phenotype Harmonization Consortium (ADSP-PHC) is funded by NIA (U24 AG074855, U01 AG068057 and R01 AG059716). The harmonized cohorts within the ADSP-PHC include: the Anti-Amyloid Treatment in Asymptomatic Alzheimer’s study (A4 Study), a secondary prevention trial in preclinical Alzheimer’s disease, aiming to slow cognitive decline associated with brain amyloid accumulation in clinically normal older individuals. The A4 Study is funded by a public-private-philanthropic partnership, including funding from the National Institutes of Health-National Institute on Aging, Eli Lilly and Company, Alzheimer’s Association, Accelerating Medicines Partnership, GHR Foundation, an anonymous foundation and additional private donors, with in-kind support from Avid and Cogstate. The companion observational Longitudinal Evaluation of Amyloid Risk and Neurodegeneration (LEARN) Study is funded by the Alzheimer’s Association and GHR Foundation. The A4 and A4-LEARN Studies are led by Dr. Reisa Sperling at Brigham and Women’s Hospital, Harvard Medical School and Dr. Paul Aisen at the Alzheimer’s Therapeutic Research Institute (ATRI), University of Southern California. The A4 and LEARN Studies are coordinated by ATRI at the University of Southern California, and the data are made available through the Laboratory for Neuro Imaging at the University of Southern California. The participants screening for the A4 Study provided permission to share their de-identified data in order to advance the quest to find a successful treatment for Alzheimer’s disease. We would like to acknowledge the dedication of all the participants, the site personnel, and all of the partnership team members who continue to make the A4 and LEARN Studies possible. The complete A4 Study Team list is available on: a4study.org/a4-study-team .; the Adult Changes in Thought study (ACT), U01 AG006781, U19 AG066567; Alzheimer’s Disease Neuroimaging Initiative (ADNI): Data collection and sharing for this project was funded by the Alzheimer’s Disease Neuroimaging Initiative (ADNI) (National Institutes of Health Grant U01 AG024904) and DOD ADNI (Department of Defense award number W81XWH-12-2-0012). ADNI is funded by the National Institute on Aging, the National Institute of Biomedical Imaging and Bioengineering, and through generous contributions from the following: AbbVie, Alzheimer’s Association; Alzheimer’s Drug Discovery Foundation; Araclon Biotech; BioClinica, Inc.; Biogen; Bristol-Myers Squibb Company; CereSpir, Inc.; Cogstate; Eisai Inc.; Elan Pharmaceuticals, Inc.; Eli Lilly and Company; EuroImmun; F. Hoffmann-La Roche Ltd and its affiliated company Genentech, Inc.; Fujirebio; GE Healthcare; IXICO Ltd.;Janssen Alzheimer Immunotherapy Research & Development, LLC.; Johnson & Johnson Pharmaceutical Research & Development LLC.; Lumosity; Lundbeck; Merck & Co., Inc.;Meso Scale Diagnostics, LLC.; NeuroRx Research; Neurotrack Technologies; Novartis Pharmaceuticals Corporation; Pfizer Inc.; Piramal Imaging; Servier; Takeda Pharmaceutical Company; and Transition Therapeutics. The Canadian Institutes of Health Research is providing funds to support ADNI clinical sites in Canada. Private sector contributions are facilitated by the Foundation for the National Institutes of Health ( www.fnih.org ). The grantee organization is the Northern California Institute for Research and Education, and the study is coordinated by the Alzheimer’s Therapeutic Research Institute at the University of Southern California. ADNI data are disseminated by the Laboratory for Neuro Imaging at the University of Southern California; Brain tissue and additional biological samples were collected from individuals who were assessed and followed in the Case Western ADC which was funded by NIA P50AG008012; Estudio Familiar de Influencia Genetica en Alzheimer (EFIGA): 5R37AG015473, RF1AG015473, R56AG051876; the Health & Aging Brain Study – Health Disparities (HABS-HD), supported by the National Institute on Aging of the National Institutes of Health under Award Numbers R01AG054073, R01AG058533, R01AG070862, P41EB015922, and U19AG078109; brain tissues were obtained from the Brain Bank at the John P. Hussman Institute for Human Genomics at the University of Miami Miller School of Medicine, with funding provided by Louis D. Scientific Prize from the Institut de France; the Indiana Alzheimer’s Disease Research Center (IADRC) supported by National Institutes of Health (NIH) grant P30AG072976; the Korean Brain Aging Study for the Early Diagnosis and Prediction of Alzheimer’s disease (KBASE), which was supported by a grant from Ministry of Science, ICT and Future Planning (Grant No: NRF-2014M3C7A1046042); Memory & Aging Project at Knight Alzheimer’s Disease Research Center (MAP at Knight ADRC): The Memory and Aging Project at the Knight-ADRC (Knight-ADRC). This work was supported by the National Institutes of Health (NIH) grants R01AG064614, R01AG044546, RF1AG053303, RF1AG058501, U01AG058922 and R01AG064877 to Carlos Cruchaga. The recruitment and clinical characterization of research participants at Washington University was supported by NIH grants P30AG066444, P01AG03991, and P01AG026276. Data collection and sharing for this project was supported by NIH grants RF1AG054080, P30AG066462, R01AG064614 and U01AG052410. We thank the contributors who collected samples used in this study, as well as patients and their families, whose help and participation made this work possible. This work was supported by access to equipment made possible by the Hope Center for Neurological Disorders, the Neurogenomics and Informatics Center (NGI: https://neurogenomics.wustl.edu/ ) and the Departments of Neurology and Psychiatry at Washington University School of Medicine; the University of Miami Brain Endowment Bank (Miami Brain Bank); National Alzheimer’s Coordinating Center (NACC): The NACC database is funded by NIA/NIH Grant U24 AG072122. SCAN is a multi-institutional project that was funded as a U24 grant (AG067418) by the National Institute on Aging in May 2020. Data collected by SCAN and shared by NACC are contributed by the NIA-funded ADRCs as follows: P30 AG062429 (PI James Brewer, MD, PhD), P30 AG066468 (PI Oscar Lopez, MD), P30 AG062421 (PI Bradley Hyman, MD, PhD), P30 AG066509 (PI Thomas Grabowski, MD), P30 AG066514 (PI Mary Sano, PhD), P30 AG066530 (PI Helena Chui, MD), P30 AG066507 (PI Marilyn Albert, PhD), P30 AG066444 (PI John Morris, MD), P30 AG066518 (PI Jeffrey Kaye, MD), P30 AG066512 (PI Thomas Wisniewski, MD), P30 AG066462 (PI Scott Small, MD), P30 AG072979 (PI David Wolk, MD), P30 AG072972 (PI Charles DeCarli, MD), P30 AG072976 (PI Andrew Saykin, PsyD), P30 AG072975 (PI David Bennett, MD), P30 AG072978 (PI Neil Kowall, MD), P30 AG072977 (PI Robert Vassar, PhD), P30 AG066519 (PI Frank LaFerla, PhD), P30 AG062677 (PI Ronald Petersen, MD, PhD), P30 AG079280 (PI Eric Reiman, MD), P30 AG062422 (PI Gil Rabinovici, MD), P30 AG066511 (PI Allan Levey, MD, PhD), P30 AG072946 (PI Linda Van Eldik, PhD), P30 AG062715 (PI Sanjay Asthana, MD, FRCP), P30 AG072973 (PI Russell Swerdlow, MD), P30 AG066506 (PI Todd Golde, MD, PhD), P30 AG066508 (PI Stephen Strittmatter, MD, PhD), P30 AG066515 (PI Victor Henderson, MD, MS), P30 AG072947 (PI Suzanne Craft, PhD), P30 AG072931 (PI Henry Paulson, MD, PhD), P30 AG066546 (PI Sudha Seshadri, MD), P20 AG068024 (PI Erik Roberson, MD, PhD), P20 AG068053 (PI Justin Miller, PhD), P20 AG068077 (PI Gary Rosenberg, MD), P20 AG068082 (PI Angela Jefferson, PhD), P30 AG072958 (PI Heather Whitson, MD), P30 AG072959 (PI James Leverenz, MD); National Institute on Aging Alzheimer’s Disease Family Based Study (NIA-AD FBS): U24 AG056270; Religious Orders Study (ROS): P30AG10161,R01AG15819, R01AG42210; Memory and Aging Project (MAP – Rush): R01AG017917, R01AG42210; Minority Aging Research Study (MARS): R01AG22018, R01AG42210; the Texas Alzheimer’s Research and Care Consortium (TARCC), funded by the Darrell K Royal Texas Alzheimer’s Initiative, directed by the Texas Council on Alzheimer’s Disease and Related Disorders; Washington Heights/Inwood Columbia Aging Project (WHICAP): RF1 AG054023;and Wisconsin Registry for Alzheimer’s Prevention (WRAP): R01AG027161 and R01AG054047. Additional acknowledgments include the National Institute on Aging Genetics of Alzheimer’s Disease Data Storage Site (NIAGADS, U24AG041689) at the University of Pennsylvania, funded by NIA.
+
+## Related Publications
+
+(1) Contreras AG, Walters S, Eissman JM, et al. Genetic modifiers of APOE -ε4-associated cognitive decline . Nature Communications [In Press] 2026. PMC in process.
+
+(2) Kim ME, Rudravaram G, Saunders A, et al. Analytic Bounds on GAMLSS Model Variability of Normative White Matter Brain Charts. SPIE Medical Imaging: Image Processing [In Press] 2026. PMC in process.
+
+(3) Castellano T, Wang TC, Nolan E, et al. APOE, ABCA7, and RASGEF1C are associated with earlier onset of amyloid deposition from over 4000 harmonized Positron Emission Tomography images. Alzheimer’s & Dementia 2025; 21(12): e71006. PMC12701365.
+
+(4) Durant A, Mukherjee S, Lee ML, et al. Evaluating the association of APOE genotype and cognitive resilience in SuperAgers. Alzheimer’s & Dementia 2026 Jan;22(1);e71024. PMC12809718.
+
+(5) Marino FR, Rogers G, Miller JW, et al. Higher vitamin B12 from mid-to-late life is related to slower rates of cognitive decline. Alzheimer’s & Dementia 2025; 21(10): e70864. PMC12568389.
+
+(6) Newlin NR, Kim ME, Kanakaraj P, et al. Harmonizing 10,000 connectomes: Site-invariant representation learning for multi-site analysis of network connectivity and cognitive impairment. Journal of Medical Imaging 2025; 12(6):064001. PMC12594104.
+
+(7) Kanakaraj P, Bogdanov S, Kim ME, et al. Lifespan Trajectories of Asymmetry in White Matter Tracts. bioRxiv [Preprint] 2025. PMC12621989.
+
+(8) Digma LA, Young CB, Winer JR, et al. Continuum of Core 1 Biomarkers in Preclinical Alzheimer’s Disease. medRxiv [Preprint]2025. PMC124558534.
+
+(9) Gallée J, Gibbons LE, Choi SE, et al. Facets of language performance in early-onset and late-onset Alzheimer’s disease dementia. Alzheimer’s & Dementia 2025; 21(9): e70705. PMC12458901.
+
+(10) Choi SE, Mukherjee S, Gibbons LE, et al. Beyond NACC’s Uniform Data Set for cognition: the impact of additional items on measurement precision. Alzheimer’s & Dementia 2025; 21(9): e70694. PMC12441808.
+
+(11) Kim ME, Gao C, Newlin NR, et al. Scalable quality control on processing of large diffusion-weighted and structural magnetic resonance imaging datasets. PLoS One 2025; 20(8):e0327388. PMC12316263.
+
+(12) Kang M, Ang TF, Devine SA, et al. Genome-wide pleiotropy analysis of longitudinal blood pressure and harmonized cognitive performance measures. Alzheimer’s & Dementia 2025; 21(9): e70681. PMC12434708.
+
+(13) Rajabil F, Benchek P, Tosto G, et al. Multi-ancestry genome-wide meta-analysis of 56,241 individuals identifies LRRC4C, LHX5-AS1and nominates ancestry-specific loci PTPRK, GRB14, and KIAA0825 as novel risk loci for Alzheimer’s disease: the Alzheimer’s Disease Genetics Consortium. medRxiv [Preprint] 2025; PMC10350126.
+
+(14) Kim M, Ramadass K, Gao KC, et al. Scalable, reproducible, and cost-effective processing of large-scale medical imaging datasets. Proceedings of SPIE – The International Society for Optical Engineering 2025; 13411. PMC12734404.
+
+(15) Cholerton BA, Beecham GW, Reitz C, et al. Neuropsychiatric symptom subtypes and dementia-associated neuropathologic change. Alzheimer’s & Dementia 2025; 21(9): e70622. PMC12459804.
+
+(16) Okorie M, Johnson C, Oddi AP, et al. Cross-Ancestry Polygenic Risk Scores Enhance Alzheimer’s Disease Risk Prediction in Multiethnic Cohorts. medRxiv [Preprint] 2025. PMC12632690.
+
+(17) Chen R, Ghosh A, Hu J, et al. Beyond P-values: A Multi-Metric Framework for Robust Feature Selection and Predictive Modeling. bioRxiv [Preprint] 2025. PMC12632522.
+
+(18) Abughofah Y, Risacher SL, Unverzagt FW, et al. The Cognitive Change Index in the Alzheimer’s Disease Research Center setting: Self- and informant-ratings for perceived cognitive decline. Alzheimer’s & Dementia 2025; 21(10): e70754. PMC12483767.
+
+(19) Liu S, Huang YN, Park T, et al. Plasma proteomic Alzheimer’s risk score: Biological age clock and pseudotime trajectory. Alzheimer’s & Dementia 2025; 21(10): e70851. PMC12568774.
+
+(20) Marino FR, Rogers G, Miller JW, et al. Higher vitamin B12 from mid- to late life is related to slower rates of cognitive decline. Alzheimer’s & Dementia 2025; 21(10): e70864. PMC12568389.
+
+(21) Ackley SF, La Joie R, Caunca M, et al. Substituting Blood-Based Biomarkers for Imaging Measures in Alzheimer’s Disease Studies: Implications for Sample Size and Bias. medRxiv [Preprint] 2025. PMC12637744.
+
+(22) Xu J, Sun A, Yang Y, et al. Real-world observations on neuroinflammation-related drug responses in Alzheimer’s disease. Journal of Alzheimer’s Disease 2025; 108(1): 273-280. PMC12435914.
+
+(23) Venkatesh R, Cardone KM, Bradford Y, et al. Integrative multi-omics approaches identify molecular pathways and improve Alzheimer’s disease risk prediction. Alzheimer’s & Dementia 2025; 21(11): e70886. PMC12614089.
+
+(24) Dacey R, Hou L, Gurnani A, et al. Alzheimer’s disease mutli-ancestry genome-wide interaction and stratified study with smoking. Alzheimer’s & Dementia 2025; 21(11): e70922. PMC12635870.
+
+(25) Andrews SJ, Tolosa-Tort P, Johnson C, et al. The role of genomic-informed risk assessments in predicting dementia outcomes. Alzheimer’s & Dementia 2025; 21(11): e70826. PMC12635868.
+
+(26) Godrich D, Pasteris J, Martin ER, et al. Genome-wide association studies of TDP-43 proteinopathy and hippocampal sclerosis reveal shared genetic associations with APOE and TMEM106B. Alzheimer’s & Dementia 2025; 21(11): e70760. PMC12598407.
+
+(27) Wadsworth ME, Page ML, Afuzzoli H, et al. Sequencing the gaps: dark genomic regions persist in CHM13 despite long-read advances. bioRxiv [Preprint] 2025. PMC12154616.
+
+(28) Kim ME, Gao C, Ramadass K, et al. White matter microstructure and macrostructure brain charts across the human lifespan. bioRxiv [Preprint] 2025. PMC12247954.
+
+(29) Leung YY, Lee WP, Kuzma AB, et al. Alzheimer’s Disease Sequencing Project release 4 whole genome sequencing dataset. Alzheimer’s & Dementia 2025; 21(5): e70237. PMC12100500.
+
+(30) BN A, Li K, Honnorat N, et al. Convolutional Neural Networks for the segmentation of hippocampal structures in postmortem MRI scans. Journal of Neuroscience Methods 2025; 415: 110359. PMC12308722.
+
+(31) Hayes CA, Young CB, Abdelnour C, et al. The impact of arteriosclerosis on cognitive impairment in decedents without severe dementia from the National Alzheimer’s Coordinating Center. Alzheimer’s & Dementia 2025; 21(3): e70059. PMC11923572.
+
+(32) Durant A, Mukherjee S, Lee ML, et al. Evaluating the association of APOE genotype and cognitive resilience in SuperAgers. medRxiv [Preprint]2025. PMC11741496.
+
+(33) Gallée J, Gibbons LE, Choi SE, et al. Facets of language performance in early-onset and late-onset Alzheimer’s disease dementia. Alzheimer’s & Dementia 2025; 21(9):e70705. PMC12458901.
+
+(34) Wang D, Honnorat N, Toledo JB, et al. Deep learning reveals pathology-confirmed neuroimaging signatures in Alzheimer’s, vascular and Lewy body dementias. Brain 2025; 148(6): 1963-1977. PMC12129746.
+
+(35) Eissman JE, Regelson AN, Walters S, et al. Sex-Specific Genetic Drivers of Memory, Executive Functioning, and Language Performance in Older Adults . medRxiv [Preprint] 2025. PMC12148254.
+
+(36) Venkatesh R, Cardone KM, Bradford Y, et al. Integrative multi-omics approaches identify molecular pathways and improve Alzheimer’s Disease risk prediction. Alzheimer’s & Dementia 2025; 21(11):e70886. PMC12614089
+
+(37) Cho C, Chamberland M, Rheault F, et al. Microstructural Characterization of Short Association Fibers Related to Long-Range White Matter Tracts in Normative Development. Human Brain Mapping 2025; 46(8): e70255. PMC12148645.
+
+(38) Kuzma A, Valladares O, Greenfest-Allen E, et al. NIAGADS: A data repository for Alzheimer’s disease and related dementia genomics. Alzheimer’s & Dementia 2025; 21(6): e70255. PMC12183107.
+
+(39) Kang K, Zhang P, Dumitrescu L, et al. The dynamics of cognitive decline toward Alzheimer’s disease progression: Results from ADSP-PHC’s harmonized cognitive composites. Alzheimer’s & Dementia 2025; 21(6): e70335. PMC12179338.
+
+(40) Charisis S, Rashid T, Dintica C, et al. Assessing the Global Impact of Brain Small Vessel Disease on Cognition: The Multi-Ethnic Study of Athereosclerosis. Alzheimer’s & Dementia 2025; 21(6): e70326. PMC12136095.
+
+(41) Xu Y, Western D, Heo G, et al. Protein-based Diagnosis and Analysis of Co-pathologies Across Neurodegenerative Diseases: Large-Scale AI-Boosted CSF and Plasma Classification. Research Square [Preprint]2025. PMC12324596.
+
+(42) Hayes-Larson E, Andrews RM, Kezios KL, et al. Approaches to Timescale Choice in Cognitive Aging Research and Potential Implications for Estimated Exposure Effects: Coordinated Analyses in 10 Cohorts of Older Adults. Epidemiology 2025; 36(4): 560-571. PMC12211680.
+
+(43) Bertholim-Nasciben L, Nuytemans K, Van Booven D, et al. Exploring potential mechanisms of an African protective locus for Alzheimer’s disease in APOEε4 carriers. Alzheimer’s & Dementia 2025; 21(7): e70500. PMC12287753.
+
+(44) Guo MH, Lee WP, Vardarajan B, et al. Polygenic burden of short tandem repeat expansions promotes risk for Alzheimer’s disease. Nature Communications 2025; 16(1): 1126. PMC1175329.
+
+(45) Newlin NR, Kim ME, Kanakaraj P, et al. Learning disentangled representations to harmonize connectome network measures. Journal of Medical Imaging 2025; 12(1): 14004. PMC11826349.
+
+(46) Peterson A, Sathe A, Zaras D, et al. Sex and APOEε4 allele differences in longitudinal white matter microstructure in multiple cohorts of aging and Alzheimer’s disease. Alzheimer’s & Dementia 2025; 21(1): e14343. PMC11781133.
+
+(47) Schilling KG, Ramadass K, Sairanen V, et al. Head Motion in Diffusion Magnetic Resonance Imaging: Quantification, Mitigation, and Structural Associations in Large, Cross-Sectional Datasets Across the Lifespan. Human Brain Mapping 2025; 46(3): e70143. PMC11814480.
+
+(48) Olivier-Jimenez D, Derks RJ, Harari O, et al. iSODA: A Comprehensive Tool for Integrative Omics Data Analysis in Single- and Multi-Omics Experiments. Analytical Chemistry 2025; 97(5): 2689-2697. PMC11822744.
+
+(49) Kim ME, Ramadass K, Gao C, et al. Scalable, reproducible, and cost-effective processing of large-scale medical imaging datasets. Proceedings of SPIE – The International Society for Optical Engineering 2025; 12411. PMC12734404.
+
+(50) Li Z, Kim ME, Yu T, et al. Approximate diffusion tractography from FLAIR MRI and anatomical context using recurrent neural networks. Proceedings of SPIE – The International Society for Optical Engineering 2025; 13406. PMC12726966.
+
+(51) Kulmininski AM, Jain-Washburn E, Nazarian A, et al. Association of APOE alleles and polygenic profiles comprise APOE-TOMM40-APOC1 variants with Alzheimer’s disease neuroimaging markers. Alzheimer’s & Dementia 2025; 21(2): e14445. PMC11848341.
+
+(52) McMaster E, Puglisi L, Gao C, et al. A technical assessment of latent diffusion for Alzheimer’s Disease progression. Proceedings of SPIE – The International Society for Optical Engineering 2025; 13406. PMC12726967.
+
+(53) Yoon J, McMaster EM, Cho C, et al. Tractography enhancement in clinically-feasible diffusion MRI using T1-weighted MRI and anatomical context. Proceedings of SPIE – The International Society for Optical Engineering 2025; 13406. PMC12734759.
+
+(54) Gallée J, Cartwright J, Henry ML, et al. The Progressive Aphasia Communication Toolkit (PACT): A Strengths-Based Approach to Multidomain Evaluation for Intervention. medRxiv [Preprint] 2025. PMC12706597.
+
+(55) Phillips JM, Dumitrescu LC, Archer DB, et al. Novel modeling approaches to elucidate the genetic architecture of resilience to Alzheimer’s disease. Brain 2025; 148(8): 2714-2729. PMC12295682.
+
+(56) Maina MB, Isah MB, Marsh JA, et al. Somatic and Stem Cell Bank to study the contribution of African ancestry to dementia: African iPSC Initiative. Alzheimer’s & Dementia 2025; 21(4): PMC11992592.
+
+(57) Gallée J, Volkmer A, Whitworth A, et al. Applications of the R.A.I.S.E. Assessment Framework to Support the Process of Assessment in Primary Progressive Aphasia. American Journal of Speech-Language Pathology 2024; 33(5): 2280-2290. PMC11427735.
+
+(58) Birkenbihl C, Cupples M, Boyle RT, et al. Rethinking the residual approach: Leveraging machine learning to operationalize cognitive resilience in Alzheimer’s disease. Brain Informatics 2025; 12(1):3. PMC11772644
+
+(59) Wang L, Qu J, Kim ME et al. The impact of multi-omics in medicine. Cell Reports Medicine 2024; 5(9): 101742. PMC11525018.
+
+(60) Sathe A, Yang Y, Schilling KG, et al. Free-water: A promising structural biomarker for cognitive decline in aging and mild cognitive impairment. Imaging Neuroscience 2024; 2: 46038. PMC11540062.
+
+(61) Newlin NR, Kim ME, Kanakaraj P, et al. MidRISH: Unbiased harmonization of rotationally invariant harmonics of the diffusion signal. Magnetic Resonance Imaging 2024; 111: 113-119. PMC11283839.
+
+(62) Tong T, Zhu C, Farrell JJ, et al. Blood-derived mitochondrial DNA copy number is associated with Alzheimer disease, Alzheimer-related biomarkers and serum metabolites. Alzheimer’s Research & Therapy 2024; 16(1): 234. PMC11515778.
+
+(63) Garg A, Vo S, Brase L, et al. Exploring Cellular Heterogeneity: Single-Cell and Spatial Transcriptomics of Alzheimer Disease Brains and iPSC-Derived Microglia. Research Square 2024. PMC11527241.
+
+(64) Yang Z, Wen J, Erus G, et al. Brain aging patterns in a large and diverse cohort of 49,482 individuals. Nature Medicine 2024; 30(10): 3015-3026. PMC11483219.
+
+(65) Phillips JM, Winfree RL, Seto M, et al. Pathologic and clinical correlates of region-specific brain GFAP in Alzheimer’s disease. Acta Neuropathologica 2024; 148(1): 69. PMC11586308.
+
+(66) Iglesia MC, Jayasinghe RG, Chen S, et al. Differential chromatin accessibility and transcriptional dynamics define breast cancer subtypes and their lineages. Nature Cancer 2024; 5(11): 1713-1736. PMC11584403.
+
+(67) Boyle R, Townsend DL, Klinger HM, et al. Identifying longitudinal cognitive resilience from cross-sectional amyloid, tau, and neurodegeneration. Alzheimer’s Research & Therapy 2024; 16(1): 148. PMC11220971.
+
+(68) Younes K, Smith V, Johns E, et al. Temporal tau asymmetry spectrum influences divergent behaviour and language patterns in Alzheimer’s disease. Brain, Behavior, and Immunity 2024; 119: 807-817. PMC12188992.
+
+(69) Gao C, Bao S, Kim ME, et al. Field-of-view extension for brain diffusion MRI via deep generative models. Journal of Medical Imaging 2024; 11(4): 44008. PMC11344266.
+
+(70) Gao C, Yang Q, Kim ME, et al. Characterizing patterns of diffusion tensor imaging variance in aging brains. Journal of Medical Imaging 2024; 11(4): 44007. PMC11344569.
+
+(71) Gao C, Kim ME, Lee HH, et al. Predicting Age from White Matter Diffusivity with Residual Learning. Proceedings of SPIE – The International Society for Optical Engineering 2024; 12926. PMC11415267.
+
+(72) Yang Z, Wen J, Abdulkadir A, et al. Gene-SGAN: discovering disease subtypes with imaging and genetic signatures via multi-view weakly supervised deep clustering. Nature Communications 2024; 15(1): 354. PMC10774282.
+
+(73) Honnorat N, Seshadri S, Killany R, et al. Riemannian frameworks for the harmonization of resting-state functional MRI scans. Medical Image Analysis 2024; 91: 104043. PMC11157681.
+
+(74) Tejeda M, Farrell J, Zhu C, et al. DNA from multiple viral species is associated with Alzheimer’s disease risk. Alzheimer’s & Dementia 2024; 20(1): 253-265. PMC10840621.
+
+(75) Tosun D, Yardibi O, Benzinger TL, et al. Identifying individuals with non-Alzheimer’s disease co-pathologies: A precision medicine approach to clinical trials in sporadic Alzheimer’s disease. Alzheimer’s & Dementia 2024; 20(1): 421-436. PMC10843695.
+
+(76) Eissman JM, Archer DB, Mukherjee SL, et al. Sex-specific genetic architecture of late-life memory performance. Alzheimer’s & Dementia 2024; 20(2): 1250-1267. PMC10917043.
+
+(77) Topolnjak E, Gao C, Beason-Held LL, et al. Assessment of Subject Head Motion in Diffusion MRI. Proceedings of SPIE – The International Society for Optical Engineering 2024; 12926. PMC11364405.
+
+(78) Bao S, Zhu S, Kolachala VL, et al. Cell Spatial Analysis in Crohn’s Disease: Unveiling Local Cell Arrangement Pattern with Graph-based Signatures. Proceedings of SPIE – The International Society for Optical Engineering 2024; 12933. PMC11415268.
+
+(79) Archer DB, Eissman JM, Mukherjee S, et al. Longitudinal change in memory performance as a strong endophenotype for Alzheimer’s disease. Alzheimer’s & Dementia 2024; 20(2): 1268-1283. PMC10896586.
+
+(80) Klinger HM, Healy BC, Hanseeuw BJ, et al. Latent change-on-change between amyloid accumulation and cognitive decline. Alzheimer’s & Dementia 2024; 20(12): 8728-8738. PMC11667500.
+
+(81) Gallée J, Cartwright J, Grasso S, et al. Global perspectives on the management of primary progressive aphasia. Scientific Reports 2024; 14(1): 19712. PMC11344800.
+
+(82) Duggan MR, Gomez GT, Joynes CM, et al. Proteome-wide analysis identifies plasma immune regulators of amyloid-beta progression. Brain, Behavior, and Immunity 2024; 120: 604-619. PMC11682725.
+
+(83) Farrell ME, Thibault EG, Becker JA, et al. Spatial extent as a sensitive amyloid-PET metric in preclinical Alzheimer’s disease. Alzheimer’s & Dementia 2024; 20(8): 5434-5449. PMC11350060.
+
+(84) Johns E, Vossler HA, Young CB, et al. Florbetaben amyloid PET acquisition time: Influence on Centiloids and interpretation. Alzheimer’s & Dementia 2024; 20(8): 5299-5310. PMC11350032.
+
+(85) Kanakaraj P, Yao T, Young CB, et al. DeepN4: Learning N4ITK Bias Field Correction for T1-weighted Images. Neuroinformatics 2024; 22(2): 193-205. PMC11182041.
+
+(86) Chemparathy A, Guen YL, Chen S, et al. APOE loss-of-function variants: Compatible with longevity and associated with resistance to Alzheimer’s Disease pathology. Neuron 2024: 112(7):1110-1116.e5. PMC10994769.
+
+(87) Walters S, Contreras AG, Eissman JM, et al. Associations of Sex, Race, and Apolipoprotein E Alleles With Multiple Domains of Cognition Among Older Adults. JAMA Neurology 2023; 80(9):929-939. PMC10352930.
+
+(88) Archer DB, Schilling K, Shashikumar N, et al. Leveraging longitudinal diffusion MRI data to quantify differences in white matter microstructural decline in normal and abnormal aging. Alzheimer’s & Dementia 2023; 15(4): e12468. PMC10540270.
+
+(89) Hampton OL, Mukherjee S, Properzi MJ, et al. Harmonizing the preclinical Alzheimer cognitive composite for multicohort studies. Neuropsychology 2023; 37(4): 436-449. PMC9859944.
+
+(90) Mukherjee S, Choi SE, Lee ML, et al. Cognitive domain harmonization and cocalibration in studies of older adults. Neuropsychology 2023; 37(4): 409-423. PMC9898463.
+
+(91) Wortha SM, Frenzel S, Bahls M, et al. Association of spermidine plasma levels with brain aging in a population-based study. Alzheimer’s & Dementia 2023; 19(5): 1832-1840. PMC11246659.
+
+(92) Rashid T, Li K, Toledo JB, et al. Association of Intensive vs Standard Blood Pressure Control With Regional Changes in Cerebral Small Vessel Disease Biomarkers: Post Hoc Secondary Analysis of the SPRINT MIND Randomized Clinical Trial. JAMA Network Open 2023; 6(3): e231055. PMC9978954.
+
+(93) Rashid T, Liu H, Ware JB, et al. Deep Learning Based Detection of Enlarged Perivascular Spaces on Brain MRI. NeuroImage: Reports 2023; 3(1). PMC10078801.
+
+(94) Brenowitz WD, Fornage M, Launer LJ, et al. Alzheimer’s Disease Genetic Risk, Cognition, and Brain Aging in Midlife. Annals of Neurology 2023; 93(3): 629-634. PMC9974745.
+
+(95) Kang M, Ang TF, Devine SA, et al. A genome-wide search for pleiotropy in more than 100,000 harmonized longitudinal cognitive domain scores. Molecular Neurodegeneration 2023; 18(1): 40. PMC10286470.
+
+(96) Younes K, Mormino EC. The pathotome and precision health. Brain 2023; 146(6): 2208-2210. PMC10232233.
+
+(97) Evans TE, Knol MJ, Schwingenschuh P, et al. Determinants of Perivascular Spaces in the General Population: A Pooled Cohort Analysis of Individual Participant Data. Neurology 2023; 100(2): e107-e122. PMC9841448.
+
+(98) Young CB, Johns E, Kennedy G, et al. APOE effects on regional tau in preclinical Alzheimer’s disease. Molecular Neurodegeneration 2023; 18(1): 1. PMC9811772.
+
+(99) Yang Z, Wen H, Erus G, et al. Five dominant dimensions of brain aging are identified via deep learning: associations with clinical, lifestyle, and genetic measures. medRxiv [Preprint] 2023. PMC10793523.
+
+(100) Tosun D, Thropp P, Southekal S, et al. Profiling and predicting distinct tau progression patterns: An unsupervised data-driven approach to flortaucipir positron emission tomography. Alzheimer’s & Dementia 2023; 19(12): 5606-5619. PMC10704003.
+
+(101) Klingenberg M, Stark D, Eitel F, et al. Higher performance for women than men in MRI-based Alzheimer’s disease detection. Alzheimer’s Research & Therapy 2023; 15(1): 84. PMC10116672.
+
+(102) Hirschfield LR, Deardorff R, Chumin EJ, et al. White matter integrity is associated with cognition and amyloid burden in older adult Koreans along the Alzheimer’s disease continuum . Alzheimer’s Research & Therapy 2023; 15(1): 218. PMC10725037.
+
+(103) Charisis S, Rashid T, Liu H, et al. Assessment of Risk Factors and Clinical Importance of Enlarged Perivascular Spaces by Whole-Brain Investigation in the Multi-Ethnic Study of Atherosclerosis. JAMA Network Open 2023; 6(4): e239196. PMC10126873.
+
+(104) Eissman JM, Dumitrescu L, Mahoney ER, et al. Sex differences in the genetic architecture of cognitive resilience to Alzheimer’s disease. Brain 2022; 145(7): 2541-2554. PMC9337804.
+
+(105) Kokkinos P, Cheng Y, Zamrini E, et al. Long-term changes in cardiorespiratory fitness and incidence of Alzheimer’s disease and related dementias among US Veterans. Alzheimer’s & Dementia 2025; 11(4): e70171. PMC12706117.
+
+(106) Jo T, Bice P, Nho K, et al. LD-informed deep learning for Alzheimer’s gene loci detection using WGS data. Alzheimer’s & Dementia 2025; 11(1): e70041. PMC11736638.
+
+(107) Phillips JM, Schneider JA, Bennett DA, et al. Astrocyte Reactivity Polygenic Risk Score May Predict Cognitive Decline in Alzheimer’s Disease. Pacific Symposium on Biocomputing 2025; 30: 488-503. PMC11752824.
+
+(108) Yoon J, Rao MM, Elyssa M, et al. Transformer-Based T1-Tractography. Proceedings of the IEEE International Symposium on Biomedical Imaging 2025. PMC12345601.
+
+(109) Yang Y, Sathe A, Schilling K, et al. A deep neural network estimation of brain age is sensitive to cognitive impairment and decline. Pacific Symposium on Biocomputing 2024; 29: 148-162. PMC10764074.
+
+(110) Eissman JM, Wells G, Khan OA, et al. Ploygenic resilience score may be sensitive to preclinical Alzheimer’s disease changes. Pacific Symposium on Biocomputing 2023; 28: 449-460. PMC9888419.
+
+(111) Li K, Rashid T, Li J, et al. Postmortem Brain Imaging in Alzheimer’s Disease and Related Dementias: The South Texas Alzheimer’s Disease Research Center Repository. Journal of Alzheimer’s Disease 2023; 96(3): 1267-1283. PMC10693476.
+
+(112) Lee AJ, Sanchez D, Reyes-Dumeyer D, et al. Reliability and Validity of Self-Reported Vascular Risk Factors: Hypertension, Diabetes, and Heart Disease, in a Multi-Ethnic Community Based Study of Aging and Dementia. Journal of Alzheimer’s Disease 2023; 95(1): 275-285. PMC10578288.
+
+(113) Toledo JB, Rashid T, Liu H, et al. SPARE-Tau: A flortaucipir machine-learning derived early predictor of cognitive decline. PLOS One 2022; 17(11): e0276392. PMC9632811.
+
+(114) Wells LD, Risacher SL, McDonald BC, et al. Measuring Subjective Cognitive Decline in Older Adults: Harmonization Between the Cognitive Change Index and the Measurement of Everyday Cognition Instruments. Journal of Alzheimer’s Disease 2022; 87(2): 761-769. PMC9169561.
+
+(115) Toledo JB, Liu H, Grothe MJ, et al. Disentangling tau and brain atrophy cluster heterogeneity across the Alzheimer’s disease continuum. Alzheimer’s & Dementia 2022; 8(1): e12305. PMC9127251.
+
+(116) Mormino EC, Insel PS. Uncertainties in the PET defined A-/T Neocortical Subtype. Alzheimer’s & Dementia 2022; 14(1): e12348. PMC9413468.

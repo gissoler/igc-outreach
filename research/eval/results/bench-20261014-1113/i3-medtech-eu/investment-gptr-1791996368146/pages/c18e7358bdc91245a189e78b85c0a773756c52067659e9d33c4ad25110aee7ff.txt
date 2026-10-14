@@ -1,0 +1,128 @@
+Idoven — Whiteford Research Biobase
+
+Login
+Sign Up
+
+← Company DB
+
+### Classification
+
+Sector
+
+Diagnostics
+(3649)
+
+Subsubsectors
+
+Digital and AI Diagnostics
+(117)
+
+Technologies
+
+Api-Based Health
+(3)
+
+Cardiac
+(76)
+
+ECG analysis
+(2)
+
+arrhythmia detection
+(12)
+
+artificial intelligence
+(2291)
+
+cardiovascular digital biomarkers
+(2)
+
+clinical workflow integration
+(30)
+
+cloud-based diagnostics
+(6)
+
+electrocardiography
+(17)
+
+electronic medical record integration
+(53)
+
+machine learning
+(1680)
+
+software as a medical device
+(325)
+
+Request Update/Expanded Info
+
+# Idoven
+
+## Overview
+
+Idoven is a Madrid-based digital health company developing AI-powered cardiovascular diagnostics and precision-medicine tools for ECG analysis. The company says its mission is to prevent cardiovascular disease, and its story page describes Idoven as founded in 2018 to translate cardiology and AI research into Willem, its AI-powered ECG analysis platform [1] . Idoven's legal footer identifies the company as IDOVEN 1903, S.L. at Google for Startups Campus, Calle Moreno Nieto 2, 28005 Madrid [2] .
+
+## Technology
+
+Idoven's core product is Willem, an AI-powered ECG analysis platform offered to industry partners for R&D, diagnostics, and treatment-targeting workflows [3] . The platform receives ECG data from medical-device hardware, transmits it to a cloud platform, and returns ECG analysis and reports in minutes [3] . Idoven says Willem ingests common clinical and data formats including JSON, HL7, DICOM, EDF, XML, and PDF, and supports API and non-API integrations for electronic medical-record workflows [3] .
+
+## Products and Regulatory
+
+Willem is described by Idoven as certified under the EU Medical Device Regulation for assessment of arrhythmias by qualified healthcare professionals using ECG data [3] . The company states that the certified scope covers standard diagnostic resting ECG devices, ambulatory ECG devices such as holters and patches, and insertable cardiac monitors [3] . Idoven's homepage also describes Willem as a Class IIa medical device capable of detecting 22 cardiac patterns and four ECG intervals across several ECG recording device types [2] .
+
+## Pipeline and Programs
+
+Idoven's current programs are more platform and validation oriented than a drug pipeline. Its about page lists the WILLEM clinical trial, participation in MAESTRIA for atrial cardiomyopathy, atrial fibrillation, and stroke diagnosis, and ARISTOTELES for trustworthy AI in chronic disease management [1] . In 2025, Idoven and AstraZeneca launched CONCERTO to develop and validate an AI model for detecting amyloidosis from ECG analysis on the Willem platform; Idoven said the model was entering external validation in European hospitals in Spain, France, and Italy [4] .
+
+## Funding
+
+The public fundraising history that could be confirmed from primary or company-linked sources is summarized below. No public valuation was disclosed in the identified sources for any of the rounds or grants listed here. EUR-to-USD conversions use the ECB euro reference rate on or immediately tied to the announcement date: EUR/USD 1.2212 on May 24, 2021; 1.0540 on April 29, 2022; and 1.0550 on June 21, 2022 [5] [6] [7] [8]
+
+Round
+Date
+Amount
+Amount (USD)
+Investor(s) / Funder(s)
+Valuation
+Sources
+
+Seed
+May 24, 2021
+EUR 2,000,000
+USD 2,442,400
+Wayra, Accel Starter Programme, ENISA, and business angels; Wayra said this brought total financing to more than EUR 3 million including prior backers such as Iker Casillas
+Not publicly disclosed
+Wayra announcement [5] ; Idoven timeline [1]
+
+EIC Accelerator grant/equity
+April 30, 2022
+EUR 6,500,000
+USD 6,851,000
+European Innovation Council (EIC) Accelerator
+Not publicly disclosed
+Idoven announcement [6] ; EIC selection announcement [9]
+
+Series A
+June 21, 2022
+EUR 12,000,000
+USD 12,660,000
+Insight Partners and Northzone (co-leads); Wayra; new angels including Ron Vianu, Brad Fluegel, and Vlad Lata; existing angels including Iker Casillas, Diego Piacentini, and Sebastian Gunningham
+Not publicly disclosed
+Idoven/PR Newswire said the round was USD 12.9 million and part of a total USD 19.8 million financing package including the EIC award [7] ; Idoven blog [10] ; EIT Health summary of a EUR 12 million round plus the EUR 6.5 million EIC support [11]
+
+Follow-on round
+September 5, 2023
+Undisclosed
+Undisclosed
+Northzone (lead), Insight Partners, Pau Gasol, and major previous investors
+Not publicly disclosed
+Idoven announcement [12]
+
+## Investors and Partners
+
+Named investors and backers identified in public sources include Wayra, Accel Starter Programme, ENISA, business angels, Insight Partners, Northzone, and the European Innovation Council via the EIC Accelerator [1] [5] [6] . The June 2022 financing announcement also named Ron Vianu, Brad Fluegel, Vlad Lata, Iker Casillas, Diego Piacentini, and Sebastian Gunningham among participating angels or existing backers, while the September 2023 follow-on announcement added Pau Gasol as an investor [7] [12] . Commercial and research-facing partners named on Idoven's site include AstraZeneca, Abbott, GE Healthcare, and Medtronic, which Idoven presents as trusted life-sciences and MedTech companies using or collaborating around its cardiovascular AI technology [2] .
+
+## Positioning
+
+Idoven is best categorized as a diagnostics/software-as-a-medical-device company rather than a therapeutics company. Its market focus is ECG interpretation, cardiovascular risk prediction, digital biomarkers, cardiac safety, and screening programs for life-sciences, MedTech, and clinical customers [2] . Because the product depends on ECG data from third-party devices and integrates with clinical systems, the company's defensibility appears to come from annotated ECG datasets, trained algorithms, clinical validation, regulatory certification, and partner integrations [2] .

@@ -1,0 +1,1205 @@
+{
+ "id": "eff0a503-9549-42c3-8c82-93e8127b4321",
+ "brief": {
+  "name": "Benchmark",
+  "role": "Founder",
+  "company": "Fundación Salud Rural",
+  "product": "Telehealth and community health worker program for rural maternal care",
+  "description": "Nonprofit foundation in Colombia training community health workers and providing telehealth follow-up for pregnant women in rural areas.",
+  "industry": "global health maternal care telehealth community health workers",
+  "stage": "prototype",
+  "geography": "Colombia (registered in Colombia, no US or EU entity)",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "grant"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 150000,
+  "minDays": 30,
+  "useTeam": false,
+  "useApify": false,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "",
+  "venture": "Fundación Salud Rural",
+  "oneLiner": "Telehealth and community health workers for rural maternal care",
+  "round": "",
+  "constraints": "Must accept applicants from Latin America; no equity",
+  "useOfFunds": "Scale from 3 to 12 municipalities, train 60 health workers, evaluate outcomes",
+  "timeline": "18 months",
+  "website": "",
+  "entityType": "nonprofit",
+  "country": "Colombia",
+  "state": "",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: Fundación Salud Rural · Telehealth and community health worker program for rural maternal care: grant · prototype · Colombia (registered in Colombia, no US or EU entity) · USD 150000 · avoid: Must accept applicants from Latin America; no equity",
+   "at": "2026-10-14T16:28:28.873Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 6 phrasings separately: Rural Health Transformation Program · rural maternal health telemedicine · community health worker maternal support · remote prenatal care program · rural obstetric telehealth initiative · rural health care access",
+   "at": "2026-10-14T16:28:29.553Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T16:28:29.738Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 1 candidates with provenance.",
+   "at": "2026-10-14T16:34:28.187Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 1 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T16:34:28.192Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Grant work items built from official calls; no fundraising emails were created.",
+   "at": "2026-10-14T16:34:29.658Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 1 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T16:34:29.696Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": null,
+   "role": null,
+   "org": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+   "title": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2026-10-19",
+   "amount": "Not specified",
+   "contact": {
+    "type": "web",
+    "value": "https://www.hrsa.gov/grants/find-funding",
+    "provenance": "Read and verified on hrsa.gov"
+   },
+   "evidence": [
+    {
+     "id": "e0ece4863f39a663b924",
+     "source": "Web research engine · hrsa.gov",
+     "url": "https://www.hrsa.gov/grants/find-funding",
+     "quote": "Fiscal Year (FY) 2027 Service Area Competition (SAC)\nFunding Opportunity Number: HRSA-27-005\nApplication Deadline: 10/19/2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:34:28.186Z",
+     "verified": true
+    },
+    {
+     "id": "ee0b165d6bf6dd0ed4bb",
+     "source": "Web research engine · deadline",
+     "url": "https://www.hrsa.gov/grants/find-funding",
+     "quote": "Application Deadline: 10/19/2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:34:28.187Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "The page does not list specific funded topics such as maternal care or telehealth.",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Health Resources & Services Administration (HRSA) - Find Grant Funding Find Grant Funding | HRSA Fiscal Year (FY) 2027 Service Area Competition (SAC)\nFunding Opportunity Number: HRSA-27-005\nApplication Deadline: 10/19/2026",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.hrsa.gov/grants/find-funding",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 5,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The page does not list specific funded topics such as maternal care or telehealth.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Fiscal Year (FY) 2027 Service Area Competition (SAC)\nFunding Opportunity Number: HRSA-27-005\nApplication Deadline: 10/19/2026",
+    "deadline": "Application Deadline: 10/19/2026"
+   },
+   "key": "opportunity:engine:grant:https://www.hrsa.gov/grants/find-funding",
+   "id": "20875f273ff1269a1854",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "global health maternal care telehealth community health workers",
+    "Rural Health Transformation Program",
+    "rural maternal health telemedicine",
+    "community health worker maternal support",
+    "rural health care access"
+   ],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The page does not list specific funded topics such as maternal care or telehealth.",
+    "workType": null
+   },
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The page does not list specific funded topics such as maternal care or telehealth.",
+    "Specific open grant opportunity (engine:grant:https://www.hrsa.gov/grants/find-funding); eligibility must be resolved against the notice.",
+    "Published deadline: 2026-10-19.",
+    "Published ceiling USD Not specified; stated target USD 150000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 5,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 1,
+   "jev": {
+    "leadId": "20875f273ff1269a1854",
+    "action": "investigate_more",
+    "actionConfidence": 0.88,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.92,
+     "discard": 0.08
+    },
+    "strategicFit": 1.2,
+    "fitConfidence": 0.65,
+    "evidenceSufficient": 0.17,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.hrsa.gov/grants/find-funding",
+    "body": "Official call: engine:grant:https://www.hrsa.gov/grants/find-funding — Health Resources & Services Administration (HRSA) - Find Grant Funding\n\nWhere to apply: the official program page\nOfficial notice: https://www.hrsa.gov/grants/find-funding\n\nDeadline: 2026-10-19 — 5 days left, but the required steps usually take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 64
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-17",
+      "what": "Make an urgent go/no-go decision before drafting."
+     },
+     {
+      "when": "2026-10-14",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The page does not list specific funded topics such as maternal care or telehealth. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.hrsa.gov/grants/find-funding",
+    "agency": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+    "deadline": "2026-10-19",
+    "daysToDeadline": 5,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Colombia (registered in Colombia, no US or EU entity)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.hrsa.gov/grants/find-funding",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 5,
+     "feasible": false,
+     "verdict": "not_feasible",
+     "nextDeadline": null,
+     "message": "5 days left, but the required steps usually take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T16:28:28.868Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:1",
+    "sequence": 1,
+    "at": "2026-10-14T16:28:29.737Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "Fundación Salud Rural · Telehealth and community health worker program for rural maternal care: grant · prototype · Colombia (registered in Colombia, no US or EU entity) · USD 150000 · avoid: Must accept applicants from Latin America; no equity",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "Rural Health Transformation Program · rural maternal health telemedicine · community health worker maternal support · remote prenatal care program · rural obstetric telehealth initiative · rural health care access"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "global health maternal care telehealth community health workers Telehealth and community health worker program for rural maternal care"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "global health maternal care telehealth community health workers Telehealth and community health worker program for rural maternal care"
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:2",
+    "sequence": 2,
+    "at": "2026-10-14T16:28:29.738Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:3",
+    "sequence": 3,
+    "at": "2026-10-14T16:34:28.187Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 1 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 1,
+    "durationMs": 358449,
+    "status": "success"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:4",
+    "sequence": 4,
+    "at": "2026-10-14T16:34:28.192Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 0 new people across 0 organizations (0 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:5",
+    "sequence": 5,
+    "at": "2026-10-14T16:34:28.192Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:6",
+    "sequence": 6,
+    "at": "2026-10-14T16:34:28.192Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 0,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Benchmark",
+     "contacts": 0,
+     "candidates": 1,
+     "paths": []
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:7",
+    "sequence": 7,
+    "at": "2026-10-14T16:34:28.192Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 1 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 1,
+    "status": "running"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:8",
+    "sequence": 8,
+    "at": "2026-10-14T16:34:29.054Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "2 people found across 1 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 2,
+    "status": "success"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:9",
+    "sequence": 9,
+    "at": "2026-10-14T16:34:29.057Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:10",
+    "sequence": 10,
+    "at": "2026-10-14T16:34:29.657Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 1 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 1,
+    "durationMs": 600,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 994,
+      "output_tokens": 89,
+      "cost": 0.000041748
+     }
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:11",
+    "sequence": 11,
+    "at": "2026-10-14T16:34:29.658Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 1 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 1,
+    "durationMs": 1466,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+       "org": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+       "title": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+       "score": 23,
+       "why": "The page does not list specific funded topics such as maternal care or telehealth.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 0,
+      "radar": 1,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:12",
+    "sequence": 12,
+    "at": "2026-10-14T16:34:29.662Z",
+    "phase": "evaluating",
+    "title": "Application plans prepared",
+    "message": "1 opportunities converted into go/no-go work plans.",
+    "provider": "Application plan",
+    "resultCount": 1,
+    "status": "success"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:13",
+    "sequence": 13,
+    "at": "2026-10-14T16:34:29.695Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 149 pages read by the AI · 0 main list · 1 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:14",
+    "sequence": 14,
+    "at": "2026-10-14T16:34:29.696Z",
+    "phase": "drafting",
+    "title": "Grant work items ready",
+    "message": "1 specific grant opportunities prepared for review.",
+    "resultCount": 1,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+     "org": "Health Resources & Services Administration (HRSA) - Find Grant Funding",
+     "subject": "How to apply · engine:grant:https://www.hrsa.gov/grants/find-funding",
+     "excerpt": "Official call: engine:grant:https://www.hrsa.gov/grants/find-funding — Health Resources & Services Administration (HRSA) - Find Grant Funding\n\nWhere to apply: the official program page\nOfficial notice: https://www.hrsa.gov/grants/find-funding\n\nDeadline: 2026-10-19 — 5 days left, but the required steps usually take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo "
+    }
+   },
+   {
+    "id": "eff0a503-9549-42c3-8c82-93e8127b4321:15",
+    "sequence": 15,
+    "at": "2026-10-14T16:34:29.696Z",
+    "phase": "completed",
+    "title": "Run complete",
+    "message": "0 candidates prioritized; 1 on radar.",
+    "resultCount": 1,
+    "status": "success",
+    "detail": {
+     "jobStatus": "done",
+     "usage": {},
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "done",
+ "plan": {
+  "topic": "global health maternal care telehealth community health workers",
+  "query": "global health maternal care telehealth community health workers Telehealth and community health worker program for rural maternal care",
+  "scientificQuery": "global health maternal care telehealth community health workers",
+  "summary": "Fundación Salud Rural · Telehealth and community health worker program for rural maternal care: grant · prototype · Colombia (registered in Colombia, no US or EU entity) · USD 150000 · avoid: Must accept applicants from Latin America; no equity",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "Rural Health Transformation Program · rural maternal health telemedicine · community health worker maternal support · remote prenatal care program · rural obstetric telehealth initiative · rural health care access"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "global health maternal care telehealth community health workers Telehealth and community health worker program for rural maternal care"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "global health maternal care telehealth community health workers Telehealth and community health worker program for rural maternal care"
+   }
+  ],
+  "alzheimer": false,
+  "terms": [
+   {
+    "term": "Rural Health Transformation Program",
+    "source": "lexicon"
+   },
+   {
+    "term": "rural maternal health telemedicine",
+    "source": "model"
+   },
+   {
+    "term": "community health worker maternal support",
+    "source": "model"
+   },
+   {
+    "term": "remote prenatal care program",
+    "source": "model"
+   },
+   {
+    "term": "rural obstetric telehealth initiative",
+    "source": "model"
+   },
+   {
+    "term": "rural health care access",
+    "source": "lexicon"
+   }
+  ]
+ },
+ "portals": [
+  {
+   "name": "MinCiencias convocatorias",
+   "url": "https://minciencias.gov.co/convocatorias"
+  },
+  {
+   "name": "iNNpulsa Colombia convocatorias",
+   "url": "https://www.innpulsacolombia.com/convocatorias"
+  },
+  {
+   "name": "Sistema General de Regalías (SGR)",
+   "url": "https://www.sgr.gov.co/"
+  }
+ ],
+ "engineDrops": [
+  {
+   "url": "https://telehealth.hhs.gov/funding-opportunities",
+   "title": "Funding | Telehealth.HHS.gov",
+   "reason": "not_eligible",
+   "quote": "Eligibility: Native American tribal organizations and governments",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.ruralhealthinfo.org/toolkits/telehealth/6/grant-funding",
+   "title": "Grant Funding for Telehealth Programs - RHIhub Toolkit",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.hrsa.gov/telehealth/grants",
+   "title": "Grants &amp; Programs | HRSA",
+   "reason": "not_eligible",
+   "quote": "The Telehealth Resource Centers (TRCs) provide expert and customized telehealth technical assistance across the country.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.wepropel.org/en/blog-post/where-to-find-funding-opportunities-in-2026",
+   "title": "Where to find funding opportunities in 2026? - Propel",
+   "reason": "closed",
+   "quote": "Open call - 30/06/2026",
+   "deadline": "2026-06-30",
+   "objective": "grant"
+  },
+  {
+   "url": "https://telehealthresourcecenter.org/resources/telehealth-funding-opportunities/",
+   "title": "non-Federal Telehealth Funding Opportunities | National Consortium of Telehealth Resource Centers",
+   "reason": "not_a_call:directory",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.ruralhealthinfo.org/topics/public-health/funding",
+   "title": "Rural Public Health Agencies &ndash; Funding &amp; Opportunities - Rural Health Information Hub",
+   "reason": "not_eligible",
+   "quote": "Geographic coverage: Nationwide and U.S. Territories",
+   "deadline": "2026-10-18",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.rd.usda.gov/programs-services/telecommunications-programs/distance-learning-telemedicine-grants",
+   "title": "Distance Learning &amp; Telemedicine Grants | Rural Development",
+   "reason": "not_a_call:program_page",
+   "quote": "The Agency is NOT currently accepting applications for this program due to funding constraints.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://grants.gov/search-results-detail/354640",
+   "title": "Lock",
+   "reason": "too_short",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantedai.com/grants/global-grants-program-for-maternal-health-msd-for-mothers-fabd452b",
+   "title": "Global Grants Program (for maternal health) (2026) | Granted AI",
+   "reason": "not_official",
+   "quote": "Global Grants Program (for maternal health) is sponsored by MSD for Mothers.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.socialroots.ai/grant-success-stories/packard-foundation-maternal-child-health-grants-2025-2026-nonprofit-guide",
+   "title": "Packard Foundation Grants 2026: Maternal & Child Health Funding Guide",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.msdformothers.com/sixth-round-of-global-grants-will-focus-on-improving-maternal-health-in-latin-america.html",
+   "title": "MSD’s Sixth Round of Global Grants Will Focus on Improving Maternal Health in Latin America",
+   "reason": "not_a_call:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.purdue.edu/discoverypark/WGHI/about/funding.php",
+   "title": "Funding Opportunities - Women's Global Health Institute - Purdue University",
+   "reason": "scope_mismatch",
+   "quote": "This Notice of Special Interest (NOSI) solicits competitive revision applications that focus on data reuse and secondary data analysis in NIH-funded data repositories and knowledgebases to advance scientific inquiry and address health research questions.",
+   "deadline": "2026-11-04",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.merckformothers.com/merck-expands-commitment-to-maternal-health-through-Latest-round-of-global-grants.html",
+   "title": "Merck Expands Commitment to Maternal Health Through Latest Round of Global Grants",
+   "reason": "not_a_call:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/01a1f3ea-fac9-40f9-8414-6aa74edc8a21",
+   "title": "Opportunity Listing - Rural Health Network Development Planning Program",
+   "reason": "not_eligible",
+   "quote": "All domestic public or private, non-profit or for-profit entities including domestic faith-based and community-based organizations, tribes and tribal organizations.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/8bb15754-c013-462d-b305-f2a8dd116e08",
+   "title": "Opportunity Listing - Rural Health Network Development Program",
+   "reason": "not_eligible",
+   "quote": "Eligible applicants include domestic public or private, non-profit or for-profit entities ...",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/333761",
+   "title": "Lock",
+   "reason": "too_short",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/18c0a9f1-fe39-4c7a-8ffd-1d8c656d666f",
+   "title": "Opportunity Listing - Telehealth Nutrition Services Network Grant Program",
+   "reason": "scope_mismatch",
+   "quote": "The Telehealth Nutrition Services Network Grant Program will support telehealth networks that improve access to quality health care services through telehealth technology. This program will use telehealth nutrition services to help prevent and manage chronic diseases.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://bphc.hrsa.gov/funding/funding-opportunities/expanding-nutrition-services",
+   "title": "Apply for FY 2027 Expanding Nutrition Services Funding | Bureau of Primary Health Care",
+   "reason": "closed",
+   "quote": "Apply on Grants.gov by 11:59 p.m. ET on September 9, 2026.",
+   "deadline": "2026-09-09",
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantedai.com/grants/connecting-the-community-for-maternal-health-challenge-research-capacity-national-institutes-of-health-nih-eunice-c5d3749b",
+   "title": "Connecting the Community for Maternal Health Challenge: Research Capacity Building in Maternity Care Deserts (CCMH 2.0) (2026) | Granted AI",
+   "reason": "not_eligible",
+   "quote": "Deadline August 12, 2026 (Passed)",
+   "deadline": "2026-12-02",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.unicefventurefund.org/call/funding-opportunity-femtech-solutions",
+   "title": "Funding Opportunity for FemTech Solutions | UNICEF Venture Fund",
+   "reason": "not_eligible",
+   "quote": "Applications are open to start-ups in low- and middle-income economies developing Open Source technology that improves health outcomes, economic participation, or access to essential services for women and girls.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantstation.com/find-grants/prenatalchildmaternal-health",
+   "title": "Prenatal, Child, and Maternal Health Grants for Nonprofits",
+   "reason": "not_official",
+   "quote": "GrantStation’s exclusive database features 325 active funding opportunities giving towards this area of interest",
+   "deadline": "2026-10-15",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.msdformothers.com/where-we-work/global-grants.html",
+   "title": "Where We Work &mdash; MSD for Mothers",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantedai.com/grants/global-grants-msd-for-mothers-merck-for-mothers-f9d9a8ef",
+   "title": "Global Grants (MSD for Mothers) (2026) | Granted AI",
+   "reason": "not_official",
+   "quote": "Global Grants (MSD for Mothers) is sponsored by Merck for Mothers.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.maternalhealthnetworksb.com/grant-opportunities",
+   "title": "Grant Opportunities | MHN",
+   "reason": "too_short",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://telehealth.hhs.gov/providers/best-practice-guides/telehealth-for-maternal-health-services",
+   "title": "Introduction to telehealth for maternal health services | Telehealth.HHS.gov",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nichd.nih.gov/research/supported/challenges/community-maternal-health",
+   "title": "Connecting the Community for Maternal Health Challenge | NICHD - Eunice Kennedy Shriver National Institute of Child Health and Human Development",
+   "reason": "not_eligible",
+   "quote": "Final winners were announced in September 2024.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/362823",
+   "title": "Lock",
+   "reason": "too_short",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://jurinfo.jep.gov.co/Normograma/compilacion/docs/resolucion_minsaludps_1644_2026.htm",
+   "title": "Jurinfo - Resoluci&oacute;n 1644 de 2026 MSPS",
+   "reason": "not_a_call:other",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://getgrant.ua/en/grants-and-funding/healthcare-grants-2026-open-calls/",
+   "title": "Healthcare grants 2026: 8 open calls with verified dates",
+   "reason": "closed",
+   "quote": "The first-stage deadline falls on 8 October 2026 at 17:00 Brussels time",
+   "deadline": "2026-10-08",
+   "objective": "grant"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "grant",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 224,
+    "seconds": 358,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": false,
+     "numbers": 0,
+     "seeds": 0,
+     "notices": 0,
+     "brief": null,
+     "byNumber": null
+    }
+   },
+   "triage": {
+    "opened": 96,
+    "assessed": 40,
+    "by_status": {
+     "open": 11,
+     "rolling": 3,
+     "unknown": 47,
+     "closed": 35,
+     "unread": 54
+    },
+    "docs": 1
+   },
+   "judge": {
+    "finalists": 30,
+    "calls": 30,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 0,
+    "people": 0,
+    "credits": 0,
+    "skipped": "grants: APOLLO_FOR_GRANTS=0 (Apollo se reserva para inversores)",
+    "domains": []
+   },
+   "seconds": 134,
+   "opens": 149,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "registryCheck": {
+  "checked": 0,
+  "kept": 0,
+  "dropped": 0,
+  "unread": 0,
+  "withOfficialPage": 0,
+  "skipped": "off"
+ },
+ "hunter": {
+  "calls": 0,
+  "emailsAdded": 0,
+  "peopleAdded": 0,
+  "domains": 0,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:grant:https://www.hrsa.gov/grants/find-funding",
+    "canonical_name": "Health Resources and Services Administration (HRSAgov), HHS",
+    "official_domain": "hrsa.gov",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "5e6ee8eb8bfa080001fd6696",
+     "name": "Nazir",
+     "title": "Principal",
+     "organization": "Health Resources and Services Administration (HRSAgov), HHS",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://hrsa.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Nazir · Principal · Health Resources and Services Administration (HRSAgov), HHS"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "66fdda03a00d8e0001fb9a9b",
+     "name": "Ann",
+     "title": "Principal Deputy Administrator and Chief Medical Officer",
+     "organization": "Health Resources and Services Administration (HRSAgov), HHS",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Deputy Administrator and Chief Medical Officer.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://hrsa.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Ann · Principal Deputy Administrator and Chief Medical Officer · Health Resources and Services Administration (HRSAgov), HHS"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "Health Resources and Services Administration (HRSAgov), HHS",
+     "to": "Nazir",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Health Resources and Services Administration (HRSAgov), HHS",
+     "to": "Ann",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 1,
+  "calls": 2,
+  "creditsEstimated": 1,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(grant) 0 queries · 149 pages · 149 read",
+   "dimension": "engine",
+   "returned": 149,
+   "discovered": 1,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "Fundación Salud Rural",
+   "product": "Telehealth and community health worker program for rural maternal care",
+   "industry": "global health maternal care telehealth community health workers",
+   "geography": "Colombia (registered in Colombia, no US or EU entity)",
+   "stage": "prototype",
+   "round": null,
+   "fundingTypes": [
+    "grant"
+   ],
+   "constraints": "Must accept applicants from Latin America; no equity"
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 149,
+   "pagesRead": 149,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 1,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 1,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Eligibility not confirmed by the judge with a quote from the page": 1
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": {
+   "jurisdiction": "Colombia",
+   "portals": [
+    {
+     "name": "MinCiencias convocatorias",
+     "url": "https://minciencias.gov.co/convocatorias"
+    },
+    {
+     "name": "iNNpulsa Colombia convocatorias",
+     "url": "https://www.innpulsacolombia.com/convocatorias"
+    },
+    {
+     "name": "Sistema General de Regalías (SGR)",
+     "url": "https://www.sgr.gov.co/"
+    }
+   ],
+   "portalPages": [],
+   "reporter": null,
+   "nsf": null,
+   "errors": []
+  },
+  "comparePrompts": {
+   "grant": "Hoy es 2026-10-14. Actúa como investigador de financiación no dilutiva. Busca en la web convocatorias de GRANTS (subvenciones, premios o concursos; no inversión ni deuda) a las que pueda aplicar este proyecto:\n\n- Proyecto: Fundación Salud Rural: Telehealth and community health workers for rural maternal care\n- Producto: Telehealth and community health worker program for rural maternal care\n- Sector: global health maternal care telehealth community health workers\n- Etapa: prototype\n- Geografía: Colombia (registered in Colombia, no US or EU entity)\n- Constitución: constituida en CO\n- Monto objetivo: 150,000 USD\n- Restricciones: Must accept applicants from Latin America; no equity\n- Uso de fondos: Scale from 3 to 12 municipalities, train 60 health workers, evaluate outcomes\n- Horizonte: 18 months\n\nTipo de entidad: organización sin ánimo de lucro.\n\nREGLAS (estrictas):\n1. Solo convocatorias ABIERTAS cuya fecha límite sea posterior al 2026-11-13 (mínimo 30 días desde hoy). Si no encuentras la fecha de cierre en la página oficial, NO la pongas en la lista principal.\n2. Solo páginas OFICIALES de la convocatoria o del financiador. Nada de blogs, noticias, agregadores ni directorios.\n3. Elegibilidad: debe poder aplicar el tipo de entidad indicado. Si la convocatoria lo excluye o no lo dice, márcala aparte.\n4. No incluyas convocatorias que contradigan las restricciones del proyecto.\n5. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Nombre | URL oficial | Fecha límite (AAAA-MM-DD) | CITA LITERAL de la página donde aparece esa fecha | Quién puede aplicar (CITA LITERAL) | Monto máximo | Encaje (una línea) | Estado (abierta / dudosa).\nDespués una segunda tabla, «No pude confirmar», con lo que podría servir pero le falta fecha, elegibilidad o monto, y qué falta. Al final, dime cuántas hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T16:34:29.696Z",
+ "usage": {},
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

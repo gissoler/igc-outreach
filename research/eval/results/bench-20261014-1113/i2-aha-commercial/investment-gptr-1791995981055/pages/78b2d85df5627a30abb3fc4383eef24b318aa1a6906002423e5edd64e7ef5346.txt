@@ -1,0 +1,120 @@
+Merck, Mayo Clinic Link Clinical Data and AI to Strengthen Early Drug Development Decisions | Applied Clinical Trials Online
+
+Advertisement
+
+News | Articles | February 23, 2026
+
+# Merck, Mayo Clinic Link Clinical Data and AI to Strengthen Early Drug Development Decisions
+
+Author(s) Andy Studna, Senior Editor
+
+New collaboration integrates Mayo Clinic’s multimodal clinical data and platform capabilities with Merck’s AI research to support earlier decision-making and improve development success rates.
+
+Advertisement
+
+###
+“New cutting-edge technologies are enhancing our ability to innovate with the potential to bring important new therapies to patients faster.”
+
+Merck and Mayo Clinic have announced a new research and development collaboration aimed at applying artificial intelligence (AI) and advanced analytics to drug discovery and precision medicine. 1
+The agreement brings together Mayo Clinic’s clinical data ecosystem and platform infrastructure with Merck’s growing investment in AI-enabled research, particularly in areas such as virtual cell modeling and early-stage discovery.
+
+## Partnership crafted around data platform
+At the center of the collaboration is the Mayo Clinic Platform, which aggregates de-identified clinical, genomic, and multimodal datasets within a secure environment. Through the partnership, Merck will gain access to this data alongside advanced analytics tools and scientific expertise to support model development and validation.
+“New cutting-edge technologies are enhancing our ability to innovate with the potential to bring important new therapies to patients faster,” said Robert M. Davis, chairman and CEO of Merck, in a company statement. “By working with Mayo Clinic, we aim to integrate high-quality clinical data and AI-enabled insights into discovery research to improve target identification and, ultimately, the probability of success for our programs.”
+The collaboration will leverage a wide range of data types, including laboratory results, imaging, clinical notes, and molecular data. These inputs are expected to support a more comprehensive understanding of disease biology and enable more informed decision-making earlier in development.
+
+## Merck gains access to diverse datasets
+Mayo Clinic’s Platform_Orchestrate program will serve as a key component of the partnership, providing Merck with direct access to curated datasets, registries, and biorepositories, along with the ability to scale analytical approaches across use cases.
+
+astro-island:empty]:hidden [&:has(>astro-island:empty)+*]:-mt-8">
+“By combining Mayo Clinic Platform's de-identified data, clinical expertise and Platform technology with Merck's world-class research and development capabilities, we are poised to speed innovative breakthroughs to patients and redefine drug development,” added Gianrico Farrugia, MD, president and CEO of Mayo Clinic, in the statement. “This collaboration represents a new present and future for healthcare—one where platform-based collaboration leads to more answers, more cures and better outcomes for patients worldwide.”
+The companies said the initial focus will center on high-need therapeutic areas where multimodal data and AI-driven insights may offer the greatest impact. These include inflammatory bowel disease within gastroenterology, atopic dermatitis in dermatology, and multiple sclerosis in neurology.
+
+## New deal continues industry momentum of AI collaborations
+The effort also reflects a broader shift toward integrating real-world and clinical data sources into discovery workflows, particularly as AI models require increasingly diverse and high-quality datasets to generate actionable insights.
+For Merck, the agreement builds on a series of ongoing investments in AI and machine learning across research and development. These initiatives span computational and spatial biology, foundation models, and the use of real-world data to inform development strategies.
+Mayo Clinic, for its part, described the collaboration as its first strategic partnership of this scale with a global biopharmaceutical company, signaling a growing role for platform-based approaches in connecting healthcare data with drug development.
+Together, the organizations are positioning the collaboration as a way to bridge clinical insight and early research, with the goal of improving both the efficiency and success rates of drug development programs.
+
+## Recent industry deals
+This new partnership between Mayo Clinic and Merck follows the announcement of a collaboration between Astellas Pharma, AstraZeneca, and Bristol Myers Squibb with Evinova. 2
+A central component of the collaboration is an opt-in data-sharing model that aggregates operational data to generate benchmarks and AI-driven recommendations.
+“This strategic collaboration with Evinova harnesses AI to accelerate clinical development, which we believe will significantly improve productivity gains, deliver faster trials, and enhance patient experience,” said Pascal Soriot, CEO of AstraZeneca, in a press release from the time of the announcement.
+
+## References
+1. Merck and Mayo Clinic Announce New Research and Development Collaboration to Support AI-Enabled Drug Discovery and Precision Medicine. News release. Merck. February 18, 2026. Accessed February 23, 2026. https://www.merck.com/news/merck-and-mayo-clinic-announce-new-research-and-development-collaboration-to-support-ai-enabled-drug-discovery-and-precision-medicine/
+2. Evinova Expands AI-Native Clinical Platform Through Strategic Pharma Collaborations. Applied Clinical Trials . February 20, 2026. Accessed February 23, 2026. https://www.appliedclinicaltrialsonline.com/view/evinova-expands-ai-native-clinical-platform-strategic-pharma-collaborations
+
+Advertisement
+
+## Related to this article
+
+View more
+
+October 14th, 2026 Real-Time Clinical Trials Depend on a Scalable EHR-to-EDC Connection
+
+Real-time clinical trials require standardized digital data capture at the point of care through scaled eSource-EDC-EHR integration, but progress stalls because competing standards lack regulatory enforcement and one-off system integrations cannot scale beyond single studies without industry-wide alignment and legal clarity on data ownership.
+
+Read more
+
+October 14th, 2026 ACT Brief: Design Drivers of Trial Representation, eSource-to-EDC Data Automation, and Roche&#x27;s ALK7 Obesity License
+In today&#x27;s ACT Brief, we examine how representation gaps in trials are shaped by structural design decisions, how new partnerships automate data transfer from site systems to sponsor platforms, and how Roche is licensing a novel obesity target from a biotech pioneer.
+
+Read more
+
+October 13th, 2026 IgniteData and RealTime Partner to Streamline Clinical Data Transfer From eSource to Sponsor Systems
+The partnership gives RealTime&#x27;s network of more than 3,000 research sites access to the Archer platform for direct, automated data transfer from eSource to any sponsor electronic data capture system or data destination.
+
+Read more
+
+October 13th, 2026 The Biggest Remaining Barriers to High-Quality RWE Across Oncology Data Platforms
+In this video interview, Saamir Pasha and Carole Berini, PhD, of Ontada, identify three persistent obstacles to consistent real-world evidence generation in oncology—inconsistent data capture, structural data limitations that modeling alone can&#x27;t fix, and the need for earned generalizability through deliberate multi-site validation.
+
+Read more
+
+October 12th, 2026 Flexible Clinical Operations and Site Management Across a Diversified Biotech Portfolio: An Application of Quality by Design and Risk-Based Oversight
+How a phased CRO partnership built on ICH E6(R2) and E6(R3) principles supported a multi-indication biotech portfolio.
+
+Read more
+
+October 12th, 2026 Beyond Outreach: Structural Drivers of Representation in Clinical Trials
+The second of a two-part perspective examining why clinical trial enrollment and representation outcomes are shaped long before the first patient is screened.
+
+Read more
+
+October 12th, 2026 What a Practical Roadmap for FDA and EMA Quality Frameworks Actually Looks Like
+In this video interview, Saamir Pasha and Carole Berini, PhD, of Ontada, describe what operationalizing regulatory-grade quality frameworks requires—and why fit-for-purpose evidence generation is a transparency and documentation discipline, not just a data cleanliness exercise.
+
+Read more
+
+October 9th, 2026 Start Study Budgets Sooner With AI-Enabled Protocol Translation
+AI can turn complex protocols into first-pass budget inputs, letting sponsors start budgeting sooner while budget builders shift from data entry to review.
+
+Read more
+
+Previous slide Next slide
+
+Advertisement
+
+Advertisement
+
+## Trending on Applied Clinical Trials Online
+1
+
+### IgniteData and RealTime Partner to Streamline Clinical Data Transfer From eSource to Sponsor Systems
+
+2
+
+### The Biggest Remaining Barriers to High-Quality RWE Across Oncology Data Platforms
+
+3
+
+### Beyond Outreach: Structural Drivers of Representation in Clinical Trials
+
+4
+
+### ACT Brief: Design Drivers of Trial Representation, eSource-to-EDC Data Automation, and Roche&#x27;s ALK7 Obesity License
+
+5
+
+### Flexible Clinical Operations and Site Management Across a Diversified Biotech Portfolio: An Application of Quality by Design and Risk-Based Oversight

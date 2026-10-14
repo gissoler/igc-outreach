@@ -1,0 +1,62 @@
+Banco nocturno → eval/results/bench-20261014-0950-dry (SIMULACIÓN)
+[09:50:29] caso 1/6: g1-mint-ad
+[gptr 14:50:29] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:29] prompt (2595 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-97lsTj/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-97lsTj/gptr.log
+[gptr 14:50:29] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:29] búsqueda terminada en 0s
+[gptr 14:50:29] URLs para el juez: 150 (0 del informe) → https://portal.alzimpact.org/storage/resources/media-items/Fiscal%20Year%202027%20Alzheimer's%20Research%20Funding%20(April%202026).pdf | https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf | https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/360c4588-1512-4fa4-9b61-52a3f1d6c368/attachments/16b08ada-0c75-4e4d-bf70-e1485a9a381d/RFA-RM-27-013-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/d07ebcd7-96cf-40cb-8ae3-f401b6274080/attachments/e4789627-8735-47c0-80e4-43fc7384f5d1/RFA-RM-27-012-Full-Announcement.html …
+[gptr 14:50:29] registro: 4 búsquedas + 0 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler)
+[gptr 14:50:29] registro: 0 búsquedas + 12 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler)
+[gptr 14:50:29] juez de Node: 152 páginas (2 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 42 elegidas por fechas
+[gptr 14:50:29] juez listo: 4 hallazgos (4 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] g1-mint-ad: ok en 0s · 1 act now · 3 watch · verificados 4
+  ok
+[09:50:29] caso 2/6: g2-aha-nonprofit
+[gptr 14:50:30] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:30] prompt (3071 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-1YSRHX/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-1YSRHX/gptr.log
+[gptr 14:50:30] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:30] búsqueda terminada en 0s
+[gptr 14:50:30] URLs para el juez: 0 (0 del informe) → 
+[gptr 14:50:30] registro: 4 búsquedas + 0 números → 0 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 0 al juez (vía simpler)
+[bench] g2-aha-nonprofit: ok en 0s · 0 act now · 0 watch · verificados 0
+  ok
+[09:50:30] caso 3/6: g3-ngo-latam
+[gptr 14:50:30] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:30] prompt (3053 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-9Zc3Xa/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-9Zc3Xa/gptr.log
+[gptr 14:50:30] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:30] búsqueda terminada en 0s
+[gptr 14:50:30] URLs para el juez: 0 (0 del informe) → 
+[bench] g3-ngo-latam: ok en 0s · 0 act now · 0 watch · verificados 0
+  ok
+[09:50:30] caso 4/6: i1-mint-ad
+[gptr 14:50:30] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:30] prompt (1685 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-X6isgw/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-X6isgw/gptr.log
+[gptr 14:50:30] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:30] búsqueda terminada en 0s
+[gptr 14:50:30] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 14:50:30] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 14:50:30] juez listo: 1 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] i1-mint-ad: ok en 0s · 1 act now · 0 watch · verificados 1
+  ok
+[09:50:30] caso 5/6: i2-aha-commercial
+[gptr 14:50:30] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:30] prompt (2022 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-1ETqxJ/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-1ETqxJ/gptr.log
+[gptr 14:50:30] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:30] búsqueda terminada en 0s
+[gptr 14:50:30] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 14:50:30] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 14:50:30] juez listo: 1 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] i2-aha-commercial: ok en 0s · 1 act now · 0 watch · verificados 1
+  ok
+[09:50:30] caso 6/6: i3-medtech-eu
+[gptr 14:50:30] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:30] prompt (1921 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-L9b3ZP/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-L9b3ZP/gptr.log
+[gptr 14:50:30] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:30] búsqueda terminada en 0s
+[gptr 14:50:30] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 14:50:30] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 14:50:30] juez listo: 1 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] i3-medtech-eu: ok en 0s · 1 act now · 0 watch · verificados 1
+  ok
+[bench] resumen: /Users/gcaicedo/Documents/PROJECTS/AGENT/research/eval/results/bench-20261014-0950-dry/RESUMEN.md
+[09:50:30] Listo. Abre eval/results/bench-20261014-0950-dry/RESUMEN.md

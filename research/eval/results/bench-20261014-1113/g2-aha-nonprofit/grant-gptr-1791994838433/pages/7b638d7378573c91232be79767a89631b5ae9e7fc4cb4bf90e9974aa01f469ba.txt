@@ -1,0 +1,154 @@
+Export Control Reform: What&#x27;s Changing & Why — CASRAI Skip to main content Research-admin AI Research-admin question? Get an answer that links its sources. Ask about 2 CFR 200, an NIH or NSF application, IRB review or your own case. Answers link the sources they rest on. 2 questions free, no account. $29/month after. Ask 2 questions free → CASRAI&#x27;s own product or subscribe — $29/month
+
+CASRAI Working Groups Help write the standards you have to implement 24 working groups propose, review and ratify the terms CASRAI publishes, one per dictionary domain. Chair, co-chair, community and observer seats are open, from about two hours a month. Applications are reviewed. Apply to join a group → CASRAI · Volunteer seats
+
+Guide Research Integrity & Compliance
+
+# Export Control Reform and Research Security: What’s Changing and Why
+A tracker of the legislative, regulatory, and agency-level reform activity reshaping how EAR, ITAR, and federal research-security requirements apply to US university research since 2022.
+
+Written and maintained by CASRAI Editorial Board
+Last updated 14 September 2026
+
+X
+LinkedIn
+Facebook
+Copy link
+
+“Export control reform” does not name a single law. It refers to an ongoing sequence of legislative, executive, and agency actions since roughly 2021 that have tightened, restructured, or streamlined how the Export Administration Regulations (EAR), the International Traffic in Arms Regulations (ITAR), and adjacent research-security requirements apply to work done at U.S. universities and federally funded research institutions. This guide tracks the main threads of that reform activity, why each was undertaken, and what it changes in practice for a research office. It assumes familiarity with the underlying regimes — see ITAR and EAR , 15 CFR Part 734 , and 22 CFR Part 120 for the regulatory basics.
+
+## Why export control policy is being reformed
+
+Two pressures are driving most of the activity covered here. First, strategic-competition concerns — particularly around China’s access to advanced semiconductor, quantum, and AI-relevant technology — have pushed the Bureau of Industry and Security (BIS) to expand and tighten Commerce Control List coverage repeatedly since 2022, well beyond the pace of change in prior decades. Second, a series of federal investigations into undisclosed foreign funding and talent-recruitment-program participation by U.S.-based researchers, most visibly during the Department of Justice’s 2018–2022 “China Initiative,” prompted a policy shift away from criminal prosecution of individual researchers and toward institution-level research-security infrastructure. The DOJ ended the China Initiative in February 2022 and replaced it with a broader “Strategy for Countering Nation-State Threats,” while responsibility for prevention shifted toward disclosure and program requirements administered through funding agencies rather than export-control enforcement alone. Both threads now run through National Security Presidential Memorandum 33 (NSPM-33) and its implementing guidance — see Research Security and NSPM-33 disclosure: what US researchers must report .
+
+China’s export control list is a recent case in point.
+
+## The legislative anchor: CHIPS and Science Act, Title VI
+
+The CHIPS and Science Act of 2022 (Public Law 117-167) is the principal post-2022 legislative vehicle for research-security reform. Its Title VI provisions codify elements of NSPM-33, prohibit federally funded personnel from participating in malign foreign talent recruitment programs, and mandate research-security training and reporting. Agencies have been implementing Title VI through rolling policy updates rather than a single rule: NSF’s certification requirement under Notice 149 (see NSF Research Security: What Notice 149 Requires ) and agency-specific research-security training mandates at NIH, DOE, NASA, and USDA are all downstream implementations of the same statutory mandate, not independent programs.
+
+The most consequential single implementation step was the National Science and Technology Council’s Research Security Programs Standards, issued through the Office of Science and Technology Policy (OSTP) on July 9, 2024. Those guidelines require institutions that receive more than $50 million per year in federal research funding to stand up a research security program covering four elements: cybersecurity, foreign travel security, insider-threat/research-security training, and export control training. This is a compliance-program mandate layered on top of existing export-control obligations, not a change to EAR or ITAR text itself — but it is the mechanism by which export-control awareness has moved from the export-control office into the general research-compliance function at large research universities.
+
+## Expanding technology controls: the BIS “advanced computing” rules
+
+Separately from the research-security track, BIS has substantially expanded EAR coverage of advanced computing and semiconductor manufacturing equipment through a series of interim final rules beginning in October 2022 and updated in October 2023, adding new Export Control Classification Numbers (ECCNs) and country-specific licensing requirements aimed primarily at limiting China’s access to advanced chips and the equipment used to make them. For a research institution, the practical effect is that hardware which was previously uncontrolled or lightly controlled — certain high-performance GPUs and computing clusters used in AI and simulation research, for example — can now carry an ECCN and licensing requirement that did not exist a few years earlier. Export-control offices increasingly need to re-screen equipment purchases and international collaborations involving high-performance computing against a Commerce Control List that changes more frequently than it used to; see ECCN Determination Process and Export Control and AI for how this intersects with AI/ML research specifically.
+
+## Streamlining allied collaboration: the AUKUS exemption
+
+Not all recent reform has tightened controls. Implementing the 2023 AUKUS security partnership among the United States, Australia, and the United Kingdom, the State Department’s Directorate of Defense Trade Controls (DDTC) published an interim final rule effective September 1, 2024, creating a license-free exemption for many ITAR-controlled defense articles, defense services, and technical data moving among authorized U.S., Australian, and UK persons and entities, after certifying that Australia’s and the UK’s own export control systems meet comparable standards. DDTC subsequently issued a final rule refining those exemptions, effective December 30, 2025. For universities, the practical relevance is narrow but real: institutions with DoD-sponsored defense research involving Australian or UK partners or personnel may now be able to transfer certain ITAR-controlled technical data without a case-by-case license — but only where the specific exemption criteria (including personnel vetting and registration requirements) are met, and it does not touch EAR-controlled dual-use research at all. Export-control offices should not assume AUKUS status is self-executing; it still requires documented eligibility review.
+
+## The unresolved fight: proposals to narrow the fundamental research exclusion
+
+The fundamental research exemption — the policy, tracing to National Security Decision Directive 189 (1985) and reflected in both the EAR and ITAR, that keeps openly published, unrestricted basic and applied research outside export-control jurisdiction — has not been narrowed by rule as of this writing. But it has been the subject of sustained reform proposals from parts of the policy and security community, including recommendations associated with the 2025 “Project 2025” policy blueprint, that argue the exclusion is being exploited by funding, personnel placement, and recruitment strategies that route controlled knowledge through ostensibly open university research. Proposals under discussion include requiring government pre-approval before publication in some sponsored-research contexts, or pressuring universities to waive the exclusion in specific sponsorship agreements. None of this has been enacted into EAR or ITAR text, and any rule attempting to condition publication on government approval would face significant First Amendment and Bayh-Dole-adjacent legal exposure — but research offices should treat the exclusion as a live policy question, not a settled one, when negotiating sponsored-research agreements with clauses that touch publication rights or foreign-national access. See Undue Foreign Influence and the JASON Report on Research Security for the underlying policy debate.
+
+## A narrower but concrete change: space-related export control revision
+
+In October 2024, the State Department and Commerce Department jointly proposed rules to revise how ITAR and EAR apply to space-related items, intended to move a defined set of less-sensitive commercial space technology from the more restrictive USML to the EAR’s Commerce Control List, consistent with a broader, longer-running effort (dating to the 2010s “export control reform initiative”) to right-size which items actually require State Department-level control. Universities running space-science, satellite, or launch-adjacent research programs should track final action on this rulemaking specifically, since a USML-to-CCL move can change which license exception options and which licensing agency apply to a given collaboration.
+
+## What this means for a research-administration office
+
+Treat export control and research security as converging, not separate, functions. Title VI/OSTP program requirements assume export-control training is one pillar of a broader research-security program, not a siloed office function. See Research Security Officer (RSO) .
+
+Re-screen recurring equipment and collaboration categories, not just new ones. The advanced-computing rules mean equipment classifications can change under a standing collaboration that was cleared years ago; a periodic re-check against current ECCNs is now part of routine due diligence, not a one-time determination. Restricted Party Screening covers the parallel entity-side check.
+
+Don’t assume publication protects a project by default in every sponsorship arrangement. Review sponsored-research agreements, especially DoD- and IC-adjacent ones, for publication-restriction or foreign-national-access clauses that would forfeit the fundamental research exemption before they’re signed, not after.
+
+Check AUKUS eligibility case-by-case. It is a real licensing simplification for a narrow set of DoD-related, Australia/UK-involving defense research — verify against DDTC’s current exemption criteria rather than assuming blanket coverage.
+
+Track agency-specific implementation, not just the statute. Title VI is implemented piecemeal — NSF Notice 149 certifications, NIH/DOE/NASA/USDA training mandates, and OSTP’s four-element program standard are separate compliance artifacts drawing on the same legislative mandate; see Section 117 Foreign Gift and Contract Reporting and Section 889 for two of the related disclosure/procurement obligations that often get bundled into the same institutional review.
+
+## Checking this against the current guidance
+
+Which specific compliance obligation applies — an EAR/ITAR rulemaking or an NSPM-33 research security requirement — depends on the sponsoring agency and the underlying technology. The answer depends on which sponsoring agency you are working to,
+
+and the page above states the general rule.
+
+Ask
+
+CASRAI: Which specific export-control reform changes are being driven by NSPM-33’s research security requirements rather than by the traditional EAR/ITAR rulemaking process, and does complying with one satisfy the other?
+
+It answers with its sources linked, so you can open each one and check it yourself, and it says so when our sources don’t cover a question. Two questions a day are free while you are signed out , no
+
+account and no card. Everything CASRAI publishes stays free to read.
+
+## Frequently asked questions
+
+### Has the fundamental research exclusion actually been narrowed?
+
+Not as of this writing. It remains defined by NSDD-189 (1985) and codified in the EAR (15 CFR 734.8) and ITAR (22 CFR 120.11). Narrowing it has been proposed by parts of the policy community but has not been adopted as a rule change; NSPM-33 itself explicitly reaffirmed the policy preference for keeping fundamental research unrestricted.
+
+### Does the AUKUS exemption apply to all university research with Australian or UK partners?
+
+No. It applies only to ITAR-controlled defense articles, services, and technical data, moving among specifically authorized U.S., Australian, and UK persons and entities that meet DDTC’s eligibility and registration criteria. It does nothing for EAR-controlled dual-use research and is not a blanket exemption for all defense-adjacent collaboration with those two countries.
+
+### Is the July 2024 OSTP research-security guidance a change to export control law?
+
+No. It is a research-security program mandate — cybersecurity, foreign travel security, research-security training, and export-control training — required of institutions above the $50 million federal-funding threshold under CHIPS and Science Act Title VI. It changes institutional compliance-program obligations, not the substantive text of the EAR or ITAR.
+
+### Why do export control classifications for research computing equipment keep changing?
+
+BIS has issued a series of interim final rules since October 2022 expanding EAR coverage of advanced computing and semiconductor manufacturing items, primarily to restrict China’s access to advanced chips. Equipment used in AI, simulation, and high-performance-computing research can move onto or within the Commerce Control List as these rules are updated, which is why institutions increasingly re-check classifications for standing equipment and collaborations rather than treating a determination as permanent.
+
+## Related CASRAI resources
+
+ITAR and EAR
+
+ECCN Determination Process
+
+CFIUS (Committee on Foreign Investment in the US)
+
+Fundamental Research Exemption
+
+Undue Foreign Influence
+
+Research Security
+
+Research Security Officer (RSO)
+
+Restricted Party Screening
+
+NSF Notice 149
+
+NSPM-33 Disclosure
+
+Related reading: EU Dual-Use Export Control — A guide to the EU’s dual-use export control regime for universities and research organisations: Regulation (EU) 2021/821, Commission Recommendation (EU) 2021/1700 on internal compliance programmes, and the 2025 Annex I control-list update.
+
+Related reading: BIS Export Control Enforcement — BIS’s 2026 settlements, led by a record $252.5M Applied Materials case, reveal what triggers export-control violations for research institutions.
+
+Follow CASRAI
+Research-administration guidance, standards updates and independent tool reviews.
+LinkedIn
+X
+Instagram
+Facebook
+
+### Topic cluster
+Research Integrity & Compliance → Data Privacy, Cybersecurity & Research Security →
+
+### Related topics
+export control reform research security fundamental research exclusion deemed export ITAR reform EAR reform CHIPS and Science Act research security AUKUS export control exemption NSPM-33 advanced computing export controls
+
+Last reviewed : 14 September 2026
+
+Ask CASRAI · free to try
+
+## Ask about Export Control Reform and Research Security: What’s Changing and Why
+Ask your first 2 questions free below. Subscribers get 150 a day for $ 29 a month.
+An AI assistant specialized in research administration. It cites the sources behind every answer, labels web answers and says when it can&#x27;t answer.
+Answers draw on CASRAI&#x27;s guides and dictionary plus the federal and funder documents we index: Federal Register, Grants.gov, Regulations.gov and UKRI.
+Works on this site and inside Claude, Cursor and the AI tools you already use .
+Ask your first question free Subscribe — $ 29 /month See what it covers → Already subscribed? Sign in
+Everything CASRAI publishes — this page, the dictionary, the guides and the news — stays free to read, with no account and no card.
+
+Referenced across the research world
+
+View CASRAI adoption →
+
+Ask CASRAI · Regulatory Radar
+
+## Research-admin question? Get an answer that links its sources.
+An AI assistant specialized in research administration. Every answer links its sources to check before you act. 2 questions free, no account. $29/month after.
+Answers draw on CASRAI&#x27;s guides and dictionary plus the federal and funder documents we index: Federal Register, Grants.gov, Regulations.gov and UKRI.
+Every answer numbers its sources and links each one, so you can check the source yourself.
+
+Ask 2 questions free Subscribe — $29/month

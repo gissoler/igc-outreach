@@ -1,0 +1,827 @@
+in vitro diagnostics. We explain who is impacted and how.">
+
+in vitro diagnostics. We explain who is impacted and how.">
+
+in vitro diagnostics. We explain who is impacted and how.">
+
+in vitro diagnostics. We explain who is impacted and how.">
+
+Regulatory Reset? The EU’s Proposed Changes to MDR and IVDR Explained | Mantra Systems
+
+# Regulatory Reset? The EU’s Proposed Changes to MDR and IVDR Explained
+
+By
+Dr Gayle Buchel
+
+Chief Medical Writer
+
+Share on LinkedIn
+
+Share on Facebook
+
+Share by email
+
+The European Commission has proposed targeted amendments to the EU Medical Devices Regulation (MDR) and In Vitro Diagnostic Regulation (IVDR). The proposal, published on 16 December 2025 , aims to streamline EU medical device and in vitro diagnostics (IVDs) rules to reduce unnecessary complexity and costs for manufacturers and notified bodies without lowering safety requirements. It responds to industry, Member States and Parliament requests for a more predictable and efficient framework.
+
+The European Commission has opened an eight‑week feedback period until 18 March 2026 - find out more here .
+
+We’ve explored what this means for manufacturers specifically in a subsequent article .
+
+## Why is the Commission proposing changes now?
+
+On 23 October 2024, the European Parliament called for a targeted revision of the MDR and IVDR after widespread feedback highlighted significant implementation challenges, such as disproportionate costs, high administrative burden and overall regulatory complexity. These issues, raised by stakeholders such as small and medium-sized manufacturers and healthcare providers, were seen as potentially limiting patient access to essential and innovative medical devices. In response, the European Commission initiated a public consultation in Dec 2024, followed by a call for evidence in October 2025 . The resulting evaluation indicated growing concerns around reduced device availability, weakened competitiveness of EU-based manufacturers, particularly SMEs, and slower innovation, with some products being postponed or withdrawn from the EU market.
+
+Our experience with MDR and IVDR implementation has shown that, while safety standards have improved, some requirements are complex, costly, and difficult to apply in practice. Certification delays, capacity constraints at notified bodies, and administrative burden, particularly for small and medium-sized enterprises, prompted the Commission to introduce targeted improvements.
+
+## Does this proposal lower safety or performance requirements for medical devices?
+
+No. The proposal does not reduce core safety, clinical evidence or post-market surveillance requirements. Patient safety and public health protection remain the primary objectives of the EU medical devices framework.
+
+Proposed classification rule updates will lower risk classes for reusable surgical instruments.
+
+## What are the main objectives of the amendments?
+
+The proposal aims to:
+
+Simplify and clarify regulatory requirements: Introducing a more proportionate framework, including updated classification rules (e.g., New Rule 11 for software in Annex VIII of the MDR), more flexible clinical evidence requirements, and revised PRRC obligations.
+
+Reduce unnecessary administrative complexity: Eliminating fixed certificate validity periods, reducing the frequency of PSUR updates, and allowing digital EU Declarations of Conformity and eIFUs.
+
+Improve predictability of conformity assessment procedures: Clearer rules on changes after certification, structured dialogue between manufacturers and notified bodies, and enhanced coordination on borderline and classification decisions.
+
+Support innovation and competitiveness: Introducing priority review for breakthrough and orphan devices, more flexible rules for in-house devices, and options for combined studies involving medical devices and medicinal products.
+
+Improve alignment with other EU legislation, including digital and AI rules: Ensuring that AI-enabled medical devices are primarily regulated under the MDR/IVDR, avoiding duplication with the EU AI Act where most high-risk AI requirements would not apply.
+
+Strengthen governance and oversight: Expanding the role of expert panels, codifying dispute resolution mechanisms, and promoting consistent decision-making across Member States.
+
+Proposed new Rule 11 in Annex VIII of the MDR expands the scope for software to be regulated as Class I.
+
+## How does this proposal affect manufacturers?
+
+Manufacturers may benefit from:
+
+More proportionate and clearer regulatory requirements: Including lower classification for certain devices, more flexible clinical evidence acceptance (non-clinical data, equivalent device data), and simplified PRRC obligations.
+
+Reduced duplication in documentation and conformity assessment: Certificates no longer have a fixed five-year validity, PSUR update timelines are extended, and SSCPs/SSPs are required only for full technical documentation assessment.
+
+Improved regulatory predictability and planning: Clearer guidance on post-certification changes, structured pre- and post-submission dialogue with notified bodies, and defined timelines for borderline or classification decisions.
+
+Support for innovation and market access: Priority review for breakthrough/orphan devices, more flexible rules for in-house devices, fee reductions for micro and small enterprises, and early scientific advice from expert panels.
+
+## Does the proposal affect notified bodies?
+
+Yes. The proposal seeks to:
+
+Clarify roles and responsibilities: Notified bodies’ duties are better defined, including structured dialogues with manufacturers and codified procedures for classification disputes.
+
+Improve efficiency and consistency in conformity assessments: Risk-based periodic reviews replace fixed certificate recertifications, remote audits are encouraged, and surveillance audits are less frequent where justified.
+
+Reduce bottlenecks in certification processes: Streamlined procedures, including early advice from expert panels, reduced administrative validation for SSCPs/SSPs, and coordinated assessments for combined studies, are expected to shorten review timelines and increase predictability.
+
+## How does this proposal interact with the EU AI Act?
+
+The proposal clarifies how AI-enabled medical devices are regulated. It aims to avoid overlapping or duplicative conformity assessments by ensuring that AI used in medical devices is primarily assessed under the MDR or IVDR, where appropriate, rather than through parallel regulatory pathways. As a result, many of the requirements set out for high-risk AI systems under the EU AI Act would not apply to medical device manufacturers.
+
+We previously explored the (EU) 2024/1689 (AI Act) here .
+
+## Is the European Medicines Agency (EMA) involved?
+
+Yes. The proposal strengthens and clarifies the role of the EMA in supporting expert panels and coordination activities related to high-risk medical devices and IVDs.
+
+## Will existing certified devices be affected?
+
+The proposal focuses on regulatory simplification rather than re-certification. Existing transition provisions and validity of certificates remain governed by MDR and IVDR rules unless explicitly amended in future implementing measures.
+
+## What stage is this proposal at?
+
+This is a legislative proposal by the European Commission. It must be reviewed and adopted by the European Parliament and the Council, under the ordinary legislative procedure, before becoming EU law. Changes may occur during the legislative process.
+
+### Have your say on the proposal
+
+The European Commission has opened an eight‑week feedback period, running until 18 March 2026, during which any interested parties are able to submit their feedback on the proposal . All feedback received will be shared with the European Parliament and the Council and considered as part of the legislative process.
+
+## What does this mean for patients and healthcare systems?
+
+Patients and healthcare systems are expected to benefit from:
+
+Continued high safety and performance standards
+
+Improved availability of medical devices and diagnostics
+
+Faster access to innovative and digital medical technologies
+
+Need help navigating the requirements of the EU MDR or IVDR? Contact us today to explore our services designed to help build your regulatory strategy with confidence.
+
+Share on LinkedIn
+
+Share on Facebook
+
+Share by email
+
+Back to top
+
+## Related articles
+
+### Preparing AI-Enabled Medical Devices for EU MDR
+
+Under EU MDR, an AI claim is only as strong as the evidence behind it. Five questions that keep purpose, evidence and QMS aligned.
+
+Ronghe Xu
+MedTech Regulatory Expert, Head of China BD
+
+### Security Risk Controls in the Medical Device Technical File
+
+How to present medical device security controls as reviewer-ready evidence that clears EU MDR, FDA 524B and NHS DTAC faster.
+
+Luke Hill
+Co-Founder of Cyber Alchemy
+
+### Understanding Risk Management for SaMD
+
+Practical guidance on SaMD risk management under EU MDR — from component-level hazard identification to Post-Market Surveillance and ISO 14971 traceability.
+
+Megan Allen, PhD
+Junior Project Lead
+
+### Performance Evaluation under IVDR: The critical challenge behind CE marking
+
+Understand EU IVDR Performance Evaluation requirements and learn how to build a compliant, evidence-based Performance Evaluation Report.
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### Top 5 mistakes US manufacturers make when entering the EU market
+
+Expanding into the EU market? Discover the five most common regulatory mistakes U.S. medical device manufacturers make — and how to avoid them.
+
+Aastha Kothari
+Regulatory Medical Writer
+
+### EU MDR, FDA 510(k) and DTAC Cybersecurity Nonconformities: How to Recover
+
+This guest article shows how these cybersecurity nonconformities happen, what recovery actually involves, and what to build so you don't go back.
+
+Neil Richardson
+Co-Founder of Cyber Alchemy
+
+### How to handle non-conformities and get back on track
+
+A practical guide to understanding why non-conformities happen, the most common issues in medical device submissions, and how to resolve them efficiently to get you back on track.
+
+Dr Will Brambley
+Head of Project Management & Partnerships
+
+### Clinical Evidence under EU MDR: Leveraging FDA Clinical Data to Streamline EU MDR Compliance
+
+FDA clearance alone is not sufficient for European market access - a theme we explore futher in this article and the accompanying webinar.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### EU MDR & NHS DTAC Cybersecurity Requirements for UK Market Entry
+
+This guest article shows you how to build cybersecurity evidence for the EU MDR and NHS DTAC.
+
+Luke Hill
+Co-Founder of Cyber Alchemy
+
+### Where to Launch First? A MedTech Founder's Regulatory Roadmap to the EU, UK and US
+
+All three markets operate under different regulatory systems and place different demands on manufacturers.
+
+Ronghe Xu
+MedTech Regulatory Expert, Head of China BD
+
+### Navigating EU MDR Article 117: A Practical Guide to Drug-Device Combination Product Submissions
+
+Implementation of the EU MDR 2017/745 has brought significant changes.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### How EU MDR Post Market Surveillance differs from FDA post-market expectations
+
+EU MDR and FDA post-market obligations aren't as similar as you might think. Here's what manufacturers need to know.
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### How EU device classification differs from the US - Are you prepared?
+
+Did you know an FDA Class II medical device could be immediately considered as a high-risk Class III device under European Union regulations?
+
+Gabriela Cardoso
+Principal QMS Consultant & Regulatory Writer
+
+### Fixing the MDR and IVDR? The Commission’s Proposed Amendments and What They Mean for Manufacturers
+
+Exploring the key elements of this proposal.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### Did You Know Your Glasses Were a Medical Device? A Regulatory Guide for Manufacturers
+
+The importance of correct classification and our recommended path to avoid common ophthalmic device 'gotchas'.
+
+Gabriela Cardoso
+Principal QMS Consultant & Regulatory Writer
+
+### The Shift from MDD to MDR: Key Differences in Demonstrating Equivalence
+
+This transition has demanded that device safety must be demonstrated with more evidence. We offer tips for winning equivalence claims.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Periodic Safety Update Report: Requirements under EU MDR
+
+Post-Market Surveillance has become more stringent. We help you to understand what manufacturers need to consider.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### Webinar: From USA to Europe - Accelerating Your Path to the Medical Device Market
+
+We showed you how to quickly transform your U.S. regulatory work into a compliant EU MDR submission.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### Guide to Clinical Evaluation: Common Pitfalls & Useful Resources
+
+Part 5 - In the final video from this series, we explore five major pitfalls that often derail clinical evaluations.
+
+Paul Hercock
+CEO & Founder
+
+### Device Modifications: When a Simple Change Becomes a Regulatory Nightmare
+
+As regulatory consultants we understand how minor modifications to a device can often cause disproportionate disruption.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Webinar: Regulatory & Cybersecurity Essentials for medical device software and AI-enabled devices
+
+Our webinar with Cyber Alchemy addressed bringing AI-enabled medical devices to market with both the right regulatory and cybersecurity foundations.
+
+Shen May Khoo
+MDR Regulatory Consultant
+
+### Leveraging Post-Market Surveillance Data for Continuous Improvement
+
+PMS isn’t just about compliance, it’s an opportunity for improvement, enhance patient safety & innovate.
+
+Shen May Khoo
+MDR Regulatory Consultant
+
+### Guide to Clinical Evaluation: CEP Strategy & CER Structure
+
+Part 4 - We explore how these guide reviewers through the evidence that supports safey, performance, and conformity.
+
+Dr Will Brambley
+Head of Project Management & Partnerships
+
+### The Critical Role of Pre-Submission Reviews in EU MDR Clinical Evaluations
+
+Ensuring your CER is robust and aligned with current standards is critical. How much Clinical Evidence is enough?
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### Guide to Clinical Evaluation: The State-of-the-Art (SOTA) Literature Review
+
+Part 3 - This is core of a sucessful submission. Will demystifies the process and explains how it supports clinical evaluation.
+
+Dr Will Brambley
+Head of Project Management & Partnerships
+
+### Regulatory Update: EU Borderline & Classification Manual for medical devices v4
+
+New examples sharpen the distinction between medical devices and other product categories, such as pharmacologically active substances and aesthetic-only products.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### Guide to Clinical Evaluation: Clinical Evaluation in Context
+
+Part 2 - A clinical evaluation demonstrates that a device is safe and effective, but achieving this requires more than simply compiling studies.
+
+Dr Peter Boxall
+Lead Medical Writer
+
+### Introducing Our Guide to Clinical Evaluation Video Series: Building Strong Submissions Under MDR
+
+First of a five-part series of step-by-step guides.
+
+Paul Hercock
+CEO & Founder
+
+### Maximise your success with our Clinical Evaluation pre-submission check
+
+We’re announcing the launch of a new service designed to help you with CER, CEP, and SOTA documentation – ensuring that documents meet Notified Body expectations and accelerating your route to market.
+
+Shona Richardson PhD
+Regulatory Project Lead
+
+### Turning IVD Compliance Challenges into Competitive Advantage
+
+Meeting IVDR requirements requires more than regulatory awareness; it calls for a proactive, structured, and strategic approach. But meeting these can provide an edge.
+
+Shona Richardson PhD
+Regulatory Project Lead
+
+### Regulatory Strategy Essentials for Digital Health: Key Takeaways from Our Webinar
+
+We showed how to accelerate your runway to market through actionable steps that will shave months off your route to regulatory approval.
+
+Dr Peter Boxall
+Lead Medical Writer
+
+### Vigilance & Incident Reporting: Everything You Need to Know
+
+Navigating the Complexities and Ensuring Patient Safety in Medical Devices.
+
+Gabriela Cardoso
+Principal QMS Consultant & Regulatory Writer
+
+### Achieving EU MDR approval when you are cleared under FDA
+
+Our guide to navigating the transition from FDA clearance to EU market access.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### Post-Market Surveillance (PMS): Understanding PMCF & Vigilance under the EU MDR
+
+These serve distinct purposes and have different methodologies under the MDR framework. We breakdown each.
+
+Ronghe Xu
+MedTech Regulatory Expert, Head of China BD
+
+### Implementing Master UDI-DIs: Key Insights from MDCG 2025-7
+
+Grouping devices with design similarities under a common Eudamed ID could unify them under a single master UDI-DI
+
+Dr Will Brambley
+Head of Project Management & Partnerships
+
+### In the World of Regulatory Writing: 5 Lessons Learned
+
+Let’s break down some key lessons learned from the writing process and share practical tips to navigate them with clarity (and your sanity) intact.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Do you have the clinical evidence you need to support regulatory approval?
+
+Sue Kemp makes the case for implementing clinical strategy from day one.
+
+Paul Hercock
+CEO & Founder
+
+### A New Era for NHS Innovation: ‘Innovator Passports’
+
+A digital fast-track system aims to transform how new medical technologies are adopted across the NHS, cutting red tape and accelerating access to medtech.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### From Idea to Approval: Get MDR Ready With Our LinkedIn Live
+
+An upcoming LinkedIn Live session with Dr. Zhong Wei Khor tailored specifically for healthtech founders.
+
+Paul Hercock
+CEO & Founder
+
+### The Never-Ending Document Updates: Navigating Changing Regulations
+
+Just because you’ve submitted a document, it doesn’t mean the work is done. Clinical Evaluation Reports, Risk Management Files or PMS plans will all need updating.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### UK Medical Device Regulations Set for Major 2026 Update
+
+The UK government is preparing to introduce a second major update to the regulatory framework for medical devices, with new pre-market requirements expected to come into effect in 2026.
+
+Dr Simon Cumiskey
+Chief SaMD Regulatory Consultant
+
+### Clinical Evaluation Masterclass: It is not clear that any systematic search methods were used for the literature review – Episode 3
+
+Addressing non-conformities isn’t just about avoiding negative outcomes; it’s about building a robust, evidence-based foundation.
+
+Paul Hercock
+CEO & Founder
+
+### Regulatory Writing Deadlines: The Pressure to Get It Right the First Time
+
+Anyone who’s worked in the medical device industry knows that regulatory deadlines aren’t just part of the process—they define it.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### IEC 62366-1:2015 Demystified – Essential Usability Testing for Medical Devices
+
+What should be included in a Usability Engineering File? What steps do you need to take to ensure compliance and meet standards?
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Unlocking the Secrets of Effective IVD Device Performance Evaluation
+
+Whether preparing for a new EU market submission or strengthening existing documentation, this guide is your overview of performance evaluation under IVDR.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Clinical Evaluation Masterclass: Appraisal of literature sources has not been conducted properly - Episode 2
+
+Our ongoing series covers one of the most frequent reasons for CER rejection: a poor appraisal of literature sources.
+
+Paul Hercock
+CEO & Founder
+
+### Navigating CAPA Terminology: Key Terms for Medical Device Professionals
+
+We define and explain the language required to work within a Quality Management System (QMS).
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Clinical Evaluation Masterclass: Overcoming Non-conformities - Episode 1
+
+In this series, we work step-by-step through common Non-Conformities to ensure you are always ahead of possible challenges on the way to MDR approval.
+
+Paul Hercock
+CEO & Founder
+
+### MDCG 2020-16 Revision 4: Key Updates on IVDR Classification Rules
+
+We detail how this revision ensures manufacturers, notified bodies, and health institutions have a clearer regulatory framework.
+
+Chandini Valiya Kizhakkeveetil
+MDR Regulatory Expert & Combination Device Specialist
+
+### Top 5 Common Pitfalls to Avoid During Risk Assessment
+
+Learn how to sidestep costly mistakes which manufacturers commonly make. From hazard ID to post-market surveillance, we help you improve safety and speed up approvals.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Labelling 101: A Comprehensive Overview for Medical Device Manufacturers
+
+Labelling and packaging are critical elements to ensuring safety, compliance, and ease of use.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### European Commission Guidelines on Prohibited Artificial Intelligence Practices
+
+Summary of the 8 AI practices prohibited by the EU 2024/1689 artificial intelligence (AI) Act.
+
+Dr Clare Dixon
+Regulatory Specialist
+
+### Navigating Non-Conformities in Technical Documentation
+
+We explore how to manage non-conformities effectively and implement Corrective and Preventive Actions (CAPAs).
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Mastering the EU MDR: Essential Steps for Compliance-Ready Docs
+
+If you're uncertain about the readiness of your EU MDR documentation, this article provides an overview of the essential steps to ensure you’re on track.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### A Guide to Electronic Instructions for Use (eIFU)
+
+Electronic Instructions for Use (eIFUs) are set to revolutionise how medical device instructions are delivered. We explore what this means for you.
+
+Dr Will Brambley
+Head of Project Management & Partnerships
+
+### Navigating Risk Management Requirements under the EU MDR
+
+This is a cornerstone of EU MDR 2017/745, requiring a continuous, well-documented approach. We unpack key requirements and provide actionable strategies.
+
+Dr Peter Boxall
+Lead Medical Writer
+
+### Beyond the Acronyms: Understanding SaMD and SiMD
+
+As software advancements continue, the line between traditional hardware-centric medical devices and software-driven solutions becomes increasingly blurred.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Extending the Validity of your IVDD Certificates – Key Dates
+
+The EU and the MHRA have extended the validity of IVDD certificates, allowing you more time to transition to the IVDR. We explain what this means for manufacturers.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### GSPR 1: A New Era of Performance with Safety at the Core
+
+This regulation emphasizes risk management, durable design & biocompatibility to ensure medical devices are safe and effective. GSPR 1 protects users while driving innovation in medical technology.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Cybersecurity Vulnerabilities in Medical Devices: FDA Alerts on Contec and Epsimed Monitors
+
+Patients can be exposed to risks when devices are online. We explore implications for EU MDR/IVDR cybersecurity requirements, including MDCG guidance
+
+Dr Clare Dixon
+Regulatory Specialist
+
+### Decoding UDI: Your Ultimate Guide to Smarter Medical Device Labelling
+
+The Unique Device Identifier (UDI) ensures medical device traceability and compliance. We break down its structure, Device Identifier (UDI-DI), Production Identifier (UDI-PI) and its role in EUDAMED.
+
+Kamiya Crabtree
+Regulatory Project Lead
+
+### Understanding Risk-Based Classification of In Vitro Medical Devices Under EU IVDR
+
+The transition from IVDD replaces list-based classification with a risk-based approach. Manufacturers must thoroughly understand the rules outlined in Annex VIII of the IVDR.
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### Key Updates for Navigating EMDN: MDCG 2024-2 Rev.1 & 2021-12 Rev.1
+
+Release of the updated guidance helps manufacturers navigate the EMDN system for accurate device classification, ensuring market access.
+
+Ron Sangal
+Lead Medical Writer
+
+### From IVDD to IVDR: Ensuring Compliance During the Transitional Period
+
+Legacy device manufacturers need to manage challenging timelines as well as address transitional provisions and update QMS.
+
+Shona Richardson PhD
+Regulatory Project Lead
+
+### Understanding Clinical Evidence Requirements with MDCG 2020-6
+
+How can manufacturers ensure legacy devices meet MDR's stringent requirements? Discover how MDCG 2020-6 guidance simplifies the path to compliance.
+
+Dr Clare Dixon
+Regulatory Specialist
+
+### Clinical benefits of an in vitro diagnostic medical device
+
+How to determine the clinical benefit of an IVD and successfully incorporate it into regulatory documentation.
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### Regulation (EU) 2024/1860 - Its impact on EU MDR and IVDR
+
+How does the recent Regulation (EU) 2024/1860 amendment affect the EU MDR & IVDR?
+
+Shona Richardson PhD
+Regulatory Project Lead
+
+### MDCG 2024-10 - Orphan medical devices
+
+How to apply MDR pre-market clinical evidence requirements to medical devices intended for limited usage.
+
+Dr Simon Cumiskey
+Chief SaMD Regulatory Consultant
+
+### A medical device's intended purpose - what is the point?
+
+How do you define intended purpose, indication for use, intended clinical benefits, and claims?
+
+Dr Simon Cumiskey
+Chief SaMD Regulatory Consultant
+
+### EnableChat - Your AI-powered MDR and MDCG chatbot
+
+Search the MDR and MDCG documents in seconds by asking EnableChat your questions.
+
+Dr Simon Cumiskey
+Chief SaMD Regulatory Consultant
+
+### Staying vigilant - A guide to searching for adverse events data
+
+We discuss the pros and cons of existing adverse event databases for vigilance data searching.
+
+Dr Simon Cumiskey
+Chief SaMD Regulatory Consultant
+
+### What is Summary of Safety and Clinical Performance (SSCP)?
+
+We explain what the SSCP is, when you'll need it and what its objectives are.
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### Scientific Validity Reports – Foundation of the IVDR Performance Evaluation
+
+Justifying scientific validity is the first step in proving compliance with the IVDR.
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### Medical Device 'Significant Changes' – Navigating EU MDR Article 120(3) using MDCG 2020-3 rev. 1
+
+Understand what changes to your medical device are considered 'significant' under EU MDR (2017/745).
+
+Shen May Khoo
+MDR Regulatory Consultant
+
+### MDR or IVDR - A sibling rivalry?
+
+A guide to easily understanding whether your device is a medical device or an in vitro diagnostic medical device (IVD).
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### What the latest Brexit U-turn means for CE Marking of medical devices in Great Britain
+
+Will Great Britain continue to allow the use of the CE mark for medical devices beyond the 2024 deadline?
+
+Dr Hanna Gul
+Lead Medical Writer
+
+### Gain confidence, reassurance and control over your EU MDR strategy
+
+Find out how to build your own technical files within a guided framework while minimising financial outlays.
+
+Dr Gayle Buchel
+Chief Medical Writer
+
+### Still racing to achieve MDR compliance? A transition period update
+
+On January 6th 2023, the EU commission has adopted the proposal to extend the transition rules of the EU MDR.
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### A medical device regulations guide for start-up companies
+
+We present a 7-step guide to navigating regulatory requirements on a budget.
+
+Paul Hercock
+CEO & Founder
+
+### UKCA Marking of Medical Devices – An update on the status quo
+
+We review recently updated requirements for UKCA marking and what it means for your regulatory strategy.
+
+Dr Hanna Gul
+Lead Medical Writer
+
+### Choosing a CER writer for your MDR Clinical Evaluations
+
+We've compiled a list of considerations that will help you make the right choice when choosing a CER writer.
+
+Paul Hercock
+CEO & Founder
+
+### How to achieve MDR Compliance for Class I medical devices
+
+We outline a strategy for the regulatory compliance of Class I medical devices.
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### Literature Search, SOTA Review process and Clinical Evaluation
+
+We help to demystify the process of systematic search & review of literature for Clinical Evaluation.
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### Literature searches and reviews for medical devices - what to know before you start
+
+We explain what you should know before beginning a literature search & review for your medical device.
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### Five useful resources when writing a medical device CER
+
+We outline five of the most useful and trustworthy Clinical Evaluation Report writing resources.
+
+Victoria Cartwright
+Relationship Manager
+
+### Five common pitfalls when writing a Clinical Evaluation Report
+
+We illustrate five pitfalls when writing CERs and give you some tips to overcome them.
+
+Paul Hercock
+CEO & Founder
+
+### Five tips for making a medical device equivalence claim under the MDR
+
+We'll show you what to keep in mind with regards to equivalance and Clinical Evaluation.
+
+Sandra Gopinath
+Chief Regulatory Officer
+
+### Keeping medical devices in market and maintaining CE-marks
+
+The 4 golden rules to drive regulatory compliance with PMCF and vigilance data collection.
+
+Paul Hercock
+CEO & Founder
+
+### How PMCF goes beyond simple compliance
+
+The wider benefits of a well-designed PMCF system include improving your products and your relationship with your clients.
+
+Paul Hercock
+CEO & Founder
+
+### Why you'll almost certainly need a PMCF system for your medical devices
+
+We tell you what to be aware of under the EU MDR regarding PMCF and your medical devices.
+
+Paul Hercock
+CEO & Founder
+
+### The impact of Brexit on medical device regulatory compliance
+
+How to ensure regulatory alignment of your devices in the territories affected by Brexit.
+
+Paul Hercock
+CEO & Founder
+
+### Is outside consulting support the answer to your MDR transition?
+
+Getting ready for the MDR is a demanding process. Outsourcing might be your solution.
+
+Paul Hercock
+CEO & Founder
+
+### Increasing data entry compliance in PMCF studies
+
+5 methods every medical device manufacturer should know to improve their Post-Market Clinical Follow-up studies.
+
+Paul Hercock
+CEO & Founder
+
+### Why medical doctors can drive MDR compliance
+
+Working with the MDR requires knowing how to work with clinical evidence. Medical doctors are perfectly positioned to meet this requirement.
+
+Victoria Cartwright
+Relationship Manager
+
+### Software as a Medical Device
+
+Unless you have spent time working with medical device legislation in the past, the idea that software could be a medical device may be rather unexpected.
+
+Paul Hercock
+CEO & Founder
+
+### Ensuring that clinical investigations work in practice
+
+How can medical device manufacturers ensure valid clinical investigations when access to medical expertise remains limited?
+
+Paul Hercock
+CEO & Founder
+
+### Relaxing medical device regulatory requirements during a healthcare crisis
+
+During the coronavirus pandemic, how far should we go when relaxing medical device regulatory requirements?
+
+Paul Hercock
+CEO & Founder
+
+### The new MDR compliance challenge
+
+Across the industry, medical device companies are facing challenges in meeting the demands of the new Medical Device Regulations (MDR) 2017/745 framework.
+
+Paul Hercock
+CEO & Founder
+
+### Sources of Real World Evidence for MDR compliance
+
+At Mantra Systems our objective is to make sure that our clients choose the method of real world data harvesting that is right for them.
+
+Paul Hercock
+CEO & Founder
+
+More articles
+
+##
+Need help producing compliant CEPs & CERs?
+We are offering FREE CEPs to 5 qualifying applicants per week
+
+Get your free CEP
+
+Hide

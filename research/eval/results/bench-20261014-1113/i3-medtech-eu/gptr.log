@@ -1,0 +1,25 @@
+[gptr 16:46:08] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:46:08] prompt (1921 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-68xMKb/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-68xMKb/gptr.log
+[gptr 16:46:23] 15s · fuentes leídas 0 · última línea: 🔎 Generating 4 search queries...
+[gptr 16:46:38] 30s · fuentes leídas 24 · última línea: 🔍 Running research for 'Spain angel investor groups digital health AI arrhythmia detection investments 2025-2026'...
+[gptr 16:46:53] 45s · fuentes leídas 206 · última línea: 💸 Total Research Costs: $0.021025000000000002
+[gptr 16:47:08] 60s · fuentes leídas 206 · última línea: INFO: [11:46:58] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:47:23] 75s · fuentes leídas 206 · última línea: 💸 Total Research Costs: $0.01906
+[gptr 16:47:38] 90s · fuentes leídas 250 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.linkedin.com/posts/peterjameswalker_startups-founders-fund
+[gptr 16:47:53] 105s · fuentes leídas 250 · última línea: ✅ Generated 2 queries: ['Spanish angel networks digital health AI cardiac monitoring investments 2022..2024 pitch channels investment range'
+[gptr 16:48:08] 120s · fuentes leídas 300 · última línea: INFO: [11:48:07] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:48:23] 135s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:48:38] 150s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:48:53] 165s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:08] 180s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:23] 195s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:38] 210s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:53] 225s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:50:08] 240s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:50:23] 255s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:50:38] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:50:38] proceso terminó tras 270s · timedOut=true código=n/d informe=ninguno
+[gptr 16:50:38] búsqueda terminada en 270s · GPTR_TIMEOUT 270s (se usan las páginas que alcanzó a leer)
+[gptr 16:50:38] URLs para el juez: 150 (0 del informe) → https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026 | https://luisllorens.substack.com/p/20-spanish-startups-to-watch-in-2026 | https://www.vectorhorizonte.com/guia-estrategica-financiacion-europea-2026-startups-pymes-biotecnologia | https://startupvalencia.org/icex-report-spanish-startup-ecosystem-2026 | https://www.pressdigital.es/articulo/economia/2026-10-08/6044578-startups-espana-rozan-4000-millones-invertidos-hasta-septiembre-49-megarrondas …
+[gptr 16:50:38] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:52:44] juez listo: 15 hallazgos (1 verificados) · contactos Apollo: 5 organizaciones, 6 créditos · total 397s

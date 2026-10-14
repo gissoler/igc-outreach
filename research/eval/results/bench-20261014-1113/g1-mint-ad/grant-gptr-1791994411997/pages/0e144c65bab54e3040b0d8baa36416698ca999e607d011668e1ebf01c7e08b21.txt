@@ -1,0 +1,105 @@
+Award | SBIR
+
+Skip to main content
+
+Skip to main content
+
+Official websites use .gov
+
+A .gov website belongs to an official government organization in the United States.
+
+Secure .gov websites use HTTPS
+
+A lock
+( )
+or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.
+
+Menu
+
+# Award
+
+Portfolio Data
+
+Back to Award Search
+
+## Leveraging high-throughput functional data for assessment of Alzheimer's risk
+
+### Awardee
+
+#### CONSTANTIAM BIOSCIENCES INC
+
+6306 GRAND SUMMIT CT
+KATY, TX, 77494-7686
+USA
+
+Award Year: 2024
+
+UEI: PJYLYX1ED6V4
+
+HUBZone Owned: No
+
+Woman Owned: No
+
+Socially and Economically Disadvantaged: No
+
+Congressional District: 10
+
+Tagged as:
+
+SBIR
+
+Phase I
+
+### Awarding Agency
+
+HHS
+
+Branch: NIH
+
+Total Award Amount: $485,192
+
+Contract Number: 1R43AG084431-01A1
+
+Agency Tracking Number: R43AG084431
+
+Solicitation Topic Code: R
+
+Solicitation Number: PAS22-196
+
+## Abstract
+
+PROJECT SUMMARY Alzheimer’s disease (AD) and AD-related dementias (ADRD) are irreversible, progressive brain disorders, and AD in particular is the sixth leading cause of death in the United States. Neurological decline begins up to two decades before cognitive symptoms are apparent in patients, highlighting the need for early risk assessment, screening, and treatment. Given the high heritability of AD/ADRDs, genetic testing has the potential to inform an individual’s risk. Although some common variants in APOE are known to modulate AD risk, the majority of genetic risk stems from rare variants, which are collectively common in the population but individually have little population data to support their classification. Thus, most variants in AD/ADRD risk variants are classified as medically inactionable variants of uncertain significance (VUS), precluding identification and precision management of high-risk individuals. To address the need for improved clinical interpretation of AD/ADRD risk genes, Constantiam Biosciences is developing MAVEvidence, an application that leverages recently-developed multiplexed assays of variant effect (MAVEs). MAVEs probe disease-relevant functions of thousands of protein variants in a single experiment and have proven useful for clinical interpretation of cardiovascular and cancer disease risk genes. Recently, the first MAVEs for AD/ADRD genes generated data for thousands of variants of the AD risk gene APP and the Lewy body dementia (LBD) risk gene SNCA. The data sets, however, are large and statistically complex, requiring rigorous analysis before they can be applied as evidence, and are thus largely inaccessible to clinical variant scientists. MAVEvidence brings several key innovations to the field of AD/ADRD gene variant interpretation, including a rigorous statistical analysis of MAVE data within a Bayesian framework and personalized, quantitative AD/ADRD risk assessment. MAVEvidence will be used by variant scientists at genetic testing companies and diagnostic laboratories to classify variants that would otherwise be VUS, thus enabling physicians and patients to make informed decisions about AD/ADRD screening and treatment. This Phase I SBIR proposal focuses on developing MAVEvidence for use by variant scientists to interpret variants in AD/ADRD risk genes. In Aim 1, we curate and validate data from all three published MAVEs for APP and one for SNCA. In Aim 2, we calibrate the odds of pathogenicity for each variant based on scores of known pathogenic and benign variants and then translate these odds to functional evidence that can be applied directly within existing variant interpretation frameworks. In Aim 3, we generate personalized quantitative measures of risk based on genotype by integrating MAVE data and population AD/ADRD incidence data with the goal of validating our model using biobank data. Successful completion of these aims will de-risk a planned Phase II focused on application to a broader set of AD/ADRD risk genes and development of a commercial-ready product.
+
+## Award Schedule
+
+2022
+Solicitation Year
+
+2024
+Award Year
+
+September 20, 2024
+Award Start Date
+
+August 31, 2025
+Award End Date
+
+#### Principal Investigator
+
+Name: NICHOLAS SCHAFER
+
+Phone: (402) 208-2060
+
+Email: npschafer@constantiambio.com
+
+#### Business Contact
+
+Name: NICHOLAS SCHAFER
+
+Phone: (402) 208-2060
+
+Email: npschafer@constantiam.com
+
+#### Research Institution
+
+Name: N/A

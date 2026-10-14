@@ -1,0 +1,117 @@
+NIH investment totaling 30.7M will expand USC-led AI effort to decode Alzheimer’s disease
+
+Skip to Content
+
+Newsroom
+
+Journalist on Deadline?
+
+In This Section
+
+#### Press Inquiries
+
+Keck School of Medicine
+Media Relations
+
+Laura LeBlanc
+Email: [email protected]
+Phone: (646) 825-0821
+
+Sheila Rodriguez
+Email: [email protected]
+Phone: (818) 581-9500
+
+## Related News
+
+USC study finds new evidence linking dementia to problems with the brain’s waste clearance system
+January 7, 2025
+
+Novel markers of brain blood flow and oxygenation may offer early clues to Alzheimer’s risk
+February 24, 2026
+
+Can we prevent Alzheimer’s disease within a decade?
+March 5, 2026
+
+Explore Brain Health and Alzheimer's Research, Education and Care
+
+The Keck School of Medicine is at the forefront of studying and treating Alzheimer's Disease and related brain disorders.
+
+Learn more about our brain health work
+
+Press Release
+
+# NIH investment totaling 30.7M will expand USC-led AI effort to decode Alzheimer’s disease
+
+NIH’s new $12.5 million grant supports the next phase of AI4AD, a national effort to use AI, brain imaging, genetics, and multi-omics data to better classify Alzheimer’s and related diseases, predict progression, and identify new treatment targets.
+
+Sidney Taiko Sheehan
+
+April 02, 2026
+
+A visualization of the complex data networks that power AI4AD2, where AI is used to connect brain scans, genetics, and other biological data to better understand Alzheimer’s disease. Photo/Stevens INI
+
+The National Institutes of Health has renewed support for Artificial Intelligence for Alzheimer’s Disease, or AI4AD . The new $12.6 million award to advance the project’s next phase, AI4AD2, brings its total investment in AI4AD to $30.7 million. Led by Paul M. Thompson, PhD , associate director of the USC Mark and Mary Stevens Neuroimaging and Informatics Institute ( Stevens INI ) at the Keck School of Medicine of USC, the multi-institutional initiative will develop artificial intelligence (AI) tools to uncover the biological causes of Alzheimer’s and related dementias, improve predictions of disease progression, and help develop more precise treatment options.
+
+AI4AD2 unites 10 investigators and 23 co-investigators from 10 institutions in pursuit of four interconnected research goals. The consortium will analyze large-scale datasets, including whole-genome sequencing, brain imaging, cognitive testing, and other biological data, to advance the diagnosis and treatment of dementia. This work builds on the original AI4AD initiative launched in 2020, which developed AI tools to detect Alzheimer’s-related patterns in brain scans and showed how machine learning can link imaging findings to underlying genetic risk.
+
+“As we age, our brains decline,” said Thompson. “But each of us has a unique mix of degenerative processes going on in our brains. We may have a mix of Alzheimer’s pathology, vascular disease, and brain changes more typical of Parkinson’s disease—all of them proceeding at different rates. This mix of pathologies makes dementia hard to treat. With AI4AD2, we are launching a program of genome-guided drug discovery, enabling researchers to identify novel drugs that target specific types of dementia, including the rarer subtypes.”
+
+One of the first goals of AI4AD2 is to go beyond broad diagnostic labels and identify meaningful subtypes of Alzheimer’s disease and related dementias. Instead of grouping all patients together, the project will use AI to categorize individuals based on patterns in brain scans, cognition, neuropathology, and genetic data. Better subtyping of dementia improves clinical trial design by helping scientists better match treatments to patients most likely to benefit. Such molecular subtyping is becoming more important as new therapies target amyloid, tau, vascular injury, and inflammation, which affect every patient to different degrees.
+
+An artistic rendering of AI analyzing the brain layer by layer, reflecting how AI4AD2 will use advanced computing to identify hidden patterns linked to Alzheimer’s and related dementias. Photo/Stevens INI
+AI4AD2 will also develop new “genomic language models,” a type of AI inspired by the same broad family of technology used in language-based artificial intelligence systems. Instead of analyzing words, these models will analyze genomic sequences to identify combinations of DNA changes associated with Alzheimer’s disease, disease progression, and key biomarkers. The project will train and evaluate these methods using data from over 58,000 participants across 57 cohorts. In practical terms, that involves teaching AI to search vast genetic datasets for patterns that traditional methods could not identify. The goal is to uncover new genetic and protein-related changes that may help drive neurodegeneration, and to link them to measurable changes in the brain and behavior. Earlier AI4AD research showed that AI models could identify Alzheimer’s-related features on brain scans with over 90% accuracy by learning from 80,000 brain scans, showcasing the potential of combining imaging, genomics, and machine learning on a large scale.
+
+Another key focus of AI4AD2 is making sure these AI tools work well across global populations. Many existing biomedical datasets focus on people of European ancestry, which limits the ability to identify risk factors that differentially affect other groups. AI4AD2 will adapt its disease classification, subtyping, and prognosis tools for global and multi-ancestry cohorts, including datasets from African, Indian, Korean, and US populations. The project will also identify how ancestry, social, and environmental factors affect Alzheimer’s risk and progression, with the goal of developing more accurate predictive models.
+
+“Artificial intelligence is only as powerful as the data and scientific questions behind it,” said Arthur W. Toga, PhD , director of the USC Mark and Mary Stevens Neuroimaging and Informatics Institute. “This renewal allows our team and collaborators to work at a scale that was previously out of reach, integrating imaging, genomics, and other biomarkers to better capture the complexity of Alzheimer’s disease. It represents an important step toward more precise, inclusive, and actionable brain health research.”
+
+The project’s fourth goal focuses on discovering treatments using an approach known as genome-guided drug discovery. Using a system called PreSiBO , an AI-based drug discovery tool developed through the original AI4AD effort, researchers will identify subtype-specific therapeutic targets and evaluate whether existing drugs can be repurposed for patients with specific Alzheimer’s-related biological profiles. The project will develop AI tools to detect the multiple molecular pathways affected and to identify specific drug treatments that target these specific disease mechanisms.
+
+The Stevens INI will continue to serve as a major hub for the effort. AI4AD2 is designed as a highly collaborative agreement, with USC as the lead site and partner institutions contributing expertise in neuroimaging, genomics, statistics, machine learning, cognitive science, and drug discovery. The team will share software and tools via public repositories and scientific workshops so that researchers worldwide can use and build upon the project’s methods.
+
+For families affected by Alzheimer’s disease, the long-term goal is clear: to develop more accurate tools to better distinguish different types of dementia and identify the best therapies for individual patients. By combining large-scale data with advanced AI, AI4AD2 seeks to bring personalized medicine closer to reality for one of the world’s most devastating neurological diseases.
+
+## Related News
+
+USC study finds new evidence linking dementia to problems with the brain’s waste clearance system
+January 7, 2025
+
+Novel markers of brain blood flow and oxygenation may offer early clues to Alzheimer’s risk
+February 24, 2026
+
+Can we prevent Alzheimer’s disease within a decade?
+March 5, 2026
+
+Categories
+
+Press Release
+
+Tags
+
+Alzheimer’s Disease
+
+Artificial Intelligence
+
+Brain Health
+
+Department of Biomedical Engineering
+
+Department of Neurology
+
+Department of Ophthalmology
+
+Department of Pediatrics
+
+Department of Psychiatry and the Behavioral Sciences
+
+Department of Radiology
+
+Homepage
+
+Latest
+
+Research
+
+USC Mark and Mary Stevens Neuroimaging and Informatics Institute
+
+Share

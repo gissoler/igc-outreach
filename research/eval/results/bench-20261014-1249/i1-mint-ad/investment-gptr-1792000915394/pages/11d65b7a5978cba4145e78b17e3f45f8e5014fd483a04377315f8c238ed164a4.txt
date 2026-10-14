@@ -1,0 +1,431 @@
+The Innovation Cliff: Exploring Maryland Tax Regulations - Swanson Reed | Specialist R&D Tax Advisors
+
+## Answer Capsule: Why Does Maryland’s 7-Year Carryforward Harm Capital-Intensive Startups?
+
+Maryland’s R&D Tax Credit currently enforces a highly restrictive 7-year carryforward period for unused, non-refundable credits. Because medium-sized, high-growth startups in Maryland’s “lighthouse” sectors—such as biopharmaceutical clinical trials and aerospace engineering—often endure a 10 to 15-year “Valley of Death” before achieving profitability, these earned tax credits expire long before the firm can utilize them. This “phantom benefit” directly encourages corporate flight to competitor states like Texas or Massachusetts, which offer 15-to-20-year carryforwards. To anchor these critical industries locally, the General Assembly must amend Tax-General Article &sect; 10-721 to mirror the federal IRC &sect; 41 standard, establishing a 20-year carryforward period or establishing an explicit Credit Transferability Market.
+
+## Key Takeaways
+
+The “Phantom Benefit” Penalty: Fast-growing firms that cross the $5 million asset limit immediately lose access to cash refundability. Because their R&D cycles frequently exceed 10 years, they are forced to carry forward credits that legally expire at year 7, rendering the state incentive functionally worthless during their most critical scaling phase.
+
+The “Double Squeeze” of Section 174: Maryland’s automatic decoupling from recent federal OBBBA expensing restorations means startups are forced to slowly amortize R&D costs over 5 years, artificially accelerating cash-flow crunches while their state credits expire prematurely.
+
+Regional Competitive Disadvantage: The federal standard (IRC &sect; 41) allows a 20-year carryforward. Regional competitors aggressively recruit Maryland talent by offering parity (e.g., Massachusetts at 15 years, Texas at 20 years, California offering indefinite carryforwards).
+
+Proposed Solution 1 (Federal Parity): Simple legislative amendment striking the 7-year limitation in Tax-General Article &sect; 10-721 and instituting a 20-year carryforward, aligning Maryland entirely with federal longevity standards.
+
+Proposed Solution 2 (Transferability): Implement an “Innovation Exchange” enabling mid-sized, pre-profitable innovators to bypass carryforwards altogether by selling certified, unused credits directly to profitable Maryland corporations at 80% to 92% of face value.
+
+## 1. Executive Summary
+
+The technological and economic competitiveness of the State of Maryland is inextricably linked to the vitality of its research and development (R&D) ecosystem. As a primary driver of high-wage job creation and industrial modernization, Maryland’s R&D tax credit framework, codified under Tax-General Article Section 10-721, serves as a critical fiscal instrument for anchoring “lighthouse” industries such as biotechnology, aerospace, and cybersecurity within the state’s borders. 1 However, a significant structural deficiency in the current statute—the restrictive seven-year carryforward period for unused credits—threatens the long-term viability of small and medium-sized businesses (SMBs) engaged in long-cycle innovation. 4
+
+While the federal government allows a twenty-year carryforward period, Maryland’s significantly shorter window risks the total expiration of these incentives before capital-intensive firms reach the profitability required to utilize them. 7 This report provides a comprehensive analysis of the policy issue, explores the context of Maryland’s current R&D framework, and proposes actionable legislative solutions to prevent the erosion of the state’s innovation base.
+
+## 2. The Architecture of Maryland’s R&D Tax Credit Framework
+
+The Maryland Research and Development Tax Credit was established to incentivize businesses to maintain and expand their technical operations within the state by subsidizing the marginal costs of new innovation. 1 The program is administered by the Maryland Department of Commerce and follows the federal definition of qualified research and qualified research expenses (QREs) as defined by Section 41(b) of the Internal Revenue Code (IRC). 4 To qualify for the credit, a business must incur expenses related to wages, supplies, and contract research physically conducted within Maryland. 4
+
+Historically, the Maryland framework offered a bifurcated benefit consisting of a “Basic” credit, equal to 3% of QREs not exceeding a historically derived base amount, and a “Growth” credit, equal to 10% of expenses exceeding that same base. 1 The 2021 legislative session marked a pivotal shift in the program’s administration with the passage of Senate Bill 196 (SB 196). This legislation repealed the Basic credit for tax years beginning after December 31, 2020, funneling the state’s entire annual R&D credit budget into the 10% Growth pool. 1 This policy change was designed to prioritize incremental expansion over routine operational maintenance, ensuring that state resources are directed toward genuine scientific and engineering advancement. 1
+
+The program is currently subject to a $12 million annual statutory cap, with $3.5 million specifically reserved for small businesses and $8.5 million allocated for larger entities. 4 A “small business” for the purposes of this credit is defined as a for-profit corporation, limited liability company, partnership, or sole proprietorship with net book value assets totaling less than $5 million at the beginning or end of the taxable year. 4 For these certified small businesses, the R&D credit is fully refundable to the extent it exceeds the entity’s income tax liability, providing a direct cash infusion for early-stage startups. 1 However, for “medium-sized” businesses—those exceeding the $5 million asset threshold but not yet achieving sustained profitability—the credit is non-refundable and subject to the restrictive seven-year carryforward limitation. 1
+
+Table 1: State vs. Federal Framework Comparison
+
+Feature
+Maryland R&D Credit (Tax-General &sect; 10-721)
+Federal R&D Credit (IRC &sect; 41)
+
+Credit Rate
+10% of QREs exceeding Maryland Base Amount 1
+Incremental rate up to 20% 14
+
+Carryforward Period
+7 Years 4
+20 Years 7
+
+Carryback Period
+Prohibited 5
+1 Year 7
+
+Refundability
+Small Business (<$5M Assets) Only 1
+Generally Non-refundable (Except QSB Payroll Offset) 17
+
+Annual Program Cap
+$12 Million (Prorated if exceeded) 4
+No Cap (Entitlement) 2
+
+Expiration Date
+June 30, 2027 (Extension Proposed to 2031) 3
+Permanent 2
+
+The calculation of the credit relies on the establishment of a “Maryland Base Amount,” which is determined by multiplying a “fixed-base percentage” by the average annual Maryland gross receipts of the business for the four preceding taxable years. 2 For startup firms or businesses that have never conducted R&D in Maryland, the base amount is calculated as zero, effectively allowing the Growth credit to apply to 100% of the current year’s QREs. 1 Despite the robustness of the 10% rate, the statutory caps often lead to significant proration. 11 In the tax year 2019, the Growth credit was 11.85 times oversubscribed, reducing the effective credit rate from the statutory 10% to approximately 1.18%. 11
+
+## 3. The Policy Issue: The Divergence in Carryforward Longevity
+
+The primary policy friction identified in this report is the misalignment between the seven-year state carryforward period and the twenty-year federal standard. 6 This divergence is not merely a technicality; it represents a fundamental misunderstanding of the innovation lifecycles inherent in Maryland’s most critical industrial sectors. In industries such as biotechnology, pharmaceutical development, and aerospace engineering, the timeline from initial research to commercialized profitability—and therefore the generation of sufficient tax liability to utilize non-refundable credits—often spans ten to fifteen years. 22
+
+### The Innovation Lifecycle and the “Valley of Death”
+
+The innovation “Valley of Death” refers to the period between the initial discovery of a technology and its eventual commercial success, characterized by high R&D spending, negative cash flows, and significant technological uncertainty. 2 For a medium-sized Maryland biotech firm developing a novel therapeutic, the research phase involves multiple stages of clinical trials, regulatory filings, and manufacturing scale-up. 22 If this firm earns $250,000 in R&D credits in Year 1 of a twelve-year development cycle, the credit will expire in Year 8. 5 Because the firm is likely pre-profitable or reinvesting all revenue into further research during those eight years, the tax credit expires without providing any actual financial benefit to the company. 8
+
+This limitation effectively penalizes firms that are too successful to remain “small businesses” (exceeding $5 million in assets) but are still in the pre-profit stage of a long-term development cycle. 4 For these entities, the R&D tax credit becomes a “phantom benefit”—a certified asset on the balance sheet that vanishes before it can be realized, thereby failing to mitigate the inherent financial risks associated with technical innovation. 2
+
+### Competitive Landscape and State-Level Variability
+
+Maryland’s seven-year window is significantly more restrictive than that of many competing jurisdictions. While some states mirror the federal twenty-year rule, others have recognized that indefinite or long-term carryforwards are necessary to attract and retain high-growth firms. 8
+
+Table 2: Comparative Carryforward Periods
+
+State
+Carryforward Period
+Comparison to Maryland
+
+Federal (IRC &sect; 41)
+20 Years 7
+185% Longer than MD
+
+California
+Indefinite 8
+Significantly more competitive for startups
+
+Texas
+20 Years 8
+Aligned with federal standards
+
+Massachusetts
+15 Years 8
+114% Longer than MD
+
+New York
+10 Years 8
+42% Longer than MD
+
+Maryland
+7 Years 4
+Baseline
+
+The discrepancy in carryforward periods creates a strong incentive for companies to relocate their R&D operations as they transition from the early startup phase (where Maryland’s refundability is beneficial) to the scaling phase (where long-term credit retention is paramount). 22 If a company anticipates that it will not achieve tax liability for at least ten years, a Massachusetts or Texas location offers twice the utility for the same R&D dollar spent compared to Maryland. 8
+
+## 4. The Compounding Pressure of Federal Decoupling and the “Tech Tax”
+
+The urgency of reforming the carryforward period is heightened by two recent shifts in Maryland’s fiscal landscape: the state’s decoupling from IRC Section 174 and the enactment of the “tech tax” on information technology services. 21
+
+### Automatic Decoupling from IRC Section 174
+
+Prior to the 2017 Tax Cuts and Jobs Act (TCJA), businesses could immediately expense 100% of their R&D costs in the year incurred. 18 The TCJA mandated that, beginning in 2022, these expenses must be capitalized and amortized over five years (fifteen years for foreign R&D). 18 While the federal government recently restored immediate expensing through the “One Big Beautiful Bill Act” (OBBBA) of 2025, Maryland’s statutory framework triggered an “automatic decoupling” mechanism. 21 Maryland law provides for automatic decoupling when a federal change has a revenue impact exceeding $5 million on the state’s general fund. 31
+
+Consequently, Maryland businesses must continue to amortize domestic R&D expenditures over five years for state income tax purposes, even as they expense them immediately on their federal returns. 21 This decoupling results in a higher effective state tax burden in the early years of a project, creating severe cash flow challenges for innovative enterprises. 21 When this amortization requirement is coupled with a short seven-year credit carryforward, Maryland creates a fiscal “double squeeze”: companies are forced to delay the recognition of their expenses while simultaneously facing an accelerated expiration of their credits. 8
+
+### The Impact of the Information Technology Service Tax
+
+Adding to the complexity is the “Tech Tax” mandated by the 2025 Budget Reconciliation and Financing Act (BRFA). 30 This legislation imposes a 3% sales tax on certain IT services, data processing, and software publishing services. 30 The Maryland Tech Council has noted that this tax dramatically increases the cost of basic operations, research, and production for firms across the state, contributing to economic stagnation in the technology and life sciences sectors. 37 For a scaling SMB, the combination of a new tax on its digital infrastructure and a restrictive carryforward on its R&D incentives creates a hostile environment for long-term growth. 37
+
+## 5. Proposed Solution 1: Alignment with Federal Carryforward Standards
+
+The most effective and direct solution to the policy issue is for the Maryland General Assembly to amend Tax-General Article &sect; 10-721(d)(1)(ii) to extend the carryforward period for unused R&D tax credits from seven years to twenty years. 7
+
+### Legislative Implementation and Statutory Mechanics
+
+This policy change would require a simple legislative amendment to the existing carryforward provision. The goal is to provide parity between state and federal incentives, thereby ensuring that Maryland remains a viable location for long-cycle R&D projects. 8
+
+To implement this change, the legislature should:
+
+Strike the term “7th taxable year” and substitute “20th taxable year” within the relevant sections of the Tax-General Article. 5
+
+Apply the extension retroactively to any certified credits currently within their open seven-year window to provide immediate relief to businesses facing impending credit expiration.
+
+Coordinate with the Comptroller’s office to update Form 500CR and electronic filing systems to track the expanded twenty-year window. 1
+
+The benefits of alignment are manifold. First, it provides long-term certainty for businesses, allowing them to include the full value of the state credit in their ten-year financial projections. 3 Second, it reduces administrative complexity for taxpayers who currently must track two different expiration schedules for the same underlying research activity. 17 Finally, it signals that Maryland is “open for business” and understands the unique needs of capital-intensive sectors like biotechnology and aerospace. 38
+
+### Economic Rationale for Parity
+
+By mirroring the federal standard, Maryland effectively lowers the “user cost” of R&D over the long term. 15 Econometric studies suggest that a 10% reduction in the user cost of R&D can lead to a 1.1% to 1.7% increase in research intensity in the short run, with even greater gains in the long run as firms adjust their capital allocations. 44 A twenty-year carryforward ensures that the “value” of the credit is not diminished by the risk of expiration, thereby maximizing the incentive’s impact on business decision-making. 8
+
+## 6. Proposed Solution 2: Establishing a Credit Transferability Market (The “Innovation Exchange”)
+
+As an alternative or supplementary solution, Maryland could implement a credit transferability program, similar to the frameworks utilized in Pennsylvania and New Jersey. 17 This would allow pre-profitable SMBs that cannot utilize their R&D credits within a reasonable timeframe to sell or transfer those credits to other Maryland taxpayers for cash. 22
+
+### The Mechanism of Transferability
+
+A transferability program would provide immediate liquidity to innovative firms while ensuring that the fiscal benefit is eventually realized by a profitable Maryland entity. 22 The “Innovation Exchange” model would work as follows:
+
+Certification: A pre-profitable Maryland business receives certification for a Growth R&D tax credit. 4
+
+Application for Transfer: If the business cannot utilize the credit and does not meet the “small business” refundability criteria, it applies to the Department of Commerce for a transfer certificate. 20
+
+Sale: The business sells the certified credit to a profitable Maryland corporation (the “Buyer”) at a market-negotiated discount, typically ranging from 80% to 92% of the credit’s face value. 22
+
+Utilization: The Buyer applies the credit against its own Maryland state income tax liability. 29
+
+This solution addresses the carryforward issue by bypassing the need for a carryforward altogether for firms in need of immediate working capital. 22 For a biotech firm burning through $5 million to $8 million per quarter, the ability to monetize a $250,000 state R&D credit provides critical non-dilutive runway for research milestones. 2
+
+### Strategic Impact on the Mid-Sized Gap
+
+Transferability specifically targets the “mid-sized” gap—companies that have grown beyond the $5 million asset limit but are still years away from profitability. 4 By allowing these firms to sell their credits, the state transforms a dormant tax asset into an active engine for growth, hiring, and equipment purchases. 1
+
+## 7. Proposed Solution 3: Tiered Refundability and Asset-Cap Indexing
+
+A third potential solution involves raising and indexing the “small business” asset threshold for refundability. 4 The current $5 million net book value asset cap is static and has not kept pace with the rising costs of laboratory equipment, specialized facilities, and intellectual property acquisition. 4
+
+### Raising the Asset Threshold for Refundability
+
+The legislature could implement a tiered refundability system to bridge the gap between early startups and large corporations:
+
+Tier 1 (Small Business): Full refundability for entities with assets under $10 million (increased from the current $5 million). 4
+
+Tier 2 (Growth Stage SMB): Partial refundability (e.g., 50% of the unused credit) for entities with assets between $10 million and $50 million, with the remaining 50% subject to a twenty-year carryforward. 12
+
+Tier 3 (Large Corporate): Non-refundable, subject to a twenty-year carryforward. 1
+
+By indexing these thresholds to inflation or a relevant industry cost index, the state can ensure that the “small business” definition remains relevant to the actual financial scale of Maryland’s high-tech sectors. 23
+
+## 8. Safeguarding Policy Integrity: Oversight and Fraud Prevention
+
+The expansion of the R&D tax credit’s longevity and flexibility must be matched by rigorous oversight to ensure the prevention of fraud, waste, and abuse. 48 Maryland already employs a certification-based system, which is a significant first line of defense against the “pay-and-chase” risks associated with self-certified tax credits. 4 However, further enhancements are required to manage an expanded carryforward or transferability program.
+
+### Establishing the “Gold Standard” of Certification
+
+The Department of Commerce currently serves as the “Certification Authority,” reviewing detailed applications before any credit can be claimed on a tax return. 10 To bolster this process, the state should adopt the following integrity mechanisms:
+
+Mandatory CPA Verification: For credits exceeding a certain threshold (e.g., $150,000), the state should require a verification statement from an independent Certified Public Accountant (CPA) to confirm the accuracy of reported QREs and compliance with the “Four-Part Test”. 27
+
+Increased Scrutiny of High-Risk Claims: Maryland should adopt the IRS’s risk-based audit guidelines, which prioritize scrutiny for software development activities and internal-use software that often fail to meet the rigorous “Process of Experimentation” standard. 2
+
+Contemporaneous Documentation Audits: The Department of Commerce should conduct periodic “compliance readiness” reviews, requiring a sample of applicants to provide contemporaneous records such as innovation logs, testing protocols, and laboratory time sheets. 10
+
+Inter-Agency Data Sharing: Establishing a permanent task force between the Department of Commerce, the Comptroller’s Revenue Administration Division, and the Office of Legislative Audits (OLA) would allow for the cross-matching of applicant data against multiple state and federal sources to detect identity theft or synthetic identities. 48
+
+### Recapture and Clawback Provisions
+
+To protect state resources, any credits used or transferred must be subject to clear recapture rules. 46 Under current Job Creation Tax Credit (JCTC) regulations, a business must maintain the certified positions for three years or face recapture of some or all of the credits. 46 A similar retention period should be mandated for R&D credits. If a business utilizes or sells an R&D credit but then relocates its Maryland headquarters or ceases operations within two years of the credit year, the state should have the statutory authority to recover the value of the credit from the recipient or the transferor. 46
+
+## 9. Economic Analysis: The Return on Investment (ROI) of Longer Carryforwards
+
+A cost analysis of extending the R&D carryforward period must be framed through the lens of dynamic economic growth rather than static revenue loss. 15 While the initial “cost” of the policy is the deferral of future tax revenue, the long-term benefits typically pay for the program multiple times over. 15
+
+### The Multiplier Effect and Innovation Spillovers
+
+The “multiplier effect” of R&D tax credits is well-documented in economic literature. Studies indicate that each dollar of tax credit can generate up to three dollars in additional private-sector R&D spending. 15 Furthermore, R&D is characterized by positive externalities or “spillovers,” where the research conducted by one firm benefits the broader economy through the diffusion of knowledge, the training of high-skilled labor, and the creation of secondary industry clusters. 15
+
+Table 3: Multiplier Effects of R&D Investment
+
+Economic Indicator
+Impact of R&D Investment
+
+Direct Spending Multiplier
+$1 in credit generates ~$1 to $3 in new R&D 18
+
+Job Support
+$1 Billion in R&D supports ~17,000 high-wage jobs 57
+
+Wage Impact
+75% of R&D spending is allocated to salaries 57
+
+Entrepreneurial Activity
+State R&D credits increase new firm formation by ~7% 12
+
+### Fiscal Outlook: Future Benefits Paying for the Outlay
+
+The fiscal impact of extending the carryforward to twenty years is largely concentrated in future decades. 7 Because the targeted firms are currently pre-profitable, they are not paying state income tax. 7 Therefore, extending the carryforward does not result in an immediate decrease in current-year general fund revenues. Instead, it ensures that Maryland can collect 100% of the corporate and personal income taxes from a company that successfully matures in Maryland ten years from now, rather than losing that company and its tax base to a competitor like Massachusetts. 22
+
+Independent studies of similar film and technology credits confirm that programs that incentivise high-impact industry behavior often “more than pay for themselves” through the expanded tax base created by the sustained presence of major employers. 43 The “Decade Act” acknowledges that these innovation incentives are foundational to reversing Maryland’s stagnant growth and ensuring long-term structural budget stability. 43
+
+## 10. The Strategic Importance of Reform and the Risks of Inaction
+
+Maryland’s innovation economy is at a critical juncture. The state possesses world-class universities, federal research laboratories, and a highly educated workforce. 19 However, these assets cannot overcome a tax environment that is misaligned with the operational realities of modern science and technology. 37
+
+### The Consequences of Maintaining the Status Quo
+
+Failure to extend the R&D carryforward period will result in several quantifiable negative outcomes:
+
+The “Innovation Cliff”: As credits begin to expire for firms founded in the last seven to ten years, these companies will face a sudden increase in their effective tax rate just as they reach profitability, potentially stifling their ability to reinvest and expand in Maryland. 8
+
+Corporate Flight to Regional Competitors: Virginia, while currently in a “temporary pause” on its credits, is expected to renew and enhance its R&D incentives in the 2026 session. 28 If Maryland remains restrictive while neighbors become more flexible, the “gravitational pull” of regional tech hubs will lead to the offshoring of Maryland-born intellectual property. 2
+
+Deterrence of Venture Capital: Institutional investors evaluate a state’s tax policy when deciding where to site their portfolio companies. 12 A state that allows its primary innovation incentive to evaporate is viewed as a higher-risk environment for the long-term capital required for biotechnology and aerospace breakthroughs. 22
+
+Inefficiency of State Investment: The Department of Commerce already “spends” the $12 million annual allocation by certifying these credits. 4 Allowing these credits to expire unused represents a massive inefficiency; the state has essentially “paid” for the research through the certification process but has failed to capture the long-term retention benefit that the credit was intended to provide. 1
+
+## Conclusion: A Vision for Maryland’s Innovation Future
+
+The Maryland Research and Development Tax Credit is more than just a fiscal incentive; it is a statement of the state’s economic priorities. 1 By extending the carryforward period to twenty years, aligning state policy with federal standards, and considering innovative mechanisms like credit transferability, the Maryland General Assembly can eliminate the “innovation cliff” and provide a stable foundation for the next generation of technological leaders. 3 These reforms, implemented with robust fraud-prevention safeguards and a focus on SMB growth, will ensure that the discoveries made in Maryland laboratories today become the Maryland-based industries of tomorrow. 19
+
+## Works Cited
+
+Growth R&D Tax Credit (10% Rate) Benefits Overview – Swanson Reed, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/maryland/glossary/growth-rd-tax-credit-10-rate/
+
+Baltimore R&D Tax Credit Overview for Businesses – Swanson Reed, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/maryland/case-studies/baltimore/
+
+Governor Moore Announces Legislative Action to Strengthen Maryland’s Economic Competitiveness – Press Releases – News, accessed March 22, 2026, https://governor.maryland.gov/news/press/pages/governor-moore-announces-legislative-action-to-strengthen-maryland%E2%80%99s-economic-competitiveness.aspx
+
+Maryland R&D Tax Credits – Get Info and Calculate R&D Tax Credits – Strike Tax Advisory, accessed March 22, 2026, https://www.striketax.com/state-rd-credits/maryland-r-d-tax-credits
+
+Maryland R&D Tax Credit | AndreTaxCo, PLLC, accessed March 22, 2026, https://www.andretaxco.com/maryland-rdcredit
+
+Are R&D Tax Credits Available in Maryland? | See if You Qualify – KBKG, accessed March 22, 2026, https://www.kbkg.com/research-tax-credit/maryland-rd-tax-credit
+
+R&D Tax Credit Carryforward | ADP, accessed March 22, 2026, https://www.adp.com/resources/articles-and-insights/articles/r/r-d-credit-carryforward.aspx
+
+R&D Credit Carryforward: Provisions & Limits – Haven, accessed March 22, 2026, https://www.usehaven.com/blog-posts/rd-credit-carryforward
+
+Research and Development Tax Credit (R&D) – Maryland Commerce, accessed March 22, 2026, https://commerce.maryland.gov/fund/programs-for-businesses/research-and-development-tax-credit
+
+Maryland R&D Tax Credit Overview for Businesses – Swanson Reed, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/maryland/
+
+OFFICE OF FINANCE MARYLAND RESEARCH AND …, accessed March 22, 2026, https://commerce.maryland.gov/Documents/ProgramReport/RD-tax-credit-annual-report-2019.pdf
+
+Maryland Enacts Much-Needed Research & Development Credit Overhaul – Aprio, accessed March 22, 2026, https://www.aprio.com/insights-events/maryland-research-development-credit-overhaul/
+
+Article – Tax – General &sect;10–721. IN EFFECT // EFFECTIVE UNTIL JUNE 30, 2027 PER CHAPTER 114 OF 2021 // (a) (1) In – Maryland Commerce, accessed March 22, 2026, https://commerce.maryland.gov/Documents/Tax%20General%2010%20721.pdf
+
+ADPSmartCompliance&reg; – Tax Credits Module – Research & Development (R&D) Tax Credit, accessed March 22, 2026, https://assets.kpmg.com/content/dam/kpmg/us/pdf/2016/11/us-sga-adp-kpmg-research-and-development-tax-credit.pdf
+
+The Federal Research and Development (R&D) Tax Credit – EveryCRSReport.com, accessed March 22, 2026, https://www.everycrsreport.com/reports/R48848.html
+
+What is the R&D Tax Credit? | Who Qualifies? – KBKG, accessed March 22, 2026, https://www.kbkg.com/research-tax-credits
+
+State-level R&D tax credits vs. Federal R&D credits – Swanson Reed, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/federal/faqs/state-level-rd-tax-credits-vs-federal-rd-credits/
+
+Bad breaks: Why US tax policies put innovation at risk, accessed March 22, 2026, https://siepr.stanford.edu/publications/policy-brief/bad-breaks-why-us-tax-policies-put-innovation-risk
+
+The R&D Tax Credit Aspects of Innovation in Maryland, accessed March 22, 2026, https://www.rdtaxsavers.com/articles/Maryland
+
+Department of Business and Economic Development (Prior Name of DOC) – Swanson Reed, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/maryland/glossary/department-of-business-and-economic-development/
+
+Research and Development (R&D) Tax Credits for Laurel, Maryland Businesses – Swanson Reed, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/maryland/case-studies/laurel/
+
+State R&D Tax Credits for Biotech: The Hidden Opportunity Most Life Sciences Companies Miss – Boast, accessed March 22, 2026, https://www.boast.ai/en-us/blog/r-and-d/state-rd-tax-credits-for-biotech-the-hidden-opportunity-most-life-sciences-companies-miss
+
+R&D tax credit Life Sciences strategies to reduce costs – BPM, accessed March 22, 2026, https://www.bpm.com/insights/rd-tax-credit-life-sciences/
+
+Improving Tax Treatment of R&D Would Boost Productivity and Growth, accessed March 22, 2026, https://taxfoundation.org/blog/us-rd-tax-full-expensing/
+
+R&D Tax Credits for the Life Sciences Industry – BDO USA, accessed March 22, 2026, https://www.bdo.com/insights/tax/r-d-tax-credits-for-the-life-sciences-industry
+
+Recent Research: Unravelling the paradox of R&D tax credits – SSTI, accessed March 22, 2026, https://ssti.org/blog/recent-research-unravelling-paradox-rd-tax-credits
+
+State R&D Tax Credits: Recent Updates and Impacts – Aprio, accessed March 22, 2026, https://www.aprio.com/insights-events/state-rd-tax-credits-recent-updates-and-impacts-ins-article-tax/
+
+Virginia R&D Tax Credit: 2025 Sunset Implications and 2026 Outlook | Cherry Bekaert, accessed March 22, 2026, https://www.cbh.com/insights/articles/virginia-rd-tax-credit-changes-impact-on-businesses/
+
+States Spend Big on R&D Tax Credits. Are They Paying Off? – Governing, accessed March 22, 2026, https://www.governing.com/finance/states-spend-big-on-r-d-tax-credits-are-they-paying-off
+
+2025 Legislative Update – Davis, Agnor, Rapaport, & Skalny, accessed March 22, 2026, https://www.darslaw.com/business-planning-transactions/2025-legislative-update/
+
+Tax Alert Maryland Impacts of the One Big Beautiful Bill Act (PL 119-21), accessed March 22, 2026, https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/alerts/tax-alert-maryland-impacts-of-the-one-big-beautiful-bill-act.pdf
+
+Maryland Comptroller Alerts Taxpayers of Impact of OBBB on IRC Conformity, accessed March 22, 2026, https://tax.thomsonreuters.com/news/maryland-comptroller-alerts-taxpayers-of-impact-of-obbb-on-irc-conformity/
+
+The R&D Tax Credit in 2026: Key Changes to Be Aware Of – CSSI Services, accessed March 22, 2026, https://cssiservices.com/rd-tax-credit-in-2026/
+
+Domestic R&E Expenditures Method Changes That Must Be Made for the 2025 Tax Year, accessed March 22, 2026, https://www.bdo.com/insights/tax/domestic-r-and-e-expenditures-method-changes-that-must-be-made-for-the-2025-tax-year
+
+R&D tax credits got simpler at federal level. Not in the states | Our Insights – Plante Moran, accessed March 22, 2026, https://www.plantemoran.com/explore-our-thinking/insight/2026/01/rd-tax-credits-got-simpler-at-federal-level
+
+Tax Updates from the 2025 Legislative Session – Comptroller of Maryland, accessed March 22, 2026, https://www.marylandcomptroller.gov/individuals/2025-tax-updates.html
+
+Priorities – Maryland Tech Council, accessed March 22, 2026, https://mdtechcouncil.com/advocacy/priorities/
+
+A Unified Voice to Create Change – Maryland Tech Council, accessed March 22, 2026, https://mdtechcouncil.com/wp-content/uploads/2026/01/2026-MTCPolicy-Platform.pdf
+
+Research and Development Tax Credit Regulations 1-03 – Maryland Commerce, accessed March 22, 2026, https://commerce.maryland.gov/Documents/FinanceDocument/RDTC-%20Regulation.pdf
+
+Maryland 2024 Form 510 Pass Through Entity Income Tax Return Instructions, accessed March 22, 2026, https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2024/PTE-Booklet-510.pdf
+
+Tax Year 2023 Corporate Booklet – Comptroller of Maryland, accessed March 22, 2026, https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2023/Corporate-Booklet.pdf
+
+Maryland Department of Commerce Fiscal 2021 Annual Report, accessed March 22, 2026, https://dlslibrary.state.md.us/publications/Exec/DC/commerce-annual-report-2021.pdf
+
+2026 GBCC SB 388 DECADE Support.pdf – Maryland, accessed March 22, 2026, https://mgaleg.maryland.gov/cmte_testimony/2026/bat/33639_02182026_83534-720.pdf
+
+Do Tax Credits Stimulate R&D Spending? The Effect of the R&D Tax Credit in its First Decade – NYU Wagner, accessed March 22, 2026, https://wagner.nyu.edu/files/faculty/publications/do-tax-credits-stimulate-r-d-spending.pdf
+
+New Evidence That the R&D Tax Credit Promotes Research, Especially in Small Companies, accessed March 22, 2026, https://itif.org/publications/2020/05/05/new-evidence-rd-tax-credit-promotes-research-especially-small-companies/
+
+Appendix G: Compliance Triggers and Remedial Action – Maryland Commerce, accessed March 22, 2026, https://commerce.maryland.gov/Documents/ResearchDocument/ConsolidatedIncentivesFY15-AppendixG.pdf
+
+Maryland R&D Tax Credit Case Study – KBKG, accessed March 22, 2026, https://www.kbkg.com/rd-tax-credit-case-study/maryland
+
+Blueprint for Enhanced Program Integrity Chapter 3: Fraud Prevention and Detection – Pandemic Oversight, accessed March 22, 2026, https://www.pandemicoversight.gov/blueprint-for-enhanced-program-integrity/chapter-3
+
+Common R&D tax credit scams to avoid, accessed March 22, 2026, https://www.swansonreed.com/research-tax-credit/federal/faqs/common-rd-tax-credit-scams-to-avoid/
+
+Department of Commerce – Maryland Department of Legislative Services, accessed March 22, 2026, https://dls.maryland.gov/pubs/prod/NoPblTabPDF/DOC23.pdf
+
+Maryland Research and Development Tax Credit – BlueCap Economic Advisors, accessed March 22, 2026, https://www.bluecapeconomicadvisors.com/post/maryland-research-and-development-tax-credit
+
+Audit guidelines on the application of the process of experimentation for all software – IRS, accessed March 22, 2026, https://www.irs.gov/businesses/audit-guidelines-on-the-application-of-the-process-of-experimentation-for-all-software
+
+Small Business R&D Tax Credit: Eligibility, Expenses & How It Works – Ramp, accessed March 22, 2026, https://ramp.com/blog/small-business-r-d-tax-credits
+
+R&D Tax Credits: A Comprehensive Guide to the Tax Savings Opportunity All Businesses Should Know About – Warren Averett CPAs & Advisors, accessed March 22, 2026, https://warrenaverett.com/insights/guides/comprehensive-guide-rd-tax-credits/
+
+Modernizing fraud prevention in government programs – Thomson Reuters Legal Solutions, accessed March 22, 2026, https://legal.thomsonreuters.com/blog/modernizing-fraud-prevention-government-risk-management/
+
+Businesses that have received Final Certification for the Job Creation Tax Credit are required to complete and sign the form bel – Maryland Commerce, accessed March 22, 2026, https://commerce.maryland.gov/Documents/JCTCAnnualReportForm.pdf
+
+R&D Tax Credits: Driving American Innovation and Competitiveness, accessed March 22, 2026, https://www.kajmst.com/articles/r-d-tax-credits-driving-american-innovation-and-competitiveness
+
+R&D Tax Credits Boost New as Well as Existing Firms – NBER, accessed March 22, 2026, https://www.nber.org/digest/sep19/rd-tax-credits-boost-new-well-existing-firms
+
+2025 LEGISLATIVE SESSION REPORT – University System of Maryland, accessed March 22, 2026, https://www.usmd.edu/usm/government-relations/2025_End_of_Session_Report.pdf
+
+Notice & Disclaimer: The information is current as of July 31, 2026. This whitepaper is provided for discussion purposes only and should not be construed as legal or tax advice. It is strongly recommended that you seek professional legal or tax representation to understand how the Maryland R&D tax credit and any proposed policy changes would apply to specific business circumstances.
+
+@swansonreed
+
+OUR CREDENTIALS
+
+Contact Us
+
+What Our Clients Say
+
+Posted on Google
+
+ANTHONY NORRIS
+29 March 2025
+
+Trustindex verifies that the original source of the review is Google. I've been claiming R&D credits for over two decades now and this is the most knowledgeable and efficient team I have encountered thus far. Can't recommend them enough.
+
+Posted on Google
+
+DAVE LITANA
+26 March 2025
+
+Trustindex verifies that the original source of the review is Google. We have partnered with Swanson & Reed for several years now, and their service has been nothing short of exceptional. Their team is efficient, highly attentive, and brings deep industry knowledge, ensuring a smooth and seamless experience. Their expertise and responsiveness make working with them a pleasure. They consistently provide valuable insights and support, making the entire process effortless. I highly recommend their services to any business seeking expert guidance in R&D claims.
+
+Posted on Google
+
+JERRICKSON LLANEZA
+26 March 2025
+
+Trustindex verifies that the original source of the review is Google. Adam, Cherie, and the team have supported us every step of the way through multiple R&D claims. Their guidance in gathering the necessary information has been invaluable, making the process straightforward while ensuring full compliance. Their expertise has turned what could be an overwhelming task into a manageable one. Swanson Reed’s assistance has been instrumental in the success of our applications. Their professionalism and attention to detail have given us confidence throughout the process, making them an essential partner in our R&D efforts.
+
+Posted on Google
+
+43 PIMENTEL
+25 March 2025
+
+Trustindex verifies that the original source of the review is Google. We connected with Adam and Cherie at Swanson Reed based on a referral from a trusted associate. Over the past four years, they have guided my company through the complexities of research and development incentives provided by the Federal Government. Their knowledge and support have been invaluable in streamlining the process and ensuring we make the most of these opportunities. This partnership has been the most crucial in securing financial backing for our startup’s growth. Their dedication and expertise have made a significant impact, and I wholeheartedly endorse Swanson Reed to any business looking to leverage R&D incentives.
+
+Posted on Google
+
+LEE MCMULLAN
+13 June 2024
+
+Trustindex verifies that the original source of the review is Google. An unbelievable experience, in the best way. Cherie Jones and her team are extremely helpful and beyond organized. They actually took the time to teach us things. Thank you so much for our ongoing partnership. I am truly grateful. I have already sent a few of my connections your way.
+
+Load more
+
+Privacy and Complaint Policy
+Copyright Notice ©
+Sitemap
+
+Contact Us
+
+Send us a message and we will be in touch shortly!
+
+Start typing and press Enter to search

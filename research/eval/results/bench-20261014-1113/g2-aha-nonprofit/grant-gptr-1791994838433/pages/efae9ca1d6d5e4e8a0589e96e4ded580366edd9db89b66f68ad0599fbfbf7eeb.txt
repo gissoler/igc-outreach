@@ -1,0 +1,50 @@
+Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases | Programme | HORIZON | CORDIS | European Commission
+
+Skip to main content
+
+EN
+
+Biomarkers[[See definition as in the Strategic Research and Innovation Agenda of the Innovative Health Initiative Joint Undertaking: http://www.ihi.europa.eu/sites/default/files/uploads/Documents/About/IHI_SRIA_ApprovedJan22.pdf ]] are invaluable tools for improving patient outcomes, guiding treatment decisions, accelerating personalised medicine, more effective clinical research and the development of better medicines.
+However, despite the scientific discoveries of many clinically relevant biomarkers, estimated on the scale of tens of thousands, only a few biomarkers have been implemented in clinical practice. The traditional ‘one biomarker’ paradigm is insufficient for addressing the unmet clinical needs of chronic, progressive and multifactorial diseases, due to the complexity of the clinical phenotypes characterised by broad inter-and intra-patient heterogeneity. The established biomarkers have limitations in their use as prognostic and predictive indicators, for the assessment of the disease progression and the choices of the optimal therapeutic interventions tailored to the patients’ characteristics.
+Therefore, the topic focuses on the clinical development of predictive biomarkers of disease progression and treatment response for chronic non-communicable diseases (excluding cancer) by using established AI methodologies able to combine data of clinically used and candidate biomarkers, with available data from relevant clinical studies, longitudinal and Real-World Data (RWD)[[EMA definition: “Real-World Data are routinely collected data relating to patient health status or the delivery of healthcare from a variety of sources other than traditional clinical trials (e.g. claims databases, hospital data, electronic health records, registries, mhealth data, etc.)”.]]. This topic is expected to support collaborative projects paving the way for future innovations in personalised medicine and enabling more timely and effective therapeutic interventions.
+The proposals should address all the following research and innovation activities:
+Set-up a multidisciplinary collaboration to map and evaluate the available information and data on biomarkers currently used in the clinical setting, candidate biomarkers from past and ongoing clinical studies, which are scientifically proven as clinically relevant to the disease progression and treatment response for the chronic non-communicable diseases under study. This should include stratification by biological sex, and where feasible, integration of gender-related variables and sociodemographic determinants that may modulate disease trajectories or treatment efficacy.
+Adapt and apply of established AI methods rather than developing novel ones from scratch, to deliver novel predictive biomarkers of disease progression and treatment response, by integrating data of currently used and candidate biomarkers, with suitable data from available longitudinal and other relevant clinical studies, including RWD, as necessary. To guarantee a solid and fast optimisation and training of the AI tools, the applicants should provide information in their proposal that the appropriate high-quality clinical data are readily available, and when necessary generate small-scale new data for the AI optimisation needs. The biomarkers under study should be multimodal, covering for instance molecular, cellular, physiological, imaging, behavioural and digital markers, and/or their combinations. The applicants should justify why the development of the biomarkers proposed is imperative to tackle the unmet clinical needs of the chronic non-communicable diseases under study.
+Use AI and, where needed, other relevant data and knowledge integration methods, to describe the relationships among different biomarkers and support the robust prioritisation of predictive biomarkers tailored to the characteristics of the patients’ and their disease stage and treatment response. Proposals should have strong emphasis on the AI trustworthiness[[See introduction to this Work Programme part as well as the Ethics Guidelines for Trustworthy AI, published by the European Commission’s High Level Expert Group on Artificial Intelligence https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai and the Ethics by Design and Ethics of Use Approaches for Artificial Intelligence https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ethics-by-design-and-ethics-of-use-approaches-for-artificial-intelligence_he_en.pdf ]] and develop the adequate performance metrics to assess their accuracy, reliability, reproducibility, including the assessment of possible inherent bias. Use of AI and dataset should comply with existing privacy-preserving legislation. Moreover, proposals should consider the development of user-friendly and fit-for-purpose visualisation and decision-support tools to guide clinicians in evaluating the clinical plausibility of the biomarkers under study across diverse patient groups.
+Establish a biomarker validation platform to assess the clinical utility of the predictive biomarkers identified. To this end, the applicants should implement clinical validation studies in independent disease cohorts, RWD and exploratory clinical studies, as appropriate, to demonstrate their clinical value as prognostic and predictive indicators for more effective clinical research and better patient health outcomes as compared to the established clinical practice of chronic non-communicable diseases. Prospective clinical studies are expected to be led by entities in the EU/EFTA and/or Associated Countries.
+Develop a comprehensive exploitation plan for the valorisation of the research outputs and a regulatory strategy to support the alignment to the regulatory requirements for the qualification of the biomarkers and/or AI tools and engage with the regulators in a timely manner. The applicants should prioritise the exploitation of their research results in the EU. Participation of small and medium-sized enterprises (SMEs)[[ https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32003H0361 ]] is encouraged with the aim to strengthen the scientific and technological basis of SMEs and valorise their health innovations.
+Proposals should apply good practices for GDPR[[General Data Protection Regulation: https://commission.europa.eu/law/law-topic/data-protection_en , https://gdpr-info.eu ]] compliant personal data protection.
+Proposals are encouraged, where relevant, to exploit the available data services, expertise and digital tools offered by the relevant European research infrastructures[[The catalogue of European Strategy Forum on Research Infrastructures (ESFRI) research infrastructures portfolio can be browsed on the ESFRI website: https://ri-portfolio.esfri.eu ]] and/or data infrastructures[[ https://digital-strategy.ec.europa.eu/en/policies/artificial-intelligence-health ]] in the area of health funded under the Digital Europe Programme.
+All proposals selected for funding under this topic will be strongly encouraged to participate in networking and joint activities (e.g. participation in joint workshops, development of best practices, or joint communication activities), which may also involve networking with projects funded under Horizon Europe, or other EU programmes (e.g. the Digital Europe Programme[[ https://digital-strategy.ec.europa.eu/en/activities/digital-programme ]]). The proposals should allocate a sufficient budget for networking and joint activities, without the prerequisite to detail such activities at the proposal stage.
+Applicants should provide details of their clinical studies[[Please note that the definition of clinical studies (see introduction to this Work Programme part) is broad and it is recommended that you review it thoroughly before submitting your application.]] in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+See all projects funded under this programme or topic
+
+## Download Download the content of the page
+
+XML
+
+Last update: 18 November 2025
+
+Permalink: https://cordis.europa.eu/programme/id/HORIZON_HORIZON-HLTH-2027-02-TOOL-01-two-stage
+
+European Union, 2026
+
+This site uses cookies
+to offer you a better browsing experience.
+
+I accept cookies.
+
+I refuse cookies.
+
+## Your data extraction is available
+
+Your data extraction with Task ID
+TASK_ID_PLACEHOLDER
+is available for download.
+
+Go to my data extractions
+
+Close
+
+DET Modal body ...

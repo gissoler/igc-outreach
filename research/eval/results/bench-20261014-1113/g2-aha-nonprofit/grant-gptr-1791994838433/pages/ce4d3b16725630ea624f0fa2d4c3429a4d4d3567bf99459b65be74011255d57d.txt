@@ -1,0 +1,195 @@
+AD Data Initiative | The William H. Gates, Sr. Fellowship from the AD Data Initiative
+
+## The William H. Gates, Sr. Fellowship from the AD Data Initiative
+
+View the Fellowship Rules and Guidelines
+
+About the Fellowship
+
+## Thank you for your interest- the application submission period is now closed
+
+The  William H. Gates Sr. Fellowship from the AD Data Initiative  has been established to encourage and support researchers from around the world to be bold, creative, and innovative in their approach to ADRD research.  
+We invited research proposals that use innovative data analysis ideas or statistical approaches to address a relevant question in the ADRD field utilizing Generative AI-based approaches. We are particularly interested in applicants who have experience with AI approaches that emphasize multi-modal learning (e.g., integrating imaging, genetic, and clinical data), explainable AI, and privacy-preserving data analysis techniques. Approximately three to four fellows will be selected for our two-year program and will receive a financial award of up to $100,000 USD. Applicants must be researchers currently employed by an academic (non-tenured), government, industry, or non-profit organization.  
+
+#### Read the full  Fellowship Rules and Guidelines . 
+
+## Frequently Asked Questions
+
+## General
+
+##### What fields of research are supported by the fellowship?
+
+The program will support data science research in Alzheimer’s disease and related dementias (ADRD). This specific cohort of fellows are additionally required to have a proven track record in generative AI methods with application to neuroscience or neurodegenerative disease. 
+
+##### What makes this fellowship unique?
+
+This fellowship will provide financial assistance to non-tenured, early- to mid-career researchers who are employed by an organization but are seeking funding to support their ADRD research (see below for description of ‘tenure’). Other support may include opportunities to develop professional networks, identify mentors, present findings at relevant conferences or other events, assist with publications, and more.
+
+##### Is the AD Data Initiative Fellowship Program new, and why was it started?
+
+The William H. Gates Sr. Fellowship from the AD Data Initiative is inviting applicants for its second cohort; its first cohort launched in 2023. The program seeks to support researchers from around the world to be bold, creative, and innovative in their data analysis approach to find new discoveries in ADRD, while also demonstrating the value of re-using high quality datasets and generative AI methods. Named after William H. Gates Sr., this fellowship honors his legacy of advocacy and philanthropy. In 2020, he passed away from Alzheimer’s disease. 
+
+## Proposed Research
+
+##### Do I have to use the AD Workbench to perform my analyses?
+
+Yes, fellows must do their proposed analyses on the AD Workbench. Exceptions may be made for extenuating circumstances. 
+
+##### Can I propose to use my own data in my analyses?
+
+Yes, applicants are encouraged to include their own data, including data from multiple studies or sources. We strongly encourage applicants to explore the datasets available on the AD Workbench to be integrated into the proposed analysis.
+
+##### My hypothesis does not address any of the suggested research questions, should I still apply?
+
+Yes, the suggested questions are provided as examples of priorities in the field, however applicants are welcome to address other questions that would be relevant to advancing the ADRD field. 
+
+##### Am I required to publish my results in a peer-reviewed journal?
+
+To support open science, we require that fellows share their results with the scientific community and we strongly encourage publishing in a peer-reviewed journal.  
+
+## Eligibility
+
+##### What if I hold a master’s (or another) degree, can I still apply?
+
+The program prefers applicants who hold a doctoral degree relevant to this program. If the applicant holds a master’s (or another) degree, has an innovative research proposal, has work experience that can support their research, and meets the other requirements of the fellowship program, please consider applying. Reviewers will consider the totality of the application. 
+
+##### What if I hold a medical degree, can I still apply?
+
+Yes, applicants holding a medical degree (MD, DO, or equivalent) will be considered if they also meet the other requirements of this fellowship. 
+
+##### What if I have less than five or more than ten years of relevant work experience since receiving my doctoral degree, can I still apply?
+
+If the applicant has a novel data analysis idea or statistical approach to ADRD research, work experience that can support their research, and meets the other requirements of this fellowship program, please consider applying. Reviewers will consider the totality of the applicant. 
+
+##### During the fellowship, can I work with industry?
+
+Yes, our program places no restrictions on industry collaboration. Please check with the organization to ensure being a fellow and the requirements of the fellowship (e.g. sharing developed code) is permissible. 
+
+##### Must I have experience applying for research funding?
+
+No, we do not require applicants to have prior experience with acquiring funding for their research. 
+
+##### What does ‘tenured faculty’ mean?
+
+Our fellowship program aims to support early- and mid-career researchers – those who are not established researchers. In the United States, those who hold tenured positions at an academic institution are usually established researchers. If you are from a country that does not follow this model, have an innovative research idea, and meet the other requirements of our program, please consider applying. 
+
+##### What if I don’t have a proven track record in generative AI applications to ADRD or neurodegeneration?
+
+We prefer applicants have experience with AI approaches in the neurodegeneration field. However, if you have an innovative research proposal and research experience that can support your research, and meet the other requirements of the fellowship program, please consider applying. Reviewers will consider the totality of the application. 
+
+## Financial Award
+
+##### Is the financial award fixed?
+
+The program provides each fellow a financial award of up to $100,000 USD. The amount will be divided and distributed over the course of the two-year program. 
+
+##### Can I receive the second year’s award in the first year?
+
+No, unless there are extraordinary circumstances. 
+
+##### Can I receive funding from other sources during my fellowship?
+
+Fellows are not AD Data Initiative employees, and the program does not prohibit fellows from receiving funding from other sources. Fellows should ensure their home organization allows them to receive outside funds
+
+##### Are there restrictions on how the award can be used?
+
+Fellowship funds must be used for research-specific purposes. Please follow any expenditure requirements from your home organization. 
+
+##### What if my institution requires me to prepare a budget even if it’s not required for the application?
+
+Please reach out to GatesSrADFellows@alzheimersdata.org if your institution requires additional documentation that is not required for the application. 
+
+##### Is there a cap for indirect costs?
+
+The financial award is inclusive of indirect costs, and they are capped at 10%. 
+
+##### How will the financial award be distributed?
+
+If an applicant is chosen as a fellow, the financial award will be paid directly to the applicant’s employer for the purpose of supporting the fellow’s research. 
+
+## Duration of Fellowship
+
+##### Can I renew my fellowship after 2 years?
+
+No, fellowships are not renewable unless there are extraordinary circumstances. 
+
+##### What if my research extends beyond the two-year program?
+
+Fellows are encouraged to continue their data science research after the program ends. We hope that the opportunities (networks, conference presentations, publications) gained during the program will assist fellows in identifying and securing additional funding.   
+
+##### What circumstances could cause the early termination of my fellowship?
+
+A fellowship may be terminated if a fellow engages in scientific misconduct, makes unsatisfactory efforts to complete the research described in their application, or breaches the terms of their fellowship agreement. 
+
+## Location
+
+##### Where will I work or be located?
+
+The fellowship does not have a residency requirement. 
+
+##### Do I have to be a United States citizen or resident?
+
+No, we encourage applicants from all over the world to apply (please see our Fellowship Rules for certain excluded countries). It would be ideal if fellows are eligible to travel to the United States, if needed. 
+
+## Technology
+
+##### Will you provide technology or systems to help me conduct my research?
+
+The AD Workbench is a cloud-based data discovery and analysis platform that is secure, accessible to researchers around the world, and available at no cost to users. All the tools and resources on the AD Workbench are available to fellows. 
+
+##### My research proposal will require significant compute resources. Will the associated costs be paid for by the program?
+
+Fellows will have access to standard AD Workbench workspaces, which are equipped with Windows or Linux virtual machines (VMs) that include 4 vCPUs, 16 GB memory, 28 GB temporary storage. Workspaces offer 5 TB of storage that is accessible by all VMs. Additional compute and storage can be made available on a case-by-case basis.
+
+## Applications
+
+##### When are applications due?
+
+Applications will be accepted until 15:00 PST (23:00 GMT) Sunday, December 1, 2024. Only information and materials submitted through our application portal will be considered. 
+
+##### Can I send updates to my application once submitted?
+
+No. All materials must be submitted together and prior to the application deadline. 
+
+##### What is the difference between the personal statement and the research statement?
+
+The personal statement offers a place for an applicant to describe personal accomplishments that have impacted their work or challenges they may have faced during their research career, including those based on gender identity or race. In contrast, the research statement should include the hypothesis, aims, data sources, analysis plans and anticipated timeline for the proposed research. 
+
+## Review Process
+
+##### How long will it take to review and decide on my application?
+
+Applications will be reviewed after submission and decisions are expected to be made by March 2025. All decisions will be final. 
+
+##### Who will review my application?
+
+Applications will be reviewed by experts identified by the AD Data Initiative. They may include scientific advisors and leadership from our partner organizations and other leaders in the field. 
+
+##### Will applicants who are not selected be provided with review notes, scores, or reasons for the decision?
+
+No, applicants will be informed of final decisions but will not be provided with additional details. 
+
+## Questions
+
+Please review the FAQs and Fellowship Rules and Guidelines and if any additional questions, email GatesSrADFellows@alzheimersdata.org .  
+
+## Privacy and Confidentiality
+
+All submitted applications will be kept confidential, except: (1) as noted below; (2) as necessary for our evaluation; (3) to comply with any applicable laws; and (4) if the application is made public or available to others through no fault of the AD Data Initiative. Unfunded applications will remain confidential. Successful applications may be shared publicly after reasonable notice to the applicant or with parties related to the fellowship program to enable the management of the program. Application materials will not be returned to applicants. For further details about the AD Data Initiative’s privacy policies and use of any personal data that may be submitted with your application, please refer to the AD Data Initiative’s privacy policy .
+
+## Publicity and Marketing
+
+Fellows may be asked to collaborate with the AD Data Initiative on publicity and marketing related to their research, which may use information included in their application. Any information that will be publicly disseminated that specifically references the fellow or their work will be shared with the fellow prior to being shared with others. 
+
+## No Third-Party Infringement
+
+By applying, the applicant is representing to AD Data Initiative that they have the right to provide the information submitted and the materials do not infringe any third-party intellectual property rights. Applicants with questions concerning the contents of their application may contact AD Data Initiative at GatesSrADFellows@alzheimersdata.org.
+
+News
+Contact Us
+FAQs
+
+©Alzheimer's Disease Data Initiative 2026
+
+Privacy
+Terms

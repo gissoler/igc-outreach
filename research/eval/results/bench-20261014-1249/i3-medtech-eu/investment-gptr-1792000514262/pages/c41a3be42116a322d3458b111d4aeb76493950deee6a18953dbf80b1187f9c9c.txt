@@ -1,0 +1,279 @@
+How to Sell Medical Devices in Europe: A Regulatory Roadmap for U.S. Manufacturers 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Home 
+Resources 
+Blog 
+August 2026 
+How to Sell Medical Devices in Europe: A Regulatory Roadmap for U.S. Manufacturers
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 
+How to Sell Medical Devices in Europe: A Regulatory Roadmap for U.S. Manufacturers
+
+
+
+
+
+
+
+
+
+
+
+The European Union (EU) represents a significant expansion opportunity for medical device manufacturers based in the United States. With the EU medical device market valued at approximately &euro;170 billion in 2024 and representing 26.4% of the global market, it's the second-largest medical device market in the world.
+
+
+However, many U.S. manufacturers are unsure how to sell medical devices in Europe because Food and Drug Administration (FDA) clearance does not transfer to the EU. Accessing the European market requires compliance with an entirely different regulatory framework, the EU Medical Device Regulation (MDR), which governs all 27 EU member states. Understanding the key requirements, regulatory gatekeepers and compliance path is necessary before pursuing EU market entry.
+
+
+
+## What to Know About Accessing the EU Medical Device Market
+
+
+U.S. manufacturers entering the European market need to understand three baseline requirements before moving forward.
+
+
+
+### 1. EU MDR Is the Governing Regulation
+
+
+Legally binding and mandatory to comply with, Regulation (EU) 2017/745 is the regulatory framework for all medical devices marketed in the EU. This EU MDR framework replaced the former Medical Device Directive (MDD) and came into full application in May 2021.
+
+
+EU MDR is the first framework that U.S. manufacturers must understand before planning market entry. Unlike FDA guidance documents that offer some flexibility, MDR is a prescriptive law with enforcement consequences for noncompliance.
+
+
+
+### 2. CE Marking Is Your Market Access Credential
+
+
+Conformité Européenne (CE) marking is the mandatory conformity declaration that grants legal access to the EU market. Achieving CE marking is the end goal of EU MDR compliance, and without it, manufacturers cannot legally sell medical devices in Europe.
+
+
+CE marking medical devices is distinct from obtaining a quality system certification, like ISO 13485, though a compliant quality management system (QMS) is part of the process.
+
+
+The path to CE marking varies by device classification, with higher-risk classifications requiring more extensive technical documentation and mandatory Notified Body involvement. U.S. manufacturers hoping to achieve MDR certification must demonstrate full conformity with applicable requirements before CE marking can be applied.
+
+
+
+### 3. FDA Approval Doesn't Carry Over
+
+
+FDA clearance or approval does not provide a head start in the EU, as the MDR operates independently from FDA pathways. In particular, the EU does not recognize "substantial equivalence" in the same way the FDA does. Under EU MDR, equivalence claims require access to the full technical documentation of a predicate device, which competitors typically won't share.
+
+
+A device that achieved 510(k) clearance in the U.S. must still complete the applicable EU MDR conformity assessment process before it can be placed on the European market.
+
+
+Additionally, the U.S. and EU classification systems differ, meaning direct translations aren't possible. For example, an FDA Class II device may be treated as a higher-risk Class IIb or Class III under EU MDR classification rules. This is a key planning consideration for U.S. manufacturers expecting regulatory alignment.
+
+
+
+## How EU MDR Compares to FDA Regulation
+
+
+The structural differences between the FDA and EU systems require U.S. manufacturers to rethink their regulatory approach.
+
+
+
+
+While the FDA model is centralized, with a single government agency reviewing and clearing or approving products, the EU MDR model is decentralized. There is no EU government agency equivalent to the FDA to which a manufacturer submits a dossier. Instead, manufacturers work with independent Notified Bodies to conduct conformity assessments.
+
+
+This distinction affects timelines, costs and manufacturer responsibilities throughout the certification process. U.S. manufacturers accustomed to centralized FDA review will need to adapt their regulatory strategy.
+
+
+
+### Where U.S. and EU Rules Diverge
+
+
+The EU uses a four-class risk-based classification system:
+
+
+
+Class I
+
+Class IIa
+
+Class IIb
+
+Class III
+
+
+
+Since a device's EU class does not automatically match its FDA class, it's important that U.S. manufacturers correctly classify their devices. Getting EU classification wrong during planning has significant downstream consequences, as it determines the level of Notified Body involvement, the depth of required clinical evidence and the overall timeline and cost. This is also why classification must be resolved early in the market entry process.
+
+
+EU medical device regulations also impose stricter post-market surveillance and vigilance requirements than those of the FDA.
+
+
+
+## The 3 EU Regulatory Gatekeepers
+
+
+U.S. manufacturers will encounter three key entities during the path to EU market access, each with distinct roles in the certification system.
+
+
+
+### 1. Notified Bodies
+
+
+A Notified Body is an independent organization designated by an EU member state to assess whether a medical device meets the requirements of EU MDR. For Class IIa, IIb and III devices, Notified Body assessment is mandatory before CE marking can be granted. Class I devices can usually self-certify, although Class Ir, Class Is and Class Im devices require a Notified Body to certify specific aspects of the device.
+
+
+The number of Notified Bodies designated under EU MDR is limited, which can affect application timelines, so U.S. manufacturers should factor Notified Body capacity into their market entry planning. All notified bodies will appear on the New Approach Notified and Designated Organisations (NANDO) list.
+
+
+
+### 2. EU Authorized Representative
+
+
+Non-EU manufacturers, including all U.S.-based companies, are legally required to appoint an EU Authorized Representative (EU AR) before they can obtain CE marking for their devices. The EU AR is a person or legal entity established within the EU who acts as the official point of contact with EU regulatory authorities and National Competent Authorities (NCAs).
+
+
+The EU AR must be named on product labeling and the Declaration of Conformity. This is a structural legal requirement, not an optional consideration. Without an EU AR in place, U.S. medical device manufacturers cannot access the EU market.
+
+
+
+### 3. National Competent Authorities
+
+
+NCAs are the government bodies in each of the 27 EU member states responsible for overseeing regulatory compliance and market surveillance within their borders. While manufacturers primarily interact with Notified Bodies for certification, NCAs handle post-market surveillance, vigilance reporting and enforcement.
+
+
+Understanding the role of NCAs helps manufacturers anticipate post-market obligations once devices are placed on the European market.
+
+
+
+## The Path to CE Marking
+
+
+The conformity assessment process follows a defined sequence, though timelines and complexity vary by device class.
+
+
+
+### Conformity Assessment and Technical Documentation
+
+
+The conformity assessment process requires manufacturers to complete several key steps:
+
+
+
+Determine EU device classification by evaluating your device against the 22 rules of Annex VIII.
+
+Implement a QMS. Gaining ISO 13485 certification supports MDR QMS requirements and forms the foundation of compliance.
+
+Prepare the technical file, which includes device description, risk analysis, clinical evaluation, General Safety and Performance Requirements (GSPR) compliance documentation and labeling.
+
+Engage a Notified Body for review if your device's classification requires it.
+
+Receive MDR certification and apply CE marking.
+
+
+
+The device class and technical file completeness can affect how long CE marking takes to achieve, which is why U.S. manufacturers should consult an ISO 13485 guide to understand QMS requirements early in planning.
+
+
+
+### EUDAMED Registration
+
+
+The EUDAMED (European Database on Medical Devices) is the EU's official device registration and transparency system established under the EU MDR. As of May 28, 2026, four EUDAMED modules are now mandatory for manufacturers placing devices on the EU market:
+
+
+
+Actor registration
+
+UDI/device registration
+
+Notified Bodies and certificates
+
+Market surveillance
+
+
+
+U.S. manufacturers must register in EUDAMED as part of the EU market entry process before devices can be legally placed on the market.
+
+
+
+
+
+## Start Your EU Market Entry With Kiwa | NQA
+
+
+In partnership with KIWA as the EU Notified Body, NQA offers MDR certification to support U.S. manufacturers seeking CE marking for EU market access. With over 53,000 certificates issued to clients in more than 90 countries and over three decades of experience , Kiwa | NQA brings global expertise and local customer focus to the MDR certification process.
+
+
+Our accredited auditing services help manufacturers meet the strict technical requirements and integrity standards defined by European medical device regulations.
+
+
+Ready to begin your path to the European market? Learn more about MDR certification or contact us today to discuss your certification needs.

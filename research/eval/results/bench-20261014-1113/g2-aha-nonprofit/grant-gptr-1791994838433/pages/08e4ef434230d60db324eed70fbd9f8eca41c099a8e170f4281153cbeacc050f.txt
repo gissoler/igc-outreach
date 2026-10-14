@@ -1,0 +1,103 @@
+AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge
+
+# Alzheimer’s Trials Data Discovery Challenge
+
+Powered by the AD Data Initiative and Vivli, and supported by Alzheimer’s Research UK
+The Alzheimer’s Trials Data Discovery Challenge will award $75,000 in prizes to teams that can unlock discoveries from the new Integrated Alzheimer’s Disease Clinical Trial Dataset – a fully harmonized dataset featuring decades of placebo-arm data from 11 trials, ready for analysis on Vivli’s secure, cloud-based research environments. 
+This challenge opened July 10, 2026, and is currently open.
+
+Submit your Letter of Intent alzheimersdata.awardsplatform.com
+
+## Challenge Timeline 
+
+July 10, 2026:  Alzheimer’s Trials Data Discovery Challenge submission period opens 
+September 1, 2026:  First deadline, letter of intent submission
+September 15, 2026:  First deadline accepted teams submit a Data Access Request via Vivli  
+October 1, 2026: Second deadline, letter of intent submission
+October 15, 2026: Second deadline accepted teams submit a Data Access Request via Vivli
+November 1, 2026:  Dataset delivered to Vivli’s secure environment  
+February 1, 2027: Challenge entries are due 
+Spring 2027: Winners announced
+
+## About the Integrated Alzheimer’s Disease Clinical Trial Dataset 
+
+11
+
+##### Clinical trials harmonized
+
+7,089
+
+##### Placebo-arm participants
+
+5
+
+##### Pharmaceutical sponsors
+
+20+
+
+##### Years of data, now in one place
+
+Five major pharmaceutical companies —  AstraZeneca, Lilly, Johnson & Johnson, Roche, and Takeda  — tested drugs across 11 Alzheimer’s trials. While the trials ultimately did not produce the hoped-for advances, the data they produced is invaluable. This harmonized dataset gives researchers the statistical power to ask entirely new questions about disease subtypes, progression, and the role of sex in Alzheimer’s. 
+The data available spans  demographics, cognitive assessments, biomarkers, volumetric measures extracted from neuroimaging, and medication history  — collected across five sponsors over decades of trials. Researchers analyzing this dataset have the potential to surface findings that individual trial teams could not, which could meaningfully accelerate the path to new diagnostics and treatments for Alzheimer’s disease. 
+Available variables across the included clinical trials include the following, where collected by each study:
+Sex
+Age
+Race
+APOE4 Genotype
+Concomitant Medication Use
+Substance Use
+Cognitive Test Scores
+Amyloid Beta
+Amyloid PET Positivity
+Amyloid PET SUVR
+Ptau-181 / Total tau
+Volumetric Measures
+Accessing the data
+Vivli is a data platform partner of the AD Data Initiative’s AD Workbench. Researchers can learn more about the harmonized dataset for exclusive use during the challenge and submit access requests via Vivli. Upon approval, all analysis takes place within Vivli’s secure, cloud-based research environments, and only summary-level results, and code may be requested for export. Teams may bring code, files, or additional dataset into the environment. All teams and their institutions must agree to Vivli’s Data Use Agreement .
+Note that all data access is governed by the Independent Review Panel (IRP) to ensure responsible, ethical use of this dataset throughout the challenge.
+
+## About the Alzheimer’s Trials Data Discovery Challenge
+
+The Alzheimer’s Trials Data Discovery Challenge is designed to put this first-of-its-kind dataset in the hands of researchers best positioned to make discoveries with it.
+Three research tracks address questions that are newly answerable due to the scale and harmonization of this dataset:
+TRACK 1: Sex Differences in Alzheimer's Disease
+TRACK 2: Rates of Progression
+TRACK 3: Subtyping and Heterogeneity
+$75,000 will be available in total prizes, with $25,000 awarded to the first-place team in each track. Winning teams will have the opportunity to submit their findings for publication in a high-impact journal and present at a major Alzheimer’s conference, with support from the AD Data Initiative. This is a launchpad for a landmark scientific contribution — not just a cash award.
+Up to 24 teams will participate — eight per research track.
+Who can participate?
+The Challenge invites early- to mid-career research teams — including a PI sponsor and a statistician at minimum — to submit proposals to analyze the Integrated Alzheimer’s Disease Clinical Trial Dataset. Researchers who will get the most out of this challenge are those who see the scientific opportunity in data that has never been analyzed at this scale before.
+What are the submission requirements?
+Teams must have a PI sponsor and a statistician at minimum
+Final submissions must include a 1-page summary, a 5-page write-up, and access to all code
+All research is conducted within Vivli's secure research environment
+Researchers may bring their own supplementary anonymized data to the challenge, as long as they have the appropriate permissions
+Read the full Rules & Guidelines
+
+Follow us for data challenge updates.
+
+## Data Partners & Trials
+
+This challenge was made possible through an extraordinary commitment to data sharing from five major pharmaceutical companies. 
+AstraZeneca   |   Lilly   |   Johnson & Johnson   |   Roche   |   Takeda
+Contributing trials
+AMARANTH
+DAYBREAK
+EXPEDITION
+EXPEDITION2
+EXPEDITION3
+IDENTITY-2
+NAVIGATE
+SCARLET ROAD
+TOMMORROW
+ELN115727-301
+ELN115727-302
+
+News
+Contact Us
+FAQs
+
+©Alzheimer's Disease Data Initiative 2026
+
+Privacy
+Terms

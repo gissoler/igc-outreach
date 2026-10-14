@@ -1,0 +1,67 @@
+{
+ "id": "i1-mint-ad",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+ "why": "brief del jefe, objetivo inversión (seed, salud digital, Maryland)",
+ "dry": false,
+ "ok": true,
+ "status": "partial",
+ "error": null,
+ "started": "2026-10-14T18:01:54.381Z",
+ "seconds": 297,
+ "stages": {
+  "search_s": 182,
+  "judge_s": 112,
+  "engine_s": 294,
+  "contacts_s": null,
+  "evaluator_s": 2,
+  "total_s": 297
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 93,
+  "assessed": 40,
+  "by_status": {
+   "open": 6,
+   "unknown": 66,
+   "closed": 21,
+   "unread": 57
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 2
+ },
+ "lists": {
+  "top": 0,
+  "radar": 2,
+  "discarded": 0
+ },
+ "apollo_credits": 6,
+ "apollo_people": 6,
+ "errors": [
+  "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent."
+ ],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Olympus Innovation Ventures (OIV)",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.olympusamerica.com/index%2Ephp/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+   "contacts": 3
+  },
+  {
+   "title": "Johns Hopkins Technology Ventures (JHTV)",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+   "contacts": 3
+  }
+ ]
+}

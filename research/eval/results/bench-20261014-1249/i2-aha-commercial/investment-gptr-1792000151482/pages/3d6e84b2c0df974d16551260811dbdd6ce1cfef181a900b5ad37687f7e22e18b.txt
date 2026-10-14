@@ -1,0 +1,137 @@
+Biomodal — Whiteford Research Biobase
+
+Login
+Sign Up
+
+← Company DB
+
+### Classification
+
+Sector
+
+Life Science Tools
+(3939)
+
+Request Update/Expanded Info
+
+# Biomodal — Research Notes
+
+## Overview
+
+Biomodal (formerly Cambridge Epigenetix) is a Cambridge, UK-based life sciences tools and analytics company founded in 2012 by Professor Sir Shankar Balasubramanian and Bobby Yerramilli-Rao. It rebranded from Cambridge Epigenetix to biomodal in April 2023, alongside the commercial launch of its first duet multiomics product. The company develops duet multiomics technology for simultaneous sequencing of genetic and epigenetic information, including the "6-base genome" (A, T, G, C, 5mC, and 5hmC), using existing sequencing infrastructure. [1] [2]
+
+## Technology
+
+duet Multiomics Platform : Simultaneous sequencing of all six DNA bases — four standard bases plus two modified cytosines (5-methylcytosine/5mC and 5-hydroxymethylcytosine/5hmC). Compatible with all major sequencing platforms. Enables combined genetic and epigenetic analysis from a single sequencing run. [3]
+
+Applications : Oncology (cancer epigenomics), neuroscience, rare disease, clinical diagnostics. The 5hmC modification is particularly informative for cancer and neurological disease. [1]
+
+Certified Service Provider Program : Launched 2024 to expand access to duet 5-base and 6-base sequencing through partner labs. [4]
+
+## Funding & Investors
+
+Biomodal's latest clearly disclosed financing found in public sources is the November 2021 $88 million Series D, led by Temasek with participation from new investor Third Point and existing investors GV, New Science Ventures, Ahren Innovation Capital, and Sequoia. The company's own Series D announcement said the round brought total funds raised to date to $146 million; third-party data providers report totals around $145 million to $164 million, but no later named financing round was found in public web research. [5] [6] [7]
+
+Round
+Date
+Amount
+Investor(s)
+Valuation Information
+Fundraising Sources
+
+Seed / pre-Series A
+Not found
+Not disclosed
+Founding investor Cambridge Enterprise and Syncona are cited by the Series A announcement, but no separate seed round amount was found.
+Not disclosed
+ScienceBusiness Series A coverage [8]
+
+Series A
+October/November 2014
+$5.5M
+New Science Ventures (lead), Syncona Partners, Cambridge Enterprise
+Not disclosed
+ScienceBusiness and Cambridge Enterprise Series A coverage [8] [9]
+
+Series B
+March 2016
+$21M
+GV / Google Ventures (lead), Sequoia Capital, New Science Ventures, Syncona Partners, Cambridge University
+Not disclosed
+Cambridge Enterprise, TechCrunch, and Fierce Biotech Series B coverage [10] [11] [12]
+
+Series C
+April 2018
+$30M
+Ahren Innovation Capital (lead), with participation from existing investors
+Not disclosed
+Ahren announcement and Fierce Biotech Series D coverage identifying the prior Series C [13] [14]
+
+Series D
+November 2021
+$88M
+Temasek (lead), Third Point, GV, New Science Ventures, Ahren Innovation Capital, Sequoia; JIMCO Life Sciences Fund also confirmed participation
+Not disclosed
+Biomodal company announcement, JIMCO confirmation, Fierce Biotech coverage [5] [15] [14]
+
+Publicly disclosed total
+November 2021
+$146M
+Company-stated cumulative funds raised after Series D
+Not disclosed
+Biomodal Series D announcement [5]
+
+Later aggregate estimates
+2026
+Approximately $145M-$164M / reported GBP132M investment
+Data providers and The Sunday Times cite aggregate investment totals, but do not identify a newer named round.
+Not disclosed
+PitchBook, Tracxn, Dealroom, The Sunday Times [6] [7] [16] [17]
+
+The 2021 proceeds were intended to commercialize Biomodal's genetic and epigenetic sequencing platform, which integrates with existing sequencing platforms rather than replacing them. The company's current "About" timeline says Cambridge Epigenetix received $98 million in funding in 2020 to develop duet multiomics technology, but the public round announcements support a $88 million Series D announced in November 2021 and $146 million cumulative funding after that round; the $98 million timeline entry was not treated as a separate financing event without another supporting source. [5] [18]
+
+## Investors
+
+Current and historical investors cited across company and investor materials include Temasek, Third Point, GV, New Science Ventures, Ahren Innovation Capital, Sequoia Capital, Syncona Partners, Cambridge Enterprise, Cambridge University, and JIMCO Life Sciences Fund. JIMCO states that its Life Sciences Fund participated in Biomodal's US$88 million Series D round in late 2021. Sequoia lists Biomodal as a portfolio company and describes the company as an omics-based life-sciences technology and analytics business. [5] [19] [20]
+
+## References
+
+Biomodal — Website: https://biomodal.com/
+
+Biomodal — New beginnings: becoming biomodal: https://biomodal.com/news/new-beginnings-becoming-biomodal/
+
+GenomeWeb — Cambridge Epigenetix rebrands as Biomodal: https://www.genomeweb.com/sequencing/cambridge-epigenetix-rebrands-biomodal-launches-combined-genetic-epigenetic-sequencing
+
+Biomodal — Certified Service Provider program: https://biomodal.com/news/biomodal-launches-certified-service-provider-program-for-duet-multiomics-5-base-and-6-base-sequencing-solutions/
+
+Biomodal — $88M Series D: https://biomodal.com/news/series-d-funding/
+
+PitchBook — biomodal profile: https://pitchbook.com/profiles/company/60154-93
+
+Tracxn — Biomodal profile: https://tracxn.com/d/companies/biomodal/__9Z4IQks4LmLE75SRE7hNizDcbjrOLdoxT0hZzpOvmuc
+
+ScienceBusiness — $5.5M Series A: https://sciencebusiness.net/news/76776/Cambridge-Epigenetix-raises-%245.5M-in-Series-A-funding
+
+Cambridge Enterprise — $5.5M Series A: https://www.enterprise.cam.ac.uk/news/cambridge-epigenetix-raises-5-5m-in-series-a-funding/
+
+Cambridge Enterprise — $21M Series B: https://www.enterprise.cam.ac.uk/news/cambridge-epigenetix-announces-21m-financing-led-by-google/
+
+TechCrunch — $21M Series B: https://techcrunch.com/2016/03/17/googles-gv-leads-21m-series-b-in-bioscience-firm-cambridge-epigenetix/
+
+Fierce Biotech — $21M Series B coverage: https://www.fiercebiotech.com/r-d/google-backs-cambridge-epigenetics-spinoff-a-21m-round
+
+Ahren Innovation Capital — $30M Series C: https://www.ahreninnovationcapital.com/ahren-leads-30mn-funding-round-in-cambridge-epigenetix/
+
+Fierce Biotech — $88M Series D coverage and prior Series C note: https://www.fiercebiotech.com/medtech/gv-backed-cambridge-epigenetix-lines-up-88m-to-roll-out-genetic-sequencing-technology
+
+JIMCO — Series D participation confirmation: https://jimco.com/en/news/jimco-life-sciences-fund-confirms-participation-in-cambridge-epigenetix-us-88-million-series-d-funding-to-advance-best-in-class-dna-sequencing-technology-platform/
+
+Dealroom — Biomodal profile: https://app.dealroom.co/companies/biomodal
+
+The Sunday Times — Biomodal profile: https://www.thetimes.com/sunday-times-100-tech/hardware-profile/article/biomodal-68q8r66hd
+
+Biomodal — About / company timeline: https://biomodal.com/about/
+
+JIMCO — Biomodal portfolio page: https://jimco.com/en/portfolio/biomodal/
+
+Sequoia Capital — Biomodal portfolio page: https://sequoiacap.com/companies/biomodal/

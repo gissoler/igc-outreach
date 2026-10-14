@@ -1,0 +1,172 @@
+Nimbus Health Technologies · Clinical Diligence Snapshot
+
+Clinical Diligence Snapshot · April 2026
+
+Dr. Shveta Gupta.
+
+72
+
+/ 100
+
+Structure with Milestones
+
+Pre-Term-Sheet Clinical Diligence · Illustrative Example
+
+Nimbus Health Technologies
+
+Seed-stage clinical AI company building an early sepsis detection model for community hospitals and critical access hospitals under 400 beds.
+
+Stage · Raise
+
+Seed · $4.5M led by healthtech seed fund
+
+Clinical Domain
+
+Early sepsis detection · ED / inpatient
+
+Target Market
+
+Community hospitals < 400 beds
+
+Regulatory Path
+
+FDA De Novo (SaMD Class II)
+
+Sepsis detection AI built for the 70% of US hospitals under 400 beds that lack the data infrastructure and subspecialty coverage of academic medical centers, where existing Epic and epic-competitor models underperform.
+
+Dimension Scoring · Seed-Stage Weighting
+
+55
+
+Clinical Evidence
+
+Weight: 15%
+
+70
+
+Workflow Viability
+
+Weight: 20%
+
+85
+
+Regulatory Clarity
+
+Weight: 30%
+
+65
+
+AI Clinical Validity
+
+Weight: 20%
+
+75
+
+Post-Deployment Risk
+
+Weight: 15%
+
+Key Findings · 4 of 11 Flagged in Full Memo
+
+D3 · Regulatory
+
+STRENGTH
+
+Regulatory pathway is coherent and articulated at founder level.
+
+De Novo pathway is appropriate given no strong predicate exists for the community-hospital population. Pre-submission meeting with FDA scheduled within 60 days. Founder clinical literacy is tested immediately and passes.
+
+D1 · Evidence
+
+GAP
+
+Clinical evidence is Tier 3, single-site.
+
+One retrospective study at the pilot site, company-run, no peer review, no prospective validation. Acceptable at seed per framework, but must be closed before Series A. Target population generalizability is untested beyond the single pilot site.
+
+D2 · Workflow
+
+GAP
+
+Single clinical champion carries the pilot.
+
+The ICU-trained co-founder drives adoption at the 320-bed pilot site. Champion dependency is a scalability risk at seed and a deal-blocker at Series A. Workflow viability at a second, unrelated site is untested.
+
+D4 · AI Validity
+
+GAP
+
+Model trained on single-site data; no bias assessment disclosed.
+
+Training data comes entirely from the pilot site. No demographic stratification of performance published. Bias audit plan is described but not executed. External validation cohort not yet defined.
+
+Verdict & Deal Structure
+
+Proceed with structured milestones
+
+Nimbus demonstrates the three things that matter most at seed: founder clinical literacy, a coherent regulatory pathway, and a defensible market positioning in a segment where existing solutions underperform. The clinical evidence gap and single-site concentration are expected at this stage. Price them with five structured milestones tied to the Series A decision. Milestone completion should be an IC gate at follow-on, not a courtesy check-in.
+
+Recommended Milestones · Seed to Series A Bridge
+
+01
+
+By Close
+
+Day 0–30
+
+FDA Pre-Submission meeting completed and minutes shared
+
+Verifies the De Novo pathway assertion with documented FDA feedback. De-risks the regulatory thesis before capital deployment.
+
+02
+
+Month 6
+
+Workflow
+
+Second pilot site signed at a non-affiliated community hospital
+
+Breaks single-champion dependency. Tests generalizability to a site the founding team has no prior relationship with.
+
+03
+
+Month 9
+
+Evidence
+
+Prospective validation study design IRB-approved, enrollment open
+
+Moves evidence from Tier 3 (retrospective company-run) toward Tier 2 (prospective, peer-review-eligible). Primary endpoint: time-to-antibiotic and 48-hour escalation rate, not model accuracy.
+
+04
+
+Month 9
+
+AI Validity
+
+External validation cohort acquired and bias audit completed
+
+Performance stratified by age, race, ethnicity, comorbidity burden, and site size. Results shared with investors regardless of outcome.
+
+05
+
+Month 12
+
+Post-Deployment
+
+Alert fatigue dashboard with clinician feedback loop deployed
+
+Tracks clinician override rate, alert volume per shift, and time-to-action. Epic's sepsis model failed post-deployment on exactly these metrics.
+
+The Full Memo
+
+This is 2 pages. The full memo is 10.
+
+Full memo applies the integrated frameworks in depth: Clinical Value Assessment (D4), AI Clinical Validity Scorecard (D6), Regulatory Pathway Decision Tree (D7), and VBC Product Alignment Matrix (D9). Includes all 5 dimensions analyzed in depth, all 14 named red flags triggered with specific observations, MCVP threshold determination for sepsis detection (false negative tolerance is the deal-shaping question), Clinical-Financial Bridge under MSSP and Hospital VBC contract structures, HTI-1 Predictive DSI compliance pathway given EHR integration, predicate strategy for the De Novo submission, evidence tier assessment, and investor-grade IC-gate milestone rationale. Available on request to VC/PE firms evaluating a live deal.
+
+Request the full memo
+consulting.shvetagupta.com
+
+Consulting.shvetagupta.com · Illustrative Example
+
+Nimbus Health Technologies is a fictional company created for illustrative purposes. This snapshot demonstrates the depth and structure of a pre-term-sheet clinical diligence engagement deliverable.

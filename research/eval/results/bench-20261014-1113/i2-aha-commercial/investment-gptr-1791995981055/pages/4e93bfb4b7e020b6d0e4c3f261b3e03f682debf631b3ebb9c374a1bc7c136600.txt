@@ -1,0 +1,172 @@
+AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma
+
+
+
+
+
+
+
+
+
+Skip to content
+
+# AI / Machine Learning R&D, M&A, Ventures & IPOs – H1 2026 Review
+
+By
+Ani Harutyunyan
+
+Aug 21, 2026
+
+Analysis
+
+AI and machine learning drove biopharma’s biggest capital events in H1 2026, though dealmaking turned selective after an intense Q1. Money concentrated behind computational drug design, cellular reprogramming, and precision therapeutics, often ahead of clinical data. Partnerships and M&A grew cautious on deal size, while ventures and IPOs gained momentum into mid-year.
+
+Partnerships led on headline value but cooled through the half, closing 70 deals worth $45.9B with $1.9B upfront, as Q2 upfronts thinned to a $15M median. Two deals defined it: Insilico Medicine and SK Biopharmaceuticals, up to $2.6B across CNS and neuroimmune disease, and Profluent and Eli Lilly, up to $2.3B in AI-designed genetic medicines.
+
+M&A grew busier but smaller, with 43 deals worth $12.4B as Q2 value fell to $1.8B from $10.6B and buyers avoided megadeals. Roche’s $750M purchase of PathAI in digital pathology and Anthropic’s $400M buyout of Coefficient Bio anchored the activity.
+
+Venture remained the busiest channel, raising $10.2B across 230 rounds, with rising counts and steady capital signaling durable appetite. Isomorphic Labs’ $2.1B series B, the year’s defining AI drug-design raise, and NewLimit’s $435M series C in epigenetic reprogramming led the field.
+
+IPOs reopened forcefully, delivering 7 listings and roughly $2.1B, most of it in Q2. Parabilis Medicines’ $771M debut, the largest biotech IPO on record, and Kardigan’s $460M cardiovascular listing both surged on day one.
+
+AI / Machine Learning R&D Partnerships
+
+AI and machine learning R&D partnership activity moderated sharply in Q2 2026 following a particularly strong start to the year. Q2 recorded 32 deals worth $10.1B in total potential value, with only $200M committed upfront. Average and median upfront payments declined to $28M and $15M, respectively. This was materially below Q1, when 38 deals generated $35.8B in total deal value and $1.7B in upfront commitments, supported by average and median upfront payments of $213M and $78M. Across H1 2026, the sector completed 70 partnerships with an aggregate potential value of $45.9B and $1.9B in upfront funding. The Q2 slowdown indicates that strategic interest in AI and machine learning remained strong, but deal structures became more conservative.
+
+Prominent AI / Machine Learning R&D Partnerships in H1 2026
+
+Insilico Medicine development and commercialization deal with SK Biopharmaceuticals – June 2026
+
+Insilico Medicine granted SK Biopharmaceuticals exclusive worldwide rights to develop and commercialize AI-enabled therapies for neuroimmune disorders, including neuroinflammatory, neurodegenerative, and rare neurological disorders affecting the central nervous system. Insilico will use its Pharma. AI platform and preclinical drug-discovery expertise to identify, design, and optimize CNS therapies. SK Biopharmaceuticals will contribute clinical-development capabilities and will be responsible for the clinical development and commercialization of all resulting therapies. According to Korean BioMed, Insilico is eligible to receive up to $2.6B in total deal value, including $5M upfront. The economics also include up to $14M in near-term milestones and up to $2.6B in development, regulatory, and commercial milestones, plus single-digit royalties.
+
+Profluent development and commercialization deal with Eli Lilly – April 2026
+
+Profluent granted Eli Lilly exclusive rights to develop and commercialize AI-designed genetic medicines based on site-specific recombinases. The technology enables kilobase-level DNA editing and is intended to address multiple genetic diseases with high unmet need. Profluent will design and optimize site-specific recombinases using its AI protein-design platform. Lilly will advance selected recombinases through in vivo research, preclinical development, clinical studies, and commercialization. Profluent will receive an undisclosed upfront payment and R&D funding and is eligible for up to $2.3B in development and commercial milestones, for which the breakouts were not disclosed, plus tiered royalties.
+
+ 
+
+AI / Machine Learning M&A
+
+AI and machine learning M&A activity increased in deal count in Q2 2026 but shifted sharply toward smaller transactions relative to Q1. Q2 recorded 26 deals, up from 17 in Q1. However, total M&A value, including contingents, fell to $1.8B from $10.6B, while cash value excluding contingents declined to $1.5B from $10.6B. Average upfront cash and equity decreased substantially to $384M from $3.5B, although median upfront value declined more modestly from $437M to $388M. Across H1 2026, the sector generated 43 AI and machine learning M&A deals worth $12.4B, including contingent payments, and $12.1B in cash excluding contingents. The data indicate acquisitions strengthened in Q2 in terms of transaction volume, but moved away from the large, high-value deals that drove Q1.
+
+Prominent AI / Machine Learning M&A in H1 2026
+
+Roche acquiring PathAI – May 2026
+
+Roche Diagnostics agreed to acquire PathAI, an AI-driven digital pathology company developing pathology solutions designed to help pathologists analyze tissue samples more accurately and efficiently. PathAI’s technology supports cancer diagnosis, biomarker discovery, drug development, and clinical trials. PathAI’s cloud-based AISight platform combines digital pathology image management, workflow tools, image analysis, and AI algorithms for laboratories and biopharma companies. The acquisition strengthens Roche’s digital pathology position by integrating AISight and PathAI’s AI pathology tools with Roche’s cancer diagnostics and companion diagnostic platforms to improve cancer treatment. The transaction builds on the companies’ 2021 partnership, which expanded in 2024, and is expected to close in H2 2026. PathAI will receive $750M upfront and is eligible for up to $300M in milestones.
+
+Anthropic acquiring Coefficient Bio – April 2026
+
+Anthropic is acquiring Coefficient Bio, which provides AI-powered tools for scientific and medical work. Its platform supports drug discovery, experiment planning, biological data analysis, and research-workflow management, helping researchers manage complex biotech processes more efficiently. The acquisition aims to strengthen Anthropic’s healthcare and life-sciences capabilities, particularly in AI-driven drug discovery and scientific research. Coefficient Bio will receive $400M upfront.
+
+AI / Machine Learning Venture Activity
+
+AI and machine learning venture activity increased in deal volume in Q2 2026, while total capital raised eased modestly from Q1. Q2 recorded 122 funding rounds, up from 108 in Q1, with total investment of $5.0B compared with $5.2B in the previous quarter. Across H1 2026, the sector completed 230 venture rounds and raised a combined $10.2B. The rise in funding activity, alongside broadly stable capital deployment, indicates a strong desire for AI and machine learning companies.
+
+Prominent AI / Machine Learning Venture Activity in H1 2026
+
+Isomorphic Labs – Series B – $2.1B – May 2026
+
+Isomorphic Labs, the Alphabet drug-design spinout led by Nobel laureate Demis Hassabis, closed a $2.1B series B on May 12, 2026. Thrive Capital led the round, with existing backers Alphabet and GV alongside new investors MGX, Temasek, CapitalG, and the UK Sovereign AI Fund. The raise more than tripled its earlier $600M round. Total capital reached roughly $2.6B, at a reported post-money valuation in the $15-20B range. Proceeds scale IsoDDE, its AlphaFold-derived AI drug design engine. The company is advancing drug design programs across multiple therapeutic areas and drug modalities. It also holds paid partnerships with Novartis, Eli Lilly, and Johnson & Johnson, including a Lilly deal with up to $1.7B in milestone payments.
+
+NewLimit – Series C – $435M – June 2026
+
+NewLimit, the longevity biotech co-founded by Coinbase’s Brian Armstrong, closed a $435M series C on June 2, 2026. Founders Fund led the round, joined by Thrive Capital, Greenoaks, and Quiet Capital, alongside returning backers including Kleiner Perkins, Eli Lilly Ventures, and Valor Equity Partners. The round set a $3.1B valuation, roughly triple a year earlier, and lifted total funding near $682M. NewLimit targets aging itself through partial epigenetic reprogramming, delivering mRNA via lipid nanoparticles to reset cell age. Its proprietary AI model Ambrosia screens transcription-factor combinations against single-cell aging data. The lead program restores old liver cells, accelerating recovery from injury and improving tolerance of dietary and alcohol-related stress in preclinical models. Beyond the liver, pipeline programs target endothelial cells for chronic kidney disease and T cells for autoimmune conditions such as rheumatoid arthritis.
+
+AI / Machine Learning IPO Activity
+
+AI and machine learning IPO activity strengthened significantly in Q2 2026, with both listing volume and capital raised increasing from Q1. Q2 recorded 5 IPOs raising a combined $1.6B, compared with 2 IPOs and $501M raised in the previous quarter. Across H1 2026, the sector completed 7 IPOs and raised approximately $2.1B. The Q2 improvement implies that public-market conditions became supportive of AI and machine learning.
+
+Prominent AI / Machine Learning IPO Activity in H1 2026
+
+Parabilis Medicines – IPO – $770.5M – June 2026
+
+Parabilis Medicines, the Cambridge oncology biotech formerly known as FogPharma, priced the largest biotech IPO on record on June 9, 2026. It sold 33,500,000 shares at $20.00, above range, with an option for a further 5,025,000 shares. Full exercise of the greenshoe lifted IPO gross proceeds to $771M. A concurrent private placement to Regeneron added roughly $75M at $18.00 per share. Shares began trading June 10 on Nasdaq as PBLS, then surged 58%, pushing market cap to roughly $3.7B. With preferred stock and a $50M SAFE converting, Parabilis has now raised over $1.2B in 2026. The company drugs historically undruggable targets using Helicons, cell-penetrant stabilized peptides. Its discovery engine integrates AI- and physics-based modeling with high-throughput synthesis and screening. Lead asset zolucatetide directly inhibits the β-catenin:TCF interaction in the Wnt/β-catenin pathway. It holds FDA Orphan Drug and Fast Track designations in desmoid tumors and is advancing toward Phase 3. Additional programs span familial adenomatous polyposis, liver and colorectal cancer, plus two preclinical prostate-cancer Helicons. A $2.3B Regeneron collaboration on antibody-Helicon conjugates underwrites the platform’s breadth.
+
+Kardigan – IPO – $460M – June 2026
+
+Kardigan, a precision cardiovascular biotech founded by former MyoKardia executives, closed a $460M IPO on June 22, 2026. It priced 25 million shares at $16, the top of the range, and full exercise of the underwriters’ option brought aggregate gross proceeds to $460M across 28,750,000 shares. Shares began trading June 18 on Nasdaq as KARD, popping 38%, at a roughly $1.4B valuation. J.P. Morgan led the offering, which followed a $300M first round and a $254M series B. Kardigan develops medicines targeting the root cause of cardiovascular diseases where no approved treatments exist. It runs three late-stage programs, in specific dilated cardiomyopathy, acute severe hypertension, and calcific aortic valve stenosis, an unusual breadth barely a year past launch. Lead asset danicamtiv is an oral cardiac myosin activator for dilated cardiomyopathy driven by MYH7 and TTN sarcomere gene variants. It is in the Phase 2b/3 KINSHIP-DCM trial against placebo over six months, with results expected next year.
+
+Also check out Biopharma Therapeutics and Platforms IPO Activity, Follow-ons and PIPEs – Q2 2026 Review
+
+## DealForma Research
+
+Explore More
+
+### Autoimmune R&D Partnerships, M&A, IPOs and Venture Funding – Q3 2026 Review
+
+October 10, 2026
+
+### Global Healthcare and Life Sciences R&D Partnerships – Q3 2026 Review
+
+October 2, 2026
+
+### Reverse Mergers and SPACs – H1 2026 Review
+
+September 25, 2026
+
+## All of this by stage, disease indication, modality, target…
+
+Schedule your Demo
+
++
+0
+k
+
+Licensing Deals
+
++
+0
+k
+
+M&A
+
++
+0
+k
+
+Other Deals
+
++
+0
+k
+
+Funding Rounds
+
++
+0
+k
+
+Company Profiles
+
++
+0
+k
+
+Drug Sales Figures
+
+DealForma is the biopharma deal database providing you comprehensive information and dedicated analyst support to help you be more confident using quality data in your business development research.
+
+Linkedin
+
+X Social Media White Icon
+
+Database
+
+Company
+
+Comparisons
+
+Made in San Mateo, CA and around the world
+
+support@dealforma.com
+
+(650) 353-9363
+
+Website Design by Once Interactive
+
+Terms
+
+Privacy
+
+Copyright © 2026 DealForma

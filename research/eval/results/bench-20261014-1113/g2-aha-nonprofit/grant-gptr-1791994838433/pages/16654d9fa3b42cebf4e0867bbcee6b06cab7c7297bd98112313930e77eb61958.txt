@@ -1,0 +1,408 @@
+HORIZON-RAISE-2027-01-02 | TopicTree (by Ideal-ist)
+
+HORIZON-RAISE-2027-01-02
+
+#
+Automated Scientific Discovery – Food (RAISE pilot)
+-
+
+Call text
+
+Linked topics
+
+Info base
+
+Events
+
+Timing
+
+Projects
+
+Bubbles
+
+## Related topics
+
+Drag to rearrange · hover a topic or connection to preview why it's linked, click to pin that panel open
+
+&times;
+
+Connected via , not directly to the current topic
+
+WHY IT'S LINKED
+
+0">
+No motivation recorded.
+
+Center graph on this topic &rarr;
+
+### Topics in this graph
+
+HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62 — Facilitated cooperation for AI in Science (CSA)
+
+The CSA from 2025 funds the project SCIANCE, tasked to support the setup of RAISE. RAISE pilot projects should thus link with SCIANCE.
+
+HORIZON-CL4-2025-03-HUMAN-18 — GenAI4EU central Hub (CSA) (AI/Data/Robotics Partnership)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+Cooperation with GenAI4EU Central Hub requested in the topic text.
+
+HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-61 — AI Foundation models in science (GenAI4EU) (RIA)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+The CSA should provide coordination and dissemination for interdisciplinary AI-enabled science to facilitate stakeholder engagement, coordination and promotion of AI in Science initiatives across Europe. The RIA provides foundation models for the same community.
+
+HORIZON-RAISE-2026-01-01 — Thematic Networks of Excellence for AI in Science (RAISE pilot) (RIA)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+The CSA under HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62 will support the overall efforts of the RAISE initiative.
+
+HORIZON-RAISE-2026-01-02 — Thematic Networks of Excellence for AI in Science – Agriculture and Environmental Pollution (RAISE pilot)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+The CSA under HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62 will support the overall efforts of the RAISE initiative.
+NCP COMMENT Link mentioned specifically in the NCP training slides for the RAISE topic.
+
+HORIZON-CL4-2026-04-DIGITAL-EMERGING-01 — Apply AI: Pilot of the “Science for AI” Pillar of RAISE (“Resource for AI science in Europe”) (RIA)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+CSA under HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62 will support the overall efforts of the RAISE initiative. HORIZON-CL4-2026-04-DIGITAL-EMERGING-01 is part of that initiative and might like to dedicate resources to interacting with the CSA.
+
+HORIZON-RAISE-2027-01-01 — Automated Scientific Discovery - Materials Science (RAISE pilot) (RIA)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+The CSA from 2025 funds the project SCIANCE, tasked to support the setup of RAISE. RAISE pilot projects should thus link with SCIANCE.
+
+HORIZON-CL4-2027-04-DIGITAL-EMERGING-11 — EU Frontier AI Initiative: Developing frontier AI solutions that are safe and computationally efficient within Apply AI (RIA)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+The CSA from 2025 funds the project SCIANCE, tasked to support the setup of RAISE. Projects under HORIZON-CL4-2027-04-DIGITAL-EMERGING-11 are required to establish strong links with RAISE.
+
+HORIZON-RAISE-2027-01-04 — Developing a model for a Data Lab for Science linking with EOSC and RAISE (RAISE pilot) (CSA)
+
+Connected via HORIZON-CL4-INDUSTRY-2025-01-DIGITAL-62, not directly to the current topic.
+
+Projects under the 2027 topic may make use of project results funded under the 2025 call topic.
+
+Bold node = current topic · node color = call status · hover for details, click to pin · smaller, lighter topics are two steps away
+
+## Call text (as on F&T portal)
+
+View on F&T
+portal
+
+Expected Outcome:
+Project results are expected to contribute to the following expected outcomes:
+Development of closed-loop scientific experimentation systems that integrate automation with AI-driven, trustworthy decision-making processes in existing laboratory environments;
+Accelerated scientific discovery with increased efficiency and reproducibility;
+Improved scientific productivity;
+Advancement of laboratory automation, including development of best practices, challenges, and opportunities for accelerating R&D;
+Prototype functional demonstrators that showcase the integration of automation with AI-driven decision-making, enabling the development of closed-loop scientific experimentation systems.
+Scope:
+This topic addresses the development of safe and trustworthy closed loop scientific experimentation systems through the integration of laboratory automation with AI-driven decision-making processes and robust data infrastructures. The funded project will help scientific labs with an already advanced level of automation and digitalisation to design, develop, and test the intelligence layer that enables scientific instrumentation to semi- or fully autonomously plan, run, and analyse experiments, ideally in coordination/network with other labs and without requiring a complete redesign of existing laboratory outfitting.
+Proposals will incorporate comprehensive data management systems capable of handling the collection, storage, processing, and sharing of experimental data. This includes developing scalable and secure data storage solutions, efficient data processing and analysis tools, and mechanisms to facilitate data sharing and collaboration across labs, while ensuring data security and privacy.
+Systems could incorporate AI-driven resource optimisation modules, actively minimising energy, reagent, and material consumption during automated experimentation cycles. Systems should incorporate appropriate level of security and robustness by design.
+Proposals should demonstrate how an existing lab can be retrofitted with AI-driven software systems to plan, execute, and analyse experiments in a closed-loop fashion, incorporating human oversight and interaction to ensure accuracy, safety, and ethical compliance.
+Possible research targets include (non-exhaustively):
+Autonomous/semi-autonomous and adaptive AI systems (including agentic AI) that connect with laboratory instruments and robotics and can autonomously plan, act, learn and adapt within a scientific environment, within a validated safe pipeline;
+Assistive and interactive safe AI-managed robotic systems that automate diverse experiments and can be applied to a diverse hardware setup;
+Scalable automation solutions and networked AI systems that enable collaborative experimentation across multiple labs and networks of labs (including different geographic locations), supporting the simultaneous execution of large volumes of experiments;
+Systems that provide real-time data processing and analytics, enabling immediate feedback and dynamic adjustments during experiments;
+Standards and protocols to ensure interoperability between different laboratory instruments, robotics, and AI systems;
+Intuitive user interfaces for enhanced human-machine interaction;
+AI-driven predictive maintenance systems to optimize equipment uptime and resource utilization;
+Exploration of how scientific automation technologies can be adapted for use in various scientific disciplines beyond those in the scope of this call.
+While the scope of this call prioritises software development, it does not exclude the justified purchase of complementary equipment necessary to implement the research targets of the project.
+Impact areas of automated experimentation in biomass and precision fermentation could include the development of alternative protein sources in food production and alternative fats, bio-based materials, specialty carbohydrates, biotechnologies in food systems (such as biochemicals, microbial cultures, etc), food ingredients.
+International collaboration is encouraged.
+
+## News flashes
+
+2026-10-14
+
+In view of the HORIZON WP update to be adopted and published on the portal on 05/10/2026, please note that the opening date for HORIZON-RAISE-2027-01 will be postponed to 13/10/2026.
+
+2026-10-14
+
+The submission session is now available for: HORIZON-RAISE-2027-01-02, HORIZON-RAISE-2027-01-01, HORIZON-RAISE-2027-01-04
+
+Found 2 annotations in info base
+
+click to see
+
+call topic details
+
+Call status: Open
+
+Opening date: 2026-10-13 (1 day ago)
+
+Closing date: 2027-02-02 (3 months from now)
+
+Procedure: single-stage
+
+Budget: 3,000,000
+
+Expected grants: 1
+
+Contribution: 3,000,000 - 3,000,000
+
+News flashes
+
+This call topic has been appended 2 times by the EC with news.
+
+2026-10-14
+
+in view of the horizon wp update to be a...
+
+2026-10-14
+
+the submission session is now available...
+
+Call
+
+HORIZON-RAISE-2027-01
+
+Call topics are often grouped together in a call. Sometimes this is for a thematic reason, but often it is also for practical reasons.
+
+There are 2 other topics in this call:
+
+HORIZON-RAISE-2027-01-01
+
+HORIZON-RAISE-2027-01-04
+
+Source information
+
+Showing the latest information.
+Found 6 versions of this call topic in the F&T portal.
+
+Information from
+
+2026-10-14_03-35-00
+
+2026-10-08_06-35-09
+
+2026-10-03_06-34-43
+
+2026-03-03_06-30-41
+
+2025-12-16_06-30-34
+
+2025-12-13_06-30-20
+
+Check the differences between the versions.
+
+## Annotations
+
+You must be logged in to add annotations
+
+NCP knowledge
+
+Added 1 week ago by Alrun Hauke
+
+This call topic has many links to Cluster 6 call topics and the respective CBE JU, which sadly cannot currently be displayed in the "linked topics" tab of the Topic Tree. Please consult your NCP for Cluster 4 and Cluster 6 to find out more!
+
+NCP knowledge
+
+Added 3 months ago by Alrun Hauke
+
+Check to see if there are currently relevant partner searches / partner offers on the Ideal-ist website: https://www.ideal-ist.eu/cooperation-profiles
+
+## Events
+
+Hand-picked events relevant to this call topic.
+
+3 upcomings
+
+### Upcoming
+
+Nov
+12
+2025
+
+### Horizon Europe Cluster 4 Digital Matchmaking Platform
+
+Happening now
+
+12 Nov 2025 - 22 Sep 2027
+
+Online
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+Find your collaboration partners for EU projects in the digital domain of Cluster 4 here!
+
+More info
+
+Oct
+14
+2026
+
+### Horizon Europe Cluster 4 Info Days for 2027 Calls
+
+Happening now
+
+14 Oct - 15 Oct 2026
+
+Online
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+The Horizon Europe Info Days for Cluster 4 will take place online as usual. Participants can ask questions via slido during the event. Representatives of the European Commission will present the 2027 call topics from Cluster 4 and relevant parts of the horizontal work programme part.
+
+More info
+
+Oct
+15
+2026
+
+### AI in Science Summit 2026
+
+in 0 days
+
+15 Oct - 16 Oct 2026
+
+05:00 - 15:00
+
+Dublin, IE
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+The AI in Science Summit will convene scientists from various scientific domains, industry leaders, investors, and policymakers to explore the transformative impact of AI in scientific discovery and how Europe can drive it with a distinctive and responsible approach. The event includes high-level political sessions and thematic workshops on the impact of AI in each scientific field, focusing on driving investment and policy to unlock their potential.
+
+
+
+More information will follow.
+
+More info
+
+Events are added by the ideal-ist NCP community and are hand-picked. Would you like to suggest an event? Contact
+idealist@ffg.at .
+
+## Timeline
+
+Track where this call stands in its lifecycle, from work programme to grant signature, and see what's likely
+to happen next.
+
+Call opens
+&middot; 13 Oct 2026 (1 day ago)
+
+Next: Call closes, 3 months from now (02 Feb 2027)
+
+Today
+
+Call published
+
+13 Dec 2025
+
+Work programme published
+
+13 Aug 2026 &middot; est.
+
+Call opens
+
+13 Oct 2026
+
+Call closes
+
+02 Feb 2027
+
+Outcome expected
+
+02 Jul 2027 &middot; est.
+
+Grant agreement signed
+
+02 Oct 2027 &middot; est.
+
+Preparation
+Open for submission
+Evaluation
+Grant preparation
+Not yet reached
+
+Call published
+
+13 Dec 2025 &middot; 10 months ago
+
+This topic was first published in TopicTree.
+
+Work programme published
+Estimated
+
+13 Aug 2026 &middot; 2 months ago
+
+Topics are listed in the Work Programme before the call opens. Spotting this early gives you a head start on partner search and proposal planning.
+
+Call opens
+
+13 Oct 2026 &middot; 1 day ago
+
+Submissions can be made from this date.
+
+Today &middot; 14 Oct 2026
+
+Call closes
+
+02 Feb 2027 &middot; 3 months from now
+
+Deadline to submit a proposal.
+
+Outcome expected
+Estimated
+
+02 Jul 2027 &middot; 8 months from now
+
+The maximum time to inform applicants of the evaluation outcome is five months after the call closes.
+
+Grant agreement signed
+Estimated
+
+02 Oct 2027 &middot; 11 months from now
+
+The maximum time to sign the grant agreement is three months after applicants are informed of the outcome.
+
+## Funded Projects
+
+Loading...
+
+Project information comes from CORDIS
+(for Horizon 2020 and Horizon Europe)
+and will be sourced from F&T Portal
+(for Digital Europe projects)
+
+## Ecosystem bubbles
+
+This call topic is part of the following thematic bubbles.
+
+2 bubbles
+
+### AI in Science
+
+This bubble contains the call topics belonging to the "AI in Science" strategy of the European Commission which was published in 2025. You can find mo...
+
+10 call topics
+
+View bubble
+
+### AI, Data & Robotics
+
+This large ecosystem bubble includes all the call topics in the field of AI, data and robotics from H2020, Horizon Europe Cluster 4 and Digital Europe...
+
+270 call topics
+
+View bubble
+
+## Call document info
+
+This section will come soon and contain the scraped information from the call document, such as the expected impact, scope, and other relevant sections.
+
+In the meantime, you can find this information in the call text section or directly on the F&T portal.
+
+View on F&T
+portal

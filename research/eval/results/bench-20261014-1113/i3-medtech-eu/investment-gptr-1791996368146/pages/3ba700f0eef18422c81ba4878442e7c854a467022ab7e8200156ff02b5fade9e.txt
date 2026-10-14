@@ -1,0 +1,415 @@
+Mapa de ayudas CDTI 2026 — guía por línea y TRL
+
+Saltar al contenido principal
+
+## Buscar en Expertiot
+
+/ abrir · Esc cerrar
+
+Resumen
+El CDTI movilizará 1.817 M€ en 2026 a través de varias líneas: PID (hasta 85 % de proyecto, mínimo 175.000 €), LIC/LICA (TRL > 5), LIF (hasta 70 % o 85 % si contrata doctor), LIEE (startups), Misiones (145 M€, hasta 80 % subvención y 15 M€/proyecto), NEOTEC (20,38 M€ para startups con tecnología propia), Cervera (transferencia, 90 % con 33 % no reembolsable), Innvierte (coinversión VC), Eurostars (vía CIIP) e Interconecta. Cada línea encaja con un perfil distinto de empresa y TRL; el árbol de decisión y el calendario los detalla este recurso.
+
+## CDTI: rol y estructura general
+
+El Centro para el Desarrollo Tecnológico y la Innovación, E.P.E. (CDTI) es la
+entidad pública empresarial dependiente del Ministerio de Ciencia, Innovación y
+Universidades responsable de canalizar la financiación pública estatal a la I+D+i
+empresarial en España. La denominación “E.P.E.” (Entidad Pública Empresarial) procede
+de la disposición adicional 2ª.1 de la Ley 14/2011 de la Ciencia, la Tecnología y la
+Innovación (LCTI).
+
+Para 2026, el CDTI movilizará 1.817 millones de euros distribuidos entre las
+distintas líneas, con apertura escalonada de convocatorias a lo largo del año:
+
+Bloque Presupuesto 2026
+Subvenciones competitivas 407 M€
+Compra pública de innovación 75 M€
+Cooperación tecnológica internacional 32 M€
+Préstamos parcialmente reembolsables 545 M€
+Otros instrumentos (Innvierte, dual-use, etc.) resto
+
+Las líneas se diferencian por TRL aplicable , tipo de instrumento financiero
+(subvención pura, préstamo blando, mixto, coinversión), cuantía típica del
+proyecto , plazo de ejecución y perfil del beneficiario . La elección de línea
+no es trivial y suele definir el éxito del expediente.
+
+## Cómo se decide qué línea CDTI conviene — árbol de decisión
+
+🛠 Atajo interactivo: si prefieres una primera orientación automatizada,
+el Selector de líneas CDTI toma 7 respuestas (INCN,
+antigüedad, TRL, cuantía, modalidad, capacidad de préstamo y documentación previa)
+y devuelve las líneas con mejor encaje, su score y los requisitos clave de cada
+una. La sigue el detalle textual de abajo si quieres profundizar línea por línea.
+
+¿Empresa con sede en la Comunidad de Madrid? Además de las líneas estatales del
+CDTI, la CAM tiene sus propias ayudas regionales (Cheque Innovación, Hubs/Tractor,
+Sello Excelencia, Startups, paquete PYME 2026). Mapa completo en
+Mapa de ayudas Comunidad de Madrid 2026
+y selector interactivo en /servicios/selector-cam/ .
+
+Antes de profundizar en cada línea, conviene tener un árbol de decisión que reduzca el
+universo. Las tres preguntas que más rápidamente acotan la línea apropiada son:
+
+¿Cuál es el TRL del proyecto? (Technology Readiness Level)
+
+TRL 2-4 (investigación básica/aplicada): PID, Misiones, Cervera, Eurostars
+
+TRL 4-6 (desarrollo tecnológico): PID, LIF, Misiones, Eurostars
+
+TRL 6-8 (innovación tecnológica avanzada): LIC, LICA, LIF
+
+TRL 8-9 (despliegue comercial): NEOTEC, LIEE para empresas emergentes
+
+¿Qué tipo de empresa eres?
+
+Startup con tecnología propia (< 5 años): NEOTEC
+
+Empresa emergente con I+D+i en marcha: LIEE
+
+PYME con proyecto técnico significativo: PID o LIF
+
+Empresa madura/grande con proyecto cooperativo: PID, Misiones
+
+Consorcio multi-actor: Misiones, Cervera, Interconecta
+
+¿Qué propósito tiene el proyecto?
+
+Desarrollo individual (sin colaboración): PID, LIF, LIC
+
+Cooperación con otra empresa española: Misiones (cooperativo)
+
+Cooperación con grupo de investigación / universidad: Cervera
+
+Cooperación internacional UE: Eurostars (vía CIIP)
+
+Cooperación internacional fuera UE: Innoglobal, Interconecta (Iberoamérica)
+
+Proyecto dual-use seguridad/defensa: Misiones (línea específica)
+
+Las respuestas a estas tres preguntas suelen reducir el universo a 2-3 líneas
+candidatas, sobre las que ya conviene profundizar.
+
+## Líneas individuales
+
+### PID (Proyectos de Investigación y Desarrollo)
+
+La línea histórica del CDTI y sigue siendo la más utilizada por PYMES industriales con
+proyecto técnico significativo. Características principales:
+
+Cobertura: hasta el 85 % del presupuesto total aprobado del proyecto
+
+Cuantía mínima: 175.000 € de presupuesto total
+
+Plazo: entre 12 y 36 meses (con flexibilidad)
+
+Instrumento: ayuda mixta — préstamo parcialmente reembolsable
+
+Tramo no reembolsable: entre el 20 % y el 33 % según condiciones del proyecto
+
+Resto: préstamo a tipo interés cero o muy bajo, con plazo de carencia
+
+Convocatoria: abierta de forma continua durante el ejercicio
+
+TRL: 4-7 típicamente
+
+Es la línea de referencia para empresas con proyecto técnico de cierta envergadura y
+con capacidad de cofinanciación. La parte de préstamo es el principal limitante: una
+empresa sin capacidad de absorber deuda puede preferir Misiones (más subvención) o LIF
+(menos préstamo).
+
+### LIC y LICA (Línea Directa de Innovación)
+
+Para proyectos en fase más madura, TRL > 5 , donde la innovación está en el último
+tramo antes del despliegue comercial. Dos variantes:
+
+LIC (Línea Directa de Innovación): convocatoria nacional para proyectos
+individuales con cuantía mínima 175.000 €
+
+LICA (Línea Directa Cooperación Autonómica): versión cofinanciada con fondos
+autonómicos, condiciones específicas según comunidad
+
+Tipo de ayuda: ayuda mixta similar a PID, con menor componente de subvención y mayor
+componente de préstamo, dado que el riesgo técnico es menor en TRL alto.
+
+### LIF (Línea de Innovación Flexible)
+
+Apunta al término medio entre PID e instrumentos rápidos. Características:
+
+Cobertura: hasta el 70 % del proyecto en condiciones generales
+
+Cobertura ampliada al 85 % cuando la empresa contrata un doctor para el proyecto
+
+Cuantía mínima: 175.000 €
+
+Subvención máxima: 250.000 € (general) / 325.000 € (con doctor)
+
+LIF es atractiva para empresas que quieren incentivar la incorporación de doctores a
+plantilla — la cobertura ampliada al 85 % supone un ahorro fiscal y un refuerzo
+cualitativo del equipo técnico.
+
+### LIEE (Línea de Innovación Empresas Emergentes)
+
+Diseñada específicamente para empresas emergentes con I+D+i en marcha pero sin
+historial financiero consolidado. Cuantías más modestas, plazos más cortos,
+concesiones más ágiles. Es complementaria de NEOTEC: NEOTEC se enfoca a empresas que
+empiezan con tecnología propia; LIEE da continuidad al ciclo cuando la empresa ya
+tiene producto en mercado y quiere escalar I+D+i.
+
+### Misiones Ciencia e Innovación
+
+La línea más estratégica del CDTI, con presupuesto significativo y proyectos de gran
+envergadura. Convocatoria 2026:
+
+Presupuesto: 145 millones de euros
+
+45 M€ para proyectos civiles
+
+100 M€ para proyectos dual-use (seguridad y defensa)
+
+Cobertura: hasta el 80 % del presupuesto del proyecto en formato subvención
+
+Cuantía: hasta 15 millones de euros por proyecto
+
+TRL: 4-7 típicamente
+
+Apertura: mayo 2026; cierre: julio 2026
+
+Modalidad: cooperativa obligatoria — consorcio de varias empresas, posible
+participación de organismos públicos de investigación
+
+Las Misiones se estructuran en siete áreas estratégicas (topics) publicadas
+previamente. La empresa debe encajar su proyecto en uno de los topics y construir un
+consorcio coherente con el reto planteado. Es la línea con mayor componente de
+subvención, pero también la más exigente en términos de preparación del expediente y
+gobernanza del consorcio.
+
+### Cervera (Transferencia tecnológica)
+
+Convocatoria orientada a la transferencia tecnológica desde centros de I+D+i hacia
+empresas . Características:
+
+Cobertura: hasta el 90 % del proyecto, con tramo no reembolsable del 33 %
+
+Beneficiarios: empresas que cooperan con centros tecnológicos Cervera
+
+Modalidad: cooperativa obligatoria con centro de investigación
+
+Cervera es atractiva para empresas que necesitan capacidad técnica complementaria —
+laboratorios, equipamiento, expertise específico— que un centro de investigación puede
+aportar.
+
+### NEOTEC
+
+La línea emblemática para startups con tecnología propia y proyecto comercial
+diferenciado . Convocatoria 2026:
+
+Presupuesto: 20,38 M€ en subvenciones
+
+Reserva específica: 5 M€ para “Neotec Mujeres” (proyectos liderados por mujeres)
+
+Periodo: 14 abril – 14 mayo 2026
+
+Beneficiarios: empresas innovadoras con menos de 3 años desde su creación
+(con flexibilidad), con plan de negocio basado en tecnología propia
+
+NEOTEC suele ser la primera línea CDTI a la que opta una startup. La concesión
+acredita madurez técnica frente a inversores y proporciona un primer hito de
+visibilidad.
+
+### Innvierte (Coinversión venture capital)
+
+Programa de coinversión con fondos de capital riesgo privados. CDTI invierte
+directamente como socio temporal en empresas innovadoras españolas en fase de
+crecimiento, en operaciones canalizadas por gestoras VC reconocidas. Es la línea más
+sofisticada del CDTI y la menos accesible para empresas que no tengan ya tracción de
+mercado.
+
+### Eurostars-3 (vía CIIP)
+
+Convocatoria europea para proyectos cooperativos internacionales con socio en al
+menos un país miembro de Eurostars. España participa a través del CIIP
+(instrumento nacional gestionado por CDTI) que canaliza la financiación a las
+empresas españolas seleccionadas. Presupuesto 2026 para participación española:
+11,95 M€ .
+
+### Innoglobal e Interconecta
+
+Innoglobal: cooperación tecnológica con países fuera de la UE.
+
+Interconecta: cooperación específica con países iberoamericanos.
+
+Ambas líneas tienen presupuestos modestos pero son la vía para empresas con
+componente internacional significativo fuera del marco europeo estándar.
+
+## Calendario 2026 — convocatorias clave
+
+Línea Apertura Cierre
+PID Continua a lo largo del año —
+LIC / LICA Continua —
+LIF Continua —
+NEOTEC 2026 14-04-2026 14-05-2026
+Misiones 2026 Mayo 2026 Julio 2026
+Cervera 2026 Por confirmar (consultar calendario CDTI ) —
+Eurostars-3 Convocatorias semestrales —
+
+El calendario oficial del CDTI se actualiza en
+cdti.es/calendario-de-convocatorias y conviene consultar el estado vigente antes de
+planificar un expediente — algunas convocatorias pueden adelantarse, modificar plazos
+o introducir condiciones específicas en función del Plan Anual de Actuación de cada
+ejercicio.
+
+## Compatibilidad CDTI + deducción I+D+i + bonificación SS
+
+El triángulo fiscal I+D+i para empresas con proyecto certificable es:
+
+Subvención CDTI (parte no reembolsable de la ayuda concedida)
+
+Deducción I+D+i del art. 35 LIS sobre los gastos elegibles del proyecto
+
+Bonificación SS del personal investigador (RD 475/2014)
+
+Reglas de compatibilidad básicas:
+
+La subvención CDTI minora la base, no excluye el gasto: el gasto del proyecto
+sigue siendo gasto y sigue formando parte de la base del art. 35 LIS; lo que se resta
+de esa base es el importe de la subvención imputable como ingreso del período
+(arts. 35.1.b y 35.2.b LIS). El tramo reembolsable del PID es un préstamo que la
+empresa devuelve: no es subvención, no se imputa como ingreso y no minora la base .
+El tratamiento fiscal fino de ese tramo reembolsable no está desarrollado ni en el
+art. 35 LIS ni en el RD 1432/2003; conviene contrastarlo con el asesor fiscal antes de
+cerrar la base del ejercicio. Cosa distinta es que un mismo euro de gasto no puede
+recibir dos ayudas: eso es concurrencia de subvenciones y se comprueba aparte.
+
+Deducción + bonificación SS: son incompatibles para PYMES sobre el mismo personal
+salvo que la empresa tenga el Sello PYME Innovadora (SPI) o el certificado
+Joven Empresa Innovadora (JEI), que habilitan la compatibilidad reforzada
+(art. 6.3 RD 475/2014). Ver Sello PYME Innovadora
+y Joven Empresa Innovadora .
+
+Tipo del IS aplicable: depende del régimen de la empresa (microempresa, ERD,
+nueva creación o general) — ver
+tipos del IS para empresas innovadoras 2025-2029 .
+
+Reserva de capitalización: opera sobre base imponible, plenamente compatible —
+ver reserva de capitalización 2025 .
+
+La planificación contable y fiscal del proyecto debe mantener la trazabilidad entre
+la subvención imputada como ingreso y la base declarada —sin ese rastro no se puede
+acreditar en qué importe se minoró la base— y no imputar un mismo euro de gasto a dos
+ayudas. Esto se consolida en la
+memoria técnica I+D+i .
+
+## Red PIDI — asesoramiento gratuito
+
+La Red PIDI (Puntos de Información sobre I+D+i) es un servicio gratuito
+coordinado por el CDTI con presencia descentralizada en cámaras de comercio, parques
+tecnológicos y agencias regionales de innovación. Su función es:
+
+Informar sobre líneas de financiación pública I+D+i (CDTI, MICIU, autonómicas,
+europeas)
+
+Orientar al primer encaje del proyecto en una línea concreta
+
+Derivar a recursos especializados según necesidad
+
+La Red PIDI no sustituye a una consultora especializada en la preparación del
+expediente, pero es una primera vía útil de orientación —especialmente en empresas
+que se acercan por primera vez al ecosistema CDTI— antes de contratar asesoramiento
+profesional para un expediente concreto.
+
+## Conclusión
+
+El mapa de ayudas CDTI 2026 es amplio y diferenciado. La elección de línea es la
+primera decisión de un expediente exitoso: PID para proyectos individuales con
+componente técnico, LIF para incorporar doctores, Misiones para consorcios de gran
+envergadura con encaje en topic estratégico, NEOTEC para startups, Cervera para
+transferencia tecnológica con centros de investigación, Eurostars para cooperación
+europea, Innvierte para empresas con tracción VC.
+
+La compatibilidad CDTI + deducción I+D+i del art. 35 LIS + bonificación SS configura
+un triángulo fiscal robusto para empresas que combinan financiación pública con
+crédito fiscal y bonificación. La planificación requiere trazar la subvención imputada
+como ingreso frente a la base declarada, y verificar la elegibilidad para Sello PYME
+Innovadora o JEI cuando aplique. Una valoración previa con un evaluador técnico
+independiente ayuda a identificar la línea CDTI con mejor encaje antes de mover el
+expediente.
+
+¿Necesitas una segunda opinión técnica?
+
+###
+Sesión de evaluación inicial · 60 min · online · 250 €
+
+Revisamos tu expediente o tu idea de proyecto y te entregamos un dictamen breve
+por escrito con el encaje normativo (UNE 166.001, IM, art. 35 LIS, RD 475/2014),
+las vías recomendadas, los riesgos detectados y un plan de trabajo si procede.
+Confidencial. Sin compromiso de continuidad.
+
+Reservar sesión por email →
+
+## Preguntas frecuentes
+¿Cuál es el presupuesto total del CDTI para 2026? El Centro para el Desarrollo Tecnológico y la Innovación (CDTI E.P.E.) movilizará 1.817 millones de euros en 2026, distribuidos entre 407 M€ en subvenciones competitivas, 75 M€ en compra pública de innovación, 32 M€ en cooperación tecnológica internacional y 545 M€ en préstamos parcialmente reembolsables. El resto se canaliza a través de instrumentos específicos (Innvierte coinversión, programas dual-use, etc.).
+¿Qué línea CDTI conviene a una startup en fase temprana? NEOTEC para startups con tecnología propia y proyecto comercial diferenciado (presupuesto 20,38 M€ en 2026, con 5 M€ reservados para Neotec Mujeres). Para empresas emergentes con I+D+i en marcha y mayor madurez técnica, la LIEE (Línea de Innovación Empresas Emergentes). Para proyectos cooperativos a partir de TRL 4-6, el PID convencional. Innvierte canaliza coinversión con venture capital privado en operaciones de mayor cuantía.
+¿Las ayudas CDTI son compatibles con la deducción fiscal I+D+i del art. 35 LIS? Sí, son compatibles con matices. El CDTI financia el proyecto (parte como subvención no reembolsable, parte como préstamo a devolver); la deducción I+D+i del art. 35 LIS se resta **de la cuota íntegra** del IS por los gastos elegibles del proyecto, con el límite conjunto del art. 39.1. El gasto del proyecto sigue formando parte de la base de deducción: lo que se resta de esa base es el importe de la subvención imputable como ingreso del período (arts. 35.1.b y 35.2.b LIS). El tramo reembolsable es un préstamo que la empresa devuelve, no se imputa como ingreso y no minora la base. La doble vía CDTI + deducción I+D+i requiere trazabilidad contable entre subvención imputada y base declarada — ver [CDTI vs deducción fiscal I+D+i](/recursos/cdti-vs-deduccion-fiscal/).
+¿Qué es la Red PIDI y cómo se accede? La Red PIDI (Puntos de Información sobre I+D+i) es un servicio gratuito coordinado por el CDTI que ofrece asesoramiento técnico inicial sobre líneas de financiación pública I+D+i a empresas españolas. Tiene puntos de atención distribuidos por comunidades autónomas (cámaras de comercio, parques tecnológicos, agencias regionales). No sustituye a una consultora especializada en la preparación del expediente, pero es una primera vía útil para identificar la línea CDTI más adecuada antes de contratar asesoramiento profesional.
+
+¿Necesitas una segunda opinión técnica?
+
+###
+Sesión de evaluación inicial · 60 min · online · 250 €
+
+Revisamos tu expediente o tu idea de proyecto y te entregamos un dictamen breve
+por escrito con el encaje normativo (UNE 166.001, IM, art. 35 LIS, RD 475/2014),
+las vías recomendadas, los riesgos detectados y un plan de trabajo si procede.
+Confidencial. Sin compromiso de continuidad.
+
+Reservar sesión por email →
+
+## Fuentes oficiales
+CDTI — Calendario de convocatorias →
+
+CDTI — Convocatorias activas →
+
+CDTI — Página principal →
+
+Misiones CDTI — sede oficial →
+
+AEAT — Manual práctico Sociedades 2024 →
+
+### Recursos relacionados
+
+#### CDTI vs deducción fiscal I+D+i: cuándo conviene cada vía
+Comparativa estructurada entre las dos vías principales de incentivo I+D+i en España: CDTI (financiación ex-ante) y deducción fiscal del art. 35 LIS (incentivo ex-post).
+
+#### Joven Empresa Innovadora (JEI): calificación, beneficios y procedimiento
+Calificación oficial para PYMES jóvenes con I+D+i intensiva: compatibilidad fiscal plena art. 35 LIS + bonificación SS, vía a Sello PYME Innovadora.
+
+#### Marco normativo de la actividad I+D+i en España
+Disposiciones aplicables a la deducción fiscal I+D+i (art. 35 LIS), bonificación de personal investigador, Informe Motivado y certificación bajo UNE 166.001 y RDE-01 ENAC.
+
+#### Sello PYME Innovadora (SPI): qué desbloquea y cómo se obtiene
+El Sello PYME Innovadora habilita la compatibilidad plena entre la deducción art. 35 LIS y la bonificación de personal investigador del RD 475/2014, además de inscripción en registro público del MICIU.
+
+#### DNSH (Do No Significant Harm) en proyectos NextGenerationEU
+El principio DNSH es criterio obligatorio para cualquier actuación financiada con fondos NextGenerationEU. Cómo aplica a proyectos I+D+i, los seis objetivos medioambientales y el procedimiento documental.
+
+### Servicios relacionados
+
+#### Proyectos CDTI
+Apoyo en la preparación, ejecución y justificación de PID, NEOTEC, Misiones, Cervera e INNVIERTE del CDTI.
+
+Aviso legal · contenido informativo
+
+Esta página tiene finalidad informativa y divulgativa . La información
+ofrecida no constituye asesoramiento fiscal, contable, jurídico ni profesional
+vinculante, ni sustituye al análisis individualizado de un caso concreto realizado por
+un profesional cualificado.
+
+La normativa aplicable puede modificarse, y la interpretación administrativa o
+jurisprudencial puede variar con el tiempo. El contenido refleja la situación
+conocida a la fecha indicada ( 1 de mayo de 2026 )
+y no se garantiza su vigencia futura. La empresa lectora debe contrastar cualquier
+decisión con su asesor profesional antes de actuar.
+
+Expertiot no asume responsabilidad por las decisiones tomadas exclusivamente sobre la
+base de este contenido. Para una valoración aplicada a una situación específica,
+reserva una sesión de evaluación inicial .

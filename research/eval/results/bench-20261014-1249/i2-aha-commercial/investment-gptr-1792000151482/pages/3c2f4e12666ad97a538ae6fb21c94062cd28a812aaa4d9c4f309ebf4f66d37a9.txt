@@ -1,0 +1,80 @@
+Artificial Intelligence for Drug Development | FDA
+
+Skip to main content
+
+Skip to FDA Search
+
+Skip to in this section menu
+
+Skip to footer links
+
+Home
+
+About FDA
+
+FDA Organization
+
+Center for Drug Evaluation and Research (CDER)
+
+Artificial Intelligence for Drug Development
+
+Center for Drug Evaluation and Research (CDER)
+
+In this section
+
+## What is Artificial Intelligence (AI)?
+Artificial Intelligence (AI) refers to a machine-based system that can, for a given set of human-defined objectives, make predictions, recommendations, or decisions influencing real or virtual environments. AI systems (1) use machine- and human-based inputs to perceive real and virtual environments, (2) abstract such perceptions into models through analysis in an automated manner, and (3) use model inference to formulate options for information or action. A subset of AI that is commonly used in the drug product life cycle is machine learning (ML). ML refers to a set of techniques that can be used to train AI algorithms to improve performance at a task based on data.
+
+## What role is AI playing in drug development?
+FDA recognizes the increased use of AI throughout the drug product life cycle and across a range of therapeutic areas. In fact, CDER has seen a significant increase in the number of drug application submissions using AI components over the past few years. These submissions traverse the drug product life cycle, which includes nonclinical, clinical, postmarketing, and manufacturing phases.
+Additionally, AI is increasingly integrated in areas where CDER is actively engaged, including Digital Health Technologies (DHTs), and Real-World Data (RWD) analytics.
+
+## What is CDER’s perspective on the use of AI in drug development?
+CDER is committed to ensuring that drugs are safe and effective while facilitating innovation. FDA published a draft guidance in 2025 titled, “ Considerations for the Use of Artificial Intelligence to Support Regulatory Decision Making for Drug and Biological Products .” This guidance provides recommendations to industry on the use of AI to produce information or data intended to support regulatory decision-making regarding safety, effectiveness, or quality for drugs. The content of this draft guidance was informed by (1) feedback received in December 2022 as part of an expert workshop convened by the Duke Margolis Institute for Health Policy on behalf of CDER/FDA; (2) over 800 comments received from external parties on the discussion paper published in May 2023 on AI use in drug development; (3) CDER’s experience with over 500 submissions with AI components from 2016 to 2023; and (4) hybrid public workshops for interested parties held on August 6, 2024 and October 7, 2025 to discuss the guiding principles for the responsible use of AI in the development of safe and effective drug and biological products.
+These activities also helped informed a recent publication titled: “ Artificial Intelligence and Medical Products: How CBER, CDER, CDRH, and OCP are Working Together ,” published in March 2024 (revised in February 2025), which describes how FDA’s medical product Centers plan to align their efforts to advance the responsible use of AI for medical products. This entails building regulatory approaches that, to the extent feasible, can be applied across various medical products and uses within the health care delivery system.
+AI will undoubtedly play a critical role in the drug development life cycle and CDER plans to continue developing and adopting a risk-based regulatory framework that promotes innovation and protects patient safety.
+CDER is committed to advancing the use of AI in drug development and has established engagement pathways to work with sponsors and interested parties.
+
+## How is CDER coordinating activities around AI use?
+The CDER AI Council was established in 2024 to provide oversight, coordination, and consolidation of CDER activities around AI use.
+While multiple CDER groups have previously been involved in AI initiatives spanning policy, regulatory, and technology efforts, the changing external and federal environments for AI have brought new governance needs. The CDER AI Council will consolidate and continue the important work started by the CDER AI Steering Committee, AI Policy Working Group, and CDER AI Community of Practice.
+The advent of novel AI applications, such as generative AI and large language models, is likely to expand opportunities for use of AI within CDER, including by non-technical staff. This will require increased education and coordination to enhance AI knowledge among CDER staff members. There has also been a rapid increase in CDER regulatory submissions incorporating AI, and the scope and impact of AI use in drug development are expanding.
+In its capacity as a decisional body, the CDER AI Council will coordinate, develop, support, and promote consistency of both internal and external AI-related activities in CDER, and as appropriate, oversee activities, including:
+CDER’s internal AI capabilities (i.e., talent, technology, data, algorithms, models)
+CDER AI policy initiatives for regulatory decision-making
+Additionally, the CDER AI Council will:
+Serve as the focal point for innovation to help expand appropriate use of AI within CDER
+Ensure that CDER speaks with a unified and consistent voice on CDER AI communications and external publications
+Promote consistency on CDER considerations related to AI when evaluating drug safety, effectiveness, and quality
+Enable CDER to meet federal AI requirements and align with FDA and HHS AI goals
+Facilitate trustworthy use of AI in CDER’s regulatory, research, and administrative efforts
+
+## How is CDER coordinating with international partners?
+Officials from CDER and CBER collaborated with the European Medicines Agency to develop 10 guiding principles that industry and product developers can consider when using AI to accelerate drug and biological product development.
+
+## Selected Guidances and Publications
+Guiding Principles of Good AI Practice in Drug Development (January 2026)
+Considerations for the Use of Artificial Intelligence to Support Regulatory Decision Making for Drug and Biological Products (January 2025)
+Artificial Intelligence and Medical Products: How CBER, CDER, CDRH, and OCP are Working Together (March 2024, Revised February 2025)
+AI/ML for Drug Development Discussion Paper (May 2023, Revised February 2025)
+Artificial Intelligence in Drug Manufacturing (March 2023)
+Distributed Manufacturing and Point-of Care Manufacturing of Drugs (October 2022)
+
+## Other Resources
+For general AI-related publications, please visit Artificial Intelligence and Medical Products
+CDER Framework for Regulatory Advanced Manufacturing Evaluation ( FRAME ) Initiative
+For questions related to AI in drug development, email CDER-AI@fda.hhs.gov
+
+## Content current as of:
+
+05/01/2026
+
+## Regulated Product(s)
+
+Biologics
+
+Drugs
+
+Feedback
+
+Back to Top

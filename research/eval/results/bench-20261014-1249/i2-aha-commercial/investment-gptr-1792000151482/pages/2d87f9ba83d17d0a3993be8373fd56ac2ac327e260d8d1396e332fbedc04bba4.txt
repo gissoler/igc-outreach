@@ -1,0 +1,774 @@
+NSF 26-512: Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) | NSF - U.S. National Science Foundation
+
+Print this Page
+
+## Active funding opportunity
+
+This document is the current version.
+
+##
+Important information for proposers and award recipients
+
+All proposals must be submitted in accordance with the requirements specified in the funding opportunity and in the Proposal & Award Policies & Procedures Guide (PAPPG) and its supplements .
+
+All NSF grants and cooperative agreements are subject to the applicable set of NSF award terms and conditions .
+
+NSF has updated its research security policies for NSF funded projects.
+
+# NSF 26-512: Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)
+
+## Program Solicitation
+
+### Document Information
+
+#### Document History
+
+Posted: July 21, 2026
+
+#### Create a PDF
+
+To save a PDF of this solicitation, select Print to PDF in your browser's print options.
+
+View the program page
+
+
+
+## Program Solicitation NSF 26-512
+
+
+
+
+
+
+U.S. National Science Foundation
+
+Directorate for Computer and Information Science and Engineering
+
+Directorate for Biological Sciences
+
+Directorate for Engineering
+
+Directorate for Geosciences
+
+Directorate for Mathematical and Physical Sciences
+
+Directorate for Technology, Innovation and Partnerships
+
+
+
+
+
+
+
+Full Proposal Deadline(s) (due by 5 p.m. submitting organization's local time):
+
+
+November 04, 2026
+
+
+First Wednesday in November, Annually Thereafter
+
+
+
+
+
+### Important Information and Revision Notes
+
+
+Proposals must be prepared in accordance with the NSF Proposal & Award Policies & Procedures Guide (PAPPG) . Use the version of the guide that is in effect on the proposal's due date.
+
+
+
+### Summary of Program Requirements
+
+
+
+#### General Information
+
+
+Program Title:
+
+
+
+Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)
+
+
+
+Synopsis of Program: 
+
+
+This program will advance scientific community datasets to enable scientific discovery and innovation using artificial intelligence (AI) and other methods. Its goal is to increase the value that can be derived from existing scientific datasets by leveraging novel methods and artificial intelligence (AI). This will unlock new AI-driven insights. It can enable interdisciplinary research. It also enables investigations outside of the original motivation for data collection and analysis.
+
+
+The program seeks to 1) apply AI-based capabilities to feature extraction and metadata generation, and the integration of multiple datasets. 2) Develop robust data pipelines necessary for automated analysis of existing datasets and similar use-cases by AI tools and systems. 3) Augment and/or harmonize existing datasets to better enable use by AI data pipelines and automated analysis.
+
+
+Proposals should address dataset security and integrity. Governance and the process for scientific communities to contribute to the datasets should also be addressed. Proposals are encouraged to leverage existing resources. These may include NSF data platforms , the NSF Integrated Data Systems and Services program , the NSF-led National AI Research Resource , the Genesis Mission platform , or other national infrastructure.
+
+
+NSF is open to exploring partnerships with philanthropy, private industry, or the non-profit sector to support additional proposals or collaborative opportunities that will advance AI-driven scientific discovery through unlocking the value of high-impact scientific datasets.
+
+
+
+Expanding Participation in STEM, NSF Priorities, and Gold Standard Science:
+
+
+NSF prioritizes cutting-edge discovery science and engineering research, advancing technology and innovation, and creating opportunities for all Americans. NSF has established priorities set forth by Congress, the administration and the NSF director to promote NSF's mission . Proposers should review the list of NSF priorities and are encouraged to align their proposals with them, where appropriate. NSF also expects the highest standards of scientific rigor, integrity and adherence tenets of Gold Standard Science in proposals, as appropriate for the field of science and research modality.
+
+
+NSF welcomes submissions from all researchers, particularly those earlier in their careers and those working in research areas aligned with agency and administration priorities. NSF also expects the highest standards of scientific rigor, integrity, and adherence to tenets of Gold Standard Science in proposals, as appropriate for the field of science and research modality.
+
+
+Cognizant Program Officer(s):
+
+
+Please note that the following information is current at the time of publishing. See program website for any updates to the points of contact.
+
+
+
+AI Datasets Program Officers, email: aidatasets@nsf.gov
+
+
+
+Applicable Catalog of Federal Domestic Assistance (CFDA) Number(s): 
+
+
+47.041 --- Engineering
+
+47.049 --- Mathematical and Physical Sciences
+
+47.050 --- Geosciences
+
+47.070 --- Computer and Information Science and Engineering
+
+47.074 --- Biological Sciences
+
+47.084 --- NSF Technology, Innovation and Partnerships
+
+
+
+
+#### Award Information
+
+
+Anticipated Type of Award: Standard Grant or Cooperative Agreement
+
+
+Estimated Number of Awards: 25 to 50
+
+
+The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M and 10 to 20 Planning grants up to $200,000 as described in the PAPPG .
+
+
+Anticipated Funding Amount: $60,000,000 to $100,000,000
+
+
+Anticipated funding amount is subject to the availability of funds.
+
+
+
+#### Proposal Preparation and Submission Instructions
+
+
+A. Proposal Preparation Instructions
+
+
+
+Letters of Intent: Not required
+
+Preliminary Proposal Submission: Not required
+
+Full Proposals:
+
+
+For proposals submitted via Research.gov, PAPPG guidelines apply.
+
+For proposals submitted via Grants.gov, NSF Grants.gov Application Guide guidelines apply.
+
+
+
+
+
+
+B. Budgetary Information
+
+
+
+Cost Sharing Requirements:
+
+
+Inclusion of voluntary committed cost sharing is prohibited.
+
+
+Indirect Cost (F&A) Limitations:
+
+
+Not Applicable
+
+
+Other Budgetary Limitations:
+
+
+Not Applicable
+
+
+
+C. Due Dates
+
+
+
+Full Proposal Deadline(s) (due by 5 p.m. submitting organization's local time):
+
+
+November 04, 2026
+
+
+First Wednesday in November, Annually Thereafter
+
+
+
+
+#### Proposal Review Information Criteria
+
+
+Merit Review Criteria:
+
+
+National Science Board approved criteria. Additional merit review criteria apply. Please see the full text of this solicitation for further information.
+
+
+
+#### Award Administration Information
+
+
+Award Conditions:
+
+
+Standard NSF award conditions apply.
+
+
+Reporting Requirements:
+
+
+Standard NSF reporting requirements apply.
+
+
+
+### I. Introduction
+
+
+Artificial Intelligence (AI) enables data processing and analysis at scales and speeds beyond human capacity to identify previously hidden patterns and relationships. It enables new interdisciplinary efforts that connects previously siloed disciplines. It promotes community contributions beyond a single group. When paired with scientific datasets, the combination with AI can yield transformative research results. This requires scientific datasets that are trusted and accessible. They must also be fit for their scientific purpose and curated with expertise across appropriate research communities.
+
+
+However, many scientific datasets are not findable, accessible, interoperable, or otherwise lack the necessary integrity and data descriptors and data pipelines necessary for use in large-scale AI applications. Further, while the scientific community has a long and successful track record of curating datasets, this has often been done in the context of preparing the data for use by humans or heuristic scripting. AI systems and tools are rising in prominence and capability. In some cases, they become the initial consumer of datasets. Novel approaches are needed to advance dataset compilation, processing, and analysis. Finally, many datasets do not have clearly identified owners or sufficiently organized scientific communities to address these shortcomings.
+
+
+This cross-directorate program is a joint effort. It includes the Directorates for Computer Science and Information Science and Engineering, Biological Sciences, Engineering, Geosciences, Mathematical and Physical Sciences, Technology, Innovation, and Partnerships. It also includes the Office of Research Infrastructure. Research to collect de novo datasets is out of scope and remains in the domain of individual scientific directorates.
+
+
+Research communities that need additional time or need resources for community planning are encouraged to submit planning grants.
+
+
+
+### II. Program Description
+
+
+The rapid ascent of AI technologies is changing how scientific datasets need to be curated and processed for AI-enabled scientific discovery. Proposals should enable the use of existing scientific datasets in new AI-driven inquiries. Or enable interdisciplinary research. Or enable investigations outside of the original scope of data collection or analysis. For example, relevant proposals may leverage AI-based methods for feature extraction. They may also leverage metadata generation. They may leverage fusion, linkage or integration of multiple datasets. This can also include reconstructing, harmonizing or augmenting datasets to address challenges associated with AI data pipelines and automated analysis. The results may correct noise, partial observations or other gaps.
+
+
+This program is aligned with Administration priorities described in America's AI Action Plan . Efforts to build world-class AI-ready scientific datasets are a priority. Another priority is incentivizing researchers to release more high-quality datasets publicly from prior federally funded research. The program will also support the Genesis Mission . It aims to build an integrated platform to harness scientific datasets to train scientific models, create AI agents to test new hypotheses, automate research workflows and accelerate scientific breakthroughs.
+
+
+All proposals should describe how they will enable data preparation and/or curation to increase the value of existing scientific datasets for use by AI data pipelines, automated analysis, and other AI-driven scientific inquiries. All proposals should also address dataset governance. Governance includes dataset access, retirement policies and the community contribution process. Proposals should address dataset security and integrity. Examples include processes or methods for enhancing data provenance, trust, quality, privacy, and authenticity. Attention should be paid to sensitive datasets and datasets containing sensitive information. Any research security issues related to data integrity and extraction should be addressed.
+
+
+Investigated topics may include, but are not limited to:
+
+
+
+The use of novel feature extraction, metadata generation, and data integration techniques that make previously generated datasets more usable by AI for testing new hypotheses.
+
+
+Next-generation data pipelines that create more powerful, comprehensive, or interdisciplinary datasets ready for automated analysis and AI training.
+
+
+Strategic augmentation and/or harmonization of existing datasets that significantly expand their scientific utility and usability by AI tools.
+
+
+Automated platforms that discern the readiness of legacy datasets at scale.
+
+
+Expanding broad availability of enhanced scientific community datasets through NSF data platforms, accelerating AI-driven inquiry and interdisciplinary discovery.
+
+
+
+Proposals will be evaluated based on:
+
+
+
+The fundamental scientific questions and breakthroughs enabled by the enhanced community dataset.
+
+
+The value-added enhancements to scientific datasets that will accelerate AI-driven discovery and innovation.
+
+
+The size, commitment, and breadth of the communities that will benefit from investment in the proposed AI-enabling activity. Benefits include improved findability and usability.
+
+
+The strength of the proposed approach to dataset security and integrity. And the strength of the proposed governance along with the community contribution process.
+
+
+Awardees will be expected to engage in bi-annual virtual meetings. Awardees should plan for and include budget to participate in relevant in-person meetings. An example meeting might include an annual PI meeting, the NSF NAIRR community meeting, or a discipline specific community meeting.
+
+
+NSF is open to exploring partnerships with philanthropy, private industry, or the non-profit sector to support additional proposals or collaborative opportunities.
+
+
+Measures of Success
+
+
+Proposals should advance one or more of the following measures of success:
+
+
+Discovery and Innovation
+
+
+
+Datasets expanded or established.
+
+New technologies or techniques for leveraged AI and/or AI-guided exploration established.
+
+
+
+Stem Workforce and Education
+
+
+
+Undergraduates and graduate students trained in AI use of scientific datasets.
+
+
+
+Research Infrastructure
+
+
+
+New built infrastructure that leverages existing datasets.
+
+Research facility usage.
+
+
+
+
+### III. Award Information
+
+
+Impact awards : up to 3 years and a maximum $2,000,000 per award, approximately 10 to 20 awards.
+
+
+Planning grants : maximum $200,000 per award, approximately 10 to 20 awards. As the AI aspects of scientific datasets are advancing rapidly and research community objectives are still evolving, proposers are encouraged to make use of planning grants to address early-stage issues that may lead to stronger full proposals. Example justification for planning grants may include support for community meetings and engagement, identification and exploration of key challenges that may arise due to the AI aspects of scientific data, and/or explore new data augmentation or curation early concepts. See guidance in the PAPPG .
+
+
+Flagship awards : up to 3 years and a maximum $5,000,000 per award, approximately 5 to 10 awards which are intended to address more complex challenges that are not achievable without more substantial resources. Example justifications for more substantial resources may include a more ambitious research scope or support a significantly large research community. Proposers to the Flagship category are strongly encouraged to contact aidatasets@nsf.gov to discuss their project scope and concept with a program officer early in the proposal preparation process.
+
+
+The estimated program budget, number of awards, and average award size/duration are subject to the availability of funds.
+
+
+
+### IV. Eligibility Information
+
+
+Who May Submit Proposals:
+
+
+
+Proposals may only be submitted by the following:
+
+
+
+Institutions of Higher Education (IHEs): Two- and four-year IHEs (including community colleges) accredited in, and having a campus located in the US, acting on behalf of their faculty members. Special Instructions for International Branch Campuses of US IHEs: If the proposal includes funding to be provided to an international branch campus of a US institution of higher education (including through use of sub-awards and consultant arrangements), the proposer must explain the benefit(s) to the project of performance at the international branch campus, and justify why the project activities cannot be performed at the US campus.
+
+
+Non-profit, non-academic organizations: Independent museums, observatories, research laboratories, professional societies and similar organizations located in the U.S. that are directly associated with educational or research activities.
+
+
+For-profit organizations: U.S.-based commercial organizations, including small businesses, with strong capabilities in scientific or engineering research or education and a passion for innovation.
+
+
+State and Local Governments
+
+
+Tribal Nations: An American Indian or Alaska Native tribe, band, nation, pueblo, village, or community that the Secretary of the Interior acknowledges as a federally recognized tribe pursuant to the Federally Recognized Indian Tribe List Act of 1994, 25 U.S.C. &sect;&sect; 5130-5131.
+
+
+Other Federal Agencies and Federally Funded Research and Development Centers (FFRDCs): Prospective proposers from other Federal Agencies and FFRDCs, including NSF sponsored FFRDCs, must follow the guidance in PAPPG Chapter I.E.2 regarding limitations on eligibility.
+
+
+
+
+Who May Serve as PI:
+
+
+
+There are no restrictions or limits.
+
+
+
+Limit on Number of Proposals per Organization:
+
+
+
+There are no restrictions or limits.
+
+
+
+Limit on Number of Proposals per PI or co-PI:
+
+
+
+There are no restrictions or limits.
+
+
+
+
+### V. Proposal Preparation and Submission Instructions
+
+
+
+#### A. Proposal Preparation Instructions
+
+
+Full Proposal Preparation Instructions : Proposers may opt to submit proposals in response to this Program Solicitation via Research.gov or Grants.gov.
+
+
+You must prepare your proposal according to Chapter II.D.2 of the PAPPG , unless this solicitation specifies different instructions. Always use the version of the PAPPG in effect on your proposal's due date.
+
+
+
+For proposals submitted via Research.gov, PAPPG guidelines apply.
+
+For proposals submitted via Grants.gov, NSF Grants.gov Application Guide guidelines apply.
+
+
+
+In determining which method to utilize in the electronic preparation and submission of the proposal, please note the following:
+
+
+IMPORTANT: Institutions submitting proposals to this solicitation must have an active UEI (Unique Entity Identifier) through SAM.gov. Please note: Registration through SAM.gov can take several weeks.
+
+
+Restrictions on Collaborative Proposals . Although proposals may be multi-organizational, a single organization must serve as the lead and all other organizations as subawards. See the PAPPG section on Submission of a collaborative proposal from one organization .
+
+
+Proposal Titles:
+
+
+
+Title for Impact Proposals . Proposal titles must begin with "AIDatasets:Impact" followed by a colon (":") and then the title of the project; e.g., "AIDatesets:Impact: Title".
+
+
+Title for Flagship Proposals . Flagship proposals titles proposals must begin with "AIDatasets:Flagship" followed by a colon (":") and then the title of the project; e.g., "AIDatasets:Flagship: Title".
+
+
+Title for a Planning Grant proposal. Planning Grant proposal titles must begin with "AIDatasets:Planning" followed by a colon and then the title of the project, e.g. "AIDatasets:Planning: Title".
+
+
+
+Project Summary . The last line of the Project Summary must have a prioritized list of 2-5 keywords or phrases that best characterize the NSF Directorates and/or scientific communities that are the primary beneficiaries of the results, e.g., "CISE" or "astrophysics". The list should start with "Keywords:" followed by a list of keywords separated by semi-colons (";").
+
+
+Project Description. All proposals must include, but are not limited to Sections 1–4 below. Flagship proposals also require an additional 5 th section listed below. For each section, items listed are provided as guidance for consideration and are not exhaustive.
+
+
+
+Vision and community benefit for dataset enhancement
+
+
+Proposals should describe:
+
+
+Fundamental scientific questions/breakthroughs that investment in this dataset will enable.
+
+Description of existing datasets that will be enhanced or used.
+
+Size, commitment, and breadth of the communities that will benefit from investment in the proposed AI-enabling activity.
+
+Related existing datasets and data management activities across the relevant scientific communities, and how the enhancements proposed in the project will advance and complement the communities' overall data effort.
+
+
+
+
+Research plan
+
+
+Describe the proposed research and plan for enhancing the value of the identified dataset (e.g., novel methods for feature extraction, metadata generation, the integration of multiple datasets, the augmentation and/or harmonization of existing datasets) and how it will enable new AI-driven inquiries, data pipelines for AI training, interdisciplinary research, or investigations outside of the original scope of collection/analysis.
+
+
+
+
+Dataset governance and integrity
+
+
+Proposals should describe:
+
+
+Plans for dataset security, integrity and governance including access management.
+
+Plans for the community contribution process.
+
+
+
+
+Dataset availability and infrastructure
+
+
+Plans for user engagement and community outreach, including to communities leveraging AI for scientific discovery.
+
+Description of how datasets will be made available to the community and what existing infrastructure will be leveraged.
+
+Measures of user adoption and feedback mechanisms.
+
+Plans for project maintenance and sustainment.
+
+
+
+
+
+
+Additionally for Flagship proposals:
+
+
+
+Flagship Justification
+
+
+Concise summary of the complex challenges that require more substantial resources than an Impact AI Dataset proposal. Example justifications for more substantial resources may include a more ambitious research scope or support a significantly large research community.
+
+
+
+
+
+
+
+#### B. Budgetary Information
+
+
+Cost Sharing:
+
+
+Inclusion of voluntary committed cost sharing is prohibited.
+
+
+Budget Preparation Instructions:
+
+
+All awardees will be expected to engage in bi-annual virtual meetings and plan for in-person meetings such as an annual PI meetings, the NSF NAIRR community meeting, or a discipline specific community meeting and should include travel support in their proposal budgets.
+
+
+
+#### C. Research.gov/Grants.gov Requirements
+
+
+You can submit proposals in response to this solicitation through Research.gov or Grants.gov, unless otherwise noted.
+
+
+Information on how to prepare and submit proposals is available on the Submitting Your Proposal page on NSF.gov.
+
+
+
+### VI. NSF Proposal Processing and Review Procedures
+
+
+Information on NSF's proposal processing and review procedures is available on the Overview of the NSF Proposal and Award Process page on NSF.gov.
+
+
+
+#### A. Merit Review Principles and Criteria
+
+
+All NSF proposals are evaluated through use of the two National Science Board-approved merit review criteria:
+
+
+
+Intellectual Merit , which encompasses the potential to advance knowledge.
+
+Broader Impacts , which encompass the potential to benefit society and contribute to the achievement of specific, desired societal outcomes.
+
+
+
+Information on NSF's merit review principles and process can be found on the How We Make Funding Decisions page on NSF.gov.
+
+
+Additional Solicitation Specific Review Criteria
+
+
+Additional merit review criteria include:
+
+
+
+Size, commitment, potential impact, breadth and outreach plan of the communities that will benefit from investment in the proposed AI-enabling activity.
+
+
+Novelty and transformative potential of the proposed dataset enhancements to accelerate AI-driven scientific discovery.
+
+
+Dataset security, integrity and governance mechanisms, including the community contribution process and sustainment plan.
+
+
+Viability of adoption and ease of adoption and use by a target community.
+
+
+For Flagship proposals – justification for increased flagship funding level.
+
+
+
+
+#### B. Review and Selection Process
+
+
+Proposals submitted in response to this program solicitation will be reviewed by Panel Review.
+
+
+After a proposal passes an initial compliance check, it will be reviewed by an NSF Program Officer. In most cases, three or more external experts will also review it (either as ad hoc reviewers, panelists or both).
+
+
+Visit the Overview of the NSF Proposal and Award Process page for more information on the proposal review and selection process.
+
+
+In alignment with Executive Order 14332 (Improving Oversight of Federal Grantmaking), all else being equal after merit review, NSF may give preference to institutions with lower indirect cost rates.
+
+
+
+### VII. Award Administration Information
+
+
+
+#### A. Notification of the Award
+
+
+Notification of an award is made to the submitting organization by an NSF Grants and Agreements Officer.
+
+
+
+#### B. Award Conditions
+
+
+Information on NSF award conditions can be found on the Award Terms and Conditions page on NSF.gov and Chapter VII of the PAPPG .
+
+
+Administrative and National Policy Requirements : Information on administrative and national policy requirements can be found on the National Policy Requirements for Recipients of NSF Awards page on NSF.gov.
+
+
+Consistent with the requirements specified in 2 CFR &sect; 200.332, recipients of NSF awards must adhere to the requirements for pass-through entities in establishing and managing subawards issued ensuring alignment with Administration and NSF policies and priorities.
+
+
+In alignment with Executive Order 14332 (Improving Oversight of Federal Grantmaking), proposers should be aware that NSF awards offered under this funding opportunity may include termination for convenience provisions.
+
+
+
+#### C. Reporting Requirements
+
+
+Unless your award notice says otherwise, NSF requires the principal investigator of every grant to submit annual project reports and a project outcomes report for the general public. For complete reporting requirements, see Chapter VII of the PAPPG .
+
+
+
+### VIII. Agency Contacts
+
+
+For questions related to the use of NSF systems contact:
+
+
+
+Research.gov : NSF IT Service Desk at rgov@nsf.gov or 1-800-381-1532. The Service Desk is open from 7 a.m. to 9 p.m. Eastern time, Monday through Friday (except for federal holidays).
+
+
+
+For questions relating to Grants.gov contact:
+
+
+
+Grants.gov : The Grants.gov Contact Center at support@grants.gov or 1-800-518-4726. (Contact if the Authorized Organizational Representative (AOR) has not received a confirmation message from Grants.gov within 48 hours of submitting an application.)
+
+
+
+
+### IX. Other Information
+
+
+For information on NSF directorates, programs and funding opportunities, go to NSF.gov .
+
+
+
+### About the National Science Foundation
+
+
+The U.S. National Science Foundation is an independent federal agency created by the "National Science Foundation Act of 1950." More information about NSF can be found on NSF.gov .
+
+
+
+
+
+
+
+
+
+
+
+Location:
+
+
+
+
+Randolph Building, 401 Dulany Street, Alexandria, VA 22314
+
+
+
+
+
+
+
+General Information
+
+
+
+
+
+(703) 292-5111
+
+
+
+
+
+
+
+TDD (for the hearing-impaired):
+
+
+
+
+(703) 292-5090
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Privacy Act and Public Burden Statements
+
+
+The information requested on proposal forms and project reports is solicited under the authority of the "National Science Foundation Act of 1950," as amended. More information can be found on the Privacy Act and Public Burden Statements page on NSF.gov.
+
+
+Randolph Building, 401 Dulany Street, Alexandria, VA 22314
+
+Tel: (703) 292-5111
+
+Top

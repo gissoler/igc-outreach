@@ -1,0 +1,962 @@
+15.3 Predetermined Change Control Plans (PCCP) – Council on Pharmacy Standards
+
+No products in the cart.
+
+Login
+
+### Course Outline
+
+0% complete
+0 / 156 done
+
+Log in to track progress
+
+Register for Free
+
+Course Outline
+
+0%
+
+Module 1: Foundations of AI for Life Sciences
+
+1.1 AI, ML, DL, NLP, CV in biomedical applications
+
+1.2 Generative vs predictive vs causal AI
+
+1.3 AI strengths & limitations (hallucinations, drift, bias)
+
+1.4 AI acceptance in U.S./EU regulatory pathways
+
+1.5 Case Study: How AI shortened vaccine development timelines
+
+Module 2: Biomedical Data Engineering Essentials
+
+2.1 Data types: omics, imaging, sensor, clinical, RWE
+
+2.2 Data cleaning, structuring, annotation for regulatory use
+
+2.3 Bias, representativeness & data governance
+
+2.4 FAIR data principles (Findable, Accessible, Interoperable, Reusable)
+
+2.5 Hands-On: Build a regulatory-compliant dataset metadata sheet
+
+Module 3: Applied Machine Learning (Non-Coders Track)
+
+3.1 How ML pipelines work
+
+3.2 Understanding training, validation, test sets
+
+3.3 Interpreting model metrics & limitations
+
+3.4 Explainability tools (SHAP, LIME)
+
+3.5 Hands-On: Evaluate a simple ML model using real metrics
+
+Module 4: Generative AI for Biopharma
+
+4.1 LLMs in medical writing, submissions & protocol drafting
+
+4.2 Generative chemistry models (molecules, peptides)
+
+4.3 Transformer architecture basics (non-technical)
+
+4.4 FDA/EMA view on AI-assisted documentation
+
+4.5 Hands-On: Create a compliant AI-assisted draft protocol section
+
+Module 5: Predictive & Causal AI in R&D
+
+5.1 Predictive modeling for clinical & safety outcomes
+
+5.2 Causal inference (non-statistician view)
+
+5.3 Time-series modeling in wearables & sensors
+
+5.4 FDA expectations for modeling transparency
+
+5.5 Hands-On: Build a causal model justification document
+
+Module 6: AI Cybersecurity & Adversarial Defense
+
+6.1 AI security risks (model inversion, poisoning, evasion)
+
+6.2 FDA Medical Device Cybersecurity (2026)
+
+6.3 EU AI Act Requirements for Robustness
+
+6.4: GxP Cybersecurity Expectations
+
+6.5 Hands-On: Draft an AI cybersecurity risk register
+
+Module 7: AI in Drug Discovery
+
+7.1: Target Identification & Biomarker Discovery
+
+7.2 Hit/Lead Optimization Using ML
+
+7.3 Generative Chemical Design
+
+7.4 Predictive ADME/Tox Modeling
+
+7.5 Mock Discovery AI Justification for IND
+
+Module 8: AI in Preclinical Development
+
+8.1 PBPK Modeling & AI-Enabled Inputs
+
+8.2 Toxicogenomics & In-Silico Modeling
+
+8.3 In-Vitro, In-Silico Bridging (The 3Rs)
+
+8.4 GLP Considerations for AI Outputs
+
+8.5 Preclinical AI Evidence Package Summary
+
+Module 9: AI in Clinical Trial Design
+
+9.1 AI for Adaptive Trial Designs
+
+9.2 Enrollment Prediction & Feasibility Simulation
+
+9.3 Synthetic Control Arms
+
+9.4 AI-Assisted Statistical Analysis Plan Development
+
+9.5 Evidence-Driven Trial Optimization
+
+Module 10: AI in Clinical Operations
+
+10.1 Monitoring Deviations Using AI
+
+10.2 AI for Site Selection & Risk Scoring
+
+10.3 Protocol Compliance Algorithms
+
+10.4 Fraud Detection in DCT Environments
+
+10.5 AI-Enabled Operational Risk & Monitoring Plan
+
+Module 11: AI in Digital Biomarkers & Wearables
+
+11.1 Physiologic Signal AI Models
+
+11.2 Designing Digital Endpoints
+
+11.3 Sensor Accuracy & Calibration
+
+11.4 Using Digital Biomarkers in Submissions
+
+11.5 Hands-On: Validate a Mock Digital Biomarker
+
+Module 12: AI in Decentralized Trials (DCTs)
+
+12.1 Telemedicine + AI Integrations
+
+12.2 Remote Verification & Data Integrity
+
+12.3 Participant Adherence Prediction
+
+12.4 FDA/EMA Expectations for AI in DCTs
+
+12.5 Project: Build a Hybrid Trial AI Readiness Plan
+
+Module 13: AI in Real-World Evidence (RWE) & HEOR
+
+13.1 AI-Driven RWE Signal Generation
+
+13.2 Predictive Economic Modeling
+
+13.3 Bias Adjustment & Causal Modeling
+
+13.4 HTA Expectations for AI Evidence
+
+13.5 Hands-On: AI-Assisted Value Dossier Section
+
+Module 14: AI in Medical Affairs & Scientific Communication
+
+14.1 AI for Literature Monitoring
+
+14.2 AI for Labeling Analysis
+
+14.3 Medical Information Chatbots
+
+14.4 Compliance Considerations for AI-Generated Content
+
+14.5 Deliverable: Review an AI-Generated Medical Response for Compliance
+
+Module 15: FDA AI/ML Regulatory Framework
+
+15.1 FDA AI Policy Overview (CDER/CBER/CDRH)
+
+15.2 AI in IND/NDA/BLA Submissions
+
+15.3 Predetermined Change Control Plans (PCCP)
+
+15.4 FDA Meeting Prep for AI Questions
+
+15.5 Hands-On: Write a Mock FDA AI Briefing Response
+
+Module 16: Global Regulatory Frameworks (EMA, MHRA, PMDA, etc.)
+
+16.1 EMA AI Reflection Paper
+
+16.2 EU AI Act — 2026 Current Requirements
+
+16.3 MHRA Software & AI Regulation
+
+16.4 PMDA AI Acceptance
+
+16.5 Deliverable: Global Regulatory Strategy Map
+
+Module 17: Good Machine Learning Practice (GMLP)
+
+17.1 U.S.–U.K.–Canada GMLP Principles
+
+17.2 Explainability, Transparency, Reproducibility
+
+17.3 Documentation & Audit Trails
+
+17.4 Human-in-the-Loop & Oversight
+
+17.5 Build an AI Evidence Package
+
+Module 18: AI System Validation (CSV, CSA & ML Ops)
+
+18.1 FDA CSA (Computer Software Assurance)
+
+18.2 AI Validation vs Traditional Software Validation
+
+18.3 Model Monitoring, Drift Detection, Retraining
+
+18.4 Vendor Qualification for AI Systems
+
+18.5 Hands-On AI Validation & Assurance Plan
+
+Module 19: AI in CMC & Manufacturing
+
+19.1 Predictive Quality Algorithms
+
+19.2 AI in Batch Release Testing
+
+19.3 GMP Requirements for AI Decision Systems
+
+19.4 AI During Tech Transfer & Scale-up
+
+19.5 Deliverable: CMC AI Risk Assessment
+
+Module 20: AI in Pharmacovigilance
+
+20.1 NLP for Expedited Case Processing
+
+20.2 Automated Signal Detection
+
+20.3 Risk Minimization Using AI Scoring
+
+20.4 PV System Validation for AI Algorithms
+
+20.5 Hands-On: Mock PV Signal Review Packet
+
+Module 21: AI in Regulatory Submissions
+
+21.1 eCTD Placement of AI Outputs
+
+21.2 Model Cards, Validation Summaries
+
+21.3 PCCP Integration for AI-Enabled Device Software
+
+21.4 AI-Assisted Regulatory Authoring
+
+21.5 Regulatory AI Capstone
+
+Module 22: AI Governance & Enterprise Strategy
+
+22.1 Operating Models for AI Governance
+
+22.2 The AI Governance Board
+
+22.3 RACI for AI Accountability
+
+22.4 Governance Documentation Templates
+
+22.5 Deliverable: Draft an AI Governance Charter
+
+Module 23: Ethics, Fairness & Bias Management
+
+23.1 Ethical Risk Landscape
+
+23.2 Fairness & Equity in Datasets
+
+23.3 Explainability vs Performance Tradeoffs
+
+23.4 Real-World Case Studies (U.S. & Global)
+
+23.5 Hands-On: Bias Assessment & Mitigation Plan
+
+Module 24: AI Audit Defense & Compliance
+
+24.1 Preparing for FDA, EMA, MHRA Audits
+
+24.2 What Regulators Ask About AI
+
+24.3 Evidence Retention & Traceability
+
+24.4 Common Inspection Findings
+
+24.5 Deliverable: AI Audit Readiness Checklist
+
+Module 25: Implementation & Change Management
+
+25.1 Rolling Out AI Internally
+
+25.2 Building Cross-Functional Teams
+
+25.3 SOP Creation & Training
+
+25.4 Managing Resistance & Adoption
+
+25.5 Hands-On: AI Implementation Roadmap
+
+Module 26: Capstone: AI Regulatory Submission Simulation
+
+26.1 Build a Full AI-Based Clinical Development plan
+
+26.2 Create a GMLP Validation Package
+
+26.3 Prepare an FDA/EMA Meeting Briefing Document
+
+26.4 Draft a PCCP (Predetermined Change Control Plan)
+
+26.5 Final Oral Defense: Mock FDA/EMA Q&A Simulation
+
+CAIDRA Module 15, Section 15.3: Predetermined Change Control Plans (PCCP) — 2026 Update
+
+Skip to lesson content
+
+Audio Lecture
+
+Loading lecture…
+
+Part 1 of 10
+
+1.0x
+
+0:00
+0:00
+
+15s
+
+15s
+
+0%
+
+Sections
+
+10 sections in this lecture
+
+0 of 10 completed
+
+Scroll for more
+
+## CAIDRA Section 15.3 PCCP Lesson
+
+15.3.1 • Scope before mechanics
+## What a PCCP Actually Is in 2026
+
+A Predetermined Change Control Plan is not simply an internal “SOP for learning,” and it is not a new stand-alone device pathway. It is a plan reviewed and authorized as part of an existing FDA device marketing authorization so that specified future modifications can be implemented without a separate marketing submission for each covered change.
+
+Statute
+#### FD&C Act § 515C
+Added by FDORA in 2022, section 515C expressly provides for PCCPs for devices. For PMA and 510(k) devices, a change that would otherwise require a supplement or new 510(k) can avoid that additional premarket filing when it is consistent with an FDA-authorized PCCP.
+
+Current final guidance
+#### FDA PCCP guidance — August 18, 2025
+The current document was originally issued December 4, 2024 and reissued August 18, 2025. It gives nonbinding recommendations for PCCPs tailored to AI-enabled device software functions (AI-DSFs).
+
+Regulation
+#### QMSR — effective February 2, 2026
+The revised 21 CFR Part 820 Quality Management System Regulation incorporates ISO 13485:2016 by reference. PCCP implementation must live inside the manufacturer’s applicable quality system—not in a parallel “AI exception” process.
+
+Separate draft
+#### AI-enabled device lifecycle guidance — January 2025
+FDA’s broader AI-enabled-device lifecycle and marketing-submission guidance remains draft and not for implementation. Do not blur its proposed recommendations into the final PCCP guidance.
+
+#### What the current PCCP guidance covers
+AI-enabled device software functions intended to be modified over time.
+AI-DSFs reviewed through 510(k), De Novo, or PMA pathways.
+The device constituent part of a device-led combination product when that constituent includes an AI-DSF.
+Manually implemented changes, automatically implemented changes, or a combination.
+Changes that generally would otherwise require an additional device marketing submission.
+
+#### What it does not automatically cover
+The drug or biologic constituent part of a device-led combination product.
+A generic “PCCP for drugs” or “PCCP for pharmacovigilance.”
+Every routine software change that would not otherwise require a marketing submission.
+Any change merely because it is technically feasible or described in an internal SOP.
+A modification that was not authorized in the PCCP or was not implemented according to the authorized Modification Protocol.
+
+#### Regulatory nuance: “pre-authorized” does not mean “unreviewed”
+The regulatory work happens prospectively. FDA evaluates the future modification boundaries, verification and validation methods, acceptance criteria, impact assessment, update process, and related controls when it reviews the PCCP. A covered change can later be implemented without another marketing submission because that change-control framework has already been reviewed.
+
+2019 FDA discussion paper introduces a proposed framework for modifications to AI/ML-based SaMD.
+
+2022 FDORA adds section 515C, giving FDA express statutory authority for device PCCPs.
+
+2023 FDA issues draft AI-device PCCP guidance; FDA, Health Canada, and MHRA publish five PCCP guiding principles.
+
+2024 → 2025 Final guidance is originally issued Dec. 2024 and reissued as the current version Aug. 18, 2025.
+
+2026 QMSR is effective. Device change-control records and implementation now sit within the updated Part 820 quality framework.
+
+#### Key takeaway
+Think of a PCCP as prospectively authorized device change control . The internal SOPs, MLOps controls, risk-management file, validation procedures, labeling workflow, and quality records support it—but none of those artifacts alone is the PCCP.
+
+15.3.2 • Official structure
+## Deconstructing a PCCP Without Inventing a New Taxonomy
+
+The final guidance describes three official PCCP components. CAIDRA can use memorable teaching language, but the official titles matter in regulatory work.
+
+Figure 1. The three official PCCP components
+
+Official component 1
+#### Description of Modifications
+Identifies the specific planned modifications and the resulting characteristics or performance changes that the manufacturer intends to implement.
+
+Official component 2
+#### Modification Protocol
+Defines how each modification will be developed, verified, validated, evaluated against predefined acceptance criteria, implemented, and communicated.
+
+Official component 3
+#### Impact Assessment
+Assesses the benefits and risks of the planned modifications and connects those risks to appropriate mitigations and controls.
+
+The official framework is “Description of Modifications + Modification Protocol + Impact Assessment.” Terms such as “sandbox,” “recipe,” or “proof” can help learners remember the concepts, but they are CAIDRA teaching language—not FDA component names.
+
+CAIDRA teaching lens
+#### WHAT → HOW → IMPACT
+WHAT can change? HOW will each authorized change be developed and validated? IMPACT : why does the planned change remain acceptable when benefits, risks, cumulative effects, mitigations, and user impact are considered? This is useful shorthand, but it should never replace the official component names in a submission.
+
+### The Modification Protocol Has Four Primary Content Areas
+
+1
+Data management Collection, annotation/reference standard, curation, storage, retention, quality assurance, representativeness, and train/tune/test separation.
+
+2
+Re-training practices Objectives, model components subject to change, training methods, and—if proposed—specific architecture or hyperparameter modifications with rationale.
+
+3
+Performance evaluation Verification and validation activities, datasets, statistical analysis, clinically appropriate metrics, and pre-defined acceptance criteria.
+
+4
+Update procedures Release process, labeling and communication, deployment method, versioning, rollback/stop controls, transparency, and real-world monitoring as applicable.
+
+#### What this does NOT mean
+A PCCP is not a blanket permission to “continuously learn.” It can describe updates that occur continuously, periodically, or rarely. It can involve automatic implementation, manual implementation, or both. The authorization is defined by the specific modifications and protocol that FDA reviewed—not by the buzzword used for the model.
+
+15.3.3 • Component 1
+## Writing the Description of Modifications: Specific, Bounded, Verifiable
+
+FDA recommends a limited number of modifications that are specific and can be verified and validated. Each planned modification should be linked to the corresponding performance-evaluation activity in the Modification Protocol.
+
+Description of Modifications design questions Question What a defensible PCCP should make clear Common overstatement to avoid
+
+What is changing? Enumerate each planned modification and describe the resulting change in device characteristics, performance, inputs, compatibility, use, or other authorized characteristics. “The model may improve over time.” That is too vague to evaluate prospectively.
+
+How will it be implemented? State whether implementation is automatic, manual, or hybrid. If automatic, define boundaries/guardrails that constrain the update range. Assuming FDA only allows human-reviewed/manual promotions. The current final guidance explicitly says FDA will consider automatically implemented modifications.
+
+Where will it apply? Clarify whether changes are global/homogeneous or local/heterogeneous, and identify the factors that warrant local adaptation. Assuming every deployed device must receive an identical model version.
+
+How often? Describe expected update frequency—from infrequent changes in a largely locked device to continuous adaptation, when appropriate. Inventing a universal quarterly or annual retraining cadence.
+
+What remains within scope? Modifications must remain within the device’s intended use. In general they should remain within indications for use, although FDA notes that certain indications changes may be appropriate and strongly encourages Q-Submission discussion. “Any indication change is always forbidden.” The final guidance is more nuanced.
+
+Can architecture change? Do not assume the architecture must always remain fixed. If re-training includes specific architecture modifications, FDA recommends describing and justifying them in the Modification Protocol; whether they are appropriate depends on the specific PCCP and device. “PCCPs can only change model weights, never architecture.”
+
+### Types of Changes FDA Identifies as Potentially Appropriate
+
+#### Performance specifications
+For example, performance improvements from re-training on new data within the intended-use population and same type/range of input signal.
+
+#### Inputs and compatibility
+For example, new sources of the same input type, compatible hardware/software versions, operating-system changes, cloud infrastructure changes, or limited new input types when appropriately specified.
+
+#### Certain use/performance changes
+For example, a specific subpopulation within the originally indicated population may be supportable when the plan and evidence are appropriate.
+
+#### Device-specific boundaries
+A modification that is appropriate for one device may not be appropriate for another. Benefit-risk profile, device function, proposed change, and FDA experience matter.
+
+#### Director’s question: “Is this change truly in the authorized PCCP?”
+Do not answer from a generic eligibility table. Ask two concrete questions: (1) Was this exact type of modification specified in the authorized Description of Modifications? (2) Can it be implemented exactly according to the authorized Modification Protocol? If either answer is no, move to the device-modification assessment and FDA interaction rather than assuming the PCCP covers it.
+
+15.3.4 • Component 2
+## The Modification Protocol: Generate the Evidence You Would Otherwise Need
+
+The protocol is not merely a flowchart or generic SOP. It is the methods package that prospectively specifies how each planned modification will be developed, validated, implemented, and controlled while maintaining device safety and effectiveness.
+
+Figure 2. A risk-based Modification Protocol workflow
+
+1
+Qualify the change & data Confirm the candidate modification is within the authorized Description and apply the approved data-management methods.
+
+2
+Develop/re-train Use the specified methods, version controls, model components, hyperparameters, and retraining procedures.
+
+3
+Evaluate against acceptance criteria Run the pre-specified analytical/clinical/statistical evaluation using independent test data and appropriate metrics.
+
+4
+Update, communicate & monitor Implement only after criteria are met; perform specified labeling/user communication, version control, monitoring, and rollback/stop actions.
+
+The goal is not to mechanize every update identically. It is to define methods rigorous enough that the evidence generated for each covered change supports continued safety and effectiveness.
+
+### 1. Data Management: Independence Is the Rule; a Frozen “Golden Set Forever” Is Not
+
+FDA recommends clear control of training, tuning, and test data, including representative data, reference-standard procedures, quality assurance, sequestration, and safeguards against leakage. Test data should be independent of model development. The guidance also asks manufacturers to explain the relationship between data used for the original and subsequent AI-DSF versions.
+
+#### Correcting a common shortcut
+“Use one immutable golden test set for every future model forever” is not an FDA universal requirement and may itself create problems from repeated reuse, obsolescence, or mismatch to current practice. A PCCP should specify a scientifically defensible test-data strategy that preserves independence, relevance, representativeness, and control for the planned modifications.
+
+### 2. Re-training: Pre-specify What Can Change
+
+The re-training section should identify the processing steps subject to change and the methods used to implement the planned modifications. If the proposed re-training includes specific architecture changes—such as changes to training hyperparameters, nodes, or layers—the guidance recommends describing and justifying them. This is why “architecture is always locked” is too categorical.
+
+### 3. Performance Evaluation: Acceptance Criteria Must Fit the Device and Change
+
+Choose metrics and acceptance criteria that are clinically and scientifically justified for the specific function and consequence of error. Sensitivity, specificity, precision, negative/positive predictive values, AUROC, calibration, error rates, human-AI performance, robustness, subgroup performance, or other endpoints may matter depending on the device. No universal FDA rule says every update must pass the same non-inferiority margin or use one particular metric.
+
+#### Illustrative—not regulatory—example
+A radiology triage PCCP might pre-specify a sensitivity acceptance criterion because missed urgent findings are clinically important, while also constraining false-positive workload. The exact thresholds, confidence intervals, datasets, and statistical methods would need to be justified for that device. A “2% margin” is an example parameter, not an FDA default.
+
+### 4. Update Procedures: Deployment Is More Than “Go Live”
+
+The update procedure should address how a validated modification is implemented and how the manufacturer manages communication, labeling, versioning, user training where appropriate, rollback or stop mechanisms, cybersecurity and interoperability implications, and real-world monitoring as applicable. The authorized PCCP should make clear whether deployment is automatic, manual, or hybrid.
+
+#### Key takeaway
+The Modification Protocol should be capable of generating and retaining the information that would otherwise have supported a separate FDA submission for the covered modification. “MLOps automation” can implement parts of the process, but automation does not replace risk management, validation, traceability, or quality-system responsibilities.
+
+15.3.5 • Component 3 + post-authorization
+## Impact Assessment, Implementation, QMSR, and Reporting
+
+The Impact Assessment connects the planned changes to benefit-risk reasoning and mitigation. After authorization, implementation must remain inside the authorized plan and the manufacturer’s quality system.
+
+### Impact Assessment: More Than Monitoring
+
+The formal Impact Assessment is primarily the prospective assessment of the benefits and risks associated with the planned modifications and the adequacy of mitigations. Ongoing monitoring can be an important control and is addressed within the Modification Protocol/update procedures as applicable, but it should not be taught as though “Impact Assessment” simply means “postmarket dashboard.”
+
+Individual-change risk: What new hazards, failure modes, biases, or use errors could the modification introduce?
+
+Cumulative risk: Could a sequence of individually acceptable changes alter behavior, user interaction, or performance in a way that matters?
+
+Risk of not changing: Could performance, compatibility, or clinical relevance degrade if the device remains unchanged?
+
+Mitigation linkage: Which protocol controls, acceptance criteria, labeling changes, monitoring actions, or rollback mechanisms address each identified risk?
+
+Figure 3. The implementation decision after a PCCP is authorized
+
+1
+Compare to authorized Description Is this planned modification actually one FDA reviewed in the PCCP?
+
+2
+Follow the authorized Protocol Can the manufacturer execute the specified data, validation, acceptance, update, and communication methods?
+
+3
+Implement only if consistent If both conditions are met, the change can be implemented without a new marketing submission.
+
+4
+If not consistent, reassess Use applicable device-modification requirements/guidance; a significant change likely needs a new submission and FDA discussion may be appropriate.
+
+“Not in the PCCP” does not automatically mean “new 510(k)” in every circumstance; it means the manufacturer must evaluate the change under the applicable statutory, regulatory, and device-modification framework. Conversely, a change listed in the PCCP but implemented outside the authorized protocol may still require a new submission.
+
+### The 2026 Quality-System Baseline: QMSR
+
+FDA’s older PCCP text contains QSR-era citations because the guidance was written before the February 2, 2026 effective date. For a 2026 lesson, the operative device quality baseline is the Quality Management System Regulation (QMSR) , which amended Part 820 and incorporates ISO 13485:2016 by reference. Manufacturers must maintain appropriate design/change controls, records, risk-management interfaces, corrective-action processes, supplier controls, and other applicable QMS requirements for the device and its PCCP implementation.
+
+#### Part 11 nuance: do not make every MLOps event a fictional universal Part 11 mandate
+21 CFR Part 11 applies when electronic records/signatures fall within its scope—principally electronic records required by FDA predicate rules or electronic records submitted to FDA, as described in FDA’s Part 11 scope guidance. For PCCP workflows, trustworthy, attributable, time-ordered records and auditability are strong controls, but whether a particular event log or electronic signature is specifically a Part 11 record depends on the underlying recordkeeping requirement and how the organization relies on the electronic record.
+
+### Reporting and Transparency: Avoid the “Annual Report for Every PCCP Change” Rule
+
+PCCP implementation reporting distinctions Situation 2026 teaching point
+
+Covered modification implemented per PCCP No new marketing submission is necessary for that modification. Document the modification and analysis in the quality system and execute the labeling/communication actions specified in the authorized PCCP.
+
+PMA device Applicable PMA post-approval reporting requirements and conditions of approval still apply. Periodic reporting may be relevant; do not generalize PMA reporting rules to every 510(k) or De Novo device.
+
+Public/user transparency FDA recommends describing the PCCP in public device summaries and updating appropriate labeling so users understand relevant implemented changes, performance, validation evidence, and how updates affect use.
+
+Modification to the PCCP itself FDA states that changes to an authorized PCCP will generally require review in a new marketing submission for the modified device/PCCP. Q-Submission discussion is encouraged.
+
+15.3.6 • Automatic and local adaptation
+## Automatic Updates Are Possible—but Complexity Must Be Designed Into the PCCP
+
+One of the most important changes from early educational shorthand is that FDA’s final guidance explicitly contemplates PCCPs for automatically implemented modifications. The manufacturer should clearly state whether updates are automatic, manual, or hybrid and, for automatic updates, establish appropriate boundaries or guardrails.
+
+#### Periodic manual update
+A manufacturer collects new data quarterly, develops a candidate model offline, performs the specified evaluation, obtains internal release approval, updates labeling as required, and deploys the new version.
+
+#### Automatic implementation
+Software automatically applies a modification when the pre-authorized data, method, acceptance, and guardrail conditions are met. This is not automatically prohibited, but FDA highlights additional complexity and recommends Q-Submission discussion.
+
+#### Global update
+All deployed devices receive the same validated modification under the authorized plan.
+
+#### Local adaptation
+Different devices/sites may implement different authorized changes based on specified local conditions. The PCCP should define the local factors and how users remain informed.
+
+#### Do not equate “continuous learning” with uncontrolled online learning
+A device can update frequently or even continuously only within the authorized change boundaries and protocol. The regulatory question is not whether the model “learns in real time”; it is whether the planned modification mechanism, evidence generation, acceptance criteria, risk controls, transparency, and quality-system execution support continued safety and effectiveness.
+
+15.3.7 • Cross-center boundaries
+## PCCP Beyond Device Regulation: Use the Principle Carefully
+
+FDA’s medical-product centers collaborate on AI, but cross-center collaboration does not turn the device PCCP framework into a universal GxP regulatory pathway.
+
+PCCP scope across FDA contexts Context Formal PCCP status What to do instead / additionally
+
+AI-enabled device software function Formal FDA PCCP pathway available through applicable 510(k), De Novo, or PMA authorization. Use section 515C/current final guidance, device risk management, QMSR, and applicable submission guidance.
+
+Device constituent of device-led combination product Potentially within guidance for the AI-DSF device constituent. Engage FDA early if the AI modification affects the drug/biologic constituent; the PCCP recommendations do not apply to that constituent part.
+
+AI supporting drug/biologic regulatory decision-making No separate formal “PCCP for drugs” pathway established by this device guidance. Use the applicable drug/biologic regulatory framework, risk-based credibility evidence, change control, and FDA engagement. The January 2025 AI credibility guidance remains draft.
+
+PV, clinical, or quality-system AI tool Do not call an internal SOP an FDA-authorized PCCP unless it actually is part of an authorized device PCCP. Maintain scientifically justified lifecycle/change controls under the applicable regulated process and electronic-record/quality requirements. A “PCCP-like” structure can be a CAIDRA governance heuristic, but label it as such.
+
+AI in drug/biologic manufacturing Device PCCP guidance does not establish the manufacturing change-reporting pathway. Apply cGMP, validated process/system controls, regulatory reporting categories, product-specific commitments, and early FDA engagement appropriate to the manufacturing use.
+
+CAIDRA governance heuristic
+#### “PCCP-like” thinking can still be useful
+For non-device AI, teams can borrow the disciplined questions—what may change, how change is qualified/validated, what risks it creates, who approves it, how it is monitored, and what triggers escalation. But the lesson must say explicitly that this is an internal governance pattern unless an applicable regulator has established a formal PCCP mechanism for that product/use.
+
+15.3.8 • Worked application
+## Worked PCCP Case: Retinal Image Triage Software
+
+Assume FDA authorizes an AI-enabled device software function that triages retinal images for priority review by an ophthalmologist. The authorized PCCP includes several planned improvements while keeping the device within its intended use.
+
+Worked PCCP modification decisions Proposed change How to analyze it Likely regulatory posture
+
+Retrain using additional images from the same prespecified acquisition types and population to improve performance. Confirm this exact retraining change is in the Description; execute the authorized data-management, retraining, performance-evaluation, and update procedures. Can be implemented under the PCCP if all authorized conditions and acceptance criteria are met.
+
+Add compatibility with an additional scanner model that was explicitly included in the PCCP. Use the corresponding compatibility/validation testing and any labeling updates specified in the protocol. Can be PCCP-covered if authorized and implemented in conformance with the plan.
+
+Add a scanner that was never described in the authorized PCCP. The change is outside the authorized Description. Evaluate under applicable device-modification requirements and discuss with FDA if uncertainty remains. Do not assume automatic PCCP eligibility. A new submission may be required depending on significance.
+
+Change from clinician triage support to autonomous diagnosis. This changes the intended use/function in a fundamental way and is outside the PCCP teaching scenario. Not a routine PCCP update. Requires a separate regulatory assessment and likely new marketing authorization.
+
+Replace the model with a new architecture. Do not use a universal yes/no rule. Determine whether that specific architecture modification was actually proposed, justified, and authorized in the PCCP and whether the protocol can support it. Device- and PCCP-specific. If not authorized, evaluate as a new modification; do not assume it is permitted merely because performance is similar.
+
+### Director’s Pre-Deployment Questions
+
+1. Scope
+Can I point to the exact authorized modification and trace it to the corresponding protocol activity?
+
+2. Evidence
+Did the candidate version meet every pre-specified, clinically justified acceptance criterion using controlled and independent evidence?
+
+3. Risk
+Did implementation create a new hazard, cumulative effect, subgroup problem, interoperability issue, or user-behavior risk not covered by the Impact Assessment?
+
+4. Quality system
+Are the change, approvals, design/development evidence, nonconformances, and corrective actions controlled under the QMSR and applicable procedures?
+
+5. Transparency
+Were labeling, version history, user communication, and training updated exactly as specified by the PCCP?
+
+6. Escalation
+If anything deviated from the authorized plan, did the team stop and perform the applicable regulatory assessment rather than forcing the change through the PCCP?
+
+#### Section 15.3 durable playbook
+Authorize the change space prospectively. Generate evidence exactly as promised. Implement only inside that authorized space. Treat deviations as regulatory events, not merely engineering exceptions. That is the core discipline behind a defensible PCCP.
+
+Authoritative sources
+## 2026 Reference Set and Regulatory Status
+
+These references are included so learners can distinguish binding law/regulation from nonbinding FDA guidance and international guiding principles. The lesson does not ask learners to memorize citations.
+
+#### FD&C Act § 515C — Predetermined Change Control Plans for Devices
+Law
+Express statutory authority added by FDORA. The FDA final guidance explains how this authority applies to AI-enabled device software functions.
+
+#### FDA — Marketing Submission Recommendations for a PCCP for AI-Enabled Device Software Functions
+Final • Aug 2025
+Current final PCCP guidance; issued August 18, 2025 and originally issued December 4, 2024. Core source for Description of Modifications, Modification Protocol, Impact Assessment, implementation, labeling, and authorized-change policy.
+
+#### FDA — AI-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations
+Draft • Jan 2025
+Broader AI-device lifecycle draft. Not for implementation. Use it as emerging FDA thinking, not as final requirements.
+
+#### FDA — Q-Submission Program
+Final • May 2025
+FDA encourages early engagement on proposed PCCPs through Pre-Submission/Q-Submission mechanisms, especially for complex or high-risk proposals. A Pre-Submission does not itself authorize the PCCP.
+
+#### FDA — Quality Management System Regulation (QMSR)
+Regulation • Effective Feb 2026
+Current device quality-system baseline under revised 21 CFR Part 820, incorporating ISO 13485:2016 by reference.
+
+#### FDA / Health Canada / MHRA — PCCP Guiding Principles
+Guiding principles • 2023
+Five principles: focused and bounded, risk-based, evidence-based, transparent, and total-product-lifecycle oriented.
+
+#### IMDRF — Good Machine Learning Practice for Medical Device Development
+Final technical document • 2025
+IMDRF/AIML WG/N88 FINAL:2025. Current international GMLP principles for AI/ML-enabled medical devices.
+
+#### FDA — Part 11, Electronic Records; Electronic Signatures — Scope and Application
+Final guidance
+Use to determine when electronic records/signatures are within Part 11 scope; avoid treating every AI/MLOps log as automatically a Part 11 record.
+
+#### FDA — Artificial Intelligence and Medical Products
+Cross-center policy context
+Shows cross-center collaboration on AI. It does not convert device PCCP guidance into a universal CDER/CBER change-control pathway.
+
+CAIDRA Module 15 • Section 15.3 • 2026 regulatory and technical update
+
+#### Path to Certification
+
+Complete this course + Pass the exam = Earn your credential. Register anytime.
+
+Register for Certification Exam
+
+Eligibility
+Candidate Handbook
+Exam Blueprint
+
+Search the whole site
+
+Browse all 65 certifications How to apply
+
+Eligibility & fees Study guides Verify a credential Renew
+
+All 65 certifications accredited Commission for Health, Safety & Professional Standards · No. CHSPS-CERT-2026-0084347
+
+Log in Get certified
+
+## Preparing for Your Exam
+
+What do I need to have for my exam?
+To ensure a smooth exam launch, please have the following items ready:
+
+Valid Photo ID: One form of non-expired, government-issued photo identification (e.g., driver’s license, passport).
+
+Technical Requirements: A working webcam and microphone, a strong and stable internet connection, and a compatible computer.
+
+Environment: A quiet, private room with a hard surface to work on. Your desk or table must be clear of all other items.
+
+Reflective Surfaces: Avoid rooms with cell phones or significant reflective surfaces.
+
+What time should I arrive for my exam?
+We recommend connecting to the exam platform 10-15 minutes before your scheduled start time. This will give you ample time to complete the identity verification and system check process without feeling rushed. The exam timer will not begin until after the exam has been officially launched.
+
+Where am I NOT allowed to take my exam?
+To ensure a secure exam environment, you may not test in certain locations. This is especially important for a high-stakes certification exam. You will NOT be permitted to test from:
+
+A bathroom/restroom
+
+A public space with other individuals like a coffee shop
+
+The outdoors
+
+A vehicle such as a car or boat
+
+An office with glass walls
+
+You should be seated at a hard surface like a desk or table, with your back to the main room entrance. Standing or lying down is not permitted.
+
+Can I have children or pets with me?
+No, you must be in a private, secure room alone. The presence of other people, including children, is not permitted and may result in the termination of your exam. While we love pets, they can be a distraction, so please ensure they are in a separate room during your exam session.
+
+## During The Exam
+
+What am I allowed and not allowed to do during my exam?
+To maintain the integrity of the certification process, the following actions and behaviors will be flagged and are not permitted:
+
+Talking aloud: Unless you have an approved accommodation, talking or whispering is not permitted.
+
+Being out of camera view: Your face must be clearly visible in the camera frame at all times.
+
+Anyone else in your testing area: You must be alone in your room. No one else may enter or speak to you.
+
+Looking off-screen: Your gaze should remain on the screen.
+
+Using unauthorized materials: You may only use materials explicitly allowed.
+
+Taking pictures or screenshots: This is strictly forbidden. Our system will detect and block such actions.
+
+Copying and pasting: The system will not allow you to copy or paste any exam content.
+
+Using a secondary monitor: Only one monitor is permitted.
+
+Can I have food or a drink during my exam?
+Only clear liquids in a clear container (e.g., a glass of water, a clear water bottle with no label) are permitted. Food, smoking, and vaping are not allowed as they can cause unnecessary distractions and noise.
+
+Are breaks allowed during my exam?
+No, breaks are not permitted during the exam for any reason.
+
+## Accommodations & Technical Support
+
+How do I receive accommodations for my exam?
+To receive accommodations, you must register your needs with the exam administrators. The Council will then submit an accommodation request on your behalf. We do not need any information about your disability. The Council needs to send us the following information about you:
+
+First and last name
+
+The email address you used to register for the exam
+
+Accommodation information (e.g., extra time, bathroom breaks, permitted use of a screen reader, etc.)
+
+This must be done prior to your exam day. If we do not have a record of your accommodations, it will delay your start process and may require rescheduling. If you have questions, please use our Contact Support form.
+
+What should I do if I’m disconnected from my exam?
+If you are disconnected, remain calm. Try to reconnect to the exam immediately. Follow the on-screen instructions to rejoin the session. If you are unable to reconnect within 5 minutes, please contact our technical support immediately for assistance. The support contact information is provided in your exam confirmation email.
+
+## After The Exam
+
+How do I access my exam results?
+Exam results are provided directly by the Council on Pharmacy Standards, not by the proctoring service.
+
+×
+
+[ameliabooking service=1]
+
+×
+
+##
+
+Pharmacy Operations & Administration
+
+Certified Pharmacy Operations Manager (CPOM)
+
+Certified Pharmacy Billing & Reimbursement Specialist (CPBRS)
+
+Certified Pharmacy Supply Chain Manager (CPSCM)
+
+Certified Prior Authorization Pharmacist (CPAP)
+
+Certified Pharmacy Policy Analyst (CPPA)
+
+Certified Managed Care Pharmacist (CMCP)
+
+Certified Formulary Strategy Pharmacist (CFSP)
+
+Certified Medical Affairs Pharmacist (CMAP)
+
+##
+
+Direct Patient Care & Clinical Specialties
+
+Certified Deprescribing Pharmacist (CDP)
+
+Certified Hormone Therapy Pharmacist (CHTP)
+
+Certified Men’s Health Pharmacist (CMHP)
+
+Certified Women’s Health Pharmacist (CWHP)
+
+Certified Wellness & Supplement Pharmacist (CWSP)
+
+Certified Integrative Pharmacy Specialist (CIPS)
+
+Certified Population Health Pharmacy Analyst (CPHPA)
+
+Certified Public Health Pharmacist (CPHP)
+
+Certified Pain Management Pharmacist (CPMP)
+
+Certified Transitions of Care Specialist (CTCS)
+
+Certified Medication Reconciliation Pharmacist (CMRP)
+
+Certified Renal Pharmacotherapy Specialist (CRPS)
+
+Certified Behavioral Health Pharmacist (CBHP)
+
+Certified Pharmacist in Substance Use Disorders (CPSUD)
+
+Certified Home Infusion Pharmacist (CHIP)
+
+Certified Non-Sterile Compounding Pharmacist (CNSCP)
+
+Certified Sterile Compounding Pharmacist (CSCP)
+
+Certified Veterinary Compounding Specialist (CVCS)
+
+Certified Surgical Pharmacy Specialist (CSPS)
+
+Certified Collaborative Practice Pharmacist (CCPP)
+
+Certified Cardiometabolic Care Pharmacist (CCCP)
+
+Certified Investigational Drug Services Pharmacist (CIDSP)
+
+Certified Clinical Trials Pharmacist (CCTP)
+
+##
+
+Pharmacy Technology & Precision Medicine
+
+Certified Telepharmacy Pharmacist (CTPP)
+
+Certified AI-Enhanced Pharmacy Strategist (CAEPS)
+
+Certified Remote Monitoring Pharmacist (CRMP)
+
+Certified Remote Order Verification Pharmacist (CROVP)
+
+Certified Point-of-Care Testing Pharmacist (CPOCTP)
+
+Certified Digital Therapeutics Specialist (CDTS)
+
+Certified Pharmacy Informatics Analyst (CPIA)
+
+Certified EHR Optimization Pharmacist (CEOP)
+
+Certified Pharmacogenomics Pharmacist (CPxP)
+
+Certified Medical Cannabis Pharmacist (CMCaP)
+
+Certified Psychedelic Therapy Pharmacist (CPTP)
+
+Certified Gene Therapy Pharmacist (CGTP)
+
+Certified Biosimilar & Biologic Specialist (CBBS)
+
+Certified Rare Disease Pharmacist (CRDP)
+
+##
+
+Governance, Risk & Compliance
+
+Certified Pharmacy Compliance Officer (CPCO)
+
+Certified DEA Compliance Pharmacist (CDCP)
+
+Certified Pharmacy Law & Ethics Specialist (CPLES)
+
+Certified Medication Safety Officer (CMSO)
+
+Certified Pharmacy Audit Specialist (CPAS)
+
+Certified Pharmacy Data Privacy Officer (CPDPO)
+
+Certified Hazardous Drug Handling Pharmacist (CHDHP)
+
+Certified USP 800 Compliance Officer (CUCO)
+
+Certified Pharmacy Regulatory Specialist (CPRS)
+
+Certified Regulatory Affairs Specialist (CRAS)
+
+Certified Pharmacovigilance & Safety Officer (CPSO)
+
+Certified Compliance Pharmacist – 340B Focus (CCP-340B)
+
+Certified Prior Authorization Pharmacist (CPAP)
+
+×
+
+×
+
+You must log in.
+
+×
+
+×

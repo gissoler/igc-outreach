@@ -1,0 +1,132 @@
+{
+ "id": "i1-mint-ad",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+ "why": "brief del jefe, objetivo inversión (seed, salud digital, Maryland)",
+ "dry": false,
+ "ok": true,
+ "status": "partial",
+ "error": null,
+ "started": "2026-10-14T16:34:49.894Z",
+ "seconds": 270,
+ "stages": {
+  "search_s": 174,
+  "judge_s": 91,
+  "engine_s": 265,
+  "contacts_s": null,
+  "evaluator_s": 2,
+  "total_s": 270
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 92,
+  "assessed": 40,
+  "by_status": {
+   "open": 4,
+   "upcoming": 1,
+   "unknown": 65,
+   "closed": 22,
+   "unread": 58
+  }
+ },
+ "findings": {
+  "verified": 1,
+  "to_review": 4
+ },
+ "lists": {
+  "top": 0,
+  "radar": 15,
+  "discarded": 0
+ },
+ "apollo_credits": 12,
+ "apollo_people": 10,
+ "errors": [
+  "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent."
+ ],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "CEO at Cure Alzheimer's Fund",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "contacts": 0
+  },
+  {
+   "title": "Accountant Chief Financial Officer at Cure Alzheimer's Fund",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "contacts": 0
+  },
+  {
+   "title": "Operations Executive at Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-u",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "contacts": 0
+  },
+  {
+   "title": "Senior Vice President at Cure Alzheimer's Fund",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "contacts": 0
+  },
+  {
+   "title": "Managing Director at Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups ",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "contacts": 0
+  },
+  {
+   "title": "Cure Alzheimer's Fund",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "contacts": 3
+  },
+  {
+   "title": "TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://physicianaitools.com/investors/tcp-venture-capital/",
+   "contacts": 0
+  },
+  {
+   "title": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "contacts": 1
+  },
+  {
+   "title": "Senior Growth Manager at LeadMagic is a platform that provides data on funded startups, including biotech companies. It ",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://leadmagic.io/funded-startups/biotech",
+   "contacts": 0
+  },
+  {
+   "title": "Director at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commer",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+   "contacts": 0
+  }
+ ]
+}

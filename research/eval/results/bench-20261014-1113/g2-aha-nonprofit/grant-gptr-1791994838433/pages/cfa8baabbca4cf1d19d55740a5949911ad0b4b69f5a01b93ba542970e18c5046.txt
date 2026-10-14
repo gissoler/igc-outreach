@@ -1,0 +1,207 @@
+Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS | Horizon-europe.gouv.fr
+
+Aller au menu
+
+Aller à la recherche
+
+Aller au contenu
+
+##
+
+Rechercher
+
+##
+
+Menu
+
+Menu
+
+Découvrir Horizon Europe
+
+Présentation du programme
+
+Les programmes de travail
+
+La coopération internationale
+
+Le programme Euratom
+
+Autres programmes de financement
+
+FAQ : grands principes
+
+Comment candidater ?
+
+Les Points de Contact Nationaux
+
+Appels à propositions
+
+Aides au montage de projets
+
+Ressources juridiques et financières
+
+HE pour les entreprises
+
+Être expert auprès de la CE
+
+Pilier 1
+
+Conseil européen de la recherche (ERC)
+
+Actions Marie Sklodowska-Curie (MSCA)
+
+Infrastructures de recherche
+
+Pilier 2
+
+Cluster 1 - Santé
+
+Cluster 2 - Culture et société
+
+Cluster 3 - Sécurité civile
+
+Cluster 4 - Numérique, industrie et espace
+
+Cluster 5 - Climat, énergie et mobilité
+
+Cluster 6 - Bioéconomie
+
+Les Missions européennes
+
+Les partenariats
+
+Pilier 3
+
+Conseil européen de l'innovation (EIC)
+
+L'institut européen d'innovation et de technologie (EIT)
+
+Écosystèmes européens d'innovation (EIE)
+
+Pilier transversal
+
+Le programme WIDERA
+
+Le programme COST
+
+Accueil
+
+Toute l'actualité
+
+Agenda
+
+Nous rejoindre
+
+Vos PCN
+
+###
+
+Outils
+
+Les FAQ
+
+Statistiques de participation au PCRI
+
+scanR, l'outil de cartographie thématique R&I
+
+Dashboard, l'outil de la C.E. sur les participations au PCRI
+
+scanR, l'outil de cartographie thématique R&I
+
+Sourd et malentendant, contactez-nous avec Acceo - Nouvelle fenêtre
+
+Paramètres d'accessibilité- New window
+
+Accessibilité
+
+##
+
+Agenda
+Fermer
+
+### Événement à la une
+
+Du 20.10.2026 au 21.10.2026
+
+####
+Meet'Up Greentech 2026
+
+Meet'Up Greentech 2026 est le rendez-vous annuel de la greentech organisé par l’Ecolab du Commissariat Général au Développement Durable (CGDD) des Ministères Aménagement du territoire et Transition écologique, en partenariat avec l’Agence de l’Innovation pour les Transports, l’ADEME, BpiFrance, l’AFNOR, la mission French Tech et la Banque des Territoires.
+
+Agenda des événements
+
+Agenda des événements
+
+Ce topic appartient à l'appel
+Research Infrastructures 2026
+
+Identifiant du topic:
+HORIZON-INFRA-2026-SERV-01-01
+
+# Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS
+
+Type d'action :
+HORIZON Research and Innovation Actions
+
+Date d'ouverture :
+
+10 mars 2026
+
+Date de clôture
+1
+: 16 juin 2026 02:00
+
+Détail du topic
+
+Budget :
+
+€32 000 000
+
+Call : Research Infrastructures 2026
+
+Call Identifier : HORIZON-INFRA-2026-01
+
+Description :
+Expected Outcome:
+
+A state-of-the-art EBRAINS digital infrastructure for brain research, providing data, digital tools and services to the European research communities in neurosciences, brain medicine, and brain-inspired technologies. The platform will be powered by AI and will integrate innovative AI tools to support intuitive interaction with users, facilitate brain research, data analysis, simulations and modelling of the brain, and support FAIR data indexing and archival to scale-up data integration and curation.
+
+New services and applications for neuroscience, brain health and cognitive technologies, aligned with national and European research priorities. Workflows that connect and integrate large sets of data, services and tools available at EBRAINS will be in the focus in combination with access to large storage and compute resources.
+
+Innovative brain-inspired AI tools, that are based on insights from brain research, for example, in learning, decision process, plasticity, with application in research, robotics, and neurotech.
+
+Detailed, data-driven, multi-scale models of complex behaviour, intelligence, consciousness and language, to study the role of variability in human brain organization during the lifespan, under different conditions.
+
+Digital brain twins and/or body twins, informed by real-life sensor data, to assist the development of new digital tools for brain medicine, e.g., for diagnostics, rehabilitation, intensive care and surgery.
+
+A framework for the European Brain Data Space, aligned with the European Health Data Space, in connection to EOSC and linked with common European data spaces in the life science and health sector, to support collaborative digital neuroscience and reproducible brain science, and to bridge basic and clinical research in the context of the European partnership for brain health.
+
+Strengthened European cooperation advancing brain health research to ensure streamlined efforts, avoiding duplication while maximizing impact particularly in the context of the European Partnership for Brain Health through shared infrastructure, leading to improved diagnostics, innovative therapies, and more personalized treatment plans, ultimately enhancing patient care and public health.
+
+EBRAINS is an integrative, distributed digital research infrastructure (RI) of pan-European relevance, developed under the EU-funded Human Brain Project (HBP), to cross-fertilise progress in neuroscience, medicine and advanced computing including AI. While since 2021 EBRAINS is included in the ESFRI roadmap, EBRAINS continues developing as the reference RI for digital neuroscience to help reach a deeper understanding of the human brain and to catalyse new findings in science, and innovative brain-inspired technologies and computing. Furthermore, EBRAINS, as part of the upcoming European Partnership for Brain Health, will facilitate medical innovation providing value added services and access to world-class EU HPC resources to a wide community of professionals, including clinicians, neuro- and computer scientists. Importantly, EBRAINS has potential to contribute to the novel EuroHPC AI Factories and the planned AI Gigafactories, fostering the translation of insights from neuroscience for novel AI, neuro-inspired computing and neurorobotics into business and industry.
+
+Scope:
+
+The scope of this topic is to support the excellence and attractiveness of the EBRAINS Research Infrastructure by operating existing, improved and new services, advancing scientific and technological discoveries in neurosciences, brain medicine and brain-inspired cognitive technologies, and attracting a wide community of users, including industrial users.
+
+Proposals are expected to address all following activities:
+
+Operate the EBRAINS research infrastructure digital facilities, providing access to a federated supercomputing RI, large data storage, computational capabilities and cloud services, with access to the European HPC capacities towards exascale, and AI Factories and future AI Gigafactories.
+
+Support the use of EBRAINS digital services by researchers across Europe. Support the development of services involving scientific, medical and industrial stakeholders via co-design approach, including the integration of new data and services from new users and/or EBRAINS national competence nodes, enriching the cloud-based deliveries and facilitating the sharing of produced data and use of national resources.
+
+Integrate AI tools in EBRAINS services to support intuitive interaction with users, to facilitate brain research, neuroscience data analysis, simulations and biological modelling of the brain, and to support FAIR data indexing and archival to scale-up data integration. This includes developing new foundational models dedicated to the field of neuroscience. The unique multi-scale database with data from the micro to the macro scale hosted by EBRAINS would be one of the essential resources for feeding these models.
+
+Demonstrate scalability and robustness of the approaches, both technically and operationally. This includes the ability to handle large and complex datasets (e.g., imaging data in the range of terabytes) including associated metadata; the provision of scalable tools and services (e.g., annotation platforms, AI pipelines, secure data handling) that go beyond limited pilot phases or academic prototypes; a clear plan for how the infrastructure or platform proposed will evolve into a robust and continuously available service that can meet the needs of real-world users, including SMEs and clinical stakeholders.
+
+Develop and integrate in EBRAINS a new collaborative platform for advancing and testing neuro-inspired AI to facilitate brain research, medicine and brain inspired technology, assuring interoperability with other initiatives in the field, and enabling access to strategic brain data.
+
+Strengthen and build new international collaborations to support digital neuroscience as a global challenge, to ensure that Europe remains at the centre of the global efforts aimed at better understanding the brain, partnering with other main players in the International Brain Initiative, and other initiatives.
+
+Develop tailored and inclusive training and skills development programmes to facilitate users access, assisting them in their digital experiments and contributing to educating a new generation of scientists and developers at the intersection of neuroscience, computing and AI.
+
+Proposals are expected to outline how they will contribute to and align with European efforts on health data sharing, particularly in the context of the forthcoming European Health Data Space. This includes implementing FAIR data principles and mechanisms to support data discoverability, accessibility, interoperability, and reusability, and addressing how the infrastructure will support real-time or near-real-time data flows, including handling of metadata, harmonisation of data formats, and secure access for authorised users.
+
+Proposals are expected to identify and build on synergies with other EU Research Infrastructures such as eBRAIN-Health, EUCAIM, Euro-BioImaging, TEF-Health, and other relevant infrastructures supported under Horizon Europe or previous framework programmes, ensuring sustainability, complementarity and coherence at the European level. Collaborations with relevant infrastructures should address technical and semantic interoperability to avoid further fragmentation, sharing tools, standards, and governance models, and will contribute to the broader European ambition of creating a federated, harmonised, and innovation-enabling health data ecosystem.
+
+Trouver des partenaires potentiels

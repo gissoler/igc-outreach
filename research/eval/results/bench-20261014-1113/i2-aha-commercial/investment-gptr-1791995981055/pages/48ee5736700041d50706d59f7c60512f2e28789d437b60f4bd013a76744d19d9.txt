@@ -1,0 +1,235 @@
+Prepare for EU AI Act High-Risk Obligations Skip to main content
+
+Correction, 3 October 2026: An earlier version of this article stated that the EU AI Act’s high-risk obligations would become enforceable on 2 August 2026, and described the Digital Omnibus as an uncertain proposal announced in February 2026. That was not correct. The AI Omnibus, proposed by the European Commission on 19 November 2025 and in force since 27 July 2026, moved the high-risk obligations to 2 December 2027 for Annex III systems and 2 August 2028 for Annex I systems. What did apply from 2 August 2026 were the Act’s general application, the enforcement powers of the AI Office and national authorities, and the Article 50 transparency obligations. We have also corrected errors in our summaries of Annex III, the conformity assessment routes and the serious incident reporting deadlines. The article has been corrected throughout.
+The EU AI Act’s requirements for high-risk AI systems apply from 2 December 2027 for those listed in Annex III, and from 2 August 2028 for high-risk AI covered by the EU product legislation listed in Annex I. For development teams and AI programme leads who have already established their governance foundations — inventoried their AI systems, classified their risk tiers, and understood the regulatory landscape — the governance overview was the starting point. This guide is the engineering work.
+What follows covers the specific implementation requirements that high-risk AI systems will have to satisfy. Each section maps to the relevant article of the Regulation and translates the legislative language into concrete engineering and operational tasks. The stakes are material: once these obligations apply, breaches of the provider and deployer obligations can attract fines of up to EUR 15 million or 3% of total worldwide annual turnover for the preceding financial year, whichever is higher — or whichever is lower for SMEs, start-ups and small mid-cap companies.
+
+## The AI Omnibus: What Changed, and Why Not to Wait
+The European Commission proposed the Digital Omnibus on AI on 19 November 2025, as part of a wider package simplifying the EU’s digital rules. The European Parliament approved the agreed text on 16 June 2026, the Council adopted it on 29 June 2026, and the AI Omnibus entered into force on 27 July 2026. It moved the dates from which the high-risk requirements apply:
+Annex III systems (high-risk under Article 6(2)): from 2 December 2027
+Annex I systems (high-risk under Article 6(1) — AI that is a safety component of, or is itself, a product covered by the EU product legislation listed in Annex I, such as machinery, toys and lifts, and that must undergo third-party conformity assessment): from 2 August 2028
+The rest of the Act has not waited. The prohibited practices and the AI literacy duty have applied since 2 February 2025 (a new prohibition on AI-generated non-consensual intimate material and child sexual abuse material, added by the Omnibus, applies from 2 December 2026), and the obligations for general-purpose AI models since 2 August 2025. The Act became generally applicable on 2 August 2026, which is also when the enforcement powers of the AI Office and the national authorities, and the Article 50 transparency obligations, began to apply.
+High-risk systems placed on the market or put into service before those dates are covered by a transitional rule in Article 111(2): broadly, the Act applies to them only if their design changes significantly from that date, although providers and deployers of high-risk systems intended for use by public authorities must comply by 2 August 2030. Take legal advice on how this applies to your own portfolio.
+Our view is that the extra time is not a reason to pause. The work described here is substantial — data lineage, oversight interfaces and production monitoring all have real engineering lead times — and it is not wasted effort whatever the regulatory timetable. Technical documentation, quality management systems, data governance frameworks, and human oversight mechanisms are engineering investments that improve your AI systems independently of their regulatory function. Use the time to build them properly rather than in a rush.
+
+## Confirming High-Risk Classification Under Annex III
+The first task is confirming whether your AI systems are subject to the high-risk obligations. Annex III defines specific use cases within eight areas — not broad conceptual categories. A system it lists is high-risk under Article 6(2), subject to the derogation described below. In summary, the areas are:
+Biometrics — remote biometric identification (but not verification that only confirms a person is who they claim to be), biometric categorisation by sensitive or protected attributes, and emotion recognition
+Critical infrastructure — safety components in the management and operation of critical digital infrastructure, road traffic, or the supply of water, gas, heating or electricity
+Education and vocational training — determining access or admission, evaluating learning outcomes, assessing the level of education an individual will receive, and monitoring for prohibited behaviour during tests
+Employment and worker management — recruitment and selection (including targeted job advertising, filtering applications and evaluating candidates), and decisions on terms of work, promotion, termination and task allocation, or monitoring and evaluating performance and behaviour
+Access to essential services — eligibility for public assistance benefits and services, creditworthiness and credit scoring (excluding fraud detection), risk assessment and pricing for life and health insurance, and evaluating emergency calls or dispatching emergency services
+Law enforcement — assessing the risk of a person becoming a victim or of offending or re-offending, polygraphs and similar tools, evaluating the reliability of evidence, and profiling in criminal investigations
+Migration, asylum and border control — polygraphs and similar tools, assessing risks posed by people entering the EU, assisting the examination of asylum, visa and residence permit applications, and detecting or identifying people (verification of travel documents is excluded)
+Administration of justice and democratic processes — AI assisting a judicial authority in researching and interpreting facts and law, or used in a similar way in alternative dispute resolution, and AI intended to influence the outcome of elections or referenda or voting behaviour
+Article 6(3) provides a derogation: an Annex III system is not high-risk where it does not pose a significant risk of harm to health, safety or fundamental rights — for example, because it performs a narrow procedural task or a preparatory task to an assessment. The derogation never applies to a system that profiles natural persons, and a provider relying on it must document its assessment before placing the system on the market and register the system in the EU database. AI that is a safety component of, or is itself, a product covered by Annex I falls under Article 6(1), on the later timetable.
+In our view, classification should be conducted conservatively. The cost of under-classifying a system that regulators later determine is high-risk far exceeds the cost of over-engineering governance for a borderline system. Note also that deployers — organisations operating a high-risk AI system built by a third-party provider — carry their own obligations under Article 26. Provider-built systems do not automatically transfer compliance responsibility.
+
+## Risk Management System (Article 9)
+Article 9 requires a risk management system to be established, implemented, documented and maintained for each high-risk AI system. It is a continuous, iterative process across the system’s whole lifecycle rather than a one-off assessment: identify and analyse the known and reasonably foreseeable risks to health, safety and fundamental rights; estimate and evaluate the risks under intended use and reasonably foreseeable misuse; evaluate further risks that emerge from post-market monitoring data; and adopt targeted measures so that the residual risk is judged acceptable. The system must be tested against prior defined metrics and probabilistic thresholds before it is placed on the market, and the provider must consider whether it is likely to have an adverse impact on people under 18 and other vulnerable groups.
+In engineering terms, this is a risk register tied to the system’s design — each risk linked to the control that mitigates it and the test that evidences it — kept live as monitoring data arrives.
+
+## Technical Documentation Requirements (Article 11)
+Article 11 requires the technical documentation for a high-risk AI system to be drawn up before the system is placed on the market or put into service, and to be kept up to date. Annex IV sets out the minimum content. SMEs, start-ups and small mid-cap companies may provide it in a simplified manner, using a template form the Commission is to establish.
+General description and intended purpose. The system’s intended purpose, the provider, the version and its relation to previous versions, how it interacts with hardware or software outside the system, the forms in which it is supplied, and the instructions for use for deployers. The intended purpose is legally significant — classification under Article 6 and Annex III turns on what a system is intended to be used for, and the definition marks out which uses fall outside its documented scope.
+Design and architecture. The development methods used (including any pre-trained or third-party components and how they were integrated), design specifications with the rationale and assumptions behind key design choices, the system architecture, and the computational resources used to develop, train, test and validate the system. For development teams, this means architecture decision records (ADRs) — which represent good engineering practice regardless of regulation — become compliance documents.
+Data documentation. Where relevant, datasheets describing the training methodologies and the training data sets: their provenance, scope and main characteristics, how the data was obtained and selected, and labelling and cleaning procedures — together with the main characteristics of the validation and testing data. This links directly to the Article 10 data governance obligations.
+Validation and testing. The validation and testing procedures used, the metrics for accuracy, robustness and potentially discriminatory impacts, and test logs and reports dated and signed by the responsible persons. Because the documentation must be kept up to date, results should reflect the model version in production, not the version tested before the last update.
+Risk management documentation. A description of the risk management system implemented under Article 9: identified risks, assessment methodology, and mitigation measures. The risk management system is a continuous process; the documentation must reflect its current state.
+The rest of Annex IV. The documentation must also cover the human oversight measures needed under Article 14, the system’s capabilities and limitations (including its expected accuracy), the appropriateness of its performance metrics, relevant changes made through its lifecycle, the harmonised standards applied (or the other solutions used to meet the requirements), a copy of the EU declaration of conformity, and the post-market monitoring plan.
+The practical imperative here is integration with your engineering workflow. Documentation that lives in a separate compliance repository and is updated only at deployment milestones will drift out of date. Treat it as a living artefact maintained alongside the code, with update requirements triggered by model changes, data updates, and performance metric shifts.
+
+## Data Governance for Training Datasets (Article 10)
+Article 10 imposes specific obligations on data used to train, validate, and test high-risk AI systems. These translate into four engineering requirements:
+Data lineage tracking. Every training dataset must have a documented provenance trail — origin, collection methodology, transformations applied, and data quality checks performed. This applies equally to first-party data and third-party datasets sourced from data providers or public repositories.
+Representativeness assessment. Training, validation and testing data must be relevant, sufficiently representative and, to the best extent possible, free of errors and complete in view of the intended purpose, taking account of the geographical, contextual, behavioural or functional setting in which the system will be used. Data gaps or shortcomings that prevent compliance must be identified, together with how they can be addressed.
+Bias examination. Data sets must be examined for possible biases that are likely to affect health and safety, have a negative impact on fundamental rights or lead to prohibited discrimination — especially where outputs influence inputs for future operations — and appropriate measures must be taken to detect, prevent and mitigate them. Document the examination and its findings as part of the data governance record. Article 4a, added by the AI Omnibus, sets strict conditions under which providers may exceptionally process special categories of personal data to detect and correct bias.
+GDPR alignment. Where training data includes personal data, GDPR compliance must extend to the training data environment specifically — covering legal basis documentation, retention limits, access controls, and data subject rights management.
+For high-risk systems that do not use techniques involving the training of AI models, these data quality requirements apply only to the testing data sets.
+
+## Quality Management System (Article 17)
+Article 17 requires providers to put in place a quality management system, documented as written policies, procedures and instructions, covering at least: a strategy for regulatory compliance, including conformity assessment and the management of modifications; design, design control and design verification; development, quality control and quality assurance; examination, test and validation procedures and their frequency; the technical specifications and standards applied; data management; the risk management system (Article 9); the post-market monitoring system (Article 72); serious incident reporting (Article 73); communication with authorities, notified bodies, other operators and customers; record-keeping for all relevant documentation; resource management, including security of supply; and an accountability framework setting out the responsibilities of management and staff. Its implementation must be proportionate to the size of the provider’s organisation.
+Mature engineering organisations are likely to find that much of this already exists in their development processes. In our view, the gap is more often in formalisation, documentation, and explicit linkage to AI governance requirements than in the underlying practices themselves.
+On standards: the Commission has asked the European standardisation bodies CEN and CENELEC to develop harmonised standards for the high-risk requirements, including quality management. prEN 18286, a quality management system standard designed specifically to help providers meet Article 17, entered public enquiry on 30 October 2025. Applying harmonised standards is voluntary, but the Commission notes that standards referenced in the Official Journal provide legal certainty, with companies that apply them presumed to comply with the legal requirements. ISO/IEC 42001, the international standard for AI management systems, is in our view a useful organisational framework — but track the status of prEN 18286 rather than assuming that ISO/IEC 42001 on its own demonstrates Article 17 compliance.
+
+## Human Oversight Design (Article 14)
+Article 14 is primarily a design requirement, not a policy requirement. High-risk AI systems must be designed and developed — including with appropriate human-machine interface tools — so that people can oversee them effectively while they are in use. Oversight measures must be commensurate with the risks, level of autonomy and context of use, and may be built into the system by the provider, identified by the provider for the deployer to implement, or both. The capabilities the system must give its overseers include:
+Comprehensibility. Overseers must be able to understand the system’s relevant capacities and limitations, monitor its operation, detect and address anomalies, dysfunctions and unexpected performance, and correctly interpret its outputs — while remaining aware of the tendency to over-rely on those outputs (automation bias). In our view, black-box models in high-risk contexts will usually need an explainability layer to meet this — through interpretable model selection, post-hoc methods (SHAP, LIME), or structured output formats that surface the factors contributing to each decision.
+Override capability. Human overseers must be able to decide, in any particular situation, not to use the system, or to disregard, override or reverse its output. In practice, the override mechanism should be accessible to the people doing the oversight — not buried in an administrative interface requiring specialist access.
+Intervention capability. Overseers must be able to intervene in the system’s operation or interrupt it through a ‘stop’ button or similar procedure that brings the system to a halt in a safe state. For automated pipelines where AI outputs trigger downstream actions, this typically means a pause-and-review gate that authorised personnel can activate before consequential actions proceed.
+Deployers of third-party high-risk AI systems carry complementary obligations under Article 26: they must assign human oversight to people who have the necessary competence, training and authority, and give them the necessary support.
+
+## Accuracy, Robustness, and Cybersecurity (Article 15)
+Article 15 requires appropriate levels of accuracy, robustness, and cybersecurity throughout the system’s operational lifecycle — not just at initial deployment.
+Accuracy. The levels of accuracy and the relevant accuracy metrics must be declared in the instructions for use, documented in the technical documentation and tested before deployment — and, in our view, monitored continuously in production. If monitoring shows the system no longer meets its declared levels, treat it as a potential non-conformity: Article 20 requires a provider that considers a system non-conforming to take corrective action immediately, bringing it into conformity or withdrawing, disabling or recalling it as appropriate. Systems that continue to learn after deployment must be designed to eliminate or reduce as far as possible the risk of biased outputs influencing future inputs (feedback loops).
+Robustness. The system must be as resilient as possible to errors, faults and inconsistencies within the system or its operating environment, including those arising from its interaction with people or other systems. Implement input validation to prevent out-of-distribution inputs from producing unchecked outputs; define explicit fallback behaviour (routing to human review, not to a default output) for failure conditions; and conduct adversarial testing covering prompt injection, data poisoning, and model evasion as appropriate to the system architecture.
+Cybersecurity. High-risk systems must be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting vulnerabilities, with measures where appropriate against data poisoning, model poisoning, adversarial examples, confidentiality attacks and model flaws. In practice, protect model weights, system prompts, and training data as sensitive assets. Implement access controls preventing unauthorised modification. Include AI system components in your penetration testing programme and apply supply chain security principles — validating third-party models, libraries, and datasets — within your existing software supply chain security framework.
+
+## Record-Keeping and Logging (Article 12)
+Article 12 requires high-risk AI systems to technically allow for the automatic recording of events (logs) over their lifetime. The logging must be able to record the events relevant to identifying situations in which the system may present a risk or undergo a substantial modification, to post-market monitoring, and to deployers’ monitoring of the system’s operation. Remote biometric identification systems have additional minimum logging requirements.
+Design logging in from the start rather than retrofitting it: structured event records that capture inputs, outputs, model version and human overrides give you the evidence base for monitoring, incident investigation and audit. Deployers must keep the logs under their control for a period appropriate to the intended purpose, and at least six months unless other law provides otherwise (Article 26(6)), so make retention configurable.
+
+## Post-Market Monitoring (Article 72)
+Article 72 requires providers to establish and document a post-market monitoring system, proportionate to the risks, that actively and systematically collects, documents and analyses data on the system’s performance throughout its lifetime, so that its continuing compliance can be evaluated. The system is based on a post-market monitoring plan, which forms part of the Annex IV technical documentation; the Commission is to adopt guidance, including a template, by 2 September 2027. In engineering terms, this means a production monitoring infrastructure that goes beyond standard application performance monitoring:
+Model performance metrics — accuracy, confidence distribution, prediction drift, and fairness metrics measured continuously on live outputs
+Override rate monitoring — a rising human override rate is a leading indicator of performance degradation and should trigger investigation
+Input distribution monitoring — detect dataset drift by tracking whether production inputs remain consistent with the training data distribution
+Incident tracking — log and investigate every case where a system output results in a human override, user complaint, formal challenge, or adverse outcome
+Serious incident reporting (Article 73) — a serious incident is one that directly or indirectly leads to a death or serious harm to health, a serious and irreversible disruption of critical infrastructure, an infringement of obligations protecting fundamental rights, or serious harm to property or the environment. It must be reported to the market surveillance authority of the Member State where it occurred immediately once a causal link (or its reasonable likelihood) is established, and in any event within 15 days of becoming aware of it — within 10 days where a person has died, and within two days for a widespread infringement or a serious and irreversible disruption of critical infrastructure
+Monitoring findings must feed back into the risk management system, with identified issues resulting in documented risk assessments and corrective actions where necessary.
+
+## Conformity Assessment, Declaration of Conformity and CE Marking
+Before it is placed on the market, a high-risk AI system must undergo a conformity assessment under Article 43. The route depends on how the system is classified:
+Points 2 to 8 of Annex III — every area except biometrics, including critical infrastructure and law enforcement: conformity assessment based on internal control (Annex VI), without a notified body.
+Point 1 of Annex III (biometrics) — where the provider has applied harmonised standards (or, where applicable, common specifications), it may choose internal control or an assessment of its quality management system and technical documentation by a notified body (Annex VII). Where neither is available, or the provider has not applied them in full, the notified-body route is required.
+Annex I systems — for products under the legislation listed in Section A of Annex I, the conformity assessment procedure of that legislation, with the AI Act requirements assessed as part of it.
+Under internal control, the provider verifies that its quality management system complies with Article 17, examines the technical documentation to assess compliance with the requirements, and verifies that the design and development process and post-market monitoring are consistent with that documentation. It then draws up the EU declaration of conformity (Article 47), affixes the CE marking (Article 48; a system provided digitally uses a digital CE marking, accessible via its interface or a machine-readable code) and, for Annex III systems other than critical infrastructure, registers itself and the system in the EU database before placing it on the market (Article 49; critical infrastructure systems are registered at national level). A substantial modification triggers a new conformity assessment.
+The EU declaration of conformity must contain the information listed in Annex V: the system’s name and type and an unambiguous reference to it; the name and address of the provider or its authorised representative; a statement that it is issued under the provider’s sole responsibility; a statement of conformity with the AI Act and any other relevant Union law; where personal data is processed, a statement of compliance with EU data protection law; references to the harmonised standards or common specifications applied; where applicable, the notified body’s details and certificate; and the place and date of issue, with the name, function and signature of the person who signed it. The provider must keep it for 10 years after the system is placed on the market or put into service.
+
+## Technical Readiness Assessment Checklist
+Classification and Scope
+[ ] All AI systems inventoried and documented
+[ ] Each system assessed against Annex III (and, for product-embedded AI, Annex I) and definitively classified
+[ ] Any reliance on the Article 6(3) derogation documented, and the system registered
+[ ] Applicable date confirmed for each system, and the Article 111(2) transitional position checked
+[ ] High-risk classifications reviewed by legal counsel
+[ ] Third-party AI systems in high-risk functions assessed for conformity documentation
+Risk Management (Article 9)
+[ ] Risk management process established, documented and maintained across the lifecycle
+[ ] Known and reasonably foreseeable risks identified, including foreseeable misuse
+[ ] Testing against prior defined metrics and probabilistic thresholds in place
+Technical Documentation (Article 11 / Annex IV)
+[ ] System description and intended purpose documented
+[ ] Architecture decision records maintained and current
+[ ] Hardware and software component specifications documented
+[ ] Training data documentation complete (sources, preprocessing, quality metrics)
+[ ] Validation and testing results current and version-controlled
+[ ] Risk management documentation maintained
+[ ] Human oversight assessment, standards applied and post-market monitoring plan included
+[ ] Change log in place for all material system changes
+Data Governance (Article 10)
+[ ] Data lineage tracking implemented for all training datasets
+[ ] Representativeness assessment completed and documented
+[ ] Bias examination completed and documented
+[ ] GDPR compliance confirmed for personal data in training sets
+[ ] Third-party dataset governance documentation obtained
+Quality Management System (Article 17)
+[ ] QMS framework selected, with the status of harmonised standards such as prEN 18286 tracked
+[ ] QMS documented covering all Article 17 elements
+[ ] Development lifecycle procedures integrated with QMS
+[ ] Testing and validation procedures documented
+Human Oversight (Article 14)
+[ ] Explainability mechanisms implemented for all high-risk outputs
+[ ] Override capability implemented and accessible to authorised users
+[ ] Override rate monitored and reviewed
+[ ] Intervention (stop) capability implemented, halting the system in a safe state
+[ ] Human oversight assigned to people with the necessary competence, training, authority and support
+Accuracy, Robustness, Cybersecurity (Article 15)
+[ ] Accuracy levels and metrics defined, documented and declared in the instructions for use
+[ ] Production accuracy monitoring implemented
+[ ] Input validation and out-of-distribution detection implemented
+[ ] Adversarial testing completed and documented
+[ ] Fallback behaviour defined for all failure conditions
+[ ] AI system components included in penetration testing scope
+[ ] Model and training data assets protected as sensitive information
+Record-Keeping (Article 12)
+[ ] Automatic event logging implemented for the system’s lifetime
+[ ] Logs capture the events needed for risk identification, post-market monitoring and deployer monitoring
+[ ] Log retention configurable to meet deployer obligations
+Post-Market Monitoring (Article 72)
+[ ] Post-market monitoring plan documented
+[ ] Production monitoring infrastructure deployed
+[ ] Incident tracking and investigation process defined
+[ ] Serious incident reporting procedure documented, including the Article 73 time limits
+[ ] Monitoring findings feed into risk management system
+Conformity Assessment and CE Marking
+[ ] Applicable harmonised standards identified
+[ ] Conformity assessment route confirmed (internal control or notified body)
+[ ] Conformity assessment process initiated
+[ ] EU Declaration of Conformity drafted
+[ ] EU AI database registration process understood
+
+## A Realistic Compliance Timeline
+The dates now in law — 2 December 2027 for Annex III systems and 2 August 2028 for Annex I systems — leave time to do this properly, but the work is substantial. As a planning estimate (ours, not a regulatory requirement), a single high-risk AI system starting from a low governance baseline needs around five months of focused work, sequenced like this:
+Months 1–2: Classification confirmation, gap analysis, technical documentation initiation, data governance assessment
+Months 2–3: QMS framework implementation, human oversight design and development, data lineage and bias examination
+Months 3–4: Accuracy benchmarking, robustness and adversarial testing, cybersecurity assessment, monitoring infrastructure deployment
+Months 4–5: Conformity assessment, Declaration of Conformity preparation, CE marking, EU AI database registration, readiness review
+Organisations with multiple high-risk AI systems should prioritise based on applicable date, existing governance maturity and EU market exposure. Annex III systems, whose obligations apply first, and systems with the least existing documentation and the greatest EU user base should lead the programme.
+
+## Working with McKenna Consultants
+Translating regulatory obligations into engineering specifications and operational processes is where specialist expertise makes the difference between confident readiness and last-minute scrambling. McKenna Consultants’ AI consultancy practice combines technical expertise in enterprise AI system design with a detailed understanding of the EU AI Act’s requirements.
+We can support the full compliance programme: AI system inventories and risk classification under Annex III, the technical documentation required by Article 11, human oversight architectures that satisfy Article 14 without compromising operational efficiency, post-market monitoring infrastructure, and preparation for conformity assessment and CE marking.
+If you are a CTO, compliance officer, or AI programme lead preparing your organisation for the EU AI Act’s high-risk obligations, get in touch to arrange an initial consultation with our team.
+
+## Sources
+European Commission — AI Omnibus enters into force : the proposal of 19 November 2025, entry into force on 27 July 2026, and the new high-risk dates of 2 December 2027 (Annex III) and 2 August 2028 (Annex I).
+European Parliament Think Tank — Digital Omnibus on AI : Parliament’s approval of the agreed text on 16 June 2026.
+Council of the European Union — Voting result: Digital Omnibus on AI, adoption of the legislative act : the Council’s adoption on 29 June 2026.
+European Commission — AI Act : general application from 2 August 2026, prohibitions and AI literacy from 2 February 2025, and governance and GPAI obligations from 2 August 2025.
+European Commission — The enforcement framework of the AI Act : enforcement powers of the AI Office and national authorities from 2 August 2026, and the maximum fines.
+European Commission — Transparency obligations under Article 50 of the AI Act : Article 50 applies from 2 August 2026.
+European Commission — Standardisation of the AI Act : harmonised standards being developed by CEN and CENELEC, their voluntary status and legal effect, and prEN 18286 entering public enquiry on 30 October 2025.
+European Commission AI Act Service Desk — consolidated text as amended by the AI Omnibus, for application dates and transitional rules: Article 113 , Article 111 .
+European Commission AI Act Service Desk — consolidated text, for classification and the high-risk requirements: Article 3 , Article 4a , Article 6 , Article 9 , Article 10 , Article 11 , Article 12 , Article 14 , Article 15 , Article 17 , Article 20 , Article 26 , Annex III , Annex IV .
+European Commission AI Act Service Desk — consolidated text, for monitoring, conformity assessment and penalties: Article 43 , Article 47 , Article 48 , Article 49 , Article 72 , Article 73 , Article 99 , Annex V , Annex VI .
+
+## About Nick McKenna
+Nick McKenna is the CEO and founder of McKenna Consultants. With over 27 years of programming experience and a First Class Honours degree in Computer Science, Nick leads the company's technical strategy and client engagements.
+Learn more about our team
+
+## Related Service
+
+### AI Development Services
+Boost your business with internal and customer-facing AI solutions.
+
+## Related Articles
+
+Artificial Intelligence
+### The EU AI Act After the AI Omnibus: The Timeline That Now Applies
+For most of 2026, a single date dominated EU AI Act planning: 2 August 2026, the day the high-risk obligations were due...
+8 October 2026
+
+Artificial Intelligence
+### From Compliance Project to Operating Model: Building an AI Governance System with ISO/IEC 42001
+On 2 August 2025, a significant tranche of the EU AI Act's obligations became applicable. A year on, many organisations...
+1 September 2026
+
+Artificial Intelligence
+### GPAI Obligations, Codes of Practice, and the EU AI Act Roadmap After the AI Omnibus
+2 August 2026 loomed large in EU AI Act planning, and it was a real milestone: from that day the Act became generally ap...
+11 August 2026
+
+Artificial Intelligence
+### IMI plc
+Systems Integration For Digital Transformation
+
+View case study
+
+B2B eCommerce
+### IMI Norgren
+New Global Composable eCommerce Store
+
+View case study
+
+Microsoft Office Add-In Developer
+### AuditBoard
+Word and Excel Microsoft Add-In Case Study
+
+View case study
+
+CSPP WOPI
+### Kendox
+Empowering Paperless Productivity With WOPI
+
+View case study
+
+## Have a question about this topic?
+Our team would be happy to discuss this further with you.
+
+Get in Touch
+
+## Cookie Preferences
+We use cookies to enhance your experience. Essential cookies are necessary for the site to function. Optional cookies help us understand how you use our site and identify the businesses that visit us.
+Accept All Essential Only
+Privacy Policy

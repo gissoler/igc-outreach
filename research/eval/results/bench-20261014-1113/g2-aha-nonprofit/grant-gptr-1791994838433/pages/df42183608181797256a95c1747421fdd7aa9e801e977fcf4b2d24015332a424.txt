@@ -1,0 +1,121 @@
+Platform | EPND
+
+Our Platform
+
+# A first-of-its-kind solution for discovery and sharing of data and biosamples
+
+EPND brings together existing studies and initiatives from public and private sectors in a scalable and sustainable platform, providing a single point of access for data and biosample sharing, discovery, and analysis.
+
+## Four key components of establishing the platform
+
+The EPND platform is built on four major components to provide a complete, secure system for data and biosample storage and analysis.
+
+###### Establishing a single trusted source and repository
+
+EPND provides a central user interface to facilitate the discovery, sharing, and analysis of data and biosamples from neurodegenerative disease research studies across Europe.
+
+###### Common data standards to drive interoperability
+
+EPND evaluates existing data harmonisation, governance, and sharing processes to support interoperability between datasets.
+
+###### Cultivating shared practices
+
+EPND builds a culture of best practices surrounding collection, storage, and biosample management through the platform.
+
+###### Facilitating discovery, collaboration, and analysis
+
+The EPND platform enables users to contribute and discover datasets and resources, find and request access to biosamples, identify collaborators, and access tools and resources for analysis.
+
+## Discover the EPND Hub
+
+The EPND Hub is the cornerstone of our platform for data and biosample sharing. We’re regularly improving and expanding the content and capabilities of the Hub to increase the visibility, discoverability and accessibility of studies, enabling new pathways for collaborative research.
+
+The EPND Hub provides:
+
+Enhanced capabilities for researchers: The EPND Hub introduces powerful new features including direct biosample search and request functionalities, aggregate biosample counts, and tools to increase transparency and visibility of research studies.
+
+Integrated, seamless access: Thanks to its interoperability with the AD Workbench, the EPND Hub enables secure, single sign-on access to datasets and advanced analysis tools in a cloud-based environment, simplifying workflows for researchers.
+
+A collaborative, expanding resource: With contributions from over 80 cohorts across 12 disease areas, representing over 250,000 research participants, the EPND Hub is a growing, collaborative resource for neurodegeneration research.
+
+Explore the EPND Hub
+
+## Timeline: The 5-year plan to bring EPND to reality
+
+The EPND Consortium partners built the platform and established a collaborative network in several stages:
+
+Join us on the journey
+
+November 2021:
+
+EPND program established
+
+Formal funding and endorsement of EPND Consortium
+
+October 2022:
+
+EPND Cohort Catalogue launched
+
+Online catalogue with searchable metadata of 60+ neurodegenerative cohorts
+
+January 2023:
+
+Data Protection Impact Assessment completed
+
+Assessment of GDPR risks, identifying privacy safeguards to ensure responsible data management
+
+April 2023:
+
+Biobanking and biomarker SOPs published
+
+Standard Operating Procedures for biobanking, biomarker validation and biosample collection
+
+November 2023:
+
+Cohorts discoverable at resource level
+
+Users can search and request access across datasets from cohorts made available through EPND partners
+
+March 2024:
+
+Enhanced features added to the EPND Catalogue
+
+New search and filter functions, additional categories of information and metadata, and an expanded catalogue of studies
+
+July 2024:
+
+EPND research Call is launched
+
+Launch of initial Call for Expressions of Interest, to leverage research data & samples catalogued by EPND
+
+December 2024:
+
+EPND Hub is launched
+
+Launch of the EPND Hub, offering seamless, one-stop discovery, access and analysis of datasets and biosamples.
+
+May 2025:
+
+ATN dataset is released
+
+Cross-disease dataset from EPND's ATN biomarker case study is requestable via the EPND Hub.
+
+## Harnessing the power of the Alzheimer's Disease Data Initiative
+
+The Alzheimer's Disease Data Initiative's AD Workbench provides infrastructure for free data sharing, data science tools, and global collaboration opportunities to accelerate neurodegenerative disease research. The AD Workbench powers EPND’s platform, creating a community of practice to connect neurodegenerative disease research in Europe and contributing to the collective goal of advancing scientific breakthroughs and accelerating progress.
+
+###### Joining forces with a powerful tool for researchers
+
+The AD Workbench facilitates research and sharing on Alzheimer’s disease and related dementias. Users can search, analyse, and manage existing datasets, save their work, upload and share new datasets and code, and allocate their workload to a virtual machine.
+
+###### Establishing infrastructure to support quality data sharing
+
+Researchers and the medical community need the best information possible to forge a new path for neurodegenerative disease research. EPND implements FAIR data practices based on principles of findability, accessibility, interoperability, and reusability. FAIR practices are utilised across every part of the initiative and support the discovery of datasets via the AD Workbench’s FAIR search functionality.
+
+Learn more about the Alzheimer's Disease Data Initiative
+
+## Join the community
+
+Become part of the mission. Sign up for our newsletter for updates from EPND and our partners.
+
+Click here to learn more about the Alzheimer's Disease Data Initiative and the EPND Platform

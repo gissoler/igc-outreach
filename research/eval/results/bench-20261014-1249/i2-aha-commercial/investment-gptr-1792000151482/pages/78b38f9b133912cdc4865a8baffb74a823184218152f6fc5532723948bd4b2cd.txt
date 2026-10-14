@@ -1,0 +1,211 @@
+How BigTech Invested in AI Companies in 2023
+
+# AI Supremacy
+
+Subscribe Sign in
+
+🎈 Guest Posts
+
+# How BigTech Invested in AI Companies in 2023
+
+### 🦄 BIG TECH INVESTMENTS IN AI COMPANIES: A 2023 OVERVIEW 💸 Nvidia in 🔎 Focus
+
+Michael Spencer and Alex Irina Sandu
+Jan 11, 2024
+
+54
+
+3
+6
+
+Share
+
+Hey Everyone,
+
+#### The Generative A.I. Gold Rush
+
+It was such an incredible year in 2023 for both Venture Capital and BigTech investments in Generative AI startups. Got to admit, I became a bit obsessed with how well Nvidia was funding the future of the space.
+
+Microsoft, Google and Amazon alone last year struck a series of blockbuster deals, amounting to two-thirds of the $27bn raised by fledgling AI companies in 2023, according to new data from private market researchers PitchBook.
+
+I reached out to Alex Irina specifically to help us visualize how Nvidia and BigTech players invested in Generative A.I. in that pivotal year of 2023. This piece contains no fewer than five Visualizations that help us understand the space.
+
+##### 📶 From our sponsor: 📶
+
+### AI meets composability
+
+As the leading intelligent composable content platform, Contentful enables developers and marketers alike to easily deliver compliant on-brand experiences at speed and scale—all within one unified content system.
+Get Started
+
+I’m a huge nerd when it comes to Venture Capital and startups related to emerging technology and one of my favorite infographic makers and analysts in the space is Alex Irina Sandu and her Newsletter The Strategy Deck
+The Strategy Deck In Pursuit of Competitive Advantage
+By Alex Irina Sandu
+
+Subscribe to TSD
+Read her 2023 roundup of her Newsletter too here . For more deep dives and the best experience of A.I. Supremacy.
+
+### 2023 at a Glance in Venture Capital in Emerging Tech
+
+Here are 15 notable investment rounds (via Crunchbase):
+
+1. OpenAI raised $10B
+2. Anthropic raised two rounds for $6B
+3. Inflection AI raised $1.3B
+4. Metropolis Technologies raised $1.1B
+5. Databricks raised $685M
+6. Aleph Alpha raised $500M
+7. SandboxAQ raised $500M
+8. Mistral AI raised $487M
+9. Anthropic raised $450M
+10. Adept AI raised $350M
+11. Cohere raised $270M
+12. Hugging Face raised $200M
+13. Imbue raised $200M
+14. AI21 Labs raised $155M
+15. Enfabrica raised $125M
+
+Share
+
+### 🟢 Nvidia is my Pick as Best Investor in Generative A.I. in 2023
+
+Instead of making big bets on a foundational LLM startup, Nvidia made diversified bets in the space. Many bets!
+
+Nvidia has established a dedicated venture capital arm called NVentures , which, alongside its corporate development team, has built a portfolio that includes prominent AI players such as Inflection AI and Cohere . Nvidia participated in 35 deals in 2023, marking a significant increase from the previous year and making it one of the most active investors in the AI space according to data from Dealroom.
+
+See more Below about this.
+
+By Alex Irina Sandu December, 2023.
+
+## BIG TECH INVESTMENTS IN AI COMPANIES: A 2023 OVERVIEW
+
+Foundation Models and Development Platforms Are the Leading Beneficiaries of Big Tech&#x27;s 2023 Investment Funding
+The continued growth of Generative AI technologies in 2023 represents both a tremendous opportunity and threat to established tech companies. Because of their wide addressable market and applicability across Consumer and Enterprise use cases and corresponding revenue potential, all of the major tech companies have identified Generative AI as their top priority for 2023 and 2024. And they are investing not only in developing their own products and services, but also in supporting the emerging tech stack and the start-ups who are building it. 
+This is a rundown of the major tech companies who have been funding AI start-ups in 2023 and insights into their investing strategies. 
+In 2023, Big Tech secured two thirds of the US$27B raised by emerging AI companies, according to an analysis by The Financial Times. These investments broke the US$11B record the AI sector raised in 2021 and they don’t include the capital and resources being spent by established tech companies to develop their own products and services. 
+Foundation models and development platforms are the two layers of the Gen AI stack that have grown tremendously in 2023, in terms of product maturity, as well as investments received. As these two layers develop in the breadth and depth of functionality they can offer, they become better able to power a larger variety and complexity of uses at the AI applications layer. 
+The five tech companies who have invested the largest dollar amounts in AI start-ups in 2023 are Amazon, Google, Microsoft, Nvidia and Salesforce. Their commitments have been made either directly through the main corporation, or through their respective venture investing arms, such as Google Ventures , Microsoft’s M12 and Salesforce Ventures . 
+The partnerships between established tech companies and AI start-ups usually go beyond funding and include:
+Access to AWS, Azure or GCP computing and storage resources at custom rates
+
+Distribution for the foundation models through 3rd-party development platforms, such as Amazon’s Bedrock, Google’s Vertex AI Model Garden and Microsoft’s Azure Model Catalog
+
+PR and joint marketing initiatives targeted at AI application developers and enthusiasts
+
+## Amazon, Google, Microsoft, Nvidia and Salesforce Are Deeply Invested in Foundation Models
+
+In the past 12 months, there have been a lot of announcements about new versions of foundation models across all modalities, from text, to images, video, audio and 3D assets, as well as announcements about investment from established tech companies. 
+Amazon is developing its own end-to-end AI development platform to complement and drive usage of AWS cloud services. To that end, it is building its own portfolio of foundation models called Titan, featuring text, image and embeddings versions, available through AWS Bedrock. Alongside developing its own models, in September, Amazon committed up to US$4B for a minority stake in Anthropic , the creator of the Claude chatbot and API and of the Constitutional AI development guidelines and policies. In 2023, Claude was made available through the Amazon Bedrock interface.
+Google operates its own vast portfolio of foundation models that span the spectrum between General Purpose and Niche use cases, as well as single- and multi-modality functionality. Most recently, it announced the Gemini family, deemed their “largest and most capable model yet”. A major cloud computing provider, as well as developer of Enterprise and Consumer productivity applications and services, Google has been building its own end-to-end AI application platform called Vertex and is including its own models, as well as those from 3rd-parties, in the Vertex AI Model Garden. 
+At the same time, Google is invested in a variety of start-ups that develop and make available to the public AI foundation models. Highlights from 2023 include:
+In June, Google participated in Runway’s US$141M Series C extension to help further the development of the company’s Gen-2 image and video-focused models 
+
+In August, it contributed AI21Labs’ US$155M Series C extension , to help with the development of the Jurassic text-based family of foundation models. It invested in the round alongside Nvidia and Samsung , as well as VC firms Walden Catalyst , Pitango , SCB10X, b2venture
+
+In October 2023, it committed to invest up to US$2B in Anthropic
+
+Microsoft is a major provider of cloud compute and storage and the developer of the Azure AI Studio, an end-to-end Gen AI development tool which features a variety of 3rd-party foundation models. Among model providers, Microsoft has been a strategic partner to Open AI through-out 2023, with commitments made in January to invest up to US$10B to help foster the GPT, Dall-E and Whisper models. 
+Alongside Open AI, Microsoft has also led a US$1.3B funding round in June for Inflection, the developer of PI, the kind and supportive personal assistant. And in March, the Redmond-based company participated in the US$350M Series B for Adept, who is working on AI trained to use a wide variety of different software tools and APIs.
+
+## 🟢 Nvidia
+
+Nvidia has benefited tremendously from the emergence of Gen AI as a mainstream technology and a massive increase in demand for its GPUs, which in turn drove its stock value up by 237% in 2023, with good forecasts for 2024. The company has recently announced its own family of foundation models called Nemotron and optimized for compute performance and cost effectiveness at large scale. In 2023, it has also made investments in a variety of model providers, including:
+AI21Labs , alongside Google (see above)
+
+Runway , together with Salesforce and Google (see above)
+
+Cohere , by participating in its US$270 million Series C in June
+
+Inflection , alongside Microsoft and Google (see above)
+
+Adept , alongside Microsoft (see above)
+
+Mistral , by participating in its EUR450M funding round in December
+
+#### Special Mention: Salesforce
+
+Salesforce is the developer of Einstein, the first dedicated AI for CRM, as well as an investor in a series of foundation model providers, including:
+An investment in Anthropic’s US$450M Series C, announced in May
+
+Participation in Runway’s Series C extension in June, alongside Google and VC firms 
+
+Investment in Cohere, alongside Nvidia (see above)
+
+Mistral, alongside Nvidia (see above)l
+
+In the AI Development Platform Segment, dbt, Databricks, Hugging Face and Typeface Enjoy Backing by Big Tech Companies
+
+Data and foundational models are not enough to build AI applications - you also need development platforms and services that connect you to cloud compute, manage orchestration and provide features such as data management, observability and analytics. 
+All of the major cloud computing providers - Amazon, Google, Microsoft - have been building their own development platform with a multitude of connected features and services and, at the same time, have been supporting the ecosystem with investments in open source companies, such as Hugging Face and in data management solutions, such as Databricks. 
+Here are investments from 2023 and one from 2022:
+In August, Amazon participated in Hugging Face’s US$235 million Series D at a US$4B valuation, alongside Google, Nvidia and Salesforce 
+
+In February 2022, Google invested in dbt Labs’ US$222M Series D, alongside Salesforce 
+
+In September, Nvidia invested in Databaricks’ US$500M Series I, followed by participation by Amazon and Microsoft in November
+
+In June, Google, Microsoft and Salesforce contributed to Typeface’s US$100M Series B
+
+The Gen AI market will continue to grow in 2024 and Big Tech companies and start-ups will invest in and launch even more foundational models and development tools to enable the full potential of AI applications for Enterprise and Consumers. The rate of investments is driven, among others, by the success of current products in the market, intensity of competition, barriers to entry to the various verticals where AI can make an impact, the evolution of interest rates and investor interest in the overall tech sector. I’m looking forward to seeing how the foundation model and AI development markets will evolve in 2024 and try the products and services they produce. 
+Read the Strategy Deck more to get the full picture. 🌄
+The Strategy Deck In Pursuit of Competitive Advantage
+By Alex Irina Sandu
+
+### More Analysis like This
+
+All work by Alex Irina Sandu
+Market Map: Gen AI Companies with Foundational Models
+
+###
+
+Competitive Differentiation for Foundation Models in the LLM Space
+
+Amazon’s ML/AI Product Strategy: Gen AI App Dev Tools, Foundation Models, Infrastructure
+
+54
+
+3
+6
+
+Share
+
+Previous Next
+
+#### Discussion about this post
+Comments Restacks
+
+Milan Reichl
+
+Jan 16, 2024
+
+Liked by Alex Irina Sandu
+
+I really enjoyed reading this article, especially the insights into how major tech companies are investing in Generative AI. It&#x27;s clear that these companies see the immense potential and market opportunities in this technology, making it a top priority for 2023 and beyond.
+The fact that Big Tech secured a significant portion of the funds raised by emerging AI companies in 2023 shows what we can expect in the next years
+
+Reply
+
+Share
+
+Charlie Guo
+
+Jan 13, 2024
+
+Generative AI has brought about the return of mega funding rounds after the post-COVID slowdown. But are these companies saying what they’re going to be mainly using the money for? Is it data collection, training, inference, headcount, or all of the above?
+
+Reply
+
+Share
+
+1 reply
+
+1 more comment...
+
+Top Latest Discussions
+
+No posts
+
+### Ready for more?
+
+© 2026 Michael Spencer · Privacy ∙ Terms ∙ Collection notice
+Start your Substack Get the app
+Substack is the home for great culture

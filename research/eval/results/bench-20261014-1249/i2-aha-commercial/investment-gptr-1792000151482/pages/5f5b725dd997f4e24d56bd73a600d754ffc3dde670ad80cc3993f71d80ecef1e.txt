@@ -1,0 +1,156 @@
+"Nest Genomics: genetics software inside the EMR | Healthcare Discovery" | Healthcare Discovery
+
+
+
+
+Skip to content
+
+Back to the directory Health IT &middot; Clinical genomics
+
+# Nest Genomics
+
+Software built to carry a genetic test result through a health system, from finding the patient to reminding the family years later. Four years in, the federal grants and the published results are arriving faster than the named customers.
+
+Founded 2022 &middot; YC Winter 2022
+Based New York, NY &middot; remote team
+Product Nest Genetics Copilot: triage, consent, ordering and decision support inside the EMR
+Founders Moran Snir, CEO &middot; Guy Snir, COO
+Federal grants $2,499,284 from NHGRI, FY2024 to FY2026
+Trial NCT06654466, 100 enrolled, active and not recruiting
+Status Operating as of September 2026
+
+### Fifty-four days, then twenty-two
+
+At Moffitt Cancer Center in Tampa, a patient newly diagnosed with pancreatic cancer used to wait 54 days for a germline genetic test result. National guidelines say every one of those patients should be offered the test. Most are not: published uptake runs between 6 and 19 percent, blamed on under-referral and a shortage of genetic counselors.
+
+Moffitt first put a coordinator in the middle of the process. The wait fell to 30 days. Then it added software built with Nest Genomics, a tool the paper calls the GIFTD Partially Automated Nest Copilot.
+
+Over one year, 354 patients were invited into it. Seventy-three percent activated an account, 80 percent completed the education module, and 81 percent of those consented to testing, including 15 who had first said they were not interested. Of the 127 patients tested, 13 percent carried a pathogenic variant.
+
+The wait fell to 22 days.
+
+Those numbers appeared in JCO Precision Oncology in June 2026, with three Nest employees among the authors. It is the most specific thing in the public record about what this company&rsquo;s software does to a clinic.
+
+### The last mile
+
+Moran Snir has been describing the same gap for a decade. Sequencing got cheap; the paperwork did not move. A patient with a family history of cancer has to be found, educated, consented, ordered, resulted, counselled, screened, and found again years later when guidelines change or a sibling turns 25.
+
+&ldquo;But there is a last-mile problem with delivering genetic information to patients and integrating it into providers&rsquo; workflows,&rdquo; she told MedCity News in January 2023.
+
+The scale of the miss is not subtle. About one in four people meet national criteria for hereditary cancer testing, Snir said in 2024, and fewer than one in ten get tested. Nest sells a platform rather than a test: lab agnostic, plugged into Epic, Oracle Cerner and athenahealth, covering hereditary cancer, cardiovascular genetics and the American College of Medical Genetics and Genomics secondary findings list. It added built-in pedigree drawing in 2026.
+
+### The couple who sold the chatbot
+
+Moran Snir and Guy Snir are married, and this is their second genetics software company together. Their first, Clear Genetics, built a chatbot called Gia that walked patients through testing and results; Geisinger used it. Invitae bought it in 2019 for an estimated $50 million, GenomeWeb reported. Moran ran software and data at Invitae afterward; Guy led SaaS teams there. Before that she was a software officer in an Israeli military elite unit, with an MBA from Wharton; he came from product roles at Twitter, SnappyTV and Google&rsquo;s Motorola.
+
+The sources disagree on when Clear Genetics started. GenomeWeb says 2016; Samsung Next, which later invested in Nest, says 2017. The couple founded Nest in January 2022 and went through Y Combinator that winter, their second time in the program.
+
+### Four years, one announced round
+
+The money came early. GenomeWeb reported in October 2022 that Nest had raised an $8.5 million seed round in April of that year. The company announced the same round as closed on January 10, 2023, led by B Capital, with Y Combinator, Casdin Capital, DCVC, Samsung Next, Maven Ventures, iAngels, Arkin Digital Health, LionBird, Anne Wojcicki and Deneen Vojta participating. No later equity round has been announced.
+
+What arrived instead was federal money. The National Human Genome Research Institute funded a small business award in September 2024 for guideline adherence and surveillance in hereditary cancer, and a second in September 2025 aimed at cascade testing: adapting the platform so a family with hypertrophic cardiomyopathy can pass a result to the relatives who need it. Those awards have obligated $2,499,284 through fiscal 2026, with Moran Snir as principal investigator on both. The commercial milestones are thinner: an athenahealth Marketplace listing in October 2024, a Genome Medical referral partnership in January 2025, and a place on Digital Health New York&rsquo;s 2025 list of 100 companies.
+
+## What is proven, and what is still claimed
+
+Software track. Nest sells rule-based clinical decision support, not a diagnostic. There is no FDA clearance to look up, and the company told GenomeWeb in 2022 that it does not plan to seek one. What counts here is peer-reviewed results, registered trials, federal awards and customers anyone can verify.
+
+Evidence What the record shows Source type
+
+FDA records No 510(k) and no PMA under the company name as of Sep 22, 2026. In 2022 the company said its rule-based tools would follow the FDA&rsquo;s decision support guidance rather than seek clearance. Public record
+
+Pancreatic cancer results JCO Precision Oncology, June 2026, with Moffitt. 354 invited, 127 tested, 13 percent pathogenic variants, turnaround 54 days to 30 with a coordinator alone and 22 with the Nest tool added. The authors write that prospective work is needed to separate the coordinator&rsquo;s effect from the software&rsquo;s. Peer reviewed
+
+Three more published tools JMIR Cancer, Jan 2025: Nest-CRC pretest education, 39 patients and 13 providers, an acceptability study with no uptake outcome. Familial Cancer, Jan 2026: AYA-RISE, built on Invitae&rsquo;s Gia chatbot rather than the Nest platform, with Dana-Farber. J Adolescent and Young Adult Oncology, Apr 2026: REFLECT, a fertility and genetics decision tool, 16 participants. Peer reviewed
+
+Registered trial NCT06654466, sponsored by Nest with Dana-Farber and NHGRI as collaborators. Randomized, 100 actually enrolled. First posted Oct 23, 2024; actual start Feb 10, 2026; active and not recruiting at the Jul 16, 2026 update; primary completion estimated March 2027. The same protocol number, 22-657, also sits on NCT05759143, registered by Dana-Farber in 2023 for 40 participants. Public record
+
+Federal awards NHGRI R42HG013908: $291,643 in FY2024, $1,115,854 in FY2025, $790,626 in FY2026, running to Aug 31, 2027. NHGRI R41HG014454 for cardiac cascade testing: $301,161 from Sep 2025. Total $2,499,284. Public record
+
+Named customers Ms. Medicine, a national network of primary care practices for women, and one of its practices, Laurie Birkholz MD and Associates. There the company reports 80 percent completed the risk assessment, 52 percent were high risk and 38 percent met testing criteria. Company-stated
+
+Customer count &ldquo;Nest is used by over 10 health systems and 50 clinics across the US,&rdquo; October 2024. In January 2023 the CEO declined to name the health systems and said they would be announced later that year. None has been named publicly since. Not verifiable
+
+Florida newborn screening The company lists a September 2026 conference presentation on enabling the state&rsquo;s Sunshine Genetics program through its platform. Florida State University, which leads that program, announced its July 2026 launch without naming Nest. Claim unmatched
+
+AI claims The 2026 website calls Nest &ldquo;The only AI-native platform&rdquo; and describes AI-powered algorithms that surface eligible patients. The published work describes rule-based education, assessment and decision support. No independent evaluation of an AI component was found. Differs from the record
+
+Read plainly: unusually good academic evidence for the stage, unusually little commercial disclosure. Four peer-reviewed papers carrying Nest authors, a randomized trial that has finished enrolling, and $2.5 million of NHGRI money are more than most four-year-old health IT startups can show. The other half is missing. Not one health system customer has been named in three years and eight months, and the marketing language has moved to AI faster than the evidence has.
+
+## What to watch
+
+Results from NCT06654466. Primary completion is estimated for March 2027 and enrollment is closed at 100.
+
+Whether the cardiac cascade award moves from Phase I STTR to Phase II. Phase I runs to September 2027.
+
+A named health system. The company has promised them since 2023.
+
+A second equity round, or a Form D. Neither exists on the record as of September 22, 2026.
+
+Whether the Florida Sunshine Genetics work becomes a disclosed contract.
+
+## In their words
+
+&ldquo;Over the next decade, population genetic screening will be one of the most impactful public health interventions.&rdquo;
+Moran Snir, co-founder and CEO, seed announcement, January 2023 &middot; Company release
+&ldquo;But there is a last-mile problem with delivering genetic information to patients and integrating it into providers&rsquo; workflows.&rdquo;
+Moran Snir to MedCity News, January 2023 &middot; Independent
+&ldquo;About 1 in 4 people meet national guidelines for hereditary cancer testing, yet less than 10% of those that meet criteria get tested.&rdquo;
+Moran Snir, athenahealth Marketplace announcement, October 2024 &middot; Company release
+&ldquo;there&rsquo;s now a huge gap in implementation of genetics into clinical practice&rdquo;
+Moran Snir to GenomeWeb, October 2022 &middot; Independent
+&ldquo;really don&rsquo;t like to go outside of that single EHR environment&rdquo;
+David Ledbetter, Nest adviser and former Geisinger chief scientific officer, on physicians, GenomeWeb, 2022 &middot; Independent
+&ldquo;Nest has enabled us to offer every patient who visits our practice a comprehensive cancer risk assessment, seamlessly integrated within athenahealth.&rdquo;
+Laurie Birkholz, MD, early user, October 2024 &middot; Customer, in a company release
+
+Nest Genomics funding profile on HVCF Healthcare Venture Capital Fund
+
+## Related companies
+Clear Genetics : Similar focus. Three founders, one of them the CEO’s father, built a chatbot that walked patients through genetic testing
+Memora Health : Also in Healthcare IT. A text messaging platform that automated patient follow up for Mayo Clinic, Penn Medicine and more than fifty other provider organizations
+Lively : Also in Healthcare IT. A San Francisco company that rebuilt the health savings account around the person who has to use one, then sold that machinery to banks and employers
+One Codex : Also in Healthcare IT. A cloud platform that takes a raw sequencing file and names the microbes inside it
+
+## Sources
+
+Public record ClinicalTrials.gov NCT06654466 and NCT05759143 Updated Jul 16, 2026
+
+Public record NIH RePORTER, R42HG013908, Closing the GAPS NHGRI &middot; FY2024 to FY2026
+
+Public record NIH RePORTER, R41HG014454, CARDIAC CASCADE NHGRI &middot; FY2025
+
+Public record SEC EDGAR company and full text search SEC &middot; Sep 22, 2026
+
+Peer reviewed Implementing Timely Germline Genetic Testing in Pancreatic Cancer Using a Genetics Copilot JCO Precision Oncology &middot; Jun 2026
+
+Peer reviewed A Scalable Digital Health Tool for Pretest Genetic Education in Early-Onset Colorectal Cancer JMIR Cancer &middot; Jan 17, 2025
+
+Peer reviewed Development and pilot testing of AYA-RISE Familial Cancer &middot; Jan 23, 2026
+
+Independent Nest Genomics Building EHR-Integrated Clinical Decision Support GenomeWeb, Jessica Kim Cohen &middot; Oct 25, 2022
+
+Independent Nest Genomics Raises $8.5M to Increase Access to Patients&rsquo; Genetic Information MedCity News, Katie Adams &middot; Jan 10, 2023
+
+Independent Genome Medical, Nest Genomics Team up to Expand Access to Genetic Services GenomeWeb &middot; Jan 17, 2025
+
+Independent As Florida launches newborn genetic screening, FSU institute leads the effort Florida State University News &middot; Jul 10, 2026
+
+Company Nest Genomics Closes $8.5 Million Seed Financing Business Wire &middot; Jan 10, 2023
+
+Company Nest Genomics Joins athenahealth&rsquo;s Marketplace Program PR Newswire &middot; Oct 24, 2024
+
+Company Nest Genomics website: home, about, pedigrees and resources Accessed Sep 22, 2026
+
+Company Nest Genomics company and jobs listing Y Combinator &middot; Sep 22, 2026
+
+Visit website
+Profile researched and written by Healthcare Discovery. Last updated September 29, 2026.
+
+Zach Roberts
+&times;
+
+Sign up for personalized wellness coaching and the Daily Discovery Newsletter.
+
+Start Assessment
+➤

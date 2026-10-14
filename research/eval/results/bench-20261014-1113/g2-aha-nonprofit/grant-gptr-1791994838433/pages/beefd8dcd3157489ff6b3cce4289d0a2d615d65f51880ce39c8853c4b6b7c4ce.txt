@@ -1,0 +1,515 @@
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE | TopicTree (by Ideal-ist)
+
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE
+
+#
+Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity
+-
+
+Call text
+
+Linked topics
+
+Info base
+
+Events
+
+Timing
+
+Projects
+
+Bubbles
+
+## Related topics
+
+Drag to rearrange · hover a topic or connection to preview why it's linked, click to pin that panel open
+
+&times;
+
+Connected via , not directly to the current topic
+
+WHY IT'S LINKED
+
+0">
+No motivation recorded.
+
+Center graph on this topic &rarr;
+
+### Topics in this graph
+
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL — Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data tools
+
+Two closely related work strands under the same DEP Call
+
+DIGITAL-2021-CLOUD-AI-01-FEI-DS-GENOMICS — Federated European infrastructure for genomics data
+
+Objective is to enhance the European genomic data infrastructure, project should build on available results
+
+DIGITAL-2024-CLOUD-DATA-AI-06-GENOME — 1+ Million Genomes: sustainability and uptake
+
+DIGITAL-2026-AI-09-DS-HEALTH support actions of the 1+ Million Genomes Initiative
+
+DIGITAL-2023-CLOUD-AI-04-GENOME — Genome of Europe
+
+Synergies with the project Genome of Europe funded under this topic need to be considered
+
+HORIZON-HLTH-2023-TOOL-05-09 — Developing a Data Quality and Utility Label for the European Health Data Space
+
+DEP should conisder results from HE funded project (QUANTUM) as the project aims at developing and implementing a label mechanism that could be ideally adopted in the future HealthData@EU.
+
+DIGITAL-2022-CLOUD-AI-02-CANCER-IMAGE — Federated European infrastructure for cancer images data
+
+Relevant projects to consider in proposals
+
+HORIZON-MISS-2024-CANCER-01-02 — Support dialogue towards the development of national cancer data nodes
+
+Relevant projects to consider in proposals
+
+HORIZON-HLTH-2023-TOOL-05-04 — Better integration and use of health-related real-world and research data, including genomics, for improved clinical outcomes
+
+Connected via DIGITAL-2026-AI-09-DS-HEALTH-TOOL, not directly to the current topic.
+
+DEP proposal can build on results of HE topic for best practices in the context of integration of health data from multiple sources by linking real-world and clinical research data
+
+HORIZON-HLTH-2023-DISEASE-07-01 — European Partnership on Rare Diseases
+
+Connected via DIGITAL-2026-AI-09-DS-HEALTH-TOOL, not directly to the current topic.
+
+Relevant projects to consider in proposals
+Research outcomes, data assets, and coordination structures developed under the European Partnership on Rare Diseases can directly enable the deployment and scaling of AI- and data-driven digital health tools, ensuring continuity from research to implementation and maximising EU-level impact.
+
+DIGITAL-2025-AI-08-DS-SUPPORT — Data Spaces Support Centre
+
+Connected via DIGITAL-2021-CLOUD-AI-01-FEI-DS-GENOMICS, not directly to the current topic.
+
+Data Spaces Support Centre provides the technical base (e.g. blueprints) for all data spaces
+
+DIGITAL-2026-BESTUSE-10-EHDS — Building capacity to deploy the EEHRxF and digital health services and systems to support the rights of citizens and reuse of health data under EHDS
+
+Connected via HORIZON-HLTH-2023-TOOL-05-09, not directly to the current topic.
+
+Results of funded project (QUANTUM) should be considered as it aims at developing and implementing a label mechanism that could be ideally adopted in the future HealthData@EU
+
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP — Deployment of cutting-edge multi-modal AI-based solutions in medical imaging
+
+Connected via DIGITAL-2022-CLOUD-AI-02-CANCER-IMAGE, not directly to the current topic.
+
+Activities should build on results from projects funded under former calls
+
+Bold node = current topic · node color = call status · hover for details, click to pin · smaller, lighter topics are two steps away
+
+## Call text (as on F&T portal)
+
+View on F&T
+portal
+
+Expected Outcome:
+1+MG data storage strategy.
+Secure federated data storage and processing capacity for 1+MG data infrastructure.
+Objective:
+This action contributes to boosting the capacity of Member States to sequence human genomes through scaling up dedicated secure data storage and processing environments. Data volume is crucial in genomics analytics, and efficient storage and management of large data sets, such as genomics, is essential; to ensure efficient processing, genomic data storage solutions should be flexible and scale with needs. Genomic data, once curated, must not only be stored safely, but also be processed in secure processing environments, which is a particular challenge with the highly voluminous genomic data.
+This action relates to the potential creation of a European Digital Infrastructure Consortium for genomic data (Genome EDIC) and supports the activities related to operating the 1+MG data infrastructure established with the support of Digital Europe under Work Programme 2021-2022 (GDI project), including its alignment with the requirements, technical specifications, and processes established by the EHDS Regulation to ensure a smooth functioning within the HealthData@EU infrastructure. As part of the 1+MG initiative implementation, this action builds on the outputs and results of the 1+MG implementing projects, and will establish a collaboration agreement with the Genome of Europe ( GoE project , supported under Digital Europe Work Programme 2022-2023), to contribute ensuring safe storage and processing capacity for the European reference genome data within the 1+MG data infrastructure.
+Scope:
+This action supports the acquisition and set-up of a secure federated data storage and processing capacity for the 1+MG data infrastructure, which is expected to be operated by the relevant EDIC. It should include “hot storage” working in synergy with secure processing environments aligned with the EHDS requirements, such as compliance checks for secure processing environments and detached long-term storage for curated data made available to the 1+MG by the data providers, including the Genome of Europe dataset. The data storage capacity should be designed based on an agreed data storage optimisation strategy, and balancing between storage costs and data depth/breadth/versioning while considering the most appropriate data storage architecture, technology and legal aspects, and ensuring scalability.
+
+## News flashes
+
+2026-10-14
+
+FLASH INFORMATION ON THE CALL RESULTS (FLASH CALL INFO)
+Call for proposals: DIGITAL-2026-AI-09
+Published: 09/10/2025 Deadline: 3/3/2026
+Total budget for the call: EUR 60 200 000
+The Commission has now completed the evaluation of the proposals submitted to the above-mentioned call.
+The results of the evaluation are as follows:
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP
+Number of proposals submitted: 6
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 4
+Total budget requested for above-threshold proposals: EUR 32 763 475.46
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP
+Number of proposals submitted: 4
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 3
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 12 285 268
+DIGITAL-2026-AI-09-GENAI-PA
+Number of proposals submitted: 36
+Number of inadmissible proposals: 2
+Number of ineligible proposals: 6
+Number of above-threshold proposals: 14
+Total budget requested for above-threshold proposals: EUR 25 069 141.26
+DIGITAL-2026-AI-09-ECAVA
+Number of proposals submitted: 2
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 2
+Total budget requested for above-threshold proposals: EUR 1 998 202.53
+DIGITAL-2026-AI-09-AUTOMOTIVE
+Number of proposals submitted: 1
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 2 622 395.6
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL
+Number of proposals submitted: 4
+Number of inadmissible proposals: 0
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 4 997 612.09
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE
+Number of proposals submitted: 3
+Number of inadmissible proposals: 2
+Number of ineligible proposals: 0
+Number of above-threshold proposals: 1
+Total budget requested for above-threshold proposals: EUR 17 499 999.8
+
+It is expected that the first grant agreements will be signed by 15/10/2026
+Please note that the number of proposals that can finally be funded will depend on the finally available budget and the formal selection by the Commission.
+For further details please see the DIGITAL Europe Programme
+
+2026-10-14
+
+Call DIGITAL-2026-AI-09 has closed on 03/03/2026.
+56 proposals have been submitted.
+The breakdown per topic is:
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP – 6 proposals
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP - 4 proposals
+DIGITAL-2026-AI-09-GENAI-PA - 36 proposals
+DIGITAL-2026-AI-09-ECAVA - 2 proposals
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL - 4 proposals
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE - 3 proposals
+DIGITAL-2026-AI-09-AUTOMOTIVE - 1 proposal
+Evaluation results are expected to be communicated end of June 2026.
+
+2026-10-14
+
+The submission session is now available for: DIGITAL-2026-AI-09-DS-HEALTH-TOOL, DIGITAL-2026-AI-09-DS-HEALTH-STORAGE, DIGITAL-2026-AI-09-GENAI-PA, DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP, DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP, DIGITAL-2026-AI-09-ECAVA, DIGITAL-2026-AI-09-AUTOMOTIVE
+
+Found 4 annotations in info base
+
+click to see
+
+call topic details
+
+Call status: Closed
+
+Opening date: 2025-11-04 (11 months ago)
+
+Closing date: 2026-03-03 (7 months ago)
+
+Procedure: single-stage
+
+Budget: 17,500,000
+
+Expected grants: 1
+
+News flashes
+
+This call topic has been appended 3 times by the EC with news.
+
+2026-10-14
+
+flash information on the call results (f...
+
+2026-10-14
+
+call digital-2026-ai-09 has closed on 03...
+
+2026-10-14
+
+the submission session is now available...
+
+Call
+
+DIGITAL-2026-AI-09
+
+Call topics are often grouped together in a call. Sometimes this is for a thematic reason, but often it is also for practical reasons.
+
+There are 6 other topics in this call:
+
+DIGITAL-2026-AI-09-AUTOMOTIVE
+
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL
+
+DIGITAL-2026-AI-09-ECAVA
+
+DIGITAL-2026-AI-09-GENAI-PA
+
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP
+
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP
+
+Source information
+
+Showing the latest information.
+Found 6 versions of this call topic in the F&T portal.
+
+Information from
+
+2026-07-09_06-20-22
+
+2026-03-13_06-20-19
+
+2026-03-04_06-20-18
+
+2025-11-04_06-20-07
+
+2025-10-31_06-20-06
+
+2025-10-28_15-26-56
+
+Check the differences between the versions.
+
+## Annotations
+
+You must be logged in to add annotations
+
+RELATED POLICY
+
+Added 3 months ago by Daniela Hackl
+
+PolicyBriefing_European Data Strategy_updated.pdf (136.22 KB)
+
+The topic directly supports the European Data Strategy and European Health Data Space (EHDS) by enhancing genomic data infrastructure, ensuring interoperability, and enabling secure, cross-border data sharing for research and healthcare.
+
+RELATED POLICY
+
+Added 5 months ago by Daniela Hackl
+
+PolicyBriefing_Data_Governance_Act_updated.pdf (128.48 KB)
+
+All actions of the topic must comply with the rules and mechanisms imposed by the Data Governance Act that shape a trustworthy and secure data-sharing environment.
+
+Related policy
+
+Added 10 months ago by Patricia Trinkl
+
+PolicyBriefing_EHDS_updated.pdf (203.45 KB)
+
+Infrastructure needs to be aligned with the European Health Data Space (EHDS)
+
+Work Programme info
+
+Added 11 months ago by Daniela Hackl
+
+DEP_LF_INFOSHEET_Restricted calls and other security issues in DEP.pdf (161.2 KB)
+
+RESTRICTED topic (Art. 12.6 Digital Europe Programme Regulation)
+
+## Events
+
+Hand-picked events relevant to this call topic.
+
+2 upcomings
+
+### Upcoming
+
+Mar
+9
+2027
+
+### Data Spaces Symposium 2027
+
+in 145 days
+
+9 Mar - 10 Mar 2027
+
+06:00 - 16:00
+
+Brussels, BE
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+
+
+European data spaces are gaining ground. Organisations across sectors are moving from exploration to implementation, and the conversation is shifting towards what viable participation looks like at scale.
+
+
+The Data Spaces Symposium 2027 is where that conversation happens. It brings together organisations building and operating data spaces, businesses looking for value in joining them and policymakers shaping the conditions for adoption.
+
+
+Three themes shape the 2027 programme: the business value and impact of data spaces; scaling as the route to financial viability and long-term sustainability; and data spaces as enablers for industrial AI and a foundation for its trustworthiness. The European Data Space Awards will recognise initiatives that have made measurable progress in these areas.
+
+
+The fifth edition of the symposium takes place on 9ÃÂ¢ÃÂÃÂ10 March 2027 at The EGG in Brussels, organised by the Data Spaces Support Centre together with BDVA, Gaia-X, IDSA, and partners across the ecosystem.
+
+More info
+
+Mar
+9
+2027
+
+### Data Spaces Symposium 2027
+
+in 145 days
+
+9 Mar - 10 Mar 2027
+
+06:00 - 16:00
+
+Brussels, BE
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+
+
+European data spaces are gaining ground. Organisations across sectors are moving from exploration to implementation, and the conversation is shifting towards what viable participation looks like at scale.
+
+
+The Data Spaces Symposium 2027 is where that conversation happens. It brings together organisations building and operating data spaces, businesses looking for value in joining them and policymakers shaping the conditions for adoption.
+
+
+Three themes shape the 2027 programme: the business value and impact of data spaces; scaling as the route to financial viability and long-term sustainability; and data spaces as enablers for industrial AI and a foundation for its trustworthiness. The European Data Space Awards will recognise initiatives that have made measurable progress in these areas.
+
+
+The fifth edition of the symposium takes place on 9ÃÂ¢ÃÂÃÂ10 March 2027 at The EGG in Brussels, organised by the Data Spaces Support Centre together with BDVA, Gaia-X, IDSA, and partners across the ecosystem.
+
+More info
+
+### Past
+
+Nov
+17
+2025
+
+### Info Day on digital health topics under DEP - Call 9
+
+Past
+
+17 Nov 2025
+
+10:00
+
+Online
+
+{ overflowing = $refs.body.scrollHeight > $refs.body.clientHeight + 4 })">
+
+This online info session will provide participants with information on the new calls for proposals related to digital health.
+Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data tools (DIGITAL-2026-AI-09-DS-HEALTH-TOOLS )
+
+Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity (DIGITAL-2026-AI-09-DS-HEALTH-STORAGE)
+
+Deployment of cutting-edge multi-modal AI-based solutions in medical imaging (DIGITAL-2026-AI-09-AI-SOLUTIONS-CANCER-STEP)
+
+Organisations potentially interested in the DIGITAL-2026-AI-09-AI-SOLUTIONS-CANCER-STEP topic will have the possibility to present their organisations/ideas in a dedicated pitching session
+
+More info
+
+Events are added by the ideal-ist NCP community and are hand-picked. Would you like to suggest an event? Contact
+idealist@ffg.at .
+
+## Timeline
+
+Track where this call stands in its lifecycle, from work programme to grant signature, and see what's likely
+to happen next.
+
+Outcome expected
+&middot; 03 Aug 2026 (2 months ago)
+
+Next: Grant agreement signed, 2 weeks from now (03 Nov 2026, estimated)
+
+Today
+
+Work programme published
+
+28 Oct 2025
+
+Call published
+
+28 Oct 2025
+
+Call opens
+
+04 Nov 2025
+
+Call closes
+
+03 Mar 2026
+
+Outcome expected
+
+03 Aug 2026 &middot; est.
+
+Grant agreement signed
+
+03 Nov 2026 &middot; est.
+
+Preparation
+Open for submission
+Evaluation
+Grant preparation
+Not yet reached
+
+Work programme published
+
+28 Oct 2025 &middot; 11 months ago
+
+Topics are listed in the Work Programme before the call opens. Spotting this early gives you a head start on partner search and proposal planning.
+
+Call published
+
+28 Oct 2025 &middot; 11 months ago
+
+This topic was first published in TopicTree.
+
+Call opens
+
+04 Nov 2025 &middot; 11 months ago
+
+Submissions can be made from this date.
+
+Call closes
+
+03 Mar 2026 &middot; 7 months ago
+
+Deadline to submit a proposal.
+
+Outcome expected
+Estimated
+
+03 Aug 2026 &middot; 2 months ago
+
+The maximum time to inform applicants of the evaluation outcome is five months after the call closes.
+
+Today &middot; 14 Oct 2026
+
+Grant agreement signed
+Estimated
+
+03 Nov 2026 &middot; 2 weeks from now
+
+The maximum time to sign the grant agreement is three months after applicants are informed of the outcome.
+
+## Funded Projects
+
+Loading...
+
+Project information comes from CORDIS
+(for Horizon 2020 and Horizon Europe)
+and will be sourced from F&T Portal
+(for Digital Europe projects)
+
+## Ecosystem bubbles
+
+This call topic is part of the following thematic bubbles.
+
+1 bubble
+
+### AI, Data & Robotics
+
+This large ecosystem bubble includes all the call topics in the field of AI, data and robotics from H2020, Horizon Europe Cluster 4 and Digital Europe...
+
+270 call topics
+
+View bubble
+
+## Call document info
+
+This section will come soon and contain the scraped information from the call document, such as the expected impact, scope, and other relevant sections.
+
+In the meantime, you can find this information in the call text section or directly on the F&T portal.
+
+View on F&T
+portal

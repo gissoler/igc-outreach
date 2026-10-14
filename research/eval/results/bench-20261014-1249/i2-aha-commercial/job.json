@@ -1,0 +1,2690 @@
+{
+ "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72",
+ "brief": {
+  "name": "Benchmark",
+  "role": "Founder",
+  "company": "AHA Labs Inc.",
+  "product": "Agentic Harmonization Assistant for pharma and CRO clinical datasets",
+  "description": "For-profit US company selling an AI harmonization layer that standardizes multi-cohort Alzheimer's datasets for pharma and CRO partners.",
+  "industry": "alzheimer's disease clinical data harmonization AI",
+  "stage": "prototype",
+  "geography": "United States (Delaware C-corp)",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "investment"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 500000,
+  "minDays": 30,
+  "useTeam": false,
+  "useApify": false,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "",
+  "venture": "AHA Labs",
+  "oneLiner": "AI harmonization of clinical datasets for pharma partners",
+  "round": "seed",
+  "constraints": "No clinical care claims",
+  "useOfFunds": "Productize the harmonization engine, security certification, two pharma pilots",
+  "timeline": "18 months",
+  "website": "",
+  "entityType": "for_profit",
+  "country": "United States",
+  "state": "",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: AHA Labs · Agentic Harmonization Assistant for pharma and CRO clinical datasets: investment · prototype · seed · United States (Delaware C-corp) · USD 500000 · avoid: No clinical care claims",
+   "at": "2026-10-14T17:49:10.607Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 6 phrasings separately: alzheimer's disease clinical data harmonization AI · Machine learning harmonization of Alzheimer's trial datasets · Digital platform for unified AD clinical data · AI-powered standardization of dementia study data · data harmonization · data standardization",
+   "at": "2026-10-14T17:49:11.255Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T17:49:11.479Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 2 candidates with provenance.",
+   "at": "2026-10-14T17:54:28.567Z"
+  },
+  {
+   "phase": "warning",
+   "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+   "at": "2026-10-14T17:54:30.162Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 8 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T17:54:30.206Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Drafts built from templates and public facts; nothing is sent.",
+   "at": "2026-10-14T17:54:40.544Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 8 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T17:54:41.446Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": "Deandra Beck",
+   "role": "Program Director",
+   "org": "U.S. National Science Foundation",
+   "title": "Program Director at U.S. National Science Foundation",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "dbeck@nsf.gov",
+    "provenance": "Hunter.io · nsf.gov · confidence 85% · accept_all · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "1cfa007a02382a460c7b",
+     "source": "Web research engine · nsf.gov",
+     "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+     "quote": "The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.506Z",
+     "verified": true
+    },
+    {
+     "id": "dfd2d76dbc8b241a812d",
+     "source": "Hunter.io · nsf.gov",
+     "url": "https://biosecuritycentral.org/static/4dc3d31c322734fe5ac6863f98171556/International%2520Science%2520and%2520Security%2520AAAS-AAU-APLU-FBI%2520%25282013%2529%2520v%25202..pdf",
+     "quote": "Deandra Beck · Program Director · dbeck@nsf.gov (Hunter.io · nsf.gov · confidence 85% · accept_all · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T17:54:29.823Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Program Director operations U.S. National Science Foundation U.S. National Science Foundation NSF 26-512: Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) | NSF - U.S. National Science Foundation The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "nsf.gov",
+     "objective": "investment",
+     "query": "domain-search nsf.gov"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:nsf.gov:deandra beck",
+   "parentKey": "opportunity:NSF-26-512",
+   "followUp": {
+    "from": "U.S. National Science Foundation",
+    "question": "Who decides at U.S. National Science Foundation?"
+   },
+   "key": "person:deandra beck:u s national science foundation",
+   "id": "89e81d7880c68bf9f6c0",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Machine learning harmonization of Alzheimer's trial datasets"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Machine learning harmonization of Alzheimer's trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 1,
+   "jev": {
+    "leadId": "89e81d7880c68bf9f6c0",
+    "action": "investigate_more",
+    "actionConfidence": 0.82,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.88,
+     "discard": 0.12
+    },
+    "strategicFit": 1.12,
+    "fitConfidence": 0.56,
+    "evidenceSufficient": 0.32,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Deandra Beck yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Deandra for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Deandra has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Jonathan Fritz",
+   "role": "Director",
+   "org": "U.S. National Science Foundation",
+   "title": "Director at U.S. National Science Foundation",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "jfritz@nsf.gov",
+    "provenance": "Hunter.io · nsf.gov · confidence 85% · seen on 4 public pages"
+   },
+   "evidence": [
+    {
+     "id": "1cfa007a02382a460c7b",
+     "source": "Web research engine · nsf.gov",
+     "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+     "quote": "The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.506Z",
+     "verified": true
+    },
+    {
+     "id": "decfdbc676d5cb590b0f",
+     "source": "Hunter.io · nsf.gov",
+     "url": "https://nsf.gov/funding/opportunities/emerging-frontiers-research-innovation-efri-biocomputing/13708/nsf21-615/solicitation",
+     "quote": "Jonathan Fritz · Director · jfritz@nsf.gov (Hunter.io · nsf.gov · confidence 85% · seen on 4 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T17:54:29.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Director executive U.S. National Science Foundation U.S. National Science Foundation NSF 26-512: Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) | NSF - U.S. National Science Foundation The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "nsf.gov",
+     "objective": "investment",
+     "query": "domain-search nsf.gov"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:nsf.gov:jonathan fritz",
+   "parentKey": "opportunity:NSF-26-512",
+   "followUp": {
+    "from": "U.S. National Science Foundation",
+    "question": "Who decides at U.S. National Science Foundation?"
+   },
+   "key": "person:jonathan fritz:u s national science foundation",
+   "id": "8ef9f68f27c262242b2f",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Machine learning harmonization of Alzheimer's trial datasets"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Machine learning harmonization of Alzheimer's trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 2,
+   "jev": {
+    "leadId": "8ef9f68f27c262242b2f",
+    "action": "investigate_more",
+    "actionConfidence": 0.8,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.87,
+     "discard": 0.13
+    },
+    "strategicFit": 1.05,
+    "fitConfidence": 0.56,
+    "evidenceSufficient": 0.33,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Jonathan Fritz yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Jonathan for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Jonathan has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Bianca Garner",
+   "role": "Program Director",
+   "org": "U.S. National Science Foundation",
+   "title": "Program Director at U.S. National Science Foundation",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "bgarner@nsf.gov",
+    "provenance": "Hunter.io · nsf.gov · confidence 85% · accept_all · seen on 6 public pages"
+   },
+   "evidence": [
+    {
+     "id": "1cfa007a02382a460c7b",
+     "source": "Web research engine · nsf.gov",
+     "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+     "quote": "The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.506Z",
+     "verified": true
+    },
+    {
+     "id": "0b4329d17a20a01d939b",
+     "source": "Hunter.io · nsf.gov",
+     "url": "https://nsf.gov/funding/opportunities/emerging-frontiers-research-innovation-efri-biocomputing/13708/nsf21-615/solicitation",
+     "quote": "Bianca Garner · Program Director · bgarner@nsf.gov (Hunter.io · nsf.gov · confidence 85% · accept_all · seen on 6 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T17:54:29.825Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Program Director operations U.S. National Science Foundation U.S. National Science Foundation NSF 26-512: Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) | NSF - U.S. National Science Foundation The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "nsf.gov",
+     "objective": "investment",
+     "query": "domain-search nsf.gov"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:nsf.gov:bianca garner",
+   "parentKey": "opportunity:NSF-26-512",
+   "followUp": {
+    "from": "U.S. National Science Foundation",
+    "question": "Who decides at U.S. National Science Foundation?"
+   },
+   "key": "person:bianca garner:u s national science foundation",
+   "id": "c6779a2de02a5d76d5f0",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Machine learning harmonization of Alzheimer's trial datasets"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Machine learning harmonization of Alzheimer's trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 3,
+   "jev": {
+    "leadId": "c6779a2de02a5d76d5f0",
+    "action": "investigate_more",
+    "actionConfidence": 0.85,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.9,
+     "discard": 0.1
+    },
+    "strategicFit": 1.09,
+    "fitConfidence": 0.48,
+    "evidenceSufficient": 0.36,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Bianca Garner yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Bianca for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Bianca has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "U.S. National Science Foundation",
+   "title": "U.S. National Science Foundation",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "up to $5,000,000 (Flagship awards)",
+   "contact": {
+    "type": "web",
+    "value": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+    "provenance": "Read and verified on nsf.gov"
+   },
+   "evidence": [
+    {
+     "id": "1cfa007a02382a460c7b",
+     "source": "Web research engine · nsf.gov",
+     "url": "https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+     "quote": "The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.506Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "The judge says \"no\" for funder_kind without a quote from the page",
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion funder_kind: the judge disagrees with the compiler",
+    "Criterion region: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: fake_quote:funder_kind"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "U.S. National Science Foundation NSF 26-512: Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) | NSF - U.S. National Science Foundation The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://www.nsf.gov/funding/opportunities/ai-datasets-unlocking-dataset-value-ai-enabled-scientific-discovery/nsf26-512/solicitation",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "fake_quote:funder_kind"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "The judge says \"no\" for funder_kind without a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion funder_kind: the judge disagrees with the compiler",
+     "Criterion region: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI harmonization of clinical datasets matches the program’s focus on dataset harmonization for AI.",
+     "fundsQuote": "Strategic augmentation and/or harmonization of existing datasets that significantly expand their scientific utility and usability by AI tools.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "David Darwin",
+     "role": "Managing Director",
+     "email": null,
+     "organization": "National Science Foundation (NSF)",
+     "linkedin": "http://www.linkedin.com/in/daviddarwin",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Michael C",
+     "role": "Principal Investigator",
+     "email": null,
+     "organization": "National Science Foundation (NSF)",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Oana Ma***n",
+     "role": "Principal Investigator",
+     "email": null,
+     "organization": "National Science Foundation (NSF)",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "The program anticipates 10 to 20 Impact awards of up to $2,000,000. In addition, the program also anticipates 5 to 10 Flagship awards of up $5M"
+   },
+   "key": "opportunity:NSF-26-512",
+   "id": "5845ec348824fbc3cd1c",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Machine learning harmonization of Alzheimer's trial datasets"
+   ],
+   "score": 29,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Machine learning harmonization of Alzheimer's trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD up to $5,000,000 (Flagship awards); stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 4,
+   "jev": {
+    "leadId": "5845ec348824fbc3cd1c",
+    "action": "investigate_more",
+    "actionConfidence": 0.79,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.86,
+     "discard": 0.14
+    },
+    "strategicFit": 0.67,
+    "fitConfidence": 0.44,
+    "evidenceSufficient": 0.08,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to U.S. National Science Foundation yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask U.S. National Science Foundation for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then U.S. National Science Foundation has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Aunkur Arya",
+   "role": "Venture Partner",
+   "org": "Menlo Ventures",
+   "title": "Venture Partner at Menlo Ventures",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "aunkur@menlovc.com",
+    "provenance": "Hunter.io · menlovc.com · confidence 99% · valid · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.481Z",
+     "verified": true
+    },
+    {
+     "id": "b13a3099350565c4851f",
+     "source": "Hunter.io · menlovc.com",
+     "url": "https://deltaexec.com/blog/buyside-summer-market-update-2022",
+     "quote": "Aunkur Arya · Venture Partner · aunkur@menlovc.com (Hunter.io · menlovc.com · confidence 99% · valid · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T17:54:30.157Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Venture Partner executive Menlo Ventures Menlo Ventures Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "menlovc.com",
+     "objective": "investment",
+     "query": "domain-search menlovc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:menlovc.com:aunkur arya",
+   "parentKey": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "followUp": {
+    "from": "Menlo Ventures",
+    "question": "Who decides at Menlo Ventures?"
+   },
+   "key": "person:aunkur arya:menlo ventures",
+   "id": "52edb4aa85de4f05f4bc",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 5,
+   "jev": {
+    "leadId": "52edb4aa85de4f05f4bc",
+    "action": "investigate_more",
+    "actionConfidence": 0.94,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.96,
+     "discard": 0.04
+    },
+    "strategicFit": 0.96,
+    "fitConfidence": 0.59,
+    "evidenceSufficient": 0.37,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Aunkur Arya yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Aunkur for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Aunkur has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Joff Redfern",
+   "role": "Partner",
+   "org": "Menlo Ventures",
+   "title": "Partner at Menlo Ventures",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "joff@menlovc.com",
+    "provenance": "Hunter.io · menlovc.com · confidence 99% · valid · seen on 3 public pages"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.481Z",
+     "verified": true
+    },
+    {
+     "id": "e6341b5463d65061b6b2",
+     "source": "Hunter.io · menlovc.com",
+     "url": "https://menlovc.com/team/joff-redfern",
+     "quote": "Joff Redfern · Partner · joff@menlovc.com (Hunter.io · menlovc.com · confidence 99% · valid · seen on 3 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T17:54:30.158Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Partner executive Menlo Ventures Menlo Ventures Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "menlovc.com",
+     "objective": "investment",
+     "query": "domain-search menlovc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:menlovc.com:joff redfern",
+   "linkedin": "https://www.linkedin.com/in/mejoff",
+   "parentKey": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "followUp": {
+    "from": "Menlo Ventures",
+    "question": "Who decides at Menlo Ventures?"
+   },
+   "key": "person:joff redfern:menlo ventures",
+   "id": "8efcaf5de2980f01f790",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 6,
+   "jev": {
+    "leadId": "8efcaf5de2980f01f790",
+    "action": "investigate_more",
+    "actionConfidence": 0.97,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.98,
+     "discard": 0.02
+    },
+    "strategicFit": 0.92,
+    "fitConfidence": 0.52,
+    "evidenceSufficient": 0.4,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Joff Redfern yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Joff for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Joff has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Rama Sekhar",
+   "role": "Partner",
+   "org": "Menlo Ventures",
+   "title": "Partner at Menlo Ventures",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "rama@menlovc.com",
+    "provenance": "Hunter.io · menlovc.com · confidence 99% · valid · seen on 7 public pages"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.481Z",
+     "verified": true
+    },
+    {
+     "id": "1b8343bb47c4178e453e",
+     "source": "Hunter.io · menlovc.com",
+     "url": "https://menlovc.com/team/rama-sekhar",
+     "quote": "Rama Sekhar · Partner · rama@menlovc.com (Hunter.io · menlovc.com · confidence 99% · valid · seen on 7 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T17:54:30.157Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Partner executive Menlo Ventures Menlo Ventures Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "menlovc.com",
+     "objective": "investment",
+     "query": "domain-search menlovc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:menlovc.com:rama sekhar",
+   "linkedin": "https://www.linkedin.com/in/ramasekhar",
+   "parentKey": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "followUp": {
+    "from": "Menlo Ventures",
+    "question": "Who decides at Menlo Ventures?"
+   },
+   "key": "person:rama sekhar:menlo ventures",
+   "id": "eb019c326450c0a26c61",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 7,
+   "jev": {
+    "leadId": "eb019c326450c0a26c61",
+    "action": "investigate_more",
+    "actionConfidence": 0.95,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.97,
+     "discard": 0.02
+    },
+    "strategicFit": 0.94,
+    "fitConfidence": 0.52,
+    "evidenceSufficient": 0.44,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Rama Sekhar yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Rama for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Rama has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Menlo Ventures",
+   "title": "Menlo Ventures",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$100 million",
+   "contact": {
+    "type": "web",
+    "value": "https://menlovc.com/focus-areas/healthcare/",
+    "provenance": "Read and verified on menlovc.com"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T17:54:28.481Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_has_several_dates:news"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Menlo Ventures Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_quote_has_several_dates:news"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI harmonization of clinical datasets is a digital‑health application.",
+     "fundsQuote": "We Invest in Digital Health and Novel Life Science Companies",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Mark Siegel",
+     "role": "Managing Director",
+     "email": "mark@menlovc.com",
+     "organization": "Menlo Ventures",
+     "linkedin": "http://www.linkedin.com/in/marksiegel2",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Doug C",
+     "role": "Managing Director",
+     "email": "doug@menlovc.com",
+     "organization": "Menlo Ventures",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Ryan Ha***d",
+     "role": "Principal",
+     "email": null,
+     "organization": "Menlo Ventures",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Nourish raises $100M, plans to expand care model with physicians"
+   },
+   "key": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "id": "cd9ea0a3e041802b8dac",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD $100 million; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 8,
+   "jev": {
+    "leadId": "cd9ea0a3e041802b8dac",
+    "action": "investigate_more",
+    "actionConfidence": 0.85,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.9,
+     "discard": 0.1
+    },
+    "strategicFit": 0.52,
+    "fitConfidence": 0.57,
+    "evidenceSufficient": 0.06,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Menlo Ventures yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Menlo Ventures for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Menlo Ventures has seen 4 updates."
+     }
+    ]
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T17:49:10.601Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:1",
+    "sequence": 1,
+    "at": "2026-10-14T17:49:11.478Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "AHA Labs · Agentic Harmonization Assistant for pharma and CRO clinical datasets: investment · prototype · seed · United States (Delaware C-corp) · USD 500000 · avoid: No clinical care claims",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "alzheimer's disease clinical data harmonization AI · Machine learning harmonization of Alzheimer's trial datasets · Digital platform for unified AD clinical data · AI-powered standardization of dementia study data · data harmonization · data standardization"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "Alzheimer data"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "Alzheimer data"
+      },
+      {
+       "provider": "Official radar",
+       "query": "ADDF · a2 Collective · CDMRP"
+      },
+      {
+       "provider": "Exa (semantic search)",
+       "query": "Full profile by goal (investment), with criteria and constraints"
+      },
+      {
+       "provider": "Funding rounds",
+       "query": "alzheimer's disease clinical data harmonization AI seed · Exa news o Serper"
+      },
+      {
+       "provider": "Serper (optional)",
+       "query": "Alzheimer data investment United States (Delaware C-corp) "
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:2",
+    "sequence": 2,
+    "at": "2026-10-14T17:49:11.479Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:3",
+    "sequence": 3,
+    "at": "2026-10-14T17:54:28.512Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 2 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 2,
+    "durationMs": 317032,
+    "status": "success"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:4",
+    "sequence": 4,
+    "at": "2026-10-14T17:54:30.159Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 6 new people across 2 organizations (2 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 6,
+    "status": "success"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:5",
+    "sequence": 5,
+    "at": "2026-10-14T17:54:30.163Z",
+    "phase": "warning",
+    "title": "Limited coverage",
+    "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+    "status": "warning"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:6",
+    "sequence": 6,
+    "at": "2026-10-14T17:54:30.165Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:7",
+    "sequence": 7,
+    "at": "2026-10-14T17:54:30.204Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 39,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Benchmark",
+     "contacts": 0,
+     "candidates": 8,
+     "paths": []
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:8",
+    "sequence": 8,
+    "at": "2026-10-14T17:54:30.210Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 8 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 8,
+    "status": "running"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:9",
+    "sequence": 9,
+    "at": "2026-10-14T17:54:39.494Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "10 people found across 2 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 10,
+    "status": "success"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:10",
+    "sequence": 10,
+    "at": "2026-10-14T17:54:39.519Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:11",
+    "sequence": 11,
+    "at": "2026-10-14T17:54:40.493Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 8 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 8,
+    "durationMs": 974,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 5123,
+      "output_tokens": 684,
+      "cost": 0.000215166
+     }
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:12",
+    "sequence": 12,
+    "at": "2026-10-14T17:54:40.532Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 8 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 8,
+    "durationMs": 10322,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "Deandra Beck",
+       "org": "U.S. National Science Foundation",
+       "title": "Program Director at U.S. National Science Foundation",
+       "score": 32,
+       "why": "Matches Machine learning harmonization of Alzheimer's trial datasets in the evidence.",
+       "bucket": "radar"
+      },
+      {
+       "name": "Jonathan Fritz",
+       "org": "U.S. National Science Foundation",
+       "title": "Director at U.S. National Science Foundation",
+       "score": 32,
+       "why": "Matches Machine learning harmonization of Alzheimer's trial datasets in the evidence.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 0,
+      "radar": 8,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:13",
+    "sequence": 13,
+    "at": "2026-10-14T17:54:40.642Z",
+    "phase": "evaluating",
+    "title": "Warm paths for every candidate",
+    "message": "0 through your network; 8 to build with advice and updates before the round.",
+    "provider": "Warm path plan",
+    "resultCount": 8,
+    "status": "success"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:14",
+    "sequence": 14,
+    "at": "2026-10-14T17:54:41.423Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 148 pages read by the AI · 0 main list · 8 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:15",
+    "sequence": 15,
+    "at": "2026-10-14T17:54:41.442Z",
+    "phase": "drafting",
+    "title": "Drafts written",
+    "message": "8 drafts built from templates and public facts; nothing is sent.",
+    "resultCount": 8,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Deandra Beck",
+     "org": "U.S. National Science Foundation",
+     "subject": "Collaboration and fit",
+     "excerpt": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?"
+    }
+   },
+   {
+    "id": "42b07372-737c-428f-9fc9-e1b4a4d60d72:16",
+    "sequence": 16,
+    "at": "2026-10-14T17:54:41.448Z",
+    "phase": "completed",
+    "title": "Done with warnings",
+    "message": "0 candidates prioritized; 8 on radar.",
+    "resultCount": 8,
+    "status": "warning",
+    "detail": {
+     "jobStatus": "partial",
+     "usage": {
+      "Hunter.io": {
+       "calls": 2,
+       "results": 20,
+       "ms": 1376,
+       "bytes": 0,
+       "costUsd": 0
+      }
+     },
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "partial",
+ "plan": {
+  "topic": "Alzheimer",
+  "query": "Alzheimer data",
+  "scientificQuery": "Alzheimer artificial intelligence",
+  "summary": "AHA Labs · Agentic Harmonization Assistant for pharma and CRO clinical datasets: investment · prototype · seed · United States (Delaware C-corp) · USD 500000 · avoid: No clinical care claims",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "alzheimer's disease clinical data harmonization AI · Machine learning harmonization of Alzheimer's trial datasets · Digital platform for unified AD clinical data · AI-powered standardization of dementia study data · data harmonization · data standardization"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "Alzheimer data"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "Alzheimer data"
+   },
+   {
+    "provider": "Official radar",
+    "query": "ADDF · a2 Collective · CDMRP"
+   },
+   {
+    "provider": "Exa (semantic search)",
+    "query": "Full profile by goal (investment), with criteria and constraints"
+   },
+   {
+    "provider": "Funding rounds",
+    "query": "alzheimer's disease clinical data harmonization AI seed · Exa news o Serper"
+   },
+   {
+    "provider": "Serper (optional)",
+    "query": "Alzheimer data investment United States (Delaware C-corp) "
+   }
+  ],
+  "alzheimer": true,
+  "terms": [
+   {
+    "term": "alzheimer's disease clinical data harmonization AI",
+    "source": "yours"
+   },
+   {
+    "term": "Machine learning harmonization of Alzheimer's trial datasets",
+    "source": "model"
+   },
+   {
+    "term": "Digital platform for unified AD clinical data",
+    "source": "model"
+   },
+   {
+    "term": "AI-powered standardization of dementia study data",
+    "source": "model"
+   },
+   {
+    "term": "data harmonization",
+    "source": "lexicon"
+   },
+   {
+    "term": "data standardization",
+    "source": "lexicon"
+   }
+  ]
+ },
+ "engineDrops": [
+  {
+   "url": "https://www.researchalz.com/alzheimers-clinical-trial-investment/",
+   "title": "Advancing Alzheimer’s Clinical Trial Investment | Alzheimer&#039;s Research and Treatment Center",
+   "reason": "not_a_funder",
+   "quote": "We invite you to discuss how you can become part of the revolution in Alzheimer’s research and treatment.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "title": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer&#039;s Data Harmonization Time by 90% in Representative Workflow",
+   "reason": "scope_mismatch",
+   "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://intelligencevc.com/thesis/",
+   "title": "Our Thesis — Intelligence Ventures",
+   "reason": "scope_mismatch",
+   "quote": "Apply for Funding →",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://aivclist.com/vcs/sant-ventures-santecom/",
+   "title": "Santé Ventures – AI Investor | AIVCList.com",
+   "reason": "not_a_funder:directory",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://seedvclist.com/vcs/sant-ventures-santecom/",
+   "title": "Santé Ventures – Seed Investor | SeedVCList.com",
+   "reason": "not_a_funder:directory",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://tracxn.com/d/artificial-intelligence/ai-startups-in-healthcare-it/__OGOdMa6Kheua0xveOV6p3rDBcvcfhleg-O5xhLzYOvE",
+   "title": "Artificial Intelligence in Healthcare IT - 2026 Market &amp; Investment Trends - Tracxn",
+   "reason": "not_a_funder",
+   "quote": "Artificial Intelligence in Healthcare IT - 2026 Market & Investment Trends - Tracxn",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://wewillcure.com/insights/company-profiles/rare-diseases/vcs-funding-rare-disease-startups-in-2026",
+   "title": "8 VCs Funding Rare Disease Startups in 2026",
+   "reason": "not_a_funder",
+   "quote": "Below are eight firms actively investing in startups developing therapies and enabling technologies for rare diseases.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.ycombinator.com/companies/industry/digital-health",
+   "title": "Digital Health Startups funded by Y Combinator (YC) 2026 | Y Combinator",
+   "reason": "not_a_funder:directory",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://investor.igcpharma.com/igc-pharma-to-showcase-ai-platform-with-alzheimers-disease-data-initiative-at-adpd-2026/",
+   "title": "IGC Pharma to Showcase AI Platform with Alzheimer’s Disease Data Initiative at ADPD 2026 - IGC Pharma, INC.",
+   "reason": "not_a_funder",
+   "quote": "IGC Pharma, Inc. (NYSE American: IGC) (“IGC” or the “Company”), a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease",
+   "deadline": null,
+   "objective": "investment"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "investment",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 204,
+    "seconds": 317,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": false,
+     "numbers": 0,
+     "seeds": 0,
+     "notices": 0,
+     "brief": null,
+     "byNumber": null
+    }
+   },
+   "triage": {
+    "opened": 107,
+    "assessed": 40,
+    "by_status": {
+     "upcoming": 2,
+     "open": 1,
+     "unknown": 80,
+     "closed": 24,
+     "unread": 43
+    }
+   },
+   "judge": {
+    "finalists": 11,
+    "calls": 11,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 2,
+    "people": 6,
+    "credits": 6,
+    "skipped": null,
+    "domains": [
+     "menlovc.com",
+     "nsf.gov"
+    ]
+   },
+   "seconds": 112,
+   "opens": 148,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "hunter": {
+  "calls": 2,
+  "emailsAdded": 0,
+  "peopleAdded": 6,
+  "domains": 2,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:NSF-26-512",
+    "canonical_name": "National Science Foundation (NSF)",
+    "official_domain": "nsf.gov",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "54a28f4074686930c2c3df2b",
+     "name": "David",
+     "title": "Managing Director",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "David · Managing Director · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "57d9d132a6da981500f16572",
+     "name": "Michael",
+     "title": "Principal Investigator",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Investigator.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Michael · Principal Investigator · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "5d4fcebd80f93e9cbd8cf4fe",
+     "name": "Oana",
+     "title": "Principal Investigator",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Investigator.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Oana · Principal Investigator · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "65379a43b663c4000160dbae",
+     "name": "Andrea",
+     "title": "Principal Investigator",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Investigator.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Andrea · Principal Investigator · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "610eba11a866dd0001cc7aec",
+     "name": "Brad",
+     "title": "Managing Director, Center for Autonomous Air Mobility & Sensing (caams)",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director, Center for Autonomous Air Mobility & Sensing (caams).",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Brad · Managing Director, Center for Autonomous Air Mobility & Sensing (caams) · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "David",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Michael",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Oana",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Andrea",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Brad",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+    "canonical_name": "Menlo Ventures",
+    "official_domain": "menlovc.com",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "66f5028e6ee1060001c813c4",
+     "name": "Mark",
+     "title": "Managing Director",
+     "organization": "Menlo Ventures",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://menlovc.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Mark · Managing Director · Menlo Ventures"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "66fa3a9a291ebd00012edc6c",
+     "name": "Doug",
+     "title": "Managing Director",
+     "organization": "Menlo Ventures",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://menlovc.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Doug · Managing Director · Menlo Ventures"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "646a70d166b1090001b1d2ae",
+     "name": "Ryan",
+     "title": "Principal",
+     "organization": "Menlo Ventures",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://menlovc.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Ryan · Principal · Menlo Ventures"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "54a5e37c7468693442c5d1b0",
+     "name": "Deedy",
+     "title": "Partner",
+     "organization": "Menlo Ventures",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Partner.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://menlovc.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Deedy · Partner · Menlo Ventures"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "6801359b62bfaf0001d50d79",
+     "name": "Amy",
+     "title": "Partner",
+     "organization": "Menlo Ventures",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Partner.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://menlovc.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Amy · Partner · Menlo Ventures"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "Menlo Ventures",
+     "to": "Mark",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Menlo Ventures",
+     "to": "Doug",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Menlo Ventures",
+     "to": "Ryan",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Menlo Ventures",
+     "to": "Deedy",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Menlo Ventures",
+     "to": "Amy",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 4,
+    "credits_estimated": 2,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 2,
+  "calls": 4,
+  "creditsEstimated": 2,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(investment) 0 queries · 148 pages · 148 read",
+   "dimension": "engine",
+   "returned": 148,
+   "discovered": 2,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "AHA Labs",
+   "product": "Agentic Harmonization Assistant for pharma and CRO clinical datasets",
+   "industry": "alzheimer's disease clinical data harmonization AI",
+   "geography": "United States (Delaware C-corp)",
+   "stage": "prototype",
+   "round": "seed",
+   "fundingTypes": [
+    "investment"
+   ],
+   "constraints": "No clinical care claims"
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 148,
+   "pagesRead": 148,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 2,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 8,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Other": 6,
+    "The judge says \"no\" for funder_kind without a quote from the page": 1,
+    "Eligibility not confirmed by the judge with a quote from the page": 1
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": null,
+  "comparePrompts": {
+   "investment": "Hoy es 2026-10-14. Actúa como investigador de capital de riesgo. Busca en la web INVERSORES (fondos, firmas de venture capital, ángeles o redes de ángeles) que invertirían en este proyecto:\n\n- Proyecto: AHA Labs Inc.: AI harmonization of clinical datasets for pharma partners\n- Producto: Agentic Harmonization Assistant for pharma and CRO clinical datasets\n- Sector: alzheimer's disease clinical data harmonization AI\n- Etapa: prototype / seed\n- Geografía: United States (Delaware C-corp)\n- Constitución: constituida en US\n- Monto objetivo: 500,000 USD\n- Restricciones: No clinical care claims\n- Uso de fondos: Productize the harmonization engine, security certification, two pharma pilots\n- Horizonte: 18 months\n\nTipo de entidad: empresa / startup con fines de lucro.\n\nREGLAS (estrictas):\n1. Solo páginas OFICIALES del inversor (su sitio, su portafolio o su tesis). Nada de blogs, noticias, listas ni agregadores, ni páginas de eventos.\n2. Debe invertir en esta etapa y sector, y en esta geografía. Si no es seguro, márcalo aparte.\n3. Dame la persona concreta que decide (socio o managing partner) solo si la página oficial la nombra con su cargo; si no, dime solo la firma. No incluyas ventas, marketing ni relaciones públicas.\n4. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Firma | URL oficial | Etapas y sectores en los que invierte (CITA LITERAL de su página) | Geografías | Cheque típico | Persona y cargo (si la página lo dice) | Por qué encaja | Estado (confirmado / dudoso).\nDespués una segunda tabla, «No pude confirmar». Al final, dime cuántos hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T17:54:41.445Z",
+ "usage": {
+  "Hunter.io": {
+   "calls": 2,
+   "results": 20,
+   "ms": 1376,
+   "bytes": 0,
+   "costUsd": 0
+  }
+ },
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

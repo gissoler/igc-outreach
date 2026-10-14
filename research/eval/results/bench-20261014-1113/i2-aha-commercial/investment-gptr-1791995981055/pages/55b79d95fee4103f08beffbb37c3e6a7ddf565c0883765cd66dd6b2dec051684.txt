@@ -1,0 +1,132 @@
+AI Drug Discovery Companies: The 2026 Power List
+Hong Kong (HQ) Shanghai Zurich Chicago
+HKG time - 14:32 HKT LinkedIn contact@visionlifesciences.com
+
+Services ▾ In-Licensing Sourcing, diligence, and execution Out-Licensing Partner search and sell-side campaigns Strategic Partnerships Co-development and commercial alliances NewCo Formation Asset-centric company creation
+
+China Biotech Insights About FAQ Contact us contact@visionlifesciences.com LinkedIn
+
+Share
+LinkedIn -> X / Twitter -> Copy link -> Email ->
+
+Key facts
+Published June 27, 2026
+Reading time 16 min read
+Topic Company & Capital
+Updated June 27, 2026
+
+## Key Takeaways
+Isomorphic Labs leads on validation-by-partnership (~$3B across Lilly and Novartis deals); Insilico leads on the clinic (positive Phase IIa in Nature Medicine).
+The best-capitalized platforms — Xaira ($1B+), Generate (~$750M), insitro (~$640M), XtalPi (~$785M) — are not all the most clinically advanced. Funding ≠ validation.
+Recursion (post-Exscientia) is the most comprehensive platform but trimmed its pipeline in 2025 — a reminder that scale must still produce drugs.
+Two of the most consequential players — Insilico and XtalPi — are China-rooted, and increasingly the best risk-adjusted entry into the category.
+For dealmakers, the signal is repeat pharma partnerships and peer-reviewed clinical data, not the size of the last raise.
+
+## How to Read This List
+There are now hundreds of companies that describe themselves as “AI drug discovery.” Most lists rank them by funding, which is the easiest number to find and the least useful one to act on. A billion-dollar launch tells you investors are excited; it tells you nothing about whether the platform produces drugs that work.
+We rank by a blend of capital, validation, and clinical progress — weighting real-world signals (repeat pharma partnerships, peer-reviewed clinical data, advancing trials) above raise size. Where a company sits in our three tiers reflects how far it has converted AI promise into evidence, not how much it has raised. This is the view we take when advising clients on which platforms are worth partnering with or sourcing assets from.
+Concretely, we weight four inputs: clinical validation (peer-reviewed data and advancing trials carry the most weight); commercial validation (the number and durability of pharma partnerships, with renewals weighted above first deals); platform depth (proprietary data and wet-lab validation loops, not model architecture alone); and capital (necessary, but on its own the weakest signal). A company can lead on funding and still sit a tier lower if the evidence has not caught up — which is exactly the distinction this list exists to draw.
+For the market context behind this list — funding flows, deal structures, and the first clinical proof points — start with our AI in Drug Development: The Dealmaker’s Guide .
+
+## The 2026 Power List
+Disclosed funding figures are approximate and drawn from public reporting; “approach” is simplified for orientation. All companies are private unless marked public.
+Company Base Disclosed funding Approach Status / lead signal
+Isomorphic Labs UK (Alphabet) $600M + ~$3B deal value AlphaFold-lineage structure prediction & design Lilly & Novartis partnerships
+Insilico Medicine Hong Kong / China (public, HKEX) ~$500M + ~$293M IPO End-to-end generative (Pharma.AI) Positive Phase IIa, Nature Medicine
+Recursion USA (public, Nasdaq) Public; ~$688M Exscientia merger Phenomics + precision chemistry ~10 readouts; pipeline trimmed 2025
+Xaira Therapeutics USA $1B+ at launch Generative protein design (Baker lineage) Building pipeline post-launch
+Generate:Biomedicines USA (IPO 2026) ~$750M + ~$400M IPO Generative protein therapeutics ~17 programs; clinical candidates
+insitro USA ~$640M ML + functional genomics Lilly, BMS, Gilead collaborations
+Schrödinger USA (public, Nasdaq) Public Physics-based + ML platform Software + clinical pipeline
+Relay Therapeutics USA (public, Nasdaq) Public Motion-based / dynamics design Clinical-stage (e.g. PI3Kα)
+Iambic Therapeutics USA ~$300M+ Physics-informed neural networks Oncology assets entering clinic; Jazz deal
+XtalPi China (public, HKEX) ~$785M Quantum physics + AI Platform + partnerships
+Genesis Therapeutics USA ~$280M Graph neural networks (ADME/potency) Discovery-stage; a16z-backed
+Chai Discovery USA ~$230M Molecular-structure foundation models Platform (Chai-1/-2); OpenAI-backed
+
+## Tier 1: The Best-Capitalized Platforms
+Isomorphic Labs is the bellwether. Spun out of Google DeepMind and led by Nobel laureate Demis Hassabis, it carries the AlphaFold lineage into commercial drug design. Its 2024–2025 partnerships with Eli Lilly (over $1.7B in milestones) and Novartis (~$1.2B), plus a $600M external raise, make it the most validated platform by the only test that counts early — whether Big Pharma will pay for repeated access.
+Xaira Therapeutics launched in 2024 with over $1 billion behind protein-design pioneer David Baker and former Genentech CSO Marc Tessier-Lavigne — the largest AI-biotech launch in history, but still early in converting capital to pipeline. Generate:Biomedicines (~$750M raised, ~17 programs, public via a 2026 IPO) and insitro (~$640M, deep pharma collaborations) round out the well-capitalized generative/genomics camp. Recursion , public and fortified by its Exscientia merger and an NVIDIA-built supercomputer, is the most comprehensive platform — but its 2025 pipeline cuts are the clearest reminder that scale alone is not a drug.
+
+## Tier 2: The Clinical Provers
+Capital gets attention; the clinic gets respect. Insilico Medicine sits here at the top because it delivered the field’s defining proof point: rentosertib, an AI-discovered and AI-designed TNIK inhibitor, posted a positive Phase IIa in idiopathic pulmonary fibrosis, published in Nature Medicine in 2025. Relay Therapeutics (motion-based design) and Schrödinger (physics + ML, with both a software business and an internal pipeline) have long-standing clinical programs. Iambic Therapeutics is moving oncology assets toward and into the clinic and has a combination collaboration with Jazz Pharmaceuticals — a sign pharma is engaging beyond pure platform deals.
+The nuance worth holding: Schrödinger is as much a software company as a drug developer — it licenses its physics-based platform to dozens of pharma customers while advancing its own pipeline, giving it a revenue base most peers lack. Relay bets that modeling protein motion (not just static structure) unlocks harder targets, with its PI3Kα program among the most advanced. And Iambic ’s physics-informed neural networks aim squarely at clinical assets — its KIF18A and CDK programs, plus the Jazz combination work on IAM1363, mark the transition from “platform” to “pipeline” that ultimately separates the durable companies from the demos.
+
+#### Handle the success-rate claims with care
+You will see claims that AI-discovered molecules clear Phase I at 80–90% versus 40–65% for traditional drugs. Treat these cautiously: the sample is small, recent, and subject to survivorship and selection bias (only the best AI candidates have reached the clinic). Phase I tests safety, not efficacy. The honest position in 2026 is that AI has shown it can design active molecules — not yet that it raises the odds of approval .
+
+## Tier 3: The Rising Platforms
+Genesis Therapeutics (~$280M, a16z-backed) applies graph neural networks to molecular property prediction. Chai Discovery (~$230M, OpenAI-backed) is building molecular-structure foundation models (the Chai-1/Chai-2 line) and represents the “AI-first, pipeline-later” bet. These are platform wagers: their value will be set by whether their models translate into partnered or proprietary programs over the next 24 months.
+
+## How the Platforms Differ Technically
+“AI drug discovery” hides several genuinely different technical bets. Knowing which one a company is making tells you what kind of asset it can produce and where it can fail:
+Structure prediction & design (Isomorphic) — the AlphaFold lineage: predict a protein’s structure, then design molecules against it. Strong for novel targets; depends on structure being the bottleneck.
+Generative protein design (Xaira, Generate) — the David Baker lineage: invent new proteins and binders from scratch. Expands the biologics design space dramatically.
+Phenomics / scaled biology (Recursion) — image millions of cellular states to map biology empirically, then design chemistry against what you observe. Data-rich, compute-heavy.
+Physics-based + ML (Schrödinger, XtalPi, Iambic) — ground predictions in physical simulation, augmented by learning. More interpretable; computationally expensive.
+Graph & foundation models (Genesis, Chai) — learn molecular properties and structure from large datasets. The most “AI-native,” the least clinically proven so far.
+
+#### The moat is shifting
+As foundation models commoditize, the algorithm stops being the differentiator. The durable moat moves to proprietary biological data and tight wet-lab validation loops — which is why Recursion’s imaging dataset and the design-make-test cycles of the clinical provers matter more, over time, than any single model architecture. When you diligence a platform, ask what it owns that a competitor cannot simply retrain.
+
+## Public vs Private Exposure
+For investors and corporate-development teams thinking about where to get exposure, the list splits cleanly. Public vehicles include Recursion (Nasdaq: RXRX), Schrödinger (Nasdaq: SDGR), Relay Therapeutics (Nasdaq: RLAY), and — newly — Generate and Eikon after their 2026 IPOs, plus the Hong Kong listings of Insilico and XtalPi. Private leaders include Isomorphic Labs (held within Alphabet), Xaira, insitro, Iambic, Genesis, and Chai.
+The practical implication: the best-validated platform on the list (Isomorphic) is not directly investable, while the most directly investable names carry the volatility of clinical-stage biotech. Partnership and asset-sourcing — not equity — remains the primary way most pharma and advisory clients engage the private leaders, which is exactly where deal structuring expertise earns its keep.
+
+## The Demand Side: Big Pharma’s Bets
+A power list of platforms only tells half the story. The other half is which pharma giants are committing — because their choices are the market’s real validation signal. The pattern in 2025–2026 was a shift from buying single assets to buying capability:
+Eli Lilly is the most aggressive: a partnership with Isomorphic (over $1.7B in milestones), a generative-AI capability deal with Chai, and an up-to-$1B infrastructure commitment with NVIDIA to build an AI R&D supercomputer.
+Novartis partnered with Isomorphic (~$1.2B) and expanded the collaboration in 2025 — a renewal that signals genuine conviction, not a one-off bet.
+Johnson & Johnson became Isomorphic’s third pharma partner, evidence the platform’s validation is broadening.
+Roche/Genentech and Bayer back Recursion (a $150M+ antibody-discovery deal and ongoing programs), while GSK took a subscription-style licensing deal with Noetik.
+For a buyer or an asset-holder, this matters: a platform that several top-ten pharmas have independently chosen carries validation that no funding round can buy. The full deal terms sit in our AI Drug Discovery Deal Tracker .
+
+## The China Subset
+The most underappreciated fact on this list: two of its most consequential names are China-rooted. Insilico Medicine (Hong Kong/China, ~$293M HKEX IPO in December 2025) produced the field’s clinical proof point, and XtalPi (Chinese, HKEX-listed, ~$785M raised) pairs quantum-physics simulation with AI at scale. The structural edge is the same one driving the broader China out-licensing wave: generative design plus fast, lower-cost clinical execution .
+For cross-border dealmakers, AI-originated Chinese assets are among the best risk-adjusted entries into the category — they reach human proof-of-concept faster and become out-licensing candidates for global pharma. We cover this in depth in Top Chinese Biotech Companies and the China outbound licensing tracker .
+The signal is hard to overstate: the company that produced the field’s first peer-reviewed Phase II proof point was not a Boston or Bay Area platform but a Hong Kong/China-rooted one. Insilico’s Pharma.AI engine spans target discovery through generative chemistry, and its pipeline extends well beyond rentosertib into oncology and fibrosis. XtalPi, meanwhile, has built one of the largest combined quantum-physics-and-AI computational operations in the industry and monetizes it through both partnerships and an emerging pipeline. Together they make the case that the center of gravity in AI drug discovery is no longer exclusively American.
+
+## How This List Will Change
+A power list is a snapshot of a fast-moving field. Four forces will reshuffle it over the next 12–24 months, and each is worth watching:
+Clinical readouts. The single biggest mover. Recursion’s wave of readouts, follow-on data for Insilico’s rentosertib, and the first clinical data from the protein-design platforms will promote or demote names faster than any raise.
+Partnership renewals — and failures. Another Isomorphic-style expansion validates a platform; a quietly terminated collaboration is a warning the market often misses.
+Consolidation. The Recursion–Exscientia merger will not be the last. Expect platform-on-platform M&A and acqui-hires as capital tightens around the validated few.
+The China ascent. If more AI-originated Chinese assets reach proof-of-concept and out-license to global pharma, the list’s center of gravity keeps shifting east.
+We revise this ranking as those events land. The constant is the scoring logic: validation over valuation, evidence over narrative.
+
+## A Dealmaker’s Read
+If you are evaluating a partnership or an in-licensing opportunity from any company on this list, weight the signals in this order:
+Repeat pharma partnerships — especially renewals and expansions — are the strongest external validation. One large deal can be a bet; two is a pattern.
+Peer-reviewed clinical data beats any platform demo. Insilico’s Nature Medicine paper is worth more than a billion-dollar Series A.
+Pipeline discipline — a company that cuts weak programs (as Recursion did) is often healthier than one that claims everything is working.
+Origin matters — China-rooted platforms can offer faster, cheaper proof-of-concept and cleaner out-licensing entry points.
+And the red flags that should slow a deal down:
+“Validated” by funding alone. A nine-figure round with no pharma partner and no clinical data is investor conviction, not scientific validation.
+Vague probability-of-success claims. If a platform cannot articulate why it improves the odds of approval — beyond speed — assume it improves speed only.
+Opaque IP or data provenance. Unclear human inventorship or training-data rights is a latent liability on any AI-originated asset.
+The full how-to on valuing and structuring these deals — discounting biobucks, demanding a probability-of-success thesis — is in the dealmaker’s guide , and live comparables sit in the licensing deal tracker .
+Vision Lifesciences helps clients source, diligence, and structure partnerships with platforms like these — including cross-border AI-originated assets. Talk to our team about a specific opportunity.
+Source an AI-originated asset
+
+### Related Strategic Insights
+
+#### AI in Drug Development 2026: The Dealmaker’s Guide
+A business-development view of AI drug discovery: market size, the $11B funding wave, the platform landscape, the first ...
+
+#### Chinese AI Drug Discovery Startups: The 2026 Guide
+China files ~70% of AI drug-discovery patents and drives a third of global out-licensing value. A dealmaker’s guide to t...
+
+#### Biotech Investment Banking: The Complete Guide for...
+Complete guide to biotech investment banking: top life science IB firms, deal types (M&A, IPO, licensing), valuation met...
+
+### Our Advisory Services
+
+#### In-Licensing Advisory
+Identify, evaluate, and execute in-licensing deals across all therapeutic modalities.
+
+#### Strategic Partnerships
+Build cross-border alliances for drug development, manufacturing, and commercialization.
+
+### Need expert guidance on your next deal?
+Our team of life sciences advisors can help you navigate complex transactions, from early-stage licensing to full M&A.
+Talk to an Advisor

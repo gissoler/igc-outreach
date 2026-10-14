@@ -1,0 +1,667 @@
+{
+ "today": "2026-10-14",
+ "numbers": [
+  "RFA-AG-27-010",
+  "RFA-AG-17-054",
+  "RFA-AG-26-006"
+ ],
+ "registry": [
+  {
+   "url": "https://simpler.grants.gov/opportunity/507bb18b-7239-4c03-b50d-4a3b60589be7",
+   "title": "RFA-AG-27-010 · Data Coordinating Center for the Aging and Alzheimer’s Disease Mouse Brain Atlas (AD-MBA) (U24 Clinical Trial Not Allowed)",
+   "why": "RFA-AG-27-010"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/9ba4b04c-e63a-43cd-ab99-1e24e2570e15",
+   "title": "RFA-AG-28-009 · Alzheimer's Drug-Development Program (U01 Clinical Trial Optional)",
+   "why": "RFA-AG-28-009"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/5a01de72-0d63-4009-852c-d2e64018c100",
+   "title": "PAR-25-297 · Alzheimer's Drug-Development Program (U01 Clinical Trial Optional)",
+   "why": "PAR-25-297"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+   "title": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+   "why": "RFA-AG-27-005"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/274b2914-f34a-4663-8892-8567b7b2fb75",
+   "title": "PAR-25-226 · Seamless Early-Stage Clinical Drug Development (Phase 1 to 2a) for Novel therapeutic Agents for the Spectrum of Alzheimer's Disease (AD) and AD-related Dementias (ADRD) (UG3/UH3 Clinical Trial Required)",
+   "why": "PAR-25-226"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+   "title": "26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)",
+   "why": "26-512"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/fc665e54-0a33-4b8d-910d-a8c912926219",
+   "title": "CMS-2L2-25-001 · Health Equity Data Access Program (HEDAP)",
+   "why": "CMS-2L2-25-001"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/563eb0fa-57c1-4aab-8cd0-846421554fee",
+   "title": "CDC-RFA-DP-27-0076 · Promoting Cancer Surveillance Workforce, Education, and Data Use",
+   "why": "CDC-RFA-DP-27-0076"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/0fdad522-909e-41f8-9e3e-246325f63e32",
+   "title": "HT942526RCRPRCDA · DoW Rare Cancers Resource and Community Development Award",
+   "why": "HT942526RCRPRCDA"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/75fc5a54-3480-4e11-bdae-eb5d41a36797",
+   "title": "EDA-HDQ-RNTA-2021 · FY 2021 - 2023 Economic Development RNTA",
+   "why": "EDA-HDQ-RNTA-2021"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/6bc69d9c-87b7-4329-962c-16c8e3ad553d",
+   "title": "HRSA-27-046 · Rural Residency Planning and Development Program",
+   "why": "HRSA-27-046"
+  }
+ ],
+ "gptr": [
+  {
+   "url": "https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.euro-access.eu/_media/file/977_call-fiche_digital-2026-ai-09_en.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-4-health_horizon-2026-2027_en.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/digital/wp-call/2026/call-fiche_digital-2026-ai-09_en.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/digital/wp-call/2026/call-fiche_digital-2026-dsm-ai-09_en.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-7-digital-industry-and-space_horizon-2026-2027_en.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://researchsupport.psu.edu/limited-submission/nia-artificial-intelligence-and-technology-collaboratory-p30-clinical-trial-optional-rfa-ag-26-006",
+   "in_report": false
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/507bb18b-7239-4c03-b50d-4a3b60589be7/attachments/b2a4ffae-450e-4a71-967f-ea187be923e0/RFA-AG-27-010-Full-Announcement.html",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/grants/guide/rfa-files/RFA-AG-26-006.html",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/alzheimers-association-real-world-data-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://today.umd.edu/nih-awards-12-5m-for-researchers-to-use-ai-to-scour-vast-stores-of-biobank-data-for-clues-to-defeat-alzheimers",
+   "in_report": false
+  },
+  {
+   "url": "https://www.ihs.gov/alzheimers/grants/fundingopportunities/2026fundingopp",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/alzheimers-association-niap",
+   "in_report": false
+  },
+  {
+   "url": "https://ihc.umd.edu/nih-awards-12-5m-for-alzheimers-researchers-to-use-ai-to-scour-biobank-data",
+   "in_report": false
+  },
+  {
+   "url": "https://alzimpact.org/The-Case-For-Federal-Research-Funding-Straight-From-AAIC-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimer-forschung.de/fileadmin/user_upload/0_Wissenschaft/AFI_Application_Instructions_2026_Neu.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/partnership_funding_programs/biomarkers_across_neurodegenerative_diseases",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/partnership_funding_programs/alzheimers-innovation-award-aia",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimer-forschung.de/fileadmin/user_upload/0_Wissenschaft/CBG_Application_Instructions_2026.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www2.fundsforngos.org/individuals/open-call-alzheimers-association-research-grant-for-all",
+   "in_report": false
+  },
+  {
+   "url": "https://cordis.europa.eu/programme/id/HORIZON_HORIZON-CL4-2027-04-DIGITAL-EMERGING-05",
+   "in_report": false
+  },
+  {
+   "url": "https://cordis.europa.eu/programme/id/HORIZON_HORIZON-HLTH-2027-03-TOOL-08",
+   "in_report": false
+  },
+  {
+   "url": "https://www.theclassconsultinggroup.org/post/top-ai-grants-for-nonprofits-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://cordis.europa.eu/programme/id/HORIZON_HORIZON-HLTH-2027-02-TOOL-01-two-stage",
+   "in_report": false
+  },
+  {
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/calls-for-proposals?callIdentifier=HORIZON-HLTH-2027-03",
+   "in_report": false
+  },
+  {
+   "url": "https://horizoneuropencpportal.eu/store/overview-health-calls-2026-and-2027-horizon-europe",
+   "in_report": false
+  },
+  {
+   "url": "https://www.scientifyresearch.org/grant/alzheimers-association-capacity-building-grant-lmic",
+   "in_report": false
+  },
+  {
+   "url": "https://www.timemachine.eu/funding-opts/horizon-cl2-2027-01-heritage-02-ai4creatives-support-platform-embracing-a-fair-ai-revolution",
+   "in_report": false
+  },
+  {
+   "url": "https://impactcollaboratory.org/impact-collaboratory-and-next-steps-network-request-applications-for-the-2026-real-world-data-scholars-program",
+   "in_report": false
+  },
+  {
+   "url": "https://casrai.org/guides/nih-funding-opportunity-changes-fy2026",
+   "in_report": false
+  },
+  {
+   "url": "https://recardo.org/research-award",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/the-william-h-gates-sr-fellowship-from-the-ad-data-initiative",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/grants-funding/announcements",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/grants-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/funding/find-a-fit-for-your-research/nih-institutes-centers-offices/NIA",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/grants-funding/nia-data-management-and-sharing-guidance",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.eibir.org/open-funding-calls",
+   "in_report": false
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/apply-ai-ai-driven-robotics-industry-enabling-system-integration-and-adoption-ia-partnership-ai",
+   "in_report": false
+  },
+  {
+   "url": "https://horizoneuropencpportal.eu/stage/artificial-intelligence-horizon-europe-calls-interdisciplinary-challenge",
+   "in_report": false
+  },
+  {
+   "url": "https://euro-access.eu/en/calls/2622/2622/Apply-AI-Pilot-of-the-Science-for-AI-Pillar-of-RAISE-Resource-for-AI-science-in-Europe",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz-net.org/alz-net-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://research.ucalgary.ca/opportunity/2026-program-global-real-world-data-platforms-alz-rwd",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/32dcf252-e495-4dbc-a0ad-b3636888c389",
+   "in_report": false
+  },
+  {
+   "url": "https://www.naccdata.org/funding-resources",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "in_report": false
+  },
+  {
+   "url": "https://leadingage.org/new-funding-support-offered-for-tech-development",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/2e37b591-e1cc-4d6a-a223-ff0c0962f74a",
+   "in_report": false
+  },
+  {
+   "url": "https://scholarblogs.emory.edu/starscenter/apply-for-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://www.naccdata.org/new-investigator-award-program",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/359740",
+   "in_report": false
+  },
+  {
+   "url": "https://files.alz.washington.edu/grants/nacc_gv_digital_biomarker_pilots_rfa.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://eufundingportal.eu/artificial-intelligence-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://eufundingportal.eu/call-for-proposals-to-support-the-advancement-of-trustworthy-human-centric-cognitive-ai",
+   "in_report": false
+  },
+  {
+   "url": "https://fundingcalls.org/calls/186",
+   "in_report": false
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+   "in_report": false
+  },
+  {
+   "url": "https://commission.europa.eu/funding-and-tenders/find-funding/eu-funding-programmes/horizon-europe_en",
+   "in_report": false
+  },
+  {
+   "url": "https://fasi.eu/en/grants/19cbdf80-9d9b-372e-a384-ecc7b48c0fb3",
+   "in_report": false
+  },
+  {
+   "url": "https://euro-access.eu/en/calls",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial/nsf26-513/solicitation",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+   "in_report": false
+  },
+  {
+   "url": "https://www.socialroots.ai/grant-success-stories/nih-nia-fy2026-aging-research-funding-guide",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/policy-and-compliance/policy-topics/nih-fiscal-policies/ico-funding-policies-and-considerations/NIA",
+   "in_report": false
+  },
+  {
+   "url": "https://gaain.org/partners/gaain-partner-application",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/alzheimer-s-association-international-research-grant-program-alzheimer-s-association-d0104de9",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/about/2026-nih-alzheimers-disease-and-related-dementias-research-progress-report-advances-and",
+   "in_report": false
+  },
+  {
+   "url": "https://grantmeridian.com/opportunities/grants-gov-359740-data-coordinating-center-for-the-aging-and-alzheimer-s-disease-mouse-b",
+   "in_report": false
+  },
+  {
+   "url": "https://grantoria.com/grant/the-nia-genetics-of-alzheimers-disease-data-storage-site-niagads",
+   "in_report": false
+  },
+  {
+   "url": "https://www.cortechs.ai/cortechs-ai-awarded-million-dollar-nih-grant-for-early-diagnosis-of-alzheimers-disease",
+   "in_report": false
+  },
+  {
+   "url": "https://www.dementiaresearcher.nihr.ac.uk/ai-in-nia-opportunities-in-artificial-intelligence",
+   "in_report": false
+  },
+  {
+   "url": "https://getgrant.ua/en/grants-and-funding/ai-systems-development-grants-2026-open-calls",
+   "in_report": false
+  },
+  {
+   "url": "https://todos-company.ro/en/funding/horizon-europe-bridging-2027-apply-ai",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/ai-for-alzheimer-s-research-openai-foundation-6c825c74",
+   "in_report": false
+  },
+  {
+   "url": "https://www.ffg.at/en/europa/heu/cluster1/call2027-singlestage-03",
+   "in_report": false
+  },
+  {
+   "url": "https://atomgrants.com/grant/capacity-building-international-dementia-research-alzheimers-association",
+   "in_report": false
+  },
+  {
+   "url": "https://ncpflanders.be/index.php/documents/overview-of-the-horizon-europe-health-calls-2026-and-2027/download",
+   "in_report": false
+  },
+  {
+   "url": "https://www.dementiaresearcher.nihr.ac.uk/funding/horizon-europe-culture-creativity-and-inclusive-society",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/nia-aitc-ai-technology-collaboratories-aging-alzheimers-research-nia-f6a7b8c9",
+   "in_report": false
+  },
+  {
+   "url": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/alzheimer-s-association-real-world-data-funding-program-alz-rwd-alzheimer-s-association-ff0ba506",
+   "in_report": false
+  },
+  {
+   "url": "https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+   "in_report": false
+  },
+  {
+   "url": "https://megaoneai.com/spotlight/openai-foundation-alzheimers-100-million-grant",
+   "in_report": false
+  },
+  {
+   "url": "https://atomgrants.com/collections/ai-research-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://atomgrants.com/grant/alzheimers-association-ai-bond-leaders-pilot-awards-brain-health",
+   "in_report": false
+  },
+  {
+   "url": "https://trialect.com/grantsboard/s/alzheimers-association-ai-bond-leaders-alz-ai-bond-pilot-awards-in-brain-health-program",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/pilot-awards-in-brain-health-program-alz-ai-bond-alzheimer-s-association-6bcade4b",
+   "in_report": false
+  },
+  {
+   "url": "https://www.instrumentl.com/grants/alzheimer-s-association-ai-bond-leaders-alz-ai-bond-pilot-awards-in-brain-health-program",
+   "in_report": false
+  },
+  {
+   "url": "https://ops.opengrants.io/grants/alzheimers-association-ai-bond-leaders-alz-ai-bond-pilot-awards-in-brain-health-program",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/adpd2026-knowledge-hub",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/aaic2026-knowledge-hub",
+   "in_report": false
+  },
+  {
+   "url": "https://assets-us-01.kc-usercontent.com/21889434-3edf-0038-d25f-75c4fdd8ecb7/2c4e81d0-f6d1-4fc2-96e4-25aeb7121bb3/Fellowship%20Rules%20and%20Guidelines%20Cohort%202.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://grantoria.com/grant/novel-approaches-to-advance-precision-aging-and-cognitive-health",
+   "in_report": false
+  },
+  {
+   "url": "https://easy.ee/en/grants/tervisevaldkonna-uldise-tehisintellekti-agi-suunas/grant_jGF6fLKaw5mHXeGH",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz-net.org/participate-alz-net/participation-information-alzheimers-and-dementia-researchers/data-sharing-data-requests",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz-net.org/participate-alz-net/participation-information-alzheimers-and-dementia-researchers",
+   "in_report": false
+  },
+  {
+   "url": "https://alz-net.org/participate-alz-net/participation-information-alzheimers-and-dementia-researchers/data-sharing-data-requests",
+   "in_report": false
+  },
+  {
+   "url": "http://www.alz-net.org/participate-alz-net/participation-information-alzheimers-and-dementia-researchers/data-sharing-data-requests",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/accelerating-research",
+   "in_report": false
+  },
+  {
+   "url": "https://alzimpact.org/Milestones-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimer-europe.org/sites/default/files/alzheimer_europe_data_sharing_in_dementia_research-the_eu_landscape.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.euro-access.eu/_media/file/1016_wp-14-horizontal-activities_horizon-2026-2027_en.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/data-sharing-resources-researchers",
+   "in_report": false
+  },
+  {
+   "url": "https://data.nih.gov/research/resource/national-alzheimers-coordinating-center-nacc",
+   "in_report": false
+  },
+  {
+   "url": "https://www.naccdata.org/the-nacc-researchers-guide",
+   "in_report": false
+  },
+  {
+   "url": "https://www.norc.org/content/dam/norc-org/pdf2026/AIDQSI-Documentation-Report-2026.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://aspe.hhs.gov/national-plan-address-alzheimers-disease",
+   "in_report": false
+  },
+  {
+   "url": "https://www.siaed.org/2026-AI-Regulations-Workshop-AGENDA",
+   "in_report": false
+  },
+  {
+   "url": "https://adsp.niagads.org/funded-programs/phenotype-harmonization",
+   "in_report": false
+  },
+  {
+   "url": "https://alzimpact.org/research",
+   "in_report": false
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+   "in_report": false
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+   "in_report": false
+  },
+  {
+   "url": "https://openaifoundation.org/careers/head-of-ai-for-alzheimers-e0216794-71ce-4dab-b53a-140d0ef45ccb",
+   "in_report": false
+  },
+  {
+   "url": "https://www.academia.edu/58188344/Consent_recommendations_for_research_and_international_data_sharing_involving_persons_with_dementia",
+   "in_report": false
+  },
+  {
+   "url": "https://www.atlanticcouncil.org/in-depth-research-reports/issue-brief/navigating-the-european-unions-ai-and-health-data-framework",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimer-europe.org/our-work/current-work/prominent?language_content_entity=en&language=uk",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimer-europe.org/our-work/current-work/prominent?language_content_entity=en",
+   "in_report": false
+  },
+  {
+   "url": "https://nuclearinnovationalliance.org/nia-response-department-energy-request-information-artificial-intelligence-infrastructure-doe-lands",
+   "in_report": false
+  },
+  {
+   "url": "https://www.unh.edu/research/resource/national-institutes-health-nih-specific-requirements-advice",
+   "in_report": false
+  },
+  {
+   "url": "https://datascience.nih.gov/innovative-solutions-data-harmonization-mobile-analytics-and-end-user-support",
+   "in_report": false
+  },
+  {
+   "url": "https://www.fda.gov/drugs/coronavirus-covid-19-drugs/covid-19-real-world-data-rwd-data-elements-harmonization-project",
+   "in_report": false
+  },
+  {
+   "url": "https://www.rand.org/pubs/research_reports/RRA3296-1.html",
+   "in_report": false
+  },
+  {
+   "url": "https://casrai.org/guides/export-control-reform-research-security",
+   "in_report": false
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6992",
+   "in_report": false
+  },
+  {
+   "url": "https://naccdata.org/adrc-resources/nacc-data-platform",
+   "in_report": false
+  },
+  {
+   "url": "https://dev.alz.washington.edu/nacc-collaborations/digital-biomarker-pilots",
+   "in_report": false
+  },
+  {
+   "url": "https://cordis.europa.eu/project/id/101132356/reporting",
+   "in_report": false
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6991",
+   "in_report": false
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/international-cooperation-ai-ia-42645",
+   "in_report": false
+  },
+  {
+   "url": "https://cordis.europa.eu/project/id/101137074",
+   "in_report": false
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6987",
+   "in_report": false
+  },
+  {
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/genai4eu",
+   "in_report": false
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6644?view=links",
+   "in_report": false
+  },
+  {
+   "url": "https://www.who.int/publications/i/item/9789240029200",
+   "in_report": false
+  },
+  {
+   "url": "https://ieeeboston.org/ai-governance-and-responsible-ai-global-framework-and-industry-tools/3",
+   "in_report": false
+  },
+  {
+   "url": "https://aibond.org/about",
+   "in_report": false
+  },
+  {
+   "url": "https://profiles.wustl.edu/en/publications/integrating-real-world-data-with-gold-standard-longitudinal-clini",
+   "in_report": false
+  },
+  {
+   "url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en",
+   "in_report": false
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6651?view=links",
+   "in_report": false
+  },
+  {
+   "url": "https://www.healthinformationportal.eu/european-health-data-space",
+   "in_report": false
+  },
+  {
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/open-science-cloud",
+   "in_report": false
+  },
+  {
+   "url": "https://www.emif.eu/emif-ad-2",
+   "in_report": false
+  },
+  {
+   "url": "https://eosc.eu/building-the-eosc-federation/eosc-node-bbmri-eric",
+   "in_report": false
+  },
+  {
+   "url": "https://www.bbmri-eric.eu/eosc-node-bbmri-eric",
+   "in_report": false
+  },
+  {
+   "url": "https://search.kg.ebrains.eu/instances/54719155-54c7-4456-8987-36b7d5dce071?noSilentSSO=true",
+   "in_report": false
+  },
+  {
+   "url": "https://ep-ad.org/index.php/open-source-data",
+   "in_report": false
+  },
+  {
+   "url": "https://epnd.org/platform",
+   "in_report": false
+  },
+  {
+   "url": "https://www.naccdata.org/nacc-navigator/laying-the-groundwork-to-expand-the-nacc-dataset",
+   "in_report": false
+  }
+ ]
+}

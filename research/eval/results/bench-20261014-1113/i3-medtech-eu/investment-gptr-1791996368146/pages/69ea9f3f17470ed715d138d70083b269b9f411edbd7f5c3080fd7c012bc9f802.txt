@@ -1,0 +1,662 @@
+Key Metrics for a HealthTech and MedTech company to raise a Series A round in Europe in today's environment
+
+top of page
+
+Key Metrics for a HealthTech and MedTech company to raise a Series A round in Europe in today&#x27;s environment
+
+Key Metrics and Strategic Determinants for Series A Capital Raising in the 2025-2026 Environment
+
+The European healthtech and medtech sectors have entered a phase of disciplined maturity, transitioning away from the venture subsidised experimentation of the early 2020s toward an era characterised by industrialisation and regulatory Darwinism.
+
+In the current market environment of 2025 and 2026, the criteria for a successful Series A funding round have shifted fundamentally. Investors no longer prioritise raw user acquisition or speculative growth; instead, they demand a rigorous demonstration of clinical utility, regulatory fortitude and a clear line of sight to measurable return on investment (ROI) within strained healthcare systems.
+
+This structural transformation is driven by elevated costs of capital and the simultaneous enforcement of complex legislative frameworks, including the EU Medical Device Regulation (MDR), the In Vitro Diagnostic Regulation (IVDR), and the EU AI Act.
+
+For a startup to secure Series A capital today, it must navigate a landscape where capital is highly polarised, concentrating in a narrow cohort of "de-risked" assets that can prove their integration into clinical pathways and their ability to alleviate systemic burdens.
+
+The Macroeconomic Landscape and Venture Capital Dynamics
+
+The European healthtech market, valued at approximately $96.68 Billion in 2025, is projected to reach over $222 Billion by 2030, representing a compound annual growth rate (CAGR) of 18.11%. Despite this robust outlook, the venture capital environment is marked by a "cautious yet discernible rebound".
+
+While global digital health funding rose to $28.8 Billion in 2025, a 9% increase year over year, the number of deals fell to a five-year low. This divergence signifies a move toward "bigger cheques and fewer bets," where capital flows to companies with clear clinical, technological, or commercial validation.
+
+Europe has emerged as the fastest-growing region globally for digital health, with funding surging by 52% in the first half of 2025 compared to the same period in 2024. This resilience is supported by a surge in U.S. investor participation, which accounted for 62% of participants in late-stage European deals by 2025, a threefold increase from 2023.
+
+For a Series A founder, this globalised investor base provides access to deeper capital pools but also imposes more stringent US style due diligence requirements focused on commercial scalability and reimbursement visibility.
+
+### European Healthcare Funding and Transaction Benchmarks (2024-2026)
+
+Metric
+
+2024 Actual
+
+2025 Estimated
+
+2026 Projected
+
+Global Healthcare M&A Volume
+
+$417.8 Bn
+
+$450 Bn
+
+$3.9 Trn(Global all sectors)
+
+European Healthcare PE Value
+
+$59.9 Bn
+
+$80.9 Bn
+
+$95 Bn
+
+MedTech Deal Count (Europe)
+
+41
+
+42
+
+50+
+
+Average MedTech Deal Size
+
+$1.6 Bn
+
+$795.1M (Adj.)
+
+$900M
+
+Median Series A Valuation
+
+$37.4M
+
+$31.0M
+
+TBD
+
+Series B Capital Trend
+
+84% vs 2021
+
+Persistent bottleneck
+
+Tentative recovery
+
+Average Series A Round Size
+
+$10.2M
+
+$12.9M
+
+$15M
+
+The "Series B bottleneck" remains a critical factor for Series A founders to consider. With the time between Seed and Series A rounds extending to an average of 774 days, startups must manage their cash mechanics with extreme precision.
+
+Investors now scrutinize the "bridge round frequency," which sits at approximately 37% of deals, as a signal of a company&#x27;s inability to reach meaningful inflection points on its original runway. Consequently, a Series A pitch must clearly articulate how the fresh capital will carry the company not just to its next round, but through to a "Series A Off-Ramp", an exit to private equity or a strategic acquirer if the venture path narrows.
+
+Financial Benchmarks and Valuation Multiples
+
+Valuations in 2026 are heavily dependent on sub-sector alignment and profitability profiles. The market has moved beyond the "growth at all costs" paradigm of the zero interest rate policy era, where valuations were often detached from unit economics.
+
+In the current environment, revenue multiples are compressed for companies with high burn rates, while those demonstrating the "Rule of 40", where the sum of the growth rate and free cash flow margin equals or exceeds 40%, command significant premiums
+
+### Sub-Sector Valuation Multiples (January 2026 Outlook)
+
+Sub-sector
+
+EV / Revenue Multiple
+
+EV / EBITDA Multiple
+
+Strategic Rationale
+
+Premium AI & Data Platforms
+
+6.0 - 8.0
+
+15 - 18
+
+Proprietary algorithms; Rule of 40 performance.
+
+Value-Based Care (VBC)
+
+5.5 - 7.0
+
+12 - 1
+
+Demonstrable ROI for payers; population health impact.
+
+AI-First Drug Discovery
+
+8.0 - 15.0
+
+N/A
+
+High-risk, high-reward; biopharma capability multiplier.
+
+General HealthTech SaaS
+
+4.0 - 6.0
+
+10 - 13
+
+Stable retention; predictable unit economics.
+
+MedTech Hardware (MDR-ready)
+
+3.5 - 5.5
+
+11 - 14
+
+Regulated moats; high barriers to entry.
+
+Consumer Health & Wellness
+
+2.0 - 4.0
+
+8 - 11
+
+Sensitive to discretionary spending; higher churn.
+
+Unprofitable / Early Stage
+
+3.0 - 4.0
+
+N/A
+
+Candidates for distressed M&A or consolidation.
+
+A defining metric for AI-native healthcare companies in 2026 is the Annual Recurring Revenue (ARR) per Full-Time Employee (FTE). Traditional healthcare services typically generate between $100,000 and $200,000 in ARR per FTE, while healthcare SaaS platforms pre-AI reached $200,000 to $400,000.
+
+In contrast, AI native platforms are now achieving ARR per FTE metrics between $500,000 and over $1Million, driven by the automation of administrative workflows and clinical documentation. This productivity leap allows these companies to achieve software-like margins even as they scale services, a factor that investors view as a "gold standard" for Series A investment.
+
+Regulatory Fortitude as a Series A Prerequisite
+
+The implementation of the EU Medical Device Regulation (MDR) and the In Vitro Diagnostic Regulation (IVDR) has fundamentally altered the competitive landscape, creating what industry analysts call "Regulatory Darwinism".
+
+These regulations have established a capital intensive barrier to entry that is often untenable for standalone small and medium sized enterprises (SMEs) lacking significant balance sheet depth. Consequently, the venture capital thesis has shifted from funding regulatory risk to backing companies that have already built "regulatory moats".
+
+For a Series A startup, regulatory planning must be integrated into the technical roadmap from day one. Investors now expect to see a clear EMA or FDA pathway, early risk classifications, and documented compliance with software safety standards such as IEC 62304.
+
+The regulatory phase in 2026 has shifted from rule making to enforcement, and companies that cannot provide a definitive timeline for Notified Body certification or conformity assessments see their strategic options narrow rapidly.
+
+### Key Regulatory Milestones and Timelines (2025-2026)
+
+Regulation / System
+
+Key Milestone
+
+Date
+
+Implication for Startups
+
+EUDAMED
+
+Mandatory application (Modules 1, 2, 3, 5)
+
+May 28, 2026
+
+Required for all economic operators; mandatory SRN.
+
+EU AI Act
+
+Full enforcement for "High-Risk" systems
+
+August 2, 2026
+
+Stringent data governance and human oversight required.
+
+EHDS
+
+Full secondary use provisions roll-out
+
+Gradual to 2029
+
+Unlocks patient data for R&D and AI training.
+
+Biotech Act
+
+Framework aimed at biomanufacturing
+
+Expected Q4 2026
+
+Streamlined clinical trial procedures.
+
+IVDR
+
+Mandatory compliance for legacy IVDs
+
+May 27, 2026
+
+High risk of supply interruption for non-compliant firms.
+
+The EU AI Act, in particular, has introduced a "binary filter" for healthtech investment. Medical AI tools categorized as high-risk must meet rigorous requirements for data governance, human oversight, and transparency.
+
+This has rendered "Black Box" AI models effectively un-investable in the clinical context. Investors are instead redirecting capital toward "Glass Box" or explainable AI architectures and companies that have built their technology stacks with privacy by design principles.
+
+Clinical Evidence and the EHDS Era
+
+In 2026, evidence has stopped being a differentiator and has become the "price of admission". Investors prioritise "more mature companies" that can provide clinical proof points, reimbursement visibility and a clear role within therapeutic strategies.
+
+The European Health Data Space (EHDS) is the single most significant structural driver for healthtech investment in this period. By mandating that data holders, such as hospitals and clinics, make electronic health data available for secondary use, the EU has effectively created a new asset class: curated clinical data.
+
+Startups that provide the "picks and shovels" for this data economy, such as interoperability layers, data cleaning tools, and de-identification platforms are commanding premium valuations. Clinical validation now requires moving beyond isolated pilots to demonstrating impact in real-world care settings.
+
+Procurement criteria in 2026 increasingly demand outcome measures mapped to local environments rather than controlled demo conditions, as health systems reject "isolated innovations" that fail to change broader economics.
+
+### Clinical and Technical Due Diligence Focus Areas (2026)
+
+Diligence Focus
+
+Series A Requirement
+
+Strategic Rationale
+
+Model Architecture
+
+Mandatory transparency; explainability.
+
+Satisfy EU AI Act; avoid "Black Box" risk.
+
+Data Provenance
+
+Audit of training datasets; IP provenance.
+
+Mitigate legal risk; ensure data quality.
+
+Interoperability
+
+Fast FHIR endpoints; clean DICOM support.
+
+Reduce friction for hospital CIOs; enable scaling.
+
+Clinical Strategy
+
+Defensible claims; path to HTA.
+
+Secure reimbursement; satisfy investor scrutiny.
+
+Cybersecurity
+
+SBOM-ready releases; threat modeling.
+
+Meet NIS2/MDR expectations; build trust.
+
+The transition from "speculative science to practical infrastructure" is evident in the funding clusters of 2025. Health Management Solutions, which focuses on workflow and reimbursement ready tools, overtook research focused TechBio as the top funded cluster, attracting$5.45 Billion.
+
+For a Series A company, this means that the "clinical story" must be paired with a "workflow story" that proves the solution reduces total hospital days or optimises resource use.
+
+Market Access and Reimbursement Pathways
+
+Reimbursement is the ultimate validator for a European healthtech startup. Without a clear path to being paid by national or regional health insurers, a company is viewed as a high-risk gamble. Germany and France continue to lead the way with structured pathways, but both have introduced new requirements in 2026 that founders must address.
+
+### The Evolution of the German DiGA Pathway
+
+Germany&#x27;s DiGA (Digitale Gesundheitsanwendungen) scheme remains the global benchmark for digital health integration, but it has shifted toward a "performance based" model. As of January 1st, 2026, at least 20% of the remuneration for each DiGA must be based on its actual performance. This requires manufacturers to conduct "accompanying success measurements" focusing on patient-reported health status, satisfaction and usage frequency.
+
+The scope of DiGA is also widening in 2026 to include Class IIb digital medical devices, providing a significant opportunity for companies developing higher risk therapeutic interventions. However, the requirement for local German data remains "non-negotiable" and foreign data is only accepted if comparability to the German context is rigorously proven.
+
+### French Market Access: Liste en Sus and ASA Ratings
+
+In France, the Liste en Sus mechanism provides a critical "add-on" reimbursement for innovative medical devices in the inpatient setting, allowing them to be paid for separately from the standard hospital tariff. To be included, a device must demonstrate "actual benefit" (Service Attendu, SA) and, ideally, an "improvement of expected service" (ASA) rating of I, II, or III.
+
+Statistics from 2025 indicate that only 25% to 30% of products successfully achieve these higher ASA ratings, highlighting the intensity of the clinical dossier requirements. Pricing negotiations with the healthcare products pricing committee (CEPS) are increasingly focused on Total Cost of Care (TCOC) modelling, where a higher device price must be offset by a reduction in long-term complications or hospital readmissions.
+
+### Reimbursement Benchmarks and Success Factors
+
+Country
+
+Pathway
+
+2026 Requirement Update
+
+Success Driver
+
+Germany
+
+DiGA
+
+20% performanc -based pricing.
+
+Local real-world evidence (RWE).
+
+France
+
+Liste en Sus
+
+Mandatory resubmission every 3 years.
+
+ASA I-III rating for premium pricing.
+
+UK
+
+NHS Procurement
+
+Focus on ICS (Integrated Care Systems).
+
+Alignment with elective backlog priorities.
+
+Belgium
+
+m-health
+
+National reimbursement launched 2025.
+
+Clinical utility for chronic disease.
+
+Netherlands
+
+DRG / GHS
+
+Yearly package releases.
+
+Proof of healthcare professional safety/satisfaction.
+
+Intellectual Property as a Strategic Asset
+
+In the medtech and healthtech sectors, intellectual property (IP) is often the most valuable asset, directly influencing investor confidence and long-term competitive positioning. In 2024, over 15,700 patent applications were filed with the European Patent Office (EPO) in medical technology, making it the second highest sector for filings after digital communication. The ratio of granted patents to applications in this field stands at a healthy 70.1%, significantly higher than in pharmaceuticals (36%) or biotechnology (22%).
+
+The launch of the Unitary Patent (UP) system has provided a transformative tool for European startups. A UP covers 18 EU Member States with a single application, offering substantial cost savings compared to traditional national validations.Medtech companies have enthusiastically embraced the UP, leading filings across all technical fields.
+
+This trend reflects a broader strategy of building "IP moats" that provide territorial coverage centrally at the Unitary Patent Court (UPC).
+
+### Evolving Legal Standards for IP Portfolios
+
+Investors in 2026 are applying heightened scrutiny to the quality of patent claims. Following recent legal decisions, acquirers are wary of "functional genus" claims, claims that define an invention by what it does rather than what it is.
+
+For AI-enabled devices, patent strategies must emphasise the technical integration of AI, specifically how the algorithm drives a tangible modification in device operation, rather than claiming data processing in isolation.
+
+For a Series A round, a startup’s IP strategy should evolve through several stages:
+
+Early Stage: Focus on protecting core technology with a comprehensive initial application and initiating international filings.
+
+Mid-Stage (Series A/B): Pursue granted patents with diverse claim coverage, including future product iterations and core technology in key international markets.
+
+Risk Mitigation: Utilise patent watching services to track competitor IP and consider using the European opposition process to challenge the validity of threatening patents.
+
+Key Metrics for a HealthTech and MedTech company to raise a Series A round in Europe in today&#x27;s environment
+
+Team Composition and the "Founder Banker" Era
+
+The European healthtech sector has moved into an era where "operational empathy" is a primary value proposition for both founders and advisors.
+
+Investors now prioritise teams that include senior commercial leaders with hospital network experience and digital health operators who have navigated payer reimbursement in multiple markets. The "Founder Banker", an advisor who combines deep technical fluency with investment banking expertise, has become a key architect of Series A and B liquidity.
+
+### The Medical and Strategic Advisory Board (2026)
+
+Advisor Profile
+
+Key Requirement
+
+Strategic Rationale
+
+Commercial Scaling
+
+Global medtech P&L experience.
+
+Guide international go-to-market; manage large accounts.
+
+Regulatory Specialist
+
+Deep knowledge of MDR and AI Act.
+
+Navigate "Regulatory Darwinism"; manage NB audits.
+
+Digital Health Founder
+
+History of scaling to enterprise contracts.
+
+Avoid common pitfalls in payer adoption and retention.
+
+PE / M&A Advisor
+
+Life sciences transaction experience.
+
+Bridge the gap between VC growth and PE exit.
+
+Technical / AI Expert
+
+Generative biology or AI infrastructure background.
+
+Ensure architecture meets explainability and transparency needs.
+
+The emergence of "Clinical Co-Pilots" and "Vertical Intelligence" has also shifted expectations for technical leadership. Startups are increasingly expected to have a Chief Medical Officer (CMO) who is not just a scientific figurehead but a key driver of the clinical-technical integration, ensuring that AI tools solve actual operational inefficiencies for clinicians.
+
+Exit Pathways and the Series A Off-Ramp
+
+A defining thesis for 2026 is the "industrialisation" of the healthtech exit landscape. The traditional "escalator" model, where a Series A lead predictably to an IPO, has broken down for many.
+
+In its place, the "Series A Off-Ramp" has emerged, driven by the increasing involvement of private equity (PE) firms moving downstream to capitalise on depressed valuations and market fragmentation.
+
+PE-backed "buy-and-build" playbooks are particularly intense in healthcare services and IT. These buyers value companies on EBITDA multiples rather than the revenue multiples typical of venture capital, creating a friction point for founders with unrealistic valuation expectations.
+
+However, as runways dwindle, the certainty of a PE exit is becoming a viable strategic alternative to the uncertainty of the venture market.
+
+### Strategic Acquirers and Transaction Contexts (2024-2025)
+
+Target Company
+
+Sector
+
+Acquirer
+
+Deal Context / Driver
+
+Shockwave Medical
+
+Cardio interventions
+
+Johnson & Johnson
+
+$13.1 Bn EV; category leadership.
+
+V-Wave
+
+Structural heart
+
+Johnson & Johnson
+
+Up to $1.7 Bn (milestone-structured).
+
+Exscientia
+
+AI Drug Discovery
+
+Recursion (US)
+
+Strategic merger; platform consolidation.
+
+Medifox Dan
+
+Care Software
+
+ResMed (US)
+
+$958M deal; US strategic expanding in Europe.
+
+Inveox
+
+Pathology / Medtech
+
+Undisclosed
+
+Insolvency sale; restructuring via proceedings.
+
+Consolidation of "point solutions" into comprehensive platforms is a major theme in 2026. Hospital CIOs report "vendor sprawl fatigue," leading to a preference for acquisitions that bundle multiple services into a single clinical layer.
+
+For a Series A company, being "acquirable" means demonstrating that the product can seamlessly plug into larger legacy stacks and provide immediate cross-selling opportunities for an incumbent&#x27;s sales force.
+
+Regional Frontiers and Therapeutic Hotspots
+
+The European funding landscape remains concentrated in the UK, Germany, and France, but regional shifts are evident.The United Kingdom remains the leader, attracting $2.11 Billion in 2025, while Finland surged into second place ($1.16 Billion) due to the presence of large, established players like Oura Health.
+
+Southern Europe (Spain, Italy) is being recognised as a "growth frontier" for private equity, particularly in fragmented markets like dental and veterinary care where roll-up strategies are highly effective.
+
+In terms of therapeutic focus, oncology remains the top-funded area in Europe, attracting $515 Million in the first half of 2025, a 66% year over year increase. Cardiovascular diseases and dermatology also show strong momentum, while geriatrics has experienced explosive growth due to the pressures on hospital capacity and the rise of home-based care models.
+
+### Therapeutic Investment Vectors and Risk Profiles (2026)
+
+Investment Vector
+
+Risk Profile
+
+Primary Investor Type
+
+Key Driver
+
+AI Infrastructure
+
+Low / Medium
+
+PE / Growth VC
+
+Workforce automation; recession resilience.
+
+Surgical Robotics
+
+High
+
+Deep Tech / Sovereign Funds
+
+Shift to ambulatory centers; cost containment.
+
+TechBio
+
+High
+
+Specialized VC / Pharma CVA
+
+Biopharma patent cliffs; pipeline velocity.
+
+FemTech (Menopause)
+
+Medium
+
+Growth VC / Corporate CVA
+
+Employer demand for benefits; demographic shift.
+
+Services Roll-ups
+
+Low
+
+Private Equity
+
+Multiple arbitrage; market fragmentation.
+
+FemTech has matured significantly, moving beyond generic wellness apps to precision medicine and specialised diagnostics. A winning commercial strategy in this space for 2026 is selling to employers as a corporate benefit (B2B2C), bypassing the difficult economics of direct-to-consumer (DTC) marketing.
+
+Synthesis: Navigating the New Series A Standard
+
+The successful European healthtech or medtech Series A in 2026 is defined by "technical defensibility and evidence maturity". To raise capital in this environment, founders must present a narrative that balances innovation with operational reliability. Capital now flows toward "predictable performance," and the market filters out ventures that fail to change clinical outcomes or system economics.
+
+A compelling Series A case must explicitly address the following:
+
+The Regulatory Moat: A clear, understandable path through MDR/IVDR and the EU AI Act, with high-risk designations used as a barrier to competition rather than an administrative burden.
+
+The EHDS Data Strategy: A plan to leverage the European Health Data Space for secondary data use, turning clinical data into a defensible asset for AI training and validation.
+
+Reimbursement and ROI: Hard data on health economic outcomes, using models that prove the solution reduces the total burden on the healthcare system.
+
+Workflow Integration: Technical architecture built for interoperability, ensuring that the solution creates zero friction for overloaded clinicians and hospital IT departments.
+
+The "Rule of 40" Trajectory: Financial projections that demonstrate a clear path to software-like margins, underpinned by high ARR per FTE and a high percentage of recurring revenue.
+
+In an environment where capital is concentrated and investors are increasingly selective, the primary asset of a startup is no longer its technology, but its "execution excellence". Those that can translate regulatory and commercial uncertainty into clear, clinically validated milestones will continue to secure the funding necessary to transform the European healthcare landscape.
+
+Nelson Advisors > European MedTech and HealthTech Investment Banking
+
+ 
+
+Nelson Advisors specialise in Mergers and Acquisitions, Partnerships and Investments for Digital Health, HealthTech, Health IT, Consumer HealthTech, Healthcare Cybersecurity, Healthcare AI companies. www.nelsonadvisors.co.uk
+
+Nelson Advisors regularly publish Thought Leadership articles covering market insights, trends, analysis & predictions @  https://www.healthcare.digital  
+
+ 
+
+Nelson Advisors publish Europe’s leading HealthTech and MedTech M&A Newsletter every week, subscribe today!  https://lnkd.in/e5hTp_xb 
+
+ 
+
+Nelson Advisors pride ourselves on our DNA as ‘Founders advising Founders.’ We partner with entrepreneurs, boards and investors to maximise shareholder value and investment returns. www.nelsonadvisors.co.uk
+
+#NelsonAdvisors   #HealthTech   #DigitalHealth   #HealthIT   #Cybersecurity   #HealthcareAI   #ConsumerHealthTech   #Mergers   #Acquisitions   #Partnerships   #Growth   #Strategy   #NHS   #UK   #Europe   #USA   #VentureCapital   #PrivateEquity   #Founders   #SeriesA   #SeriesB   #Founders   #SellSide   #TechAssets   #Fundraising   #BuildBuyPartner   #GoToMarket   #PharmaTech   #BioTech   #Genomics   #MedTech
+
+Nelson Advisors LLP
+
+ 
+
+Hale House, 76-78 Portland Place, Marylebone, London, W1B 1NT
+
+lloyd@nelsonadvisors.co.uk
+
+paul@nelsonadvisors.co.uk
+
+Meet Nelson Advisors @ 2026 Events
+
+ 
+
+Digital Health Rewired > March 2026 > Birmingham, UK 
+
+ 
+
+NHS ConfedExpo   >  June 2026 > Manchester, UK 
+
+ 
+
+HLTH Europe >  June 2026, Amsterdam, Netherlands
+
+ 
+
+HIMSS AI in Healthcare  >  July 2026, New York, USA
+
+ 
+
+Bits & Pretzels >  September 2026, Munich, Germany  
+
+ 
+
+World Health Summit 2026  >  October 2026, Berlin, Germany
+
+ 
+
+HealthInvestor Healthcare Summit >  October 2026, London, UK 
+
+HLTH USA 2026 >  October 2026, USA
+
+ 
+
+Barclays Health Elevate >  October 2026, London, UK 
+
+ 
+
+Web Summit 2026 >  November 2026, Lisbon, Portugal  
+
+ 
+
+MEDICA 2026 >  November 2026, Düsseldorf, Germany
+
+ 
+
+Venture Capital World Summit > December 2026 Toronto, Canada
+
+Nelson Advisors specialise in Mergers and Acquisitions, Partnerships and Investments for Digital Health, HealthTech, Health IT, Consumer HealthTech, Healthcare Cybersecurity, Healthcare AI companies. www.nelsonadvisors.co.uk
+
+Homepage
+Meet Nelson Advisors
+Email Nelson Advisors
+
+## Nelson Advisors: TORTUS Health’s rollout in California represents a significant test of whether Generative Artificial Intelligence can support Direct Clinical Care delivery
+
+## Nelson Advisors: Strategic Expansion into Agentic Clinical Workflows: An Analysis of Suki&#x27;s $90 Million Series E Funding Round
+
+## Nelson Advisors: Strategic Transformation in HealthTech Conformity: Scarlet and the Industrialisation of AI Medical Device Certification
+
+## Nelson Advisors joins SoftBank Vision Fund, J.P. Morgan, IQVIA, Siemens Healthineers, Blackstone, Mayo Clinic, Cedars Sinai executives at the Capital Xchange Forum 2026
+
+## Nelson Advisors: Capitalising on Healthcare AI Infrastructure - Sopris Capital’s Acquisition of Blackford Analysis and the Strategic Realignment of Longitudinal Care
+
+Nelson Advisors LLP
+About Healthcare.Digital
+
+bottom of page

@@ -1,0 +1,25 @@
+[gptr 17:55:14] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:55:14] prompt (1921 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-0XAMGJ/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-0XAMGJ/gptr.log
+[gptr 17:55:29] 15s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:55:45] 31s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:55:59] 45s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:56:14] 60s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:56:29] 75s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:56:45] 91s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:56:59] 105s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:57:14] 120s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:57:30] 136s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:57:44] 150s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:58:00] 166s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:58:14] 180s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:58:30] 196s · fuentes leídas 0 · última línea: ✅ Generated 4 queries: ['seed stage medtech investors Spain wearable ECG AI 2025-2026', 'corporate venture arms Philips Siemens Healthineers
+[gptr 17:58:44] 210s · fuentes leídas 0 · última línea: INFO: [12:58:44] 🤔 Planning the research strategy and subtasks...
+[gptr 17:59:00] 226s · fuentes leídas 16 · última línea: INFO: [12:58:49] 🌐 Scraping content from 4 URLs...
+[gptr 17:59:15] 241s · fuentes leídas 21 · última línea: 🔍 Running research for 'EU venture capital MDR compliance medtech seed round 2025-2026'...
+[gptr 17:59:30] 256s · fuentes leídas 160 · última línea: INFO: [12:59:29] 🌐 Scraping content from 9 URLs...
+[gptr 17:59:45] el proceso terminó (código null, cortado por tiempo)
+[gptr 17:59:45] proceso terminó tras 271s · timedOut=true código=n/d informe=ninguno
+[gptr 17:59:45] búsqueda terminada en 271s · GPTR_TIMEOUT 270s (se usan las páginas que alcanzó a leer)
+[gptr 17:59:45] URLs para el juez: 150 (0 del informe) → https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026 | https://news.medtronic.com/2026-06-03-Medtronic-announces-strategic-investments-to-support-future-expansion-of-cardiac-ablation-portfolio-as-physician-demand-for-Affera-TM-technologies-broadens | https://news.medtronic.com/2026-06-03-Medtronic-announces-strategic-investments-to-support-future-expansion-of-cardiac-ablation-portfolio-as-physician-demand-for-Affera-TM-technologies-broadens?asPDF=1 | https://techfundingnews.com/top-ai-startups-in-spain-2026-the-companies-attracting-most-investment | https://luisllorens.substack.com/p/20-spanish-startups-to-watch-in-2026 …
+[gptr 17:59:45] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 18:01:31] juez listo: 1 hallazgos (0 verificados) · contactos Apollo: 1 organizaciones, 3 créditos · total 377s

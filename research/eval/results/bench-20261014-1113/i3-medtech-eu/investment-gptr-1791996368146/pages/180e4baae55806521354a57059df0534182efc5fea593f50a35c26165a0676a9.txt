@@ -1,0 +1,244 @@
+Due Diligence Startups España 2026 | Checklist y Cómo Preparar el Data Room
+Financiación 9 de marzo de 2026 13 min de lectura
+
+# Due diligence para startups: qué revisan los inversores y cómo prepararse
+
+Equipo Hipnia
+CFO-as-a-Service
+
+## ¿Qué es la due diligence en startups?
+La due diligence (DD) es el proceso de investigación que realiza un inversor antes de cerrar una inversión. Su objetivo es verificar que la startup es lo que dice ser: que los números son reales, que la IP está protegida, que no hay pasivos ocultos, y que el equipo tiene la capacidad de ejecutar.
+Cuándo ocurre : Generalmente después del term sheet, cuando hay acuerdo en los términos básicos, pero antes de que el dinero cambie de manos.
+Duración típica : 3-8 semanas dependiendo de la etapa y complejidad. En rondas Seed puede ser más ligera; en Serie A/B es exhaustiva.
+Una due diligence bien preparada puede acelerar el cierre en semanas. Una mal preparada puede hacer caer una ronda aunque el negocio sea bueno.
+
+## Las cuatro áreas de la due diligence
+
+### 1. Due diligence financiera
+Lo que el inversor (o su CFO/auditor) analiza:
+
+#### Historial financiero
+Estados financieros de los últimos 2-3 años (cuenta de resultados, balance, cash flow)
+Certificaciones de cuentas si las hay (auditoría)
+Declaraciones fiscales presentadas
+
+#### Métricas de negocio
+MRR/ARR histórico y proyectado
+Evolución de CAC, LTV, churn
+Burn rate y runway actuales
+Unit economics por cohorte
+Top 10 clientes y contratos
+
+#### Modelo financiero
+Proyecciones a 3-5 años con supuestos documentados
+Sensibilidad de los escenarios
+Uso de fondos detallado
+Hitos que se alcanzan con la ronda
+
+#### Tesorería y deudas
+Saldo bancario actual y movimientos recientes
+Deudas pendientes (préstamos, ENISA, factoring, proveedores atrasados)
+Compromisos futuros (contratos de arrendamiento, leasing, deuda)
+
+### 2. Due diligence legal
+Es el área más extensa y donde más sorpresas aparecen:
+
+#### Estructura corporativa
+Escritura de constitución y estatutos actualizados
+Cap table detallado (participaciones, opciones, convertibles)
+Actas de junta y consejo de los últimos 2 años
+Pacto de socios (si existe)
+
+#### Contratos y compromisos
+Contratos con clientes principales (top 5-10)
+Contratos con proveedores clave
+Contratos de alquiler y arrendamiento
+Acuerdos de distribución o partnership
+Compromisos de inversión previos (SICAVs, notas convertibles)
+
+#### Propiedad intelectual
+Registro de marca(s) en España/UE/US
+Patentes o modelos de utilidad (si aplica)
+Contratos de cesión de IP con fundadores y empleados clave
+Licencias de software de terceros
+Dominio web y certificados
+
+#### Laboral
+Contratos de todos los empleados
+Convenio colectivo aplicado
+Alta en RETA de socios trabajadores
+Ausencia de conflictos laborales o reclamaciones pendientes
+Acuerdos de confidencialidad y no competencia
+
+#### Cumplimiento regulatorio
+RGPD: DPD (si aplica), registros de actividades, políticas de privacidad
+Permisos y licencias de actividad
+Cumplimiento sectorial específico (financiero, sanitario, alimentario...)
+
+### 3. Due diligence tecnológica (Tech DD)
+Para startups tecnológicas, los inversores pueden contratar una auditoría técnica:
+
+#### Arquitectura y código
+Calidad del código (deuda técnica estimada)
+Cobertura de tests
+Seguridad (penetration testing, gestión de credenciales)
+Escalabilidad de la arquitectura
+
+#### Infraestructura
+Proveedor cloud y costes
+Uptime y SLAs
+Plan de recuperación ante desastres
+Gestión de datos sensibles
+
+#### Dependencias
+Librerías open source con licencias problemáticas
+APIs críticas de terceros (¿qué pasa si cambian los precios o se caen?)
+Proveedores únicos sin alternativa
+
+### 4. Due diligence comercial y de mercado
+Menos formalizada, pero crucial en Serie A+:
+Entrevistas con clientes (referencias)
+Análisis del mercado y competencia
+Verificación de tracción (acceso a analytics, Stripe, etc.)
+Churn real vs reportado
+
+## El data room: organización y herramientas
+
+### ¿Qué es un data room?
+Un data room es el espacio donde se comparte toda la documentación de due diligence con el inversor. Puede ser físico (raro) o virtual (lo estándar).
+Plataformas habituales :
+Notion : Sencillo, gratuito, ideal para early stage
+Docsend : Control de acceso y analítica de quién ve qué
+Dropbox / Google Drive : Colaborativo, conocido, pero menos control
+Datasite / Intralinks : Plataformas profesionales para rondas grandes
+Carta : Incluye gestión de documentos de cap table
+
+### Estructura recomendada del data room
+📁 Data Room — [Nombre de la startup]
+│
+├── 📁 01. Empresa
+│ ├── Escritura de constitución
+│ ├── Estatutos vigentes
+│ ├── CIF y alta censal
+│ └── Actas de Junta General y Consejo (últimos 2 años)
+│
+├── 📁 02. Cap Table
+│ ├── Cap table actual (fully diluted)
+│ ├── Instrumentos convertibles pendientes
+│ ├── Plan de opciones (ESOP) y grants individuales
+│ └── Pacto de socios
+│
+├── 📁 03. Financiero
+│ ├── Cuentas anuales 2023, 2024, 2025
+│ ├── P&L mensual últimos 12 meses
+│ ├── Cash flow actual
+│ ├── Modelo financiero y proyecciones
+│ └── Uso de fondos
+│
+├── 📁 04. Métricas
+│ ├── Dashboard de KPIs (MRR, churn, CAC, LTV)
+│ ├── Análisis de cohortes
+│ ├── Pipeline de ventas actual
+│ └── Top clientes y contratos
+│
+├── 📁 05. Legal y Contratos
+│ ├── Contratos con clientes principales
+│ ├── Contratos proveedores clave
+│ ├── Contratos empleados
+│ ├── NDA y acuerdos de confidencialidad
+│ └── Acuerdos de inversión previos
+│
+├── 📁 06. IP y Tecnología
+│ ├── Registros de marca
+│ ├── Patentes (si aplica)
+│ ├── Cesiones de IP de fundadores/empleados
+│ └── Licencias de software de terceros
+│
+├── 📁 07. RRHH
+│ ├── Organigrama y headcount
+│ ├── Contratos laborales plantilla actual
+│ └── Política de retribución variable y opciones
+│
+├── 📁 08. Cumplimiento
+│ ├── Política de privacidad y RGPD
+│ ├── Certif. de estar al corriente AEAT/TGSS
+│ └── Licencias y permisos de actividad
+
+### Principios de un buen data room
+Orden : Los inversores revisan decenas de data rooms; un data room bien organizado es una señal positiva de cómo funciona la empresa.
+Acceso controlado : Usa plataformas que te permitan saber quién accede a qué, y revocar el acceso si la conversación se interrumpe.
+Versiones limpias : Asegúrate de que los documentos son las versiones vigentes, sin marcas de revisión ni versiones obsoletas.
+Sin gaps : Un documento faltante genera más desconfianza que un número malo. Si no tienes algo, explica por qué.
+
+## Los puntos críticos que bloquean rondas
+
+### Red flags legales más frecuentes
+Cap table con participaciones sin documentar : Promesas verbales de equity o documentos inconsistentes
+IP no cedida por los fundadores : Tecnología creada antes de la constitución de la empresa, sin cesión formal
+Conflictos laborales pendientes : Ex empleados con reclamaciones activas
+Notas convertibles con condiciones ocultas : Cláusulas de control o antidicusión que el inversor no conocía
+
+### Red flags financieras más frecuentes
+Métricas infladas : Definición del MRR que incluye ingresos no recurrentes
+Reconocimiento de ingresos incorrecto : Reconocer contratos anuales como MRR del mes 1
+Deuda no declarada : Préstamos de socios, aplazamientos fiscales, garantías
+Cuentas con pérdidas no esperadas : Gastos ocultos que no aparecían en los pitch
+
+### Red flags técnicas más frecuentes
+Deuda técnica crítica : Código imposible de escalar sin refactoring masivo
+Dependencia excesiva en terceros : Si un proveedor sube precios, el margen desaparece
+Sin control de versiones o documentación : Señal de que el equipo no puede crecer
+
+## Cómo prepararse antes de levantar una ronda
+
+### 6 meses antes
+Actualizar el cap table y toda la documentación corporativa
+Asegurarse de que toda la IP está cedida por fundadores y empleados clave
+Regularizar cualquier incumplimiento laboral, fiscal o de SS
+Empezar a documentar métricas clave de forma rigurosa
+
+### 3 meses antes
+Crear el data room con la estructura completa
+Preparar el modelo financiero actualizado
+Obtener certificados de estar al corriente con Hacienda y SS
+Revisar todos los contratos clave (clientes, proveedores, empleados)
+
+### 1 mes antes
+Compartir data room con advisors y gestores de confianza para una revisión previa
+Preparar respuestas a las preguntas más frecuentes (FAQs para inversores)
+Tener el deck actualizado con métricas a la última fecha
+
+## Cómo Hipnia prepara tu data room
+En Hipnia somos el CFO externo que coordina toda la due diligence:
+Auditoría previa : Revisamos tu documentación antes de que lo haga el inversor y detectamos los puntos críticos
+Preparación del data room financiero : P&L, balance, proyecciones, métricas
+Coordinación legal : Con los abogados de la startup para tener toda la documentación corporativa en orden
+Q&A de inversores : Respondemos a las preguntas financieras durante el proceso
+Seguimiento : Actualizamos el data room con la información que piden en tiempo real
+
+## Conclusión
+La due diligence no empieza cuando el inversor lo pide: empieza cuando constituyes la empresa y cada decisión que tomas queda registrada (o no). Las startups que llegan a una ronda con el data room listo, las métricas claras y sin sorpresas cierran más rápido y en mejores términos.
+En Hipnia te ayudamos a construir ese orden desde el principio, para que cuando llegue el momento de levantar capital, la due diligence sea un trámite, no un obstáculo.
+
+Etiquetas: due diligence inversión data room rondas startups inversores
+
+Compartir:
+
+### ¿Te ha sido útil este artículo?
+En Hipnia nos encargamos de todas estas gestiones para que tú te centres en hacer crecer tu startup.
+
+Hablar con Hipnia
+
+## Artículos relacionados
+
+11 de marzo de 2026 Financiación
+
+### Venture debt y financiación alternativa para startups: más allá del equity
+
+8 de marzo de 2026 Financiación
+
+### Business angels en España: cómo encontrarlos y convencerlos
+
+8 de marzo de 2026 Financiación
+
+### Cómo valorar una startup: métodos, criterios y lo que realmente negocian los inversores

@@ -1,0 +1,132 @@
+{
+ "id": "i3-medtech-eu",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/medtech-eu-forprofit.json",
+ "why": "startup en España: inversores europeos",
+ "dry": false,
+ "ok": true,
+ "status": "partial",
+ "error": null,
+ "started": "2026-10-14T16:46:06.996Z",
+ "seconds": 405,
+ "stages": {
+  "search_s": 270,
+  "judge_s": 127,
+  "engine_s": 397,
+  "contacts_s": null,
+  "evaluator_s": 4,
+  "total_s": 405
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 100,
+  "assessed": 40,
+  "by_status": {
+   "upcoming": 3,
+   "rolling": 3,
+   "unknown": 71,
+   "closed": 23,
+   "unread": 50
+  }
+ },
+ "findings": {
+  "verified": 1,
+  "to_review": 14
+ },
+ "lists": {
+  "top": 11,
+  "radar": 15,
+  "discarded": 0
+ },
+ "apollo_credits": 10,
+ "apollo_people": 6,
+ "errors": [
+  "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent."
+ ],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "European HealthTech and MedTech Venture Capital Outlook 2026",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026",
+   "contacts": 0
+  },
+  {
+   "title": "Spain Promotes Digital Health: Non-Invasive Heart Monitor Seeks Distributors and Global Investment - Foreign Company",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://en.empresaexterior.com/espana-impulsa-la-salud-digital-monitor-cardiaco-no-invasivo-busca-distribuidores-e-inversion-global/",
+   "contacts": 1
+  },
+  {
+   "title": "Engineering Lead at Top 18 Medtech venture capital companies based in Spain",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://revenuebase.ai/companies/medtech-venture-capital-companies/spain",
+   "contacts": 0
+  },
+  {
+   "title": "Assistant Vice President of Investments at Qubit Capital is a platform that provides insights and analysis on angel inve",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://qubit.capital/blog/angel-investment-healthtech-expectations",
+   "contacts": 0
+  },
+  {
+   "title": "Account Executive at Top 18 Medtech venture capital companies based in Spain",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://revenuebase.ai/companies/medtech-venture-capital-companies/spain",
+   "contacts": 0
+  },
+  {
+   "title": "Founder's Office at Qubit Capital is a platform that provides insights and analysis on angel investment trends in Health",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://qubit.capital/blog/angel-investment-healthtech-expectations",
+   "contacts": 0
+  },
+  {
+   "title": "Co-Founder at Qubit Capital is a platform that provides insights and analysis on angel investment trends in HealthTech, ",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://qubit.capital/blog/angel-investment-healthtech-expectations",
+   "contacts": 0
+  },
+  {
+   "title": "Top 18 Medtech venture capital companies based in Spain",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://revenuebase.ai/companies/medtech-venture-capital-companies/spain",
+   "contacts": 3
+  },
+  {
+   "title": "Health-NCP-Net is a support network that helps navigate the European Health Research & Innovation funding landscape. It ",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.healthncp.net/find-open-calls?page=1",
+   "contacts": 0
+  },
+  {
+   "title": "Top 50 Health Care VC Funds & Investors in Europe (October 2026) | Shizune",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://shizune.co/investors/health-care-vc-funds-europe",
+   "contacts": 2
+  }
+ ]
+}

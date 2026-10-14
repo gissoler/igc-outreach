@@ -1,0 +1,167 @@
+EPAD Open Source Data, Imaging, and Samples – ep-ad
+
+Skip to content
+
+# EPAD Open Source Data, Imaging, and Samples
+
+## Available to researchers across the globe.
+
+By making our data and samples publicly accessible, our goal is to facilitate global collaboration amongst brain scientists and researchers working with in the field pertaining to neurodegenerative diseases. Through sharing our work, we hope to improve and accelerate treatment options for this challenging disease.
+
+Data set
+
+Neuroimaging
+
+Bio Samples
+
+Publish Papers
+
+### The Dataset
+
+Thanks to an innovative screening process, the LCS dataset is unique because 37% of the sample was amyloid positive at enrollment.
+
+The final LCS dataset is called Version.IMI (V.IMI) as it represents all the data collected and processed during the IMI period of EPAD. This contains the final longitudinal data, including information on biomarkers, cognition, sociodemographics, and vital signs from over 2,000 participants of the EPAD Longitudinal Cohort Study (LCS). Genomic data are also available.
+
+To learn what data and associated metadata is available in the EPAD data release before you apply, please download the Data Information Pack . You can also download the Data Dictionary here .
+
+### How do I request data or neuroimaging access?
+
+##### You can request access to data and imaging via AD Data Initiative’s AD Workbench. When requesting imaging access, you’ll also get data access.
+
+First, download the Data Access Terms and Conditions here .
+
+Then, please visit the AD Data Initiative Portal , create an account, and request a Workspace.
+
+Sign in with your account and complete an online form on the dataset page to request access to EPAD data and/or images. For Imaging requests, please specify the sequences and formats required for your analyses.
+
+Your application will be processed within several business days. Please note that for imaging applications, the turnaround time may take longer
+
+Once data access is granted, you can download and transfer the data files and analyze them in your online Workspace.
+
+Start here
+
+### Neuroimaging
+
+The EPAD imaging dataset includes core (3D T1w, 3D FLAIR) and advanced (ASL, diffusion MRI, and resting-state fMRI) MRI sequences. Core Sequences were acquired for all participants while advanced sequences have been obtained from a subsite of scanning site, for around 70% of participants.
+
+##### Core imaging Protocol
+
+Core image acquisitions were mandatory and conducted in all sites. They provided structural and morphological information about the brain and served to evaluate participants’ study eligibility through baseline radiological assessment and quantitative analysis of brain structure and vascular lesions.
+
+##### Advanced imaging Protocol
+
+The advanced Magnetic Resonance Imaging (MRI) protocol was performed only in a subset of sites with suitable equipment. It investigated functional and structural brain characteristics.
+
+##### In what formats can imaging data be accessed?
+
+Neuroimaging data can be accessed from three different levels:
+
+Raw NIfTI files i Raw NIfTI files: Unprocessed core and/or advanced sequences NIfTI files.
+
+Processed NIfTI files i Processed NIfTI files: Including all products which are not the direct results of the DICOM to NIfTI conversion. The outcomes of many pre-processing pipeline are already available (e.g. FreeSurfer, fmriprep, ExploreASL). Full overview can be found in the Table below.
+
+Image derived phenotypes i Image-derived phenotypes: These are numeric variables shared in the form of csv files, measuring multimodal biologically relevant neuroimaging features (e.g. gray matter volumes), as computed from several pre-processing pipelines. For an example, see Lorenzini et al. 2022
+
+Expand table of Imaging Data Dictionary
+
+×
+
+## Imaging Data Dictionary
+
+Sequence Pre-processing Pipeline Available IDPs
+T1w FreeSurfer Cortical regional gray matter volumes and thickness
+Subcortical gray matter volumes
+
+FLAIR BaMoS WMH binary masks
+WMH regional volumes and count
+
+fMRI Fmriprep, Nilearn, Brain Connectivity Toolbox Processed BOLD time series
+Functional connectivity matrices for several available brain parcellations
+Global and regional graph properties for several available brain parcellations
+
+DTI Qsiprep, FSL, MRtrix Processed fractional anisotropy (FA) and mean diffusivity (MD) maps
+Tract-based spatial statistics (TBSS) derived regional values of FA and MD
+Probabilistic tractography
+Structural Connectivity Matrices
+Global and regional graph properties for several available brain parcellations
+
+ASL ExploreASL Processed cerebral blood flow (CBF) maps
+CBF global and regional values
+
+### How do I request data or neuroimaging access?
+
+##### You can request access to data and imaging via AD Data Iniatiative’s AD Workbench. When requesting imaging access, you’ll also get data access.
+
+First, download the Data Access Terms and Conditions here .
+
+Then, please visit the AD Data Initiative Portal , create an account, and request a Workspace.
+
+Sign in with your account and complete an online form on the dataset page to request access to EPAD data and/or images. For Imaging requests, please specify the sequences and formats required for your analyses.
+
+Your application will be processed within several business days. Please note that for imaging applications, the turnaround time may take longer
+
+Once data access is granted, you can download and transfer the data files and analyze them in your online Workspace.
+
+Start here
+
+### Bio Samples
+
+The EPAD biobank includes blood, CSF, saliva, and urine samples collected over the course of our longitudinal study. Our bespoke database and information management system provides traceability and sample validation.
+
+##### We can offer:
+
+access to more than 100,000 samples
+
+from 2,096 participants with all associated data collected at annual visits
+
+originating at 31 study sites across Europe.
+
+The EPAD samples are curated by our dedicated bioresource team at the Roslin Institute within the University of Edinburgh.
+
+We’ll provide you with support at every level, from your initial enquiry through to detailed discussions with our expert team. We aim to meet your unique research needs and organise sample delivery direct to your research facility.
+
+##### The samples
+
+We work to ensure that every sample collected from our participants and stored at the Bioresource can contribute in the most appropriate way to progressing research in Alzheimer’s disease prevention.
+
+##### We can provide:
+
+CSF
+
+Blood (Buffy coat, Plasma, RNA, PBM, Serum, DNA)
+
+Saliva (Cortisol salivettes, Drooling samples)
+
+Urine
+
+##### EPND Cohort Catalogue
+
+The EPND Catalogue includes an ever-growing collection of research studies covering 13 disease areas with more than 240,000 participants from across Europe, including EPAD. We invite you to explore the EPND Cohort Catalogue here: https://discover.epnd.org/
+
+### How do I apply for sample access?
+
+##### Get support at every level of your application, from your initial enquiry through detailed discussions with our team.
+
+First, contact our Bioresource Team for an initial informal discussion about the scope of your research and the range of samples we can offer.
+
+Submit an online request for EPAD Samples and Data through the Alzheimer’s Disease Workbench of the Alzheimer’s Disease Data Initiative or email the Bioresource Team to request an application form.
+
+We’ll send the application to experts for scientific review.
+
+The reviewers will return their review to the Bioresource Team.
+
+The Bioresource Team will inform you of the final decision and explain next steps.
+
+## Publish Papers
+
+### How do I publish papers with EPAD data, neuroimaging data and samples?
+
+If you publish results that were generated using the EPAD data and/or samples, we respectfully request acknowledgement of both this and the grants that supported EPAD.
+
+Please refer to the EPAD Policy document for Publications in the Supporting Media section. Further details are provided in this document, which outlines the policies for publication and publication credits for those who use EPAD data and/or samples.
+
+Get started here >
+
+## If you’re looking to collaborate, we’re here to help
+
+Get in touch

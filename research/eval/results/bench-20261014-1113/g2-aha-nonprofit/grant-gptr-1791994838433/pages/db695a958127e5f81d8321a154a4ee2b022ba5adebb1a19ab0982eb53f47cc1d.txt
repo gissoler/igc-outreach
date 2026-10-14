@@ -1,0 +1,110 @@
+AI for Alzheimer&#x27;s Research (2026) | Granted AI
+1,000+ Opportunities
+Find the right grant
+Search federal, foundation, and corporate grants with AI — or browse by agency, topic, and state.
+
+This listing may be outdated. Verify details at the official source before applying.
+Find similar grants
+
+Active OpenAI Foundation · 2026
+
+# AI for Alzheimer&#x27;s Research
+
+## Quick Facts
+Agency OpenAI Foundation
+Funding Not specified
+Deadline Check Source
+Status Active
+Eligibility Researchers and organizations involved in AI and Alzheimer&#x27;s disease research.
+See What AI Writes For You
+Save
+
+## About This Grant
+AI for Alzheimer&#x27;s Research is sponsored by OpenAI Foundation. The OpenAI Foundation is focused on applying AI to prevent and treat Alzheimer&#x27;s disease and related disorders. They are looking for innovative approaches that leverage AI to advance research in this area.
+
+View Original RFP
+
+Get a weekly digest of new grants like this
+A free weekly digest of new foundation and federal funding opportunities as they&#x27;re added to Granted. Unsubscribe anytime.
+
+Or search similar grants →
+
+## Opportunity Details
+Extracted from the opportunity page linked on this listing to help you evaluate fit faster.
+Researchers at the Institute for Protein Design reviewing a computationally generated protein structure prior to creating it for testing in the laboratory. Credit: ​​Ian Haydon. Why focus on Alzheimer’s?
+Alzheimer’s disease is one of the hardest unsolved problems in medicine, and one of the most devastating. It kills millions of people, places a huge burden on families, and still defies much of what medicine can do today. At the OpenAI Foundation, we want to change that by using advanced AI to accelerate the science of preventing and treating the disease.
+1 ⁠ As a first step, we are working to finalise more than $100 million in grants this month, across six research institutions, to support and accelerate Alzheimer’s research—generating new data, helping design new drugs, and expanding possible paths to treatment. These grants represent the beginning of our work; there is much more to do.
+We expect to make further Alzheimer’s grants throughout 2026 and beyond, to more scientists and research institutions, so that together we can finally prevent and treat Alzheimer’s disease. The OpenAI Foundation’s Alzheimer’s research initiative represents more than scientific progress. It’s hope for millions of people, families, and anyone concerned about brain health.
+We applaud bold investments that prioritize speed and rigor, because every day matters. We must accelerate breakthroughs that change what it means to live with, or be at risk for, Alzheimer’s. —Joanne Pike, PhD, President and CEO of the Alzheimer’s Association Why focus on Alzheimer’s?
+Our mission is to ensure AGI benefits all of humanity. Alzheimer’s is a huge problem, it is getting worse as populations age, and the complexity of the disease is a good fit for AI. Alzheimer’s affects not only the millions of people diagnosed with the disease, but their spouses, children, and other caregivers who support them.
+The disease places immense emotional and financial strain on families.
+Humanity has made progress over the last few decades against three of the four big killers—heart disease, infectious disease, and some cancers, reducing the risk of death at any given age: Age-standardised mortality rate per 100,000 people, globally, for three big killers ( IHME ) However, developing effective treatments for the fourth big killer—neurodegenerative diseases, like Alzheimer’s—has so far proved largely intractable, despite the efforts of humanity&#x27;s best scientists: Rate of Alzheimer&#x27;s disease and other dementias over time Age-standardised mortality rate, globally, for Alzheimer’s ( IHME ) That is because Alzheimer’s does not appear to be driven by a single cause, but by the interplay of genetic risk factors, protein misfolding, inflammation, synaptic dysfunction, and more—interacting with environmental factors over decades and all unfolding in the brain, an organ that’s hard to study and deliver drugs to.
+Traditional research approaches have struggled to make sense of this. AI is uniquely suited to confront this complexity.
+Its ability to reason across different types of data—including patient clinical symptoms, biological markers of disease, screens of drug candidates, and more—offers a fundamentally new way to understand how these factors interact, identify appropriate drug targets, and diagnose actionable risks decades earlier for patients. Our goal is to help scientists invent new tools to finally prevent and treat Alzheimer’s .
+Since that goal has been so difficult to achieve to date, we view it as a clear test of AI’s ability to change what is possible in human health. We aim to make a meaningful difference for people at risk of Alzheimer’s and their families. To start, we have initial hypotheses for how we can support the research ecosystem in a way that is complementary to existing efforts, and harnesses what is now possible with AI.
+Together, this generates a “five layer stack” of activities at leading research institutions: 1. Create a “causal map” of Alzheimer’s using AI, to validate targets for intervention . It now seems clear there are many drivers of Alzheimer’s, not one.
+That implies that we should map the full network of causal factors to pinpoint the most effective nodes for therapeutic intervention for different people. By collaborating with researchers at the frontier of AI in biology like Arc Institute ⁠ , we aim to understand how model brain “organoids” react to different combinations of genetic and environmental risk factors.
+Such large-scale experimental data can be used to train AI models that inform future experiments. With this hybrid engine, researchers can share their findings along the way for others to build on, and nominate mechanistically informed drug targets for further testing.
+Arc Institute Alzheimer&#x27;s Disease Initiative team members (from left to right: Lorena Saavedra, Nianzhen Li, Dave Burke, Tony Hua, Silvana Konermann, Dara Leto, Patrick Hsu, Megan van Overbeek, Kristen Seim). Credit: Raymond Rudolph. Alzheimer’s has resisted treatment in part because it is the quintessential complex disease.
+It’s the result of hundreds of genetic and environmental risk factors interacting across cell types over decades. At Arc, we’re building the experimental and computational technologies to actually map those interactions at scale. —Patrick Hsu, PhD, Arc Institute Co-Founder and Core Investigator We want to find perturbations that can click and drag a cell from a diseased state back into a healthy one.
+To do that, we run an active learning cycle: we systematically perturb human tissue models guided by patient data, measure what happens, and use the results to iteratively improve our AI models of Alzheimer’s disease. Each cycle gives us a sharper causal picture of where the disease pathways converge and where to intervene. —Silvana Konermann, PhD, Arc Institute Co-Founder and Executive Director 2.
+Design new drugs with the help of AI, and test them in the lab —with collaborators like the Institute for Protein Design ⁠ ⁠ , alongside leading neurologists and neuroscientists at Mass General Brigham Neuroscience Institute. Over 100 Alzheimer’s drugs have been tested in clinical trials since 2000, but almost all of them failed to work or had unwanted side effects.
+We believe molecules designed with the assistance of AI biology tools will have higher probabilities of success over time. But to determine whether that is true, researchers first must be able to validate their digital creations in cells, tissues, and animals. At the UW Medicine Institute for Protein Design we are committed to building collaborative pipelines focused on having the greatest positive impact on global wellbeing.
+Using our newest AI-driven protein design models, we have successfully engineered molecules that engage, modify, and degrade targets critical to Alzheimer&#x27;s disease progression. Expanding, refining, and sharing this toolkit with neuroscientists who can apply our designed proteins to predict and resolve neurodegeneration is one of our highest priorities.
+—David Baker, PhD, Nobel Laureate and Director of the Institute for Protein Design at the University of Washington 3. Support open datasets to predict drug activity, and chart the progression of disease with and without intervention . That includes the creation of new open datasets relevant to Alzheimer’s with nonprofits like the Focused Research Organisation EvE Bio ⁠ .
+It also includes supporting the expansion of existing longitudinal and epidemiological datasets, as well as opportunities to responsibly open up existing datasets collected by biotech companies that may benefit all researchers. Micro-dispensing compounds into assay-ready plates for quantitative high-throughput screening and profiling across targets. Credit: EvE Bio.
+4. Establish new biomarkers for disease, improving diagnosis and how clinical trials are run , with collaborators like UCSF. The approval of the first Alzheimer’s blood test last year ⁠ gives specialised doctors more tools to assess a patient’s condition, less invasively.
+Blood and other biomarkers also give researchers the ability to measure what effect drugs may have on disease progression in clinical trials, including as secondary measurements in trials primarily targeting a different disease (as shown in this recent trial ⁠ on cardiovascular disease).
+There are more opportunities to go further with modern proteomics and other sampling from patients, now that AI can make sense of more complex biological signals. Alzheimer’s remains one of the most urgent challenges in medicine, and progress depends on connecting scientific breakthroughs with the care of our patients.
+This collaboration enables us to connect world-leading efforts—from advances in protein design to deep clinical and biological insights here at UCSF—to better understand the disease and identify new pathways to treatment. With AI helping us integrate these insights and make sense of tremendous complexity, we have an opportunity to accelerate discoveries that could meaningfully change patients’ lives. —S.
+Andrew Josephson, MD, Professor and Chair of Neurology at UCSF and the UCSF Weill Institute for Neurosciences 5. Test off-patent treatments and use AI to make the best sense of anonymised patient data and experiences reported online.
+There are a number of interventions where there is suggestive evidence of an effect—for example, lithium orotate ⁠ and the off-patent shingles vaccine ⁠ —but where further high-quality evidence is needed and the private sector is not incentivised to pay for clinical trials.
+My hope is that the ability of physiological dose lithium orotate to reverse pathology and restore memory in Alzheimer’s disease mouse models will translate to the aging human population. Lithium is what powers our phones, laptops and electric vehicles. My guess is the brain might have utilized its unique electrochemistry before we did.
+—Bruce Yankner, MD, PhD, Professor of Genetics and Neurology at Harvard Medical School and Co-Director of the Harvard Glenn Center for Biology of Aging Research Iterative learning We will push forward on all five of these fronts at once, to complement other efforts in the research ecosystem.
+We expect to add to our existing approaches as we get further feedback from the research community, so that together we can figure out how to prevent and treat Alzheimer’s. By tackling Alzheimer’s head-on, we aim not only to help change the course of this disease, but also to build tools and knowledge that can accelerate progress against many others.
+In addition to academic articles, we are grateful readers of reports, longform articles, and blog posts on AI and science.
+While we do not agree with all the claims in these pieces, this includes this National Academies report ⁠ , this review article of the Alzheimer’s drug pipeline ⁠ , high level medical progress summaries like this piece on death rates from cardiovascular disease ⁠ , this Science blog post ⁠ on difficulties for AI making progress in medicine, and this clinical data idea from IFP ⁠ .
+We encourage you to publish analyses publicly, and email us a link if you think we may benefit from the perspective. 1 More precisely, our focus is on Alzheimer’s disease and related disorders—Alzheimer’s often occurs alongside other dementias. ⁠ Broadening the benefits of AI, starting with voice → AI forecasting for smallholder farmers → Paul Christiano joins OpenAI Foundation Board → Come build the OpenAI Foundation →
+
+## Eligibility Requirements
+Researchers and organizations involved in AI and Alzheimer&#x27;s disease research.
+
+## Frequently Asked Questions
+
+### Who can apply for AI for Alzheimer&#x27;s Research?
+According to the current listing, eligibility includes: Researchers and organizations involved in AI and Alzheimer&#x27;s disease research. Confirm the full requirements in the official notice before applying.
+
+### Who funds AI for Alzheimer&#x27;s Research?
+AI for Alzheimer&#x27;s Research is funded by OpenAI Foundation. Verify program details on the funder&#x27;s official page before applying.
+
+### How do I apply for AI for Alzheimer&#x27;s Research?
+Start from the official opportunity page linked in this listing — it carries the sponsor&#x27;s submission instructions.
+
+## Funder Profile
+
+Report an issue with this listing
+## Ready to start your proposal?
+Granted drafts, reviews, and strengthens your grant application — saving weeks of work. Professional members win a grant in 12 months or get a full refund.
+See What AI Writes For You
+Browse More Grants
+Backed by the Granted Guarantee
+
+## Related Grants
+OpenAI Foundation Discovered Active
+
+### OpenAI Foundation People-First AI Fund for Nonprofit AI Innovation
+
+The OpenAI Foundation People-First AI Fund is a $50 million initiative supporting U.S. nonprofits using AI to advance education, community innovation, economic opportunity, healthcare, and community resilience. Wave 1 distributed $40.5 million in unrestricted grants to 208 community-based nonprofits across the United States through an open call that received nearly 3,000 applications. Wave 2, totaling $9.5 million in board-directed grants, is slated for early 2026 and targets organizations already advancing scalable AI work in health, education, and community resilience. The fund prioritizes efforts that use AI in creative ways to expand access, improve programmatic and service delivery, build resilience, and advance community-led research. Example grantees include STEM From Dance (combining dance and AI learning for young girls of color) and digital literacy and workforce development programs.
+$50 million total fund. Wave 1 awarded $40.5 million to 208 nonprofits (average approximately $195,000 per grant). Wave 2 allocates $9.5 million in board-directed grants for early 2026. Deadline: Check Source
+
+## OpenAI Foundation Grant Writing Tips
+
+### The OpenAI Foundation Just Named 163 Grantees for $50M. Last Wave It Was 208 for $40.5M — and That Arithmetic Tells You Exactly Who the Fund Moved Toward.
+On October 1, 2026 the OpenAI Foundation announced the 2026 People-First AI Fund results: $50 million to 163 nonprofits from 1,669 applications, a 9.8% selection rate, across 35 states and DC. The average grant jumped from roughly $195,000 to roughly $307,000 — which means the fund climbed the budget band. Here is what the named grantees reveal about what won, and what the 15 missing states should do next cycle.
+Read article
+### A 3-Page Proposal, a 28-Day Window, and a 10% Indirect Cap: OpenAI&#x27;s $5M Teen Research Fund Closes October 6
+OpenAI is funding independent research on how generative AI affects 13-to-17-year-olds. Grants run to $1 million, overhead is capped at 10 percent, the proposal is three pages, and decisions land by November 13. The compressed timeline and the indirect-cost math are the two things that will decide who actually gets to apply.
+Read article
+### A $100 Million Bet That the Discovery Was Never the Problem: Inside the OpenAI Foundation&#x27;s Hepatitis C Initiative
+The OpenAI Foundation is putting $100 million behind Breakthroughs to Follow-Through, a Common Health Coalition initiative aiming to at least double hepatitis C cure rates in eight states and localities within two years. Alabama, Illinois, Louisiana and Massachusetts go first, money flows to local collaboratives and nonprofits, and the grants are deliberately not tied to any one AI vendor. Here is what makes an organization fundable under it.
+Read article

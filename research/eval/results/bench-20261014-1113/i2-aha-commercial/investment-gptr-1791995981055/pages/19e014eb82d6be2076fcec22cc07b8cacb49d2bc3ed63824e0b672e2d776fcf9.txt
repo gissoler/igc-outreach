@@ -1,0 +1,385 @@
+From Batch to Factory: Process Data and Ownership in AI… 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Skip to content 
+
+
+Home &rsaquo; Matchpoint Insights &rsaquo; P1066
+
+
+M&A ; AI and Synthetic Biology
+# From Batch to Factory: Process Data and Ownership in AI Biomanufacturing JVs
+A transaction framework for allocating process data, model improvements, manufacturing know-how and product rights across AI biomanufacturing joint ventures.
+Authored by Matchpoint Partners research team &middot; CK Adya
+
+
+
+
+
+
+
+
+Quick answer Joint-venture value follows auditable rights and evidence across laboratory development, scale-up, technology transfer, validation and commercial manufacturing.
+
+Abstract 
+AI-enabled biomanufacturing joint ventures often begin with an apparently simple exchange. One party contributes biological designs, laboratory data and models. Another contributes scale-up engineering, plant capacity, quality systems, regulatory experience and market access. The joint venture is expected to convert laboratory performance into reliable commercial output.
+Value disputes emerge when the parties have not defined who owns process data, model improvements, plant-derived know-how, failed-batch learning, foreground intellectual property, regulatory records and rights to use those assets outside the venture. This paper develops a Lab-to-Plant Joint Venture Framework for structuring and valuing AI biomanufacturing combinations.
+It maps the full evidence cycle from design and strain or cell-line development through scale-up, technology transfer, validation, commercial manufacturing and lifecycle improvement. It separates background assets, contributed rights, venture-created assets and retained rights. It then connects ownership to access, control, permitted use, confidentiality, improvement, publication, regulatory reliance, sublicensing, exit and post-termination rights.
+A wholly hypothetical case examines a joint venture combining an AI-enabled biological design platform with a regional manufacturing partner. The venture targets a USD 180 million commercial-scale facility and five product programmes. Management attributes USD 260 million of value to the combined platform, programme pipeline and manufacturing opportunity.
+Evidence review assigns USD 62 million to transferable laboratory technology and rights, USD 48 million to plant capability and committed capacity, and USD 57 million to risk-adjusted programme economics. It deducts USD 71 million of remaining capital and qualification cost, removes USD 24 million of overlap, and places USD 46 million behind scale-up, validation, regulatory and commercial milestones. The resulting base contribution reference is USD 118 million before buyer-specific or partner-specific synergies.
+Every figure is a hypothetical management assumption; it is not observed company data, a market forecast or a valuation opinion. The evidence base includes FDA guidance on advanced manufacturing technologies and data integrity, FDA publications on AI in drug manufacturing, ICH Q10 and Q12 lifecycle principles, NIST work on bioeconomy data and AI risk management, IFRS requirements for joint arrangements and intangible assets, WIPO intellectual-property sources and public disclosures describing biological engineering platforms and venture structures.
+The conclusion is that joint-venture economics should follow auditable rights and evidence. Laboratory data creates value when it transfers lawfully and remains interpretable. Plant data creates value when it improves validated process control and output. Shared AI creates value when model improvement can be attributed, governed and used under clearly allocated rights.
+
+JEL Classification: G32, G34, L65, L24, O31, O32, O34
+Keywords: biomanufacturing, joint venture, artificial intelligence, process data, technology transfer, intellectual property, scale-up, data governance, manufacturing economics, biotechnology
+
+
+This Matchpoint Insight presents the web edition of Matchpoint Partners' research. The supporting paper contains the full framework, structures, worked examples and source material.
+
+Register Before Download 
+
+Explore our M&A practice
+
+
+## 1. Define the joint-venture decision
+The decision is whether two or more parties should combine complementary assets in a jointly controlled vehicle to develop and manufacture biological products. The parties need to determine which assets enter the venture, which rights remain outside it, how future learning is allocated and how capital, risk and cash are shared.
+AI biomanufacturing can combine biological design, strain or cell-line engineering, fermentation or cell culture, purification, analytics, process control, digital twins and machine learning. Laboratory evidence may support a promising design. Commercial value requires reliable transfer into equipment, materials, operating ranges, quality systems and marketable output.
+The transaction team should define the product, process, territory, field of use and value chain covered by the venture. It should also identify decisions requiring joint consent. Ambiguous scope allows one party to claim that data or improvements fall inside the venture while another claims they belong to its retained platform.
+Table 1. Rights and value layers in an AI biomanufacturing joint venture
+Layer Typical contributor Primary evidence Core allocation question
+Biological design Technology party Sequence, strain, cell line or construct Which product and field rights enter the venture?
+Laboratory process Technology party Protocols, models and development data Can the venture and plant use and improve them?
+Scale-up process Manufacturing party or venture Engineering runs, parameters and deviations Who owns scale-dependent learning?
+Plant operation Manufacturing party or venture Batch, equipment, quality and cost data Who can reuse operating data across facilities?
+Product programme Venture Regulatory, customer and commercial records Which party controls development and receives cash?
+Shared AI Parties and venture Training data, features, models and outputs How are improvements attributed and licensed?
+
+Ownership, access and permitted use should be specified separately for each layer.
+
+## 2. Start with the operating model
+A joint venture can own and operate a plant, reserve capacity at a partner&#x27;s site, license technology into an existing facility or coordinate a network of contract manufacturers. Legal form should follow the operating model. Each structure creates different control, liability, capital and data consequences.
+An owned facility gives the venture direct access to operating data and workforce. It also requires capital, validation, permits, quality systems and working capital. A capacity model can reduce capital while leaving data and operational control with the manufacturing partner. A licence model can scale faster and increases dependence on audit, reporting and enforcement rights.
+The parties should map who employs staff, controls systems, releases batches, holds regulatory authorisations, procures materials, signs customers and bears failure cost. The rights schedule must be executable within that operating reality.
+
+## 3. Define the lab-to-plant evidence cycle
+The cycle begins with a biological objective and candidate design. Laboratory work tests function, yield and early process conditions. Scale-up introduces larger vessels, mixing, oxygen transfer, heat removal, shear, feeding, contamination control and downstream recovery. Technology transfer converts development knowledge into a controlled manufacturing process. Validation and continued verification establish reliable operation.
+AI can support design, experiment selection, anomaly detection, parameter optimisation, predictive maintenance and process control. Each use has a context, input, output, decision and owner. The model should not be treated as a single undifferentiated asset.
+The diligence team should follow representative programmes across the full cycle. It should trace raw inputs, data transformations, quality review, model versions, process decisions and resulting product attributes. A successful laboratory batch is one evidence state within a longer system.
+Figure 1. The lab-to-plant evidence cycle Value is created when data remains attributable, comparable and connected to a governed manufacturing decision.
+
+## 4. Build the asset register
+The asset register should identify biological materials, sequences, cell banks, protocols, assay methods, process models, source code, datasets, patents, trade secrets, equipment configurations, digital twins, quality records, regulatory submissions, supplier information and customer contracts. Each item should have an owner, contributor, location, legal basis and permitted use.
+Physical and digital assets are connected. A dataset can have limited value without the material, protocol, equipment context and metadata needed to interpret it. A strain can have limited value without process knowledge. A model can depend on software libraries, cloud environments and licensed data.
+The register should distinguish ownership from custody. Data stored in the venture&#x27;s system can remain subject to a contributor&#x27;s rights. Records held at a partner&#x27;s plant can be essential to the venture&#x27;s regulatory and commercial obligations.
+
+## 5. Separate background, contributed and foreground IP
+Background IP exists before the venture or is developed independently outside its scope. Contributed IP is the subset licensed or assigned to the venture. Foreground IP arises from venture activity. Improvements can modify background assets while also serving venture products.
+The agreement should define these categories by substance rather than date alone. A party can continue parallel research during the venture. A new model trained on venture data can contain both background code and foreground parameters. A process improvement can apply to the venture product and to unrelated products.
+Allocation options include venture ownership, contributor ownership with a venture licence, field-limited ownership, joint ownership or ownership by subject matter. Each option requires access, enforcement and exit provisions. Joint ownership can have different legal consequences across jurisdictions and should not be used as a substitute for clear commercial rights.
+
+## 6. Define data ownership as a bundle of rights
+The phrase data ownership can conceal several distinct rights. The parties should allocate the right to collect, access, copy, correct, combine, analyse, train models, create derivatives, disclose, publish, commercialise, retain and delete. They should identify the party responsible for quality, security and legal compliance.
+Raw sensor data, contextual metadata, derived features, model outputs and manufacturing decisions can follow different rules. A plant operator may retain equipment-wide data while granting the venture product-specific records. The venture may need perpetual access to complete its regulatory and customer obligations.
+Rights should survive system migration, change of control, plant closure and termination. A nominal right without practical export, schema, metadata and authentication can be unusable.
+Table 4. Minimum data-rights schedule for the joint venture
+Right Contract question Control evidence Exit treatment
+Access Who can inspect and retrieve the data? Roles, authentication and audit trail Export format and transition access
+Use Which product, field, territory and purpose are permitted? Licence and approved context Continuing and terminated uses
+Improve Can data train or validate a model or process? Dataset lineage and model register Rights in trained models and derivatives
+Disclose Which regulators, customers, lenders or researchers may receive it? Consent and disclosure log Surviving disclosure obligations
+Retain Which records must remain available and for how long? Retention schedule and legal hold Custodian, archive and retrieval service
+Delete Who can require deletion and what exceptions apply? Approved deletion and backup controls Certification and regulated-record exceptions
+
+Each right should be allocated for raw data, metadata, derived features, model outputs and regulated records.
+
+## 7. Preserve provenance and data integrity
+FDA&#x27;s data-integrity guidance states that CGMP data should be reliable and accurate and encourages risk-based controls based on process understanding and business models. The transaction implication is direct. A venture cannot create durable value from data whose origin, timing, authorship, transformation or review cannot be established.
+The diligence team should test attributable, legible, contemporaneous, original and accurate records, together with completeness, consistency, endurance and availability. Audit trails, access rights, time synchronisation, exception handling and backup should be reviewed across laboratory, historian, manufacturing execution, quality and analytics systems.
+Failed batches, aborted runs and out-of-specification results should remain visible. Selective retention can corrupt model training and weaken regulatory confidence. The agreement should prohibit unilateral deletion of venture-relevant records.
+
+## 8. Create a common data model
+Laboratory and plant systems often use different naming, units, sampling rates and identifiers. A common data model should connect biological material, batch, equipment, recipe, parameter, sample, analytical result, deviation, model and decision. Versioning should preserve changes in protocols, software and process definitions.
+NIST&#x27;s Data for the Bioeconomy programme emphasises research-data management, metadata standards, infrastructure, interoperability and end-to-end automation. These principles support joint-venture value because reusable data requires shared meaning.
+The venture should approve schemas, reference data, units, ontologies and data-quality rules. Each party should fund the mapping and validation needed to connect legacy systems. Interoperability work belongs in the investment plan rather than an assumed synergy.
+
+## 9. Allocate laboratory data
+Laboratory data can include design inputs, screening outcomes, expression, yield, activity, stability, metabolomics, proteomics and assay development. The technology party may seek to reuse it across its platform. The manufacturing party may need it for scale-up and process understanding. The venture needs it for its products.
+The allocation should account for customer, donor, material-transfer and third-party restrictions. Some data can be used for the venture product while training a general model is prohibited. De-identification does not automatically remove contractual restrictions or biological sensitivity.
+A practical schedule can distinguish product-specific data, platform-learning data and aggregated operational statistics. The parties should define whether and how venture data can improve a contributor&#x27;s general platform and what consideration or reciprocal licence follows.
+
+## 10. Allocate pilot and scale-up data
+Scale-up generates knowledge that does not exist in laboratory records. Mixing, oxygen transfer, heat, foam, shear, feed strategy, vessel geometry and downstream recovery can change performance. Pilot data can therefore become a central joint contribution.
+The parties should decide whether scale-up curves, engineering correlations, control strategies and failure analyses are product-specific or reusable manufacturing know-how. The answer can vary by element. Generic vessel-characterisation data may belong to the plant partner, while product-specific parameter interactions may belong to the venture.
+Access should be sufficient for technology transfer, regulatory support and alternative manufacturing. Exclusivity can protect investment and can create concentration risk. Step-in and second-source rights should activate under defined supply, quality or insolvency conditions.
+
+## 11. Allocate commercial plant data
+Commercial manufacturing produces batch records, sensor streams, alarms, deviations, maintenance, environmental monitoring, release results, yield, cycle time, energy, water, waste and cost data. This evidence supports product quality, plant improvement and commercial economics.
+The venture should receive the complete records required for quality, regulatory and customer obligations. Reuse of equipment-wide operational data can remain with the plant operator when product confidentiality is protected. Product-specific data, correlations and improvements require an agreed allocation.
+Cost data needs particular attention. Transfer pricing, tolling fees and yield guarantees are difficult to test without transparent consumption, labour, downtime and scrap records. The agreement should give audit rights and a common cost definition.
+
+## 12. Govern AI training and improvement
+An AI model can begin as one party&#x27;s background asset and improve through venture data. The parties need to define ownership of code, weights, features, prompts, evaluation sets, fine-tuned versions and derived models. They should also define permitted use of outputs.
+NIST&#x27;s AI Risk Management Framework organises work around govern, map, measure and manage. A venture can apply these functions to model context, accountability, testing, monitoring and response. FDA and EMA good-AI-practice principles add lifecycle, data-governance and human-accountability considerations for drug and biological product development.
+Improvement rights should follow contribution and commercial purpose. The technology party may retain general model improvements while the venture receives a perpetual field licence. Product-specific models can remain venture assets. The schedule should address retraining after termination.
+
+## 13. Define model context of use
+Each AI system should have a defined question, users, inputs, outputs, decision, limitations and monitoring plan. A model used to select laboratory experiments differs from one used to adjust a manufacturing parameter. Consequence and control requirements rise when an output directly affects product quality.
+FDA&#x27;s publications on AI in drug manufacturing identify topics including data management, model development, validation, maintenance and regulatory interaction. They are discussion materials and do not establish an approval for a target&#x27;s system. The venture should document its own context and evidence.
+Human review should be explicit. Operators and quality personnel need authority to challenge or override outputs. Overrides, alerts and model failures create valuable evidence and should enter the learning record.
+
+## 14. Map the IP and rights graph
+The IP graph should connect patents, trade secrets, licences, data rights, software, materials, models, process know-how, regulatory records and product rights. It should identify background ownership, venture access, field, territory, exclusivity, sublicensing, improvement and enforcement.
+Ginkgo Bioworks&#x27; public filing describes different allocations for Foundry IP, background improvements and programme technology across customer arrangements. It also describes venture models involving technology licences, equity and technical-development services. These disclosures illustrate the variety of structures; they do not determine an appropriate allocation for another venture.
+The graph should expose gaps where a cash flow depends on a right held outside the venture. It should also expose overlap where the same contributed asset is valued several times.
+Figure 2. Joint-venture IP and data-rights graph Economic value follows the rights that the venture can exercise through development, manufacturing and exit.
+
+## 15. Design technology transfer as a controlled process
+Technology transfer converts development knowledge into a process that another qualified team can execute. The transfer package should cover materials, methods, critical parameters, analytical procedures, equipment requirements, control strategy, training, deviations and acceptance criteria.
+ICH Q10 links pharmaceutical development, technology transfer and commercial manufacturing within a lifecycle quality system. It emphasises knowledge management, process performance, product quality and management review. ICH Q12 connects knowledge and change management across the supply chain.
+The joint venture should use a transfer protocol with responsibilities, records and success criteria. Transfer completion should be an evidence milestone, not a calendar date. Partial transfer should not trigger full value release.
+
+## 16. Define comparability and validation gates
+Changes in site, scale, equipment, raw materials or process can affect product quality. The parties should define the evidence needed to show that output remains comparable and the process is controlled. Requirements depend on product, stage and jurisdiction.
+Validation is broader than a small number of successful batches. It includes process design, qualification and continued verification within the applicable quality framework. Analytical methods and data systems also require appropriate control.
+Milestones should specify protocol, acceptance range, review authority and treatment of deviations. A result achieved after undocumented intervention can fail the contractual test even when the batch is released.
+
+## 17. Allocate regulatory records and reliance
+Regulatory submissions can contain contributed technology, venture data and plant records. The agreement should define who prepares, owns, submits, maintains and can reference each dossier. It should also address inspection, correspondence, commitments, variations and withdrawal.
+The venture may hold the marketing authorisation while relying on data controlled by a parent. A parent can hold the authorisation while the venture manufactures. Each structure creates continuity and exit risk. Cross-reference rights, letters of access and record-retention obligations should survive termination where necessary.
+Regulatory data exclusivity and patent rights are distinct. The transaction team should map both and avoid assuming that ownership of one grants the other.
+
+## 18. Build the process-performance model
+The economic model should connect biological performance to plant output. Key drivers can include titre or yield, batch success, cycle time, utilisation, recovery, quality release, raw-material use, energy, water, waste, labour and maintenance. The model should identify the constraint.
+AI can improve forecast or control performance. Economic attribution requires a baseline and measurement protocol. A model improvement that coincides with equipment maintenance or a new raw material should not receive the full benefit without analysis.
+The venture should reconcile engineering, quality and finance definitions. Yield measured at fermentation, purification or final release can produce different economics. Batch success should include deviations and rework under an agreed rule.
+
+## 19. Allocate capacity and supply risk
+Plant capacity can be contributed through ownership, lease, reservation or a tolling contract. The venture should define dedicated and shared capacity, scheduling priority, minimum volume, expansion, maintenance, shutdown and force-majeure treatment. A nominal allocation has limited value when another customer can displace it.
+Capacity value depends on qualification. A facility can have physical volume and lack the equipment, quality status, permits or trained staff required for the product. The model should separate available, qualified and commercially usable capacity.
+Supply resilience requires second-source and step-in planning. The technology party can seek transfer rights to another site. The manufacturing party can seek recovery of dedicated investment. Triggers should balance continuity with protection of know-how.
+
+## 20. Allocate capital and overrun exposure
+Biomanufacturing capital can include land, utilities, clean rooms, vessels, downstream equipment, laboratories, data systems, validation and working capital. The parties should define committed contributions, timing, cost basis, procurement authority and contingency.
+Overrun allocation should follow control and cause. Design change, scope expansion, inflation, delay, regulatory requirement and contractor failure can require different treatment. Automatic pro-rata funding can reward weak control or force a party to fund a change it did not approve.
+The venture should maintain a cost-to-complete model with committed, spent, forecast and contingent amounts. Funding gates can follow engineering maturity, permits, technology-transfer evidence and customer demand. Failure to fund should activate dilution, shareholder loans, suspension or exit under agreed rules.
+
+## 21. Design the governance system
+Joint control requires consent over relevant activities. The reserved-matters schedule should cover budget, product selection, plant changes, data use, IP licensing, model deployment, regulatory strategy, major contracts, capital calls, borrowing, distributions and exit.
+Operational committees can support science, manufacturing, quality, data and commercial decisions. Their authority should be clear. Quality responsibility cannot be diluted through committee ambiguity. Escalation should move from technical owners to executives and, where appropriate, independent review.
+Deadlock procedures should match the issue. Expert determination can resolve technical measurement. Mediation can resolve commercial disagreement. Buy-sell or dissolution mechanisms are severe and should account for regulatory continuity, employees, supply and IP rights.
+
+## 22. Value each contribution
+Contribution value should be assessed from the rights and economics available to the venture. Laboratory technology can be valued through incremental programme cash flow or relief from royalty where supportable. Plant assets can be valued through market, income or cost methods, adjusted for qualification and use. Services should follow contract economics.
+Historical spend does not establish fair value. Research expenditure can generate valuable learning or no transferable asset. Plant replacement cost can exceed economic value when demand, qualification or utilisation is limited.
+IFRS 11 distinguishes joint operations from joint ventures based on rights and obligations. IAS 28 addresses equity-method accounting for joint ventures. IAS 38 and IFRS 13 provide useful discipline for identifiable intangibles and market-participant value. Legal, accounting and valuation advice is required for the actual structure.
+
+## 23. Build the hypothetical contribution case
+Consider a wholly hypothetical venture between an AI biological-design company and a regional manufacturing group. The parties plan a USD 180 million facility and five product programmes. Management attributes USD 260 million of value to the combined opportunity before future plant investment.
+Evidence review assigns USD 62 million to transferable laboratory technology, data and field rights. It assigns USD 48 million to qualified plant capability, committed capacity and manufacturing know-how. Risk-adjusted programme economics contribute USD 57 million. These components produce USD 167 million before obligations and overlap.
+The model deducts USD 71 million for remaining construction, qualification, working capital and development. It removes USD 24 million because shared data and process capability support several components. It adds USD 46 million of contingent value available after defined evidence milestones, producing a USD 118 million base contribution reference and USD 46 million of staged upside. All values are illustrative assumptions.
+Table 2. Hypothetical joint-venture contribution bridge
+Component Management description Base reference Treatment
+Laboratory technology AI platform, biology and development data 62 Transferable field rights and evidence
+Manufacturing contribution Plant, quality system and committed capacity 48 Qualified and usable capability
+Product programmes Five programmes 57 Risk-adjusted retained economics
+Remaining capital and obligations Facility and programme completion (71) Cost to realise value
+Overlap adjustment Shared data, model and process capability (24) Removes duplicate benefit
+Base contribution reference Evidence-supported value 72 Value at formation
+Staged milestone value Scale-up, validation, regulatory and commercial 46 Released after evidence
+Total reference including staged value Base plus contingent 118 Excludes partner-specific synergy
+
+All amounts are illustrative management assumptions in USD millions.
+
+## 24. Remove overlap across the stack
+The same process knowledge can appear in technology value, plant value and programme value. A laboratory model can support programme forecasts. Scale-up know-how can increase plant utilisation and product probability. A dataset can improve the shared AI and the contributor&#x27;s retained platform.
+The valuation team should build a dependency matrix. Each component is tested against the data, IP, people, equipment, capital and decisions required. Shared costs should be allocated. A benefit should be counted where its cash flow is realised.
+When separation is too artificial, a consolidated venture cash-flow model can serve as the primary method. Contribution analyses then inform ownership, royalties and contingent consideration without being mechanically additive.
+
+## 25. Design milestone economics
+Milestones should release value as uncertainty resolves. Formation can recognise transferred rights, available people and committed capacity. Scale-up milestones can follow successful pilot output. Transfer milestones can follow an accepted package and receiving-site execution. Validation, regulatory and commercial milestones can follow later evidence.
+Each trigger should specify protocol, threshold, reviewer, timing, cure and dispute treatment. A milestone based on management satisfaction is difficult to price. A milestone based on a defined yield at stated quality and scale is more auditable.
+The parties should identify who controls achievement. A technology contributor should not lose contingent value because the manufacturing partner delays a run. A plant partner should not guarantee biology outside its control. Operating covenants and dependencies should accompany the payment schedule.
+Figure 3. Evidence-linked joint-venture milestone ladder Contribution value is released as scale, quality, rights and commercial evidence are completed.
+
+## 26. Set transfer pricing and service terms
+Parents can supply R&D, management, manufacturing, procurement, digital infrastructure and market access to the venture. Service agreements should define scope, cost base, margin, service level, audit, change and termination. Equity ownership does not make related-party services self-pricing.
+Technology royalties, tolling fees and data-access fees should be tested together. A low manufacturing margin can be offset by an IP royalty. A high service fee can transfer value away from minority shareholders. The board needs a complete economic bridge.
+Tax and transfer-pricing requirements vary by jurisdiction. The arrangement should be documented and updated as functions, assets and risks change. Commercial governance should prevent unilateral changes to related-party charges.
+
+## 27. Protect confidential information and cybersecurity
+Biological designs, process recipes, model weights, plant configurations and customer data can be highly sensitive. Access should follow role, purpose and system. The venture should define secure collaboration environments, export controls, incident response, audit and third-party access.
+Operational technology and laboratory systems create safety and continuity concerns in addition to confidentiality. Network segmentation, identity, patching, backup and recovery should cover the full data path. Remote vendor access should be controlled and logged.
+An incident can affect both parents and the venture. The agreement should define notification, investigation, remediation, regulator and customer communication, cost and liability. Evidence preservation is essential.
+
+## 28. Plan for publication and scientific communication
+Scientific publication can support recruitment, credibility and ecosystem development. It can also disclose patentable or confidential information. The venture should use a review process with clear timing, redaction and filing rights.
+The parties should distinguish public scientific results from customer and plant information. Academic collaborators and grant terms can create additional publication obligations. Delayed review should not become a permanent veto unless the commercial reason is explicit.
+Model transparency should match the audience and consequence. Regulatory and quality reviewers may need deeper evidence than a public paper. The communications policy should preserve accurate claims and avoid treating a demonstration as validated commercial capability.
+
+## 29. Define change-of-control rights
+A parent can be acquired by a competitor, supplier or customer. The agreement should address assignment, access, board rights, confidentiality, licensing and termination after change of control. Automatic termination can destroy venture value and supply continuity.
+Competitor controls can be managed through information barriers, limited governance access or buyout options. A change of control can also provide a strategic opportunity to expand capital or market access. The mechanism should preserve objective value.
+Licences essential to production should remain enforceable through a permitted change or activate a transition period. Lenders and investors will test these continuity rights when financing the venture.
+
+## 30. Design exit and post-termination rights
+Exit planning should begin at formation. Options include sale, listing, parent buyout, asset sale, dissolution or continuation by one party. The agreement should address valuation, transfer restrictions, pre-emption, drag, tag, deadlock and insolvency.
+Data and IP require a separation schedule. The venture may retain product records while parents recover background assets. Foreground improvements can be licensed back by field. Regulatory, customer and quality records may need long retention. Models trained on mixed data require an agreed treatment.
+Transitional services should cover systems, plant, staff, supply and regulatory support. A venture that cannot separate has weaker financing and exit value. Cost and timing should be modelled before the parties commit.
+
+## 31. Establish the board dashboard
+The board dashboard should connect technical performance, data rights, quality, capital and cash. Development measures can include design-to-result time, successful transfer, scale-up conversion and process capability. Plant measures can include batch success, yield, release time, utilisation, deviations, cost, energy, water and waste.
+Data and AI measures can include completeness, provenance exceptions, schema conformance, model performance, overrides, drift, access incidents and unresolved rights. Commercial measures can include contracted volume, price, margin, working capital and collected cash.
+Each metric needs a definition, owner, denominator and decision. Aggregate experiment or batch counts can hide failure and rework. The board should see trends and evidence gaps.
+Table 3. Joint-venture board control system
+Domain Core measure Evidence owner Board decision
+Development Transfer success, scale conversion and evidence gap Programme lead Advance, redesign or stop
+Manufacturing Batch success, yield, release, cost and capacity Plant and quality Invest, schedule or remediate
+Data and AI Provenance, rights, performance, drift and incidents Data and model owner Permit, restrict or validate use
+Capital Cost to complete, contingency and funding CFO and project office Fund, rephase or resize
+Commercial Volume, price, margin, cash and concentration Commercial lead Contract, expand or renegotiate
+Rights Licence, consent, patent and change status Legal and IP lead Protect, license or enforce
+
+Measures connect operating evidence to governance and capital decisions.
+
+## 32. Run the first 100 days
+The first 100 days should establish control without interrupting science or supply. Priorities include asset and rights confirmation, access, quality roles, data preservation, transfer planning, capital baseline, partner communications and critical hiring.
+The venture should select representative programmes and test end-to-end traceability. It should resolve missing consents, undocumented code, incompatible schemas and ambiguous improvements early. The board should approve a single rights register and cost-to-complete model.
+System consolidation should follow validation. Moving laboratory or plant data before definitions and controls are agreed can break provenance. Parallel operation and reconciliation can preserve continuity.
+
+## 33. Recognise limitations
+Biomanufacturing spans pharmaceuticals, food, chemicals, materials, agriculture and other uses with different regulatory, safety and commercial conditions. The appropriate quality and data controls depend on the product and jurisdiction. This framework does not validate a particular venture, process, model or facility.
+Public-company filings illustrate business models and contractual approaches. They are management disclosures and do not independently validate performance or value. Regulatory and standards materials can change. Current requirements should be confirmed for the actual product and site.
+Hypothetical values demonstrate allocation and valuation mechanics. A real transaction requires asset-specific evidence, rights, contracts, engineering, capital, tax, accounting and market assumptions.
+
+## 34. Price utilities and environmental intensity
+Biomanufacturing economics can depend on steam, electricity, cooling, water, gases, effluent treatment and waste handling. The venture should measure consumption by product, batch and process stage where feasible. Site averages can obscure a constraint or cost that affects one programme disproportionately.
+Utility data can also improve process models and capacity planning. Ownership and access should therefore be addressed alongside biological and quality data. A plant partner can retain facility-wide infrastructure information while giving the venture sufficient product-level evidence to verify cost, sustainability claims and expansion needs.
+Pricing mechanisms should define pass-through, efficiency benefit and capital recovery. A party that funds a water-recovery or energy project may seek a preferred return. The venture should retain evidence needed for customer, lender and regulatory reporting.
+
+## 35. Allocate liability and insurance
+Failed batches, contamination, product defects, cyber incidents, regulatory action and supply interruption can create losses beyond the venture&#x27;s equity. Liability allocation should follow control, breach, negligence, product responsibility and agreed risk caps. Indemnities require procedures for notice, defence, mitigation and recovery.
+Insurance can include property, business interruption, product liability, clinical risk, cyber, environmental and directors&#x27; cover. Availability and exclusions should be tested before financial close. Insurance proceeds should not be assumed to cover every technology or quality failure.
+The economic model should include deductibles, uninsured exposure and recovery timing. A liability cap can transfer risk back to the venture even when a parent controls the relevant activity. Governance and pricing should reflect that allocation.
+
+## 36. Test demand before locking capital
+A technically feasible process does not establish demand at a price that supports plant investment. The venture should identify customer, product, volume, specification, approval pathway and contracting status. Letters of interest and forecasts should remain separate from binding offtake.
+Capacity can be staged through pilot, demonstration, modular expansion or contract manufacturing. The financing plan should align irreversible capital with evidence. Dedicated equipment can reduce flexibility and improve control when demand is credible. Flexible equipment can support several programmes and can require more changeover and validation.
+The board should review utilisation by qualified demand, rather than theoretical vessel volume. Product delays, customer concentration and price pressure should appear in downside cases.
+
+## 37. Structure financing around evidence
+The venture can use parent equity, shareholder loans, project debt, equipment finance, grants, customer prepayments or strategic investment. Each source has different security, covenant and control implications. Lenders will test technology transfer, contracts, cost to complete, permits, insurance and step-in rights.
+Debt service should follow cash available after operating and maintenance needs. Programme milestones can be volatile and should not support fixed debt without adequate protection. Construction facilities can convert after completion and qualification under defined conditions.
+Data and IP licences essential to operation should be financeable. Cure, assignment and continuity rights can determine whether a lender recognises collateral value. Parent termination rights should be compatible with financing documents.
+
+## 38. Translate diligence into the transaction documents
+Every material diligence finding should have a contractual or valuation response. A missing data right can require consent or exclusion. An unproven scale claim can become a milestone. A capacity constraint can change the capital plan. A quality-system gap can become a closing condition, covenant or escrow.
+The principal documents should work as one system: shareholders agreement, contribution agreement, IP and data licence, technical-development agreement, manufacturing and supply agreement, services agreement, funding documents and exit schedule. Definitions should be consistent across them.
+The investment committee should receive a bridge from management claims to base value, staged value, remaining capital and risk allocation. This record makes the bid and ownership decision auditable.
+
+## 39. Conclude with rights that survive scale
+A laboratory result becomes commercial value through a controlled chain of scale-up, transfer, validation, manufacture and sale. The parties should allocate the data and rights created at every stage. Ownership language alone is insufficient; access, permitted use, improvement, regulatory reliance, exit and survival determine economic control.
+AI can improve experiment selection, process understanding and plant decisions. Its value depends on lawful data, defined context, measured performance and accountable use. The model, laboratory and factory form one evidence system.
+A durable joint venture gives each contributor a fair return for transferred assets and future work. It also protects the venture&#x27;s ability to operate, finance, improve and exit. Value follows the rights and evidence that remain usable from batch to factory.
+Figure 4. Hypothetical base and contingent contribution value Values are illustrative management assumptions in USD millions.
+
+## References
+U.S. Food and Drug Administration. Advanced Manufacturing Technologies Designation Program. Final Guidance, December 2024. https://www.fda.gov/regulatory-information/search-fda-guidance-documents/advanced-manufacturing-technologies-designation-program
+U.S. Food and Drug Administration. Artificial Intelligence for Drug Development. https://www.fda.gov/about-fda/center-drug-evaluation-and-research-cder/artificial-intelligence-drug-development
+U.S. Food and Drug Administration. Artificial Intelligence in Drug Manufacturing. March 2023. https://www.fda.gov/media/165743/download
+U.S. Food and Drug Administration. Data Integrity and Compliance With Drug CGMP: Questions and Answers. December 2018. https://www.fda.gov/regulatory-information/search-fda-guidance-documents/data-integrity-and-compliance-drug-cgmp-questions-and-answers
+U.S. Food and Drug Administration. CDER Framework for Regulatory Advanced Manufacturing Evaluation Initiative. https://www.fda.gov/about-fda/center-drug-evaluation-and-research-cder/cders-framework-regulatory-advanced-manufacturing-evaluation-frame-initiative
+U.S. Food and Drug Administration and European Medicines Agency. Guiding Principles of Good AI Practice in Drug Development. https://www.fda.gov/about-fda/artificial-intelligence-drug-development/guiding-principles-good-ai-practice-drug-development
+International Council for Harmonisation. ICH Q10 Pharmaceutical Quality System. https://database.ich.org/sites/default/files/Q10_Guideline.pdf
+International Council for Harmonisation. ICH Q12 Technical and Regulatory Considerations for Pharmaceutical Product Lifecycle Management. https://database.ich.org/sites/default/files/Q12_Guideline_Step4_2019_1119.pdf
+International Council for Harmonisation. Quality Guidelines. https://admin.ich.org/page/quality-guidelines
+National Institute of Standards and Technology. Data for the Bioeconomy. https://www.nist.gov/mml/bbd/standards-bioeconomy/data-bioeconomy
+National Institute of Standards and Technology. Artificial Intelligence Risk Management Framework. https://www.nist.gov/itl/ai-risk-management-framework
+NIST AI Resource Center. AI Risk Management Framework resources. https://airc.nist.gov/
+IFRS Foundation. IFRS 11 Joint Arrangements. https://www.ifrs.org/issued-standards/list-of-standards/ifrs-11-joint-arrangements/
+IFRS Foundation. IAS 28 Investments in Associates and Joint Ventures. https://www.ifrs.org/issued-standards/list-of-standards/ias-28-investments-in-associates-and-joint-ventures/
+IFRS Foundation. IAS 38 Intangible Assets. https://www.ifrs.org/issued-standards/list-of-standards/ias-38-intangible-assets/
+IFRS Foundation. IFRS 13 Fair Value Measurement. https://www.ifrs.org/issued-standards/list-of-standards/ifrs-13-fair-value-measurement/
+Ginkgo Bioworks Holdings, Inc. Annual Report for the year ended 31 December 2025. U.S. Securities and Exchange Commission. https://www.sec.gov/Archives/edgar/data/1830214/000162828026012346/dna-20251231.htm
+Ginkgo Bioworks Holdings, Inc. Annual Report for the year ended 31 December 2024. U.S. Securities and Exchange Commission. https://www.sec.gov/Archives/edgar/data/1830214/000162828025007819/dna-20241231.htm
+Ginkgo Bioworks, Inc. and Amyris, Inc. Partnership Agreement. U.S. Securities and Exchange Commission. https://www.sec.gov/Archives/edgar/data/1365916/000117184318002791/exh_1050.htm
+World Intellectual Property Organization. Patenting Healthcare-related Inventions. https://www.wipo.int/web-publications-preview/patenting-healthcare-related-inventions/en/introduction.html
+World Intellectual Property Organization. World Intellectual Property Report 2026. https://www.wipo.int/web-publications/world-intellectual-property-report-2026/en/executive-summary.html
+
+## About the Author
+Chennakeshav (CK) is a corporate finance and investment banking executive with 25+ years of global experience in deal origination, structuring and execution across M&A, growth capital and corporate strategy. He has led value-creation mandates for founders, corporates and funds — bridging the boardroom view to hands-on execution and close.
+His career spans Morgan Stanley, HSBC, Lloyds Banking Group, EWEC, ADQ portfolio companies and Emirates Growth Fund, across TMT, real estate, fintech, deeptech, cleantech, infrastructure and energy. He has partnered with C-suite leaders, private equity and venture funds, sovereign wealth funds and family offices to finance complex fund raises and scale-up ventures, and has led M&A due diligence, post-merger integration and business-transformation initiatives to create value.
+At Matchpoint Partners he is Managing Partner, leading the firm&#x27;s corporate finance, M&A and capital-raising practice. He holds an MBA from London Business School, an engineering degree from VTU and a Master of Laws (LLM, in progress) from UCL London.
+An active start-up mentor, CK mentors at Techstars, DIFC FinTech Hive, Startup Grind, Founder Institute and IN5, serves as Entrepreneur Mentor in Residence (EMiR) at London Business School, and judges the Entrepreneurship World Cup.
+https://www.linkedin.com/in/ckadya/
+https://www.matchpoint-partners.com/team/ck-adya.html
+This paper is part of a continuing series on the structure of private and alternative markets. The views expressed are the author&#x27;s own. The paper is for information only, describes market structure in general terms, and does not constitute investment, legal, tax or regulatory advice or a recommendation in respect of any security, vehicle or counterparty.
+
+Continue reading
+## Related Matchpoint Insights
+
+M&A ; AI and Synthetic Biology The Lab Cycle as Moat: Pricing Speed in AI-Synthetic Biology M&A
+An acquisition framework for converting laboratory speed into reproducible evidence, protected learning, progr…
+Read &rarr;
+M&A ; AI and Synthetic Biology A Platform, a Pipeline, or a Service? Valuing Protein-Design Companies
+A valuation framework for separating repeatable platform economics, contracted discovery cash flows and risk-a…
+Read &rarr;
+Real Estate · Liquidity Bulk Inventory Monetisation: Turning Completed and Near-Completion Units into Developer Liquidity
+Turning completed and near-completion units into developer liquidity through structured bulk-inventory monetis…
+Read &rarr;
+
+
+Questions, answered
+## From Batch to Factory: frequently asked questions
+
+
+Who should own process data in an AI biomanufacturing joint venture? The agreement should allocate rights by data type and purpose. The venture needs complete product and regulatory records; contributors may retain defined rights in platform learning or equipment-wide operating data.
+
+What is the difference between background and foreground IP? Background IP exists before or outside the venture. Foreground IP arises from venture activity. Improvements that combine both require an explicit ownership and licensing rule.
+
+Can a parent train its general AI model on joint-venture data? Only when the relevant data, confidentiality, customer, material and regulatory rights permit that use. The agreement should define permitted training, derived models and reciprocal venture rights.
+
+How should scale-up learning be valued? Value scale-up learning through its incremental effect on probability, yield, cost, time, qualified capacity and programme cash flow, with overlap removed.
+
+Which milestones are suitable for contribution value? Use objective evidence gates such as accepted pilot performance, completed technology transfer, qualified process performance, regulatory reliance and released commercial output.
+
+What should happen to data and models when the venture ends? The exit schedule should define export, retention, deletion, regulatory access, background return, foreground licences, trained-model treatment, transitional services and survival periods.
+
+This publication is general information for professional audiences. It is not investment, legal or tax advice, and it is not an offer or solicitation. Readers should verify current legal, regulatory and tax requirements with qualified advisers.
+
+
+
+## Apply this insight to a live decision
+Discuss the financing, capital allocation or transaction implications with a Matchpoint partner.
+
+Talk to a partner WhatsApp us
+
+
+
+
+
+Contact Us 
+LinkedIn 
+WhatsApp us 
+
+
+&copy; 2026 Matchpoint Partners. All rights reserved. Privacy &middot; Cookies &middot; GDPR &middot; Diversity UAE &middot; KSA &middot; India &middot; UK

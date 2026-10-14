@@ -1,0 +1,436 @@
+Drug Discovery and Delivery Startups funded by Y Combinator (YC) 2026 | Y Combinator
+
+# Drug Discovery and Delivery Startups funded by Y Combinator (YC) 2026
+October 2026
+Browse 56 of the top Drug Discovery and Delivery startups funded by Y Combinator.
+We also have a Startup Directory where you can search through over 5,000 companies .
+
+TareBio S2026
+
+ •  Active  •  1 employees  •  San Francisco Our platform develops personalized or population-level vaccines for any disease in weeks by changing only one input: the immune imprint. Instead of trying to predict which antigens might work, we read out immune cells already fighting the disease in the body and reverse-engineer antigens that activate them. We&#x27;ve already run our platform end-to-end and created a vaccine that cured cancer in mice.
+vaccines
+synthetic-biology
+biotechnology
+
+Gamgee S2026
+
+ •  Active  •  2 employees  •  San Francisco ​Gamgee began with Rosie, founder Paul Conyngham’s dog. After surgery, chemotherapy and immunotherapy failed, Rosie was given months to live. Paul used AI and genomic analysis to identify targets in her tumour, then worked with scientists at UNSW to produce what is believed to be the first fully computationally designed mRNA cancer vaccine delivered to a dog. Following treatment, several tumours shrank significantly and her quality of life improved
+
+Gamgee is building an end to end platform for personalised mRNA cancer vaccines for dogs. We sequence a dog’s tumour and healthy DNA, identify mutations unique to its cancer, and design a vaccine that teaches the immune system what to attack. We manage the entire process- from vet intake and tissue collection through genomic analysis, vaccine production, treatment and response monitoring
+
+​We are now turning that one off effort into a repeatable clinical system. Gamgee is running clinical trials in Australia, working with vets, oncologists and specialised laboratories, and accepting cases globally. Our goal is to make personalised cancer treatment accessible to every dog that needs it- and use each case to improve the treatment for the next
+genomics
+oncology
+biotech
+ai
+
+Atlas Discovery S2026
+
+ •  Active  •  3 employees  •  San Francisco
+ai-powered-drug-discovery
+biotechnology
+drug-discovery
+
+AbInitio Bio P2026
+
+ •  Active  •  2 employees  •  Boston Abinitio Bio builds foundation models for biomanufacturing, validated against wet lab data. Our first model, Echo, predicts manufacturing outcomes more accurately than standard models, and any pharma or CDMO can adapt it to their own workflow instantly. By making process decisions that take 6-18 months today in hours, we help teams avoid the cost of delay on a single program.
+
+CellType W2026
+
+ •  Active  •  5 employees  •  New York City CellType is building an agentic drug company. AI agents that run the full drug discovery pipeline on top of biological foundation models that simulate human biology. Our core technology, developed with Google DeepMind, has already discovered and validated a new cancer treatment signal. We’re working with Top 10 pharma.
+
+Ditto Biosciences W2026
+
+ •  Active  •  4 employees  •  San Francisco Ditto Bio discovers drugs for autoimmune diseases by harnessing parasite biology. Viruses, ticks, and worms have experimented over millions of years to create proteins that control the human immune system. We use AI to identify these proteins and engineer them into next-generation autoimmune therapies.
+
+Our team is three PhD scientists from UCSF, UCSD, and UC Berkeley who have worked together for 3+ years in biotech. We have deep expertise in parasite biology, computational biology, and software for AI-based protein structure prediction
+
+Origin W2026
+
+ •  Active  •  8 employees  •  San Francisco We produce patient-derived cancer datasets for licensing to pharmaceutical and AI companies. Our data comprises matched spatial transcriptomics, H&E and clinical labels. We operate our own laboratory, where samples are processed. Samples are sourced from leading biobank / hospital networks.
+
+As R&D workflows increasingly rely on frontier AI systems, we believe there is critical need for real world datapoints so that findings translate in the clinic.
+biotech
+ai-powered-drug-discovery
+artificial-intelligence
+
+Strand AI W2026
+
+ •  Active  •  2 employees  •  San Francisco Strand AI develops foundation models to generate missing bio-data about patients. With this imputed data, pharmaceutical companies can select better patients for their drug trials and shave months from their drug launch timelines. We’ve already trained a multimodal foundation model that integrates spatial biology modalities, beating SOTA at a fraction of the cost.
+
+Exonic F2025
+
+ •  Active  •  3 employees  •  San Francisco We program DNA sequences to be context-aware, unlocking new kinds of genetic therapies.
+
+Algen Biotechnologies W2020
+
+ •  Active  •  15 employees  •  San Francisco Algen is using CRISPR to uncover disease-driving RNA messages to find treatments for cancer, inflammation and diseases with high unmet needs. We are harnessing the power of CRISPR and machine learning to find first-in-class drugs that modulate RNA messages at single-cell resolution. Algen&#x27;s founders are bioengineer from Jennifer Doudna Lab and biotech commercialization expert, teamed up with experienced pharmaceutical executives.
+crispr
+biotech
+therapeutics
+ai
+drug-discovery
+
+b12 Labs S2025
+
+ •  Active  •  3 employees  •  San Francisco b12 makes high-value molecules that are otherwise hard to make. We help pharma companies plan and make new drugs, accelerating early-stage drug discovery from years to months.
+
+Andres built the first AI agent that can autonomously think and make molecules in a robotic lab, published in Nature Machine Intelligence (1000+ citations), and won the best paper award at the NeurIPS AI for Science conference.
+Zlatko is a 3x National Chemistry Olympiad champion, competed at IChO level, and medicinal chemist who has worked at Roche and leading lab robotics companies. 
+
+Combined, we have an extensive network of hundreds of chemists, automation scientists, and AI 4 Science researchers.
+
+We run paid pilots with big pharma companies, demonstrating that our platform planned a set of experiments that achieved full conversion in a single attempt, eliminating the iteration cycle.
+ai-powered-drug-discovery
+robotics
+
+Convexia S2025
+
+ •  Active  •  4 employees  •  San Francisco An AI-maximalist pharma platform. We use agents to buy drugs, run clinical trials, and sell for a profit. 10x faster and 20x leaner than incumbents.
+
+Sourcing Agent: Mines public/private databases and unstructured global data to surface overlooked preclinical candidates.
+Scientific Agent: Runs comp bio models (ESM-3, RFdiffusion, Boltz-2, AlphaFold) to assess safety and efficacy in silico.
+Commercial Agent: Analyzes FDA incentives, pricing dynamics, TAM, competitive landscape, and payer alignment.
+Clinical Agent: Runs digital twin simulations, evaluates CRO/CMC risk, and builds trial plans to Phase 1.
+PoS Agent: Evaluates the most critical factors that impact the likelihood of clinical trial success. 
+
+Built by 2 Stanford CS students who have built 3 startups together before.
+biotech
+ai-powered-drug-discovery
+drug-delivery
+
+General Proximity W2020
+
+ •  Active  •  15 employees  •  San Francisco
+biotech
+drug-discovery
+
+Biocartesian S2024
+
+ •  Active  •  2 employees  •  Philadelphia, PA, USA Finding new cures requires seeing what and where the abnormal molecules are in a diseased tissue, but current tools see less than 1% of those molecules. Biocartesian combines microscopy and new chemistries to see 50X more, offering unprecedented insights into disease biology and new therapies.
+drug-discovery
+biotech
+b2b
+hard-tech
+diagnostics
+
+Ångström AI S2024
+
+ •  Active  •  5 employees  •  San Francisco Angstrom AI builds GenAI-based molecular simulations to substitute wet lab experiments in the pre-clinical drug development pipeline. We are a team of 2 PhD&#x27;s and 2 Professors from the University of Cambridge who decided to start a company together after we realised how to combine breakthoughs in our research in quantum-accurate models of physics and generative AI models.
+
+Our Biotech/Pharma clients can verify the efficacy and safety of new drug candidates using our computer simulations, which match the accuracy of wet lab experiments, but are over 100x faster. We achieve this accuracy by constraining our genAI-based simulations to obey the laws of physics, avoiding the hallucinations seen in other GenAI technologies.
+
+Since joining YC, Angstrom AI has developed the first physically accurate gen-AI based simulation of multiple molecules interacting. We have published the first molecule water solubility results with accuracy within the error range of wet lab experiments. We have also kicked-off a 150K pilot project with a pharma company to apply our tech to estimating solubility in their drug development pipeline.
+ai-powered-drug-discovery
+drug-discovery
+biotech
+artificial-intelligence
+ai
+
+Olio Labs S2023
+
+ •  Active  •  5 employees Olio labs uses AI to develop combination therapeutics that consider the thousands of interacting proteins in your body rather than targeting just one or two. Their lead combinations target obesity and are more effective with fewer side effects than Ozempic, the fastest growing drug of all time. Their custom ML built from real-world expertise and cutting edge AI searches trillions of combinations to find the perfect one.
+
+Nanograb S2023
+
+ •  Active  •  5 employees  •  London Nanograb is a computational drug discovery company that uses AI to create novel targeted non-viral gene therapy vectors. Our platform designs unique combinations of small peptide binders attached to nanoparticles to safely deliver genetic medicines to specific cells and tissues in the body at scale.
+ai-powered-drug-discovery
+drug-delivery
+therapeutics
+nanomedicine
+biotech
+
+Invitris W2023
+
+ •  Active  •  6 employees  •  Munich, Germany Invitris radically simplifies how we create novel biological drugs. Our patent-pending technology platform turns DNA into synthetic proteins and was recently featured in the Science magazine. It makes creating new drugs >10,000x more efficient at <100x lower costs of material.
+
+Our killer application is enabling the newest generation of synthetic bacteriophages to combat antibiotic-resistant infections, which are threatening to cause more deaths than all cancers combined.
+biotech
+nanotechnology
+drug-discovery
+
+Novelcare W2023
+
+ •  Active  •  5 employees  •  New York City Novelcare addresses the primary bottleneck in drug development: recruiting patients into clinical trials.
+
+We analyze electronic health records to help doctors find clinical trials for their patients, and to help trial sites find patients for their studies. 72% of doctors want to inform their patients of clinical trials, but only 5% do. We&#x27;re on a mission to close that gap, ultimately bringing safer, more effective drugs to the patients who need them.
+healthcare
+health-tech
+enterprise-software
+b2b
+ai
+
+Miracle W2023
+
+ •  Active  •  7 employees  •  San Francisco Miracle is the control room for clinical trials. Our platform consolidates data from multiple trial systems into real-time dashboards, delivering automated insights that empower clinical-stage biopharmaceutical companies to streamline operations, reduce manual workflows, and accelerate data-driven decision-making. By transforming complex trial data into actionable insights, Miracle helps biopharma teams speed up clinical trials, and ultimately, improve patient outcomes.
+b2b
+biotech
+healthcare
+saas
+
+Adventris Pharmaceuticals W2023
+
+ •  Active  •  7 employees  •  Baltimore, MD, USA Adventris makes cancer vaccines. Our platform solves the problem of targeting poorly immunogenic oncogenes. Our first "off-the-shelf" vaccine targets KRAS, the most common cancer oncogene. In the long run, we envision a world where every adult receives our pan-cancer vaccines annually – preventing the majority of cancer deaths.
+
+If you are interested in learning more about our approach to treat and prevent cancer, please reach out to us at contact@adventris.com
+therapeutics
+healthcare
+biotech
+drug-discovery
+oncology
+
+Diffuse Bio W2023
+
+ •  Active  •  10 employees  •  San Francisco Diffuse is building generative AI for protein design. Our mission is to build AI systems that engineer new and useful proteins with unprecedented control and accuracy. Our team has been behind breakthroughs in AI protein design for the past 7 years, including the first experimental validation of AI-generated proteins and diffusion models for protein structure and sequence.
+ai-powered-drug-discovery
+machine-learning
+deep-learning
+biotech
+generative-ai
+
+Persist AI W2023
+
+ •  Active  •  6 employees  •  Sacramento, CA, USA It takes 5 years for pharma to develop long lasting drug injections for chronic diseases like cancer and diabetes. Persist uses AI-driven automation to reduce formulation development time down to 2 years, a ~50% reduction.
+robotics
+machine-learning
+therapeutics
+microfluidics
+nanotechnology
+
+Quinn S2022
+
+ •  Active  •  5 employees  •  San Francisco Quinn is your biopharma team. From molecule design to portfolio strategy, Quinn delivers comprehensive reports and supporting analyses, models and designs in 3–5 days instead of months.
+biotech
+generative-ai
+enterprise
+artificial-intelligence
+
+Harmonic Discovery S2021
+
+ •  Active  •  8 employees  •  New York City We are a drug discovery company developing a new generation of therapeutics that embrace the complexity of disease. Currently available approaches for creating drugs work on the principle of finding one drug-one protein &#x27;magic bullets&#x27;. However, diseases such as cancer and autoimmunity are often the result of several dysregulated proteins across many distinct biological pathways. 
+
+We are building a computational-experimental platform to design therapeutics that can target several disease-causing proteins at once. By designing multi-specific drugs, we are able to create therapeutics that are more efficacious and safer than existing medicines. 
+
+biotech
+ai-powered-drug-discovery
+drug-discovery
+healthcare
+
+Rosebud Biosciences W2022
+
+ •  Active  •  3 employees  •  San Francisco Rosebud Biosciences accelerates drug development by screening drugs against organoids (micro-organs) that have the same gene mutations as the patients. We partner with therapeutics companies to screen their drugs, and we perform our own drug discovery for rare diseases that have no existing treatments. Our organoids are also fetal-like and enable discovery of novel drug targets for pediatric diseases. This technology was validated at Stanford, published in a prestigious journal, and has already led to the discovery of a drug target in a pediatric heart disease that could not have been found using traditional disease models.
+pediatrics
+biotech
+ai-powered-drug-discovery
+
+WhiteLab Genomics W2022
+
+ •  Active  •  52 employees  •  Paris, France WhiteLab Genomics is a TechBio company using artificial intelligence to design the building blocks of genomic medicines. Its proprietary ALFRED platform designs viral and non-viral delivery vehicles and programmable genetic payloads, which are then experimentally validated and tested in vivo to identify candidates with the properties required for therapeutic development. 
+
+Through this integrated approach, WhiteLab Genomics is building a portfolio of validated bio-assets that it advances independently and with pharmaceutical and biotechnology partners developing the next generation of genomic medicines.
+
+Founded in 2019, WhiteLab works with industrial and academic partners including Sanofi, Cytiva, the University of Massachusetts, the Vision Institute in Paris and the Paris Brain Institute, alongside additional collaborations with biotechnology companies. The company is part of Y-Combinator, Station F and Future4Care and is a French Tech 2030 laureate.
+
+WhiteLab Genomics operates from Paris, Boston, and Montreal.
+genomics
+gene-therapy
+cell-therapy
+artificial-intelligence
+
+Nabla Bio S2020
+
+ •  Active  •  8 employees  •  Boston Our mission is to enable pharmaceutical and biotech companies to bring more antibody therapies to patients. Using AI and massively parallel experimentation, we design antibodies that precisely bind the disease target at the right location, while minimizing manufacturability and toxicity risks. We are a well-funded, revenue-generating, bilingual company of wet- and dry-lab scientists, and are founded by AI and protein design experts from Harvard University.
+ai-powered-drug-discovery
+
+Pardes Biosciences S2020
+
+ •  Public  •  2 employees  •  San Francisco We make oral drugs to treat and prevent viral infections - like COVID-19.
+therapeutics
+biotech
+
+Talus Bio S2021
+
+ •  Active  •  16 employees  •  Seattle We have built a platform that enables drug discovery and development for previously undruggable genome regulators ("the regulome"). We accomplish this by moving drug discovery out of artificial systems where regulome proteins fail to function properly, and back into live human cells. Our technology combines innovations in automated cell processing, next-gen proteomics, and advanced data analytics to measure a drug&#x27;s effect on the entire regulome in one experiment.
+biotech
+drug-discovery
+genomics
+
+Mindstate Design Labs S2021
+
+ •  Active  •  7 employees  •  San Francisco Mindstate Design Labs is building the closed-loop science & engineering stack for rational psychoactive effect design.
+
+Our molecular-experience interface links molecular biology to the human psychopharmacodynamic profile to convert informal constructs like clarity, presence, or motivation into high-dimensional design targets.
+
+Our clinical program is a sequence of human demonstrations that psychoactive effects can be decomposed, recombined, and synthesized. The first controlled study decomposed hallucinations from the broader hallucinogen profile; the next is designed to selectively upregulate aesthetic salience to treat anhedonia in major depressive disorder.
+
+We’re progressively digitizing the molecular interface through which biology shapes what intelligence wants.
+biotech
+ai
+neurotechnology
+artificial-intelligence
+hard-tech
+
+CellChorus S2021
+
+ •  Active  •  4 employees  •  Houston, TX, USA At CellChorus, we apply artificial intelligence to evaluate thousands of microscopy videos in parallel to evaluate how immune cells move, interact and perform over time. This allows our customers to discover, develop, manufacture and deliver cell therapies, antibodies, vaccines and other novel therapies faster, at lower expense, and with higher rates of success.
+
+Our customers include top-25 biopharma companies and seed-stage biotechs that are developing cell therapies, antibody therapeutics and vaccines (including one of the few companies with an approved CAR T cell therapy).
+
+Hear from the team at https://www.youtube.com/watch?v=IE9x_tm0XnI
+ai-powered-drug-discovery
+machine-learning
+
+Adaptyv S2021
+
+ •  Active  •  25 employees  •  Lausanne, Switzerland Proteins are the most advanced nanotechnology we know of. At Adaptyv, we’re building a fully automated protein foundry to allow you to synthesize and test any protein you design.
+
+ai-powered-drug-discovery
+synthetic-biology
+
+Output Labs S2021
+
+ •  Active  •  8 employees  •  New York City Output Labs is a frontier AI research lab. We created Mechanistic Reasoning, a new kind of AI that learns how and why complex systems work. It lets us understand the systems behind science&#x27;s hardest problems, and control them.
+ai-powered-drug-discovery
+generative-ai
+biotech
+artificial-intelligence
+
+Parallel Bio S2021
+
+ •  Active  •  20 employees  •  San Francisco Parallel Bio is pioneering human-first drug discovery by creating the first map of human biology. Using groundbreaking biological and computational tools that track real clinical outcomes, the company generates data that enable earlier, more reliable decisions about disease biology and drug development. 
+
+Parallel Bio’s platform overcomes the core limitations of traditional animal testing, which fails to encapsulate the complexity of human biology. The company is building internal pipelines of novel disease targets and drug candidates in both cancer and autoimmune disease, while collaborating with pharmaceutical companies to evaluate therapies directly in human systems to reduce the cost and risk of clinical trials. 
+
+Based in San Francisco, the company was founded in 2021 by two of the world’s leading experts in replacing animal models with human-first platforms.
+ai-powered-drug-discovery
+biotech
+
+Matrubials S2021
+
+ •  Active  •  4 employees  •  Davis, CA, USA Matrubials is an anti-infectives company, focused on human milk peptides as therapeutics to address antimicrobial resistance and modern diseases. Currently the global rise in severe bacterial infections and the drying pipeline of effective treatments are burdensome for healthcare and economics. Sculpted by evolution, milk, first food for the newborn, provides an exemplary solution to address the nutritive and protective challenges an infant is faced with. The anti-pathogenic molecules from milk can be developed into therapeutics geared towards all-age diseases. Our first indication is bacterial vaginosis, a bacterial dysbiosis related inflammation that results in recurrent infections, disruption of homeostasis and long-term clinical complications in women of reproductive age, including but not limited to preterm births, fertility issues and increased rates of STDs. Our next inflection point is the evaluation of rapidly acting and selective candidate peptides in pre-clinical host impact and early safety studies, which can aid clinical and portfolio development towards topical applications.
+ai-powered-drug-discovery
+women&#x27;s-health
+therapeutics
+
+Pirouette Pharma S2021
+
+ •  Active  •  9 employees  •  Boston At Pirouette, we have developed a low-profile, disk-shaped, rugged injection device with a patient-centric focus on affordability, portability, and usability. The patented device, based on extensive patient input, is designed to make administering an injection as easy as pushing a button. This allows individuals with limited or no training to easily and intuitively perform an injection on themselves or others.
+health-tech
+medical-devices
+biotech
+healthcare
+
+Gilgamesh Pharmaceuticals S2020
+
+ •  Active  •  15 employees  •  New York City Gilgamesh is a pioneering, clinical stage mental health science-focused biotechnology company. We have a disciplined focus on developing innovative new chemical entities (NCEs) leveraging a unique combination of medicinal chemistry, intellectual property strategy, neuroscience & neurobiology, and drug development expertise. We are an experienced team, with proven success in biotech exits and inventions.
+psychedelics
+therapeutics
+mental-health
+
+PostEra W2020
+
+ •  Active  •  40 employees  •  Boston PostEra is building a modern 21st century biopharma. We&#x27;re using our advances in machine learning to accelerate Medicinal Chemistry and bring more cures to patients. PostEra advances small molecule programs through partnerships with biopharma while also advancing its own internal pipeline. We&#x27;ve raised $26M from top investors and closed $1Bn in AI partnerships, signing multi-year agreements with Amgen, Pfizer and the NIH. PostEra also launched and led the world&#x27;s largest open-science drug discovery effort; COVID Moonshot.
+machine-learning
+ai-powered-drug-discovery
+covid-19
+
+Menten AI W2020
+
+ •  Active  •  2 employees  •  San Francisco Menten AI designs protein drugs and enzymes using quantum computing and machine learning. Their technology leapfrogs current computational methods making it possible to design previously intractable proteins. The team created the first protein design algorithm for current and near-term quantum computers and created the world’s first protein designed on a quantum computer. They are now working on 3 new proteins, including a peptide to prevent the spread of viruses like Covid-19. They have 2 paid pilot projects with multinational chemical companies and 4 LOI’s with pharma and biotech companies.
+quantum-computing
+ai-powered-drug-discovery
+
+Abalone Bio W2020
+
+ •  Active  •  14 employees  •  San Francisco Abalone Bio is tackling challenging undrugged targets underlying diseases affecting millions, focusing first cell-specific antibody drugs to treat obesity and metabolic disease without the GI side effects that cause 25% of GLP-1 drug patients to quit after 1 year. 
+
++ High throughput experimental measurement uniquely leverages AI/ML: We’ve engineered cells to measure antibodies for pharmacological activity, not just structure or binding like others, 100 million at a time, 100X+ the throughput of others. With our large, proprietary activity datasets, we uniquely leverage ML to both unlock the discovery of rare hits and generate optimized hits for challenging targets, starting with G-protein coupled receptors (GPCRs)
+
++ Proven success: We have developed antibody agonists (activators) for 2 out of the 8 G-protein coupled receptors ever drugged by biotech.
+
++ Pharma traction: We’ve secured 3 partnerships with $3M in revenue and $125M in downstream value. 
+
++ Externally validated science: We’ve been awarded $7M in non-dilutive grant funding for platform and program development.
+drug-discovery
+machine-learning
+synthetic-biology
+therapeutics
+
+Sequence Bio S2019
+
+ •  Active  •  52 employees  •  St. John&#x27;s, NL, Canada 90% of drug candidates fail, delaying help for those in need. We’re on a mission to change that. Better drug target discovery powered by the Newfoundland founder effect.
+drug-discovery
+genomics
+therapeutics
+
+Arpeggio Bio S2019
+
+ •  Active  •  20 employees  •  Boulder, CO, USA Arpeggio Bio is a pioneering pharmaceutical company that develops drugs targeting transcription factors using AI and high-throughput RNA-sequencing. With $20M in venture funding, we&#x27;ve targeted "undruggable" proteins like NRF2, TEAD, and GPX4 where our lead program is rapidly progressing towards a DC for the treatment of IO-resistant melanoma. With partnerships with J&J and FORMA, we&#x27;ve validated our platform in rare disease and inflammation with a significant Phase I success.
+biotech
+drug-discovery
+genomics
+
+Synkrino Biotherapeutics S2018
+
+ •  Active  •  2 employees  •  San Francisco
+biotech
+ai-powered-drug-discovery
+
+Macromoltek W2018
+
+ •  Active  •  14 employees  •  Austin, TX, USA Macromoltek: Revolutionizing antibody design.
+
+Description: Macromoltek, a computational de novo drug design company, rapidly produces accurate and credible antibody designs. We have built a proprietary platform that enables design against difficult targets inaccessible by traditional methods and have are already designing antibodies for large biopharmas and smaller biotechs.
+ai-powered-drug-discovery
+deep-learning
+therapeutics
+
+Avro Life Science W2018
+
+ •  Active  •  8 employees  •  Waterloo, ON, Canada
+biotech
+drug-delivery
+
+Sixfold Bioscience W2018
+
+ •  Active  •  27 employees  •  London Sixfold is focused on the commercialisation of its patented drug delivery systems for RNA therapeutics such as siRNAs for gene silencing and mRNAs for gene expression. 
+
+
+gene-therapy
+drug-delivery
+nanomedicine
+
+Helix Nanotechnologies W2017
+
+ •  Active  •  22 employees  •  Boston Technology finds information and delivers physical products to us almost instantly. mRNA does the same for biology. At HelixNano, we see a world where treatments are cheap, progress is decentralized, and you can modify biology at the push of a button.
+
+By focusing on mRNA improvements from first principles, we’re getting there faster than we thought. Experiments that used to take months or years can be done in weeks and cost thousands instead of millions. The rate limiting step for our progress is now scientific curiosity.
+
+Rigid hierarchies and top-down decisions will miss the magic. Some of our most powerful technologies started out as side projects of junior team members. At HelixNano, every individual scientist can have a massive impact on the company&#x27;s direction. And the more diverse our team, the faster we’ll find the really cool ideas.
+
+We&#x27;ve started rolling out some of our new tech — moving a COVID-19 vaccine candidate for the immunocompromised towards the clinic, and testing an intervention with massive environmental impact. But we’re scientists at heart, and team focus is solidly on the horizon.
+genomics
+nanotechnology
+biotech
+artificial-intelligence
+
+Indee Labs W2017
+
+ •  Active  •  5 employees  •  San Francisco Intracellular delivery is the most problematic step in T cell immunotherapy discovery, development and manufacturing. Indee Labs is developing a non-viral intracellular delivery system based on microfluidic vortex shedding (µVS) to rapidly deliver nucleic acids, proteins and gene editing complexes to patient and donor T cells with minimal perturbation.
+gene-therapy
+cell-therapy
+microfluidics
+
+Perlara W2016
+
+ •  Active  •  1 employees  •  San Francisco Perlara 1.0 (Feb 2014 - Feb 2019) launched early R&D joint ventures called PerlQuests with highly motivated rare disease families, companies or impact investors. We screened gene-edited patient avatars for repurposable drugs in order to build a predictive R&D engine called ArkBase. We planned to monetize programs based on ArkBase predictions by selectively spinning out asset-centric clinical development NewCos.
+
+Perlara 1.5 (March 2019 - April 2020) was the transition to a one-person virtual clinical development company and when the epalrestat and aripiprazole repurposing trials were launched at Mayo Clinic for the treatment of PMM2-CDG and NGLY1-CDDG, respectively.
+
+Perlara 2.0 (May 2020 --> The first decentralized and distributed biotech
+
+Loading more companies...
+
+### Hottest Startup Categories
+B2B Startups in San Francisco
+Fintech Startups in New York

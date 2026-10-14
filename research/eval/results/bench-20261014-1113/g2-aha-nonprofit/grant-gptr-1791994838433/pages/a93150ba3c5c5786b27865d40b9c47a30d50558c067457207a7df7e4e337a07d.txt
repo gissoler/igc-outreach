@@ -1,0 +1,1749 @@
+Digital Europe Programme (DIGITAL)
+
+Call for proposals
+
+AI Continent (DIGITAL-2026-AI-09)
+
+Version 1.0
+9 October 2025
+
+---
+
+| HISTORY OF CHANGES |  |  |  |
+| --- | --- | --- | --- |
+| Version | Publication Date | Change | Page |
+| 1.0 | 09.10.2025 | Initial version. |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+# EUROPEAN COMMISSION
+
+Directorate-General for Communications Networks, Content and Technology CNECT.R-Resources and Support **CNECT.R.5 - Programme Implementation**
+
+## CALL FOR PROPOSALS
+
+**TABLE OF CONTENTS**
+
+0. Introduction ... 6
+1. Background ... 7
+2. Objectives — Scope — Outcomes and deliverables — KPIs to measure outcomes and deliverables — Targeted stakeholders — Type of action and funding rate — Specific topic
+conditions ... 8
+DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion capacities and data services for
+the European Genomic Data Infrastructure in the European Health Data Space: data tools ... 8
+Objectives ... 8
+Scope ... 9
+Outcomes and deliverables ... 10
+KPIs to measure outcomes and deliverables ... 10
+Targeted stakeholders ... 10
+Type of action and funding rate ... 10
+Specific topic conditions ... 10
+DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data
+storage and processing capacity ... 11
+Objectives ... 11
+Scope ... 11
+Outcomes and deliverables ... 12
+KPIs to measure outcomes and deliverables ... 12
+Targeted stakeholders ... 12
+Type of action and funding rate ... 12
+Specific topic conditions ... 12
+DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP -Deployment of cutting-edge multi-modal AIbased solutions in medical imaging ... 13
+Objectives ... 13
+Scope ... 14
+Outcomes and deliverables ... 16
+KPIs to measure outcomes and deliverables ... 16
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+Targeted stakeholders ... 16
+Type of action and funding rate ... 17
+Specific topic conditions ... 17
+DIGITAL-2026-AI-09-ECAVA -Secretariat of the European Connected and Autonomous Vehicle
+Alliance ... 17
+Objectives ... 17
+Scope ... 18
+Outcomes and deliverables ... 18
+KPIs to measure outcomes and deliverables ... 18
+Targeted stakeholders ... 19
+Type of action and funding rate ... 19
+Specific topic conditions ... 19
+DIGITAL-2026-AI-09-AUTOMOTIVE -Collaboration platform for the European connected and
+autonomous vehicle of the future ... 19
+Objectives ... 19
+Scope ... 20
+Outcomes and deliverables ... 21
+KPIs to measure outcomes and deliverables ... 22
+Targeted stakeholders ... 22
+Type of action and funding rate ... 22
+Specific topic conditions ... 22
+DIGITAL-2026-AI-09-GENAI-PA-Apply AI: GenAI for the public administrations ... 23
+Objectives ... 23
+Scope ... 23
+Outcomes and deliverables ... 25
+KPIs to measure outcomes and deliverables ... 26
+Targeted stakeholders ... 26
+Type of action and funding rate ... 26
+Specific topic conditions ... 26
+DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds test beds ... 27
+Objectives ... 27
+Scope ... 27
+Outcomes and deliverables ... 28
+KPIs to measure outcomes and deliverables ... 29
+Targeted stakeholders ... 30
+Type of action and funding rate ... 30
+Specific topic conditions ... 30
+
+3. Available budget ... 31
+4. Timetable and deadlines ... 32
+5. Admissibility and documents ... 32
+6. Eligibility ... 34
+Eligible participants (eligible countries) ... 34
+Consortium composition ... 37
+Eligible activities ... 38
+Geographic location (target countries) ... 38
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+Ethics ... 39
+Security ... 39
+
+7. Financial and operational capacity and exclusion ... 40
+Financial capacity ... 40
+Operational capacity ... 41
+Exclusion ... 41
+
+8. Evaluation and award procedure ... 42
+9. Award criteria ... 44
+10. Legal and financial set-up of the Grant Agreements ... 45
+Starting date and project duration ... 45
+Milestones and deliverables ... 46
+Form of grant, funding rate and maximum grant amount ... 46
+Budget categories and cost eligibility rules ... 47
+Reporting and payment arrangements ... 49
+Prefinancing guarantees ... 49
+Certificates ... 50
+Liability regime for recoveries ... 50
+Provisions concerning the project implementation ... 50
+Other specificities ... 52
+Non-compliance and breach of contract ... 52
+
+11. How to submit an application ... 52
+12. Help ... 53
+13. Important ... 55
+Annex 1 ... 58
+Annex 2 ... 61
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+## 0. Introduction
+
+This is a call for proposals for EU action grants in the field of AI under the Digital **Europe Programme (DIGITAL).**
+
+The regulatory framework for this EU Funding Programme is set out in:
+
+− Regulation 2024/2509 (EU Financial Regulation) 1
+
+− the basic act (Digital Europe Regulation 2021/694 2 ).
+
+The call is launched in accordance with the 2025-2027 Work Programme3 and will be managed by the **European Commission, Directorate-General for** **Communication, Networks, Content and Technology (DG CONNECT).**
+
+## The call covers the following topics:
+
+# − DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion
+
+## capacities and data services for the European Genomic Data
+
+## Infrastructure in the European Health Data Space: data tools
+
+# − DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data ingestion
+
+## capacities and data services for the European Genomic Data
+
+## Infrastructure in the European Health Data Space: data storage and
+
+## processing capacity
+
+# − DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP-Deployment of
+
+## cutting-edge multi-modal AI-based solutions in medical imaging
+
+# − DIGITAL-2026-AI-09-ECAVA-Secretariat of the European Connected
+
+## and Autonomous Vehicle Alliance
+
+# − DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration platform for the
+
+## European connected and autonomous vehicle of the future
+
+# − DIGITAL-2026-AI-09-GENAI-PA-Apply AI: GenAI for the public
+
+**administrations**
+
+# − DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds test
+
+**beds**
+
+Each project application under the call must address only one of these topics. Applicants wishing to apply for more than one topic, must submit a separate proposal under each topic.
+
+1 Regulation (EU, Euratom) 2024/2509 of the European Parliament and of the Council of 23 September 2024 on the financial rules applicable to the general budget of the Union (recast) (‘EU Financial Regulation’) (OJ L, 2024/2509, 26.9.2024). 2 Regulation (EU) 2021/694 of the European Parliament and of the Council of 29 April 2021 establishing the Digital Europe Programme (OJ L 166, 11.5.2021, p. 1). Commission Implementing Decision C(2025) 6650 of 06.10.2025 amending Implementing Decision C(2025) 1839 on the financing of the Digital Europe Programme and the adoption of the work programme for 2025-2027
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+We invite you to read the call documentation carefully, and in particular this Call document, the Model Grant Agreement, the EU Funding & Tenders Portal Online Manual and the EU Grants AGA — Annotated Grant Agreement. These documents provide clarifications and answers to questions you may have when preparing your application: − the Call document outlines the: − background, objectives, scope, outcomes and deliverables, KPIs to measure outcomes and deliverables, targeted stakeholders, type of action and funding rate and specific topic conditions (sections 1 and 2) − timetable and available budget (sections 3 and 4) − admissibility and eligibility conditions (including mandatory documents; sections 5 and 6) − criteria for financial and operational capacity and exclusion (section 7) − evaluation and award procedure (section 8) − award criteria (section 9) − legal and financial set-up of the Grant Agreements (section 10) − how to submit an application (section 11). − the Online Manual outlines the: − procedures to register and submit proposals online via the EU Funding & Tenders Portal (‘Portal’) − recommendations for the preparation of the application. − the AGA — Annotated Grant Agreement contains: − detailed annotations on all the provisions in the Grant Agreement you will have to sign in order to obtain the grant (including cost eligibility, *payment schedule, accessory obligations, etc).* You are also encouraged to visit the Funding and Tenders portal to consult the list of projects funded previously.
+
+**1. Background** The Specific Objective 2 of the Digital Europe Programme aims to reinforce the EU’s core Artificial Intelligence (AI) and data capacities as a crucial driver for the digital transformation of the public and private sectors. The vision is to make Europe an AI continent, thriving on the development, integration and adoption of AI. As one of the financial instruments of the upcoming Apply AI Strategy, SO2 will support the development of world class AI models in the EU and foster the integration of AI technologies into EU’s most strategic sectors, including healthcare, energy and research. It will stimulate new industrial uses of AI and improve the delivery of various public services. In this call for proposals, 7 actions are included with a focus on AI in the domain of health, healthcare, the automative sector, and the application of AI solutions and innovations.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+This call includes actions aiming to enhance the European genomic data infrastructure by supporting the deployment of advanced tools for data curation and use and its alignment with the European Health Data Space (EHDS). It also contributes to boosting the capacity of Member States to sequence human genomes through scaling up dedicated secure data storage and processing environments.
+
+In the field of medical imaging in oncology, the call includes an action aiming to accelerate the uptake and deployment of EU AI-driven solutions in healthcare settings for patient care and for research purposes which will support personalised diagnosis, predictions and treatments in cancer.
+
+Furthermore, 2 actions focus on the reinforcement of the competitiveness and innovation leadership of the European automotive sector and accelerate its digital transformation. One action aims to support the objectives and activities of the announced European Connected and Autonomous Vehicle Alliance (ECAVA) by acting as its secretariat, and a second action aims to coordinate and steer relevant projects and initiatives in the area of software, hardware, AI and autonomous driving technologies.
+
+To improve its competitiveness and ensure strategic autonomy, Europe needs to accelerate the uptake of generative AI in its key strategic sectors and application areas. This call includes a coordination and support action (CSA) to enhance the scalability and replication of successful European GenAI pilot solutions, through activities that foster knowledge sharing, community building, and capacity development in the area of public administration. Another action aims to support testing, experimentation and integration of state-of-the-art Virtual Worlds, immersive and extended reality technologies in specific sectors.
+
+## 2. Objectives — Scope — Outcomes and deliverables — KPIs to measure
+
+## outcomes and deliverables — Targeted stakeholders — Type of action and
+
+## funding rate — Specific topic conditions
+
+## DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion capacities
+
+## and data services for the European Genomic Data Infrastructure in the
+
+## European Health Data Space: data tools
+
+*Objectives*
+
+This action aims to enhance the European genomic data infrastructure by supporting the deployment of advanced tools for data curation and use and its alignment with the European Health Data Space (EHDS). Data quality and volume are key success factors for health data infrastructures supported under the Digital Europe Programme, such as the one developed by the Genomic Data Infrastructure (GDI) project implementing the 1+ Million Genomes (1+MG) initiative of the Member States. The availability of thoroughly curated genomic data and related clinical and phenotypic information is a prerequisite for accelerating the move to the next level of multi- modal data modelling and deployment as well as health sector innovation in Europe. 1+MG and the projects implementing the initiative have worked and agreed on common data standards and ontologies, data quality criteria and thresholds, data inclusion policies and the necessary standard operational procedures. On that basis, data holders will need to quality-check and curate the datasets that they will be making available to 1+MG and EHDS (HealthData@EU) to ensure their interoperability and high value for users. Wide accessibility of the data and user-friendliness of the tools and services facilitating the access to data are critical success factors of the 1+MG data infrastructure. While such functionalities for research purposes have been already largely covered in the deployment project GDI, application in other use scenarios, in particular healthcare and public health policy, requires additional tools,
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+application programming interfaces (APIs) and interfaces to address the corresponding specific user needs and requirements. The citizen perspective must be also factored in to ensure, through appropriate IT tools, full compliance with the General Data Protection Regulation (GDPR) rules regarding citizens’ rights on personal data protection. This action relates to the potential creation of a European Digital Infrastructure Consortium for genomic data (Genome EDIC) and supports the activities related to operating the 1+MG data infrastructure established with the support of Digital Europe under Work Programme 2021-2022 (GDI project), including its alignment with the requirements, technical specifications, and processes established by the EHDS Regulation to ensure a smooth functioning within the HealthData@EU infrastructure.
+
+*Scope*
+
+Data tools for the 1+MG data infrastructure should be based on common standards and as automated as possible, and should enable data quality check at source, benchmarking, annotation and enhancement on the data provider end and by the operator of the data infrastructure, as appropriate. This covers the whole process of data inclusion, integration and access provision, as well as compliance assessment, risk management and data security assurance on the side of data infrastructure. All steps and functionalities should be designed to support the needs and requirements of three main use scenarios, i.e. research (largely already covered by the GDI project), and clinical care and public health policymaking. They should follow and implement the standards and procedures agreed within the 1+ Million Genomes initiative (1+MG Framework) and be compliant with the EHDS Regulation. For example, data curation tools should facilitate the description of datasets using a metadata standard compatible with the one required for the EU Dataset Catalogue of the EHDS (Health DCAT-AP), including its data quality and utility label as defined in the project QUANTUM. Metadata should also cover information about legal conditions and enablers for sharing the respective dataset. Moreover, the action should leverage best practices and strategies for linking clinical and genomic data at individual level, within the framework of EHDS where appropriate, to maximise access to data while preserving the security and privacy of data subjects (e.g. sampling, anonymisation and pseudonymisation techniques, data gap filling). Data minimisation tools should support compliance with the respective GDPR rules. Moreover, this action covers piloting and the deployment of tools, APIs and interfaces to provide high quality data services to the users of the 1+MG data infrastructure for healthcare and public health policy purposes as well as addressing any remaining user needs in research not yet covered by other projects. For example, APIs and interfaces for data discovery, and federated analysis and modelling in a secure processing environment will enable users to find, access and integrate the data at the required level of data protection safeguards to serve their projects, clinical questions or policy development. Adequate data de-identification/synthetisation methods and support to multi-modal data discovery and analysis across the data infrastructures (e.g. linking up with the Cancer
+
+Image Europe and HealthData@EU infrastructures) should also be considered and
+
+implemented. The tools delivered and deployed should be user-friendly and clearly support high uptake of the data infrastructures and their services. Furthermore, the action is expected to establish a citizen portal for 1+MG enabling citizens to exercise their GDPR rights, such as obtaining information about their data inclusion / processing and their legal basis, manage the consent, requesting data access, rectification or erasure. All solutions deployed by the project should be compatible with the Simpl middleware platform, where appropriate, and ensure interoperability with the HealthData@EU infrastructure. Tools related to authentication should be eIDAS-compliant. While fully respecting the prerogative of participants within the 1+MG data infrastructure to determine who can access what data and under which conditions, suitable links to the AI Factories should be envisaged. The project should include a description of data access and usage arrangements.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+## Outcomes and deliverables
+
+- Tools to perform automated data and metadata curation / inclusion / minimisation by data providers, foster data quality assurance and enable compliance checks and risk/security management developed, tested and deployed in the 1+MG data infrastructure in alignment with agreed 1+MG requirements and related standards and procedures, as well as with the legislative and technical framework of the European Health Data Space and European Digital Identity Framework.
+- Tools, APIs and interfaces developed, tested and deployed in the GDI, covering well documented needs of users from research, healthcare and public health policy, in alignment with the European Health Data Space.
+- Citizens’ portal, allowing at least management of GDPR rights of citizens and citizens’ engagement, to be established and operational at month 12 at the latest.
+## KPIs to measure outcomes and deliverables
+
+- Number of tools, APIs and interfaces developed, tested and deployed in the GDI, covering well documented needs of users from research
+- Number of tools, APIs and interfaces developed, tested and deployed in the GDI, covering well documented needs of users from healthcare
+- Number of tools, APIs and interfaces developed, tested and deployed in the GDI, covering well documented needs of users from policy.
+- Citizen’s portal: o Number of page views; o average monthly active users; o number of registered users; o number of citizens participating in interactive features (contact forms,
+requests, surveys); o Number of security breaches and technical incidents reported; o Number of security incidents solved; o Average wait time for incidents. The KPI for the citizen’s portal should be measured every 12 months following the start of operations.
+
+Additional KPIs should be proposed by applicants in the project proposal as appropriate.
+
+## Targeted stakeholders
+
+Public and private entities such as (but not limited to): public administrations (national, regional and local level), Health Data Access Bodies, hospitals, research institutes, biobanks, research agencies, research infrastructures, European Digital Infrastructure Consortia (EDIC).
+
+## Type of action and funding rate
+
+## Simple Grants — 50% funding rate
+
+For more information on Digital Europe types of action, see Annex 1.
+
+## Specific topic conditions
+
+# − For this topic, security restrictions under Article 12(6) of the Digital Europe
+
+Regulation apply (see sections 6 and 10 and Annex 2)
+
+− *For this topic, restrictions for the protection of European digital infrastructures,* *communication and information systems, and related supply chains apply (see*
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+*section 6, section 10 and the Appendix 4 of the Digital Europe Work Programme* *2025-2027)*
+
+# − For this topic, multi-beneficiary applications are mandatory and specific conditions
+
+for the consortium composition apply (see section 6)
+
+# − For this topic, following reimbursement option for equipment costs applies:
+
+depreciation only (see section 10)
+
+# − For this topic, first exploitation obligations apply (see section 10)
+
+# − The following parts of the award criteria in section 9 are exceptionally NOT
+
+applicable for this topic:
+
+# − extent to which the project would reinforce and secure the digital
+
+technology supply chain in the Union*
+
+# − extent to which the proposal can overcome financial obstacles such as the
+
+lack of market finance*
+
+# − extent to which the proposal addresses environmental sustainability and
+
+the European Green Deal goals, in terms of direct effects and/or in awareness of environmental effects*
+
+## DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data ingestion
+
+## capacities and data services for the European Genomic Data Infrastructure in
+
+## the European Health Data Space: data storage and processing capacity
+
+*Objectives*
+
+This action contributes to boosting the capacity of Member States to sequence human genomes through scaling up dedicated secure data storage and processing environments. Data volume is crucial in genomics analytics, and efficient storage and management of large data sets, such as genomics, is essential; to ensure efficient processing, genomic data storage solutions should be flexible and scale with needs. Genomic data, once curated, must not only be stored safely, but also be processed in secure processing environments, which is a particular challenge with the highly voluminous genomic data.
+
+This action relates to the potential creation of a European Digital Infrastructure Consortium for genomic data (Genome EDIC) and supports the activities related to operating the 1+MG data infrastructure established with the support of Digital Europe under Work Programme 2021-2022 (GDI project), including its alignment with the requirements, technical specifications, and processes established by the EHDS Regulation to ensure a smooth functioning within the HealthData@EU infrastructure. As part of the 1+MG initiative implementation, this action builds on the outputs and results of the 1+MG implementing projects, and will establish a collaboration agreement with the Genome of Europe (GoE project, supported under Digital Europe Work Programme 2022-2023), to contribute ensuring safe storage and processing capacity for the European reference genome data within the 1+MG data infrastructure.
+
+*Scope*
+
+This action supports the acquisition and set-up of a secure federated data storage and processing capacity for the 1+MG data infrastructure, which is expected to be operated by the relevant EDIC. It should include “hot storage” working in synergy
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+with secure processing environments aligned with the EHDS requirements, such as 
+compliance checks for secure processing  environments and detached long-term 
+storage for curated data made available to the 1+MG by the data providers, including 
+the Genome of Europe dataset. The data storage capacity should be designed based 
+on an agreed data storage optimisation  strategy, and balancing between storage 
+costs and data depth/breadth/versioning while considering the most appropriate data 
+storage architecture, technology and legal aspects, and ensuring scalability.
+
+Outcomes and deliverables
+
+• 1+MG data storage strategy.
+
+• Secure federated data storage and processing capacity for 1+MG data 
+infrastructure.
+
+KPIs to measure outcomes and deliverables
+
+• Number of new data storage facilities
+
+• Number of petabytes of procured storage (per location and in total)
+
+• Number of Member States hosting new storage
+
+• Number of Member States with additional processing capacity/SPEs
+
+• Number of new SPEs and processing capacity
+
+Additional KPIs should be proposed by applicants in the project proposal as 
+appropriate.
+
+Targeted stakeholders
+
+Public and private entities such as (but not limited to): public administrations 
+(national, regional and local level), hospitals, research institutes, biobanks, research 
+agencies, research infrastructures, European Digital Infrastructure Consortia (EDIC).
+
+Type of action and funding rate
+
+Grant for Procurement — 50% funding rate
+
+For more information on Digital Europe types of action, see Annex 1.
+
+− For this topic, following reimbursement option for equipment costs applies: full 
+costs only (see section 10)
+
+Specific topic conditions
+
+− The following parts of the award criteria in section 9 are exceptionally NOT 
+applicable for this topic:
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+− extent to which the project would reinforce and secure the digital technology supply chain in the Union*
+
+− extent to which the proposal can overcome financial obstacles such as the lack of market finance*
+
+− extent to which the proposal addresses environmental sustainability and the European Green Deal goals, in terms of direct effects and/or in awareness of environmental effects*
+
+## DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP -Deployment of cutting-
+
+## edge multi-modal AI-based solutions in medical imaging
+
+*Objectives*
+
+Medical imaging is one of the most advanced and promising areas in health where Artificial Intelligence (AI) applications can truly make a difference in transforming health and care for the benefit of the patients and health care providers. AI-powered tools in medical imaging can support earlier and more accurate diagnosis, better prediction of patient outcomes, and identification of new disease characteristics. They can combine and interpret data of different types (e.g. imaging, omics, laboratory results, etc.) and from different sources, supporting more personalised diagnosis, predictions and treatments.
+
+In oncology, the Cancer Image Europe4 platform implemented by the EUCAIM project under the Digital Europe Programme will offer access to medical imaging data and a testing environment to maximise the uptake of AI solutions in clinical practice and medical research. The platform should support SMEs from the medtech sector which hold a great potential for innovating the European digital healthcare systems and biomedical research environment in testing and validating AI solutions.
+
+Moreover, integration of health data of different types is crucial for advancing innovation and healthcare outcomes. Advanced technologies, methods and tools, including AI, will enable discovery of data across different data infrastructures, linking and integrating them to enable multi-modal analysis and inform patient treatment towards more personalised approaches. A pre-requisite will be to ensure a high degree of interoperability between the different health data infrastructures and with the HealthData@EU infrastructure of the European Health Data Space (EHDS) and Simpl middleware for data spaces.
+
+Finally, the development and deployment of multi-modal AI-based tools is still hampered by data quality issues, high costs, insufficient clinical evidence and limited knowledge and training of healthcare professionals.
+
+Therefore, the objective of this action is to:
+
+- Accelerate the uptake of EU AI-driven solutions that are ready to be deployed in healthcare settings for patient care and for research purposes. This will facilitate the paradigm shift in the digital transformation of healthcare towards personalised medical solutions;
+[https://cancerimage.eu/](https://cancerimage.eu/)
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+• Facilitate the deployment of EU cutting-edge AI-driven solutions in medical 
+imaging, combined with other health data, for increased efficiency and better 
+patient outcomes, leveraging the Cancer Image Europe platform;
+
+• Further develop the data, testing and validation services and user tools of 
+Cancer Image Europe platform in alignment with the legal and technical 
+framework of the European Health Data Space, also towards supporting the 
+development and uptake of EU cutting-edge multi-modal AI-based solutions in 
+medical imaging (including Deep learning and Generative AI solutions) for 
+healthcare;
+
+• Ensure alignment and inter-operability of the Cancer Image Europe platform 
+with the HealthData@EU infrastructure of the EHDS;
+
+• Conduct multi-centre validation studies of promising medical imaging-based 
+and multi-modal AI solutions for screening, early detection, diagnosis and 
+care, generating evidence for clinical utility and cost effectiveness of tested 
+solutions.
+
+This action relates to the potential creation of a European Digital Infrastructure 
+Consortium for cancer image data (Cancer Image Europe EDIC) and supports the 
+activities related to operating the respective data infrastructure established with the 
+support of Digital Europe under Work Programme 2021-2022 (EUCAIM project).
+
+The support for deployment under this topic concerns in particular two areas of 
+activities, linked to the ambition and scope of the future Cancer Image Europe EDIC:
+
+• Delivery of multi-modal solutions (including evidence generation of clinical 
+utility and to support regulatory approval)
+
+• Deployment of solutions having and/or pending regulatory approval that could 
+be piloted or trialled in healthcare settings (further evidence generation for 
+cost-benefits or HTA)
+
+Scope
+
+By building on, extending and leveraging the Cancer Image Europe platform, this 
+action is expected to facilitate the uptake of EU AI-driven solutions in medical imaging 
+(including Machine Learning and Generative AI), towards their deployment in clinical 
+settings. It should also include upskilling of healthcare professionals and evidence 
+generation to evaluate the performance of the deployed AI-driven solutions and 
+engage patients.
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+assessment, including security, data access and analysis, as well as services for AI 
+developers supporting their regulatory compliance pathway, including the EHDS 
+Regulation, if applicable. Moreover, data services will cover comprehensive data 
+quality assessment—including security, data access, and analysis. Specifically, tools 
+will be deployed to ensure that datasets federated in Cancer Image Europe are fully 
+compliant with EHDS, utilizing Health DCAT-AP for metadata descriptions and 
+adhering to the data quality and utility label standards set by the EHDS Regulation.
+
+Moreover, the action should consider synergies and cross-fertilisation of tools with 
+other relevant health data infrastructures: HealthData@EU, 1+Million Genomes 
+(1+MG), Intensive Care Unit data infrastructure, the European Virtual Human Twins 
+Initiative, and UNCAN.eu platform to further facilitate the integration and processing 
+of different types of health data. Also, the outcomes of EU-funded projects dealing 
+with other imaging modalities, such as digital pathology (e.g. BigPicture project), 
+should be considered. Finally, synergies with the ongoing AI related activities of the 
+Health Data Access Bodies (HDABs) in the EHDS, the SHAIPED project and the TEF-
+Health project should be leveraged.
+
+This action should ensure that appropriate tools are deployed to support data curation 
+at source, quality benchmarking, annotation, dataset description and enhancement on 
+the side of data providers and the data infrastructure. This covers the whole process 
+of data inclusion, integration and access provision, as well as compliance assessment, 
+risk management and data security assurance on the side of Cancer Image Europe. 
+All functionalities and services should be designed to support the needs and 
+requirements of three main use scenarios of Cancer Image Europe, i.e. the 
+deployment of AI solutions in healthcare settings, biomedical research and SME 
+innovation for digital healthcare. They should follow, implement and further develop 
+the standards and procedures agreed in the European Cancer Imaging Initiative and 
+deploy a risk governance framework compliant with the AI Act, ensuring data security 
+and safety of AI solutions designed to be applied on humans. Inherent risks of the 
+new technology must be effectively mitigated and managed.
+
+SMEs and healthcare providers must be appropriately involved in further developing 
+the platform so that it best supports their needs and requirements to bring innovative 
+solutions to clinical practice, especially in view of the requirements of the EHDS 
+Regulation, AI Act and Medical Device Regulation (MDR) (interoperability and 
+regulatory compliance).
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+The relevant medical centres are required to collaborate with the network of advanced screening centres for medical imaging-based and multi-modal AI-based screening to be established under the topic “2.3.3.3 Apply AI: Piloting AI-based image screening in medical centres”. The action should reserve budget for the purpose of participating in these activities.
+
+## Outcomes and deliverables
+
+- New data services and user tools for the Cancer Image Europe platform covering data curation / inclusion by data providers, data quality assurance and compliance checks, and risk/security management in alignment with agreed standards, procedures and requirements, including the framework of the European Health Data Space.
+- Multi-centre validation of AI-driven solutions in the field of medical imaging, including also evidence generation for clinical utility and cost efficiency.
+- Deployment of multi-modal, cutting-edge AI-driven solutions in the field of medical imaging in healthcare and research settings, leveraging different types of data (at least one imaging modality and one other data type e.g. genomics, other omics, laboratory results, real-world data etc.) and building on the achievements of the Cancer Image Europe platform.
+- Training and upskilling of medical imaging personnel and/or healthcare professionals for the deployed technology and further use.
+## KPIs to measure outcomes and deliverables
+
+- Number of tools, APIs and interfaces developed, tested and deployed in the Cancer Image Europe platform, covering well documented needs of users from research, healthcare and Medtech companies and SMEs
+- Number of organisations which use the Cancer Image Europe platform for working with imaging data: at least 60 organisations from at least 15 EU Member States
+- Number of Medtech companies and SMEs who have used the Cancer Image Europe platform for developing, testing or validating AI solutions: at least 30 by project end
+- Number of multi-modal AI models deployed in research settings for which clinical utility has been assessed in multi-centre studies
+- Number of software as medical device (SaMD) solutions for which the process of regulatory approval has been initiated and where the Cancer Image Europe platform has supported the clinical validation/evidence generation
+- Number of AI solutions deployed/piloted in healthcare settings/healthcare organisations Additional KPIs should be proposed by applicants in the project proposal as appropriate.
+## Targeted stakeholders
+
+Hospitals and outpatient clinics (both public and private entities are eligible), healthcare research institutions (e.g. university departments providing patient care and conducting clinical trials), relevant Member States authorities (e.g. ministries of health, regional health authorities, Health Data Access Bodies, …), AI developers e.g.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+MedTech companies (especially SMEs) applying together with healthcare providers (hospitals/ outpatient clinics), European Digital Infrastructure Consortia (EDIC). *Type of action and funding rate* SME Support Actions — 50% and 75% (for SMEs) funding rate For more information on Digital Europe types of action, see Annex 1. *Specific topic conditions* − For this topic, security restrictions under Article 12(6) of the Digital Europe Regulation apply (see sections 6 and 10 and Annex 2) − For this topic, restrictions for the protection of European digital infrastructures, communication and information systems, and related supply chains apply (see *sections 6,10, and the Appendix 4 of the Digital Europe Work Programme 2025-*
+
+*2027)*
+− For this topic, multi-beneficiary applications are mandatory and specific conditions for the consortium composition apply (see section 6) − For this topic, following reimbursement option for equipment costs applies: depreciation only (see section 10) − For this topic, first exploitation obligations apply (see section 10) − The following parts of the award criteria in section 9 are exceptionally NOT applicable for this topic: − extent to which the project would reinforce and secure the digital technology supply chain in the Union* − extent to which the proposal can overcome financial obstacles such as the lack of market finance* − extent to which the proposal addresses environmental sustainability and the European Green Deal goals, in terms of direct effects and/or in awareness of environmental effects*
+
+## DIGITAL-2026-AI-09-ECAVA -Secretariat of the European Connected and
+
+## Autonomous Vehicle Alliance
+
+*Objectives* The action will help reinforce the competitiveness and innovation leadership of the European automotive sector and accelerate its digital transformation. As part of the Industrial Action Plan for the European Automotive Sector5, the action will support the objectives and activities of the announced European Connected and Autonomous Vehicle Alliance (ECAVA) by acting as its Secretariat. The purpose of the ECAVA is to provide a discussion and advisory forum to coordinate and accelerate technological developments and investments in software-defined, AI-powered, connected and autonomous vehicle technologies. It will bring together a critical mass
+
+## COM(2025) 95 final
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+of Original Equipment Manufacturers, automotive suppliers, technology and tool 
+providers, start-ups, academia, research and technology organisations, as well as 
+relevant industrial associations active in the sector. The Secretariat will contribute to 
+the success of the ECAVA by allowing it to function smoothly and effectively.
+
+Scope
+
+The Secretariat shall support the effective set-up, functioning and day-to-day work of 
+the ECAVA.  It should function in an agile and efficient way, with clear processes and 
+roles and a capacity to adapt to evolving circumstances. It will work with the 
+members and participants of the Alliance and with the European Commission. The 
+tasks of the Secretariat will notably include:
+
+• supporting the organisation and work of its General Assembly, working groups, 
+Steering Committee, Alliance Forum and other meetings, including by editing 
+the documents produced.
+
+• Supporting the administrative processes of the ECAVA, notably by assisting the 
+European Commission in the management of applications.
+
+• Disseminating outcomes of the Alliance, notably through the creation and 
+maintenance of a website, and building a dynamic ecosystem.
+
+• Supporting the members of the Alliance in the development and update the 
+ECAVA’s yearly roadmap.
+
+The Secretariat will work in close collaboration with the action on the “Collaboration 
+Platform for the European connected and automated vehicle of the future” (see 
+section 2.2.2.9 of the Digital Europe Work Programme). While the Secretariat will 
+focus on facilitating the organisation and processes of the Alliance, the Collaboration 
+Platform will focus on coordinating joint developments in the area, driving the 
+alignment on common technology platforms, and supporting the incubation, 
+integration and maintenance of joint developments. The Secretariat shall agree on 
+working arrangements with the Collaboration Platform.
+
+Outcomes and deliverables
+
+KPIs to measure outcomes and deliverables
+
+• Organisation of the annual ECAVA General Assembly and Forum, as well as of 
+the meetings of working group and Steering Committee, in close collaboration 
+with the European Commission.
+
+• Satisfaction of  organisations involved in the ECAVA regarding the functioning of 
+the Alliance.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+- Reach and impact of dissemination and communication activities. Proposals are encouraged to propose additional KPIs, or alternative performance assessment approaches (qualitative or quantitative). *Targeted stakeholders* Representatives of the automotive and motor vehicle industry (OEMs and suppliers). Associations with the capacity to act as neutral mediators on behalf of their constituency are strongly encouraged to apply. Organisation(s) with complementary expertise strong communication expertise. *Type of action and funding rate* Coordination and Support Actions — 100% funding rate For more information on Digital Europe types of action, see Annex 1. *Specific topic conditions* − For this topic, security restrictions under Article 12(6) of the Digital Europe Regulation apply (see sections 6 and 10 and Annex 2) − For this topic, restrictions for the protection of European digital infrastructures, communication and information systems, and related supply chains apply (see *sections 6,10, and the Appendix 4 of the Digital Europe Work Programme 2025-*
+*2027)*
+− For this topic, multi-beneficiary applications are mandatory and specific conditions for the consortium composition apply (see section 6) − For this topic, following reimbursement option for equipment costs applies: depreciation only (see section 10) − The following parts of the award criteria in section 9 are exceptionally NOT applicable for this topic: − extent to which the proposal can overcome financial obstacles such as the lack of market finance* − extent to which the proposal addresses environmental sustainability and the European Green Deal goals, in terms of direct effects and/or in awareness of environmental effects*
+
+## DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration platform for the European
+
+## connected and autonomous vehicle of the future
+
+*Objectives* The action will help reinforce the competitiveness and innovation leadership of the European automotive sector and accelerate its digital transformation. It will contribute to the implementation of the Industrial Action Plan for the European Automotive Sector. It will support the objectives of the announced European Connected and Autonomous Vehicle Alliance (ECAVA), which focuses on the following key areas:
+
+- Developing a software platform for software-defined vehicles (SDVs);
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+- Developing an in-vehicle computing architecture for software-defined vehicles;
+- Developing innovative AI solutions for the automotive industry;
+- Creating a large-scale distributed pilot facility;
+- Accelerate the transition towards autonomous driving.
+The action will build on the ongoing industry-driven collaboration on a European software-defined vehicle initiative and expand into the other areas of the ECAVA, supporting concrete collaborations building on the strategic guidance and advice from the ECAVA.
+
+The action will coordinate and steer relevant projects and initiatives in the area of software, hardware, AI and autonomous driving technologies. It will drive alignment on common standards and interfaces. It will contribute to the management of a strategic industry-driven collaboration in these areas, by incubating, orchestrating and helping maintain joint developments. It will provide a collaborative digital platform to support efficient common development and promote the broad uptake of the initiative’s outcomes. It will lay the basis for a sustainable industry-driven collaboration. The collaboration platform aims at consolidating existing coordination mechanisms in an inclusive way and expanding them by supporting the role of a maintainer for emerging open-source building blocks and software stacks as well as sustainability of the ecosystem.
+
+*Scope*
+
+The action will implement the following activities:
+
+- Support the management and coordination of joint developments under the ECAVA by: o Steering, coordinating and supporting research, innovation and deployments projects, including EU-funded (e.g. under the Chips JU, CCAM and 2ZERO Partnerships, potential future Joint Undertakings), national- funded and industry-driven projects and initiatives (e.g. projects under the Eclipse SDV Working Group, AUTOSAR, COVESA, ...). Consolidate or orchestrate existing coordination mechanisms under FEDERATE, Eclipse SDV, Autosar, COVESA, etc.. o Defining and supporting key roles and responsibilities for project management, including a high-level ambassador to ensure dialogue and exchange with senior automotive decision-makers in companies; a team of chief operations officers and a team of chief architects to ensure coherence and alignment.
+- Drive the alignment and consensus on common technology platforms: o Define and update a long-term strategic roadmap and vision across companies’ initiatives for joint, largely open-source, developments. o Support the alignment across companies on common high-level architectures, building blocks, standards, interfaces and tools for key digital technologies in the scope of the Alliance. This shall include software, hardware, and interfaces with cloud infrastructure.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+o Help identify and define non-differentiating areas for beneficial collaborations regarding automotive AI development, including approaches for data sharing and pooling to support joint AI development.
+
+o Follow and contribute where relevant to standardisation activities including at international level.
+
+- Support the incubation of joint developments, notably by: o Supporting the rollout of the common strategic roadmap, providing a drumbeat to ensure speedy implementation, and an efficient transfer of outcomes from relevant projects, aiming towards rapid integration in series production. o Setting up certification and labeling processes for the outcomes of joint developments under the initiative. o Disseminating outcomes and help to build a dynamic ecosystem, based on an open-source plan and leveraging existing communities.
+- Support the integration and maintenance of core joint developments based on a collaborative digital platform: o Supporting the operation of a repository and developer platform for jointly developed building blocks, interfaces, tools, models, etc. and of a digital platform for collaboration, building as far as possible on existing mechanisms, which support Europe’s strategic autonomy. o Supporting, where relevant, the maintenance of common stacks by relevant organisations(s), such as ECLIPSE SDV, for instance through reference implementation and pre-integrations.
+The action should ensure the long-term sustainability of the initiative’s outcomes by supporting the creation of a sustainable organisational structure during the project, considering the eventual transition to a dedicated legal entity. It should function in an agile and efficient way, with clear processes and roles and a capacity to adapt to evolving circumstances. It should build on and integrate existing governance mechanisms to define a lean and efficient governance structure and ensure a smooth transition towards a more integrated collaboration. The action will work in close collaboration with the action on the “Secretariat for the European Connected and Autonomous Vehicle Alliance” (see section 2.2.2.8 of the Digital Europe Work Programme), which will focus on facilitating the organisation and processes of the Alliance, complementing the collaboration platform’s work. The action shall agree on working arrangements with the Secretariat.
+
+## Outcomes and deliverables
+
+The action will deliver the following outcomes and deliverables:
+
+- Strategic roadmap for digital technology developments for automotive, including software, hardware, AI models and solutions and autonomous driving technologies, across different projects and initiatives;
+- Definition of agreement on high-level architectures and interfaces for software, hardware, AI models and solutions and autonomous driving technologies;
+- Nurturing of a dynamic ecosystem of contributors and participants adopting the initiative’s outcomes;
+
+---
+
+• Operational digital platform(s) supporting joint developments under the 
+initiative;
+
+• Definition and implementation of processes, agreements and roles ensuring a 
+clear pipeline for building blocks from relevant projects funded at EU and 
+national level towards integration by companies in series production, 
+leveraging organisations like ECLIPSE SDV, COVESA, or alike.
+
+• Establishment of a sustainable organisational and governance structure.
+
+KPIs to measure outcomes and deliverables
+
+• Number, size and representativeness of organisations actively involved in the 
+ECAVA and in related joint technology developments.
+
+• Number, size and representativeness of organisations and participants involved in 
+the collaborative ecosystem of the initiative.
+
+• Integration and uptake of building blocks and other outcomes developed by the 
+initiative into series production vehicles put on the market. Estimated efficiency 
+gains enabled by the initiative for the automotive industry (e.g. saving on 
+redundant non-differentiating software developments).
+
+Proposals are encouraged to propose additional KPIs, or alternative performance 
+assessment approaches (qualitative or quantitative).
+
+Targeted stakeholders
+
+• A representative set of members of the automotive and motor  vehicle industry 
+(OEMs and suppliers) with leading digital innovation initiatives across the 
+European Union and Associated Countries. In addition, associations who lead 
+discussions on joint digital collaboration and with the capacity to act as neutral 
+mediators on behalf of their constituency are strongly encouraged to apply.
+
+• Organisations with the capacity to act as multipliers or with relevant specific 
+expertise (e.g. testing, simulation).
+
+Simple Grants — 50% funding rate
+
+− For this topic, security restrictions under Article 12(6) of the Digital Europe 
+Regulation apply (see sections 6 and 10 and Annex 2)
+
+Specific topic conditions
+
+For more information on Digital Europe types of action, see Annex 1.
+
+− For this topic, multi-beneficiary applications are mandatory and specific conditions 
+for the consortium composition apply (see section 6)
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+− For this topic, following reimbursement option for equipment costs applies: depreciation only (see section 10)
+
+− The following parts of the award criteria in section 9 are exceptionally NOT applicable for this topic:
+
+− extent to which the proposal can overcome financial obstacles such as the lack of market finance*
+
+## DIGITAL-2026-AI-09-GENAI-PA -Apply AI: GenAI for the public
+
+**administrations**
+
+*Objectives*
+
+Broadly speaking, the objective of this action is to coordinate and support the pilot projects delivering Generative Artificial Intelligence (GenAI) solutions fully integrated into the operational workflows and IT systems of participating public administrations. 6
+
+First, this action should prioritise to enhance the scalability and replication of successful GenAI pilot solutions. This includes the projects' capabilities to be duplicated by other public administrations and to adjust efficiently to a growing number of users, public administrations, or application areas.
+
+Second, it will identify common needs from public administrations for GenAI solutions “Made in Europe”, facilitating the pooling of demand at EU level for European start- ups.
+
+As a result of these efforts, the action will deepen collaboration among public administrations across Member States, laying the foundation of a sustainable GenAI community. Through the dissemination of knowledge, tools, and mutual learning experiences, this community will help accelerate adoption and reinforce trust in European GenAI solutions.
+
+*Scope*
+
+The selected consortium will be responsible for enhancing the scalability and replication of successful European GenAI pilot solutions, through activities that foster knowledge sharing, community building, and capacity development. Such activities could consist, for example, in implementing software documentation best practices, facilitating peer-to-peer knowledge sharing and experience exchange, deploying targeted training and support programs, and establishing a community of practice. A helpdesk can be set up to support pilot projects and other interested public administrations on technical, organisational and legal – such as procurement – matters.
+
+For instance, to support replication and scalability, the CSA may develop practical tools such as starter kits to guide new adopters with implementation steps and preconditions (data, infrastructure, skills, etc.), end/or host and maintain a publicly accessible repository of replicability assessments (across languages, admin levels, IT environment) of adopted solutions. These tools can be made available, if possible, on the AI-on-Demand platform7 as the central repository for the European AI ecosystem.
+
+6 DIGITAL-2025-AI-SUPPLY-08 -Apply AI: GenAI for the public administrations
+
+## AI-on-Demand Platform
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+These activities will ensure that the implementation strategies of successful pilot 
+projects can be readily replicated and scaled, enabling seamless adoption across 
+different public administrations and Member States, EEA-EFTA countries and countries 
+associated to the Digital Europe Programme.
+
+Importantly, the CSA will seek to identify common needs with the overarching goal of 
+pooling demand from public administrations for GenAI solutions “Made in Europe”. 
+Towards that end, the CSA will define benchmarks and minimum requirements at the 
+technical level. It will work closely with and contribute to the innovation procurement 
+hubs initiative8, in particular to public procurement of innovation (PPI) and precommercial public procurement work strands. Furthermore, the CSA will raise 
+awareness among European start-ups for its demand-pooling exercise through 
+outreach activities targeted to start-up communities in Europe, conducting where 
+relevant matchmaking exercises between public administrations and European startups.
+
+Through this combined efforts, this CSA will contribute to the creation of a GenAI4EU 
+community of public administrations in Europe and its integration into the large 
+European AI ecosystem of excellence.
+
+Participants in this action should in particular, cooperate closely with the European 
+Digital Innovation Hubs and the AI-on-Demand-Platform, leveraging their expertise 
+and building on their efforts targeted to the public administrations.
+
+The CSA will play an important role in ensuring the pilot projects have a European 
+dimension. This will be done by supporting the pilot projects with scalability and 
+replicability. They will complement their planned actions with additional measures to 
+maximise the reach and impact. Moreover, the European dimension will also be 
+ensured by reporting on the pilot project’s activities, aggregating their KPIs and 
+relevant figures to provide an overview on the use of GenAI by public administrations 
+in Europe.
+
+The CSA should engage with all levels of public administrations (local, regional, 
+national) without focusing on one specific level. The CSA will closely collaborate with 
+the consortia implementing the pilot projects but will bring complementary expertise 
+to maximise the impact of their planned actions.
+
+8 Call for tenders EISMEA/2024/OP/0008
+
+10
+EU Funding & Tenders Portal
+
+11
+https://language-data-space.ec.europa.eu/related-initiatives/alt-edic_en
+
+https://ec.europa.eu/info/fundingtenders/opportunities/portal/screen/opportunities/topic-details/digital-2024-ai-06-
+finetune
+
+13
+https://digital-strategy.ec.europa.eu/en/activities/testing-and-experimentationfacilities
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+spaces14 and relevant EuroHPC initiatives15, in particular the the AI Factories16. Furthermore, it should work with actions implementing the AI Act17, such as the regulatory sandboxes. Strong links should also be built with the future Multi-Country Project on Innovative and Connected Public Administrations.
+
+The CSA should also seek alignment with existing Commission-led initiatives that support AI adoption in the public sector. These may include, for instance, the Public Sector Tech Watch observatory18, which gathers use cases and best practices on AI in public services across Europe; the GovTech Incubator19, fostering collaboration between public administrations and European start-ups; and the Interoperable Europe Academy20, offering training programmes for public sector professionals on digital and AI topics.
+
+The CSA should cooperate with the GenAI4EU Central Hub
+
+21. In this cooperation, the
+CSA would focus on GenAI for Public Administration and the Central Hub would be in charge of more general GenAI topics. The Central Hub will not interfere and work on matters on GenAI for Public Administration, unless with an explicit agreement from this action. It must be clear that there is no overlap of activities between the two actions, but synergies should be developed when added value is demonstrated.
+
+## Outcomes and deliverables
+
+- Contribution to the replication and scalability of piloted GenAI solutions across public administrations and Member States, demonstrated through the ability to adapt them to new users, administrative levels or service areas. This contribution will be supported through concrete tools such as starter kits, a repository of replicability assessments as well as tailored guidance, documentation and outreach.
+- Targeted support to national procurement processes, where relevant, possibly by a helpdesk.
+- Pooling of demand for European GenAI solutions by public administrations in the form of among others technical benchmarks.
+- Bringing together public administration and start-ups based on common needs and capabilities as defined in technical benchmarks etc. 14 [https://digital-strategy.ec.europa.eu/en/policies/data-spaces](https://digital-strategy.ec.europa.eu/en/policies/data-spaces) 15 [https://digital-strategy.ec.europa.eu/en/policies/high-performance-computing-](https://digital-strategy.ec.europa.eu/en/policies/high-performance-computing-) joint-undertaking 16 [https://digital-strategy.ec.europa.eu/en/policies/ai-factories](https://digital-strategy.ec.europa.eu/en/policies/ai-factories) 17 [https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) 18 [https://interoperable-europe.ec.europa.eu/collection/public-sector-tech-watch](https://interoperable-europe.ec.europa.eu/collection/public-sector-tech-watch) 19 [https://interoperable-europe.ec.europa.eu/collection/govtechconnect/govtech4all](https://interoperable-europe.ec.europa.eu/collection/govtechconnect/govtech4all) 20
+[https://interoperable-europe.ec.europa.eu/collection/digital-skills-public-](https://interoperable-europe.ec.europa.eu/collection/digital-skills-public-) sector/solution/interoperable-europe-academy
+
+## EU Funding & Tenders Portal
+
+---
+
+• To complement the outreach strategy of the pilot projects, support to outreach 
+and awareness-raising activities by public administrations, including 
+communication materials.
+
+• Strengthened integration of public administrations into the broader European AI 
+ecosystem, through synergies with the AI-on-Demand Platform, EDIHs, the AI 
+Factories and other relevant initiatives as well as ensured synergies with 
+Commission-led initiatives that support AI adoption in public sector.
+
+Yearly reports on the results of the pilot projects in aggregated form and of the CSA 
+in implementing GenAI solutions in public administration processes.
+
+KPIs to measure outcomes and deliverables
+
+CSA project KPIs:
+
+• Number of practical tools for replicability and scalability and initiatives for 
+knowledge-sharing such as starter-kits, replication assessments and Q&As
+
+o Number of times the CSA’s assets (tools & initiatives) are used by public 
+administrations which result in pilots replicated and/or scaled
+
+• Number of technical benchmarks for European AI solutions needed by public 
+administrations
+
+• Number of matchmaking interactions between European start-ups and public 
+administrations initiated through CSA activities
+
+o Percentage of those interactions leading to concrete follow-up or 
+collaboration
+
+• Number of attendants at events organised to promote results of pilot projects for 
+replicability and scalability purposes
+
+▪ of which a certain percentage were held for countries different than the 
+countries where all the pilot projects took place
+
+• Collection of satisfaction score from survey of participants of pilot projects
+
+For more information on Digital Europe types of action, see Annex 1.
+
+Specific topic conditions
+
+Coordination and Support Actions — 100% funding
+
+• For this topic, restrictions for the protection of European digital infrastructures, 
+communication and information systems, and related supply chains apply  (see
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+*sections 6,10, and the Appendix 4 of the Digital Europe Work Programme 2025-*
+
+*2027).*
+- For this topic, multi-beneficiary applications are mandatory and specific conditions for the consortium composition apply (see section 6)
+- For this topic, following reimbursement option for equipment costs applies: depreciation only (see section 10)
+- For this topic, first exploitation obligations don’t apply (see section 10)
+- For this topic, access rights to ensure continuity and interoperability obligations apply (see section 10)
+- The following parts of the award criteria in section 9 are exceptionally NOT applicable for this topic: o extent to which the proposal can overcome financial obstacles such as the lack of market finance* o extent to which the proposal addresses environmental sustainability and the European Green Deal goals, in terms of direct effects and/or in awareness of environmental effects*
+## DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds test beds
+
+*Objectives*
+
+The main objective is to increase productivity and innovation capacity through state- of-the-art virtual worlds technologies. The Virtual worlds test beds will support testing, experimentation and integration of Virtual Worlds, immersive and extended reality technologies in specific sectors, targeting both industrial and societal applications.
+
+The virtual worlds test beds will focus on testing and integrating mature technologies and solutions that have already been tested in the labs with the objective to be validated in real-world environments. They will also cover the aspects of interoperability and transferability between Virtual Worlds.
+
+The Virtual worlds testbeds will seek to maximise the uptake of virtual worlds solutions in industrial and societal applications and boost competitiveness of the sectors they are applied.
+
+*Scope*
+
+For this action, support to two world-class sectorial testbeds through two projects is envisaged: one for industrial applications (such as manufacturing, construction or industrial design) and one for societal applications (such as education and training, cultural heritage and other cultural experiences, public administration or healthcare). Each testbed should create a network of facilities with critical mass across at least three different Member States or associated countries.
+
+Proposals are expected to focus on either industrial or societal applications. The area should be clearly identified within the proposal.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+The test beds will provide all necessary expertise and infrastructure for the design and implementation of the testing methodologies, combining physical world and virtual worlds facilities.
+
+This combination of physical and virtual facilities shall be used by technology providers and key stakeholders in real world environments and conditions. These, depending on the selected sectors may include for instance, manufacturing sites, hospitals, construction sites.
+
+Activities supported by this action will cover the demonstration, testing and validation in real-life application environment, solving issues and providing improvements. Each test bed will pay a special attention to closely involve end-users in their activities for customisation of technologies to work environments, and for ensuring human-centric outcomes.
+
+The test beds will facilitate full integration of the relevant virtual worlds underlying technologies (extended reality and immersive technologies coupled to, for example, AI, IoT, edge and cloud computing, digital twins, sensors, microelectronics, photonics and optics). In addition, the test beds will offer additional services that are necessary to access the facilities such as access to hardware (for example helmets and glasses, XR devices, haptics equipment), computing power, operating systems, software and SDK, testing of new services and devices, involvement of potential end-users as well as on-demand technical advice and expertise.
+
+The test beds will develop use cases and demonstrators and will also focus on legal and ethical issues such as ethics, data protection, cybersecurity, privacy, aspects of intellectual property, certification and pay special attention to standardisation and interoperability. The testbeds shall provide support on those.
+
+Within their area of competence, the virtual worlds test beds will also explore the possibility to support the creation of regulatory sandboxes around their facilities. These regulatory sandboxes shall promote innovative solutions, facilitate compliance with regulatory framework and enhance regulatory learning. Regulatory sandboxes should be supervised by competent authorities and enable testing and experimentation for innovative virtual worlds solutions in controlled environments.
+
+The test bed infrastructure established within this activity will set-up or build on physical and digital resources. These resources will be available to the users of the facilities for testing and experimentation of their hardware and software related to Virtual Worlds.
+
+The facilities will link to relevant Digital Europe Programme projects such as Testing and Experimentation Facilities, EDIHs and data spaces. Facilities are also encouraged to establish links to relevant projects funded by Horizon 2020 or Horizon Europe, whenever feasible and meaningful. The two test beds are also expected to establish strong links, exchange good practices and exploit synergies. The selected projects are also expected to establish strong links, exchange good practices and exploit synergies with each other.
+
+## Outcomes and deliverables
+
+The virtual worlds test beds will support the process of bringing innovative technologies from the lab to the market. To do so the projects will engage with all necessary stakeholders from developers to users. The two test beds will be developed and made operational by the end of the projects: one for industrial applications (such as manufacturing, construction or industrial design) and one for societal applications (such as education and training, cultural heritage and other cultural experiences, public administration or healthcare). The proposals shall clearly identify the application area(s) of focus.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+Expected outcomes contributing to virtual worlds innovation:
+
+- Contributing to European digital sovereignty and open strategic autonomy in the domain of virtual worlds;
+- Contributing to development of innovative and interoperable virtual worlds solutions;
+- Contributing to the creation and promotion of EU regulatory sandboxes for virtual worlds.
+The test beds will facilitate increased and faster integration of virtual worlds solutions in the selected areas taking into consideration aspects of environmental sustainability. Practically, the testbeds will include technological validation in real-world environments and conditions, testing and experimentation support and bringing solutions to a higher technology readiness level leading to an increased competitiveness of European developers and providers of virtual worlds solutions, in particular SMEs.
+
+Deliverables
+
+The test beds will include use case demonstrators, and a catalogue of relevant issues identified and corresponding offered services. The selected projects will develop and, if necessary, adapt over time, a long-term plan (over 48 months) to 1) build up or upgrade facilities with resources and services, 2) offer and extend the use of facilities to promising Virtual Worlds providers, and 3) achieve long-term financial sustainability after EU funding stops.
+
+## Contribution to virtual worlds innovation:
+
+- Validation of virtual worlds technologies in real conditions and environments related to the selected sectoral areas.
+- Boosting competitiveness of the European industry, including SMEs in virtual worlds technologies.
+- Contributing to boost European intellectual property and products based on innovative virtual worlds technologies.
+- World-class testbed facilities in Europe, offering comprehensive support and meeting the needs of European innovators.
+- Contributing to European technology sovereignty and open strategics autonomy in virtual worlds.
+- Facilitating compliance with regulatory frameworks and enhanced regulatory learning.
+## KPIs to measure outcomes and deliverables
+
+Progress should be demonstrated by qualitative and quantitative KPIs, demonstrators, benchmarking and progress monitoring. The proposals should define a set of methodologies and kits of specific quantitative and qualitative KPIs to enable appropriate control of the implementation progress of the pilot.
+
+The consortia should also propose relevant indicators (including industry and service relevant KPIs) for measuring the final usage and impact of the test beds. These indicators should be accompanied by target values. The following KPIs shall be considered:
+
+- Absolute number of physical and digital (virtual) facilities, resources and professional services in the project’s catalogue.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+- Number of demonstrators.
+- User satisfaction of the testbeds facilities and services.
+- Number of shared best practices.
+- Number of end users engaged.
+- Efficiency gains, cost reductions and other benefits from the deployment of innovative technologies supported by the project.
+- Number of testbeds users throughout the period of the project, including percentages of SMEs and cross-border participations.
+- Number of virtual worlds solutions brought to the market-readiness (TRL 8), including number of certified solutions and registered patents of users.
+- Market adoption of virtual worlds technologies and solutions after their participation in the testbeds, including number of SMEs adopting the solutions.
+- Number of new businesses created.
+- Evolution of the share of the European industry in the global market of virtual worlds.
+- Number of technologies and solutions making use of the regulatory sandboxes.
+## Targeted stakeholders
+
+The proposals should include partners with demonstrated experience of delivering on the areas mentioned above and provide a broad representation of constituencies relevant to virtual worlds. The partners should credibly cover the sectoral areas identified as targeted by the proposals and demonstrate capacity to reach out and effectively engage with relevant sectoral stakeholders across Europe (i.e. providers, users, governments, financial community, local community). The proposals should explain how the network will include end-users of virtual worlds technologies, and the necessary stakeholders to ensure co-creation (i.e. to define testing scenarios, protocols and metrics relevant to the selected sectors).
+
+The consortia may include partners including public or private entities, technology providers and users, NRENs, industrial associations, etc.
+
+Beneficiaries should contribute to reinforce European Digital sovereignty and provide adequate EU coverage for the initial role out of the pilot. Beneficiaries should ensure links with other initiatives such as the Virtual Worlds Partnership and the VRAR industrial coalition, where relevant.
+
+## Type of action and funding rate
+
+## Simple Grants — 50% funding rate
+
+For more information on Digital Europe types of action, see Annex 1.
+
+## Specific topic conditions
+
+- For this topic, restrictions for the protection of European digital infrastructures, communication and information systems, and related supply chains apply (see *sections 6,10, and the Appendix 4 of the Digital Europe Work Programme 2025-*
+*2027)*
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+• For this topic, multi-beneficiary applications are mandatory and specific conditions 
+for the consortium composition apply (see section 6)
+
+• For this topic, following reimbursement option for equipment costs applies: 
+depreciation (see section 10)
+
+• For this topic, access rights to ensure continuity and interoperability obligations 
+apply (see section 10)
+
+• For this topic, additional dissemination obligations apply (see section 10)
+
+• The following parts of the award criteria in section 9 are exceptionally NOT 
+applicable for this topic:
+
+o extent to which the project would reinforce and secure the digital technology 
+supply chain in the Union*
+
+o extent to which the proposal can overcome financial obstacles such as the lack 
+of market finance*
+
+o extent to which the proposal addresses environmental sustainability and the 
+European Green Deal goals, in terms of direct effects and/or in awareness of 
+environmental effects*
+
+• For this topic, the following exception to the ‘Evaluation and award procedure’ 
+applies: Proposals are expected to focus on either industrial or societal 
+applications. The area should be clearly identified within the proposal. To ensure a 
+balanced portfolio covering the two sectorial test beds described (one for industrial 
+applications and one for societal applications), grants will be awarded to 
+applications not only in order of ranking but at least also to one proposal that is 
+the highest ranked within each of the two sectors described, provided that the 
+applications attain all thresholds (see section 8).
+
+3. Available budget
+
+The estimated available call budget is EUR 60 200 000
+
+Specific budget information per topic can be found in the table below:
+
+| Topic | Topic budget |
+| --- | --- |
+| DIGITAL-2026-AI-09-DS-HEALTH-TOOLHealth:Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space:data tools | EUR 500000 |
+| DIGITAL-2026-AI-09-DS-HEALTH-STORAGEHealth:Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space:data storage and processing capacity | EUR 1750000 |
+
+---
+
+| DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP
+Deployment of cutting-edge multi-modal AI-based solutions in medical imaging | EUR 14 400 000 |
+| --- | --- |
+| DIGITAL-2026-AI-09-ECAVA
+Secretariat of the European Connected and Autonomous Vehicle Alliance | EUR 1 000 000 |
+| DIGITAL-2026-AI-09-AUTOMOTIVE
+Collaboration platform for the European connected and autonomous vehicle of the future | EUR 3 500 000 |
+| DIGITAL-2026-AI-09-GENAI-PA
+Apply AI: GenAI for the public administrations | EUR 1 800 000 |
+| DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP
+Virtual worlds test beds | EUR 17 000 000 |
+
+5. Admissibility and documents
+
+| Timetable and deadlines(indicative) |  |
+| --- | --- |
+| Call opening: | 4 November 2025 |
+| Deadline for submission: | 3 March 2026-17:00:00 CET(Brussels) |
+| Evaluation: | March-April 2026 |
+| Information on evaluation results: | June 2026 |
+| GA signature: | September 2026 |
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+Proposals must be submitted electronically via the Funding & Tenders Portal Electronic Submission System (accessible via the Topic page in the Calls for proposals section. Paper submissions are NOT possible.
+
+Proposals (including annexes and supporting documents) must be submitted using
+
+the forms provided inside the Submission System ( NOT the documents available on the Topic page — they are only for information).
+
+Proposals must be **complete** and contain all the requested information and all required annexes and supporting documents:
+
+− Application Form Part A — contains administrative information about the participants (future coordinator, beneficiaries and affiliated entities) and the summarised budget for the project (to be filled in directly online)
+
+− Application Form Part B — contains the technical description of the project *(template to be downloaded from the Portal Submission System, completed,* *assembled and re-uploaded)*
+
+− **mandatory annexes and supporting documents** *(templates to be* *downloaded from the Portal Submission System, completed, assembled and* *re-uploaded):*
+
+## − detailed budget table/calculator: not applicable
+
+− CVs of core project team: not applicable
+
+− activity reports of last year: not applicable
+
+-list of previous projects (key projects for the last 4 years) *(template* *available in Part B) for topic DIGITAL-2026-AI-09-AUTOMOTIVE -* **Collaboration platform for the European connected and** **autonomous vehicle of the future**
+
+# − ownership control declarations (including for associated partners and
+
+subcontractors) for topics:
+
+- **DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data** **ingestion capacities and data services for the European** **Genomic Data Infrastructure in the European Health Data** **Space: data tools**
+- **DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health:** **Data ingestion capacities and data services for the** **European Genomic Data Infrastructure in the European** **Health Data Space: data storage and processing capacity**
+- **DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP-** **Deployment of cutting-edge multi-modal AI-based** **solutions in medical imaging**
+- **DIGITAL-2026-AI-09-ECAVA-Secretariat of the European** **Connected and Autonomous Vehicle Alliance**
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+- **DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration** **platform for the European connected and autonomous** **vehicle of the future**
+At proposal submission, you will have to confirm that you have the mandate to act for all applicants. Moreover, you will have to confirm that the information in the application is correct and complete and that all participants comply with the conditions for receiving EU funding (especially eligibility, financial and operational *capacity, exclusion, etc). Before signing the* grant, each beneficiary and affiliated entity will have to confirm this again by signing a declaration of honour (DoH). Proposals without full support will be rejected.
+
+Your application must be readable, accessible and **printable** (please check carefully the layout of the documents uploaded).
+
+Proposals are limited to maximum 70 pages except for Coordination and support **Actions where the maximum is 50 pages (Part B). Evaluators will not consider** any additional pages.
+
+You may be asked at a later stage for further documents (for legal entity validation, *financial capacity check, bank account validation, etc).*
+
+For more information about the submission process (including IT aspects), consult the Online Manual.
+
+## 6. Eligibility
+
+## Eligible participants (eligible countries)
+
+In order to be eligible, the applicants (beneficiaries and affiliated entities) must:
+
+− be legal entities (public or private bodies)
+
+− be established in one of the eligible countries, i.e.:
+
+− EU Member States (including overseas countries and territories (OCTs))
+
+− non-EU countries (except for topics with restrictions; see below):
+
+# − listed EEA countries and countries associated to the Digital Europe
+
+Programme (list of participating countries)
+
+Beneficiaries and affiliated entities must register in the Participant Register — before submitting the proposal — and will have to be validated by the Central Validation Service (REA Validation). For the validation, they will be requested to upload documents showing legal status and origin.
+
+Other entities may participate in other consortium roles, such as associated partners, subcontractors, third parties giving in-kind contributions, etc (see section 13).
+
+Please note however that some topics are subject to restrictions due to security reasons:
+
+## − for topics:
+
+- **DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion** **capacities and data services for the European Genomic Data** **Infrastructure in the European Health Data Space: data tools**
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+- **DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data** **ingestion capacities and data services for the European Genomic** **Data Infrastructure in the European Health Data Space: data** **storage and processing capacity**
+- **DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP-Deployment of** **cutting-edge multi-modal AI-based solutions in medical imaging**
+- **DIGITAL-2026-AI-09-ECAVA-Secretariat of the European** **Connected and Autonomous Vehicle Alliance**
+- **DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration platform for the** **European connected and autonomous vehicle of the future** only the following countries are eligible: EU Member States, EEA countries and Switzerland22. Entities must not be directly or indirectly controlled from a country that is not an eligible country unless the granting authority agrees to allow for exceptional participation on the basis of a guarantee (ownership control restriction).
+For restrictions limiting participation to specific eligible countries:
+
+The condition must in principle be fulfilled already at proposal submission stage (call deadline); you cannot change status during GAP — unless agreed by the granting authority.
+
+The following participants (beneficiaries, affiliated entities, associated partners and subcontractors) will be checked by the EU. Other participants must be checked by the consortium.
+
+For the EU checks, the participants must register in the Participant Register (i.e. have at least a draft PIC). For beneficiaries and affiliated entities, the checks will be done on the basis of the validated PIC data. For other participants, the checks will be done on the basis of publicly available information.
+
+## For ownership control restrictions:
+
+‘Control’ means the possibility to exercise decisive influence on the participant, directly or indirectly, through one or more intermediate entities, ‘de jure’ or ‘de facto’. This includes not only ownership of more than 50% (shareholding), but also any other elements and/or rights that can amount to control.
+
+The condition must in principle be fulfilled already at proposal submission stage (call deadline); you cannot change status during GAP — unless agreed by the granting authority.
+
+22 Transitional arrangements apply: grant agreements with beneficiaries established in Switzerland on the basis of the association agreement can only be signed if the association has started producing legal effects, i.e. the association agreement started to apply.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+The following participants (beneficiaries, affiliated entities, associated partners and subcontractors) will be checked by the EU. Other participants must be checked by the consortium.
+
+For the EU checks, the participants must register in the Participant Register (i.e. have at least a draft PIC). They will be required to fill in and submit an ownership control declaration* as part of the proposal (and later on be requested to submit supporting documents). Where guarantees are allowed, ineligible entities will be requested to fill in the guarantee template*, have it approved by the competent authority of their country of establishment, and submit it to the granting authority which will assess their validity.
+
+## For more information, see Annex 2.
+
+Please note that the call is also subject to restrictions for the protection of European digital infrastructures, communication and information systems, and related supply chains.
+
+Entities that are assessed as high-risk suppliers of mobile network communication equipment (and any entities they own or control) are not eligible to participate in any capacity, including as beneficiaries, affiliated entities, associated partners, third parties giving in-kind contributions, subcontractors or recipients of financial support to third parties (if any). Please see Appendix 4 of the Digital Europe Work **Programme 2025-2027** **23** **for details and the assessment criteria.**
+
+## Specific cases and definitions
+
+Natural persons — Natural persons are NOT eligible (with the exception of self- employed persons, i.e. sole traders, where the company does not have legal personality separate from that of the natural person)
+
+International organisations — International organisations are NOT eligible, unless they are International organisations of European Interest within the meaning of Article 2 of the Digital Europe Regulation (i.e. international organisations the majority of whose members are Member States or whose headquarters are in a Member State).
+
+Entities without legal personality — Entities which do not have legal personality under their national law may exceptionally participate, provided that their representatives have the capacity to undertake legal obligations on their behalf, and offer guarantees for the protection of the EU financial interests equivalent to that offered by legal persons24.
+
+EU bodies — EU bodies (with the exception of the European Commission Joint Research Centre) can NOT be part of the consortium.
+
+Associations and interest groupings — Entities composed of members may participate
+
+as ‘sole beneficiaries’ or ‘beneficiaries without legal personality’ 25 . Please note that if the action will be implemented by the members, they should also participate (either as beneficiaries or as affiliated entities, otherwise their costs will NOT be eligible).
+
+Countries currently negotiating association agreements — Beneficiaries from countries with ongoing negotiations for participating in the programme (see list of participating *countries above) may participate in the call and can sign grants if the negotiations are*
+
+23 Commission Implementing Decision C(2025) 6650 of 06.10.2025 amending Implementing Decision C(2025) 1839 on the financing of the Digital Europe Programme and the adoption of the work programme for 2025-2027 See Article 200(2)(c) EU Financial Regulation 2024/2509. For the definitions, see Articles 190(2) and 200(2)(c) EU Financial Regulation 2024/2509.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+concluded before grant signature and if the association covers the call (i.e. is retroactive and covers both the part of the programme and the year when the call was launched).
+
+EU restrictive measures — Special rules apply for entities subject to EU restrictive measures under Article 29 of the Treaty on the European Union (TEU) and Article 215 of the Treaty on the Functioning of the EU (TFEU) 26 . Such entities are not eligible to participate in any capacity, including as beneficiaries, affiliated entities, associated partners, subcontractors or recipients of financial support to third parties (if any).
+
+EU conditionality measures — Special rules apply for entities subject to measures adopted on the basis of EU Regulation 2020/2092 27 . Such entities are not eligible to participate in any funded role (beneficiaries, affiliated entities, subcontractors, recipients of financial support to third parties, etc). Currently such measures are in place for Hungarian public interest trusts established under the Hungarian Act IX of 2021 or any entity they maintain (see Council Implementing Decision (EU) 2022/2506, as of 16 December 2022).
+
+For more information, see Rules for Legal Entity Validation, LEAR Appointment and *Financial Capacity Assessment.*
+
+## Consortium composition
+
+## Proposals must be submitted by:
+
+## for topics:
+
+## DIGITAL-2026-AI-09-DS-HEALTH-TOOLS -Health: Data ingestion capacities
+
+## and data services for the European Genomic Data Infrastructure in the
+
+## European Health Data Space: data tools
+
+and
+
+## DIGITAL-2026-AI-09-DS-HEALTH-STORAGE -Health: Data ingestion
+
+## capacities and data services for the European Genomic Data Infrastructure in
+
+## the European Health Data Space: data storage and processing capacity
+
+- minimum 5 independent applicants (beneficiaries; not affiliated entities) from 5 different eligible countries
+## DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP -Deployment of cutting-
+
+## edge multi-modal AI-based solutions in medical imaging
+
+- minimum 7 independent applicants (beneficiaries; not affiliated entities) from 7 different eligible countries.
+## DIGITAL-2026-AI-09-ECAVA-Secretariat of the European Connected and
+
+## Autonomous Vehicle Alliance
+
+- minimum 3 independent applicants (beneficiaries; not affiliated entities).
+26 Please note that the EU Official Journal contains the official list and, in case of conflict, its content prevails over that of the EU Sanctions Map. 27 Regulation (EU, Euratom) 2020/2092 of the European Parliament and of the Council of 16 December 2020 on a general regime of conditionality for the protection of the Union budget (OJ L 325,
+
+20.12.2022, p. 94).
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+## DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration platform for the European
+
+## connected and autonomous vehicle of the future
+
+- minimum 3 independent applicants (beneficiaries; not affiliated entities) from 3 different eligible countries .
+## DIGITAL-2026-AI-09-GENAI-PA-Apply AI: GenAI for the public
+
+**administrations**
+
+- minimum 3 independent applicants (beneficiaries; not affiliated entities) from 3 different eligible countries.
+## DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds test beds
+
+- minimum 4 independent applicants (beneficiaries; not affiliated entities) from 3 different eligible countries, out of which:
+- minimum 1 research organisation (i.e. universiry, RTO)
+- minimum 1 private company applicant per sector identified as targeted in the proposal
+*Eligible activities* Applications will only be considered eligible if their content corresponds wholly (or at least in part) to the topic description for which they are submitted. Eligible activities are the ones set out in section 2 above. Projects should take into account the results of projects supported by other EU funding programmes. The complementarities must be described in the project proposals (Part B of the Application Form). Projects must comply with EU policy interests and priorities (such as environment, *social, security, industrial and trade policy, etc). Projects must also respect EU values* and European Commission policy regarding reputational matters (e.g. activities *involving capacity building, policy support, awareness raising, communication,* *dissemination, etc).* Financial support to third parties is not allowed. *Geographic location (target countries)* Due to restrictions due to security: − for topics:
+
+## DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion
+
+## capacities and data services for the European Genomic Data
+
+## Infrastructure in the European Health Data Space: data tools
+
+## DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data ingestion
+
+## capacities and data services for the European Genomic Data
+
+## Infrastructure in the European Health Data Space: data storage and
+
+## processing capacity
+
+## DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP -Deployment of
+
+## cutting-edge multi-modal AI-based solutions in medical imaging
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+## DIGITAL-2026-AI-09-ECAVA -Secretariat of the European Connected
+
+## and Autonomous Vehicle Alliance
+
+## DIGITAL-2026-AI-09-AUTOMOTIVE -Collaboration platform for the
+
+## European connected and autonomous vehicle of the future
+
+the proposals must relate to activities taking place in the eligible countries *(see above).*
+
+*Ethics*
+
+## Projects must comply with:
+
+− highest ethical standards and − applicable EU, international and national law (including the General Data
+
+## Protection Regulation 2016/679).
+
+Proposals under this call will have to undergo an ethics review to authorise funding and may be made subject to specific ethics rules (which become part of the Grant Agreement in the form of ethics deliverables, *e.g. ethics committee* *opinions/notifications/authorisations required under national or EU law).*
+
+For proposals involving development, testing, deployment, use or distribution of AI systems, the ethics review will in particular check compliance with the principles of human agency and oversight, diversity/fairness, transparency and responsible social impact, while the experts performing the technical evaluation will assess the robustness of the AI systems (i.e. their reliability not to cause unintentional harm).
+
+*Security*
+
+Projects involving EU classified information must undergo security scrutiny to authorise funding and may be made subject to specific security rules (detailed in a security aspects letter (SAL) which is annexed to the Grant Agreement).
+
+These rules (governed by Decision 2015/444 28 and its implementing rules and/or national rules) provide for instance that:
+
+# − projects involving information classified TRES SECRET UE/EU TOP SECRET (or
+
+equivalent) can NOT be funded
+
+# − classified information must be marked in accordance with the applicable
+
+security instructions in the SAL
+
+# − information with classification levels CONFIDENTIEL UE/EU CONFIDENTIAL or
+
+above (and RESTREINT UE/ EU RESTRICTED, if required by national rules) may be:
+
+# − created or accessed only on premises with facility security clearance
+
+(FSC) from the competent national security authority (NSA), in accordance with the national rules
+
+# − handled only in a secured area accredited by the competent NSA
+
+# − accessed and handled only by persons with valid personnel security
+
+clearance (PSC) and a need-to-know
+
+See Commission Decision 2015/444/EU, Euratom of 13 March 2015 on the security rules for protecting EU classified information (OJ L 72, 17.3.2015, p. 53).
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+− at the end of the grant, the classified information must either be returned or 
+continue to be protected in accordance with the applicable rules
+
+− action tasks involving EU classified information (EUCI) may be subcontracted 
+only with prior written approval from the granting authority and only to entities 
+established in an EU Member State or in a non-EU country with a security of 
+information agreement with the EU (or an administrative arrangement with the 
+Commission)
+
+− disclosure of EUCI to third parties is subject to prior written approval from the 
+granting authority.
+
+Please note that, depending on the type of activity, facility security clearance may 
+have to be provided before grant signature. The granting authority will assess the 
+need for clearance in each case and will establish their delivery date during grant 
+preparation. Please note that in no circumstances can we sign any grant agreement 
+until at least one of the beneficiaries in a consortium has facility security clearance.
+
+Further security recommendations may be added to the Grant Agreement in the form 
+of security deliverables  (e.g. create security advisory group, limit level of detail, use 
+fake scenario, exclude use of classified information, etc).
+
+Beneficiaries must ensure that their projects are not subject to national/third-country 
+security requirements that could affect implementation or put into question the award 
+of the grant  (e.g. technology restrictions, national security classification, etc). The 
+granting authority must be notified immediately of any potential security issues.
+
+7. Financial and operational capacity and exclusion
+
+Financial capacity
+
+Applicants must have  stable and sufficient resources to  successfully implement 
+the projects and contribute their share. Organisations participating in several projects 
+must have sufficient capacity to implement all projects.
+
+The financial capacity check will be carried out on the basis of the documents you will 
+be requested to upload in the Participant Register during grant preparation (e.g. profit 
+and loss account and balance sheet, business plan, audit report produced by an 
+approved external auditor, certifying the accounts for the last closed financial year, 
+etc). The analysis will be based on neutral financial indicators, but will also take into 
+account other aspects, such as dependency on EU funding and deficit and revenue in 
+previous years.
+
+The check will normally be done for all beneficiaries, except:
+
+− public bodies (entities established as public body under national law, including 
+local, regional or national authorities) or international organisations
+
+− if the individual requested grant amount is not more than EUR 60 000.
+
+− an enhanced financial responsibility regime, i.e. joint and several responsibility 
+for all beneficiaries or joint and several liability of affiliated entities (see below, 
+section 10)
+
+If needed, it may also be done for affiliated entities.
+
+− prefinancing paid in instalments
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+# − (one or more) prefinancing guarantees (see below, section 10)
+
+or
+
+− propose no prefinancing − request that you are replaced or, if needed, reject the entire proposal.
+
+For more information, see Rules for Legal Entity Validation, LEAR Appointment and *Financial Capacity Assessment.*
+
+## Operational capacity
+
+Applicants must have the know-how, qualifications and resources to successfully implement the projects and contribute their share (including sufficient experience in projects of comparable size and nature).
+
+This capacity will be assessed together with the ‘Implementation’ award criterion, on the basis of the competence and experience of the applicants and their project teams, including operational resources (human, technical and other) or, exceptionally, the measures proposed to obtain it by the time the task implementation starts.
+
+If the evaluation of the award criterion is positive, the applicants are considered to have sufficient operational capacity.
+
+Applicants will have to show their capacity via the following information:
+
+# − general profiles (qualifications and experiences) of the staff responsible for
+
+managing and implementing the project
+
+# − description of the consortium participants
+
+# − list of previous projects (key projects for the last 4 years) for topic DIGITAL-
+
+## 2026-AI-09-AUTOMOTIVE-Collaboration platform for the European
+
+## connected and autonomous vehicle of the future (template available in
+
+*Part B).*
+
+Additional supporting documents may be requested, if needed to confirm the operational capacity of any applicant.
+
+*Exclusion*
+
+Applicants which are subject to an EU exclusion decision or in one of the following **exclusion situations that bar them from receiving EU funding can NOT participate29**:
+
+− bankruptcy, winding up, affairs administered by the courts, arrangement with creditors, suspended business activities or other similar procedures (including procedures for persons with unlimited liability for the applicant’s debts)
+
+− in breach of social security or tax obligations (including if done by persons with unlimited liability for the applicant’s debts)
+
+− guilty of grave professional misconduct30 (including if done by persons having powers of representation, decision-making or control, beneficial owners or persons who are essential for the award/implementation of the grant)
+
+29 See Articles 138 and 143 of EU Financial Regulation 2024/2509. 30 ‘Professional misconduct’ includes, in particular, the following: violation of ethical standards of the profession; wrongful conduct with impact on professional credibility; breach of generally accepted professional ethical standards; false declarations/misrepresentation of information; participation in a cartel or other agreement distorting competition; violation of IPR; attempting to influence decision- making processes by taking advantage, through misrepresentation, of a conflict of interests, or to
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+− committed fraud, corruption, links to a criminal organisation, money laundering, terrorism-related crimes (including terrorism financing), child labour or human trafficking (including if done by persons having powers of representation, decision-making or control, beneficial owners or persons who are essential for the award/implementation of the grant)
+
+− shown significant deficiencies in complying with main obligations under an EU procurement contract, grant agreement, prize, expert contract, or similar (including if done by persons having powers of representation, decision- making or control, beneficial owners or persons who are essential for the award/implementation of the grant)
+
+− guilty of irregularities within the meaning of Article 1(2) of EU Regulation 2988/95 (including if done by persons having powers of representation, decision-making or control, beneficial owners or persons who are essential for the award/implementation of the grant)
+
+− created under a different jurisdiction with the intent to circumvent fiscal, social or other legal obligations in the country of origin or created another entity with this purpose (including if done by persons having powers of representation, decision-making or control, beneficial owners or persons who are essential for the award/implementation of the grant)
+
+− intentionally and without proper justification resisted31 an investigation, check or audit carried out by an EU authorising officer (or their representative or auditor), OLAF, the EPPO, or the European Court of Auditors.
+
+Applicants will also be rejected if it turns out that32:
+
+− during the award procedure they misrepresented information required as a condition for participating or failed to supply that information
+
+− they were previously involved in the preparation of the call and this entails a distortion of competition that cannot be remedied otherwise (conflict of interest).
+
+## 8. Evaluation and award procedure
+
+The proposals will have to follow the standard submission and evaluation **procedure (one-stage submission + one-step evaluation).**
+
+An evaluation committee (composed or assisted by independent outside experts) will assess all applications. Proposals will first be checked for formal requirements (admissibility, and eligibility, *see sections 5 and 6). Proposals found admissible and* eligible will be evaluated (for each topic) against the operational capacity and award criteria (see sections 7 and 9) and then ranked according to their scores.
+
+For proposals with the same score (within a topic or budget envelope) a priority **order will be determined according to the following approach:**
+
+obtain confidential information from public authorities to gain an advantage; incitement to discrimination, hatred or violence or similar activities contrary to the EU values where negatively affecting or risking to affect the performance of a legal commitment. 31 ‘Resisting an investigation, check or audit’ means carrying out actions with the goal or effect of preventing, hindering or delaying the conduct of any of the activities needed to perform the investigation, check or audit, such as refusing to grant the necessary access to its premises or any other areas used for business purposes, concealing or refusing to disclose information or providing false information. See Article 143 EU Financial Regulation 2024/2509.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+Successively for every group of ex aequo proposals, starting with the highest scored group, and continuing in descending order:
+
+1) Proposals focusing on a theme that is not otherwise covered by higher ranked proposals will be considered to have the highest priority.
+2) The ex aequo proposals within the same topic will be prioritised according to the scores they have been awarded for the award criterion ‘Relevance’. When these scores are equal, priority will be based on their scores for the criterion ‘Impact’. When these scores are equal, priority will be based on their scores for the criterion ‘Implementation’.
+3) If this does not allow to determine the priority, a further prioritisation can be done by considering the overall proposal portfolio and the creation of positive synergies between proposals, or other factors related to the objectives of the call. These factors will be documented in the panel report.
+4) After that, the remainder of the available call budget will be used to fund projects across the different topics in order to ensure a balanced spread of the geographical and thematic coverage and while respecting to the maximum possible extent the order of merit based on the evaluation of the award criteria.
+For topic DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP - Virtual worlds test **beds -**to ensure a balanced portfolio covering the two sectorial test beds described (one for industrial applications and one for societal applications), grants will be awarded to applications not only in order of ranking but at least also to one proposal that is the highest ranked within each of the two sectors described, provided that the applications attain all thresholds.
+
+All proposals will be informed about the evaluation result (evaluation result letter). Successful proposals will be invited for grant preparation; the other ones will be put on the reserve list or rejected.
+
+All proposals in the topics DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP - **Deployment of cutting-edge multi-modal AI-based solutions in medical** **imaging and DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP - Virtual worlds** **test beds that are eligible and exceed the evaluation thresholds will be awarded a** STEP Seal and will be listed on the STEP portal33. The STEP Seal34 is a recognition given to projects that contribute to STEP objectives and meet the minimum quality criteria set by this call for proposals. The Seal is a quality label and a facilitator for accessing EU funds, making it easier for projects to receive alternative, combined cumulative funding from various EU budgetary instruments.
+
+No commitment for funding — Invitation to grant preparation does NOT constitute a formal commitment for funding. We will still need to make various legal checks before grant award: legal entity validation, financial capacity, exclusion check, etc.
+
+## Grant preparation will involve a dialogue in order to fine-tune technical or financial
+
+aspects of the project and may require extra information from your side. It may also include adjustments to the proposal to address recommendations of the evaluation committee or other concerns. Full compliance will be a pre-condition for signing the grant.
+
+[https://strategic-technologies.europa.eu/index_en](https://strategic-technologies.europa.eu/index_en) [https://strategic-technologies.europa.eu/about/step-seal_en](https://strategic-technologies.europa.eu/about/step-seal_en)
+
+---
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+If you believe that the evaluation procedure was flawed, you can submit a complaint
+(following the deadlines and procedures set out in the evaluation result letter). Please 
+note that notifications which have not been opened within 10 days after sending  will 
+be  considered to have been accessed and that deadlines will be counted from 
+opening/access (see also Funding & Tenders Portal Terms and Conditions). Please also 
+be aware that for complaints submitted electronically, there may be character 
+limitations.
+
+9. Award criteria
+
+The award criteria for this call are as follows:
+
+1. Relevance
+
+− Alignment with the objectives and activities as described in section 2
+
+− Contribution to long-term policy objectives, relevant policies and 
+strategies, and synergies with activities at European and national level
+
+− Extent to which the project would reinforce and secure the digital 
+technology supply chain in the EU*
+
+− Extent to which the  project can overcome financial obstacles such as 
+the lack of market finance*
+
+2. Implementation
+
+− Maturity of the project
+
+− Soundness of the implementation plan and efficient use of resources
+
+− Capacity of the applicants, and when  applicable the consortium as a 
+whole, to carry out the proposed work
+
+3. Impact
+
+− Extent to which the  project will achieve the expected outcomes and 
+deliverables referred to in the  call for proposals  and, where relevant, 
+the plans to disseminate and communicate project achievements
+
+− Extent to which the  project will strengthen competitiveness and bring 
+important benefits for society
+
+| Award criteria | Minimum pass score | Maximum score |
+| --- | --- | --- |
+| Relevance | 3 | 5 |
+| Implementation | 3 | 5 |
+| Impact | 3 | 5 |
+| Overall(pass) scores | 10 | 15 |
+
+− Extent to which the project addresses environmental sustainability and 
+the European Green Deal goals, in terms of direct effects and/or in 
+awareness of environmental effects *.
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+## Maximum points: 15 points.
+
+Individual thresholds per criterion: 3/5, 3/5 and 3/5 points.
+
+## Overall threshold: 10 points.
+
+Proposals that pass the individual thresholds AND the overall threshold will be considered for funding — within the limits of the available budget (i.e. up to the budget ceiling). Other proposals will be rejected.
+
+## 10. Legal and financial set-up of the Grant Agreements
+
+If you pass evaluation, your project will be invited for grant preparation, where you will be asked to prepare the Grant Agreement together with the EU Project Officer.
+
+This Grant Agreement will set the framework for your grant and its terms and conditions, in particular concerning deliverables, reporting and payments.
+
+The Model Grant Agreement that will be used (and all other relevant templates and guidance documents) can be found on Portal Reference Documents.
+
+## Starting date and project duration
+
+The project starting date and duration will be fixed in the Grant Agreement (Data *Sheet, point 1). Normally the starting date will be after grant signature. A retroactive* starting date can be granted exceptionally for duly justified reasons — but never earlier than the proposal submission date.
+
+## Project duration:
+
+# − for topic DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion
+
+capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data tools – 48 months
+
+# − For topic DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data
+
+ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity – 48 months
+
+for topic DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP-Deployment of cutting-edge multi-modal AI-based solutions in medical imaging – 48 months
+
+# − for topic DIGITAL-2026-AI-09-ECAVA-Secretariat of the European
+
+Connected and Autonomous Vehicle Alliance – 36 months
+
+# − for topic DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration platform for
+
+the European connected and autonomous vehicle of the future – 36 months
+
+# − for topic DIGITAL-2026-AI-09-GENAI-PA-Apply AI: GenAI for the public
+
+administrations – 36 months
+
+# − for topic DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds
+
+test beds – between 48 and 60 months
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+Extensions are possible, if duly justified and through an amendment.
+
+## Milestones and deliverables
+
+The milestones and deliverables for each project will be managed through the Portal Grant Management System and will be reflected in Annex 1 of the Grant Agreement.
+
+The following deliverables will be mandatory for all projects:
+
+− additional deliverable on dissemination and exploitation, to be submitted in the first six months of the project
+
+*Form of grant, funding rate and maximum grant amount*
+
+The grant parameters (maximum grant amount, funding rate, total eligible costs, etc) will be fixed in the Grant Agreement (Data Sheet, point 3 and art 5).
+
+## Project budget (requested grant amount):
+
+# − for topic DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion
+
+capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data tools – EUR 5 000 000 per project
+
+# − For topic DIGITAL-2026-AI-09-DS-HEALTH-STORAGE – Health: Data
+
+ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity – EUR 17 500 000 per project
+
+# − for topic DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP-Deployment
+
+of cutting-edge multi-modal AI-based solutions in medical imaging – EUR 14 400 000 per projects
+
+# − for topic DIGITAL-2026-AI-09-ECAVA-Secretariat of the European
+
+Connected and Autonomous Vehicle Alliance – EUR 1 000 000 per projects
+
+# − for topic DIGITAL-2026-AI-09-AUTOMOTIVE-Collaboration platform for
+
+the European connected and autonomous vehicle of the future – EUR 3 500 000 per project
+
+# − for topic DIGITAL-2026-AI-09-GENAI-PA-Apply AI: GenAI for the public
+
+administrations – EUR 1 800 000 per projects
+
+− for topic DIGITAL-2026-AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds test beds – between EUR 8 000 000 and EUR 9 000 000 per project. Nonetheless, this does not preclude submission and selection of a proposal requesting different amounts.
+
+The grant awarded may be lower than the amount requested.
+
+The grant will be a budget-based mixed actual cost grant (actual costs, with unit cost and flat-rate elements). This means that it will reimburse ONLY certain types of costs (eligible costs) and costs that were actually incurred for your project (NOT the *budgeted costs). For unit costs and flat-rates, you can charge the amounts calculated* as explained in the Grant Agreement (see art 6 and Annex 2 and 2a).
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+The costs will be reimbursed at the funding rate fixed in the Grant Agreement. This rate depends on the type of action which applies to the topic (see section 2).
+
+Grants may NOT produce a profit (i.e. surplus of revenues + EU grant over costs). For-profit organisations must declare their revenues and, if there is a profit, we will deduct it from the final grant amount (see art 22.3).
+
+Moreover, please be aware that the final grant amount may be reduced in case of non-compliance with the Grant Agreement (e.g. improper implementation, breach of *obligations, etc).*
+
+## Budget categories and cost eligibility rules
+
+The budget categories and cost eligibility rules are fixed in the Grant Agreement (Data *Sheet, point 3 and art 6).*
+
+*Budget categories for this call:* − A. Personnel costs − A.1 Employees, A.2 Natural persons under direct contract, A.3 Seconded persons − A.4 SME owners and natural person beneficiaries − B. Subcontracting costs − C. Purchase costs − C.1 Travel and subsistence − C.2 Equipment − C.3 Other goods, works and services − D. Other cost categories − D.2 Internally invoiced goods and services − E. Indirect costs *Specific cost eligibility conditions for this call:* − personnel costs: − average personnel costs (unit cost according to usual cost accounting practices) 35 : Yes 36 − SME owner/natural person unit cost : Yes 37 − travel and subsistence unit costs : No (only actual costs) − equipment costs: − depreciation (for topics DIGITAL-2026-AI-09-DS-HEALTH-TOOL – Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data
+
+35 Decision of 29 June 2021 authorising the use of unit costs based on usual cost accounting practices for actions under the Digital Europe Programme. 36 Commission Decision of 20 October 2020 authorising the use of unit costs for the personnel costs of the owners of small and medium-sized enterprises and beneficiaries that are natural persons not receiving a salary for the work carried out by themselves under an action or work programme (C(2020)7115). Commission Decision of 12 January 2021 authorising the use of unit costs for travel, accommodation and subsistence costs under an action or work programme under the 2021-2027 multi-annual financial framework (C(2021)35).
+
+---
+
+Call: DIGITAL-2026-AI-09 – AI Continent
+
+EU Grants: Call document (DEP): V1.0 – 09.10.2025
+
+tools; **DIGITAL-2026-AI-09-SOLUTIONS-CANCER-STEP**- Deployment of cutting-edge multi-modal AI-based solutions in medical imaging; DIGITAL-2026-AI-09-ECAVA-Secretariat of the European Connected and Autonomous Vehicle Alliance; DIGITAL-2026-AI-09- **AUTOMOTIVE**-Collaboration platform for the European connected and autonomous vehicle of the future; DIGITAL-2026-AI-09-GENAI- **PA-Apply AI: GenAI for the public administrations; DIGITAL-2026-** **AI-09-VIRTUAL-TESTBEDS-STEP-Virtual worlds test beds)**
+
+− full cost (for topic **DIGITAL-2026-AI-09-DS-HEALTH-STORAGE** – Health: Data ingestion capacities and data services for the European Genomic Data Infrastructure in the European Health Data Space: data storage and processing capacity)
+
+## − other cost categories:
+
+− costs for financial support to third parties: not allowed
+
+− internally invoiced goods and services (unit cost according to usual cost accounting practices) 38 : Yes
+
+− indirect cost flat-rate: 7% of the eligible direct c

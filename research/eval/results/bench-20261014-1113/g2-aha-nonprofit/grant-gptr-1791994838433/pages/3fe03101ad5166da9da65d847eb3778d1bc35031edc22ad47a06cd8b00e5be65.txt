@@ -1,0 +1,1123 @@
+HetERogeneous sEmantic Data integratIon for the guT-bRain interplaY | HEREDITARY | Project | Fact Sheet | HORIZON | CORDIS | European Commission
+
+Skip to main content
+
+# HetERogeneous sEmantic Data integratIon for the guT-bRain interplaY
+
+##
+Project Information
+
+HEREDITARY
+
+Grant agreement ID:
+101137074
+
+DOI
+
+Each project (from H2020 onwards) is attributed a Digital Object Identifier (DOI)
+
+10.3030/101137074
+
+EC signature date
+13 December 2023
+
+Start date
+1 January 2024
+
+End date
+31 December 2027
+
+Funded under
+
+Health
+
+Total cost
+
+The total amount of money invested in the project. The total cost includes EU contribution as well as other project costs not covered by EU funding. It is expressed in euros.
+
+€
+9 988 833,75
+
+EU contribution
+
+Amount of money, by way of direct subsidy or donation, from the EU budget to finance an action intended to help achieve an EU policy objective or the functioning of a body, which pursues an aim of general EU interest or has an objective forming part of, and supporting, an EU policy. The sum of the EU contributions of all participants in a project is equal to the grant amount.
+
+€ 9 988 833,75
+
+9 988 833,75
+
+Coordinated by
+
+UNIVERSITA DEGLI STUDI DI PADOVA
+
+Italy
+
+## Project description
+
+DE
+EN
+ES
+FR
+IT
+PL
+
+### Secure framework to transform disease detection and treatment
+
+Advanced technology provides the tools to unlock previously unattainable insights, transforming how healthcare is approached. The EU-funded HEREDITARY project aims to develop a secure framework that integrates diverse health data, including genetic information, while ensuring compliance with privacy regulations to advance disease detection and treatment. The project consists of five interconnected layers, using federated data processing and semantic integration. By applying advanced analytics, it will identify new risk factors and treatment responses for neurodegenerative and gut microbiome-related disorders. Additionally, the project connects various clinical, genomic, and environmental data sources, deepening the understanding of these diseases and enabling more effective treatment strategies. It ensures that patients and the public play a central role in guiding research.
+
+Show the project objective
+Hide the project objective
+
+## Objective
+
+HEREDITARY aims to significantly transform the way we approach disease detection, prepare treatment response, and explore medical knowledge by building a robust, interoperable, trustworthy and secure framework that integrates multimodal health data (including genetic data) while ensuring compliance with cross-national privacy-preserving policies. The HEREDITARY framework comprises five interconnected layers, from federated data processing and semantic data integration to visual interaction. By utilizing advanced federated analytics and learning workflows, we aim to identify new risk factors and treatment responses focusing, as exploratory use cases, on neurodegenerative and gut microbiome related disorders.
+HEREDITARY is harmonizing and linking various sources of clinical, genomic, and environmental data on a large scale. This enables clinicians, researchers, and policymakers to understand these diseases better and develop more effective treatment strategies. HEREDITARY adheres to the citizen science paradigm to ensure that patients and the public have a primary role in guiding scientific and medical research while maintaining full control of their data.
+Our goal is to change the way we approach healthcare by unlocking insights that were previously impossible to obtain.
+
+###
+Fields of science (EuroSciVoc)
+
+CORDIS classifies projects with EuroSciVoc, a multilingual taxonomy of fields of science, through a semi-automatic process based on NLP techniques. See: The European Science Vocabulary .
+
+social sciences
+
+political sciences
+
+political policies
+
+civil society
+
+natural sciences
+
+biological sciences
+
+microbiology
+
+natural sciences
+
+computer and information sciences
+
+data science
+
+data processing
+
+Suggest new fields of science
+
+You need to log in or register to use this function
+
+###
+Keywords
+
+Project’s keywords as indicated by the project coordinator. Not to be confused with the EuroSciVoc taxonomy (Fields of science)
+
+Multimodal health data; federated networking infrastructure
+
+###
+Programme(s)
+
+Multi-annual funding programmes that define the EU’s priorities for research and innovation.
+
+HORIZON.2.1 - Health
+MAIN PROGRAMME
+
+See all projects funded under this programme
+
+HORIZON.2.1.5 - Tools, Technologies and Digital Solutions for Health and Care, including personalised medicine
+
+See all projects funded under this programme
+
+###
+Topic(s)
+
+Calls for proposals are divided into topics. A topic defines a specific subject or area for which applicants can submit proposals. The description of a topic comprises its specific scope and the expected impact of the funded project.
+
+HORIZON-HLTH-2023-TOOL-05-04 - Better integration and use of health-related real-world and research data, including genomics, for improved clinical outcomes
+
+See all projects funded under this topic
+
+###
+Funding Scheme
+
+Funding scheme (or “Type of Action”) inside a programme with common features. It specifies: the scope of what is funded; the reimbursement rate; specific evaluation criteria to qualify for funding; and the use of simplified forms of costs like lump sums.
+
+HORIZON-RIA - HORIZON Research and Innovation Actions
+
+See all projects funded under this funding scheme
+
+###
+Call for proposal
+
+Procedure for inviting applicants to submit project proposals, with the aim of receiving EU funding.
+
+(opens in new window)
+HORIZON-HLTH-2023-TOOL-05
+
+See all projects funded under this call
+
+###
+Coordinator
+
+UNIVERSITA DEGLI STUDI DI PADOVA
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 1 138 046,25
+
+Address
+
+VIA 8 FEBBRAIO 2
+
+35122 Padova
+
+Italy
+
+See on map
+
+Region
+
+Nord-Est
+
+Veneto
+
+Padova
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 1 138 046,25
+
+### Participants (17)
+
+Sort alphabetically
+
+Sort by Net EU contribution
+
+Expand all
+Collapse all
+
+ONTOTEXT AD
+
+Bulgaria
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 654 375,00
+
+Address
+
+111R TSARIGRADSKO SHOSSE, FL.12
+
+1784 SOFIA
+
+See on map
+
+SME
+
+The organization defined itself as SME (small and medium-sized enterprise) at the time the Grant Agreement was signed.
+
+Yes
+
+Region
+
+Югозападна и Южна централна България
+
+Югозападен
+
+София (столица)
+
+Activity type
+
+Private for-profit entities (excluding Higher or Secondary Education Establishments)
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 654 375,00
+
+SURF BV
+
+Netherlands
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 894 465,00
+
+Address
+
+MOREELSEPARK 48
+
+3511 EP Utrecht
+
+See on map
+
+Activity type
+
+Private for-profit entities (excluding Higher or Secondary Education Establishments)
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 894 465,00
+
+STICHTING RADBOUD UNIVERSITAIR MEDISCH CENTRUM
+
+Netherlands
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 1 137 141,30
+
+Address
+
+GEERT GROOTEPLEIN 10 ZUID
+
+6525 GA Nijmegen
+
+See on map
+
+Region
+
+Oost-Nederland
+
+Gelderland
+
+Arnhem/Nijmegen
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 1 137 141,30
+
+OBSERVA ASSOCIAZIONE
+
+Italy
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 498 750,00
+
+Address
+
+VIALE A FUSINIERI 65
+
+36100 Vicenza
+
+See on map
+
+Region
+
+Nord-Est
+
+Veneto
+
+Vicenza
+
+Activity type
+
+Research Organisations
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 498 750,00
+
+FUNDACION EMPRESA UNIVERSIDAD GALLEGA
+
+Spain
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 252 125,00
+
+Address
+
+RUA LOPE GOMEZ DE MARZOA CAMPUS UNIVERSITARIO SUR
+
+15705 Santiago De Compostela
+
+See on map
+
+Region
+
+Noroeste
+
+Galicia
+
+A Coruña
+
+Activity type
+
+Other
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 252 125,00
+
+UNIVERSITA DEGLI STUDI DI TORINO
+
+Italy
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 561 768,75
+
+Address
+
+VIA GIUSEPPE VERDI 8
+
+10124 Torino
+
+See on map
+
+Region
+
+Nord-Ovest
+
+Piemonte
+
+Torino
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 561 768,75
+
+AALBORG UNIVERSITET
+
+Denmark
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 800 000,00
+
+Address
+
+FREDRIK BAJERS VEJ 7K
+
+9220 Aalborg
+
+See on map
+
+Region
+
+Danmark
+
+Nordjylland
+
+Nordjylland
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 800 000,00
+
+KATHOLIEKE UNIVERSITEIT LEUVEN
+
+Belgium
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 654 271,25
+
+Address
+
+OUDE MARKT 13
+
+3000 Leuven
+
+See on map
+
+Region
+
+Vlaams Gewest
+
+Prov. Vlaams-Brabant
+
+Arr. Leuven
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 654 271,25
+
+TECHNISCHE UNIVERSITAET GRAZ
+
+Austria
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 705 125,00
+
+Address
+
+RECHBAUERSTRASSE 12
+
+8010 Graz
+
+See on map
+
+Region
+
+Südösterreich
+
+Steiermark
+
+Graz
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 705 125,00
+
+FUNDACIO CENTRE DE REGULACIO GENOMICA
+
+Spain
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 178 865,00
+
+Address
+
+CARRER DOCTOR AIGUADER 88
+
+08003 Barcelona
+
+See on map
+
+Region
+
+Este
+
+Cataluña
+
+Barcelona
+
+Activity type
+
+Research Organisations
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 178 865,00
+
+UNIVERSIDADE NOVA DE LISBOA
+
+Portugal
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 498 851,25
+
+Address
+
+CAMPUS DE CAMPOLIDE
+
+1099-085 Lisboa
+
+See on map
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 498 851,25
+
+EUROPESE VERENIGING VOOR PROFESSIONALS EN PERSONEN MET ALS
+
+Belgium
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 152 750,00
+
+Address
+
+VAARTKOM 17
+
+3000 Leuven
+
+See on map
+
+Region
+
+Vlaams Gewest
+
+Prov. Vlaams-Brabant
+
+Arr. Leuven
+
+Activity type
+
+Other
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 152 750,00
+
+THE EUROPEAN BRAIN COUNCIL AISBL
+
+Belgium
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 268 230,00
+
+Address
+
+RUE D EGMONT 11
+
+1000 Bruxelles / Brussel
+
+See on map
+
+Region
+
+Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest
+
+Région de Bruxelles-Capitale/ Brussels Hoofdstedelijk Gewest
+
+Arr. de Bruxelles-Capitale/Arr. Brussel-Hoofdstad
+
+Activity type
+
+Other
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 268 230,00
+
+REGENTS OF THE UNIVERSITY OF COLORADO
+
+United States
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 671 101,25
+
+Address
+
+Marine Street - Room 479 3100
+
+80309-0572 Boulder Co
+
+See on map
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 671 101,25
+
+EUROPEAN MOLECULAR BIOLOGY LABORATORY
+
+Germany
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 300 000,00
+
+Address
+
+Meyerhofstrasse 1
+
+69117 Heidelberg
+
+See on map
+
+Region
+
+Baden-Württemberg
+
+Karlsruhe
+
+Heidelberg, Stadtkreis
+
+Activity type
+
+Research Organisations
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 300 000,00
+
+CONSORCIO PARA LA EXPLOTACION DEL CENTRO NACIONAL DE ANALISIS GENOMICO
+
+Spain
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 499 276,25
+
+Address
+
+C BALDIRI 1 REIXAC 4
+
+08028 Barcelona
+
+See on map
+
+Region
+
+Este
+
+Cataluña
+
+Barcelona
+
+Activity type
+
+Research Organisations
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 499 276,25
+
+STICHTING RADBOUD UNIVERSITEIT
+
+Netherlands
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 123 692,45
+
+Address
+
+HOUTLAAN 4
+
+6525 XZ Nijmegen
+
+See on map
+
+Region
+
+Oost-Nederland
+
+Gelderland
+
+Arnhem/Nijmegen
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+&euro; 123 692,45
+
+### Partners (1)
+
+Sort alphabetically
+
+Sort by Net EU contribution
+
+Expand all
+Collapse all
+
+Partner
+
+Partner organisations contribute to the implementation of the action, but do not sign the Grant Agreement.
+
+HAUTE ECOLE SPECIALISEE DE SUISSE OCCIDENTALE
+
+Switzerland
+
+Net EU contribution
+
+Net EU financial contribution. The sum of money that the participant receives, deducted by the EU contribution to its linked third party. It considers the distribution of the EU financial contribution between direct beneficiaries of the project and other types of participants, like third-party participants.
+
+&euro; 0,00
+
+Address
+
+Route de Moutier 14
+
+2800 Delemont
+
+See on map
+
+Region
+
+Schweiz/Suisse/Svizzera
+
+Espace Mittelland
+
+Jura
+
+Activity type
+
+Higher or Secondary Education Establishments
+
+Links
+
+Contact the organisation
+(opens in new window)
+
+Website
+(opens in new window)
+
+Participation in EU R&I programmes
+(opens in new window)
+
+HORIZON collaboration network
+(opens in new window)
+
+Total cost
+
+The total costs incurred by this organisation to participate in the project, including direct and indirect costs. This amount is a subset of the overall project budget.
+
+No data
+
+## Download Download the content of the page
+
+XML
+
+Last update: 8 October 2026
+
+Permalink: https://cordis.europa.eu/project/id/101137074
+
+European Union, 2026
+
+This site uses cookies
+to offer you a better browsing experience.
+
+I accept cookies.
+
+I refuse cookies.
+
+## Your data extraction is available
+
+Your data extraction with Task ID
+TASK_ID_PLACEHOLDER
+is available for download.
+
+Go to my data extractions
+
+Close
+
+DET Modal body ...

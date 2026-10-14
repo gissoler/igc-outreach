@@ -1,0 +1,4786 @@
+{
+ "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08",
+ "brief": {
+  "name": "Benchmark",
+  "role": "Founder",
+  "company": "AHA",
+  "product": "Agentic Harmonization Assistant (AHA) and AHA Connect",
+  "description": "AI-powered multi-modal data harmonization, statistical crosswalks (e.g., MMSE vs MoCA) and researcher matching for Alzheimer's disease and related dementias research in the AD Workbench. Open-science, non-profit infrastructure.",
+  "industry": "alzheimer's disease research data infrastructure, AI data harmonization",
+  "stage": "prototype",
+  "geography": "Global (non-profit research infrastructure)",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "grant"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 350000,
+  "minDays": 30,
+  "useTeam": false,
+  "useApify": false,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "",
+  "venture": "AHA",
+  "oneLiner": "AI harmonization of Alzheimer's datasets and researcher matching",
+  "round": "",
+  "constraints": "No equity, no commercial monetization, open-source",
+  "useOfFunds": "Core software engineering, statistical validation, security hardening and community onboarding over 24 months",
+  "timeline": "24 months",
+  "website": "",
+  "entityType": "nonprofit",
+  "country": "",
+  "state": "",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: AHA · Agentic Harmonization Assistant (AHA) and AHA Connect: grant · prototype · Global (non-profit research infrastructure) · USD 350000 · avoid: No equity, no commercial monetization, open-source",
+   "at": "2026-10-14T16:20:37.590Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 6 phrasings separately: alzheimer's disease research data infrastructure · AI data harmonization · Alzheimer's data platform development · Neurodegenerative research data integration · AI-driven dementia dataset harmonization · Researcher matchmaking for AD studies",
+   "at": "2026-10-14T16:20:38.213Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T16:20:38.428Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 12 candidates with provenance.",
+   "at": "2026-10-14T16:28:05.318Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 12 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T16:28:05.322Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Grant work items built from official calls; no fundraising emails were created.",
+   "at": "2026-10-14T16:28:08.477Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 12 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T16:28:08.493Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": null,
+   "role": null,
+   "org": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+   "title": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2027-02-01",
+   "amount": "$75,000 in prizes",
+   "contact": {
+    "type": "web",
+    "value": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+    "provenance": "Read and verified on alzheimersdata.org"
+   },
+   "evidence": [
+    {
+     "id": "802cb9acabaf739ef06a",
+     "source": "Web research engine · alzheimersdata.org",
+     "url": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+     "quote": "The Alzheimer’s Trials Data Discovery Challenge will award $75,000 in prizes to teams that can unlock discoveries from the new Integrated Alzheimer’s Disease Clinical Trial Dataset",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "495242b852d4998c8919",
+     "source": "Web research engine · deadline",
+     "url": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+     "quote": "February 1, 2027: Challenge entries are due",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "7280b809b8256b4866a9",
+     "source": "Web research engine · fit",
+     "url": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+     "quote": "The Challenge invites early- to mid-career research teams — including a PI sponsor and a statistician at minimum — to submit proposals to analyze the Integrated Alzheimer’s Disease Clinical Trial Dataset.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Application deadline: compiler 2026-09-01, 2026-10-01, 2027-02-01, judge 2027-02-01",
+    "Criterion deadline: the judge disagrees with the compiler"
+   ],
+   "missing": [
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge The Alzheimer’s Trials Data Discovery Challenge will award $75,000 in prizes to teams that can unlock discoveries from the new Integrated Alzheimer’s Disease Clinical Trial Dataset The Challenge invites early- to mid-career research teams — including a PI sponsor and a statistician at minimum — to submit proposals to analyze the Integrated Alzheimer’s Disease Clinical Trial Dataset.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "yes",
+    "daysLeft": 110,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Application deadline: compiler 2026-09-01, 2026-10-01, 2027-02-01, judge 2027-02-01",
+     "Criterion deadline: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The challenge focuses on harmonized Alzheimer’s datasets, matching the applicant’s AI harmonization focus.",
+     "fundsQuote": "The Alzheimer’s Trials Data Discovery Challenge will award $75,000 in prizes to teams that can unlock discoveries from the new Integrated Alzheimer’s Disease Clinical Trial Dataset – a fully harmonized dataset featuring decades of placebo-arm data from 11 trials, ready for analysis on Vivli’s secure, cloud-based research environments.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "The Alzheimer’s Trials Data Discovery Challenge will award $75,000 in prizes to teams that can unlock discoveries from the new Integrated Alzheimer’s Disease Clinical Trial Dataset",
+    "deadline": "February 1, 2027: Challenge entries are due",
+    "eligible": "The Challenge invites early- to mid-career research teams — including a PI sponsor and a statistician at minimum — to submit proposals to analyze the Integrated Alzheimer’s Disease Clinical Trial Dataset."
+   },
+   "key": "opportunity:engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+   "id": "197be5f47f8fcdac5d86",
+   "fit": 0.5,
+   "matchedTerms": [
+    "alzheimer's disease research data infrastructure, AI data harmonization",
+    "alzheimer's disease research data infrastructure",
+    "Alzheimer's data platform development",
+    "AI-driven dementia dataset harmonization"
+   ],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The challenge focuses on harmonized Alzheimer’s datasets, matching the applicant’s AI harmonization focus.",
+    "workType": null
+   },
+   "score": 63,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 17.5,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 25,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The challenge focuses on harmonized Alzheimer’s datasets, matching the applicant’s AI harmonization focus.",
+    "Specific open grant opportunity (engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge); eligibility must be resolved against the notice.",
+    "Published deadline: 2027-02-01.",
+    "Published ceiling USD $75,000 in prizes; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 110,
+   "gate": {
+    "tier": "verify",
+    "reason": "Application deadline: compiler 2026-09-01, 2026-10-01, 2027-02-01, judge 2027-02-01",
+    "source": "read"
+   },
+   "rank": 1,
+   "jev": {
+    "leadId": "197be5f47f8fcdac5d86",
+    "action": "investigate_more",
+    "actionConfidence": 0.83,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.89,
+     "discard": 0.1
+    },
+    "strategicFit": 1.69,
+    "fitConfidence": 0.61,
+    "evidenceSufficient": 0.45,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+    "body": "Official call: engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge — AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge\n\nWhere to apply: the official program page\nOfficial notice: https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge\n\nDeadline: 2027-02-01 — 110 days left; the steps before submitting take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 62
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     },
+     {
+      "when": "2027-01-25",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on the official program page. First step: Apply through the form or instructions on the official program page.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Enough time for the required steps",
+      "done": true
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+    "agency": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+    "deadline": "2027-02-01",
+    "daysToDeadline": 110,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 110,
+     "feasible": true,
+     "verdict": "feasible",
+     "nextDeadline": null,
+     "message": "110 days left; the steps before submitting take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+   "title": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "forecast",
+   "deadline": null,
+   "amount": "350000",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "3181032a9b3312f03154",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+     "quote": "The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "5aa3ba6050da65417004",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+     "quote": "Estimated application due date: November 1, 2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "7040912071fff6bd8cff",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+     "quote": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Forecast notice: applications are not open yet (estimated deadline 2026-11-01)",
+    "Check: fake_quote:entity_type"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS) RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS) The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS) Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions).",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Grants.gov",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:RFA-AG-27-005",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "forecast",
+    "eligible": "yes",
+    "daysLeft": null,
+    "flags": [
+     "fake_quote:entity_type"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Forecast notice: applications are not open yet (estimated deadline 2026-11-01)"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "forecast_notice"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI‑driven data harmonization and researcher‑matching platform aligns with the goal of democratizing access to Alzheimer’s datasets.",
+     "fundsQuote": "The National Institute on Aging (NIA) intends to publish a Notice of Funding Opportunity (NOFO) to solicit applications to develop, operate, and sustain a cloud-based data storage and computing platform that democratizes access to large-scale Alzheimer’s disease (AD) and AD-related dementias (ADRD) genetic and genomic data.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "NIA Scientific Contact Please contact via e-mail.",
+     "role": "Contact listed in the official registry",
+     "email": "NIA-NOFO-Scientific@nih.gov",
+     "organization": "National Institutes of Health",
+     "linkedin": null,
+     "provenance": "Official registry contact",
+     "source": "registry"
+    }
+   ],
+   "registry": {
+    "number": "RFA-AG-27-005",
+    "agency": "National Institutes of Health",
+    "closeDate": null,
+    "forecastClose": "2026-11-01",
+    "status": "forecasted",
+    "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+    "moreInfoUrl": null,
+    "via": "simpler"
+   },
+   "quotes": {
+    "identity": "The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+    "deadline": "Estimated application due date: November 1, 2026",
+    "eligible": "Other Eligible ApplicantsIndian/Native American Tribal Governments (Other than Federally Recognized);Eligible Agencies of the Federal Government;U.S. Territory or Possession;Faith-based or Community-based Organizations;Regional Organizations;Non-domestic (non-U.S.) Entities (Foreign Institutions)."
+   },
+   "key": "opportunity:RFA-AG-27-005",
+   "id": "8b3b8c956cd3f7649e5c",
+   "fit": 0.3333333333333333,
+   "matchedTerms": [
+    "alzheimer's disease research data infrastructure, AI data harmonization",
+    "alzheimer's disease research data infrastructure",
+    "Alzheimer's data platform development"
+   ],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI‑driven data harmonization and researcher‑matching platform aligns with the goal of democratizing access to Alzheimer’s datasets.",
+    "workType": null
+   },
+   "score": 54,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 11.7,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 20,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI‑driven data harmonization and researcher‑matching platform aligns with the goal of democratizing access to Alzheimer’s datasets.",
+    "Specific forecast grant opportunity (engine:grant:RFA-AG-27-005); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD 350000; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Forecast notice: applications are not open yet (estimated deadline 2026-11-01)",
+    "source": "read"
+   },
+   "rank": 2,
+   "jev": {
+    "leadId": "8b3b8c956cd3f7649e5c",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.53,
+    "fitConfidence": 0.59,
+    "evidenceSufficient": 0.34,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:RFA-AG-27-005",
+    "body": "Official call: engine:grant:RFA-AG-27-005 — RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)\n\nWhere to apply: Grants.gov Workspace or NIH ASSIST (https://public.era.nih.gov/assist)\nOfficial notice: https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf\n\nDeadline: not published — NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)\n3. Letter of intent if the notice asks for one (usually ~30 days before)\n4. Prepare and submit the application package (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 129
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace or NIH ASSIST. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": true
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~72 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_era",
+      "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application package (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:RFA-AG-27-005",
+    "agency": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "nih",
+     "portal": {
+      "name": "Grants.gov Workspace or NIH ASSIST",
+      "url": "https://public.era.nih.gov/assist"
+     },
+     "infoUrl": "https://grants.nih.gov/how-to-apply-application-guide",
+     "officialUrl": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "era",
+       "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before)",
+       "days": 14,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "loi",
+       "label": "Letter of intent if the notice asks for one (usually ~30 days before)",
+       "days": 0,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application package",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 72,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases",
+   "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2027-02-17",
+   "amount": "€44,200,000",
+   "contact": {
+    "type": "web",
+    "value": "https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+    "provenance": "Read and verified on horizon-europe.gouv.fr"
+   },
+   "evidence": [
+    {
+     "id": "d4e96052e5ef5d7fba42",
+     "source": "Web research engine · horizon-europe.gouv.fr",
+     "url": "https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+     "quote": "Budget : €44 200 000",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "51867968c64b6e9a77b5",
+     "source": "Web research engine · deadline",
+     "url": "https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+     "quote": "Date de clôture 1: 17 février 2027 01:00",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases | Horizon-europe.gouv.fr Budget : €44 200 000",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 126,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI‑driven data harmonization for Alzheimer’s aligns with the call’s focus on AI methods for chronic diseases.",
+     "fundsQuote": "This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Developing and using new tools, technologies and digital solutions for a healthy society”.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Budget : €44 200 000",
+    "deadline": "Date de clôture 1: 17 février 2027 01:00"
+   },
+   "key": "opportunity:engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+   "id": "ca9f32c15cd8acbf6be2",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease research data infrastructure, AI data harmonization",
+    "alzheimer's disease research data infrastructure"
+   ],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI‑driven data harmonization for Alzheimer’s aligns with the call’s focus on AI methods for chronic diseases.",
+    "workType": null
+   },
+   "score": 51,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 25,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI‑driven data harmonization for Alzheimer’s aligns with the call’s focus on AI methods for chronic diseases.",
+    "Specific open grant opportunity (engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies); eligibility must be resolved against the notice.",
+    "Published deadline: 2027-02-17.",
+    "Published ceiling USD €44,200,000; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 126,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 3,
+   "jev": {
+    "leadId": "ca9f32c15cd8acbf6be2",
+    "action": "investigate_more",
+    "actionConfidence": 0.97,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.98,
+     "discard": 0.02
+    },
+    "strategicFit": 1.26,
+    "fitConfidence": 0.73,
+    "evidenceSufficient": 0.29,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+    "body": "Official call: engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies — Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases\n\nWhere to apply: the official program page\nOfficial notice: https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies\n\nDeadline: 2027-02-17 — 126 days left; the steps before submitting take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 71
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     },
+     {
+      "when": "2027-02-10",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on the official program page. First step: Apply through the form or instructions on the official program page.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Enough time for the required steps",
+      "done": true
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+    "agency": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases",
+    "deadline": "2027-02-17",
+    "daysToDeadline": 126,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 126,
+     "feasible": true,
+     "verdict": "feasible",
+     "nextDeadline": null,
+     "message": "126 days left; the steps before submitting take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)",
+   "title": "26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2026-11-04",
+   "amount": null,
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "fb230ed76b156867e6d0",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+     "quote": "This program will advance scientific community datasets to enable scientific discovery and innovation using artificial intelligence (AI) and other methods.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "dd5a7c993a2f05097a9c",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+     "quote": "Application close date: November 4, 2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart",
+    "Check: fake_quote:eligibility"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) 26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets) This program will advance scientific community datasets to enable scientific discovery and innovation using artificial intelligence (AI) and other methods.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Grants.gov",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:26-512",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 21,
+    "flags": [
+     "fake_quote:eligibility"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI‑driven data harmonization of Alzheimer’s datasets aligns with the program’s goal of unlocking dataset value through AI.",
+     "fundsQuote": "This program will advance scientific community datasets to enable scientific discovery and innovation using artificial intelligence (AI) and other methods. Its goal is to increase the value that can be derived from existing scientific datasets by leveraging novel methods and artificial intelligence (AI).",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "NSF grants.gov support grantsgovsupport@nsf.gov",
+     "role": "Contact listed in the official registry",
+     "email": "grantsgovsupport@nsf.gov",
+     "organization": "U.S. National Science Foundation",
+     "linkedin": null,
+     "provenance": "Official registry contact",
+     "source": "registry"
+    }
+   ],
+   "registry": {
+    "number": "26-512",
+    "agency": "U.S. National Science Foundation",
+    "closeDate": "2026-11-04",
+    "forecastClose": null,
+    "status": "posted",
+    "url": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+    "moreInfoUrl": "http://www.nsf.gov/publications/pub_summ.jsp?ods_key=nsf26512",
+    "via": "simpler"
+   },
+   "quotes": {
+    "identity": "This program will advance scientific community datasets to enable scientific discovery and innovation using artificial intelligence (AI) and other methods.",
+    "deadline": "Application close date: November 4, 2026"
+   },
+   "key": "opportunity:engine:grant:26-512",
+   "id": "a9cde1bc0a0826f239ed",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "AI-driven dementia dataset harmonization"
+   ],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI‑driven data harmonization of Alzheimer’s datasets aligns with the program’s goal of unlocking dataset value through AI.",
+    "workType": null
+   },
+   "score": 37,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 6,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI‑driven data harmonization of Alzheimer’s datasets aligns with the program’s goal of unlocking dataset value through AI.",
+    "Specific open grant opportunity (engine:grant:26-512); eligibility must be resolved against the notice.",
+    "Published deadline: 2026-11-04.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 21,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 4,
+   "jev": {
+    "leadId": "a9cde1bc0a0826f239ed",
+    "action": "investigate_more",
+    "actionConfidence": 1,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 1,
+     "discard": 0
+    },
+    "strategicFit": 1.79,
+    "fitConfidence": 0.77,
+    "evidenceSufficient": 0.31,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:26-512",
+    "body": "Official call: engine:grant:26-512 — 26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)\n\nWhere to apply: Grants.gov Workspace (https://www.grants.gov/applicants/workspace-overview)\nOfficial notice: https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41\n\nDeadline: 2026-11-04 — 21 days left, but the required steps usually take about 58.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. Prepare and submit the application in Grants.gov Workspace (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 72
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-17",
+      "what": "Make an urgent go/no-go decision before drafting."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "watching",
+    "decision": "watch",
+    "label": "Next cycle",
+    "nextAction": "Not reachable for 2026-11-04: 21 days left, but the required steps usually take about 58. Watch for the next cycle. Start now: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~58 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application in Grants.gov Workspace (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:26-512",
+    "agency": "26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)",
+    "deadline": "2026-11-04",
+    "daysToDeadline": 21,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "grantsgov",
+     "portal": {
+      "name": "Grants.gov Workspace",
+      "url": "https://www.grants.gov/applicants/workspace-overview"
+     },
+     "infoUrl": "https://www.grants.gov/applicants/applicant-registration",
+     "officialUrl": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application in Grants.gov Workspace",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 58,
+     "daysToDeadline": 21,
+     "feasible": false,
+     "verdict": "not_feasible",
+     "nextDeadline": null,
+     "message": "21 days left, but the required steps usually take about 58.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs",
+   "title": "U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2026-11-04",
+   "amount": "$100,000,000 available",
+   "contact": {
+    "type": "web",
+    "value": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+    "provenance": "Read and verified on nsf.gov"
+   },
+   "evidence": [
+    {
+     "id": "ec316bb9e0aadbb7de5b",
+     "source": "Web research engine · nsf.gov",
+     "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+     "quote": "Approximately $100,000,000 is available for this program. Only one award per state or multi-state region will be made.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "3afa62ea81a57a321b30",
+     "source": "Web research engine · deadline",
+     "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+     "quote": "Full proposal\n2026\nNovember 4 2026\n- Deadline date\nDue by 5pm submitting organization's local time",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "2078d55a2a11bdd72aec",
+     "source": "Web research engine · fit",
+     "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+     "quote": "Proposals may only be submitted by certain types of organizations. Please see solicitation for details.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs: | NSF - U.S. National Science Foundation Approximately $100,000,000 is available for this program. Only one award per state or multi-state region will be made. Proposals may only be submitted by certain types of organizations. Please see solicitation for details.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 21,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the program’s focus on AI infrastructure for scientific discovery.",
+     "fundsQuote": "Supports the expansion of advanced computing and AI infrastructure through regional partnerships, giving researchers broader access to the resources needed to accelerate scientific discovery and innovation while developing a skilled AI workforce.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Approximately $100,000,000 is available for this program. Only one award per state or multi-state region will be made.",
+    "deadline": "Full proposal\n2026\nNovember 4 2026\n- Deadline date\nDue by 5pm submitting organization's local time",
+    "eligible": "Proposals may only be submitted by certain types of organizations. Please see solicitation for details."
+   },
+   "key": "opportunity:engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+   "id": "5a897c37f0f97bc17760",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the program’s focus on AI infrastructure for scientific discovery.",
+    "workType": null
+   },
+   "score": 25,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the program’s focus on AI infrastructure for scientific discovery.",
+    "Specific open grant opportunity (engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial); eligibility must be resolved against the notice.",
+    "Published deadline: 2026-11-04.",
+    "Published ceiling USD $100,000,000 available; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 21,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 5,
+   "jev": {
+    "leadId": "5a897c37f0f97bc17760",
+    "action": "investigate_more",
+    "actionConfidence": 0.88,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.92,
+     "discard": 0.08
+    },
+    "strategicFit": 0.9,
+    "fitConfidence": 0.78,
+    "evidenceSufficient": 0.31,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+    "body": "Official call: engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial — U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs\n\nWhere to apply: Research.gov (https://www.research.gov)\nOfficial notice: https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial\n\nDeadline: 2026-11-04 — 21 days left, but the required steps usually take about 56.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) (~21 days)\n2. Research.gov accounts for the organization and the PI (~5 days)\n3. Prepare and submit the proposal in Research.gov (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 79
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-17",
+      "what": "Make an urgent go/no-go decision before drafting."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "watching",
+    "decision": "watch",
+    "label": "Next cycle",
+    "nextAction": "Not reachable for 2026-11-04: 21 days left, but the required steps usually take about 56. Watch for the next cycle. Start now: Register the organization in SAM.gov (UEI).",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~56 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_portal",
+      "label": "Research.gov accounts for the organization and the PI (~5 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the proposal in Research.gov (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+    "agency": "U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs",
+    "deadline": "2026-11-04",
+    "daysToDeadline": 21,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "nsf",
+     "portal": {
+      "name": "Research.gov",
+      "url": "https://www.research.gov"
+     },
+     "infoUrl": "https://new.nsf.gov/funding/how-to-apply",
+     "officialUrl": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI)",
+       "days": 21,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "portal",
+       "label": "Research.gov accounts for the organization and the PI",
+       "days": 5,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the proposal in Research.gov",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 56,
+     "daysToDeadline": 21,
+     "feasible": false,
+     "verdict": "not_feasible",
+     "nextDeadline": null,
+     "message": "21 days left, but the required steps usually take about 56.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "EIBIR (European Institute for Biomedical Imaging Research)",
+   "title": "EIBIR (European Institute for Biomedical Imaging Research)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "upcoming",
+   "deadline": "2027-03-18",
+   "amount": "Up to €53.2 million (IHI Call 13), €42 million (Apply AI), €24 million (Cancer Phase 1), €10 million (Cancer Health Economics)",
+   "contact": {
+    "type": "web",
+    "value": "https://www.eibir.org/open-funding-calls/",
+    "provenance": "Read and verified on eibir.org"
+   },
+   "evidence": [
+    {
+     "id": "7f91a46bd05d024c6067",
+     "source": "Web research engine · eibir.org",
+     "url": "https://www.eibir.org/open-funding-calls/",
+     "quote": "Estimated total budget : €53.2 million",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "6904b32b90d39930a4dc",
+     "source": "Web research engine · deadline",
+     "url": "https://www.eibir.org/open-funding-calls/",
+     "quote": "Deadline: 18 March 2027",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "7ef2446ad417dc1386ad",
+     "source": "Web research engine · fit",
+     "url": "https://www.eibir.org/open-funding-calls/",
+     "quote": "Legal entities based in all countries associated to Horizon Europe, including Canada, Switzerland, the UK, and South Korea, will be eligible to receive funding.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Not open yet (opens 2026-11-17)",
+    "Page type: compiler program_page, judge call",
+    "Application deadline: compiler 2026-10-08, 2026-11-17, 2027-02-10, 2027-03-18, 2027-04-21, 2027-09-21, judge 2026-10-08, 2027-03-18, 2027-04-21, 2027-09-21",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion non_dilutive: the judge disagrees with the compiler",
+    "Judge says the deadline is open; dates audited as upcoming"
+   ],
+   "missing": [
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "EIBIR (European Institute for Biomedical Imaging Research) Open funding calls | EIBIR Estimated total budget : €53.2 million Legal entities based in all countries associated to Horizon Europe, including Canada, Switzerland, the UK, and South Korea, will be eligible to receive funding.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.eibir.org/open-funding-calls/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "upcoming",
+    "eligible": "yes",
+    "daysLeft": 155,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Not open yet (opens 2026-11-17)",
+     "Page type: compiler program_page, judge call",
+     "Application deadline: compiler 2026-10-08, 2026-11-17, 2027-02-10, 2027-03-18, 2027-04-21, 2027-09-21, judge 2026-10-08, 2027-03-18, 2027-04-21, 2027-09-21",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion non_dilutive: the judge disagrees with the compiler",
+     "Judge says the deadline is open; dates audited as upcoming"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the healthcare AI focus of the call.",
+     "fundsQuote": "In healthcare - advanced AI will accelerate diagnostics and treatment plans, enhance robotic surgery, or improve patient care through predictive analytics.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Estimated total budget : €53.2 million",
+    "deadline": "Deadline: 18 March 2027",
+    "eligible": "Legal entities based in all countries associated to Horizon Europe, including Canada, Switzerland, the UK, and South Korea, will be eligible to receive funding."
+   },
+   "key": "opportunity:engine:grant:https://www.eibir.org/open-funding-calls/",
+   "id": "028c225303502dabdb0d",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the healthcare AI focus of the call.",
+    "workType": null
+   },
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the healthcare AI focus of the call.",
+    "Specific upcoming grant opportunity (engine:grant:https://www.eibir.org/open-funding-calls/); eligibility must be resolved against the notice.",
+    "Published deadline: 2027-03-18.",
+    "Published ceiling USD Up to €53.2 million (IHI Call 13), €42 million (Apply AI), €24 million (Cancer Phase 1), €10 million (Cancer Health Economics); stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 155,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 6,
+   "jev": {
+    "leadId": "028c225303502dabdb0d",
+    "action": "investigate_more",
+    "actionConfidence": 0.97,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.98,
+     "discard": 0.02
+    },
+    "strategicFit": 1.03,
+    "fitConfidence": 0.68,
+    "evidenceSufficient": 0.35,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.eibir.org/open-funding-calls/",
+    "body": "Official call: engine:grant:https://www.eibir.org/open-funding-calls/ — EIBIR (European Institute for Biomedical Imaging Research)\n\nWhere to apply: the official program page\nOfficial notice: https://www.eibir.org/open-funding-calls/\n\nDeadline: 2027-03-18 — 155 days left; the steps before submitting take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 60
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     },
+     {
+      "when": "2027-03-11",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on the official program page. First step: Apply through the form or instructions on the official program page.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Enough time for the required steps",
+      "done": true
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.eibir.org/open-funding-calls/",
+    "agency": "EIBIR (European Institute for Biomedical Imaging Research)",
+    "deadline": "2027-03-18",
+    "daysToDeadline": 155,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.eibir.org/open-funding-calls/",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 155,
+     "feasible": true,
+     "verdict": "feasible",
+     "nextDeadline": null,
+     "message": "155 days left; the steps before submitting take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+   "title": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2026-10-15",
+   "amount": null,
+   "contact": {
+    "type": "web",
+    "value": "https://www.euro-access.eu/en/calls",
+    "provenance": "Read and verified on euro-access.eu"
+   },
+   "evidence": [
+    {
+     "id": "3f0fee0041131e1acd8a",
+     "source": "Web research engine · euro-access.eu",
+     "url": "https://www.euro-access.eu/en/calls",
+     "quote": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "6635def850da91203cbe",
+     "source": "Web research engine · deadline",
+     "url": "https://www.euro-access.eu/en/calls",
+     "quote": "Justice Programme\nCall for proposals for action grants to support transnational projects in the fields of victims’ rights and procedural rights\n15.10.2026 17:00",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "A deadline reported by the judge has no valid quote on the page",
+    "Application deadline: compiler 2026-10-15, 2026-10-29, judge 2026-10-15, 2026-10-29, 2027-01-14, 2027-01-26, 2027-02-02, 2027-02-16, 2028-12-31",
+    "Criterion deadline: the judge disagrees with the compiler",
+    "Criterion eligibility: the judge disagrees with the compiler",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion topic_fit: the judge disagrees with the compiler",
+    "Criterion non_dilutive: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_has_several_dates:application_deadline"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "The page lists many topics but does not explicitly exclude biomedical data harmonization, so fit cannot be determined.",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH Search for Funding - EuroAccess - Fördermittelsuche der EuroVienna EU-consulting &amp; -management GmbH EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.euro-access.eu/en/calls",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 1,
+    "flags": [
+     "date_quote_has_several_dates:application_deadline"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "A deadline reported by the judge has no valid quote on the page",
+     "Application deadline: compiler 2026-10-15, 2026-10-29, judge 2026-10-15, 2026-10-29, 2027-01-14, 2027-01-26, 2027-02-02, 2027-02-16, 2028-12-31",
+     "Criterion deadline: the judge disagrees with the compiler",
+     "Criterion eligibility: the judge disagrees with the compiler",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion topic_fit: the judge disagrees with the compiler",
+     "Criterion non_dilutive: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The page lists many topics but does not explicitly exclude biomedical data harmonization, so fit cannot be determined.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+    "deadline": "Justice Programme\nCall for proposals for action grants to support transnational projects in the fields of victims’ rights and procedural rights\n15.10.2026 17:00"
+   },
+   "key": "opportunity:engine:grant:https://www.euro-access.eu/en/calls",
+   "id": "047ae198bdf8137999c6",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The page lists many topics but does not explicitly exclude biomedical data harmonization, so fit cannot be determined.",
+    "workType": null
+   },
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 6,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The page lists many topics but does not explicitly exclude biomedical data harmonization, so fit cannot be determined.",
+    "Specific open grant opportunity (engine:grant:https://www.euro-access.eu/en/calls); eligibility must be resolved against the notice.",
+    "Published deadline: 2026-10-15.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 1,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 7,
+   "jev": {
+    "leadId": "047ae198bdf8137999c6",
+    "action": "investigate_more",
+    "actionConfidence": 0.55,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.7,
+     "discard": 0.3
+    },
+    "strategicFit": 0.4,
+    "fitConfidence": 0.67,
+    "evidenceSufficient": 0.11,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.euro-access.eu/en/calls",
+    "body": "Official call: engine:grant:https://www.euro-access.eu/en/calls — EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH\n\nWhere to apply: the official program page\nOfficial notice: https://www.euro-access.eu/en/calls\n\nDeadline: 2026-10-15 — 1 days left, but the required steps usually take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 63
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-17",
+      "what": "Make an urgent go/no-go decision before drafting."
+     },
+     {
+      "when": "2026-10-14",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The page lists many topics but does not explicitly exclude biomedical data harmonization, so fit cannot be determined. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.euro-access.eu/en/calls",
+    "agency": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+    "deadline": "2026-10-15",
+    "daysToDeadline": 1,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.euro-access.eu/en/calls",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 1,
+     "feasible": false,
+     "verdict": "not_feasible",
+     "nextDeadline": null,
+     "message": "1 days left, but the required steps usually take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+   "title": "Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "forecast",
+   "deadline": null,
+   "amount": "$--",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "0a87e10530192819a4bb",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "quote": "The National Institute on Aging (NIA) intends to publish a Notice of Funding Opportunity (NOFO) that aims to establish a multi-component Translational Center...",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "fce6949ca1f80b1ada03",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "quote": "Estimated Application Due Date : May 25, 2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Forecast notice: applications are not open yet (estimated deadline 2026-05-25)",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: fake_quote:eligibility",
+    "Check: fake_quote:entity_type"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research Opportunity Listing - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research The National Institute on Aging (NIA) intends to publish a Notice of Funding Opportunity (NOFO) that aims to establish a multi-component Translational Center...",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "forecast",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "fake_quote:eligibility",
+     "fake_quote:entity_type"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Forecast notice: applications are not open yet (estimated deadline 2026-05-25)",
+     "Criterion entity_type: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "forecast_notice"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI harmonization of Alzheimer’s datasets aligns with the Center’s goal to accelerate reuse of multi‑modal AD/ADRD data.",
+     "fundsQuote": "The purpose of the Center is to develop infrastructure, methods, and best practices for hosting, discovering, accessing, disseminating, and integrating multi-modal, legacy, and new DHT data, and accelerate their (re)use in translational and clinical AD/ADRD research.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "The National Institute on Aging (NIA) intends to publish a Notice of Funding Opportunity (NOFO) that aims to establish a multi-component Translational Center...",
+    "deadline": "Estimated Application Due Date : May 25, 2026"
+   },
+   "key": "opportunity:engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "id": "4455fdcee84ec547d2fc",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI harmonization of Alzheimer’s datasets aligns with the Center’s goal to accelerate reuse of multi‑modal AD/ADRD data.",
+    "workType": null
+   },
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI harmonization of Alzheimer’s datasets aligns with the Center’s goal to accelerate reuse of multi‑modal AD/ADRD data.",
+    "Specific forecast grant opportunity (engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD $--; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 8,
+   "jev": {
+    "leadId": "4455fdcee84ec547d2fc",
+    "action": "investigate_more",
+    "actionConfidence": 1,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 1,
+     "discard": 0
+    },
+    "strategicFit": 1.52,
+    "fitConfidence": 0.56,
+    "evidenceSufficient": 0.22,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+    "body": "Official call: engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c — Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research\n\nWhere to apply: Grants.gov Workspace (https://www.grants.gov/applicants/workspace-overview)\nOfficial notice: https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. Prepare and submit the application in Grants.gov Workspace (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 75
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~58 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application in Grants.gov Workspace (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+    "agency": "Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "grantsgov",
+     "portal": {
+      "name": "Grants.gov Workspace",
+      "url": "https://www.grants.gov/applicants/workspace-overview"
+     },
+     "infoUrl": "https://www.grants.gov/applicants/applicant-registration",
+     "officialUrl": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application in Grants.gov Workspace",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 58,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)",
+   "title": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "web",
+    "value": "https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+    "provenance": "Read and verified on horizon-europe.gouv.fr"
+   },
+   "evidence": [
+    {
+     "id": "f90ae36e7d692d030986",
+     "source": "Web research engine · horizon-europe.gouv.fr",
+     "url": "https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+     "quote": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "The judge says \"no\" for topic_fit without a quote from the page",
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "No application deadline verified on the page",
+    "A deadline reported by the judge has no valid quote on the page",
+    "Application deadline: compiler 2026-11-17, judge none",
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_not_in_page:application_deadline",
+    "Check: fake_quote:deadline",
+    "Check: fake_quote:topic_fit"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "The call is limited to AI challenge competitions in those three sectors, which does not match the applicant’s data‑harmonisation infrastructure project.",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev suggests discarding; needs human review first."
+   ],
+   "searchText": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics) Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics) | Horizon-europe.gouv.fr Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "unknown",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_quote_not_in_page:application_deadline",
+     "fake_quote:deadline",
+     "fake_quote:topic_fit"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "The judge says \"no\" for topic_fit without a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "No application deadline verified on the page",
+     "A deadline reported by the judge has no valid quote on the page",
+     "Application deadline: compiler 2026-11-17, judge none"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The call is limited to AI challenge competitions in those three sectors, which does not match the applicant’s data‑harmonisation infrastructure project.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)"
+   },
+   "key": "opportunity:engine:grant:https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+   "id": "4fdbb591e9edfadbdf02",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The call is limited to AI challenge competitions in those three sectors, which does not match the applicant’s data‑harmonisation infrastructure project.",
+    "workType": null
+   },
+   "score": 21,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 6,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The call is limited to AI challenge competitions in those three sectors, which does not match the applicant’s data‑harmonisation infrastructure project.",
+    "Specific unknown grant opportunity (engine:grant:https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "The judge says \"no\" for topic_fit without a quote from the page",
+    "source": "read"
+   },
+   "rank": 9,
+   "jev": {
+    "leadId": "4fdbb591e9edfadbdf02",
+    "action": "discard",
+    "actionConfidence": 0.82,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.12,
+     "discard": 0.88
+    },
+    "strategicFit": 0.39,
+    "fitConfidence": 0.68,
+    "evidenceSufficient": 0.13,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+    "body": "Official call: engine:grant:https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai — Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)\n\nWhere to apply: the official program page\nOfficial notice: https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 72
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The call is limited to AI challenge competitions in those three sectors, which does not match the applicant’s data‑harmonisation infrastructure project. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+    "agency": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robotics)",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Euresearch",
+   "title": "Euresearch",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "web",
+    "value": "https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+    "provenance": "Read and verified on euresearch.ch"
+   },
+   "evidence": [
+    {
+     "id": "ac5f0aac55c1947419a3",
+     "source": "Web research engine · euresearch.ch",
+     "url": "https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+     "quote": "Euresearch",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "No application deadline verified on the page",
+    "A deadline reported by the judge has no valid quote on the page",
+    "Criterion non_dilutive: the judge disagrees with the compiler",
+    "Judge says the deadline is open; dates audited as unknown",
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_has_several_dates:opens",
+    "Check: date_quote_has_several_dates:application_deadline"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "The page does not describe the specific research topics funded, so fit cannot be determined.",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Euresearch Open Calls - Euresearch Euresearch",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "unknown",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_quote_has_several_dates:opens",
+     "date_quote_has_several_dates:application_deadline"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "No application deadline verified on the page",
+     "A deadline reported by the judge has no valid quote on the page",
+     "Criterion non_dilutive: the judge disagrees with the compiler",
+     "Judge says the deadline is open; dates audited as unknown"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The page does not describe the specific research topics funded, so fit cannot be determined.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Euresearch"
+   },
+   "key": "opportunity:engine:grant:https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+   "id": "5a38987e0fd0d8aa8c2d",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The page does not describe the specific research topics funded, so fit cannot be determined.",
+    "workType": null
+   },
+   "score": 21,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 6,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The page does not describe the specific research topics funded, so fit cannot be determined.",
+    "Specific unknown grant opportunity (engine:grant:https://www.euresearch.ch/en/our-services/inform/open-calls-137.html); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 10,
+   "jev": {
+    "leadId": "5a38987e0fd0d8aa8c2d",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 0.11,
+    "fitConfidence": 0.92,
+    "evidenceSufficient": 0.07,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+    "body": "Official call: engine:grant:https://www.euresearch.ch/en/our-services/inform/open-calls-137.html — Euresearch\n\nWhere to apply: the official program page\nOfficial notice: https://www.euresearch.ch/en/our-services/inform/open-calls-137.html\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 55
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The page does not describe the specific research topics funded, so fit cannot be determined. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+    "agency": "Euresearch",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Trialect",
+   "title": "Trialect",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2026-10-14",
+   "amount": "Varies",
+   "contact": {
+    "type": "web",
+    "value": "https://trialect.com/grantsboard/search",
+    "provenance": "Read and verified on trialect.com"
+   },
+   "evidence": [
+    {
+     "id": "808bcc57f4e6f373670a",
+     "source": "Web research engine · trialect.com",
+     "url": "https://trialect.com/grantsboard/search",
+     "quote": "Trialect",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    },
+    {
+     "id": "ed5048d1e171cc4532a8",
+     "source": "Web research engine · deadline",
+     "url": "https://trialect.com/grantsboard/search",
+     "quote": "Deadline: Oct 14, 2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Application deadline: compiler 2026-10-14, judge 2026-09-01, 2026-10-14",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "The listed grants cover various biomedical topics but do not explicitly include or exclude Alzheimer’s disease data infrastructure.",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Trialect Trialect Trialect",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://trialect.com/grantsboard/search",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 0,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Application deadline: compiler 2026-10-14, judge 2026-09-01, 2026-10-14"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The listed grants cover various biomedical topics but do not explicitly include or exclude Alzheimer’s disease data infrastructure.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Trialect",
+    "deadline": "Deadline: Oct 14, 2026"
+   },
+   "key": "opportunity:engine:grant:https://trialect.com/grantsboard/search",
+   "id": "1b507f585a9063053ddf",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The listed grants cover various biomedical topics but do not explicitly include or exclude Alzheimer’s disease data infrastructure.",
+    "workType": null
+   },
+   "score": 19,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The listed grants cover various biomedical topics but do not explicitly include or exclude Alzheimer’s disease data infrastructure.",
+    "Specific open grant opportunity (engine:grant:https://trialect.com/grantsboard/search); eligibility must be resolved against the notice.",
+    "Published deadline: 2026-10-14.",
+    "Published ceiling USD Varies; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 0,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 11,
+   "jev": {
+    "leadId": "1b507f585a9063053ddf",
+    "action": "investigate_more",
+    "actionConfidence": 1,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 1,
+     "discard": 0
+    },
+    "strategicFit": 0.93,
+    "fitConfidence": 0.72,
+    "evidenceSufficient": 0.12,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://trialect.com/grantsboard/search",
+    "body": "Official call: engine:grant:https://trialect.com/grantsboard/search — Trialect\n\nWhere to apply: the official program page\nOfficial notice: https://trialect.com/grantsboard/search\n\nDeadline: 2026-10-14 — 0 days left, but the required steps usually take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 55
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-17",
+      "what": "Make an urgent go/no-go decision before drafting."
+     },
+     {
+      "when": "2026-10-14",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The listed grants cover various biomedical topics but do not explicitly include or exclude Alzheimer’s disease data infrastructure. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://trialect.com/grantsboard/search",
+    "agency": "Trialect",
+    "deadline": "2026-10-14",
+    "daysToDeadline": 0,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://trialect.com/grantsboard/search",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 0,
+     "feasible": false,
+     "verdict": "not_feasible",
+     "nextDeadline": null,
+     "message": "0 days left, but the required steps usually take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS",
+   "title": "Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "€32,000,000",
+   "contact": {
+    "type": "web",
+    "value": "https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+    "provenance": "Read and verified on horizon-europe.gouv.fr"
+   },
+   "evidence": [
+    {
+     "id": "d91b565535caff9c2d29",
+     "source": "Web research engine · horizon-europe.gouv.fr",
+     "url": "https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+     "quote": "Budget : €32 000 000",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:28:05.317Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "No application deadline verified on the page",
+    "A deadline reported by the judge has no valid quote on the page",
+    "Criterion deadline: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_not_in_page:application_deadline",
+    "Check: fake_quote:deadline",
+    "Check: fake_quote:topic_fit"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the call’s focus on neuroscience data services and AI tools.",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS | Horizon-europe.gouv.fr Budget : €32 000 000",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "unknown",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_quote_not_in_page:application_deadline",
+     "fake_quote:deadline",
+     "fake_quote:topic_fit"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "No application deadline verified on the page",
+     "A deadline reported by the judge has no valid quote on the page",
+     "Criterion deadline: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the call’s focus on neuroscience data services and AI tools.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Budget : €32 000 000"
+   },
+   "key": "opportunity:engine:grant:https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+   "id": "f1e746455e4ebdcdb0e4",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the call’s focus on neuroscience data services and AI tools.",
+    "workType": null
+   },
+   "score": 17,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the call’s focus on neuroscience data services and AI tools.",
+    "Specific unknown grant opportunity (engine:grant:https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD €32,000,000; stated target USD 350000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 12,
+   "jev": {
+    "leadId": "f1e746455e4ebdcdb0e4",
+    "action": "investigate_more",
+    "actionConfidence": 1,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 1,
+     "discard": 0
+    },
+    "strategicFit": 2.03,
+    "fitConfidence": 0.83,
+    "evidenceSufficient": 0.17,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+    "body": "Official call: engine:grant:https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1 — Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS\n\nWhere to apply: the official program page\nOfficial notice: https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 69
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The applicant’s AI‑driven data harmonization for Alzheimer’s research aligns with the call’s focus on neuroscience data services and AI tools. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+    "agency": "Implementing digital services to empower neuroscience research for health and brain inspired technology via EBRAINS",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "Global (non-profit research infrastructure)",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://www.horizon-europe.gouv.fr/implementing-digital-services-empower-neuroscience-research-health-and-brain-inspired-technology-1",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T16:20:37.586Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:1",
+    "sequence": 1,
+    "at": "2026-10-14T16:20:38.426Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "AHA · Agentic Harmonization Assistant (AHA) and AHA Connect: grant · prototype · Global (non-profit research infrastructure) · USD 350000 · avoid: No equity, no commercial monetization, open-source",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "alzheimer's disease research data infrastructure · AI data harmonization · Alzheimer's data platform development · Neurodegenerative research data integration · AI-driven dementia dataset harmonization · Researcher matchmaking for AD studies"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "Alzheimer data"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "Alzheimer data"
+      },
+      {
+       "provider": "Official radar",
+       "query": "ADDF · a2 Collective · CDMRP"
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:2",
+    "sequence": 2,
+    "at": "2026-10-14T16:20:38.428Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:3",
+    "sequence": 3,
+    "at": "2026-10-14T16:28:05.317Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 12 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 12,
+    "durationMs": 446889,
+    "status": "success"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:4",
+    "sequence": 4,
+    "at": "2026-10-14T16:28:05.322Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 0 new people across 0 organizations (0 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:5",
+    "sequence": 5,
+    "at": "2026-10-14T16:28:05.322Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:6",
+    "sequence": 6,
+    "at": "2026-10-14T16:28:05.322Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 0,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Benchmark",
+     "contacts": 0,
+     "candidates": 12,
+     "paths": []
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:7",
+    "sequence": 7,
+    "at": "2026-10-14T16:28:05.322Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 12 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 12,
+    "status": "running"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:8",
+    "sequence": 8,
+    "at": "2026-10-14T16:28:07.829Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "10 people found across 3 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 10,
+    "status": "success"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:9",
+    "sequence": 9,
+    "at": "2026-10-14T16:28:07.831Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:10",
+    "sequence": 10,
+    "at": "2026-10-14T16:28:08.474Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 12 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 12,
+    "durationMs": 643,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 7861,
+      "output_tokens": 1026,
+      "cost": 0.000330162
+     }
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:11",
+    "sequence": 11,
+    "at": "2026-10-14T16:28:08.476Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 12 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 12,
+    "durationMs": 3154,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+       "org": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+       "title": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+       "score": 63,
+       "why": "The challenge focuses on harmonized Alzheimer’s datasets, matching the applicant’s AI harmonization focus.",
+       "bucket": "radar"
+      },
+      {
+       "name": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+       "org": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+       "title": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+       "score": 54,
+       "why": "The applicant’s AI‑driven data harmonization and researcher‑matching platform aligns with the goal of democratizing access to Alzheimer’s datasets.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 0,
+      "radar": 12,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:12",
+    "sequence": 12,
+    "at": "2026-10-14T16:28:08.482Z",
+    "phase": "evaluating",
+    "title": "Application plans prepared",
+    "message": "12 opportunities converted into go/no-go work plans.",
+    "provider": "Application plan",
+    "resultCount": 12,
+    "status": "success"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:13",
+    "sequence": 13,
+    "at": "2026-10-14T16:28:08.490Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 163 pages read by the AI · 0 main list · 12 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:14",
+    "sequence": 14,
+    "at": "2026-10-14T16:28:08.491Z",
+    "phase": "drafting",
+    "title": "Grant work items ready",
+    "message": "12 specific grant opportunities prepared for review.",
+    "resultCount": 12,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+     "org": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+     "subject": "How to apply · engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+     "excerpt": "Official call: engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge — AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge\n\nWhere to apply: the official program page\nOfficial notice: https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge\n\nDeadline: 2027-02-01 — 110 days left; the steps before submitting take about 21.\n\nSteps:\n1. Apply through the form"
+    }
+   },
+   {
+    "id": "4d831f77-8881-4ed8-b6e0-b4c6a426ea08:15",
+    "sequence": 15,
+    "at": "2026-10-14T16:28:08.494Z",
+    "phase": "completed",
+    "title": "Run complete",
+    "message": "0 candidates prioritized; 12 on radar.",
+    "resultCount": 12,
+    "status": "success",
+    "detail": {
+     "jobStatus": "done",
+     "usage": {},
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "done",
+ "plan": {
+  "topic": "Alzheimer",
+  "query": "Alzheimer data",
+  "scientificQuery": "Alzheimer artificial intelligence",
+  "summary": "AHA · Agentic Harmonization Assistant (AHA) and AHA Connect: grant · prototype · Global (non-profit research infrastructure) · USD 350000 · avoid: No equity, no commercial monetization, open-source",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "alzheimer's disease research data infrastructure · AI data harmonization · Alzheimer's data platform development · Neurodegenerative research data integration · AI-driven dementia dataset harmonization · Researcher matchmaking for AD studies"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "Alzheimer data"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "Alzheimer data"
+   },
+   {
+    "provider": "Official radar",
+    "query": "ADDF · a2 Collective · CDMRP"
+   }
+  ],
+  "alzheimer": true,
+  "terms": [
+   {
+    "term": "alzheimer's disease research data infrastructure",
+    "source": "yours"
+   },
+   {
+    "term": "AI data harmonization",
+    "source": "yours"
+   },
+   {
+    "term": "Alzheimer's data platform development",
+    "source": "model"
+   },
+   {
+    "term": "Neurodegenerative research data integration",
+    "source": "model"
+   },
+   {
+    "term": "AI-driven dementia dataset harmonization",
+    "source": "model"
+   },
+   {
+    "term": "Researcher matchmaking for AD studies",
+    "source": "model"
+   }
+  ]
+ },
+ "engineDrops": [
+  {
+   "url": "https://simpler.grants.gov/opportunity/507bb18b-7239-4c03-b50d-4a3b60589be7",
+   "title": "RFA-AG-27-010 · Data Coordinating Center for the Aging and Alzheimer’s Disease Mouse Brain Atlas (AD-MBA) (U24 Clinical Trial Not Allowed)",
+   "reason": "not_eligible",
+   "quote": "Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.",
+   "deadline": "2026-11-10",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/5a01de72-0d63-4009-852c-d2e64018c100",
+   "title": "PAR-25-297 · Alzheimer's Drug-Development Program (U01 Clinical Trial Optional)",
+   "reason": "not_eligible",
+   "quote": "Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.",
+   "deadline": "2027-11-05",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/274b2914-f34a-4663-8892-8567b7b2fb75",
+   "title": "PAR-25-226 · Seamless Early-Stage Clinical Drug Development (Phase 1 to 2a) for Novel therapeutic Agents for the Spectrum of Alzheimer's Disease (AD) and AD-rel",
+   "reason": "not_eligible",
+   "quote": "The purpose of this Notice of Funding Opportunity (NOFO) is to invite applications that bundle independent protocols for phase 1 clinical trials with phase 1b/phase 2a clinical trials...",
+   "deadline": "2026-11-19",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/0fdad522-909e-41f8-9e3e-246325f63e32",
+   "title": "HT942526RCRPRCDA · DoW Rare Cancers Resource and Community Development Award",
+   "reason": "scope_mismatch",
+   "quote": "The fiscal year 2026 (FY26) Rare Cancers Research Program (RCRP) Resource and Community Development Award (RCDA) supports the development of research resources and clinical or preclinical datasets that will advance the field of rare cancers research and ultimately improve outcomes for individuals wi",
+   "deadline": "2026-11-18",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/75fc5a54-3480-4e11-bdae-eb5d41a36797",
+   "title": "EDA-HDQ-RNTA-2021 · FY 2021 - 2023 Economic Development RNTA",
+   "reason": "closed",
+   "quote": "As of April 6th, 2023, applications can no longer be submitted on Grants.gov, and will ONLY be accepted through EDGE.",
+   "deadline": "2023-04-06",
+   "objective": "grant"
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/507bb18b-7239-4c03-b50d-4a3b60589be7/attachments/b2a4ffae-450e-4a71-967f-ea187be923e0/RFA-AG-27-010-Full-Announcement.html",
+   "title": "RFA-AG-27-010: Data Coordinating Center for the Aging and Alzheimer’s Disease Mouse Brain Atlas (AD-MBA) (U24 Clinical Trial Not Allowed)",
+   "reason": "scope_mismatch",
+   "quote": "Applications that do not propose to aggregate and harmonize datasets across at least five projects in the AD-MAPs program.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/partnership_funding_programs/biomarkers_across_neurodegenerative_diseases",
+   "title": "BAND Research Grant | Alzheimer&#x27;s Association",
+   "reason": "not_a_call:program_page",
+   "quote": "NOT ACCEPTING APPLICATIONS",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.timemachine.eu/funding-opts/horizon-cl2-2027-01-heritage-02-ai4creatives-support-platform-embracing-a-fair-ai-revolution/",
+   "title": "HORIZON-CL2-2027-01-HERITAGE-02: AI4Creatives Support Platform: embracing a fair AI revolution : Time Machine Organisation",
+   "reason": "scope_mismatch",
+   "quote": "Projects should contribute to all of the following expected outcomes: The cultural and creative sectors and industries (CCSI) have access to a dedicated European virtual AI support platform.",
+   "deadline": "2027-09-23",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.theclassconsultinggroup.org/post/top-ai-grants-for-nonprofits-2026",
+   "title": "Top AI Grants for Nonprofits 2026 | AI Grants Opportunities &amp; Tips",
+   "reason": "not_a_call:blog",
+   "quote": "2025 deadline is Nov 20",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://impactcollaboratory.org/impact-collaboratory-and-next-steps-network-request-applications-for-the-2026-real-world-data-scholars-program/",
+   "title": "IMPACT Collaboratory and NEXT STEPs Network Request Applications for the 2026 Real World Data Scholars Program - NIA IMPACT Collaboratory",
+   "reason": "not_eligible",
+   "quote": "Up to three awards, each providing up to $60,000, will be granted to postdoctoral fellows, advanced graduate students, and early‑career investigators to gain mentored training and experience using RWD to improve long‑term care.",
+   "deadline": "2026-12-03",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/grants-funding",
+   "title": "Grants &amp; Funding | National Institute on Aging",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities",
+   "title": "Funding Opportunities | Alzheimer's Drug Discovery Foundation",
+   "reason": "scope_mismatch",
+   "quote": "The ADDF provides funding to academic centers and biotechs from around the world that are advancing therapeutic and biomarker development for Alzheimer's and related dementias.",
+   "deadline": "2026-12-07",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/apply-ai-ai-driven-robotics-industry-enabling-system-integration-and-adoption-ia-partnership-ai",
+   "title": "Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (IA) (Partnership in AI, Data and Robotics) | Horizon-europe.gouv.fr",
+   "reason": "scope_mismatch",
+   "quote": "The project will address the current European gap in system integration capabilities for robotics solutions addressing the various needs of industries.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.euro-access.eu/en/calls/2622/2622/Apply-AI-Pilot-of-the-Science-for-AI-Pillar-of-RAISE-Resource-for-AI-science-in-Europe",
+   "title": "Search for Funding - EuroAccess - Fördermittelsuche der EuroVienna EU-consulting &amp; -management GmbH",
+   "reason": "not_official",
+   "quote": "Search for Funding - EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://grants.nih.gov/funding/find-a-fit-for-your-research/nih-institutes-centers-offices/NIA",
+   "title": "National Institute on Aging (NIA) | Grants & Funding",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://fundingcalls.org/calls/186",
+   "title": "EU Frontier AI Initiative: Advanced Scaling Frameworks for High-Performance AI Models (RIA) - Apply AI · FundingCalls",
+   "reason": "not_eligible",
+   "quote": "EU member states",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/2e37b591-e1cc-4d6a-a223-ff0c0962f74a",
+   "title": "Opportunity Listing - Illuminating AD/ADRD Genome to Enable Precision Genomic Medicine",
+   "reason": "scope_mismatch",
+   "quote": "supports integrative, cross-disciplinary projects aimed at scaling up mechanistic studies to understand the genomic underpinnings of the pathogenesis and progression AD/ADRD",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial/nsf26-513/solicitation",
+   "title": "NSF 26-513: U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs: | NSF - U.S. National Science Foundation",
+   "reason": "scope_mismatch",
+   "quote": "NSF does not provide funding for acquisition of AI infrastructure, including computing, data, software, networking, storage, cloud services, or other AI systems or services, leaving that responsibility to regional and state consortia.",
+   "deadline": "2026-11-04",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/grants-funding/announcements",
+   "title": "Funding Opportunities | National Institute on Aging",
+   "reason": "closed",
+   "quote": "PAR-25-247 12/13/2024 9/26/2026",
+   "deadline": "2026-09-26",
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantmeridian.com/opportunities/grants-gov-359740-data-coordinating-center-for-the-aging-and-alzheimer-s-disease-mouse-b/",
+   "title": "Data Coordinating Center for the Aging and Alzheimer’s Disease Mouse Brain Atlas (AD-MBA) (U24 Clinical Trial Not Allowed) | Grant Meridian",
+   "reason": "not_eligible",
+   "quote": "Region United States",
+   "deadline": "2026-11-10",
+   "objective": "grant"
+  },
+  {
+   "url": "https://getgrant.ua/en/grants-and-funding/ai-systems-development-grants-2026-open-calls/",
+   "title": "AI development grants 2026: 16 calls with open deadlines",
+   "reason": "not_eligible",
+   "quote": "Applications closed 27.08.2026",
+   "deadline": "2026-10-14",
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantoria.com/grant/the-nia-genetics-of-alzheimers-disease-data-storage-site-niagads",
+   "title": "The NIA Genetics of Alzheimer’s Disease Data Storage Site (NIAGADS) | Grantoria",
+   "reason": "not_eligible",
+   "quote": "Scope National",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.dementiaresearcher.nihr.ac.uk/funding/horizon-europe-culture-creativity-and-inclusive-society/",
+   "title": "Horizon Europe - Culture, Creativity and Inclusive Society",
+   "reason": "not_eligible",
+   "quote": "Looking for UK-based researchers who would be interested in participating in this call.",
+   "deadline": "2027-05-04",
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+   "title": "Alzheimer&#x27;s Association Global Real-World Data Programs… — Grant Anchor",
+   "reason": "not_official",
+   "quote": "Funder: Alzheimer&#x27;s Association",
+   "deadline": "2027-06-30",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/alzheimers-association-real-world-data-funding",
+   "title": "ALZ-RWD Research Grant l Alzheimer&#x27;s Association",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://todos-company.ro/en/funding/horizon-europe-bridging-2027-apply-ai/",
+   "title": "Horizon Europe Apply AI 2027: €55 million",
+   "reason": "not_eligible",
+   "quote": "Consortia of legal entities from EU Member States, Iceland, Norway and countries associated with Horizon Europe",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6992",
+   "title": "HORIZON-RAISE-2027-01-01 | TopicTree (by Ideal-ist)",
+   "reason": "scope_mismatch",
+   "quote": "The focus of this topic is on any aspect of materials science. Impact areas of automated experimentation in this field could include, non-exhaustively, battery technologies, photovoltaics, carbon capture/storage, water purification, soil remediation, drug discovery or sustainable fabrics.",
+   "deadline": "2027-02-02",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.horizon-europe.gouv.fr/international-cooperation-ai-ia-42645",
+   "title": "International cooperation in AI (IA) | Horizon-europe.gouv.fr",
+   "reason": "scope_mismatch",
+   "quote": "The main goal is to support the digital transition and foster inclusive economic and social transformation of partners globally by adapting and applying innovative solutions, research areas and capabilities developed in Europe to low- and middle-income countries.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6991",
+   "title": "HORIZON-RAISE-2027-01-02 | TopicTree (by Ideal-ist)",
+   "reason": "scope_mismatch",
+   "quote": "This topic addresses the development of safe and trustworthy closed loop scientific experimentation systems through the integration of laboratory automation with AI-driven decision-making processes and robust data infrastructures.",
+   "deadline": "2027-02-02",
+   "objective": "grant"
+  },
+  {
+   "url": "https://topictree.ideal-ist.eu/topic/6987",
+   "title": "HORIZON-CL4-2027-02-DIGITAL-EMERGING-52-two-stage | TopicTree (by Ideal-ist)",
+   "reason": "scope_mismatch",
+   "quote": "Innovative AI approaches are poised to revolutionise human-machine collaboration in factories by fostering an environment where technology and human expertise synergistically enhance each other.",
+   "deadline": "2027-02-02",
+   "objective": "grant"
+  },
+  {
+   "url": "https://atomgrants.com/collections/ai-research-grants",
+   "title": "AI Research Grants 2026 | Atom Grants",
+   "reason": "not_official",
+   "quote": "AI Research Grants 2026 | Atom Grants",
+   "deadline": "2026-10-18",
+   "objective": "grant"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "grant",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 240,
+    "seconds": 447,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": true,
+     "numbers": 3,
+     "seeds": 11,
+     "notices": 4,
+     "brief": {
+      "queries": 6,
+      "numbers": 0,
+      "returned": 129,
+      "kept": 10,
+      "closed": 23,
+      "notEligible": 0,
+      "via": [
+       "simpler"
+      ],
+      "errors": [],
+      "attachments": 3
+     },
+     "byNumber": {
+      "queries": 0,
+      "numbers": 3,
+      "returned": 1,
+      "kept": 1,
+      "closed": 0,
+      "notEligible": 0,
+      "via": [
+       "simpler"
+      ],
+      "errors": [],
+      "attachments": 1
+     }
+    }
+   },
+   "triage": {
+    "opened": 129,
+    "assessed": 51,
+    "by_status": {
+     "registry": 11,
+     "open": 18,
+     "upcoming": 12,
+     "rolling": 1,
+     "unknown": 52,
+     "closed": 35,
+     "unread": 34
+    }
+   },
+   "judge": {
+    "finalists": 43,
+    "calls": 43,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 0,
+    "people": 0,
+    "credits": 0,
+    "skipped": "grants: APOLLO_FOR_GRANTS=0 (Apollo se reserva para inversores)",
+    "domains": []
+   },
+   "seconds": 206,
+   "opens": 163,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "registryCheck": {
+  "checked": 0,
+  "kept": 0,
+  "dropped": 0,
+  "unread": 0,
+  "withOfficialPage": 0,
+  "skipped": "off"
+ },
+ "hunter": {
+  "calls": 0,
+  "emailsAdded": 0,
+  "peopleAdded": 0,
+  "domains": 0,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:grant:https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+    "canonical_name": "Alzheimer's Disease Data Initiative",
+    "official_domain": "alzheimersdata.org",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "partial",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:grant:https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+    "canonical_name": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases",
+    "official_domain": "undefined",
+    "match_method": "not_found",
+    "confidence": 0
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "60631d1616731600018b6d82",
+     "name": "Daniel",
+     "title": "Managing Principal, Investment Director",
+     "organization": "Taylor Morgan Capital",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Principal, Investment Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://undefined",
+       "retrieved_at": "2026-10-14",
+       "quote": "Daniel · Managing Principal, Investment Director · Taylor Morgan Capital"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "54aa87567468690b75ef1b09",
+     "name": "Matthew",
+     "title": "Managing Director | Investment Director",
+     "organization": "Wellington Management",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director | Investment Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://undefined",
+       "retrieved_at": "2026-10-14",
+       "quote": "Matthew · Managing Director | Investment Director · Wellington Management"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "61153130df2c110001afbbb8",
+     "name": "Helen",
+     "title": "MD & Investment Director",
+     "organization": "Bayes Entrepreneurship Fund",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: MD & Investment Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://undefined",
+       "retrieved_at": "2026-10-14",
+       "quote": "Helen · MD & Investment Director · Bayes Entrepreneurship Fund"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "54c23dd77468697af772e087",
+     "name": "Taylor",
+     "title": "Managing Director / Investment Director",
+     "organization": "Strategic Investment Group",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director / Investment Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://undefined",
+       "retrieved_at": "2026-10-14",
+       "quote": "Taylor · Managing Director / Investment Director · Strategic Investment Group"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "5abb43ffa6da98407aa06cff",
+     "name": "Brian",
+     "title": "Investment Director, Managing Director",
+     "organization": "Wellington Management",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Investment Director, Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://undefined",
+       "retrieved_at": "2026-10-14",
+       "quote": "Brian · Investment Director, Managing Director · Wellington Management"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "Taylor Morgan Capital",
+     "to": "Daniel",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Wellington Management",
+     "to": "Matthew",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Bayes Entrepreneurship Fund",
+     "to": "Helen",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Strategic Investment Group",
+     "to": "Taylor",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Wellington Management",
+     "to": "Brian",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 5,
+    "credits_estimated": 3,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:grant:https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+    "canonical_name": "National Science Foundation (NSF)",
+    "official_domain": "nsf.gov",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "54a28f4074686930c2c3df2b",
+     "name": "David",
+     "title": "Managing Director",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "David · Managing Director · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "57d9d132a6da981500f16572",
+     "name": "Michael",
+     "title": "Principal Investigator",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Investigator.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Michael · Principal Investigator · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "5d4fcebd80f93e9cbd8cf4fe",
+     "name": "Oana",
+     "title": "Principal Investigator",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Investigator.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Oana · Principal Investigator · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "65379a43b663c4000160dbae",
+     "name": "Andrea",
+     "title": "Principal Investigator",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Investigator.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Andrea · Principal Investigator · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "610eba11a866dd0001cc7aec",
+     "name": "Brad",
+     "title": "Managing Director, Center for Autonomous Air Mobility & Sensing (caams)",
+     "organization": "National Science Foundation (NSF)",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director, Center for Autonomous Air Mobility & Sensing (caams).",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://nsf.gov",
+       "retrieved_at": "2026-10-14",
+       "quote": "Brad · Managing Director, Center for Autonomous Air Mobility & Sensing (caams) · National Science Foundation (NSF)"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "David",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Michael",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Oana",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Andrea",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "National Science Foundation (NSF)",
+     "to": "Brad",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 7,
+    "credits_estimated": 4,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 3,
+  "calls": 7,
+  "creditsEstimated": 4,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(grant) 0 queries · 163 pages · 163 read",
+   "dimension": "engine",
+   "returned": 163,
+   "discovered": 12,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "AHA",
+   "product": "Agentic Harmonization Assistant (AHA) and AHA Connect",
+   "industry": "alzheimer's disease research data infrastructure, AI data harmonization",
+   "geography": "Global (non-profit research infrastructure)",
+   "stage": "prototype",
+   "round": null,
+   "fundingTypes": [
+    "grant"
+   ],
+   "constraints": "No equity, no commercial monetization, open-source"
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 163,
+   "pagesRead": 163,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 12,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 12,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Application deadline: compiler 2026-09-01, 2026-10-01, 2027-02-01, judge 2027-02": 1,
+    "Forecast notice: applications are not open yet (estimated deadline 2026-11-01)": 1,
+    "Eligibility not confirmed by the judge with a quote from the page": 9,
+    "The judge says \"no\" for topic_fit without a quote from the page": 1
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": {
+   "jurisdiction": null,
+   "portals": [],
+   "portalPages": [],
+   "reporter": null,
+   "nsf": null,
+   "errors": []
+  },
+  "comparePrompts": {
+   "grant": "Hoy es 2026-10-14. Actúa como investigador de financiación no dilutiva. Busca en la web convocatorias de GRANTS (subvenciones, premios o concursos; no inversión ni deuda) a las que pueda aplicar este proyecto:\n\n- Proyecto: AHA: AI harmonization of Alzheimer's datasets and researcher matching\n- Producto: Agentic Harmonization Assistant (AHA) and AHA Connect\n- Sector: alzheimer's disease research data infrastructure, AI data harmonization\n- Etapa: prototype\n- Geografía: Global (non-profit research infrastructure)\n- Constitución: país de constitución no indicado\n- Monto objetivo: 350,000 USD\n- Restricciones: No equity, no commercial monetization, open-source\n- Uso de fondos: Core software engineering, statistical validation, security hardening and community onboarding over 24 months\n- Horizonte: 24 months\n\nTipo de entidad: organización sin ánimo de lucro.\n\nREGLAS (estrictas):\n1. Solo convocatorias ABIERTAS cuya fecha límite sea posterior al 2026-11-13 (mínimo 30 días desde hoy). Si no encuentras la fecha de cierre en la página oficial, NO la pongas en la lista principal.\n2. Solo páginas OFICIALES de la convocatoria o del financiador. Nada de blogs, noticias, agregadores ni directorios.\n3. Elegibilidad: debe poder aplicar el tipo de entidad indicado. Si la convocatoria lo excluye o no lo dice, márcala aparte.\n4. No incluyas convocatorias que contradigan las restricciones del proyecto.\n5. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Nombre | URL oficial | Fecha límite (AAAA-MM-DD) | CITA LITERAL de la página donde aparece esa fecha | Quién puede aplicar (CITA LITERAL) | Monto máximo | Encaje (una línea) | Estado (abierta / dudosa).\nDespués una segunda tabla, «No pude confirmar», con lo que podría servir pero le falta fecha, elegibilidad o monto, y qué falta. Al final, dime cuántas hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T16:28:08.493Z",
+ "usage": {},
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

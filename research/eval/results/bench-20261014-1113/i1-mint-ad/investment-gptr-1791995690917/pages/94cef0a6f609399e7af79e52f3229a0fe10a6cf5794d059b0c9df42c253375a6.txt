@@ -1,0 +1,193 @@
+Q1 2026 funding overview: Capital continues concentrating and four other market signals | Rock Health
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSIGHTS 
+
+
+
+Voice of the Market 
+
+
+
+Ashwini Nagappan
+
+Research
+
+
+
+
+
+
+
+Madelyn Knowles
+
+Research
+
+
+
+
+
+
+
+Jason Lei
+
+Research
+
+
+
+
+
+
+
+With help from:
+
+Megan Zweig
+Julia Croxen
+
+
+
+
+
+
+April 6, 2026
+
+
+# Q1 2026 funding overview: Capital continues concentrating and four other market signals
+
+
+
+
+
+
+At the end of last year, we described 2025 as the year of haves and have-nots. Q1 2026 is more of the same—and then some. A market bifurcation is settling in, AI-enablement is increasingly assumed, and the policy tailwinds we flagged last year are starting to take shape.
+
+Capital markets reflect a choppier macro backdrop than a year ago—conditions have remained volatile into April amid elevated geopolitical risk, oil price swings , uneven unemployment rates , and inflation anxiety. But deal-making has continued. The next few quarters will reveal how long that holds and how these factors shape the rest of 2026 for founders, investors, and enterprises alike.
+
+Read on for five market forces that shaped the landscape in Q1 2026.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 1. High highs
+
+Q1 2026 set two headline records. Total funding reached $4.0B across 110 deals, a whole billion higher than the dollar amount ($3.0B across 122 deals) we saw this time last year . Average deal size climbed to $36.7M, the highest average we’ve tracked in a single quarter since Q4 2021—up from $33.0M last quarter, continuing a steady climb since Q4 2024. 1
+
+Behind those numbers: 59% of all capital deployed this quarter, one of the highest concentrations we’ve ever seen (just a few percentage points behind Q1 2021’s 62% and Q4 2021’s 61%), came from 12 mega deals ($100M+ financings):
+
+Wearable-maker Whoop raised a $575M Series G at a $10.1B valuation (nearly triple its last ) on $1.1B in ARR, and is reportedly eyeing an IPO
+
+OpenEvidence closed a $250M Series D in its third round in under a year, after crossing $100M in revenue with an AI medical search engine used daily by 40%+ of U.S. physicians
+
+Verily raised $300M : AI roadmap acceleration is on the horizon for the precision health AI platform, as it transitions out from under Alphabet’s umbrella
+
+Talkiatry landed a $210M Series D as the nation’s largest private employer of psychiatrists, reporting a 1,745% increase in revenue between 2021 and 2024
+
+eMed , the employer-focused GLP-1 telehealth platform, notched a $2B+ valuation alongside their $200M Series A to advance its agentic AI and fund a new capitated care model
+
+Mental health platform Grow Therapy raised a $150M Series D, reporting approximately $1B in revenue and 7M annual visits
+
+Honest Health , a value-based care enablement provider, raised $140M to expand partnerships and scale programs supporting Medicare members
+
+Solace locked down a $130M Series C—the now-unicorn patient advocacy platform connects Medicare and MA members with expert navigators
+
+Qualified Health raised $125M to grow its AI adoption and governance platform for health systems, which they report currently supports 400,000 users
+
+With revenue up 130% year over year, employer-facing doctor quality analytics platform Garner Health brought in a $118M Series D and reached a $1.35B valuation
+
+Cognito Therapeutics landed an $105M oversubscribed round to commercialize Spectris , a non-invasive sensory stimulation device for Alzheimer’s disease
+
+Serving 230,000+ patients, insurance-covered virtual care for women in midlife provider, Midi Health , became a unicorn with their $100M Series D
+
+We haven’t seen this many nine-figure checks in a quarter since pandemic peak (Q1 2022). At this pace, 2026 would close with nearly 50 mega deals, almost double last year’s count. We’ve been telling this story for a few quarters now . The numbers just keep getting bigger—and we’ll be watching to see if Q2 keeps pace.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 2. The exit market is sending mixed messages
+
+The digital health public exit window remains narrow, and with growing market volatility, the exit timing feels especially hard to predict. While there are murmurings of movement, the candidates we flagged to watch at year-end are still waiting. Last year, Hinge Health and Omada Health 2 set a high bar —building clear growth trajectories and financial discipline before stepping onto the public stage. Outside of digital health, several record – breaking listings are expected later this year. We’re curious to see how the broader market responds and if mega exit performance has any impact on exit favorability across other sectors, including digital health.
+
+M&A is a more mixed picture. Q1 2026 saw 43 digital health deals—a slight uptick from last quarter’s 30, consistent with the sustained activity we flagged at year-end . Acquihires continued to show up this quarter— OpenAI ‘s acquisition of Torch and Headway ‘s pick-up of the Tezi team both brought new talent to digital health solutions. Meanwhile, New Mountain Capital’s widely-covered ambitious plan to combine five portfolio companies into a $32B AI-focused health tech platform, Thoreau, fell apart in March over unresolved concerns about debt structure and governance. The exit market isn’t closed, but for those with the requisite capital or financial sustainability, patience remains the dominant strategy.
+
+## 3. AI is now the operating environment
+
+You heard it here first: Rock Health is retiring the “AI deal” tracking analysis this quarter. Historically, we’ve reported on funding for AI-enabled startups as a distinct category, but that distinction is blurring as AI becomes table stakes in how digital health companies and their offerings are built and delivered.
+
+The broader market remains bullish on what AI is worth—AI investment keeps climbing and frontier AI labs are raising at eye-watering valuations —even as open questions about the cost of running foundation models and AI’s longer-term impact on the economy linger. That enthusiasm, and those unresolved questions, are just as present in healthcare as anywhere else—but in a system this complex, the stakes of getting it right or wrong are especially high. Healthcare is notoriously hard to build in, and that difficulty is its own form of defensibility. When everyone has AI, the technology stops being the differentiator. The companies successfully raising are those moving earliest into complex, workflow-embedded use cases: from Doctronic ’s prescribing pilot in Utah, to OpenEvidence integrating with health system EHRs.
+
+## 4. Digital health is recommitting to D2C
+
+At year-end , we described investors as “dipping their toes” back into D2C . At the start of 2026, that posture looks more like a step in , driven by a set of reinforcing tailwinds: clearer FDA guidance on low-risk wellness products, extended telehealth flexibilities through 2027, and growing confidence in meeting the needs of an increasingly activated consumer . This took shape in Q1 as scaled bets like Super Bowl advertising and expanded distribution pathways . Companies bolstered their D2C strategies through moves like Maven Clinic ’s launch of D2C pathways alongside enterprise growth, while Hims & Hers acquired global telehealth player Eucalyptus to expand its international footprint.
+
+Q1 2026 also brought a new set of players into the D2C healthcare arena. AI heavyweights—such as OpenAI and Perplexity —launched healthcare-specific consumer experiences and features that are increasingly functioning as a front door to care . They act as orchestrators, bringing in health records via platforms like b.well Connected Health and HealthEx , and wellness and biometric data through partnerships with players like Function Health and wearable devices . Consumer AI platforms gain access to longitudinal health data and user context, critical for delivering appropriate, personalized, and actionable insight. Meanwhile, their digital health partners gain reach and a new interface with consumers. As that competition plays out, entry points may narrow—the same dynamic that turned iOS and Android into duopolies (remember Blackberry and Nokia?) that others build on top of, and pay into. And with the LLM landscape still sorting itself out, players building around these platforms are making bets on which ones stick.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 5. Policy is setting terms for what scales
+
+The policy tailwinds we previewed last year are beginning to materialize. CMMI’s ACCESS Model payment rates went live in February. Despite some initial critique around whether the economics are convincing enough to drive uptake, CMS signaled that applications to participate have exceeded expectations . The rates are tight by design , set to reward measurable improvements in outcomes (including prevention) at scale and cost structures that require participants to leverage technology to reduce operational costs and extend reach. With nearly every major payer in the country having pledged to adopt the same outcome-aligned payment approach (extending the model’s reach well beyond Original Medicare’s 33 million beneficiaries), the ACCESS model is pulling providers, tech companies, and digital health players into a common payment framework. With the first application deadline now closed, we’re eager to see who steps forward when the inaugural cohort is announced in H2.
+
+In other news: fresh leadership at HHS and a refocused Office of the National Coordinator for Health Information Technology (ONC) are pushing toward data liquidity through interoperability requirements and information blocking enforcement . With consumers increasingly motivated to access and use their own health data in new ways, demand-side pressure may give the latest interoperability push even more oomph.
+
+## What holds
+
+The first quarter of 2026 points to a market that is active, but selective. For organizations operating in an AI-as-table-stakes environment, expectations are shifting around how care is accessed and delivered—and the rest of the year will clarify where momentum is durable and where it’s just temporary.
+
+The data behind this report—and all of Rock Health’s proprietary digital health intelligence—is available through our Insights Membership . Through our AI-powered database portal, members can explore funding trends, query company activity, and answer strategic questions on demand. If your team is trying to stay current on a market moving this fast, reach out to learn more.
+
+Get in touch with the venture team at Rock Health Capital .
+
+Join us in building a more equitable future at RockHealth.org .
+
+And last but not least, stay plugged into the Rock Health community and all things digital health with the Rock Weekly .
+
+
+
+
+
+
+## Footnotes
+
+Average deal size by quarter has grown quarter-over-quarter since Q4 2024, when the average deal size was $16.9M.
+
+Omada Health is a Rock Health portfolio company.

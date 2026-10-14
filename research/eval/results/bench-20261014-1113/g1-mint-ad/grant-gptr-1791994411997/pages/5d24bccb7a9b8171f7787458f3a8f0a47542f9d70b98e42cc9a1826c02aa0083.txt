@@ -1,0 +1,149 @@
+Diagnostics Accelerator: Digital Biomarkers Program | Alzheimer's Drug Discovery Foundation
+
+ADDF has closed this round of funding and are no longer accepting unsolicited applications. While our current resources are fully committed to ongoing projects, we remain dedicated to supporting impactful work and look forward to reopening the RFP process.
+
+## FUNDING PRIORITIES - FOR REFERENCE ONLY
+
+Platforms: A variety of digital platforms such as portables, sensors, or software are encouraged. The proposed platform should have the potential to be easily deployed at scale. Passive approaches to data collection are encouraged.
+
+Examples of digital approaches include, but are not limited to:
+
+Wearables devices (e.g., smart watch)
+
+Mobile/tablet apps
+
+Smart home systems
+
+Virtual and augmented reality platforms
+
+Desktop/web apps
+
+The following is out of scope for this RFP:
+
+Diagnostic hardware for traditional digital imaging platforms (e.g. optical coherence tomography, neuroimaging)
+
+Proposals focused on speech and language biomarkers
+
+Note: The DxA is currently developing a speech and language biomarker consortium. Proposals outside this effort will not be considered at this time.
+
+Symptom Domains: The RFP encourages digital biomarkers emerging from one or more of the symptom domains below. Proposed approaches will be evaluated based on the existing evidence around the biological link of the symptom domain to disease and how measuring the proposed symptom domain will improve current screening or monitoring methods in patients.
+
+Symptom domains of interest include, but are not limited to:
+
+Cognition (e.g. memory, processing speed, executive function, or geolocation)
+
+Activities of Daily Living (instrumental basic activities or higher order activities)
+
+Motor function (e.g. gait, body motion, or fine motor skills including tapping, swiping, and tracing on touchscreens)
+
+Sensory Acuity (e.g. hearing, smell)
+
+Affect (e.g. mood, facial expression)
+
+Sleep Patterns and Characteristics
+
+Oculomotor (e.g. eye movement)
+
+Pain Assessment
+
+Autonomic Nervous Function (e.g. heart rate, galvanic skin response)
+
+Combinations of these or other symptom domains with a clear link to the disease are also encouraged.
+
+### Project Details
+
+All proposals will be evaluated on scientific and technical merit, level of innovation, and investigator and organizational capabilities. All of the following criteria should be addressed.
+
+Context of Use (COU): The COU, as defined by the FDA , is a concise description of the biomarker's specified use in drug development. COU examples include diagnostic, monitoring, predictive, prognostic, and susceptibility/risk biomarkers. The expected context of use must be appropriate for the stage of disease and be fully described in the application. Applicants should specify the patient population in which the technology will be used in addition to the targeted user (i.e. primary care physician in clinic, patient in clinical trial, etc.).
+
+Correlations with Underlying Clinical Phenotype: Demonstrate a rational biological connection of the measured data to the disease pathophysiology.
+
+Supporting Information: Includes technology functional characteristics such as feasibility and performance including accuracy, precision, consistency, and uniformity. Data on human interaction with the technology (i.e. has this been tested in human subjects or in the target population) and any supporting literature should be included.
+
+Experimental Design: Includes the proposed clinical population, outcome measures, and statistical analysis, as well as plans on how the technology will be implemented, maintained, and how the data will be read out should be included.
+
+Data Collection Policies: What raw data and meta-data will be produced, and how will this data will be handled? The proposal must include plans for data sharing and highlight data protection policies. All data collected must adhere to CDISC standards, if available. If CDISC standards are not available, CDISC-compliant standards should be considered. Data used to train and validate the technology should be obtained from well-characterized cohorts and when possible, should include individuals from minority and disparity populations.
+
+Scalability Considerations: All projects should discuss how the proposed technology will be translated into clinical use. Validation projects should include additional details on manufacturing, distribution, the regulatory pathway, clinical integration plans, expected cost (to patients, payers or healthcare providers) and qualitative descriptions of anticipated burden addition or reduction on the healthcare system (e.g., additional test in the system or replaces a test in the system).
+
+Intellectual Property (IP) Considerations: Includes any pre-competitive development efforts and current IP status.
+
+Potential for Commercial Translation: The path to commercialization should be considered for all applications. The applicant should articulate where in the path to commercialization the study falls and what is the proposed plan forward. Clear milestones and go/no-go decision points should be provided. Validation projects must clearly outline their strategy. Identification of potential future commercial partners is encouraged.
+
+Inclusion of Clinical Team Members: Digital biomarker tests are expected to have clinical utility and therefore collaboration with a physician and/or a neuropsychologist with extensive experience with Alzheimer's disease or related dementias is required. A physician is required for all projects recruiting patients and these studies must be approved by an institutional review board.
+
+Three stages of projects will be supported through this program:
+
+Exploratory awards will support pilot studies that aim to test the utility of an existing digital technology for the first time in an Alzheimer's disease or related dementia population. These projects should already have preliminary human data from another disease indication. For example, a pilot study would test a wearable gait monitoring device that has been tested in subjects with multiple sclerosis and is now being proposed to test in patients at risk for Alzheimer's. Only proposals with evidence demonstrating their technology or prototype can reliably capture, process, store, and transfer data from a clinical population will be considered. A limited number of awards will be considered in this category.
+
+Generally, projects at this stage will be awarded up to approximately $250,000 based on stage and scope of research. However, this is not a cap and higher funding levels will be considered if the proposed budget is well justified.
+
+Note: Investigative teams planning to develop algorithms or employ machine learning methods must demonstrate the ability to successfully complete this type of project and that the team has appropriate permissions to access the data.
+
+Proof-of-principle awards will support projects that demonstrate feasibility and/or verify that a certain approach has potential for use in Alzheimer's disease or related dementias. Preliminary data from human subjects with the proposed indication is expected. For example, the disruption of sleep is an early change seen in Alzheimer's disease and a proof-of-principle project testing a device that is capable of detecting the stages and fragmentation of sleep would build on preliminary data acquired in the proposed patient population and proposed context of use, in addition to expanding the number of patients (e.g. ~100-200 subjects) tested with the sleep tracking device. Data must be provided demonstrating that the technology or prototype is capable of the reliable capture, processing, storage, and transfer of valid data to test in the clinical population.
+
+Generally, projects at this stage will be awarded up to approximately $500,000 based on stage and scope of research. However, this is not a cap and higher funding levels will be considered if the proposed budget is well justified.
+
+Validation awards will support projects that require testing at a larger scale and access to patients of varying demographic diversity to demonstrate clinical relevance. The technology must be verified and validated. Data quantifying the accuracy, precision, consistency, and uniformity of the technology must be provided. Applicants will be required to address scalability considerations, clinical integration plans, and anticipated regulatory considerations and commercialization. Data sharing policies and standards, intellectual property restrictions, and standard operating procedures should be well defined. Validation studies should prioritize comparisons using existing gold standard approaches to diagnose and monitor such as neuroimaging and/or CSF measurements, as well as clinical tests such as cognition, but this is dependent on the context of use. These studies will require a comprehensive experimental plan with larger sample size (e.g. 500-1000+ subjects based on power analyses).
+
+Award amounts will be based on the stage and scope of the research.
+
+Projects that succeed in the exploratory or proof-of-principle stage may be eligible for follow-on funding in the form of a validation award.
+
+Discussion on how the proposed digital biomarker would fit into the current clinical landscape, and how it would benefit clinical trials, patient care, or caregiver burden should be included.
+
+### ELIGIBILITY
+
+Funding is open to researchers and clinicians worldwide at:
+
+Academic medical centers and universities or nonprofits
+
+Industry partnerships are strongly encouraged.
+
+For profit companies
+
+Funding is provided through mission-related investments that require return on investment. Existing companies and new spinouts are both eligible.
+
+### ACCESS TO CONSULTANTS
+
+In addition to providing funding, the initiative will provide support from a network of consultants with industry and regulatory expertise. Consultants will be made available to both academic and for-profit programs receiving funding from this award. Where appropriate, consultants will help awardees refine study designs in the pre-funding stage and meet critical milestones post-award. Consultants will also help to identify follow-on funding opportunities and partners that will advance technologies towards commercialization.
+
+### DATA SHARING
+
+It is the intention of the Diagnostics Accelerator that all data generated or used in each project should be made accessible to the research community through the Sage Bionetworks digital data platform (Synapse). The funder may use these data to evaluate the validity of the digital biomarker. In cases where data sharing is not allowed due to regulatory issues or limitations related to informed consent, the investigator must provide a data sharing proposal describing the limitations on sharing and providing an alternative data sharing plan.
+
+For application submission inquiries, please contact:
+
+Mission Related Investments Team
+
+grants@alzdiscovery.org
+
+### Alzheimer's Drug Discovery Foundation
+
+A GuideStar-Rated Charity
+
+57 West 57th Street, Suite 904
+
+New York, NY 10019
+
+info@alzdiscovery.org
+
+212.901.8000
+
+&copy; Copyright 2026. The Alzheimer's Drug Discovery Foundation, a not-for-profit, section 501 (c)(3).
+
+Donate
+
+Contact Us
+
+2023 Financials
+
+Careers
+
+State Disclosures
+
+Site Map
+
+Terms & Conditions
+
+Privacy Policy

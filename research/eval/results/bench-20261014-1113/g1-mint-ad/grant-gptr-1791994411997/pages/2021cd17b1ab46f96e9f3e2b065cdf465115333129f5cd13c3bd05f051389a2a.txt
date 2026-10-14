@@ -1,0 +1,108 @@
+Novel Tool Predicts Onset Age of Cognitive Impairment and Alzheimer Dementia | Patient Care Online
+
+Advertisement
+
+News | Articles | January 16, 2025
+
+# Novel Tool Predicts Onset Age of Cognitive Impairment and Alzheimer Dementia
+
+Author(s) Sydney Jennings
+
+The Florey Dementia Index showed robustness across different cohorts but more testing is needed, researchers reported.
+
+Advertisement
+
+A novel tool known as the Florey Dementia Index (FDI) predicted the onset age of mild cognitive impairment (MCI) and Alzheimer dementia (AD), according to a new prognostic study published in JAMA Network Open.
+Using data from nearly 3800 older adults, the FDI demonstrated strong predictive performance, with a mean absolute error (MAE) of 2.78 years (95% CI, 2.63-2.93) for MCI and 1.48 years (95% CI, 1.32-1.65) for AD, reported first author Chenyin Chu, MSci, MPhil, of the Florey Institute of Neuroscience and Mental Healthand, in Australia, and colleagues.
+In a simulated trial of 93 participants from the Anti-Amyloid Treatment in Asymptomatic Alzheimer (A4) study, the FDI showed MAEs of 1.57 years (95% CI, 1.41-1.71) for predicting MCI onset and 0.70 years (95% CI, 0.53-0.88) for predicting the onset of AD.
+The FDI uses age and Clinical Dementia Rating Sum of Boxes (CDR-SB) scores for prediction. The CDR-SB assesses dementia severity, according to the study.
+"To our knowledge, the FDI model is the first to accurately predict the onset of mild cognitive impairment using only a single neuropsychological test and age," Chu and co-authors wrote. "Although the use of advanced imaging, biomarkers, and multiple neuropsychological testing data in models could enhance prediction accuracy, such data are often costly to collect and not easily accessible."
+To develop and validate the FDI, investigators used data from 1665 participants in the Australian Imaging, Biomarker, and Lifestyle (AIBL) study and 2029 people in the Alzheimer’s Disease Neuroimaging Initiative (ADNI). Data were collected from October 2004 to March 2023.
+
+astro-island:empty]:hidden [&:has(>astro-island:empty)+*]:-mt-8">
+All participants were aged 60 years and older and had at least 2 records of CDR-SB scores. People with MCI or dementia from non-Alzheimer causes were not included in the study.
+In AIBL, 44.5% of participants were women, and mean ages at first and last evaluations were 72 and 78. At the final assessment, 81.1% of AIBL participants were cognitively unimpaired, 8.6% had MCI, and 10.3% had AD.
+The ADNI cohort had 45.6% women, and mean ages at first and final evaluations were 75 and 78. At the final evaluation, 33.3% were cognitively unimpaired, 32.3% had MCI, and 34.4% had AD.
+Data from the A4 study was used in a simulated trial. Unlike AIBL and ADNI, the A4 study consisted of people with elevated amyloid-beta and normal cognition. Mean ages at baseline and final assessments were 73 years and 82 years. At the final evaluation, 76.3% of A4 participants developed MCI and 23.7% progressed to AD.
+To develop the model, researchers calculated a mean CDR-SB by averaging scores of AIBL participants across different ages and plotted this against age. They performed a survival analysis to estimate the probability of cognitive impairment for a given FDI and evaluated the model's performance in the ADNI cohort.
+The model’s performance was not improved when APOE4 status was considered. "This is likely because cognitive decline, as assessed by the CDR-SB, is influenced by the presence of APOE4 ," the researchers noted.
+Accounting for sex improved AD prediction but was not a conclusive factor in predicting MCI. All comorbidities except psychiatric disorders decreased the mean absolute error of predicting MCI onset age by approximately 15% but had a limited influence on predicting dementia onset.
+The FDI performed best in the simulated trial, which might be because A4 participants were assessed with amyloid PET and had tightly controlled follow-up intervals, the researchers noted.
+"The outstanding performance of the FDI model developed using the AIBL dataset in predicting MCI and AD onset in both the ADNI and A4 cohorts strongly suggests that our FDI model is robust, with a very low likelihood of overfitting," Chu and colleagues wrote. "However, further evaluation in diverse dementia cohorts is still necessary."
+The model was developed using Alzheimer disease cohort data and excluded people with cognitive changes from non-Alzheimer causes, the researchers said. Study participants might not reflect the general population, they acknowledged.
+"Like other digital health tools in their early development phase, further work will be needed to optimize the FDI and enhance its clinical utility," they noted.
+Reference:
+1. Chu C, Wang Y, Wang Y, et al. Development and validation of a tool to predict onset of mild cognitive impairment and Alzheimer dementia. JAMA Netw Open. Published online January 8, 2025. doi:10.1001/jamanetworkopen.2024.53756
+
+Advertisement
+
+## Related to this article
+
+View more
+
+October 7th, 2026 FDA Clears IDE for NeuWire Medical&#x27;s STROKE-REWIRE Trial in Chronic Ischemic Stroke
+FDA has granted IDE approval for the STROKE-REWIRE pivotal trial evaluating NeuWire Medical&#x27;s neurostimulation device for chronic ischemic stroke recovery.
+
+Read more
+
+October 6th, 2026 9 Drugs Approved for Primary Care: Q3 2026
+Catch up on the 9 FDA drug approvals most relevant to primary care, including new options for HIV-1 infection, narcolepsy, diabetes, pain management, and more.
+
+Read more
+
+September 25th, 2026 Stroke Incidence Nearly Doubled Among Adults Younger Than 55 Over 3 Decades
+Stroke incidence in adults aged 20–54 nearly doubled from 1993–1994 to 2020, driven largely by ischemic stroke, while 30-day fatality declined, according to new research.
+
+Read more
+
+September 1st, 2026 Intensive Blood Pressure Control in Primary Care May Lower Dementia Risk
+A team-based blood pressure intervention delivered through primary care reduced dementia risk by 15% over 7 years.
+
+Read more
+
+August 27th, 2026 Physical Activity May Reduce Stroke and Mortality Risk in Persons With Atrial Fibrillation
+Physical activity was associated with up to 22% lower mortality and 19% lower stroke risk in adults with and without atrial fibrillation in a large Norwegian cohort study.
+
+Read more
+
+October 13th, 2026 Most Adolescents With Colorectal Cancer Diagnosed at Advanced Stage, Study Finds
+Most adolescents with sporadic colorectal cancer present with stage III or IV disease, and few have a family history, per data presented at AAP 2026.
+
+Read more
+
+October 12th, 2026 Updated Freenome CRC Blood Test Detects 18.2% of Advanced Precancerous Lesions
+Freenome reports 18.2% sensitivity for advanced precancerous lesions and 80.4% for colorectal cancer with its updated blood screening test.
+
+Read more
+
+October 9th, 2026 FDA Approves Once-Monthly Olanzapine Injection for Adults With Schizophrenia
+FDA approves olanzapine, a once-monthly subcutaneous injection for adults with schizophrenia, boosting symptom control while reducing monitoring needs and highlighting weight risks.
+
+Read more
+
+Previous slide Next slide
+
+Advertisement
+
+Advertisement
+
+## Trending on Patient Care Online
+1
+
+### Most Adolescents With Colorectal Cancer Diagnosed at Advanced Stage, Study Finds
+
+2
+
+### Updated Freenome CRC Blood Test Detects 18.2% of Advanced Precancerous Lesions
+
+3
+
+### Building Clinician Confidence to Prescribe HIV PrEP in Primary Care
+
+4
+
+### PrEP Deserts: Why HIV Prevention Still Misses Those at Risk
+
+5
+
+### Why Real-World Evidence Matters for Nonhormonal Menopause VMS Therapy

@@ -1,0 +1,369 @@
+GitHub - sobcza11/clinical-driftops-platform: Clinical DriftOps Platform — a PMI-CPMAI™–aligned framework for monitoring, governing, and mitigating model & data drift in clinical AI systems (HIPAA / FDA GMLP / EU AI Act compliant). Includes reproducible workflows across CPMAI Phases I–VI. · GitHub
+
+Skip to content
+
+You signed in with another tab or window. Reload to refresh your session.
+You signed out in another tab or window. Reload to refresh your session.
+You switched accounts on another tab or window. Reload to refresh your session.
+
+Dismiss alert
+
+{{ message }}
+
+main
+
+Branches Tags
+
+Go to file
+
+Code Open more actions menu
+
+## Latest commit
+ 
+
+## History
+107 Commits
+107 Commits
+
+## Folders and files
+Name Name Last commit message
+Last commit date
+
+.github/ workflows
+
+.github/ workflows
+
+ 
+ 
+
+Project/ P1
+
+Project/ P1
+
+ 
+ 
+
+assets
+
+assets
+
+ 
+ 
+
+data
+
+data
+
+ 
+ 
+
+eval
+
+eval
+
+ 
+ 
+
+explain
+
+explain
+
+ 
+ 
+
+mlruns/ 0
+
+mlruns/ 0
+
+ 
+ 
+
+monitors
+
+monitors
+
+ 
+ 
+
+notebooks
+
+notebooks
+
+ 
+ 
+
+ops
+
+ops
+
+ 
+ 
+
+reports
+
+reports
+
+ 
+ 
+
+src
+
+src
+
+ 
+ 
+
+tests
+
+tests
+
+ 
+ 
+
+tools
+
+tools
+
+ 
+ 
+
+.dockerignore
+
+.dockerignore
+
+ 
+ 
+
+.gitattributes
+
+.gitattributes
+
+ 
+ 
+
+.gitignore
+
+.gitignore
+
+ 
+ 
+
+.pre-commit-config.yaml
+
+.pre-commit-config.yaml
+
+ 
+ 
+
+.ruff.toml
+
+.ruff.toml
+
+ 
+ 
+
+Clinical_DriftOps_CPMAI_Roadmap.docx
+
+Clinical_DriftOps_CPMAI_Roadmap.docx
+
+ 
+ 
+
+Dockerfile
+
+Dockerfile
+
+ 
+ 
+
+LICENSE
+
+LICENSE
+
+ 
+ 
+
+README.md
+
+README.md
+
+ 
+ 
+
+README_backup.md
+
+README_backup.md
+
+ 
+ 
+
+_add_label.py
+
+_add_label.py
+
+ 
+ 
+
+_peek_cols.py
+
+_peek_cols.py
+
+ 
+ 
+
+conftest.py
+
+conftest.py
+
+ 
+ 
+
+policy.yaml
+
+policy.yaml
+
+ 
+ 
+
+policy_registry.yaml
+
+policy_registry.yaml
+
+ 
+ 
+
+pytest.ini
+
+pytest.ini
+
+ 
+ 
+
+requirements.txt
+
+requirements.txt
+
+ 
+ 
+
+sitecustomize.py
+
+sitecustomize.py
+
+ 
+ 
+
+View all files
+
+## Repository files navigation
+
+# Clinical DriftOps Platform ? Honest AI for Healthcare
+
+---
+Live Dashboard: https://sobcza11.github.io/clinical-driftops-platform/
+
+Governance-first MLOps framework ensuring transparent, auditable, and policy-as-code validation for clinical AI models.
+
+PMI-CPMAI Aligned ? MLOps ? Trustworthy AI ? Explainable Healthcare Models
+
+## Overview
+
+Clinical DriftOps Platform is an end-to-end MLOps framework for trustworthy, explainable, and continuously validated clinical AI .
+It monitors data drift , fairness , and model explainability , automatically enforcing governance policies via CI/CD.
+Built for clinical research using the MIMIC-IV dataset, aligned to PMI-CPMAI Phases I-VI .
+
+## CPMAI / CRISP-DM Alignment
+
+Phase
+Description
+Artifacts
+
+I. Business Understanding
+Define risk of model drift & bias in clinical ML.
+README.md , docs/overview.md
+
+II. Data Understanding
+Profile MIMIC-IV labs, vitals, outcomes.
+src/data_prep.py , EDA notebooks
+
+III. Data Preparation
+Scale & clean baseline vs. current datasets.
+data/data_prepared_*.csv , reports/data_prep_meta.json
+
+IV. Modeling & Drift Detection
+PSI / KS tests + SHAP explainability.
+src/monitors/drift_detector.py , src/explain/shap_summary.py
+
+V. Evaluation & Governance Gate
+Fairness, performance metrics, policy enforcement.
+src/eval/* , src/ops/policy_gate.py , reports/*
+
+VI. Operationalization
+Live monitoring, MLflow registry, FHIR integration.
+src/ops/* , reports/index.html
+
+## Key Features
+
+Automated Performance Audits • AUROC, accuracy@0.5, KS via performance_metrics.py .
+
+Data Drift Monitoring • PSI / KS tests; thresholds in policy.yaml .
+
+Fairness Audits • per-group positive-rate & parity gap ( fairness_audit.py ).
+
+Explainability via SHAP • top features & artifact presence checks.
+
+Policy Gate Enforcement • single source of truth for model acceptance criteria.
+
+CI/CD • GitHub Actions runs the pipeline and publishes a live dashboard.
+
+MLflow Logging • metrics & artifact tracking (Phase VI expansion).
+
+## Policy Schema ( policy.yaml )
+
+drift :
+psi_fail : 0.20
+ks_fail : 0.20
+
+performance :
+min_auroc : 0.80
+# optional: min_auprc: 0.50
+# optional: max_log_loss: 0.70
+
+fairness :
+parity_gap_fail : 0.05
+
+explainability :
+require_shap_artifact : true
+top_features_min : 10
+
+## About
+Clinical DriftOps Platform — a PMI-CPMAI™–aligned framework for monitoring, governing, and mitigating model & data drift in clinical AI systems (HIPAA / FDA GMLP / EU AI Act compliant). Includes reproducible workflows across CPMAI Phases I–VI.
+
+### Topics
+ai-governance drift-detection fairness healthcare-ai mlops pmicpmai shap
+
+### Resources
+Readme
+MIT license
+Activity
+
+### Stars
+1 star
+
+### Watchers
+0 watching
+
+### Forks
+0 forks
+
+Report repository
+
+## Releases
+
+## Packages
+
+## Contributors
+
+## Languages
+
+You can’t perform that action at this time.

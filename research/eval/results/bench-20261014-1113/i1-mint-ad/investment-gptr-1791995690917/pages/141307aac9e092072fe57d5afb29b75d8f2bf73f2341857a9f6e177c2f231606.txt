@@ -1,0 +1,244 @@
+FDA Regulation of Medical Devices: A Primer for EU Startups
+
+FDA & International Market Access
+
+# FDA Regulation of Medical Devices: A Primer for EU Startups
+
+By Tibor Zechmeister and Felix Lenhard
+
+Blog
+&rsaquo;
+FDA & International Market Access
+
+Quick Summary
+
+The FDA regulates medical devices under a different legal framework than the EU MDR. A CE mark gives you no rights in the United States. To place a device on the US market you need a separate submission to the FDA's Center for Devices and Radiological Health (CDRH),.
+
+The FDA regulates medical devices under a different legal framework than the EU MDR. A CE mark gives you no rights in the United States. To place a device on the US market you need a separate submission to the FDA's Center for Devices and Radiological Health (CDRH), through one of three main pathways (510(k), De Novo, or PMA), plus a quality system that meets 21 CFR Part 820, which is related to but not identical with EN ISO 13485. This primer orients EU founders to the FDA framework. For specific FDA pathway questions on your device, work with a US regulatory specialist.
+
+By Tibor Zechmeister and Felix Lenhard. Last updated 10 April 2026.
+
+## TL;DR
+
+A CE mark is not recognised by the FDA. US market access requires a separate FDA submission under a separate legal framework.
+
+The FDA classifies devices into Class I, II, and III based on risk and the level of regulatory control needed to provide reasonable assurance of safety and effectiveness. The logic is related to MDR classification, but the rules and outcomes are not the same.
+
+There are three main premarket pathways for most devices: 510(k) (substantial equivalence to a predicate), De Novo (novel low-to-moderate risk devices without a predicate), and PMA (high-risk devices requiring full premarket approval).
+
+The FDA's Quality System Regulation is codified at 21 CFR Part 820 and governs manufacturer quality management for devices sold in the US. It shares a lot of DNA with EN ISO 13485 but has distinct requirements that EU manufacturers cannot ignore.
+
+A dual-market EU + US strategy needs to be planned from day one. Not bolted on after CE marking. The intended purpose, clinical evidence plan, and QMS all look different when both markets are in scope.
+
+## The story that starts this post
+
+A few years ago, a German MedTech company reached out after an investor meeting had gone wrong. They had built a clever device, achieved CE marking under the MDD and then the MDR, and pitched their investors on an ambitious global expansion. The deck listed a dozen countries. The timeline was aggressive. The revenue model assumed parallel market entry in the EU and the US in the same year.
+
+The investor asked one question. "How does your CE mark help you in the US?"
+
+The founder answered confidently that CE marking was "international" and that it would smooth the path. The investor, who had previously worked in US regulatory affairs, pushed back. The meeting ended without a term sheet, over the following weeks, the company went through a painful re-education, CE marking is a European conformity mark under Regulation (EU) 2017/745. It has no legal standing in the United States. The FDA is a different regulator, with a different framework, different classification rules, different premarket pathways, and a different quality system regulation. None of the work the company had done for CE marking translated directly into a US submission. Some of it could be reused. A lot of it had to be redone.
+
+The company had to rewrite the business plan, international timelines pushed back significantly, revenue projections for the first two years were cut substantially because the US market would not open on the schedule the founders had promised. The company survived, and eventually reached the US through a proper, planned pathway. But the cost of the assumption "CE equals global" was measured in months of runway and a near-fatal investor relationship.
+
+This story is not unusual. It is one of the most common misconceptions Tibor sees in first meetings with EU founders who assume regulatory recognition flows across the Atlantic. It does not. Market access is national, or in the EU's case, supranational, but it is never global by default.
+
+## Why CE does not equal global access
+
+The myth that CE marking opens the world is easy to understand. The CE mark is visible on millions of products, it is recognised across 30+ European countries, and many founders encounter it as the first certification mark they ever see on a device. It feels like a "passport." It is not.
+
+CE marking under MDR Article 20 declares that the device complies with Regulation (EU) 2017/745 and can be lawfully placed on the market in the EU and EEA. That is all it does. It does not make claims about safety or effectiveness under any other jurisdiction's rules. It does not satisfy the FDA. It does not satisfy Health Canada, the UK MHRA (post-Brexit UKCA), the Japanese PMDA, the Australian TGA, the Brazilian ANVISA, or any other national regulator. Each of these has its own framework, its own classification system, its own premarket process, and its own quality system expectations.
+
+Some jurisdictions recognise CE as part of their evaluation (for example by using CE documentation as supporting evidence during a domestic review), and the Medical Device Single Audit Program (MDSAP) allows a single QMS audit to cover several jurisdictions. But none of this makes CE a global license. For the United States specifically, CE has no legal role at all. An EU manufacturer selling a CE-marked device into the US without an FDA clearance or approval is non-compliant with US law, regardless of how complete the CE technical documentation is.
+
+The corollary matters for strategy. If the US is in your business plan, the FDA work is not a later add-on to be handled after CE. It is a parallel track that needs its own plan, its own budget, and its own timeline from the beginning, see Regulatory strategy for startups targeting EU and US markets for the full dual-market planning discussion.
+
+There are third-party review programs for certain low-risk 510(k) devices, but for most EU founders the mental model is simpler: the FDA is the regulator and the reviewer.
+
+## FDA organisational overview: what CDRH does
+
+The United States Food and Drug Administration (FDA) is the federal regulator for food, drugs, biologics, medical devices, cosmetics, tobacco, and several other categories. Medical devices sit within the Center for Devices and Radiological Health, known as CDRH. CDRH is the part of the FDA that EU MedTech founders will interact with for almost all device-related work.
+
+CDRH is responsible for the premarket review of device submissions, postmarket surveillance of devices already on the US market, inspection of manufacturers, enforcement actions, and guidance documents that interpret the device regulations. It is a large organisation with specialised review divisions that handle different device types, and the review division that ends up looking at your submission is one of the early strategic factors in a US market-access plan.
+
+The American equivalent of the notion "Notified Body" does not exist in the US system in the same form. In the EU, a Notified Body is a private conformity assessment body designated by a Member State to perform third-party assessments under the MDR. In the US, the FDA itself is the reviewer for most submissions. There are third-party review programs for certain low-risk 510(k) devices, but for most EU founders the mental model is simpler: the FDA is the regulator and the reviewer.
+
+## FDA device classification versus MDR classification
+
+Both the FDA and the MDR classify devices by risk, but the systems are structurally different.
+
+Under MDR Article 51 and Annex VIII, devices are classified into Class I, Class IIa, Class IIb, or Class III based on twenty-two rules covering duration of contact, invasiveness, active function, software, and specific device characteristics. The rules are written into the Regulation itself and apply uniformly across all device types. Software in many cases is pushed to Class IIa or higher under Annex VIII Rule 11.
+
+The FDA classifies devices into three classes, Class I, Class II, and Class III, based on the level of regulatory control needed to provide reasonable assurance of safety and effectiveness. Class I is generally the lowest risk and is often subject to "general controls" only. Class II usually requires "general controls plus special controls" and most Class II devices go through a 510(k) premarket notification. Class III is the highest-risk category and generally requires Premarket Approval (PMA).
+
+The critical practical difference is that FDA classifications are assigned at the device-type level through FDA-maintained classification listings that map specific device categories (identified by product codes and regulation numbers) to a class. You do not apply the rules yourself in the same way you do under MDR Annex VIII. You look up the device type, find the classification, find the product code, and then see what pathway applies. For novel devices that do not fit any existing classification, the De Novo pathway exists (see below).
+
+This means a device can legitimately be Class IIa under the MDR and Class II under the FDA, or Class IIa under the MDR and Class III under the FDA, or any other combination. You cannot assume the two classifications will match. This is one of the first surprises for EU founders and one of the first places a US regulatory specialist pays for themselves.
+
+For a side-by-side treatment of the two systems see MDR vs FDA: the core differences every founder should know . For the pathway-level detail on the FDA side see FDA device classification for EU startups .
+
+## The three main pathways: 510(k), De Novo, and PMA
+
+Almost every EU device heading to the US will fit one of three premarket pathways. There are other routes (Humanitarian Device Exemption, exempt device categories, etc.) but these three cover the vast majority of cases.
+
+Key Takeaway
+The core analytical work is the predicate comparison and the performance testing; the core strategic work is picking the right predicate.
+
+### 510(k). Premarket Notification
+
+The 510(k) is the most common pathway. The core idea is "substantial equivalence": the manufacturer identifies an existing legally marketed device (a "predicate") and demonstrates that the new device is substantially equivalent to the predicate in terms of intended use and technological characteristics, or that any differences do not raise different questions of safety and effectiveness.
+
+For EU founders, the 510(k) is often the mental model they hear about first because it is the pathway for most Class II devices and a large share of the US market moves through it. It is not a rubber stamp. The FDA reviews the submission and can request more information, additional testing, or clinical evidence. But it is structurally lighter than PMA.
+
+A 510(k) submission typically includes device description, intended use, predicate comparison, performance testing (bench, possibly biocompatibility, possibly electrical safety and EMC), software documentation if applicable, labelling, and in some cases clinical data. The core analytical work is the predicate comparison and the performance testing; the core strategic work is picking the right predicate.
+
+### De Novo. Novel low-to-moderate risk devices
+
+The De Novo pathway is for novel devices of low to moderate risk that do not have a valid predicate and therefore cannot use the 510(k) route, but that also do not warrant the full burden of PMA because the risk level is not in the Class III range.
+
+A De Novo request asks the FDA to classify the new device type as Class I or Class II with appropriate special controls. If granted, the device itself is cleared and the new classification becomes available as a predicate for future 510(k)s from other manufacturers. De Novo is strategically interesting for genuinely novel technologies: it creates a pathway where none existed, and it positions the applicant as the first mover in the new classification.
+
+For EU founders with innovative SaMD or novel diagnostic technologies that do not fit existing FDA classifications, De Novo is often the right pathway. But it is also more involved than a typical 510(k) because the FDA has to do more than compare to a predicate. The agency has to reason about the device's risk and controls from scratch.
+
+.
+
+### PMA. Premarket Approval
+
+PMA is the most stringent pathway and is required for most Class III devices. A PMA submission demonstrates safety and effectiveness through substantial clinical evidence, usually including one or more well-controlled clinical investigations. The review is more extensive, the timelines are longer, and the cost is significantly higher than 510(k) or De Novo.
+
+For EU founders, PMA is the pathway that looks most similar in scope to a Class III MDR conformity assessment under Annex IX, though the specifics of what evidence the FDA expects are not identical to what a Notified Body expects. Clinical evidence generated for MDR can often inform a PMA, but the FDA frequently has its own views on trial design, endpoints, and statistical analysis that need to be negotiated through pre-submission meetings with the agency.
+
+.
+
+### Which pathway applies to your device
+
+The honest answer for most founders is: you will not know with certainty from reading a primer. The pathway depends on the device type, the intended use, the availability of predicates, the risk profile, and FDA precedent in your specific device category. A US regulatory specialist can usually answer the pathway question in a single structured meeting once the intended use is locked. Doing this analysis yourself as a first-time founder is one of the places where the cost of getting it wrong vastly exceeds the cost of getting help.
+
+## The QMS difference: 21 CFR Part 820 versus EN ISO 13485
+
+Both the FDA and the EU require manufacturers to operate a Quality Management System. The two systems are related but not identical.
+
+In the EU, the applicable QMS standard is EN ISO 13485:2016 + A11:2021, referenced by the MDR as providing presumption of conformity with the QMS obligations under Article 10(9).
+
+In the US, the FDA's Quality System Regulation is codified at 21 CFR Part 820. It has historically been known as the QSR and governs design controls, document controls, production and process controls, corrective and preventive action, records, and related topics. The FDA has publicly moved toward closer alignment with EN ISO 13485 through the Quality Management System Regulation (QMSR) harmonisation initiative, which brings 21 CFR Part 820 substantively closer to EN ISO 13485 while preserving specific FDA-particular requirements. EU manufacturers should not assume that an EN ISO 13485 certificate alone is sufficient for FDA purposes. The specific Part 820 requirements and the FDA's inspection expectations still apply, and the details of implementation matter.
+
+The practical implication is that a startup that has built its QMS carefully against EN ISO 13485 has done most of the work but not all of the work for FDA expectations. The gap analysis between a lean EN ISO 13485 QMS and a Part 820-compliant QMS is usually manageable if done early. It is painful if discovered during a pre-submission review or an FDA inspection.
+
+For the QMS side of a dual-market strategy, the Medical Device Single Audit Program (MDSAP) is worth understanding early: a single QMS audit performed by an MDSAP-recognised auditing organisation can satisfy the QMS inspection requirements of multiple jurisdictions (including the US, Canada, Brazil, Japan, and Australia). For startups targeting both EU and US markets, MDSAP is often the right frame.
+
+## When to start FDA work if you also want US access
+
+The short answer is: as soon as the US is in your business plan, not after CE marking is complete.
+
+The longer answer depends on the pathway. For a 510(k) device, the minimum sensible lead time from "we are ready to submit" to "we have clearance" is often 6-12 months, and the work required to get to "we are ready to submit" is itself months of predicate research, testing, QMS alignment, and submission drafting. For a De Novo, expect longer. For a PMA, expect substantially longer, often measured in years, because the clinical evidence generation is itself a multi-year activity.
+
+A pragmatic sequencing for EU-first startups:
+
+Lock the intended purpose with both EU and US markets in mind. The intended purpose as defined in MDR Article 2(12) and the "indications for use" statement in an FDA submission need to be consistent; drift between the two creates problems on both sides.
+
+Do an early US classification and pathway scan with a US regulatory specialist. This is a small investment that prevents large strategic mistakes.
+
+Build the QMS from day one with both EN ISO 13485 and Part 820 in mind, ideally under MDSAP if the device risk class justifies it.
+
+Design the clinical evidence strategy with both MDR Annex XIV and FDA evidence expectations in mind. A clinical investigation designed only for MDR can miss FDA-critical endpoints and become unusable for a US submission.
+
+Plan the submissions in parallel, not in series, when the runway allows. Serial planning (CE first, then US) adds years to the global timeline and often the lost time costs more than the parallel work.
+
+## The Focused Path
+
+The Subtract to Ship framework applies to FDA work the same way it applies to MDR work: strip every activity that does not trace back to a specific regulatory obligation. The twist is that you are now subtracting against two regulations at once, and some of the work that looks like duplication is actually required by one system but not the other.
+
+The pattern we see with EU founders who handle US expansion well is not "do less FDA work". It is "do the right FDA work early instead of doing the wrong FDA work late." The subtraction is in the false starts: the speculative submissions built on shaky predicate choices, the QMS rebuilds forced by a late Part 820 gap analysis, the clinical investigations that need re-running because the endpoints were MDR-only. These are the activities to remove. The underlying regulatory work. The actual pathway work, the QMS alignment, the evidence generation. Must still happen.
+
+The pattern we see with EU founders who handle US expansion well is not "do less FDA work".
+
+A dual-market Subtract to Ship plan therefore looks like this:
+
+One intended purpose / indications for use statement, drafted once with both regulators in mind.
+
+One QMS, built to satisfy both Part 820 and EN ISO 13485 from day one.
+
+One clinical evidence plan, designed to serve both MDR Annex XIV and FDA expectations where possible.
+
+Two regulatory submissions, prepared in parallel with specialists on each side.
+
+Zero duplication of work that only exists because the two tracks were planned in isolation.
+
+The framework is not a substitute for FDA expertise. It is a discipline for making the expertise count, see The Subtract to Ship framework for MDR for the foundational methodology this applies.
+
+## Key Takeaways. Where do you stand on US market access?
+
+Is the US explicitly in your business plan with a target launch date and a revenue assumption?
+
+Do you know which FDA device class your device is likely to fall into, or are you assuming it will match your MDR classification?
+
+Have you identified candidate predicate devices for a 510(k), or confirmed that no predicate exists and De Novo is the pathway?
+
+Have you done a gap analysis between your current (or planned) EN ISO 13485 QMS and the requirements of 21 CFR Part 820?
+
+Is your clinical evidence plan designed to serve both EU and US evidence expectations, or only one?
+
+Do you have a US regulatory specialist on call, or are you still planning to work this out with your EU consultant?
+
+If an investor asked you today "how does your CE mark help you in the US," what would you say, and is the answer accurate?
+
+If you cannot answer more than three of these seven clearly, US market access is not a plan yet. It is a wish.
+
+## Frequently Asked Questions
+
+### Does a CE mark help at all with FDA clearance?
+
+Not directly. The FDA does not recognise CE marking as evidence of compliance with US requirements. Some underlying work done for CE (bench testing, biocompatibility, electrical safety, risk management, clinical data) can be reused as supporting evidence in an FDA submission, but the submission itself is separate and must meet FDA rules. Treat CE and FDA as parallel tracks that share some underlying work, not as sequential steps.
+
+### Can I use my EU clinical evaluation for an FDA submission?
+
+Partially, sometimes. Clinical data generated in the EU can inform a US submission and is often accepted, but the FDA has its own views on trial design, endpoints, and statistical power. A clinical investigation designed only for MDR Annex XIV can miss FDA-critical elements. For a 510(k), clinical data is often not required at all. For De Novo and especially PMA, the FDA will scrutinise clinical evidence in detail and may require additional studies if the existing evidence does not meet their expectations. Plan the clinical strategy with both regulators in mind from the start.
+
+### What is the difference between a 510(k) and a PMA in one sentence?
+
+A 510(k) demonstrates that a device is substantially equivalent to a legally marketed predicate; a PMA demonstrates safety and effectiveness through substantial clinical evidence without relying on a predicate. 510(k) is the pathway for most Class II devices; PMA is the pathway for most Class III devices.
+
+### Is the FDA faster or slower than a Notified Body?
+
+It depends on the pathway, the device, and the specific reviewers on both sides. In general, a straightforward 510(k) can move faster than an MDR Class IIa conformity assessment given current Notified Body capacity constraints, while a PMA is typically slower than an MDR Class III assessment. Neither system is reliably "fast." Both reward good preparation and clean submissions disproportionately over rushed or ambiguous ones.
+
+### Do I need a US agent to submit to the FDA as an EU manufacturer?
+
+Yes. Foreign manufacturers that export devices to the US must designate a US Agent who serves as the FDA's point of contact in the United States. This is a required administrative step, not a strategic choice. Your US regulatory specialist can usually help you identify an appropriate US Agent.
+
+### Where does this primer stop and where should I talk to a US specialist?
+
+This post gives you the EU-founder mental model. It is accurate at the orientation level. For any specific question about your device, which pathway applies, which predicate to pick, which FDA review division will see your submission, what the agency's current expectations are in your device category, work with a US regulatory specialist, Tibor and Zechmeister Strategic Solutions do not hold themselves out as FDA experts; the authority on the US side belongs to specialists who work inside the FDA system day in, day out.
+
+## Related reading
+
+What Is the EU Medical Device Regulation? A Startup-Friendly Guide , the foundational MDR overview for comparison.
+
+MDR vs FDA: the core differences every founder should know , the side-by-side comparison.
+
+Regulatory strategy for startups targeting EU and US markets , the dual-market planning companion.
+
+The Subtract to Ship framework for MDR , the methodology behind this blog, applied here to dual-market work.
+
+FDA device classification for EU startups , the deeper cover how FDA classes are determined.
+
+## Sources
+
+Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices (MDR), Article 2(1), Article 2(12), Article 20 (CE marking), Article 51 and Annex VIII (classification). Official Journal L 117, 5.5.2017.
+
+U.S. Food and Drug Administration . Center for Devices and Radiological Health (CDRH), public guidance and classification database, https://www.fda.gov/medical-devices
+
+U.S. Code of Federal Regulations, Title 21 , Part 820. Quality System Regulation (medical device QMS). Referenced at the general framework level.
+
+EN ISO 13485 :2016 + A11:2021. Medical devices. Quality management systems. Requirements for regulatory purposes.
+
+Medical Device Single Audit Program (MDSAP). Program documentation maintained by the International Medical Device Regulators Forum ( IMDRF ).
+
+This post is part of the FDA & International Market Access series in the Subtract to Ship: MDR blog, authored by Felix Lenhard and Tibor Zechmeister, a note on the limits of our expertise: Tibor's authority is in the EU MDR and Notified Body system. For specific FDA pathway questions on your device. Predicate selection, submission drafting, FDA meeting strategy, Part 820 gap analysis at the implementation level, work with a US regulatory specialist who practices inside the FDA system daily, this primer is the orientation. The specialist is the execution.
+
+## Related Articles
+
+Medical Device Regulation in Canada (Health Canada): MDL and MDSAP
+
+FDA Breakthrough Device Designation: Fast-Track for Innovation
+
+FDA Labeling Requirements: How They Differ from MDR

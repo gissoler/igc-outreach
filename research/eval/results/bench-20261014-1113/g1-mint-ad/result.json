@@ -1,0 +1,150 @@
+{
+ "id": "g1-mint-ad",
+ "kind": "grant",
+ "objective": "grant",
+ "brief": "eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+ "why": "brief del jefe: cobertura contra la lista de Gemini",
+ "dry": false,
+ "ok": true,
+ "status": "done",
+ "error": null,
+ "started": "2026-10-14T16:13:30.980Z",
+ "seconds": 406,
+ "stages": {
+  "search_s": 184,
+  "judge_s": 218,
+  "engine_s": 402,
+  "contacts_s": null,
+  "evaluator_s": 3,
+  "total_s": 406
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 15,
+  "opened": 117,
+  "assessed": 55,
+  "by_status": {
+   "registry": 15,
+   "open": 18,
+   "upcoming": 1,
+   "rolling": 3,
+   "unknown": 51,
+   "closed": 29,
+   "unread": 51
+  }
+ },
+ "findings": {
+  "verified": 1,
+  "to_review": 7
+ },
+ "lists": {
+  "top": 0,
+  "radar": 7,
+  "discarded": 1
+ },
+ "apollo_credits": 2,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+   "list": "radar",
+   "deadline": "2027-06-30",
+   "verified": false,
+   "url": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+   "contacts": 0
+  },
+  {
+   "title": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+   "list": "radar",
+   "deadline": "2027-04-05",
+   "verified": true,
+   "url": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+   "contacts": 1
+  },
+  {
+   "title": "PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional)",
+   "list": "radar",
+   "deadline": "2027-04-05",
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+   "contacts": 1
+  },
+  {
+   "title": "PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional)",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+   "contacts": 1
+  },
+  {
+   "title": "National Institutes of Health (NIH) - Translational Center for Accelerating the Use of Digital Health Technologies Data ",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "contacts": 0
+  },
+  {
+   "title": "HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+   "contacts": 1
+  },
+  {
+   "title": "U.S. DOE Office of Science (SC)",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://science.osti.gov/sbir",
+   "contacts": 0
+  }
+ ],
+ "coverage": [
+  {
+   "id": "nih-sbir-parent",
+   "label": "NIH SBIR parent PA-27-100 (cierres 5-ene-2027 y 5-abr-2027)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2027-04-05",
+   "expected": "2027-01-05",
+   "verified": false,
+   "why_out": null
+  },
+  {
+   "id": "nsf-sbir",
+   "label": "NSF SBIR (cierre 4-nov-2026)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2027-04-05",
+   "expected": "2026-11-04",
+   "verified": true,
+   "why_out": null
+  },
+  {
+   "id": "tedco-mii",
+   "label": "TEDCO Maryland Innovation Initiative, RFA (cierre 15-oct-2026)",
+   "found": false,
+   "list": null,
+   "deadline": null,
+   "expected": "2026-10-15",
+   "verified": false,
+   "why_out": null
+  },
+  {
+   "id": "mips",
+   "label": "MIPS (cierre 15-oct-2026)",
+   "found": false,
+   "list": null,
+   "deadline": null,
+   "expected": "2026-10-15",
+   "verified": false,
+   "why_out": null
+  }
+ ]
+}

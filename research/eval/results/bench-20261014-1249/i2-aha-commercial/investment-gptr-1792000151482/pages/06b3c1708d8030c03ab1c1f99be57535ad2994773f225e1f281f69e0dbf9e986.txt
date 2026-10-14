@@ -1,0 +1,876 @@
+5.4 FDA expectations for modeling transparency – Council on Pharmacy Standards
+
+No products in the cart.
+
+Login
+
+### Course Outline
+
+0% complete
+0 / 156 done
+
+Log in to track progress
+
+Register for Free
+
+Course Outline
+
+0%
+
+Module 1: Foundations of AI for Life Sciences
+
+1.1 AI, ML, DL, NLP, CV in biomedical applications
+
+1.2 Generative vs predictive vs causal AI
+
+1.3 AI strengths & limitations (hallucinations, drift, bias)
+
+1.4 AI acceptance in U.S./EU regulatory pathways
+
+1.5 Case Study: How AI shortened vaccine development timelines
+
+Module 2: Biomedical Data Engineering Essentials
+
+2.1 Data types: omics, imaging, sensor, clinical, RWE
+
+2.2 Data cleaning, structuring, annotation for regulatory use
+
+2.3 Bias, representativeness & data governance
+
+2.4 FAIR data principles (Findable, Accessible, Interoperable, Reusable)
+
+2.5 Hands-On: Build a regulatory-compliant dataset metadata sheet
+
+Module 3: Applied Machine Learning (Non-Coders Track)
+
+3.1 How ML pipelines work
+
+3.2 Understanding training, validation, test sets
+
+3.3 Interpreting model metrics & limitations
+
+3.4 Explainability tools (SHAP, LIME)
+
+3.5 Hands-On: Evaluate a simple ML model using real metrics
+
+Module 4: Generative AI for Biopharma
+
+4.1 LLMs in medical writing, submissions & protocol drafting
+
+4.2 Generative chemistry models (molecules, peptides)
+
+4.3 Transformer architecture basics (non-technical)
+
+4.4 FDA/EMA view on AI-assisted documentation
+
+4.5 Hands-On: Create a compliant AI-assisted draft protocol section
+
+Module 5: Predictive & Causal AI in R&D
+
+5.1 Predictive modeling for clinical & safety outcomes
+
+5.2 Causal inference (non-statistician view)
+
+5.3 Time-series modeling in wearables & sensors
+
+5.4 FDA expectations for modeling transparency
+
+5.5 Hands-On: Build a causal model justification document
+
+Module 6: AI Cybersecurity & Adversarial Defense
+
+6.1 AI security risks (model inversion, poisoning, evasion)
+
+6.2 FDA Medical Device Cybersecurity (2026)
+
+6.3 EU AI Act Requirements for Robustness
+
+6.4: GxP Cybersecurity Expectations
+
+6.5 Hands-On: Draft an AI cybersecurity risk register
+
+Module 7: AI in Drug Discovery
+
+7.1: Target Identification & Biomarker Discovery
+
+7.2 Hit/Lead Optimization Using ML
+
+7.3 Generative Chemical Design
+
+7.4 Predictive ADME/Tox Modeling
+
+7.5 Mock Discovery AI Justification for IND
+
+Module 8: AI in Preclinical Development
+
+8.1 PBPK Modeling & AI-Enabled Inputs
+
+8.2 Toxicogenomics & In-Silico Modeling
+
+8.3 In-Vitro, In-Silico Bridging (The 3Rs)
+
+8.4 GLP Considerations for AI Outputs
+
+8.5 Preclinical AI Evidence Package Summary
+
+Module 9: AI in Clinical Trial Design
+
+9.1 AI for Adaptive Trial Designs
+
+9.2 Enrollment Prediction & Feasibility Simulation
+
+9.3 Synthetic Control Arms
+
+9.4 AI-Assisted Statistical Analysis Plan Development
+
+9.5 Evidence-Driven Trial Optimization
+
+Module 10: AI in Clinical Operations
+
+10.1 Monitoring Deviations Using AI
+
+10.2 AI for Site Selection & Risk Scoring
+
+10.3 Protocol Compliance Algorithms
+
+10.4 Fraud Detection in DCT Environments
+
+10.5 AI-Enabled Operational Risk & Monitoring Plan
+
+Module 11: AI in Digital Biomarkers & Wearables
+
+11.1 Physiologic Signal AI Models
+
+11.2 Designing Digital Endpoints
+
+11.3 Sensor Accuracy & Calibration
+
+11.4 Using Digital Biomarkers in Submissions
+
+11.5 Hands-On: Validate a Mock Digital Biomarker
+
+Module 12: AI in Decentralized Trials (DCTs)
+
+12.1 Telemedicine + AI Integrations
+
+12.2 Remote Verification & Data Integrity
+
+12.3 Participant Adherence Prediction
+
+12.4 FDA/EMA Expectations for AI in DCTs
+
+12.5 Project: Build a Hybrid Trial AI Readiness Plan
+
+Module 13: AI in Real-World Evidence (RWE) & HEOR
+
+13.1 AI-Driven RWE Signal Generation
+
+13.2 Predictive Economic Modeling
+
+13.3 Bias Adjustment & Causal Modeling
+
+13.4 HTA Expectations for AI Evidence
+
+13.5 Hands-On: AI-Assisted Value Dossier Section
+
+Module 14: AI in Medical Affairs & Scientific Communication
+
+14.1 AI for Literature Monitoring
+
+14.2 AI for Labeling Analysis
+
+14.3 Medical Information Chatbots
+
+14.4 Compliance Considerations for AI-Generated Content
+
+14.5 Deliverable: Review an AI-Generated Medical Response for Compliance
+
+Module 15: FDA AI/ML Regulatory Framework
+
+15.1 FDA AI Policy Overview (CDER/CBER/CDRH)
+
+15.2 AI in IND/NDA/BLA Submissions
+
+15.3 Predetermined Change Control Plans (PCCP)
+
+15.4 FDA Meeting Prep for AI Questions
+
+15.5 Hands-On: Write a Mock FDA AI Briefing Response
+
+Module 16: Global Regulatory Frameworks (EMA, MHRA, PMDA, etc.)
+
+16.1 EMA AI Reflection Paper
+
+16.2 EU AI Act — 2026 Current Requirements
+
+16.3 MHRA Software & AI Regulation
+
+16.4 PMDA AI Acceptance
+
+16.5 Deliverable: Global Regulatory Strategy Map
+
+Module 17: Good Machine Learning Practice (GMLP)
+
+17.1 U.S.–U.K.–Canada GMLP Principles
+
+17.2 Explainability, Transparency, Reproducibility
+
+17.3 Documentation & Audit Trails
+
+17.4 Human-in-the-Loop & Oversight
+
+17.5 Build an AI Evidence Package
+
+Module 18: AI System Validation (CSV, CSA & ML Ops)
+
+18.1 FDA CSA (Computer Software Assurance)
+
+18.2 AI Validation vs Traditional Software Validation
+
+18.3 Model Monitoring, Drift Detection, Retraining
+
+18.4 Vendor Qualification for AI Systems
+
+18.5 Hands-On AI Validation & Assurance Plan
+
+Module 19: AI in CMC & Manufacturing
+
+19.1 Predictive Quality Algorithms
+
+19.2 AI in Batch Release Testing
+
+19.3 GMP Requirements for AI Decision Systems
+
+19.4 AI During Tech Transfer & Scale-up
+
+19.5 Deliverable: CMC AI Risk Assessment
+
+Module 20: AI in Pharmacovigilance
+
+20.1 NLP for Expedited Case Processing
+
+20.2 Automated Signal Detection
+
+20.3 Risk Minimization Using AI Scoring
+
+20.4 PV System Validation for AI Algorithms
+
+20.5 Hands-On: Mock PV Signal Review Packet
+
+Module 21: AI in Regulatory Submissions
+
+21.1 eCTD Placement of AI Outputs
+
+21.2 Model Cards, Validation Summaries
+
+21.3 PCCP Integration for AI-Enabled Device Software
+
+21.4 AI-Assisted Regulatory Authoring
+
+21.5 Regulatory AI Capstone
+
+Module 22: AI Governance & Enterprise Strategy
+
+22.1 Operating Models for AI Governance
+
+22.2 The AI Governance Board
+
+22.3 RACI for AI Accountability
+
+22.4 Governance Documentation Templates
+
+22.5 Deliverable: Draft an AI Governance Charter
+
+Module 23: Ethics, Fairness & Bias Management
+
+23.1 Ethical Risk Landscape
+
+23.2 Fairness & Equity in Datasets
+
+23.3 Explainability vs Performance Tradeoffs
+
+23.4 Real-World Case Studies (U.S. & Global)
+
+23.5 Hands-On: Bias Assessment & Mitigation Plan
+
+Module 24: AI Audit Defense & Compliance
+
+24.1 Preparing for FDA, EMA, MHRA Audits
+
+24.2 What Regulators Ask About AI
+
+24.3 Evidence Retention & Traceability
+
+24.4 Common Inspection Findings
+
+24.5 Deliverable: AI Audit Readiness Checklist
+
+Module 25: Implementation & Change Management
+
+25.1 Rolling Out AI Internally
+
+25.2 Building Cross-Functional Teams
+
+25.3 SOP Creation & Training
+
+25.4 Managing Resistance & Adoption
+
+25.5 Hands-On: AI Implementation Roadmap
+
+Module 26: Capstone: AI Regulatory Submission Simulation
+
+26.1 Build a Full AI-Based Clinical Development plan
+
+26.2 Create a GMLP Validation Package
+
+26.3 Prepare an FDA/EMA Meeting Briefing Document
+
+26.4 Draft a PCCP (Predetermined Change Control Plan)
+
+26.5 Final Oral Defense: Mock FDA/EMA Q&A Simulation
+
+CAIDRA Module 5, Section 5.4: FDA Expectations for Modeling Transparency — 2026 Update
+
+Skip to lesson content
+
+MODULE 5: PREDICTIVE & CAUSAL AI IN R&D
+
+# Section 5.4: FDA Expectations for Modeling Transparency
+
+From “black box” rhetoric to scope-specific evidence: what transparency means for AI-enabled devices, drug-development models, RWE, and internal GxP decisions in 2026.
+
+Updated September 2026
+Scope-first regulatory analysis
+Risk-based evidence package
+
+Audio Lecture
+
+Loading lecture…
+
+Part 1 of 10
+
+1.0x
+
+0:00
+0:00
+
+15s
+
+15s
+
+0%
+
+Sections
+
+10 sections in this lecture
+
+0 of 10 completed
+
+Scroll for more
+
+### Lesson map
+
+### 5.4.1 Transparency Is Not the Same as Explainability
+
+The useful 2026 question is not “Can we open the black box?” It is “What information must be available to which audience, for which decision, at which point in the lifecycle?” A technically opaque model can still be evaluated rigorously when its intended use, data, development process, performance, limitations, human workflow, risk controls, and change history are well characterized. Conversely, an attractive SHAP plot does not make a poorly designed model trustworthy.
+
+FDA, Health Canada, and MHRA’s transparency principles for machine-learning-enabled medical devices define transparency broadly: communication about intended use, development, performance, benefits, risks, limitations, lifecycle activities, and— when available and useful —the basis or logic of outputs. Explainability is therefore one component of transparency , not a universal substitute for validation.
+
+#### Transparency
+Communicating the information relevant audiences need to understand, evaluate, operate, and govern the system.
+
+#### Explainability
+Methods or information that help a person understand the basis for a model output. Useful in some contexts; not always technically exact or required.
+
+#### Credibility
+The strength of evidence that a model is sufficiently trustworthy for its defined context of use and decision consequence.
+
+#### What this does NOT mean
+
+FDA does not impose a universal rule that every AI model must produce SHAP plots, reveal proprietary source code to end users, or be intrinsically interpretable. The appropriate transparency package depends on regulatory scope, intended users, context of use, risk, and the information needed for safe and effective use or credible regulatory evidence.
+
+### 5.4.2 Start With Regulatory Scope
+
+The most important correction to the older lesson is that there is no single FDA “AI transparency template” for all life-sciences models . Device software, AI used to generate evidence for drug development, RWE analyses, and internal operational tools sit in different regulatory contexts. Some frameworks are formal guidance, some are guiding principles, some remain draft, and some are CAIDRA governance practices rather than FDA requirements.
+
+1 AI-enabled device function Medical-device law and policy; QMSR when applicable; device-specific GMLP/transparency; possible PCCP in a marketing submission.
+
+2 Drug / biologic evidence AI used to generate information supporting safety, effectiveness, or quality; FDA/EMA Good AI Practice and FDA’s draft credibility framework are directly relevant.
+
+3 RWD / RWE study Data fitness, study design, confounding, traceability, and reporting depend on whether the regulatory question concerns drugs, biologics, devices, safety, or effectiveness.
+
+4 Internal operational model May still affect regulated work and require quality controls, but device-specific PCCP or GMLP language should not be relabeled as binding FDA requirements.
+
+#### Function-specific device analysis
+
+Do not infer “device” merely because a model affects patient care. FDA’s FINAL January 2026 Clinical Decision Support Software guidance clarifies that certain CDS software functions can be excluded from the statutory definition of a device when the criteria in section 520(o)(1)(E) of the FD&C Act are satisfied. If a function is a device, the applicable classification and submission pathway must be determined separately.
+
+Source Status in Sept. 2026 Primary scope Do not overgeneralize it to…
+
+IMDRF GMLP principles FINAL PRINCIPLES — Jan 2025 Medical devices using AI/ML Every internal biopharma AI system
+
+ML-enabled medical-device transparency principles GUIDING PRINCIPLES — Jun 2024 Transparency for ML-enabled medical devices A universal SHAP or model-card requirement
+
+AI-enabled device lifecycle guidance DRAFT — Jan 2025 Marketing submissions and TPLC for AI-enabled device software functions Binding final policy
+
+AI-enabled device PCCP guidance FINAL — Aug 2025 PCCPs in certain device marketing submissions Internal “pre-approved retraining SOPs” outside device authorization
+
+Good AI Practice in Drug Development FDA/EMA PRINCIPLES — Jan 2026 AI across drug and biologic development Medical-device marketing authorization requirements
+
+AI for drug regulatory decision-making DRAFT — Jan 2025 Risk-based AI model credibility for drug/biologic regulatory evidence Final binding implementation requirements
+
+### 5.4.3 AI-Enabled Medical Devices: GMLP, Transparency, QMSR & Lifecycle
+
+For medical devices, transparency sits inside the broader total product lifecycle . In January 2025, IMDRF issued final GMLP principles building on the 2021 FDA/Health Canada/MHRA work. In June 2024, the three regulators published transparency principles emphasizing the needs of relevant audiences, the clinical workflow, human-centered design, performance, limitations, risk management, and lifecycle communication.
+
+#### 2026 quality-system update
+
+FDA’s Quality Management System Regulation (QMSR) became effective on February 2, 2026 . It amended 21 CFR part 820 and incorporates ISO 13485:2016 by reference. For finished medical-device manufacturers within scope, AI governance is therefore part of a device QMS—not a free-standing “AI GxP” universe.
+
+#### What device transparency should help an audience understand
+
+Intended use purpose, users, population, environment, inputs, outputs
+
+Evidence training/testing data, studies, performance, uncertainty
+
+Workflow human role, decision impact, alarms, limitations
+
+Risks failure modes, bias, out-of-distribution use, cybersecurity
+
+Lifecycle monitoring, updates, change management, version communication
+
+#### Draft remains draft
+
+FDA’s January 2025 Artificial Intelligence-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations is still labeled Draft — Not for Implementation as of September 2026. It is useful for understanding FDA’s proposed TPLC thinking, but the lesson must not present it as final guidance.
+
+Regulatory nuance: “transparent” does not mean that every user needs every technical artifact. A clinician, patient, hospital administrator, regulator, and manufacturer quality engineer have different information needs. The 2024 transparency principles explicitly emphasize who, why, what, where, when, and how information is communicated.
+
+### 5.4.4 PCCPs: What the Final 2025 Guidance Actually Says
+
+A Predetermined Change Control Plan (PCCP) is not a generic name for an internal AI retraining SOP. In FDA’s FINAL August 2025 guidance, a PCCP is part of a marketing submission for an AI-enabled device. FDA reviews it as part of the device authorization so specified future modifications may be implemented in accordance with the authorized PCCP without an additional marketing submission for each such modification.
+
+#### 1. Description of Modifications
+Defines the specific planned modifications, including relevant specifications and performance characteristics.
+
+#### 2. Modification Protocol
+Defines the methods used to develop, validate, and implement those modifications, including appropriate verification/validation and acceptance criteria.
+
+#### 3. Impact Assessment
+Assesses benefits and risks of the planned modifications and explains how the protocol mitigates those risks.
+
+#### Do not use obsolete shorthand as the current FDA structure
+
+Older discussions used terms such as SaMD Pre-Specifications (SPS) and Algorithm Change Protocol (ACP) . The final 2025 FDA guidance is organized around Description of Modifications, Modification Protocol, and Impact Assessment . Use the current terminology when teaching the final guidance.
+
+Question 2026 answer
+
+Does every AI medical device need a PCCP? No. A PCCP is an optional regulatory mechanism when appropriate for planned device modifications; ordinary change assessment and applicable submission requirements still exist.
+
+Can an internal quality unit “approve a PCCP” with the same FDA meaning? No. An internal lifecycle/change-control plan can be excellent governance, but it should not be called an FDA-authorized PCCP unless it is part of the relevant device marketing authorization.
+
+Which pathways does the final guidance address? AI-enabled devices reviewed through 510(k), De Novo, and PMA pathways, including device constituent parts of certain device-led combination products.
+
+Does a PCCP allow any future change? No. Only modifications within the scope of the authorized PCCP and implemented in accordance with it receive that regulatory treatment. Out-of-scope changes require separate assessment and may require a new marketing submission.
+
+#### Course translation for non-device AI
+
+For internal R&D or GxP models, borrow the discipline —predefine permitted changes, validation activities, acceptance criteria, rollback/escalation, monitoring, and approvals—but call the artifact a lifecycle or change-control plan , not an FDA PCCP.
+
+### 5.4.5 Drug & Biologic Development: The 2026 AI Evidence Framework
+
+Drug development now has its own AI-specific framework. In January 2026 , FDA’s CDER and CBER and the European Medicines Agency published 10 Guiding Principles of Good AI Practice in Drug Development . These principles are tailored to AI used across the drug product lifecycle and emphasize human-centric design, risk-based rigor, standards, clear context of use, multidisciplinary expertise, data governance, model development, risk-based performance assessment, lifecycle management, and clear essential information.
+
+#### Better organizing principle: context of use + model risk + credibility
+
+The central question is not “Is this deep learning?” or “Is this GxP?” but what role the model plays in a regulatory decision, what could happen if it is wrong, and what evidence is needed to establish credibility for that specific context of use.
+
+FDA’s January 2025 draft guidance , Considerations for the Use of Artificial Intelligence to Support Regulatory Decision-Making for Drug and Biological Products , proposes a risk-based credibility assessment framework for AI models used to generate information or data supporting regulatory decisions about safety, effectiveness, or quality. It remains draft—not for implementation as of September 2026, so it should be taught as FDA’s proposed framework, not a binding final requirement.
+
+Evidence question What a credible transparency package should address
+
+Context of use Exactly what the model does, where it enters the evidence chain, who uses its output, and what regulatory or scientific decision it informs.
+
+Data Source, provenance, inclusion/exclusion, labeling or reference standard, representativeness, missingness, preprocessing, leakage controls, and known limitations.
+
+Model development Architecture or algorithm choice at an appropriate level, training/tuning strategy, software environment, versioning, and controls against data contamination and overfitting.
+
+Performance Metrics tied to the context of use, uncertainty, calibration when probabilities are interpreted, subgroup performance, external/temporal evaluation when appropriate, and failure-mode analysis.
+
+Lifecycle Monitoring, change impact assessment, retraining governance, software/model version control, issue escalation, and retirement.
+
+#### Adjacent 2026 framework: ICH M15
+
+ICH M15 General Principles for Model-Informed Drug Development became final in 2026 and provides harmonized principles for planning, model evaluation, evidence documentation, regulatory interaction, and reporting for model-informed drug development. M15 is not an AI-specific rule , but it is highly relevant when an AI/ML model is part of a broader MIDD evidence package.
+
+### 5.4.6 RWD/RWE Transparency and Causal Evidence
+
+When model inputs or outcomes come from real-world data, “we used a large EHR database” is not a transparency statement. A reviewer needs to understand whether the source is relevant and sufficiently reliable for the regulatory question , how data were transformed, and how study-design threats such as missingness, misclassification, selection, confounding, and changing coding practices were addressed.
+
+#### Drugs & biologics
+FDA’s FINAL July 2024 EHR/claims guidance addresses use of those RWD sources for regulatory decisions on safety or effectiveness. ICH M14 became final in March 2026 for non-interventional RWD studies focused on medicine safety; its principles can also inform effectiveness studies.
+
+#### Medical devices
+FDA issued an updated FINAL December 2025 device RWE guidance describing how it evaluates whether RWD are of sufficient quality to generate RWE for device regulatory decision-making.
+
+#### For causal claims, transparency must cover assumptions—not just software
+
+A propensity score, DAG, inverse-probability weighting routine, or target-trial emulation is not “validated” merely because the code runs correctly. The evidence package should make the causal question, time zero, eligibility, treatment strategies, outcome, estimand, measured confounders, positivity/overlap, missing-data approach, sensitivity analyses, and limitations from residual/unmeasured confounding visible to reviewers.
+
+#### Structured data are not automatically better data
+
+A clinically important variable stored in free text is not automatically unusable, and a structured field is not automatically reliable. NLP extraction can be scientifically defensible if the extraction method is itself evaluated for the intended use. The key question is whether the resulting variable is sufficiently accurate, complete, temporally aligned, and fit for the analysis.
+
+### 5.4.7 The CAIDRA Evidence Package: An Audit-Ready Course Framework
+
+CAIDRA uses a structured Model Evidence File as a teaching framework. This is not an FDA-defined submission type , not a “DMF for AI,” and not a universally mandatory document. Its purpose is to help teams assemble the evidence that the applicable regulation, guidance, scientific standard, quality system, and organizational procedures actually require.
+
+#### Think “evidence index,” not “magic master file”
+
+The artifact can be one document or a controlled index linking to protocols, reports, code/version records, datasets, risk assessments, validation evidence, labeling/user information, monitoring plans, and change records. What matters is traceability and fitness for the decision—not the title of the binder.
+
+Evidence domain Questions the package should answer Example artifacts
+
+1. Identity & context of use What is the model? What version? Who uses it? What decision does it inform? What is explicitly out of scope? Intended-use statement, COU, model card/system card, risk assessment, workflow map
+
+2. Regulatory & quality scope Device function, drug-development evidence tool, RWE analysis, internal operational tool, or combination? Which rules/guidances are actually applicable? Regulatory assessment memo, QMS/GxP applicability assessment, guidance-status register
+
+3. Data & reference standard Where did data come from? How were cohorts/labels defined? Are data representative and fit for purpose? What are known gaps? Data management plan, lineage, dataset specification, label/adjudication report, data quality report
+
+4. Model development How was the model selected, trained, tuned, and versioned? How was leakage controlled? What alternatives were considered? Development report, code/version records, environment lockfile/container, experiment log
+
+5. Evaluation & uncertainty Does evaluation reflect deployment? Which metrics matter? Are confidence intervals/uncertainty, calibration, subgroup results, and failure modes reported? Evaluation protocol/report, confusion matrices, calibration analysis, subgroup analysis, external/temporal validation
+
+6. Human factors & transparency What does each user need to know? Can users recognize limitations and appropriate reliance? Is automation bias addressed? UI/labeling content, instructions, training, human-factors/usability evidence, alert design
+
+7. Explainability / behavior analysis Would model-attribution or case-review tools improve safety, debugging, bias detection, or expert review? What are their own limitations? SHAP/LIME/saliency where justified, example-case reviews, counterfactual tests, error analysis
+
+8. Lifecycle & change How are performance, drift, incidents, software dependencies, retraining, and retirement governed? Monitoring plan, change-control plan or authorized PCCP when applicable, release records, rollback plan
+
+9. Traceability & reproducibility Can the released result be traced to exact code, data, model, configuration, environment, and approvals? Model registry, dataset versions/checksums, commits, dependency manifests, approval records
+
+10. Causal/RWE addendum when applicable What assumptions support the causal interpretation and how were they stress-tested? Protocol, target-trial specification, DAG, balance/overlap diagnostics, sensitivity analyses
+
+#### Model card: useful, but not sufficient by itself
+
+A model card can be an effective summary of intended use, performance, limitations, and responsible-use information. It becomes dangerous only when teams treat the summary as the underlying evidence. The evidence package should be traceable to the controlled analyses and records supporting each claim.
+
+### 5.4.8 Risk-Based Governance and Director-Level Questions
+
+CAIDRA can still use practical governance bands, but they must be labeled as course heuristics , not FDA risk classes. Validation and transparency rigor should scale with intended use, decision consequence, autonomy, human oversight, model influence, data characteristics, uncertainty, user population, deployment environment, and lifecycle change—not simply with architecture.
+
+#### Lower governance intensity
+Exploratory or informational use with no direct regulated decision. Still control privacy, security, provenance, appropriate-use boundaries, and reproducibility as needed.
+
+#### Moderate governance intensity
+Operational or GxP decision support where output can materially change regulated work. Require stronger validation, workflow controls, monitoring, human oversight, and change governance.
+
+#### Highest governance intensity
+Patient-facing or regulatory-evidence functions with high consequence of error, high model influence, or device status. Apply the formal framework appropriate to that function and product.
+
+#### Do not make architecture the risk classifier
+
+A logistic regression can be high risk if it drives a critical clinical action. A transformer can be comparatively low risk if it drafts non-authoritative text that receives effective expert review. Architecture affects technical controls; intended use and consequence determine governance risk.
+
+#### Director’s questions
+
+1. Scope Which regulatory regime applies to this function—and which attractive frameworks are merely analogies?
+
+2. Context of use What precise decision does the model inform, for whom, and what happens if the output is wrong?
+
+3. Data Can we trace the data from source to analysis-ready form, and do we have evidence that labels, key variables, and populations are fit for this purpose?
+
+4. Evaluation Does the evaluation design reproduce the deployment scenario—including patient/site/time separation, prevalence, workflow, uncertainty, and relevant failure modes?
+
+5. Human factors What does the user see, what do they need to know, when should they distrust or override the system, and how have we tested appropriate reliance?
+
+6. Bias and subgroup performance Which groups are clinically or operationally important, are sample sizes adequate, and do observed differences matter for safety, effectiveness, or fairness?
+
+7. Lifecycle What can change, who approves changes, what evidence is repeated, what triggers investigation, and how do we detect a model that is no longer fit for use?
+
+8. Traceability Can we reconstruct which code, dataset, model artifact, configuration, software environment, documentation, and approvals produced the released result?
+
+#### Key takeaway
+
+Transparency is not paperwork added after the model is finished. It is the observable result of good design: clear scope, explicit assumptions, fit-for-purpose data, credible evaluation, usable communication, controlled change, and traceable evidence across the lifecycle.
+
+### Authoritative references — current through September 2026
+
+Statuses below matter. “Final,” “draft,” “guiding principles,” and “course framework” are not interchangeable.
+
+FINAL — Aug 2025 U.S. FDA. Marketing Submission Recommendations for a Predetermined Change Control Plan for Artificial Intelligence-Enabled Device Software Functions .
+
+DRAFT — Jan 2025 U.S. FDA. Artificial Intelligence-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations . Not for implementation.
+
+PRINCIPLES — Jan 2025 IMDRF / FDA resource. Good Machine Learning Practice for Medical Device Development: Guiding Principles .
+
+PRINCIPLES — Jun 2024 FDA, Health Canada, MHRA. Transparency for Machine Learning-Enabled Medical Devices: Guiding Principles .
+
+FINAL — Jan 2026 U.S. FDA. Clinical Decision Support Software .
+
+EFFECTIVE — Feb 2, 2026 U.S. FDA. Quality Management System Regulation (QMSR) .
+
+FDA/EMA PRINCIPLES — Jan 2026 U.S. FDA / European Medicines Agency. Guiding Principles of Good AI Practice in Drug Development .
+
+DRAFT — Jan 2025 U.S. FDA. Considerations for the Use of Artificial Intelligence To Support Regulatory Decision-Making for Drug and Biological Products . Not for implementation.
+
+FINAL — Jun 2026 ICH M15 / U.S. FDA. M15 General Principles for Model-Informed Drug Development .
+
+FINAL — Jul 2024 U.S. FDA. Real-World Data: Assessing Electronic Health Records and Medical Claims Data To Support Regulatory Decision-Making for Drug and Biological Products .
+
+FINAL — Mar 2026 ICH M14 / U.S. FDA. General Principles on Planning, Designing, Analyzing, and Reporting of Non-interventional Studies That Utilize Real-World Data for Safety Assessment of Medicines .
+
+FINAL — Dec 2025 U.S. FDA. Use of Real-World Evidence to Support Regulatory Decision-Making for Medical Devices .
+
+#### Reference-use note
+
+These sources establish regulatory context; they do not create one universal checklist for every model. Apply the source that matches the product, function, evidence role, and jurisdiction. Where CAIDRA uses terms such as “Model Evidence File,” “governance intensity,” or director-level audit questions, those are explicitly course frameworks .
+
+#### Path to Certification
+
+Complete this course + Pass the exam = Earn your credential. Register anytime.
+
+Register for Certification Exam
+
+Eligibility
+Candidate Handbook
+Exam Blueprint
+
+Search the whole site
+
+Browse all 65 certifications How to apply
+
+Eligibility & fees Study guides Verify a credential Renew
+
+All 65 certifications accredited Commission for Health, Safety & Professional Standards · No. CHSPS-CERT-2026-0084347
+
+Log in Get certified
+
+## Preparing for Your Exam
+
+What do I need to have for my exam?
+To ensure a smooth exam launch, please have the following items ready:
+
+Valid Photo ID: One form of non-expired, government-issued photo identification (e.g., driver’s license, passport).
+
+Technical Requirements: A working webcam and microphone, a strong and stable internet connection, and a compatible computer.
+
+Environment: A quiet, private room with a hard surface to work on. Your desk or table must be clear of all other items.
+
+Reflective Surfaces: Avoid rooms with cell phones or significant reflective surfaces.
+
+What time should I arrive for my exam?
+We recommend connecting to the exam platform 10-15 minutes before your scheduled start time. This will give you ample time to complete the identity verification and system check process without feeling rushed. The exam timer will not begin until after the exam has been officially launched.
+
+Where am I NOT allowed to take my exam?
+To ensure a secure exam environment, you may not test in certain locations. This is especially important for a high-stakes certification exam. You will NOT be permitted to test from:
+
+A bathroom/restroom
+
+A public space with other individuals like a coffee shop
+
+The outdoors
+
+A vehicle such as a car or boat
+
+An office with glass walls
+
+You should be seated at a hard surface like a desk or table, with your back to the main room entrance. Standing or lying down is not permitted.
+
+Can I have children or pets with me?
+No, you must be in a private, secure room alone. The presence of other people, including children, is not permitted and may result in the termination of your exam. While we love pets, they can be a distraction, so please ensure they are in a separate room during your exam session.
+
+## During The Exam
+
+What am I allowed and not allowed to do during my exam?
+To maintain the integrity of the certification process, the following actions and behaviors will be flagged and are not permitted:
+
+Talking aloud: Unless you have an approved accommodation, talking or whispering is not permitted.
+
+Being out of camera view: Your face must be clearly visible in the camera frame at all times.
+
+Anyone else in your testing area: You must be alone in your room. No one else may enter or speak to you.
+
+Looking off-screen: Your gaze should remain on the screen.
+
+Using unauthorized materials: You may only use materials explicitly allowed.
+
+Taking pictures or screenshots: This is strictly forbidden. Our system will detect and block such actions.
+
+Copying and pasting: The system will not allow you to copy or paste any exam content.
+
+Using a secondary monitor: Only one monitor is permitted.
+
+Can I have food or a drink during my exam?
+Only clear liquids in a clear container (e.g., a glass of water, a clear water bottle with no label) are permitted. Food, smoking, and vaping are not allowed as they can cause unnecessary distractions and noise.
+
+Are breaks allowed during my exam?
+No, breaks are not permitted during the exam for any reason.
+
+## Accommodations & Technical Support
+
+How do I receive accommodations for my exam?
+To receive accommodations, you must register your needs with the exam administrators. The Council will then submit an accommodation request on your behalf. We do not need any information about your disability. The Council needs to send us the following information about you:
+
+First and last name
+
+The email address you used to register for the exam
+
+Accommodation information (e.g., extra time, bathroom breaks, permitted use of a screen reader, etc.)
+
+This must be done prior to your exam day. If we do not have a record of your accommodations, it will delay your start process and may require rescheduling. If you have questions, please use our Contact Support form.
+
+What should I do if I’m disconnected from my exam?
+If you are disconnected, remain calm. Try to reconnect to the exam immediately. Follow the on-screen instructions to rejoin the session. If you are unable to reconnect within 5 minutes, please contact our technical support immediately for assistance. The support contact information is provided in your exam confirmation email.
+
+## After The Exam
+
+How do I access my exam results?
+Exam results are provided directly by the Council on Pharmacy Standards, not by the proctoring service.
+
+×
+
+[ameliabooking service=1]
+
+×
+
+##
+
+Pharmacy Operations & Administration
+
+Certified Pharmacy Operations Manager (CPOM)
+
+Certified Pharmacy Billing & Reimbursement Specialist (CPBRS)
+
+Certified Pharmacy Supply Chain Manager (CPSCM)
+
+Certified Prior Authorization Pharmacist (CPAP)
+
+Certified Pharmacy Policy Analyst (CPPA)
+
+Certified Managed Care Pharmacist (CMCP)
+
+Certified Formulary Strategy Pharmacist (CFSP)
+
+Certified Medical Affairs Pharmacist (CMAP)
+
+##
+
+Direct Patient Care & Clinical Specialties
+
+Certified Deprescribing Pharmacist (CDP)
+
+Certified Hormone Therapy Pharmacist (CHTP)
+
+Certified Men’s Health Pharmacist (CMHP)
+
+Certified Women’s Health Pharmacist (CWHP)
+
+Certified Wellness & Supplement Pharmacist (CWSP)
+
+Certified Integrative Pharmacy Specialist (CIPS)
+
+Certified Population Health Pharmacy Analyst (CPHPA)
+
+Certified Public Health Pharmacist (CPHP)
+
+Certified Pain Management Pharmacist (CPMP)
+
+Certified Transitions of Care Specialist (CTCS)
+
+Certified Medication Reconciliation Pharmacist (CMRP)
+
+Certified Renal Pharmacotherapy Specialist (CRPS)
+
+Certified Behavioral Health Pharmacist (CBHP)
+
+Certified Pharmacist in Substance Use Disorders (CPSUD)
+
+Certified Home Infusion Pharmacist (CHIP)
+
+Certified Non-Sterile Compounding Pharmacist (CNSCP)
+
+Certified Sterile Compounding Pharmacist (CSCP)
+
+Certified Veterinary Compounding Specialist (CVCS)
+
+Certified Surgical Pharmacy Specialist (CSPS)
+
+Certified Collaborative Practice Pharmacist (CCPP)
+
+Certified Cardiometabolic Care Pharmacist (CCCP)
+
+Certified Investigational Drug Services Pharmacist (CIDSP)
+
+Certified Clinical Trials Pharmacist (CCTP)
+
+##
+
+Pharmacy Technology & Precision Medicine
+
+Certified Telepharmacy Pharmacist (CTPP)
+
+Certified AI-Enhanced Pharmacy Strategist (CAEPS)
+
+Certified Remote Monitoring Pharmacist (CRMP)
+
+Certified Remote Order Verification Pharmacist (CROVP)
+
+Certified Point-of-Care Testing Pharmacist (CPOCTP)
+
+Certified Digital Therapeutics Specialist (CDTS)
+
+Certified Pharmacy Informatics Analyst (CPIA)
+
+Certified EHR Optimization Pharmacist (CEOP)
+
+Certified Pharmacogenomics Pharmacist (CPxP)
+
+Certified Medical Cannabis Pharmacist (CMCaP)
+
+Certified Psychedelic Therapy Pharmacist (CPTP)
+
+Certified Gene Therapy Pharmacist (CGTP)
+
+Certified Biosimilar & Biologic Specialist (CBBS)
+
+Certified Rare Disease Pharmacist (CRDP)
+
+##
+
+Governance, Risk & Compliance
+
+Certified Pharmacy Compliance Officer (CPCO)
+
+Certified DEA Compliance Pharmacist (CDCP)
+
+Certified Pharmacy Law & Ethics Specialist (CPLES)
+
+Certified Medication Safety Officer (CMSO)
+
+Certified Pharmacy Audit Specialist (CPAS)
+
+Certified Pharmacy Data Privacy Officer (CPDPO)
+
+Certified Hazardous Drug Handling Pharmacist (CHDHP)
+
+Certified USP 800 Compliance Officer (CUCO)
+
+Certified Pharmacy Regulatory Specialist (CPRS)
+
+Certified Regulatory Affairs Specialist (CRAS)
+
+Certified Pharmacovigilance & Safety Officer (CPSO)
+
+Certified Compliance Pharmacist – 340B Focus (CCP-340B)
+
+Certified Prior Authorization Pharmacist (CPAP)
+
+×
+
+×
+
+You must log in.
+
+×
+
+×

@@ -1,0 +1,183 @@
+9 Biotech Companies Using AI to Reshape Diagnostics
+
+Back to Top
+
+# 9 Biotech Companies Using AI to Reshape Diagnostics
+Company Profiles
+
+View all topics
+
+By Cathy Cassata
+
+Published May 22, 2026
+
+Share
+
+Print
+
+Cure
+
+#### Overview
+Multi-modal AI, computational pathology, and liquid biopsy are converging and these companies are turning the promise of AI diagnostics into clinical reality.
+
+Funding for AI-driven healthcare and biotech startups is on the rise. By the end of 2025, funding reached about $10.7 billion ; that’s an increase of more than 24% compared to the total funding raised for 2024.
+ “Some VCs now treat ‘Techbio’ as its own startup vertical, separate from traditional biotech. That tells you something about the scale of what’s happening,” says Trishan Arul , CEO and Co-Founder of Picture Health.
+ When it comes to AI in the diagnostic space, patent applications that link AI and diagnostic and predictive health applications have about tripled since 2020, says Alan Heimlich, Esq, President at Heimlich Law, PC.
+ “That number keeps climbing. Companies are patenting machine learning models that are built up based on pathology slides, genomic sequencing data, multi-omics and wearable sensor outputs as fast as no one imagined five years ago,” he says. “Multi-modal systems layering imaging, lab results, and genomic profiles together are the heaviest filing action due to the most difficult to replicate.”
+ While the largest pharma companies headquartered across the US, Europe, and Asia, are all investing in AI-driven biomarker capabilities for their drug programs, within the U.S. investment is happening in every major biotech hub, Arul says.
+ “Boston, New York, San Francisco, San Diego, the Research Triangle, and increasingly in places like Cleveland and Atlanta where strong academic medical centers are spinning out companies,” he says. “Cloud-based deployment has made it so that a company doesn’t need to be in Cambridge to work with a pharma partner in Basel.”
+ In the U.S., as federal reimbursement codes for AI-assisted diagnostics continue to grow and as payers roll out a technology on a larger scale, Heimlich says the commercial incentive to use patents for the technology compounds.
+ “The FDA has cleared more than 900 artificial intelligence enabled medical devices. Every quarter, that list is expanding, forcing companies to file earlier and fatter. So yes, this demand has legs,” he says.
+ Companies that can combine computational pathology, genomics, and radiology in a way that is scientifically rigorous not just technically impressive will be most successful, according to Arul.
+ For epidemiologist Ayah Hamdan , Partner at Plug and Play Tech Center, any diagnostic technology that only reaches wealthy, urban, well-insured patients is incomplete.
+ “The companies that figure out scalable deployment in under-resourced settings aren’t just doing good, they’re building a more durable business. That’s the lens we apply when evaluating opportunities,” she says.
+ Plus, science is no longer the primary differentiator.
+ “The bar for the underlying AI has gotten high enough that great models are almost table stakes now. What separates the companies that scale from the ones that stall is workflow fit and institutional trust,” Hamdan says. “Are clinicians actually using it, or did it get shelfware’d six months after procurement? That question keeps me up at night more than any technical benchmark.”
+ Data that includes diversity is also crucial.
+ “I’ve seen beautiful AUC curves built on datasets that are 80% white male patients from academic medical centers. That model is going to fail in the real world, and it’s going to fail on the patients who can least afford a missed diagnosis,” says Hamdan.
+ In terms of modality, she says companies that combine imaging with genomics, proteomics, and digital biomarkers will succeed.
+ “That’s how disease actually presents. My prediction is that siloed, single-modal tools will feel outdated and ineffective in five years,” she says.
+ Cure gathered the below biotech companies that are using AI for care diagnostics.
+
+## Viz.ai
+
+Sector: FDA-cleared AI for stroke and vascular disease detection
+HQ: San Francisco, CA
+Year Founded: 2016
+Origin Story: Neurosurgeon Chris Mansi, MD, was inspired to found the company after a patient of his who underwent a successful brain surgery died because the surgery came too late.
+Key Leaders: Chris Mansi, MD, CEO and Co-Founder; Jieun Choe, Chief Operating Officer; Timothy N. Showalter, MD, Chief Medical Officer
+Number of Employees: ~300
+Stage: Late-stage venture
+Financial Snapshot: The company is currently valued at about $1.2 billion.
+Notable Investors: Kleiner Perkins; Threshold; GV; Sozo Ventures; CRV; Susa; Tiger Global; Insight Partners; Scale Ventures
+Key Products: Viz One Platform combines real-time, multimodal clinical data with deep clinician engagement to detect disease earlier, coordinate care teams, and expedite treatment.
+Recent highlights: In March 2026, the company announced the launch of Viz Agent Studio, a new capability within Viz One Platform, that enables health systems to create their own AI Care Pathways. The same month, Viz.ai announced a partnership with Alnylam Pharmaceuticals to accelerate early identification and standardize diagnostic evaluation of patients with cardiac amyloidosis.
+
+## PathAI
+
+Sector: Deep learning models that detect cancer subtypes and predict treatment response
+HQ: Boston, MA
+Year Founded: 2016
+Key Leaders: Andy Beck, MD, Co-Founder and CEO; Brandon Eldredge, CFO; Eric Walk, MD, Chief Medical Officer
+Number of Employees: ~268
+Stage: Late-stage venture, private
+Financial Snapshot: The company has raised about $255 million over five rounds.
+Notable investors: General Atlantic; General Catalyst; D1 Capital Partners; Kaiser Permanente
+Key Products: AISight, a cloud-native, FDA-cleared digital pathology image management system and enterprise workflow solution that is a central platform for viewing, managing, and analyzing digitized pathology slides using AI-powered algorithms.
+Recent Highlights: In March 2026, the company announced the release of AISight Dx v2.19, the latest update to its FDA-cleared digital pathology image management system. In the same month , PathAI received U.S. FDA Breakthrough Device Designation for its PathAssist Derm, an AI-powered pathology solution to transform dermapathology workflow.
+
+## Proscia
+
+Sector: AI-powered pathology platform focuses on cancer detection and classification
+HQ: Philadelphia, PA
+Year Founded: 2014
+Origin Story: Founded at Johns Hopkins University
+Key Leaders: David West, Co-Founder and CEO; Coleman Stavish, Co-Founder and CTO; Nathan Buchbinder, Co-Founder and CSO
+Number of Employees: ~129
+Stage: Private
+Financial Snapshot: The company has raised approximately $129 million to date.  
+Notable Investors: Scale Venture Partners, Hitachi Ventures, Insight Partners, Triangle Peak Partners, Avenue Capital Group, Chronos Capital, Alpha Intelligence Capital, Ebridge Ventures 
+Key Products: Concentriq enterprise pathology platform, a cloud-native, scanner-agnostic software platform that enables laboratories and life sciences organizations to transition from traditional microscope-based pathology to digital, data-driven workflows
+Recent highlights: In September 2025, Proscia announced that it expanded its collaboration with Amazon Web Services by integrating its Concentriq pathology platform with AWS HealthImaging. And, in 2026, Proscia became the first digital pathology vendor to earn top KLAS rankings across multiple regions in the same year: Global 2026 Best in KLAS for Digital Pathology in Europe and the highest overall performance score (95.2) in the first comprehensive US Digital Pathology report, with ‘A+’ or ‘A’ grades across all six customer experience pillars.
+
+## Tempus AI
+
+Sector: AI-driven diagnostics and risk prediction across oncology, cardiology, and more
+HQ: Chicago, IL
+Year Founded: 2015
+Origin Story: Eric Lefkofsky founded the company after his wife was diagnosed with breast cancer, in an effort to bring the power of technology and artificial intelligence to cancer care.
+Key Leaders: Eric Lefkofsky, Founder and CEO; Ezra Cohen, MD, Chief Medical Officer of Oncology; Shane Colley, Chief Technology Officer; Ryan Fukushima, Chief Operating Officer; Kate Sasser, PhD, Chief Scientific Officer
+Number of Employees: ~3,800
+Stage: Public
+Financial Snapshot: The company’s market cap is approximately $8.25 billion as of April 2026.
+Key Products: Tempus One, an AI-enabled, voice-enabled assistant that integrates into clinical workflows; Tempus Lens, a data analytics platform designed for life science users to explore and analyze vast, de-identified real-world datasets for research, drug development, and cohort building; Tempus Hub, a desktop and mobile platform that allows physicians to order lab tests, view results, and access AI-driven insights
+Recent Highlights: In March 2026, Tempus announced collaboration with Daiichi Sankyo to advance AI-driven biomarker discovery and clinical differentiation across an ADC clinical program. In the same month, Tempus and Blood Cancer United announced collaboration to develop one of the largest pediatric acute myeloid leukemia real-world data registries.
+
+## Freenome
+
+Sector: Blood-based early cancer detection using multi-omics (cfDNA, proteins, immune signals)
+HQ: Brisbane, CA
+Year Founded: 2014
+Origin Story: Riley Ennis, Gabe Otte, and Charlie Roberts founded Freenome after witnessing friends and family struggle with diseases like cancer.
+Key Leaders: Aaron Elliott, PhD, Chief Executive Officer; Riley Ennis, Co-Founder and Chief Product Officer; Jimmy Lin, MD, Chief Scientific Officer
+Number of Employees: ~392
+Stage: Private
+Financial Snapshot: The company is valued at about $1 billion and intends to go public in 2026 through a merger with Perceptive Capital Solutions Corp.
+Notable Investors: Perceptive Advisors; RA Capital Management; Roche Venture Fund; Kaiser Permanente; Novartis; American Cancer Society’s BrightEdge Ventures; Quest Diagnostics; Realm Capital Ventures; Squarepoint Capital
+Key Products: SimpleScreen CRC, a colorectal cancer screening test that uses a blood sample.
+Recent Highlights: In January 2026, Freenome announced improved performance in its colorectal cancer blood test showing sensitivity of 85% for CRC and 22% for advanced precancerous lesions. In March 2026, the company announced initial development data for its investigational lung cancer screening test that showed the potential of a multiomics approach that combines DNA methylation analysis and protein markers to detect lung cancer in high-risk individuals.
+
+## Nucleus Genomics
+
+Sector: Uses AI predictive genetic risk modeling to estimate lifetime disease risk
+HQ: New York, NY
+Year Founded: 2021
+Origin Story: Founder Kian Sadeghi founded the company after his cousin died in her sleep from an unknown genetic condition. He dropped out of college and began working toward his finding solutions to detect genetic conditions.  
+Key Leaders: Kian Sadeghi, Founder and CEO; Lasse Folkersen, Chief Scientific Officer 
+Number of Employees: ~42
+Stage: Series A
+Financial Snapshot: The company has raised $32 million over three rounds.
+Notable Investors: Seven Seven Six; Founders Fund; Neo; One Eight Capital; Giant Step; Common Metal; Asylum Ventures; Rose Street Capital; Balaji Srinivasan; Amanda Bradford; Later Capital
+Key Products: Nucleus Health DNA Test Kit designed to identify insights into cancer, cardiovascular health, neurology, and mental health conditions. Nucleus Preview, a preconception genetic test for couples using a cheek swab to screen for over 2,000 conditions and traits that could be passed to future children. Nucleus IVF+ / Nucleus Embryo, genetic optimization software used with IVF to analyze and compare up to 20 embryos across 900+ hereditary conditions, including cancer and mental health risks.
+Recent Highlights: In March 2026, the company began expanding its embryo optimization services to India and the Middle East through partnerships with major fertility clinics like Indira IVF, aiming to screen for disease risks and traits.
+
+## Cleerly
+
+Sector: AI-empowered phenotyping of coronary artery disease through evaluation of advanced non-invasive CT imaging
+HQ: Denver, CO
+Year Founded: 2017
+Key Leaders: James K. Min, MD, Founder and CEO; Jim Hartman, CCO; Udo Hoffmann, MD, CMO, CSO & Chief AI Officer
+Number of Employees: ~290
+Stage: Series C
+Financial Snapshot: The company has raised $578 million across five funding rounds.
+Notable Investors: Insight Partners; Battery Ventures; Fidelity Management; Novartis; Cigna Ventures; Double Point Ventures; Breyer Capital
+Key Products: AI-driven, FDA-cleared digital platform that analyzes coronary computed tomography angiography
+Recent Highlights: In March 2026, the company launched Cleerly PREVIEW, a new workflow-support enhancement designed to assist clinicians with case prioritization and streamline administrative processes, such as prior authorization, for coronary artery disease imaging. The same month, Cleerly presented findings from its multicenter INVICTUS registry at the recent European Congress of Radiology in Vienna, Austria. The findings aimed to evaluate the quantification and characterization of atherosclerosis by artificial intelligence-enabled quantitative computed tomography (AI-QCT) against “gold-standard” invasive imaging techniques such as intravascular ultrasound.
+
+## Butterfly Network
+
+Sector: AI medical devices and instruments that use Ultrasound-on-Chip technology for whole-body ultrasound system
+HQ: Burlington, MA
+Year Founded: 2011
+Origin Story: Jonathan Rothberg, PhD, founded the company after his daughter required constant monitoring for kidney growths. Inspired by MIT professor Max Tegmark’s discoveries on radio telescopes, Dr. Rothberg developed a “butterfly network” of semiconductor-based, AI-powered, handheld ultrasound technology that could be used instead of big and expensive machines with a single affordable device.  
+Key Leaders: Jonathan Rothberg, PhD, Founder; Joseph DeVivo, President, CEO, and Chairman of the Board; John Martin, MD, Chief Medical Officer; Victor Ku, Chief Technology Officer; 
+Number of Employees: ~220
+Stage: Public
+Financial Snapshot: The company’s market cap is approximately $1.09 billion as of April 2026.
+Key Products: IQ3 POCUS ultrasound device that connects to cell phones and uses high image quality, rapid data processing, Al, advanced imaging tools, and user-centric ergonomics.
+Recent Highlights: In September 2025, Butterfly Network was named to TIME’s List of the World’s Top HealthTech Companies 2025 for accessible diagnostic imaging.
+
+## Regard
+
+Sector: AI-powered diagnosis and documentation
+HQ: Los Angeles, CA and New York, NY
+Year Founded: 2017
+Key Leaders: Eli Ben-Joseph, Co-Founder and CEO; Nate Wilson, Co-Founder, President, Chief Operating Officer; Francisco Alvarez, MD, Chief Medical Information Officer; David Kirk, MD, Chief Medical Officer
+Number of Employees: ~104
+Stage: Closed Series B
+Financial Snapshot: Regard has raised $81.93 million over 11 rounds.
+Notable Investors: Oak HC/FT; Cedars-Sinai Health Ventures; TenOneTen Ventures; Calibrate Ventures; Techstars
+Key Products: Proactive Documentation, which uses AI that generates insights from chart data and conversations with patients to create drafts of notes in the physician’s preferred writing style.  
+Recent Highlights: In February 2025, Regard announced that it would be featured in Microsoft’s Dragon Copilot demonstrations at the 2026 HIMSS Global Health Conference & Exhibition March 9-12, 2026 in Las Vegas. In March 2025, the company announced the expansion of its platform into cardiology and surgical service lines, enabling health systems to use Regard across nearly all admitted patients in a hospital setting.
+
+## More Stories
+
+###### The Ivy League vs China: Who Leads the Science That Becomes Medicine?
+October 13, 2026
+
+Innovation Index
+
+###### Inside the Business of Fixing Healthcare Problems No One Owns
+October 8, 2026
+
+Cure Member Spotlight
+
+###### Can We Get to a Reliable Measure of Aging Within Five Years?
+October 6, 2026
+
+Longevity and Healthspan
+
+###### Turning New York&#x27;s Research Lead Into Cures
+October 5, 2026
+
+Innovation Index

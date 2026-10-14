@@ -1,0 +1,216 @@
+Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform
+- WashU Research Profiles
+
+Skip to main navigation
+
+Skip to search
+
+Skip to main content
+
+# Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform
+
+Sarah Biber
+, Jessica E. Culhane
+, Maria G. Prado
+, Satish Mathew
+, Yohali Burrola-Mendez
+, Imara I. West
+, Sarah Van Heiden
+, Jimmy Phuong
+, Shilpa Allimatti
+, Liam G. Lane
+, Krista L. Moulder
+, Brittany K. Hale
+, Amanda Kuzma
+, Li San Wang
+, Sujuan Gao
+, Albert Lai
+, Karthik Natarajan
+, Sophia Wang
+, John C. Morris
+, James M. Noble
+Sean D. Mooney, Walter Kukull , Andrew J. Saykin, Kari A. Stephens Show 4 others Show less
+
+Department of Neurology
+Section of Aging & Dementia
+Roy and Diana Vagelos Division of Biology & Biomedical Sciences (DBBS)
+DBBS - Biochemistry, Biophysics, and Structural Biology
+DBBS - Biomedical Informatics and Data Science
+DBBS - Computational and Systems Biology
+Institute of Clinical and Translational Sciences (ICTS)
+Institute for Informatics, Data Science and Biostatistics (I2DB)
+Center for Applied Health Informatics (CAHI)
+Siteman Cancer Center
+Hope Center for Neurological Disorders
+Section of Research
+
+Research output : Contribution to journal › Article › peer-review
+
+## Abstract
+
+INTRODUCTION: Integrating real-world data (RWD) with clinical research datasets creates more complete, context-rich resources to drive discovery and enable precision medicine in Alzheimer's disease and related dementias. The National Alzheimer's Coordinating Center conducted a proof-of-concept (POC) project to link its longitudinal Uniform Data Set (UDS) with electronic health records (EHRs), Medicare claims, and genomic data. METHODS: In partnership with three Alzheimer's Disease Research Centers (ADRCs), we developed scalable data pipelines and a governance framework to collect, harmonize, and securely share linked data through the National Institute on Aging's LINKAGE Program. RESULTS: We linked UDS and EHR data for 2206 participants and added Medicare claims for 1522. Nearly 500 participants have 5 or more years of linked data, with genomic profiles available for 93%. DISCUSSION: This POC demonstrates the feasibility of integrating clinical, genomic, and RWD across ADRCs, offering a scalable model for broader implementation.
+
+Original language English
+Article number e71207
+Journal Alzheimer's and Dementia
+Volume 22
+Issue number 3
+DOIs https://doi.org/10.1002/alz.71207
+
+State Published - Mar 2026
+
+## Keywords
+Alzheimer's Disease Research Centers (ADRCs)
+Alzheimer's disease and related dementias (AD/ADRD)
+Centers for Medicare & Medicaid Services (CMS) claims
+Uniform Data Set (UDS)
+electronic health record (EHR)
+genomics
+precision medicine
+real-world data (RWD)
+
+## Access to Document
+
+10.1002/alz.71207
+
+## Other files and links
+
+Link to publication in Scopus
+
+##
+
+Fingerprint
+
+Dive into the research topics of 'Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform'. Together they form a unique fingerprint.
+
+Genomic Data
+Keyphrases
+100%
+
+Precision Medicine
+Keyphrases
+100%
+
+Longitudinal Clinical Data
+Keyphrases
+100%
+
+Data Platform
+Keyphrases
+100%
+
+Alzheimer's Disease Research Center
+Keyphrases
+100%
+
+World Data
+Keyphrases
+100%
+
+Alzheimer's Disease
+Medicine and Dentistry
+100%
+
+Personalized Medicine
+Medicine and Dentistry
+100%
+
+View full fingerprint
+
+## Cite this
+
+APA
+
+Author
+
+BIBTEX
+
+Harvard
+
+Standard
+
+RIS
+
+Vancouver
+
+Biber, S. , Culhane, J. E., Prado, M. G., Mathew, S., Burrola-Mendez, Y., West, I. I., Van Heiden, S., Phuong, J., Allimatti, S., Lane, L. G. , Moulder, K. L. , Hale, B. K., Kuzma, A., Wang, L. S., Gao, S. , Lai, A. , Natarajan, K., Wang, S. , Morris, J. C. , ... Stephens, K. A. (2026). Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform . Alzheimer's and Dementia , 22 (3), Article e71207. https://doi.org/10.1002/alz.71207
+
+Biber, Sarah ; Culhane, Jessica E. ; Prado, Maria G. et al. / Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond : a proof-of-concept data platform . In: Alzheimer's and Dementia . 2026 ; Vol. 22, No. 3.
+
+@article{3928bc9347254ca88c43421c8c7321ff,
+title = "Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform",
+abstract = "INTRODUCTION: Integrating real-world data (RWD) with clinical research datasets creates more complete, context-rich resources to drive discovery and enable precision medicine in Alzheimer's disease and related dementias. The National Alzheimer's Coordinating Center conducted a proof-of-concept (POC) project to link its longitudinal Uniform Data Set (UDS) with electronic health records (EHRs), Medicare claims, and genomic data. METHODS: In partnership with three Alzheimer's Disease Research Centers (ADRCs), we developed scalable data pipelines and a governance framework to collect, harmonize, and securely share linked data through the National Institute on Aging's LINKAGE Program. RESULTS: We linked UDS and EHR data for 2206 participants and added Medicare claims for 1522. Nearly 500 participants have 5 or more years of linked data, with genomic profiles available for 93\%. DISCUSSION: This POC demonstrates the feasibility of integrating clinical, genomic, and RWD across ADRCs, offering a scalable model for broader implementation.",
+keywords = "Alzheimer's Disease Research Centers (ADRCs), Alzheimer's disease and related dementias (AD/ADRD), Centers for Medicare \& Medicaid Services (CMS) claims, Uniform Data Set (UDS), electronic health record (EHR), genomics, precision medicine, real-world data (RWD)",
+author = "Sarah Biber and Culhane, \{Jessica E.\} and Prado, \{Maria G.\} and Satish Mathew and Yohali Burrola-Mendez and West, \{Imara I.\} and \{Van Heiden\}, Sarah and Jimmy Phuong and Shilpa Allimatti and Lane, \{Liam G.\} and Moulder, \{Krista L.\} and Hale, \{Brittany K.\} and Amanda Kuzma and Wang, \{Li San\} and Sujuan Gao and Albert Lai and Karthik Natarajan and Sophia Wang and Morris, \{John C.\} and Noble, \{James M.\} and Mooney, \{Sean D.\} and Walter Kukull and Saykin, \{Andrew J.\} and Stephens, \{Kari A.\}",
+note = "Publisher Copyright: {\textcopyright} 2026 The Author(s). Alzheimer's \& Dementia published by Wiley Periodicals LLC on behalf of Alzheimer's Association.",
+year = "2026",
+month = mar,
+doi = "10.1002/alz.71207",
+language = "English",
+volume = "22",
+journal = "Alzheimer's and Dementia",
+issn = "1552-5260",
+number = "3",
+}
+
+Biber, S , Culhane, JE, Prado, MG, Mathew, S, Burrola-Mendez, Y, West, II, Van Heiden, S, Phuong, J, Allimatti, S, Lane, LG , Moulder, KL , Hale, BK, Kuzma, A, Wang, LS, Gao, S , Lai, A , Natarajan, K, Wang, S , Morris, JC , Noble, JM, Mooney, SD , Kukull, W , Saykin, AJ & Stephens, KA 2026, ' Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform ', Alzheimer's and Dementia , vol. 22, no. 3, e71207. https://doi.org/10.1002/alz.71207
+
+Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform. / Biber, Sarah ; Culhane, Jessica E.; Prado, Maria G. et al.
+In: Alzheimer's and Dementia , Vol. 22, No. 3, e71207, 03.2026. Research output : Contribution to journal › Article › peer-review
+
+TY - JOUR
+T1 - Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond
+T2 - a proof-of-concept data platform
+AU - Biber, Sarah
+AU - Culhane, Jessica E.
+AU - Prado, Maria G.
+AU - Mathew, Satish
+AU - Burrola-Mendez, Yohali
+AU - West, Imara I.
+AU - Van Heiden, Sarah
+AU - Phuong, Jimmy
+AU - Allimatti, Shilpa
+AU - Lane, Liam G.
+AU - Moulder, Krista L.
+AU - Hale, Brittany K.
+AU - Kuzma, Amanda
+AU - Wang, Li San
+AU - Gao, Sujuan
+AU - Lai, Albert
+AU - Natarajan, Karthik
+AU - Wang, Sophia
+AU - Morris, John C.
+AU - Noble, James M.
+AU - Mooney, Sean D.
+AU - Kukull, Walter
+AU - Saykin, Andrew J.
+AU - Stephens, Kari A.
+N1 - Publisher Copyright:
+© 2026 The Author(s). Alzheimer's & Dementia published by Wiley Periodicals LLC on behalf of Alzheimer's Association.
+PY - 2026/3
+Y1 - 2026/3
+N2 - INTRODUCTION: Integrating real-world data (RWD) with clinical research datasets creates more complete, context-rich resources to drive discovery and enable precision medicine in Alzheimer's disease and related dementias. The National Alzheimer's Coordinating Center conducted a proof-of-concept (POC) project to link its longitudinal Uniform Data Set (UDS) with electronic health records (EHRs), Medicare claims, and genomic data. METHODS: In partnership with three Alzheimer's Disease Research Centers (ADRCs), we developed scalable data pipelines and a governance framework to collect, harmonize, and securely share linked data through the National Institute on Aging's LINKAGE Program. RESULTS: We linked UDS and EHR data for 2206 participants and added Medicare claims for 1522. Nearly 500 participants have 5 or more years of linked data, with genomic profiles available for 93%. DISCUSSION: This POC demonstrates the feasibility of integrating clinical, genomic, and RWD across ADRCs, offering a scalable model for broader implementation.
+AB - INTRODUCTION: Integrating real-world data (RWD) with clinical research datasets creates more complete, context-rich resources to drive discovery and enable precision medicine in Alzheimer's disease and related dementias. The National Alzheimer's Coordinating Center conducted a proof-of-concept (POC) project to link its longitudinal Uniform Data Set (UDS) with electronic health records (EHRs), Medicare claims, and genomic data. METHODS: In partnership with three Alzheimer's Disease Research Centers (ADRCs), we developed scalable data pipelines and a governance framework to collect, harmonize, and securely share linked data through the National Institute on Aging's LINKAGE Program. RESULTS: We linked UDS and EHR data for 2206 participants and added Medicare claims for 1522. Nearly 500 participants have 5 or more years of linked data, with genomic profiles available for 93%. DISCUSSION: This POC demonstrates the feasibility of integrating clinical, genomic, and RWD across ADRCs, offering a scalable model for broader implementation.
+KW - Alzheimer's Disease Research Centers (ADRCs)
+KW - Alzheimer's disease and related dementias (AD/ADRD)
+KW - Centers for Medicare & Medicaid Services (CMS) claims
+KW - Uniform Data Set (UDS)
+KW - electronic health record (EHR)
+KW - genomics
+KW - precision medicine
+KW - real-world data (RWD)
+UR - https://www.scopus.com/pages/publications/105032413918
+U2 - 10.1002/alz.71207
+DO - 10.1002/alz.71207
+M3 - Article
+C2 - 41808605
+AN - SCOPUS:105032413918
+SN - 1552-5260
+VL - 22
+JO - Alzheimer's and Dementia
+JF - Alzheimer's and Dementia
+IS - 3
+M1 - e71207
+ER -
+
+Biber S , Culhane JE, Prado MG, Mathew S, Burrola-Mendez Y, West II et al. Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform . Alzheimer's and Dementia . 2026 Mar;22(3):e71207. doi: 10.1002/alz.71207

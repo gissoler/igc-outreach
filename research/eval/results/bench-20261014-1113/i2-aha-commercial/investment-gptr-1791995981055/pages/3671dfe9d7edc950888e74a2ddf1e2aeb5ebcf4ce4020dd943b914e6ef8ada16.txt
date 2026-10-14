@@ -1,0 +1,106 @@
+Merck–Mayo Clinic Partnership Aligns Clinical Data with AI Drug Discovery | BioPharm International
+
+Advertisement
+
+News | Articles | February 19, 2026
+
+# Merck–Mayo Clinic Partnership Aligns Clinical Data with AI Drug Discovery
+
+Author(s) Feliza Mirasol
+
+Listen 0:00 / 0:00
+
+### Key Takeaways
+Merck will apply AI/ML-enabled discovery tools, including virtual cell modeling, to refine disease characterization and improve confidence in preclinical go/no-go decision-making.
+
+Mayo Clinic Platform enables secure, de-identified aggregation of clinical, molecular, imaging, genomic, and real-world healthcare data spanning US sites and international partners.
+
+Embedding multimodal analytics upstream shifts AI from retrospective insight generation to iterative hypothesis validation between clinical phenotypes and experimental biology.
+
+Initial therapeutic focus areas include inflammatory bowel disease, atopic dermatitis, and multiple sclerosis to support biologically defined subgroups and precision medicine-oriented development.
+SHOW MORE
+
+Under the collaboration, Merck and Mayo Clinic will integrate multimodal clinical and genomic datasets with AI models to enhance target biology insights and translational decision-making.
+
+Advertisement
+
+Under a new R&D collaboration formed in February 2026, Merck, known as MSD outside of the United States and Canada, and Mayo Clinic aim to integrate AI, multimodal clinical datasets, and advanced analytics to support drug discovery and precision medicine development. The agreement combines Mayo Clinic’s clinical and genomic data resources with Merck’s expanding investments in AI- and machine learning (ML)-enabled discovery technologies, including virtual cell modeling approaches intended to improve disease characterization and early-stage development decision-making. 1
+Their collaboration reflects a broader industry shift toward platform-based partnerships designed to address persistent challenges in target identification and translational success across drug development pipelines. 2
+“New cutting-edge technologies are enhancing our ability to innovate with the potential to bring important new therapies to patients faster,” said Robert M. Davis , chairman and CEO, Merck, in a company press release. 1 “By working with Mayo Clinic, we aim to integrate high-quality clinical data and AI-enabled insights into discovery research to improve target identification and, ultimately, the probability of success for our programs.”
+
+## How can multimodal clinical data improve target identification and early development decisions?
+Under the agreement, Merck will access the Mayo Clinic Platform infrastructure, which aggregates de-identified clinical, molecular, imaging, and real-world healthcare data within a secure research environment. The platform integrates datasets from Mayo Clinic’s US operations and international partner network, enabling large-scale analysis across diverse patient populations.
+
+astro-island:empty]:hidden [&:has(>astro-island:empty)+*]:-mt-8">
+
+###
+“New cutting-edge technologies are enhancing our ability to innovate with the potential to bring important new therapies to patients faster. By working with Mayo Clinic, we aim to integrate high-quality clinical data and AI-enabled insights into discovery research to improve target identification and, ultimately, the probability of success for our programs.”
+
+Through the Mayo Clinic Platform_Orchestrate program, Merck researchers will utilize multimodal datasets , including laboratory results, medical imaging, clinical documentation, and genomic information, to validate AI models and refine biological hypotheses during discovery and preclinical development . The approach is intended to strengthen mechanistic understanding of disease biology while improving the probability that selected drug targets translate successfully into clinical development, according to the company.
+
+## Why are platform-based AI collaborations becoming central to biopharma R&D strategy?
+The collaboration represents Mayo Clinic’s first partnership of this scale with a global biopharmaceutical company and highlights growing industry reliance on integrated data ecosystems to support AI-driven research. 1,3
+Rather than applying AI solely as a downstream analytics tool, the partnership will embed computational modeling and advanced analytics earlier in the discovery workflow. Merck and Mayo Clinic expect that this approach will enable iterative validation between clinical observations and experimental biology, which is becoming an increasingly important capability as therapeutic development grows more complex. 1
+Initial research efforts will focus on therapeutic areas for which multimodal data integration may accelerate precision medicine strategies, including inflammatory bowel disease in gastroenterology, atopic dermatitis in dermatology, and multiple sclerosis in neurology. By aligning large-scale clinical datasets with AI-enabled discovery platforms, the partners aim to identify biologically defined patient subgroups and support development of more targeted therapeutic interventions.
+“By combining Mayo Clinic Platform's de-identified data, clinical expertise and Platform technology with Merck's … research and development capabilities, we are poised to speed innovative breakthroughs to patients and redefine drug development,” said Gianrico Farrugia , MD, president and CEO, Mayo Clinic, in the release. 1 “This collaboration represents a new present and future for healthcare—one where platform-based collaboration leads to more answers, more cures, and better outcomes for patients worldwide.”
+
+## What does this collaboration signal for AI adoption across drug development pipelines?
+The agreement builds on Merck’s broader strategy to incorporate AI foundation models, computational and spatial biology, and real-world data into discovery workflows. Across the industry, such collaborations are increasingly viewed as a means to reduce attrition rates by improving biological validation prior to clinical entry. 1
+As biopharmaceutical companies seek to improve R&D productivity amid rising development costs, partnerships linking clinical data platforms with AI-enabled discovery capabilities may play an expanding role in shaping next-generation precision medicine pipelines.
+
+## References
+Merck. Merck and Mayo Clinic Announce New Research and Development Collaboration to Support AI-Enabled Drug Discovery and Precision Medicine . Press Release. Feb. 18, 2026.
+Jones CH, Beitelshees M, Hill A, et al. Framework to identify innovative sources of value creation from platform technologies. Proc. Natl. Acad. Sci. U.S.A. 2025;122(21):e2424665122. doi: 10.1073/pnas.2424665122
+Bhushan A, Misra P. Unlocking the potential: multimodal AI in biotechnology and digital medicine—economic impact and ethical challenges. npj Digit. Med. 2025;8:619. doi: 10.1038/s41746-025-01992-6
+
+Advertisement
+
+## Related to this article
+
+View more
+
+October 14th, 2026 Gilead Taps Vir Biotechnology&#x27;s PRO-XTEN Tech for Solid Tumors
+Gilead will develop up to three PRO-XTEN T-cell engagers discovered by Vir Biotechnology for solid tumors in a deal worth up to $1.74 billion.
+
+Read more
+
+October 13th, 2026 Roche, Rona Ink $1.06 Billion ALK7 RNAi Deal for Obesity
+Rona&#x27;s ALK7 RNAi candidate, licensed to Roche for up to $1.06 billion in milestones, aims to cut visceral fat while sparing lean mass.
+
+Read more
+
+October 12th, 2026 Odyssey&#x27;s OD-001-Vedolizumab Combo Advances to Phase 2a in UC
+Odyssey&#x27;s 146-patient phase 2a trial will pair OD-001 with vedolizumab, targeting both innate and adaptive immune drivers of ulcerative colitis.
+
+Read more
+
+October 6th, 2026 CSL, Alentis Partner on Claudin-1 MAb Lixudebart for Kidney Disease
+CSL and Alentis will co-develop lixudebart, an antibody targeting claudin-1, across 3 rare kidney and liver disease indications.
+
+Read more
+
+October 6th, 2026 Alector, Genentech Ink Deal for Parkinson Therapy AL050
+AL050 aims to treat GBA1-driven Parkinson disease by delivering a GCase enzyme across the blood-brain barrier.
+
+Read more
+
+October 9th, 2026 FAQ: How Much Do You Know About ASOs?
+Antisense oligonucleotides are reshaping drug design, from RNase H gapmers to inhaled delivery; this FAQ explains how they work and why trials still fail.
+
+Read more
+
+October 7th, 2026 Caribou Drops Vispa-Cel, CB-011 CAR-T Programs, Eyes Sale
+Caribou is halting vispa-cel and CB-011, allogeneic CAR-T therapies that showed up to 92% response rates, citing a difficult financing environment.
+
+Read more
+
+October 14th, 2026 BioNTech&#x27;s BNT113 Misses PFS Goal in Head and Neck Cancer Trial
+BNT113 plus pembrolizumab failed to significantly extend progression-free survival in a 285-patient HPV16-positive head and neck cancer trial.
+
+Read more
+
+Previous slide Next slide
+
+Advertisement
+
+Advertisement

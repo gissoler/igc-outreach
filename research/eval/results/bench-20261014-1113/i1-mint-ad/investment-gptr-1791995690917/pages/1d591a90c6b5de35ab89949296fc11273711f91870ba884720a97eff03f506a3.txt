@@ -1,0 +1,156 @@
+The Hard Way Is the Only Way: What Alzheimer’s Care Taught Me About AI, Trust, and Real Innovation — Dr. Peter M. Kovacs
+
+0
+
+# The Hard Way Is the Only Way: What Alzheimer’s Care Taught Me About AI, Trust, and Real Innovation
+
+Jan 21
+
+Written By Peter Kovacs
+
+AI is everywhere right now.
+Every week, I see another pitch deck that promises to “disrupt healthcare” with a large language model bolted onto a generic chatbot interface. The claims are big. The timelines are short. The regulatory plan is often… optimistic.
+And then, occasionally, I meet a team that reminds me what real innovation looks like: not a demo, not a hype cycle, not a clever prompt, but a product built for a painful reality, designed with humility, and validated the hard way.
+That’s why I wanted to sit down with Peter Markus, founder of Kompanion Care, and talk about what they’re building with their platform, Lilia, an AI-driven solution for people living with Alzheimer’s and other forms of dementia.
+But what stayed with me after the conversation wasn’t the tech. It was the strategy.
+Because in healthcare, especially in CNS and neurology, strategy is not a slide. Strategy is survival.
+Alzheimer’s Is Not a “Market.” It’s an Epidemic With a Human Face.
+We can talk about aging populations, rising incidence, and healthcare budgets, and those things matter. The demographic wave is real. Europe is aging. Asia is aging even faster. Diagnostics are improving, which means more people are being identified earlier.
+But if you want to understand why this space demands seriousness, not slogans, you have to start where Peter Markus started: with family.
+Both he and his co-founder, Ali, had grandmothers who suffered from Alzheimer’s. They lived the slow erosion of memory, identity, and independence, and they watched what it does not only to the patient, but to the entire family system around them.
+That lived reality matters.
+In investing, we love pattern recognition: repeat founders, successful exits, and domain expertise. Peter has those credentials Corvinus University, BCG, scaling a computer vision startup (Planorama), an acquisition by Trax Retail, and experience building teams at scale. As I told him directly, a prior successful exit is one of the best signals investors can see. It doesn’t guarantee success, but it reduces the odds you’re learning the basics while burning runway.
+Still, the most important ingredient here wasn’t the resume.
+It was a conviction rooted in personal truth and channelled into a product that respects the emotional complexity of dementia.
+The Real Breakthrough Isn’t “AI.” It’s Accessibility at Scale.
+Let’s talk about what Kompanion Care is actually doing.
+Their platform, Lilia, is built around an established psychotherapy approach used for decades: reminiscence therapy (also called memory therapy). It has been around since the 1960s. It’s not experimental. It’s not trendy. It’s proven.
+The core idea is simple: people with dementia often respond powerfully to autobiographical triggers, such as photos, familiar places, holidays, weddings, birthdays, and family moments. A conversation around these cues can activate memories, increase engagement, and critically help alleviate mood-related symptoms that commonly accompany dementia: depression, apathy, loneliness, and social isolation.
+And those mood-related symptoms are not “side quests.” They can accelerate decline. If someone feels isolated, disengaged, and depressed, their cognitive deterioration often progresses faster.
+So why isn’t reminiscence therapy universally available?
+Because traditional delivery is constrained:
+You need trained therapists.
+
+There are waiting lists.
+
+There aren’t enough professionals even in developed countries.
+
+It costs money (either out-of-pocket or through the system).
+
+And the patient has to travel or be brought to a setting where the therapy is delivered.
+
+Now here’s where Lilia is genuinely clever not as a technical novelty, but as a systems solution.
+They use a dedicated WhatsApp group where family members share photos and context: who is in the picture, where it was taken, what the occasion was, and why it matters. If details are missing, Lilia asks follow-up questions. Then that information is transformed into guided therapy sessions delivered to the patient through an app designed specifically for elderly users: large buttons, simple linear flow, voice-driven interaction, and an “avatar” experience that feels like a conversation rather than work.
+This is one of the most underrated aspects of digital health: the user interface is clinical strategy .
+If you design for digitally native users and then target an 80-year-old with cognitive impairment, you don’t have a product; you have a barrier.
+Kompanion Care seems to understand that the true innovation isn’t “we use a large language model.” The innovation is: we can deliver a personalized version of a validated therapy, at home, at scale, with a UX designed for the patient not the product team.
+That is what “access” looks like when it’s real.
+Why I Respect Their Choice: They’re Becoming a Medical Device
+Here’s the moment in the conversation where my investor brain lit up:
+Peter Markus made it clear they are not building “a wellbeing app.”
+They are building a medical software device .
+And yes, this is the hard way.
+It means certification, compliance, clinical evidence, and a pathway that many generalist investors avoid because it takes time and patience.
+But in return, you get something most “consumer health apps” never earn:
+trust.
+In CNS, trust is not optional. It’s everything. Alzheimer’s and dementia are emotionally charged conditions. Patients and families often deny early symptoms. They don’t want to face it. They don’t want to click on an ad that implies decline. They don’t want to self-diagnose with a subscription product.
+Peter Markus said something that aligns perfectly with what I’ve seen across medical adoption cycles:
+Generalist VCs push direct-to-consumer because it looks faster.
+Professionals, care home operators, neurologists, geriatricians, and psychiatrists push the opposite: go through trusted intermediaries . Doctors. Care homes. Patient associations. Systems that patients already rely on.
+Because with dementia, awareness doesn’t begin with marketing. It begins with a trusted voice saying: It’s time.
+That’s why the medical pathway isn’t just regulatory compliance. It’s the go-to-market logic for this specific population.
+Clinical Evidence Is Not a Checkbox. It’s the Business Model.
+Kompanion Care has already successfully completed a proof-of-concept project.
+They obtained medical device certification in Europe in April (a major milestone), and they’ve launched a larger clinical trial: approximately 100 patients across two countries and eight centers (Hungary and France), including participation from major French university hospitals and prominent geriatricians supporting the study.
+This is what serious looks like.
+And it leads to what I consider the real strategic prize in many European healthcare markets:
+Reimbursement.
+Peter Markus’s timeline is ambitious: aiming for reimbursement status by the end of 2026, so that patients pay little or nothing, and the solution is funded by social security or insurance.
+This is where many tech founders misunderstand healthcare economics.
+In consumer markets, you fight for attention, conversion, churn, and margins.
+In reimbursed healthcare, you fight for evidence, outcomes, and integration.
+It’s slower upfront but if you succeed, you don’t just get customers. You get institutional buyers with scale, stability, and budgets measured in systems, not individuals.
+That’s why I told Peter Markus something I believe deeply:
+Healthcare is tough. That’s why not many people do it. But if it works, it can be a bigger, more stable business than most “easy” markets because you’re solving real cost burdens at a national level.
+The Two Challenges in Europe: Fear and Patience
+Peter Markus described two fundraising headwinds that I see constantly in Europe:
+1) Medical software scares generalist investors
+The moment you say “clinical trials” or “medical device,” many VCs assume:
+It takes forever,
+
+It’s too risky,
+
+It costs tens of millions,
+
+ROI will never come.
+
+Is that “negative” or “unprofessional”?
+I’d call it a lack of domain experience. They’ve heard horror stories, but they haven’t built the pattern library that tells them what good looks like in regulated innovation.
+And yes, there is a kernel of truth: it does take longer than SaaS. You can’t hack your way to reimbursement with growth tricks.
+But that’s exactly why the upside exists: fewer competitors are willing to endure the path.
+2) Europe’s risk appetite is lower than the US
+In many European ecosystems, generalist capital arrives late after you already have meaningful recurring revenue and product-market fit.
+At that point, founders often joke (accurately): you get investment when you don’t really need it anymore.
+That dynamic makes specialized, professional investors more valuable early because they can underwrite risk with expertise, not hope.
+I’ve seen what happens when “professional due diligence” is outsourced to large consulting brands without true domain depth: it creates false certainty and real future pain.
+This is why I care about being more than capital. I want founders to move faster because they’re supported by people who understand the entire lifecycle from early clinical strategy to commercialization to reimbursement.
+Where This Gets Really Interesting: Therapy + Monitoring
+Today, Lilia is primarily therapeutic: personalized reminiscence therapy to support mood and engagement.
+But their longer-term vision is where the platform could become truly transformative:
+Monitoring through digital biomarkers.
+Because if you have a user interacting regularly through speech, facial cues, eye movement, gestures, and sensor data from devices, you can potentially detect changes in cognitive status over time longitudinally, granularly, and more frequently than the current system allows.
+Today, many patients see a clinician once every six months or once a year.
+Imagine supplementing that with weekly or even daily data points that can flag a meaningful change so families and doctors can intervene earlier.
+Peter Markus was clear: the goal is not to “stress-test” people in an anxiety-inducing diagnostic experience. The goal is to make the interaction warm, natural, and family-centered so monitoring becomes a seamless byproduct of a positive routine.
+This is precisely the kind of design philosophy that will define the next era of healthcare technology: high-signal data collection without making the patient feel like a patient every moment of the day.
+And it opens a second strategic pathway:
+Pharma partnership.
+If you can track real-world patient trajectories while they’re on medication, you create value not only for families and clinicians, but also for drug developers who desperately need real-life evidence and adherence support.
+This is where “AI” stops being a feature and becomes infrastructure.
+AI Hype vs AI Integrity
+Let me say this plainly:
+The smartest model will not define AI in healthcare.
+It will be defined by the teams willing to do the uncomfortable work:
+Building around proven clinical methods,
+
+Validating outcomes,
+
+Navigating regulation,
+
+Earning trust through medical channels,
+
+Designing for real users,
+
+And thinking in reimbursement logic rather than app-store logic.
+
+Kompanion Care is choosing that path.
+And to me, that is the most important signal not the pitch, not the buzzwords, not the demo.
+The signal is: they’re willing to be held accountable to the standards that matter.
+The Future Is Bigger Than Millions
+At the end of the conversation, Peter Markus said his dream is to help millions feel less lonely, less depressed, and a little bit happier.
+I told him I think it’s bigger: tens of millions, even hundreds of millions over time.
+Not because optimism is a strategy but because the demographic reality is unforgiving, and solutions that scale with trust will become necessities.
+The real question isn’t whether AI will enter dementia care.
+It already has.
+The question is whether we build it like consumer software or like healthcare.
+If we build it like healthcare, we have a chance to slow decline, support families, reduce isolation, and create a new category of therapeutic and monitoring infrastructure for aging societies.
+And if we build it like consumer software fast, unvalidated, and disconnected from trusted channels, we will create noise, not impact.
+I’ll keep backing the teams who choose the hard way.
+Because in this space, the hard way isn’t a disadvantage.
+Dr. Peter M. Kovacs
+
+Dr. Peter M. Kovacs Alzheimer’s Care Dementia AI Medical Device Software Clinical Evidence Trust in Healthcare AI
+
+Peter Kovacs
+
+Previous
+
+Previous
+
+## Investing in Healthcare in an Age of Hype: Why Skepticism, Simplicity, and Human Judgment Matter More Than Ever
+
+Next
+
+Next
+
+## AI in Hospitals Is Not a Technology Challenge. It’s a Leadership One

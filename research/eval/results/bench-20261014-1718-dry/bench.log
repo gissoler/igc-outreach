@@ -1,0 +1,56 @@
+Banco nocturno → eval/results/bench-20261014-1718-dry (SIMULACIÓN)
+[17:18:00] caso 1/3: g1-mint-ad
+[gptr 17:18:00] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:18:00] prompt (2595 caracteres): /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-yLA8jA/prompt.txt · log de GPT Researcher: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-yLA8jA/gptr.log
+[gptr 17:18:00] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 17:18:00] búsqueda terminada en 0s
+[gptr 17:18:00] URLs para el juez: 150 (0 del informe) → https://portal.alzimpact.org/storage/resources/media-items/Fiscal%20Year%202027%20Alzheimer's%20Research%20Funding%20(April%202026).pdf | https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf | https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/360c4588-1512-4fa4-9b61-52a3f1d6c368/attachments/16b08ada-0c75-4e4d-bf70-e1485a9a381d/RFA-RM-27-013-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/d07ebcd7-96cf-40cb-8ae3-f401b6274080/attachments/e4789627-8735-47c0-80e4-43fc7384f5d1/RFA-RM-27-012-Full-Announcement.html …
+[gptr 17:18:00] registro: 6 búsquedas + 0 números → 3 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 2 al juez (vía simpler)
+[gptr 17:18:00] registro: 0 búsquedas + 12 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler)
+[gptr 17:18:01] juez de Node: 152 páginas (2 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 42 elegidas por fechas
+[gptr 17:18:01] juez listo: 4 hallazgos (4 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] g1-mint-ad: ok en 0s · 1 act now · 3 watch · verificados 4
+  ok
+[17:18:01] caso 2/3: g3-ngo-latam
+[bench] g3-ngo-latam: FALLÓ en 0s · 0 act now · 0 watch · verificados 0 · Error: fallo simulado en g3-ngo-latam (BENCH_DRY_FAIL): el banco debe seguir con los demás |     at runDry (file:///sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/mnt/Documents/PROJECTS/AGENT/research/scripts/bench-overnight.mjs:102:50) |     at runCase (file:///sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/mnt/Documents/PROJECTS/AGENT/research/scripts/bench-overnight.mjs:126:41)
+  FALLÓ (sigue con el siguiente; detalle en eval/results/bench-20261014-1718-dry/bench.log y eval/results/bench-20261014-1718-dry/g3-ngo-latam/result.json)
+[17:18:01] caso 3/3: i1-mint-ad
+[gptr 17:18:01] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:18:01] prompt (1685 caracteres): /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-ZVJ2xo/prompt.txt · log de GPT Researcher: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-ZVJ2xo/gptr.log
+[gptr 17:18:01] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 17:18:01] búsqueda terminada en 0s
+[gptr 17:18:01] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 17:18:01] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 17:18:01] juez listo: 1 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] i1-mint-ad: ok en 0s · 1 act now · 0 watch · verificados 1
+  ok
+[bench] resumen: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/mnt/Documents/PROJECTS/AGENT/research/eval/results/bench-20261014-1718-dry/RESUMEN.md
+[17:18:01] Listo. Abre eval/results/bench-20261014-1718-dry/RESUMEN.md
+Banco nocturno → eval/results/bench-20261014-1718-dry (SIMULACIÓN)
+[17:18:42] caso 1/3: g1-mint-ad
+[gptr 17:18:42] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:18:42] prompt (2595 caracteres): /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-8lZ3sV/prompt.txt · log de GPT Researcher: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-8lZ3sV/gptr.log
+[gptr 17:18:42] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 17:18:42] búsqueda terminada en 0s
+[gptr 17:18:42] URLs para el juez: 150 (0 del informe) → https://portal.alzimpact.org/storage/resources/media-items/Fiscal%20Year%202027%20Alzheimer's%20Research%20Funding%20(April%202026).pdf | https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf | https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/360c4588-1512-4fa4-9b61-52a3f1d6c368/attachments/16b08ada-0c75-4e4d-bf70-e1485a9a381d/RFA-RM-27-013-Full-Announcement.html | https://files.simpler.grants.gov/opportunities/d07ebcd7-96cf-40cb-8ae3-f401b6274080/attachments/e4789627-8735-47c0-80e4-43fc7384f5d1/RFA-RM-27-012-Full-Announcement.html …
+[gptr 17:18:42] registro: 6 búsquedas + 0 números → 3 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 2 al juez (vía simpler)
+[gptr 17:18:42] registro: 0 búsquedas + 12 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler)
+[gptr 17:18:42] juez de Node: 152 páginas (2 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 42 elegidas por fechas
+[gptr 17:18:43] juez listo: 4 hallazgos (4 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] g1-mint-ad: ok en 0s · 1 act now · 3 watch · verificados 4
+  ok
+[17:18:43] caso 2/3: g3-ngo-latam
+[bench] g3-ngo-latam: FALLÓ en 0s · 0 act now · 0 watch · verificados 0 · Error: fallo simulado en g3-ngo-latam (BENCH_DRY_FAIL): el banco debe seguir con los demás |     at runDry (file:///sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/mnt/Documents/PROJECTS/AGENT/research/scripts/bench-overnight.mjs:102:50) |     at runCase (file:///sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/mnt/Documents/PROJECTS/AGENT/research/scripts/bench-overnight.mjs:126:41)
+  FALLÓ (sigue con el siguiente; detalle en eval/results/bench-20261014-1718-dry/bench.log y eval/results/bench-20261014-1718-dry/g3-ngo-latam/result.json)
+[17:18:43] caso 3/3: i1-mint-ad
+[gptr 17:18:43] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:18:43] prompt (1685 caracteres): /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-GZoEpK/prompt.txt · log de GPT Researcher: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/tmp/gptr-GZoEpK/gptr.log
+[gptr 17:18:43] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 17:18:43] búsqueda terminada en 0s
+[gptr 17:18:43] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 17:18:43] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 17:18:43] juez listo: 1 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[bench] i1-mint-ad: ok en 0s · 1 act now · 0 watch · verificados 1
+  ok
+[bench] resumen: /sessions/rcw-01pknk2xtqiqt5tzpz8fnawd/mnt/Documents/PROJECTS/AGENT/research/eval/results/bench-20261014-1718-dry/RESUMEN.md
+[17:18:43] Listo. Abre eval/results/bench-20261014-1718-dry/RESUMEN.md

@@ -1,0 +1,506 @@
+Strategic Realignment of the Maryland Research Tax Credit - Swanson Reed | Specialist R&D Tax Advisors
+
+## Answer Capsule: How Does Maryland’s $5M Asset Cap Punish Biotech Startups?
+
+Under Maryland Tax-General Article &sect; 10-721, a business only qualifies for the vital refundable portion of the R&D tax credit if its “net book value assets” total less than $5 million. Because this definition completely ignores liabilities, a pre-revenue medical device or biomanufacturing startup that raises $6 million in debt to build a specialized ISO-certified cleanroom is instantly disqualified from small business relief. This creates a severe “asset trap,” heavily favoring asset-light software firms over capital-intensive physical sciences. To prevent the exodus of high-CAPEX startups, Maryland must transition to a federal-style Gross Receipts threshold (<$5M revenue) or explicitly implement an Innovation Asset Exclusion for R&D equipment.
+
+## Key Takeaways
+
+The “Asset Trap” Paradox: The state’s definition of a small business relies strictly on gross assets without offsetting liabilities. A startup with $0 in revenue and $6 million in debt utilized entirely to build a laboratory is treated as a massive corporation and denied vital tax refunds.
+
+Sectoral Bias Against Physical Manufacturing: Software-as-a-Service (SaaS) startups can easily remain under the $5M asset threshold, while advanced manufacturing and biopharmaceutical startups inherently require millions in specialized, heavy CAPEX long before they produce a commercial product.
+
+The Innovation Asset Exclusion Solution: Amend the tax code to specifically exclude the capitalized costs of R&D machinery, ISO cleanrooms, and intellectual property (patents) from the $5 million “net book value” calculation.
+
+Federal Alignment (Gross Receipts): The most elegant solution is abandoning the asset test entirely in favor of the federal standard: defining a small business strictly by possessing less than $5 million in current-year gross receipts.
+
+Implementation of a Tax Benefit Transfer Marketplace: For capital-heavy startups that surpass the threshold but remain unprofitable, establishing a New Jersey-style transfer market (e.g., HB 35) allows them to sell certified R&D credits to profitable Maryland corporations for immediate cash liquidity.
+
+## 1. Executive Summary
+
+Maryland currently stands at a critical juncture in its economic development trajectory. Under the guidance of the current administration, the state has prioritized the concept of a “turbocharged” economy that ensures every Marylander has the chance to compete and benefit from innovation-led growth. 1 Central to this vision is the success of the biotechnology and advanced manufacturing sectors, which together serve as the primary engines of high-wage employment and scientific advancement in the Mid-Atlantic region. 3 However, a significant structural impediment exists within the state’s flagship incentive program: the Research and Development (R&D) Tax Credit. While the credit is designed to reward firms that increase their research footprint in the state, the statutory definition of a “small business” for the purpose of refundability relies on an asset-based threshold that has become increasingly disconnected from the realities of modern, capital-intensive startups. 5
+
+By requiring a for-profit corporation to maintain net book value assets of less than $5 million to qualify for the refundable portion of the credit, Maryland law inadvertently creates a penalty for innovation in industries like biomanufacturing and medical device development. 5 These sectors require immense upfront investments in specialized equipment, cleanroom facilities, and proprietary intellectual property long before they generate their first dollar of revenue. 8 In contrast, software-based startups can often conduct significant R&D with minimal physical assets, allowing them to remain beneath the $5 million threshold and access critical cash refunds. 10 This discrepancy creates an uneven playing field that threatens to push Maryland’s most promising high-tech manufacturers toward competing jurisdictions like Massachusetts, Virginia, or North Carolina, where incentive structures are more closely aligned with sectoral needs. 3
+
+## 2. The Maryland R&D Tax Credit Framework in Historical Context
+
+The Maryland Research and Development Tax Credit, codified under Tax–General Article &sect; 10–721, was established through Chapters 515 and 516 of the Acts of 2000 with the explicit goal of fostering increased research activities and expenditures within the state. 5 For nearly a quarter-century, this program has provided a vital offset against state income tax liability, mirroring the federal R&D credit established under &sect; 41 of the Internal Revenue Code. 7 The Maryland credit is calculated as 10% of the amount by which a business’s qualified research expenses (QREs) exceed its Maryland base amount, which is determined by a ratio of prior research spending to gross receipts. 14
+
+Initially, the program offered two distinct components: a “basic” credit for expenses up to the base amount and a “growth” credit for expenses exceeding that amount. 13 However, legislative reforms in 2019 simplified the structure by repealing the basic credit and focusing incentives on incremental growth in research spending. 13 Currently, the program is governed by a total annual statutory cap of $12 million, which is divided between small businesses and larger corporations. 5 The Department of Commerce serves as the certifying authority, reviewing applications submitted by November 15 of the calendar year following the incurred expenses and issuing certificates of eligibility by the following February. 14
+
+### The Role of Refundability for Small Enterprises
+
+The most powerful feature of the Maryland R&D credit for the startup community is the refundability mechanism. For larger corporations, the credit is non-refundable; if the credit exceeds the company’s tax liability, the excess may only be carried forward for up to seven years. 7 For a certified small business, however, the credit is fully refundable to the extent it exceeds the state income tax for that year. 14 This refundability acts as a “bridge” of non-dilutive capital, providing liquidity to pre-revenue firms that are investing heavily in labor and materials but lack the profits to benefit from a standard tax offset. 11
+
+The current statutory reservation for small businesses is set at $3.5 million per year, with the remaining $8.5 million allocated to non-small businesses. 5 If either pool is oversubscribed—which has occurred nearly every year in recent history—the Department of Commerce must prorate the credits, ensuring that the total award does not exceed the legislative cap. 6
+
+Table 1: Statutory Framework of the Maryland R&D Credit
+
+Statutory Feature
+Rule or Definition
+Maryland Reference
+
+Total Annual Cap
+$12,000,000 Aggregate
+Tax–General &sect; 10–721(c)
+
+Small Business Set-Aside
+$3,500,000
+Tax–General &sect; 10–721(c)(3)
+
+Credit Rate
+10% of Excess QREs
+Tax–General &sect; 10–721(b)
+
+Proration Trigger
+Applications > Statutory Cap
+Tax–General &sect; 10–721(c)(3)(ii)
+
+Refundability
+Small Businesses Only
+Tax–General &sect; 10–721(d)(2)
+
+Carryforward
+7 Taxable Years
+Tax–General &sect; 10–721(d)(1)
+
+Data compiled from Maryland Department of Commerce and Maryland General Assembly statutory records. 5
+
+## 3. The Mechanics of the Policy Issue: The Asset-Based Hurdle
+
+The policy failure addressed in this report stems from the definition of “small business” found in &sect; 10–721(a)(8). A business qualifies only if its “net book value assets” total less than $5 million at either the beginning or the end of the taxable year in which the R&D expenses were incurred. 5 The term “net book value assets” is defined as the total value of assets—including both tangible and intangible property—minus depreciation and amortization. 5 Crucially, the definition specifically excludes liabilities. 5
+
+### The Accounting Disadvantage for High-CAPEX Startups
+
+This accounting definition creates a significant disadvantage for startups in the life sciences and medical technology sectors. Because liabilities are not subtracted from the asset total, a company that has raised $6 million in debt or venture capital to purchase a cleanroom facility and advanced laboratory instruments is disqualified from the small business refund, even if they have $0 in revenue and $6 million in debt. 7 This “asset trap” creates an environment where the most ambitious, capital-intensive startups are treated as large corporations for tax purposes, while software-as-a-service (SaaS) firms with much lower capital requirements remain eligible for refunds despite potentially having similar employee counts or revenue profiles. 10
+
+The inclusion of intangible assets further complicates the issue. For biotech firms, the value of patents, licenses, and proprietary research findings often constitutes the majority of their early-stage value. 6 If the Department of Commerce or the Comptroller interprets the value of these intangibles aggressively, a pre-revenue firm can easily exceed the $5 million threshold without ever having a physical laboratory. 6
+
+### Sector-Specific Impacts: Biotech and Manufacturing
+
+In the biopharmaceutical and medical equipment manufacturing sectors, the cost of entering the market is fundamentally high. A startup developing a new medical device must not only invest in the research (R&D labor) but also in the specialized production environments (CAPEX) required to meet Food and Drug Administration (FDA) standards for sterility and precision. 8
+
+Table 2: Estimated Capital Requirements for Medical Device Startups
+
+Startup Cost Category
+Minimum Estimated Investment
+Maximum Estimated Investment
+Accounting Treatment
+
+Specialized Lab/Mfg Equipment
+$1,135,000
+$1,600,000
+Capitalized Asset (NBV)
+
+Cleanroom Buildout (ISO Class)
+$200,000
+$400,000
+Capitalized Improvement
+
+R&D and QC Validation Tools
+$300,000
+$450,000
+Capitalized Asset (NBV)
+
+Initial Inventory/Raw Materials
+$100,000
+$500,000
+Current Asset (NBV)
+
+Cash Buffer (Working Capital)
+$1,041,000
+$1,097,000
+Current Asset (NBV)
+
+IP & Regulatory Software
+$70,000
+$150,000
+Intangible Asset (NBV)
+
+Estimated Asset Total
+$2,846,000
+$4,297,000
+Cumulative Net Book Value
+
+Data synthesized from medical equipment manufacturing financial models and biotech budget guides. 8
+
+As demonstrated in the table above, a typical medical device manufacturing startup will reach nearly 85% of the Maryland small business asset threshold before achieving its first sale. 9 Any additional expansion, such as a second manufacturing line (typically costing $600,000) or a successful Series A funding round that adds $2 million to the company’s bank account, would immediately disqualify the firm from receiving a refund for its R&D credits. 9 This creates a perverse incentive for startups to limit their investment in Maryland-based assets or to seek leasing arrangements that may be more expensive in the long run but keep them below the statutory asset cap. 21
+
+## 4. Comparative Analysis of Federal and State Standards
+
+Maryland’s reliance on an asset-based threshold for R&D refundability is an outlier when compared to federal standards and the policies of competing technology hubs. Most modern innovation policies have moved toward revenue or employment-based definitions to ensure that capital-intensive sectors are not penalized for their physical footprint. 19
+
+### Federal R&D Payroll Tax Offset
+
+The federal government, through the Protecting Americans from Tax Hikes (PATH) Act of 2015, established a mechanism for startups to apply up to $500,000 of R&D credits against their payroll tax liability. 11 The federal definition of a “qualified small business” uses a two-factor test that ignores assets entirely:
+
+Gross Receipts: The entity must have less than $5 million in gross receipts for the current taxable year. 19
+
+Age of Entity: The entity must not have had any gross receipts for any taxable year more than five years prior to the current year. 11
+
+This federal standard ensures that a biotech startup with $20 million in laboratory assets but $0 in revenue can still receive an immediate cash benefit through payroll tax reductions. 19 By using a gross receipts threshold, the federal government acknowledges that liquidity needs are driven by a lack of revenue, not a lack of physical assets.
+
+### State-Level Competition: Massachusetts and Virginia
+
+In the race to attract life science and advanced manufacturing firms, Maryland’s primary regional competitors have adopted more flexible and sector-focused models.
+
+Massachusetts: The Massachusetts Life Sciences Center (MLSC) provides a refundable research credit specifically for certified life sciences companies. 25 Rather than using an asset cap, Massachusetts requires companies to meet job creation and retention commitments. 27 Certified companies can receive a refund for up to 90% of their unused Section 38M research credits, providing massive cash-flow support for high-asset startups. 28
+
+Virginia: Virginia offers two tiers of R&D credits. The standard Research and Development Expenses Tax Credit is fully refundable for all qualifying taxpayers, regardless of asset size, up to certain caps ($45,000 per applicant). 30 This ensures that even high-asset startups receive some level of immediate liquidity without facing a binary “asset trap”. 32
+
+New Jersey: New Jersey has long utilized a “Technology Business Tax Certificate Transfer Program,” which allows pre-revenue biotech and tech firms to sell their net operating losses (NOLs) and R&D tax credits to other profitable corporations for cash. 33 This model uses a definition focused on employment and revenue rather than net book value assets.
+
+Table 3: Multi-State Small Business Policy Models
+
+Jurisdiction
+Metric for Small Business Status
+Refundability / Liquidity Mechanism
+
+Maryland
+Net Book Value Assets < $5 Million
+Income Tax Refund (100% of Credit)
+
+Federal (IRS)
+Gross Receipts < $5 Million
+Payroll Tax Offset (Up to $500,000)
+
+Massachusetts
+Sector Certification (Life Sciences)
+90% Refund of Excess Credits
+
+Virginia
+Base Amount Formula
+Refundable for All Qualifying Firms
+
+New Jersey
+Tech Transfer Eligibility
+Marketplace Sale of Credits for Cash
+
+Comparison of R&D incentive structures across competing jurisdictions. 19
+
+## 5. Proposed Policy Solution 1: Transitioning to Revenue and Employment Thresholds
+
+The first and most effective practical solution for the Maryland Legislature is to amend Tax–General &sect; 10–721(a)(8) to replace the “net book value assets” metric with a combination of gross receipts and employment thresholds. This shift would align Maryland’s policy with federal standards and provide a more accurate proxy for a company’s size and financial maturity.
+
+### Structural Framework of the Solution
+
+The proposed amendment would define a “small business” as a for-profit corporation, limited liability company, partnership, or sole proprietorship that:
+
+Has Maryland gross receipts of less than $5 million for the taxable year for which the credit is claimed; and
+
+Employs 50 or fewer full-time equivalent (FTE) employees in the state of Maryland.
+
+This change would immediately resolve the “asset trap” for pre-revenue manufacturing and biotech startups. Under this definition, a biotech company with $10 million in advanced sequencing equipment but zero revenue would once again qualify for the refundable portion of the credit, as their lack of income is the primary driver of their need for liquidity. 10
+
+### Rationale and Alignment
+
+Shifting to a gross receipts model acknowledges that tax equity is best served by looking at a company’s ability to pay from current earnings. 11 Furthermore, the addition of an employment cap prevents large, “asset-light” corporations from gaming the system. 35 Previous legislative analysis in Maryland has suggested that a 50-employee threshold is a standard benchmark for identifying firms that are in the vulnerable, high-growth phase of their lifecycle. 1 By adopting a revenue-based threshold, Maryland would also reduce the administrative burden on taxpayers, as gross receipts are already reported for the purpose of calculating the R&D base amount, whereas net book value asset calculations often require separate specialized accounting. 6
+
+## 6. Proposed Policy Solution 2: The “Innovation Asset Exclusion” and Transferability
+
+If the legislature determines that an asset-based test remains necessary to prevent large enterprises from accessing the small business pool, a secondary solution involves the implementation of a “Strategic Asset Exclusion” or a “Tax Benefit Transfer” model. This approach would allow firms to remain “small” on paper by excluding the very assets that signify their commitment to Maryland-based innovation.
+
+### The Innovation Asset Exclusion Model
+
+Under this proposal, the definition of “net book value assets” would be amended to exclude specific categories of high-tech capital expenditures. For the purpose of the $5 million threshold, a company would be permitted to subtract the value of:
+
+Machinery and equipment used exclusively in Maryland qualified research and development as defined by &sect; 41(b) of the IRC. 5
+
+The capitalized costs of constructing or renovating specialized facilities, such as ISO-certified cleanrooms or biosafety labs. 8
+
+Intangible assets, such as patents and licenses, that were developed or acquired for the purpose of Maryland-based R&D. 5
+
+This exclusion ensures that the “small business” designation remains focused on the company’s general corporate footprint while exempting the “tools of the trade” that are currently disqualifying biotech and manufacturing firms. 18
+
+### The Tax Benefit Transfer Marketplace
+
+A more radical but highly effective alternative is to adopt a “Tax Benefit Transfer” program, similar to the one proposed in House Bill 35 (2025). 37 Under this model, eligible technology companies with unused R&D tax credits could be authorized to sell those credits to other unaffiliated Maryland business taxpayers. 37
+
+The benefits of this marketplace approach include:
+
+Private-Sector Liquidity: The cash received by the startup comes from the purchasing corporation, not directly from the state treasury, though it results in a reduction of state tax revenue when the purchaser applies the credit. 37
+
+Market-Driven Valuation: HB 35 proposed that the exchange must be for at least 80% of the value of the credit, ensuring that the startup receives substantial liquidity while the purchaser receives a 20% incentive to support local innovation. 37
+
+Flexibility for Larger Startups: This program could use a higher asset or employee threshold (e.g., up to 225 employees) than the direct refundability pool, providing a secondary liquidity path for firms that have “graduated” from the small business refund but are not yet profitable. 37
+
+Table 4: Summary of Legislative Alternatives
+
+Solution Model
+Mechanism
+Impact on Asset-Heavy Firms
+
+Revenue/Employee Shift
+Replaces assets with $5M revenue cap
+High-CAPEX firms qualify regardless of equipment
+
+Innovation Asset Exclusion
+Subtracts R&D equipment from $5M cap
+Exempts cleanrooms and lab tools from test
+
+Tax Benefit Transfer
+Sells credits to other corporations
+Provides cash for pre-revenue firms via private sale
+
+Policy alternatives for the Maryland General Assembly to address the asset threshold issue. 35
+
+## 7. Implementation, Integrity, and Fraud Prevention
+
+To ensure that the expansion of the small business definition does not lead to fraud or the misallocation of state resources, the Department of Commerce and the Comptroller must implement a robust certification and audit framework. The transition from an asset-based threshold to a revenue or exclusion-based threshold provides several opportunities for improved data validation and administrative oversight. 7
+
+### Enhanced Certification and CPA Verification
+
+The current R&D credit process already requires businesses to submit an application by November 15, which is then certified by the Department of Commerce. 14 Under the proposed new definition, the following integrity measures should be implemented:
+
+Third-Party CPA Certification: For firms claiming the small business refund under the gross receipts or asset exclusion models, a certification from an independent Certified Public Accountant (CPA) should be required to verify the company’s Maryland-sourced revenue and the nature of its capital assets. 27
+
+Department of Labor Data Integration: To prevent large companies from spinning off small subsidiaries to capture refunds, the Department of Commerce should cross-reference employee counts with state unemployment insurance filings and federal employer identification numbers (EINs). 43
+
+Proof of Continued Operations: As proposed in HB 35, companies receiving a benefit through refundability or transfer should be required to certify that they have no intention of ceasing Maryland-based operations and must maintain their headquarters in the state for a minimum of five years. 37
+
+### Post-Certification Audits and Clawbacks
+
+While the Department of Commerce certifies the eligibility of the research, the Comptroller’s Office retains the authority to audit the financials of the claim. 18 To ensure accountability:
+
+Clawback Provisions: If a firm is found to have intentionally misrepresented its assets or revenue to qualify for the small business refund, the state should have the authority to recapture the full amount of the refund plus interest and penalties. 37
+
+Contemporaneous Documentation: Taxpayers must be required to maintain “meticulous records” of their R&D expenses, including time-tracking logs, invoices for R&D-specific supplies, and equipment lease agreements. 42
+
+Whistleblower Protections: The Compliance Division of the Comptroller’s Office should promote its “Business Tax Fraud Tips” portal specifically for the reporting of tax credit abuse, providing a public deterrent against large corporations attempting to bypass the small business cap. 41
+
+## 8. Fiscal Impact and Longitudinal Cost-Benefit Analysis
+
+A brief cost analysis of expanding the small business definition must be framed within the context of the state’s long-term economic strategy. While a change in the definition may lead to an initial increase in refundable credit claims, the resulting economic multiplier effect ensures that the program pays for itself over time through increased tax revenue from high-wage jobs and corporate growth. 4
+
+### Estimated Initial Fiscal Impact
+
+The current small business set-aside is capped at $3.5 million. 5 If the legislature chooses to maintain this cap while expanding the definition, the primary impact will be an increase in the “proration” factor—meaning more companies will qualify for a smaller percentage of their requested refund. 6 To effectively fix the policy issue, the legislature would likely need to increase the small business set-aside to approximately $5 million or $6 million annually. 20
+
+The Department of Legislative Services (DLS) has previously estimated that expanding R&D credits can lead to a direct decrease in general fund revenues of $1 million to $2 million per year. 20 However, this “cost” is effectively a deferment of revenue, as many of these firms would otherwise eventually utilize non-refundable carryforwards if they survived to profitability, or they would move their research and the associated payroll taxes to another state. 12
+
+### The Innovation Multiplier: Long-Term ROI
+
+The true value of the R&D tax credit lies in its ability to anchor high-value industries in Maryland. The biopharmaceutical and technology sectors have some of the highest employment multipliers in the national economy. 12
+
+Table 5: Economic Multiplier Impact
+
+Economic Metric
+Biopharmaceutical Sector (Maryland)
+Indirect/Induced Impact
+Total State Impact
+
+Direct Jobs
+33,423
+80,241
+113,664
+
+Employment Multiplier
+1.00
+2.40
+3.40 (Sector Avg)
+
+Annual Payroll
+$4.9 Billion
+$5.3 Billion
+$10.2 Billion
+
+State/Federal Tax Revenue
+N/A
+N/A
+$2.6 Billion
+
+Average Worker Comp
+$148,408
+$75,812 (All Jobs)
++95% over Avg
+
+Economic impact data derived from PhRMA and TEConomy Partners 2022 State Estimates. 4
+
+By investing an additional $1.5 million to $3 million annually through an expanded “small business” definition, Maryland secures the presence of firms that generate nearly $35 billion in total economic output. 4 Each medical device manufacturing job supports 3.4 to 4.69 additional jobs in the local economy, from specialized suppliers and construction to retail and services. 12 Over a ten-year horizon, the payroll taxes and personal income taxes generated by a single successful biotech startup that stays in Maryland because of these incentives will far exceed the initial cost of the R&D refund.
+
+## 9. The Strategic Importance of Policy Reform
+
+The imperative to reform the asset-based threshold is not merely an accounting preference; it is a defensive necessity in an increasingly competitive national landscape. Maryland’s leadership in life sciences is currently under threat from a “record contraction” in the federal research footprint and aggressive incentive programs in neighboring states. 3
+
+### Consequences of Inaction: The “Brain Drain”
+
+If Maryland fails to implement these changes, the “asset trap” will continue to push high-growth startups to relocate during their most critical expansion phases. Recent reports indicate that Maryland is experiencing a “net migration loss,” with many PhDs and seasoned lab managers moving to lower-cost states or hubs like Philadelphia and North Carolina that offer more flexible capital incentives. 12 The current policy essentially tells a biotech startup: “We will support you when you are in a dorm room with a laptop, but as soon as you build a laboratory and hire 20 people, you no longer qualify for our help”. 12
+
+Furthermore, the recent restructuring of the Department of Health and Human Services (HHS) and cuts to the National Institutes of Health (NIH) have led to the elimination of thousands of federal research positions in Maryland. 12 The state’s private sector must be empowered to absorb this talent surplus. A restrictive, asset-heavy R&D tax credit prevents the very firms that could hire these scientists—pre-revenue biotech manufacturers—from accessing the liquidity they need to scale. 12
+
+### Strengthening the Mid-Atlantic Innovation Hub
+
+By reforming the small business definition, Maryland can reinforce its position as a “world-class environment” to establish and run a business. 47 This change aligns with the current administration’s “Maryland’s Decade” mindset and supports other critical programs like “Maryland Manufacturing 4.0” and the “Build Our Future” grant pilot. 1 The R&D tax credit is not merely a fiscal tool; it is a signal to investors and entrepreneurs that Maryland understands the unique capital requirements of 21st-century innovation. 18
+
+## 10. Conclusion and Strategic Recommendations
+
+The Maryland Research and Development Tax Credit remains one of the state’s most potent tools for economic growth, yet its current small business definition contains a legacy asset threshold that penalizes the very sectors the state seeks to grow. The $5 million net book value asset cap effectively excludes the biotechnology and advanced manufacturing startups that are essential to Maryland’s future prosperity.
+
+To ensure Maryland remains competitive and continues to foster a “turbocharged” innovation economy, the following strategic recommendations are proposed:
+
+Redefine “Small Business” for Refundability: The General Assembly should immediately amend Tax–General &sect; 10–721 to replace the $5 million asset cap with a dual-factor test: Maryland gross receipts of less than $5 million and an employment cap of 50 FTE employees.
+
+Increase the Small Business Set-Aside: To accommodate the influx of high-asset manufacturing and biotech firms into the small business pool, the statutory reservation for small businesses should be increased from $3.5 million to $5.5 million, ensuring that proration does not overly dilute the incentive.
+
+Implement an Innovation Asset Exclusion: If an asset test is retained, specific capital expenditures for R&D equipment and cleanroom facilities should be excluded from the “net book value” calculation.
+
+Establish a Tax Benefit Transfer Marketplace: To provide liquidity for firms that have grown beyond the 50-employee threshold but are not yet profitable, the state should implement a mechanism for the private-market sale of unused R&D credits, similar to the framework in HB 35.
+
+Enforce Integrity through CPA Certification: All small business refund claims should require a certified CPA audit of the firm’s revenue and asset eligibility, coupled with multi-year residency requirements to prevent “credit shopping.”
+
+By addressing the “asset trap,” Maryland can ensure that its high-tech manufacturers and life science pioneers have the liquidity they need to turn scientific uncertainty into economic opportunity, securing the state’s position as a national leader in innovation for decades to come.
+
+## Mga siniping gawa
+
+Maryland Department of Commerce 2023 Annual Report, na-access noong Marso 21, 2026, https://commerce.maryland.gov/Documents/Maryland.Department.of.Commerce.Annual.Report.2023.pdf
+
+Maryland Department of Commerce 2024 Annual Report – Issuu, na-access noong Marso 21, 2026, https://issuu.com/stateofmaryland/docs/annual_report_2024_flipbook
+
+New Opportunities for Job Creation in Maryland’s Life Sciences Industry, na-access noong Marso 21, 2026, https://mdtechcouncil.com/wp-content/uploads/2021/10/JobCreation-MarylandLifeSciences_Milken.pdf
+
+Biopharmaceutical Sector Impact on Maryland’s Economy, na-access noong Marso 21, 2026, https://cdn.aglty.io/phrma/fact-sheets/economic-impact/Maryland_Eco%20Impact%20One%20Pager%202022_2.pdf
+
+na-access noong Marso 21, 2026, https://commerce.maryland.gov/Documents/Tax%20General%2010%20721.pdf
+
+Maryland R&D Tax Credits – Get Info and Calculate R&D Tax Credits – Strike Tax Advisory, na-access noong Marso 21, 2026, https://www.striketax.com/state-rd-credits/maryland-r-d-tax-credits
+
+Are R&D Tax Credits Available in Maryland? | See if You Qualify – KBKG, na-access noong Marso 21, 2026, https://www.kbkg.com/research-tax-credit/maryland-rd-tax-credit
+
+Medical Device Manufacturing Startup Costs: $11M CAPEX; – Financial Models Lab, na-access noong Marso 21, 2026, https://financialmodelslab.com/blogs/startup-costs/medical-device-manufacturing
+
+Medical Equipment Manufacturing Startup Costs: $104M Cash Need; – Financial Model, na-access noong Marso 21, 2026, https://financialmodelslab.com/blogs/startup-costs/medical-equipment-manufacturing
+
+Maryland R&D Tax Credit Services | TaxTaker, na-access noong Marso 21, 2026, https://www.taxtaker.com/rd-tax-credit/maryland
+
+Can Businesses with Less Than $5 Million in Gross Receipts Claim the R&D Tax Credit?, na-access noong Marso 21, 2026, https://tannerco.com/can-businesses-with-less-than-5-million-in-gross-receipts-claim-the-rd-tax-credit/
+
+Maryland’s Life Science Workforce Faces Record Contraction | News – BioBuzz, na-access noong Marso 21, 2026, https://news.biobuzz.io/2025/07/30/marylands-life-science-workforce-faces-record-contraction/
+
+2021 Regular Session – Fiscal and Policy Note for Senate Bill 196 – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/2021RS/fnotes/bil_0006/sb0196.pdf
+
+Research and Development Tax Credit (R&D) – Maryland Commerce, na-access noong Marso 21, 2026, https://commerce.maryland.gov/fund/programs-for-businesses/research-and-development-tax-credit
+
+Maryland R&D Tax Credit | AndreTaxCo, PLLC, na-access noong Marso 21, 2026, https://www.andretaxco.com/maryland-rdcredit
+
+Evaluation of the Research and Development Tax Credit – Maryland …, na-access noong Marso 21, 2026, https://dls.maryland.gov/pubs/prod/TaxFiscalPlan/Evaluation-of-the-Research-and-Development-Tax-Credit-2024.pdf
+
+Laws – Statute Text – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-721&enactments=false
+
+Department of Business and Economic Development (Prior Name of DOC) – Swanson Reed, na-access noong Marso 21, 2026, https://www.swansonreed.com/research-tax-credit/maryland/glossary/department-of-business-and-economic-development/
+
+R&D Tax Credit FAQs For Large and Small Businesses – BDO USA, na-access noong Marso 21, 2026, https://www.bdo.com/insights/tax/r-d-tax-credit-faqs-for-large-and-small-businesses
+
+2019 Regular Session – Fiscal and Policy Note for House Bill 175 – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/2019RS/fnotes/bil_0005/hb0175.pdf
+
+Lab Equipment Leasing for Startups: 3 Ways to Predictably Budget for Science, na-access noong Marso 21, 2026, https://boldview.com/lab-equipment-leasing-for-startups-predictably-budget/
+
+Biotech Startup Budget & Projection Guide 2025: Complete Framework for Founders, na-access noong Marso 21, 2026, https://experimental-designs.com/biotech-startup-budget-guide-2025/
+
+Small Business R&D Tax Credit: Eligibility, Expenses & How It Works – Ramp, na-access noong Marso 21, 2026, https://ramp.com/blog/small-business-r-d-tax-credits
+
+Appendix F: R&D tax incentives by state – JLARC, na-access noong Marso 21, 2026, https://jlarc.virginia.gov/pdfs/oversight/ED_initiatives/SciTech%20Appendix%20F.pdf
+
+Massachusetts R&D Tax Credits – Strike Tax Advisory, na-access noong Marso 21, 2026, https://www.striketax.com/state-rd-credits/massachusetts-r-d-tax-credits
+
+Massachusetts Business Incentives: A Practical Guide | Cherry Bekaert, na-access noong Marso 21, 2026, https://www.cbh.com/insights/articles/massachusetts-business-incentives-for-rd-life-sciences-jobs/
+
+Massachusetts Life Sciences Companies Tax Incentives Application Due March 31, 2026 – Moss Adams, na-access noong Marso 21, 2026, https://www.mossadams.com/articles/2026/02/apply-for-life-sciences-tax-incentives-in-ma
+
+A Guide to the Massachusetts Life Sciences Tax Incentive Program – LGA CPA, na-access noong Marso 21, 2026, https://www.lga.cpa/insights/blog/a-guide-to-the-massachusetts-life-sciences-tax-incentive-program/
+
+MLSC Tax Incentives Program: Eligibility, Calculation & More | Cherry Bekaert, na-access noong Marso 21, 2026, https://www.cbh.com/insights/articles/2025-mlsc-tax-incentives-eligibility-calculation-more/
+
+&sect; 58.1-439.12:08. Research and development expenses tax credit – Virginia Law, na-access noong Marso 21, 2026, https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-439.12:08/
+
+Research and Development Expenses Tax Credit Guidelines – Virginia Tax, na-access noong Marso 21, 2026, https://www.tax.virginia.gov/sites/default/files/inline-files/Research_and_Development_Expenses_Tax_Credit_Guidelines.pdf
+
+R&D Tax Credits in Virginia – GOAT Tax, na-access noong Marso 21, 2026, https://www.goat.tax/state-details/r-d-tax-credits-virginia
+
+The New Jersey Research and Development Tax Credit – NJ.gov, na-access noong Marso 21, 2026, https://www.nj.gov/treasury/taxation/pdf/pubs/tb/tb114.pdf
+
+2026 Regular Session – Fiscal and Policy Note for Senate Bill 826 – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/2026RS/fnotes/bil_0006/sb0826.pdf
+
+2018 Regular Session – Fiscal and Policy Note for House Bill 1450 – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/2018RS/fnotes/bil_0000/hb1450.pdf
+
+Maryland firms score $5M to manufacture everything from soup to nanofiber, na-access noong Marso 21, 2026, https://technical.ly/civic-news/maryland-manufacturing-grants-february-2025/
+
+Legislation – HB0035 – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/hb0035?ys=2025RS
+
+MD HB35 – BillTrack50, na-access noong Marso 21, 2026, https://www.billtrack50.com/billdetail/1762215
+
+HB35 | Maryland 2025 | Economic Development – Income Tax Benefit Transfer Program – Establishment – Legislative Tracking | PolicyEngage, na-access noong Marso 21, 2026, https://trackbill.com/bill/maryland-house-bill-35-economic-development-income-tax-benefit-transfer-program-establishment/2581004/
+
+2025 Regular Session – Fiscal and Policy Note for House Bill 35 – Maryland, na-access noong Marso 21, 2026, https://mgaleg.maryland.gov/2025RS/fnotes/bil_0005/hb0035.pdf
+
+Business Tax Fraud Tips & Whistleblower Referral – Comptroller of Maryland, na-access noong Marso 21, 2026, https://www.marylandcomptroller.gov/businesses/business-tax-fraud-tips-whistleblower-referral.html
+
+Maryland R&D Tax Credit Overview for Businesses – Swanson Reed, na-access noong Marso 21, 2026, https://www.swansonreed.com/research-tax-credit/maryland/
+
+ADVOCACY – Maryland Tech Council, na-access noong Marso 21, 2026, https://mdtechcouncil.com/advocacy/
+
+Job Creation Tax Credit | Maryland Department of Commerce, na-access noong Marso 21, 2026, https://commerce.maryland.gov/fund/programs-for-businesses/job-creation-tax-credit
+
+Maryland Research and Development Tax Credit – BlueCap Economic Advisors, na-access noong Marso 21, 2026, https://www.bluecapeconomicadvisors.com/post/maryland-research-and-development-tax-credit
+
+Economic Impact – PhRMA, na-access noong Marso 21, 2026, https://www.phrma.org/policy-issues/research-development/economic-impact
+
+Priorities – Maryland Tech Council, na-access noong Marso 21, 2026, https://mdtechcouncil.com/advocacy/priorities/
+
+2025A Unified Voice to Create Change – Maryland Tech Council, na-access noong Marso 21, 2026, https://mdtechcouncil.com/wp-content/uploads/2025/01/2025-PolicyPlatform.pdf
+
+Notice & Disclaimer: The information is current as of July 31, 2026. This whitepaper is provided for discussion purposes only and should not be construed as legal or tax advice. It is strongly recommended that you seek professional legal or tax representation to understand how the Maryland R&D tax credit and any proposed policy changes would apply to specific business circumstances.
+
+@swansonreed
+
+OUR CREDENTIALS
+
+Contact Us
+
+What Our Clients Say
+
+Posted on Google
+
+ANTHONY NORRIS
+29 March 2025
+
+Trustindex verifies that the original source of the review is Google. I've been claiming R&D credits for over two decades now and this is the most knowledgeable and efficient team I have encountered thus far. Can't recommend them enough.
+
+Posted on Google
+
+DAVE LITANA
+26 March 2025
+
+Trustindex verifies that the original source of the review is Google. We have partnered with Swanson & Reed for several years now, and their service has been nothing short of exceptional. Their team is efficient, highly attentive, and brings deep industry knowledge, ensuring a smooth and seamless experience. Their expertise and responsiveness make working with them a pleasure. They consistently provide valuable insights and support, making the entire process effortless. I highly recommend their services to any business seeking expert guidance in R&D claims.
+
+Posted on Google
+
+JERRICKSON LLANEZA
+26 March 2025
+
+Trustindex verifies that the original source of the review is Google. Adam, Cherie, and the team have supported us every step of the way through multiple R&D claims. Their guidance in gathering the necessary information has been invaluable, making the process straightforward while ensuring full compliance. Their expertise has turned what could be an overwhelming task into a manageable one. Swanson Reed’s assistance has been instrumental in the success of our applications. Their professionalism and attention to detail have given us confidence throughout the process, making them an essential partner in our R&D efforts.
+
+Posted on Google
+
+43 PIMENTEL
+25 March 2025
+
+Trustindex verifies that the original source of the review is Google. We connected with Adam and Cherie at Swanson Reed based on a referral from a trusted associate. Over the past four years, they have guided my company through the complexities of research and development incentives provided by the Federal Government. Their knowledge and support have been invaluable in streamlining the process and ensuring we make the most of these opportunities. This partnership has been the most crucial in securing financial backing for our startup’s growth. Their dedication and expertise have made a significant impact, and I wholeheartedly endorse Swanson Reed to any business looking to leverage R&D incentives.
+
+Posted on Google
+
+LEE MCMULLAN
+13 June 2024
+
+Trustindex verifies that the original source of the review is Google. An unbelievable experience, in the best way. Cherie Jones and her team are extremely helpful and beyond organized. They actually took the time to teach us things. Thank you so much for our ongoing partnership. I am truly grateful. I have already sent a few of my connections your way.
+
+Load more
+
+Privacy and Complaint Policy
+Copyright Notice ©
+Sitemap
+
+Contact Us
+
+Send us a message and we will be in touch shortly!
+
+Start typing and press Enter to search

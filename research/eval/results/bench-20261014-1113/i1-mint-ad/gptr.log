@@ -1,0 +1,21 @@
+[gptr 16:34:50] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:34:50] prompt (1685 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-4GJ4KN/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-4GJ4KN/gptr.log
+[gptr 16:35:05] 15s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 16:35:20] 30s · fuentes leídas 27 · última línea: INFO: [11:35:20] 🌐 Scraping content from 8 URLs...
+[gptr 16:35:35] 45s · fuentes leídas 147 · última línea: INFO: [11:35:34] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:35:50] 60s · fuentes leídas 147 · última línea: 💸 Total Research Costs: $0.020900000000000002
+[gptr 16:36:05] 75s · fuentes leídas 197 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.neurologylive.com/view/fda-approves-ai-incorporated-alzhei
+[gptr 16:36:20] 90s · fuentes leídas 203 · última línea: INFO: [11:36:20] 🤔 Planning the research strategy and subtasks...
+[gptr 16:36:35] 105s · fuentes leídas 273 · última línea: 💸 Total Research Costs: $0.011170000000000001
+[gptr 16:36:50] 120s · fuentes leídas 327 · última línea: 💸 Total Research Costs: $0.012735
+[gptr 16:37:05] 135s · fuentes leídas 350 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.pwc.com/us/en/services/audit-assurance/private-company-ser
+[gptr 16:37:15] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:37:20] 150s · fuentes leídas 359 · última línea: The applicant is based in Maryland, US. Only include funders that accept applicants from there; skip programs restricted to other countries 
+[gptr 16:37:35] 165s · fuentes leídas 359 · última línea: [0m
+[gptr 16:37:45] cortando GPT Researcher: ya no hace falta el informe
+[gptr 16:37:45] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:37:45] proceso terminó tras 174s · timedOut=true código=n/d informe=ninguno
+[gptr 16:37:45] búsqueda terminada en 174s
+[gptr 16:37:45] URLs para el juez: 150 (0 del informe) → https://technical.ly/entrepreneurship/baltimore-maryland-q3-2026-venture-capital-pitchbook | https://hub.causo.ai/guides/ai-startup-valuation-2026 | https://seedhealthcare.com/seed-healthcare-leads-strategic-investment-in-diadem | https://menlovc.com/focus-areas/healthcare | https://tracxn.com/d/venture-capital/maryland-momentum-fund/__HRn3E1g5e_OnpQ_VoRK-JSn74Bn7Mlt-w_kp5fXAz60 …
+[gptr 16:37:45] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:39:15] juez listo: 5 hallazgos (1 verificados) · contactos Apollo: 5 organizaciones, 8 créditos · total 265s

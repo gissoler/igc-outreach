@@ -1,0 +1,199 @@
+The NACC Researcher&#x27;s Guide - National Alzheimer’s Coordinating Center (NACC) Skip to main content
+
+stacked_line_chart Request Data
+question_mark Support
+person ADRC Portal Login
+
+## Welcome to the NACC Researcher&#x27;s Guide
+NACC developed this Researcher's Guide to provide guidance on using NACC data for your research, including:
+How the data are structured
+How to narrow down the participants in your file by certain criteria
+What to keep in mind while doing research with the NACC data, including tips on analysis and interpretation
+
+### Get an Overview of NACC Data
+See NACC Data Overview for a detailed list of data available to the public, including the Uniform Data Set, FTLD & LBD Module Data Sets, Minimum Data Set, Neuropathology Data Set, Imaging data, and CSF biomarker data.
+
+### Submit a Data Request
+Please follow the steps detailed in the Data Request Process .
+
+### Download Your Data Set
+After you submit a Data Request, you will receive an email with instructions on how to download your data from a secure website.
+
+### About Data Downloads
+
+#### Standard Data File Download
+NACC data are provided via secure links. You will receive a username, password, and link to download your data files. Your download link remains active for a limited period of time. If you find that your link has expired and you want us to reactivate it, please submit a support request to the research support team.
+
+#### Image File Download
+NACC will provide your images (both SCAN-compliant and mixed-protocol) on Amazon Web Service, S3. NACC will send you an email containing an access key ID and secret access key .
+Here are some options for downloading your MR image files:
+Software applications - some popular options used by researchers are Cyberduck and S3 Browser . Both offer free versions and can connect to the S3 Bucket, allowing you to download all the image files to your local computer.
+Command line - download your images using the Amazon Command Line Interface (CLI) . If you haven't used this before, first you will need to install the CLI. Then, you can configure the CLI with the credentials NACC provided and download the bucket using the "aws s3 sync" command.
+
+#### CSV versions of the Researcher’s Data Dictionaries
+As a resource for investigators in their analysis, NACC has provided CSV files for the following Researcher’s Data Dictionaries (RDDs):
+RDD – Uniform Data Set
+RDD – Neuropathology
+RDD – Genetics
+
+### Get Started with Analysis and Interpretation
+Here are a few important notes to help you import and analyze the data.
+
+### Tips on Preparing Data for Analysis
+
+Before getting started with analysis, here are some things to keep in mind:
+Please ensure the software you use to import the UDS dataset successfully loads the entire dataset (>200,000 observations). In R, we recommend using the "fread" function from the "data.table" package, as "read.csv" can truncate the large file.
+We offer CSV and parquet file formats. Please see Parquet File Guidance for details on this file type.
+
+To import the UDS Quick-Access files in SAS, we recommend using our import code: UDS + NP + Genetics (zip file download)
+UDS + NP + Genetics + FTLD + LBD (zip file download)
+
+If you need to merge two or more NACC data sets, be sure to merge them by NACCID .
+If you are focusing your analysis on neuropathology data, you will need to eliminate any longitudinal visits that you are not interested in. For example, if you are interested in matching a participant's neuropathology data to the clinical data from the most recent visit before death, you will need to delete from your file any previous visits for that participant; for instance, if a participant has had five visits to date, you will need to restrict your file to the fifth visit for this participant, deleting visits 1 through 4.
+
+### Narrow Your Data Set Based on Your Eligibility Criteria
+Here is some guidance on how to restrict your file to the participants and visits of interest.
+
+### Restrict Your Sample by Criteria
+
+#### Overview
+If you would like to narrow down the participants in your file by certain criteria, please see the appropriate section below. For example, if you are interested in focusing on participants with CSF biomarker data, be sure to request from NACC the pertinent CSF variable data set when submitting your data request.
+Please keep the following important notes in mind when using NACC variables to restrict your sample.
+
+#### Restricting Based on Cognitive Status and Etiologic Diagnosis
+On the UDS Clinician Diagnosis dorm, participants receive a diagnosis corresponding to cognitive status: normal cognition, impaired-not-MCI (mild cognitive impairment), MCI, or demented). Participants also receive an etiologic diagnosis — what the clinician suspected to be the cause (whether primary, contributing, or non-contributing) of any cognitive impairment. Both the variable on cognitive status (NACCUDSD) and one or more variables concerning etiologic diagnosis (for example, NACCALZD) will often be required to focus on a specific diagnostic group of interest.
+For example, participants with an etiologic diagnosis of Alzheimer’s disease (NACCALZD=1) can have a cognitive status of impaired-not-MCI, MCI, or dementia. The only way to focus on those with AD dementia is to use both the cognitive status variable (NACCUDSD=4) and the etiologic diagnosis variable (NACCALZD=1).
+
+#### Restricting by Diagnosis at a Certain Visit (e.g., MCI at the initial UDS visit)
+To restrict to participants with a diagnosis at the initial visit, select those who meet your criteria and have NACCVNUM=1.
+To include participants who have ever received the diagnosis of interest, you would look across all visits and determine whether the participant ever received that diagnosis at any UDS visit.
+To restrict to subjects who have the diagnosis of interest at the most recent UDS visit, you would use the variables for visit number and/or visit date (NACCVNUM=NACCAVST, VISITMO, VISITYR).
+
+#### Defining Cognitive Status Based on the MMSE, MoCA, or Clinical Dementia Rating (CDR®) Score
+Although many researchers choose to define cognitive status according to the clinician diagnosis provided on UDS Form D1, others choose to use the global CDR® score, the MMSE, or the MoCA. The following are examples of the commonly used CDR® cutpoints: Normal cognition: CDR®=0; Mild cognitive impairment: CDR®=0.5; Demented: CDR®=1 (mild), 2 (moderate), or 3 (severe). For more information, see the section on Form B4 in the UDS Coding Guidebook. The MMSE score is sensitive to demographic and educational differences. Please consult the research literature to determine the best cut points for establishing cognitive status for your sample.
+
+#### Clinicopathological Studies
+If you are conducting a clinicopathological study, it may be advisable to restrict your sample to those who have clinical measures within one or two years of autopsy. The NACCINT variable, which indicates the months between the last UDS visit and death, can be used for this purpose.
+
+#### Using the UDS Data Cross-Sectionally
+To restrict to data from the initial visit, focus on visit data corresponding to NACCVNUM=1.
+To restrict to data from the most recent visit, use the variables for visit number and/or visit date to determine the most recent visit (NACCVNUM=NACCAVST, VISITMO, VISITYR).
+
+#### Restricting to Those with Non-Missing Data
+The Researcher Data Dictionaries (RDD) includes a number of missing codes to indicate why data are missing. To focus your analyses on participants with non-missing data for a particular variable, be sure to exclude participants with the missing codes, such as –4, 9, 99, and 995–998. Also, be sure to exclude those missing value codes from your analysis; otherwise, they may skew your findings. Please refer to the section below titled "Missing data and data collection changes between UDS versions" for additional details about missing codes.
+
+#### Restricting by Number of Visits Made
+Use the variables NACCAVST (total number of UDS visits) and NACCNVST (total number of in-person visits, excluding telephone visits) to restrict to participants with a minimum number of UDS visits completed.
+
+#### Restricting to Data from a Particular UDS Version
+Use the FORMVER variable to determine the form version (e.g., FORMVER=1, which corresponds to version 1). For example, to focus on participants assessed with UDS version 3 forms, use FORMVER>=3.
+
+### Understand the Data Structure
+It's helpful to understand how the NACC data are structured in the data file.
+
+### Data Structure
+
+#### NACC Data Structure
+NACC provides Quick Access Files that include both longitudinal clinical data from the RDD-UDS (PDF) and neuropathology data from the RDD-NP (PDF) .
+UDS data is provided in long format, with one row of data per participant visit (so a participant with more than one visit completed will have more than one row of data). The illustration below shows how the data might look in your file, followed by a brief explanation.
+NACCID NACCVNUM FORMVER NACCAGE SEX NACCNEUR NACCBRAA
+1 1 2 71 1 3 6
+1 2 2 89 1 3 6
+2 1 1 92 2 1 3
+3 1 1 63 1 3 6
+3 2 1 64 1 3 6
+3 3 2 65 1 3 6
+3 4 2 66 1 3 6
+3 5 2 67 1 3 6
+3 6 2 68 1 3 6
+3 7 2 69 1 3 6
+3 8 2 71 1 3 6
+3 9 2 71 1 3 6
+
+Visit number: The chronological order of the visits is indicated by the NACCVNUM variable. For example, NACCVNUM=1 is the Initial Visit.
+Number of visits completed: As you can see above, the first participant has completed 2 UDS visits, the second participant has completed 1 UDS visit, and the third participant has completed 9 UDS visits.
+Form version: You can see that the first participant has only UDS version 2 data (FORMVER=2), the second participant has only UDS version 1 data (FORMVER=1), and the third participant has both UDS version 1 and version 2 data collected over time.
+Neuropathology data is duplicated: The neuropathology data values are repeated/duplicated for each of a participant's UDS visits (see NACCNEUR and NACCBRAA variables). For example, the third participant has the same value for NACNEUR for all nine of the participant's visits. Make sure you analyze the data at the participant level and do not double count those participants who have more than one UDS visit.
+
+#### Data Freeze
+NACC data are frozen and archived approximately every three months. Your data set includes UDS data up through the data freeze indicated in the email sent by NACC. For example, if you are using data from the June 2025 data freeze, your file will include visit data collected and submitted to NACC from the beginning of the Uniform Data Set (September 2005) through the end of May 2025. If at any time you would like an updated version of your file, please submit an online request for an update .
+
+#### Visit Number and Visit Date
+If you are using the longitudinal UDS data in your analysis, you can identify the order of the visits using the NACCVNUM variable (NACCVNUM=1 is initial visit; NACCVNUM=2 is first follow-up completed, etc.). However, the variables for the visit date (VISITMO, VISITDAY, and VISITYR) and days since Initial Visit (NACCFDYS) are generally better to use than the NACCVNUM variable when doing the following:
+Selecting pertinent MRIs or other biomarker data
+Time to event analyses
+Longitudinal analyses such as linear mixed modeling
+Calculating variables such as time since cognitive symptom onset to most recent visit
+
+#### Relating Imaging Data to UDS Visits
+NACC does not associate MRI or amyloid PET scans with a particular UDS visit because often the scans and the UDS visit occur at different times, sometimes even years apart. We leave it up to investigators to match the scans to the UDS visit based on their study criteria. Investigators can determine which UDS visit is closest in time to a scan by comparing the UDS visit date variables (VISITMO, VISITDAY, VISITYR) and the MRI scan date variables (MRIMO, MRIYR, MRIDY in mixed-protocol MRIs; STUDYDATE or SCANDT in SCAN MRIs) or PET scan date variables (APETMO, APETDY, APETYR in mixed-protocol PETs, SCAN_DATE or SCANDATE in SCAN PETs).
+
+#### Telephone Visits
+Telephone visits are completed by the participant's co-participant when the participant is unable to attend an in-person visit. can For visits in UDSv1-3, use the PACKET variable (PACKET=T) to identify visits completed over the telephone. If desired, use this variable to exclude telephone visits. In UDSv4, there is no distinct telephone visit packet; rather, each form can be done either in-person or remotely via video or telephone call. You can use the MODEXX variables (e.g., MODEA1) for each form to determine the modality used to complete that form and exclude this data if needed.
+
+#### Clinical Diagnosis Groups
+The manner of collecting the clinical diagnosis changed substantially from v1-v2 to v3 of the Clinician Diagnosis form; therefore, it is helpful to compare the Clinician Diagnosis forms for v2, v3, and v4.
+Please also see the important note about "Cognitive status and etiologic diagnosis" under the section on "Narrow your data set based on your eligibility criteria."
+
+#### Missing Data and Changes in Data Collection among UDS Versions
+Please review the Researchers Data Dictionary for UDS data (RDD-UDS) (PDF) and Neuropathology data ( RDD-NP ) (PDF) to determine the missing/unknown codes for each variable. In most cases, the missing code is 8, 88, 888, 9, 99, or 999. Variables are coded as -4 if those particular variables were not collected for a given version of the UDS, or if a skip pattern on the form resulted in a missing value that could not be replaced by an implicit value based on the preceding question. To date, the UDS has been implemented in four versions. Use the FORMVER variable to determine the version of the forms used for a participant's visit.
+
+#### Medication Data
+Variables DRUG1 through DRUG40 correspond to each of the medications (up to 40) the participant reported, per visit. For example, if a participant reports taking atenolol and losartan, then DRUG1=atenolol and DRUG2=losartan.
+
+#### Data Values that Can Vary Over Time (e.g., age of onset of cognitive decline )
+Some variables are collected at each UDS visit, and because different clinicians perform the assessments over time, or because the participant's symptoms have changed over time, the values for these longitudinally collected variables change over time. In particular, if you are using the Clinician Judgment of Symptoms form variable for age of onset of cognitive decline (DECAGE) or first predominant symptoms, be sure to ascertain whether values for these variables have changed over time. In some cases, it may be best to use the most recent non-missing value, because it may represent the best data available. In other cases, it may be better to use the value at the initial UDS visit, depending on your study design.
+
+### Guidance on Research Design and Variables
+Here is guidance on choosing the best data for your analysis, how to choose the best variables, and how to describe NACC data in your publication.
+
+### Research Design Guidance
+
+#### UDS Participant Health History Form Data
+The data collected using the Participant Health History form is usually focused on health conditions reported by the participant or co-participant; therefore, be careful when using the associated variables in your analysis. If the health condition reported on the Health History form is also collected on other UDS forms, we advise you to use data from the other form, especially if the other form is based on clinician judgment (e.g., Clinician Diagnosis form). For example, the Participant Health History form collects data on Parkinson’s disease; however, in most cases, it is advisable to use the data on Parkinson’s disease from the Clinician Diagnosis form instead, because it is diagnosed by the clinician, not reported by the participant. Alternatively, you may want to consider examining all relevant data collected on the health condition to determine the best variable(s) to use.
+
+#### Mini Mental State Exam (MMSE, UDSv1-2) or MoCA (UDSv3-4) versus Clinician Dementia Rating (CDR®)
+The MMSE/MoCA and CDR® capture different information and have different measurement properties. The choice of the instrument depends on your analysis goals. The MMSE (replaced by the MoCA in UDS version 3) is good for screening and staging moderate and severe dementia, whereas the CDR® can measure (non-subtle) progression of cognitive and functional decline.
+
+#### Incidence and Prevalence Rates
+NACC data are not suitable for an analysis of dementia incidence or prevalence at a city, state, or national level. This is because the sample is not population-based. Recruitment protocols differ by Center. Depending on the ADRC, participants may or may not have been randomly selected. Therefore, the NACC data are best viewed as a case series. Please exercise caution when developing research aims surrounding the NACC data and when interpreting the results.
+
+#### Death, Dropout, and Discontinuation
+ADRCs periodically notify NACC, via the Milestones Form, about UDS participants who have died, have dropped out of the study, or have been discontinued by the Center for other reasons. The frequency with which Centers provide these data varies by Center; therefore, researchers should be cautious in the interpretation of any analysis in which data on death, dropout, or discontinuation are used.
+
+#### Differences in the Neuropathology Database among UDS and MDS Participants
+All UDS participants who died and consented to autopsy have data collected using NACC’s Neuropathology (NP) Form (version 8). In the ADRCs’ earlier data set, the Minimum Data Set (MDS), some autopsied participants have data based on earlier versions of the NP Form, if their autopsies were conducted after the NP Form was implemented in 2002. The remaining autopsied MDS participants have limited NP data that were collected within the MDS Form. If you will be obtaining autopsy data for MDS participants, a NACC consultant will help guide you through the data availability.
+
+#### Difference Between Primary Neuropathologic Diagnosis and Neuropathologic Features
+As of version 10, the NP form includes the most current AD and FTLD neuropathological criteria. The NP form now focuses on assessing neuropathological features rather than the primary neuropathological diagnosis, as had been the case in previous versions of the NP Form. Upon request, researchers can obtain the data on primary neuropathological diagnosis as was collected in NP Form versions 1 through 9.
+
+#### Inconsistencies among the CDR®, Neuropsychological Testing, and the Clinical Diagnosis
+A small number of UDS participants have seeming inconsistencies among their scores on the CDR®, their neuropsychological test results, and/or their clinical diagnoses. For example, a participant may have a clinical diagnosis of dementia on the Clinician Diagnosis form but a CDR® of 0 (no impairment). These inconsistencies are generally verified as correct by Centers and may occur because different clinicians complete different parts of the UDS assessment.
+
+#### ZIP Codes
+To protect the confidentiality of the data, NACC generally does not provide ZIP code data to researchers.
+
+#### Generalizability
+Because UDS recruitment methods vary by ADRC and over time, UDS participants are best described as a clinical case series of patients from each ADRC.
+
+### Review Author Requirements Checklist
+All authors are required to submit their abstracts and publications to NACC for a brief administrative review before submitting them to conferences and journals. For all author requirements, please see Checklist for Authors .
+
+### How to Request Data or Biospecimens Stored Outside of NACC
+Here is guidance on requesting genetic or other data not collected in the UDS battery and not stored at NACC (for example, neuropsychological test scores or tissue samples).
+
+### Requesting Data Outside of NACC
+
+#### Non-Imaging Biospecimens and Genetic Data
+See NACC Partnerships for information on requesting biospecimens from NCRAD or genetic data from ADGC or NIAGADS.
+
+#### Biospecimens Stored by ADRCs
+Brain tissue is stored by ADRCs on a subset of their UDS participants. Some Centers may be willing to share specimens with outside investigators. Researchers can use the NACC biospecimen locator or submit a tissue location request .
+If you mention any previous contact with NACC in your communication with the Center, please include a statement like the following: "Please note that this is neither a NACC request nor a NACC initiative, and your participation is entirely voluntary."
+
+#### Other ADRC Data
+Centers may store additional data of interest, such as scores on neuropsychological tests that were performed as part of the UDS visit but not submitted to NACC because they are not part of the standardized UDS protocol. NACC is not usually aware of additional data stored at the Centers. Generally, the best way to identify participants with the desired data desired is to determine which Centers may have data you require, based on published research found through a PubMed search, or a search of the individual Centers’ websites, and then to contact the Center(s) directly.
+If you mention any previous contact with NACC in your communication with the Center, please include a statement like the following: "Please note that this is neither a NACC request nor a NACC initiative, and your participation is entirely voluntary."
+
+Submit a NACC Data Request
+Submit Manuscript to NACC open_in_new

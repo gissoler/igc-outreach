@@ -1,0 +1,95 @@
+IGC Pharma, Inc. quarterly report, Q1 FY2026 (NYSE:IGC) | MetaTrader
+# IGC Pharma, Inc. quarterly report, Q1 FY2026
+Full document
+
+## IGC Pharma, Inc. (IGC) - Q1 2026 10-Q Summary
+
+### Business Context and Reporting Period
+
+This summary covers the quarterly period ended March 31, 2026 . IGC Pharma, Inc. is a clinical-stage biotechnology company focused on developing therapeutic candidates for neuropsychiatric and neurodegenerative disorders, primarily Alzheimer's disease. The company's lead product, IGC-AD1 , is currently in a Phase 2 clinical trial (CALMA) for agitation in Alzheimer's dementia. The company also develops the MINT-AD AI platform for risk stratification. IGC operates as a smaller reporting company and is not yet profitable, relying on equity and debt financing to fund operations.
+
+### Key Financial Metrics
+
+Metric
+Q1 2026
+Q1 2025
+
+Revenue
+$317,000
+$330,000
+
+Gross Profit
+$55,000
+$154,000
+
+Gross Margin
+17%
+47%
+
+Operating Loss
+$(2,458,000)
+$(1,413,000)
+
+Net Loss
+$(2,402,000)
+$(1,198,000)
+
+Cash and Equivalents (End of Period)
+$207,000
+$405,000
+
+Total Debt (Outstanding)
+$917,000
+$311,000
+
+Working Capital
+$(1,726,000)
+$(366,000)
+
+Note: All figures in thousands except per share data and percentages.
+
+### Material Changes vs. Prior Period
+
+Revenue Decline: Revenue decreased 4% to $317,000, driven by a strategic shift away from white-label services to focus on clinical trials. Gross margin compressed significantly to 17% from 47% due to higher cost of revenue relative to sales volume.
+
+Increased Operating Loss: Net loss more than doubled to $2.4 million. This was driven by a 118% increase in SG&A expenses (partially due to the absence of a $700k credit recognized in the prior year) and a 28% increase in R&D expenses as the CALMA trial progressed.
+
+Liquidity Deterioration: Cash and cash equivalents dropped 77% to $207,000. The working capital deficit widened to $1.7 million from $366,000.
+
+Debt Expansion: Total debt increased significantly to $917,000 from $311,000. This includes new convertible notes from Vanquish Funding Group ($353k principal) and an OnDeck loan ($214k), alongside related-party borrowings.
+
+### Guidance, Outlook, and Risks
+
+Outlook and Strategy: Management prioritizes completing the Phase 2 CALMA trial for IGC-AD1 and deploying the MINT-AD and AHA AI platforms. The company expects to continue incurring operating losses. Management believes current cash, combined with a $12 million credit facility (currently undrawn) and ongoing financing efforts, is sufficient to support operations for at least the next 12 months.
+
+Recent Financing Activity:
+
+Issued a $353k convertible note to Vanquish Funding Group (VFG) in March 2026.
+
+Secured a $214k loan from OnDeck Capital in February 2026.
+
+Completed a registered direct offering in January 2026 raising ~$234k.
+
+Subsequent to quarter-end (April 2026), the company issued two additional convertible notes totaling ~$585k principal to VFG and FirstFire Global Opportunities Fund.
+
+Risks and Contingencies:
+
+Clinical Risk: Success is highly correlated with the outcome of the CALMA trial. Delays or negative results could materially adversely affect the business.
+
+Liquidity Risk: The company requires substantial additional capital. Failure to secure financing could force delays or discontinuation of programs.
+
+Dilution Risk: Convertible notes contain variable-rate conversion features (e.g., 75% of lowest trading price upon default), which could result in substantial dilution to existing shareholders.
+
+Regulatory Risk: Uncertainty regarding FDA approval for hemp-based products and AI diagnostic tools.
+
+### Investor Verification Checklist
+
+Cash Runway: Verify the sufficiency of the $207k cash balance against the $1.2M quarterly operating cash burn rate.
+
+Debt Terms: Review the specific conversion triggers and discount rates on the VFG and subsequent April notes to assess dilution exposure.
+
+CALMA Trial Status: Confirm patient enrollment progress (reported at ~70-80% as of Q1) and timeline for topline data release.
+
+Revenue Sustainability: Assess the long-term viability of the Life Sciences segment (white-label/wellness) as a funding source given the strategic pivot to R&D.
+
+Related-Party Transactions: Note the $320k in outstanding loans from executive officers (CEO and CFO) and the terms thereof.

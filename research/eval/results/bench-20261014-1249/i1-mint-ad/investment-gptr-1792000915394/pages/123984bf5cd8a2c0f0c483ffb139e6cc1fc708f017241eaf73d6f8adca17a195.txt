@@ -1,0 +1,235 @@
+AI Medical Device Startups: The Complete Regulatory Playbook for 2026
+
+AI, ML & Algorithmic Devices
+
+# AI Medical Device Startups: The Complete Regulatory Playbook for 2026
+
+By Tibor Zechmeister and Felix Lenhard
+
+Blog
+&rsaquo;
+AI, ML & Algorithmic Devices
+
+Quick Summary
+
+The AI medical device startup playbook for 2026 has two Regulations running at the same time, MDR (Regulation (EU) 2017/745) governs the device layer, intended purpose under Article 2(1), classification under Annex VIII Rule 11, software lifecycle under Annex I Section 17, clinical evaluation under Article 61, and.
+
+The AI medical device startup playbook for 2026 has two Regulations running at the same time, MDR (Regulation (EU) 2017/745) governs the device layer, intended purpose under Article 2(1), classification under Annex VIII Rule 11, software lifecycle under Annex I Section 17, clinical evaluation under Article 61, and post-market surveillance under Articles 83-86. The EU AI Act (Regulation (EU) 2024/1689) adds a horizontal overlay that is meant to fold into the MDR conformity assessment rather than run beside it. The playbook in this post walks a founder through the stages in the order they actually have to be decided: intended purpose, qualification, classification, training data, lifecycle, risk management, clinical evaluation, cybersecurity, the AI Act overlay, PMS with drift detection, change control, and the team you need to run all of it without drowning.
+
+By Tibor Zechmeister and Felix Lenhard. Last updated 10 April 2026.
+
+## TL;DR
+
+An AI medical device is a medical device first. The intended purpose from MDR Article 2(1) decides qualification. The underlying implementation. Neural network, classical rule engine, hybrid. Does not change that answer.
+
+Annex VIII Rule 11 is the classification rule for almost every AI clinical product. Default IIa. IIb when the supported decision can cause serious deterioration. III when it can cause death or irreversible harm. Class I is rare.
+
+The AI-specific work lives in training data governance, algorithm lifecycle management, AI-aware risk analysis under EN ISO 14971:2019+A11:2021, clinical evaluation on independent test sets with subgroup analysis, and post-market drift detection that is actually instrumented, not only written down.
+
+EN 62304:2006+A1:2015 still governs the software lifecycle. EN IEC 81001-5-1:2022 governs cybersecurity. The AI-specific practices. Dataset versioning, model registries, distribution monitoring. Sit on top of these standards, not in place of them.
+
+The EU AI Act (Regulation (EU) 2024/1689) is referenced here at the general framing level. Where an AI medical device is also a high-risk AI system, both Regulations apply simultaneously, and the operational interface is still being clarified by the Commission, MDCG, and Notified Bodies. Plan for the overlay; do not pretend it is finished.
+
+## The story that sets the frame
+
+Tibor tells a story about one of the early customers of his second company, Flinn.ai, that captures why the AI MedTech playbook is different from the SaMD playbook it grew out of. The customer was a mid-sized device manufacturer with an active vigilance database. For years, two people sat in front of Excel sheets and read through incoming complaints and safety reports line by line, categorising each one by hand, accurate work, miserable work, both of them eventually quit because the job did not match the qualifications they had been hired for.
+
+The customer installed Flinn.ai as a pre-categoriser. The AI reads the incoming text, maps it against the vigilance taxonomy, and flags the reports that need a human eye. The team that remained reported that the AI saves them roughly eighty percent of the time they used to spend on first-pass categorisation. The hours freed up went into harder cases, ambiguous calls, the reports that actually needed judgment.
+
+Then the pattern Tibor always warns about appeared. After the model is correct ten times in a row, the humans start trusting it. After twenty, they stop reading carefully. The eleventh or twenty-first case slips through. The failure mode is not a bug in the model. It is a change in how the humans behave around the model.
+
+That story is in this playbook because it sits on both sides of the AI MedTech equation at the same time. On one side, startups are building AI into devices that drive clinical decisions. On the other side, the regulatory teams reviewing those devices are using AI to handle the paperwork around them. Both sides have the same complacency risk. Both sides have to be designed for the day the model is wrong. The playbook that follows keeps that principle in every stage.
+
+## Stage 1. Write the intended purpose for the AI feature
+
+The intended purpose is the sentence that decides everything downstream. MDR Article 2(1) defines a medical device by what the manufacturer intends the product to do, not by how the product is built, MDCG 2019-11 Rev.1 (June 2025) governs the qualification of software and does not treat AI as a special category at this stage. The qualification question is the same for a neural network and a deterministic script: does the software, as intended by the manufacturer, perform a medical function?
+
+A usable intended purpose for an AI feature names who uses the feature, on which patient population, for what medical purpose, in which clinical context, producing what output, and for what downstream clinical action. A sentence that names only the output. "the model predicts risk of X". Is not enough. A Notified Body cannot classify it, a clinical evaluator cannot scope the evidence, and a risk manager cannot identify the failure modes.
+
+Write the sentence before the model is trained. Then write down, separately, which parts of the product ecosystem are in scope of this sentence and which are not. An AI module that summarises internal documentation is not a medical device. An AI module that drafts patient-facing clinical content is. The boundary matters because everything inside the boundary pulls the full weight of MDR; everything outside does not.
+
+## Stage 2. Qualification: is the AI feature actually a medical device?
+
+Run the qualification decision tree from MDCG 2019-11 Rev.1 against the written intended purpose and record the result. Most founders come into this stage hoping the answer will be no and leave with a yes. That is fine. A clear yes at Stage 2 saves months of later confusion.
+
+The output of this stage is a short qualification note that sits in the technical documentation and is consistent with every external artefact, website copy, pitch decks, scientific publications, marketing materials, if the website makes a diagnostic claim that is not reflected in the intended purpose, the qualification note is worth nothing. Every public statement about the product has to live inside the regulated envelope.
+
+Website copy, pitch decks, scientific publications, marketing materials.
+
+## Stage 3. Classification under Annex VIII Rule 11
+
+MDR Article 51 directs classification to Annex VIII. For AI software that drives or informs clinical decisions, Annex VIII Rule 11 is the rule that applies in the overwhelming majority of cases. The default is Class IIa. The class moves to IIb when the decisions supported can cause serious deterioration of a person's state of health or a surgical intervention. The class moves to III when the decisions can cause death or an irreversible deterioration of health. Software intended to monitor physiological processes sits at IIa or IIb depending on how critical the monitored parameters are.
+
+Classification is not a reflex. A precise reading of the severity of the supported decision can legitimately hold a product at IIa where a careless reading would push it to IIb. A lazy reading can also under-classify a product and get the file rejected at Notified Body review. Document the sub-clause that applies, document the clinical rationale for the severity call, and sanity-check the result against the examples in MDCG 2019-11 Rev.1.
+
+Class IIa and above require Notified Body involvement, pick one early, the conversation with the Notified Body about AI-specific aspects is better started in month three than in month twenty.
+
+## Stage 4. Training data and bias
+
+The training data is effectively part of the product. A bug in classical software lives in a line of code. A bug in an AI medical device often lives in a data distribution. The model performs well on the patients who resemble the training set and worse on the patients who do not. Under MDR, the obligation to manage this risk already exists at the intersection of Annex I Section 17 (software shall be developed in accordance with the state of the art, taking into account the development lifecycle and risk management) and the risk management process in EN ISO 14971:2019+A11:2021. The EU AI Act adds formal expectations around training data quality and provenance at the general level, and competent Notified Bodies are already asking for a data governance file in 2026.
+
+A defensible data governance file documents dataset provenance, the legal basis and consent for use, the split between training, validation, and test sets, the isolation of the test set from all development activity, the representativeness of the training data against the intended use population, the subgroup bias analysis with acceptance criteria set in advance, and the declared gaps that could not be closed with more data. Gaps that are declared become limitations in the intended use or the instructions for use; gaps that are hidden become findings at audit.
+
+## Stage 5. Algorithm lifecycle under EN 62304
+
+EN 62304:2006+A1:2015 is the harmonised software lifecycle standard for medical device software, referenced by MDR Annex I Section 17. It was written before the AI era, its core discipline, requirements, architecture, implementation, verification, integration, system test, release with defined acceptance criteria. Still applies to AI software, end to end. The AI-specific practices sit on top of this backbone.
+
+The specifically AI-shaped decisions at this stage are: is the algorithm locked, or does it update through controlled release events, or does it operate under a predefined change control plan that specifies in advance which updates are allowed without a new conformity assessment? Declare the model, document the change envelope before the first certification, implement model versioning end to end, every deployed model is traceable back to its training dataset version, code version, hyperparameters, and validation results, maintain a model registry with immutable records of every released model, a fully autonomous continuously-learning algorithm operating without a defined change envelope does not have a clean CE marking pathway in the EU in 2026; building for that assumption is building for a wall.
+
+## Stage 6. Risk management for AI failure modes
+
+EN ISO 14971:2019+A11:2021 is the risk management standard referenced under MDR for the safety and performance work. A risk file built from a hardware template will miss the failure modes that matter most for AI. The AI-specific hazards belong in the file explicitly.
+
+The short list: bias (systematic under-performance on a clinically meaningful subgroup), distribution shift (the field population differs from the training population), adversarial robustness (the model fails on inputs that look normal to a clinician but trip the model), explainability gaps (the clinician cannot judge whether the output should be trusted in a particular case), and automation complacency (the clinician stops reading the output carefully after the model is right many times in a row). Each hazard needs an identified harm, an estimated risk, a control, a residual risk, and a verification that the control works. Each control feeds back into the design, the labelling, the instructions for use, the training materials, or the post-market surveillance plan. The risk file has to be consistent with the clinical evaluation report and with the intended purpose, three documents, one story.
+
+## Stage 7. Clinical evaluation for AI performance
+
+MDR Article 61 and Annex XIV govern clinical evaluation. Conceptually nothing changes for AI; practically, the evidence content has to answer questions a traditional device does not raise. Literature alone is rarely sufficient because the specific model is new. Equivalence is difficult because two AI models with the same intended purpose can behave very differently on the same data. A retrospective performance study on an independent test set, or a prospective clinical investigation, is almost always part of the evidence package.
+
+A clinical evaluation for an AI medical device has to report performance on an independent test set that was not touched during development, with metrics that match the clinical question at the expected prevalence in the intended use population. It has to report subgroup performance for every clinically meaningful subgroup identified in the risk file. It has to characterise failure modes: where the model fails, whether it fails silently or loudly, and what the downstream clinical consequences are. And where the device is decision-support rather than autonomous, the clinical evaluation has to address the clinician-in-the-loop effect: a perfect model that clinicians ignore is a worse product than an 80% model that clinicians use correctly.
+
+## Stage 8. Cybersecurity
+
+Cybersecurity for AI medical devices lives inside the general cybersecurity obligation for health software. EN IEC 81001-5-1:2022 is the harmonised standard for security activities across the health software lifecycle. AI systems introduce a set of threats that classical software does not have, including model extraction, adversarial inputs, data poisoning during update pipelines, prompt injection for generative components, and supply-chain risk in pre-trained models, and those threats belong in the same security lifecycle as every other software threat.
+
+The practical move is to run a single security risk assessment that covers both the classical software threats and the AI-specific threats, map each to a control, and document the result inside the technical file. The controls that matter for AI usually include isolation of the training pipeline from production, signed model artefacts, access control on the model registry, monitoring of inference inputs for out-of-distribution or adversarial patterns, and a defined response when the monitoring trips.
+
+## Stage 9. The AI Act overlay at the general level
+
+Regulation (EU) 2024/1689. The EU AI Act. Adds a horizontal overlay on top of MDR for AI systems used in safety-critical contexts. We reference it at the general framing level in this post because the detailed operational interface between the AI Act and sectoral Regulations like MDR is still being clarified in 2026 by the Commission, the Medical Device Coordination Group, Notified Bodies, and AI Act governance bodies.
+
+The principle to plan around is this. Where an AI system is a medical device under MDR and also a high-risk AI system under the AI Act, both Regulations apply. The AI Act text signals that sectoral conformity assessment under MDR should serve as the channel for AI Act compliance in medical devices, rather than an entirely parallel process. In practice, that means the obligations the AI Act names at the general level. Training data governance, documentation of the AI system, transparency to users about the fact they are interacting with an AI system, human oversight appropriate to the use context, robustness and accuracy testing, post-market monitoring. Have to land somewhere in the existing MDR technical documentation and QMS. For a startup in 2026, the honest playbook is: build the MDR file properly, track the AI Act obligations on a live list, discuss the integration with your Notified Body early, and expect to adjust as official guidance settles. Do not cite specific AI Act article numbers you have not verified. Do not pretend the interface is finished.
+
+## Stage 10. Post-market surveillance with drift detection
+
+MDR Articles 83-86 require every manufacturer to operate a post-market surveillance system proportionate to the risk class and appropriate for the device. For AI, "appropriate" means drift detection is part of the system, not a footnote in the plan, but an instrumented monitoring stream with defined thresholds and defined escalation paths.
+
+An AI medical device can change its effective behaviour without the model moving a single weight. The reason is drift. A diagnostic model trained on one hospital's patient mix that gets deployed in a different hospital can degrade silently, seasonal disease patterns shift the input distribution, new imaging hardware changes pixel statistics, care protocols evolve, the model has not changed, but its real-world accuracy has. A PMS plan that treats AI like classical software will not catch this.
+
+A working AI PMS system monitors input distributions, monitors output distributions, monitors clinical outcomes where the data loop is feasible, defines thresholds that trigger investigation, and defines the actions, retraining, labelling change, or field safety corrective action, that each threshold leads to. And the monitoring has to actually run. A PMS plan that exists on paper and nowhere else is a finding waiting to happen. The Flinn.ai complacency story applies at this stage as much as it does inside the device: whoever reviews the drift alerts has to be protected from the trust-the-model reflex by spot-check rates and an honest escalation culture.
+
+## Stage 11. Change control across the lifecycle
+
+Change control ties the previous stages together. Under MDR, significant changes to a certified device can trigger a new conformity assessment. For an AI medical device, the question is which changes count as significant. The answer is set by the predefined change control plan where one exists and by the QMS procedures in every case. Retraining on new data, adjusting decision thresholds, adding or removing input features, changing the deployment environment, and updating the pre-trained base model are all changes that need a defined process behind them.
+
+The playbook is to agree the change categories with the Notified Body up front, record every change against those categories, run the pre-specified verification and validation activities for each category, and keep the model registry as the source of truth. Change control without a model registry is an argument waiting to happen.
+
+## Stage 12. The team you need
+
+An AI medical device startup in 2026 runs on a small number of roles played well, not a large number of roles played thinly. The roles that have to exist in some form are: a regulatory lead who owns the MDR file and knows the AI Act overlay; a clinical lead who owns the intended purpose, the clinical evaluation, and the relationship with clinical partners; a data and ML lead who owns the training data governance file, the model registry, and the drift monitoring; a software and cybersecurity lead who owns the EN 62304 and EN IEC 81001-5-1 work; and a quality lead who owns the QMS and the PMS operation.
+
+In a small team these roles overlap. One person can be regulatory plus quality. Another can be data plus software. The roles cannot be absent, and they cannot be outsourced in a way that removes the owning human from inside the company. A Notified Body audit will find it fast when the person answering the questions is a consultant who does not live with the product. Outside help for specific deliverables is fine; outside help as a replacement for in-house accountability is not.
+
+A lot of what gets bundled under the label "AI in our product" does not perform a medical function and does not need to be inside the MDR file.
+
+## Strategic Approach
+
+The Subtract to Ship framework for MDR runs the same four passes on an AI medical device as on any other device: Purpose, Classification, Evidence, Operations. For AI, each pass cuts in the places founders most often over-build.
+
+The Purpose Pass cuts AI features that are not medical devices out of the regulated envelope. A lot of what gets bundled under the label "AI in our product" does not perform a medical function and does not need to be inside the MDR file. Pulling those features out of scope is the single highest-use move a founder can make. The Classification Pass cuts the reflex assumption that every AI clinical feature is IIb by reading Rule 11 carefully and documenting the severity call. The Evidence Pass cuts duplicated clinical evidence. For many Class IIa AI devices, a well-run retrospective performance study on an independent dataset plus targeted literature plus subgroup analysis is sufficient, and a prospective clinical investigation on top is added work that does not trace to an obligation. The Operations Pass cuts the overbuilt QMS and PMS. A small team needs a QMS that covers the AI-specific processes on top of an EN ISO 13485-aligned backbone, not a paper palace that nobody reads.
+
+Everything in the playbook above traces to a specific MDR article, annex, harmonised standard, or MDCG guidance document. Everything that does not trace is not in the playbook.
+
+## Practical Implications
+
+Do you have a single precise sentence for the intended purpose of every AI feature in your product, and is every external artefact consistent with that sentence?
+
+Have you qualified every AI feature against Article 2(1) and MDCG 2019-11 Rev.1 explicitly, and separated the medical features from the non-medical ones in the regulated scope?
+
+Is your Annex VIII Rule 11 classification documented with the specific sub-clause and a clinical rationale for the severity call?
+
+Do you have a training data governance file as a distinct section of the technical documentation, with provenance, representativeness, test set isolation, and subgroup bias testing?
+
+Have you declared, in writing, whether your algorithm is locked or operates under a predefined change control envelope?
+
+Does your risk file under EN ISO 14971:2019+A11:2021 list AI-specific failure modes. Bias, drift, adversarial robustness, explainability, automation complacency. With controls that actually work?
+
+Does your clinical evaluation include performance on an independent test set, with subgroup analysis, at the prevalence of the intended use population?
+
+Does your cybersecurity assessment under EN IEC 81001-5-1:2022 cover AI-specific threats (model extraction, adversarial inputs, data poisoning), not only classical software threats?
+
+Is your PMS plan instrumented for drift detection with defined thresholds and escalation paths, and is the monitoring actually running?
+
+Have you had a first conversation with your Notified Body about how AI Act obligations will be integrated into the MDR conformity assessment for your specific product?
+
+## Frequently Asked Questions
+
+### Is there a separate MDR regime for AI medical devices?
+
+No. An AI medical device is a medical device under MDR. The same articles, annexes, and harmonised standards apply. What changes is the content of the technical documentation: the risk file includes AI-specific failure modes, the clinical evaluation includes performance on an independent test set with subgroup analysis, and the PMS plan includes drift detection. The Regulation does not carve AI out.
+
+### Where does the EU AI Act fit into the playbook?
+
+The AI Act is a horizontal Regulation that adds a second layer on top of MDR for AI systems in safety-critical use. Where an AI medical device is also a high-risk AI system under the AI Act, both Regulations apply. The AI Act expects its obligations to be integrated into the sectoral MDR conformity assessment rather than duplicated. The detailed operational interface is still being clarified in 2026; founders should plan for the overlay, track obligations on a live list, and discuss integration with their Notified Body early.
+
+### What class will my AI diagnostic decision-support tool be?
+
+Under Annex VIII Rule 11, it depends on the severity of the clinical decision the AI supports, routine diagnostic decisions typically land at Class IIa, decisions where a wrong call can cause serious deterioration of health are IIb. Decisions that can cause death or irreversible harm are III. Very few AI diagnostic tools are Class I.
+
+### Can I ship a continuously learning algorithm in the EU?
+
+Not cleanly in 2026. The MDR framework assumes a defined device configuration at the point of placing on the market and triggers re-assessment for significant changes. A fully autonomous continuously-learning model without a defined change envelope does not fit that frame. The practical pathway is a locked algorithm or a predefined change control plan that specifies in advance how and when updates can occur, with pre-approved verification and validation activities for each change category.
+
+### What is the single most common gap in AI MedTech technical files at audit?
+
+Post-market drift detection. It is written in the plan, and it is not instrumented in the running system. When the auditor asks to see the drift monitoring output, the answer starts with "we're building that." That answer is a finding.
+
+### How much of this playbook can a small team realistically run in-house?
+
+Most of it, if the core roles exist, regulatory, clinical, data/ML, software/cybersecurity, quality, with overlap allowed in a small team, specific deliverables can be supported from outside (biostatistics on the clinical study, a targeted gap assessment before the Notified Body submission), but the owning humans for each area have to live inside the company. A file defended by a consultant who does not use the product day to day does not survive contact with a serious audit.
+
+## Related reading
+
+AI in Medical Devices Under MDR: The Regulatory Environment in 2026 , the pillar post for the AI MedTech category; start here for framing.
+
+Machine Learning Medical Devices Under MDR , the companion post on ML model development under MDR discipline.
+
+Classification of AI and ML Software Under Rule 11 , the practical walk-through of Annex VIII Rule 11 for AI products.
+
+Locked Versus Adaptive AI Algorithms Under MDR , the open question on continuous learning and the pathways that exist today.
+
+The EU AI Act and MDR: How the Two Regulations Interact , the dedicated post on the two-Regulation overlap.
+
+Training Data Governance for AI Medical Devices , the data governance file in detail.
+
+Bias Testing for AI Medical Devices , subgroup analysis in practice.
+
+Clinical Evaluation for AI and ML Medical Devices , the evidence expectations specific to AI products.
+
+Risk Management for AI Medical Devices Under EN ISO 14971 , the AI-aware risk file.
+
+Cybersecurity for AI Medical Devices Under EN IEC 81001-5-1 , security for AI systems inside the health software lifecycle.
+
+Post-Market Surveillance for AI Medical Devices , drift detection and operational PMS patterns.
+
+AI in Post-Market Surveillance: Complaint Analysis , the complaint workflow with AI inside the loop.
+
+How Flinn.ai and AI Tools Are Transforming Regulatory Work for Startups , the other side of the equation: AI inside the regulatory process itself.
+
+AI Advantage in Regulatory Affairs for Startups , how a small team uses AI tooling to run a regulated product without hiring an army.
+
+AI/ML Medical Device Compliance Checklist for Startups in 2027 , the companion checklist post to this playbook.
+
+AI MedTech Startup Funding and Regulatory Milestones , how the playbook lines up with a startup funding plan.
+
+The Subtract to Ship Framework for MDR Compliance , the methodology that runs through every post in this blog.
+
+## Sources
+
+Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices, Article 2(1) (definition of medical device), Article 51 (classification), Article 61 (clinical evaluation), Articles 83-86 (post-market surveillance), Annex I (GSPR, in particular Section 17 on electronic programmable systems and software), Annex VIII (classification rules, in particular Rule 11). Official Journal L 117, 5.5.2017, consolidated text.
+
+Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). Referenced at the general framing level for the AI Act overlay. Specific article references are intentionally not cited in this post; founders should consult the official text on EUR-Lex.
+
+MDCG 2019-11 Rev.1. Guidance on Qualification and Classification of Software in Regulation (EU) 2017/745 . MDR and Regulation (EU) 2017/746 . IVDR, October 2019, Revision 1 June 2025.
+
+EN 62304 :2006 + A1:2015. Medical device software. Software life-cycle processes.
+
+EN ISO 14971 :2019 + A11:2021. Medical devices. Application of risk management to medical devices.
+
+EN IEC 81001 -5-1:2022. Health software and health IT systems safety, effectiveness and security. Part 5-1: Security. Activities in the product life cycle.
+
+This post is part of the AI, Machine Learning & Algorithmic Devices series in the Subtract to Ship: MDR blog, authored by Felix Lenhard and Tibor Zechmeister, the playbook will be updated as the operational interface between MDR and the EU AI Act is clarified by the Commission and the Medical Device Coordination Group. If the general framing here does not resolve your specific AI medical device, and for a novel product it often will not, that is expected: the domain is complex, every device is different, and that is exactly where a sparring partner who has walked other AI MedTech founders through the same decisions earns their keep.
+
+The Bigger Picture
+
+This post is part of the AI, Machine Learning & Algorithmic Devices series in the Subtract to Ship: MDR blog, authored by Felix Lenhard and Tibor Zechmeister, the playbook will be updated as the operational interface between MDR and the EU AI Act is clarified by the Commission and the Medical Device Coordination Group. If the general framing.

@@ -1,0 +1,4836 @@
+{
+ "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a",
+ "brief": {
+  "name": "Benchmark",
+  "role": "Founder",
+  "company": "AHA Labs Inc.",
+  "product": "Agentic Harmonization Assistant for pharma and CRO clinical datasets",
+  "description": "For-profit US company selling an AI harmonization layer that standardizes multi-cohort Alzheimer's datasets for pharma and CRO partners.",
+  "industry": "alzheimer's disease clinical data harmonization AI",
+  "stage": "prototype",
+  "geography": "United States (Delaware C-corp)",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "investment"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 500000,
+  "minDays": 30,
+  "useTeam": false,
+  "useApify": false,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "",
+  "venture": "AHA Labs",
+  "oneLiner": "AI harmonization of clinical datasets for pharma partners",
+  "round": "seed",
+  "constraints": "No clinical care claims",
+  "useOfFunds": "Productize the harmonization engine, security certification, two pharma pilots",
+  "timeline": "18 months",
+  "website": "",
+  "entityType": "for_profit",
+  "country": "United States",
+  "state": "",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: AHA Labs · Agentic Harmonization Assistant for pharma and CRO clinical datasets: investment · prototype · seed · United States (Delaware C-corp) · USD 500000 · avoid: No clinical care claims",
+   "at": "2026-10-14T16:39:40.217Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 6 phrasings separately: alzheimer's disease clinical data harmonization AI · Machine learning harmonization of Alzheimer’s trial datasets · Digital platform for unified Alzheimer’s clinical data · data harmonization · data standardization · data integration",
+   "at": "2026-10-14T16:39:40.862Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T16:39:41.050Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 10 candidates with provenance.",
+   "at": "2026-10-14T16:45:40.691Z"
+  },
+  {
+   "phase": "warning",
+   "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+   "at": "2026-10-14T16:45:43.484Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 19 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T16:45:43.490Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Drafts built from templates and public facts; nothing is sent.",
+   "at": "2026-10-14T16:45:46.724Z"
+  },
+  {
+   "phase": "done",
+   "message": "4 candidates prioritized; 15 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T16:45:46.763Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": "Rohit Goel",
+   "role": "Finance Director",
+   "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "title": "Finance Director at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "rgoel@igcpharma.com",
+    "provenance": "Hunter.io · igcpharma.com · confidence 94% · valid · seen on 2 public pages"
+   },
+   "evidence": [
+    {
+     "id": "2fc0c0cb7f7658aba129",
+     "source": "Web research engine · igcpharma.com",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    },
+    {
+     "id": "1ddb3e154324160e3ae7",
+     "source": "Hunter.io · igcpharma.com",
+     "url": "https://www.google.com/search?q=site:linkedin.com%20rohit%20goel%20igcpharma",
+     "quote": "Rohit Goel · Finance Director · rgoel@igcpharma.com (Hunter.io · igcpharma.com · confidence 94% · valid · seen on 2 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:41.423Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Finance Director finance & accounting IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow - IGCPharma IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "igcpharma.com",
+     "objective": "investment",
+     "query": "domain-search igcpharma.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:igcpharma.com:rohit goel",
+   "linkedin": "https://www.linkedin.com/in/rohitgoelbna",
+   "parentKey": "opportunity:engine:investment:https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "followUp": {
+    "from": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+    "question": "Who decides at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d?"
+   },
+   "key": "person:rohit goel:igc pharma inc is a clinical stage biotechnology company developing therapeutics for alzheimer s disease and ai enabled tools to support biomedical discovery data harmonization and clinical development the company is showcasing its ai portfolio at aaic 2026 including the ahatm platform which d",
+   "id": "10ed2a6f3e0c98d72d90",
+   "fit": 0.6666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Machine learning harmonization of Alzheimer’s trial datasets",
+    "Digital platform for unified Alzheimer’s clinical data",
+    "data harmonization"
+   ],
+   "score": 49,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 23.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 1,
+   "jev": {
+    "leadId": "10ed2a6f3e0c98d72d90",
+    "action": "investigate_more",
+    "actionConfidence": 0.91,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.94,
+     "discard": 0.05
+    },
+    "strategicFit": 2.22,
+    "fitConfidence": 0.53,
+    "evidenceSufficient": 0.36,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "2fc0c0cb7f7658aba129",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+    },
+    "why": "Rohit has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to Rohit."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Jagadeesh Sridhar",
+   "role": "Principal Scientist",
+   "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "title": "Principal Scientist at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "jrao@igcpharma.com",
+    "provenance": "Hunter.io · igcpharma.com · confidence 94% · valid · seen on 2 public pages"
+   },
+   "evidence": [
+    {
+     "id": "2fc0c0cb7f7658aba129",
+     "source": "Web research engine · igcpharma.com",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    },
+    {
+     "id": "03a34b172398c3376a32",
+     "source": "Hunter.io · igcpharma.com",
+     "url": "https://www.google.com/search?q=site:linkedin.com%20jagadeesh%20sridhar%20igcpharma",
+     "quote": "Jagadeesh Sridhar · Principal Scientist · jrao@igcpharma.com (Hunter.io · igcpharma.com · confidence 94% · valid · seen on 2 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:41.423Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Principal Scientist education IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow - IGCPharma IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "igcpharma.com",
+     "objective": "investment",
+     "query": "domain-search igcpharma.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:igcpharma.com:jagadeesh sridhar",
+   "linkedin": "https://www.linkedin.com/in/jagadeesh-sridhar-527309187",
+   "parentKey": "opportunity:engine:investment:https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "followUp": {
+    "from": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+    "question": "Who decides at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d?"
+   },
+   "key": "person:jagadeesh sridhar:igc pharma inc is a clinical stage biotechnology company developing therapeutics for alzheimer s disease and ai enabled tools to support biomedical discovery data harmonization and clinical development the company is showcasing its ai portfolio at aaic 2026 including the ahatm platform which d",
+   "id": "1d2d68641eacc9b292c4",
+   "fit": 0.6666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Machine learning harmonization of Alzheimer’s trial datasets",
+    "Digital platform for unified Alzheimer’s clinical data",
+    "data harmonization"
+   ],
+   "score": 49,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 23.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 2,
+   "jev": {
+    "leadId": "1d2d68641eacc9b292c4",
+    "action": "investigate_more",
+    "actionConfidence": 0.83,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.89,
+     "discard": 0.1
+    },
+    "strategicFit": 2.07,
+    "fitConfidence": 0.38,
+    "evidenceSufficient": 0.28,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "2fc0c0cb7f7658aba129",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+    },
+    "why": "Jagadeesh has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to Jagadeesh."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Malinda Campbell",
+   "role": "Purchasing Manager",
+   "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "title": "Purchasing Manager at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "mcampbell@igcpharma.com",
+    "provenance": "Hunter.io · igcpharma.com · confidence 99% · valid · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "2fc0c0cb7f7658aba129",
+     "source": "Web research engine · igcpharma.com",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    },
+    {
+     "id": "ab3cdbcf2f59a1b0803d",
+     "source": "Hunter.io · igcpharma.com",
+     "url": "https://www.google.com/search?q=site:linkedin.com%20malinda%20campbell%20igcpharma",
+     "quote": "Malinda Campbell · Purchasing Manager · mcampbell@igcpharma.com (Hunter.io · igcpharma.com · confidence 99% · valid · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:41.423Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Purchasing Manager procurement IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow - IGCPharma IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "igcpharma.com",
+     "objective": "investment",
+     "query": "domain-search igcpharma.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:igcpharma.com:malinda campbell",
+   "linkedin": "https://www.linkedin.com/in/malinda-campbell-56b865286",
+   "parentKey": "opportunity:engine:investment:https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "followUp": {
+    "from": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+    "question": "Who decides at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d?"
+   },
+   "key": "person:malinda campbell:igc pharma inc is a clinical stage biotechnology company developing therapeutics for alzheimer s disease and ai enabled tools to support biomedical discovery data harmonization and clinical development the company is showcasing its ai portfolio at aaic 2026 including the ahatm platform which d",
+   "id": "e423c772247b13bebbd9",
+   "fit": 0.6666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Machine learning harmonization of Alzheimer’s trial datasets",
+    "Digital platform for unified Alzheimer’s clinical data",
+    "data harmonization"
+   ],
+   "score": 49,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 23.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 3,
+   "jev": {
+    "leadId": "e423c772247b13bebbd9",
+    "action": "investigate_more",
+    "actionConfidence": 0.55,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.7,
+     "discard": 0.29
+    },
+    "strategicFit": 1.27,
+    "fitConfidence": 0.48,
+    "evidenceSufficient": 0.25,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "2fc0c0cb7f7658aba129",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+    },
+    "why": "Malinda has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to Malinda."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "title": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "unknown",
+   "contact": {
+    "type": "web",
+    "value": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+    "provenance": "Read and verified on igcpharma.com"
+   },
+   "evidence": [
+    {
+     "id": "2fc0c0cb7f7658aba129",
+     "source": "Web research engine · igcpharma.com",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion recent_activity: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:event_start",
+    "Check: date_date_not_in_quote:event_end"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow - IGCPharma IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:event_start",
+     "date_date_not_in_quote:event_end"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion recent_activity: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s focus on AI harmonization of Alzheimer’s clinical datasets aligns with the page’s described AI data‑harmonization work.",
+     "fundsQuote": "IGC Pharma is building computational infrastructure designed to accelerate data integration, patient stratification, and clinical development workflows in Alzheimer’s disease.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [],
+   "quotes": {
+    "identity": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+   },
+   "key": "opportunity:engine:investment:https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "id": "38f114ebe149d77b220f",
+   "fit": 0.6666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Machine learning harmonization of Alzheimer’s trial datasets",
+    "Digital platform for unified Alzheimer’s clinical data",
+    "data harmonization"
+   ],
+   "score": 46,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 23.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD unknown; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 4,
+   "jev": {
+    "leadId": "38f114ebe149d77b220f",
+    "action": "investigate_more",
+    "actionConfidence": 0.92,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.95,
+     "discard": 0.04
+    },
+    "strategicFit": 1.78,
+    "fitConfidence": 0.36,
+    "evidenceSufficient": 0.08,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "2fc0c0cb7f7658aba129",
+     "url": "https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+    },
+    "why": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI portfolio at AAIC 2026, including the AHA™ platform, which d."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, and clinical development.",
+   "title": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, and clinical development.",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "unknown",
+   "contact": {
+    "type": "web",
+    "value": "https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+    "provenance": "Read and verified on investor.igcpharma.com"
+   },
+   "evidence": [
+    {
+     "id": "af220f63f00e29b4b339",
+     "source": "Web research engine · investor.igcpharma.com",
+     "url": "https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.688Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "The judge says \"no\" for recent_activity without a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion topic_fit: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:event",
+    "Check: fake_quote:recent_activity"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, and clinical development. IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer&#039;s Data Harmonization Time by 90% in Representative Workflow - IGC Pharma, INC. IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:event",
+     "fake_quote:recent_activity"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "The judge says \"no\" for recent_activity without a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion topic_fit: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "Although the AHA platform matches the applicant’s focus, the page is a news release, not a funding call.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [],
+   "quotes": {
+    "identity": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+   },
+   "key": "opportunity:engine:investment:https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+   "id": "e16b47a7f68488579bd8",
+   "fit": 0.6666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Machine learning harmonization of Alzheimer’s trial datasets",
+    "Digital platform for unified Alzheimer’s clinical data",
+    "data harmonization"
+   ],
+   "score": 46,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 23.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD unknown; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 5,
+   "jev": {
+    "leadId": "e16b47a7f68488579bd8",
+    "action": "investigate_more",
+    "actionConfidence": 0.92,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.95,
+     "discard": 0.05
+    },
+    "strategicFit": 1.83,
+    "fitConfidence": 0.41,
+    "evidenceSufficient": 0.09,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "af220f63f00e29b4b339",
+     "url": "https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+     "quote": "IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer’s Data Harmonization Time by 90% in Representative Workflow"
+    },
+    "why": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, and clinical development. has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, and clinical development.."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b",
+   "title": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "unknown",
+   "contact": {
+    "type": "web",
+    "value": "https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+    "provenance": "Read and verified on breakingcrypto.io"
+   },
+   "evidence": [
+    {
+     "id": "1d533a6e781844d7cfa4",
+     "source": "Web research engine · breakingcrypto.io",
+     "url": "https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+     "quote": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion topic_fit: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:event_start",
+    "Check: date_date_not_in_quote:event_end"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b IGC Pharma to Showcase AI Portfolio at AAIC 2026, Including AHA Platform That Reduced Alzheimer&#x27;s Data Harmonization Time by 90% in Representative Workflow | BreakingCrypto IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:event_start",
+     "date_date_not_in_quote:event_end"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion topic_fit: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The page describes AI data‑harmonization work but does not indicate funding or partnership intent, so fit cannot be confirmed.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [],
+   "quotes": {
+    "identity": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b"
+   },
+   "key": "opportunity:engine:investment:https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+   "id": "ee7729adb08a15aacc4f",
+   "fit": 0.6666666666666666,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Machine learning harmonization of Alzheimer’s trial datasets",
+    "Digital platform for unified Alzheimer’s clinical data",
+    "data harmonization"
+   ],
+   "score": 46,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 23.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD unknown; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 6,
+   "jev": {
+    "leadId": "ee7729adb08a15aacc4f",
+    "action": "investigate_more",
+    "actionConfidence": 0.85,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.9,
+     "discard": 0.09
+    },
+    "strategicFit": 1.76,
+    "fitConfidence": 0.24,
+    "evidenceSufficient": 0.08,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "1d533a6e781844d7cfa4",
+     "url": "https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+     "quote": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ p"
+    },
+    "why": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ platform, which reduces Alzheimer's data harmonization time b."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Ralf Jahns",
+   "role": "Managing Director",
+   "org": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+   "title": "Managing Director at research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "ralf.jahns@research2guidance.com",
+    "provenance": "Hunter.io · research2guidance.com · confidence 99% · valid · seen on 30 public pages"
+   },
+   "evidence": [
+    {
+     "id": "df44266ca09d37b1eea4",
+     "source": "Web research engine · research2guidance.com",
+     "url": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+     "quote": "Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    },
+    {
+     "id": "c79abff8745fc8e4a135",
+     "source": "Hunter.io · research2guidance.com",
+     "url": "https://r2gconnect.com/impressum",
+     "quote": "Ralf Jahns · Managing Director · ralf.jahns@research2guidance.com (Hunter.io · research2guidance.com · confidence 99% · valid · seen on 30 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:41.949Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Managing Director executive research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p research2guidance - Pitch First, Pilot Later: What Startups Want From Partnerships Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "research2guidance.com",
+     "objective": "investment",
+     "query": "domain-search research2guidance.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:research2guidance.com:ralf jahns",
+   "linkedin": "https://www.linkedin.com/in/ralf-gordon-jahns-0a4b1ab",
+   "parentKey": "opportunity:engine:investment:https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "followUp": {
+    "from": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+    "question": "Who decides at research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p?"
+   },
+   "key": "person:ralf jahns:research2guidance is a platform that connects healthtech startups with strategic partners including investors hospitals digital health companies and accelerators it publishes research and insights on partnership trends in the healthtech sector particularly focusing on what startups need from p",
+   "id": "dbdbdbb9a69f7047fb09",
+   "fit": 0.3333333333333333,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 38,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 11.7,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 7,
+   "jev": {
+    "leadId": "dbdbdbb9a69f7047fb09",
+    "action": "investigate_more",
+    "actionConfidence": 0.83,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.89,
+     "discard": 0.11
+    },
+    "strategicFit": 0.96,
+    "fitConfidence": 0.74,
+    "evidenceSufficient": 0.4,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Ralf Jahns yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Ralf for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Ralf has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Stela Nikolova",
+   "role": "Digital Health Partnership Manager",
+   "org": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+   "title": "Digital Health Partnership Manager at research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "stela.nikolova@research2guidance.com",
+    "provenance": "Hunter.io · research2guidance.com · confidence 98% · valid · seen on 12 public pages"
+   },
+   "evidence": [
+    {
+     "id": "df44266ca09d37b1eea4",
+     "source": "Web research engine · research2guidance.com",
+     "url": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+     "quote": "Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    },
+    {
+     "id": "e965140c57c36adbab99",
+     "source": "Hunter.io · research2guidance.com",
+     "url": "https://r2gconnect.com/r2gconnect-news",
+     "quote": "Stela Nikolova · Digital Health Partnership Manager · stela.nikolova@research2guidance.com (Hunter.io · research2guidance.com · confidence 98% · valid · seen on 12 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:41.950Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Digital Health Partnership Manager sales research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p research2guidance - Pitch First, Pilot Later: What Startups Want From Partnerships Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "research2guidance.com",
+     "objective": "investment",
+     "query": "domain-search research2guidance.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:research2guidance.com:stela nikolova",
+   "linkedin": "https://www.linkedin.com/in/stelanikolova",
+   "parentKey": "opportunity:engine:investment:https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "followUp": {
+    "from": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+    "question": "Who decides at research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p?"
+   },
+   "key": "person:stela nikolova:research2guidance is a platform that connects healthtech startups with strategic partners including investors hospitals digital health companies and accelerators it publishes research and insights on partnership trends in the healthtech sector particularly focusing on what startups need from p",
+   "id": "ddb10039c7c95c038463",
+   "fit": 0.3333333333333333,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 38,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 11.7,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 8,
+   "jev": {
+    "leadId": "ddb10039c7c95c038463",
+    "action": "investigate_more",
+    "actionConfidence": 0.89,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.93,
+     "discard": 0.07
+    },
+    "strategicFit": 0.98,
+    "fitConfidence": 0.71,
+    "evidenceSufficient": 0.43,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Stela Nikolova yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Stela for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Stela has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+   "title": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "unknown",
+   "contact": {
+    "type": "web",
+    "value": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+    "provenance": "Read and verified on research2guidance.com"
+   },
+   "evidence": [
+    {
+     "id": "df44266ca09d37b1eea4",
+     "source": "Web research engine · research2guidance.com",
+     "url": "https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+     "quote": "Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:report_publication",
+    "Check: fake_quote:region"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p research2guidance - Pitch First, Pilot Later: What Startups Want From Partnerships Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:report_publication",
+     "fake_quote:region"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "AHA Labs operates in HealthTech (AI for Alzheimer’s clinical data), which aligns with the page’s focus on HealthTech startups.",
+     "fundsQuote": "HealthTech startups are clear about what they need most from partnerships, and it’s not just mentorship.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Ralf-Gordon Ja***s",
+     "role": "Founder",
+     "email": null,
+     "organization": "Research2Guidance",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Stela Ni***a",
+     "role": "Digital Health Partnership Lead & Marketing Manager",
+     "email": null,
+     "organization": "Research2Guidance",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Alex Da***n",
+     "role": "Senior Data Analyst",
+     "email": null,
+     "organization": "Research2Guidance",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Join the R2GConnect platform and connect with over 8,700 HealthTech companies actively looking for their next clinical, commercial, and capital partners."
+   },
+   "key": "opportunity:engine:investment:https://research2guidance.com/pitch-first-pilot-later-what-startups-want-from-partnerships/",
+   "id": "1e10ed457e0532026210",
+   "fit": 0.3333333333333333,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 35,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 11.7,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD unknown; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 9,
+   "jev": {
+    "leadId": "1e10ed457e0532026210",
+    "action": "investigate_more",
+    "actionConfidence": 0.77,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.85,
+     "discard": 0.15
+    },
+    "strategicFit": 0.71,
+    "fitConfidence": 0.59,
+    "evidenceSufficient": 0.09,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then research2guidance is a platform that connects HealthTech startups with strategic partners, including investors, hospitals, digital health companies, and accelerators. It publishes research and insights on partnership trends in the HealthTech sector, particularly focusing on what startups need from p has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma",
+   "title": "AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$10.2B across 230 venture rounds in H1 2026",
+   "contact": {
+    "type": "web",
+    "value": "https://dealforma.com/ai-machine-learning-rd-ma-ventures-ipos-h1-2026-review/",
+    "provenance": "Read and verified on dealforma.com"
+   },
+   "evidence": [
+    {
+     "id": "b8ab05f6319730a3ed32",
+     "source": "Web research engine · dealforma.com",
+     "url": "https://dealforma.com/ai-machine-learning-rd-ma-ventures-ipos-h1-2026-review/",
+     "quote": "Venture remained the busiest channel, raising $10.2B across 230 rounds, with rising counts and steady capital signaling durable appetite.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.689Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma AI / Machine Learning R&amp;D, M&amp;A, Ventures &amp; IPOs - H1 2026 Review - DealForma Venture remained the busiest channel, raising $10.2B across 230 rounds, with rising counts and steady capital signaling durable appetite.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://dealforma.com/ai-machine-learning-rd-ma-ventures-ipos-h1-2026-review/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "forecast_notice"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The page focuses on AI/ML applications in biopharma, which aligns with AHA Labs’ AI‑driven clinical data harmonization.",
+     "fundsQuote": "AI and machine learning drove biopharma’s biggest capital events in H1 2026, though dealmaking turned selective after an intense Q1.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Chris Do***r",
+     "role": "Founder & CEO",
+     "email": null,
+     "organization": "DealForma",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Muhammad As***f",
+     "role": "Financial/Content Data Analyst",
+     "email": null,
+     "organization": "DealForma",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Mohsin Ay***z",
+     "role": "Senior Software Engineer",
+     "email": null,
+     "organization": "DealForma",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Venture remained the busiest channel, raising $10.2B across 230 rounds, with rising counts and steady capital signaling durable appetite."
+   },
+   "key": "opportunity:engine:investment:https://dealforma.com/ai-machine-learning-rd-ma-ventures-ipos-h1-2026-review/",
+   "id": "e2800bbc1b54ab315995",
+   "fit": 0.3333333333333333,
+   "matchedTerms": [
+    "Machine learning harmonization of Alzheimer’s trial datasets"
+   ],
+   "score": 35,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 11.7,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Machine learning harmonization of Alzheimer’s trial datasets in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD $10.2B across 230 venture rounds in H1 2026; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 10,
+   "jev": {
+    "leadId": "e2800bbc1b54ab315995",
+    "action": "investigate_more",
+    "actionConfidence": 0.7,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.8,
+     "discard": 0.2
+    },
+    "strategicFit": 0.27,
+    "fitConfidence": 0.77,
+    "evidenceSufficient": 0.07,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then AI / Machine Learning R&D, M&A, Ventures & IPOs - H1 2026 Review - DealForma has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms.",
+   "title": "A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms.",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "unknown",
+   "contact": {
+    "type": "web",
+    "value": "https://www.vcsheet.com/sheet/digital-health-funds",
+    "provenance": "Read and verified on vcsheet.com"
+   },
+   "evidence": [
+    {
+     "id": "5ccb90ef3399a5a76e6e",
+     "source": "Web research engine · vcsheet.com",
+     "url": "https://www.vcsheet.com/sheet/digital-health-funds",
+     "quote": "A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms. Digital Health funds — Curated VC Funds A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://www.vcsheet.com/sheet/digital-health-funds",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion entity_type: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The listed focus on AI diagnostics and clinical software aligns with AI harmonization of clinical datasets.",
+     "fundsQuote": "AI diagnostics and patient engagement platforms",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms."
+   },
+   "key": "opportunity:engine:investment:https://www.vcsheet.com/sheet/digital-health-funds",
+   "id": "f2602c65197cccd967b7",
+   "fit": 0.3333333333333333,
+   "matchedTerms": [
+    "alzheimer's disease clinical data harmonization AI",
+    "alzheimer's disease clinical data harmonization AI",
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 35,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 11.7,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD unknown; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 11,
+   "jev": {
+    "leadId": "f2602c65197cccd967b7",
+    "action": "investigate_more",
+    "actionConfidence": 0.91,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.94,
+     "discard": 0.06
+    },
+    "strategicFit": 0.89,
+    "fitConfidence": 0.66,
+    "evidenceSufficient": 0.09,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms. yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms. for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms. has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Aunkur Arya",
+   "role": "Venture Partner",
+   "org": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "title": "Venture Partner at Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "aunkur@menlovc.com",
+    "provenance": "Hunter.io · menlovc.com · confidence 99% · valid · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    },
+    {
+     "id": "b13a3099350565c4851f",
+     "source": "Hunter.io · menlovc.com",
+     "url": "https://deltaexec.com/blog/buyside-summer-market-update-2022",
+     "quote": "Aunkur Arya · Venture Partner · aunkur@menlovc.com (Hunter.io · menlovc.com · confidence 99% · valid · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:42.746Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Venture Partner executive Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "menlovc.com",
+     "objective": "investment",
+     "query": "domain-search menlovc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:menlovc.com:aunkur arya",
+   "parentKey": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "followUp": {
+    "from": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+    "question": "Who decides at Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a?"
+   },
+   "key": "person:aunkur arya:menlo ventures is a venture capital firm focused on investing in early stage biotech and healthcare companies at the intersection of technology and biology the firm emphasizes transformative innovations in therapeutic platforms digital health healthcare saas and ai driven life sciences it has a",
+   "id": "27662bc4f8e1b8b143d4",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 12,
+   "jev": {
+    "leadId": "27662bc4f8e1b8b143d4",
+    "action": "investigate_more",
+    "actionConfidence": 0.97,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.98,
+     "discard": 0.02
+    },
+    "strategicFit": 1.62,
+    "fitConfidence": 0.66,
+    "evidenceSufficient": 0.38,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "957395967bb80fa84768",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians"
+    },
+    "why": "Aunkur's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to Aunkur mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Rama Sekhar",
+   "role": "Partner",
+   "org": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "title": "Partner at Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "rama@menlovc.com",
+    "provenance": "Hunter.io · menlovc.com · confidence 99% · valid · seen on 7 public pages"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    },
+    {
+     "id": "1b8343bb47c4178e453e",
+     "source": "Hunter.io · menlovc.com",
+     "url": "https://menlovc.com/team/rama-sekhar",
+     "quote": "Rama Sekhar · Partner · rama@menlovc.com (Hunter.io · menlovc.com · confidence 99% · valid · seen on 7 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:42.747Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Partner executive Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "menlovc.com",
+     "objective": "investment",
+     "query": "domain-search menlovc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:menlovc.com:rama sekhar",
+   "linkedin": "https://www.linkedin.com/in/ramasekhar",
+   "parentKey": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "followUp": {
+    "from": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+    "question": "Who decides at Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a?"
+   },
+   "key": "person:rama sekhar:menlo ventures is a venture capital firm focused on investing in early stage biotech and healthcare companies at the intersection of technology and biology the firm emphasizes transformative innovations in therapeutic platforms digital health healthcare saas and ai driven life sciences it has a",
+   "id": "36fb8e19d42ab9cce78a",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 13,
+   "jev": {
+    "leadId": "36fb8e19d42ab9cce78a",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.56,
+    "fitConfidence": 0.61,
+    "evidenceSufficient": 0.39,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "957395967bb80fa84768",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians"
+    },
+    "why": "Rama's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to Rama mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Joff Redfern",
+   "role": "Partner",
+   "org": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "title": "Partner at Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "joff@menlovc.com",
+    "provenance": "Hunter.io · menlovc.com · confidence 99% · valid · seen on 3 public pages"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    },
+    {
+     "id": "e6341b5463d65061b6b2",
+     "source": "Hunter.io · menlovc.com",
+     "url": "https://menlovc.com/team/joff-redfern",
+     "quote": "Joff Redfern · Partner · joff@menlovc.com (Hunter.io · menlovc.com · confidence 99% · valid · seen on 3 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:42.747Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Partner executive Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "menlovc.com",
+     "objective": "investment",
+     "query": "domain-search menlovc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:menlovc.com:joff redfern",
+   "linkedin": "https://www.linkedin.com/in/mejoff",
+   "parentKey": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "followUp": {
+    "from": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+    "question": "Who decides at Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a?"
+   },
+   "key": "person:joff redfern:menlo ventures is a venture capital firm focused on investing in early stage biotech and healthcare companies at the intersection of technology and biology the firm emphasizes transformative innovations in therapeutic platforms digital health healthcare saas and ai driven life sciences it has a",
+   "id": "6c8b1fc6a6cdbc04394e",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 14,
+   "jev": {
+    "leadId": "6c8b1fc6a6cdbc04394e",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.59,
+    "fitConfidence": 0.62,
+    "evidenceSufficient": 0.41,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "957395967bb80fa84768",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians"
+    },
+    "why": "Joff's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to Joff mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "title": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$100 million",
+   "contact": {
+    "type": "web",
+    "value": "https://menlovc.com/focus-areas/healthcare/",
+    "provenance": "Read and verified on menlovc.com"
+   },
+   "evidence": [
+    {
+     "id": "957395967bb80fa84768",
+     "source": "Web research engine · menlovc.com",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_has_several_dates:news"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm Nourish raises $100M, plans to expand care model with physicians",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_quote_has_several_dates:news"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "AHA Labs' AI‑driven data harmonization aligns with digital health and healthcare SaaS listed as core areas.",
+     "fundsQuote": "including therapeutic platforms, transformative technologies, digital health, and healthcare SaaS",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Nourish raises $100M, plans to expand care model with physicians"
+   },
+   "key": "opportunity:engine:investment:https://menlovc.com/focus-areas/healthcare/",
+   "id": "cd9ea0a3e041802b8dac",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Digital platform for unified Alzheimer’s clinical data"
+   ],
+   "score": 29,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Digital platform for unified Alzheimer’s clinical data in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD $100 million; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 15,
+   "jev": {
+    "leadId": "cd9ea0a3e041802b8dac",
+    "action": "investigate_more",
+    "actionConfidence": 0.95,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.97,
+     "discard": 0.03
+    },
+    "strategicFit": 1.42,
+    "fitConfidence": 0.51,
+    "evidenceSufficient": 0.09,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "957395967bb80fa84768",
+     "url": "https://menlovc.com/focus-areas/healthcare/",
+     "quote": "Nourish raises $100M, plans to expand care model with physicians"
+    },
+    "why": "Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to Menlo Ventures is a venture capital firm focused on investing in early-stage biotech and healthcare companies at the intersection of technology and biology. The firm emphasizes transformative innovations in therapeutic platforms, digital health, healthcare SaaS, and AI-driven life sciences. It has a mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Doug Nissinoff",
+   "role": "General Partner",
+   "org": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma",
+   "title": "General Partner at Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "doug@intelligencevc.com",
+    "provenance": "Hunter.io · intelligencevc.com · confidence 85% · valid · seen on 3 public pages"
+   },
+   "evidence": [
+    {
+     "id": "617411eabd86ad99438a",
+     "source": "Web research engine · intelligencevc.com",
+     "url": "https://intelligencevc.com/thesis/",
+     "quote": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma ",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    },
+    {
+     "id": "e9cb044ec9f5b991ae6a",
+     "source": "Hunter.io · intelligencevc.com",
+     "url": "https://intelligencevc.com/doug-nissinoff",
+     "quote": "Doug Nissinoff · General Partner · doug@intelligencevc.com (Hunter.io · intelligencevc.com · confidence 85% · valid · seen on 3 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:45:43.480Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed"
+   ],
+   "searchText": "General Partner executive Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma  Our Thesis — Intelligence Ventures Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma ",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "intelligencevc.com",
+     "objective": "investment",
+     "query": "domain-search intelligencevc.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:intelligencevc.com:doug nissinoff",
+   "linkedin": "https://www.linkedin.com/in/douglasnissinoff",
+   "parentKey": "opportunity:engine:investment:https://intelligencevc.com/thesis/",
+   "followUp": {
+    "from": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma",
+    "question": "Who decides at Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma?"
+   },
+   "key": "person:doug nissinoff:intelligence ventures is a venture fund focused on early stage ai healthcare startups in the us and canada the fund emphasizes proprietary data as the core moat in ai healthcare and invests in companies where ai is central to the product architecture they focus on four verticals biotech pharma",
+   "id": "1cf395e8c2355ba3ee30",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "top",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 1,
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "617411eabd86ad99438a",
+     "url": "https://intelligencevc.com/thesis/",
+     "quote": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product a"
+    },
+    "why": "Doug's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to Doug mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Jumpstart Foundry Accelerator",
+   "title": "Jumpstart Foundry Accelerator",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$150,000",
+   "contact": {
+    "type": "web",
+    "value": "https://xraise.ai/blog/apply-to-jumpstart-foundry-accelerator-2025-2026/",
+    "provenance": "Read and verified on xraise.ai"
+   },
+   "evidence": [
+    {
+     "id": "ca369dae4230e20791b5",
+     "source": "Web research engine · xraise.ai",
+     "url": "https://xraise.ai/blog/apply-to-jumpstart-foundry-accelerator-2025-2026/",
+     "quote": "Investment amount: $150,000",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm"
+   ],
+   "searchText": "Jumpstart Foundry Accelerator Apply to Jumpstart Foundry Accelerator Today Investment amount: $150,000",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://xraise.ai/blog/apply-to-jumpstart-foundry-accelerator-2025-2026/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The AI harmonization layer for clinical datasets is a health‑data product, which the program explicitly funds.",
+     "fundsQuote": "If you’re delivering digital health, remote care, or health data products, you’re exactly in their strike zone.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Investment amount: $150,000"
+   },
+   "key": "opportunity:engine:investment:https://xraise.ai/blog/apply-to-jumpstart-foundry-accelerator-2025-2026/",
+   "id": "91ceea89e55bb72465e9",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD $150,000; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "top",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 2,
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "office_hours",
+    "label": "Use their open door",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "They publicly invite founders in: that is a sanctioned, warm-enough entry.",
+    "source": "signals",
+    "evidence": {
+     "id": "ca369dae4230e20791b5",
+     "url": "https://xraise.ai/blog/apply-to-jumpstart-foundry-accelerator-2025-2026/",
+     "quote": "Investment amount: $150,000"
+    },
+    "why": "Jumpstart Foundry Accelerator's organization runs an open program or office hours. Using the channel they built is warmer than a cold email.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Apply to or book their office hours / program, tailoring the pitch to what they said they look for."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "After the session, ask permission to send updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple Ventures, Alumni Ventures, and angel investors including Gokul Rajaram and Farzad Soleimani. The company develops an 'agentic operating system' designed for the ",
+   "title": "Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple Ventures, Alumni Ventures, and angel investors including Gokul Rajaram and Farzad Soleimani. The company develops an 'agentic operating system' designed for the ",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "10500000",
+   "contact": {
+    "type": "web",
+    "value": "https://aijourn.com/katalyze-ai-raises-10-5m-led-by-bonfire-ventures-deploy-agentic-operating-system-for-pharma/",
+    "provenance": "Read and verified on aijourn.com"
+   },
+   "evidence": [
+    {
+     "id": "cac10520ee515fbeaf95",
+     "source": "Web research engine · aijourn.com",
+     "url": "https://aijourn.com/katalyze-ai-raises-10-5m-led-by-bonfire-ventures-deploy-agentic-operating-system-for-pharma/",
+     "quote": "Katalyze AI Raises $10.5M Led by Bonfire Ventures",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm"
+   ],
+   "searchText": "Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple Ventures, Alumni Ventures, and angel investors including Gokul Rajaram and Farzad Soleimani. The company develops an 'agentic operating system' designed for the  Katalyze AI Raises $10.5M Led by Bonfire Ventures Deploy Agentic Operating System for Pharma | The AI Journal Katalyze AI Raises $10.5M Led by Bonfire Ventures",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://aijourn.com/katalyze-ai-raises-10-5m-led-by-bonfire-ventures-deploy-agentic-operating-system-for-pharma/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The article focuses on AI‑driven data harmonization for pharma, matching the applicant’s AI harmonization of clinical datasets.",
+     "fundsQuote": "Katalyze AI believes autonomous agents are the answer, but only if they are built on a rock-solid data foundation.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Sujata Da***a",
+     "role": "Digital Banking Contributor",
+     "email": null,
+     "organization": "The AI Journal",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Darrsheni Sa***a",
+     "role": "Associate Data Scientist",
+     "email": null,
+     "organization": "The AI Journal",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Wael Ha***s",
+     "role": "Contributor",
+     "email": null,
+     "organization": "The AI Journal",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Katalyze AI Raises $10.5M Led by Bonfire Ventures"
+   },
+   "key": "opportunity:engine:investment:https://aijourn.com/katalyze-ai-raises-10-5m-led-by-bonfire-ventures-deploy-agentic-operating-system-for-pharma/",
+   "id": "bd145c4d72f51bfd0ef7",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD 10500000; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "top",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 3,
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple Ventures, Alumni Ventures, and angel investors including Gokul Rajaram and Farzad Soleimani. The company develops an 'agentic operating system' designed for the  yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple Ventures, Alumni Ventures, and angel investors including Gokul Rajaram and Farzad Soleimani. The company develops an 'agentic operating system' designed for the  for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple Ventures, Alumni Ventures, and angel investors including Gokul Rajaram and Farzad Soleimani. The company develops an 'agentic operating system' designed for the  has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma ",
+   "title": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma ",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$500,000",
+   "contact": {
+    "type": "web",
+    "value": "https://intelligencevc.com/thesis/",
+    "provenance": "Read and verified on intelligencevc.com"
+   },
+   "evidence": [
+    {
+     "id": "617411eabd86ad99438a",
+     "source": "Web research engine · intelligencevc.com",
+     "url": "https://intelligencevc.com/thesis/",
+     "quote": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma ",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:45:40.690Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion topic_fit: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: fake_quote:entity_type",
+    "Check: fake_quote:stage"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm"
+   ],
+   "searchText": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma  Our Thesis — Intelligence Ventures Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma ",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://intelligencevc.com/thesis/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "fake_quote:entity_type",
+     "fake_quote:stage"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion topic_fit: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant operates in the biotech/pharma tools vertical, one of the four verticals the page funds.",
+     "fundsQuote": "Biotech & Pharma Tools",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma "
+   },
+   "key": "opportunity:engine:investment:https://intelligencevc.com/thesis/",
+   "id": "e857e3406b98d94615b1",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: United States (Delaware C-corp). Stage fit prototype: to validate.",
+    "Declared constraints to review: No clinical care claims",
+    "Published ceiling USD $500,000; stated target USD 500000."
+   ],
+   "confidence": "media",
+   "bucket": "top",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 4,
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 3,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "617411eabd86ad99438a",
+     "url": "https://intelligencevc.com/thesis/",
+     "quote": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product a"
+    },
+    "why": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma 's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary data as the core moat in AI healthcare and invests in companies where AI is central to the product architecture. They focus on four verticals: biotech & pharma  mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Ask for a meeting in ~18 months."
+     }
+    ]
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T16:39:40.213Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:1",
+    "sequence": 1,
+    "at": "2026-10-14T16:39:41.047Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "AHA Labs · Agentic Harmonization Assistant for pharma and CRO clinical datasets: investment · prototype · seed · United States (Delaware C-corp) · USD 500000 · avoid: No clinical care claims",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "alzheimer's disease clinical data harmonization AI · Machine learning harmonization of Alzheimer’s trial datasets · Digital platform for unified Alzheimer’s clinical data · data harmonization · data standardization · data integration"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "Alzheimer data"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "Alzheimer data"
+      },
+      {
+       "provider": "Official radar",
+       "query": "ADDF · a2 Collective · CDMRP"
+      },
+      {
+       "provider": "Exa (semantic search)",
+       "query": "Full profile by goal (investment), with criteria and constraints"
+      },
+      {
+       "provider": "Funding rounds",
+       "query": "alzheimer's disease clinical data harmonization AI seed · Exa news o Serper"
+      },
+      {
+       "provider": "Serper (optional)",
+       "query": "Alzheimer data investment United States (Delaware C-corp) "
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:2",
+    "sequence": 2,
+    "at": "2026-10-14T16:39:41.051Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:3",
+    "sequence": 3,
+    "at": "2026-10-14T16:45:40.690Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 10 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 10,
+    "durationMs": 359639,
+    "status": "success"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:4",
+    "sequence": 4,
+    "at": "2026-10-14T16:45:43.481Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 9 new people across 9 organizations (9 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 9,
+    "status": "success"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:5",
+    "sequence": 5,
+    "at": "2026-10-14T16:45:43.485Z",
+    "phase": "warning",
+    "title": "Limited coverage",
+    "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+    "status": "warning"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:6",
+    "sequence": 6,
+    "at": "2026-10-14T16:45:43.485Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:7",
+    "sequence": 7,
+    "at": "2026-10-14T16:45:43.490Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 5,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Benchmark",
+     "contacts": 0,
+     "candidates": 19,
+     "paths": []
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:8",
+    "sequence": 8,
+    "at": "2026-10-14T16:45:43.490Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 19 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 19,
+    "status": "running"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:9",
+    "sequence": 9,
+    "at": "2026-10-14T16:45:45.551Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "1 people found across 3 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 1,
+    "status": "success"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:10",
+    "sequence": 10,
+    "at": "2026-10-14T16:45:45.557Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:11",
+    "sequence": 11,
+    "at": "2026-10-14T16:45:46.718Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 15 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 15,
+    "durationMs": 1161,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 10252,
+      "output_tokens": 1294,
+      "cost": 0.000430584
+     }
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:12",
+    "sequence": 12,
+    "at": "2026-10-14T16:45:46.722Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "4 priority, 15 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 19,
+    "durationMs": 3232,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [
+      {
+       "name": "Doug Nissinoff",
+       "org": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in t",
+       "title": "General Partner at Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emph",
+       "score": 26,
+       "why": "Limited topic match: review before contacting.",
+       "bucket": "top"
+      },
+      {
+       "name": "Jumpstart Foundry Accelerator",
+       "org": "Jumpstart Foundry Accelerator",
+       "title": "Jumpstart Foundry Accelerator",
+       "score": 23,
+       "why": "Limited topic match: review before contacting.",
+       "bucket": "top"
+      },
+      {
+       "name": "Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures",
+       "org": "Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures",
+       "title": "Katalyze AI is a startup that raised $10.5 million in a seed round led by Bonfire Ventures, with participation from Inovia Capital, Ripple V",
+       "score": 23,
+       "why": "Limited topic match: review before contacting.",
+       "bucket": "top"
+      },
+      {
+       "name": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in t",
+       "org": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in t",
+       "title": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in the US and Canada. The fund emphasizes proprietary ",
+       "score": 23,
+       "why": "Limited topic match: review before contacting.",
+       "bucket": "top"
+      }
+     ],
+     "radar": [
+      {
+       "name": "Rohit Goel",
+       "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alz",
+       "title": "Finance Director at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enable",
+       "score": 49,
+       "why": "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s tr",
+       "bucket": "radar"
+      },
+      {
+       "name": "Jagadeesh Sridhar",
+       "org": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alz",
+       "title": "Principal Scientist at IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-ena",
+       "score": 49,
+       "why": "Matches alzheimer's disease clinical data harmonization AI, alzheimer's disease clinical data harmonization AI, Machine learning harmonization of Alzheimer’s tr",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 4,
+      "radar": 15,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:13",
+    "sequence": 13,
+    "at": "2026-10-14T16:45:46.732Z",
+    "phase": "evaluating",
+    "title": "Warm paths for every candidate",
+    "message": "0 through your network; 19 to build with advice and updates before the round.",
+    "provider": "Warm path plan",
+    "resultCount": 19,
+    "status": "success"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:14",
+    "sequence": 14,
+    "at": "2026-10-14T16:45:46.761Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 142 pages read by the AI · 4 main list · 15 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 4,
+    "status": "success"
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:15",
+    "sequence": 15,
+    "at": "2026-10-14T16:45:46.763Z",
+    "phase": "drafting",
+    "title": "Drafts written",
+    "message": "19 drafts built from templates and public facts; nothing is sent.",
+    "resultCount": 19,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Doug Nissinoff",
+     "org": "Intelligence Ventures is a venture fund focused on early-stage AI healthcare startups in t",
+     "subject": "Collaboration and fit",
+     "excerpt": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?"
+    }
+   },
+   {
+    "id": "82cd5a31-8572-4dc6-8d2a-3b098472056a:16",
+    "sequence": 16,
+    "at": "2026-10-14T16:45:46.764Z",
+    "phase": "completed",
+    "title": "Done with warnings",
+    "message": "4 candidates prioritized; 15 on radar.",
+    "resultCount": 19,
+    "status": "warning",
+    "detail": {
+     "jobStatus": "partial",
+     "usage": {
+      "Hunter.io": {
+       "calls": 9,
+       "results": 32,
+       "ms": 2759,
+       "bytes": 0,
+       "costUsd": 0
+      }
+     },
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "partial",
+ "plan": {
+  "topic": "Alzheimer",
+  "query": "Alzheimer data",
+  "scientificQuery": "Alzheimer artificial intelligence",
+  "summary": "AHA Labs · Agentic Harmonization Assistant for pharma and CRO clinical datasets: investment · prototype · seed · United States (Delaware C-corp) · USD 500000 · avoid: No clinical care claims",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "alzheimer's disease clinical data harmonization AI · Machine learning harmonization of Alzheimer’s trial datasets · Digital platform for unified Alzheimer’s clinical data · data harmonization · data standardization · data integration"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "Alzheimer data"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "Alzheimer data"
+   },
+   {
+    "provider": "Official radar",
+    "query": "ADDF · a2 Collective · CDMRP"
+   },
+   {
+    "provider": "Exa (semantic search)",
+    "query": "Full profile by goal (investment), with criteria and constraints"
+   },
+   {
+    "provider": "Funding rounds",
+    "query": "alzheimer's disease clinical data harmonization AI seed · Exa news o Serper"
+   },
+   {
+    "provider": "Serper (optional)",
+    "query": "Alzheimer data investment United States (Delaware C-corp) "
+   }
+  ],
+  "alzheimer": true,
+  "terms": [
+   {
+    "term": "alzheimer's disease clinical data harmonization AI",
+    "source": "yours"
+   },
+   {
+    "term": "Machine learning harmonization of Alzheimer’s trial datasets",
+    "source": "model"
+   },
+   {
+    "term": "Digital platform for unified Alzheimer’s clinical data",
+    "source": "model"
+   },
+   {
+    "term": "data harmonization",
+    "source": "lexicon"
+   },
+   {
+    "term": "data standardization",
+    "source": "lexicon"
+   },
+   {
+    "term": "data integration",
+    "source": "lexicon"
+   }
+  ]
+ },
+ "engineDrops": [
+  {
+   "url": "https://svhealthinvestors.com/ddf/dementia-discovery-fund",
+   "title": "SV Health Investors - SV Health Investors",
+   "reason": "scope_mismatch",
+   "quote": "The Dementia Discovery Fund (DDF), managed by SV Health Investors, is the world’s largest family of specialized venture capital funds that invest exclusively in companies developing or enabling novel therapeutics for dementia.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://sonnerievc.com/evaluating-healthcare-startups-4p",
+   "title": "The 4 Ps of Evaluating a Pre-Seed Healthcare Spinout: Problem, Product, Process, People, Sonnerie VC",
+   "reason": "not_eligible",
+   "quote": "pre-seed",
+   "deadline": null,
+   "objective": "investment"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "investment",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 270,
+    "seconds": 360,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": false,
+     "numbers": 0,
+     "seeds": 0,
+     "notices": 0,
+     "brief": null,
+     "byNumber": null
+    }
+   },
+   "triage": {
+    "opened": 105,
+    "assessed": 40,
+    "by_status": {
+     "upcoming": 3,
+     "open": 2,
+     "rolling": 3,
+     "unknown": 80,
+     "closed": 17,
+     "unread": 45
+    }
+   },
+   "judge": {
+    "finalists": 12,
+    "calls": 12,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 5,
+    "people": 9,
+    "credits": 5,
+    "skipped": null,
+    "domains": [
+     "igcpharma.com",
+     "breakingcrypto.io",
+     "dealforma.com",
+     "research2guidance.com",
+     "aijourn.com"
+    ]
+   },
+   "seconds": 90,
+   "opens": 142,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "hunter": {
+  "calls": 9,
+  "emailsAdded": 0,
+  "peopleAdded": 9,
+  "domains": 9,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+    "canonical_name": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools to support biomedical discovery, data harmonization, and clinical development. The company is showcasing its AI ",
+    "official_domain": "undefined",
+    "match_method": "not_found",
+    "confidence": 0
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "65198b160354240001aa76cb",
+     "name": "Jagadeesh",
+     "title": "Principal Scientist",
+     "organization": "IGC Pharma",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Scientist.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://undefined",
+       "retrieved_at": "2026-10-14",
+       "quote": "Jagadeesh · Principal Scientist · IGC Pharma"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "IGC Pharma",
+     "to": "Jagadeesh",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 3,
+    "credits_estimated": 2,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow/",
+    "canonical_name": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and other indications. The company is also developing AI-enabled tools intended to support biomedical discovery, data harmonization, ",
+    "official_domain": "igcpharma.com",
+    "match_method": "not_found",
+    "confidence": 0
+   },
+   "status": "error",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 4,
+    "credits_estimated": 3,
+    "cache_hits": 1
+   },
+   "errors": [
+    "One or more search parameters in your request are invalid."
+   ]
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://www.breakingcrypto.io/article/accwirecq-2026-7-9-igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow",
+    "canonical_name": "IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer's disease. The company is showcasing its AI portfolio at the Alzheimer's Association International Conference (AAIC) 2026, including the AHA™ p",
+    "official_domain": "breakingcrypto.io",
+    "match_method": "not_found",
+    "confidence": 0
+   },
+   "status": "error",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 6,
+    "credits_estimated": 5,
+    "cache_hits": 1
+   },
+   "errors": [
+    "One or more search parameters in your request are invalid."
+   ]
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 3,
+  "calls": 6,
+  "creditsEstimated": 5,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(investment) 0 queries · 142 pages · 142 read",
+   "dimension": "engine",
+   "returned": 142,
+   "discovered": 10,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "AHA Labs",
+   "product": "Agentic Harmonization Assistant for pharma and CRO clinical datasets",
+   "industry": "alzheimer's disease clinical data harmonization AI",
+   "geography": "United States (Delaware C-corp)",
+   "stage": "prototype",
+   "round": "seed",
+   "fundingTypes": [
+    "investment"
+   ],
+   "constraints": "No clinical care claims"
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 142,
+   "pagesRead": 142,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 10,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 4,
+    "radar": 15,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Other": 8,
+    "Eligibility not confirmed by the judge with a quote from the page": 5,
+    "The judge says \"no\" for recent_activity without a quote from the page": 1,
+    "Topic fit not confirmed by the judge with a quote from the page": 1
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": null,
+  "comparePrompts": {
+   "investment": "Hoy es 2026-10-14. Actúa como investigador de capital de riesgo. Busca en la web INVERSORES (fondos, firmas de venture capital, ángeles o redes de ángeles) que invertirían en este proyecto:\n\n- Proyecto: AHA Labs Inc.: AI harmonization of clinical datasets for pharma partners\n- Producto: Agentic Harmonization Assistant for pharma and CRO clinical datasets\n- Sector: alzheimer's disease clinical data harmonization AI\n- Etapa: prototype / seed\n- Geografía: United States (Delaware C-corp)\n- Constitución: constituida en US\n- Monto objetivo: 500,000 USD\n- Restricciones: No clinical care claims\n- Uso de fondos: Productize the harmonization engine, security certification, two pharma pilots\n- Horizonte: 18 months\n\nTipo de entidad: empresa / startup con fines de lucro.\n\nREGLAS (estrictas):\n1. Solo páginas OFICIALES del inversor (su sitio, su portafolio o su tesis). Nada de blogs, noticias, listas ni agregadores, ni páginas de eventos.\n2. Debe invertir en esta etapa y sector, y en esta geografía. Si no es seguro, márcalo aparte.\n3. Dame la persona concreta que decide (socio o managing partner) solo si la página oficial la nombra con su cargo; si no, dime solo la firma. No incluyas ventas, marketing ni relaciones públicas.\n4. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Firma | URL oficial | Etapas y sectores en los que invierte (CITA LITERAL de su página) | Geografías | Cheque típico | Persona y cargo (si la página lo dice) | Por qué encaja | Estado (confirmado / dudoso).\nDespués una segunda tabla, «No pude confirmar». Al final, dime cuántos hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T16:45:46.763Z",
+ "usage": {
+  "Hunter.io": {
+   "calls": 9,
+   "results": 32,
+   "ms": 2759,
+   "bytes": 0,
+   "costUsd": 0
+  }
+ },
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

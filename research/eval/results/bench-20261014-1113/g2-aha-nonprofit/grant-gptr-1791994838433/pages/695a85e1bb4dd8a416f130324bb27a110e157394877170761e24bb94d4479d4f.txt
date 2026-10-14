@@ -1,0 +1,227 @@
+Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases | Horizon-europe.gouv.fr
+
+Aller au menu
+
+Aller à la recherche
+
+Aller au contenu
+
+##
+
+Rechercher
+
+##
+
+Menu
+
+Menu
+
+Découvrir Horizon Europe
+
+Présentation du programme
+
+Les programmes de travail
+
+La coopération internationale
+
+Le programme Euratom
+
+Autres programmes de financement
+
+FAQ : grands principes
+
+Comment candidater ?
+
+Les Points de Contact Nationaux
+
+Appels à propositions
+
+Aides au montage de projets
+
+Ressources juridiques et financières
+
+HE pour les entreprises
+
+Être expert auprès de la CE
+
+Pilier 1
+
+Conseil européen de la recherche (ERC)
+
+Actions Marie Sklodowska-Curie (MSCA)
+
+Infrastructures de recherche
+
+Pilier 2
+
+Cluster 1 - Santé
+
+Cluster 2 - Culture et société
+
+Cluster 3 - Sécurité civile
+
+Cluster 4 - Numérique, industrie et espace
+
+Cluster 5 - Climat, énergie et mobilité
+
+Cluster 6 - Bioéconomie
+
+Les Missions européennes
+
+Les partenariats
+
+Pilier 3
+
+Conseil européen de l'innovation (EIC)
+
+L'institut européen d'innovation et de technologie (EIT)
+
+Écosystèmes européens d'innovation (EIE)
+
+Pilier transversal
+
+Le programme WIDERA
+
+Le programme COST
+
+Accueil
+
+Toute l'actualité
+
+Agenda
+
+Nous rejoindre
+
+Vos PCN
+
+###
+
+Outils
+
+Les FAQ
+
+Statistiques de participation au PCRI
+
+scanR, l'outil de cartographie thématique R&I
+
+Dashboard, l'outil de la C.E. sur les participations au PCRI
+
+scanR, l'outil de cartographie thématique R&I
+
+Sourd et malentendant, contactez-nous avec Acceo - Nouvelle fenêtre
+
+Paramètres d'accessibilité- New window
+
+Accessibilité
+
+##
+
+Agenda
+Fermer
+
+### Événement à la une
+
+Du 20.10.2026 au 21.10.2026
+
+####
+Meet'Up Greentech 2026
+
+Meet'Up Greentech 2026 est le rendez-vous annuel de la greentech organisé par l’Ecolab du Commissariat Général au Développement Durable (CGDD) des Ministères Aménagement du territoire et Transition écologique, en partenariat avec l’Agence de l’Innovation pour les Transports, l’ADEME, BpiFrance, l’AFNOR, la mission French Tech et la Banque des Territoires.
+
+Agenda des événements
+
+Agenda des événements
+
+Ce topic appartient à l'appel
+Cluster 1 - Health (Two stage - 2027)
+
+Identifiant du topic:
+HORIZON-HLTH-2027-02-TOOL-01-two-stage
+
+# Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic non-communicable diseases
+
+Type d'action :
+HORIZON Research and Innovation Actions
+
+Date d'ouverture :
+
+29 octobre 2026
+
+Date de clôture
+1
+: 17 février 2027 01:00
+
+Date de clôture
+2
+: 16 septembre 2027 02:00
+
+Détail du topic
+
+Budget :
+
+€44 200 000
+
+Call : Cluster 1 - Health (Two stage - 2027)
+
+Call Identifier : HORIZON-HLTH-2027-02-two-stage
+
+Description :
+Expected Outcome:
+
+This topic aims at supporting activities that are enabling or contributing to one or several expected impacts of destination “Developing and using new tools, technologies and digital solutions for a healthy society”. To that end, proposals under this topic should aim to deliver results that are directed at, tailored towards and contributing to all the following expected outcomes:
+
+Clinical researchers and developers have access to novel predictive biomarkers to guide a more accurate assessment of disease progression and treatment response and tackle the unmet clinical needs of non-communicable chronic diseases.
+
+Clinicians and healthcare professionals use clinically validated predictive biomarkers for implementing more effective clinical research and personalised medicine with better health outcomes in chronic non-communicable diseases.
+
+Key stakeholders have access to trustworthy Artificial Intelligence (AI) tools to guide the development of multimodal predictive biomarkers of higher accuracy and clinical value when compared to the established practice.
+
+The citizens benefit of better health outcomes thanks to improved clinical guidelines and the implementation of effective biomarker-guided clinical research and personalised healthcare.
+
+Scope:
+
+Biomarkers [1] are invaluable tools for improving patient outcomes, guiding treatment decisions, accelerating personalised medicine, more effective clinical research and the development of better medicines.
+
+However, despite the scientific discoveries of many clinically relevant biomarkers, estimated on the scale of tens of thousands, only a few biomarkers have been implemented in clinical practice. The traditional ‘one biomarker’ paradigm is insufficient for addressing the unmet clinical needs of chronic, progressive and multifactorial diseases, due to the complexity of the clinical phenotypes characterised by broad inter-and intra-patient heterogeneity. The established biomarkers have limitations in their use as prognostic and predictive indicators, for the assessment of the disease progression and the choices of the optimal therapeutic interventions tailored to the patients’ characteristics.
+
+Therefore, the topic focuses on the clinical development of predictive biomarkers of disease progression and treatment response for chronic non-communicable diseases (excluding cancer) by using established AI methodologies able to combine data of clinically used and candidate biomarkers, with available data from relevant clinical studies, longitudinal and Real-World Data (RWD) [2] . This topic is expected to support collaborative projects paving the way for future innovations in personalised medicine and enabling more timely and effective therapeutic interventions.
+
+The proposals should address all the following research and innovation activities:
+
+Set-up a multidisciplinary collaboration to map and evaluate the available information and data on biomarkers currently used in the clinical setting, candidate biomarkers from past and ongoing clinical studies, which are scientifically proven as clinically relevant to the disease progression and treatment response for the chronic non-communicable diseases under study. This should include stratification by biological sex, and where feasible, integration of gender-related variables and sociodemographic determinants that may modulate disease trajectories or treatment efficacy.
+
+Adapt and apply of established AI methods rather than developing novel ones from scratch, to deliver novel predictive biomarkers of disease progression and treatment response, by integrating data of currently used and candidate biomarkers, with suitable data from available longitudinal and other relevant clinical studies, including RWD, as necessary. To guarantee a solid and fast optimisation and training of the AI tools, the applicants should provide information in their proposal that the appropriate high-quality clinical data are readily available, and when necessary generate small-scale new data for the AI optimisation needs. The biomarkers under study should be multimodal, covering for instance molecular, cellular, physiological, imaging, behavioural and digital markers, and/or their combinations. The applicants should justify why the development of the biomarkers proposed is imperative to tackle the unmet clinical needs of the chronic non-communicable diseases under study.
+
+Use AI and, where needed, other relevant data and knowledge integration methods, to describe the relationships among different biomarkers and support the robust prioritisation of predictive biomarkers tailored to the characteristics of the patients’ and their disease stage and treatment response. Proposals should have strong emphasis on the AI trustworthiness [3] and develop the adequate performance metrics to assess their accuracy, reliability, reproducibility, including the assessment of possible inherent bias. Use of AI and dataset should comply with existing privacy-preserving legislation. Moreover, proposals should consider the development of user-friendly and fit-for-purpose visualisation and decision-support tools to guide clinicians in evaluating the clinical plausibility of the biomarkers under study across diverse patient groups.
+
+Establish a biomarker validation platform to assess the clinical utility of the predictive biomarkers identified. To this end, the applicants should implement clinical validation studies in independent disease cohorts, RWD and exploratory clinical studies, as appropriate, to demonstrate their clinical value as prognostic and predictive indicators for more effective clinical research and better patient health outcomes as compared to the established clinical practice of chronic non-communicable diseases. Prospective clinical studies are expected to be led by entities in the EU/EFTA and/or Associated Countries.
+
+Develop a comprehensive exploitation plan for the valorisation of the research outputs and a regulatory strategy to support the alignment to the regulatory requirements for the qualification of the biomarkers and/or AI tools and engage with the regulators in a timely manner. The applicants should prioritise the exploitation of their research results in the EU. Participation of small and medium-sized enterprises (SMEs) [4] is encouraged with the aim to strengthen the scientific and technological basis of SMEs and valorise their health innovations.
+
+Proposals should apply good practices for GDPR [5] compliant personal data protection.
+
+Proposals are encouraged, where relevant, to exploit the available data services, expertise and digital tools offered by the relevant European research infrastructures [6] and/or data infrastructures [7] in the area of health funded under the Digital Europe Programme.
+
+All proposals selected for funding under this topic will be strongly encouraged to participate in networking and joint activities (e.g. participation in joint workshops, development of best practices, or joint communication activities), which may also involve networking with projects funded under Horizon Europe, or other EU programmes (e.g. the Digital Europe Programme [8] ). The proposals should allocate a sufficient budget for networking and joint activities, without the prerequisite to detail such activities at the proposal stage.
+
+Applicants should provide details of their clinical studies [9] in the dedicated annex using the template provided in the submission system. As proposals under this topic are expected to include clinical studies, the use of the template is strongly encouraged.
+
+[1] See definition as in the Strategic Research and Innovation Agenda of the Innovative Health Initiative Joint Undertaking: http://www.ihi.europa.eu/sites/default/files/uploads/Documents/About/IHI_SRIA_ApprovedJan22.pdf
+
+[2] EMA definition: “Real-World Data are routinely collected data relating to patient health status or the delivery of healthcare from a variety of sources other than traditional clinical trials (e.g. claims databases, hospital data, electronic health records, registries, mhealth data, etc.)”.
+
+[3] See introduction to this Work Programme part as well as the Ethics Guidelines for Trustworthy AI, published by the European Commission’s High Level Expert Group on Artificial Intelligence https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai and the Ethics by Design and Ethics of Use Approaches for Artificial Intelligence https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ethics-by-design-and-ethics-of-use-approaches-for-artificial-intelligence_he_en.pdf
+
+[4] https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32003H0361
+
+[5] General Data Protection Regulation: https://commission.europa.eu/law/law-topic/data-protection_en , https://gdpr-info.eu
+
+[6] The catalogue of European Strategy Forum on Research Infrastructures (ESFRI) research infrastructures portfolio can be browsed on the ESFRI website: https://ri-portfolio.esfri.eu
+
+[7] https://digital-strategy.ec.europa.eu/en/policies/artificial-intelligence-health
+
+[8] https://digital-strategy.ec.europa.eu/en/activities/digital-programme
+
+[9] Please note that the definition of clinical studies (see introduction to this Work Programme part) is broad and it is recommended that you review it thoroughly before submitting your application.
+
+Trouver des partenaires potentiels

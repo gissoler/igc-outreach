@@ -1,0 +1,298 @@
+State of Health AI 2026 | Bessemer Venture Partners
+
+Table of Contents Key predictions from the State of Health AI 2026 Health tech insights based on public and private market performance in 2025 A tale of two health tech generations BVP Health Tech Index The trust gap: Why health tech still trades at a discount Why healthcare AI isn’t hype: Three signals from the private markets 1. M&A activity surged in 2025, driven by a clear thesis that AI drives growth and margin expansion. 2. In the private market, deal-making is back to pandemic levels with larger average deal size. 3. While not at pandemic-level peak, valuations are hiking, driven mainly by Health AI deals. Are we in a bubble? Understanding the Health AI X Factor The Health AI X Factor Which companies deserve this X Factor premium? Dose of reality: Not every company has the X Factor 2026 predictions for healthcare innovation Prediction 1: Payers will feel the pressure from providers to “catch up” on AI, driving a big wave of admin stack adoption Prediction 2: The rise of clinical AI applications, primarily for triage and risk assessment with clinicians-in-the-loop Prediction 3: CMS attempts to establish clinical AI payment codes. Prediction 4: Cash-pay consumers accelerate clinical AI adoption faster than any reimbursement code Prediction 5: A nascent health AI data infrastructure category blossoms, but will they capture and sustain value in healthcare? Prediction 6: Value-Based Care has a comeback with AI Prediction 7: New Age digital CROs crack pharma&#x27;s R&D trilemma — cost, speed, competition The AI-powered future of health tech
+
+Sofia Guerra, Steve Kraus, Andrew Hedin & Marla Jalbut, M.D.
+Published on Jan 22, 2026
+
+2025 marked a turning point for the healthcare innovation industry. We witnessed pivotal signs of technology adoption, driven by AI, sustainable business models, and reinvigorated returns and excitement in both the public and private markets. The IPO window reopened with force—six Health Tech companies went public between 2024 and 2025, adding $36.6 billion in fresh market capitalization after a two-year drought. These weren&#x27;t the unprofitable, hype-driven businesses that stumbled in 2020 and 2021. This second generation—Waystar, Tempus, Hinge Health, Omada, Caris Life Sciences, and HeartFlow—brought strong unit economics, clear paths to profitability, and rapid growth that outpaced even the cloud software darlings of the last decade.
+The public markets responded. Through our Bessemer Health Tech Index analysis , we saw that new health tech stocks rose 18% in 2025, matching the strong performance of the NASDAQ and S&P 500 indices and eclipsing the Nasdaq Emerging Cloud Index (EMCLOUD), which fell 7%. Yet despite these wins and metrics that rival or exceed those of high-growth software companies, health tech stocks still trade at a 10-20% discount to their cloud counterparts, despite the stronger underlying business metrics — new health tech stocks have 2x the revenue growth and FCF margin of high-growth software counterparts. Why? Public health tech companies are still earning back trust after the first generation&#x27;s stumble.
+But here&#x27;s what the skeptics are missing: This time is fundamentally different. AI is transforming healthcare technology from workflow tools into mission-critical infrastructure that drives both revenue growth, margin expansion, and, most excitingly, better clinical outcomes. The industry wonders: Are we in another bubble, or is this the real breakthrough moment for health tech?  
+Our analysis of public and private market data, combined with insights from hundreds of founder conversations, points decisively to the latter. 
+Healthcare AI companies are hitting $100M ARR, even $200M ARR, in under five years versus 10+ years for healthcare software companies and ~7 for cloud companies. That&#x27;s why we created the Health AI X Factor — a framework explaining how these businesses grow into their valuations through unprecedented velocity, margin expansion, and platform potential.
+In the State of Health AI 2026, we will cover:
+Why Health Tech 2.0 is different (and why the trust gap will close)
+Three private market signals proving this isn&#x27;t hype
+The Health AI X Factor framework and implications for venture investing
+Seven predictions for 2026 that will shape the next wave of innovation
+
+## Key predictions from the State of Health AI 2026
+Payers will feel pressure from providers to “catch up” on AI, driving a wave of adoption in the admin stack.
+There will be a rise in clinical AI applications, primarily for triage and assessment with clinicians-in-the-loop.
+CMS (Centers for Medicare & Medicaid Services) will launch experiments to attempt to establish clinical AI payment codes.
+Cash-pay consumers will accelerate clinical AI adoption faster than any reimbursement code.
+A nascent health AI data infrastructure category will blossom, gaining significant investment driven by demand from both model labs and application companies. But can they capture and sustain value in healthcare in the long term?
+A new generation of AI-native value-based care companies will launch and scale.
+New Age digital CROs will crack pharma’s R&D trilemma — cost, speed, and competitiveness.
+
+## Health tech insights based on public and private market performance in 2025 
+The health tech public markets in 2025 were a comeback story. But to understand why, we need to look back at two distinct chapters in the sector&#x27;s evolution.
+
+### A tale of two health tech generations 
+Health Tech 1.0 (2015-2021): We can date the birth of technological innovation in healthcare around 2010, in response to two major U.S. policy overhauls: the 2008 Health Information Technology for Economic and Clinical Health Act (HITECH Act) and the 2010 Patient Protection and Affordable Care Act (PPACA). Health Tech 1.0 was the cohort of companies that grew in the decade that followed, with the COVID pandemic creating a perfect storm for the majority of this generation’s health tech IPOs. Telemedicine, virtual care, and digital health tools surged in adoption as COVID-19 prompted rapid digitization. Particularly between 2020 and early 2021, numerous health tech companies rushed to public markets, riding the wave of enthusiasm. Many, including Livongo (later acquired by Teladoc Health), Amwell, Hims & Hers Health, Doximity, and Definitive Healthcare, among others, went public with impressive top-line growth but weak unit economics, unproven retention, and business models that depended on pandemic-era tailwinds and a zero-interest-rate “growth-at-all-cost” mentality that would continue indefinitely.
+When those tailwinds reversed, reality hit hard. These generation stocks&#x27; performance suffered, and the IPO window slammed shut in 2022 and stayed closed through 2023. These companies burned through public investor trust, and the entire sector paid the price.
+Health Tech 2.0 (2024-2025): Fast-forward to 2024, and a new cohort began to emerge. The IPO window cracked open with Waystar in June 2024 , followed by Tempus . In 2025, four more companies joined them: Hinge Health , Omada Health, Caris Life Sciences , and HeartFlow . These six companies represented something fundamentally different from their predecessors. The Health Tech 2.0 cohort represents 30% of the $121B market cap of the 28 companies actively trading today that we track in our BVP Health Tech Index.
+
+### BVP Health Tech Index
+
+Key insight: Health Tech 2.0 came to market with dramatically different profiles : profitable or near-profitable operations, strong net retention, proven ROI for customers, and business models that work regardless of macro conditions.
+Take Hinge Health , which went public in May 2025 at a $2.6B valuation (disclosure: Bessemer is an investor). As of Q3 2025, the company demonstrated 72% annualized revenue growth with 26% free cash flow margins—the kind of Rule of 40 at 98% (Annualized Revenue Growth plus LTM FCF Margin), a performance that investors see as a gold standard, even amongst SaaS giants. 
+Or consider Tempus, which, despite posting a -22% FCF margin (investing heavily in growth), commanded a 9.3x EV/revenue multiple because of its 85% growth rate and AI-driven precision medicine platform that&#x27;s genuinely transforming oncology care. Since its June 2024 IPO, Tempus stock has risen 65%, adding $5.7B in market cap.
+In 2025, Health Tech 2.0 stocks rose 18%, in line with the NASDAQ&#x27;s 23% gain and the S&P 500&#x27;s 18% gain. Meanwhile, the “Health Tech 1.0“ index—companies that went public before the end of 2021—remained essentially flat. The broader health tech index, which includes both generations, finished up 4% for the year, handily beating the cloud software index&#x27;s 7% decline.
+These early signals indicate a broader trend: Despite the strong performance of new IPOs in recent years, health tech remains undervalued relative to high-growth software.
+
+### The trust gap: Why health tech still trades at a discount
+Despite strong performance, strong metrics, and clear strategic value, health tech stocks still trade at a discount to comparable high-growth software companies. This is what we call the "trust gap"—the lingering skepticism among public investors who remember the first generation&#x27;s troubles.
+Let&#x27;s look at the data:
+Company EV/Annual Revenue Annualized Rev Growth FCF Margin Rule of (Rev Growth + FCF Margin)
+Waystar 6.9x 12% 27% 39
+Tempus AI 9.3x 85% -22% 63
+Hinge Health 5.7x 72% 26% 98
+Omada Health 2.5x 65% -1% 64
+Caris LS 8.9x 117% -7% 110
+HeartFlow 13.8x 49% -36% 13
+Health Tech 2.0 Average 7.2x 67% -2% 65
+EMCLOUD Avg 8.0x 19% 19% 38
+What’s the takeaway? Most of these Health Tech 2.0 companies are growing faster (67% y/y) than the EMCLOUD average (19% y/y), and several show stronger profitability profiles. Albeit at a smaller scale than its cloud counterparts. Yet they trade at lower multiples on average. 
+But why is there a “discount”? Healthcare business models are still perceived as complex, regulatory risk is real, and memories of 2020-2021 valuations followed by steep declines are fresh. Public investors say that if these businesses show sustainable growth metrics over multiple quarters, sentiment may be re-rated. 
+The good news? Healthcare companies are demonstrating sustainable high growth, quarter after quarter. As this track record builds, we expect the trust gap to narrow significantly over the next 12-24 months. The fundamentals are there, and the proof points are accumulating. Patient capital will be rewarded.
+
+### Why healthcare AI isn’t hype: Three signals from the private markets 
+In the prior digitization era, healthcare lagged and struggled to achieve the growth and transition that its software counterparts in other industries enjoyed. Healthcare AI is compressing that evolution at a faster rate than any other industry. Three private market trends prove this wave is different.  
+
+### 1. M&A activity surged in 2025, driven by a clear thesis that AI drives growth and margin expansion.
+Global health tech M&A reached 400 deals in 2025, up from 350 in 2024. But volume tells only part of the story. The strategic rationale matters more: Healthcare incumbents and private equity firms recognize that AI implementations simultaneously drive revenue growth and margin improvement.
+Consider the rollup strategy: SmarterTechnologies acquired Access Healthcare (PE-backed), Thoughtful, and Bessemer’s portfolio company SmarterDX to infuse AI and automation throughout their RCM operations. The thesis? Leverage SmarterDx’s growth engine and clinical AI platform to drive productivity and margin expansion across the Access Healthcare RCM services conglomerate.
+Other examples of acquisitions, including Waystar’s acquisition of Iodine and R1’s acquisition of Phare Health , aren&#x27;t speculative bets on future AI technology. Acquiring innovation or partnering with upstarts to grow the addressable market with point solutions into platforms is a “layered cake strategy” by sophisticated operators who see revenue growth opportunities and/or an immediate margin improvement AI delivers and want to own those capabilities rather than build them from scratch.
+
+### 2. In the private market, deal-making is back to pandemic levels with larger average deal size. 
+While public markets were digesting the second generation&#x27;s strong performance, private markets roared back to life. Deal-making in 2025 remained steady, with 527 VC venture deals made in 2025, totaling an estimated $14B capital deployed. Year over year, the average deal size of health tech rounds increased 42% from $20.7M in 2024 to $29.3M in 2025.
+
+By 2025, AI companies captured 55% of all health tech funding, up from 37% in 2024, 33% in 2023, and just 29% in 2022. Most importantly, for every $1 invested in AI companies overall, $0.22 was deployed to healthcare AI startups, which exceeds the fair share of 18% of GDP that healthcare spending represents in the US.
+
+### 3. While not at pandemic-level peak, valuations are hiking, driven mainly by Health AI deals.
+Health tech valuations have grown significantly year over year, with Series D+ seeing the biggest jump, up by 63% from 2024. While not quite at pandemic-peak median pre-money valuations, we see a greater skew between the top and bottom quartiles, with a few deals commanding growth peak valuations and raising mega-rounds, including Abridge $300M Series E at $5B, Ambiance $243M Series C at $1.04B, Function Health $300M Series C at $2.2B and a rumored OpenEvidence $250M round at $11.75B pre-money valuation.
+
+## Are we in a bubble? Understanding the Health AI X Factor
+These hikes in valuations and mega deals raise an obvious question: Are we in another bubble?
+The answer is nuanced. This moment resembles the late 1990s internet era more than the 2020-2021 ZIRP/COVID bubble. But like any paradigm shift, some companies were overvalued and failed, while we also saw generational giants like Amazon, Google, and Meta change the economy. 
+In the same vein, AI will produce companies that transform how we administer, diagnose, and treat in healthcare. The transformation will be massive, generational, and the winners will grow into their “outrageous” valuations.  
+Looking beyond the headline multiples to the fundamentals driving them, Health AI is different: 
+AI’s technological shift has spurred the invention of new business models, driving new sources of revenue and new abilities that previous iterations of software and technology couldn’t address until now. The emergence of "AI-services-as-software" companies delivers service-level outcomes (human-quality work) with software-level margins (70-80%+ gross margins). 
+Buyers are now pulling, not being pushed. AI adoption speed is unprecedented. AI-powered ambient scribes highlight this shift: while EHRs took 15 years to scale, AI scribes have done it in just two to three. As of March 2025, 92% of provider health systems were deploying, implementing, or piloting them — a near-universal adoption for a technology that barely existed three years ago. The ROI is real. Early adopters are already reporting 10-15% revenue capture improvements through better coding and documentation in the first year.
+Clinicians aren’t just accepting AI; they’re demanding it. Once they see productivity gains, there’s no going back. We hope that, over time, we’ll see clinical outcomes also improve. With over $1 trillion in U.S. healthcare spending waste — more than half tied to administrative overhead — AI is resolving inefficiencies and improving how clinicians work across the entire value chain. 67% of clinicians now use AI tools daily, and over 90% use them weekly, indicating room for improvement .
+
+### The Health AI X Factor 
+New breakout companies we coin as AI "supernovas" and "shooting stars" aren&#x27;t just growing fast, but are bending the traditional growth curves entirely. Healthcare supernovas are breaking traditional valuation models with unprecedented acceleration and adoption. These Health AI “Supernovas” include SmarterDx, Abridge, and OpenEvidence. 
+The best companies aren&#x27;t growing 2-3x in the next year (what was conventional wisdom in the SaaS era), instead, they&#x27;re growing 6-10x . Investors are willing to pay multiples that look astronomical by traditional healthcare standards, placing now an incremental multiplier beyond traditional forward growth expectations. We describe this multiplier as the Health AI X Factor, four rare characteristics unique to Health AI supernovas .
+For example, a supernova company with $30M ARR commanding a $1B+ valuation isn&#x27;t overvalued—it&#x27;s being priced on fundamentally different growth dynamics. When you&#x27;re growing 6x year-over-year instead of 2x, you reach $100M ARR in 18 months instead of 36+ months. That compression in time-to-scale justifies premium multiples on current revenue. The Next Twelve Months (NTM) multiple is instead 7x.
+
+### Which companies deserve this X Factor premium?
+Not every healthcare AI company raising capital at high multiples deserves a Health AI X Factor multiplier. The X Factor applies to a rare breed with four defining characteristics:
+
+#### The four pillars of Health AI X Factor companies
+1. Continuous hyper-growth velocity (not just growth projections)
+The best predictor of future 6x+ growth is whether the company grew at similar rates last year and the year before, and has the underlying customer pipeline and demand to sustain the same trajectory. These companies can validate their pipeline through strong customer references and the likelihood of signing incremental contracts in the near term, tangibly demonstrating that next year&#x27;s projected growth isn&#x27;t aspirational; it&#x27;s already being built through new logo-signed contracts, active implementations, and expanding use cases with existing customers.
+Beware: Companies that keep resetting growth targets downward or that have lumpy, unpredictable revenue patterns. Sustained velocity requires proven demand, not one-time spikes.
+2. Revenue durability through defensibility
+Hypergrowth means nothing if customers churn or if competitors can easily replicate your product and compress pricing.
+Companies with the Health AI X factor build durable revenue streams through:
+Recurring revenue models that compound over time rather than requiring constant new customer acquisition
+High switching costs created by deep workflow integration, proprietary data moats, or clinical validation requirements that make replacement painful
+Premium pricing power for applications that deliver ROI so clear that customers will pay 2-3x more than commodity alternatives
+The companies that succeed will leverage their wedge position, data, and outcomes to prevent their AI applications from being replicated by foundation models or made available as a free feature elsewhere. We’re in the early innings of understanding how the durability of Health AI revenue will evolve, as these solutions don&#x27;t have the platform stickiness that other generations of systems-of-record and software-recurring-revenue businesses enjoy. But that doesn’t mean it can’t be done. A real-world example of revenue durability is SmarterDx’s dollar findings per 10k beds . These didn’t decline over time; instead, they increased as AI clinical models improved and learned, and the nuances and idiosyncrasies of clinical documentation continue to persist for years.
+Beware: Companies with sub-100% net revenue retention or those competing primarily on price rather than differentiated outcomes. If customers are churning or if your main competitive advantage is being 20% cheaper, you don&#x27;t have durable revenue.
+3. AI productivity translates to software-like margins at scale and new ARR per FTE metrics
+The first wave of “tech-enabled services” in healthcare hid weak unit economics behind growth-at-all-costs strategies, relying on larger workforces that capped scalability and kept margins far from software levels. AI-native companies flipped this model by bolstering ARR per full-time employee (FTE): a measure of how much revenue the company generates per employee at $50M+ ARR scale:
+Traditional healthcare services $100-200K ARR per FTE
+Healthcare SaaS (pre-AI): $200-400K ARR per FTE
+AI-native healthcare: $500K-$1M+ ARR per FTE
+These companies treat AI as the engine for “services-as-software,” automating labor-intensive tasks to achieve software-like gross margins (70-80%+) while still delivering service-level outcomes. Those with the X factor demonstrate a clear path from current performance to software-like margins, using AI-first workflows from day one rather than retrofitting automation onto human-heavy operations.
+Beware : Companies with flat or declining ARR per FTE aren’t truly AI-native — they’re a services business with an AI veneer. Those claiming “AI + human-in-the-loop” models shouldn’t imply that the human component decreases only marginally as AI improves — genuine AI systems will have humans handle only edge cases and exceptions, not the core operational workload.
+4. Point solution to platform expansion: The wedge to systems of action
+The most valuable X Factor companies aren’t limited to a single use case. They use a high-ROI wedge to land customers, then methodically expand across adjacent workflows to become indispensable systems of action. By layering multiple AI agents across end-to-end processes, they evolve from point solutions into integral operating platforms with durable, sticky revenue.
+Consider Zingage (a Bessemer portfolio company), which started with an AI care navigation agent and is now expanding into revenue operations, claims management, and caregiver recruiting, among others— transforming into the administrative backbone for home care agencies. Each new workflow strengthens switching costs, deepens customer integration, and multiplies upsell opportunities.
+Beware : Companies touting “platform potential” without any evidence of expansion after 18-24 months in the market, no customer appetite for other use cases, or those trying to build the entire platform from day one. Healthcare IT’s graveyard is full of startups that tried to boil the ocean and drowned in complexity before finding product-market fit.
+
+### Dose of reality: Not every company has the X Factor
+The Health AI X Factor isn&#x27;t a marketing claim — it&#x27;s a framework for identifying long-term defensibility, good unit economics, and growth trajectory. Many companies will raise capital at X Factor multiples, but few will live up to them. Long-term performance and execution will separate true supernovas and shooting stars from those merely riding a hot market.
+For founders , the bar is higher. Investors now pay for sustainable hypergrowth with clear paths to market leadership and software-like margins. Proving all four pillars — not just one or two — is essential.
+For investors , the framework helps distinguish justified valuations from speculative ones. When a $30 million ARR company raises at a $1B+ valuation, don’t dismiss it as hype — ask if they’re showing 6x+ growth, 120%+ NRR, rising unit economics and ARR per FTE productivity metrics, and if they have credible platform expansion. If it’s a yes to all, the valuation may be justified. 
+Companies that master solving a big, ambitious problem and demonstrate continuous velocity, durable revenue, AI productivity, and platform expansion will define the next era of healthcare AI — growing into their valuations and beyond. When the dust settles on the AI hype, the X Factor will reveal those who shine from those who burned out.
+
+## 2026 predictions for healthcare innovation 
+Based on our emerging investment roadmaps, conversations with hundreds of founders and healthcare buyers , and our firm&#x27;s deep involvement in the healthcare AI ecosystem, we&#x27;re tracking seven major trends that will shape opportunities for 2026 and beyond.
+These predictions are only part of our broader Health AI roadmap, and we look forward to speaking with founders who fall into any of these categories, or more broadly across the larger sections of the map below.
+
+### Prediction 1: Payers will feel the pressure from providers to “catch up” on AI, driving a big wave of admin stack adoption
+Providers have aggressively adopted AI for their administrative workflows over the past 18-24 months, particularly in revenue cycle management. They’re using AI to capture more revenue through better coding and documentation, cleaner claims, and faster appeals.
+This creates a new challenge for payers as medical expenses rise not from fraud or overutilization, but from providers getting better at securing appropriate reimbursement. When AI identifies missed diagnoses, prompts complete documentation, and optimizes appeals, hospitals receive higher payments, fewer claims are denied upfront, and more denials are successfully overturned.
+The result? Payers are feeling pressure from multiple directions:
+Administrative costs are rising as providers submit higher-quality claims that require more sophisticated review, resulting in higher claim volumes and call volumes.
+Medical loss ratios are creeping up as revenue capture improves on the provider side
+Competitive pressure from payers that have already adopted AI and are realizing margin improvements
+2026 will mark a turning point as payers accelerate AI adoption across their administrative operations and shift toward external partnerships to match the efficiency gains providers have achieved over the past year, while navigating the added challenge of demonstrating clear ROI amid access-to-care concerns and regulatory scrutiny.
+Healthcare founders building for payers will need to focus on: 
+Payment integrity: Inclusive of proper claims documentation and review automation, appeals management, fraud detection, waste identification, and appropriate utilization review
+Prior authorization automation and concurrent utilization review : Focused on faster approval of care with validated clinical guidelines. Regulatory tailwinds (new CMS rules) + clear ROI make this a high-priority use case
+Member engagement : Inclusive of plan and care navigation, care gap analysis, and proper risk identification (like SDOH, comorbidities, etc.)
+What this means for founders: Capitalize on the reinvigorated appetite of payers to partner with AI-first companies and identify a use case with high ROI and high complexity that can help you land some of the scarce customers and shorten sales cycles.
+
+### Prediction 2: The rise of clinical AI applications, primarily for triage and risk assessment with clinicians-in-the-loop
+While admin AI has seen massive adoption, clinical AI — AI that touches patient care directly — has progressed more slowly. The reasons are regulatory complexity (FDA approval for AI diagnosis), liability concerns, and unclear payment models under traditional fee-for-service reimbursement that reward clinicians for the time spent with a patient. 
+These barriers are real and won&#x27;t disappear overnight. But we&#x27;re seeing early movement on clinical AI that stays within current regulatory and payment frameworks by keeping the clinician firmly in the loop. We predict significant scaling of clinical AI for triage and risk assessment—not autonomous diagnosis, but AI that transforms how clinicians work by synthesizing noisy, fragmented data into complete, measurable patient pictures. This means fewer diagnostic errors, faster identification of subtle patterns across multi-modal inputs, and clearer prioritization of which patients need attention and which interventions work.
+
+#### What this looks like in practice:
+Pre-visit risk stratification : AI reviews a patient&#x27;s medical history (EHR data, claims data, lab results, and social determinants) before the appointment, flags high-risk indicators, suggests relevant screening questions, and identifies care gaps. The clinician then reviews this synthesis in a fraction of the time spent sifting through records.
+Inpatient deterioration prediction : AI continuously monitors all hospitalized patients, predicting which ones are at risk of deterioration, comorbidities, or other adverse events. Rather than waiting for nurses to notice subtle changes, AI can continuously monitor a patient and proactively alert clinical teams.
+Triage optimization : AI helps clinicians prioritize which patients need immediate care based on presenting symptoms, vital signs, and medical history. The clinician makes the final decision, but the AI catches subtle patterns that humans might miss, especially during high-volume shifts.
+Specialty referral matching and consults : AI analyzes patient conditions and matches them to the most appropriate specialist based on case complexity, specialist expertise, and patient factors. AI can also augment specialists in managing higher-acuity consultations and provide appropriate clinical guidelines and automated support for lower-acuity consultations.
+What this means for founders : The biggest obstacle to clinical AI for autonomous diagnosis and treatment decisions is the right business model. Aim to crawl-walk-run the path to regulatory approval and identify a viable payment model. Build with clinician input from day one, design for the clinician workflow, not around it, and invest heavily in evaluation and bias testing. A good place to start is with front-office admin use cases that provide a window into providing diagnosis and triage, clinical decision support, risk assessment, and care coordination.
+
+### Prediction 3: CMS attempts to establish clinical AI payment codes.
+Even as regulations advance to enable AI to fully take over certain clinical tasks, such as prescribing medications , the most significant barrier to widespread clinical AI adoption isn&#x27;t technology — it&#x27;s payment models. Healthcare providers are paid for procedures, visits, and time spent with patients. They don&#x27;t get paid for AI-generated diagnosis, monitoring, or preventive interventions.
+This creates a paradox: AI can identify high-risk patients who need preventive care, but if that preventive care isn&#x27;t reimbursable, providers have no financial incentive to act on the AI&#x27;s insights. Or if AI is automatically interacting with a patient, providing a diagnosis or monitoring symptoms in the background, the clinician doesn’t spend time qualifying for payment. Value-based care models solve this by paying for outcomes rather than services, but only 30-40% of healthcare operates under value-based contracts.
+In 2026, we expect CMS (Centers for Medicare & Medicaid Services) to launch experiments with new CPT codes and payment models designed explicitly for AI-first care. 
+Why CMS/CMMI? Three reasons:
+Scale : Covering 140+ million Americans through Medicare, Medicaid, and CHIP—means that when CMS creates new payment codes or models, commercial insurers typically follow within 12-24 months. 
+Authority: CMS has the regulatory authority to test new payment models through its Innovation Center (CMMI) without Congressional approval, enabling rapid experimentation. 
+Motivation: CMS faces intense pressure to control cost growth while improving outcomes, and AI offers a path to both: better prevention reduces expensive acute care, earlier intervention reduces hospitalizations, and more efficient care coordination improves outcomes at lower cost.
+We don&#x27;t expect CMS to create a single "AI reimbursement code." Instead, we anticipate targeted pilots and demonstrations:
+AI-assisted diagnosis codes: CMS has a few category I CPT codes for AI Diagnosis: (1) CPT for diabetic retinopathy autonomous AI screening and new for 2026, (2) CPT code for Coronary plaque assessment. Several category III (temporary and emerging technology) codes are being tested, including AI-augmented ECG measurements, echocardiograms, breast and thyroid ultrasound, and other imaging modalities. We expect CMS to accelerate the approval and testing of a more robust cohort of AI-assisted CPT diagnosis codes.
+AI-assisted preventive care : New codes or enhanced reimbursement for preventive visits where AI has pre-identified high-risk patients and suggested specific screenings or interventions. This covers the clinical time required to act on AI insights.
+Remote patient monitoring expansion : There is an opportunity to expand RPM codes to include AI-powered chronic disease monitoring for conditions such as heart failure, diabetes, and COPD. The AI continuously monitors patient data and alerts care teams when intervention is needed — a model that perfectly fits Medicare&#x27;s need to prevent expensive hospital readmissions.
+Why this matters—and what it enables: If CMS successfully demonstrates that AI-enabled care improves outcomes at lower cost and creates payment models that allow providers to capture value from AI insights, commercial insurance will follow, covering the same types of CPT codes.
+What this means for founders: Leverage regulations, pilot programs, and existing payment model structures as an asset as the industry evolves to compensate for AI-first care. In healthcare, it’s imperative to develop strong business models that make AI clinical work profitable. This will offset trends around rising medical costs.
+
+### Prediction 4: Cash-pay consumers accelerate clinical AI adoption faster than any reimbursement code
+While CMS experiments with AI payment codes and payers debate reimbursement frameworks, consumers aren&#x27;t waiting: they&#x27;re paying out of pocket and forcing the system to follow.
+Consumer health has experienced a renaissance over the past few years, driven by three converging forces: frustration with traditional healthcare&#x27;s complexity and access barriers (see: Hims & Hers&#x27; explosive growth in asynchronous care), growing interest in preventative health and technology-enabled insights (Function Health&#x27;s $100M+ ARR in under two years), and widespread AI adoption in daily life. OpenAI reported over 40 million people use ChatGPT daily to ask questions about healthcare — with 1 in 5 users asking a health-related question weekly — before launching ChatGPT Health in January 2026 . People are already comfortable turning to AI for health guidance, and now they&#x27;re ready to pay for AI that delivers better care.
+The evidence is compelling: RadNet&#x27;s study of 747,604 women across 10 healthcare practices found that 36% opted to pay $40 out of pocket for AI-enhanced mammography screening. The results validate their instinct — the overall cancer detection rate was 43% higher for women who chose AI-enhanced screening compared to those who didn&#x27;t, with 21% of that increase directly attributable to the AI analysis. Women enrolled in the program were 21% more likely to have their cancer detected, and the positive predictive value for cancer was 15% higher, meaning each recall resulted in more actual cancer diagnoses. 
+This willingness to self-pay is creating a new market for AI-first care that operates outside traditional reimbursement constraints. When consumers pay directly, companies can deploy clinical AI without waiting for CPT codes, payer contracts, or regulatory clarity on reimbursement.
+
+#### What this looks like in practice:
+Primary and urgent care: AI-first platforms offering diagnosis and treatment plans for common conditions — UTIs, skin conditions, respiratory infections — with human clinician oversight. Consumers pay per visit for faster access and comprehensive AI analysis of symptoms, history, and risk factors.
+Second opinions for specialty care: The most immediate example is direct-to-consumer AI reads of scans, MRIs, and other complex imaging for diagnosis in oncology, cardiology, Orthopedics, and ophthalmology. Patients facing major treatment decisions pay for an AI-enhanced second opinion that analyzes their scans against millions of similar cases, identifying patterns that may have been missed. RadNet&#x27;s research showed that AI improved radiologists’ performance, and accuracy rose from 84-89% to ~93% when using AI assistance.
+Health AI coaches: Consumers upload diagnostic notes, sync wearable data, and track health metrics so AI can monitor symptoms, recommend preventive actions, and flag risks or patterns. Subscription models now rival human health coaches at lower costs, though new entrants like ChatGPT Health and Anthropic’s HealthEX bring vast built-in user bases. The remaining edge may lie in chronic care management and language-based therapy, and most importantly, companies with strong customer support and engagement, integration rails into healthcare infrastructure, and differentiated distribution. 
+Why this matters—and what it enables:
+The self-pay consumer market is building the foundation for "AI doctors" to become viable over the next decade. We&#x27;re not there yet, as regulatory frameworks, liability models, and trust barriers remain enormous. But consumer adoption is solving the most fundamental challenge: proving that AI-driven care has economic value and that patients will pay for it.
+What this means for founders: The consumer health AI market offers a faster path to revenue and product-market fit than waiting for healthcare systems to establish payment models. Build for the consumer willing to pay out of pocket today, prove clinical value and safety through rigorous validation, and position yourself for the eventual integration into traditional healthcare once payment codes catch up. Focus on use cases where AI demonstrably improves outcomes — higher accuracy, earlier detection, faster diagnoses — and where consumers can directly perceive the value. The companies that master consumer AI-first care will be best positioned when payers and providers are ready to follow.
+
+### Prediction 5: A nascent health AI data infrastructure category blossoms, but will they capture and sustain value in healthcare?
+For decades, venture investors have learned a painful lesson in healthcare infrastructure: Value accrues to the application layer, not the infrastructure layer.
+Why? Healthcare infrastructure companies face structural challenges:
+Limited buyer universe : Only a few thousand health systems, a few hundred payers, and a few hundred pharma companies; not to mention, even smaller is the number of buyers that have developers in-house to leverage data and infrastructure tools. Compare this to horizontal SaaS, where millions of businesses are potential customers.
+Small contract values : Healthcare IT budgets are constrained. Even large health systems struggle to justify $500K+ infrastructure contracts when they can barely afford application software.
+Horizontal competition : Snowflake, AWS, Databricks, and other horizontal infrastructure players serve healthcare customers well. Why buy healthcare-specific infrastructure when the horizontal version is better, cheaper, and more proven?
+The result? Healthcare infrastructure companies have historically struggled to reach venture-scale. A few succeeded (Datavant in data interoperability being the standout), but most topped out at $20-50M ARR—too small for venture returns.
+But there is a shift happening: The AI era is creating new demand for healthcare-specific data and infrastructure from a completely different buyer base: AI model labs and AI application companies.
+2026 will see significant investment in healthcare AI infrastructure, driven by demand from both model labs and application companies. However, the jury is still out on whether this category can sustain venture-scale outcomes.
+What this means for founders : If you&#x27;re building healthcare AI infrastructure, focus obsessively on three things:
+Differentiation from horizontal players : Why can&#x27;t customers just use Snowflake, Databricks, and/or AWS? What&#x27;s healthcare-specific about your solution that justifies a separate infrastructure?
+Recurring revenue model : Avoid one-time data licensing deals. Structure contracts as ongoing AI services-as-software with usage-based components and recurring enterprise licenses.
+Serve multiple stakeholders: Your platform will need to be relevant to various healthcare stakeholders to avoid limiting your buyer universe. You can start by serving use cases at the intersection of multiple parties interacting. For example, Providers and Biopharma during clinical trials.
+Expansion path : Build infrastructure with a path to application layer revenue. The most valuable infrastructure companies are those that can also capture application-layer value.
+
+### Prediction 6: Value-Based Care has a comeback with AI 
+Value-based care (VBC) has been the healthcare industry&#x27;s white whale for a decade. The promise is compelling: pay providers for keeping patients healthy rather than for volume of services. Align incentives around outcomes. Reduce wasteful spending. Improve quality.
+The reality has been disappointing: Most VBC models have struggled to deliver sustainable economics. Why?
+Human-intensive engagement : VBC requires extensive patient engagement—care coordination calls, chronic disease monitoring, medication adherence checking, and social determinants support. Doing this with human nurses and care coordinators is expensive.
+Narrow margins on risk : VBC companies take on financial risk by accepting capitated payments or sharing savings. But healthcare costs are volatile and hard to predict. Narrow margins mean one bad flu season or one high-cost patient can wipe out profitability.
+Long payback periods : It takes 12-24 months to demonstrate improvements in VBC outcomes. This requires significant upfront capital and patient capital from investors.
+Attribution challenges : When multiple providers touch a patient, who gets credit for outcomes? Attribution is complex and often contested.
+These challenges led to a brutal shakeout in VBC companies over 2022-2024. Many failed, others scaled back, and investors soured on the category. AI fundamentally changes the economics of VBC by making patient engagement scalable at low marginal cost. Consider what AI enables: Continuous monitoring without human intervention, proactive outreach at scale, personalized care planning, and more. 
+The result ? The cost structure of VBC improves dramatically with AI. Instead of needing a nurse or care coordinator for every 50-75 patients, AI-powered VBC might need a nurse for every 200-300 patients, with AI handling routine engagement and monitoring.
+2026 will see a new generation of AI-native, VBC-native companies launch and scale. These won&#x27;t be traditional VBC companies adding AI on top—they&#x27;ll be companies architected from day one around AI-enabled engagement. 
+We&#x27;ll see multiple new AI-first companies built to attempt this model, with differentiation in: (1) target populations (Medicare Advantage vs. Medicaid vs. commercial populations), (2) condition focus (chronic disease management vs. acute care management vs. behavioral health), (3) care delivery model (Virtual-first vs. hybrid vs. technology layer for existing providers).  
+
+### Prediction 7: New Age digital CROs crack pharma&#x27;s R&D trilemma — cost, speed, competition 
+Drug development has been resistant to the velocity we&#x27;re seeing elsewhere in healthcare AI. While administrative workflows compress from weeks to minutes, drug discovery still takes 10-15 years and costs $1-2 billion per approved therapy.
+Traditional contract research organizations (CROs) remain human-intensive operations with armies of scientists running physical experiments on animals and cell cultures, progressing through rigid, sequential testing phases. To reduce costs, much of this work has been offshored to China over the past two decades, with Chinese CROs now handling preclinical work for over 70% of Western drug development programs.
+In April 2025, the FDA announced a strategic roadmap to reduce the reliance on animal testing requirements for preclinical safety studies, starting immediately with monoclonal antibodies and expanding over 3-5 years to make "animal studies the exception rather than the norm," explicitly endorsing AI-based computational models, organ-on-chip systems, and in silico toxicity prediction as alternatives. The rationale is compelling: over 90% of drugs that appear safe in animal studies fail to receive FDA approval due to lack of human efficacy or unexpected safety issues, and animal testing is slow (adding years to timelines) and expensive (non-human primates cost up to $50,000 each, with typical mAb programs requiring over 100 primates).
+2026 will see the emergence of AI-native digital CROs that collapse drug discovery timelines by months, even years, by replacing physical experiments with virtual ones while creating an opportunity to reshore drug discovery and strengthen U.S. competitiveness.
+
+#### What this looks like in practice
+Digital CROs use AI to simulate biological experiments that traditionally required physical labs, animals, and years of testing. Instead of synthesizing thousands of compounds and testing them one by one, they computationally model how millions of candidates will interact with target proteins and predict toxicity, all before touching a physical molecule.
+Examples of what&#x27;s emerging:
+AI-powered biologics design platforms computationally predict protein structures and optimize therapeutic properties, screening millions of molecular possibilities in silico before synthesizing only the most promising candidates. Protein language models can optimize drug properties like binding affinity, immunogenicity risk, and manufacturability in computational “dry labs”, drastically reducing the time and cost spent confirming these properties in traditional “wet labs.” This can shorten the timeline for a biotech to declare a development candidate by months and even years. Companies deploy state-of-the-art AI models and platform expertise to accelerate design cycles and improve success rates across biotech clients’ R&D pipelines.
+Virtual lab platforms replace early-stage wet lab experiments by computationally simulating cellular behavior, molecular interactions, and biological pathways across thousands of experimental conditions. Researchers can test hypotheses, identify drug targets, and validate mechanisms of action in silico before running a single physical experiment, eliminating 18-24 months of iterative lab work.
+Robotic lab automation platforms use AI to orchestrate high-throughput physical experiments that run 24/7 with minimal human intervention, executing hundreds of parallel experiments with superhuman precision. Months of sequential lab work were compressed into weeks while eliminating human error and variability.
+AI-powered trial design platforms computationally model which patient populations are most likely to respond to a therapy, helping pharma design smaller, faster trials with higher success rates. In a field where 90% of Phase II trials fail, better patient selection could dramatically improve outcomes while reducing costs.
+Real-world data platforms analyze clinical trial results and real-world evidence to predict drug efficacy and safety in specific patient subpopulations, helping pharma identify the most promising indications before committing to expensive trials.
+Why does this matter? Digital CROs solve three problems simultaneously:
+Speed : Imagine a world where companies can progress from target identification to a clinical candidate in 12-18 months instead of 5-7 years. FDA approval of computational models means virtual experiments can replace sequential animal studies, collapsing preclinical timelines by 60-70%. For patients with terminal diseases, treatments reaching them years sooner is everything.
+Cost and margins : Drug R&D has followed "Eroom&#x27;s Law", which shows costs doubling every nine years to $2.6 billion per approved therapy, making drug development economically challenging for many diseases. Digital CROs reverse this by replacing $50K-100K wet lab experiments with computational models with lower cost on compute and in the cloud.
+Reshoring critical capabilities : When drug discovery becomes computational, the competitive advantage shifts from cheap offshore labor to superior AI models and regulatory expertise—areas where U.S. companies excel. This creates an opportunity to bring critical drug discovery capabilities back onshore while reducing costs and protecting sensitive IP, strengthening national security and pandemic preparedness.
+What this means for founders: The digital CRO opportunity offers two paths: build a full-stack, AI-enabled biotech that uses computational methods to develop an internal pipeline of therapeutics, or build foundational models and platforms that serve the entire industry as infrastructure. Full-stack biotechs can move faster but need more capital and face longer development timelines. Platform companies have faster revenue and lower capital needs, but must prove their models through rigorous validation and navigate enterprise sales. The companies that demonstrate consistent predictive accuracy and regulatory savvy will define the category in the $70B+ CRO market.
+
+## The AI-powered future of health tech
+Healthcare AI has shifted from promise to proof. Across the private and public markets, a new generation of Health Tech 2.0 companies is growing faster, demonstrating stronger unit economics, and compressing time-to-scale from a decade to just a few years. While still trading at a discount, there lies a major opportunity for founders and investors willing to underwrite the trust gap. 
+In the new health AI playbook, leaders are bending the traditional growth curves, hitting $100M+ ARR in less than five years, sustaining growth, and expanding margins through AI-native productivity and “services-as-software” models. These companies earning X Factor valuations pair this velocity with durable revenue, deep workflow integration, and a deliberate path, using AI agents to become systems of action rather than one-off tools.
+For founders, the bar has been set: design AI-first businesses that can prove all four pillars of the Health AI X Factor, and your company can grow into peak valuations and beyond. As we look ahead, the next two years will decide which healthcare AI companies become category-defining infrastructure, and which will fade as the market normalizes.
+Disclaimers
+This article is for informational and educational purposes only. References to Bessemer Venture Partners (BVP) portfolio companies are provided for illustrative purposes and do not represent all Bessemer investments. Past performance is not indicative of future results. This content does not constitute investment advice or an offer to invest in BVP funds. Please see BVP.com/Legal for more information.
+
+## Contributors
+Sofia Guerra
+Partner
+
+Sofia is a partner at Bessemer Venture Partners, where she invests in seed to growth healthcare and life sciences companies. She is the co-author of State of Health Tech report , Benchmarks for Growing Health Tech Business , and how to scale health tech businesses to $100M and beyond , a study of 100+ best-in-class companies to understand key metrics relevant for scalability in healthcare software and tech-enabled services.
+Sofia began her career as a consultant at Bain and Company, where she worked on strategy, operations, and due diligence projects across healthcare and technology.
+Prior to joining Bessemer, she was an investor at BoxGroup Ventures and the co-founder and co-president of Nucleate , a national life sciences entrepreneurship program helping PhDs, Post-docs, and students commercialize scientific projects.
+Sofia earned her MBA from Harvard Business School and her BA with high honors in Chemistry from Harvard University. While in school, she conducted research alongside Bob Langer, a serial entrepreneur and one of 12 Institute professors at MIT widely recognized for his contributions to drug delivery and tissue engineering fields.
+She was born and raised in Guatemala, went to boarding school in Singapore for the last few years of high school, and has traveled to over 35 countries. In her free time, she enjoys listening and dancing to reguetón and traveling to new places with her husband Alex.
+
+Read more from Sofia
+
+Steve Kraus
+Partner
+
+Steve Kraus is a partner at Bessemer in the Boston office and a world-renowned healthcare investor. He is the author of Bessemer’s 10 Laws of Healthcare , Benchmarks for Growing Health tech Businesses, and co-host of the podcast Heart of Healthcare . Steve currently sits on the boards of Bright Health Group, Headspace Health, Groups, Qventus, AspenRx, HouseRx, Oshi Health, Folx Health, Mural Health, and Alcresta.
+Prior to joining Bessemer, Steve worked for a growth-stage, private equity firm and as a management consultant at Bain & Company. He has also worked on several different political campaigns throughout his career.
+He serves as an Observer at Beth Israel Deaconess Medical Center, an advisor to Boston Children’s Hospital and the Harvard Business School’s Center for Entrepreneurship, and on the investment committees of BCBS Massachusetts and Rock Health.
+Steve graduated from summa cum laude from Yale University and earned his MBA from Harvard, where he was a Baker Scholar.
+
+Read more from Steve
+
+Andrew Hedin
+Partner
+
+Andrew Hedin is a partner in Bessemer’s Boston office where he focuses on investments broadly across the healthcare ecosystem, including new biotech therapeutics as well as software and services sold to healthcare verticals.
+Prior to joining Bessemer in 2015, Andrew worked at F-Prime Capital, Fidelity’s healthcare-focused venture capital fund where he invested in early-stage biotech and digital health technologies, as well as Leerink Partners as an advisor to the biopharma industry.
+He earned an MBA with honors from The Wharton School, where he majored in health care management and finance, as well as a degree in biological basis of behavior from the University of Pennsylvania.
+
+Read more from Andrew
+
+Marla Jalbut, M.D.
+Investor
+
+Dr. Marla Jalbut is an investor in Bessemer’s Boston office, where she focuses on biotech and healthcare investments.
+In addition to her role at Bessemer, Marla serves as an attending physician in the Department of Medicine at Massachusetts General Hospital and is on the faculty at Harvard Medical School. She continues to see patients in the inpatient setting while teaching and mentoring medical trainees.
+Before joining Bessemer, Marla was an investor at Omega Funds, a biotech-focused investment firm based in Boston. Her work spanned early-stage company creation to late clinical-stage biotech companies, and she served as a Board Observer at Aviceda Therapeutics, Ousia Pharma, and Rectify Pharma.
+Marla earned an A.B. from Princeton University, an M.D. from Tufts University, and an M.B.A. from Harvard Business School. She completed her clinical training in internal medicine at Yale.
+Outside of work, Marla enjoys spending time with friends and family, exploring new restaurants (she’s a retired food blogger), attending concerts, and cheering on the Baltimore Ravens.
+
+Read more from Marla
+
+Disclaimer: The information presented here is for general informational and educational purposes only and does not constitute investment advice, a recommendation, or an offer or solicitation to buy or sell any securities or investment products. Certain companies discussed may be current or former portfolio companies of Bessemer Venture Partners. Past performance is not indicative of future results. All investments involve risk, including possible loss of principal.
+
+Contributors Sofia Guerra Steve Kraus Andrew Hedin Marla Jalbut, M.D.
+
+Published 01/22/2026
+Share
+
+## Keep digging.
+Case Study
+
+### Launching AI products that win: Legora
+The fastest Centaur in enterprise software history: how they got there and how they doubled to $200M ARR in less than six months.
+
+Article
+
+### The 2026 Healthcare AI ROI Scorecard
+Insights from 226 healthcare executives on why AI’s returns arrived faster and higher than expected, why they’re concentrated in the back office, and what it will take to unlock clinical AI.
+
+Article
+
+### Talent trends for the AI-native C-suite
+AI has widened the gap between a great leader and an average one. Five functional trends are evolving the C-suite—and here’s how CEOs can find the executives best equipped for what&#x27;s next.

@@ -1,0 +1,133 @@
+SBIR Phase I: Predicting and Diagnosing Alzheimers Disease and Mild Cognitive Impairment by MRI Using Variational Autoencoder and Machine Learning Algorithm
+- National Science Foundation
+
+Skip to main navigation
+
+Skip to search
+
+Skip to main content
+
+# SBIR Phase I: Predicting and Diagnosing Alzheimers Disease and Mild Cognitive Impairment by MRI Using Variational Autoencoder and Machine Learning Algorithm
+
+Khan, Tapan K (PI)
+
+BIOIMAGINIX LLC
+
+Project : Research
+
+##
+
+Abstract & Details
+
+### Description
+Award ID: 2500009
+
+The broader impact/commercial potential of this Small Business Innovation Research (SBIR) Phase I project is developing a low-cost diagnostic tool for brain imaging using an artificial intelligence (AI)/machine learning (ML)-based algorithm. The goal of the proposal is to develop a technology that can distinguish mild cognitive impairment (MCI) patients and Alzheimer's disease (AD) cases using Magnetic Resonance Imaging (MRI) scans. Diagnosing AD at the MCI stage and therapeutic intervention at this stage are the keys to developing effective therapeutics, lifestyle changes, and future planning for patients, caregivers, and stakeholders. Clinical diagnosis of AD is miserably low (~60% specificity and sensitivity). Such an image analysis platform will ensure a sophisticated tool for geriatric primary care and neurologists to detect a predementia patient with a certain chance of being converted to AD shortly. In the broader commercial potential, the user-friendly brain imaging data analysis platform will be transferred to the clinic to assist in the early diagnosis of AD, particularly the MCI stage and prognosis, using MRI images.
+
+This Small Business Innovation Research (SBIR) Phase I project is to utilize 3-dimensional (3D) Structural Magnetic Resonance Imaging (sMRI) brain scans from the patients as input to a specialized artificial intelligence (AI) platform that reduces dimensions and extracts latent features evolved from the affected whole brain by the disease. This AI-Machine Learning (ML) measures changes related to the atrophy of the brain, and relative temporal and region-specific changes correlated with the level of the patient's cognitive function. The algorithm classified Alzheimers disease (AD) vs. mild cognitive impairment (MCI) with accuracies of 81.41% and autopsy-confirmed AD vs. MCI at 92.75%. Proof-of-concept has been published in a peer-reviewed journal. There is no definitive diagnostic tool for AD that is cost-effective. In the broader commercial potential of this SBIR Phase I project, Neurologists/Gerontologists will use it for diagnostic and patient stratification. As the anticipated results, the technology would overlay MRI retrieval and provide an additional interpretive and diagnostic aspect to help neurologists provide a more accurate diagnosis of AD, MCI, other non-AD dementia, and normal brain. The resulting product of this study will address the differential diagnosis of AD, a significant unmet need. The algorithm can be extended to diagnosing other neurological diseases, such as autism, depression, traumatic brain injuries, and schizophrenia.
+
+This award reflects NSF's statutory mission and has been deemed worthy of support through evaluation using the Foundation's intellectual merit and broader impacts review criteria.
+
+NSF Program Director: Henry Ahn
+
+Status Closed
+Effective start/end date 04/15/25 → 06/30/26
+
+### Funding
+
+SBIR Phase I: $303,089.00
+
+View all
+
+View less
+
+### Active Fiscal Year
+FY2026
+FY2025
+
+### Start Fiscal Year
+FY2025
+
+### TIP Programs
+SBIR Phase I
+
+### Small Business
+Yes
+
+### Key Technology Areas
+Artificial Intelligence
+(confidence score: 100%)
+Biotechnology
+(confidence score: 100%)
+
+### Technology Foci
+Medical Technology
+(confidence score: 100%)
+Machine Learning Training Data
+(confidence score: 87%)
+Machine Learning (ML)
+(confidence score: 99%)
+Artificial Intelligence (excluding ML)
+(confidence score: 86%)
+
+### Congressional District at Award
+District n. 02 of West Virginia
+
+### Current Congressional District
+District n. 02 of West Virginia
+
+### United States
+West Virginia
+
+### Core Based Statistical Area (CBSA)
+Morgantown, WV
+
+### County
+County: Monongalia, WV
+
+### EPSCoR Jurisdiction
+Yes
+
+## Access Award
+
+https://www.nsf.gov/awardsearch/showAward?AWD_ID=2500009
+
+##
+
+Fingerprint
+
+Explore the research topics touched on by this project. These labels are generated based on the underlying awards/grants. Together they form a unique fingerprint. Learn more about Elsevier's Fingerprint Engine here: https://beta.elsevier.com/products/elsevier-fingerprint-engine
+
+Mild Cognitive Impairment
+Medicine and Dentistry
+100%
+
+Machine Learning Algorithm
+Medicine and Dentistry
+100%
+
+Alzheimer's Disease
+Medicine and Dentistry
+100%
+
+Magnetic Resonance Imaging
+Medicine and Dentistry
+100%
+
+Nuclear Magnetic Resonance Imaging
+Nursing and Health Professions
+100%
+
+Diagnosis of Alzheimer's Disease
+Medicine and Dentistry
+50%
+
+Artificial Intelligence
+Medicine and Dentistry
+37%
+
+Brain Imaging
+Medicine and Dentistry
+25%
+
+View full fingerprint

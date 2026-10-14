@@ -1,0 +1,89 @@
+Banco nocturno → eval/results/bench-20261014-1249 
+Juez 8016: responde. Compilador 8017: responde.
+[12:49:10] caso 1/3: i2-aha-commercial
+[gptr 17:49:11] runObjective(investment): usa GPT Researcher
+[engine 12:49:11] investment: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 17:49:11] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:49:11] prompt (2022 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-LlY5xA/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-LlY5xA/gptr.log
+[gptr 17:49:26] 15s · fuentes leídas 0 · última línea: 🔎 Generating 4 search queries...
+[gptr 17:49:41] 30s · fuentes leídas 24 · última línea: 🔍 Running research for 'corporate venture arms pharma AI data standardization neurodegenerative trials United States 2025 2026'...
+[gptr 17:49:56] 45s · fuentes leídas 195 · última línea: INFO: [12:49:55] 📚 Combined research context: 0 MCP sources, web content
+[gptr 17:50:11] 60s · fuentes leídas 195 · última línea: 💸 Total Research Costs: $0.022380000000000004
+[gptr 17:50:26] 75s · fuentes leídas 195 · última línea: 💸 Total Research Costs: $0.014700000000000001
+[gptr 17:50:41] 90s · fuentes leídas 264 · última línea: 💸 Total Research Costs: $0.010974999999999999
+[gptr 17:50:56] 105s · fuentes leídas 264 · última línea: 🔍 Running research for 'pharma corporate venture capital investments AI data‑infrastructure platforms versus disease‑specific AI therapeuti
+[gptr 17:51:11] 120s · fuentes leídas 344 · última línea: 💸 Total Research Costs: $0.016765000000000002
+[gptr 17:51:26] 135s · fuentes leídas 389 · última línea: Content too short or empty for https://onlinelibrary.wiley.com/doi/10.1155/joch/5202999, treating as fetch failure
+[gptr 17:51:41] 150s · fuentes leídas 391 · última línea: ✅ Generated 2 queries: ['2024-2026 press releases pharma CRO AI-enabled data harmonization Alzheimer’s clinical datasets partnership capital
+[gptr 17:51:56] 165s · fuentes leídas 431 · última línea: 💸 Total Research Costs: $0.011465
+[gptr 17:52:00] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 17:52:11] 180s · fuentes leídas 431 · última línea: [0m
+[gptr 17:52:27] 196s · fuentes leídas 431 · última línea: [0m
+[gptr 17:52:32] cortando GPT Researcher: ya no hace falta el informe
+[gptr 17:52:35] el proceso terminó (código null, cortado por tiempo)
+[gptr 17:52:35] proceso terminó tras 204s · timedOut=true código=n/d informe=ninguno
+[gptr 17:52:35] búsqueda terminada en 204s
+[gptr 17:52:36] URLs para el juez: 150 (0 del informe) → https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://news.abbvie.com/2026-09-29-AbbVie-Partners-with-Valkai-to-Apply-Advanced-AI-Across-Targeted-Areas-of-Clinical-Development | https://www.pharmanow.live/pharma-it/top-ai-drug-discovery-companies-2026 | https://intuitionlabs.ai/pdfs/pharma-ai-infrastructure-2026-deals-and-investments.pdf …
+[gptr 17:52:36] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 17:54:28] juez listo: 2 hallazgos (0 verificados) · contactos Apollo: 2 organizaciones, 6 créditos · total 317s
+[bench] i2-aha-commercial: ok en 331s · 0 act now · 8 watch · verificados 0
+  ok
+[12:55:01] caso 2/3: i3-medtech-eu
+[gptr 17:55:14] runObjective(investment): usa GPT Researcher
+[engine 12:55:14] investment: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 17:55:14] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:55:14] prompt (1921 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-0XAMGJ/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-0XAMGJ/gptr.log
+[gptr 17:55:29] 15s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:55:45] 31s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:55:59] 45s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:56:14] 60s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:56:29] 75s · fuentes leídas 0 · última línea: (sin salida todavía)
+[gptr 17:56:45] 91s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:56:59] 105s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:57:14] 120s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:57:30] 136s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:57:44] 150s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:58:00] 166s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:58:14] 180s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 17:58:30] 196s · fuentes leídas 0 · última línea: ✅ Generated 4 queries: ['seed stage medtech investors Spain wearable ECG AI 2025-2026', 'corporate venture arms Philips Siemens Healthineers
+[gptr 17:58:44] 210s · fuentes leídas 0 · última línea: INFO: [12:58:44] 🤔 Planning the research strategy and subtasks...
+[gptr 17:59:00] 226s · fuentes leídas 16 · última línea: INFO: [12:58:49] 🌐 Scraping content from 4 URLs...
+[gptr 17:59:15] 241s · fuentes leídas 21 · última línea: 🔍 Running research for 'EU venture capital MDR compliance medtech seed round 2025-2026'...
+[gptr 17:59:30] 256s · fuentes leídas 160 · última línea: INFO: [12:59:29] 🌐 Scraping content from 9 URLs...
+[gptr 17:59:45] el proceso terminó (código null, cortado por tiempo)
+[gptr 17:59:45] proceso terminó tras 271s · timedOut=true código=n/d informe=ninguno
+[gptr 17:59:45] búsqueda terminada en 271s · GPTR_TIMEOUT 270s (se usan las páginas que alcanzó a leer)
+[gptr 17:59:45] URLs para el juez: 150 (0 del informe) → https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026 | https://news.medtronic.com/2026-06-03-Medtronic-announces-strategic-investments-to-support-future-expansion-of-cardiac-ablation-portfolio-as-physician-demand-for-Affera-TM-technologies-broadens | https://news.medtronic.com/2026-06-03-Medtronic-announces-strategic-investments-to-support-future-expansion-of-cardiac-ablation-portfolio-as-physician-demand-for-Affera-TM-technologies-broadens?asPDF=1 | https://techfundingnews.com/top-ai-startups-in-spain-2026-the-companies-attracting-most-investment | https://luisllorens.substack.com/p/20-spanish-startups-to-watch-in-2026 …
+[gptr 17:59:45] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 18:01:31] juez listo: 1 hallazgos (0 verificados) · contactos Apollo: 1 organizaciones, 3 créditos · total 377s
+[bench] i3-medtech-eu: ok en 387s · 0 act now · 4 watch · verificados 0
+  ok
+[13:01:54] caso 3/3: i1-mint-ad
+[gptr 18:01:55] runObjective(investment): usa GPT Researcher
+[engine 13:01:55] investment: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 18:01:55] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 18:01:55] prompt (1685 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-frA1w1/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-frA1w1/gptr.log
+[gptr 18:02:10] 15s · fuentes leídas 0 · última línea: INFO: [13:02:10] 🌐 Browsing the web to learn more about the task: Corporate venture arm digital health predictive analytics Alzheimer 2025-
+[gptr 18:02:25] 30s · fuentes leídas 77 · última línea: INFO: [13:02:25] 📚 Getting relevant content based on query: 2025 seed round by Maryland venture capital firms for AI based Alzheimer’s risk
+[gptr 18:02:40] 45s · fuentes leídas 159 · última línea: INFO: [13:02:38] 📚 Combined research context: 0 MCP sources, web content
+[gptr 18:02:55] 60s · fuentes leídas 159 · última línea: 💸 Total Research Costs: $0.017535000000000002
+[gptr 18:03:10] 75s · fuentes leídas 159 · última línea: INFO: [13:03:10] 🌐 Browsing the web to learn more about the task: Maryland Momentum Fund investment criteria seed-stage AI diagnostic compa
+[gptr 18:03:25] 90s · fuentes leídas 211 · última línea: ✅ Generated 2 queries: ['2025-2026 corporate venture arm investments in Alzheimer’s predictive‑analytics startups amount by pharma, health‑s
+[gptr 18:03:40] 105s · fuentes leídas 276 · última línea: 💸 Total Research Costs: $0.0106
+[gptr 18:03:55] 120s · fuentes leídas 298 · última línea: INFO: [13:03:52] 📚 Combined research context: 0 MCP sources, web content
+[gptr 18:04:10] 135s · fuentes leídas 298 · última línea: 🔎 Generating 2 search queries...
+[gptr 18:04:25] 150s · fuentes leídas 353 · última línea: 💸 Total Research Costs: $0.01088
+[gptr 18:04:27] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 18:04:40] 165s · fuentes leídas 353 · última línea: [0m
+[gptr 18:04:55] 180s · fuentes leídas 353 · última línea: [0m
+[gptr 18:04:57] cortando GPT Researcher: ya no hace falta el informe
+[gptr 18:04:57] el proceso terminó (código null, cortado por tiempo)
+[gptr 18:04:57] proceso terminó tras 182s · timedOut=true código=n/d informe=ninguno
+[gptr 18:04:57] búsqueda terminada en 182s
+[gptr 18:04:57] URLs para el juez: 150 (0 del informe) → https://castleplacement.com/top-10-digital-health-healthtech-capital-raises-and-investors-in-the-u-s-january-1st-to-31st-2026 | https://news.crunchbase.com/seed/startup-funding-trends-2026-proptech-robotics-cancer-space-tech | https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc | https://www.medamd.com/program-development/tedco-announces-postcare-ai-as-concept-capital-recipient …
+[gptr 18:04:57] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 18:06:49] juez listo: 2 hallazgos (0 verificados) · contactos Apollo: 2 organizaciones, 4 créditos · total 294s
+[bench] i1-mint-ad: ok en 297s · 0 act now · 2 watch · verificados 0
+  ok
+[bench] resumen: /Users/gcaicedo/Documents/PROJECTS/AGENT/research/eval/results/bench-20261014-1249/RESUMEN.md
+[13:07:12] Listo. Abre eval/results/bench-20261014-1249/RESUMEN.md

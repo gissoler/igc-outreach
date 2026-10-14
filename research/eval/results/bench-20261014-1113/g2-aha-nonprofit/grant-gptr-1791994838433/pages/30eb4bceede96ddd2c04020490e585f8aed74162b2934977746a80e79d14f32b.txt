@@ -1,0 +1,58 @@
+COVID-19 Real World Data (RWD) Data Elements Harmonization Project | FDA
+
+Skip to main content
+
+Skip to FDA Search
+
+Skip to in this section menu
+
+Skip to footer links
+
+Home
+
+Drugs
+
+Emergency Preparedness | Drugs
+
+Coronavirus (COVID-19) | Drugs
+
+COVID-19 Real World Data (RWD) Data Elements Harmonization Project
+
+Coronavirus (COVID-19) | Drugs
+
+In this section
+
+## Introduction
+This project aims to harmonize a list of COVID-19 data elements with several Common Data Models (CDMs) and open standards. These data elements have been identified by the COVID-19 Evidence Accelerator Collaborative initiative led by Reagan-Udall Foundation , FDA and Friends of Cancer Research .
+Download the mapping spreadsheet (XLS - 56 KB)
+Disclaimer: This mapping table is a continuously evolving document intended to serve as a resource. Please check back when you need newer versions. While the document has been checked for accuracy there may be errors; if you plan to implement a section of the mapping table, please cross-check the work and report back if you identify needed updates.
+
+## Additional Background
+Sentinel Common Data Model
+OHDSI Observational Medical Outcomes Partnership (OMOP) Common Data Model
+Informatics for Integrating Biology and the Bedside (i2b2) / Accrual to Clinical Trials (ACT) Common Data Model
+Patient-Centered Outcomes Research Network (PCORnet) Common Data Model
+United States Core Data for Interoperability (USCDI)
+Health Level Seven (HL7) Fast Healthcare Interoperability Resources (FHIR)
+Clinical Data Interchange Standards Consortium (CDISC) Study Data Tabulation Model (SDTM)
+CDISC SDTM COVID-19 companion guide
+U.S. Department of Veterans Affairs Electronic Health Record (EHR) System
+National Cancer Institute (NCI) Cancer Data Standards Registry and Repository (caDSR)
+
+## Content current as of:
+
+08/07/2026
+
+## Regulated Product(s)
+
+Drugs
+
+## Health Topic(s)
+
+Infectious Disease
+
+Coronavirus
+
+Feedback
+
+Back to Top

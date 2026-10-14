@@ -1,0 +1,23 @@
+[gptr 17:49:11] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 17:49:11] prompt (2022 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-LlY5xA/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-LlY5xA/gptr.log
+[gptr 17:49:26] 15s · fuentes leídas 0 · última línea: 🔎 Generating 4 search queries...
+[gptr 17:49:41] 30s · fuentes leídas 24 · última línea: 🔍 Running research for 'corporate venture arms pharma AI data standardization neurodegenerative trials United States 2025 2026'...
+[gptr 17:49:56] 45s · fuentes leídas 195 · última línea: INFO: [12:49:55] 📚 Combined research context: 0 MCP sources, web content
+[gptr 17:50:11] 60s · fuentes leídas 195 · última línea: 💸 Total Research Costs: $0.022380000000000004
+[gptr 17:50:26] 75s · fuentes leídas 195 · última línea: 💸 Total Research Costs: $0.014700000000000001
+[gptr 17:50:41] 90s · fuentes leídas 264 · última línea: 💸 Total Research Costs: $0.010974999999999999
+[gptr 17:50:56] 105s · fuentes leídas 264 · última línea: 🔍 Running research for 'pharma corporate venture capital investments AI data‑infrastructure platforms versus disease‑specific AI therapeuti
+[gptr 17:51:11] 120s · fuentes leídas 344 · última línea: 💸 Total Research Costs: $0.016765000000000002
+[gptr 17:51:26] 135s · fuentes leídas 389 · última línea: Content too short or empty for https://onlinelibrary.wiley.com/doi/10.1155/joch/5202999, treating as fetch failure
+[gptr 17:51:41] 150s · fuentes leídas 391 · última línea: ✅ Generated 2 queries: ['2024-2026 press releases pharma CRO AI-enabled data harmonization Alzheimer’s clinical datasets partnership capital
+[gptr 17:51:56] 165s · fuentes leídas 431 · última línea: 💸 Total Research Costs: $0.011465
+[gptr 17:52:00] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 17:52:11] 180s · fuentes leídas 431 · última línea: [0m
+[gptr 17:52:27] 196s · fuentes leídas 431 · última línea: [0m
+[gptr 17:52:32] cortando GPT Researcher: ya no hace falta el informe
+[gptr 17:52:35] el proceso terminó (código null, cortado por tiempo)
+[gptr 17:52:35] proceso terminó tras 204s · timedOut=true código=n/d informe=ninguno
+[gptr 17:52:35] búsqueda terminada en 204s
+[gptr 17:52:36] URLs para el juez: 150 (0 del informe) → https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://news.abbvie.com/2026-09-29-AbbVie-Partners-with-Valkai-to-Apply-Advanced-AI-Across-Targeted-Areas-of-Clinical-Development | https://www.pharmanow.live/pharma-it/top-ai-drug-discovery-companies-2026 | https://intuitionlabs.ai/pdfs/pharma-ai-infrastructure-2026-deals-and-investments.pdf …
+[gptr 17:52:36] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 17:54:28] juez listo: 2 hallazgos (0 verificados) · contactos Apollo: 2 organizaciones, 6 créditos · total 317s

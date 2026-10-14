@@ -1,0 +1,225 @@
+11 AI Companies Reshaping Healthcare Delivery and Clinical Workflows In 2026
+
+Back to Top
+
+# 11 AI Companies Reshaping Healthcare Delivery and Clinical Workflows In 2026
+Company Profiles
+
+By Cathy Cassata
+
+Published April 10, 2026
+
+Share
+
+Print
+
+Cure
+
+#### Overview
+From ambient scribes to revenue cycle automation, these companies stand out for their solutions to healthcare&#x27;s most persistent operational and clinical bottlenecks.
+
+The global AI biotech market is expected to reach over $20 million by 2034 . So, it’s no surprise that 54% of all digital health funding in 2025 went to AI-enabled companies while commanding around a 19% premium on average deal size compared to non-AI centered companies.
+When it comes to biotech companies using AI for care delivery, Matt Hasan, PhD, founder of The AI Humanist Movement, says digital therapeutics platforms are integrating behavioral AI to adjust interventions in real time based on psychological state and engagement patterns.
+ “That is care delivery being transformed, not just research being accelerated,” he says. “What is new is not just the number of companies entering this space but the depth at which they are embedding intelligence into the care encounter itself. We are no longer talking about AI that sits in the background of a lab. We are talking about AI that is present in the exam room, in the nurse station workflow, and in the remote monitoring dashboard a clinician checks at midnight.”
+However, he offers a note of caution: while the category of AI-enabled care delivery is attracting a great deal of capital, he says not all of it is going to companies with genuine clinical grounding.
+ “The risk of overpromising and underdelivering is real, and the consequence is not just financial. It is erosion of trust in AI in healthcare at exactly the moment when that trust is most needed,” says Hasan. “The companies and investors who approach this space with rigor, humility, and a long horizon are the ones worth watching.”
+ The winners will share the below distinguishing characteristics, according to Hasan.
+Have an understanding of human behavior as well as data architecture
+
+Be built around interdisciplinary teams that combine clinical expertise, data science, and a genuine understanding of the human experience of illness
+
+Put priority on building trust and transparency, not as a regulatory checkbox but as a core design principle
+
+Treat regulatory alignment as a strategic asset rather than a burden
+
+ Additionally, companies built on real clinical insight that demonstrate measurable outcomes will find success while the ones that are built primarily on hype will not survive the procurement scrutiny of large health systems, Hasan stresses.
+ “Clinical workflow and AI co-pilots for clinicians are the most immediately scalable because they solve a problem that is universally felt,” Hasan says. “Remote monitoring has enormous potential but requires interoperability and patient adoption to deliver on its promise. Revenue cycle is a less glamorous but highly durable opportunity because the inefficiency there is staggering and the ROI is easy to demonstrate.”
+He believes some of the most important AI-enabled health companies of this decade will not be household names in digital health. “They will be the companies quietly building the predictive infrastructure that prevents the next pandemic from reaching the scale of the last one."
+ Below is a curated list of biotech companies using AI for care delivery to watch in 2026.
+
+## Abridge
+
+Sector: Clinical note‑taking and doctor–patient conversation summaries
+HQ: Pittsburgh, PA
+Year Founded: 2018
+Key Leaders: Shiv Rao, MD, CEO and Co-Founder; Zack Lipton, PhD, CTO and  Co-Founder; Julia Chou, COO
+Number of Employees: ~488
+Stage: Series E, Secondary Private
+Financial Snapshot: Valuation of $5.3 billion
+Notable Investors: Andreessen Horowitz, Bridgespan VC, Acherman Capital, California Health Care Foundation, Emerson Collective, Lightspeed Venture Partners, Institutional Venture Partners
+Key Products: AI-powered platform transforms patient-clinician conversations into structured clinical notes in real-time with EMR integrations
+Recent Highlights: In June 2025, the company secured $300M in Series E.
+
+## Suki
+
+Sector: Voice‑activated AI assistants for clinicians to streamline EHR interactions and administrative work
+HQ: Redwood City, CA
+Year Founded: 2017
+Key Leaders: Punit Soni, Founder and CEO; Joe Chang, Chief Technology Officer; Kevin Wang, MD, Chief Medical Officer; Abhi Pathak, Chief Product Officer
+Number of Employees: ~397
+Stage: Late-stage VC
+Financial Snapshot: Raised $168 million to date
+Notable Investors: Hedosophia, March Capital, Venrock, Flare Capital Partners, Zoom Ventures, Gaingels, Canal Pointe Capital
+Key products: AI assistant that handles documentation, coding, and clinical queries, with deep integration into major electronic health record systems
+Recent highlights: In January 2026, Suki announced a partnership with HealthEdge that brings ambient clinical intelligence directly into health plan care manager workflows.
+
+## AKASA
+
+Sector: AI‑driven revenue cycle management that automates coding, claims follow‑up, prior authorization, and reduces administrative waste
+HQ: South San Francisco, CA
+Year Founded: 2018
+Key Leaders: Malinka Walaliyadde, CEO and Co-Founder; Benjamin Beadle-Ryby, Co-Founder & SVP of Commercial; Andy Atwal, Co-Founder & VP of Engineering
+Number of Employees: ~200
+Stage: Early Stage VC
+Financial Snapshot: In 2026, the company has a valuation of $205 million .
+Notable Investors: Andreessen Horowitz, Coatue Management, Cultural Leadership Fund, BOND Capital, Founders Circle Capital, Costanoa Ventures
+Key Products: Coding Optimizer, a tool that uses generative AI to review coded inpatient encounters, identify missed coding opportunities, and uncover compliance risks; AKASA CDI Optimizer, a generative AI assistant that identifies documentation gaps and helps improve the accuracy of clinical documentation
+Recent Highlights: In October 2025, AKASA announced an expanded partnership with Cleveland Clinic focused on the mid-revenue cycle.
+
+## CodaMetrix
+
+Sector: AI‑powered autonomous coding and revenue cycle automation that reduces manual coding errors and accelerates reimbursement
+HQ: Boston, MA
+Year Founded: 2019
+Origin Story: CodaMetrix evolved from a homegrown solution developed by the Massachusetts General Physician Organization’s billing office to code complex, multispecialty cases.  
+Key Leaders: Hamid Tabatabaie, President & CEO; Kevin Schmitt, Chief Solution Architect; Chris Gervais, Chief Technology Officer
+Number of Employees: ~140
+Stage: Series B
+Financial Snapshot: The company has raised $110.65 million across four rounds of funding.
+Notable Investors: SignalFire, Transformation Capital, CU Healthcare Innovation Fund,  Frist Cressey Ventures, Martin Ventures, Mass General Brigham Ventures, Yale Medicine, University of Colorado Medicine
+Key Products: CMX CARE is an AI-powered contextual coding automation platform that transforms clinical documentation into a patient-centric, longitudinal view of care by identifying and applying the appropriate codes immediately when data is present.
+Recent Highlights: In June 2023, the company launched the first contextual coding automation platform and a new Emergency Department (ED) solution. And in February 2026, CodaMetrix was ranked number 1 in the 2026 Best in KLAS segment for Autonomous Coding.
+
+## Innovaccer
+
+Sector: AI‑powered population health management platform that unifies patient data and generates predictive insights for care coordination
+HQ: San Francisco, CA
+Year Founded: 2014
+Origin Story: The founders originally aimed to solve the problem of fragmented data silos across industries like finance and retail and then shifted to healthcare.
+Key Leaders: Abhinav Shashank, Co-founder and CEO; Sandeep Gupta, Co-Founder and COO; David Nace, MD, Chief Medical Officer; Ankit Maheshwari, Chief Technology Officer; Mike Sutten, Chief Technology Officer; Anil Jain, MD, FACP, Chief Innovation Officer
+Number of Employees: ~1786
+Stage: Series F
+Financial Snapshot: The company has raised more than $675 million .
+Notable Investors: BAM Corner Point, Banner Health, Danaher Ventures LLC, Generation Investment Management, Patni Financial Advisors, Kaiser Permanente, M12, B Capital Group 
+Key Products: Healthcare Intelligence Cloud and Gravity Data Activation Platform, which unifies disparate healthcare data to improve clinical, financial, and operational outcomes.
+Recent Highlights: In March 2026, the company announced the expansion of its partnership with Longevity Health to establish an enterprise-wide AI Center of Excellence powered by Innovaccer Gravity platform. That same month, the company also launched Innovaccer Galaxy UM , an AI-powered utilization management platform designed to help health plans automate prior authorization, reduce administrative costs, and improve care delivery outcomes.
+
+## K Health
+
+Sector: Virtual care and AI symptom assessment platform for remote primary care
+HQ: New York, NY
+Year Founded: 2016
+Origin Story: CEO Allon Bloch founded the company after witnessing his father struggle after experiencing a stroke.
+Key Leaders: Allon Bloch, Co-Founder and CEO; Ran Shaul, Co-Founder and CPO; Neil Brown, MD, Chief Medical Officer; Ashok Balakrishnan, Chief Technology Officer
+Number of Employees: ~413
+Stage: Late-Stage VC
+Financial Snapshot: The company has raised $387 million over 12 rounds.
+Notable Investors: Valor Equity Partners, Cedars Sinai Ventures, KhoFounders, Claure Group, Mangrove Capital Partners 14W, Notable Capital, Lerer Hippeau, Primary Venture Partners, Comcast Ventures, PICO Venture Partners, Max Ventures
+Key Products: AI Symptom Checker , a free tool that uses data from millions of medical records to analyze symptoms; Virtual Primary & Urgent Care , 24/7 access to clinicians for chat-based or video consultations to diagnose, treat, and prescribe medication for common illnesses; AI Physician Mode , a tool for clinicians that synthesizes a patient’s medical history using AI
+Recent Highlights: In February 2026, the company announced that it migrated its AI physician model to Gemma 3, hosted on Google Cloud’s Vertex AI platform, to improve the patient intake process and reduce inferencing costs.
+
+## Ellipsis Health
+
+Sector: Agentic AI care manager that connects with patients between visits, coordinating follow‑up tasks such as discharge checks, medication reminders, and social needs
+HQ: San Francisco, CA
+Year Founded: 2017
+Origin Story: Mainul Mondal founded Ellipsis Health after witnessing his mother’s health struggles and the empathetic care she received.
+Key Leaders: Mainul Mondal, Founder and CEO; Michael Aratow, Co-Founder and Chief Medical Officer; Melissa McCool, Chief Operating Officer; Angela Suthrave, Chief Product Officer; Courtney Henchon, Chief Nursing Officer
+Number of Employees: 11-50
+Stage: Series A
+Financial Snapshot: Ellipsis Health has raised $75.39 million over eight rounds. 
+Notable Investors: Able Partners, Alumni Ventures Group, Gaingels, Generator Ventures, Greycroft, Khosla Ventures, Springtide Ventures, Time Ventures, Salesforce, CVS Health Ventures, AIX Ventures, Alumni Ventures Group, SJF Ventures, What If Ventures
+  Key Products: Sage AI Care Manager , an “emotionally intelligent” voice agent that conducts autonomous, conversational phone calls with patients 24 hours a day, seven days a week.
+Recent Highlights: In November 2025, Ellipsis Health announced its partnership with NVIDIA Riva Parakeet automatic speech recognition technology to enhance its platform’s transcription accuracy.
+
+## OpenEvidence
+
+Sector: AI copilot medical knowledge platform
+HQ: Miami, FL
+Year Founded: 2017
+Origin Story: Launched during the Mayo Clinic Platform Accelerate program,  the company was backed by Sequoia and Google, and is an official Content Partner of the New England Journal of Medicine and The Journal of the American Medical Association.
+Key Leaders: Daniel Nadler, Co-Founder and CEO; Zachary Ziegler, Co-Founder and CTO; Travis Zack, MD, Chief Medical Officer
+Number of Employees: ~36
+Stage: Series D
+Financial Snapshot: The company doubled its valuation to $12 billion after its latest funding round.
+Notable Investors: Alkeon Capital Management, Capital 7, DST Global, Thrive Capital, Endurance Global Ventures, Evolution VC Partners, Nvidia, Google Ventures, Sequoia, Kleiner Perkins
+Key Products: OpenEvidence is an AI copilot for healthcare providers that helps them make high-stakes decisions at the point of care.
+Recent Highlights: In October, 2025, OpenEvidence collaborated with Microsoft to expand AI leadership in healthcare. And, in March 2026, the company launched Coding Intelligence, an AI feature for automated medical coding and billing within its platform.
+
+## Ambience Healthcare
+
+Sector: AI platform for documentation, coding, and clinical workflows
+HQ: San Francisco, CA
+Year Founded: 2020
+Key Leaders: Nikhil Buduma, Co-Founder and CEO; Mike Ng, Co-Founder and President  
+Number of Employees: ~218
+Stage: Private, Series C
+Financial Snapshot: $243 million Series C round
+Notable Investors: Founders Circle Capital, Frist Cressey Ventures, General Catalyst, Georgian, Oak HC/FT, Andreessen Horowitz (a16z)
+Key Products: Ambience AutoScribe , a real-time AI-powered medical scribe designed for enterprise health systems.
+Recent Highlights: In February 2026, the company was recognized as the 2026 KLAS/CHIME Trailblazer Award winner. The same month, Ambience Healthcare announced that its AI platform for clinical documentation and revenue integrity was successfully deployed across Houston Methodist.
+
+## Hippocratic AI
+
+Sector: Generative AI “agents” designed to assist or act as virtual nurses and other healthcare professionals to address staffing shortages
+HQ: Palo Alto, CA
+Year Founded: 2023
+Key Leaders: Munjal Shah, Co-Founder and CEO; Vishal Parikh, Co-Founder and Chief Product Officer; Subho Mukherjee, PhD, Co-Founder and Chief Science Officer; Meenesh Bhimani, MD, Co-Founder and Chief Medical Officer
+Number of Employees: ~190
+Stage: Private, Series C
+Financial Snapshot: The company has a $3.5 billion valuation .
+Notable Investors: Avenir Growth, CapitalG, General Catalyst, Andreessen Horowitz (a16z), Kleiner Perkins; Premji Invest, Universal Health Services, Cincinnati Children’s Hospital Medical Center, WellSpan Health, John Doerr, Rick Klausner
+Key Products: Polaris , a generative AI platform featuring a “constellation” of specialized Large Language Models designed for patient-facing interactions
+Recent Highlights: In January 2026, the company announced financial growth and new partnerships with health systems, deepened engagement with national payors, an expanded presence in the public sector, and strategic scale-up in the life sciences division. In March 2026, the company was named on the Forbes list of America’s Best Startup Employers 2026.
+
+## Notable Health
+
+Sector: AI for administrative burden of healthcare
+HQ: San Mateo, CA
+Year Founded: 2017
+Key Leaders: Pranay Kapadia, Co-Founder and CEO; Adam Ting, Co-Founder and CPO; Justin White, PhD, Co-Founder and CTO; Aaron Neinstein, MD, Chief Medical Officer
+Number of Employees: ~258
+Stage: Private, Series B, Secondary
+Financial Snapshot: The company is valued at $600 million .
+Notable Investors: ICONIQ Growth, Eight Roads, Ensemble Labs, F-Prime Capital, Oak HC/FT, Greylock
+Key Products: AI-powered platform that uses AI agents to automate administrative and clinical workflows, such as patient intake, scheduling, prior authorizations, and care gap closure
+Recent Highlights : In January 2026, Notable partnered with Inova Health to support system-wide AI and digital transformation strategy. Then, in March 2026, Notable partnered with Marshall Health Network to roll out online scheduling and patient registration solutions to improve access, streamline check-in, and enhance the patient experience for primary care patients across its network.
+
+## Recommended Stories
+
+###### 10 CRISPR Companies to Watch in 2026
+April 2, 2026
+
+###### 10 Stem Cell Companies to Watch in 2026
+March 30, 2026
+
+###### 9 Women’s Health Startups to Watch in 2026
+March 10, 2026
+
+###### 8 Biotech Companies Driving Breakthroughs in mRNA Vaccines
+March 16, 2026
+
+###### 9 Biggest Biotech and Life Science Companies In Seattle
+March 2, 2026
+
+## More Stories
+
+###### The Ivy League vs China: Who Leads the Science That Becomes Medicine?
+October 13, 2026
+
+Innovation Index
+
+###### Inside the Business of Fixing Healthcare Problems No One Owns
+October 8, 2026
+
+Cure Member Spotlight
+
+###### Can We Get to a Reliable Measure of Aging Within Five Years?
+October 6, 2026
+
+Longevity and Healthspan
+
+###### Turning New York&#x27;s Research Lead Into Cures
+October 5, 2026
+
+Innovation Index

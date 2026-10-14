@@ -1,0 +1,46 @@
+Towards Artificial General Intelligence (AGI) for healthcare | Programme | HORIZON | CORDIS | European Commission
+
+Skip to main content
+
+EN
+
+The AI Continent Action Plan[[ https://digital-strategy.ec.europa.eu/en/library/ai-continent-action-plan ]] identifies the health sector, encompassing life sciences, medical devices and healthcare delivery, as one of the key strategic sectors. The action will contribute to making European life sciences[[ https://research-and-innovation.ec.europa.eu/strategy/strategy-research-and-innovation/jobs-and-economy/towards-strategy-european-life-sciences_en ; https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1686 ]] and healthcare more impactful and productive by fostering the full integration of advanced AI in the health sector and biomedical research, along the objectives of the AI in Science strategy[[ https://research-and-innovation.ec.europa.eu/research-area/industrial-research-and-innovation/artificial-intelligence-ai-science_en ]] and Apply AI strategy[[ https://digital-strategy.ec.europa.eu/en/consultations/commission-launches-public-consultation-and-call-evidence-apply-ai-strategy ]].
+Healthcare typically involves the combining of multimodal data, ranging from electronic health records through imaging and laboratory to molecular and omics data. This information combination is performed by specialists and is often challenging towards optimised patient care. In Europe, the growing amount of accessible multimodal health data, including via the forthcoming European Health Data Space (EHDS)[[ https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en ]], combined with the increasing availability of high-performance computing facilities (e.g. AI Factories), presents a unique opportunity to develop the next generation of frontier AI models for healthcare. This action anticipates and operationalises the use of such federated infrastructures for research and innovation. Moreover, regulations such as the EHDS regulation and AI Act[[ https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai , https://eur-lex.europa.eu/eli/reg/2024/1689/oj ]] steer the direction into building an ecosystem fostering ethical and safe innovation on AI in healthcare.
+AI models are becoming increasingly complex and able to tackle increasingly challenging tasks. The next generation of frontier AI models are expected to make strides towards AGI, a type of AI capable of tackling highly complex and diverse tasks with proficiency comparable to that of humans. This topic will lay the foundation for the development of the next generation of frontier AI models, paving the way for new, advanced AI-powered solutions to increase efficiency and efficacy in the health sector towards improved patient outcomes. It will leverage results, methodologies, data etc. of other relevant EU-funded projects.
+Proposals should include all the following coordination and support activities, ensuring multidisciplinary approaches and a broad representation of stakeholders in the consortium (e.g. healthcare professionals, patients, biomedical scientists, AI developers, data engineers, ethics experts):
+Community building: build a large-scale and diverse pan-European community of stakeholders with the multidisciplinary expertise united as required to develop the next generation of frontier AI models for healthcare, towards AGI for healthcare, with a view to leveraging as a community the potential of AI Factories. Where relevant, this should build on and strengthen existing EU-funded communities and networks, and could pave the way for a formalised long-term collaboration under one of the available EU instruments.
+Roadmap creation: review previous research to identify the most promising AI models and model development approaches. In addition, risk assess and review evidence on safety and efficacy of existing AI models with reference to the AI Act, related regulatory provisions (including any jurisprudence) and ethical and security considerations, so that frontier AI model development can proceed on a well-informed basis. Finally, create a roadmap for developing the next generation of frontier AI models.
+Dataset identification, curation, expansion and use: i) identification: identify the most suitable existing datasets for the development of frontier AI models for healthcare, ii) curation: identify how to validate the datasets, ensure dataset interoperability, and convert datasets into formats suitable for frontier AI model development, iii) expansion: identify additional datasets and/or annotations required for frontier AI model development, especially to ensure that datasets are representative and iv) use: identify methods and required infrastructure to allow privacy-preserving use and further expansion of the datasets in alignment with and through the EHDS.
+Frontier AI model preparatory activities: mapping approaches for training and evaluating frontier AI models (e.g. approaches to combine foundation models for life sciences and healthcare delivery in order to develop more advanced and multidisciplinary models towards personalised medicine). The approaches should cover all trustworthy AI aspects[[ https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai ]].
+This action should take into account the results of other relevant projects on AI in health, in particular in the two GenAI4EU topics HORIZON-HLTH-2025-01-CARE-01: “End user-driven application of Generative Artificial Intelligence models in healthcare (GenAI4EU)” and HORIZON-HLTH-2025-01-TOOL-03: “Leveraging multimodal data to advance Generative Artificial Intelligence applicability in biomedical research (GenAI4EU)”, and leverage the AI Factories and specialised health data infrastructures funded under the Digital Europe Programme[[ https://digital-strategy.ec.europa.eu/en/activities/digital-programme ]], biobanks, relevant ERICs[[European Research Infrastructure Consortia: https://www.eric-forum.eu/the-eric-landscap ]], as well as the data resources accessible through the EHDS infrastructure starting in 2029, funded under EU4Health Programme (2021-2027)[[ https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/eu4health_en ]].
+
+See all projects funded under this programme or topic
+
+## Download Download the content of the page
+
+XML
+
+Last update: 24 November 2025
+
+Permalink: https://cordis.europa.eu/programme/id/HORIZON_HORIZON-HLTH-2027-03-TOOL-08
+
+European Union, 2026
+
+This site uses cookies
+to offer you a better browsing experience.
+
+I accept cookies.
+
+I refuse cookies.
+
+## Your data extraction is available
+
+Your data extraction with Task ID
+TASK_ID_PLACEHOLDER
+is available for download.
+
+Go to my data extractions
+
+Close
+
+DET Modal body ...

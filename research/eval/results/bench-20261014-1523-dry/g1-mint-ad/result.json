@@ -1,0 +1,122 @@
+{
+ "id": "g1-mint-ad",
+ "kind": "grant",
+ "objective": "grant",
+ "brief": "eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+ "why": "brief del jefe: cobertura contra la lista de Gemini",
+ "dry": true,
+ "ok": true,
+ "status": "done",
+ "error": null,
+ "started": "2026-10-14T15:23:52.777Z",
+ "seconds": 1,
+ "stages": {
+  "search_s": 0,
+  "judge_s": 0,
+  "engine_s": null,
+  "contacts_s": null,
+  "evaluator_s": null,
+  "total_s": 0
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 2,
+  "opened": 152,
+  "assessed": 42,
+  "by_status": {
+   "registry": 2,
+   "open": 2,
+   "unknown": 148
+  }
+ },
+ "findings": {
+  "verified": 4,
+  "to_review": 0
+ },
+ "lists": {
+  "top": 1,
+  "radar": 3,
+  "discarded": 0
+ },
+ "apollo_credits": 0,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "PA-27-100 · NIH SBIR omnibus parent solicitation (fixture record)",
+   "list": "top",
+   "deadline": "2027-01-05",
+   "verified": true,
+   "url": "https://simpler.grants.gov/opportunity/00000000-0000-4000-8000-0000000a0100",
+   "contacts": 1
+  },
+  {
+   "title": "Maryland Industrial Partnerships (MIPS): request for proposals.",
+   "list": "radar",
+   "deadline": "2026-10-15",
+   "verified": true,
+   "url": "https://example.test/fixture-mips-rfp",
+   "contacts": 0
+  },
+  {
+   "title": "TEDCO Maryland Innovation",
+   "list": "radar",
+   "deadline": "2026-10-15",
+   "verified": true,
+   "url": "https://www.tedcomd.com/sites/default/files/2026-01/MII%20Company%20Formation-RFA_FY2026_v4.pdf",
+   "contacts": 0
+  },
+  {
+   "title": "NSF-SBIR-PHASE-I-FIXTURE · NSF SBIR Phase I (fixture record)",
+   "list": "radar",
+   "deadline": "2026-11-04",
+   "verified": true,
+   "url": "https://simpler.grants.gov/opportunity/00000000-0000-4000-8000-0000000b0200",
+   "contacts": 0
+  }
+ ],
+ "coverage": [
+  {
+   "id": "nih-sbir-parent",
+   "label": "NIH SBIR parent PA-27-100 (cierres 5-ene-2027 y 5-abr-2027)",
+   "found": true,
+   "list": "top",
+   "deadline": "2027-01-05",
+   "expected": "2027-01-05",
+   "verified": true,
+   "why_out": null
+  },
+  {
+   "id": "nsf-sbir",
+   "label": "NSF SBIR (cierre 4-nov-2026)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2026-11-04",
+   "expected": "2026-11-04",
+   "verified": true,
+   "why_out": null
+  },
+  {
+   "id": "tedco-mii",
+   "label": "TEDCO Maryland Innovation Initiative, RFA (cierre 15-oct-2026)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2026-10-15",
+   "expected": "2026-10-15",
+   "verified": true,
+   "why_out": null
+  },
+  {
+   "id": "mips",
+   "label": "MIPS (cierre 15-oct-2026)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2026-10-15",
+   "expected": "2026-10-15",
+   "verified": true,
+   "why_out": null
+  }
+ ]
+}

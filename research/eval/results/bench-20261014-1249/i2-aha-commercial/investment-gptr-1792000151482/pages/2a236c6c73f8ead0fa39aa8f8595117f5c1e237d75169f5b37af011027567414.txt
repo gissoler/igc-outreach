@@ -1,0 +1,351 @@
+Seed round valuation 2026: benchmarks, dilution, time | Causo Hub
+Hub / Guides / fundraising-basics / Seed round valuation 2026: the benchmark report
+
+# Seed round valuation 2026: the benchmark report
+
+The seed round valuation 2026 median sits at $18.4M pre-money on $3.0M of capital raised, per PitchBook-NVCA. Carta puts dilution at 19-20%, post-money at $24M, and closing time at roughly 3-6 months. AI commands a small seed premium, mega-seeds now hit 9% of deals, and median founder ownership at seed is 56%.
+
+The 2026 seed benchmark table
+
+How big a seed round size 2026 actually is
+
+Average seed valuation: pre-money vs post-money
+
+Seed dilution benchmark: the 19-20% math
+
+The AI premium at seed is smaller than the headline
+
+Geography: hubs vs everywhere else
+
+Time-to-close: the six-month reality
+
+SAFEs vs priced rounds at seed
+
+How much to actually raise
+
+Seed funding statistics 2026: what changed and what didn't
+
+FAQ
+
+The seed round valuation 2026 numbers are not the ones founders are still quoting from 2023 blog posts. Median pre-money cleared $18M in Q1 , mega-seeds are 4.5x more common than they were in 2018, and the AI premium that you read about in the all-stage charts mostly disappears at seed. This is the consolidated 2026 reference: the medians, the ranges, the dilution math, and what to actually raise, all in tables, all sourced.
+
+## The 2026 seed benchmark table
+
+Every important seed number, in one table. This is the cheat sheet to anchor every conversation with your co-founders and your lead.
+
+Metric
+2026 figure
+Source
+
+Median US seed pre-money valuation
+$18.4M (Q1 2026)
+PitchBook-NVCA Q1 2026
+
+Median US seed post-money valuation
+$24M (Q4 2025)
+Carta Q4 2025
+
+Median seed deal size
+$3.0M (Q1 2026)
+PitchBook-NVCA Q1 2026
+
+Typical seed round range
+$1M to $5M
+OpenVC 2026 seed guide
+
+Median seed dilution
+19-20%
+Carta Mar 2026
+
+AI seed pre-money (Q1 2026)
+$18.7M
+PitchBook-NVCA Q1 2026
+
+Non-AI seed pre-money (Q1 2026)
+$18.0M
+PitchBook-NVCA Q1 2026
+
+Mega-seeds ($10M+) share of deals
+9% (2025)
+Pipeline Road / Crunchbase
+
+Median founder ownership at seed
+~56%
+Carta Founder Ownership 2026
+
+Typical close time
+~3 to 6 months
+OpenVC 2026 seed guide
+
+Bookmark this table. The rest of the guide is the detail behind each line.
+
+## How big a seed round size 2026 actually is
+
+The median seed round in 2026 is $3.0M, and the normal range is $1M to $5M. The market is bimodal, not normal: most rounds cluster at the low end, but a fat tail of $10M+ mega-seeds drags the average upward and reframes what a "competitive" seed looks like.
+
+PitchBook-NVCA's Q1 2026 Venture Monitor puts median seed deal value at $3.0M, basically flat with the full-year 2025 figure of $3.8M from the Q4 2025 monitor . OpenVC's 2026 seed guide cites a $1M to $5M range as the typical band, and notes Q1 2026 seed funding hit $12B globally, up 31% year over year.
+
+The mega-seed share is the structural shift. Per Crunchbase data analyzed by Pipeline Road , seed rounds of $10M or more grew from 2% of deals in 2018 to 9% in 2025. Roughly 1 in 10 seed rounds is now a mega-seed , almost all concentrated in AI infra, frontier models, and capital-intensive deep tech.
+
+The practical read for most founders: don't anchor on the mega-seeds you see on Twitter. The median founder is raising $2-4M, and that's what your comp set should look like.
+
+✅ Good: "We're raising $3M on $18M pre-money, in line with the Q1 2026 PitchBook-NVCA median for our stage." Tells the partner you've done the math.
+
+❌ Bad: "We're raising $8M because a similar AI startup raised $15M last month." One headline does not make a comp.
+
+## Average seed valuation: pre-money vs post-money
+
+Median seed pre-money is $18.4M in 2026; median post-money is $24M. The two figures come from different datasets (PitchBook-NVCA and Carta respectively) but tell the same story: seed valuations have re-rated up, hard.
+
+PitchBook-NVCA Q1 2026 reports median seed pre-money at $18.4M, up from a full-year 2025 median of $16.0M per the Q4 2025 monitor . Carta's Q3 2025 State of Private Markets put new primary seed pre-money at $16M, a 14% jump year over year, and the Q4 2025 update put post-money at $24M.
+
+Carta's record-setting valuations report from March 2026 called the trend "seed valuations continued to soar in 2025," and flagged the secondary effect: median Series A post-money "rocketed to $78.7 million." That matters because it resets what the next round looks like for anyone pricing a seed today.
+
+Anchor your pre-money in the $12M to $25M band unless you have outlier traction or you're in a hot sub-sector. Above $25M without revenue or a defensible technical moat, you're pricing yourself into a Series A gap, where the next round can't justify the markup.
+
+The Carta Q3 callout deserves repeating in plain text: startups raised more in the first 9 months of 2025 than in all of 2023. Capital is not the scarce resource right now. Allocation discipline by partners is the scarce resource, and that's why pricing discipline at seed still matters.
+
+## Seed dilution benchmark: the 19-20% math
+
+Plan for 19-20% dilution at seed. That's Carta's March 2026 figure for both seed and Series A, basically unchanged from 2024 even as valuations rose. The price went up; the equity slice you give away did not move much.
+
+Carta's broader pipeline view in the Q4 2025 State of Private Markets shows median dilution across all rounds from seed through Series C fell from ~18% to 16% in 2025. The seed stage specifically still sits in the high teens.
+
+The 19-20% number is the planning anchor. The real range is wider:
+
+Round size
+Typical dilution
+Notes
+
+Pre-seed SAFE, $250K-$1M
+~10-15%
+Carta pre-seed median cap ~$10M
+
+Pre-seed SAFE, $1M-$2.5M
+~13-17%
+Carta pre-seed median cap ~$15M
+
+Seed priced, $2M-$4M at ~$20M post
+~15-20%
+Lenny's Newsletter 2024 primer
+
+Seed priced, $3M-$5M at $18M pre
+~19-22%
+Median scenario, PitchBook-NVCA
+
+Mega-seed, $10M+ at $30M+ pre
+~20-30%
+Mega rounds usually take more
+
+Lenny Rachitsky's 2024 seed primer recommended targeting $2M to $4M at roughly $20M post for ~15% dilution. Those numbers still hold for the lower end of the market in 2026, with the medians shifted modestly up.
+
+Carta's 2026 Founder Ownership Report puts median founding-team ownership at the seed-raise milestone at about 56%. That 56% is what you have left to spend across Series A, B, C, employee pool top-ups, and any bridge rounds. If you're already below 50% at seed, you over-issued earlier. If you're at 65%+, you under-raised.
+
+❌ Bad: optimizing seed dilution down to 12% by raising less than you need. You'll be back in the market in 9 months at a worse valuation.
+
+✅ Good: raising $3-4M at $18-20M pre, taking the standard ~20% hit, using the runway to hit a Series A milestone that justifies a $50M+ post.
+
+## The AI premium at seed is smaller than the headline
+
+The "AI gets 2x the valuation" narrative is real at the all-stage level and mostly false at seed. PitchBook-NVCA Q1 2026 puts AI seed pre-money at $18.7M vs non-AI seed pre-money at $18.0M. A $700K premium is real but small.
+
+The all-stage AI & ML median pre-money is $27.2M per the Q4 2025 monitor , with median deal size $30.1M across 5,793 AI & ML deals in 2025 (up from 5,278 in 2024). That headline is driven by Series A+ AI infra and foundation-model rounds, not by seed-stage AI startups.
+
+Stage
+AI pre-money
+Non-AI pre-money
+Premium
+
+Seed (Q1 2026)
+$18.7M
+$18.0M
++$0.7M (~4%)
+
+All stages (2025)
+$27.2M
+Materially lower
+Much larger
+
+CB Insights' Q1 2026 State of Venture put global venture funding at a record $286B, with AI capturing 48% of 2025 dollars ($226B of $469B globally). The capital is going to AI; the seed-stage premium isn't. What you actually get at seed if you're labeled "AI": faster meetings, more interest, but a pre-money in the same band as your non-AI peers.
+
+The mismatch matters for what you ask for. Don't price a seed at $35M pre on the strength of being an AI company alone. The PitchBook seed-stage AI median does not support it.
+
+## Geography: hubs vs everywhere else
+
+The four traditional US hubs are losing share at the deal-count level. PitchBook-NVCA Q1 2026 reports Bay Area, NY, LA, and Boston accounted for 46.1% of US VC deal count in Q1 2026 versus 53.9% outside the hubs.
+
+For a seed founder, the practical read is that outside-hub seed rounds are now common, not exotic. Pricing usually trails the hub median by 10-20%, but the math still works because the local cost base is lower and dilution stays in the standard band.
+
+Hub-vs-non-hub still matters for follow-on. Series A capital concentrates more in the hubs than seed capital does, so an outside-hub seed often means a hub-based Series A lead later. That's a relationship-building tax to budget for, not a reason to skip the round.
+
+## Time-to-close: the six-month reality
+
+OpenVC's 2026 guide says closing a seed "can take up to 6 months." That's the realistic ceiling for the median founder. The hot-deal stories you read (lead commits in week 2, signed SAFE in week 4) are real but unrepresentative.
+
+A normal 2026 seed timeline:
+
+Weeks 0-2: warm intros. Build the list of target funds and chase intros to the top of it.
+
+Weeks 2-6: first meetings. First calls land, partner meetings follow.
+
+Weeks 6-10: due diligence. Serious leads do deep work on metrics and team.
+
+Weeks 10-14: term sheet and lead commitment. SAFE or priced-round terms agreed.
+
+Weeks 14-20: party round fill and paperwork. Other checks land behind the lead.
+
+Weeks 20-24: wire and close. Final signatures, wires, board setup if priced.
+
+The variance is huge. A founder with strong warm intros and clean metrics can compress this to 8-10 weeks. A first-time founder doing it cold can stretch to 9 months. Plan for 4-6 months of calendar time. Don't start a seed raise with less than 9 months of runway left , or you'll be raising from a position of weakness by month 4.
+
+PitchBook-NVCA's Q4 2025 monitor framed the current dynamic well: "large firms with dry powder are controlling the market environment, including by increasing activity at the seed and early stages," with investors deploying "significant capital into first financings, driven by confidence in exceptional technical talent despite the absence of mature financial metrics at this stage." Translation: capital is there, but it's concentrated, and the bar is technical credibility, not revenue.
+
+The 19-20% dilution number at seed has barely moved in three years. The valuations have. That's the entire 2026 story in one line.
+
+## SAFEs vs priced rounds at seed
+
+Most pre-seeds in 2026 are SAFEs. Most seeds are priced. That's the rough rule, with a wide gray zone in between.
+
+Carta's State of Pre-Seed 2025 report recorded 50,316 pre-seed instruments in 2025, a 13% decline from 2024. The standard instrument is a post-money SAFE with a valuation cap and no discount. Carta puts median caps at ~$10M for $250K-$1M rounds and ~$15M for $1M-$2.5M rounds.
+
+Y Combinator's standard deal is $500K for 7% common equity plus an incremental amount fixed when you raise from other investors. YC also publishes its seed-stage SAFE instruments : a $125K post-money SAFE for 7% plus a $375K uncapped MFN SAFE that converts at the most favorable terms between the MFN start date and the priced round. These templates are the most-used SAFE forms in the market , and lead investors expect to see them.
+
+When to use what at seed:
+
+Round
+Instrument
+Why
+
+$250K to $1.5M pre-seed
+Post-money SAFE, capped
+Low cost, no lawyers, no board, no preferred stock terms
+
+$1.5M to $3M seed
+SAFE or priced
+Borderline. SAFE if you don't have a lead, priced if you do
+
+$3M+ seed
+Priced round
+Leads usually want preferred stock, board observer, pro-rata
+
+$5M+ seed
+Priced round, always
+Anti-dilution and information rights make a SAFE awkward at this size
+
+The priced-round threshold has crept up. In 2020 a $2M seed was usually priced; in 2026 a $2M seed is usually a SAFE. The Carta pre-seed instrument decline of 13% is partly the count effect of fewer deals and partly the volume effect of bigger SAFEs absorbing what used to be small priced rounds.
+
+## How much to actually raise
+
+Raise enough to hit a Series A milestone, no more. The Series A bar in 2026 is roughly $1M to $2M ARR with credible growth, or a working AI/deep-tech demo with paying design partners. Back out 18 months of runway plus a 6-month raise buffer, that's your seed number.
+
+The over-raise instinct is the trap. Jason Fried said it in Lenny's 2024 primer : "Raising money too early teaches you how to spend rather than earn... there's no better practice than having to make more than you spend right from the start." That's not advice to skip the round. It's advice to size it to the milestone, not the maximum.
+
+Karri Saarinen from Linear, in the same Lenny primer , framed the right posture: "With each round, you want to think simultaneously that it is the last round you'll ever raise... and that you're raising enough to hit the milestones that you need to get to the next valuation range."
+
+Two practical anchors:
+
+The $3-4M / $18-20M default. This is the median 2026 seed for a software/SaaS startup with a working product and early traction. Gives you 18-24 months of runway for a team of 4-8, costs ~20% dilution, sets up a Series A at $50M+ post.
+
+The $5-7M / $25-30M alternative. For AI-heavy teams with technical depth and a more expensive runway (GPUs, foundation-model fine-tunes, deep research hires). Same dilution band, more cash, but harder to justify a $75M+ Series A markup without revenue.
+
+Max Mullen from Instacart said it best in Lenny's primer : founders should "try to optimize their rounds to get the most helpful investors involved early, and to worry less about optimizing the price and other terms of the round." An extra $1M at seed buys 4 months of runway. The right lead buys you a Series A intro. The math is not close.
+
+## Seed funding statistics 2026: what changed and what didn't
+
+Three things changed in 2026; one thing didn't.
+
+What changed:
+
+Median seed pre-money cleared $18M for the first time, up from $16M in 2025 ( PitchBook-NVCA Q1 2026 ).
+
+Mega-seeds hit 9% of deals vs 2% in 2018 ( Crunchbase via Pipeline Road ), reshaping what a competitive AI/deep-tech seed looks like.
+
+Capital concentration accelerated. CB Insights reports Q1 2026 hit $286B in global venture funding, with AI taking 48% of 2025 dollars. SVB's H1 2026 report notes $4.4T of value locked in US private unicorns.
+
+What didn't change:
+
+Dilution at seed. Still 19-20% per Carta March 2026 , basically where it was in 2023. Valuations went up, equity slices stayed the same.
+
+That last point is the actionable one. If a fund offers you a $20M pre on a $4M check, you'll give up 20%. That number has been true for a decade and is still true in 2026. Plan around that, not around hopeful 12% dilution math from a YC SAFE blog post.
+
+For the broader benchmarks that complement this page, the founder dilution benchmarks across rounds , seed burn rate benchmarks by stage , and how much to raise at seed guides give the multi-round and operating-cost view.
+
+If you're sending more than 20 cold emails to investors during a seed raise, tools like Causo handle the targeting and follow-up automatically. For lower volumes, a spreadsheet and a calendar reminder are enough.
+
+## FAQ
+
+What is the average seed valuation in 2026?
+Median US seed pre-money valuation hit $18.4M in Q1 2026 per PitchBook-NVCA, with median post-money valuations around $24M on Carta. The all-stage AI & ML median sits much higher at $27.2M, but at the seed stage specifically the AI premium narrows to roughly $700K.
+
+How big is a typical seed round in 2026?
+Median seed deal value was $3.0M in Q1 2026 (PitchBook-NVCA), and most rounds fall in a $1M to $5M band. Roughly 1 in 10 seed rounds is now a "mega-seed" of $10M+, up from 2% in 2018, but the median founder is raising a few million, not ten.
+
+How much dilution should you expect at seed?
+Plan for 19-20% dilution at seed in 2026 per Carta, with a working range of 15-25% depending on round size and instrument. Carta's broader dataset shows aggregate dilution from seed through Series C fell to 16% in 2025, but seed-stage specifically remains in the high teens.
+
+How long does it take to raise a seed round?
+OpenVC's 2026 guide puts seed closing at "up to 6 months" in current market conditions. Hot deals close in 3-5 weeks once a lead commits, but the median founder spends 3-6 months running the process end to end, including warm intros, partner meetings, and SAFE paperwork.
+
+What is a good pre-money valuation for a seed round?
+A good seed pre-money in 2026 lands between $12M and $25M for most non-AI rounds, with the median at $18.4M (PitchBook-NVCA Q1 2026). Pricing above $25M without strong traction creates a Series A valuation gap that becomes a problem at the next round.
+
+## Related on the hub
+
+Seed valuation 2026: fair ranges, SAFE caps, and dilution math — Related valuation guide.
+
+The H1 2026 Pre-Seed Funding Report — Related fundraising basics guide.
+
+The H1 2026 State of Seed Fundraising Report — Related fundraising basics guide.
+
+Good
+We&#x27;re raising $3M on $18M pre-money, in line with the Q1 2026 PitchBook-NVCA median for our stage.
+Anchor on the actual 2026 median
+
+Bad
+We&#x27;re raising $8M because a similar AI startup raised $15M last month.
+One headline is not a comp set
+
+★ Causo · Start free
+
+#### Run this raise inside Causo.
+Match to the best-fit partner at 1,000+ funds, draft a hyper-specific email, and send from your own inbox, in one place.
+
+Start free
+
+### Keep reading
+All guides →
+Guide · valuation
+
+#### Seed valuation 2026: fair ranges, SAFE caps, and dilution math
+Look up a fair 2026 seed valuation for your sector and region: benchmark tables for AI, SaaS, consumer and climate, market SAFE caps, and the dilution math.
+Guide · fundraising-basics
+
+#### The H1 2026 State of Seed Fundraising Report
+The H1 2026 state of seed fundraising: deal volume, median round sizes, valuations, time-to-close, and what&#x27;s funding versus stalling, with primary-source data.
+Guide · valuation
+
+#### Pre-seed valuation 2026: SAFE caps, ranges, and dilution
+Pre-seed valuation in 2026 is a SAFE cap you negotiate, not a number you defend. Get the Carta cap medians by raise band and the dilution math.
+Guide · fundraising-basics
+
+#### The H1 2026 Seed Deal Terms Report
+What&#x27;s actually in seed deal terms in H1 2026: SAFE caps, post-money share, pro-rata prevalence, MFN clauses, and which terms are tightening vs loosening.
+
+While you&#x27;re here
+#### The funds behind these numbers
+Accel Seed · Very active
+Andreessen Horowitz Seed · Very active
+Benchmark Seed · Very active
+Find your best-fit investors
+See all 1,176 investors or browse the 50-fund shortlist → 🦝 From Causo
+
+★ Try it
+
+#### Grade your email
+Our LLM has read 40,000 cold emails. It&#x27;ll rewrite yours in 30 seconds.
+Open Grader
+Starter templates
+Cold email — seed, AI Cold email — seed, fintech Follow-up — 1st nudge Rejection response
+
+Related
+Active seed AI VCs · EU All 343 guides

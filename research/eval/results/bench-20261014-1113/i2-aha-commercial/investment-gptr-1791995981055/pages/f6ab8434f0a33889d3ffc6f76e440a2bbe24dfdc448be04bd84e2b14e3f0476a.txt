@@ -1,0 +1,170 @@
+Pharma Races to Scale AI as Billions Flow into Drug Discovery
+
+genprowebdirectory
+
+Skip to content
+
+Toggle Mobile Menu
+
+#
+
+Toggle Search
+
+&times;
+
+&times;
+
+Credit: Dragon Claws / iStock / Getty Images Plus
+
+Credit: Dragon Claws / iStock / Getty Images Plus
+
+The infrastructure moment for AI-driven drug discovery continues to accelerate, with billion-dollar investments flowing into end-to-end platforms driven by models and compute, rather than single drug assets.
+
+Underpinning this trend is the proliferation of AI reasoning workflows that accelerate biomedical research and large integrated datasets spanning genomics, transcriptomics, proteomics, metabolomics, and more. Together, these capabilities are enabling more powerful models of biological complexity for a new era of programmable therapeutics guided by prediction and rational design.
+
+“This isn’t about developing therapeutics for a particular indication or target,” explained Max Jaderberg, PhD, president of Isomorphic Labs, on the Training Data podcast. Instead, the Google DeepMind spinout is building a general design engine applicable to any disease area.
+
+Investors and pharma giants have rallied behind that vision. In May, Isomorphic announced a whopping $2.1 billion raise led by Thrive Capital. The AI drug developer has also secured major partnerships with Novartis, Eli Lilly, and Johnson & Johnson to embed AI-driven discovery workflows into pharma’s R&D pipeline.
+
+While traditional drug discovery programs can be limited to known binding pockets revealed by structural biology, Isomorphic’s platform, known as IsoDD (Isomorphic Labs Drug Design Engine), expands the druggable landscape by probing previously inaccessible biology.
+
+The Isomorphic Labs Drug Design Engine is able to predict the location of cryptic pockets at protein interfaces. A cryptic pocket is a ‘hidden’ binding site on a protein that is invisible under normal conditions but opens up when a specific molecule interacts with it. [Isomorphic Labs]
+The platform’s capabilities include predicting induced-fit interactions, in which proteins change shape upon ligand binding, and identifying cryptic binding pockets that remain hidden in the absence of a ligand. IsoDD is also versatile across multiple drug modalities, including de novo antibodies and other large biologics.
+
+Isomorphic is only one vignette of DeepMind’s growing influence in life sciences. The AlphaFold developer is now building the AI scientist to accelerate the scientific method. In May, the team published a Nature study describing Co-Scientist, a multi-agent system built with Google’s Gemini that demonstrated an array of therapeutic applications, including drug repurposing, novel target discovery, and explaining mechanisms of anti-microbial resistance.
+
+#### Decoupled from clinical proof
+
+The industry’s investment in AI extends well beyond Isomorphic Labs. In recent months, a wave of major partnerships has emerged to train biological foundation models with proprietary datasets from leading pharma companies.
+
+In May, Genesis Molecular AI and Incyte announced an expanded collaboration with a potential payoff that exceeds $1 billion. The partnership will apply the GEMS (Genesis Exploration of Molecular Space) platform for protein-ligand structure and property prediction across a wider set of difficult targets in Incyte’s pipeline, while incorporating Incyte’s proprietary data to improve GEMS’s performance.
+
+Just two weeks later, AI biologics company Chai Discovery unveiled a licensing agreement with Pfizer that provides the pharmaceutical giant with early access to Chai-3, the company’s AI model for de novo antibody design, as well as a custom model trained on Pfizer’s proprietary data.
+
+Meanwhile, Eli Lilly has emerged as one of the industry’s most aggressive adopters of AI. In addition to securing its own AI-focused partnership with Chai in January, Lilly recently selected Tamarind Bio to host the inference infrastructure for TuneLab 2.0, a federated AI/ML drug discovery platform that gives biotech partners access to models trained on Lilly’s proprietary data.
+
+Observing this massive investment into AI-native biotechs, commentators on social media were quick to note that few AI-designed drugs have reached the clinic.
+
+In Isomorphic’s case, biotech and AI analyst Andrii Buvailo, PhD, posits that Thrive and Google’s parent company, Alphabet, have deep conviction in the company’s platform, AlphaFold lineage, and pharma partnerships, and are locking in ownership before clinical data resets the company’s valuation.
+
+The alternative scenario, writes Buvailo on LinkedIn, is that the AI drug discovery valuation cycle has fully decoupled from clinical proof, and “we are watching capital chase computational promise on its own terms.”
+
+#### Previously unsolvable
+
+As the AI biology ecosystem grows increasingly crowded, some investors are explaining how they make their bets.
+
+An abstract visualization of RNA and cellular biology, representing how generative AI and biological foundation models can design and optimize RNA sequences, enabling the development of therapeutics with specific functional properties. [Inceptive]
+For Rohan Ganesh, a partner at Obvious Ventures, differentiation comes from pursuing problems that others are unable to tackle. He points to Obvious portfolio company, Inceptive, which is developing foundation models for sequence-based medicines that generalize across programs, including RNA interference (RNAi) therapies that silence disease-causing genes.
+
+Inceptive is led by CEO Jakob Uszkoreit, co-author of the seminal paper, “ Attention Is All You Need ,” which introduced the transformer architecture underpinning today’s large language models. Recently, the company announced a collaboration with Alnylam Pharmaceuticals to advance small interfering (si)RNA design by modeling target mRNAs while jointly exploring novel chemical modifications to enhance potency and efficacy. That partnership is worth up to $2 billion with upfront consideration of $30 million.
+
+Ganesh also argues that owning business outcomes may be the most important aspect of differentiation. As an example, another Obvious-backed company, Inductive Bio, builds virtual labs that combine AI chemistry assistants, predictive ADMET (absorption, distribution, metabolism, excretion, and toxicity) and PK (pharmacokinetics) models, and human-relevant digital organ technologies to surface key risks earlier and accelerate candidate nomination timelines by months.
+
+The platform gained external validation in February, when Inductive placed first in the OpenADMET-ExpansionRx blind challenge, a benchmarking competition in which participants predict properties of previously unseen compounds from real-world drug programs.
+
+“A model that’s accurate but doesn’t change the pace or probability of success in the clinic is meaningless,” Ganesh told GEN .
+
+Benedetta Bernasconi, part of Inceptive Operations, observes automated RNA synthesis at the Inceptive wet lab in Palo Alto. [Inceptive]
+When Jim Tananbaum, MD, founded Foresite Capital in 2011, he believed that data, science, and machine learning were going to dominate the conversation for the foreseeable decades. Foresite was among the early investors in data generation for causal analysis and went on to back some of the leading players in the genomics space, including 10x Genomics and Element Biosciences.
+
+A key metric of AI’s success, according to Tananbaum, is whether the technology can unlock previously intractable problems, such as neurological disease. In this vein, Foresite-backed Insitro, founded by CEO Daphne Koller, PhD, announced an expanded collaboration with Bristol Myers Squibb to advance a broadened portfolio of therapeutic programs for amyotrophic lateral sclerosis (ALS) in March.
+
+Foresite is also among the investors of closely watched AI unicorn, Xaira Therapeutics, which launched in 2024 with more than $1 billion in funding. Xaira has spent its initial years building virtual cell models trained on scalable single-cell perturbation datasets to advance target and mechanism-of-action discovery, patient stratification, and toxicity prediction.
+
+“Genetic, biochemical, and multiomic data go hand-in-hand in untangling the biological relationships that will be fundamental for automating discovery,” Tananbaum told GEN .
+
+Inductive’s AI models simulate wet lab experiments in real time, allowing scientists to optimize molecular designs virtually. AI models explore millions of designs to prioritize the most promising candidates for experimentation. [Inductive]
+
+#### Window for innovation
+
+Jory Bell, general partner at Playground Global, concurs that “the special sauce” is in the data, not the model. He cites portfolio company Manifold Bio, which is building an AI-driven platform that scales in vivo measurements for biologics, such as PK and biodistribution, valuable for addressing challenges in tissue-specific delivery.
+
+“Any biotech startup these days will be using AI as a core part of workflow, so the critical question is how you actually apply the AI,” Bell told GEN .
+
+Simon Barnett, partner at Dimension, describes an investment thesis where small, focused groups effectively using machine learning will be wildly successful, regardless of whether they pursue therapeutic assets.
+
+Notably, Dimension led Tamarind’s $13.6 million Series A in February, betting that as biology foundation models mature, the industry will move from piecemeal adoption to large-scale deployment of integrated model ecosystems.
+
+“Platform companies need strong, informed views on whether frontier AI labs may eventually subsume their technology,” says Barnett. “Everyone needs something uniquely valuable that confers a durable advantage, whether it’s their team, cycle time, data assets, structural positioning, or something else.”
+
+Dimension’s early bets paid off
+
+earlier this year, when portfolio company Coefficient Bio, a roughly 10-person AI drug discovery start-up founded by former Genentech scientists, was acquired by Anthropic for $400 million.
+
+At SynBioBeta’s annual conference in May, Eric Kauderer-Abrams, PhD, head of biology and life sciences at Anthropic, said the team has focused primarily on the technical core, training AI assistant, Claude, in scientific fundamentals spanning chemistry, structural biology, and bioinformatics.
+
+“Our thinking with the [Coefficient] acquisition was to accelerate the other side for biotech operators,” said Kauderer-Abrams. “How do we actually plan out and manage a biotech program from start to finish and make choices along the way?”
+
+Taken together, Dov Gertz, PhD, co-founder and CEO of Converge Bio, reiterates that modern AI, particularly deep neural networks and their derivatives, has powered a dramatic transition from predictive modeling to generative design. However, the shift is still early, having only taken hold in the past decade. “Don’t expect a generatively designed molecule to reach patients for another seven years,” he tempered on LinkedIn.
+
+Nevertheless, now is the time to invest.
+
+“If you wait for that first FDA approval before engaging with the technology, you’ve likely already missed the most valuable window for innovation,” wrote Gertz. “Drug discovery rewards those who can see where the field is heading, not just where it is today.”
+
+While time will tell how these bets translate in the clinic, one belief is deepening across the industry: that AI’s most important application is to improve human health.
+
+Insights Amyotrophic lateral sclerosis Artificial intelligence Conferences Drug discovery Machine learning Messenger RNA Metabolomics Multiomics Proteomics Transcriptomics SynBioBeta
+
+Also of Interest
+
+UCB Dedicates Future U.S. Biologics Manufacturing Campus in Georgia
+
+Multiomics in 2026 and Beyond
+
+Spatial Biology Moves Toward Translation
+
+Trends in NGS
+
+For mRNA, Delivery Is the New Standard
+
+From Discovery to Development
+
+Related Media
+
+Data Integrity as the Foundation for AI
+
+Small Molecules, Big Expectations: How CDMOs Are Helping Sponsors Navigate Complexity, Speed, Scale-Up, and Sustainability
+
+Beyond the Technology: AI Readiness in Regulated Laboratories
+
+AACR 2026 Video Update: Cancer Research Edges Toward an AI-Driven Era
+
+AACR 2026: A Video Update from San Diego
+
+Omics in Orlando Day 2: A Video Report from AGBT
+
+#####
+
+Top 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####
+
+Resources
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####
+
+Recommended For You

@@ -1,0 +1,61 @@
+Archeon Medical raises €7.5M Series A for its smart ventilator that automates CPR airway management · ProYarn
+The round, in data
+Amount raised €7.5M
+Stage Series A
+Lead investor Newfund (HEKA health fund)
+Sector Healthtech
+Country France
+Founded 2018
+Headquarters Besançon, France
+Investors Newfund (HEKA health fund) Eiffel Investment Group UI Investissement (OSER BFC fund) Majycc Innovation Santé Karot Capital
+Use of funds CE marking pathway for EOlife, clinical validation studies, commercial launch in France, and European expansion.
+
+“ EOlife could become the standard of care for out-of-hospital cardiac arrest — this Series A gets us to CE mark and first commercial deployments. ” Archeon Medical spokesperson — per EU-Startups Archeon Medical (Besançon) has raised €7.5 million in a Series A led by Newfund (via its HEKA health fund), with Eiffel Investment Group , UI Investissement (OSER BFC fund, Bourgogne-Franche-Comté), Majycc Innovation Santé , and Karot Capital participating. The capital targets CE marking and first commercial deployments for EOlife , the company's automated ventilation device for cardiac arrest response.
+
+Founded in 2018 in Besançon — France's medical device cluster in the Bourgogne-Franche-Comté region — Archeon Medical has spent the intervening years developing and refining the device through preclinical and early clinical work. A prior Series A of €5.5M in March 2022 funded that development phase; this second Series A, labelled as such by the investors and French Tech BFC, funds the path to market.
+
+## The problem EOlife solves
+
+Out-of-hospital cardiac arrest (OHCA) is one of emergency medicine's most time-sensitive events. Survival hinges on CPR quality — compressions and ventilation started within minutes and maintained without degradation for the duration of the response. Compressions have received significant automation attention (mechanical CPR devices from LUCAS and AutoPulse are well-established). Ventilation has not.
+
+Manual bag-valve-mask ventilation, the standard in the field, is skill-dependent and fatigue-prone. In the controlled environment of an emergency department, the technique is reliable. In the back of a moving ambulance, in a stairwell, or on a street at 03:00, it is not. EOlife replaces the manual bag with an automated ventilation system that maintains target parameters regardless of the physical environment — and monitors the patient in real time, alerting rescuers when ventilation falls outside safe ranges.
+
+## Newfund's health bet and the regional ecosystem
+
+Newfund's HEKA health fund leads a round that represents a sharp sector shift from the fund's recent activity. Newfund backed Reecall — a Lyon-based voice AI SaaS — in September 2026; the move to cardiac care hardware covers a different risk profile entirely. The regional investor base — UI Investissement's OSER BFC fund, Majycc Innovation Santé — reflects Besançon's medical device tradition and the Bourgogne-Franche-Comté regional ecosystem's commitment to med-tech.
+
+"EOlife could become the standard of care for out-of-hospital cardiac arrest — this Series A gets us to CE mark and first commercial deployments," the company said.
+
+## The CE gate and beyond
+
+The regulatory pathway in Europe for Class IIb medical devices (the likely designation for an active ventilator) runs through a Notified Body audit and clinical evidence review. The €7.5M funds that process — clinical validation studies, the technical file, and the Notified Body engagement — plus the first wave of commercial deployments once approval arrives. European emergency medical services, which procure through national and regional health authorities, are the target buyer. If the CE route succeeds, Archeon enters pre-hospital cardiac care — a market where incumbents have historically moved slowly and clinical need is measurable.
+
+## Why it matters to investors
+Out-of-hospital cardiac arrest (OHCA) has a survival rate of roughly 10% across Europe — and airway management during CPR is one of the clearest modifiable variables. Manual ventilation in a moving ambulance is unreliable: bag-valve-mask technique depends on rescuer skill, fatigue, and hand strength, none of which are controlled. EOlife automates that step. What is distinctive about the device is not just the automation but the real-time monitoring: if ventilation parameters fall outside safe ranges, the device alerts — reducing the risk of over- or under-ventilation that compounds outcomes in already-critical patients. Newfund&#x27;s HEKA health fund led the round — Newfund had previously backed [Reecall](/en/deals/reecall) (Lyon, €3.5M, voice AI for SaaS), marking a clear sector shift to health hardware. Archeon Medical&#x27;s prior Series A of €5.5M in March 2022 means this is a second Series A label for the same company — the investors and French Tech BFC designate it as such, and this article follows that characterisation. CE marking is the critical gate: without it, the device cannot be sold commercially in Europe. The €7.5M funds the regulatory process and the first clinical evidence package. If the CE pathway succeeds, Archeon enters a market — pre-hospital cardiac care equipment — where medical device incumbents have left significant innovation gaps.
+
+## Sources
+01 Archeon Medical raises €7.5M Series A for cardiac arrest ventilation device — EU-Startups ↗
+02 Archeon Medical raises €7.5M Series A — Tech.eu ↗
+03 Archeon Medical : Série A pour le dispositif de ventilation — Maddyness ↗
+
+Series A Healthtech France · Newfund (HEKA health fund) · Eiffel Investment Group · UI Investissement (OSER BFC fund) · Majycc Innovation Santé · Karot Capital
+
+## Threaded to this story
+
+Healthtech · May 26, 2026
+
+### Lucis raises €17.1M Series A to make preventive health a default, not a privilege
+€17.1M · Series A
+
+Healthtech · September 23, 2026
+
+### Relaisanté raises €6M to connect hospitals with home-care professionals in under 18 minutes
+€6M
+
+Healthtech · September 23, 2026
+
+### Wheelmove raises €1.5M Seed to industrialise Ze One, the electric conversion kit for manual wheelchairs
+€1.5M · Seed
+
+## Every European round, in your inbox by 8am.
+The day&#x27;s seed and Series A rounds across France and Europe — threaded, sourced, and read in two minutes. Free.

@@ -1,0 +1,85 @@
+{
+ "id": "i3-medtech-eu",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/medtech-eu-forprofit.json",
+ "why": "startup en España: inversores europeos",
+ "dry": false,
+ "ok": true,
+ "status": "partial",
+ "error": null,
+ "started": "2026-10-14T17:55:06.822Z",
+ "seconds": 387,
+ "stages": {
+  "search_s": 271,
+  "judge_s": 106,
+  "engine_s": 378,
+  "contacts_s": null,
+  "evaluator_s": 1,
+  "total_s": 383
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 0,
+  "opened": 111,
+  "assessed": 40,
+  "by_status": {
+   "open": 2,
+   "upcoming": 1,
+   "rolling": 3,
+   "unknown": 79,
+   "closed": 26,
+   "unread": 39
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 1
+ },
+ "lists": {
+  "top": 0,
+  "radar": 4,
+  "discarded": 0
+ },
+ "apollo_credits": 4,
+ "apollo_people": 3,
+ "errors": [
+  "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent."
+ ],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Women’s Health Director at Philips Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "contacts": 0
+  },
+  {
+   "title": "Director General at Philips Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "contacts": 0
+  },
+  {
+   "title": "Director of Regulatory Affairs at Philips Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "contacts": 0
+  },
+  {
+   "title": "Philips Ventures",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "contacts": 3
+  }
+ ]
+}

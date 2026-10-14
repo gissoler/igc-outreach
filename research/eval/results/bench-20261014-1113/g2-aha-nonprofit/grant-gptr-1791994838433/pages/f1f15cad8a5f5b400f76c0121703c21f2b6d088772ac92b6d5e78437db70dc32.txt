@@ -1,0 +1,149 @@
+PREDICTION OF ALZHEIMER’S DISEASE USING AN AI DRIVEN SCREENING PLATFORM | HORIZON | CORDIS | European Commission
+
+Skip to main content
+
+# PREDICTION OF ALZHEIMER’S DISEASE USING AN AI DRIVEN SCREENING PLATFORM
+
+##
+Project Information
+
+PREDICTOM
+
+Grant agreement ID:
+101132356
+
+DOI
+
+Each project (from H2020 onwards) is attributed a Digital Object Identifier (DOI)
+
+10.3030/101132356
+
+EC signature date
+30 October 2023
+
+Start date
+1 November 2023
+
+End date
+31 October 2027
+
+Funded under
+
+Health
+
+Total cost
+
+The total amount of money invested in the project. The total cost includes EU contribution as well as other project costs not covered by EU funding. It is expressed in euros.
+
+€
+17 558 485,30
+
+EU contribution
+
+Amount of money, by way of direct subsidy or donation, from the EU budget to finance an action intended to help achieve an EU policy objective or the functioning of a body, which pursues an aim of general EU interest or has an objective forming part of, and supporting, an EU policy. The sum of the EU contributions of all participants in a project is equal to the grant amount.
+
+€ 8 449 326,38
+
+8 449 326,38
+
+9 109 158,92
+
+Investment in EU policy priorities
+
+The 'EU Policy Priority' trackers document the expenditures of the Research and Innovation framework program in specific policy areas that have established spending targets, such as climate and biodiversity. These trackers also cover areas where the Commission has reporting requirements, including clean air, the digital agenda, and artificial intelligence. For more details on the methodology, refer to the Climate Mainstreaming Architecture in the 2021-2027 Multiannual Financial Framework (SWD(2022)225) .
+
+Digital agenda
+
+Digital agenda - 40%
+This tracker monitors Horizon Europe’s financial contribution to the development of digital technologies and the digitisation of the economy and society (known as ‘Digital transition’).
+
+Clean air
+
+Clean air - 0%
+This tracker monitors the Horizon Europe’s financial contribution to the clean air policy (National Emission Ceiling Directive) aiming to improve ambient air quality and tackle air pollution, to protect the environment and human health.
+
+Artificial Intelligence
+
+Artificial Intelligence - 40%
+This tracker monitors Horizon Europe’s financial contribution to the development and deployment of AI-based technologies and solutions. Projects that develop AI-tools as part of their research method are included
+
+Climate action
+
+Climate action - 0%
+This tracker monitors the Horizon Europe’s financial contribution to both mitigating climate change (e.g., contributions to the reduction of greenhouse gas emissions) and adapting to climate change by building resilience (e.g., regarding floods, droughts, spatial planning and better governance, adaptation to changing climate in value chains, etc.).
+
+Biodiversity
+
+Biodiversity - 0%
+This tracker monitors the Horizon Europe’s financial contribution to Europe’s biodiversity’s path to recovery including species protection, ecosystem conservation, and habitat rehabilitation, all essential for resilience in climate adaptation and addressing ecosystem services but also environmental crime and the health-environment connection.
+
+Coordinated by
+
+HELSE STAVANGER HF
+
+Norway
+
+## Periodic Reporting for period 1 - PREDICTOM (PREDICTION OF ALZHEIMER’S DISEASE USING AN AI DRIVEN SCREENING PLATFORM)
+
+Reporting period:
+2023-11-01
+to
+2024-10-31
+
+Summary of the context and overall objectives of the project
+
+The PREDICTOM project aims at addressing the growing challenge of dementia by leveraging advanced technologies and interdisciplinary approaches. The primary goal is to detect and develop biomarkers that can identify and counteract the risk of dementia as early as possible. This is achieved through the development of an AI-powered digital platform for dementia risk assessment, diagnosis, stratification, and prognosis of individuals with subjective or diagnosed cognitive impairments.
+The project brings together data and AI tools along the entire journey of a patient, starting from self-monitoring at home via the PROTECT tool, to various techniques that a General Practitioner could use in the future, such as body fluid-based markers and digital biomarkers. Additionally, the project supports neurologists and other clinicians in memory clinics with tools like CSF biomarkers, brain imaging, and digital biomarkers.
+The overall objectives of the PREDICTOM project include:
+1. Developing an open-source, interoperable, and customizable biomarker screening platform to generate an evidence base for general population screening for Alzheimer's Disease and related disorders
+2. Creating an innovative platform to integrate information for the early detection and counteraction of dementia. This involves including all actors involved, such as affected persons, relatives, caregivers, care services, physicians, and inpatient healthcare facilities
+3. Making the use of innovative technologies as intuitive and low-threshold as possible, allowing for flexible and variable application selection and data exchange between systems
+By enabling early detection and intervention, the project aims to improve the quality of life for individuals at risk of dementia and reduce the burden on healthcare systems. The integration of social sciences and humanities ensure that the technological solutions developed are user-friendly, ethically sound, and socially acceptable. This interdisciplinary approach helps address the complex needs of patients and their caregivers, ultimately contributing to a more holistic and effective healthcare solution.
+
+Work performed from the beginning of the project to the end of the period covered by the report and main results achieved so far
+
+During the first year we have revised and adjusted biomarkers for integration into the PREDICTOM platform, and worked on developing a digital platform for data capture and curation. To facilitate this, data management was aligned, a common data model was developed, and the data collection platform was connected with the analytics platform. The development of a digital data collection platform is ongoing, as well as a detailed plan for collection and transfer of biological specimens, and their analysis. The team responsible for reviewing current guidelines has started, as well as discussions how solutions can best be implemented into general practice settings. The partners responsible for user involvement have started the collection and integration of public advisory groups feedback on participant materials. A sustainability plan was developed to ensure the most efficient exploitation of project results.
+Main Achievements:
+1. We have completed protocol definitions for all biomarkers (Level 1 and 2), integrated Level 1 biomarkers into the PREDICTOM platform, and documented biomarker descriptions.
+2. We have developed a common data model and a publicly available meta-data catalogue. Link for the meta-data catalogue is https://www.predictom.eu/resources/data-sets (opens in new window)
+3. An agreement for data curation has been established, and development of the digital data collection platform is ongoing.
+4. We completed screening and consenting procedures for Cohort 1. The majority of the required ethical and other regulatory approvals have been secured, and a soft launch of the platform has started.
+5. We have reviewed and addressed the current status of diagnostics for mild cognitive impairment in the EU and started the development of a strategy for the trustworthy and ethical use of the PREDICTOM platform.
+6. A PREDICTOM sustainability plan is developed, describing review of project outputs and identification of opportunities to sustain these.
+
+Progress beyond the state of the art and expected potential impact (including the socio-economic impact and the wider societal implications of the project so far)
+
+In Period 1, the PREDICTOM project has achieved various results, focussing on data collection & infrastructure, screening & diagnosis, and sustainability. The integration of digital biomarkers into the PREDICTOM platform allows for efficient analysis and combining of data stream, enabling identification of the most accurate and cost-efficient combinations of markers. The developed common data model, data curation solution, digital data collection platform, and searchable meta-data catalogue will support data access and analysis for PRREDICTOM. These IT-solutions have the potential to support future data use for scientists, medical practitioners, and potentially patients. In order to achieve this, the need exist for 1) further research to continue development of biomarkers, protocols, and data collection platforms, 2) ethical approval for research conduction, and 3) feasibility and usability testing of applications in real-world scenarios.
+
+A review of the current status of guidelines in several EU countries has been carried out. Our initial results show shortcomings in the early diagnostics of AD which strengthen the rationale for PREDICTOM. Our established public advisory groups have already produced advise on the updated and revised guidelines for screening and diagnosis. The need exists for alignment with relevant regulatory and health technology assessment requirements to ensure uptake in health policies.
+
+A first version of the sustainability plan has been established, identifying key exploitable results within the PREDICTOM project. These assets have the potential to provide future scientists, health professionals, and policy makers with important new data and tools. In order to achieve sustainability, the need exists for contractual agreements and investigation of the scalability and adaptability of biomarkers to less-controlled environments. Together, these results and achievements address key societal needs and contribute to a healthier and more cost-efficient EU society.
+
+## Download Download the content of the page
+
+XML
+
+Last update: 31 March 2025
+
+Permalink: https://cordis.europa.eu/project/id/101132356/reporting
+
+European Union, 2026
+
+This site uses cookies
+to offer you a better browsing experience.
+
+I accept cookies.
+
+I refuse cookies.
+
+## Your data extraction is available
+
+Your data extraction with Task ID
+TASK_ID_PLACEHOLDER
+is available for download.
+
+Go to my data extractions
+
+Close
+
+DET Modal body ...

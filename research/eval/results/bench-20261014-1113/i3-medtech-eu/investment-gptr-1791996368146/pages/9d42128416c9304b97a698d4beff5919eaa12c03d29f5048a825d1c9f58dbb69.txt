@@ -1,0 +1,149 @@
+Dawako Medtech — Whiteford Research Biobase
+
+Login
+Sign Up
+
+← Company DB
+
+### Classification
+
+Sector
+
+Medical Devices
+(5113)
+
+Subsubsectors
+
+Imaging and Radiation Devices
+(390)
+
+Technologies
+
+Cloud-Based Medical
+(10)
+
+Machine Learning
+(274)
+
+Musculoskeletal Tissue
+(3)
+
+Physiological
+(19)
+
+Wireless Biosignal
+(2)
+
+software as a medical device
+(325)
+
+ultrasound image analysis
+(14)
+
+wearable ultrasound patches
+(2)
+
+Request Update/Expanded Info
+
+# Dawako Medtech
+
+## Overview
+
+Dawako Medtech is a Spanish medical-device company focused on wearable AI-bioimaging for digital health, precision medicine, and physiological performance monitoring. [1] The company was established in 2018 at the University of Valencia Science Park and is based in Paterna, Comunidad Valenciana, Spain. [2] Its stated mission is to give health professionals accessible tools for faster, more precise insight into patient health through ultrasound imaging, biosignals, and physiological-performance data. [3]
+
+## Technology
+
+Dawako's system combines wearable patch-format devices with an AI-powered cloud platform called PIIXMED. [3] The WBS and WBS-US patches are designed as wireless wearable systems that acquire ultrasound images and biosignals, including physiological and musculoskeletal data, even during motion. [4] PIIXMED is described as Software-as-a-Medical Device using proprietary AI and machine-learning algorithms to extract quantitative imaging and biosignal biomarkers from ultrasound images and physiological parameters. [5]
+
+## Applications
+
+The company's medical focus areas include musculoskeletal health, sarcopenia, clinical nutrition, sports medicine, and tissue characterization. [3] Dawako says its sports solution combines the WBS Patch with PIIXMED Sports to provide biomechanical data, advanced signal analysis, and remote access to training or competition data. [6] A 2023 Flexcon partnership announcement said Dawako and Flexcon were working to bring the WBS Patch and WBS-US Patch to market for uses including sarcopenia diagnosis support, clinical nutrition monitoring, and sports-medicine performance assessment. [7]
+
+## Funding
+
+Dawako has disclosed a mix of public non-dilutive support, private investors, non-equity assistance, and startup-stage equity financing. Public round-level detail is incomplete, so the table below separates confirmed events from aggregate database coverage. Currency conversions use event-date EUR/USD rates where available and annual average rates for 2025 aggregate data. [9] [10] [15]
+
+Round / event
+Date
+Amount
+Investor(s) / funder(s)
+Valuation information
+Sources
+
+Seed
+1 January 2018
+USD 2.13 million
+Not disclosed; Dawako separately says private investors include entrepreneurs, health-sector professionals, clinical experts, and athletes
+Not disclosed
+PitchBook company profile search result/profile; Dawako investment page. [14] [8]
+
+Public non-dilutive funding and support
+Not disclosed; accumulated since founding in 2018
+Company page says more than EUR 1.5 million; El Referente reported more than EUR 1.8 million of public funding by October 2022; USD conversion not precise because the awards span multiple dates
+CDTI, ENISA, Valencian Innovation Agency (AVI), RED.es
+Not disclosed
+Dawako investment page; El Referente. [8] [11]
+
+RED.es non-dilutive project award
+6 October 2022
+EUR 530,000; approximately USD 519,718 using the Federal Reserve EUR/USD rate of 0.9806 on 6 October 2022
+RED.es
+Not disclosed / non-dilutive
+El Referente; Federal Reserve EUR/USD historical rates. [11] [15]
+
+Private angel / sector-investor financing
+Not disclosed
+Not disclosed
+Entrepreneurs, private-hospital-management professionals, clinical experts in aging, nutrition, sports medicine, physiotherapy and clinical research, and professional athletes; individual names not disclosed
+Not disclosed
+Dawako investment page. [8]
+
+Public R&D support
+Reported 1 February 2022
+More than EUR 1.0 million; approximately more than USD 1.12 million using the Federal Reserve EUR/USD rate of 1.1239 on 1 February 2022
+ENISA, AVI-FEDER / Valencian Innovation Agency, CDTI-NEOTEC
+Not disclosed / non-dilutive
+PlantaDoce; Valencia Plaza; Federal Reserve EUR/USD historical rates. [16] [17] [15]
+
+Private investment round opened
+1 February 2022
+Target EUR 1.2 million; approximately USD 1.35 million using the Federal Reserve EUR/USD rate of 1.1239 on 1 February 2022
+Capital Cell platform; participating investors not disclosed in the press reports
+Not disclosed
+PlantaDoce; Valencia Plaza; Federal Reserve EUR/USD historical rates. [16] [17] [15]
+
+Non-equity assistance
+16 November 2024
+Not disclosed
+CEEI Valencia
+Not applicable / not disclosed
+LinkedIn funding panel sourced from Crunchbase. [12]
+
+Startup-stage equity financing
+2025; SpainCap data as of 30 September 2025
+EUR 0.999 million; approximately USD 1.13 million using the 2025 ECB annual average EUR/USD rate of 1.1300
+BeAble Capital / BeAble Innvierte fund
+SpainCap lists a 10.38% minority stake for the EUR 0.999 million BeAble transaction, implying an approximate post-money valuation of EUR 9.62 million, or USD 10.88 million, and pre-money valuation of EUR 8.63 million, or USD 9.75 million
+SpainCap 2026 annual directory; 2025 ECB annual average rate via Bank of Finland. [13] [10]
+
+Additional 2025 minority startup investment
+2025; SpainCap data as of 30 September 2025
+Not disclosed
+Xesgalicia; PitchBook's public profile lists Vigo Activo among Dawako investors
+Not disclosed
+SpainCap 2026 annual directory; PitchBook company profile search result/profile. [13] [14]
+
+Aggregate database-reported funding
+Current profile, accessed July 2026
+PitchBook reports total funding raised of USD 5.52 million
+PitchBook lists BeAble Capital, Vigo Activo, Red.es, INNVIERTE SICC, and National Innovation Company among Dawako investors
+Not disclosed
+PitchBook company profile search result/profile. [14]
+
+## Investors
+
+Dawako says a group of private investors has invested, including entrepreneurs and health-sector professionals with experience in private hospital management, clinical experts in aging, nutrition, sports medicine and physiotherapy, clinical research participants, and professional athletes. [8] Publicly named institutional supporters in Dawako's own materials include CDTI, ENISA, AVI, and RED.es. [8] LinkedIn's Crunchbase-sourced funding panel identifies CEEI Valencia for a 16 November 2024 non-equity assistance event. [12] SpainCap identifies BeAble Capital as an investor in the EUR 0.999 million 2025 startup-stage equity financing and separately lists a 2025 minority startup investment by Xesgalicia. [13] PitchBook's public profile excerpt reports USD 5.52 million in total funding and names BeAble Capital, Vigo Activo, Red.es, INNVIERTE SICC, and National Innovation Company among the investors. [14]
+
+## Status
+
+Dawako appears active, with a live website, current product and investment pages, and public commercialization activity through its Flexcon collaboration. [3] It is best classified as a Medical Devices company because its core products are wearable ultrasound and biosignal patch systems paired with medical-device software. [7] There is no indication in the reviewed sources that the company has been acquired.

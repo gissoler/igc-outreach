@@ -1,0 +1,315 @@
+Seed valuation benchmarks 2026: look up your sector, stage and SAFE cap | Causo Hub
+Hub / Guides / valuation / Seed valuation 2026: fair ranges, SAFE caps, and dilution math
+
+# Seed valuation 2026: fair ranges, SAFE caps, and dilution math
+
+Seed valuation 2026 sits near $16M median pre-money in the US, with AI companies pricing 42% above non-AI peers and consumer seed still soft under $11M. European seed is up 15.4% YoY but trails US absolute levels. For a $2.5–4M raise with a 10% option pool, expect 22–28% total founder dilution.
+
+## Contents
+
+Seed valuation 2026 at a glance: the benchmark table
+
+Seed round valuation by sector: AI, SaaS, consumer, and climate
+
+Pre-money valuation seed: US vs UK and Europe
+
+SAFE cap seed benchmarks: what's market in 2026
+
+Priced seed round vs SAFE: when to switch
+
+Seed stage valuation range to dilution: the math
+
+How VCs actually decide your valuation
+
+Red flags and green flags on your number
+
+FAQ
+
+Most seed-valuation guides cite one median and stop there. That's useless if you're a consumer-CPG founder staring at a $10M ceiling while the AI founder down the hall closes at $22M on a paragraph of traction. Seed valuation 2026 is not one number. It's a sector-times-region-times-competition matrix, and your band sits inside a narrow cell of that matrix , not at the headline median.
+
+This guide lays out the 2024–2025 numbers from primary sources (Carta, AngelList, PitchBook), the SAFE cap benchmarks that translate those numbers into instruments, and a dilution walkthrough you can plug your own raise size into. New to the terminology? The startup valuation glossary defines every term used here.
+
+## Seed valuation 2026 at a glance: the benchmark table
+
+The headline number: US median seed pre-money hit $16M in Q3 2025. That's per Carta's State of Private Markets Q3 2025 , up from a full-year 2024 median of $14.8M per Carta's 2024 state data .
+
+Here's how the sectors and regions with clean 2024–2025 splits have been pricing:
+
+Segment
+Median pre-money
+Source / year
+
+All US seed
+$16M (Q3 2025)
+Carta Q3 2025
+
+All US seed
+$14.8M (full-year 2024)
+Carta 2024
+
+AI / ML seed
+$17.9M (2024)
+Carta AI 2024
+
+Consumer-products seed
+$10.6M (Q3 2024)
+Carta Q3 2024
+
+Europe (all seed)
++15.4% YoY Q1 2025
+PitchBook EU
+
+Median US seed round size
+$2.5M (2024)
+Carta 2024
+
+Read it this way : AI is priced about 20% above the all-sector median. Consumer trails by about 30%. European absolute levels remain below US even after the 2025 lift. Public data doesn't give clean 75th/90th percentile bands by sector, so anchor on the median and adjust for where you actually sit on the traction curve. For the same question at the instrument level, see SAFE caps by sector .
+
+Raising a stage earlier or later? The same sector-times-competition logic applies at pre-seed valuation and Series A valuation , where the pricing basis shifts from SAFE caps toward ARR multiples.
+
+## Seed round valuation by sector: AI, SaaS, consumer, and climate
+
+Sector is the single biggest input into your seed round valuation. Stage alone tells you almost nothing.
+
+In 2024, Carta reported that seed valuations were 42% higher for AI startups , with the median AI pre-money at $17.9M. The premium persisted into 2025: 41.5% of AngelList deals in H1 2025 went to AI/ML companies, nearly double 2024's rate. Concentration like that bids prices up within the sector, because the auction is simply more crowded. For the full AI premium by stage, and what actually justifies it, see AI startup valuation in 2026 .
+
+Consumer ran the opposite direction. Carta's Q3 2024 data showed the consumer-products seed median plunged 31% in a single quarter to $10.6M. There's no public 2025 revision suggesting a snap-back, so plan conservatively if you're DTC or physical-product. The asymmetric AI/consumer split is the main reason AngelList's H1 2025 framing notes seed medians held steady overall: sector-level divergence, not uniform inflation.
+
+SaaS sits in the middle. Carta's Q3 2025 SaaS spotlight shows investors deployed about $20B in software rounds across Q2 and Q3 combined. That capital intensity supports the $16M-ish baseline, with competitive subsectors (dev tools, vertical SaaS with a clear ICP) trading above it. For the ARR-multiple bands by growth rate, see SaaS startup valuation .
+
+Climate, fintech, and other categories don't have clean 2025 sector splits in the public data. Treat them as tracking the overall seed median unless your specific subsector has a named catalyst , a regulatory tailwind, a public comp re-rating, a recent flagship round. Fintech in particular tends to price below pure SaaS at the same revenue, see fintech startup valuation .
+
+The takeaway : if a generalist investor quotes you "seed valuations are around $14–16M right now," they're citing the all-sector average. Your actual band depends on whether you're closer to the AI comp set ($17–22M for strong teams) or the consumer comp set ($8–12M even with traction).
+
+## Pre-money valuation seed: US vs UK and Europe
+
+European seed pricing is catching up but still trails the US.
+
+PitchBook's Q1 2025 European VC Valuations report found seed valuations up 15.4% YoY , a real recovery signal after the 2022–2023 drawdown. The lift is meaningful, but the starting base was lower, so European absolute medians at seed remain below US equivalents. PitchBook's 2025 US valuations report frames the US side: median pre-money valuations reached decade highs in 2025, setting the 2026 baseline.
+
+Two things to keep in mind as a UK or EU founder raising on a 2026 timeline:
+
+The USD-denominated comparison flatters the US. A £1.5M raise on a £6M pre in London is a different instrument than a $2.5M on $16M pre in San Francisco, but once you adjust for dilution and typical round size, the gap narrows below the headline multiple difference.
+
+Bay Area premium is real and structural. Carta's US data consistently puts California seed valuations at the top of the US distribution. Flipping domicile to a Delaware C-corp and relocating founders picks up some of that premium, not all of it.
+
+UK/EU investors often price priced rounds smaller earlier. Regional norms mean a £1M seed with a term sheet is common in London where a $1M seed in the US would default to a SAFE. Neither is wrong; match the local convention unless you have a strong reason otherwise.
+
+Don't benchmark against a global median. Benchmark against your region, your sector, and your stage. That three-filter comp set is almost always narrower , and lower , than the headlines suggest.
+
+## SAFE cap seed benchmarks: what's market in 2026
+
+Post-money SAFEs with valuation caps and no discount are still the default pre-seed and small-seed instrument. Carta's 2025 pre-seed report confirms it's the standard, with the majority of early-stage rounds under $4M completed using SAFEs or convertible notes.
+
+Here's how 2025 SAFE caps sorted by round size:
+
+Round size
+Median post-money SAFE cap
+
+$250k–$1M
+~$10M
+
+$1M–$2.5M
+~$15M
+
+Both figures are from Carta's 2025 pre-seed data .
+
+The translation rule : your SAFE cap should roughly equal the priced-round post-money you'd otherwise be targeting. If your priced-round comp set says $16M pre / $18.5M post, a $15–17M SAFE cap is on-market. Adjust up 10–20% if you're AI with traction; down if you're consumer or have no lead.
+
+Avoid stacked SAFEs at wildly different caps. Two or three SAFEs with similar terms is clean. Five SAFEs at caps ranging from $8M to $22M is a mess that a priced-round lead will force you to resolve, sometimes painfully. Carta's data on round types shows that once a financing reaches $3M, priced rounds are just as common as pre-priced rounds; by $4M+, priced is the most likely option.
+
+One practical move: if you've already raised $1M+ on SAFEs and you're going back to market for another $2M, seriously consider converting to a priced round rather than adding a sixth SAFE. Investors reward the cleanup.
+
+## Priced seed round vs SAFE: when to switch
+
+The switch point is round size, not stage label. Carta's round-type data is clean: under $3M, SAFEs dominate; at $3M, the two are roughly even; above $4M, priced rounds are the default.
+
+The reason is mechanical. SAFE investors take dilution risk on future option-pool creation and on each subsequent SAFE's cap. At $4M+ check sizes, lead investors want board seats, protective provisions, and a clean cap table. SAFEs deliver none of those.
+
+When a priced seed round beats a SAFE even at smaller sizes:
+
+You have a lead writing a $1.5M+ anchor check: they'll want priced-round rights. Arguing for a SAFE with a strong lead is usually a losing battle and signals inexperience.
+
+You've already stacked 3+ SAFEs: cleaning up is easier now than at Series A, when the conversion math gets punitive.
+
+You're raising in the EU or UK: priced rounds (often packaged as a "seed equity round" with a short-form term sheet) are more common at smaller sizes than in the US.
+
+When a SAFE is the right call:
+
+First $500k–$1.5M from angels: fast, cheap, no board. Standard YC post-money SAFE. Don't customize unless you must.
+
+You don't have a lead yet: a SAFE lets you accept checks from interested angels without pricing the round prematurely. Price it when the lead shows up.
+
+Your check sizes are small and variable: SAFEs absorb a $25k angel and a $250k fund with the same document.
+
+## Seed stage valuation range to dilution: the math
+
+Know your dilution before the term sheet lands. The biggest founder mistake is optimizing for valuation and ignoring the option pool top-up, which is where 8–12% of founder equity quietly vanishes.
+
+Three levers drive the outcome: raise size , pre-money valuation , and option pool top-up . The math below assumes a 10% post-closing option pool is created pre-money (the most common ask from leads), applied to typical 2026 seed stage valuation range scenarios grounded in Carta 2024 and Carta Q3 2025 medians.
+
+Scenario
+Pre-money
+Raise
+Post-money
+New investor %
+Founder dilution (incl. pool)
+
+Conservative
+$12M
+$2M
+$14M
+14.3%
+~23%
+
+2024 median
+$14.8M
+$2.5M
+$17.3M
+14.5%
+~23%
+
+Q3 2025 median
+$16M
+$3M
+$19M
+15.8%
+~24%
+
+AI premium
+$18M
+$4M
+$22M
+18.2%
+~26%
+
+Hot / contested
+$22M
+$5M
+$27M
+18.5%
+~27%
+
+How to read it : founder dilution assumes founders own 100% pre-round, then a 10% option pool is carved out pre-money (coming from founders), then the new investors take their percentage on top. The two-step math is why "market" seed rounds still cost founders 22–28% total.
+
+The two knobs that matter most:
+
+Option pool size: a 10% post-closing pool is standard but often negotiable to 8% if your existing pool is substantial. Each percentage point of pool reduction is a percentage point less founder dilution, full stop.
+
+Pre-money vs post-money SAFE caps: older pre-money SAFEs dilute each other on conversion in ways that are easy to miss. Post-money SAFEs cap dilution per-SAFE, which is cleaner and more founder-friendly at conversion.
+
+Don't chase valuation at the cost of term cleanliness. A $20M pre with a 15% option pool and a 1.5x liquidation preference is worse for you than a $16M pre with a 10% pool and a 1x non-participating preference. Run the dilution math, then the preference math, then judge the offer.
+
+## How VCs actually decide your valuation
+
+Forget the DCF. Seed valuations are decided by three things: comparable recent deals the partner has seen, the size of the check relative to the fund's ownership target, and competitive dynamics in your round.
+
+Recent comps dominate. Partners who see 20+ pitches a week maintain a mental price band for your sector-stage-geography triangle. If consumer seed is clearing at $10M pre in their recent comp set and you're asking $16M, the burden is on you to explain the premium with something concrete: traction, team, or a catalyst.
+
+Fund ownership math is the second lever. A $200M seed fund typically needs to own 10–15% of winners to return the fund. On a $2M check, that solves for a $13–18M post, which works backward to an $11–16M pre. Bigger checks mean bigger posts, but the ownership target is the anchor, not the "fair value" of your business. CB Insights put 2025 total venture funding at $469B , the highest since 2022 , the liquidity backdrop is generous, but the ownership math still gates the number.
+
+Competitive dynamics are the tiebreaker. A second term sheet moves the price more than any other single factor at seed. Carta's structural analysis of pre-seed rounds emphasizes the point indirectly: clean, contested rounds close higher and faster than non-contested ones, even at similar quality levels. Crunchbase tracked close to 700 seed rounds of $10M+ in 2025 , those rounds cleared that size because multiple investors were competing, not because one investor independently concluded $10M was fair.
+
+What does not decide your valuation : spreadsheet revenue projections, TAM slides, number of LinkedIn connections. If a partner asks for a model, they want to understand your unit economics, not validate your $200M ARR projection for year five. For the five methods VCs actually use, and the two that set your number, see how startup valuations are calculated .
+
+In a typical seed pricing conversation, the difference between $12M and $18M pre-money is traction plus one other term sheet. Everything else is noise.
+
+## Red flags and green flags on your number
+
+Your valuation is a signal, not just a number. Here's what seasoned partners read into specific outcomes.
+
+Green flags:
+
+Cleared inside 6 weeks with 2+ term sheets: speed signals real demand and gives you leverage on terms.
+
+SAFE cap at or below the priced-round post-money you're targeting: shows you understand conversion mechanics.
+
+Post-money SAFE with cap, no discount: the 2025 standard per Carta . Don't innovate on instrument design.
+
+10% option pool, created pre-money: market. Deviation in either direction requires a story.
+
+Red flags investors read:
+
+Number printed 30%+ above your sector median with no traction justification: kills meetings before they start.
+
+Six SAFEs at five different caps: cap table fragility, future conversion pain, and a signal you couldn't land a lead.
+
+Party round with no anchor: signals no one was willing to commit. The conspicuous absence matters more than the presence of small checks.
+
+Pre-money under $6M with meaningful momentum: either you're underselling or there's something off. Either reads badly.
+
+From the founder's side, the biggest red flag is a term sheet that prices high but is loaded with structure. A 2x participating liquidation preference, full-ratchet anti-dilution, and a pay-to-play provision stacked together can cost you more at exit than a 30% lower pre-money with clean 1x non-participating terms. Structure is where the real money hides.
+
+The single biggest lever on your number is a second term sheet, and that comes from running enough of the right conversations in parallel. Causo matches you to the investors most likely to fund your stage and sector and drafts the outreach, so you can create that competition without spending weeks list-building. For the valuation conversation itself, nothing beats having two term sheets in hand.
+
+## FAQ
+
+What is the average seed valuation in 2026?
+The US median pre-money for new seed rounds reached $16M in Q3 2025 per Carta , up from $14.8M for full-year 2024. AI companies trade about 42% above non-AI peers, and consumer seed rounds have been materially lower (closer to $10–11M). Assume the 2026 baseline sits near $16M with meaningful sector dispersion.
+
+How much dilution should I expect at seed?
+On a typical $2.5–4M raise at 2024–2025 median valuations with a 10% option-pool top-up created pre-money, expect 22–28% total founder dilution. New-investor percentage lands around 14–20% of the post-money, and the option pool accounts for the rest. Bigger raises at similar pre-money mean proportionally more dilution.
+
+Should I raise on a SAFE or priced round?
+Use Carta's $3–4M threshold as the default rule. Under $3M, SAFEs dominate and are cheaper, faster, and more founder-friendly. At $3M, priced and SAFE are roughly tied; above $4M, priced rounds are the most common and a serious lead will push for pricing regardless.
+
+What's a fair SAFE cap for a seed round?
+Carta's 2025 pre-seed data puts median post-money SAFE caps at about $10M for rounds raising $250k–$1M and about $15M for rounds raising $1M–$2.5M. Adjust upward 10–20% if you're in AI with traction, downward if you're in consumer or have no lead committed. Keep the cap close to the priced-round post-money you'd be targeting.
+
+How do VCs decide seed valuations?
+Three inputs: recent comparable deals the partner has seen in your sector-stage-geography, their fund's ownership target relative to check size, and competitive dynamics in your round. Revenue projections and TAM slides are near-irrelevant at seed. A second term sheet moves the price more than any other single factor.
+
+## Related on the hub
+
+Cap table template for seed startups (2026) — Cap table template for seed startups in 2026: models the pre/post-money option pool shuffle and SAFE…
+
+Pre-seed valuation 2026: SAFE caps, ranges, and dilution — Related valuation guide.
+
+Seed round valuation 2026: the benchmark report — Related fundraising basics guide.
+
+AI Startup Valuation 2026: What AI Seed Rounds Raise At — Related valuation guide.
+
+★ Causo · Start free
+
+#### Run this raise inside Causo.
+Match to the best-fit partner at 1,000+ funds, draft a hyper-specific email, and send from your own inbox, in one place.
+
+Start free
+
+### Keep reading
+All guides →
+Guide · fundraising-basics
+
+#### Seed round valuation 2026: the benchmark report
+Seed round valuation 2026 benchmarks: $18.4M median pre-money, $3.0M median deal, 19-20% dilution. Charts, sources, and what to actually raise.
+Guide · fundraising-basics
+
+#### The H1 2026 Seed Deal Terms Report
+What&#x27;s actually in seed deal terms in H1 2026: SAFE caps, post-money share, pro-rata prevalence, MFN clauses, and which terms are tightening vs loosening.
+Guide · fundraising-basics
+
+#### The H1 2026 State of Seed Fundraising Report
+The H1 2026 state of seed fundraising: deal volume, median round sizes, valuations, time-to-close, and what&#x27;s funding versus stalling, with primary-source data.
+Guide · valuation
+
+#### Pre-seed valuation 2026: SAFE caps, ranges, and dilution
+Pre-seed valuation in 2026 is a SAFE cap you negotiate, not a number you defend. Get the Carta cap medians by raise band and the dilution math.
+
+While you&#x27;re here
+#### The funds behind these numbers
+Accel Seed · Very active
+Andreessen Horowitz Seed · Very active
+Benchmark Seed · Very active
+Find your best-fit investors
+See all 1,176 investors or browse the 50-fund shortlist → 🦝 From Causo
+
+★ Try it
+
+#### Grade your email
+Our LLM has read 40,000 cold emails. It&#x27;ll rewrite yours in 30 seconds.
+Open Grader
+Starter templates
+Cold email — seed, AI Cold email — seed, fintech Follow-up — 1st nudge Rejection response
+
+Related
+Active seed AI VCs · EU All 343 guides

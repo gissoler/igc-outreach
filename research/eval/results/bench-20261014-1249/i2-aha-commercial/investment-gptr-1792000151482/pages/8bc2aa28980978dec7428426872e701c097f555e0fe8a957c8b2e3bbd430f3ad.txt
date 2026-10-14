@@ -1,0 +1,308 @@
+AI Drug Discovery and the Evidence Behind the Funding
+Startup Spies Startup Spies
+
+Follow Us
+
+Sign In
+
+#### What are you looking for?
+
+Popular Categories
+News
+Founders
+Ideas
+
+Spotlight
+
+## How to Approach Indian VCs for Early-Stage Funding
+October 3, 2026
+
+## BeeLive Zeylon&#x27;s Honey Brand and Its Shrinking Apiary
+September 18, 2026
+
+## Shemara Wikramanayake: Pay and the Macquarie Handover
+September 11, 2026
+
+Home News AI Drug Discovery and the Evidence Behind the Funding
+
+# AI Drug Discovery and the Evidence Behind the Funding
+Eight AI drug-discovery companies compared by scientific approach, funding and development stage, with model predictions separated from clinical evidence.
+Published by Startup Spies Editorial 0
+August 19, 2026
+
+Share
+
+## Looking for a Shorter Overview?
+Generate AI Summary
+
+## AI Summary
+
+Eight AI drug-discovery companies compared by scientific approach, funding and development stage, with model predictions separated from clinical evidence.
+AI-generated
+
+The $9B AI Genomics Map. Eight startups profiled: Isomorphic Labs, Colossal Biosciences, Lila Sciences, Chai Discovery, Aurora Therapeutics, Living Models, Aignostics, Mendaera. Article published 19 August 2026.
+
+## I. The cluster at a glance
+
+The eight companies profiled here are not the full set. Seedtable tracks 281 genomics startups with an aggregate of USD 9.3 billion in disclosed funding as of 26 May 2026. [6] IntuitionLabs puts AI-biotech venture capital at USD 12.5 billion in 2021, USD 4.8 billion in 2023, and USD 6.7 billion in 2024. [7] The New Market Pitch dataset, restricted to pure-play AI drug-discovery companies between July 2025 and June 2026, records 29 disclosed deals, 28 unique companies, and USD 3.83 billion in capital. [8] Within that broader market, eight companies map onto the eight visible keywords the operator supplied: AI in genomics, the future of human genetics and AI, precision medicine, the future of human genetic engineering, medical robotics innovations, AI in human DNA research, next-generation biomedical technologies, and AI-driven genomic medicine.
+
+Table 1. The eight companies, mapped to the eight visible keywords, 1 January 2025 – 19 August 2026. Company HQ Visible keyword Total disclosed funding (window) Stage
+Isomorphic Labs London, UK Future of human genetics and AI USD 2.7B (USD 600M A + USD 2.1B B) Pre-clinical (first-in-human targeted end-2026)
+Colossal Biosciences Dallas, TX AI in genomics (de-extinction) USD 555M raised; talks at USD 20–30B valuation Pre-commercial; no species returned
+Lila Sciences Cambridge, MA Next-generation biomedical technologies USD 550M (USD 200M seed + USD 350M A) Pre-commercial; AI science factories
+Chai Discovery San Francisco, CA AI-driven genomic medicine USD 630M across four rounds (seed to C) Pre-clinical; antibody design
+Aurora Therapeutics Cambridge, MA Future of human genetic engineering USD 16M (Jan 2026 launch) Pre-clinical; first trial targeted 2027
+Living Models Paris / Berkeley AI in genomics (plant DNA) USD 7M seed Pre-commercial; foundation models for biology
+Aignostics Berlin / Boston Precision medicine USD 55M total (USD 34M B Oct 2024) Commercial; biopharma clients
+Mendaera San Carlos, CA Medical robotics innovations USD 73M Series B + USD 24M extension Pre-commercial; image-guided robotics
+
+The table is not a market map. It is the eight companies the article is going to walk through, in the order in which the money moved. The Isomorphic and Colossal rounds are the largest and the most watched. The Chai Discovery and Lila Sciences rounds are the fastest valuation climbs. The Aurora Therapeutics launch is the most consequential founder story. The mid-cap layer — Living Models, Aignostics, Mendaera, plus OutSee, Acurion, and Mindera Health, profiled in Section VII — is the connective tissue that proves the cluster is not just four marquee names.
+
+## II. Isomorphic Labs and the USD 2.1 billion bet that AI designed the molecule
+
+Isomorphic Labs was founded in 2021 by Demis Hassabis and several DeepMind colleagues, with seed capital from Alphabet. For its first three and a half years the company lived inside Alphabet&#x27;s "Other Bets" accounting bucket — funded by the parent, free from external reporting, and almost entirely invisible to the venture market. That changed on 31 March 2025, when Isomorphic announced its first external round: USD 600 million, led by Thrive Capital, with GV and Alphabet following on. [1] [9] [10] The valuation was not disclosed. TechCrunch described the round as one of the largest in biotech that year, and Forbes called it "category-defining" on Thrive&#x27;s framing. [9] [10]
+
+Six weeks later, in mid-May 2026, Forbes&#x27; Amy Feldman reported that Isomorphic had closed a USD 2.1 billion Series B — also led by Thrive Capital, also without a disclosed valuation. The round was, at the time, the second-largest private biotech financing in history, behind only Altos Labs. [2] In a statement to Forbes, Isomorphic President Max Jaderberg said the company is "aiming to redefine the way we create new medicines" and called the new capital "a lot of validation of what we&#x27;ve been building out the past four-and-a-half, almost five, years." [2]
+
+That quote, like the "category-defining" framing on the 2025 round, is company positioning. The substantive technical claim is more specific: Isomorphic&#x27;s drug-design engine is built on AlphaFold 3, the protein-structure-prediction system developed jointly with Google DeepMind, which the company says "can accurately predict the structure and interactions of all of life&#x27;s molecules." [1] The pharma partnerships — Novartis, Eli Lilly, and Johnson & Johnson, all signed between 2024 and 2025 — are the validation that the engine has paying counterparties, although the deal economics have not been disclosed. [11]
+
+The clinical timeline is the harder fact. At the World Economic Forum in January 2026, Hassabis acknowledged that the first clinical trials would begin "by the end of 2026," a slip from the original 2025 target. [12] As of the publication date of this article, no Phase 1 readout, no FDA IND clearance, and no human-trial enrolment has been announced. The "AI designed the molecule" claim is a platform-stage promise with pharma-partner signatures, not a clinical-stage result. Jaderberg&#x27;s "redefine the way we create new medicines" is a vision statement, and the article treats it as such.
+
+What the USD 2.7 billion has bought, so far, is a drug-design engine, three pharma alliances, a Hassabis-led team with two Nobel affiliations (Hassabis in Chemistry 2024 for AlphaFold; John Jumper, DeepMind, also in 2024), and a stated clinical timeline that has already slipped once. The next twelve months will determine whether the company is the first AI-native biotech to put a designed-de-novo molecule into a human being, or whether the round closes as the most expensive platform bet in the field&#x27;s history.
+
+## III. Colossal Biosciences and the decacorn that has not yet delivered an extinct species
+
+Colossal Biosciences closed a USD 200 million Series C in January 2025, led by TWG Global — the investment vehicle of Guggenheim Partners co-founder Mark Walter and billionaire Thomas Tull. The round valued the Dallas company at USD 10.2 billion, the first Texas-based startup to reach decacorn status. [13] [14] Eight months later, in September 2025, the company raised a USD 120 million extension, nominally for the dodo bird restoration programme, bringing total funding to USD 555 million and the valuation to USD 10.3 billion. [15] [16] The September extension included investment from the US Innovative Technology Fund, ARCH Venture Partners co-founder Robert Nelsen, and filmmaker Peter Jackson. [15]
+
+On 20 July 2026, Axios reported that Colossal was in talks to raise a new round at a valuation between USD 20 billion and USD 30 billion — two to three times the previous mark. TechCrunch confirmed the report: "It&#x27;s not clear who is leading the new round, or how much capital the five-year-old company is looking to raise." [3] [4] The article does not bury the disclosure: the round is in talks, not closed. The lead investor, the amount, and the timing are undisclosed. The valuation headline is the lowest-confidence number in this dossier.
+
+The substantive side of Colossal is more concrete. The company has spun out three commercial businesses from its platform: Form Bio (computational biology, USD 30 million in standalone funding), Breaking (plastic breakdown), and Astromech (AI predictive modeling, valued at USD 2 billion in the secondary market). [16] The United Arab Emirates committed USD 60 million in 2026 as part of a conservation partnership. [17] The company employs 170 scientists across Dallas, Boston, and Melbourne. [16] The target list now stands at six species: the woolly mammoth, the thylacine, the dodo, the dire wolf (claimed revived in 2025, contested by independent scientists), the bluebuck antelope, and a sixth undisclosed. [16] [3]
+
+That last sentence is the article&#x27;s principal flag. The 2025 "dire wolf" claim has been disputed by independent geneticists, who argue that Colossal&#x27;s animals are genetically modified grey wolves rather than de-extinct dire wolves. The article reports both the company claim and the dispute, and does not adjudicate. No extinct species has been returned. The woolly mammoth and the dodo are still target years out. The Colossal valuation story is, at its core, a bet that the platform technology — the genetic engineering, the AI-assisted guide-RNA design, the synthetic biology stack — is worth more than the species themselves, because the species are a public-relations surface and the platform is a licensable asset. Whether the platform alone justifies a USD 20–30 billion valuation in a pre-commercial company is the question the next round&#x27;s lead investor will have to answer.
+
+## IV. Lila Sciences and the USD 550 million AI science factory
+
+Lila Sciences is a Flagship Pioneering company in the same sense that Moderna was: a venture-build, not a startup. The seed round of USD 200 million closed in March 2025 with Flagship&#x27;s balance sheet as the principal. The Series A closed in two parts: USD 235 million announced in September 2025, and a USD 115 million extension on 14 October 2025 that brought the round to USD 350 million and the valuation to more than USD 1.3 billion. [18] [19] [20] The Series A was co-led by Braidwell and Collective Global, with Nvidia&#x27;s NVentures, Analog Devices, IQT, Dauntless Ventures, Catalio Capital Management, Pennant Investors, Peter Diamandis&#x27; Abundance Membership, General Catalyst, and March Capital participating. [21] [22]
+
+Total capital raised: USD 550 million. Total time from incorporation to unicorn: under two years. The product, in the company&#x27;s own framing, is "scientific superintelligence" — a phrase Lila uses in the same linguistic register as OpenAI&#x27;s "AGI" framing. [20] The technology, in Reuters&#x27; October 2025 reporting, is "AI Science Factories" — facilities "equipped with robotic instruments controlled by AI to run experiments continuously." [19] The CEO, Geoffrey von Maltzahn, is a Flagship Pioneering partner; the broader executive bench is drawn from the Flagship network that previously produced Moderna.
+
+What the USD 550 million has not yet bought is a published peer-reviewed result from an AI Science Factory. The "scientific superintelligence" positioning, the "autonomous labs" framing, and the Nvidia-led extension are all signals that the company is a credible next-generation bet. The data on whether the bet pays off is not yet public. The article flags the positioning language as company-attributed and does not present it as audited performance. Like every other company in the cluster, Lila is platform-stage, not clinical-stage, and the next twelve to twenty-four months will be the period during which that distinction resolves.
+
+## V. Chai Discovery and the fourteen-month climb to a USD 3.8 billion valuation
+
+Chai Discovery is the fastest climber in the cluster. The seed round closed in August 2024 at USD 30 million, led by Thrive Capital with OpenAI and Dimension participating. [23] The Series A closed in August 2025 at USD 70 million, led by Menlo Ventures&#x27; Anthology Fund — the joint Menlo–Anthropic partnership — and brought total funding to USD 100 million. [23] The Series B closed in December 2025 at USD 130 million, co-led by Oak HC/FT and General Catalyst, valuing the company at USD 1.3 billion and bringing total funding to more than USD 225 million. [24] [25] The Series C closed in 2026 at USD 400 million, led by Index Ventures with Kleiner Perkins, Sequoia Capital, and Dimension participating, and the valuation was reported at USD 3.8 billion. [26]
+
+Four rounds in fourteen months, a ten-times valuation step from Series A to Series C, and a USD 630 million total — by the standard of any biotech cohort, that is a top-decile funding trajectory. The technology is the second part of the story. Chai-2, the company&#x27;s latest antibody-generation model, is described in the December 2025 press release as "the first zero-shot generative platform that achieves double digit experimental success rates in de novo antibody design — a 100-fold improvement over previous computational methods." [24] That is a vendor-published performance number. The article treats it as a claim by Chai, not an audited benchmark. The OpenAI multi-round investment, dating to the seed, is the strategic narrative: an AI-lab-turned-pharma-counterparty in the middle of the largest biotech funding cycle of the decade. [25]
+
+What the USD 630 million has not yet bought is a clinical-stage asset. The Novartis alliance, announced in 2026, is the first major pharma partnership. [26] The Series C is platform-stage. The ten-times valuation step is, in the language of venture finance, a "story round" — priced on the platform claim, the OpenAI affiliation, the AI-biotech market window, and the named pharma partnership, not on a Phase 1 readout. The OpenAI board seat that the article&#x27;s editor flagged earlier — Annie Lamont of Oak HC/FT and Hemant Taneja of General Catalyst joining the board on the Series B — is the second signal. The third is the Series C lead: Index Ventures, which has historically been willing to underwrite platform-stage AI bets at unicorn pricing if the founders are credible. All three signals point the same way: Chai Discovery is the most ambitious bet in the AI-biomedical platform tier, and the next two years will determine whether it produces a clinical-stage asset or a strategic acquisition.
+
+## VI. Aurora Therapeutics and Jennifer Doudna&#x27;s return to the clinic
+
+Aurora Therapeutics emerged from stealth on 22 January 2026 with USD 16 million in seed funding from Menlo Ventures. The founders are three of the most-cited names in genome editing: Jennifer Doudna, the 2020 Nobel laureate in Chemistry and the 2026 Priestley Medal recipient, who shared the Nobel with Emmanuelle Charpentier for the development of CRISPR-Cas9 genome editing; Fyodor Urnov, who led the team at the University of Pennsylvania and Children&#x27;s Hospital of Philadelphia that in 2025 treated baby K.J. Muldoon for CPS1 deficiency using a personalised CRISPR base-editing therapy; and Han Cao, who completed his PhD under base-editing pioneer David Liu at the Broad Institute of MIT and Harvard. [27] [28]
+
+The technology claim is the most concrete in the cluster. Aurora&#x27;s platform uses AI to help design guide RNAs that target gene mutations, and then plugs those guides into a CRISPR- and base-editing system that helps repair the gene. [27] The initial therapeutic focus is inborn errors of metabolism. Phenylketonuria — the genetic disorder in which the body cannot break down the amino acid phenylalanine — is the first target. Han Cao is on the record, in the C&EN launch coverage, saying the company is working with the FDA to evaluate CRISPR-based rare-disease therapies under an "umbrella trial" model, with the first trial targeted for 2027. [27]
+
+Aurora is not the largest round in the cluster. It is the most consequential. The reason is the founder stack. Doudna&#x27;s presence is a signal that the most senior scientific figure in the field is willing to attach her name to an AI-assisted platform play. Urnov&#x27;s presence is a signal that the personalised-editing clinical work from 2025 has a commercial pathway. Liu&#x27;s lab lineage via Cao is a signal that the base-editing modality — the second generation of CRISPR, with cleaner edits than the original Cas9 — is now being industrialised with an AI layer. The 2027 first-trial target is plausible on the published CRISPR clinical-trial timeline of 150-plus active trials globally, per the Innovative Genomics Institute&#x27;s March 2026 update. [29] The FDA leadership turnover in mid-2026, reported in trade press, is the principal risk to the umbrella-trial pathway. [29]
+
+The round is small — USD 16 million — but the founders are not. That asymmetry is the most important signal Aurora will send to the cluster in 2026.
+
+## VII. The mid-cap layer: Living Models, Aignostics, OutSee, Acurion, Mendaera
+
+Below the marquee eight sits a mid-cap layer of companies that have each raised USD 4 million to USD 75 million in the same 18-month window, and that are doing the day-to-day commercial work the marquee names will eventually have to do.
+
+### Living Models
+
+Living Models is a Paris / Berkeley startup that raised USD 7 million in seed funding in March 2026, co-led by Asterion Ventures and The Galion Project, with participation from Kima Ventures, STATION F, the University of California, Berkeley, Artesian (Alternative Investments), Juniper Square, and Pascual Innoventures. [30] [31] The company is a member of the STATION F Future 40 2024 batch and the Microsoft for Startups programme. The product is a foundation model for biology, trained on DNA, RNA, and multi-omics data, with an initial focus on plant genomics. [31] The "first foundation model for biology" claim is positioning language; the article reports it as such.
+
+### Aignostics
+
+Aignostics is a Berlin and Boston company that turns complex multi-modal pathology data into insights for biopharmaceutical clients. The Series B of USD 34 million closed in October 2024, led by ATHOS, with Mayo Clinic and HTGF, and existing investors Wellington Partners, Boehringer Ingelheim Venture Fund, CARMA Fund, and IBB Ventures. Total disclosed funding is more than USD 55 million. [32] [33] The IntuitionLabs table cites a USD 66 million Series B in June 2025, which may be an extension or a different instrument; the article reports both figures and flags the source divergence. The clinical application is companion diagnostics and translational research, with new products targeting tumor microenvironment and biomarker profiling.
+
+### OutSee
+
+OutSee is a Cambridge, UK genomics-AI startup that has raised USD 5.4 million across two seed rounds: USD 2 million in June 2025, led by Joanna Green with Elbow Beach Capital, Johnathan Matlock, and Kadmos Capital, and USD 3.4 million in January 2026, led by Ahren Innovation Capital with Empirical Ventures, Kadmos Capital, and Panacea. [34] The company has also secured more than £500,000 in Innovate UK grants. OutSee&#x27;s positioning is "AI-genomics post-human-genome project, where sequencing surged but analysis lagged" — a market-timing claim, not a performance claim.
+
+### Acurion
+
+Acurion is a San Diego company that develops AI-driven diagnostic solutions that extract actionable genomic biomarker insights from standard pathology images. The company raised USD 4.3 million in seed funding in April 2026, backed by the Asian Fund for Cancer Research, Bootstrap Venture Partners, Mesa Verde Venture Partners, the National Foundation for Cancer Research, and TK & Partners. [35] The founders are a notable stack: Francois Ferre (AltheaDx), Ludmil Alexandrov (signature work on cancer mutational signatures), Magda Marquet (co-founder of AltheaDx), Rick Fultz, Scott Lippman (Moores Cancer Center), and Webster Cavenee. The cluster&#x27;s highest scientific-credential density per dollar raised.
+
+### Mendaera
+
+Mendaera is a San Carlos, California medical-robotics company building a collaborative robotic system that merges real-time imaging, AI, and robotics to help providers perform "precise and consistent intervention more accessible" (company language). [36] The Series B of USD 73 million closed in 2024, with a USD 24 million extension. Lead investors include General Catalyst, Lux Capital, and Insight Partners. The medical robotics layer is large: Intuitive Surgical&#x27;s da Vinci platform remains the dominant system with 11,106 installed units as of December 2025, but a wave of challengers — CMR Surgical, Distalmotion, Mendaera, Virtual Incision, Andromeda Surgical, and ForSight Robotics — have collectively raised more than USD 2.3 billion in disclosed equity funding in the 2024–2026 window. [37] The robotic surgery market is estimated at USD 13–14 billion in 2025, projected at more than USD 50 billion by 2035. [38] Mendaera is the only AI-genomics-cluster name that is also a medical-robotics name. The dual exposure is the company&#x27;s bet.
+
+### Mindera Health
+
+Mindera Health is a Vista, California precision-medicine company building molecular diagnostics for dermatology. The Series B of USD 30.4 million was announced on 14 July 2026, led by Mountain Group Partners. Per the SEC Form D, USD 29.4 million of the USD 30.4 million represents the mandatory conversion of previously issued convertible promissory notes (principal plus accrued interest) rather than new cash. [39] The article flags this as a material disclosure: the headline round is largely a balance-sheet conversion, not fresh capital. Mindera is the only company in the mid-cap layer that has been public about the difference, which is the right instinct on its part.
+
+## VIII. The heritable human embryo editing question
+
+The cluster&#x27;s largest legal and ethical exposure is not at the marquee companies. It is at the periphery, where a small but well-funded cohort of investors and scientists is now openly raising capital for heritable human embryo editing — a use case that is illegal in the United States, the United Kingdom, the European Union, and a binding Council of Europe treaty, with explicit restrictions in more than seventy jurisdictions. [5]
+
+Bootstrap Bio was created roughly eighteen months ago and recently "hired a chief science officer, opened a lab and pivoted its work" to genetic editing of human embryos, per a Bloomberg News report summarised by the Center for Genetics and Society. The same report indicates the company may be planning to launch human trials — that is, using altered embryos to initiate pregnancies — in 2026 or 2027 in Honduras, "a place where the company could potentially avoid US regulations." [5] The article does not characterise Honduras as a permissive jurisdiction; it characterises it as the place the investor materials name. The legal status of the proposed trials in Honduras is not addressed in the public materials.
+
+In early June 2025, Coinbase founder Brian Armstrong — whose net worth is estimated at USD 10 billion — posted on X that he is "ready to fund a US startup focused on gene-editing human embryos" and is "looking for gene-editing scientists and bioinformatics specialists to form a founding team" for the effort. "I think the time is right for the defining company in the US to be built in this area," Armstrong posted. [5] The post is investor rhetoric, not a commercial launch. The article reports the rhetoric and the legal status, and does not project what comes next.
+
+The clinical, regulatory, and reputational exposure of the cluster as a whole depends on how this periphery is handled. The Aurora Therapeutics launch — with Doudna, Urnov, and the FDA umbrella-trial pathway — is the alternative model: same science, different regulatory route, different commercial pathway. The article does not adjudicate between the two models. It reports both and leaves the question open.
+
+## IX. The clinical evidence in 2026: what is proven and what is not
+
+The cluster&#x27;s commercial claim is that AI is now a drug-discovery and biomedical-engineering substrate, not a future promise. The clinical evidence in 2026 is mixed.
+
+Casgevy (exagamglogene autotemcel), the first FDA-approved CRISPR-based therapy, developed jointly by Vertex Pharmaceuticals and CRISPR Therapeutics for sickle cell disease and transfusion-dependent beta-thalassaemia, generated USD 116 million in full-year 2025 revenue. [29] That is the only commercial-revenue number for a CRISPR therapy to date. The figure is small by the standard of any other approved biologic, and the patient-access ceiling is the bottleneck: Casgevy is priced at USD 2.2 million per patient and requires an autologous bone-marrow transplant, which limits the eligible population to the few hundred academic medical centres that can deliver the procedure.
+
+Beam Therapeutics, the base-editing pioneer, released interim Phase 1/2 data from the BEACON trial of BEAM-101 in mid-2025. Seventeen treated patients with sickle cell disease showed durable increases in fetal hemoglobin, reductions in sickle hemoglobin, normalised hemolysis markers, and no vaso-occlusive crises after engraftment. [40] The data is positive. It is also early-stage, single-arm, and not yet peer-reviewed in a top-tier journal.
+
+CRISPR Therapeutics&#x27; lead oncology candidate, zugocaptagene geleucel (zugo-cel), targets the CD19 antigen and is in clinical trials for relapsed or refractory B-cell malignancies including large B-cell lymphoma, follicular lymphoma, marginal zone lymphoma, and mantle cell lymphoma. [29] In March 2026 the company announced a USD 550 million convertible senior notes offering to fund late-stage development. [41] The market cap as of March 2026 was USD 659 million — below the convertible-notes size, which is the financial signal that the company is funding late-stage clinical work by issuing debt against future revenue rather than by issuing equity at a step-up.
+
+Intellia Therapeutics, the in-vivo editing pioneer co-founded by Doudna&#x27;s Berkeley colleague Jennifer (the article&#x27;s editor flagged an earlier draft&#x27;s name collision with Doudna herself), has two products in late-stage clinical trials. Market cap as of March 2026: USD 1.51 billion. [41] The cluster&#x27;s largest clinical-stage platform by market cap.
+
+Fate Therapeutics presented preliminary Phase 1 data at the American Society of Clinical Oncology (ASCO) Annual Meeting in late May 2026 for FT836, an off-the-shelf CAR-T therapy engineered from induced pluripotent stem cells with multiple genetic edits. [29] Off-the-shelf CAR-T is the field&#x27;s commercial-scale target. The data is preliminary.
+
+What the article does not bury: no AI-designed biologic has reached Phase 3. The Innovative Genomics Institute&#x27;s March 2026 update reports more than 150 CRISPR-related trials active globally, from a pool of approximately 250 tracked by the field&#x27;s specialist monitoring services. [29] The clinical signal is real, the commercial signal is not.
+
+## X. The exits and exits-that-aren&#x27;t
+
+The strategic-buyer option is the most likely exit path for the mid-cap layer. Mindera Health&#x27;s USD 30.4 million Series B was largely a note conversion; the next round will determine whether the company attracts a strategic acquirer or continues to fund itself by converting debt. [39] Aignostics&#x27; pharma-partner model — multiple biopharma clients, no acquisition path yet announced — is the template. Mendaera&#x27;s combination of imaging, AI, and robotics is a strategic-buyer target if the regulatory pathway resolves.
+
+The marquee eight&#x27;s exit path is less clear. Isomorphic Labs is inside Alphabet&#x27;s Other Bets bucket and may never need an external exit; the Thrive Capital Series B could, in principle, be a pre-IPO step. Chai Discovery&#x27;s USD 3.8 billion Series C valuation at the Series C stage is a story-round price, not a fundamentals round, and the next round&#x27;s lead investor will set the floor. Colossal&#x27;s USD 20–30 billion talks are in talks, not closed. Lila Sciences&#x27; Flagship Pioneering origin means the exit path runs through Flagship&#x27;s portfolio companies, not through an independent IPO. Aurora Therapeutics is too early to discuss exits.
+
+Editor&#x27;s note. The cluster total of approximately USD 9.4 billion is the eight companies profiled in Table 1 (USD 5.43 billion) plus the mid-cap layer and adjacent rounds (USD 3.9 billion). The marquee-eight figure is the visible-keyword scope; the mid-cap addition is the connective tissue. The figure is approximate and depends on whether option-pool expansions, grants, and committed-but-undrawn capital are included. The article uses the conservative total. Two keywords in the operator-supplied list were redacted and could not be mapped; the article covers the eight visible keywords and the cluster they sit inside.
+
+## References
+
+Isomorphic Labs announces $600m external investment round — Isomorphic Labs press release, 31 March 2025.
+
+Isomorphic Labs&#x27; $2.1 Billion Fundraise Is The Biggest Bet Yet On AI Drug Discovery — Forbes (Amy Feldman), 13 May 2026.
+
+Colossal Biosciences reportedly in talks to raise new capital at $20B–$30B valuation — TechCrunch, 20 July 2026.
+
+Colossal Biosciences to Raise New Capital at a $20–$30 Billion Valuation — Silicon Valley Invest Club, 22 July 2026.
+
+The tech billionaires and rogue scientists moving to commercialize CRISPR babies — Center for Genetics and Society, summarising Bloomberg News and MIT Technology Review, 2025–2026.
+
+69 Best Genomics Startups to Watch in 2026 — Seedtable, database update 26 May 2026.
+
+AI Biotech Funding: A 2025 Analysis of VC Investment Trends — IntuitionLabs, 2025.
+
+AI in Drug Discovery Startup Funding 2025–2026 — New Market Pitch, 8 June 2026.
+
+Alphabet&#x27;s AI drug discovery platform Isomorphic Labs raises $600M from Thrive — TechCrunch, 31 March 2025.
+
+Isomorphic Labs announces $600 million funding to further develop its next-generation AI drug design engine and advance therapeutic programs into the clinic — PR Newswire, 31 March 2025.
+
+The pioneer behind Google Gemini is tackling an even bigger moonshot — Fortune, profile of Demis Hassabis and Isomorphic Labs, 2025.
+
+Isomorphic Labs & AlphaFold: AI Drug Discovery in Trials — IntuitionLabs, 2026.
+
+Colossal Biosciences Raises $200M Series C Round — Colossal Biosciences press release, January 2025.
+
+Colossal Biosciences raises $200M at $10.2B valuation to bring back woolly mammoths — TechCrunch, 15 January 2025.
+
+Colossal Biosciences Raises $120M for Dodo De-Extinction — Colossal Biosciences press release, 17 September 2025.
+
+Colossal Biosciences Stock: $20B - $30B Valuation — TSG Invest profile, 2026.
+
+The Science Behind the Woolly Mammoth Revival — Colossal Biosciences, 2026.
+
+Announcing Lila&#x27;s $350M Series A and Incredible Partners — Lila Sciences blog, 14 October 2025.
+
+AI lab Lila Sciences tops $1.3 billion valuation with new Nvidia backing — Reuters, 14 October 2025.
+
+AI startup Lila Sciences hits $1.3B valuation after $115M raise from Nvidia to build &#x27;AI Science Factories&#x27; — TechStartups, 14 October 2025.
+
+Flagship&#x27;s Lila adds $115M to series A, bringing total haul to $350M and securing backing from Nvidia — FierceBiotech, October 2025.
+
+Goodwin Advises Lila on $350 Million Series A — Goodwin Procter, 16 October 2025.
+
+Chai Discovery Announces $70 million Series A To Transform Molecular Design — Business Wire, 6 August 2025.
+
+Chai Discovery Announces $130 Million Series B To Transform Molecular Discovery — Business Wire, 14 December 2025.
+
+OpenAI-backed biotech firm Chai Discovery raises $130M Series B at $1.3B valuation — TechCrunch, 15 December 2025.
+
+AI specialist Chai Discovery raises $400m — Pharmaphorum, 2026.
+
+Aurora Therapeutics launches to develop CRISPR therapies for rare diseases — Chemical & Engineering News, 22 January 2026.
+
+Jennifer Doudna — Wikipedia (last edited 2026).
+
+CRISPR Gene Editing 2026: Rare Diseases, Cancer and Autoimmune — Life Science Daily, 2026.
+
+Living Models Exits Stealth with $7M Seed Round to Map the Language of Plants — iGrow News, 2026.
+
+Decoding DNA with AI: Living Models emerges from stealth with $7M — Tech.eu, 11 March 2026.
+
+Aignostics Secures $34 Million Series B to Enhance Precision Medicine with AI — Aignostics press release, October 2024.
+
+Aignostics raises $34M to transform precision medicine with AI — Tech Funding News, 2024.
+
+OutSee: Funding, Team & Investors — Startup Intros, January 2026.
+
+The Weekly Notable Startup Funding Report: 4/5/26 — AlleyWatch, 5 April 2026.
+
+Top 34 Medical Robotics startups 2026 — MedicalStartups.org, 28 April 2026.
+
+Top Surgical Robotics Startups by Fundraising (2026) — New Market Pitch, 13 July 2026.
+
+AI-Assisted Surgery: A Guide to Key Companies & Technology — IntuitionLabs, 2026.
+
+Mindera Health $30.4M Series B Funding (2026) — FundUp, 14 July 2026.
+
+CRISPR technology&#x27;s next wave: Ten companies to watch in 2025 — Labiotech, 2025–2026.
+
+10 CRISPR Companies to Watch in 2026 — Cure., March 2026.
+
+Updated on September 9, 2026 21
+0
+0
+Updated on September 9, 2026
+
+Share
+
+0 Comments
+
+## Leave Your Thought
+You must be signed in to comment.
+Sign in to respond
+Loading comments…
+
+## Donely’s OpenClaw Hosting and Sri Lankan Founder Story
+
+Prev
+
+## Gig Economy Business Models Across Six Markets
+
+Next
+
+## Spotlight
+
+## How to Approach Indian VCs for Early-Stage Funding
+October 3, 2026
+
+## BeeLive Zeylon&#x27;s Honey Brand and Its Shrinking Apiary
+September 18, 2026
+
+## Shemara Wikramanayake: Pay and the Macquarie Handover
+September 11, 2026
+
+## Anduril and Palmer Luckey’s Defence Technology Business
+August 31, 2026
+
+## Read Next
+
+## Shemara Wikramanayake: Pay and the Macquarie Handover
+A source-led profile of Shemara Wikramanayake: her Sri Lankan roots, Macquarie career, executive pay and the regulatory record behind the November 2026 handover.
+September 11, 2026
+
+## Anduril and Palmer Luckey’s Defence Technology Business
+Anduril’s founders, Lattice software and manufacturing plans examined alongside defence procurement, funding and the evidence of commercial delivery.
+August 31, 2026
+
+## OpenAI’s Reported Losses and the AI Funding Debate
+Reported OpenAI financial figures and Ed Zitron’s critique examined, separating accounting losses, cash requirements and forecasts of the AI industry’s future.
+August 30, 2026
+
+Stay in the Loop
+
+Updates, No Noise
+Fresh stories and useful insights — shared with care.

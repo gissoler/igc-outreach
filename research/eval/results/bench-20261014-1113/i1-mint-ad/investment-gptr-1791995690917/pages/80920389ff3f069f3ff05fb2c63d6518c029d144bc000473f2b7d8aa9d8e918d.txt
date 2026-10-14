@@ -1,0 +1,81 @@
+Maryland Today | Researchers Develop AI Tool to ID Dementia Risk in…
+
+Research
+
+#
+Researchers Develop AI Tool to ID Dementia Risk in Understudied Populations
+
+UMD Research Changes Lives: Hypertension and diabetes are stronger predictors in Black populations, study finds.
+
+IStock
+
+Dementia affects more than 6 million Americans, and Black people are about twice as likely to be affected as white people. A University of Maryland study has trained an AI model to identify dementia risk factors specific to Black and Asian populations. 
+
+September 03, 2026
+
+By
+
+John Tucker
+
+In 2019 Miriam Owens was running a Richmond, Va., childcare center with plans to expand when she noticed something strange: She no longer could smell dirty diapers.
+Over the next few years, other oddities sprang up—hand tremors, irritability, weird hallucinations and memory lapses like the time the then-54-year-old mother of three encouraged her daughter to do her makeup in the bathroom before dinner out. When her daughter emerged, Owens chided her for making her wait, oblivious to their conversation minutes earlier.
+After running cognitive tests, a specialist diagnosed Owens, who is Black, with lewy body dementia (LBD) and sent her home with a prescription. At her computer, Owens learned about the disease’s quick progression; on average, the life expectancy of patients is five to seven years after diagnosis. “I felt like I’d been gut-punched,” she said.
+Dementia affects more than 6 million Americans and accounts for more than 100,000 deaths each year; it’s particularly a risk for older Black people, who are about twice as likely to be affected as white people. Health experts aren’t entirely sure why.
+Now, a University of Maryland study conducted by physicians and statisticians has brought the field closer to answers by training an artificial intelligence model to identify dementia risk factors specific to Black and Asian populations after combing through two large medical databases.
+The study, published in July in npj Digital Medicine , found that hypertension and diabetes were more strongly associated with dementia risk in Black and Asian patients. Among Black participants, longer mobile phone use was also associated with a lower dementia risk.
+Because dementia-related brain changes can begin years—even decades—before symptoms appear, the study could help Black and Asian people identify personal risks at younger ages, prompting earlier diagnoses that can fast-track prevention and intervention efforts and promote longer and better lives.
+“We want to point out ways that understudied populations can be cautious—lowering your LDL if you have diabetes, for example—to help manage long-term risk of dementia,” said Tianzhou “Charles” Ma, associate professor of epidemiology and biostatistics in UMD’s School of Public Health, who led the study conducted with colleagues at the University of Maryland School of Medicine in Baltimore.
+The researchers developed their AI model based on 280 health, lifestyle and social variables—everything from Vitamin D deficiency to smoking to loneliness—from the anonymous medical charts of nearly 1 million white, Black and Asian patients with and without dementia, culled from U.S. and United Kingdom databases.
+Upon her diagnosis, Owens, who has hypertension and diabetes, watched “life turn upside down, financially, emotionally and, for a while, spiritually,” she said. She closed her childcare business in 2023.
+LBD is among the most common forms of dementia after Alzheimer’s disease, marked by intense symptom fluctuations, leaving patients feeling normal one moment, then losing their perceived brain-body connection the next. When Owens spirals into what she calls “the sunken place,” she does little beyond sitting silently and breathing.
+Sometimes her hallucinations, a telltale LBD symptom, give her peace, like the image of a large hand dropping from the ceiling, gleaming in stardust. Other times she laughs at cartoonish turkeys and dodo birds strutting across a neighbor’s yard, registering the false visions minutes later. Sometimes she takes photos of animals, then realizes they’re imagined when she checks her phone later.
+[ Heart-Healthy Lifestyles Can Also Delay Brain Aging, UMD Researchers Find ]
+Previous studies seeking causes of dementia have focused almost exclusively on white subjects; the UMD study is the largest attempt to study minority populations, according to the researchers. Supported by National Institutes of Health funding and a UMD Grand Challenges program grant, the study relies on an AI method called deep transfer learning to extrapolate race-specific risk factors from limited public data, overcoming small sample-size bias.
+“Even with this large dataset, the majority is still from the white population, so traditional modeling doesn’t produce enough power to identify minority-specific risk; our model provides the architecture to mitigate this,” said co-lead author Menglu “Maggie” Liang, assistant clinical professor of biostatistics.
+Though the results are encouraging, the researchers stress that their model is a starting point, and that more data will help validate things. Still, the team has collected enough preliminary data to create an online tool to calculate personal dementia risk.
+“You can't change your age or genetics, but catching elevated risk earlier gives patients and clinicians more time to manage the things they can change,” said coauthor and Professor Raya Elfadel Kheirbek, who oversees the Division of Gerontology, Geriatrics and Palliative Medicine at the School of Medicine, and regularly treats dementia patients. Earlier diagnosis, she adds, can increase clinical trial eligibility and help families plan for future care.
+Now 58, Owens is at peace with her condition: “I’m not afraid of dying, even though dying wasn’t on my radar,” she said.
+She’s sharing her experience publicly to “do some stigma busting,” she said, similar to actor Danny Glover’s televised revelation in July that he had Alzheimer’s. She’s also advocating for more screenings among middle-aged people, particularly those who are Black, who are notably absent from her support-group events.
+“We have this horrible tragedy narrative about dementia, but in between early diagnosis and the end stage, there’s so much life to be lived,” she said.
+
+UMD Research Changes Lives
+At the University of Maryland, scientists and scholars come together to spark new ideas, pursue important discoveries and tackle humanity's grand challenges—improving lives in our communities and across the globe. See more examples of how UMD research changes lives at today.umd.edu/topic/research-impact .
+
+AI at Maryland
+The University of Maryland is shaping the future of artificial intelligence by forging solutions to the world’s most pressing issues through collaborative research, training the leaders of an AI-infused workforce and applying AI to strengthen our economy and communities.
+Read more about how UMD embraces AI’s potential for the public good—without losing sight of the human values that power it.
+
+Topics
+
+Research
+
+Tags
+
+Research Impact
+Epidemiology and Biostatistics
+Grand Challenges
+Artificial Intelligence
+Research
+
+Units
+
+School of Public Health
+
+##
+Related Articles
+
+Research
+
+Exposure to Community Violence Linked to Higher Suicide Risk, UMD Study Shows
+
+September 29, 2026
+
+Local leaders should step up prevention efforts in wake of mass shootings, says researcher
+
+Research
+
+Scientists Discover an Antidote to Lethal Snake Bites in the Reptiles’ Own Blood
+
+July 31, 2026
+
+A new UMD-led study finds a powerful potential alternative to costly antivenoms.

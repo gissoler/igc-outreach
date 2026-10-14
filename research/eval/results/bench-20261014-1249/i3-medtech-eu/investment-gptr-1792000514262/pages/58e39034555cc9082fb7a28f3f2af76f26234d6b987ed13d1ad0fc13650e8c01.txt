@@ -1,0 +1,9639 @@
+What’s funding like in the digital health market right now?
+– New Market Pitch
+
+
+
+Skip to content
+
+##
+Item added to your cart
+
+View cart
+
+Continue shopping
+
+# What’s funding like in the digital health market right now?
+Last updated: 22 September 2026
+
+Whether you're building or investing in the digital health market, our report covers everything you need to know: the players, the money, and what's coming next.
+
+## SUMMARY
+
+Digital health funding is stronger in dollars right now, but the market is narrower, more selective, and much more tilted toward a smaller group of companies that can already show real traction.
+
+The headline rebound is easy to overstate. Total capital rose 14.6%, but funding excluding rounds above $50 million actually slipped 0.9%, which means most of the improvement came from the top end of the market.
+
+At the same time, the typical round really did get bigger. The median financing rose from $11 million to $14.1 million, so this is not only a Neko Health story or a handful of nine-figure outliers.
+
+Funding breadth weakened. Deal count fell from 293 to 268, unique funded companies dropped from 280 to 259, and the number of disclosed lead investors also declined sharply.
+
+The market is oddly open at the front door and tougher in the middle. First financings increased, Seed remained active, but Series A fell from 92 deals to 75 and lost share of the market.
+
+Later-stage capital looks much healthier. Series D+ and Growth Equity gained share, and their median round sizes rose sharply, which shows how aggressively investors will fund companies once they look like proven growth assets.
+
+Virtual care has the cleanest broad-based momentum because its deal count held steady while both total capital and median round size increased. Remote monitoring looks much less impressive once Neko Health's $700 million round is removed.
+
+Care navigation is another useful example of the new market. Fewer deals happened, but much larger checks went into scaled platforms such as Garner Health, so category funding can rise even while breadth shrinks.
+
+Strategic investors have pulled back from ordinary early-stage rounds. Their participation rate fell from 26.3% to 19.8%, with the decline especially visible at Seed and Series A, even though corporates still show up around larger scale-up financings.
+
+AI is no longer a clean standalone funding category. It still helps companies attract capital, but it has become common enough across workflow, data, virtual care and navigation businesses that investors increasingly care about what the AI actually improves: adoption, economics, workflow penetration or scale.
+
+The biggest structural shift is that very large rounds increasingly sit behind proof. Young companies can still get funded, but the path to a $100 million-plus financing now runs through usage, customers, operating scale or some other concrete evidence that the business already works.
+
+Where does each dollar actually go? Our digital health market report breaks down the economics of this market.
+
+## All funding deals in the digital health market over the last 24 months
+Below is the table listing all the deals. You can find our methodology at the end of this page.
+If you want a deeper understanding of the market and its current dynamics, get
+our report covering the Digital Health Market .
+
+Company
+
+Category
+
+Date
+
+Stage
+
+Deal size
+
+What they do
+
+Region
+
+Lead investors
+
+Tandem Health
+
+Clinical Workflow Software
+
+September 2026
+
+Series B
+
+$100M
+
+Provides an AI medical assistant and clinic operating system that automates documentation, coding and other clinician workflows.
+
+Europe
+
+Scaleup Europe Fund, managed by EQT
+
+UrgentIQ
+
+Clinical Workflow Software
+
+September 2026
+
+Series A
+
+$15M
+
+Provides an AI-native EMR and operating system for urgent-care centers spanning documentation, coding, billing and insurance workflows.
+
+North America
+
+Five Elms Capital
+
+Inspiren
+
+Remote Monitoring Solutions
+
+September 2026
+
+Series C
+
+$70M
+
+Provides AI-powered senior-care monitoring using sensors, fall detection, emergency alerts and care-utilization intelligence.
+
+North America
+
+NewView Capital
+
+Vheda Health
+
+Remote Monitoring Solutions
+
+September 2026
+
+Growth Equity
+
+$47M
+
+Provides health plans with technology-enabled chronic, behavioral and maternal care programs combining analytics, remote monitoring and care coordination.
+
+North America
+
+Agora
+
+Epsilon Health
+
+Virtual Care Platforms
+
+September 2026
+
+Series A
+
+$20M
+
+Operates an AI-native teleradiology practice combining proprietary diagnostic models with board-certified radiologists.
+
+North America
+
+AlleyCorp
+
+Implicity
+
+Remote Monitoring Solutions
+
+September 2026
+
+Growth Equity
+
+$40M
+
+Aggregates cardiac implant and heart-failure monitoring data and applies AI to prioritize patients requiring clinical attention.
+
+Europe
+
+IRIS
+
+System
+
+Virtual Care Platforms
+
+September 2026
+
+Unknown
+
+$12.6M
+
+Provides a digital clinician-and-pharmacy platform giving patients access to medically supervised peptide treatments.
+
+North America
+
+Not disclosed
+
+Forus
+
+Care Navigation Platforms
+
+September 2026
+
+Series C
+
+$150M
+
+Uses AI to automate prescription access workflows spanning insurance coverage, financial assistance and pharmacy coordination.
+
+North America
+
+Bain Capital Ventures
+
+GenHealth.ai
+
+Clinical Workflow Software
+
+September 2026
+
+Series A
+
+$16.5M
+
+Builds healthcare AI agents that automate intake, eligibility, prior authorization, billing, denials and other medical back-office workflows.
+
+North America
+
+Flare Capital Partners
+
+Hope Care
+
+Remote Monitoring Solutions
+
+September 2026
+
+Series A
+
+≈$7,000,000
+
+Provides a regulated platform integrating connected-device data, patient-reported outcomes and clinical workflows for remote care programs.
+
+Europe
+
+Iberis Capital
+
+Omme
+
+Virtual Care Platforms
+
+September 2026
+
+Seed
+
+$4.8M
+
+Runs a digital men's-health platform combining online medical assessment, clinician-led treatment, follow-up and home delivery.
+
+Latin America
+
+First Round Capital; Rethink Impact
+
+Hi Rasmus
+
+Clinical Workflow Software
+
+September 2026
+
+Growth Equity
+
+$50M
+
+Provides a clinical operating platform for autism and ABA providers covering treatment data, documentation, outcomes and care workflows.
+
+North America
+
+Updata Partners
+
+Elucid
+
+Clinical Workflow Software
+
+September 2026
+
+Series D+
+
+$55M
+
+Provides clinically validated AI software that analyzes coronary CT images to support cardiovascular diagnosis and treatment decisions.
+
+North America
+
+Not disclosed
+
+Konko AI
+
+Patient Engagement Tools
+
+September 2026
+
+Unknown
+
+$6M
+
+Automates patient journeys for clinics and hospitals, including inquiries, scheduling, follow-up and other patient-facing workflows.
+
+North America
+
+Hi Ventures
+
+Thyme Care
+
+Care Navigation Platforms
+
+September 2026
+
+Series D+
+
+>$125,000,000
+
+Provides virtual oncology care navigation, care management, symptom support and analytics for patients and payers.
+
+North America
+
+Morgan Health
+
+Holifya
+
+Virtual Care Platforms
+
+September 2026
+
+Seed
+
+≈$1,900,000
+
+Operates an AI-supported digital clinic providing physician-led obesity and metabolic-syndrome treatment.
+
+Europe
+
+Next Age
+
+Norbert Health
+
+Remote Monitoring Solutions
+
+September 2026
+
+Series A
+
+$14M
+
+Develops AI-powered autonomous nursing assistants that conduct rounds, capture vitals, perform assessments and document into EHRs.
+
+North America
+
+Not disclosed
+
+Metriport
+
+Health Data Infrastructure
+
+August 2026
+
+Series A
+
+$26M
+
+Provides open-source healthcare data infrastructure that aggregates, standardizes and surfaces longitudinal patient records for care teams and clinical applications.
+
+North America
+
+Matrix
+
+Arintra
+
+Clinical Workflow Software
+
+August 2026
+
+Series B
+
+$25M
+
+Automates medical coding and revenue-assurance workflows for health systems using AI.
+
+North America
+
+Define Ventures
+
+Onos Health
+
+Clinical Workflow Software
+
+August 2026
+
+Series A
+
+$17M
+
+Provides behavioral-health clinical intelligence software that helps health plans assess care quality, utilization and appropriate care pathways.
+
+North America
+
+Costanoa
+
+Switchboard Health
+
+Care Navigation Platforms
+
+August 2026
+
+Unknown
+
+$5M
+
+Provides AI-enabled specialty-care referral management and care navigation connecting patients with appropriate specialists.
+
+North America
+
+Not disclosed
+
+Cardiosense
+
+Remote Monitoring Solutions
+
+August 2026
+
+Series B
+
+$26.14M
+
+Develops wearable sensing and physiological AI for non-invasive cardiovascular monitoring and clinical intelligence.
+
+North America
+
+Not disclosed
+
+Clementine
+
+Patient Engagement Tools
+
+August 2026
+
+Seed
+
+$2M
+
+Provides an AI hearing-care agent that answers patient inquiries, educates prospective patients, books appointments and manages follow-up for hearing clinics.
+
+Europe
+
+Healthy.Capital
+
+Eyedentity
+
+Clinical Workflow Software
+
+August 2026
+
+Seed
+
+≈$1,500,000
+
+Uses AI analysis of eye images to identify suspicious ocular lesions and support earlier detection of eye cancer in optician and clinical settings.
+
+Europe
+
+Norrsken Launcher
+
+Aisel Health
+
+Clinical Workflow Software
+
+August 2026
+
+Seed
+
+≈$2,000,000
+
+Builds a clinical operating system for psychiatric practices that structures patient records, intake and consultation data for clinicians.
+
+Europe
+
+Caesar Ventures
+
+Kantoko
+
+Virtual Care Platforms
+
+August 2026
+
+Seed
+
+≈$2,500,000
+
+Delivers online ADHD assessment, treatment and ongoing clinician-led care through a digital platform.
+
+Asia-Pacific
+
+Side Stage Ventures; Tenmile
+
+Flagler Health
+
+Clinical Workflow Software
+
+August 2026
+
+Series B
+
+$50M
+
+Provides an AI-native operating platform for MSK practices covering triage, care management, billing and patient communications within existing clinical workflows.
+
+North America
+
+Bessemer Venture Partners
+
+MiiHealth AI
+
+Clinical Workflow Software
+
+August 2026
+
+Seed
+
+$2.8M
+
+Builds an AI medical assistant that conducts patient intake before visits and writes structured clinical histories into the EHR.
+
+North America
+
+Russell Glass
+
+Claryx
+
+Clinical Workflow Software
+
+August 2026
+
+Seed
+
+$3.5M
+
+Provides continuous genomic intelligence that helps hospital infection-prevention teams identify transmission chains and likely outbreak sources.
+
+North America
+
+Outlander VC
+
+Wellinks
+
+Remote Monitoring Solutions
+
+August 2026
+
+Series B
+
+$10M
+
+Provides remote patient monitoring, virtual rehabilitation and predictive cardiopulmonary care for chronic respiratory and cardiac patients.
+
+North America
+
+Not disclosed
+
+CARPL.ai
+
+Clinical Workflow Software
+
+July 2026
+
+Series A
+
+$10M
+
+Provides a vendor-neutral enterprise platform for evaluating, deploying and monitoring radiology AI applications in clinical workflows.
+
+Asia-Pacific
+
+International Finance Corporation
+
+Candid Health
+
+Clinical Workflow Software
+
+July 2026
+
+Series D+
+
+$120M
+
+Provides an autonomous revenue-cycle platform that automates medical billing, claims and related financial workflows for healthcare providers.
+
+North America
+
+Sixth Street Growth
+
+Hilo
+
+Remote Monitoring Solutions
+
+July 2026
+
+Series B
+
+$19M
+
+Provides a wearable, connected cuff and mobile software for longitudinal blood-pressure tracking outside the clinic.
+
+Europe
+
+Not disclosed
+
+Karoo Health
+
+Care Navigation Platforms
+
+July 2026
+
+Series A
+
+$16.2M
+
+Provides an AI-native cardiovascular platform connecting payers, cardiology providers and patients for risk detection and value-based care management.
+
+North America
+
+7wire Ventures; Allumia Ventures
+
+Bunkerhill Health
+
+Clinical Workflow Software
+
+July 2026
+
+Series B
+
+$25M
+
+Provides hospitals with clinical and operational AI agents, including FDA-cleared algorithms and workflow automation through its Carebricks platform.
+
+North America
+
+Khosla Ventures
+
+InsideDesk
+
+Clinical Workflow Software
+
+July 2026
+
+Growth Equity
+
+$12.6M
+
+Automates dental revenue-cycle workflows and collections for dental service organizations using an AI-powered platform.
+
+North America
+
+Pender Ventures
+
+Neko Health
+
+Remote Monitoring Solutions
+
+July 2026
+
+Series C
+
+$700M
+
+Operates technology-driven preventive-health clinics using proprietary body-scanning hardware, software and longitudinal health data.
+
+Europe
+
+Lightspeed Venture Partners; O.G. Venture Partners
+
+TytoCare
+
+Virtual Care Platforms
+
+July 2026
+
+Growth Equity
+
+>$25,000,000
+
+Enables clinical-grade virtual examinations from home through connected diagnostic devices, software and AI-powered clinical insights.
+
+North America
+
+Insight Partners
+
+Doctorsa
+
+Virtual Care Platforms
+
+July 2026
+
+Unknown
+
+$1.1M
+
+Connects international travellers with doctors for 24/7 video consultations, clinical advice and prescriptions across multiple countries.
+
+Europe
+
+PranaVentures
+
+Handspring Health
+
+Virtual Care Platforms
+
+July 2026
+
+Series B
+
+$19M
+
+Operates a virtual mental-health care platform for children, adolescents, young adults and their families.
+
+North America
+
+RPS Ventures
+
+Pearl Health
+
+Clinical Workflow Software
+
+July 2026
+
+Series C
+
+$50M
+
+Provides AI-powered predictive insights, care orchestration and workflow tools that help providers manage value-based Medicare populations.
+
+North America
+
+Andreessen Horowitz
+
+Balance
+
+Virtual Care Platforms
+
+July 2026
+
+Seed
+
+$3.43M
+
+Delivers subscription-based multidisciplinary obesity treatment through a digital platform connecting patients with doctors, nutritionists, psychologists and other specialists.
+
+Europe
+
+Shilling VC; JME Ventures
+
+Callie Care
+
+Remote Monitoring Solutions
+
+July 2026
+
+Seed
+
+$500K
+
+Provides a phone-first AI companion for older adults that performs proactive wellness check-ins, medication support and care-team connectivity.
+
+North America
+
+Not disclosed
+
+NeuroBell
+
+Remote Monitoring Solutions
+
+June 2026
+
+Unknown
+
+$5.5M
+
+Connected neonatal EEG monitor uses AI to detect and continuously monitor seizures at the bedside.
+
+Europe
+
+Elkstone
+
+Neuronostics
+
+Clinical Workflow Software
+
+June 2026
+
+Unknown
+
+≈$4,050,000
+
+BioEP software analyzes routine EEG data to support epilepsy diagnosis, prognosis and treatment monitoring.
+
+Europe
+
+Empirical Ventures; The FSE Group
+
+Ognomy Sleep
+
+Virtual Care Platforms
+
+June 2026
+
+Series A
+
+$20M
+
+Virtual sleep-medicine platform provides specialist visits, home sleep testing, diagnosis and treatment for sleep disorders including obstructive sleep apnea.
+
+North America
+
+Catalyst Investors
+
+Saltroad
+
+Virtual Care Platforms
+
+June 2026
+
+Seed
+
+≈$1,980,000
+
+Digital speech-and-language therapy platform connects children and families with clinicians for remote assessment and treatment.
+
+Europe
+
+Techstart Ventures
+
+Kai Health Technology
+
+Clinical Workflow Software
+
+June 2026
+
+Seed
+
+$4.8M
+
+AI clinical-performance platform reviews emergency-medicine records to identify diagnostic and clinical risk and improve care processes.
+
+North America
+
+Distributed Ventures
+
+MyKare.ai
+
+Clinical Workflow Software
+
+June 2026
+
+Unknown
+
+$1M
+
+AI-native healthcare operating system automates patient acquisition, booking, follow-up, communication and CRM workflows for clinics and hospitals.
+
+Asia-Pacific
+
+Andrew Parker; Alfredo Vaamonde
+
+Hera
+
+Care Navigation Platforms
+
+June 2026
+
+Series A
+
+$27M
+
+AI-supported care-navigation service helps older adults and families coordinate insurance, medications, specialists, appointments and community resources.
+
+North America
+
+Bain Capital Ventures
+
+Assort Health
+
+Clinical Workflow Software
+
+June 2026
+
+Series C
+
+$120M
+
+AI patient-access agents automate scheduling, intake, referrals, documents, refills, eligibility and payments for healthcare organizations.
+
+North America
+
+Menlo Ventures
+
+xCures
+
+Health Data Infrastructure
+
+June 2026
+
+Series B
+
+$46M
+
+AI clinical-data platform structures fragmented medical records into decision-ready longitudinal information, particularly for oncology care.
+
+North America
+
+Innovius Capital
+
+Cadence
+
+Remote Monitoring Solutions
+
+June 2026
+
+Series C
+
+$100M
+
+Connected-care platform remotely monitors chronic-disease patients and combines device data, clinical teams and AI-supported interventions.
+
+North America
+
+Spark Capital
+
+Ladder Health
+
+Virtual Care Platforms
+
+June 2026
+
+Seed
+
+$7M
+
+Virtual-first pediatric developmental-care platform delivering speech, occupational, physical and feeding therapy.
+
+North America
+
+Nina Capital
+
+Ovum
+
+Patient Engagement Tools
+
+June 2026
+
+Seed
+
+≈$2,600,000
+
+AI women's-health platform unifies symptoms, biometrics, reproductive records, medications and medical reports into a longitudinal health record.
+
+Asia-Pacific
+
+Admiralty Capital Group
+
+Prosper AI
+
+Clinical Workflow Software
+
+June 2026
+
+Series A
+
+$30M
+
+AI agents automate patient scheduling, insurance eligibility, billing and voice interactions for healthcare providers.
+
+North America
+
+Andreessen Horowitz
+
+Connie Health
+
+Care Navigation Platforms
+
+June 2026
+
+Series B
+
+$40M
+
+AI-native Medicare navigation platform helps older adults choose, understand and use health plans and benefits.
+
+North America
+
+HealthQuest Capital
+
+Frontier Health
+
+Clinical Workflow Software
+
+June 2026
+
+Seed
+
+$16M
+
+AI administrative platform automates NHS patient pathways, follow-ups, appointment coordination and other hospital workflows.
+
+Europe
+
+Atomico
+
+June Health
+
+Care Navigation Platforms
+
+June 2026
+
+Unknown
+
+≈$1,750,000
+
+Women's-health benefit combines AI-assisted care navigation with virtual clinicians and coordinated specialist support.
+
+North America
+
+Not disclosed
+
+Kinomatic
+
+Clinical Workflow Software
+
+June 2026
+
+Seed
+
+$4M
+
+AI and virtual-reality platform converts patient imaging into personalized 3D orthopaedic surgical plans and rehearsals.
+
+North America
+
+Waterline Ventures
+
+Clair
+
+Remote Monitoring Solutions
+
+June 2026
+
+Seed
+
+$11.6M
+
+Wearable and companion app continuously estimate female hormone signals and cycle phases from multiple physiological sensors.
+
+North America
+
+Khosla Ventures
+
+Everlab
+
+Virtual Care Platforms
+
+June 2026
+
+Series A
+
+≈$42,000,000
+
+Preventive-care platform integrates diagnostics, clinicians, prescriptions, wearable data and longitudinal AI-supported care in one digital service.
+
+Asia-Pacific
+
+AirTree Ventures
+
+Telepatia AI
+
+Clinical Workflow Software
+
+June 2026
+
+Series A
+
+$33M
+
+AI clinical platform provides real-time documentation, evidence-based decision support and healthcare-system integration for clinicians.
+
+Latin America
+
+Andreessen Horowitz
+
+Vali Health
+
+Clinical Workflow Software
+
+June 2026
+
+Unknown
+
+$6M
+
+AI agents automate caregiver scheduling, workforce management and daily coordination for home-care agencies.
+
+North America
+
+Not disclosed
+
+Maia
+
+Clinical Workflow Software
+
+June 2026
+
+Seed
+
+$1.2M
+
+AI medical-coding and revenue-cycle platform purpose-built for orthopaedic practices.
+
+North America
+
+Not disclosed
+
+TRAK
+
+Virtual Care Platforms
+
+June 2026
+
+Series A
+
+≈$4,280,000
+
+Fully digital musculoskeletal rehabilitation clinic using computer vision and AI-guided home exercise with remote clinical supervision.
+
+Europe
+
+CRB Health Tech
+
+InStride Health
+
+Virtual Care Platforms
+
+June 2026
+
+Series C
+
+$30M
+
+Virtual specialty mental-health care for children, adolescents and young adults with anxiety and obsessive-compulsive disorders.
+
+North America
+
+Echo Health Ventures; FMZ Ventures
+
+OurMind
+
+Clinical Workflow Software
+
+June 2026
+
+Unknown
+
+≈$2,430,000
+
+Generative-AI platform drafts clinical notes and handles letters, protocol questions and other clinician administrative workflows.
+
+Europe
+
+4impact capital
+
+TurnUp
+
+Clinical Workflow Software
+
+June 2026
+
+Seed
+
+≈$2,310,000
+
+AI scheduling software predicts no-shows and automates appointment confirmations, cancellations, rescheduling and waitlists for care practices.
+
+Europe
+
+Newion
+
+01Health
+
+Clinical Workflow Software
+
+June 2026
+
+Series A
+
+$15M
+
+Clinical infrastructure software lets local clinics deliver specialist treatments with protocols, AI workflows and remote specialist oversight.
+
+Europe
+
+Gresham House Ventures
+
+Ema Health
+
+Patient Engagement Tools
+
+June 2026
+
+Seed
+
+≈$3,450,000
+
+Digital infrastructure for blood and plasma donation covering donor booking, engagement and collection-center workflows through Rosso and EmaOS.
+
+Europe
+
+360 Capital
+
+Uncovr
+
+Clinical Workflow Software
+
+June 2026
+
+Seed
+
+$7M
+
+AI analyzes surgical video and operating-room data to automatically generate operative reports and procedural coding.
+
+Europe
+
+Index Ventures
+
+Klinic
+
+Clinical Workflow Software
+
+June 2026
+
+Series A
+
+$24M
+
+Practice-in-a-box platform combining patient acquisition, intake, EHR, care coordination and revenue-cycle infrastructure for specialty clinicians.
+
+North America
+
+Not disclosed
+
+Semble
+
+Clinical Workflow Software
+
+June 2026
+
+Series C
+
+≈$40,500,000
+
+Cloud software manages outpatient patient journeys, clinical records, billing, diagnostics and practice operations.
+
+Europe
+
+Revaia
+
+Flok Health
+
+Virtual Care Platforms
+
+June 2026
+
+Series A
+
+$12.5M
+
+AI-operated virtual physiotherapy clinic delivering complete musculoskeletal treatment pathways through a digital platform.
+
+Europe
+
+AlbionVC
+
+Lassie
+
+Clinical Workflow Software
+
+June 2026
+
+Series A
+
+$35M
+
+Autonomous AI software handles insurance, payment, claims and back-office workflows for independent medical and dental practices.
+
+North America
+
+Andreessen Horowitz
+
+Gnosis Health
+
+Remote Monitoring Solutions
+
+June 2026
+
+Unknown
+
+≈$770,000
+
+Builds continuous digital monitoring and clinical intelligence for Parkinson's and other chronic conditions through its MAXine platform.
+
+Europe
+
+Not disclosed
+
+Ilant Health
+
+Virtual Care Platforms
+
+June 2026
+
+Series A
+
+$15M
+
+Virtual precision-care platform delivering obesity and cardiometabolic treatment for employers and health plans.
+
+North America
+
+Cornucopian Capital
+
+Novellia
+
+Health Data Infrastructure
+
+June 2026
+
+Series A
+
+$18M
+
+Patient-powered health-data platform aggregating longitudinal records and enabling consented real-world-data use.
+
+North America
+
+Spark Capital
+
+Subtle Medical
+
+Clinical Workflow Software
+
+June 2026
+
+Series C
+
+$33M
+
+AI imaging software improves MRI, PET and CT image quality while enabling faster scans or lower doses.
+
+North America
+
+Morgan Stanley Expansion Capital
+
+Garner Health
+
+Care Navigation Platforms
+
+May 2026
+
+Series D+
+
+$100M
+
+Provides healthcare-navigation software that uses claims data and provider-quality analytics to steer members toward higher-quality physicians.
+
+North America
+
+Index Ventures
+
+Signos
+
+Remote Monitoring Solutions
+
+May 2026
+
+Unknown
+
+$20M
+
+Provides an FDA-cleared glucose-monitoring system combining continuous glucose data with an AI app for personalized weight and metabolic-health management.
+
+North America
+
+Not disclosed
+
+Triomics
+
+Clinical Workflow Software
+
+May 2026
+
+Series B
+
+$22M
+
+Provides oncology-specific AI agents that process longitudinal medical records for visit preparation, trial matching and other cancer-care workflows.
+
+North America
+
+Battery Ventures
+
+Lucis
+
+Patient Engagement Tools
+
+May 2026
+
+Series A
+
+$20M
+
+Provides a preventive-health platform combining blood-biomarker testing, longitudinal health data and physician-reviewed AI guidance.
+
+Europe
+
+Singular
+
+Commure
+
+Clinical Workflow Software
+
+May 2026
+
+Growth Equity
+
+$70M
+
+Provides AI healthcare-operations software spanning revenue cycle management, clinical documentation, coding and practice workflows.
+
+North America
+
+General Catalyst
+
+NEX Health Intelligence
+
+Clinical Workflow Software
+
+May 2026
+
+Seed
+
+$1.15M
+
+Provides hospital infection-intelligence software for predicting infection risk, investigating outbreaks and automating infection-surveillance workflows.
+
+Europe
+
+Brighteye Ventures
+
+Nourish
+
+Virtual Care Platforms
+
+May 2026
+
+Series C
+
+$100M
+
+Provides insurance-covered virtual metabolic care combining dietitians, physicians, lab testing, medication management and AI patient support.
+
+North America
+
+Menlo Ventures
+
+Kin Health
+
+Patient Engagement Tools
+
+May 2026
+
+Seed
+
+$9M
+
+Provides a patient-facing AI app that records medical visits, summarizes clinicians' advice and builds a longitudinal patient-controlled care record.
+
+North America
+
+Maveron
+
+Shyld AI
+
+Clinical Workflow Software
+
+May 2026
+
+Seed
+
+$13.4M
+
+Provides agentic AI that monitors hospital environments and automates operating-room, patient-safety, infection-control and compliance workflows.
+
+North America
+
+Aulis Capital
+
+9amHealth
+
+Virtual Care Platforms
+
+May 2026
+
+Series B
+
+$26M
+
+Provides virtual specialty care for obesity, diabetes, hypertension, hyperlipidemia and other chronic conditions.
+
+North America
+
+Define Ventures
+
+Anomaly
+
+Clinical Workflow Software
+
+May 2026
+
+Unknown
+
+$17M
+
+Provides AI payer-intelligence software that analyzes claims and reimbursement behavior to predict denials and identify payment discrepancies.
+
+North America
+
+Sound Ventures
+
+Ditto
+
+Patient Engagement Tools
+
+May 2026
+
+Unknown
+
+$8.8M
+
+Provides an AI patient app that records medical consultations and turns them into understandable, revisitable and shareable summaries.
+
+Europe
+
+Heal Capital
+
+Forus
+
+Clinical Workflow Software
+
+May 2026
+
+Series B
+
+$160M
+
+Provides an AI medication-access network that automates prior authorization, prescription routing and fulfillment workflows between providers, pharmacies and payers.
+
+North America
+
+Accel
+
+Knit Health
+
+Clinical Workflow Software
+
+May 2026
+
+Seed
+
+$11.6M
+
+Develops clinical-intelligence AI that learns from real healthcare-system decision and coordination patterns to support care operations.
+
+North America
+
+Uncork Capital; Frist Cressey Ventures
+
+Develo
+
+Clinical Workflow Software
+
+May 2026
+
+Series A
+
+$14M
+
+Provides an AI-native operating system for pediatric practices combining EHR, billing, intake, family engagement and reporting workflows.
+
+North America
+
+Blueprint Equity
+
+Sêmeia
+
+Remote Monitoring Solutions
+
+May 2026
+
+Unknown
+
+$24.6M
+
+Provides MedicWise, a medical remote-patient-monitoring platform that converts longitudinal patient data into clinical alerts for care teams.
+
+Europe
+
+Not disclosed
+
+Thea
+
+Virtual Care Platforms
+
+May 2026
+
+Seed
+
+$4M
+
+Provides an AI-powered dermatology platform combining image analysis, personalized guidance and digital clinical-care pathways for skin and hair conditions.
+
+North America
+
+General Catalyst
+
+Madeed
+
+Patient Engagement Tools
+
+May 2026
+
+Seed
+
+$525K
+
+Provides a preventive-health platform using biomarker and laboratory data to identify health risks and deliver personalized health guidance.
+
+Middle East
+
+Not disclosed
+
+XCaliber Health
+
+Clinical Workflow Software
+
+May 2026
+
+Seed
+
+$6.5M
+
+Provides an agentic healthcare operating system automating referrals, medication refills, lab notifications, care gaps and other clinical-administrative workflows.
+
+North America
+
+ManchesterStory
+
+Greatly Health
+
+Virtual Care Platforms
+
+April 2026
+
+Seed
+
+$4M
+
+Delivers virtual evidence-based integrative oncology programs including coaching, symptom tracking and supportive therapies.
+
+North America
+
+Pear VC; Commonweal Ventures
+
+Photon Health
+
+Patient Engagement Tools
+
+April 2026
+
+Series A
+
+$16M
+
+Provides digital prescription infrastructure that lets patients manage prescription routing, pharmacy choice and fulfillment.
+
+North America
+
+Healthier Capital
+
+Aidoc
+
+Clinical Workflow Software
+
+April 2026
+
+Series D+
+
+$150M
+
+Provides enterprise clinical AI for medical imaging triage, diagnostic support and hospital workflows.
+
+North America
+
+Growth Equity at Goldman Sachs Alternatives
+
+dehaze
+
+Health Data Infrastructure
+
+April 2026
+
+Seed
+
+≈$3,700,000
+
+Uses causal AI on patient data to identify people at risk of chronic disease for earlier intervention by healthcare payers.
+
+Europe
+
+YZR Capital; DN Capital
+
+TriFetch
+
+Clinical Workflow Software
+
+April 2026
+
+Seed
+
+$1.9M
+
+Uses AI to automate patient calls, referrals, scheduling and prior authorizations for independent specialty clinics.
+
+North America
+
+Nexus Venture Partners
+
+Almanac Health
+
+Clinical Workflow Software
+
+April 2026
+
+Seed
+
+$10M
+
+Provides evidence-grounded clinical decision support integrated into clinicians' existing workflows and EHRs.
+
+North America
+
+F-Prime
+
+Gravity Rail
+
+Patient Engagement Tools
+
+April 2026
+
+Seed
+
+$2.75M
+
+Provides infrastructure for healthcare organizations to build and run AI-powered patient-engagement workflows across communication channels.
+
+North America
+
+Redesign Health
+
+Zócalo Health
+
+Virtual Care Platforms
+
+April 2026
+
+Series A
+
+$15M
+
+Combines community health workers, virtual clinicians and digital navigation tools to deliver primary care to high-need populations.
+
+North America
+
+EO Ventures
+
+Amperos Health
+
+Clinical Workflow Software
+
+April 2026
+
+Series A
+
+$16M
+
+Uses AI to automate healthcare claim-denial management and revenue recovery end to end.
+
+North America
+
+Bessemer Venture Partners
+
+Courier Health
+
+Patient Engagement Tools
+
+April 2026
+
+Series B
+
+$50M
+
+Provides patient-engagement and journey-orchestration software used by biopharma patient-services teams.
+
+North America
+
+Oak HC/FT
+
+Tava Health
+
+Virtual Care Platforms
+
+April 2026
+
+Series C
+
+$40M
+
+Operates a technology-enabled behavioral-health platform combining virtual care, provider software and care navigation.
+
+North America
+
+Centana Growth Partners
+
+brainjo
+
+Virtual Care Platforms
+
+April 2026
+
+Seed
+
+≈$2,300,000
+
+Develops prescription VR digital therapeutics that extend psychotherapy into guided digital treatment.
+
+Europe
+
+High-Tech Gründerfonds (HTGF)
+
+Coral
+
+Clinical Workflow Software
+
+April 2026
+
+Seed
+
+$12.5M
+
+Automates patient intake, prior authorization, fax processing and other administrative workflows for specialty healthcare providers.
+
+North America
+
+Lightspeed; Z47
+
+ScreenPoint Medical
+
+Clinical Workflow Software
+
+April 2026
+
+Unknown
+
+$14M
+
+Develops AI software for breast-cancer detection and risk assessment in mammography workflows.
+
+Europe
+
+Not disclosed
+
+Ultralight
+
+Clinical Workflow Software
+
+April 2026
+
+Seed
+
+$9.3M
+
+Provides an AI-native EHR, practice-management and patient-engagement platform for functional, integrative and longevity clinics.
+
+North America
+
+The General Partnership
+
+Joyful Health
+
+Clinical Workflow Software
+
+April 2026
+
+Series A
+
+$17M
+
+Provides AI-based financial and revenue-cycle infrastructure for healthcare providers.
+
+North America
+
+CRV
+
+Keebler Health
+
+Health Data Infrastructure
+
+April 2026
+
+Series A
+
+$16M
+
+Uses LLMs to extract information from unstructured clinical records for risk adjustment and population-health workflows.
+
+North America
+
+Flare Capital Partners
+
+ONTO Health
+
+Virtual Care Platforms
+
+April 2026
+
+Series A
+
+$20M
+
+Provides physician-led, AI-enabled fertility and longevity care through a digital clinical platform.
+
+North America
+
+Not disclosed
+
+Wavelet Medical
+
+Remote Monitoring Solutions
+
+April 2026
+
+Seed
+
+$7M
+
+Develops non-invasive AI-powered fetal EEG monitoring to detect neurological distress during labor.
+
+North America
+
+Aegis Ventures
+
+Luminai
+
+Clinical Workflow Software
+
+April 2026
+
+Series B
+
+$38M
+
+Provides an AI-native automation platform for administrative and operational workflows inside health systems.
+
+North America
+
+Peak XV Partners
+
+injewelme
+
+Remote Monitoring Solutions
+
+April 2026
+
+Unknown
+
+$1.2M
+
+Develops AI-based contactless health monitoring and predictive health-data technology.
+
+Asia-Pacific
+
+Catalytic Capital for Climate and Health (C3H)
+
+Vertigenius
+
+Remote Monitoring Solutions
+
+April 2026
+
+Unknown
+
+≈$2,900,000
+
+Combines a wearable head sensor, clinician portal and patient app for remotely delivered and monitored vestibular rehabilitation.
+
+Europe
+
+Atlantic Bridge
+
+HeyDonto AI Technology
+
+Health Data Infrastructure
+
+April 2026
+
+Seed
+
+$20M
+
+Operates an interoperability exchange connecting dental systems with medical EHRs, payers and patient-access infrastructure.
+
+North America
+
+Not disclosed
+
+SimpliFed
+
+Virtual Care Platforms
+
+April 2026
+
+Series A
+
+$10.8M
+
+Delivers virtual maternal care spanning lactation, pregnancy and postpartum support.
+
+North America
+
+Morningside; Hesperia Capital
+
+Beacon Biosignals
+
+Remote Monitoring Solutions
+
+April 2026
+
+Series B
+
+$11M
+
+Provides at-home EEG capture and analytics for brain-health diagnostics, clinical care and research.
+
+North America
+
+Not disclosed
+
+Yuzu Health
+
+Health Data Infrastructure
+
+April 2026
+
+Series A
+
+$35M
+
+Provides technology infrastructure for health-plan administration, including claims, payments and member administration.
+
+North America
+
+General Catalyst; Chemistry
+
+Jimini Health
+
+Patient Engagement Tools
+
+March 2026
+
+Seed
+
+$17M
+
+Provides clinician-supervised, patient-facing behavioral-health AI that healthcare organizations deploy between clinical encounters.
+
+North America
+
+Not disclosed
+
+Prickly Pear Health
+
+Patient Engagement Tools
+
+March 2026
+
+Seed
+
+>$600,000
+
+Provides an AI-powered digital platform using behavioral and wearable data to support women's brain health around the menopausal transition.
+
+North America
+
+Not disclosed
+
+Doctronic
+
+Virtual Care Platforms
+
+March 2026
+
+Series B
+
+$40M
+
+Provides AI-enabled telemedicine combining automated medical conversations with access to licensed clinicians.
+
+North America
+
+Abstract; Lightspeed Venture Partners
+
+Flourish Community Care
+
+Virtual Care Platforms
+
+March 2026
+
+Seed
+
+$5.7M
+
+Provides insurance-covered maternal care through a digitally coordinated network of local doulas offering virtual and in-person support.
+
+North America
+
+Zeal Capital Partners
+
+Latent Health
+
+Clinical Workflow Software
+
+March 2026
+
+Series A
+
+$80M
+
+Uses clinical AI to automate medication-access workflows by interpreting patient records, drug criteria and prior-authorization requirements.
+
+North America
+
+Spark Capital; Transformation Capital
+
+BioLiberty
+
+Remote Monitoring Solutions
+
+March 2026
+
+Series A
+
+≈$8,200,000
+
+Develops digitally enabled rehabilitation systems for in-clinic therapy and monitored physical rehabilitation at home.
+
+Europe
+
+Scottish National Investment Bank
+
+Parallel
+
+Clinical Workflow Software
+
+March 2026
+
+Series A
+
+$20M
+
+Builds AI agents that automate hospital coding, admissions and other healthcare workflow tasks inside existing systems.
+
+Europe
+
+Index Ventures
+
+Starling Medical, Inc.
+
+Remote Monitoring Solutions
+
+March 2026
+
+Seed
+
+$825K
+
+Develops an at-home urology remote-monitoring platform that continuously analyzes urinary changes for chronic-condition management.
+
+North America
+
+Not disclosed
+
+Remi Health GmbH
+
+Health Data Infrastructure
+
+March 2026
+
+Seed
+
+≈$3,500,000
+
+Provides API-based infrastructure for embedding diagnostic ordering, collection, laboratory workflows and results into digital healthcare journeys.
+
+Europe
+
+IBB Ventures
+
+Amigo AI
+
+Care Navigation Platforms
+
+March 2026
+
+Series A
+
+$11M
+
+Builds and trains patient-facing clinical AI agents for intake, triage, care navigation and ongoing patient support.
+
+North America
+
+Madrona
+
+TruDoc Healthcare
+
+Virtual Care Platforms
+
+March 2026
+
+Unknown
+
+$15M
+
+Delivers virtual-first primary and chronic care, diagnostics and hospital-at-home services across the GCC.
+
+Middle East
+
+Not disclosed
+
+UnityAI
+
+Clinical Workflow Software
+
+March 2026
+
+Series A
+
+$8.5M
+
+Provides autonomous AI agents for healthcare scheduling, intake, outreach and related outpatient operational workflows.
+
+North America
+
+Third Prime
+
+Delphyr
+
+Clinical Workflow Software
+
+March 2026
+
+Seed
+
+≈$2,000,000
+
+Provides AI agents embedded in healthcare systems to summarize patient data, surface medical information and reduce clinician workflow burden.
+
+Europe
+
+Not disclosed
+
+Grow Therapy
+
+Virtual Care Platforms
+
+March 2026
+
+Series D+
+
+$150M
+
+Connects patients with in-network therapists and psychiatric providers through a technology-enabled mental-health care platform.
+
+North America
+
+TCV; Growth Equity at Goldman Sachs Alternatives
+
+KeyCare
+
+Virtual Care Platforms
+
+March 2026
+
+Unknown
+
+$27.4M
+
+Provides Epic-integrated virtual primary, urgent, behavioral and specialty care to health-system patients.
+
+North America
+
+HealthX Ventures
+
+Ease Health
+
+Clinical Workflow Software
+
+March 2026
+
+Series A
+
+$41M
+
+Provides an AI-native CRM, EHR and revenue-cycle platform purpose-built for behavioral health providers.
+
+North America
+
+Andreessen Horowitz
+
+BrainCheck
+
+Clinical Workflow Software
+
+February 2026
+
+Series A
+
+$13M
+
+Digital cognitive-care platform supporting assessment, longitudinal monitoring and workflow-based management of cognitive impairment.
+
+North America
+
+Next Coast Ventures
+
+Oska Health
+
+Virtual Care Platforms
+
+February 2026
+
+Seed
+
+$13M
+
+Hybrid chronic-care platform combining digital therapy, AI and human health coaching for high-risk patients.
+
+Europe
+
+Capricorn Partners; Swiss Health Ventures
+
+Third Way Health
+
+Clinical Workflow Software
+
+February 2026
+
+Series A
+
+$15M
+
+AI-enabled operating platform automating scheduling, billing, patient communications and other medical-practice front-office workflows.
+
+North America
+
+Health Velocity Capital
+
+YOU(th) Health Tech
+
+Remote Monitoring Solutions
+
+February 2026
+
+Seed
+
+$4.5M
+
+Smartphone-based preventive screening platform analyzing digital biomarkers from face, voice, skin, eyes and behavioral signals.
+
+Europe
+
+Callisto Health
+
+Handl Health
+
+Health Data Infrastructure
+
+February 2026
+
+Series A
+
+$14.2M
+
+Healthcare intelligence software helping brokers, employers, carriers and administrators design and monitor employer health plans.
+
+North America
+
+Arthur Ventures
+
+nyra health
+
+Virtual Care Platforms
+
+February 2026
+
+Series A
+
+$23.6M
+
+AI-driven neurorehabilitation software providing adaptive speech, cognitive and motor therapy across clinic and home settings.
+
+Europe
+
+Armira Growth
+
+Oncare
+
+Care Navigation Platforms
+
+February 2026
+
+Series A
+
+$3.3M
+
+Technology-enabled oncology-care platform operating coordinated cancer-treatment programs inside partner hospitals.
+
+Asia-Pacific
+
+Sky Impact Capital
+
+Hemi Health
+
+Virtual Care Platforms
+
+February 2026
+
+Seed
+
+$4.72M
+
+Digital-first care platform delivering structured clinical programs for migraine, headache disorders and post-concussion conditions.
+
+Europe
+
+Export and Investment Fund of Denmark (EIFO); Swiss Health Ventures
+
+Codoxo
+
+Clinical Workflow Software
+
+February 2026
+
+Series C
+
+$35M
+
+AI platform helping health plans identify and prevent improper healthcare claims and payment-integrity issues.
+
+North America
+
+CVS Health Ventures
+
+Daffodil Health
+
+Clinical Workflow Software
+
+February 2026
+
+Series A
+
+$16.3M
+
+AI-native platform automating health-plan claims pricing, out-of-network repricing and payment-integrity workflows.
+
+North America
+
+Flare Capital Partners
+
+Nul
+
+Virtual Care Platforms
+
+February 2026
+
+Seed
+
+$1M
+
+Telehealth platform combining clinician oversight, prescription medication and digital treatment pathways for alcohol reduction.
+
+Europe
+
+dmg ventures; BYVP
+
+Anterior
+
+Clinical Workflow Software
+
+February 2026
+
+Series B
+
+$40M
+
+AI platform embedded in health-plan clinical workflows to automate prior authorization and related administrative processes.
+
+North America
+
+Not disclosed
+
+Big Health
+
+Virtual Care Platforms
+
+February 2026
+
+Unknown
+
+$23.7M
+
+Developer of FDA-cleared prescription digital treatments for insomnia and generalized anxiety disorder.
+
+North America
+
+.406 Ventures; AlleyCorp
+
+Helia Care
+
+Clinical Workflow Software
+
+February 2026
+
+Unknown
+
+$3M
+
+Cloud software automating bill-only medical-device procurement workflows between hospitals, suppliers and distributors.
+
+North America
+
+Not disclosed
+
+Loovi
+
+Patient Engagement Tools
+
+February 2026
+
+Seed
+
+$1.18M
+
+Preventive-health platform combining medical testing, longitudinal health data and personalized digital guidance.
+
+Europe
+
+Not disclosed
+
+Talkiatry
+
+Virtual Care Platforms
+
+February 2026
+
+Series D+
+
+$210M
+
+Telepsychiatry provider delivering insurance-covered virtual psychiatric care through employed clinicians.
+
+North America
+
+Perceptive Advisors
+
+DentalMonitoring
+
+Remote Monitoring Solutions
+
+February 2026
+
+Growth Equity
+
+$99M
+
+AI software-as-a-medical-device enabling orthodontists to remotely monitor treatment and oral-health progress from smartphone scans.
+
+Europe
+
+Not disclosed
+
+Garner Health
+
+Care Navigation Platforms
+
+February 2026
+
+Series D+
+
+$118M
+
+Data-driven care-navigation platform helping members identify high-quality providers and book care using provider-performance data.
+
+North America
+
+Kleiner Perkins
+
+Solace
+
+Care Navigation Platforms
+
+February 2026
+
+Series C
+
+$130M
+
+Digital care-navigation service matching patients with advocates who coordinate appointments, insurance, bills and care pathways.
+
+North America
+
+IVP
+
+Somethings
+
+Virtual Care Platforms
+
+February 2026
+
+Series A
+
+$19.2M
+
+Digital mental-health platform connecting teens and young adults with trained peer mentors and support services.
+
+North America
+
+Catalio Capital
+
+Splose
+
+Clinical Workflow Software
+
+February 2026
+
+Series A
+
+$32M
+
+Practice-management software for allied-health providers covering scheduling, case management, billing, payments and reporting.
+
+Asia-Pacific
+
+Spectrum Equity
+
+beHuman
+
+Virtual Care Platforms
+
+February 2026
+
+Seed
+
+$4M
+
+Virtual preventive-care platform coordinating cancer screening, diagnostics and follow-up for underserved patients.
+
+North America
+
+Santé Ventures
+
+Synthpop
+
+Clinical Workflow Software
+
+February 2026
+
+Series A
+
+$15M
+
+Agentic AI platform automating administrative workflows across payer, provider and patient healthcare operations.
+
+North America
+
+Ansa Capital
+
+Lotus Health AI
+
+Virtual Care Platforms
+
+February 2026
+
+Series A
+
+$35M
+
+AI-assisted virtual primary-care service providing diagnosis, prescriptions, referrals and physician-reviewed care.
+
+North America
+
+CRV; Kleiner Perkins
+
+Midi Health
+
+Virtual Care Platforms
+
+February 2026
+
+Series D+
+
+$100M
+
+Virtual-first clinical platform providing longitudinal healthcare for women, particularly menopause and midlife conditions.
+
+North America
+
+Goodwater Capital
+
+Creda Health
+
+Patient Engagement Tools
+
+January 2026
+
+Unknown
+
+$1.3M
+
+Provides a patient-facing AI mobile application delivering personalized medication information and medication-management support.
+
+North America
+
+Not disclosed
+
+Evaro
+
+Health Data Infrastructure
+
+January 2026
+
+Series A
+
+$25M
+
+Provides regulated healthcare APIs and infrastructure for embedding consultations, diagnostics, prescribing, dispensing and aftercare into third-party platforms.
+
+Europe
+
+AlbionVC
+
+CareBestie
+
+Patient Engagement Tools
+
+January 2026
+
+Seed
+
+$4.4M
+
+Provides AI voice-based patient-engagement infrastructure for home-health, hospice and post-acute care providers.
+
+North America
+
+TLV Partners
+
+Chrono Health
+
+Health Data Infrastructure
+
+January 2026
+
+Seed
+
+≈$3,150,000
+
+Builds a patient-controlled platform that centralizes longitudinal medical and biological data and generates personalized health insights.
+
+Europe
+
+3xP Global
+
+Oviva
+
+Virtual Care Platforms
+
+January 2026
+
+Series D+
+
+$220M
+
+Delivers digitally enabled, reimbursed clinical care for obesity and other chronic conditions through an app and multidisciplinary care teams.
+
+Europe
+
+Kinnevik
+
+Salvo Health
+
+Virtual Care Platforms
+
+January 2026
+
+Series A
+
+$8.5M
+
+Provides GI practices with a hybrid virtual-care platform for continuous gastrointestinal and metabolic-health management between office visits.
+
+North America
+
+ManchesterStory; City Light Capital; Threshold Ventures
+
+Claim Health
+
+Clinical Workflow Software
+
+January 2026
+
+Seed
+
+$4.4M
+
+Provides AI-native revenue and administrative workflow software spanning referral intake, eligibility, authorization and reimbursement for post-acute care providers.
+
+North America
+
+Maverick Ventures
+
+OpenEvidence
+
+Clinical Workflow Software
+
+January 2026
+
+Series D+
+
+$250M
+
+Provides an AI medical-information and evidence-search platform designed for physicians' clinical decision-making workflows.
+
+North America
+
+Thrive Capital; DST Global
+
+Pinky Promise
+
+Virtual Care Platforms
+
+January 2026
+
+Seed
+
+$1M
+
+Operates an AI-enabled digital women's health clinic offering 24/7 gynecological consultations, prescriptions and clinical guidance.
+
+Asia-Pacific
+
+Rebalance Angel Community
+
+Eolas Medical
+
+Clinical Workflow Software
+
+January 2026
+
+Series A
+
+$12M
+
+Provides clinicians with AI-powered search and knowledge-management software for accessing approved local guidelines, protocols and medicines information at the point of care.
+
+Europe
+
+Acton Capital
+
+Omniscient Neurotechnology
+
+Clinical Workflow Software
+
+January 2026
+
+Series D+
+
+≈$13,400,000
+
+Develops AI brain-mapping software that turns MRI data into patient-specific connectomic maps for clinical prognosis and treatment planning.
+
+Asia-Pacific
+
+National Reconstruction Fund Corporation; OIF Ventures
+
+RISA Labs
+
+Clinical Workflow Software
+
+January 2026
+
+Series A
+
+$11.1M
+
+Provides an AI operating system that automates patient access, benefits verification, prior authorization and other oncology workflows.
+
+North America
+
+Cencora Ventures; Optum Ventures
+
+VieCure
+
+Clinical Workflow Software
+
+January 2026
+
+Unknown
+
+$43M
+
+Provides an oncology operating system combining an oncology EMR, clinical decision support and precision-medicine workflow software.
+
+North America
+
+Mitch Rales; Northpond Ventures
+
+Zeya Health
+
+Clinical Workflow Software
+
+January 2026
+
+Seed
+
+$575K
+
+Provides an AI-powered operational platform for outpatient clinics that automates scheduling, follow-ups, communications and other front-desk workflows.
+
+Asia-Pacific
+
+Antler
+
+BrightHeart
+
+Clinical Workflow Software
+
+January 2026
+
+Series A
+
+≈$12,800,000
+
+Develops AI software that assists clinicians during prenatal ultrasound examinations and identifies suspected fetal abnormalities.
+
+Europe
+
+Odyssée Venture; GO Capital
+
+Pomelo Care
+
+Virtual Care Platforms
+
+January 2026
+
+Series C
+
+$92M
+
+Delivers 24/7 multispecialty virtual healthcare for maternity, women's health and pediatric patients.
+
+North America
+
+Stripes
+
+Oasys Health
+
+Clinical Workflow Software
+
+January 2026
+
+Seed
+
+$4M
+
+Provides an AI-native operating system for behavioral-health practices spanning clinical workflows, practice management and decision support.
+
+North America
+
+Pathlight Ventures
+
+Biobeat Technologies
+
+Remote Monitoring Solutions
+
+December 2025
+
+Series B
+
+$50M
+
+Develops wearable, cuffless devices and software for continuous and ambulatory blood-pressure and vital-sign monitoring.
+
+Middle East
+
+Ally Bridge Group; OrbiMed Advisors; Elevage Medical
+
+SelectDr
+
+Care Navigation Platforms
+
+December 2025
+
+Seed
+
+$2.04M
+
+Uses healthcare data to help patients identify and navigate to physicians matched to their clinical needs.
+
+North America
+
+TechSquare Ventures
+
+Liom
+
+Remote Monitoring Solutions
+
+December 2025
+
+Series A
+
+$16.3M
+
+Develops wearable, non-invasive technology for continuous monitoring of glucose and other physiological biomarkers.
+
+Europe
+
+Not disclosed
+
+Clarity Pediatrics
+
+Virtual Care Platforms
+
+December 2025
+
+Series A
+
+$14.5M
+
+Delivers virtual specialty-care programs for children with chronic conditions including ADHD, anxiety and obesity.
+
+North America
+
+Jackson Square Ventures
+
+Drive Health
+
+Clinical Workflow Software
+
+December 2025
+
+Unknown
+
+$15M
+
+Develops Avery, an agentic-AI platform that automates clinical and care-team workflows including triage, discharge and follow-up.
+
+North America
+
+Vitalis Ventures
+
+WearLinq
+
+Remote Monitoring Solutions
+
+December 2025
+
+Series A
+
+$14M
+
+Provides connected ambulatory ECG monitoring technology for remote detection and management of cardiac rhythm disorders.
+
+North America
+
+AIX Ventures
+
+Leona Health
+
+Clinical Workflow Software
+
+December 2025
+
+Seed
+
+$14M
+
+Provides an AI copilot that helps physicians manage, triage and respond to patient communications through WhatsApp.
+
+North America
+
+Andreessen Horowitz
+
+Mindoo
+
+Clinical Workflow Software
+
+December 2025
+
+Seed
+
+$5.9M
+
+Builds AI agents that automate patient intake, documentation, follow-up and other administrative and clinical workflows for healthcare providers.
+
+Europe
+
+6 Degrees Capital
+
+Valerie Health
+
+Clinical Workflow Software
+
+December 2025
+
+Series A
+
+$30M
+
+Provides an AI front-office platform that automates scheduling, intake and patient-facing administrative workflows for independent provider groups.
+
+North America
+
+Redpoint Ventures
+
+Auxira Health
+
+Virtual Care Platforms
+
+December 2025
+
+Seed
+
+$7.8M
+
+Provides virtual cardiology support by embedding remote advanced-practice providers, nurses and medical assistants into cardiology practices.
+
+North America
+
+Route 66 Ventures; Abundant Venture Partners
+
+Punto Health
+
+Patient Engagement Tools
+
+December 2025
+
+Seed
+
+$2.7M
+
+Provides an AI-powered cognitive-care platform supporting people with cognitive impairment, caregivers and clinical teams between appointments.
+
+Europe
+
+Shilling VC; Plus Partners
+
+Ritten
+
+Clinical Workflow Software
+
+December 2025
+
+Series B
+
+$35M
+
+Provides an integrated behavioral-health operating platform combining EHR, CRM, revenue-cycle and clinical workflow software.
+
+North America
+
+Five Elms Capital
+
+Lin Health
+
+Virtual Care Platforms
+
+December 2025
+
+Series A
+
+$11M
+
+Delivers virtual, evidence-based treatment programs for chronic pain using behavioral health and multidisciplinary care.
+
+North America
+
+Proofpoint Capital
+
+Artera.io
+
+Patient Engagement Tools
+
+December 2025
+
+Growth Equity
+
+$65M
+
+Provides an AI-enabled patient communications platform for healthcare organizations across messaging, scheduling, intake and related workflows.
+
+North America
+
+Lead Edge Capital
+
+Reema Health
+
+Care Navigation Platforms
+
+December 2025
+
+Series B
+
+$19M
+
+Combines technology with community-based guides to engage and navigate hard-to-reach Medicaid members through healthcare and social needs.
+
+North America
+
+Not disclosed
+
+AITRICS
+
+Clinical Workflow Software
+
+December 2025
+
+Series C
+
+$24M
+
+Develops AI software that analyzes hospital EHR data to predict patient deterioration and support clinical decision-making.
+
+Asia-Pacific
+
+Premier Partners; Hanriver Partners; Mirae Asset Venture Investment; ShinYoung Securities-BSK Investment
+
+Gosta Labs
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$8.7M
+
+Builds an AI operating system for oncology that structures clinical data, automates documentation and supports care-team decisions.
+
+Europe
+
+Voima Ventures
+
+Healthplus.ai
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$2.7M
+
+Uses AI to predict individual post-surgical infection risk and provide clinicians with preventive recommendations.
+
+Europe
+
+Elevating Capital; LUMO Labs
+
+Noteless
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$4.1M
+
+Uses AI to turn clinician-patient conversations into structured medical documentation in real time.
+
+Europe
+
+Redstone
+
+Mirantus Health
+
+Virtual Care Platforms
+
+November 2025
+
+Seed
+
+$6.4M
+
+Delivers digitally coordinated eye screening, telemedicine and remote specialist consultations to underserved populations.
+
+Europe
+
+Not disclosed
+
+Examedi
+
+Care Navigation Platforms
+
+November 2025
+
+Unknown
+
+$750K
+
+Lets patients book at-home diagnostic tests digitally and manages scheduling, sample collection and delivery of results.
+
+Latin America
+
+Platanus Ventures
+
+Nest Health
+
+Virtual Care Platforms
+
+November 2025
+
+Series A
+
+$22.5M
+
+Delivers family-focused Medicaid medical, behavioral and social care through in-home and virtual care.
+
+North America
+
+Not disclosed
+
+Arbiter
+
+Care Navigation Platforms
+
+November 2025
+
+Unknown
+
+$52M
+
+Provides an AI care-orchestration platform connecting payers, providers and patients across healthcare workflows.
+
+North America
+
+TriEdge Investments; MFO Ventures
+
+Ember
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$4.3M
+
+Uses AI to prevent healthcare denials by reviewing clinical records, payer policies, coding and appeals.
+
+North America
+
+Not disclosed
+
+Function Health
+
+Health Data Infrastructure
+
+November 2025
+
+Series B
+
+$298M
+
+Gives consumers longitudinal access to extensive laboratory, imaging and health-record data with AI-supported health insights.
+
+North America
+
+Redpoint Ventures
+
+Manta Cares
+
+Care Navigation Platforms
+
+November 2025
+
+Seed
+
+$5.4M
+
+Provides a digital cancer-navigation platform for tracking symptoms, medications, appointments, treatment decisions and care logistics.
+
+North America
+
+Pear VC; Sozo Ventures
+
+WellBeam
+
+Care Navigation Platforms
+
+November 2025
+
+Series A
+
+$10M
+
+Connects acute and post-acute providers through EMR-integrated interoperability and care-coordination workflows.
+
+North America
+
+Wittington Ventures
+
+AI-Stroke
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$4.6M
+
+Uses smartphone video and AI to identify stroke signs and support pre-CT triage by emergency-care teams.
+
+Europe
+
+Heka / Newfund
+
+FamilyWell Health
+
+Virtual Care Platforms
+
+November 2025
+
+Series A
+
+$8M
+
+Embeds virtual mental-health coaching, therapy, psychiatry and care coordination into women's healthcare settings.
+
+North America
+
+New Markets Venture Partners
+
+Pype AI
+
+Patient Engagement Tools
+
+November 2025
+
+Seed
+
+$1.2M
+
+Builds healthcare-specific voice AI agents that handle hospital patient calls, scheduling, reminders and support.
+
+Asia-Pacific
+
+Kalaari Capital
+
+No Barrier
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$2.7M
+
+Provides real-time AI medical interpretation integrated into clinician and health-system workflows.
+
+North America
+
+A-Squared Ventures; Esplanade Ventures
+
+voize
+
+Clinical Workflow Software
+
+November 2025
+
+Series A
+
+$50M
+
+Provides an ambient voice-AI assistant that automates nursing documentation and related care workflows.
+
+Europe
+
+Balderton Capital
+
+Beacon Biosignals
+
+Health Data Infrastructure
+
+November 2025
+
+Series B
+
+$86M
+
+Operates an AI-driven neurodiagnostic data platform that analyzes EEG and other brain data for diagnostics and precision medicine.
+
+North America
+
+Not disclosed
+
+Clairity
+
+Clinical Workflow Software
+
+November 2025
+
+Series B
+
+$43M
+
+Uses AI on routine medical imaging to predict future disease risk, initially five-year breast-cancer risk from mammograms.
+
+North America
+
+ACE Global Equity; Santé Ventures
+
+Holo
+
+Health Data Infrastructure
+
+November 2025
+
+Seed
+
+$1.16M
+
+Combines laboratory tests, wearable data and AI in a consumer platform for medically oriented preventive-health monitoring.
+
+Europe
+
+Calm/Storm Ventures; Mission VC
+
+Decoda Health
+
+Clinical Workflow Software
+
+November 2025
+
+Seed
+
+$4.5M
+
+Builds an AI-native operating system for clinics covering patient communications, charting and practice workflows.
+
+North America
+
+Y Combinator
+
+Praan Health
+
+Virtual Care Platforms
+
+November 2025
+
+Seed
+
+$960K
+
+Provides technology-enabled chronic-care programs for older adults with conditions such as diabetes and hypertension.
+
+Asia-Pacific
+
+Rainmatter Investments
+
+Amae Health
+
+Virtual Care Platforms
+
+November 2025
+
+Series B
+
+$25M
+
+Provides technology-enabled multidisciplinary care for people with serious mental illness through clinics and digital support.
+
+North America
+
+Altos Ventures
+
+Lumonus
+
+Clinical Workflow Software
+
+November 2025
+
+Series B
+
+$16.3M
+
+Provides AI software for radiation-oncology clinical workflows, consultation support and automated treatment planning.
+
+Asia-Pacific
+
+Aviron Investment Management
+
+MiSalud Health
+
+Virtual Care Platforms
+
+November 2025
+
+Unknown
+
+$5.5M
+
+Provides bilingual AI-enabled virtual healthcare through video, phone and messaging for underserved workforces.
+
+North America
+
+IGNIA
+
+Affect Therapeutics
+
+Virtual Care Platforms
+
+November 2025
+
+Series B
+
+$26M
+
+Delivers app-based, digitally supported treatment for substance-use and behavioral-health conditions.
+
+North America
+
+Allumia Ventures
+
+MedySeva
+
+Virtual Care Platforms
+
+November 2025
+
+Seed
+
+$450K
+
+Combines telemedicine with local phygital clinics to connect underserved patients with remote specialist physicians.
+
+Asia-Pacific
+
+Unicorn India Ventures
+
+Tala Health
+
+Virtual Care Platforms
+
+November 2025
+
+Seed
+
+$100M
+
+Provides AI agents and virtual clinical care across triage, patient support, referrals and follow-up.
+
+North America
+
+Sofreh Capital
+
+Hippocratic AI
+
+Patient Engagement Tools
+
+November 2025
+
+Series C
+
+$126M
+
+Builds generative-AI healthcare agents for patient-facing clinical support and non-diagnostic healthcare workflows.
+
+North America
+
+Avenir Growth
+
+Popai Health
+
+Patient Engagement Tools
+
+November 2025
+
+Seed
+
+$11M
+
+Uses healthcare-trained voice AI to turn patient calls into structured insights and care-coordination actions.
+
+North America
+
+Team8; New Enterprise Associates
+
+Human Health
+
+Patient Engagement Tools
+
+October 2025
+
+Seed
+
+$5.6M
+
+Patient-facing precision-health platform aggregating symptoms, treatments and health histories to support chronic-condition management and clinician-ready reporting.
+
+Asia-Pacific
+
+Not disclosed
+
+Arya Health
+
+Clinical Workflow Software
+
+October 2025
+
+Series A
+
+$18.2M
+
+AI platform automating scheduling, compliance, onboarding and other administrative workflows for home-health and post-acute providers.
+
+North America
+
+ACME Capital
+
+Honey Health
+
+Clinical Workflow Software
+
+October 2025
+
+Seed
+
+$7.8M
+
+Healthcare AI back-office platform whose autonomous agents handle charting, orders, refills, faxes, prior authorizations and other workflows.
+
+North America
+
+Pelion Ventures
+
+Hyro
+
+Patient Engagement Tools
+
+October 2025
+
+Growth Equity
+
+$45M
+
+Healthcare-native conversational AI platform automating patient access, scheduling and other provider interactions across voice and digital channels.
+
+North America
+
+Healthier Capital
+
+OpenEvidence
+
+Clinical Workflow Software
+
+October 2025
+
+Series C
+
+$200M
+
+AI medical search and clinical copilot that synthesizes medical literature to support clinicians at the point of care.
+
+North America
+
+GV
+
+Fourier Health
+
+Clinical Workflow Software
+
+October 2025
+
+Seed
+
+$8.4M
+
+Clinician-in-the-loop AI platform that converts fragmented patient records into workflow-specific clinical summaries.
+
+North America
+
+Yosemite
+
+Sage Care
+
+Care Navigation Platforms
+
+October 2025
+
+Unknown
+
+$20M
+
+AI care-navigation system matching patients to appropriate providers while automating triage, scheduling and referral workflows.
+
+North America
+
+Yosemite
+
+Brook.ai
+
+Remote Monitoring Solutions
+
+October 2025
+
+Series B
+
+$28M
+
+Remote-care platform combining AI, connected monitoring and clinical teams for chronic and post-acute patients at home.
+
+North America
+
+UMass Memorial Health; Morningside
+
+Counsel Health
+
+Virtual Care Platforms
+
+October 2025
+
+Series A
+
+$25M
+
+AI-assisted asynchronous virtual-care platform connecting patients with licensed physicians through messaging and telehealth.
+
+North America
+
+Andreessen Horowitz; GV
+
+Triplemoon
+
+Virtual Care Platforms
+
+October 2025
+
+Seed
+
+$3.5M
+
+Digital pediatric behavioral-health platform embedding virtual mental-health care and collaborative-care workflows into pediatric practices.
+
+North America
+
+Not disclosed
+
+Clinware
+
+Clinical Workflow Software
+
+October 2025
+
+Unknown
+
+$4.25M
+
+AI admissions and clinical-workflow platform automating record review and placement decisions for skilled-nursing and post-acute facilities.
+
+North America
+
+Not disclosed
+
+Marble Health
+
+Virtual Care Platforms
+
+October 2025
+
+Series A
+
+$15.5M
+
+School-linked virtual mental-health platform connecting adolescents with licensed therapists and coordinating care with families and schools.
+
+North America
+
+Costanoa
+
+MD Integrations
+
+Virtual Care Platforms
+
+October 2025
+
+Growth Equity
+
+$77M
+
+Telemedicine infrastructure and nationwide physician network enabling digital-health brands to deliver white-label virtual care.
+
+North America
+
+Not disclosed
+
+Medmo
+
+Care Navigation Platforms
+
+October 2025
+
+Series A
+
+$15M
+
+AI-enabled platform orchestrating radiology referrals, scheduling, authorization, patient engagement and results retrieval.
+
+North America
+
+Covera Health
+
+OutcomesAI
+
+Virtual Care Platforms
+
+October 2025
+
+Seed
+
+$10M
+
+AI voice agents combined with licensed nurses to provide triage, follow-up, coordination and other scalable virtual nursing services.
+
+North America
+
+Santé Ventures
+
+Pear Suite
+
+Care Navigation Platforms
+
+October 2025
+
+Series A
+
+$7.6M
+
+AI-powered social-care navigation and workflow platform used by community health workers, health plans and community organizations.
+
+North America
+
+Rock Health Capital; Nexxus Holdings
+
+WellTheory
+
+Virtual Care Platforms
+
+October 2025
+
+Series A
+
+$14M
+
+Virtual-care platform delivering personalized care programs for people with autoimmune diseases.
+
+North America
+
+General Catalyst
+
+DUOS
+
+Care Navigation Platforms
+
+October 2025
+
+Growth Equity
+
+$130M
+
+AI-powered care and benefits navigation platform helping older adults access healthcare, Medicare and social-support benefits.
+
+North America
+
+FTV Capital
+
+Foundation Health
+
+Clinical Workflow Software
+
+October 2025
+
+Series A
+
+$20M
+
+AI healthcare infrastructure platform automating pharmacy operations, care coordination, prior authorizations and patient communications.
+
+North America
+
+Define Ventures
+
+Onos Health
+
+Clinical Workflow Software
+
+October 2025
+
+Seed
+
+$6.3M
+
+AI clinical-intelligence platform helping health plans analyze behavioral-health data, treatment patterns and care quality.
+
+North America
+
+Haystack; Pathlight Ventures
+
+Sensi.AI
+
+Remote Monitoring Solutions
+
+October 2025
+
+Series C
+
+$45M
+
+Ambient audio-based AI monitoring platform providing continuous safety and care intelligence for seniors receiving home care.
+
+North America
+
+Qumra Capital
+
+Attuned Intelligence
+
+Patient Engagement Tools
+
+October 2025
+
+Seed
+
+$13M
+
+Supervised healthcare voice-AI platform that answers and resolves patient calls for hospitals and health systems.
+
+North America
+
+Radical Ventures; Threshold Ventures
+
+Zingage
+
+Clinical Workflow Software
+
+October 2025
+
+Seed
+
+$12.5M
+
+AI operating platform for home-care agencies automating scheduling, documentation, billing and caregiver operations.
+
+North America
+
+Bessemer Venture Partners
+
+Heidi Health
+
+Clinical Workflow Software
+
+October 2025
+
+Series B
+
+$65M
+
+AI medical-scribe platform that automates clinical documentation and other administrative work for clinicians.
+
+Asia-Pacific
+
+Point72 Private Investments
+
+Koda Health
+
+Patient Engagement Tools
+
+October 2025
+
+Series A
+
+$7M
+
+Digital advance-care-planning platform helping patients document care preferences and enabling providers to deliver goal-concordant serious-illness care.
+
+North America
+
+Evidenced
+
+Folia Health
+
+Health Data Infrastructure
+
+October 2025
+
+Series A
+
+$10.5M
+
+Patient-facing platform that converts home-reported chronic and rare-disease outcomes into structured health data for care and research.
+
+North America
+
+S3 Ventures
+
+Assort Health
+
+Patient Engagement Tools
+
+September 2025
+
+Series B
+
+$76M
+
+Voice-AI platform automates patient access, call-center and scheduling interactions for healthcare providers.
+
+North America
+
+Lightspeed Venture Partners
+
+Confido Health
+
+Patient Engagement Tools
+
+September 2025
+
+Series A
+
+$10M
+
+Healthcare voice-AI agents automate patient calls, scheduling and other provider access workflows.
+
+North America
+
+Blume Ventures
+
+Visana Health
+
+Virtual Care Platforms
+
+September 2025
+
+Series A
+
+$24M
+
+Virtual women's-health clinic provides longitudinal specialty care through a digital care platform.
+
+North America
+
+Noro-Moseley Partners
+
+Neura Health
+
+Virtual Care Platforms
+
+September 2025
+
+Series A
+
+$11.4M
+
+Virtual neurology clinic delivers longitudinal specialist care for migraine and other neurological conditions.
+
+North America
+
+American Heart Association Go Red for Women Venture Fund
+
+RDS (Rhythm Diagnostic Systems)
+
+Remote Monitoring Solutions
+
+September 2025
+
+Series A
+
+≈$16,400,000
+
+Connected biosensor patch and software platform continuously monitor patients remotely and alert care teams to deterioration.
+
+Europe
+
+SPI Fund / Bpifrance
+
+Bonsai Health
+
+Clinical Workflow Software
+
+September 2025
+
+Seed
+
+$7M
+
+Healthcare AI agents automate patient outreach, scheduling and other front-office workflows.
+
+North America
+
+Bonfire Ventures; Wonder Ventures
+
+Daymark Health
+
+Care Navigation Platforms
+
+September 2025
+
+Series A
+
+$20M
+
+Technology-enabled oncology platform provides patient navigation, virtual support and coordinated cancer care.
+
+North America
+
+Healthier Capital; Blue Venture Fund
+
+Inspiren
+
+Remote Monitoring Solutions
+
+September 2025
+
+Series B
+
+$100M
+
+AI sensing and monitoring platform helps senior-living providers detect falls, monitor residents and coordinate care.
+
+North America
+
+Insight Partners
+
+Sunrise
+
+Remote Monitoring Solutions
+
+September 2025
+
+Unknown
+
+≈$29,300,000
+
+At-home sleep platform combines contactless monitoring with digital clinical pathways for sleep-apnea diagnosis and care.
+
+Europe
+
+Eurazeo
+
+Thyme Care
+
+Care Navigation Platforms
+
+September 2025
+
+Series D+
+
+$97M
+
+Digital oncology-care navigation platform coordinates treatment access, support and value-based cancer care.
+
+North America
+
+CVS Health Ventures; Foresite Capital; Andreessen Horowitz Bio + Health; Concord Health Partners; Town Hall Ventures; AlleyCorp; Frist Cressey Ventures
+
+AmplifyMD
+
+Virtual Care Platforms
+
+September 2025
+
+Series B
+
+$20M
+
+EHR-integrated virtual specialty-care platform enabling hospitals to deliver remote multispecialty clinical coverage.
+
+North America
+
+Forerunner Ventures
+
+Zealthix Technologies
+
+Health Data Infrastructure
+
+September 2025
+
+Seed
+
+$1.1M
+
+Healthcare infrastructure platform connects providers, payers and health systems through interoperable data and workflow infrastructure.
+
+Asia-Pacific
+
+Unicorn India Ventures
+
+Moneta Health
+
+Virtual Care Platforms
+
+September 2025
+
+Seed
+
+$4.5M
+
+Delivers therapist-supported cognitive rehabilitation remotely by phone with AI-enabled care infrastructure.
+
+North America
+
+Not disclosed
+
+Prosper AI
+
+Patient Engagement Tools
+
+September 2025
+
+Seed
+
+$5M
+
+Healthcare voice-AI agents automate patient calls and front- and back-office administrative workflows.
+
+North America
+
+Emergence Capital
+
+MoldCo
+
+Virtual Care Platforms
+
+September 2025
+
+Seed
+
+$8M
+
+Clinician-led virtual clinic delivering testing, treatment and ongoing care for mold-related illness.
+
+North America
+
+Cantos; Collaborative Fund
+
+Sevaro Health
+
+Virtual Care Platforms
+
+September 2025
+
+Series B
+
+$39M
+
+Virtual neurology platform providing telestroke and other remote neurological specialist care.
+
+North America
+
+Valtruis; Intermountain Ventures
+
+Seven Starling
+
+Virtual Care Platforms
+
+September 2025
+
+Series A
+
+$8M
+
+Virtual behavioral-health provider specializing in mental-health care around fertility, pregnancy and postpartum.
+
+North America
+
+Rethink Impact
+
+Doctor.One
+
+Virtual Care Platforms
+
+September 2025
+
+Seed
+
+≈$4,700,000
+
+Asynchronous virtual-care platform providing continuous clinician support to patients with chronic conditions.
+
+Europe
+
+YZR Capital; Impact Ventures
+
+Imagine Pediatrics
+
+Virtual Care Platforms
+
+September 2025
+
+Series B
+
+$67M
+
+Provides virtual and in-home longitudinal care for children with complex and special healthcare needs.
+
+North America
+
+Oak HC/FT; Optum Ventures; Rubicon Founders
+
+Assured
+
+Clinical Workflow Software
+
+September 2025
+
+Seed
+
+$6M
+
+Healthcare-specific software automates provider credentialing and network-management workflows.
+
+North America
+
+First Round Capital
+
+Doctronic
+
+Virtual Care Platforms
+
+September 2025
+
+Series A
+
+$20M
+
+AI health assistant paired with access to licensed clinicians for personalized medical guidance and virtual care.
+
+North America
+
+Lightspeed Venture Partners
+
+Inbox Health
+
+Patient Engagement Tools
+
+September 2025
+
+Growth Equity
+
+$10M
+
+Automates patient billing, payment and billing-related communication for medical practices.
+
+North America
+
+Ten Coves Capital
+
+MedSetGo
+
+Care Navigation Platforms
+
+September 2025
+
+Seed
+
+$2.4M
+
+Digital platform helps patients and care teams identify, coordinate and schedule post-acute care.
+
+North America
+
+TurboStart
+
+SweetSpot (Aegis Digital Health)
+
+Remote Monitoring Solutions
+
+September 2025
+
+Seed
+
+>$1,000,000
+
+Virtual-care and remote-patient-management platform focused on chronic-disease management, including diabetes.
+
+North America
+
+Cultivation Capital
+
+Goodpath
+
+Virtual Care Platforms
+
+September 2025
+
+Series A
+
+$18M
+
+Virtual-care provider delivering multidisciplinary treatment programs for chronic physical and behavioral conditions.
+
+North America
+
+MassMutual Ventures
+
+OpenHealth Technologies
+
+Health Data Infrastructure
+
+September 2025
+
+Seed
+
+$3M
+
+Infrastructure platform structures, enriches and exchanges laboratory and health data for healthcare applications.
+
+Europe
+
+YZR Capital
+
+Penguin Ai
+
+Clinical Workflow Software
+
+September 2025
+
+Series A
+
+$25M
+
+Healthcare AI platform automating administrative and clinical-workflow tasks for providers and payers.
+
+North America
+
+Greycroft
+
+Lovu
+
+Remote Monitoring Solutions
+
+September 2025
+
+Series A
+
+$8M
+
+Digital maternal-care platform combining AI, remote patient monitoring and clinical support throughout pregnancy.
+
+North America
+
+SJF Ventures
+
+Teton.ai
+
+Remote Monitoring Solutions
+
+September 2025
+
+Series A
+
+$20M
+
+Uses computer vision and AI sensing to remotely monitor patients and support care staff in hospitals and elder care.
+
+Europe
+
+Plural
+
+Hello Patient
+
+Patient Engagement Tools
+
+September 2025
+
+Series A
+
+$22.5M
+
+AI-powered patient communications platform automating healthcare calls, texts, scheduling and related access workflows.
+
+North America
+
+Scale Venture Partners
+
+LightSpun
+
+Clinical Workflow Software
+
+September 2025
+
+Series A
+
+$13M
+
+Automates dental-insurance administration including claims, credentialing and payer-provider workflows.
+
+North America
+
+Brewer Lane Ventures
+
+Meroka
+
+Clinical Workflow Software
+
+September 2025
+
+Seed
+
+$6M
+
+Healthcare-specific operating platform supporting independent physician practices with administrative and practice-management infrastructure.
+
+North America
+
+Better Tomorrow Ventures; Slow Ventures
+
+NewDays
+
+Virtual Care Platforms
+
+September 2025
+
+Seed
+
+$7M
+
+Delivers clinician-supervised cognitive treatment combining telehealth with an AI cognitive companion for dementia and mild cognitive impairment.
+
+North America
+
+Not disclosed
+
+Neon Health
+
+Care Navigation Platforms
+
+September 2025
+
+Seed
+
+$6M
+
+AI agents automate patient access workflows for specialty medications and prescription fulfillment.
+
+North America
+
+NFX
+
+Predoc
+
+Health Data Infrastructure
+
+September 2025
+
+Series A
+
+$30M
+
+AI platform that retrieves, organizes and delivers patient medical records for healthcare providers.
+
+North America
+
+Base10 Partners
+
+Nolla Health
+
+Virtual Care Platforms
+
+September 2025
+
+Seed
+
+$4.5M
+
+AI-powered platform connecting patients with personalized skin-health treatment and clinicians.
+
+North America
+
+General Catalyst
+
+Breathment
+
+Virtual Care Platforms
+
+August 2025
+
+Seed
+
+≈$930,000
+
+Digital respiratory-care platform enables personalized pulmonary rehabilitation and remote support for patients with COPD and asthma.
+
+Europe
+
+Not disclosed
+
+Axenya
+
+Remote Monitoring Solutions
+
+August 2025
+
+Series A
+
+$12M
+
+AI and connected-health platform integrates clinical data, predictive analytics and digital biomarkers to manage employee and chronic-condition care.
+
+Latin America
+
+Canary; Indicator Capital
+
+Assort Health
+
+Patient Engagement Tools
+
+August 2025
+
+Series B
+
+≈$50,000,000
+
+AI voice agents handle patient scheduling, cancellations and other high-volume communications for specialty medical practices.
+
+North America
+
+Lightspeed Venture Partners
+
+Barti Software
+
+Clinical Workflow Software
+
+August 2025
+
+Series A
+
+$12M
+
+AI-powered EHR and practice-management platform unifies clinical, administrative and financial workflows for eye-care practices.
+
+North America
+
+Five Elms Capital
+
+Twin Health
+
+Virtual Care Platforms
+
+August 2025
+
+Series D+
+
+$53M
+
+AI digital-twin care program uses health data and connected monitoring to treat diabetes, obesity and metabolic disease.
+
+North America
+
+Maj Invest
+
+Cascala Health
+
+Clinical Workflow Software
+
+August 2025
+
+Seed
+
+$8.6M
+
+AI clinical-intelligence software integrates patient data into post-acute and care-transition workflows for care teams.
+
+North America
+
+Flare Capital Partners; Eniac Ventures
+
+Develop Health
+
+Clinical Workflow Software
+
+August 2025
+
+Series A
+
+$14.3M
+
+EHR-integrated AI automates insurance-benefit verification, medication prior authorization and payer follow-up.
+
+North America
+
+Wing Venture Capital
+
+Wellth
+
+Patient Engagement Tools
+
+August 2025
+
+Series C
+
+$36M
+
+Patient-engagement app uses behavioral techniques and personalized incentives to improve adherence to medications and care plans.
+
+North America
+
+Mercato Partners
+
+Neopausia
+
+Virtual Care Platforms
+
+August 2025
+
+Seed
+
+$563K
+
+Digital menopause clinic provides specialist online consultations, personalized treatment plans and ongoing patient support.
+
+Latin America
+
+Not disclosed
+
+Better Medicine
+
+Clinical Workflow Software
+
+August 2025
+
+Seed
+
+≈$1,160,000
+
+AI diagnostic software integrates into radiology workflows to detect and measure malignant lesions in medical imaging.
+
+Europe
+
+Soulmates Ventures
+
+Citizen Health
+
+Care Navigation Platforms
+
+August 2025
+
+Series A
+
+$30M
+
+AI-powered patient platform combines longitudinal health data, records and community support to help rare-disease patients understand and navigate care.
+
+North America
+
+8VC
+
+Isaac Health
+
+Virtual Care Platforms
+
+August 2025
+
+Series A
+
+$10.5M
+
+Virtual dementia-care platform provides screening, assessment, treatment and ongoing specialist care management.
+
+North America
+
+Flare Capital Partners
+
+Arintra
+
+Clinical Workflow Software
+
+August 2025
+
+Series A
+
+$21M
+
+GenAI software automates medical coding, clinical-documentation improvement and revenue-assurance workflows for healthcare providers.
+
+North America
+
+Peak XV Partners
+
+Naluri
+
+Virtual Care Platforms
+
+August 2025
+
+Series B
+
+$5M
+
+Digital employee-health platform combining clinical coaching, mental-health support and chronic-disease management.
+
+Asia-Pacific
+
+TELUS Global Ventures, through Pollinator Fund for Good
+
+August Health
+
+Clinical Workflow Software
+
+August 2025
+
+Series B
+
+$29M
+
+EHR, medication-management and care-management software built specifically for senior-living communities.
+
+North America
+
+Base10 Partners
+
+Brevium
+
+Patient Engagement Tools
+
+August 2025
+
+Series A
+
+$1M
+
+Patient-reengagement software identifies overdue or lost patients and automates outreach for medical practices.
+
+North America
+
+Not disclosed
+
+Hesta Health
+
+Virtual Care Platforms
+
+July 2025
+
+Seed
+
+$2.67M
+
+Provides digital-first women's healthcare beginning with integrated postnatal physical and mental-health support.
+
+Europe
+
+Eka Ventures
+
+Ultromics
+
+Clinical Workflow Software
+
+July 2025
+
+Series C
+
+$55M
+
+Provides FDA-cleared AI software that analyzes echocardiograms to help clinicians detect complex heart failure.
+
+Europe
+
+L&G; Allegis Capital; Lightrock
+
+Unmind
+
+Virtual Care Platforms
+
+July 2025
+
+Series C
+
+$35M
+
+Provides employers with a digital mental-health platform combining therapy, wellbeing tools, content, and AI coaching.
+
+Europe
+
+TELUS Global Ventures
+
+C8 Health
+
+Clinical Workflow Software
+
+July 2025
+
+Series A
+
+$12M
+
+Provides an AI-enabled hospital platform that surfaces and operationalizes clinical best practices within care workflows.
+
+North America
+
+Team8
+
+Ambience Healthcare
+
+Clinical Workflow Software
+
+July 2025
+
+Series C
+
+$243M
+
+Provides ambient clinical AI for medical documentation, coding, CDI, and related health-system workflows.
+
+North America
+
+Oak HC/FT; Andreessen Horowitz
+
+Arbital Health
+
+Health Data Infrastructure
+
+July 2025
+
+Series B
+
+$31M
+
+Provides AI software and actuarial infrastructure for managing, monitoring, and reconciling value-based healthcare contracts.
+
+North America
+
+Valtruis
+
+Aidoc
+
+Clinical Workflow Software
+
+July 2025
+
+Unknown
+
+$110M
+
+Provides FDA-cleared clinical AI and workflow infrastructure that detects findings and supports physician decision-making across medical imaging.
+
+North America
+
+General Catalyst; Square Peg
+
+Respiree
+
+Remote Monitoring Solutions
+
+July 2025
+
+Series A
+
+$11.6M
+
+Combines connected cardiorespiratory monitoring with AI software to detect and manage disease progression across care settings.
+
+North America
+
+We Venture Capital; ClavystBio
+
+Sunny Health AI
+
+Care Navigation Platforms
+
+July 2025
+
+Seed
+
+$2.8M
+
+Provides an AI healthcare concierge that helps patients find appropriate clinicians and book care.
+
+North America
+
+Zetta Venture Partners
+
+Charta Health
+
+Clinical Workflow Software
+
+July 2025
+
+Series A
+
+$22M
+
+Uses AI to automate clinical chart review, coding, billing-compliance, and revenue-integrity workflows.
+
+North America
+
+Bain Capital Ventures
+
+Everlab
+
+Virtual Care Platforms
+
+July 2025
+
+Seed
+
+$10M
+
+Operates a digital-first preventive-care platform combining remote medical consultations, diagnostics, and personalized health insights.
+
+Asia-Pacific
+
+Left Lane Capital
+
+Slingshot AI
+
+Virtual Care Platforms
+
+July 2025
+
+Series A
+
+$53M
+
+Develops Ash, a consumer AI mental-health application designed to provide personalized therapeutic support.
+
+North America
+
+Radical Ventures; Forerunner Ventures
+
+Fortuna Health
+
+Care Navigation Platforms
+
+July 2025
+
+Series A
+
+$18M
+
+Provides a digital platform that helps patients enroll in, renew, and navigate Medicaid coverage.
+
+North America
+
+Andreessen Horowitz
+
+Sahha
+
+Health Data Infrastructure
+
+July 2025
+
+Seed
+
+$1.2M
+
+Provides APIs that normalize and analyze wearable, smartphone, and health data for health-focused applications.
+
+Asia-Pacific
+
+Not disclosed
+
+NexHealth
+
+Patient Engagement Tools
+
+July 2025
+
+Series C
+
+$125M
+
+Provides patient scheduling, forms, communications, payments, and healthcare-data APIs for medical and dental practices.
+
+North America
+
+Buckley Ventures
+
+Numan
+
+Virtual Care Platforms
+
+July 2025
+
+Series B
+
+$30M
+
+Operates a digital clinic combining remote clinicians, diagnostics, prescriptions, medication delivery, and behavioral support.
+
+Europe
+
+Big Pi Ventures
+
+M7 Health
+
+Clinical Workflow Software
+
+July 2025
+
+Series A
+
+$10M
+
+Provides hospital software for nurse staffing, scheduling, workforce deployment, and employee experience.
+
+North America
+
+Threshold Ventures
+
+OpenEvidence
+
+Clinical Workflow Software
+
+July 2025
+
+Series B
+
+$210M
+
+Provides an AI medical search and clinical decision-support application for physicians at the point of care.
+
+North America
+
+GV; Kleiner Perkins
+
+Asepha
+
+Clinical Workflow Software
+
+July 2025
+
+Seed
+
+$4M
+
+Builds AI agents that automate prescription entry, calls, browser workflows, and other pharmacy operations.
+
+North America
+
+Glasswing Ventures; Core Innovation Capital
+
+LeoMed
+
+Remote Monitoring Solutions
+
+July 2025
+
+Seed
+
+$2.75M
+
+Provides a no-code remote patient monitoring and care-orchestration platform for hospitals and other healthcare providers.
+
+North America
+
+Precicom
+
+MediShout
+
+Clinical Workflow Software
+
+July 2025
+
+Series A
+
+$9M
+
+Provides hospital operations software for staff to report, track, and resolve equipment, facilities, supply, and maintenance issues.
+
+Europe
+
+Heal Capital
+
+Tandem Health
+
+Clinical Workflow Software
+
+June 2025
+
+Series A
+
+$50M
+
+Provides an AI clinical assistant that generates medical documentation and automates broader clinician administrative workflows.
+
+Europe
+
+Kinnevik
+
+CalmWave
+
+Clinical Workflow Software
+
+June 2025
+
+Seed
+
+$4.4M
+
+Provides hospital AI software that analyzes ICU monitoring data to reduce alarm fatigue and optimize clinical operations.
+
+North America
+
+Not disclosed
+
+Certify
+
+Health Data Infrastructure
+
+June 2025
+
+Series B
+
+$40M
+
+Provides healthcare-provider data infrastructure for credentialing, licensing, enrollment, monitoring and network management.
+
+North America
+
+Transformation Capital
+
+Handspring Health
+
+Virtual Care Platforms
+
+June 2025
+
+Series A
+
+$12M
+
+Provides virtual behavioral-health therapy for children, young adults and families.
+
+North America
+
+Cobalt Ventures
+
+Rebee
+
+Remote Monitoring Solutions
+
+June 2025
+
+Seed
+
+$1.18M
+
+Provides digitally guided home physiotherapy using a patient app and wearable motion sensor for rehabilitation monitoring.
+
+Asia-Pacific
+
+Not disclosed
+
+Elfie
+
+Patient Engagement Tools
+
+June 2025
+
+Series A
+
+$12M
+
+Provides a patient-facing digital platform for chronic-condition tracking, treatment adherence, coaching and disease-management engagement.
+
+North America
+
+White Star Capital
+
+EnsoData
+
+Clinical Workflow Software
+
+June 2025
+
+Series B
+
+$20M
+
+Provides AI software for sleep-study analysis, diagnosis workflows and longitudinal sleep-care management.
+
+North America
+
+Questa Capital
+
+Arine
+
+Clinical Workflow Software
+
+June 2025
+
+Series C
+
+$30M
+
+Provides AI-powered medication-management software that helps health plans and providers optimize drug therapy and patient outcomes.
+
+North America
+
+Town Hall Ventures
+
+Empo Health
+
+Remote Monitoring Solutions
+
+June 2025
+
+Unknown
+
+$7M
+
+Develops an in-home connected monitoring system for detecting and managing diabetic foot complications.
+
+North America
+
+Story Ventures
+
+NexusMD
+
+Clinical Workflow Software
+
+June 2025
+
+Seed
+
+≈$4,100,000
+
+Provides multi-agent AI that automates hospital clinical documentation and related healthcare workflows.
+
+Asia-Pacific
+
+Square Peg
+
+SuperDial
+
+Clinical Workflow Software
+
+June 2025
+
+Series A
+
+$12M
+
+Provides voice AI agents that automate payer communications and administrative revenue-cycle workflows for healthcare organizations.
+
+North America
+
+SignalFire
+
+Abridge
+
+Clinical Workflow Software
+
+June 2025
+
+Series D+
+
+$300M
+
+Provides generative-AI clinical documentation and workflow software that converts clinician-patient conversations into structured medical records.
+
+North America
+
+Andreessen Horowitz
+
+VoiceCare AI
+
+Clinical Workflow Software
+
+June 2025
+
+Seed
+
+$4.54M
+
+Provides healthcare-specific voice AI agents that automate payer calls and revenue-cycle workflows such as benefits, prior authorization and claims.
+
+North America
+
+Caduceus Capital Partners
+
+DESKi
+
+Clinical Workflow Software
+
+June 2025
+
+Seed
+
+≈$6,000,000
+
+Develops AI cardiac-imaging software that guides ultrasound acquisition and supports clinical interpretation of heart scans.
+
+Europe
+
+Racine²
+
+RevelAi Health
+
+Care Navigation Platforms
+
+June 2025
+
+Seed
+
+$3.1M
+
+Provides conversational AI for musculoskeletal-care coordination, patient triage, engagement, documentation and quality reporting.
+
+North America
+
+Ulu Ventures; Symphonic Capital
+
+Tennr
+
+Clinical Workflow Software
+
+June 2025
+
+Series C
+
+$101M
+
+Automates healthcare referral intake, document processing and patient-routing workflows using AI.
+
+North America
+
+IVP
+
+Nabla
+
+Clinical Workflow Software
+
+June 2025
+
+Series C
+
+$70M
+
+Provides an AI clinical assistant that automates medical documentation, coding and other clinician workflows.
+
+Europe
+
+HV Capital
+
+Sword Health
+
+Virtual Care Platforms
+
+June 2025
+
+Growth Equity
+
+$40M
+
+Delivers digital musculoskeletal and related clinical care through AI-supported remote therapy programs.
+
+North America
+
+General Catalyst
+
+Ellipsis Health
+
+Care Navigation Platforms
+
+June 2025
+
+Series A
+
+$45M
+
+Provides an AI care manager that conducts patient conversations and supports ongoing physical, behavioral and social care management.
+
+North America
+
+Salesforce; Khosla Ventures; CVS Health Ventures
+
+Perci Health
+
+Virtual Care Platforms
+
+June 2025
+
+Seed
+
+≈$4,100,000
+
+Operates a virtual cancer clinic providing digitally coordinated specialist supportive care across treatment and recovery.
+
+Europe
+
+Not disclosed
+
+Eli Health
+
+Remote Monitoring Solutions
+
+June 2025
+
+Series A
+
+$12M
+
+Develops an at-home saliva-based hormone monitoring system that provides digital longitudinal hormone measurements and insights.
+
+North America
+
+BDC Capital's Thrive Venture Fund
+
+Lyrebird Health
+
+Clinical Workflow Software
+
+June 2025
+
+Series A
+
+≈$7,800,000
+
+Provides an AI clinical assistant that generates medical notes and other clinical documentation from consultations.
+
+Asia-Pacific
+
+Five V Capital; Octopus Ventures
+
+Salvo Health
+
+Virtual Care Platforms
+
+June 2025
+
+Seed
+
+$4M
+
+Provides digitally delivered longitudinal GI and metabolic care between patients' in-person visits with gastroenterology practices.
+
+North America
+
+The Artemis Fund
+
+Amperos Health
+
+Clinical Workflow Software
+
+June 2025
+
+Seed
+
+$4.2M
+
+Provides AI software that automates healthcare-denial management, insurance calls and claims collections for revenue-cycle teams.
+
+North America
+
+Uncork Capital; Neo Ventures; Nebular
+
+ArcheHealth
+
+Clinical Workflow Software
+
+June 2025
+
+Seed
+
+$6.7M
+
+Provides hospital operational-intelligence software that combines clinical, financial and operational data to identify inefficiencies and reduce care-delivery costs.
+
+North America
+
+Not disclosed
+
+Canid
+
+Clinical Workflow Software
+
+June 2025
+
+Series A
+
+$10M
+
+Provides vaccine-management software for pediatric practices covering purchasing, inventory, billing and related administration.
+
+North America
+
+Telescope Partners
+
+Brainreader
+
+Clinical Workflow Software
+
+May 2025
+
+Unknown
+
+$7.3M
+
+Provides FDA-cleared AI software that quantitatively analyzes brain MRI scans to support diagnosis of neurological disorders.
+
+Europe
+
+Dahlgren Capital
+
+Outcomes4Me
+
+Care Navigation Platforms
+
+May 2025
+
+Series B
+
+$21M
+
+Provides an AI-driven cancer-care platform giving patients treatment guidance, symptom tracking, genomic insights and clinical-trial matching.
+
+North America
+
+Not disclosed
+
+Hormona
+
+Patient Engagement Tools
+
+May 2025
+
+Seed
+
+≈$8,800,000
+
+Combines an AI-powered women's hormonal-health app with at-home hormone testing and personalized health insights.
+
+Europe
+
+Voima Ventures; SuperNode Global
+
+See All AI
+
+Clinical Workflow Software
+
+May 2025
+
+Unknown
+
+$33M
+
+Develops AI-based intraoperative imaging and surgical-navigation software that creates 3D visualization from fluoroscopic X-rays.
+
+North America
+
+Not disclosed
+
+Axle Health
+
+Clinical Workflow Software
+
+May 2025
+
+Series A
+
+$10M
+
+Provides EMR-integrated scheduling, routing and patient-engagement software for organizations delivering healthcare in the home.
+
+North America
+
+F-Prime
+
+MDA – Medical Decision Alliance
+
+Clinical Workflow Software
+
+May 2025
+
+Seed
+
+≈$3,700,000
+
+Develops AI-based surgical assistance software that digitizes expert surgical techniques and decision routines for operating-room systems.
+
+Europe
+
+High-Tech Gründerfonds
+
+SeqOne Genomics
+
+Health Data Infrastructure
+
+May 2025
+
+Growth Equity
+
+≈$22,700,000
+
+Provides AI software that analyzes and interprets genomic sequencing data for clinical diagnostics and personalized medicine.
+
+Europe
+
+Supernova Invest
+
+WellTheory
+
+Virtual Care Platforms
+
+May 2025
+
+Seed
+
+$5M
+
+Provides virtual, personalized whole-person care and digital care infrastructure for people with autoimmune diseases.
+
+North America
+
+Samsung Next; Opal Ventures; Up2 Fund
+
+WorkDone
+
+Clinical Workflow Software
+
+May 2025
+
+Seed
+
+$1.8M
+
+Provides an AI compliance copilot that monitors EHR workflows for clinical-documentation errors and omissions.
+
+North America
+
+Not disclosed
+
+Passage Health
+
+Clinical Workflow Software
+
+May 2025
+
+Series A
+
+$8M
+
+Provides an all-in-one electronic health record and practice-management platform purpose-built for autism and ABA care providers.
+
+North America
+
+Telescope Partners
+
+Dazos
+
+Clinical Workflow Software
+
+May 2025
+
+Series A
+
+$25M
+
+Provides behavioral-health organizations with specialized admissions, CRM, revenue and operational workflow software.
+
+North America
+
+Radian Capital
+
+Reperio Health
+
+Remote Monitoring Solutions
+
+May 2025
+
+Unknown
+
+$14M
+
+Provides connected at-home preventive health screenings with instant measurements and integrated virtual care.
+
+North America
+
+Caduceus Capital Partners
+
+Cohere Health
+
+Clinical Workflow Software
+
+May 2025
+
+Series C
+
+$90M
+
+Provides AI-powered clinical intelligence and prior-authorization software connecting health plans and healthcare providers.
+
+North America
+
+Temasek
+
+Complement 1
+
+Virtual Care Platforms
+
+May 2025
+
+Seed
+
+$16M
+
+Delivers a tech-enabled oncology care program combining personalized lifestyle interventions with dedicated one-to-one coaching.
+
+North America
+
+Owl Ventures; Blume Ventures
+
+Kilow
+
+Virtual Care Platforms
+
+May 2025
+
+Seed
+
+$2.5M
+
+Provides digitally managed weight-care programs combining clinician-designed treatment, health tracking, testing and virtual support.
+
+Middle East
+
+Sanabil Venture Studio
+
+Kouper
+
+Care Navigation Platforms
+
+May 2025
+
+Unknown
+
+$10M
+
+Uses AI and care-navigation workflows to coordinate patients' transitions from hospitals to post-discharge care.
+
+North America
+
+General Catalyst
+
+Medmain
+
+Clinical Workflow Software
+
+May 2025
+
+Series A
+
+$3.3M
+
+Provides an AI-powered cloud platform that assists pathologists with digital pathology diagnosis.
+
+Asia-Pacific
+
+One Capital
+
+Carta Healthcare
+
+Health Data Infrastructure
+
+May 2025
+
+Series B
+
+$18.25M
+
+Automates abstraction and structuring of clinical data for registries, analytics and healthcare workflows.
+
+North America
+
+UPMC Enterprises
+
+Platos Health
+
+Remote Monitoring Solutions
+
+May 2025
+
+Seed
+
+$1.4M
+
+Provides AI-enabled at-home health monitoring and preventive-care tools that connect physiological measurements with clinical guidance.
+
+Africa
+
+Google for Startups
+
+Cavell
+
+Clinical Workflow Software
+
+May 2025
+
+Seed
+
+≈$1,700,000
+
+Uses AI to capture clinical conversations and automatically generate structured medical reports for patient records.
+
+Europe
+
+Not disclosed
+
+Dawn Health
+
+Patient Engagement Tools
+
+May 2025
+
+Unknown
+
+≈$13,000,000
+
+Builds regulated digital-health platforms and patient-facing products for pharmaceutical companies across multiple diseases.
+
+Europe
+
+Not disclosed
+
+Hilo
+
+Remote Monitoring Solutions
+
+May 2025
+
+Series B
+
+$42M
+
+Provides continuous cuffless blood-pressure monitoring using wearable sensors and software for hypertension management.
+
+Europe
+
+Earlybird Health; Wellington Partners
+
+medIQ
+
+Virtual Care Platforms
+
+April 2025
+
+Series A
+
+$6M
+
+Provides a digital healthcare operating platform combining virtual care, provider access and healthcare management services.
+
+Middle East
+
+Rasmal Ventures; Joa Capital
+
+Plenful
+
+Clinical Workflow Software
+
+April 2025
+
+Series B
+
+$50M
+
+Provides AI workflow automation for pharmacy, prior authorization and healthcare administrative operations.
+
+North America
+
+Mitchell Rales; Arena Holdings
+
+Blooming Health
+
+Care Navigation Platforms
+
+April 2025
+
+Series A
+
+$26M
+
+Provides AI-powered outreach and navigation technology connecting vulnerable populations with health and social-care services.
+
+North America
+
+Insight Partners
+
+Gestalt Diagnostics
+
+Clinical Workflow Software
+
+April 2025
+
+Series A
+
+$7.5M
+
+Provides an AI-enabled digital pathology platform for slide review, collaboration and diagnostic workflows.
+
+North America
+
+Cowles Ventures; TVF Funds; Inland Imaging Investments; KickStart Funds
+
+World Class Health
+
+Care Navigation Platforms
+
+April 2025
+
+Unknown
+
+$10M
+
+Provides employers with a digital concierge and navigation platform for accessing high-quality specialist care worldwide.
+
+North America
+
+Transformation Capital
+
+Nourish
+
+Virtual Care Platforms
+
+April 2025
+
+Series B
+
+$70M
+
+Delivers insurance-covered virtual nutrition care through a digital platform connecting patients with registered dietitians.
+
+North America
+
+J.P. Morgan Growth Equity Partners
+
+Ascertain
+
+Clinical Workflow Software
+
+April 2025
+
+Series A
+
+$10M
+
+Provides healthcare-specific AI agents that automate case-management and administrative workflows for care teams.
+
+North America
+
+Deerfield Management
+
+Biolinq
+
+Remote Monitoring Solutions
+
+April 2025
+
+Series C
+
+$100M
+
+Develops an intradermal wearable biosensor that continuously measures glucose and combines it with activity and sleep data.
+
+North America
+
+Alpha Wave Ventures
+
+Healthee
+
+Care Navigation Platforms
+
+April 2025
+
+Series B
+
+$30M
+
+Provides an AI benefits-navigation platform that helps employees understand coverage, costs and healthcare options.
+
+North America
+
+Key1 Capital
+
+Lena Health
+
+Care Navigation Platforms
+
+April 2025
+
+Seed
+
+$2M
+
+Provides AI-powered phone and messaging care coordination for patient follow-up and multi-step navigation.
+
+North America
+
+Emergent Ventures; Cultivation Capital
+
+Skin Analytics
+
+Clinical Workflow Software
+
+April 2025
+
+Series B
+
+$19.9M
+
+Provides an AI medical-device platform that assesses suspicious skin lesions and supports skin-cancer referral decisions.
+
+Europe
+
+Intrepid Growth Partners
+
+Brellium
+
+Clinical Workflow Software
+
+April 2025
+
+Series A
+
+$16.7M
+
+Uses AI to audit medical charts and automate clinical and payer compliance workflows.
+
+North America
+
+First Round Capital; Left Lane Capital; Menlo Ventures
+
+CarePay
+
+Health Data Infrastructure
+
+April 2025
+
+Series A
+
+$5.7M
+
+Provides digital infrastructure for health insurers to manage claims, pricing, fraud detection and member care access.
+
+Europe
+
+Not disclosed
+
+Doctronic
+
+Virtual Care Platforms
+
+April 2025
+
+Seed
+
+$5M
+
+Provides an AI health assistant combined with nationwide on-demand virtual physician consultations.
+
+North America
+
+Union Square Ventures
+
+RISA Labs
+
+Clinical Workflow Software
+
+April 2025
+
+Seed
+
+$3.5M
+
+Uses AI agents to automate oncology administrative workflows including prior authorization and patient access.
+
+North America
+
+Binny Bansal
+
+Trellis Health
+
+Health Data Infrastructure
+
+April 2025
+
+Seed
+
+$1.8M
+
+Provides women with a unified digital health record and personalized proactive health guidance.
+
+North America
+
+Not disclosed
+
+Assort Health
+
+Patient Engagement Tools
+
+April 2025
+
+Series A
+
+$22M
+
+Provides healthcare-specialized voice AI agents for patient calls, scheduling and practice communications.
+
+North America
+
+First Round Capital; Chemistry
+
+Chapter
+
+Care Navigation Platforms
+
+April 2025
+
+Series D+
+
+$75M
+
+Provides technology-assisted Medicare plan comparison, enrollment and healthcare navigation for older adults.
+
+North America
+
+Stripes
+
+Healthera
+
+Patient Engagement Tools
+
+April 2025
+
+Series A
+
+$2.64M
+
+Provides a patient-facing digital pharmacy platform for prescriptions, medicine delivery and pharmacy clinical services.
+
+Europe
+
+Not disclosed
+
+hellocare.ai
+
+Virtual Care Platforms
+
+April 2025
+
+Growth Equity
+
+$47M
+
+Provides an AI-assisted virtual-care platform for virtual nursing, monitoring, consultation and hospital-at-home workflows.
+
+North America
+
+HealthQuest Capital
+
+Okeiro
+
+Clinical Workflow Software
+
+April 2025
+
+Series A
+
+$11.3M
+
+Provides AI clinical decision-support software for predicting organ failure in transplantation and advanced chronic disease.
+
+Europe
+
+Alven; Forepont Capital Partners; Red River West
+
+Rondah AI
+
+Patient Engagement Tools
+
+April 2025
+
+Seed
+
+$1.8M
+
+Provides dental-specific AI agents that automate scheduling, patient communications and front-office workflows.
+
+North America
+
+2048 Ventures; Twelve Below
+
+SISU Health
+
+Remote Monitoring Solutions
+
+April 2025
+
+Unknown
+
+$1.6M
+
+Operates self-service digital health stations and software for preventive health checks and risk monitoring.
+
+Europe
+
+Not disclosed
+
+Noah Labs
+
+Remote Monitoring Solutions
+
+April 2025
+
+Seed
+
+Unknown
+
+Provides AI-powered remote monitoring of heart-failure patients using clinical data and voice biomarkers.
+
+Europe
+
+Nina Capital
+
+Daymark Health
+
+Care Navigation Platforms
+
+April 2025
+
+Seed
+
+$11.5M
+
+Provides technology-enabled virtual and in-home supportive oncology care and patient navigation.
+
+North America
+
+Maverick Ventures; Yosemite
+
+RapidClaims
+
+Clinical Workflow Software
+
+April 2025
+
+Series A
+
+$8M
+
+Uses AI to automate medical coding, clinical documentation improvement and healthcare revenue-cycle workflows.
+
+North America
+
+Accel
+
+Solace
+
+Care Navigation Platforms
+
+April 2025
+
+Series B
+
+$60M
+
+Matches patients with reimbursable healthcare advocates who coordinate care and navigate the health system.
+
+North America
+
+Menlo Ventures
+
+Layer Health
+
+Clinical Workflow Software
+
+March 2025
+
+Series A
+
+$21M
+
+Provides AI software for medical-chart review, clinical data abstraction and extracting insights from patient records.
+
+North America
+
+Define Ventures
+
+Taxo
+
+Clinical Workflow Software
+
+March 2025
+
+Seed
+
+$5M
+
+Provides agentic AI that automates clinic intake, scheduling, eligibility, insurance and other healthcare administrative workflows.
+
+North America
+
+Y Combinator; General Catalyst; Character
+
+Navina
+
+Clinical Workflow Software
+
+March 2025
+
+Series C
+
+$55M
+
+Provides an AI clinical-intelligence platform that synthesizes EHR, claims and other patient data for clinician decision-making.
+
+North America
+
+Growth Equity at Goldman Sachs Alternatives
+
+Silna Health
+
+Clinical Workflow Software
+
+March 2025
+
+Seed
+
+$5M
+
+Automates prior authorization, insurance benefit checks and eligibility monitoring for healthcare providers.
+
+North America
+
+Accel; Bain Capital Ventures
+
+Silna Health
+
+Clinical Workflow Software
+
+March 2025
+
+Series A
+
+$22M
+
+Automates prior authorization, insurance benefit checks and eligibility monitoring for healthcare providers.
+
+North America
+
+Accel; Bain Capital Ventures
+
+Inspiren
+
+Remote Monitoring Solutions
+
+March 2025
+
+Series A
+
+$35M
+
+Provides an AI-powered senior-care platform combining resident monitoring, safety, care planning and staff workflows.
+
+North America
+
+Avenir
+
+Sibel Health
+
+Remote Monitoring Solutions
+
+March 2025
+
+Series C
+
+$30M
+
+Develops wireless wearable sensors and software for continuous clinical-grade patient monitoring.
+
+North America
+
+Steele Foundation for Hope; Dräger
+
+Nimblemind.ai
+
+Health Data Infrastructure
+
+March 2025
+
+Seed
+
+$2.5M
+
+Provides AI infrastructure that structures, labels and manages multimodal clinical data for healthcare organizations.
+
+North America
+
+Bread & Butter Ventures
+
+Fizimed
+
+Patient Engagement Tools
+
+March 2025
+
+Series A
+
+≈$4,300,000
+
+Develops connected women’s-health devices including an app-linked pelvic-floor rehabilitation trainer with real-time biofeedback.
+
+Europe
+
+Fonds Patient Autonome managed by Bpifrance; UNIQA; UI Investissement
+
+Elea
+
+Clinical Workflow Software
+
+March 2025
+
+Seed
+
+≈$4,300,000
+
+Provides an AI operating system that automates pathology workflows, clinical documentation and diagnostic reporting.
+
+Europe
+
+Fly Ventures
+
+Junction
+
+Health Data Infrastructure
+
+March 2025
+
+Series A
+
+$18M
+
+Provides APIs that connect healthcare applications with wearable-device, connected-device and laboratory health data.
+
+North America
+
+Creandum
+
+Strolll
+
+Patient Engagement Tools
+
+March 2025
+
+Series A
+
+≈$13,300,000
+
+Provides augmented-reality digital therapeutics for neurological rehabilitation in clinics and at home.
+
+Europe
+
+IW Capital
+
+Vori Health
+
+Virtual Care Platforms
+
+March 2025
+
+Series B
+
+$53M
+
+Delivers virtual-first musculoskeletal care through physicians, physical therapists and other clinicians on one digital platform.
+
+North America
+
+NEA
+
+Lumata Health
+
+Care Navigation Platforms
+
+March 2025
+
+Series B
+
+$23M
+
+Provides technology-enabled care management helping patients with chronic eye disease access and adhere to vision-saving treatment.
+
+North America
+
+LRVHealth; McKesson Ventures; Cencora Ventures
+
+Ataraxis AI
+
+Clinical Workflow Software
+
+March 2025
+
+Series A
+
+$20.4M
+
+Develops AI pathology software that predicts cancer outcomes and supports treatment decisions from tissue images.
+
+North America
+
+AIX Ventures
+
+Freed
+
+Clinical Workflow Software
+
+March 2025
+
+Series A
+
+$30M
+
+Provides an AI medical-scribe platform that creates clinical documentation from patient visits.
+
+North America
+
+Sequoia Capital
+
+XUND
+
+Clinical Workflow Software
+
+March 2025
+
+Unknown
+
+≈$6,500,000
+
+Provides regulated digital-health software for symptom assessment, triage and health-risk assessment within healthcare workflows.
+
+Europe
+
+Lead Ventures
+
+GEM HEALTH
+
+Virtual Care Platforms
+
+March 2025
+
+Series A
+
+$7M
+
+Operates a virtual sleep clinic covering sleep-apnea assessment, diagnosis, treatment and ongoing support.
+
+North America
+
+HealthTrend Capital; LFE Capital
+
+Cercare Medical
+
+Clinical Workflow Software
+
+March 2025
+
+Unknown
+
+$7.77M
+
+Provides AI-powered CT and MRI perfusion imaging software supporting neurological diagnosis and clinical decision-making.
+
+Europe
+
+West Hill Capital
+
+Heidi Health
+
+Clinical Workflow Software
+
+March 2025
+
+Series A
+
+$16.6M
+
+Provides an AI clinical assistant that generates notes and other documentation from patient consultations.
+
+Asia-Pacific
+
+Headline
+
+Anya
+
+Patient Engagement Tools
+
+February 2025
+
+Series A
+
+$3.15M
+
+Provides an AI-enabled women's-health app offering personalized digital support across fertility, pregnancy, parenting and menopause.
+
+Europe
+
+Not disclosed
+
+Charta Health
+
+Clinical Workflow Software
+
+February 2025
+
+Seed
+
+$8.1M
+
+Uses AI to automate medical-chart review, coding and pre-bill revenue-cycle workflows for healthcare providers.
+
+North America
+
+Bain Capital Ventures
+
+Floy
+
+Clinical Workflow Software
+
+February 2025
+
+Seed
+
+$3.77M
+
+Provides AI-based software that analyzes medical imaging to support radiologists in detecting abnormalities.
+
+Europe
+
+Not disclosed
+
+OpenEvidence
+
+Clinical Workflow Software
+
+February 2025
+
+Series A
+
+$75M
+
+Provides an AI-powered clinical decision-support and medical-information platform designed for physicians.
+
+North America
+
+Sequoia Capital
+
+Albert Health
+
+Patient Engagement Tools
+
+February 2025
+
+Seed
+
+$1.5M
+
+Provides an AI-powered mobile health assistant for medication adherence and ongoing management of multiple chronic conditions.
+
+Europe
+
+Not disclosed
+
+Avandra Imaging
+
+Health Data Infrastructure
+
+February 2025
+
+Unknown
+
+$17.75M
+
+Operates a federated network giving authorized users access to de-identified medical imaging and longitudinal clinical data.
+
+North America
+
+Aegis Ventures; SpringRock Ventures
+
+Keebler Health
+
+Clinical Workflow Software
+
+February 2025
+
+Seed
+
+$6M
+
+Uses AI to review patient medical records and automate risk-adjustment workflows for value-based-care providers.
+
+North America
+
+Not disclosed
+
+Level Zero Health
+
+Remote Monitoring Solutions
+
+February 2025
+
+Seed
+
+$6.9M
+
+Develops wearable biosensors for remote and continuous monitoring of clinically relevant hormone levels.
+
+Europe
+
+Redalpine
+
+Abridge
+
+Clinical Workflow Software
+
+February 2025
+
+Series D+
+
+$250M
+
+Uses generative AI to turn clinician-patient conversations into structured clinical and billing documentation.
+
+North America
+
+Elad Gil; IVP
+
+hema.to
+
+Clinical Workflow Software
+
+February 2025
+
+Unknown
+
+$3.77M
+
+Develops AI software that analyzes clinical flow-cytometry data to assist blood-cancer diagnostics.
+
+Europe
+
+LUMO Labs
+
+VoiceCare AI
+
+Clinical Workflow Software
+
+February 2025
+
+Seed
+
+$3.85M
+
+Builds voice-based AI agents that automate healthcare back-office conversations and administrative workflows.
+
+North America
+
+Caduceus Capital Partners
+
+Vitalchat
+
+Virtual Care Platforms
+
+February 2025
+
+Series A
+
+$6M
+
+Provides AI-powered inpatient virtual nursing, remote observation and procedural telehealth software for hospitals.
+
+North America
+
+Green Harvest Capital Industries
+
+Candid Health
+
+Clinical Workflow Software
+
+February 2025
+
+Series C
+
+$52.5M
+
+Provides automated healthcare revenue-cycle software for claims submission, billing and payment workflows.
+
+North America
+
+Oak HC/FT
+
+Cerula Care
+
+Virtual Care Platforms
+
+February 2025
+
+Seed
+
+$3.7M
+
+Delivers virtual behavioral-health treatment and care navigation specifically for oncology patients.
+
+North America
+
+Esplanade Ventures
+
+Keragon
+
+Clinical Workflow Software
+
+February 2025
+
+Seed
+
+$7.5M
+
+Provides a HIPAA-compliant automation platform for connecting healthcare software and building clinical and administrative workflows.
+
+North America
+
+Upfront Ventures
+
+Coral
+
+Virtual Care Platforms
+
+February 2025
+
+Seed
+
+$2.9M
+
+Provides personalized virtual care for women navigating perimenopause, menopause and related midlife health needs.
+
+North America
+
+Brightspark
+
+Harrison.ai
+
+Clinical Workflow Software
+
+February 2025
+
+Series C
+
+$112M
+
+Builds clinical AI systems that assist healthcare professionals with medical-imaging diagnosis and clinical decision-making.
+
+Asia-Pacific
+
+Aware Super; ECP Asset Management; Horizons Ventures
+
+Avelios Medical
+
+Clinical Workflow Software
+
+February 2025
+
+Series A
+
+$31M
+
+Develops a modular hospital information system for digitizing clinical workflows and patient-care operations.
+
+Europe
+
+Sequoia Capital
+
+Berry Street
+
+Virtual Care Platforms
+
+February 2025
+
+Series B
+
+$50M
+
+Operates a virtual nutrition-care platform connecting patients with registered dietitians covered by insurance.
+
+North America
+
+Northzone; Sofina
+
+Little Otter
+
+Virtual Care Platforms
+
+February 2025
+
+Unknown
+
+$9.5M
+
+Provides evidence-based virtual mental healthcare for children, parents and whole families.
+
+North America
+
+Not disclosed
+
+Fay
+
+Virtual Care Platforms
+
+February 2025
+
+Series B
+
+$50M
+
+Connects patients with insurance-covered registered dietitians through a technology-enabled virtual nutrition-care platform.
+
+North America
+
+Goldman Sachs
+
+Ovum
+
+Patient Engagement Tools
+
+February 2025
+
+Seed
+
+$1.06M
+
+Provides a women-focused health app that organizes personal health information and uses AI to support healthcare decisions and navigation.
+
+Asia-Pacific
+
+Giant Leap
+
+SimpliFed
+
+Virtual Care Platforms
+
+February 2025
+
+Unknown
+
+$4M
+
+Delivers virtual maternal and infant-feeding care through a home-based digital care platform.
+
+North America
+
+Morningside
+
+Tabia Health
+
+Patient Engagement Tools
+
+February 2025
+
+Seed
+
+$4M
+
+Provides an AI-powered care-orchestration platform that automates patient outreach, adherence and chronic-care pathways.
+
+North America
+
+Not disclosed
+
+C the Signs
+
+Clinical Workflow Software
+
+January 2025
+
+Unknown
+
+$8M
+
+Uses EHR data and AI to identify patients at elevated risk of cancer and guide diagnostic referral.
+
+Europe
+
+Khosla Ventures
+
+KODE Health
+
+Clinical Workflow Software
+
+January 2025
+
+Series B
+
+$27M
+
+Operates an on-demand medical-coding platform connecting healthcare providers with certified coders and AI workflow tools.
+
+North America
+
+Noro-Moseley Partners
+
+Medsender
+
+Clinical Workflow Software
+
+January 2025
+
+Series A
+
+$5M
+
+Provides healthcare communication and workflow automation software for referrals, records and patient messaging.
+
+North America
+
+Ballast Point Ventures
+
+Rad AI
+
+Clinical Workflow Software
+
+January 2025
+
+Series C
+
+$60M
+
+Provides generative-AI software for radiology reporting and follow-up workflow automation.
+
+North America
+
+Transformation Capital
+
+Bicycle Health
+
+Virtual Care Platforms
+
+January 2025
+
+Series C
+
+$16.5M
+
+Delivers virtual medication-assisted treatment and ongoing care for opioid-use disorder.
+
+North America
+
+Questa Capital
+
+Delfina Care
+
+Remote Monitoring Solutions
+
+January 2025
+
+Series A
+
+$17M
+
+Provides an AI-powered pregnancy-care platform with risk prediction, patient engagement and integration into prenatal-care workflows.
+
+North America
+
+U.S. Venture Partners
+
+Hone Health
+
+Virtual Care Platforms
+
+January 2025
+
+Series A
+
+$33M
+
+Operates a telehealth clinic focused on hormone, preventative and longevity care.
+
+North America
+
+Not disclosed
+
+Hopia
+
+Clinical Workflow Software
+
+January 2025
+
+Seed
+
+$3.65M
+
+Provides AI-powered hospital scheduling and patient-flow optimization software.
+
+Europe
+
+IRIS; Kurma Partners
+
+Nobi
+
+Remote Monitoring Solutions
+
+January 2025
+
+Series B
+
+$36.5M
+
+Provides AI-enabled smart-light sensors for fall detection, prevention and monitoring in elder-care settings.
+
+Europe
+
+Angelini Ventures; Nexus NeuroTech Ventures
+
+Quibim
+
+Clinical Workflow Software
+
+January 2025
+
+Series A
+
+$50M
+
+Develops AI models and imaging biomarkers to support medical-image interpretation and disease detection.
+
+Europe
+
+Asabys Partners; Buenavista Equity Partners
+
+Videa
+
+Clinical Workflow Software
+
+January 2025
+
+Series B
+
+$40M
+
+Provides AI software that analyzes dental X-rays to support diagnosis and treatment planning.
+
+North America
+
+Threshold Ventures
+
+Systole Health
+
+Virtual Care Platforms
+
+January 2025
+
+Seed
+
+$2M
+
+Delivers physician-led virtual group care and health coaching for women at cardiovascular risk.
+
+North America
+
+Benchstrength
+
+Allara Health
+
+Virtual Care Platforms
+
+January 2025
+
+Series B
+
+$26M
+
+Provides virtual specialty care for women with chronic hormonal and metabolic conditions.
+
+North America
+
+Index Ventures
+
+Eleos Health
+
+Clinical Workflow Software
+
+January 2025
+
+Series C
+
+$60M
+
+Provides AI agents for behavioral-health clinical documentation, compliance and care insights.
+
+North America
+
+Greenfield Partners
+
+Neko Health
+
+Remote Monitoring Solutions
+
+January 2025
+
+Series B
+
+$260M
+
+Operates technology-enabled preventive health clinics using proprietary full-body scanning and longitudinal health data.
+
+Europe
+
+Lightspeed Venture Partners
+
+Percipio Health
+
+Remote Monitoring Solutions
+
+January 2025
+
+Series A
+
+$20M
+
+Uses smartphone-based AI biomarkers to remotely monitor health signals and population-level risk.
+
+North America
+
+Not disclosed
+
+Peregrine Health
+
+Clinical Workflow Software
+
+January 2025
+
+Unknown
+
+$5M
+
+Provides technology-enabled behavioral-health infrastructure, outcome tracking and virtual clinical programs for clinics.
+
+North America
+
+BIP Ventures; Martin Ventures; Chapman Capital
+
+Teal Health
+
+Virtual Care Platforms
+
+January 2025
+
+Seed
+
+$10M
+
+Combines an at-home cervical-cancer screening device with a telehealth and patient-support platform.
+
+North America
+
+Emerson Collective; Forerunner
+
+Nelly
+
+Clinical Workflow Software
+
+January 2025
+
+Series B
+
+$51.5M
+
+Provides digital administrative, payment and financial workflow software specifically for medical practices.
+
+Europe
+
+Cathay Innovation
+
+Solera Health
+
+Care Navigation Platforms
+
+January 2025
+
+Series D+
+
+$40M
+
+Operates a digital-health delivery platform connecting health-plan members to appropriate digital and value-based care solutions.
+
+North America
+
+Health Care Service Corporation
+
+Qventus
+
+Clinical Workflow Software
+
+January 2025
+
+Series D+
+
+$85M
+
+Provides AI-based automation software for inpatient, perioperative and outpatient care operations.
+
+North America
+
+KKR
+
+Truveta
+
+Health Data Infrastructure
+
+January 2025
+
+Series C
+
+$320M
+
+Aggregates and standardizes longitudinal clinical data from health systems for healthcare research and analytics.
+
+North America
+
+Not disclosed
+
+Hippocratic AI
+
+Patient Engagement Tools
+
+January 2025
+
+Series B
+
+$141M
+
+Builds safety-focused generative-AI agents for non-diagnostic patient-facing healthcare tasks.
+
+North America
+
+Kleiner Perkins
+
+Innovaccer
+
+Health Data Infrastructure
+
+January 2025
+
+Series D+
+
+$178.75M
+
+Provides a healthcare data platform and applications for population health, care management and clinical operations.
+
+North America
+
+Not disclosed
+
+Frontier Direct Care
+
+Virtual Care Platforms
+
+January 2025
+
+Series B
+
+$20M
+
+Provides employer-funded direct primary care combining in-person and virtual care, navigation and prescription services.
+
+North America
+
+Mehshah Capital
+
+Nema Health
+
+Virtual Care Platforms
+
+January 2025
+
+Series A
+
+$14.5M
+
+Delivers evidence-based virtual treatment for trauma and PTSD.
+
+North America
+
+Deerfield Management
+
+Qualified Health
+
+Health Data Infrastructure
+
+January 2025
+
+Seed
+
+$30M
+
+Provides infrastructure for healthcare organizations to deploy, govern and monitor generative-AI applications.
+
+North America
+
+SignalFire; Healthier Capital; Town Hall Ventures; Frist Cressey Ventures
+
+Red Rover Health
+
+Health Data Infrastructure
+
+January 2025
+
+Seed
+
+$4M
+
+Provides an interoperability platform that connects third-party healthcare applications with EHR systems.
+
+North America
+
+NewShore Partners
+
+Siren
+
+Remote Monitoring Solutions
+
+January 2025
+
+Unknown
+
+$9.5M
+
+Provides sensor-embedded socks that continuously monitor diabetic patients for early signs of foot ulcers.
+
+North America
+
+Mölnlycke Health Care
+
+VitVio
+
+Clinical Workflow Software
+
+January 2025
+
+Seed
+
+$2M
+
+Uses computer vision and AI to monitor operating-room workflows and surgical procedures in real time.
+
+Europe
+
+LDV Capital
+
+Deciphex
+
+Clinical Workflow Software
+
+January 2025
+
+Series C
+
+$32.3M
+
+Provides AI-powered digital pathology software and remote pathology services for clinical diagnosis.
+
+Europe
+
+Molten Ventures
+
+Twentyeight Health
+
+Virtual Care Platforms
+
+January 2025
+
+Series A
+
+$10M
+
+Provides digital-first reproductive and sexual healthcare through telemedicine.
+
+North America
+
+Seae Ventures
+
+Weimai
+
+Patient Engagement Tools
+
+January 2025
+
+Series D+
+
+$27.3M
+
+Operates a digital healthcare platform supporting longitudinal disease management and continuous care.
+
+Asia-Pacific
+
+Not disclosed
+
+Consint.AI
+
+Clinical Workflow Software
+
+January 2025
+
+Seed
+
+$584K
+
+Provides generative-AI healthcare transaction, risk-management and personalized-care software.
+
+Asia-Pacific
+
+Equanimity Ventures; Seafund
+
+Remote Care Partners
+
+Remote Monitoring Solutions
+
+December 2024
+
+Unknown
+
+$880K
+
+Provides cloud software for remote patient monitoring, chronic-care management and telemedicine programs used by medical practices.
+
+North America
+
+Not disclosed
+
+Confido Health
+
+Clinical Workflow Software
+
+December 2024
+
+Seed
+
+$3M
+
+Provides AI-powered administrative agents that handle scheduling, calls, referrals, insurance and other workflows for healthcare practices.
+
+North America
+
+Together Fund
+
+Culina Health
+
+Virtual Care Platforms
+
+December 2024
+
+Series A
+
+$7.9M
+
+Delivers insurance-covered virtual clinical nutrition care through registered dietitians and a digital patient-care platform.
+
+North America
+
+Healthworx
+
+Greenlight Health Data Solutions
+
+Health Data Infrastructure
+
+December 2024
+
+Unknown
+
+$4.2M
+
+Provides software and APIs for retrieving, exchanging and delivering electronic medical records to patients and healthcare-sector organizations.
+
+North America
+
+Not disclosed
+
+Scripta Insights
+
+Care Navigation Platforms
+
+December 2024
+
+Series B
+
+$17M
+
+Provides prescription-navigation software that analyzes drug prices and benefit data to help health plans and members identify lower-cost medication options.
+
+North America
+
+Aquiline Capital Partners
+
+Anatomy Financial
+
+Clinical Workflow Software
+
+December 2024
+
+Series A
+
+$19M
+
+Provides AI-powered healthcare lockbox and reconciliation software that digitizes checks, EOBs and other financial paperwork for healthcare practices.
+
+North America
+
+Canapi Ventures
+
+MiSalud Health
+
+Virtual Care Platforms
+
+December 2024
+
+Series A
+
+$8M
+
+Provides bilingual virtual primary care, health coaching and care-navigation services for Spanish-speaking populations in the U.S. and Mexico.
+
+North America
+
+Samsung Next
+
+Tuva Health
+
+Health Data Infrastructure
+
+December 2024
+
+Seed
+
+$5M
+
+Provides open-source healthcare data transformation software that converts claims and EHR data into normalized, analytics-ready datasets.
+
+North America
+
+Virtue
+
+CoachCare
+
+Remote Monitoring Solutions
+
+December 2024
+
+Growth Equity
+
+$11M
+
+Provides remote patient monitoring, chronic-care management and virtual-care technology and services to healthcare organizations.
+
+North America
+
+Catalyst Investors
+
+Lyfegen
+
+Health Data Infrastructure
+
+December 2024
+
+Series A
+
+$5.7M
+
+Provides software that manages drug rebate agreements, pricing contracts and value-based pharmaceutical payment workflows.
+
+Europe
+
+TX Ventures; aMoon Fund
+
+Evidently
+
+Clinical Workflow Software
+
+December 2024
+
+Series A
+
+$15M
+
+Provides AI clinical-intelligence software that synthesizes fragmented medical records and supports chart review, documentation and point-of-care decision workflows.
+
+North America
+
+DN Capital
+
+Particle Health
+
+Health Data Infrastructure
+
+December 2024
+
+Unknown
+
+$10M
+
+Provides APIs and data infrastructure that aggregate patient records from healthcare networks into normalized longitudinal health data.
+
+North America
+
+Not disclosed
+
+Wildflower Health
+
+Care Navigation Platforms
+
+December 2024
+
+Unknown
+
+$17.94M
+
+Provides digital maternal-health engagement, navigation and care-management technology for health plans, providers and pregnant members.
+
+North America
+
+Not disclosed
+
+Anise Health
+
+Virtual Care Platforms
+
+December 2024
+
+Seed
+
+$3M
+
+Delivers culturally responsive virtual therapy, coaching and mental-health support through a digital care platform.
+
+North America
+
+Kicker Ventures
+
+Wanda Health
+
+Remote Monitoring Solutions
+
+December 2024
+
+Unknown
+
+$1.28M
+
+Provides AI-enabled remote patient monitoring and virtual-care software designed to detect deterioration in patients with acute, chronic and specialty conditions.
+
+Europe
+
+EMV Capital Partners
+
+Liine
+
+Patient Engagement Tools
+
+December 2024
+
+Seed
+
+$1.85M
+
+Provides healthcare-specific call analytics, patient-conversion and messaging software for medical practices.
+
+North America
+
+Not disclosed
+
+Cleerly
+
+Clinical Workflow Software
+
+December 2024
+
+Series C
+
+$106M
+
+Provides FDA-cleared AI software that analyzes cardiac CT scans to quantify coronary plaque and support coronary artery disease diagnosis and management.
+
+North America
+
+Insight Partners
+
+Droxi
+
+Clinical Workflow Software
+
+December 2024
+
+Series A
+
+$21M
+
+Provides AI software that automates and prioritizes administrative and clinical-inbox work for physicians inside existing healthcare workflows.
+
+North America
+
+Drive Capital
+
+Omnidoc
+
+Virtual Care Platforms
+
+December 2024
+
+Unknown
+
+$6.3M
+
+Operates a tele-expertise and medical-collaboration platform that lets healthcare professionals exchange specialist opinions and coordinate patient care remotely.
+
+Europe
+
+Alven
+
+Healthkind
+
+Patient Engagement Tools
+
+December 2024
+
+Seed
+
+$900K
+
+Provides AI software for healthcare clinics to automate personalized patient communication and engagement workflows.
+
+North America
+
+Not disclosed
+
+Raidium
+
+Clinical Workflow Software
+
+November 2024
+
+Seed
+
+≈$16,900,000
+
+Develops an AI-native radiology platform for multimodal medical-image interpretation and clinical decision support.
+
+Europe
+
+Newfund; Kurma Partners
+
+Band Connect
+
+Remote Monitoring Solutions
+
+November 2024
+
+Seed
+
+$1.45M
+
+Provides connected rehabilitation technology that remotely measures exercise performance and supports physical-therapy care.
+
+North America
+
+Not disclosed
+
+Kyan Health
+
+Care Navigation Platforms
+
+November 2024
+
+Seed
+
+$4M
+
+Provides a digital mental-health platform combining assessment, personalized navigation, coaching and therapy for employees.
+
+Europe
+
+Amplo VC
+
+Kyan Health
+
+Care Navigation Platforms
+
+November 2024
+
+Series A
+
+$12.7M
+
+Provides a digital mental-health platform combining assessment, personalized navigation, coaching and therapy for employees.
+
+Europe
+
+Swisscom Ventures
+
+Magnolia
+
+Care Navigation Platforms
+
+November 2024
+
+Seed
+
+$3.5M
+
+Provides digital navigation and personalized support to help patients manage complex healthcare decisions and access care.
+
+North America
+
+Village Global
+
+Click Therapeutics
+
+Patient Engagement Tools
+
+November 2024
+
+Unknown
+
+$3M
+
+Develops prescription digital therapeutics that deliver software-based interventions for neurological and behavioral conditions.
+
+North America
+
+Not disclosed
+
+CalmWave
+
+Clinical Workflow Software
+
+November 2024
+
+Unknown
+
+$5.25M
+
+Provides AI software that reduces alarm fatigue and optimizes clinical operations in intensive-care environments.
+
+North America
+
+Third Prime
+
+FertilAI
+
+Clinical Workflow Software
+
+November 2024
+
+Seed
+
+$4.5M
+
+Develops AI clinical-decision software for fertility specialists to personalize IVF treatment and improve treatment workflows.
+
+Middle East
+
+Longevity Venture Partners; Redseed
+
+New Lantern
+
+Clinical Workflow Software
+
+November 2024
+
+Series A
+
+$19M
+
+Provides AI-native radiology workflow software for image interpretation, reporting and clinical documentation.
+
+North America
+
+Benchmark
+
+World Class Health
+
+Care Navigation Platforms
+
+November 2024
+
+Seed
+
+$8M
+
+Provides a digital healthcare-navigation and Centers-of-Excellence platform connecting members with specialist care.
+
+North America
+
+AlleyCorp
+
+Citizen Health
+
+Care Navigation Platforms
+
+November 2024
+
+Seed
+
+$14.5M
+
+Provides an AI-enabled platform that organizes health records and guides patients with rare and complex diseases through their care journeys.
+
+North America
+
+Transformation Capital
+
+Heim Health
+
+Clinical Workflow Software
+
+November 2024
+
+Seed
+
+≈$2,790,000
+
+Provides software that coordinates and dispatches clinicians for digitally managed healthcare delivered in patients' homes.
+
+Europe
+
+Heal Capital
+
+IncludeHealth
+
+Remote Monitoring Solutions
+
+November 2024
+
+Unknown
+
+$5M
+
+Provides camera-based remote musculoskeletal care and movement-analysis software for personalized rehabilitation.
+
+North America
+
+Not disclosed
+
+Jimini Health
+
+Virtual Care Platforms
+
+November 2024
+
+Seed
+
+$8M
+
+Provides AI-supported mental-health care combining licensed clinicians with digital therapeutic and support tools.
+
+North America
+
+Not disclosed
+
+Synapticure
+
+Virtual Care Platforms
+
+November 2024
+
+Series A
+
+$25M
+
+Delivers virtual multidisciplinary care for people with neurodegenerative diseases and their caregivers.
+
+North America
+
+B Capital
+
+ThoroughCare
+
+Clinical Workflow Software
+
+November 2024
+
+Series A
+
+$5M
+
+Provides care-management software for chronic-care programs, remote patient monitoring and value-based clinical workflows.
+
+North America
+
+Empactful Capital
+
+Alloy
+
+Virtual Care Platforms
+
+November 2024
+
+Series A
+
+$16M
+
+Operates a virtual-care platform providing menopause treatment, prescriptions and ongoing clinician support.
+
+North America
+
+Kairos HQ
+
+Little Journey
+
+Patient Engagement Tools
+
+November 2024
+
+Series A
+
+≈$7,600,000
+
+Provides patient-facing digital psychological preparation and support for children and families undergoing healthcare procedures.
+
+Europe
+
+Par Equity
+
+Primaa
+
+Clinical Workflow Software
+
+November 2024
+
+Unknown
+
+≈$5,300,000
+
+Develops AI diagnostic software for pathologists to detect and characterize cancer from digitized tissue slides.
+
+Europe
+
+Not disclosed
+
+Homethrive
+
+Care Navigation Platforms
+
+November 2024
+
+Unknown
+
+>$20,000,000
+
+Provides digital caregiving navigation, personalized resources and human Care Guides to employees and health-plan members.
+
+North America
+
+TELUS Global Ventures; 7wire Ventures
+
+Impilo
+
+Health Data Infrastructure
+
+November 2024
+
+Series A
+
+$11.5M
+
+Provides logistics, device connectivity and data infrastructure for remote patient monitoring and home healthcare.
+
+North America
+
+Construct Capital
+
+Upheal
+
+Clinical Workflow Software
+
+November 2024
+
+Series A
+
+$10M
+
+Provides AI-powered documentation, analytics and administrative workflow software for mental-health clinicians.
+
+North America
+
+Headline
+
+mediaire
+
+Clinical Workflow Software
+
+November 2024
+
+Series A
+
+≈$12,740,000
+
+Develops AI software that analyzes radiology images and integrates diagnostic support into clinical workflows.
+
+Europe
+
+LBO France
+
+myBiometry
+
+Remote Monitoring Solutions
+
+November 2024
+
+Seed
+
+$5M
+
+Provides connected respiratory monitoring for asthma and COPD using home biomarkers and digital care tools.
+
+North America
+
+Dexcom Ventures
+
+Fort Health
+
+Virtual Care Platforms
+
+November 2024
+
+Unknown
+
+$5.5M
+
+Delivers virtual pediatric mental-health care integrated with pediatric practices and families.
+
+North America
+
+Twelve Below; Vanterra
+
+Paloma Health
+
+Virtual Care Platforms
+
+November 2024
+
+Seed
+
+≈$2,570,000
+
+Provides digitally redesigned clinician-led neurodevelopmental assessments, including remote autism-care pathways.
+
+Europe
+
+Triple Point Ventures
+
+OptraSCAN
+
+Clinical Workflow Software
+
+November 2024
+
+Series B
+
+$30M
+
+Provides digital-pathology systems combining whole-slide scanning, cloud workflows and AI-assisted image analysis.
+
+North America
+
+Molbio Diagnostics
+
+Yazen Health
+
+Virtual Care Platforms
+
+November 2024
+
+Series A
+
+≈$20,900,000
+
+Provides digitally delivered obesity care combining medical treatment, coaching, nutrition and ongoing monitoring.
+
+Europe
+
+Evli Growth Partners; Helsana HealthInvest
+
+Nema Health
+
+Virtual Care Platforms
+
+November 2024
+
+Series A
+
+$14.5M
+
+Delivers virtual trauma and PTSD treatment through clinician-led, evidence-based digital care.
+
+North America
+
+Deerfield Management
+
+Synthesis Health
+
+Clinical Workflow Software
+
+November 2024
+
+Unknown
+
+$9.5M
+
+Provides a cloud-native radiology platform combining PACS, workflow software and AI-enabled imaging tools.
+
+North America
+
+Not disclosed
+
+TCC
+
+Virtual Care Platforms
+
+November 2024
+
+Series A
+
+≈$21,800,000
+
+Provides an AI-enabled 24/7 tele-ICU platform using real-time patient data to support intensive-care teams.
+
+Europe
+
+Captain Thomas Pötzsch
+
+Semble
+
+Clinical Workflow Software
+
+October 2024
+
+Series B
+
+$15M
+
+Provides a cloud-based clinical system combining EHR, practice management, patient communication and healthcare integrations.
+
+Europe
+
+Mercia Ventures
+
+Pharos
+
+Clinical Workflow Software
+
+October 2024
+
+Seed
+
+$5M
+
+Uses AI to automate hospital clinical-quality reporting and extract patient-safety process metrics from medical records.
+
+North America
+
+Felicis
+
+OncoLens
+
+Clinical Workflow Software
+
+October 2024
+
+Series B
+
+$16M
+
+Provides AI-enabled oncology workflow, clinical-data and multidisciplinary treatment-planning software for cancer centers.
+
+North America
+
+BIP Capital; Cross Border Impact Ventures
+
+Counsel Health
+
+Virtual Care Platforms
+
+October 2024
+
+Seed
+
+$11M
+
+Provides AI-enabled asynchronous physician care through messaging for medical advice, urgent questions and second opinions.
+
+North America
+
+Andreessen Horowitz Bio + Health
+
+OneStep
+
+Remote Monitoring Solutions
+
+October 2024
+
+Series B
+
+$36M
+
+Uses smartphone sensors to measure gait and mobility continuously for remote clinical assessment and rehabilitation monitoring.
+
+North America
+
+Team8; Vintage Investment Partners
+
+Tennr
+
+Clinical Workflow Software
+
+October 2024
+
+Series B
+
+$37M
+
+Automates referral intake and healthcare-document workflows using AI to extract, classify and route clinical information.
+
+North America
+
+Lightspeed Venture Partners
+
+Ash
+
+Health Data Infrastructure
+
+October 2024
+
+Series A
+
+$10M
+
+Provides white-label infrastructure for healthcare organizations to offer at-home diagnostic testing, logistics, lab processing and digital results.
+
+North America
+
+Merck Global Health Innovation Fund; undisclosed national health insurance plan
+
+Pip Care
+
+Care Navigation Platforms
+
+October 2024
+
+Series A
+
+$5M
+
+Combines a patient app with human health coaching to guide patients through preparation for and recovery from surgery.
+
+North America
+
+A1 Health Ventures
+
+Oshi Health
+
+Virtual Care Platforms
+
+October 2024
+
+Series C
+
+$60M
+
+Provides multidisciplinary virtual gastrointestinal care including medical, dietary and behavioral-health treatment.
+
+North America
+
+Oak HC/FT
+
+Healthie
+
+Clinical Workflow Software
+
+October 2024
+
+Series B
+
+$23M
+
+Provides API-first EHR, scheduling and patient-engagement infrastructure for virtual-first healthcare organizations and practitioners.
+
+North America
+
+TCV
+
+Parakeet Health
+
+Patient Engagement Tools
+
+October 2024
+
+Seed
+
+$3M
+
+Provides generative-AI voice agents for healthcare scheduling, billing, outreach and other patient communications.
+
+North America
+
+Canvas Ventures
+
+Minze Health
+
+Remote Monitoring Solutions
+
+October 2024
+
+Unknown
+
+$5.3M
+
+Develops digital diagnostics, remote monitoring and prescription digital therapeutics for urinary disorders and incontinence.
+
+Europe
+
+White Fund; Capricorn Digital Growth Fund; PMV
+
+Aware Health
+
+Virtual Care Platforms
+
+October 2024
+
+Seed
+
+$3M
+
+Delivers technology-enabled virtual musculoskeletal assessment, diagnosis and tele-rehabilitation for employer populations.
+
+North America
+
+Boomerang Ventures
+
+Glooko
+
+Remote Monitoring Solutions
+
+October 2024
+
+Series D+
+
+$100M
+
+Operates a connected diabetes-care platform integrating data from glucose meters, insulin devices and other health technologies for patients and clinicians.
+
+North America
+
+Georgian
+
+RadiantGraph
+
+Patient Engagement Tools
+
+October 2024
+
+Series A
+
+$11M
+
+Uses healthcare data and AI to personalize health-plan member outreach, activation and engagement.
+
+North America
+
+M13
+
+Suki
+
+Clinical Workflow Software
+
+October 2024
+
+Series D+
+
+$70M
+
+Provides an AI voice assistant and developer platform for clinical documentation, coding and EHR workflows.
+
+North America
+
+Hedosophia
+
+SPRY Therapeutics
+
+Clinical Workflow Software
+
+October 2024
+
+Series A
+
+$15M
+
+Provides an AI-enabled clinical, practice-management and billing platform built specifically for physical-therapy providers.
+
+Asia-Pacific
+
+Flourish Ventures
+
+Univa Health
+
+Virtual Care Platforms
+
+October 2024
+
+Seed
+
+$1.31M
+
+Builds a personalized digital-care platform connecting eating-disorder patients, families and clinical teams.
+
+Europe
+
+YZR Capital
+
+Sober Sidekick
+
+Patient Engagement Tools
+
+October 2024
+
+Seed
+
+$2.8M
+
+Operates a mobile peer-support and recovery platform for people managing substance-use disorder.
+
+North America
+
+Not disclosed
+
+Rezilient Health
+
+Virtual Care Platforms
+
+October 2024
+
+Series A
+
+$10M
+
+Provides hybrid virtual primary and specialty care through digitally equipped CloudClinics and remote physicians.
+
+North America
+
+Govo Venture Partners
+
+Rippl
+
+Virtual Care Platforms
+
+October 2024
+
+Series A
+
+$23M
+
+Delivers virtual dementia and behavioral healthcare to older adults and their caregivers.
+
+North America
+
+Kin Ventures
+
+Air Doctor
+
+Care Navigation Platforms
+
+October 2024
+
+Series B
+
+$20M
+
+Connects travelers with vetted local or virtual physicians and coordinates access and reimbursement through insurers.
+
+Middle East
+
+aMoon
+
+Nym
+
+Clinical Workflow Software
+
+October 2024
+
+Growth Equity
+
+$47M
+
+Provides an AI-powered autonomous medical-coding engine that converts clinical records into billing codes for healthcare providers.
+
+North America
+
+PSG
+
+Mindpeak
+
+Clinical Workflow Software
+
+September 2024
+
+Series A
+
+$15.3M
+
+Develops AI-powered digital pathology software for automated histological analysis and routine clinical diagnostics.
+
+Europe
+
+ZEISS Ventures; InnoVentureFund
+
+Tiro.health
+
+Clinical Workflow Software
+
+September 2024
+
+Seed
+
+≈$1,110,000
+
+Provides clinicians with an EHR-integrated assistant for structured medical documentation and clinical data capture.
+
+Europe
+
+Miles Ahead
+
+OmMej
+
+Patient Engagement Tools
+
+September 2024
+
+Seed
+
+≈$388,000
+
+Provides a child-focused mental-health app and professional dashboard that help care and public-service teams understand children's needs.
+
+Europe
+
+Gorilla Capital
+
+Qure.ai
+
+Clinical Workflow Software
+
+September 2024
+
+Series D+
+
+$65M
+
+Develops AI software that analyzes medical imaging to help clinicians detect and manage diseases including tuberculosis, lung cancer and stroke.
+
+Asia-Pacific
+
+Lightspeed; 360 ONE Asset
+
+Hyivy Health
+
+Remote Monitoring Solutions
+
+September 2024
+
+Seed
+
+≈$1,480,000
+
+Develops a connected pelvic-health rehabilitation system combining therapeutic hardware, biosensors, a patient app and clinician monitoring software.
+
+North America
+
+Zcube - Zambon Research Venture
+
+Exakt Health
+
+Virtual Care Platforms
+
+September 2024
+
+Seed
+
+≈$2,440,000
+
+Provides a medically certified digital physiotherapy app delivering personalized rehabilitation programs for injuries.
+
+Europe
+
+Barmenia Next Strategies
+
+Synex Medical
+
+Remote Monitoring Solutions
+
+September 2024
+
+Series A
+
+$21.8M
+
+Develops non-invasive metabolic monitoring technology intended to continuously measure biomarkers such as glucose and lactate.
+
+North America
+
+Not disclosed
+
+Canopie
+
+Virtual Care Platforms
+
+September 2024
+
+Seed
+
+$3.7M
+
+Provides digital and clinician-supported preventive maternal mental-health screening, programs, coaching and virtual care.
+
+North America
+
+Beta Boom; Aeroflow Health
+
+Cercle
+
+Health Data Infrastructure
+
+September 2024
+
+Seed
+
+$6M
+
+Structures de-identified women's healthcare data into real-time insights used by providers for personalized care and clinical pathways.
+
+North America
+
+Outsiders Fund
+
+Ferrum Health
+
+Clinical Workflow Software
+
+September 2024
+
+Series A
+
+$16M
+
+Provides hospitals with a platform to validate, deploy and govern clinical AI applications across care workflows.
+
+North America
+
+Foundry
+
+Hippocratic AI
+
+Patient Engagement Tools
+
+September 2024
+
+Series A
+
+$17M
+
+Develops safety-focused generative AI healthcare agents for patient-facing clinical support and healthcare workforce tasks.
+
+North America
+
+NVentures
+
+Mevo
+
+Health Data Infrastructure
+
+September 2024
+
+Series B
+
+$19M
+
+Provides digital prescription infrastructure connecting healthcare providers, patients and medication fulfillment in Brazil.
+
+Latin America
+
+Matrix
+
+Vivian Lab
+
+Patient Engagement Tools
+
+September 2024
+
+Seed
+
+≈$333,000
+
+Provides a digital women's-health platform offering personalized menopause symptom guidance, tracking and health programs.
+
+Europe
+
+Eleven Ventures
+
+Jinko
+
+Care Navigation Platforms
+
+September 2024
+
+Seed
+
+≈$2,220,000
+
+Coordinates personalized supportive cancer care through a digital platform and network of healthcare practitioners.
+
+Europe
+
+360 Capital
+
+Gosta Labs
+
+Clinical Workflow Software
+
+September 2024
+
+Seed
+
+≈$1,330,000
+
+Develops an AI clinical assistant that automates medical documentation and structures information from clinician-patient encounters.
+
+Europe
+
+Not disclosed
+
+View all deals
+
+Discover 512 more
+deals
+
+Browse all deals
+
+Sometimes the money comes before the interest, sometimes after. We compare both in our digital health market report .
+
+## Is digital health funding actually healthier now?
+
+Digital health funding looks stronger in dollars today, but the market underneath has become narrower and more selective.
+
+More capital went into the market over the latest 12 months, even though fewer deals happened and fewer companies received funding. At the same time, the typical round became much larger. Investors are clearly willing to write bigger checks these days, but they are doing so for a smaller group of companies.
+
+That makes the market better for companies that can get through the investment committee and harder for those that cannot. New startups are still entering, so this is not a frozen market. The pressure is showing up further along the funding path, especially around Series A and ordinary follow-on rounds.
+
+Metric
+Current L12M
+Previous 12M
+Change
+
+Total deals
+268
+293
+-8.5%
+
+Unique companies
+259
+280
+-7.5%
+
+Total capital
+$8.43B
+$7.36B
++14.6%
+
+Median round
+$14.1M
+$11.0M
++28.2%
+
+Average round
+$31.5M
+$25.2M
++24.9%
+
+Largest round
+$700M
+$320M
++118.8%
+
+First-financing share
+26.9%
+22.9%
++4.0 pp
+
+Early-stage deal share
+60.8%
+63.1%
+-2.3 pp
+
+Later-stage deal share
+27.6%
+25.9%
++1.7 pp
+
+## Does digital health funding still look stronger without the megadeals?
+
+Once we remove the large rounds, most of digital health's apparent funding rebound disappears.
+
+The headline increase in capital is 14.6%. Take out rounds above $50 million and funding actually slips 0.9%. That is a huge difference in interpretation: almost all of the extra dollars came from the upper end of the market.
+
+The $100 million cutoff tells a slightly different story. Excluding rounds above that level, funding still grows 3.6%. So there is some improvement below the very biggest deals, particularly around the upper-middle part of the market. Still, $100 million-plus financings now represent nearly 40% of all capital.
+
+The concentration is spread across several large rounds rather than one company carrying the entire market. Top-10 concentration barely moved, from 29.1% to 29.5%, while the number of $100 million-plus rounds increased from 13 to 17. The market simply has more very large checks near the top.
+
+Outlier test
+Current L12M
+Previous 12M
+Change
+
+Headline capital
+$8.43B
+$7.36B
++14.6%
+
+Capital excluding >$50M
+$3.39B
+$3.42B
+-0.9%
+
+Capital excluding >$100M
+$5.08B
+$4.90B
++3.6%
+
+Rounds >$50M
+37
+35
++2
+
+Rounds >$100M
+17
+13
++4
+
+>$50M share of capital
+59.8%
+53.5%
++6.3 pp
+
+>$100M share of capital
+39.8%
+33.4%
++6.4 pp
+
+Largest deal / total capital
+8.3%
+4.3%
++4.0 pp
+
+## Are fewer digital health companies getting funded now?
+
+Yes. Digital health funding reached 259 companies in the latest period, down from 280, so the market has clearly lost breadth.
+
+Deal count moved almost in parallel, falling from 293 to 268. That tells us something useful. The slowdown cannot be explained mainly by the same companies doing fewer repeat rounds. There are genuinely fewer businesses receiving capital.
+
+At the same time, the number of companies raising more than once during the period dropped from 13 to nine. The repeat-fundraising rate moved from 4.6% to 3.5%.
+
+So the current market feels busy when we look at the dollar amounts, especially because the large financings get most of the attention. Underneath them, fewer founders are actually closing rounds.
+
+Want to know which startups could overtake the giants next? It's all in our digital health market report .
+
+## Are investors still backing new digital health startups, or mainly doubling down on winners?
+
+New digital health startups are still getting financed, although existing winners take nearly all the money.
+
+First financings increased from 67 to 72, even as total deal activity contracted. Their share of all rounds rose from 22.9% to 26.9%, and they attracted $661 million compared with $466 million in the previous period.
+
+These newcomers are young too. Among companies where we could establish a founding date, the median age at first financing fell from two years to one year. Investors are still prepared to back genuinely new teams.
+
+The check sizes tell the other half of the story. The median first financing barely changed at $4.35 million, while the median follow-on reached $18.6 million. Follow-on rounds absorbed about $7.77 billion, close to 92% of all capital.
+
+The front door remains open. The huge checks are waiting much further inside.
+
+## Are digital health rounds actually getting bigger across the market?
+
+Yes. The typical digital health round is clearly larger today, even below the megadeal layer.
+
+The median financing moved from $11 million to $14.1 million. Because the median is far less sensitive to Neko's $700 million round and the other nine-figure deals, that increase is a strong sign that larger checks extend well beyond a handful of outliers.
+
+We see the same pattern month by month. Median monthly funding increased from about $516 million to $676 million, while average monthly deal count fell from 24.4 to 22.3. Both periods had activity every month, so one unusually strong month cannot explain the difference.
+
+In practical terms, investors are doing fewer transactions and putting more money into each company they choose.
+
+## Is digital health funding moving toward later-stage companies?
+
+Digital health funding has moved slightly later, with Series A doing most of the weakening in the middle.
+
+Seed remains active. Its share of known-stage deals actually increased a little. Series D+ and Growth Equity also gained share.
+
+Series A went the other way, falling from 92 deals to 75. Its share dropped from 31.4% to 28.0%. Series B also lost some ground.
+
+Meanwhile, the later rounds became much larger. The Series D+ median climbed from $75 million to $120 million, and Growth Equity moved from about $31 million to $50 million.
+
+The market now looks more polarized. There is still plenty happening at Seed, and there is plenty of money available once a company becomes a proven growth asset. The middle is where the funding path looks less comfortable.
+
+Stage
+Current deal share
+Previous deal share
+Current median
+Previous median
+
+Seed
+32.8%
+31.7%
+$4.05M
+$3.74M
+
+Series A
+28.0%
+31.4%
+$16.0M
+$13.15M
+
+Series B
+11.9%
+13.0%
+$36.5M
+$33.5M
+
+Series C
+6.7%
+7.2%
+$81M
+$60M
+
+Series D+
+4.9%
+3.8%
+$120M
+$75M
+
+Growth Equity
+4.1%
+2.0%
+$50M
+$31.35M
+
+Unknown
+11.6%
+10.9%
+$6M
+$7.15M
+
+Some established players have been hit hard by new competition. Our digital health market report shows who's losing ground and why.
+
+## Which digital health categories are really gaining momentum?
+
+Virtual care has the cleanest broad momentum in digital health right now, while care navigation is attracting much larger scale-up rounds.
+
+Virtual care managed to grow capital while keeping deal activity stable. That is a stronger foundation than a category whose funding jumps because one company closes an enormous round.
+
+Care navigation is moving differently. Deal count fell, yet funding more than doubled. Garner Health captures that pattern well: it raised $118 million and then another $100 million during the latest period. Investors appear happy to put very large amounts behind care-navigation platforms that have already reached meaningful scale.
+
+Clinical workflow remains the busiest category by deal count, although its grip on funding dollars weakened sharply. Even a $120 million Series D+ for Candid Health was not enough to stop total category capital from falling compared with the previous period.
+
+Health data infrastructure also became more selective. It had fewer deals and less total capital, while its median financing rose substantially. Function Health's $298 million Series B shows how large individual checks can coexist with shrinking category breadth.
+
+Category
+Deals current / previous
+Capital current / previous
+Median current / previous
+Read on the shift
+
+Clinical Workflow
+101 / 115
+$2.81B / $3.52B
+$14.0M / $12.74M
+Losing dollar share
+
+Virtual Care
+67 / 66
+$1.87B / $1.16B
+$14.5M / $10M
+Broad improvement
+
+Remote Monitoring
+32 / 34
+$1.53B / $839M
+$16.35M / $11M
+Dominated by one huge round
+
+Patient Engagement
+28 / 28
+$513M / $531M
+$6.5M / $5.95M
+Fairly stable
+
+Care Navigation
+24 / 28
+$1.11B / $538M
+$19.5M / $15.75M
+Larger scale-up bets
+
+Health Data Infrastructure
+16 / 22
+$607M / $771M
+$17M / $10.75M
+Fewer companies, bigger typical checks
+
+## Is remote monitoring actually booming, or is Neko Health skewing the market?
+
+Neko Health explains almost all of remote monitoring's apparent funding surge.
+
+Remote-monitoring companies raised about $1.53 billion during the latest period, compared with $839 million before. Neko's $700 million Series C accounts for essentially the entire increase. Remove that financing and current category capital falls to roughly $830 million, almost exactly where it was one year earlier.
+
+Deal activity gives us the same answer: remote monitoring went from 34 rounds to 32. There was no wave of new transactions underneath the dollar increase.
+
+Neko itself is a useful example of what attracts huge funding today. The company said more than 100,000 people had already completed scans in the UK and Sweden, while more than 350,000 people had joined its waitlist or registered. The new capital is helping fund its U.S. expansion.
+
+For now, remote monitoring looks like a stable category carrying one exceptional company, rather than a category-wide funding boom.
+
+When a market shifts, the old leaders don't always survive. We look at who's paying the price in our digital health market report .
+
+## Is virtual care really back?
+
+Virtual care looks genuinely stronger today because the category held its deal count while both capital and the typical round grew.
+
+Virtual-care funding increased from $1.16 billion to $1.87 billion across almost exactly the same number of deals: 66 previously and 67 now. The median round moved from $10 million to $14.5 million.
+
+That is a much healthier type of category acceleration than one driven by a single giant deal.
+
+Talkiatry is one example of what investors are backing. Its $210 million Series D went into a telepsychiatry business that had already passed two million patient visits and built a large psychiatrist network. The money was tied to further technology investment and expansion.
+
+The category has moved far beyond the old question of whether patients will accept virtual care at all. Investors are now financing companies that have proved demand and want to make the delivery model bigger, broader and more efficient.
+
+## Are digital health investors getting more selective now?
+
+Digital health investors look more selective today: the active lead-investor pool shrank, and corporate investors joined fewer rounds.
+
+We identified 232 unique disclosed lead investors in the latest period, compared with 274 previously. Yet the number of lead investors appearing multiple times barely changed, from 36 to 35.
+
+That suggests the recurring core of the market stayed active while many occasional participants disappeared. Andreessen Horowitz led or co-led seven rounds in our data, General Catalyst four, and several firms including Bessemer, Define Ventures, Lightspeed, Santé Ventures and Spark Capital appeared three times.
+
+Corporate and strategic participation fell even faster. Strategic investors were involved in 53 rounds, down from 77. The pullback was especially visible at Seed and Series A, while activity held up better at later stages.
+
+Strategic money still shows up when companies get large. Function Health's Series B included Samsung Next, Garner Health brought in healthcare strategics including Kaiser Permanente Ventures and Mercy, and several remote-monitoring financings also included industry investors. These days, though, founders should not assume a corporate investor will be part of an ordinary early-stage round.
+
+Investor metric
+Current L12M
+Previous 12M
+
+Unique disclosed lead investors
+232
+274
+
+Lead investors appearing >1×
+35
+36
+
+Strategic-backed deals
+53
+77
+
+Strategic participation rate
+19.8%
+26.3%
+
+Strategic-backed Seed rounds
+5
+13
+
+Strategic-backed Series A rounds
+15
+24
+
+Strategic-backed Series C rounds
+5
+10
+
+Strategic-backed Series D+ rounds
+6
+6
+
+Does the funding match reality? Our digital health market report looks at the data behind the deals.
+
+## Are digital health companies raising again faster, and are round step-ups getting bigger?
+
+The observable digital health follow-ons are slower and their median step-up is smaller, although the historical coverage is too uneven for a market-wide verdict.
+
+For companies where we could reliably reconstruct an earlier round, the median gap between financings increased from 8.7 months to 13.9 months. Only 44.8% returned within 12 months, compared with 63.6% in the previous cohort.
+
+Round-size step-ups softened as well. The median new-round-to-previous-round ratio moved from 2.38× to 2.06×, while the share of rounds exceeding a 2× step-up fell from 60.6% to 50%.
+
+We would give these numbers less weight than the stage or deal-size comparisons. Previous-round history could be reconstructed for 29.6% of current follow-ons but only 14.7% of the earlier cohort, which is too large a coverage gap for a strong market-wide claim.
+
+The exceptions are revealing anyway. OpenEvidence raised $210 million, then $200 million, then $250 million across three rounds in roughly six months. That sort of fundraising speed is available to a small group of breakout companies, even while the observable market as a whole shows no broad acceleration.
+
+## Is Europe really taking a bigger share of digital health funding?
+
+Europe's higher share of digital health funding mostly comes from Neko Health, while Asia-Pacific is broadening through smaller rounds.
+
+European companies captured 19.8% of capital in the latest period, up from 15.3%, with virtually no change in their share of deals. At first glance, that looks like a meaningful shift of capital toward Europe.
+
+Neko changes the picture. European funding increased by roughly $550 million, less than Neko's $700 million Series C alone. Excluding that one round, European capital actually falls by about 13%.
+
+North America still accounts for more than two-thirds of deals and more than three-quarters of capital.
+
+Asia-Pacific moved in another direction. Deal count increased from 14 to 19, while the median round fell from $6.4 million to $2.6 million. More companies are getting financed there, but they are doing so with considerably smaller checks.
+
+## Do digital health companies need more proof to raise big rounds now?
+
+For the biggest digital health rounds today, investors increasingly seem to want evidence that the business already works at scale.
+
+Look at several of the companies receiving the largest checks. Neko had already completed more than 100,000 scans before raising $700 million for further expansion. Talkiatry had passed two million patient visits before its $210 million Series D. OpenEvidence managed three enormous follow-on rounds in quick succession after gaining strong adoption among physicians.
+
+Garner Health also returned for two nine-figure rounds during the latest period. Function Health raised $298 million as it expanded a preventive-health platform built around longitudinal health data. These companies are raising capital to push businesses that already have customers, usage and operating infrastructure much further.
+
+We cannot turn this into a clean market-wide milestone percentage. Milestones and use of funds are described inconsistently in public announcements, and we would rather leave that gap visible than invent a standardized measure from incomplete descriptions.
+
+Still, the shape of the market is hard to miss. Small first rounds remain available to young startups, while the really large pools of capital are clustering around companies that can show investors something concrete beyond a product idea.
+
+Not every big name makes it. Our digital health market report looks at who stumbled, why, and what the survivors did differently.
+
+## Does being an AI health company still make you special to investors?
+
+AI still helps digital health companies attract capital, but AI alone is becoming too common to define a separate funding lane.
+
+Rock Health found that AI-enabled companies captured 62% of U.S. digital-health venture dollars in the first half of 2025. Their average round was also substantially larger, and the premium showed up at Series A and Series B as well as in the giant growth rounds.
+
+By early 2026, Rock Health stopped tracking AI-enabled digital health companies as a separate funding group because AI had become embedded across so many products. That fits what we see in the deal mix.
+
+OpenEvidence sits inside clinical workflow. Candid Health uses automation and AI inside revenue-cycle infrastructure. Function Health combines longitudinal health data with AI-supported interpretation. Care navigation, virtual care and health-data platforms are all adding AI without becoming an entirely separate market.
+
+So saying a company “uses AI” tells us less than it did a couple of years ago. Investors increasingly want to know whether the AI helps the company win customers, embed itself into clinical or administrative workflows, improve economics, or scale faster. Those outcomes are much harder to fake with a pitch deck.
+
+## What really changed over the last 12 months?
+
+Digital health funding became a better market for selected winners and a tougher market for everyone trying to get through the middle.
+
+Most importantly, funding breadth weakened. Fewer deals closed, fewer companies received money, and the pool of active lead investors became smaller. The rise in total dollars can easily hide that contraction.
+
+Capital also became more concentrated. Megadeals explain most of the headline improvement, and nine-figure rounds now absorb an unusually large part of the market. The typical round still grew, so the stronger financing environment extends beyond a couple of giant transactions, but it clearly favors companies that already stand out.
+
+The stage mix became more polarized. Seed remains alive, and first financings actually increased. Series A is where the weakness is easiest to see. At the other end, Series D+ and Growth Equity companies are raising much larger rounds.
+
+Among categories, virtual care has the strongest broad momentum because both the underlying activity and financing sizes improved. Care navigation is attracting bigger bets on fewer companies. Remote monitoring looks far less exciting once Neko Health is removed.
+
+Investor behavior also became more selective. The recurring venture firms remain active, while occasional lead investors and strategic participants are less visible than they were a year earlier.
+
+Finally, the biggest checks are increasingly going to businesses that already look scalable. The market still funds young companies, but the path to a $100 million-plus round now runs through adoption, customers, usage or a similarly concrete form of proof. That is the biggest structural change behind the funding numbers.
+
+## OUR METHODOLOGY
+
+This analysis compares two consecutive 12-month periods to understand what changed in digital health funding: September 20, 2025 through September 19, 2026, and September 20, 2024 through September 19, 2025. The goal was to build the most analytically reliable picture of fundraising activity possible rather than reproduce the output of a single funding database.
+
+We counted qualifying private-company equity financings that met our inclusion rules. Debt, grants, loans, public offerings, unconverted convertibles, SAFEs, and mixed financings where the equity portion could not be isolated were excluded. We also used a strict digital-health definition: the activity had to represent the company's core business at the time of the financing.
+
+Each financing was treated as a separate deal, while duplicate reports of the same round were consolidated. Extensions, additional closes and tranches were reviewed individually. Dates, stages, investors, previous rounds, company age and other deal details were recorded only when there was enough public evidence; we did not infer stages from round size or assume that a prominent investor was the lead.
+
+We kept different kinds of missing information separate. A field that genuinely did not apply was treated differently from one that was not publicly disclosed or could not be established reliably. Where credible sources disagreed or financing structures made comparisons difficult, we preserved that uncertainty rather than forcing a cleaner datapoint.
+
+After compiling the deals, we ran a separate quality-control pass focused on missing financings, date boundaries, equity eligibility, digital-health fit and duplicates. Stage and deal-size comparisons have broadly comparable coverage between periods. Company-age analysis has weaker recent coverage, while previous-round timing and step-up calculations are much more incomplete and are treated as directional.
+
+We also tested how much the funding rebound depended on large rounds by recalculating capital after removing deals above $50 million and $100 million. Category, stage, region, investor-participation and first-financing comparisons were then calculated from the cleaned deal-level dataset.
+
+Key sources used for cross-checking include Rock Health's 2025 year-end digital health funding overview , Rock Health's Q1 2026 funding overview , Rock Health's H1 2025 market overview , and Rock Health's Q3 digital health funding analysis .
+
+Primary and company-level checks included Neko Health on its $700 million Series C , Neko Health on its U.S. launch , Talkiatry's press materials , Talkiatry's $210 million Series D announcement , OpenEvidence's $210 million financing announcement , Function Health's $298 million Series B announcement , Garner Health's $118 million financing announcement , Garner Health's subsequent $100 million round , and Sixth Street on Candid Health's $120 million financing .
+
+Additional cross-checks included Abridge's Series E announcement , Midi Health's Series D announcement , Truveta's health-system announcement , Sibel Health's Series C extension announcement , Cohere Health's $90 million Series C announcement , and NexHealth's Series C materials .
+
+Our guiding principle was simple: we would rather keep an uncertain datapoint visibly uncertain than make the dataset look cleaner by filling gaps with unsupported assumptions.
+
+Price is often what holds a market back. See how fast that's changing in our digital health market report .
+
+Related blog posts
+
+- What are the funding trends in digital health right now?
+
+- What are the top digital health startups by total funding raised?
+
+- Digital Health Funding: A Quarter-by-Quarter Analysis
+
+- What are the latest funding news in the digital health market? (October 2026)
+
+- Digital Health Funding Tracker (773 deals)
+
+Who is the author of this content?
+
+NEW MARKET PITCH TEAM
+
+We track new markets so founders and investors can move faster
+
+We build living “market pitch” documents for emerging markets: from AI to synthetic biology and new proteins. Instead of digging through outdated PDFs, random blog posts, and hallucinated LLM answers, our clients get a clean, visual, always-updated view of what’s really happening. We map the key players, deals, regulations, metrics and signals that matter so you can decide faster whether a market is worth your time. Want to know more? Check out our about page . You can also follow us on Instagram or on Facebook .
+
+How we created this content 🔎📝
+
+At New Market Pitch, we kept seeing the same problem: when you look at a new market, the data is either missing, paywalled, or buried in 300-page reports that feel like they were written in the 80s. On the other side, LLMs and random blog posts give you confident answers with no sources, and sometimes they just make things up. That’s not good enough when you’re about to invest real money or launch a company.
+
+So we decided to fix the experience. For each market we cover, we build a structured database and update it on a regular basis. We track funding rounds, fund memos, M&A moves, partnerships, new products, policy changes, and the real activity of startups and incumbents. Then we turn all of that into a clear “market pitch” that shows where the opportunities are and how people actually win in that space.
+
+Every key data point is checked, sourced, and put back into context by our team. That’s how we can give you both speed and reliability: fast coverage of new markets, without the usual guesswork.
+
+Choosing a selection results in a full page refresh.
+
+Opens in a new window.

@@ -1,0 +1,1746 @@
+{
+ "id": "386c902e-afca-463e-bf57-3dd3031d2eef",
+ "brief": {
+  "name": "Benchmark",
+  "role": "Founder",
+  "company": "CardioLoop",
+  "product": "Wearable ECG patch with AI arrhythmia detection",
+  "description": "Medical device startup in Spain developing a wearable ECG patch with cloud AI to detect atrial fibrillation. CE marking in progress.",
+  "industry": "medtech cardiology wearable AI",
+  "stage": "prototype",
+  "geography": "Spain (EU-incorporated company)",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "investment"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 1200000,
+  "minDays": 30,
+  "useTeam": false,
+  "useApify": false,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "",
+  "venture": "CardioLoop",
+  "oneLiner": "Wearable ECG patch with AI arrhythmia detection",
+  "round": "seed",
+  "constraints": "Medical device regulation (MDR) compliance required",
+  "useOfFunds": "Clinical validation study, CE marking, first 500 devices",
+  "timeline": "18 months",
+  "website": "",
+  "entityType": "for_profit",
+  "country": "Spain",
+  "state": "",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: CardioLoop · Wearable ECG patch with AI arrhythmia detection: investment · prototype · seed · Spain (EU-incorporated company) · USD 1200000 · avoid: Medical device regulation (MDR) compliance required",
+   "at": "2026-10-14T17:55:11.560Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 6 phrasings separately: medtech cardiology wearable AI · cardiac monitoring AI wearables · AI-driven ECG patch · digital health cardiology funding · wearable heart rhythm detection · wearables",
+   "at": "2026-10-14T17:55:13.883Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T17:55:14.202Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 1 candidates with provenance.",
+   "at": "2026-10-14T18:01:31.869Z"
+  },
+  {
+   "phase": "warning",
+   "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+   "at": "2026-10-14T18:01:32.762Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 4 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T18:01:32.774Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Drafts built from templates and public facts; nothing is sent.",
+   "at": "2026-10-14T18:01:34.007Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 4 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T18:01:34.102Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": "Jennifer Law",
+   "role": "Women’s Health Director",
+   "org": "Philips Ventures",
+   "title": "Women’s Health Director at Philips Ventures",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "jennifer.law@philips.com",
+    "provenance": "Hunter.io · philips.com · confidence 99% · valid · seen on 4 public pages"
+   },
+   "evidence": [
+    {
+     "id": "fafed56d2af3476dc77f",
+     "source": "Web research engine · philips.com",
+     "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+     "quote": "Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T18:01:31.858Z",
+     "verified": true
+    },
+    {
+     "id": "22f8a1278c633d11f7b6",
+     "source": "Hunter.io · philips.com",
+     "url": "https://usa.philips.com/healthcare/customer-story/remote-patient-monitoring-maternal-health-improving-outcomes",
+     "quote": "Jennifer Law · Women’s Health Director · jennifer.law@philips.com (Hunter.io · philips.com · confidence 99% · valid · seen on 4 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T18:01:32.760Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Women’s Health Director health Philips Ventures Philips Ventures Philips Ventures | Philips Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "philips.com",
+     "objective": "investment",
+     "query": "domain-search philips.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:philips.com:jennifer law",
+   "linkedin": "https://www.linkedin.com/in/jenniferlaw13",
+   "parentKey": "opportunity:engine:investment:https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "followUp": {
+    "from": "Philips Ventures",
+    "question": "Who decides at Philips Ventures?"
+   },
+   "key": "person:jennifer law:philips ventures",
+   "id": "ae370eec95c6846d288a",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "digital health cardiology funding"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches digital health cardiology funding in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: Spain (EU-incorporated company). Stage fit prototype: to validate.",
+    "Declared constraints to review: Medical device regulation (MDR) compliance required",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 1,
+   "jev": {
+    "leadId": "ae370eec95c6846d288a",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.68,
+    "fitConfidence": 0.73,
+    "evidenceSufficient": 0.41,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Jennifer Law yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Jennifer for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Jennifer has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Juan Sanabria",
+   "role": "Director General",
+   "org": "Philips Ventures",
+   "title": "Director General at Philips Ventures",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "juan.sanabria@philips.com",
+    "provenance": "Hunter.io · philips.com · confidence 99% · valid · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "fafed56d2af3476dc77f",
+     "source": "Web research engine · philips.com",
+     "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+     "quote": "Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T18:01:31.858Z",
+     "verified": true
+    },
+    {
+     "id": "3b28433dcfad633a4998",
+     "source": "Hunter.io · philips.com",
+     "url": "https://cesevillatechpark.com/jose-luis-manzanares-ceo-de-ayesa-se-suma-a-la-alianza-ceoporladiversidad-liderada-por-fundacion-adecco-y-fundacion-ceoe",
+     "quote": "Juan Sanabria · Director General · juan.sanabria@philips.com (Hunter.io · philips.com · confidence 99% · valid · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T18:01:32.760Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Director General executive Philips Ventures Philips Ventures Philips Ventures | Philips Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "philips.com",
+     "objective": "investment",
+     "query": "domain-search philips.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:philips.com:juan sanabria",
+   "parentKey": "opportunity:engine:investment:https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "followUp": {
+    "from": "Philips Ventures",
+    "question": "Who decides at Philips Ventures?"
+   },
+   "key": "person:juan sanabria:philips ventures",
+   "id": "e034c43d8eb7d617aa3d",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "digital health cardiology funding"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches digital health cardiology funding in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: Spain (EU-incorporated company). Stage fit prototype: to validate.",
+    "Declared constraints to review: Medical device regulation (MDR) compliance required",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 2,
+   "jev": {
+    "leadId": "e034c43d8eb7d617aa3d",
+    "action": "investigate_more",
+    "actionConfidence": 1,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 1,
+     "discard": 0
+    },
+    "strategicFit": 1.84,
+    "fitConfidence": 0.85,
+    "evidenceSufficient": 0.41,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Juan Sanabria yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Juan for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Juan has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Daniela Zaczek",
+   "role": "Director of Regulatory Affairs",
+   "org": "Philips Ventures",
+   "title": "Director of Regulatory Affairs at Philips Ventures",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "daniela.zaczek@philips.com",
+    "provenance": "Hunter.io · philips.com · confidence 99% · valid · seen on 3 public pages"
+   },
+   "evidence": [
+    {
+     "id": "fafed56d2af3476dc77f",
+     "source": "Web research engine · philips.com",
+     "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+     "quote": "Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T18:01:31.858Z",
+     "verified": true
+    },
+    {
+     "id": "50e8ad26914871d3da42",
+     "source": "Hunter.io · philips.com",
+     "url": "https://www.google.com/search?q=site:linkedin.com%20daniela%20zaczek%20philips",
+     "quote": "Daniela Zaczek · Director of Regulatory Affairs · daniela.zaczek@philips.com (Hunter.io · philips.com · confidence 99% · valid · seen on 3 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T18:01:32.760Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Director of Regulatory Affairs legal Philips Ventures Philips Ventures Philips Ventures | Philips Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "philips.com",
+     "objective": "investment",
+     "query": "domain-search philips.com"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:philips.com:daniela zaczek",
+   "linkedin": "https://www.linkedin.com/in/daniela-zaczek-86543b18",
+   "parentKey": "opportunity:engine:investment:https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "followUp": {
+    "from": "Philips Ventures",
+    "question": "Who decides at Philips Ventures?"
+   },
+   "key": "person:daniela zaczek:philips ventures",
+   "id": "fa904f61aba03ea4d2d2",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "digital health cardiology funding"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches digital health cardiology funding in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: Spain (EU-incorporated company). Stage fit prototype: to validate.",
+    "Declared constraints to review: Medical device regulation (MDR) compliance required",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 3,
+   "jev": {
+    "leadId": "fa904f61aba03ea4d2d2",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.99,
+     "discard": 0
+    },
+    "strategicFit": 1.77,
+    "fitConfidence": 0.77,
+    "evidenceSufficient": 0.47,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Daniela Zaczek yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Daniela for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Daniela has seen 4 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Philips Ventures",
+   "title": "Philips Ventures",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "web",
+    "value": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+    "provenance": "Read and verified on philips.com"
+   },
+   "evidence": [
+    {
+     "id": "fafed56d2af3476dc77f",
+     "source": "Web research engine · philips.com",
+     "url": "https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+     "quote": "Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T18:01:31.858Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Philips Ventures Philips Ventures | Philips Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "A wearable ECG patch with AI arrhythmia detection is a health‑technology solution that improves outcomes and transforms care.",
+     "fundsQuote": "We collaborate with health technology start-ups that share our passion to improve outcomes, reduce costs and transform the healthcare experience for patients and clinicians.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Darran Fischer",
+     "role": "Managing Director",
+     "email": "darran.fischer@philips.com",
+     "organization": "Philips",
+     "linkedin": "http://www.linkedin.com/in/darranfischer",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Jacqueline Phillips-Matshidiso",
+     "role": "Managing Director",
+     "email": null,
+     "organization": "Philips",
+     "linkedin": "http://www.linkedin.com/in/jacqueline-phillips-matshidiso-35194497",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Denise Ca***t",
+     "role": "Managing Director",
+     "email": null,
+     "organization": "Philips",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Philips Ventures is the strategic venture capital group of Royal Philips, investing in early- and growth-stage health technology start-ups that address unmet needs aligned with Philips' businesses. They provide capital, guidance on regulatory and clinical strategies, business models, technical and c"
+   },
+   "key": "opportunity:engine:investment:https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+   "id": "515fb6b087538c6c4c0a",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "digital health cardiology funding"
+   ],
+   "score": 29,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches digital health cardiology funding in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: Spain (EU-incorporated company). Stage fit prototype: to validate.",
+    "Declared constraints to review: Medical device regulation (MDR) compliance required",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 4,
+   "jev": {
+    "leadId": "515fb6b087538c6c4c0a",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.52,
+    "fitConfidence": 0.59,
+    "evidenceSufficient": 0.11,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 120 days",
+    "built": false,
+    "cadenceDays": 120,
+    "updates": 4,
+    "why": "No one in your network connects to Philips Ventures yet. Funds invest in lines, not dots: 4 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Philips Ventures for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-02-11",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-06-11",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2028-02-06",
+      "what": "Update 4: show momentum since the last one."
+     },
+     {
+      "when": "2028-06-05",
+      "what": "Ask for a meeting in ~18 months: by then Philips Ventures has seen 4 updates."
+     }
+    ]
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T17:55:11.084Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:1",
+    "sequence": 1,
+    "at": "2026-10-14T17:55:14.158Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "CardioLoop · Wearable ECG patch with AI arrhythmia detection: investment · prototype · seed · Spain (EU-incorporated company) · USD 1200000 · avoid: Medical device regulation (MDR) compliance required",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "medtech cardiology wearable AI · cardiac monitoring AI wearables · AI-driven ECG patch · digital health cardiology funding · wearable heart rhythm detection · wearables"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection"
+      },
+      {
+       "provider": "Exa (semantic search)",
+       "query": "Full profile by goal (investment), with criteria and constraints"
+      },
+      {
+       "provider": "Funding rounds",
+       "query": "medtech cardiology wearable AI seed · Exa news o Serper"
+      },
+      {
+       "provider": "Serper (optional)",
+       "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection investment Spain (EU-incorporated company) "
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:2",
+    "sequence": 2,
+    "at": "2026-10-14T17:55:14.202Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:3",
+    "sequence": 3,
+    "at": "2026-10-14T18:01:31.861Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 1 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 1,
+    "durationMs": 377658,
+    "status": "success"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:4",
+    "sequence": 4,
+    "at": "2026-10-14T18:01:32.761Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 3 new people across 1 organizations (1 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 3,
+    "status": "success"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:5",
+    "sequence": 5,
+    "at": "2026-10-14T18:01:32.763Z",
+    "phase": "warning",
+    "title": "Limited coverage",
+    "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+    "status": "warning"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:6",
+    "sequence": 6,
+    "at": "2026-10-14T18:01:32.764Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:7",
+    "sequence": 7,
+    "at": "2026-10-14T18:01:32.770Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 6,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Benchmark",
+     "contacts": 0,
+     "candidates": 4,
+     "paths": []
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:8",
+    "sequence": 8,
+    "at": "2026-10-14T18:01:32.775Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 4 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 4,
+    "status": "running"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:9",
+    "sequence": 9,
+    "at": "2026-10-14T18:01:33.461Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "5 people found across 1 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 5,
+    "status": "success"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:10",
+    "sequence": 10,
+    "at": "2026-10-14T18:01:33.465Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:11",
+    "sequence": 11,
+    "at": "2026-10-14T18:01:33.996Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 4 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 4,
+    "durationMs": 531,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 2815,
+      "output_tokens": 344,
+      "cost": 0.00011823
+     }
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:12",
+    "sequence": 12,
+    "at": "2026-10-14T18:01:34.004Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 4 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 4,
+    "durationMs": 1228,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "Jennifer Law",
+       "org": "Philips Ventures",
+       "title": "Women’s Health Director at Philips Ventures",
+       "score": 32,
+       "why": "Matches digital health cardiology funding in the evidence.",
+       "bucket": "radar"
+      },
+      {
+       "name": "Juan Sanabria",
+       "org": "Philips Ventures",
+       "title": "Director General at Philips Ventures",
+       "score": 32,
+       "why": "Matches digital health cardiology funding in the evidence.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 0,
+      "radar": 4,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:13",
+    "sequence": 13,
+    "at": "2026-10-14T18:01:34.022Z",
+    "phase": "evaluating",
+    "title": "Warm paths for every candidate",
+    "message": "0 through your network; 4 to build with advice and updates before the round.",
+    "provider": "Warm path plan",
+    "resultCount": 4,
+    "status": "success"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:14",
+    "sequence": 14,
+    "at": "2026-10-14T18:01:34.098Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 138 pages read by the AI · 0 main list · 4 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:15",
+    "sequence": 15,
+    "at": "2026-10-14T18:01:34.101Z",
+    "phase": "drafting",
+    "title": "Drafts written",
+    "message": "4 drafts built from templates and public facts; nothing is sent.",
+    "resultCount": 4,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Jennifer Law",
+     "org": "Philips Ventures",
+     "subject": "Collaboration and fit",
+     "excerpt": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?"
+    }
+   },
+   {
+    "id": "386c902e-afca-463e-bf57-3dd3031d2eef:16",
+    "sequence": 16,
+    "at": "2026-10-14T18:01:34.103Z",
+    "phase": "completed",
+    "title": "Done with warnings",
+    "message": "0 candidates prioritized; 4 on radar.",
+    "resultCount": 4,
+    "status": "warning",
+    "detail": {
+     "jobStatus": "partial",
+     "usage": {
+      "Hunter.io": {
+       "calls": 1,
+       "results": 10,
+       "ms": 860,
+       "bytes": 0,
+       "costUsd": 0
+      }
+     },
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "partial",
+ "plan": {
+  "topic": "medtech cardiology wearable AI",
+  "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection",
+  "scientificQuery": "medtech cardiology wearable AI",
+  "summary": "CardioLoop · Wearable ECG patch with AI arrhythmia detection: investment · prototype · seed · Spain (EU-incorporated company) · USD 1200000 · avoid: Medical device regulation (MDR) compliance required",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "medtech cardiology wearable AI · cardiac monitoring AI wearables · AI-driven ECG patch · digital health cardiology funding · wearable heart rhythm detection · wearables"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection"
+   },
+   {
+    "provider": "Exa (semantic search)",
+    "query": "Full profile by goal (investment), with criteria and constraints"
+   },
+   {
+    "provider": "Funding rounds",
+    "query": "medtech cardiology wearable AI seed · Exa news o Serper"
+   },
+   {
+    "provider": "Serper (optional)",
+    "query": "medtech cardiology wearable AI Wearable ECG patch with AI arrhythmia detection investment Spain (EU-incorporated company) "
+   }
+  ],
+  "alzheimer": false,
+  "terms": [
+   {
+    "term": "medtech cardiology wearable AI",
+    "source": "yours"
+   },
+   {
+    "term": "cardiac monitoring AI wearables",
+    "source": "model"
+   },
+   {
+    "term": "AI-driven ECG patch",
+    "source": "model"
+   },
+   {
+    "term": "digital health cardiology funding",
+    "source": "model"
+   },
+   {
+    "term": "wearable heart rhythm detection",
+    "source": "model"
+   },
+   {
+    "term": "wearables",
+    "source": "lexicon"
+   }
+  ]
+ },
+ "engineDrops": [
+  {
+   "url": "https://revenuebase.ai/companies/medtech-venture-capital-companies/spain",
+   "title": "Top 18 Medtech venture capital companies based in Spain",
+   "reason": "not_a_funder",
+   "quote": "Top 18 Medtech venture capital companies based in Spain",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://revenuebase.ai/companies/medical-device-venture-capital-firms/spain",
+   "title": "Top 12 Medical device venture capital firms based in Spain",
+   "reason": "not_a_funder",
+   "quote": "Top 12 Medical device venture capital firms based in Spain",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026",
+   "title": "European HealthTech and MedTech Venture Capital Outlook 2026",
+   "reason": "scope_mismatch",
+   "quote": "Investors are aggressively deploying capital into companies that have already secured CE marking under MDR, viewing this certification as a defensible financial fortification.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://en.empresaexterior.com/espana-impulsa-la-salud-digital-monitor-cardiaco-no-invasivo-busca-distribuidores-e-inversion-global/",
+   "title": "Spain Promotes Digital Health: Non-Invasive Heart Monitor Seeks Distributors and Global Investment - Foreign Company",
+   "reason": "not_a_funder",
+   "quote": "Venture Capital Investors: A final Seed/Pre-Series A funding round of up to €800.000 (with investment tickets starting at €50.000) is being offered to complete the syndicate. We are seeking funds specializing in MedTech, HealthTech, or Life Sciences, Family Offices, Corporate Venture units, or exper",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://shizune.co/investors/medical-device-vc-funds-spain",
+   "title": "Top 50 Medical Device VC Funds &amp; Investors in Spain (October 2026) | Shizune",
+   "reason": "not_a_funder",
+   "quote": "This investor list is updated monthly from the Shizune investor database, ranked by number of investments in Spain Medical Device startup companies.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.philips.com/a-w/about/news/archive/standard/news/articles/20171130-philips-health-technology-ventures.html",
+   "title": "Philips Health Technology Ventures - News | Philips",
+   "reason": "not_a_funder:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.eurekanetwork.org/programmes-and-calls/investment-readiness/online-session-with-siemens-healthineers/",
+   "title": "Siemens Healthineers - Submission call for autonomous medical device challenge - Eureka Network",
+   "reason": "not_a_funder",
+   "quote": "The Investment Readiness Programme (IRP) is part of the European Partnership on Innovative SMEs. The partnership is co-funded by the European Union through Horizon Europe.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://seedblink.com/blog/top-angel-clubs-and-investment-networks-in-spain",
+   "title": "Blog Seedblink | Top angel clubs and investment networks in Spain",
+   "reason": "not_a_funder",
+   "quote": "Top angel clubs and investment networks in Spain",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.greenlight.guru/blog/top-50-venture-capital-firms-for-medical-device-startups",
+   "title": "Top 50 Venture Capital Firms for Medical Device Startups",
+   "reason": "not_a_funder",
+   "quote": "This list is a resource, not a ranking. We encourage you to explore the list fully, as there are many different types of funds represented with different portfolios, investment styles, and preferences on company growth stage.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.prnewswire.com/news-releases/fresenius-establishes-venture-fund-of-more-than-200-million-to-drive-healthcare-innovation-302833182.html",
+   "title": "Fresenius establishes venture fund of more than €200 million to drive healthcare innovation",
+   "reason": "not_a_funder:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.marketscreener.com/news/medtronic-announces-strategic-investment-in-pi-cardia-to-accelerate-innovation-for-complex-tavr-ce7858ddde8df22d",
+   "title": "Medtronic Announces Strategic Investment in Pi-Cardia to Accelerate Innovation for Complex TAVR | MarketScreener",
+   "reason": "scope_mismatch",
+   "quote": "focus on addressing the evolving needs of increasingly complex transcatheter aortic valve replacement (TAVR) patients",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.lsiusasummit.com/news/medical-technology-investment-trends-shaping-cardiovascular-innovation",
+   "title": "Medical Technology Investment: Trends Shaping Cardiovascular Innovation",
+   "reason": "not_a_funder:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://arrotek.com/en/your-guide-to-funding-opportunities-for-medical-device-development-in-europe/",
+   "title": "Guide to Funding Opportunities for Medical Device Development",
+   "reason": "not_a_funder",
+   "quote": "Guide to Funding Opportunities for Medical Device Development",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://een.ec.europa.eu/partnering-opportunities/ai-driven-non-invasive-cardiac-monitoring-medtech-company-seeks-commercial",
+   "title": "AI-driven non-invasive cardiac monitoring MedTech company seeks commercial distributors, e-health integrators, and venture investors for final €800K funding . |",
+   "reason": "not_a_funder",
+   "quote": "AI-driven non-invasive cardiac monitoring MedTech company seeks commercial distributors, e-health integrators, and venture investors for final €800K funding . | Enterprise Europe Network",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.tulankide.com/es/ademas-de-financiacion-mondragon-nos-da-acceso-a-su-extraordinario-ecosistema",
+   "title": "\"Además de financiación, MONDRAGON nos da acceso a su extraordinario ecosistema\" — TU Lankide: la actualidad de las cooperativas de MONDRAGON",
+   "reason": "not_a_funder:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://med-tech.world/",
+   "title": "MedTech World - The Leading MedTech Startup &amp; Investors Conference",
+   "reason": "not_a_funder",
+   "quote": "MedTech World - The Leading MedTech Startup & Investors Conference",
+   "deadline": null,
+   "objective": "investment"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "investment",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 271,
+    "seconds": 377,
+    "urls": 150,
+    "error": "GPTR_TIMEOUT 270s (se usan las páginas que alcanzó a leer)",
+    "registry": {
+     "on": false,
+     "numbers": 0,
+     "seeds": 0,
+     "notices": 0,
+     "brief": null,
+     "byNumber": null
+    }
+   },
+   "triage": {
+    "opened": 111,
+    "assessed": 40,
+    "by_status": {
+     "open": 2,
+     "upcoming": 1,
+     "rolling": 3,
+     "unknown": 79,
+     "closed": 26,
+     "unread": 39
+    }
+   },
+   "judge": {
+    "finalists": 17,
+    "calls": 17,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 1,
+    "people": 3,
+    "credits": 3,
+    "skipped": null,
+    "domains": [
+     "philips.com"
+    ]
+   },
+   "seconds": 106,
+   "opens": 138,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "hunter": {
+  "calls": 1,
+  "emailsAdded": 0,
+  "peopleAdded": 3,
+  "domains": 1,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://www.philips.com/a-w/about/innovation/philips-ventures.html",
+    "canonical_name": "Philips",
+    "official_domain": "philips.com",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "60daf1735343d30001482ffb",
+     "name": "Darran",
+     "title": "Managing Director",
+     "organization": "Philips",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://philips.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Darran · Managing Director · Philips"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "66fb6d0e4b82620001137589",
+     "name": "Jacqueline",
+     "title": "Managing Director",
+     "organization": "Philips",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://philips.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Jacqueline · Managing Director · Philips"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "5eebe36d6349d100011766db",
+     "name": "Thomas",
+     "title": "Managing Director",
+     "organization": "Philips",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://philips.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Thomas · Managing Director · Philips"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "66f7adc9a26e730001875185",
+     "name": "Denise",
+     "title": "Managing Director",
+     "organization": "Philips",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://philips.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Denise · Managing Director · Philips"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "66fb62404b826200010fcdab",
+     "name": "Arifin",
+     "title": "Managing Director",
+     "organization": "Philips",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://philips.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Arifin · Managing Director · Philips"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "Philips",
+     "to": "Darran",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Philips",
+     "to": "Jacqueline",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Philips",
+     "to": "Thomas",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Philips",
+     "to": "Denise",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Philips",
+     "to": "Arifin",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 1,
+  "calls": 2,
+  "creditsEstimated": 1,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(investment) 0 queries · 138 pages · 138 read",
+   "dimension": "engine",
+   "returned": 138,
+   "discovered": 1,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "CardioLoop",
+   "product": "Wearable ECG patch with AI arrhythmia detection",
+   "industry": "medtech cardiology wearable AI",
+   "geography": "Spain (EU-incorporated company)",
+   "stage": "prototype",
+   "round": "seed",
+   "fundingTypes": [
+    "investment"
+   ],
+   "constraints": "Medical device regulation (MDR) compliance required"
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 138,
+   "pagesRead": 138,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 1,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 4,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Other": 3,
+    "Eligibility not confirmed by the judge with a quote from the page": 1
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": null,
+  "comparePrompts": {
+   "investment": "Hoy es 2026-10-14. Actúa como investigador de capital de riesgo. Busca en la web INVERSORES (fondos, firmas de venture capital, ángeles o redes de ángeles) que invertirían en este proyecto:\n\n- Proyecto: CardioLoop: Wearable ECG patch with AI arrhythmia detection\n- Producto: Wearable ECG patch with AI arrhythmia detection\n- Sector: medtech cardiology wearable AI\n- Etapa: prototype / seed\n- Geografía: Spain (EU-incorporated company)\n- Constitución: constituida en ES\n- Monto objetivo: 1,200,000 USD\n- Restricciones: Medical device regulation (MDR) compliance required\n- Uso de fondos: Clinical validation study, CE marking, first 500 devices\n- Horizonte: 18 months\n\nTipo de entidad: empresa / startup con fines de lucro.\n\nREGLAS (estrictas):\n1. Solo páginas OFICIALES del inversor (su sitio, su portafolio o su tesis). Nada de blogs, noticias, listas ni agregadores, ni páginas de eventos.\n2. Debe invertir en esta etapa y sector, y en esta geografía. Si no es seguro, márcalo aparte.\n3. Dame la persona concreta que decide (socio o managing partner) solo si la página oficial la nombra con su cargo; si no, dime solo la firma. No incluyas ventas, marketing ni relaciones públicas.\n4. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Firma | URL oficial | Etapas y sectores en los que invierte (CITA LITERAL de su página) | Geografías | Cheque típico | Persona y cargo (si la página lo dice) | Por qué encaja | Estado (confirmado / dudoso).\nDespués una segunda tabla, «No pude confirmar». Al final, dime cuántos hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T18:01:34.102Z",
+ "usage": {
+  "Hunter.io": {
+   "calls": 1,
+   "results": 10,
+   "ms": 860,
+   "bytes": 0,
+   "costUsd": 0
+  }
+ },
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

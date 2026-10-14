@@ -1,0 +1,607 @@
+{
+ "today": "2026-10-14",
+ "numbers": [],
+ "registry": [],
+ "gptr": [
+  {
+   "url": "https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://luisllorens.substack.com/p/20-spanish-startups-to-watch-in-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.vectorhorizonte.com/guia-estrategica-financiacion-europea-2026-startups-pymes-biotecnologia",
+   "in_report": false
+  },
+  {
+   "url": "https://startupvalencia.org/icex-report-spanish-startup-ecosystem-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.pressdigital.es/articulo/economia/2026-10-08/6044578-startups-espana-rozan-4000-millones-invertidos-hasta-septiembre-49-megarrondas",
+   "in_report": false
+  },
+  {
+   "url": "https://fliarbi.com/companies/best-wearable-technology-companies-in-spain",
+   "in_report": false
+  },
+  {
+   "url": "https://revenuebase.ai/companies/medtech-venture-capital-companies/spain",
+   "in_report": false
+  },
+  {
+   "url": "https://biobase.whitefordresearch.com/companies/dawako-medtech",
+   "in_report": false
+  },
+  {
+   "url": "https://tracxn.com/d/explore/wearable-technology-startups-in-spain/__d9iSV2kpjlT8Q2lpOPIpwYh5DSEU-Lon4k9VA8VC9LE",
+   "in_report": false
+  },
+  {
+   "url": "https://f4.fund/firms/asabys-partners",
+   "in_report": false
+  },
+  {
+   "url": "https://f4.fund/firms/crb-health-tech",
+   "in_report": false
+  },
+  {
+   "url": "https://en.empresaexterior.com/Spain-promotes-digital-health%3B-non-invasive-heart-monitor-seeks-distributors-and-global-investment",
+   "in_report": false
+  },
+  {
+   "url": "https://www.ico.es/web/ico_en/axis-the-ico-s-venture-capital-subsidiary-has-invested-euros-5-million-in-tucuvi-care-s.l.-to-drive-its-growth-and-international-expansion",
+   "in_report": false
+  },
+  {
+   "url": "https://alejandromorales.es/idoven-cierra-una-ronda-de-2-millones-de-euros-junto-a-wayra-accel-partners-business-angels-de-primer-nivel-y-enisa",
+   "in_report": false
+  },
+  {
+   "url": "https://shizune.co/investors/medical-device-vc-funds-spain",
+   "in_report": false
+  },
+  {
+   "url": "https://shizune.co/investors/health-care-vc-funds-europe",
+   "in_report": false
+  },
+  {
+   "url": "https://aifundingtracker.com/top-ai-healthcare-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://www.ycombinator.com/companies/industry/digital-health",
+   "in_report": false
+  },
+  {
+   "url": "https://espananaciondigital.es/idoven-cierra-una-ronda-de-2-millones-de-euros-junto-a-wayra-accel-partners-business-angels-de-primer-nivel-y-enisa",
+   "in_report": false
+  },
+  {
+   "url": "https://www.elespanol.com/invertia/disruptores/ecosistema-startup/startups/20230908/gasol-suma-casillas-invierte-startup-estudia-corazon-traves-inteligencia-artificial/792420858_0.html",
+   "in_report": false
+  },
+  {
+   "url": "https://shizune.co/investors/profile/eoniq-fund",
+   "in_report": false
+  },
+  {
+   "url": "https://www.healthcare.digital/single-post/nelson-advisors-european-healthcare-technology-and-digital-health-venture-capital-trends-patterns",
+   "in_report": false
+  },
+  {
+   "url": "https://shizune.co/investors/fintech-vc-funds-spain",
+   "in_report": false
+  },
+  {
+   "url": "https://shizune.co/investors/proptech-vc-funds-spain",
+   "in_report": false
+  },
+  {
+   "url": "https://nmangels.com/nm-angels-announces-recent-investments-in-several-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://www.femaleswitch.com/boris_ai_app/tpost/ctto47ujj1-top-25-angel-investors-for-ai-startups-i",
+   "in_report": false
+  },
+  {
+   "url": "https://www.founderstoday.news/19-angel-investor-groups-for-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://seedlegals.com/resources/15-uk-angel-groups-that-invest-in-hardware-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://revenuebase.ai/companies/medical-device-venture-capital-firms/spain",
+   "in_report": false
+  },
+  {
+   "url": "https://f4.fund/firms/k-fund",
+   "in_report": false
+  },
+  {
+   "url": "https://www.webcapitalriesgo.com/kfund-participa-en-la-ronda-de-e37m-en-hilo-startup-que-mide-la-presion-arterial",
+   "in_report": false
+  },
+  {
+   "url": "https://tracxn.com/d/explore/healthtech-startups-in-spain/__ejF3IQnwhPAQ3uAclia0Q0zXqbtB4zXAqTWoewxmstQ",
+   "in_report": false
+  },
+  {
+   "url": "https://innotiv.group/mapas-de-datos/1-921-startups-healthtech-espanolas-y-un-solo-unicornio",
+   "in_report": false
+  },
+  {
+   "url": "https://angelinvestorsnetwork.com/startups/angel-investor-due-diligence-checklist-for-tech-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://www.foundra.ai/funding/healthcare-startup",
+   "in_report": false
+  },
+  {
+   "url": "https://www.enisa.es/en/financia-tu-empresa/lineas-de-financiacion/d/startups-y-pymes",
+   "in_report": false
+  },
+  {
+   "url": "https://www.intelectium.com/en/post/enisa-startups-espana",
+   "in_report": false
+  },
+  {
+   "url": "https://www.intelectium.com/en/enisa-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://biobase.whitefordresearch.com/companies/idoven",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/enisa-startups-y-pymes-innovadoras-enisa-empresa-nacional-de-innovacion-6beff272",
+   "in_report": false
+  },
+  {
+   "url": "https://innovating.works/ayuda/enisa/enisa-startups-y-pymes",
+   "in_report": false
+  },
+  {
+   "url": "https://meddeviceguide.com/blog/medical-device-startup-funding-guide-vc-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://capital-riesgo.es/en/articles/cdti-innovaci-n-will-allocate-up-to-1-817-billion-in-2026-in-grants-venture-capital-investment-public-procurement-and-soft-loans-for-business-r-d-i-technology-transfer-and-scaling",
+   "in_report": false
+  },
+  {
+   "url": "https://www.linkedin.com/posts/tech-funding-news_top-ai-startups-in-spain-2026-the-companies-activity-7462146647561764864-Mla9",
+   "in_report": false
+  },
+  {
+   "url": "https://seedscope.ai/blog/how-to-determine-what-your-startup-is-worth-(early-stage-valuation-guide-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://wewillcure.com/insights/news/funding-and-models/medtech-venture-funding-tracker",
+   "in_report": false
+  },
+  {
+   "url": "https://www.linkedin.com/pulse/medtech-weekly-capital-deployed-evidence-built-markets-dam%C3%A9-medarski-gqs2e",
+   "in_report": false
+  },
+  {
+   "url": "https://htdhealth.com/insights/venture-capital-trends-in-medtech-where-the-money-is-flowing",
+   "in_report": false
+  },
+  {
+   "url": "https://seedblink.com/blog/top-angel-clubs-and-investment-networks-in-spain",
+   "in_report": false
+  },
+  {
+   "url": "https://qubit.capital/blog/angel-investment-healthtech-expectations",
+   "in_report": false
+  },
+  {
+   "url": "https://www.openaeuropeancompany.com/blog/eu-startup-funding-guide",
+   "in_report": false
+  },
+  {
+   "url": "https://www.linkedin.com/posts/rociopillado_11-spanish-ai-startups-to-watch-according-activity-7449766855810088961-btO3",
+   "in_report": false
+  },
+  {
+   "url": "https://newmarketpitch.com/blogs/news/digital-health-top-startups-fundraising",
+   "in_report": false
+  },
+  {
+   "url": "https://capital-riesgo.es/es/articles/idoven-cierra-una-ronda-de-2-millones-de-euros-junto-a-wayra-accel-partners-business-angels-de-primer-nivel-y-enisa-",
+   "in_report": false
+  },
+  {
+   "url": "https://www.dicardiology.com/content/heartbeam-granted-patent-12-lead-electrocardiogram-ecg-patch-monitor-intended-detection",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grantbite.com/en/blog/funding-for-startups-in-spain-grants-loans-tax-relief",
+   "in_report": false
+  },
+  {
+   "url": "https://www.crescendo.ai/news/latest-vc-investment-deals-in-ai-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://www.linkedin.com/posts/seb-johnson_a-massive-flow-of-capital-in-european-tech-activity-7419291380088201216-DNf7",
+   "in_report": false
+  },
+  {
+   "url": "https://vestbee.com/insights/articles/top-vc-funds-in-spain-to-finance-your-startup",
+   "in_report": false
+  },
+  {
+   "url": "https://www.premoney.es/blog/valoracion-startups-pre-seed-seed-metodos",
+   "in_report": false
+  },
+  {
+   "url": "https://startup.google.com/alumni/stories/idoven",
+   "in_report": false
+  },
+  {
+   "url": "https://www.idoven.ai/blog/eit-health-funds-with-eu1-5m-the-assist-project-of-the-startup-idoven-for-early-diagnosis-of-myocardial-infarction",
+   "in_report": false
+  },
+  {
+   "url": "https://capital-riesgo.es/en/articles/la-colaboraci-n-entre-mondragon-ventures-y-corify-care-un-modelo-de-xito-",
+   "in_report": false
+  },
+  {
+   "url": "https://capital-riesgo.es/en/articles/virtest-technologies-secures-800-000-seed-funding-led-by-grow-venture-partners-to-transform-cardiac-surgery-through-ai",
+   "in_report": false
+  },
+  {
+   "url": "https://www.morganstanley.com/im/en-us/capital-seeker/about-us/news-and-insights/press-release/octagos-health-secures-43m-investment-led-by-morgan-stanley-expansion-capital.html",
+   "in_report": false
+  },
+  {
+   "url": "https://www.linkedin.com/posts/peterjameswalker_startups-founders-fundraising-activity-7344405634752069633-kF_Q",
+   "in_report": false
+  },
+  {
+   "url": "https://www.prnewswire.com/news-releases/octagos-health-secures-over-43-million-investment-to-advance-ai-driven-cardiac-device-monitoring-302192393.html",
+   "in_report": false
+  },
+  {
+   "url": "https://www.uhy-fay.com/en/blog/spanish-startup-law-how-to-certify-your-company-and-access-key-tax-benefits",
+   "in_report": false
+  },
+  {
+   "url": "https://hipnia.com/blog/due-diligence-startup-checklist-inversores",
+   "in_report": false
+  },
+  {
+   "url": "https://www.worldhealthexpo.com/insights/healthcare-management/betting-big-on-the-future-of-digital-health-investments",
+   "in_report": false
+  },
+  {
+   "url": "https://orangesoft.co/blog/grant-resources-for-health-tech-startups",
+   "in_report": false
+  },
+  {
+   "url": "https://www.cdti.es/sites/default/files/2026-05/20260519_innvierte_deep_start.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://dealroom.co/resources/europe-healthtech-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.powerfulmedical.com/webinars-events/esc-digital-and-ai-summit-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.fibao.es/convocatoria/b-b-17861-innovation-validation-call-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.expansion.com/mercados/fondos/2026/04/09/69d75b97e5fdea336d8b4575.html",
+   "in_report": false
+  },
+  {
+   "url": "https://cardio.jmir.org/2026/1/e85841",
+   "in_report": false
+  },
+  {
+   "url": "https://cincodias.elpais.com/companias/2026-07-27/onalabs-cierra-una-roda-de-93-millones-liderada-por-la-sepi-digital-para-su-tecnologia-de-salud.html",
+   "in_report": false
+  },
+  {
+   "url": "http://www.cdti.es/en/noticias/cdti-1817-millones-2026-ayudascdti-tecnologia-innovacion-transferencia-escalado",
+   "in_report": false
+  },
+  {
+   "url": "https://www.cdti.es/en/noticias/cdti-1817-millones-2026-ayudascdti-tecnologia-innovacion-transferencia-escalado",
+   "in_report": false
+  },
+  {
+   "url": "https://www.expertiot.es/recursos/mapa-ayudas-cdti-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.cdti.es/sites/default/files/2026-09/3._lic_2026_07.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.cdti.es/sites/default/files/2026-02/4._lica_2026_02.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.prosus.com/~/media/Files/P/prosus-corp-v2/documents/european-ai-report-2026.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://d1io3yog0oux5.cloudfront.net/_cc0795ef658fcabbd317d4117dc6d0a5/heartbeam/db/2293/21754/pdf/MKT-112+v4_HeartBeam+Investor+Deck+-+September+2026+FINAL.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.galengrowth.com/europe-digital-health-funding-q1-2026-analysis",
+   "in_report": false
+  },
+  {
+   "url": "https://mymedisage.com/newsletters/rhythm-revolution-ai-powered-holter-monitoring-breaks-new-ground-in-arrhythmia-detection",
+   "in_report": false
+  },
+  {
+   "url": "https://giovaclavijo-growthmarketing.com/2026/04/14/como-valorar-una-startup-en-espana-en-fase-seed-metodos-y-consejos",
+   "in_report": false
+  },
+  {
+   "url": "https://hub.causo.ai/guides/seed-valuation-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://businessangels.news/2025/11/11/que-busca-realmente-un-business-angel-en-una-startup-deeptech-en-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://oficius.es/informacion-oficial/boe/2026-05-29/real-decreto-4152026-27-mayo-que-regula-evaluacion-tecnologias-sanitarias-N448KQ",
+   "in_report": false
+  },
+  {
+   "url": "https://iasalut.cat/wp-content/uploads/2026/01/02-Guia-Marcaje-CE-2026.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.healthcare.digital/single-post/key-metrics-for-a-healthtech-and-medtech-company-to-raise-a-series-a-round-in-europe-in-today-s-envi",
+   "in_report": false
+  },
+  {
+   "url": "https://www.medtecheurope.org/research-and-innovation",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grandviewresearch.com/industry-analysis/wearable-cardiac-devices-market-report",
+   "in_report": false
+  },
+  {
+   "url": "https://www.dicardiology.com/content/heartbeam-presents-positive-results-its-artificial-intelligence-capabilities-detecting",
+   "in_report": false
+  },
+  {
+   "url": "https://www.rasph.com/spika-tech-eic-accelerator-vr-cardio-arrhythmia",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grandviewresearch.com/industry-analysis/smart-wearable-ecg-monitors-market-report",
+   "in_report": false
+  },
+  {
+   "url": "https://www.marketsandmarkets.com/Market-Reports/geography/ecg-sensor-patches-market/spain",
+   "in_report": false
+  },
+  {
+   "url": "https://ecosistemastartup.com/oasys-y-el-mercado-de-wearables-mentales-e380m-en-espana",
+   "in_report": false
+  },
+  {
+   "url": "https://medtechinnovator.org/cardiosense-inc-completes-15-1-million-series-a-financing-to-advance-artificial-intelligence-platform-for-heart-disease",
+   "in_report": false
+  },
+  {
+   "url": "https://digital.health/investors",
+   "in_report": false
+  },
+  {
+   "url": "https://www.openvc.app/investor-lists/angel-investors-healthtech",
+   "in_report": false
+  },
+  {
+   "url": "https://www.inven.ai/company-lists/top-12-medical-devices-investors-in-europe",
+   "in_report": false
+  },
+  {
+   "url": "https://www.openvc.app/investor-lists/medical-devices-investors",
+   "in_report": false
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Spanish_language",
+   "in_report": false
+  },
+  {
+   "url": "https://www.duolingo.com/course/es/en/Learn-Spanish",
+   "in_report": false
+  },
+  {
+   "url": "https://www.spanishenglish.com/learn-spanish",
+   "in_report": false
+  },
+  {
+   "url": "https://www.spanishboat.com/beginners-spanish-lessons",
+   "in_report": false
+  },
+  {
+   "url": "https://learnspanish.org/learn",
+   "in_report": false
+  },
+  {
+   "url": "https://arrotek.com/your-guide-to-funding-opportunities-for-medical-device-development-in-europe",
+   "in_report": false
+  },
+  {
+   "url": "https://flosonicsmedical.com/flosonics-medical-secures-5-million-in-seed-round-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://asabys.com/74-7-million-in-asabys",
+   "in_report": false
+  },
+  {
+   "url": "https://strategic-technologies.europa.eu/about/step-funding-and-programmes_en",
+   "in_report": false
+  },
+  {
+   "url": "https://arrotek.com/en/your-guide-to-funding-opportunities-for-medical-device-development-in-europe",
+   "in_report": false
+  },
+  {
+   "url": "https://www.conectaindustria.es/innovacion/cdti-abrira-octubre-convocatoria-138-millones-proyectos-i-d-consorcio/20260902063000015249.html",
+   "in_report": false
+  },
+  {
+   "url": "https://angelmatch.io/investors/by-market/digital-health",
+   "in_report": false
+  },
+  {
+   "url": "https://www.fiercehealthcare.com/health-tech/fierce-healthcare-fundraising-tracker-26",
+   "in_report": false
+  },
+  {
+   "url": "https://parsers.vc/startup/idoven.ai",
+   "in_report": false
+  },
+  {
+   "url": "https://venturemap.es/firm/1966",
+   "in_report": false
+  },
+  {
+   "url": "https://www.rasph.com/followhealth-eic-accelerator-remote-patient-monitoring",
+   "in_report": false
+  },
+  {
+   "url": "https://www.patsnap.com/resources/blog/articles/wearable-cardiac-monitor-technology-landscape-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.delveinsight.com/report-store/cardiac-monitoring-devices-market",
+   "in_report": false
+  },
+  {
+   "url": "https://www.coherentmarketinsights.com/market-insight/cardiac-monitoring-devices-market-1272",
+   "in_report": false
+  },
+  {
+   "url": "https://www.medicalgorithmics.com/medicalgorithmics-rozwija-pipeline-badan-ai-ukierunkowany-na-automatyczna-diagnostyke-i-profilaktyke-kardiologiczna-w-skali-populacyjnej",
+   "in_report": false
+  },
+  {
+   "url": "https://www.cureusjournals.com/articles/10001-exploring-the-future-of-artificial-intelligence-enhanced-wearable-electronics-for-real-time-arrhythmia-detection.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.mdpi.com/1424-8220/21/7/2539",
+   "in_report": false
+  },
+  {
+   "url": "https://clinicscardiology.com/article/artificial-intelligence-in-arrhythmia-detec-tion-from-wearables-to-implantables",
+   "in_report": false
+  },
+  {
+   "url": "https://alidrg.substack.com/p/health-start-ups-funding-programs",
+   "in_report": false
+  },
+  {
+   "url": "https://www.escardio.org/data-science/supporting-your-research/eu-funding-calls-for-proposals",
+   "in_report": false
+  },
+  {
+   "url": "https://sede.camara.es/sede/tramites/TR0000006261/documento/002900048948",
+   "in_report": false
+  },
+  {
+   "url": "https://projectstartups.com/pages/healthcare-europe",
+   "in_report": false
+  },
+  {
+   "url": "https://www.sesamers.com/funding/implicity-raises-35m-growth-cardiac-monitoring",
+   "in_report": false
+  },
+  {
+   "url": "https://www.eibir.org/open-funding-calls",
+   "in_report": false
+  },
+  {
+   "url": "https://odelletechnology.com/how-to-access-spains-new-nhs-financing-pathway",
+   "in_report": false
+  },
+  {
+   "url": "https://mtrconsult.com/market-access-medical-technologies-spain",
+   "in_report": false
+  },
+  {
+   "url": "https://www.galengrowth.com/product/digital-health-innovation-in-cardiovascular-diseases",
+   "in_report": false
+  },
+  {
+   "url": "https://www.idoven.ai/publications",
+   "in_report": false
+  },
+  {
+   "url": "https://www.irhythmtech.com/us/en/solutions-services/fda-cleared-ai",
+   "in_report": false
+  },
+  {
+   "url": "https://empresaexterior.com/espana-impulsa-la-salud-digital-monitor-cardiaco-no-invasivo-busca-distribuidores-e-inversion-global",
+   "in_report": false
+  },
+  {
+   "url": "https://innotiv.group/dealflow/monitoring-life-e2m-de-serie-a-para-que-la-insuficiencia-cardiaca-se-monitorice-sin-salir-de-casa",
+   "in_report": false
+  },
+  {
+   "url": "https://tscfo.com/en/cdti-an-overview-and-tips-for-success",
+   "in_report": false
+  },
+  {
+   "url": "https://www.intelectium.com/en/post/financiacion-cdti-preguntas-frecuentes",
+   "in_report": false
+  },
+  {
+   "url": "https://dealroom.co/guides/spain",
+   "in_report": false
+  },
+  {
+   "url": "https://news.crunchbase.com/venture/european-funding-nudged-higher-ai-led-2025",
+   "in_report": false
+  },
+  {
+   "url": "https://www.sec.gov/Archives/edgar/data/1388658/000138865825000028/irtc-20241231.htm",
+   "in_report": false
+  },
+  {
+   "url": "https://www.venturecapitaljournal.com/cardiologs-technologies-raises-6-4-mln",
+   "in_report": false
+  },
+  {
+   "url": "https://venturemap.es/firm/129",
+   "in_report": false
+  },
+  {
+   "url": "https://www.healthncp.net/find-open-calls?page=1",
+   "in_report": false
+  },
+  {
+   "url": "https://www.theglobalfund.org/en/resilient-sustainable-systems-for-health/digital-health",
+   "in_report": false
+  }
+ ]
+}

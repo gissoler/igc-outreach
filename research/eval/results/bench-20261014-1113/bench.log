@@ -1,0 +1,182 @@
+Banco nocturno → eval/results/bench-20261014-1113 
+Juez 8016: responde. Compilador 8017: responde.
+[11:13:30] caso 1/6: g1-mint-ad
+[gptr 16:13:31] runObjective(grant): usa GPT Researcher
+[engine 11:13:32] grant: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 16:13:32] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:13:32] prompt (2595 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-6AhId9/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-6AhId9/gptr.log
+[gptr 16:13:35] registro: 6 búsquedas + 0 números → 152 oportunidades, 9 cerradas, 0 no elegibles por tipo de solicitante, 15 al juez (vía simpler) + 3 avisos completos
+[gptr 16:13:47] 15s · fuentes leídas 0 · última línea: INFO: [11:13:46] 🌐 Browsing the web to learn more about the task: Alzheimer’s Association research grant digital health 2026 open call...
+[gptr 16:14:02] 30s · fuentes leídas 121 · última línea: 💸 Total Research Costs: $0.01871
+[gptr 16:14:17] 45s · fuentes leídas 151 · última línea: 💸 Total Research Costs: $0.018235
+[gptr 16:14:32] 60s · fuentes leídas 198 · última línea: Content too short or empty for https://www.frontiersin.org/journals/dementia/articles/10.3389/frdem.2026.1719740/full, treating as fetch fai
+[gptr 16:14:47] 75s · fuentes leídas 198 · última línea: INFO: [11:14:45] 🤔 Planning the research strategy and subtasks...
+[gptr 16:15:02] 90s · fuentes leídas 222 · última línea: 💸 Total Research Costs: $0.01021
+[gptr 16:15:17] 105s · fuentes leídas 276 · última línea: 💸 Total Research Costs: $0.013680000000000001
+[gptr 16:15:32] 120s · fuentes leídas 276 · última línea: ✅ Generated 2 queries: ['Maryland SBIR/STTR Incentive Program eligibility criteria and required documentation for healthcare AI startups app
+[gptr 16:15:47] 135s · fuentes leídas 317 · última línea: Content too short or empty for https://research.jhu.edu/rdt/about-arpa-h/, treating as fetch failure
+[gptr 16:16:02] 150s · fuentes leídas 321 · última línea: 💸 Total Research Costs: $0.009840000000000002
+[gptr 16:16:04] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:16:17] 165s · fuentes leídas 321 · última línea: [0m
+[gptr 16:16:32] 180s · fuentes leídas 321 · última línea: [0m
+[gptr 16:16:36] cortando GPT Researcher: ya no hace falta el informe
+[gptr 16:16:36] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:16:36] proceso terminó tras 184s · timedOut=true código=n/d informe=ninguno
+[gptr 16:16:36] búsqueda terminada en 184s
+[gptr 16:16:36] URLs para el juez: 150 (0 del informe) → https://www.alz.org/getmedia/74753e1b-53a9-4c80-8c9f-02f279927221/2026-ptc-reg-rfa.pdf | https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf | https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html | https://www.tedcomd.com/sites/default/files/2026-01/MII%20Company%20Formation-RFA_FY2026_v4.pdf | https://www.ihs.gov/alzheimers/grants/fundingopportunities/2026fundingopp …
+[gptr 16:16:37] registro: 0 búsquedas + 10 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler) + 1 avisos completos
+[gptr 16:16:37] juez de Node: 168 páginas (15 del registro oficial + 153 de GPT Researcher); se abren todas y el modelo lee hasta 55 elegidas por fechas
+[gptr 16:20:13] juez listo: 8 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 402s
+[bench] g1-mint-ad: ok en 406s · 0 act now · 7 watch · verificados 1
+  ok
+[11:20:37] caso 2/6: g2-aha-nonprofit
+[gptr 16:20:38] runObjective(grant): usa GPT Researcher
+[engine 11:20:38] grant: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 16:20:38] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:20:38] prompt (3071 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-OZO1IT/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-OZO1IT/gptr.log
+[gptr 16:20:41] registro: 6 búsquedas + 0 números → 129 oportunidades, 23 cerradas, 0 no elegibles por tipo de solicitante, 10 al juez (vía simpler) + 3 avisos completos
+[gptr 16:20:53] 15s · fuentes leídas 0 · última línea: INFO: [11:20:52] 🌐 Browsing the web to learn more about the task: open 2026 grant AI data harmonization Alzheimer disease nonprofit global.
+[gptr 16:21:08] 30s · fuentes leídas 96 · última línea: INFO: [11:21:08] 🌐 Scraping content from 9 URLs...
+[gptr 16:21:23] 45s · fuentes leídas 138 · última línea: 💸 Total Research Costs: $0.022115000000000003
+[gptr 16:21:38] 60s · fuentes leídas 138 · última línea: INFO: [11:21:38] 🌐 Browsing the web to learn more about the task: OpenAI Foundation $100 M Alzheimer’s AI grant priorities open datasets dr
+[gptr 16:21:53] 75s · fuentes leídas 193 · última línea: 💸 Total Research Costs: $0.015790000000000002
+[gptr 16:22:08] 90s · fuentes leídas 193 · última línea: INFO: [11:22:08] 🤔 Planning the research strategy and subtasks...
+[gptr 16:22:23] 105s · fuentes leídas 255 · última línea: 💸 Total Research Costs: $0.010990000000000002
+[gptr 16:22:38] 120s · fuentes leídas 255 · última línea: INFO: [11:22:26] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:22:53] 135s · fuentes leídas 255 · última línea: 💸 Total Research Costs: $0.011295
+[gptr 16:23:08] 150s · fuentes leídas 263 · última línea: 🔍 Running research for 'NIA Coordinating Center (NACC) data access policy common data elements sharing requirements AI‑driven dataset harmo
+[gptr 16:23:23] 165s · fuentes leídas 323 · última línea: 💸 Total Research Costs: $0.02119
+[gptr 16:23:38] 180s · fuentes leídas 323 · última línea: INFO: [11:23:38] 🌐 Browsing the web to learn more about the task: NIA FY 2026 AI infrastructure priorities Alzheimer’s proposal alignment h
+[gptr 16:23:53] 195s · fuentes leídas 386 · última línea: INFO: [11:23:52] 🌐 Scraping content from 11 URLs...
+[gptr 16:24:08] 210s · fuentes leídas 400 · última línea: For every opportunity give: name and funder, official URL of the call itself, application deadline (exact date, or "not found"), award size,
+[gptr 16:24:08] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:24:23] 225s · fuentes leídas 400 · última línea: [0m
+[gptr 16:24:38] 240s · fuentes leídas 400 · última línea: [0m
+[gptr 16:24:38] cortando GPT Researcher: ya no hace falta el informe
+[gptr 16:24:38] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:24:38] proceso terminó tras 240s · timedOut=true código=n/d informe=ninguno
+[gptr 16:24:38] búsqueda terminada en 240s
+[gptr 16:24:38] URLs para el juez: 150 (0 del informe) → https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf | https://www.euro-access.eu/_media/file/977_call-fiche_digital-2026-ai-09_en.pdf | https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-4-health_horizon-2026-2027_en.pdf | https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/digital/wp-call/2026/call-fiche_digital-2026-ai-09_en.pdf | https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/digital/wp-call/2026/call-fiche_digital-2026-dsm-ai-09_en.pdf …
+[gptr 16:24:39] registro: 0 búsquedas + 3 números → 1 oportunidades, 0 cerradas, 0 no elegibles por tipo de solicitante, 1 al juez (vía simpler) + 1 avisos completos
+[gptr 16:24:39] juez de Node: 163 páginas (11 del registro oficial + 152 de GPT Researcher); se abren todas y el modelo lee hasta 51 elegidas por fechas
+[gptr 16:28:05] juez listo: 12 hallazgos (0 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 447s
+[bench] g2-aha-nonprofit: ok en 451s · 0 act now · 12 watch · verificados 0
+  ok
+[11:28:28] caso 3/6: g3-ngo-latam
+[gptr 16:28:29] runObjective(grant): usa GPT Researcher
+[engine 11:28:29] grant: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 16:28:29] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:28:29] prompt (3053 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-6CQQ1s/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-6CQQ1s/gptr.log
+[gptr 16:28:44] 15s · fuentes leídas 0 · última línea: INFO: [11:28:43] 🌐 Browsing the web to learn more about the task: Latin America foundation grants maternal health telehealth NGOs 2026...
+[gptr 16:28:59] 30s · fuentes leídas 121 · última línea: INFO: [11:28:59] 🌐 Scraping content from 9 URLs...
+[gptr 16:29:14] 45s · fuentes leídas 147 · última línea: 💸 Total Research Costs: $0.022605
+[gptr 16:29:29] 60s · fuentes leídas 185 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.herox.com/CommunityMaternalHealth2.0, treating as fetch fa
+[gptr 16:29:44] 75s · fuentes leídas 206 · última línea: 🔎 Generating 2 search queries...
+[gptr 16:29:59] 90s · fuentes leídas 260 · última línea: INFO: [11:29:59] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:30:14] 105s · fuentes leídas 260 · última línea: 💸 Total Research Costs: $0.012835
+[gptr 16:30:29] 120s · fuentes leídas 260 · última línea: 🔍 Running research for 'Merck for Mothers telemedicine project Venezuela eligibility criteria partnership requirements NGOs and comparable 
+[gptr 16:30:44] 135s · fuentes leídas 330 · última línea: 💸 Total Research Costs: $0.011655
+[gptr 16:30:59] 150s · fuentes leídas 330 · última línea: ✅ Generated 2 queries: ['World Bank digital health financing eligibility criteria and application procedures for NGOs and private providers 
+[gptr 16:31:14] 165s · fuentes leídas 399 · última línea: INFO: [11:31:14] 🌐 Scraping content from 13 URLs...
+[gptr 16:31:29] 180s · fuentes leídas 399 · última línea: 💸 Total Research Costs: $0.01174
+[gptr 16:31:43] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:31:44] 195s · fuentes leídas 399 · última línea: For every opportunity give: name and funder, official URL of the call itself, application deadline (exact date, or "not found"), award size,
+[gptr 16:31:59] 210s · fuentes leídas 399 · última línea: [0m
+[gptr 16:32:13] cortando GPT Researcher: ya no hace falta el informe
+[gptr 16:32:13] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:32:13] proceso terminó tras 224s · timedOut=true código=n/d informe=ninguno
+[gptr 16:32:13] búsqueda terminada en 224s
+[gptr 16:32:13] URLs para el juez: 150 (0 del informe) → https://policycentermmh.org/congress-passes-2026-funding-bill-with-targeted-investments-in-maternal-health | https://www.hrsa.gov/grants/find-funding/HRSA-27-001 | https://policycentermmh.org/senate-committee-advances-2026-funding-bill-including-maternal-mental-health-priorities | https://www.federalregister.gov/documents/2026/02/02/2026-01934/notice-of-funding-opportunities-for-the-strategic-economic-and-community-development-program-for-fy | https://www.hrsa.gov/grants/find-funding/HRSA-26-083 …
+[gptr 16:32:13] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:34:28] juez listo: 1 hallazgos (0 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 358s
+[bench] g3-ngo-latam: ok en 361s · 0 act now · 1 watch · verificados 0
+  ok
+[11:34:49] caso 4/6: i1-mint-ad
+[gptr 16:34:50] runObjective(investment): usa GPT Researcher
+[engine 11:34:50] investment: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 16:34:50] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:34:50] prompt (1685 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-4GJ4KN/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-4GJ4KN/gptr.log
+[gptr 16:35:05] 15s · fuentes leídas 0 · última línea: 🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+[gptr 16:35:20] 30s · fuentes leídas 27 · última línea: INFO: [11:35:20] 🌐 Scraping content from 8 URLs...
+[gptr 16:35:35] 45s · fuentes leídas 147 · última línea: INFO: [11:35:34] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:35:50] 60s · fuentes leídas 147 · última línea: 💸 Total Research Costs: $0.020900000000000002
+[gptr 16:36:05] 75s · fuentes leídas 197 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.neurologylive.com/view/fda-approves-ai-incorporated-alzhei
+[gptr 16:36:20] 90s · fuentes leídas 203 · última línea: INFO: [11:36:20] 🤔 Planning the research strategy and subtasks...
+[gptr 16:36:35] 105s · fuentes leídas 273 · última línea: 💸 Total Research Costs: $0.011170000000000001
+[gptr 16:36:50] 120s · fuentes leídas 327 · última línea: 💸 Total Research Costs: $0.012735
+[gptr 16:37:05] 135s · fuentes leídas 350 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.pwc.com/us/en/services/audit-assurance/private-company-ser
+[gptr 16:37:15] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:37:20] 150s · fuentes leídas 359 · última línea: The applicant is based in Maryland, US. Only include funders that accept applicants from there; skip programs restricted to other countries 
+[gptr 16:37:35] 165s · fuentes leídas 359 · última línea: [0m
+[gptr 16:37:45] cortando GPT Researcher: ya no hace falta el informe
+[gptr 16:37:45] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:37:45] proceso terminó tras 174s · timedOut=true código=n/d informe=ninguno
+[gptr 16:37:45] búsqueda terminada en 174s
+[gptr 16:37:45] URLs para el juez: 150 (0 del informe) → https://technical.ly/entrepreneurship/baltimore-maryland-q3-2026-venture-capital-pitchbook | https://hub.causo.ai/guides/ai-startup-valuation-2026 | https://seedhealthcare.com/seed-healthcare-leads-strategic-investment-in-diadem | https://menlovc.com/focus-areas/healthcare | https://tracxn.com/d/venture-capital/maryland-momentum-fund/__HRn3E1g5e_OnpQ_VoRK-JSn74Bn7Mlt-w_kp5fXAz60 …
+[gptr 16:37:45] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:39:15] juez listo: 5 hallazgos (1 verificados) · contactos Apollo: 5 organizaciones, 8 créditos · total 265s
+[bench] i1-mint-ad: ok en 270s · 0 act now · 15 watch · verificados 1
+  ok
+[11:39:39] caso 5/6: i2-aha-commercial
+[gptr 16:39:41] runObjective(investment): usa GPT Researcher
+[engine 11:39:41] investment: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 16:39:41] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:39:41] prompt (2022 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-etX0fr/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-etX0fr/gptr.log
+[gptr 16:39:56] 15s · fuentes leídas 0 · última línea: 🔎 Generating 4 search queries...
+[gptr 16:40:11] 30s · fuentes leídas 34 · última línea: INFO: [11:40:09] 🌐 Scraping content from 11 URLs...
+[gptr 16:40:26] 45s · fuentes leídas 198 · última línea: Content too short or empty for https://www.areebi.com/resources/blog/fda-ai-medical-device-saMD-clinical-decision-support-2026, treating as 
+[gptr 16:40:41] 60s · fuentes leídas 198 · última línea: 💸 Total Research Costs: $0.021095000000000003
+[gptr 16:40:56] 75s · fuentes leídas 198 · última línea: 🔎 Generating 2 search queries...
+[gptr 16:41:11] 90s · fuentes leídas 249 · última línea: Content too short or empty for https://blog.thestartupmd.com/blog/health-system-partnership-deal-structuring, treating as fetch failure
+[gptr 16:41:26] 105s · fuentes leídas 254 · última línea: INFO: [11:41:26] 🤔 Planning the research strategy and subtasks...
+[gptr 16:41:41] 120s · fuentes leídas 334 · última línea: INFO: [11:41:41] 🌐 Scraping content from 7 URLs...
+[gptr 16:41:56] 135s · fuentes leídas 334 · última línea: INFO: [11:41:50] 📄 Scraped 10 pages of content
+[gptr 16:42:11] 150s · fuentes leídas 334 · última línea: 💸 Total Research Costs: $0.008935
+[gptr 16:42:26] 165s · fuentes leídas 334 · última línea: INFO: [11:42:25] 🌐 Browsing the web to learn more about the task: pharma corporate venture partnership models with AI data‑harmonization st
+[gptr 16:42:41] 180s · fuentes leídas 388 · última línea: INFO: [11:42:40] 🌐 Scraping content from 11 URLs...
+[gptr 16:42:56] 195s · fuentes leídas 414 · última línea: 💸 Total Research Costs: $0.020025
+[gptr 16:43:11] 210s · fuentes leídas 422 · última línea: INFO: [11:43:10] 🌐 Scraping content from 6 URLs...
+[gptr 16:43:26] 225s · fuentes leídas 485 · última línea: INFO: [11:43:23] 🌐 Scraping content from 11 URLs...
+[gptr 16:43:41] 240s · fuentes leídas 485 · última línea: INFO: [11:43:27] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:43:56] 255s · fuentes leídas 485 · última línea: 💸 Total Research Costs: $0.024300000000000002
+[gptr 16:44:05] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:44:11] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:44:11] proceso terminó tras 270s · timedOut=true código=n/d informe=ninguno
+[gptr 16:44:11] búsqueda terminada en 270s
+[gptr 16:44:11] URLs para el juez: 150 (0 del informe) → https://igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://investor.igcpharma.com/igc-pharma-to-showcase-ai-portfolio-at-aaic-2026-including-aha-platform-that-reduced-alzheimers-data-harmonization-time-by-90-in-representative-workflow | https://news.abbvie.com/2026-09-29-AbbVie-Partners-with-Valkai-to-Apply-Advanced-AI-Across-Targeted-Areas-of-Clinical-Development | https://convention.bio.org/2026-sessions-and-courses/the-new-funding-frontier-how-biotech-investment-is-transforming-alzheimers-research | https://www.pharmanow.live/pharma-it/top-ai-drug-discovery-companies-2026 …
+[gptr 16:44:11] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:45:40] juez listo: 10 hallazgos (0 verificados) · contactos Apollo: 5 organizaciones, 5 créditos · total 360s
+[bench] i2-aha-commercial: ok en 367s · 4 act now · 15 watch · verificados 0
+  ok
+[11:46:06] caso 6/6: i3-medtech-eu
+[gptr 16:46:08] runObjective(investment): usa GPT Researcher
+[engine 11:46:08] investment: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)
+[gptr 16:46:08] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:46:08] prompt (1921 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-68xMKb/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-68xMKb/gptr.log
+[gptr 16:46:23] 15s · fuentes leídas 0 · última línea: 🔎 Generating 4 search queries...
+[gptr 16:46:38] 30s · fuentes leídas 24 · última línea: 🔍 Running research for 'Spain angel investor groups digital health AI arrhythmia detection investments 2025-2026'...
+[gptr 16:46:53] 45s · fuentes leídas 206 · última línea: 💸 Total Research Costs: $0.021025000000000002
+[gptr 16:47:08] 60s · fuentes leídas 206 · última línea: INFO: [11:46:58] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:47:23] 75s · fuentes leídas 206 · última línea: 💸 Total Research Costs: $0.01906
+[gptr 16:47:38] 90s · fuentes leídas 250 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.linkedin.com/posts/peterjameswalker_startups-founders-fund
+[gptr 16:47:53] 105s · fuentes leídas 250 · última línea: ✅ Generated 2 queries: ['Spanish angel networks digital health AI cardiac monitoring investments 2022..2024 pitch channels investment range'
+[gptr 16:48:08] 120s · fuentes leídas 300 · última línea: INFO: [11:48:07] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:48:23] 135s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:48:38] 150s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:48:53] 165s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:08] 180s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:23] 195s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:38] 210s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:49:53] 225s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:50:08] 240s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:50:23] 255s · fuentes leídas 300 · última línea: INFO: [11:48:09] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:50:38] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:50:38] proceso terminó tras 270s · timedOut=true código=n/d informe=ninguno
+[gptr 16:50:38] búsqueda terminada en 270s · GPTR_TIMEOUT 270s (se usan las páginas que alcanzó a leer)
+[gptr 16:50:38] URLs para el juez: 150 (0 del informe) → https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026 | https://luisllorens.substack.com/p/20-spanish-startups-to-watch-in-2026 | https://www.vectorhorizonte.com/guia-estrategica-financiacion-europea-2026-startups-pymes-biotecnologia | https://startupvalencia.org/icex-report-spanish-startup-ecosystem-2026 | https://www.pressdigital.es/articulo/economia/2026-10-08/6044578-startups-espana-rozan-4000-millones-invertidos-hasta-septiembre-49-megarrondas …
+[gptr 16:50:38] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:52:44] juez listo: 15 hallazgos (1 verificados) · contactos Apollo: 5 organizaciones, 6 créditos · total 397s
+[bench] i3-medtech-eu: ok en 405s · 11 act now · 15 watch · verificados 1
+  ok
+[bench] resumen: /Users/gcaicedo/Documents/PROJECTS/AGENT/research/eval/results/bench-20261014-1113/RESUMEN.md
+[11:53:12] Listo. Abre eval/results/bench-20261014-1113/RESUMEN.md

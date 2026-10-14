@@ -1,0 +1,285 @@
+Post Translational Medicines Joins ARPA-H's BIOGAMI Team to Track and Reverse the Protein States Behind Neurodegeneration 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Post Translational Medicines Joins ARPA-H's BIOGAMI Team to Track and Reverse the Protein States Behind Neurodegeneration
+
+Oct 12, 2026
+
+Post Translational Medicines, a San Francisco startup that maps the shifting states of proteins inside living cells, has joined SEEDS, a research team co-led by the Buck Institute for Research on Aging and Georgetown University. The team has won an award of up to $51.7 million from the Advanced Research Projects Agency for Health, shared among 9 academic institutions, including Stanford University and the University of California, San Francisco, and 7 industry partners, of which PTM is one. The 4-year effort starts with Alzheimer's disease and Ewing sarcoma, and funding depends on the team meeting milestones.
+BIOGAMI, short for BIOmolecular Grammar for protein Aggregation Modulation and Intervention, goes after neurodegeneration at its earliest molecular step. Many of the proteins that clump in Alzheimer's and Parkinson's diseases, such as tau and alpha-synuclein, are intrinsically disordered, meaning they have no single stable shape. ARPA-H put out a call for teams to learn the rules that govern how these proteins slide from normal function into misfolding, then build drugs and tests that prevent and detect it early. The agency funded 6 teams and committed up to $152 million over 4 years. The program runs 48 months in two 24-month phases, with a formal down-selection between them, and teams must show efficacy in animals by the second phase.
+PTM's specialty is measurement. A genome lists the proteins a cell can make, and standard proteomics counts how much of each it has. Neither shows what those proteins are doing. A single protein can exist in many forms, called proteoforms, so two cells with the same genome can behave differently depending on which forms their proteins take. PTM's Surveyor platform is built to read those states directly in cells, follow how they change as cells are pushed off balance and recover, and flag the sites where a drug could step in. The company calls this territory the Dark Proteome. Beyond describing it as in-cell proteomics, PTM has not published how Surveyor takes those readings, and its release includes no data from the platform.
+Bryan Ngo, PTM's chief executive and chief scientific officer, described what the platform is meant to capture.
+"Surveyor allows us to observe [proteins' dynamic functional states] systematically, determine which transitions matter, and identify opportunities to therapeutically control them."
+PTM is less than 2 years old. It was founded in 2025 and went through IndieBio's San Francisco accelerator. Ngo earned his PhD at Weill Cornell Medicine, was a postdoctoral researcher at Memorial Sloan Kettering and later a group leader at Altos Labs. He cofounded the company with Kevin Scott, its director of discovery chemistry. PTM's first drug program targets the lysosomal V-ATPase, the proton pump that keeps lysosomes acidic. According to IndieBio, the pump takes on a different shape in aging cells and stops holding the right pH. PTM says its tool compound, PTM001, reactivates the pump, and that in cell assays its compounds restore lysosome activity in aged cells while leaving healthy cells alone.
+Scott framed PTM's job in the consortium as connective.
+"No single technology can fully solve the problem of understanding dynamic protein states. BIOGAMI brings together complementary capabilities across computation, protein science, aging biology, disease modeling, and therapeutics. PTM's role is to help connect these disciplines through experimentally measured proteoform states and perturbation-response data that reveal how proteins change inside biological systems."
+The data may matter beyond PTM's own pipeline. ARPA-H expects BIOGAMI performers to contribute to an open source data and model ecosystem. Many AI models in biology learn from sequences, structures and single snapshots. PTM wants to supply measurements of proteins changing state under controlled perturbation, the kind of cause and effect data a model would need to predict how a cell will respond to a drug.
+Ngo said today's models are missing exactly that.
+"Biology is dynamic, but much of the data available to AI today represents static snapshots. If we want models that can reason about disease progression or predict how biology will respond to an intervention, we need experimental data describing transitions between states. Surveyor gives us a way to generate that type of data systematically and at a proteome scale."
+Much remains to be shown. The test will be whether the states Surveyor maps lead to compounds that hold up in the animal studies the program requires.
+"The goal is not simply to build a larger map of biology. The goal is to understand the transition rules well enough that we can intervene. If we can identify the proteoform states that distinguish healthy biology from disease and understand what controls those transitions, we can begin designing medicines that restore function rather than simply inhibit or eliminate proteins."
+
+###### Read More
+
+View All
+
+Bio Design
+
+Bioeconomy Policy
+
+Biomanufacturing Scale Up
+
+Food Agriculture
+
+Consumer Products
+
+Jesse Daniel Brown
+
+Oct 14, 2026
+
+###### Cemvita and Roebling Bring AI-Native Engineering to Industrial BioSolutions
+
+Mohamed Soufi
+
+Oct 13, 2026
+
+###### Nobel Laureate Spinout TwoStep Harnesses Knottin Peptide That Targets Cancer Like No Drug Before
+
+Oct 5, 2026
+
+###### Sculpta puts the barcode on the RNA itself, and drug screens can finally read splicing
+
+Sep 25, 2026
+
+###### Physics-grounded AI is getting Galux hits on the hardest antibody targets
+
+Bio Design
+
+Biomanufacturing Scale Up
+
+Chemicals Materials
+
+Food Agriculture
+
+Aaron Blotnick
+
+Sep 23, 2026
+
+###### Saku Biosciences and Sable Fermentation Offer US Customers One Agreement From Strain Engineering Through Scale Up
+
+Food Agriculture
+
+Mohamed Soufi
+
+Sep 17, 2026
+
+###### Leaps by Bayer Leads Series A in Robigo, Betting on Engineered Microbes for Crop Protection
+
+Bio Design
+
+Bioeconomy Policy
+
+Biomanufacturing Scale Up
+
+Food Agriculture
+
+Consumer Products
+
+Jesse Daniel Brown
+
+Oct 14, 2026
+
+###### Cemvita and Roebling Bring AI-Native Engineering to Industrial BioSolutions
+
+Mohamed Soufi
+
+Oct 13, 2026
+
+###### Nobel Laureate Spinout TwoStep Harnesses Knottin Peptide That Targets Cancer Like No Drug Before
+
+Oct 5, 2026
+
+###### Sculpta puts the barcode on the RNA itself, and drug screens can finally read splicing
+
+Sep 25, 2026
+
+###### Physics-grounded AI is getting Galux hits on the hardest antibody targets
+
+###### Newletter & More
+
+SynBioBeta
+2027
+
+May 3-6,
+
+2027
+
+San Jose Convention Center ·
+
+CA, USA
+
+Event Details
+
+## Newsletter
+
+Join List
+
+Log In
+
+Sign Up
+
+#### Newsletter
+
+Subscribe
+
+Insights
+
+Industry News
+
+Multimedia
+
+SynBioBeta
+
+2027
+
+Events
+
+Job Board
+
+About
+
+Content
+
+Insights
+
+Industry News
+
+Podcast
+
+Video
+
+Categories
+
+Ai Digital Biology
+
+Bio Design
+
+Bioeconomy Policy
+
+Biomanufacturing Scale Up
+
+Biopharma Solutions Tools Tech
+
+Biosecurity Bioethics
+
+Capital Markets
+
+Chemicals Materials
+
+Consumer Products
+
+Desci
+
+Engineered Human Therapies
+
+Environment
+
+Food Agriculture
+
+Longevity
+
+Neurotech
+
+Psychedelics
+
+Reading Writing And Editing Dna
+
+Space Exploration
+
+Sponsored Content
+
+Company
+
+About
+
+Advertising
+
+Newsletter
+
+Events
+
+Social Media
+
+© Copyright SynBioBeta
+
+2026
+
+Cookie Settings
+
+Privacy Policy
+
+Insights
+
+Industry News
+
+Multimedia
+
+Events
+
+Job Board
+
+About

@@ -1,0 +1,3828 @@
+{
+ "id": "59380e66-4046-4449-bb91-6a07b7449104",
+ "brief": {
+  "name": "Founder",
+  "role": "Founder",
+  "company": "IGC pharma",
+  "product": "mint ad",
+  "description": "Goal to serve 10,000 people",
+  "industry": "healthcare",
+  "stage": "marketed",
+  "geography": "US",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "investment"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 8000000,
+  "minDays": 30,
+  "useTeam": true,
+  "useApify": true,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "IGC pharma",
+  "venture": "IGC pharma",
+  "oneLiner": "stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees",
+  "round": "seed",
+  "constraints": "",
+  "useOfFunds": "development and hiring",
+  "timeline": "",
+  "website": "",
+  "entityType": "for_profit",
+  "country": "",
+  "state": "Maryland",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: IGC pharma · mint ad: investment · marketed · seed · US · USD 8000000",
+   "at": "2026-10-14T16:34:50.051Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 5 phrasings separately: healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention tool",
+   "at": "2026-10-14T16:34:50.725Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T16:34:50.912Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 5 candidates with provenance.",
+   "at": "2026-10-14T16:39:15.521Z"
+  },
+  {
+   "phase": "warning",
+   "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+   "at": "2026-10-14T16:39:17.593Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 15 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T16:39:17.597Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Drafts built from templates and public facts; nothing is sent.",
+   "at": "2026-10-14T16:39:19.839Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 15 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T16:39:19.875Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": "Timothy Armour",
+   "role": "CEO",
+   "org": "Cure Alzheimer's Fund",
+   "title": "CEO at Cure Alzheimer's Fund",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "tarmour@curealz.org",
+    "provenance": "Hunter.io · curealz.org · confidence 96% · valid · seen on 5 public pages"
+   },
+   "evidence": [
+    {
+     "id": "8dbb08b662c93f540650",
+     "source": "Web research engine · curealz.org",
+     "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+     "quote": "Cure Alzheimer's Fund",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "4d57b7f99637a41d10e8",
+     "source": "Hunter.io · curealz.org",
+     "url": "https://curealz.org/wp-content/uploads/2018/02/CAF_AR2015_R18_web.pdf",
+     "quote": "Timothy Armour · CEO · tarmour@curealz.org (Hunter.io · curealz.org · confidence 96% · valid · seen on 5 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:16.196Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "CEO executive Cure Alzheimer's Fund Cure Alzheimer's Fund Cardinal Family Fund Programs &#8211; Cure Alzheimer&#039;s Fund Cure Alzheimer's Fund",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "curealz.org",
+     "objective": "investment",
+     "query": "domain-search curealz.org"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:curealz.org:timothy armour",
+   "parentKey": "opportunity:engine:investment:https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "followUp": {
+    "from": "Cure Alzheimer's Fund",
+    "question": "Who decides at Cure Alzheimer's Fund?"
+   },
+   "key": "person:timothy armour:cure alzheimer s fund",
+   "id": "160380ae741646551d9d",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 1,
+   "jev": {
+    "leadId": "160380ae741646551d9d",
+    "action": "investigate_more",
+    "actionConfidence": 0.8,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.87,
+     "discard": 0.13
+    },
+    "strategicFit": 0.98,
+    "fitConfidence": 0.62,
+    "evidenceSufficient": 0.28,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Timothy Armour yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Timothy for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Timothy has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Cindy Turner",
+   "role": "Accountant Chief Financial Officer",
+   "org": "Cure Alzheimer's Fund",
+   "title": "Accountant Chief Financial Officer at Cure Alzheimer's Fund",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "cturner@curealz.org",
+    "provenance": "Hunter.io · curealz.org · confidence 94% · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "8dbb08b662c93f540650",
+     "source": "Web research engine · curealz.org",
+     "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+     "quote": "Cure Alzheimer's Fund",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "ba884b506bd4b15e01b3",
+     "source": "Hunter.io · curealz.org",
+     "url": "https://curealz.org/wp-content/uploads/2018/02/CAF_AR2015_R18_web.pdf",
+     "quote": "Cindy Turner · Accountant Chief Financial Officer · cturner@curealz.org (Hunter.io · curealz.org · confidence 94% · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:16.196Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Accountant Chief Financial Officer finance & accounting Cure Alzheimer's Fund Cure Alzheimer's Fund Cardinal Family Fund Programs &#8211; Cure Alzheimer&#039;s Fund Cure Alzheimer's Fund",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "curealz.org",
+     "objective": "investment",
+     "query": "domain-search curealz.org"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:curealz.org:cindy turner",
+   "parentKey": "opportunity:engine:investment:https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "followUp": {
+    "from": "Cure Alzheimer's Fund",
+    "question": "Who decides at Cure Alzheimer's Fund?"
+   },
+   "key": "person:cindy turner:cure alzheimer s fund",
+   "id": "6199106fbd6f70ef54f1",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 2,
+   "jev": {
+    "leadId": "6199106fbd6f70ef54f1",
+    "action": "investigate_more",
+    "actionConfidence": 0.67,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.78,
+     "discard": 0.22
+    },
+    "strategicFit": 0.66,
+    "fitConfidence": 0.47,
+    "evidenceSufficient": 0.26,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Cindy Turner yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Cindy for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Cindy has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Claude Thewissen",
+   "role": "Operations Executive",
+   "org": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "title": "Operations Executive at Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "claude.thewissen@pulseit.news",
+    "provenance": "Hunter.io · pulseit.news · confidence 85% · seen on 2 public pages"
+   },
+   "evidence": [
+    {
+     "id": "1df4bc9e1497f5dc99aa",
+     "source": "Web research engine · pulseit.news",
+     "url": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+     "quote": "The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "1a1c69fe28ec55273b84",
+     "source": "Hunter.io · pulseit.news",
+     "url": "https://www.google.com/search?q=site:linkedin.com%20claude%20thewissen%20pulseit",
+     "quote": "Claude Thewissen · Operations Executive · claude.thewissen@pulseit.news (Hunter.io · pulseit.news · confidence 85% · seen on 2 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:16.688Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Operations Executive operations Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. €250 million for new round of Seed and Venture Capital Scheme - Pulse+IT The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "pulseit.news",
+     "objective": "investment",
+     "query": "domain-search pulseit.news"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:pulseit.news:claude thewissen",
+   "linkedin": "https://www.linkedin.com/in/claude-thewissen-722093229",
+   "parentKey": "opportunity:engine:investment:https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "followUp": {
+    "from": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+    "question": "Who decides at Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.?"
+   },
+   "key": "person:claude thewissen:seed and venture capital scheme managed by enterprise ireland providing risk capital to start ups in ireland",
+   "id": "85a056dd55cba8d8e9cd",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 3,
+   "jev": {
+    "leadId": "85a056dd55cba8d8e9cd",
+    "action": "investigate_more",
+    "actionConfidence": 0.38,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.59,
+     "discard": 0.41
+    },
+    "strategicFit": 0.56,
+    "fitConfidence": 0.59,
+    "evidenceSufficient": 0.24,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Claude Thewissen yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Claude for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Claude has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Sally Rosenfield",
+   "role": "Senior Vice President",
+   "org": "Cure Alzheimer's Fund",
+   "title": "Senior Vice President at Cure Alzheimer's Fund",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "srosenfield@curealz.org",
+    "provenance": "Hunter.io · curealz.org · confidence 99% · valid · seen on 3 public pages"
+   },
+   "evidence": [
+    {
+     "id": "8dbb08b662c93f540650",
+     "source": "Web research engine · curealz.org",
+     "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+     "quote": "Cure Alzheimer's Fund",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "1d18b9bca721eefdfd2a",
+     "source": "Hunter.io · curealz.org",
+     "url": "https://curealz.org/wp-content/uploads/2018/02/CAF_AR2015_R18_web.pdf",
+     "quote": "Sally Rosenfield · Senior Vice President · srosenfield@curealz.org (Hunter.io · curealz.org · confidence 99% · valid · seen on 3 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:16.196Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Senior Vice President executive Cure Alzheimer's Fund Cure Alzheimer's Fund Cardinal Family Fund Programs &#8211; Cure Alzheimer&#039;s Fund Cure Alzheimer's Fund",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "curealz.org",
+     "objective": "investment",
+     "query": "domain-search curealz.org"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:curealz.org:sally rosenfield",
+   "parentKey": "opportunity:engine:investment:https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "followUp": {
+    "from": "Cure Alzheimer's Fund",
+    "question": "Who decides at Cure Alzheimer's Fund?"
+   },
+   "key": "person:sally rosenfield:cure alzheimer s fund",
+   "id": "a1e78d69eb47c0033515",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 4,
+   "jev": {
+    "leadId": "a1e78d69eb47c0033515",
+    "action": "investigate_more",
+    "actionConfidence": 0.8,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.87,
+     "discard": 0.13
+    },
+    "strategicFit": 0.72,
+    "fitConfidence": 0.41,
+    "evidenceSufficient": 0.36,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Sally Rosenfield yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Sally for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Sally has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Emily Mara",
+   "role": "Managing Director",
+   "org": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "title": "Managing Director at Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "emily.mara@pulseit.news",
+    "provenance": "Hunter.io · pulseit.news · confidence 85% · valid · seen on 7 public pages"
+   },
+   "evidence": [
+    {
+     "id": "1df4bc9e1497f5dc99aa",
+     "source": "Web research engine · pulseit.news",
+     "url": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+     "quote": "The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "15b5decad85784da0744",
+     "source": "Hunter.io · pulseit.news",
+     "url": "https://pulseit.news/ie/enterprise-ireland-subscription",
+     "quote": "Emily Mara · Managing Director · emily.mara@pulseit.news (Hunter.io · pulseit.news · confidence 85% · valid · seen on 7 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:16.688Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Managing Director executive Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. €250 million for new round of Seed and Venture Capital Scheme - Pulse+IT The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "pulseit.news",
+     "objective": "investment",
+     "query": "domain-search pulseit.news"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:pulseit.news:emily mara",
+   "linkedin": "https://www.linkedin.com/in/emilymara",
+   "parentKey": "opportunity:engine:investment:https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "followUp": {
+    "from": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+    "question": "Who decides at Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.?"
+   },
+   "key": "person:emily mara:seed and venture capital scheme managed by enterprise ireland providing risk capital to start ups in ireland",
+   "id": "a697d4c3cce506c02c91",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 32,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 5,
+   "jev": {
+    "leadId": "a697d4c3cce506c02c91",
+    "action": "investigate_more",
+    "actionConfidence": 0.46,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.64,
+     "discard": 0.36
+    },
+    "strategicFit": 0.68,
+    "fitConfidence": 0.64,
+    "evidenceSufficient": 0.31,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Emily Mara yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Emily for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Emily has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Cure Alzheimer's Fund",
+   "title": "Cure Alzheimer's Fund",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$10 million in 2025",
+   "contact": {
+    "type": "web",
+    "value": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+    "provenance": "Read and verified on curealz.org"
+   },
+   "evidence": [
+    {
+     "id": "8dbb08b662c93f540650",
+     "source": "Web research engine · curealz.org",
+     "url": "https://curealz.org/the-research/cardinal-family-fund-programs/",
+     "quote": "Cure Alzheimer's Fund",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion contact_route: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:gift_received",
+    "Check: date_quote_not_in_page:initiative_launch",
+    "Check: date_date_not_in_quote:brain_bank_support"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Cure Alzheimer's Fund Cardinal Family Fund Programs &#8211; Cure Alzheimer&#039;s Fund Cure Alzheimer's Fund",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:gift_received",
+     "date_quote_not_in_page:initiative_launch",
+     "date_date_not_in_quote:brain_bank_support"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion contact_route: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s stratification tool for Alzheimer’s risk aligns with the fund’s precision‑medicine focus on risk factors and disease progression.",
+     "fundsQuote": "The Cardinal Family Precision Medicine Research Fund advances investigations into biological and other factors that drive differences in Alzheimer’s disease risk and progression for subgroups within our community",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Danny Ha***r",
+     "role": "Vice President of Development",
+     "email": null,
+     "organization": "Cure Alzheimer's Fund",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Stephanie Wa***o",
+     "role": "Executive Vice President of Marketing & Communications",
+     "email": null,
+     "organization": "Cure Alzheimer's Fund",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Natasha Hu***n",
+     "role": "Executive Vice President, Research Management",
+     "email": null,
+     "organization": "Cure Alzheimer's Fund",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Cure Alzheimer's Fund"
+   },
+   "key": "opportunity:engine:investment:https://curealz.org/the-research/cardinal-family-fund-programs/",
+   "id": "5331a800b0ccd63f9459",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 29,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD $10 million in 2025; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 6,
+   "jev": {
+    "leadId": "5331a800b0ccd63f9459",
+    "action": "investigate_more",
+    "actionConfidence": 0.82,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.88,
+     "discard": 0.12
+    },
+    "strategicFit": 0.35,
+    "fitConfidence": 0.72,
+    "evidenceSufficient": 0.07,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Cure Alzheimer's Fund yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Cure Alzheimer's Fund for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Cure Alzheimer's Fund has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare technology applications. The healthcare focus is on health IT and software platforms rather than devices or therapeutics. AI is not the explicit thesis, though software-led compan",
+   "title": "TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare technology applications. The healthcare focus is on health IT and software platforms rather than devices or therapeutics. AI is not the explicit thesis, though software-led compan",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$50M–$250M",
+   "contact": {
+    "type": "web",
+    "value": "https://physicianaitools.com/investors/tcp-venture-capital/",
+    "provenance": "Read and verified on physicianaitools.com"
+   },
+   "evidence": [
+    {
+     "id": "15e61282855dc4aa3080",
+     "source": "Web research engine · physicianaitools.com",
+     "url": "https://physicianaitools.com/investors/tcp-venture-capital/",
+     "quote": "WellDoc is an AI-powered health technology leader dedicated to transforming cardiometabolic care through its clinically validated digital health…",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare technology applications. The healthcare focus is on health IT and software platforms rather than devices or therapeutics. AI is not the explicit thesis, though software-led compan TCP Venture Capital — Healthcare Investor Profile | physicianaitools.com WellDoc is an AI-powered health technology leader dedicated to transforming cardiometabolic care through its clinically validated digital health…",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://physicianaitools.com/investors/tcp-venture-capital/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s digital health risk‑stratification tool is a software‑based health‑IT product, matching the investor’s focus.",
+     "fundsQuote": "invests in software and healthcare technology applications",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [],
+   "quotes": {
+    "identity": "WellDoc is an AI-powered health technology leader dedicated to transforming cardiometabolic care through its clinically validated digital health…"
+   },
+   "key": "opportunity:engine:investment:https://physicianaitools.com/investors/tcp-venture-capital/",
+   "id": "965919f37073b8eb5481",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "healthcare",
+    "healthcare"
+   ],
+   "score": 29,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches healthcare, healthcare in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD $50M–$250M; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 7,
+   "jev": {
+    "leadId": "965919f37073b8eb5481",
+    "action": "investigate_more",
+    "actionConfidence": 0.55,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.7,
+     "discard": 0.3
+    },
+    "strategicFit": 0.93,
+    "fitConfidence": 0.83,
+    "evidenceSufficient": 0.09,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "thesis",
+    "label": "Answer their published thesis",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 2,
+    "hook": "Mirroring their own words shows fit before the first call.",
+    "source": "signals",
+    "evidence": {
+     "id": "15e61282855dc4aa3080",
+     "url": "https://physicianaitools.com/investors/tcp-venture-capital/",
+     "quote": "WellDoc is an AI-powered health technology leader dedicated to transforming cardiometabolic care through its clinically validated digital health…"
+    },
+    "why": "TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare technology applications. The healthcare focus is on health IT and software platforms rather than devices or therapeutics. AI is not the explicit thesis, though software-led compan's published thesis overlaps with you. Open with how you fit their words, not your deck.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Write 4 lines to TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare technology applications. The healthcare focus is on health IT and software platforms rather than devices or therapeutics. AI is not the explicit thesis, though software-led compan mapping your company to their stated thesis (quote it), and ask for feedback, not money."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "Offer to send a short update when you hit your next milestone."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Ask for a meeting before you open the round."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "title": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland.",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "€250 million",
+   "contact": {
+    "type": "web",
+    "value": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+    "provenance": "Read and verified on pulseit.news"
+   },
+   "evidence": [
+    {
+     "id": "1df4bc9e1497f5dc99aa",
+     "source": "Web research engine · pulseit.news",
+     "url": "https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+     "quote": "The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. €250 million for new round of Seed and Venture Capital Scheme - Pulse+IT The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The scheme supports life‑science ventures, but the page does not explicitly mention digital‑health or AD risk tools.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Emily Mara",
+     "role": "Publisher & Managing Director",
+     "email": "emily.mara@pulseit.news",
+     "organization": "Pulse+IT",
+     "linkedin": "http://www.linkedin.com/in/emilymara",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "The next five years of the Seed and Venture Capital Scheme will have a record allocation of €250 million"
+   },
+   "key": "opportunity:engine:investment:https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+   "id": "a1dd4f4536a67cdd39a3",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "score": 29,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Matches Alzheimer's risk prediction platform in the evidence.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD €250 million; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 8,
+   "jev": {
+    "leadId": "a1dd4f4536a67cdd39a3",
+    "action": "investigate_more",
+    "actionConfidence": 0.55,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.7,
+     "discard": 0.3
+    },
+    "strategicFit": 0.35,
+    "fitConfidence": 0.72,
+    "evidenceSufficient": 0.1,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Seed and Venture Capital Scheme managed by Enterprise Ireland, providing risk capital to start-ups in Ireland. has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Sam Price",
+   "role": "Senior Growth Manager",
+   "org": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+   "title": "Senior Growth Manager at LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "sam@leadmagic.io",
+    "provenance": "Hunter.io · leadmagic.io · confidence 99% · valid · seen on 2 public pages"
+   },
+   "evidence": [
+    {
+     "id": "fcee7080eec86c518531",
+     "source": "Web research engine · leadmagic.io",
+     "url": "https://leadmagic.io/funded-startups/biotech",
+     "quote": "104+ Funded Biotech Startups That Raised $21.5B",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.515Z",
+     "verified": true
+    },
+    {
+     "id": "599df9fad5cb4b503779",
+     "source": "Hunter.io · leadmagic.io",
+     "url": "https://newswirejet.com/press-releases/leadmagic-achieves-superhuman-growth-for-b2b-sales-prospecting",
+     "quote": "Sam Price · Senior Growth Manager · sam@leadmagic.io (Hunter.io · leadmagic.io · confidence 99% · valid · seen on 2 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:17.592Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Senior Growth Manager management LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r 104+ Funded Biotech Startups (2026) 104+ Funded Biotech Startups That Raised $21.5B",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "leadmagic.io",
+     "objective": "investment",
+     "query": "domain-search leadmagic.io"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:leadmagic.io:sam price",
+   "linkedin": "https://www.linkedin.com/in/sampri",
+   "parentKey": "opportunity:engine:investment:https://leadmagic.io/funded-startups/biotech",
+   "followUp": {
+    "from": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+    "question": "Who decides at LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r?"
+   },
+   "key": "person:sam price:leadmagic is a platform that provides data on funded startups including biotech companies it offers a free database of 104 funded biotech startups with details on funding amounts investor names headquarters locations and company domains the data is updated weekly and includes information on r",
+   "id": "1be06e46204606dd4e56",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 9,
+   "jev": {
+    "leadId": "1be06e46204606dd4e56",
+    "action": "investigate_more",
+    "actionConfidence": 0.28,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.52,
+     "discard": 0.48
+    },
+    "strategicFit": 0.36,
+    "fitConfidence": 0.7,
+    "evidenceSufficient": 0.17,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Sam Price yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Sam for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Sam has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Angela Steele",
+   "role": "Director",
+   "org": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "title": "Director at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "angela.steele@maryland.gov",
+    "provenance": "Hunter.io · maryland.gov · confidence 99% · valid · seen on 2 public pages"
+   },
+   "evidence": [
+    {
+     "id": "e27174cbc22ce0269726",
+     "source": "Web research engine · commerce.maryland.gov",
+     "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+     "quote": "The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "7759e585dc324f43fa66",
+     "source": "Hunter.io · maryland.gov",
+     "url": "https://msa.maryland.gov/msa/mdmanual/17dhcd/html/dhcd.html",
+     "quote": "Angela Steele · Director · angela.steele@maryland.gov (Hunter.io · maryland.gov · confidence 99% · valid · seen on 2 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:17.328Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Director executive Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Research and Development Tax Credit (R&amp;D) | Maryland Department of Commerce The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "maryland.gov",
+     "objective": "investment",
+     "query": "domain-search maryland.gov"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:maryland.gov:angela steele",
+   "parentKey": "opportunity:engine:investment:https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+   "followUp": {
+    "from": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+    "question": "Who decides at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.?"
+   },
+   "key": "person:angela steele:maryland research and development tax credit r d program administered by the maryland department of commerce",
+   "id": "20ea275e748c652bf796",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 10,
+   "jev": {
+    "leadId": "20ea275e748c652bf796",
+    "action": "investigate_more",
+    "actionConfidence": 0.54,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.6900000000000001,
+     "discard": 0.31
+    },
+    "strategicFit": 0.86,
+    "fitConfidence": 0.64,
+    "evidenceSufficient": 0.4,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Angela Steele yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Angela for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Angela has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Caitlin Kirkpatrick",
+   "role": "Partner",
+   "org": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "title": "Partner at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "caitlin.kirkpatrick@maryland.gov",
+    "provenance": "Hunter.io · maryland.gov · confidence 99% · valid · seen on 2 public pages"
+   },
+   "evidence": [
+    {
+     "id": "e27174cbc22ce0269726",
+     "source": "Web research engine · commerce.maryland.gov",
+     "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+     "quote": "The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "c998e0eccd2fb5637e66",
+     "source": "Hunter.io · maryland.gov",
+     "url": "https://healthystmarys.com/wp-content/uploads/2025/10/Chronic-Disease-Action-Team-Meeting-10-28-25.pdf",
+     "quote": "Caitlin Kirkpatrick · Partner · caitlin.kirkpatrick@maryland.gov (Hunter.io · maryland.gov · confidence 99% · valid · seen on 2 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:17.327Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Partner executive Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Research and Development Tax Credit (R&amp;D) | Maryland Department of Commerce The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "maryland.gov",
+     "objective": "investment",
+     "query": "domain-search maryland.gov"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:maryland.gov:caitlin kirkpatrick",
+   "parentKey": "opportunity:engine:investment:https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+   "followUp": {
+    "from": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+    "question": "Who decides at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.?"
+   },
+   "key": "person:caitlin kirkpatrick:maryland research and development tax credit r d program administered by the maryland department of commerce",
+   "id": "6e8fd67d97545fa9f7c4",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 11,
+   "jev": {
+    "leadId": "6e8fd67d97545fa9f7c4",
+    "action": "investigate_more",
+    "actionConfidence": 0.55,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.7,
+     "discard": 0.3
+    },
+    "strategicFit": 0.91,
+    "fitConfidence": 0.62,
+    "evidenceSufficient": 0.31,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Caitlin Kirkpatrick yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Caitlin for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Caitlin has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Laurel Cratsley",
+   "role": "Executive Director",
+   "org": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "title": "Executive Director at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "laurel.cratsley@maryland.gov",
+    "provenance": "Hunter.io · maryland.gov · confidence 99% · valid · seen on 6 public pages"
+   },
+   "evidence": [
+    {
+     "id": "e27174cbc22ce0269726",
+     "source": "Web research engine · commerce.maryland.gov",
+     "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+     "quote": "The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    },
+    {
+     "id": "e9e49786f5a2b40028d3",
+     "source": "Hunter.io · maryland.gov",
+     "url": "https://msa.maryland.gov/msa/mdmanual/13sdoe/html/sdoe.html",
+     "quote": "Laurel Cratsley · Executive Director · laurel.cratsley@maryland.gov (Hunter.io · maryland.gov · confidence 99% · valid · seen on 6 public pages)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:17.328Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Executive Director executive Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Research and Development Tax Credit (R&amp;D) | Maryland Department of Commerce The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "maryland.gov",
+     "objective": "investment",
+     "query": "domain-search maryland.gov"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:maryland.gov:laurel cratsley",
+   "parentKey": "opportunity:engine:investment:https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+   "followUp": {
+    "from": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+    "question": "Who decides at Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.?"
+   },
+   "key": "person:laurel cratsley:maryland research and development tax credit r d program administered by the maryland department of commerce",
+   "id": "775ed0825097cb301305",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 12,
+   "jev": {
+    "leadId": "775ed0825097cb301305",
+    "action": "investigate_more",
+    "actionConfidence": 0.53,
+    "actionProbabilities": {
+     "prioritize": 0.01,
+     "investigate_more": 0.69,
+     "discard": 0.3
+    },
+    "strategicFit": 0.98,
+    "fitConfidence": 0.61,
+    "evidenceSufficient": 0.38,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Laurel Cratsley yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Laurel for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Laurel has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": "Tucker Garfield",
+   "role": "Growth Manager",
+   "org": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+   "title": "Growth Manager at LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+   "kind": "person",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": null,
+   "contact": {
+    "type": "email",
+    "value": "tucker@leadmagic.io",
+    "provenance": "Hunter.io · leadmagic.io · confidence 96% · valid · seen on 1 public page"
+   },
+   "evidence": [
+    {
+     "id": "fcee7080eec86c518531",
+     "source": "Web research engine · leadmagic.io",
+     "url": "https://leadmagic.io/funded-startups/biotech",
+     "quote": "104+ Funded Biotech Startups That Raised $21.5B",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.515Z",
+     "verified": true
+    },
+    {
+     "id": "e068504889b6023e0a67",
+     "source": "Hunter.io · leadmagic.io",
+     "url": "https://www.google.com/search?q=site:linkedin.com%20tucker%20garfield%20leadmagic",
+     "quote": "Tucker Garfield · Growth Manager · tucker@leadmagic.io (Hunter.io · leadmagic.io · confidence 96% · valid · seen on 1 public page)",
+     "field": "contact",
+     "retrievedAt": "2026-10-14T16:39:17.593Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Person and email from Hunter.io: confirm the role is current before reaching out"
+   ],
+   "missing": [
+    "Funding authority not confirmed",
+    "Geographic eligibility and stage to confirm",
+    "Available amount not confirmed",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Growth Manager management LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r 104+ Funded Biotech Startups (2026) 104+ Funded Biotech Startups That Raised $21.5B",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Hunter.io",
+     "term": "leadmagic.io",
+     "objective": "investment",
+     "query": "domain-search leadmagic.io"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "hunter:leadmagic.io:tucker garfield",
+   "linkedin": "https://www.linkedin.com/in/tuckergarfield",
+   "parentKey": "opportunity:engine:investment:https://leadmagic.io/funded-startups/biotech",
+   "followUp": {
+    "from": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+    "question": "Who decides at LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r?"
+   },
+   "key": "person:tucker garfield:leadmagic is a platform that provides data on funded startups including biotech companies it offers a free database of 104 funded biotech startups with details on funding amounts investor names headquarters locations and company domains the data is updated weekly and includes information on r",
+   "id": "ab89f3df704956ef49be",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 5,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "No published amount to compare with your target."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 13,
+   "jev": {
+    "leadId": "ab89f3df704956ef49be",
+    "action": "investigate_more",
+    "actionConfidence": 0.3,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.53,
+     "discard": 0.47
+    },
+    "strategicFit": 0.28,
+    "fitConfidence": 0.77,
+    "evidenceSufficient": 0.16,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Tucker Garfield yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Tucker for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Tucker has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "title": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce.",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "Up to $250,000 per applicant, with a total program cap of $12M and a small business set-aside of $3.5M",
+   "contact": {
+    "type": "web",
+    "value": "https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+    "provenance": "Read and verified on commerce.maryland.gov"
+   },
+   "evidence": [
+    {
+     "id": "e27174cbc22ce0269726",
+     "source": "Web research engine · commerce.maryland.gov",
+     "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+     "quote": "The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.516Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Fit to confirm with the counterpart",
+    "Check: date_quote_has_several_dates:application_deadline",
+    "Check: date_date_not_in_quote:award"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. Research and Development Tax Credit (R&amp;D) | Maryland Department of Commerce The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+   "verification": {
+    "verdict": "apply",
+    "tier": "main",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_quote_has_several_dates:application_deadline",
+     "date_date_not_in_quote:award"
+    ],
+    "deadlineQuote": "",
+    "blockers": [],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s R&D‑focused health‑tech product qualifies as innovation and technology development.",
+     "fundsQuote": "The program encourages companies to expand innovation, develop new technologies, and grow research operations in Maryland.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Brandon Wilson",
+     "role": "Principal Planner",
+     "email": "brandon.wilson@maryland.gov",
+     "organization": "Maryland Department of Health",
+     "linkedin": "http://www.linkedin.com/in/brandon-wilson-aicp-pmp-91759292",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Olga McKenzie",
+     "role": "MD (IMG), MPH, Epidemiologist",
+     "email": "olga.mckenzie@maryland.gov",
+     "organization": "Maryland Department of Health",
+     "linkedin": "http://www.linkedin.com/in/olga-mckenzie-936059237",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Albby Ch***n",
+     "role": "MD Responds Data Specialist",
+     "email": null,
+     "organization": "Maryland Department of Health",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount. For small businesses, the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded."
+   },
+   "key": "opportunity:engine:investment:https://commerce.maryland.gov/financial-incentives/tax-incentives/research-and-development-tax-credit-rd",
+   "id": "2634e2130f1e4f8a1577",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD Up to $250,000 per applicant, with a total program cap of $12M and a small business set-aside of $3.5M; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 14,
+   "jev": {
+    "leadId": "2634e2130f1e4f8a1577",
+    "action": "investigate_more",
+    "actionConfidence": 0.59,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.73,
+     "discard": 0.27
+    },
+    "strategicFit": 0.69,
+    "fitConfidence": 0.44,
+    "evidenceSufficient": 0.1,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Maryland Research and Development Tax Credit (R&D) program administered by the Maryland Department of Commerce. has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+   "title": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$21.5B",
+   "contact": {
+    "type": "web",
+    "value": "https://leadmagic.io/funded-startups/biotech",
+    "provenance": "Read and verified on leadmagic.io"
+   },
+   "evidence": [
+    {
+     "id": "fcee7080eec86c518531",
+     "source": "Web research engine · leadmagic.io",
+     "url": "https://leadmagic.io/funded-startups/biotech",
+     "quote": "104+ Funded Biotech Startups That Raised $21.5B",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T16:39:15.515Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion entity_type: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:funding_date",
+    "Check: fake_quote:topic_fit"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r 104+ Funded Biotech Startups (2026) 104+ Funded Biotech Startups That Raised $21.5B",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://leadmagic.io/funded-startups/biotech",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:funding_date",
+     "fake_quote:topic_fit"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion entity_type: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The page explicitly cites longevity science as a funded sub‑sector, which aligns with the applicant’s Alzheimer’s risk‑stratification tool.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Jesse Ou***e",
+     "role": "Founder",
+     "email": null,
+     "organization": "LeadMagic",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Tucker Ga***d",
+     "role": "Head of Growth",
+     "email": null,
+     "organization": "LeadMagic",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Soufiane El***y",
+     "role": "Software Engineer",
+     "email": null,
+     "organization": "LeadMagic",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "104+ Funded Biotech Startups That Raised $21.5B"
+   },
+   "key": "opportunity:engine:investment:https://leadmagic.io/funded-startups/biotech",
+   "id": "d0a7844bcc35eac27bf2",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD $21.5B; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 15,
+   "jev": {
+    "leadId": "d0a7844bcc35eac27bf2",
+    "action": "investigate_more",
+    "actionConfidence": 0.35,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.57,
+     "discard": 0.43
+    },
+    "strategicFit": 0.15,
+    "fitConfidence": 0.88,
+    "evidenceSufficient": 0.07,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then LeadMagic is a platform that provides data on funded startups, including biotech companies. It offers a free database of 104+ funded biotech startups with details on funding amounts, investor names, headquarters locations, and company domains. The data is updated weekly and includes information on r has seen 3 updates."
+     }
+    ]
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T16:34:50.044Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:1",
+    "sequence": 1,
+    "at": "2026-10-14T16:34:50.910Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "IGC pharma · mint ad: investment · marketed · seed · US · USD 8000000",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention tool"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "healthcare mint ad"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "healthcare mint ad"
+      },
+      {
+       "provider": "Firecrawl + ScrapeGraph",
+       "query": "Fund and organization teams on public pages"
+      },
+      {
+       "provider": "Exa (semantic search)",
+       "query": "Full profile by goal (investment), with criteria and constraints"
+      },
+      {
+       "provider": "Funding rounds",
+       "query": "healthcare seed · Exa news o Serper"
+      },
+      {
+       "provider": "Serper (optional)",
+       "query": "healthcare mint ad investment US "
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:2",
+    "sequence": 2,
+    "at": "2026-10-14T16:34:50.912Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:3",
+    "sequence": 3,
+    "at": "2026-10-14T16:39:15.516Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 5 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 5,
+    "durationMs": 264604,
+    "status": "success"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:4",
+    "sequence": 4,
+    "at": "2026-10-14T16:39:17.593Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 10 new people across 5 organizations (5 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 10,
+    "status": "success"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:5",
+    "sequence": 5,
+    "at": "2026-10-14T16:39:17.594Z",
+    "phase": "warning",
+    "title": "Limited coverage",
+    "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+    "status": "warning"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:6",
+    "sequence": 6,
+    "at": "2026-10-14T16:39:17.594Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:7",
+    "sequence": 7,
+    "at": "2026-10-14T16:39:17.597Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 3,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Founder",
+     "contacts": 0,
+     "candidates": 15,
+     "paths": []
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:8",
+    "sequence": 8,
+    "at": "2026-10-14T16:39:17.597Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 15 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 15,
+    "status": "running"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:9",
+    "sequence": 9,
+    "at": "2026-10-14T16:39:19.183Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "1 people found across 3 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 1,
+    "status": "success"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:10",
+    "sequence": 10,
+    "at": "2026-10-14T16:39:19.184Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:11",
+    "sequence": 11,
+    "at": "2026-10-14T16:39:19.836Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 15 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 15,
+    "durationMs": 652,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 9647,
+      "output_tokens": 1294,
+      "cost": 0.000405174
+     }
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:12",
+    "sequence": 12,
+    "at": "2026-10-14T16:39:19.838Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 15 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 15,
+    "durationMs": 2241,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "Timothy Armour",
+       "org": "Cure Alzheimer's Fund",
+       "title": "CEO at Cure Alzheimer's Fund",
+       "score": 32,
+       "why": "Matches Alzheimer's risk prediction platform in the evidence.",
+       "bucket": "radar"
+      },
+      {
+       "name": "Cindy Turner",
+       "org": "Cure Alzheimer's Fund",
+       "title": "Accountant Chief Financial Officer at Cure Alzheimer's Fund",
+       "score": 32,
+       "why": "Matches Alzheimer's risk prediction platform in the evidence.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 0,
+      "radar": 15,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:13",
+    "sequence": 13,
+    "at": "2026-10-14T16:39:19.845Z",
+    "phase": "evaluating",
+    "title": "Warm paths for every candidate",
+    "message": "0 through your network; 15 to build with advice and updates before the round.",
+    "provider": "Warm path plan",
+    "resultCount": 15,
+    "status": "success"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:14",
+    "sequence": 14,
+    "at": "2026-10-14T16:39:19.873Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 149 pages read by the AI · 0 main list · 15 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:15",
+    "sequence": 15,
+    "at": "2026-10-14T16:39:19.874Z",
+    "phase": "drafting",
+    "title": "Drafts written",
+    "message": "15 drafts built from templates and public facts; nothing is sent.",
+    "resultCount": 15,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Timothy Armour",
+     "org": "Cure Alzheimer's Fund",
+     "subject": "Collaboration and fit",
+     "excerpt": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?"
+    }
+   },
+   {
+    "id": "59380e66-4046-4449-bb91-6a07b7449104:16",
+    "sequence": 16,
+    "at": "2026-10-14T16:39:19.876Z",
+    "phase": "completed",
+    "title": "Done with warnings",
+    "message": "0 candidates prioritized; 15 on radar.",
+    "resultCount": 15,
+    "status": "warning",
+    "detail": {
+     "jobStatus": "partial",
+     "usage": {
+      "Hunter.io": {
+       "calls": 5,
+       "results": 29,
+       "ms": 2056,
+       "bytes": 0,
+       "costUsd": 0
+      }
+     },
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "partial",
+ "plan": {
+  "topic": "healthcare",
+  "query": "healthcare mint ad",
+  "scientificQuery": "healthcare",
+  "summary": "IGC pharma · mint ad: investment · marketed · seed · US · USD 8000000",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention tool"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "healthcare mint ad"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "healthcare mint ad"
+   },
+   {
+    "provider": "Firecrawl + ScrapeGraph",
+    "query": "Fund and organization teams on public pages"
+   },
+   {
+    "provider": "Exa (semantic search)",
+    "query": "Full profile by goal (investment), with criteria and constraints"
+   },
+   {
+    "provider": "Funding rounds",
+    "query": "healthcare seed · Exa news o Serper"
+   },
+   {
+    "provider": "Serper (optional)",
+    "query": "healthcare mint ad investment US "
+   }
+  ],
+  "alzheimer": false,
+  "terms": [
+   {
+    "term": "healthcare",
+    "source": "yours"
+   },
+   {
+    "term": "Alzheimer's risk prediction platform",
+    "source": "model"
+   },
+   {
+    "term": "Neurodegenerative disease stratification solution",
+    "source": "model"
+   },
+   {
+    "term": "Cognitive decline early detection system",
+    "source": "model"
+   },
+   {
+    "term": "Preventive dementia intervention tool",
+    "source": "model"
+   }
+  ]
+ },
+ "engineDrops": [
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) | Maryland Department of Commerce",
+   "reason": "not_eligible",
+   "quote": "The program supports seed and early-stage investment in Maryland’s biotechnology industry.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) | Maryland Department of Commerce",
+   "reason": "not_eligible",
+   "quote": "supports seed and early-stage investment in Maryland’s biotechnology industry.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://menlovc.com/focus-areas/healthcare/",
+   "title": "Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm",
+   "reason": "not_eligible",
+   "quote": "We invest in transformative, early-stage Bio + Healthcare companies",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.sep.benfranklin.org/partner/digital-health-seed-fund/",
+   "title": "Digital Health Seed Funding Initiative - Ben Franklin Technology Partners",
+   "reason": "not_eligible",
+   "quote": "Seed and early-stage healthcare IT/digital health companies located in, or with significant business presence within, Philadelphia, Bucks, Montgomery, Chester, and Delaware Counties.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://opendoorsalon.com/non-dilutive-funding-brain-health-startups",
+   "title": "Non-Dilutive Funding for Biotech Startups: The Brain Health Case",
+   "reason": "not_eligible",
+   "quote": "Mahesh Narayanan , Managing Partner and Founder of Neuvation Ventures, a Baltimore seed fund investing in brain health...",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://biobuzz.io/news/these-seed-and-early-stage-investment-funds-in-maryland-are-fueling-life-science-startups/",
+   "title": "These Seed and Early-Stage Investment Funds in Maryland Are Fueling Life Science Startups | BioBuzz",
+   "reason": "not_eligible",
+   "quote": "The BioHealth Capital Fund is seeking to close a funding gap for emerging companies in the $500K to $5M range.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities",
+   "title": "Funding Opportunities | Alzheimer's Drug Discovery Foundation",
+   "reason": "not_eligible",
+   "quote": "The ADDF provides funding to academic centers and biotechs from around the world",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/drug-development-rfp",
+   "title": "Drug Development RFP | Alzheimer's Drug Discovery Foundation",
+   "reason": "scope_mismatch",
+   "quote": "Other non-pharmacologic interventions, such as diet, meditation, and exercise, will not be considered.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/biomarkers",
+   "title": "Neuroimaging and CSF Biomarker Program | Alzheimer's Drug Discovery Foundation",
+   "reason": "scope_mismatch",
+   "quote": "The aim of this RFP is to further develop and validate established biomarkers for which there is a clear clinical need in Alzheimer's disease and related dementias.",
+   "deadline": null,
+   "objective": "investment"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "investment",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 174,
+    "seconds": 265,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": false,
+     "numbers": 0,
+     "seeds": 0,
+     "notices": 0,
+     "brief": null,
+     "byNumber": null
+    }
+   },
+   "triage": {
+    "opened": 92,
+    "assessed": 40,
+    "by_status": {
+     "open": 4,
+     "upcoming": 1,
+     "unknown": 65,
+     "closed": 22,
+     "unread": 58
+    },
+    "docs": 2
+   },
+   "judge": {
+    "finalists": 14,
+    "calls": 14,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 5,
+    "people": 10,
+    "credits": 8,
+    "skipped": null,
+    "domains": [
+     "leadmagic.io",
+     "pulseit.news",
+     "curealz.org",
+     "physicianaitools.com",
+     "maryland.gov"
+    ]
+   },
+   "seconds": 90,
+   "opens": 149,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "hunter": {
+  "calls": 5,
+  "emailsAdded": 0,
+  "peopleAdded": 10,
+  "domains": 5,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://curealz.org/the-research/cardinal-family-fund-programs/",
+    "canonical_name": "Cure Alzheimer's Fund",
+    "official_domain": "curealz.org",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "partial",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://physicianaitools.com/investors/tcp-venture-capital/",
+    "canonical_name": "TCP Venture Capital is an early-stage technology-focused firm based in Baltimore that invests in software and healthcare technology applications. The healthcare focus is on health IT and software platforms rather than devices or therapeutic",
+    "official_domain": "physicianaitools.com",
+    "match_method": "not_found",
+    "confidence": 0
+   },
+   "status": "error",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 4,
+    "credits_estimated": 3,
+    "cache_hits": 0
+   },
+   "errors": [
+    "One or more search parameters in your request are invalid."
+   ]
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://www.pulseit.news/irish-digital-health/e250-million-for-new-round-of-seed-and-venture-capital-scheme/",
+    "canonical_name": "Pulse+IT",
+    "official_domain": "pulseit.news",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "60a1004bed550400010c976c",
+     "name": "Emily",
+     "title": "Publisher & Managing Director",
+     "organization": "Pulse+IT",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Publisher & Managing Director.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://pulseit.news",
+       "retrieved_at": "2026-10-14",
+       "quote": "Emily · Publisher & Managing Director · Pulse+IT"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "Pulse+IT",
+     "to": "Emily",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 6,
+    "credits_estimated": 4,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 3,
+  "calls": 6,
+  "creditsEstimated": 4,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(investment) 0 queries · 149 pages · 149 read",
+   "dimension": "engine",
+   "returned": 149,
+   "discovered": 5,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "IGC pharma",
+   "product": "mint ad",
+   "industry": "healthcare",
+   "geography": "US",
+   "stage": "marketed",
+   "round": "seed",
+   "fundingTypes": [
+    "investment"
+   ],
+   "constraints": null
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 149,
+   "pagesRead": 149,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 5,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 15,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Other": 11,
+    "Eligibility not confirmed by the judge with a quote from the page": 2,
+    "Topic fit not confirmed by the judge with a quote from the page": 2
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": null,
+  "comparePrompts": {
+   "investment": "Hoy es 2026-10-14. Actúa como investigador de capital de riesgo. Busca en la web INVERSORES (fondos, firmas de venture capital, ángeles o redes de ángeles) que invertirían en este proyecto:\n\n- Proyecto: IGC pharma: stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees\n- Producto: mint ad\n- Sector: healthcare\n- Etapa: marketed / seed\n- Geografía: US\n- Constitución: país de constitución no indicado\n- Monto objetivo: 8,000,000 USD\n- Uso de fondos: development and hiring\n\nTipo de entidad: empresa / startup con fines de lucro.\n\nREGLAS (estrictas):\n1. Solo páginas OFICIALES del inversor (su sitio, su portafolio o su tesis). Nada de blogs, noticias, listas ni agregadores, ni páginas de eventos.\n2. Debe invertir en esta etapa y sector, y en esta geografía. Si no es seguro, márcalo aparte.\n3. Dame la persona concreta que decide (socio o managing partner) solo si la página oficial la nombra con su cargo; si no, dime solo la firma. No incluyas ventas, marketing ni relaciones públicas.\n4. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Firma | URL oficial | Etapas y sectores en los que invierte (CITA LITERAL de su página) | Geografías | Cheque típico | Persona y cargo (si la página lo dice) | Por qué encaja | Estado (confirmado / dudoso).\nDespués una segunda tabla, «No pude confirmar». Al final, dime cuántos hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T16:39:19.875Z",
+ "usage": {
+  "Hunter.io": {
+   "calls": 5,
+   "results": 29,
+   "ms": 2056,
+   "bytes": 0,
+   "costUsd": 0
+  }
+ },
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

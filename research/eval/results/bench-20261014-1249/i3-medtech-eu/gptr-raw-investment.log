@@ -1,0 +1,470 @@
+
+🔍 DEEP RESEARCH: Starting with breadth=4, depth=2, concurrency=5
+python(10256) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(10257) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Searching with query seed investors Wearable ECG patch AI arrhythmia detection medtech cardiology wearable AI Spain Spain (EU-incorporated company) 2026
+
+Today is 2026-10-14. Find investors (venture capital funds, angel groups, corporate venture arms, family offices, accelerators that invest) that are actively deploying capital now and could realistically invest in this company at its current stage, sector and geography.
+
+Company and context (from the brief):
+company: CardioLoop
+venture: CardioLoop
+industry: medtech cardiology wearable AI
+product: Wearable ECG patch with AI arrhythmia detection
+oneLiner: Wearable ECG patch with AI arrhythmia detection
+description: Medical device startup in Spain developing a wearable ECG patch with cloud AI to detect atrial fibrillation. CE marking in progress.
+entityType: for_profit
+country: Spain
+geography: Spain (EU-incorporated company)
+stage: prototype
+round: seed
+amount: 1200000
+useOfFunds: Clinical validation study, CE marking, first 500 devices
+minDays: 30
+constraints: Medical device regulation (MDR) compliance required
+
+The applicant is based in Spain, Spain (EU-incorporated company). Only include funders that accept applicants from there; skip programs restricted to other countries or regions. Work out for yourself the kinds of investors that fit (by stage, cheque size, sector thesis and geography) and search each kind with several differently worded queries. Prefer each investor's own website (thesis, portfolio and team pages) and recent deal announcements from 2025-2026; do not rely on lists or rankings alone. For every investor give: name, official URL of its own thesis or portfolio page, stage and typical cheque size as stated, evidence of a deal in the last 18 months (with date), how to pitch (form, email or warm intro), why it fits, red flags, and a short literal quote from its page that supports the thesis fit. Finish with the investors you excluded and why....
+
+📊 DEEP RESEARCH: depth=2, breadth=4, query=
+        Initial Query: seed investors Wearable ECG patch AI arrhythmia detection medtech cardiology...
+🔎 Generating 4 search queries...
+✅ Generated 4 queries: ['seed stage medtech investors Spain wearable ECG AI 2025-2026', 'corporate venture arms Philips Siemens Healthineers Medtronic cardiac monitoring startup Europe 2025-2026', 'angel networks Spain digital health arrhythmia detection seed investment 2024-2026', 'EU venture capital MDR compliance medtech seed round 2025-2026']
+INFO:     [12:58:35] 🔍 Starting the research task for 'angel networks Spain digital health arrhythmia detection seed investment 2024-2026'...
+INFO:     [12:58:35] 📈 Business Analyst Agent
+INFO:     [12:58:35] 🌐 Browsing the web to learn more about the task: angel networks Spain digital health arrhythmia detection seed investment 2024-2026...
+INFO:     [12:58:36] 🔍 Starting the research task for 'corporate venture arms Philips Siemens Healthineers Medtronic cardiac monitoring startup Europe 2025-2026'...
+INFO:     [12:58:36] 📈 Business Analyst Agent
+INFO:     [12:58:37] 🌐 Browsing the web to learn more about the task: corporate venture arms Philips Siemens Healthineers Medtronic cardiac monitoring startup Europe 2025-2026...
+INFO:     [12:58:37] 🔍 Starting the research task for 'seed stage medtech investors Spain wearable ECG AI 2025-2026'...
+INFO:     [12:58:37] 💰 Finance Agent
+INFO:     [12:58:37] 🌐 Browsing the web to learn more about the task: seed stage medtech investors Spain wearable ECG AI 2025-2026...
+INFO:     [12:58:38] 🔍 Starting the research task for 'EU venture capital MDR compliance medtech seed round 2025-2026'...
+INFO:     [12:58:38] 📈 Business Analyst Agent
+INFO:     [12:58:38] 🌐 Browsing the web to learn more about the task: EU venture capital MDR compliance medtech seed round 2025-2026...
+INFO:     [12:58:44] 🤔 Planning the research strategy and subtasks...
+INFO:     [12:58:45] 🤔 Planning the research strategy and subtasks...
+INFO:     [12:58:45] 🤔 Planning the research strategy and subtasks...
+INFO:     [12:58:45] 🤔 Planning the research strategy and subtasks...
+INFO:     [12:58:49] 🗂️ I will conduct my research based on the following queries: ['European venture capital seed funding for medtech companies complying with MDR in 2025 and 2026', 'Medtech startups in the EU raising seed rounds in 2025‑2026 and their MDR certification status', 'EU investors that backed MDR‑compliant medical device seed rounds between 2025 and 2026', 'EU venture capital MDR compliance medtech seed round 2025-2026']...
+INFO:     [12:58:49] ✅ Added source url to research: https://www.healthcare.digital/single-post/key-metrics-for-a-healthtech-and-medtech-company-to-raise-a-series-a-round-in-europe-in-today-s-envi
+
+INFO:     [12:58:49] ✅ Added source url to research: https://meddeviceguide.com/blog/medical-device-startup-funding-guide-vc-2026
+
+INFO:     [12:58:49] ✅ Added source url to research: https://wewillcure.com/insights/news/funding-and-models/medtech-venture-funding-tracker
+
+INFO:     [12:58:49] ✅ Added source url to research: https://arrotek.com/en/your-guide-to-funding-opportunities-for-medical-device-development-in-europe
+
+INFO:     [12:58:49] ✅ Added source url to research: https://med-tech.world
+
+INFO:     [12:58:49] ✅ Added source url to research: https://www.lsieuropesummit.com
+
+INFO:     [12:58:49] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:58:49] 🌐 Scraping content from 6 URLs...
+INFO:     [12:58:49] 🗂️ I will conduct my research based on the following queries: ['Spanish angel networks investing in digital health seed rounds for arrhythmia detection between 2024 and 2026', 'seed funding for arrhythmia detection startups in Spain from angel investors during 2024‑2026', 'list of Spain‑based angel investors focused on digital health and cardiac rhythm monitoring in the 2024‑2026 period', 'angel networks Spain digital health arrhythmia detection seed investment 2024-2026']...
+INFO:     [12:58:49] ✅ Added source url to research: https://signal.nfx.com/investor-lists/top-digital-health-seed-investors
+
+INFO:     [12:58:49] ✅ Added source url to research: https://newmarketpitch.com/blogs/news/digital-health-funding-analysis
+
+INFO:     [12:58:49] ✅ Added source url to research: https://www.openvc.app/investor-lists/angel-investors-healthtech
+
+INFO:     [12:58:49] ✅ Added source url to research: https://digital.health/investors
+
+INFO:     [12:58:49] ✅ Added source url to research: https://qubit.capital/blog/angel-investment-healthtech-expectations
+
+INFO:     [12:58:49] ✅ Added source url to research: https://www.telehealth-summit.com/news/digital-health-capital-clusters-around-safe-bets
+
+INFO:     [12:58:49] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:58:49] 🌐 Scraping content from 6 URLs...
+INFO:     [12:58:49] 🗂️ I will conduct my research based on the following queries: ['seed stage investors in Spain focused on AI‑enabled wearable ECG devices 2025‑2026', 'Spanish venture capital firms that funded wearable cardiac monitoring startups with artificial intelligence in 2025 and 2026', 'list of early‑stage medtech investors supporting AI‑driven ECG wearables in Spain during 2025‑2026', 'seed stage medtech investors Spain wearable ECG AI 2025-2026']...
+INFO:     [12:58:49] ✅ Added source url to research: https://een.ec.europa.eu/partnering-opportunities/ai-driven-non-invasive-cardiac-monitoring-medtech-company-seeks-commercial
+
+INFO:     [12:58:49] ✅ Added source url to research: https://newmarketpitch.com/blogs/news/medtech-funding-analysis
+
+INFO:     [12:58:49] ✅ Added source url to research: https://www.powerfulmedical.com/blog/powerful-medical-raises-6-million-eur-in-seed-funding
+
+INFO:     [12:58:49] ✅ Added source url to research: https://tiet.ai/blog/tietai-seed-round
+
+INFO:     [12:58:49] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:58:49] 🌐 Scraping content from 4 URLs...
+INFO:     [12:59:06] 🗂️ I will conduct my research based on the following queries: ['European cardiac monitoring startups funded by Philips corporate venture arm in 2025 and 2026', 'Siemens Healthineers venture investments in European cardiac monitoring companies between 2025 and 2026', 'Medtronic corporate venture activity targeting European cardiac monitoring startups during 2025‑2026', 'corporate venture arms Philips Siemens Healthineers Medtronic cardiac monitoring startup Europe 2025-2026']...
+INFO:     [12:59:07] ✅ Added source url to research: https://www.healthcare.digital/single-post/european-healthtech-and-medtech-venture-capital-outlook-2026
+
+INFO:     [12:59:07] ✅ Added source url to research: https://news.medtronic.com/Medtronic-announces-strategic-partnership-with-Philips-to-expand-access-to-patient-monitoring-technology
+
+INFO:     [12:59:07] ✅ Added source url to research: https://www.massdevice.com/philips-medtronic-expand-patient-monitoring-collaboration
+
+INFO:     [12:59:07] ✅ Added source url to research: https://www.philips.com/a-w/about/news/archive/standard/news/articles/20171130-philips-health-technology-ventures.html
+
+INFO:     [12:59:07] ✅ Added source url to research: https://www.panda-int.com/insights/top-10-european-medtech-companies-leading-digital-health-in-2026
+
+INFO:     [12:59:07] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:07] 🌐 Scraping content from 5 URLs...
+Content too short or empty for https://newmarketpitch.com/blogs/news/medtech-funding-analysis, treating as fetch failure
+INFO:     [12:59:12] 📄 Scraped 3 pages of content
+INFO:     [12:59:12] 🖼️ Selected 4 new images from 16 total images
+INFO:     [12:59:12] 🌐 Scraping complete
+INFO:     [12:59:12] 📚 Getting relevant content based on query: seed stage medtech investors Spain wearable ECG AI 2025-2026...
+INFO:     [12:59:13] 
+🔍 Running research for 'seed stage investors in Spain focused on AI‑enabled wearable ECG devices 2025‑2026'...
+INFO:     [12:59:13] 
+🔍 Running research for 'Spanish venture capital firms that funded wearable cardiac monitoring startups with artificial intelligence in 2025 and 2026'...
+INFO:     [12:59:13] 
+🔍 Running research for 'list of early‑stage medtech investors supporting AI‑driven ECG wearables in Spain during 2025‑2026'...
+INFO:     [12:59:13] 
+🔍 Running research for 'seed stage medtech investors Spain wearable ECG AI 2025-2026'...
+INFO:     [12:59:14] 📄 Scraped 5 pages of content
+INFO:     [12:59:14] 🖼️ Selected 4 new images from 36 total images
+INFO:     [12:59:14] 🌐 Scraping complete
+INFO:     [12:59:14] 📚 Getting relevant content based on query: corporate venture arms Philips Siemens Healthineers Medtronic cardiac monitoring startup Europe 2025-2026...
+INFO:     [12:59:14] 
+🔍 Running research for 'European cardiac monitoring startups funded by Philips corporate venture arm in 2025 and 2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'Siemens Healthineers venture investments in European cardiac monitoring companies between 2025 and 2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'Medtronic corporate venture activity targeting European cardiac monitoring startups during 2025‑2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'corporate venture arms Philips Siemens Healthineers Medtronic cardiac monitoring startup Europe 2025-2026'...
+INFO:     [12:59:14] 📄 Scraped 6 pages of content
+INFO:     [12:59:14] 🖼️ Selected 4 new images from 25 total images
+INFO:     [12:59:14] 🌐 Scraping complete
+INFO:     [12:59:14] 📚 Getting relevant content based on query: angel networks Spain digital health arrhythmia detection seed investment 2024-2026...
+INFO:     [12:59:14] 📄 Scraped 6 pages of content
+INFO:     [12:59:14] 🖼️ Selected 4 new images from 47 total images
+INFO:     [12:59:14] 🌐 Scraping complete
+INFO:     [12:59:14] 📚 Getting relevant content based on query: EU venture capital MDR compliance medtech seed round 2025-2026...
+INFO:     [12:59:14] 
+🔍 Running research for 'Spanish angel networks investing in digital health seed rounds for arrhythmia detection between 2024 and 2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'seed funding for arrhythmia detection startups in Spain from angel investors during 2024‑2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'list of Spain‑based angel investors focused on digital health and cardiac rhythm monitoring in the 2024‑2026 period'...
+INFO:     [12:59:14] 
+🔍 Running research for 'angel networks Spain digital health arrhythmia detection seed investment 2024-2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'European venture capital seed funding for medtech companies complying with MDR in 2025 and 2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'Medtech startups in the EU raising seed rounds in 2025‑2026 and their MDR certification status'...
+INFO:     [12:59:14] 
+🔍 Running research for 'EU investors that backed MDR‑compliant medical device seed rounds between 2025 and 2026'...
+INFO:     [12:59:14] 
+🔍 Running research for 'EU venture capital MDR compliance medtech seed round 2025-2026'...
+INFO:     [12:59:22] ✅ Added source url to research: https://angelmatch.io/investors/by-market/digital-health
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.galengrowth.com/most-impactful-digital-health-early-stage-investors-in-the-us-reduce-funding-stress-for-their-portfolio-ventures/
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.fiercehealthcare.com/health-tech/fierce-healthcare-fundraising-tracker-26
+
+INFO:     [12:59:22] ✅ Added source url to research: https://alejandromorales.es/idoven-cierra-una-ronda-de-2-millones-de-euros-junto-a-wayra-accel-partners-business-angels-de-primer-nivel-y-enisa
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.idoven.ai/blog/eit-health-funds-the-faithful-project-with-eu1-7m-led-by-idoven-to-redefine-heart-failure-detection
+
+INFO:     [12:59:22] ✅ Added source url to research: https://parsers.vc/startup/idoven.ai/
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.lelezard.com/en/news-idoven-raises-19-8-million-in-funding-to-redefine-detection-and-precision-medicine-of-20444922.html
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.rasph.com/followhealth-eic-accelerator-remote-patient-monitoring
+
+INFO:     [12:59:22] ✅ Added source url to research: https://en.empresaexterior.com/Spain-promotes-digital-health%3B-non-invasive-heart-monitor-seeks-distributors-and-global-investment/
+
+INFO:     [12:59:22] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:22] 🌐 Scraping content from 9 URLs...
+INFO:     [12:59:22] ✅ Added source url to research: https://news.medtronic.com/2026-06-03-Medtronic-announces-strategic-investments-to-support-future-expansion-of-cardiac-ablation-portfolio-as-physician-demand-for-Affera-TM-technologies-broadens
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.healthcare.digital/single-post/deconstructing-medtronic-s-2026-m-a-playbook
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.linkedin.com/in/dan-sheehan-802058247
+
+INFO:     [12:59:22] ✅ Added source url to research: https://news.medtronic.com/press-releases?keywords=Operations&l=100
+
+INFO:     [12:59:22] ✅ Added source url to research: https://investorrelations.medtronic.com
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.medtronic.com/en-ie/index.html
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.medtronic.com/en-us/index.html
+
+INFO:     [12:59:22] ✅ Added source url to research: https://news.medtronic.com/2025-11-18-Medtronic-reports-strong-second-quarter-fiscal-2026-financial-results,-enterprise-growth-drivers-accelerate-momentum
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.prnewswire.com/news-releases/medtronic-reports-strong-third-quarter-fiscal-2026-results-with-highest-enterprise-revenue-growth-in-10-quarters-302689151.html
+
+INFO:     [12:59:22] ✅ Added source url to research: https://market.us/statistics/medical-device-industry/medtronic/
+
+INFO:     [12:59:22] ✅ Added source url to research: https://investorrelations.medtronic.com/
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.modernhealthcare.com/medical-devices/mh-medtronic-boston-scientific-medtech-deals-2026/
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.prnewswire.com/news-releases/medtronic-announces-strategic-investment-in-pi-cardia-to-accelerate-innovation-for-complex-tavr-302865441.html
+
+INFO:     [12:59:22] ✅ Added source url to research: https://lifestyle.harcourthealth.com/story/842831/medtronic-announces-strategic-investment-in-pi-cardia-to-accelerate-innovation-for-complex-tavr/
+
+INFO:     [12:59:22] ✅ Added source url to research: https://sofinnovapartners.com/news/medtronic-announces-strategic-investment-in-pi-cardia-to-accelerate-innovation-for-complex-tavr
+
+INFO:     [12:59:22] ✅ Added source url to research: https://www.marketscreener.com/news/medtronic-announces-strategic-investment-in-pi-cardia-to-accelerate-innovation-for-complex-tavr-ce7858ddde8df22d
+
+INFO:     [12:59:22] ✅ Added source url to research: https://news.medtronic.com/2026-06-03-Medtronic-announces-strategic-investments-to-support-future-expansion-of-cardiac-ablation-portfolio-as-physician-demand-for-Affera-TM-technologies-broadens?asPDF=1
+
+INFO:     [12:59:22] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:22] 🌐 Scraping content from 17 URLs...
+INFO:     [12:59:23] ✅ Added source url to research: https://www.powerfulmedical.com/blog/powerful-medical-raises-6-million-eur-in-seed-funding/
+
+INFO:     [12:59:23] ✅ Added source url to research: https://eithealth.eu/opportunity/transformative-healthcare-instrument/
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.healcapital.com/ecosystem
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.linkedin.com/posts/seb-johnson_breaking-spanish-biorce-the-ai-health-company-activity-7424006225773727745-ggFq
+
+INFO:     [12:59:23] ✅ Added source url to research: https://f4.fund/firms/asabys-partners
+
+INFO:     [12:59:23] ✅ Added source url to research: https://ebdaventuresvc.com/
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.asebio.com/sites/default/files/2026-03/260327_YsioslanzaInceptionBio_ENG.pdf
+
+INFO:     [12:59:23] ✅ Added source url to research: https://crbhealthtech.com/
+
+INFO:     [12:59:23] ✅ Added source url to research: https://asabys.com/wp-content/uploads/2026/05/Asabys-Only-TTF_ESP_20260520.pdf
+
+INFO:     [12:59:23] ✅ Added source url to research: https://f4.fund/firms/crb-health-tech
+
+INFO:     [12:59:23] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:23] 🌐 Scraping content from 10 URLs...
+INFO:     [12:59:23] ✅ Added source url to research: https://uk.finance.yahoo.com/news/heartx-cardiovascular-accelerator-announces-five-123400020.html
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.youtube.com/watch?v=G5TaosbqQYY
+
+INFO:     [12:59:23] ✅ Added source url to research: https://meddeviceguide.com/blog/ai-powered-medical-devices-funding-acquisition-landscape-2026
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.lsiusasummit.com/news/medical-technology-investment-trends-shaping-cardiovascular-innovation
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.philips.si/healthcare/innovation/philips-ventures/insights
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.prnewswire.com/news-releases/fresenius-establishes-venture-fund-of-more-than-200-million-to-drive-healthcare-innovation-302833182.html
+
+INFO:     [12:59:23] ✅ Added source url to research: https://fundmomentum.vc/blog/fresenius-ventures-200m-corporate-healthcare-fund-thestrup-2026
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.eqs-news.com/news/corporate/fresenius-grundet-venture-fonds-mit-mindestens-200-millionen-euro-und-treibt-innovationen-im-gesundheitswesen-voran/f7010f7b-d3fa-4fb5-ba2a-3958c3dfa507
+
+INFO:     [12:59:23] ✅ Added source url to research: https://www.philips.si/healthcare/innovation/philips-ventures/partner-with-us
+
+INFO:     [12:59:23] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:23] 🌐 Scraping content from 9 URLs...
+INFO:     [12:59:24] ✅ Added source url to research: https://techfundingnews.com/top-ai-startups-in-spain-2026-the-companies-attracting-most-investment
+
+INFO:     [12:59:24] ✅ Added source url to research: https://revenuebase.ai/companies/medical-device-venture-capital-firms/spain
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.openvc.app/investor-lists/wearables-investors
+
+INFO:     [12:59:24] ✅ Added source url to research: https://healthcarevclist.com/pages/spain
+
+INFO:     [12:59:24] ✅ Added source url to research: https://newmarketpitch.com/blogs/news/werarable-list-deals
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.grandviewresearch.com/industry-analysis/wearable-ai-market-report
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.marketsandmarkets.com/Market-Reports/geography/ecg-sensor-patches-market/spain
+
+INFO:     [12:59:24] ✅ Added source url to research: https://seedblink.com/blog/2023-10-19-revolutionizing-healthcare-in-europe-with-artificial-intelligence
+
+INFO:     [12:59:24] ✅ Added source url to research: https://luisllorens.substack.com/p/20-spanish-startups-to-watch-in-2026
+
+INFO:     [12:59:24] ✅ Added source url to research: https://linkedin.com/in/ciro-alberto-cuenca-ruiz-4834365a
+
+INFO:     [12:59:24] ✅ Added source url to research: https://linkedin.com/in/maitemalet
+
+INFO:     [12:59:24] ✅ Added source url to research: https://linkedin.com/in/unaizorriqueta
+
+INFO:     [12:59:24] ✅ Added source url to research: https://linkedin.com/in/manuelmatesgarcia
+
+INFO:     [12:59:24] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:24] 🌐 Scraping content from 13 URLs...
+INFO:     [12:59:24] ✅ Added source url to research: https://www.philips.com/a-w/about/news/archive/standard/news/press/2025/philips-redefines-cardiac-care-with-ai-driven-solutions-at-esc-congress-2025.html
+
+INFO:     [12:59:24] ✅ Added source url to research: https://hub.waveup.com/funds/philips-venture-capital-fund
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.fiercehealthcare.com/tech/american-heart-association-upmc-philips-mobile-apps-venture-fund-cardeation-capital
+
+INFO:     [12:59:24] ✅ Added source url to research: https://healthcare-in-europe.com/en/manufacturers/philips-healthcare.html
+
+INFO:     [12:59:24] ✅ Added source url to research: https://startupintros.com/orgs/philips
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.philips.iq/en/healthcare/innovation/philips-ventures/portfolio
+
+INFO:     [12:59:24] ✅ Added source url to research: https://pitchbook.com/profiles/investor/11271-34
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.philips.com/a-w/about/innovation/philips-ventures.html
+
+INFO:     [12:59:24] ✅ Added source url to research: https://tracxn.com/d/venture-capital/philips-ventures/__amwi06lwLCT5O-VibgdhAg2O14cIKDghCGMWUWXt9PQ
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.philips.si/healthcare/innovation/philips-ventures
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.philips.com/a-w/about/news/archive/standard/news/press/2026/european-combine-ct-project-advances-from-technology-development-to-clinical-validation.html
+
+INFO:     [12:59:24] ✅ Added source url to research: https://www.sesamers.com/funding/implicity-raises-35m-growth-cardiac-monitoring/
+
+INFO:     [12:59:24] ✅ Added source url to research: https://cordys.health/blog/cordys-analytics-secures-new-funding-to-expand-galvo-across-europe
+
+INFO:     [12:59:24] ✅ Added source url to research: https://rominwest.nl/en/news/hearteye-raises-over-one-and-a-half-million-euros-for-early-detection-of-possible-heart-disease/
+
+INFO:     [12:59:24] ✅ Added source url to research: https://goanewslink.com/monitra-health-raises-capital-as-upbeat-emerges-as-scalable-global-cardiac-monitoring-platform/
+
+INFO:     [12:59:24] ✅ Added source url to research: https://startupsmagazine.co.uk/article-ventriject-raises-eu17m-cardiorespiratory-fitness-expands
+
+INFO:     [12:59:24] ✅ Added source url to research: https://techfundingnews.com/implicity-raises-35m-growth-funding-iris-five-arrows-cardiac-ai/
+
+INFO:     [12:59:24] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:24] 🌐 Scraping content from 17 URLs...
+Content too short or empty for https://angelmatch.io/investors/by-market/digital-health, treating as fetch failure
+Content too short or empty for https://www.lelezard.com/en/news-idoven-raises-19-8-million-in-funding-to-redefine-detection-and-precision-medicine-of-20444922.html, treating as fetch failure
+INFO:     [12:59:25] ✅ Added source url to research: https://www.linkedin.com/posts/zadig-advisory_medtech-europeanmedtech-financing-activity-7502985071864479744-Vk34
+
+INFO:     [12:59:25] ✅ Added source url to research: https://dealroom.co/resources/europe-healthtech-2026/
+
+INFO:     [12:59:25] ✅ Added source url to research: https://arrotek.com/en/your-guide-to-funding-opportunities-for-medical-device-development-in-europe/
+
+INFO:     [12:59:25] ✅ Added source url to research: https://www.openvc.app/investor-lists/medtech-investors
+
+INFO:     [12:59:25] ✅ Added source url to research: https://eustartups.news/rome-based-ardeevo-secures-e150000-pre-seed-to-simplify-ce-certification-for-medical-device-makers/
+
+INFO:     [12:59:25] ✅ Added source url to research: https://www.finsmes.com/2026/10/archeon-medical-raises-9m-in-series-a-funding.html
+
+INFO:     [12:59:25] ✅ Added source url to research: https://proyarn.app/en/deals/archeon-medical
+
+INFO:     [12:59:25] ✅ Added source url to research: https://archeon-medical.com/archeon-medical-secures-9m-series-a/
+
+INFO:     [12:59:26] ✅ Added source url to research: https://delphinus.vc/2026/from-a-childhood-dream-to-technology-for-acute-stroke-care/
+
+INFO:     [12:59:26] ✅ Added source url to research: https://tech.eu/2026/02/17/klaris-raises-1m-to-address-regulatory-challenges-in-medtech/
+
+INFO:     [12:59:26] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:26] 🌐 Scraping content from 10 URLs...
+INFO:     [12:59:26] ✅ Added source url to research: https://eithealth.eu/opportunity/transformative-healthcare-instrument
+
+INFO:     [12:59:26] ✅ Added source url to research: https://www.facebook.com/medtech.world/posts/what-will-medtech-investors-be-looking-for-in-2027-for-founders-strong-technolog/1544148287758263
+
+INFO:     [12:59:26] ✅ Added source url to research: https://www.speedinvest.com/knowledge/early-stage-european-healthtech-vc-funds
+
+INFO:     [12:59:26] ✅ Added source url to research: https://www.greenlight.guru/blog/top-50-venture-capital-firms-for-medical-device-startups
+
+INFO:     [12:59:26] ✅ Added source url to research: https://www.linkedin.com/posts/evalyze-ai_eu-healthtech-investors-10-top-vcs-activity-7407827062314606592-vwg1
+
+INFO:     [12:59:26] ✅ Added source url to research: https://www.valuespectrum.com/corporate_news/1493410-dialybrid-secures-15-million-series-a-round-and-announces-successful-first-in-human-implant-of-novel-silkothane-arteriovenous-graft-for-vascular-access-in-hemodialysis
+
+INFO:     [12:59:26] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:26] 🌐 Scraping content from 6 URLs...
+INFO:     [12:59:29] ✅ Added source url to research: https://www.roundfunded.com/en/blogs/how-to-raise-seed-round-spain-2026
+
+INFO:     [12:59:29] ✅ Added source url to research: https://seedblink.com/blog/top-angel-clubs-and-investment-networks-in-spain
+
+INFO:     [12:59:29] ✅ Added source url to research: https://angels4health.com
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.evalyze.ai/blog/health-angel-investors
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.linkedin.com/posts/flare-capital-partners_today-we-are-thrilled-to-announce-our-investment-activity-7363937893016379392-u7sS
+
+INFO:     [12:59:29] ✅ Added source url to research: https://espananaciondigital.es/idoven-cierra-una-ronda-de-2-millones-de-euros-junto-a-wayra-accel-partners-business-angels-de-primer-nivel-y-enisa
+
+INFO:     [12:59:29] ✅ Added source url to research: https://codigocero.com/2024/09/18/quobis-e-cinfo-desenvolveran-aplicacions-de-saudo-no-marco-do-programa-tech/
+
+INFO:     [12:59:29] ✅ Added source url to research: https://eithealth.eu/news-article/recauda-6-millones-de-euros-para-revolucionar-la-atencion-cardiaca/?lang=es
+
+INFO:     [12:59:29] ✅ Added source url to research: https://capital-riesgo.es/en/articles/la-colaboraci-n-entre-mondragon-ventures-y-corify-care-un-modelo-de-xito-/
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.tulankide.com/es/ademas-de-financiacion-mondragon-nos-da-acceso-a-su-extraordinario-ecosistema
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.webcapitalriesgo.com/corify-care-cierra-una-ronda-de-e6m-liderada-por-clave-mondragon/
+
+INFO:     [12:59:29] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:29] 🌐 Scraping content from 11 URLs...
+INFO:     [12:59:29] ✅ Added source url to research: https://www.openvc.app/investor-lists/medical-devices-investors
+
+INFO:     [12:59:29] ✅ Added source url to research: https://newmarketpitch.com/blogs/news/medtech-funding-deals
+
+INFO:     [12:59:29] ✅ Added source url to research: https://flot.bio/european-biotech-investors-2026
+
+INFO:     [12:59:29] ✅ Added source url to research: https://emdsummit.com
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.arnoldporter.com/en/perspectives/advisories/2026/02/the-eu-medical-device-shake-up
+
+INFO:     [12:59:29] ✅ Added source url to research: https://health.ec.europa.eu/medical-devices-new-regulations_en
+
+INFO:     [12:59:29] ✅ Added source url to research: https://qbdgroup.com/en/blog/eu-mdr-bottleneck-2026-medical-device-manufacturers
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.linkedin.com/pulse/what-eu-mdr-2026-amendments-mean-your-samd-product-strategy-xsakf
+
+INFO:     [12:59:29] ✅ Added source url to research: https://mantrasystems.com/articles/regulatory-reset-eu-proposed-changes-to-mdr-ivdr-explained
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.nqa.com/en-us/resources/blog/august-2026/how-to-sell-medical-devices-in-europe-a-regulatory
+
+INFO:     [12:59:29] ✅ Added source url to research: https://borskifund.com/news/faster-and-better-targeted-antibiotic-care-with-investment-in-shanx-medtech
+
+INFO:     [12:59:29] ✅ Added source url to research: http://www.medevice.eu/en
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.startgreen.nl/en/borski-fund-investeert-in-shanx-medtech-om-ontwikkeling-diagnostiek-antimicrobiele-gevoeligheid-te-versnellen/
+
+INFO:     [12:59:29] ✅ Added source url to research: https://borskifund.com/faster-and-better-targeted-antibiotic-care-with-investment-in-shanx-medtech/?lang=en
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.soapbox.vc/feed/klaris-880k-pre-seed
+
+INFO:     [12:59:29] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:29] 🌐 Scraping content from 15 URLs...
+INFO:     [12:59:29] ✅ Added source url to research: https://tracxn.com/d/companies/siemens-healthineers/__6ZXtpUeL_c41SC4z1RS8cDSo5kHEEF1M4FI1L07l_Uc
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.mpo-mag.com/top-company-profile/siemens-healthineers
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.eurekanetwork.org/programmes-and-calls/investment-readiness/online-session-with-siemens-healthineers
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.siemens-healthineers.com
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.youtube.com/watch?v=CrZjNKi3rl4
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.siemens-healthineers.com/investor-relations
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.siemens-healthineers.com/en-us/press-room/press-releases/us-investments
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.siemens-healthineers.com/
+
+INFO:     [12:59:29] ✅ Added source url to research: https://press.siemens.com/global/en/pressrelease/siemens-plans-deconsolidate-siemens-healthineers
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.eurekanetwork.org/programmes-and-calls/investment-readiness/online-session-with-siemens-healthineers/
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.siemens.com/siemensreport
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.pharmiweb.com/press-release/2026-01-09-7/fineheart-secures-83-million-to-support-its-growth-and-establish-itself-as-a-future-european-leader
+
+INFO:     [12:59:29] ✅ Added source url to research: https://cardioline.com/en/cardioline-acquires-cardios/
+
+INFO:     [12:59:29] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:29] 🌐 Scraping content from 13 URLs...
+INFO:     [12:59:29] ✅ Added source url to research: https://www.grandviewresearch.com/industry-analysis/wearable-medical-devices-market
+
+INFO:     [12:59:29] ✅ Added source url to research: https://rsmus.com/insights/industries/life-sciences/medtech-investment-ipo-rise-ai-innovation.html
+
+INFO:     [12:59:29] ✅ Added source url to research: https://www.linkedin.com/posts/conor-o-sullivan-858b2022b_cardiology-digitalhealth-healthtech-activity-7376876128856227840-AYLc
+
+INFO:     [12:59:29] ✅ Added source url to research: https://shizune.co/investors/medical-device-investors-spain
+
+INFO:     [12:59:29] ✅ Added source url to research: https://shizune.co/investors/biotech-investors-spain
+
+INFO:     [12:59:29] ✅ Added source url to research: https://shizune.co/investors/medical-device-vc-funds-spain
+
+INFO:     [12:59:29] ✅ Added source url to research: https://shizune.co/investors/life-science-investors-spain
+
+INFO:     [12:59:29] ✅ Added source url to research: https://revenuebase.ai/companies/medtech-venture-capital-companies/spain
+
+INFO:     [12:59:29] ✅ Added source url to research: https://fliarbi.com/companies/best-wearable-technology-companies-in-spain/
+
+INFO:     [12:59:29] 🤔 Researching for relevant information across multiple sources...
+
+INFO:     [12:59:29] 🌐 Scraping content from 9 URLs...

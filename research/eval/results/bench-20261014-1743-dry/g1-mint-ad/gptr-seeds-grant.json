@@ -1,0 +1,637 @@
+{
+ "today": "2026-10-14",
+ "numbers": [
+  "PAS-17-064",
+  "PAS-22-197",
+  "PAR-17-067",
+  "PA-16-091",
+  "PA-24-246",
+  "PA-27-101",
+  "RFA-RM-27-013",
+  "SOL-26-164",
+  "RFA-RM-27-012",
+  "PAR-17-066",
+  "RFA-OD-12-003",
+  "PA-27-100",
+  "PAS-18-187",
+  "RFA-AG-27-010",
+  "PAR-25-332",
+  "H-ISO-25-113",
+  "HRSA-26-101",
+  "HRSA-23-125"
+ ],
+ "registry": [
+  {
+   "url": "https://simpler.grants.gov/opportunity/00000000-0000-4000-8000-0000000a0100",
+   "title": "PA-27-100 · NIH SBIR omnibus parent solicitation (fixture record)",
+   "why": "PA-27-100"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/00000000-0000-4000-8000-0000000b0200",
+   "title": "NSF-SBIR-PHASE-I-FIXTURE · NSF SBIR Phase I (fixture record)",
+   "why": "NSF-SBIR-PHASE-I-FIXTURE"
+  }
+ ],
+ "gptr": [
+  {
+   "url": "https://portal.alzimpact.org/storage/resources/media-items/Fiscal%20Year%202027%20Alzheimer's%20Research%20Funding%20(April%202026).pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/getmedia/47627c7a-e169-4fc2-8fb9-41ed28cf8adc/2026-ptc-gtc-rfa-final.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html",
+   "in_report": false
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/360c4588-1512-4fa4-9b61-52a3f1d6c368/attachments/16b08ada-0c75-4e4d-bf70-e1485a9a381d/RFA-RM-27-013-Full-Announcement.html",
+   "in_report": false
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/d07ebcd7-96cf-40cb-8ae3-f401b6274080/attachments/e4789627-8735-47c0-80e4-43fc7384f5d1/RFA-RM-27-012-Full-Announcement.html",
+   "in_report": false
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/d1ba49e5-3684-4420-849a-ab2330ec493e/attachments/743ad4bd-fc28-450e-9249-1008f37490af/PA-27-100-Revised-Full-Announcement.html",
+   "in_report": false
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/507bb18b-7239-4c03-b50d-4a3b60589be7/attachments/b2a4ffae-450e-4a71-967f-ea187be923e0/RFA-AG-27-010-Full-Announcement.html",
+   "in_report": false
+  },
+  {
+   "url": "https://www.tedcomd.com/sites/default/files/2026-01/MII%20Company%20Formation-RFA_FY2026_v4.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.ihs.gov/alzheimers/grants/fundingopportunities/2026fundingopp",
+   "in_report": false
+  },
+  {
+   "url": "https://cdh.stanford.edu/grant2026",
+   "in_report": false
+  },
+  {
+   "url": "https://www.digitalhealthhub.org/awards/2026/digital-health-awards",
+   "in_report": false
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/grants/meif",
+   "in_report": false
+  },
+  {
+   "url": "https://ventures.jhu.edu/funding/translational-funding/maryland-innovation-initiative-mii-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://leadingage.org/new-funding-support-offered-for-tech-development",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/drug-development-rfp",
+   "in_report": false
+  },
+  {
+   "url": "https://ri-bio.org/small-business-funding-for-innovations-in-alzheimers-disease-and-aging",
+   "in_report": false
+  },
+  {
+   "url": "https://onestop.md.gov/forms/mdot-purple-line-small-business-grant-program-grant-application-67e41e9b74ebaf00d67c9bf4",
+   "in_report": false
+  },
+  {
+   "url": "https://www.niehs.nih.gov/grants-and-contracts/grant-opportunities/funding-opportunities/sbir",
+   "in_report": false
+  },
+  {
+   "url": "https://www.niehs.nih.gov/research/supported/translational/sbir",
+   "in_report": false
+  },
+  {
+   "url": "https://www.niehs.nih.gov/research/supported/centers/srp/funding",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/alzheimers-association-real-world-data-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://www.naccdata.org/funding-resources",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/360451",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/diagnostics-accelerator-digital-biomarkers-program",
+   "in_report": false
+  },
+  {
+   "url": "https://www.brightfocus.org/grant/mapping-cell-state-transitions-in-brain-aging-to-predict-rejuvenating-therapeutic-targets",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/prevention-pipeline",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/biomarkers",
+   "in_report": false
+  },
+  {
+   "url": "https://alzfdn.org/find-a-member/grant-information/bi-annual-grant",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/fdeab375-b164-4aed-9752-2348d1802e54",
+   "in_report": false
+  },
+  {
+   "url": "https://mterms.bwh.harvard.edu/grants-and-projects",
+   "in_report": false
+  },
+  {
+   "url": "https://www.montgomerycountymd.gov/businesses/business-resources/business-funding-incentives",
+   "in_report": false
+  },
+  {
+   "url": "https://genevausa.org/search-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://www2.fundsforngos.org/individuals/alzheimers-association-clinician-scientist-fellowship-for-all",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir/nia-small-business-research-contract-topics",
+   "in_report": false
+  },
+  {
+   "url": "https://minnesotasbir.org/federal-funding/nih-sbir-sttr-solicitations-fy26",
+   "in_report": false
+  },
+  {
+   "url": "https://www.sbir.gov/topics/12563",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir/nia-small-business-interest-areas",
+   "in_report": false
+  },
+  {
+   "url": "https://seed.nih.gov/small-business-funding/find-funding/sbir-sttr-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://www.sbir.gov/topics/9638",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/a44b38f2-6d15-4b5b-b1df-788a730bb203",
+   "in_report": false
+  },
+  {
+   "url": "https://www.socialroots.ai/grant-success-stories/nih-ahrq-digital-healthcare-solutions-grants-2026",
+   "in_report": false
+  },
+  {
+   "url": "https://healthit.gov/about/funding-announcements",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/362227",
+   "in_report": false
+  },
+  {
+   "url": "https://apply07.grants.gov/grantsws/rest/opportunity/att/download/353492",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/d07ebcd7-96cf-40cb-8ae3-f401b6274080",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/359270",
+   "in_report": false
+  },
+  {
+   "url": "https://e-hail.umich.edu/funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://civitasforhealth.org/funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://arpa-h.gov/explore-funding/open-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/funding/explore-nih-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/node/1",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/11a1ba17-6aeb-4de1-b138-635a62b81cdb",
+   "in_report": false
+  },
+  {
+   "url": "https://nhlbi-ai.org/funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/policy-and-compliance/policy-topics/clinical-trials/specific-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://www.healthit.gov/about/funding-announcements",
+   "in_report": false
+  },
+  {
+   "url": "https://www.sbir.gov/topics/12566",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir/nia-small-business-programs-frequently-asked-questions",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir/nia-small-business-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://cdmrp.health.mil/funding/pa/HT942526AZRPTrDA_GG.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.sbir.gov/topics/9637",
+   "in_report": false
+  },
+  {
+   "url": "https://www.nih.gov/brain/funding/funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/alz-pro/hub/research-publications-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://cdmrp.health.mil/funding/apply",
+   "in_report": false
+  },
+  {
+   "url": "https://rockvilleredi.org/seed-and-early-stage-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/part-the-cloud-tgt-challenge",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzforum.org/grants",
+   "in_report": false
+  },
+  {
+   "url": "https://recardo.org/research-award",
+   "in_report": false
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/32dcf252-e495-4dbc-a0ad-b3636888c389",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/funding/find-a-fit-for-your-research/highlighted-topics/97",
+   "in_report": false
+  },
+  {
+   "url": "https://nihcm.org/grants/policy-research-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://www.naccdata.org/new-investigator-award-program",
+   "in_report": false
+  },
+  {
+   "url": "https://azalz.org/application-for-pilot-studies",
+   "in_report": false
+  },
+  {
+   "url": "https://grants.nih.gov/grants/guide/pa-files/PAR-25-332.html",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/alzinsights-prize-for-adrd-research",
+   "in_report": false
+  },
+  {
+   "url": "https://leadingage.org/hhs-launches-2-million-ai-prize-to-support-americas-caregivers",
+   "in_report": false
+  },
+  {
+   "url": "https://www.usa.gov/challenges/acl-caregiver-ai-prize",
+   "in_report": false
+  },
+  {
+   "url": "https://www.hhs.gov/press-room/acl-launches-phase-1-caregiver-ai-prize-competition.html",
+   "in_report": false
+  },
+  {
+   "url": "https://data.hrsa.gov/tools/find-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://arpa-h.gov/explore-funding/programs/ehi",
+   "in_report": false
+  },
+  {
+   "url": "https://arpa-h.gov/explore-funding/programs/circle/faqs",
+   "in_report": false
+  },
+  {
+   "url": "https://apply07.grants.gov/grantsws/rest/opportunity/att/download/345830",
+   "in_report": false
+  },
+  {
+   "url": "https://arpa-h.gov/explore-funding/programs/igor/teaming",
+   "in_report": false
+  },
+  {
+   "url": "https://apply07.grants.gov/apply/opportunities/instructions/PKG00281998-instructions.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://origin.arpa-h.gov/explore-funding/submission-resources-and-FAQs/navigating-application-process",
+   "in_report": false
+  },
+  {
+   "url": "https://origin.arpa-h.gov/explore-funding/programs/air",
+   "in_report": false
+  },
+  {
+   "url": "https://www.arpa-h.gov/explore-funding/programs/igor",
+   "in_report": false
+  },
+  {
+   "url": "https://research.ncsu.edu/rdo/pdu/pdu-resources/arpa-h-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://www.niaid.nih.gov/grants-contracts/check-fit-arpa-h",
+   "in_report": false
+  },
+  {
+   "url": "https://origin.arpa-h.gov/explore-funding/submission-resources-and-FAQs/submission-faqs",
+   "in_report": false
+  },
+  {
+   "url": "https://data.hrsa.gov/topics/grants",
+   "in_report": false
+  },
+  {
+   "url": "https://bphc.hrsa.gov/funding/funding-opportunities/service-area-competition/faq",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/technology-commercialization-fund-maryland-technology-development-corporat-3ddbe723",
+   "in_report": false
+  },
+  {
+   "url": "https://ops.opengrants.io/grants/grants-to-usa-canada-and-international-researchers-for-studies-related-to-alzheimers-disease-interventions",
+   "in_report": false
+  },
+  {
+   "url": "https://streamlyne.com/grants/maryland-innovation-initiative-tedco-maryland-technology-development-corporation-8",
+   "in_report": false
+  },
+  {
+   "url": "https://streamlyne.com/grants/maryland-innovation-initiative-mii-technology-assessment-company-formation-grants-tedco-maryland-technology-development-corporation",
+   "in_report": false
+  },
+  {
+   "url": "https://sbirgrantwriters.com/sbir-blog-sbir-sttr-landscape-2026.html",
+   "in_report": false
+  },
+  {
+   "url": "https://jm-aq.com/neuroscience-funding-in-2026-sbir-reauthorization-increased-nih-budget-and-new-arpa-h-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://streamlyne.com/grants/tedco-seed-funds-maryland-technology-development-corporation-tedco",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/arpa-h-emerging-health-innovators-ehi-initiative-fy2026-arpa-h-sol-26-15-advanced-research-projects-agency-for-he-858290c9",
+   "in_report": false
+  },
+  {
+   "url": "https://www.tailorbrands.com/llc-formation/maryland-llc/grants",
+   "in_report": false
+  },
+  {
+   "url": "https://streamlyne.com/grants/maryland-innovation-initiative-tedco-4",
+   "in_report": false
+  },
+  {
+   "url": "https://www.tedcomd.com/funding/maryland-innovation-initiative?page=1",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/drug-development-rfp-for-ai-enabled-alzheimer-s-and-neurodegeneration-dr-alzheimer-s-drug-discovery-foundation-ad-c33e9485",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/drug-development-rfp-alzheimer-s-drug-discovery-foundation-d5e27240",
+   "in_report": false
+  },
+  {
+   "url": "https://grantedai.com/grants/ai-healthcare",
+   "in_report": false
+  },
+  {
+   "url": "https://www.tedcomd.com/funding/maryland-makerspace-initiative-program",
+   "in_report": false
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/pubs/budgetfiscal/2026fy-budget-docs-operating-T50T01-Maryland-Technology-Development-Corporation.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/pubs/budgetfiscal/2027fy-budget-docs-operating-T50T01-Maryland-Technology-Development-Corporation.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://grantcompass.co/grants/md-tedco-maryland-innovation-initiative",
+   "in_report": false
+  },
+  {
+   "url": "https://www.itnewsonline.com/PRNewswire/Alzheimers-Disease-Data-Initiative-Doubles-USD1M-Prize-Competition-for-Agentic-AI-Solutions-to-Accelerate-Alzheimers-Research/1118435",
+   "in_report": false
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/2026RS/chapters_noln/Ch_381_sb0763T.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://grantexec.com/grants/f7f294c5-eb48-44ae-be57-efad9d590936",
+   "in_report": false
+  },
+  {
+   "url": "https://www.purplelinemd.com/small-business-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://app.fedsift.app/solicitations/0e6b5119ca2540868b047f155d57ea9d",
+   "in_report": false
+  },
+  {
+   "url": "https://www.bwcoconsulting.com/funding/biotech",
+   "in_report": false
+  },
+  {
+   "url": "https://grantdeadlines.com/grant/359666-model-to-clinic-m2c-for-precision-medicine-with-ai-integrating-imaging",
+   "in_report": false
+  },
+  {
+   "url": "https://www.layer3labs.io/guides/grants-for-ai-projects",
+   "in_report": false
+  },
+  {
+   "url": "https://grantmetric.com/topic/ai-technology-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://usa.grantwatch.com/cat/14/health-and-medical-grants.html",
+   "in_report": false
+  },
+  {
+   "url": "https://assets-us-01.kc-usercontent.com/21889434-3edf-0038-d25f-75c4fdd8ecb7/458f331f-d3ba-4d1e-ad34-ba7f6ecf6c85/Vivli_Challenge_Rules_vF.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.healthncp.net/find-open-calls?page=1",
+   "in_report": false
+  },
+  {
+   "url": "https://assets-us-01.kc-usercontent.com/21889434-3edf-0038-d25f-75c4fdd8ecb7/fef5203d-ae90-4e0a-bd00-3c09dbd56da5/Alzheimer%27s%20Insights%20Prize%20Rules%20and%20Eligibility%20Requirements_vS.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://matter.health/posts/six-startups-awarded-non-dilutive-funding-through-paratus-digital-health-accelerator-part-of-the-barda-accelerator-network",
+   "in_report": false
+  },
+  {
+   "url": "https://matter.health/challenges/paratus-digital-health-accelerator-cohort-2",
+   "in_report": false
+  },
+  {
+   "url": "https://everglade.com/find-funding/life-sciences/barda-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://everglade.com/guide-to-arpa-h-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://matter.health/posts/thirteen-startups-selected-to-join-third-cohort-of-the-paratus-digital-health-accelerator-part-of-barda-accelerator-network",
+   "in_report": false
+  },
+  {
+   "url": "https://matter.health/challenges/paratus-digital-health-accelerator-non-dilutive-funding",
+   "in_report": false
+  },
+  {
+   "url": "https://vitalhubhealth.com/dev-awards",
+   "in_report": false
+  },
+  {
+   "url": "https://everglade.com/wp-content/uploads/BARDA-FY23-Modernized-BAA-Solicitation-Amendment4.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://govtribe.com/opportunity/federal-contract-opportunity/solicitation-barda-accelerator-network-2-dot-0-supplemental-announcement-to-fill-diagnostics-and-medical-devices-hub-vacancy-26bardasolban21",
+   "in_report": false
+  },
+  {
+   "url": "https://www.pharmaindiamagazine.com/arpa-h-launches-worlds-first-fda-authorised-clinical-ai-programme-for-heart-care",
+   "in_report": false
+  },
+  {
+   "url": "https://example.test/fixture-mips-rfp",
+   "in_report": false
+  },
+  {
+   "url": "https://sam.gov/workspace/contract/opp/bdd2026ead744527be7b623032a4c79a/view",
+   "in_report": false
+  },
+  {
+   "url": "https://www.american.edu/provost/osara/upload/NIH_May_2026.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://sbir.cancer.gov",
+   "in_report": false
+  },
+  {
+   "url": "https://opportunitiesforyouth.org/2026/08/09/amex-shop-small-grants",
+   "in_report": false
+  },
+  {
+   "url": "https://www.grants.gov",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/adpd2026-knowledge-hub",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimer-forschung.de/fileadmin/user_upload/0_Wissenschaft/AFI_Application_Instructions_2026_Neu.pdf",
+   "in_report": false
+  },
+  {
+   "url": "https://www.alzheimersdata.org/adpd2026-knowledge-hub/teamaletheia",
+   "in_report": false
+  },
+  {
+   "url": "https://www.lblpartnershipforhealth.org/2026/07/01/health-resource-and-services-administration-hrsa-funding-opportunities",
+   "in_report": false
+  },
+  {
+   "url": "https://commerce.maryland.gov/fund/programs-for-businesses/innovation-investment",
+   "in_report": false
+  },
+  {
+   "url": "https://msa.maryland.gov/msa/mdmanual/25ind/html/71techf.html",
+   "in_report": false
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "in_report": false
+  },
+  {
+   "url": "https://commerce.maryland.gov/Documents/MEIF%20Indirect%20Cost%20Proposal%20Template%20FINAL%20%281%29.pdf",
+   "in_report": false
+  }
+ ]
+}

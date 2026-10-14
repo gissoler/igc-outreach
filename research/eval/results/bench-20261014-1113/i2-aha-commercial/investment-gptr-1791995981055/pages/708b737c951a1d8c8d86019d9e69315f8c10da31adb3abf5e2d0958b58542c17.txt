@@ -1,0 +1,178 @@
+State of Angel Investing 2026: Data, Trends and Analysis
+
+Executive Summary: The global angel investment market reached $34.47 billion in 2025 and is projected to hit $37.2 billion in 2026. Syndicates now represent 40% of US deal flow (up from 15% in 2021). AI/deeptech captures 48% of angel capital. Post-money simple agreements for future equity dominate 75%+ of new deals. This report combines industry-wide data with insights from a 234-company portfolio.
+
+## 1. Global Market Size & Growth
+The angel investment market continues its expansion in 2026, driven by platform infrastructure, lower startup costs, and growing interest from high-net-worth individuals seeking alternatives to public markets.
+$37.2B Projected 2026 Market
+$34.5B 2025 Market Size
+11.3% CAGR to 2035
+$89.6B Projected 2035
+
+The market grew from approximately $27.8 billion in 2024 to $34.47 billion in 2025 — a 24% year-over-year increase driven by syndicate platform growth and AI sector enthusiasm. The projected $37.2 billion for 2026 represents a more normalized 8% growth rate as the market matures.
+For context, US venture capital deployed $340 billion in 2025 (SVB State of Markets H1 2026), making angel capital roughly 10% of total early-stage funding. However, angel investors fund 10-20x more companies than VCs, playing a critical role in the startup ecosystem pipeline.
+
+## 2. Key Metrics at a Glance
+$127K Median Check (Q1 2026)
+40% US Deals via Syndicates
+75% Deals Using Simple Agreements
+48% AI/Deeptech Share
+4-6 wks Avg Decision Time
+$3-6M Standard Pre-Seed Cap
+
+The median angel check across the top 50 US groups rose to $127K in Q1 2026, up from $97K in Q1 2025 — a 31% increase reflecting both rising startup prices and the consolidation of angel capital into larger, more coordinated rounds (Angel Investors Network, March 2026).
+
+## 3. The Structural Shift: Syndicates & SPVs
+The most significant structural change in angel investing is the movement from individual checks to syndicated capital pools. This shift fundamentally changes how founders raise and how investors deploy.
+
+#### 2021 (5 years ago)
+15% of US deals via syndicates
+8% of European deals via syndicates
+Individual $50K-$150K checks
+Minimal due diligence
+Spray-and-pray common
+
+#### 2026 (Today)
+40% of US deals via syndicates
+35% of European deals via syndicates
+Pooled $200K-$500K rounds
+Institutional-grade diligence
+Portfolio construction discipline
+
+Three structural drivers converged to create this shift:
+Cost compression: Startups now prove product-market fit on $500K-$1.5M (vs $5M-$10M before AI infrastructure commodified). Solo angels cannot carry rounds alone.
+Platform infrastructure: AngelList, Fidelity Private Markets, and Carta made co-investment possible without legal overhead.
+Performance data: The 2023-2024 correction separated disciplined investors from spray-and-pray. Syndicates with structure generated better returns.
+"The days of raising $250K from five wealthy friends with no diligence and no structure are gone. Today&#x27;s angel capital comes from people who track portfolio composition and expect institutional-grade execution." — Spectup Market Analysis, May 2026
+
+## 4. Sector Mix & AI Dominance
+Angel capital is concentrating in three sectors while pulling back from others. Understanding where investor conviction lies determines fundraising success.
+Sector Share of Deals (2026) Trend Typical Check
+AI / Deeptech 48% Accelerating $100K-$300K
+Healthtech 18% Stable $75K-$200K
+Fintech 14% Shifting to embedded $100K-$250K
+Climate / Cleantech 8% Growing $50K-$150K
+Developer Tools 6% Stable $75K-$200K
+Consumer Apps 4% Declining $50K-$100K
+Marketplaces 2% Declining $50K-$100K
+
+AI dominates because training infrastructure costs normalized — startups no longer need $50M to build competitive models. Angels can fund AI companies at $500K and see meaningful progress. The sector also attracts deep-conviction investors who run concentrated portfolios.
+What is cooling: Consumer apps and marketplaces face headwinds. Angels now demand CAC payback under 12 months and LTV:CAC ratios of 3:1 or better. Two-sided marketplace liquidity is harder to prove, and unit economics are often underwater at angel stage.
+
+## 5. Deal Structure: Simple Agreements vs Convertible Notes
+Post-money simple agreements for future equity have decisively won the deal-structure competition in the US, while Europe maintains a mixed approach due to tax incentives.
+Factor Post-Money Simple Agreement Convertible Note
+Market share (US, 2026) 75%+ ~20%
+Market share (Europe) ~55% ~40-50%
+Legal cost $500-$1,000 $2,000-$4,000
+Time to close 4-6 weeks 6-8 weeks
+Founder dilution Lower (clear mechanics) Higher (interest + ambiguity)
+Pre-seed cap range (US) $3M-$6M standard $3M-$6M + interest
+
+By 2025, post-money simple agreements accounted for over 88% of new pre-seed deals according to Carta data. They eliminated cap table bloat and negotiation friction. The $8M-$12M caps only hold for founders with prior exits or strong institutional interest.
+
+## 6. Geographic Distribution
+Angel capital is not evenly distributed. Typical amounts, timelines, and investor sophistication vary dramatically by location.
+Region Annual Volume Avg Check Diligence Time Key Hub
+US (Coastal) ~$19B (55% of US) $100K-$500K 3-4 weeks SF, NYC
+US (Secondary) ~$16B $50K-$200K 5-6 weeks Austin, Denver, Miami
+Europe $11.4B $50K-$300K 4-5 weeks London, Berlin
+UK (London) $2B+ $100K-$500K 3 weeks London
+Asia-Pacific ~$6B $50K-$200K 4-5 weeks Singapore
+
+Geographic arbitrage is real: US syndicates investing in European startups get different terms (higher discounts, different caps). Singapore captures over 60% of ASEAN venture funding and hosts networks like BANSEA and XA Network with strong international participation.
+
+## 7. Returns & Performance Data
+Angel investing remains one of the highest-returning alternative asset classes for disciplined investors, though with significant variance.
+22-25% Systematic Angel Annual Return
+6-7x Engaged Angel Returns
+35-40% Top-Quartile Annual Return
+2.6x Median Portfolio Return
+
+Engagement Level Avg Return Multiple Source
+Angels spending 20+ hours due diligence 5.9x Koor and Associates
+Angels spending 40+ hours due diligence 7.1x Koor and Associates
+Top-quartile portfolios (20+ deals) 24-28% annual return ACA / Cambridge Associates
+Best-case portfolios 35-40% annual return Doug Levin / Industry data
+Community-led models (syndicates) Outperforming solo by 2-3x Hustle Fund 2026
+
+The key insight: due diligence time directly correlates with returns. Angels who spend more time evaluating deals achieve dramatically better outcomes. This supports the trend toward syndication, where the investor leading each deal conducts deep diligence on behalf of the group.
+
+## 8. Portfolio Analysis: 234 Investments
+This section presents data from a real 234-company angel portfolio spanning 37 markets, providing a ground-truth comparison to industry averages. A company value appears only where a published source states it (publisher and month cited), and $1B+ counts use those sourced values only.
+234 Total Investments
+46 $1B+ Companies
+19.7% $1B+ Hit Rate
+2.1% Shut Down
+37 Markets
+
+### Top 10 Portfolio Companies by Sourced Company Value
+# Company Sector Sourced Company Value Status
+1 SpaceX Aerospace Market cap $2.21T Public
+2 Anthropic AI / ML Valued at $965B Live
+3 Cerebras Systems Hardware Market cap $39B Public
+4 Scale AI AI / ML Valued at $29B Live
+5 Kalshi Finance Valued at $22B Live
+6 Circle Blockchain / Crypto Market cap $21.6B Public
+7 Kraken Blockchain / Crypto Valued at $21B Live
+8 Polymarket Blockchain / Crypto Valued at $21B Live
+9 Shield AI Blockchain / Crypto Valued at $12.7B Live
+10 US Bitcoin Blockchain / Crypto Hut 8 Corp market cap $10.4B Public
+
+### Founding Year Analysis
+Portfolio companies grouped by the year they were founded.
+Year Founded Companies $1B+ Companies $1B+ Share
+2002 1 1 100%
+2009 1 0 0%
+2010 1 0 0%
+2011 4 2 50%
+2012 2 1 50%
+2013 5 5 100%
+2014 7 3 43%
+2015 9 3 33%
+2016 9 3 33%
+2017 9 1 11%
+2018 11 2 18%
+2019 11 4 36%
+2020 10 4 40%
+2021 10 4 40%
+2022 6 0 0%
+2023 10 1 10%
+2024 7 0 0%
+2025 5 0 0%
+
+### Sector Breakdown
+AI / ML — 52 companies (22% of portfolio)
+Robotics — 20 companies (9% of portfolio)
+Cleantech — 16 companies (7% of portfolio)
+Finance — 15 companies (6% of portfolio)
+Hardware — 13 companies (6% of portfolio)
+Biotech — 10 companies (4% of portfolio)
+SaaS — 10 companies (4% of portfolio)
+Aerospace — 8 companies (3% of portfolio)
+Investment Platforms — 8 companies (3% of portfolio)
+Blockchain / Crypto — 7 companies (3% of portfolio)
+Key Portfolio Insight: The 19.7% sourced $1B+ hit rate is approximately 4x the industry average of ~5%. AI/ML companies show a 15% sourced $1B+ hit rate, confirming sector conviction as a primary driver of returns. The portfolio&#x27;s 2.1% shut-down share is well below the typical 50-70% for angel portfolios.
+
+## 9. Predictions for H2 2026
+Syndicate share will reach 45% in the US — Platform improvements and proven returns will continue pulling capital from solo investing into structured vehicles.
+AI concentration will peak at 50-55% — The sector will plateau as infrastructure plays mature and application-layer companies face revenue scrutiny.
+Pre-seed caps will compress further — Standard caps will settle at $2.5M-$5M as more capital chases fewer quality deals at the earliest stages.
+European angel activity will grow 15-20% — Tax incentives (SEIS/EIS in UK, similar programs in France/Germany) continue attracting new angels.
+Climate/cleantech will reach 12% of deals — Policy tailwinds and proven unit economics in energy storage and carbon capture will attract angel capital.
+
+## 10. Methodology & Sources
+This report combines three data layers:
+Industry data: Angel Capital Association (ACA) Angel Funders Report 2025, EBAN Statistics Compendium 2024, Carta pre-seed/seed data Q3 2024, SVB State of Markets H1 2026.
+Market intelligence: Angel Investors Network Q1 2026 rankings, Spectup Angel Investment Trends 2026, Hustle Fund community-led model analysis, Business Research Insights market projections.
+Portfolio data: the 234 companies in Sahin Boydas’s current public portfolio. A company value is used only where a published source states it (cited with its publisher and month on the company page), and values are never added together.
+All market size figures are in USD unless otherwise noted. European data converted at prevailing EUR/USD rates. Angel investing includes individual angels, angel groups, syndicates, and SPVs but excludes institutional venture capital.
+
+## About the Author
+Sahin Boydas is a serial entrepreneur and angel investor, named the #1 most active angel investor in the U.S. in 2024 by Lenny&#x27;s Newsletter, based on Crunchbase data. He has invested in 234+ companies across 37 markets. 46 companies in his portfolio have a sourced value of $1B or more (a valuation, deal price or market cap).
+Explore Full Portfolio
+
+## Related Reports
+Angel Investor Guide Complete guide to angel investing — how it works and what founders should know. Angel Investor vs VC Key differences between angel investors and venture capital firms.
+
+Last updated: May 2026 | Data sources: ACA Angel Funders Report 2025, EBAN Statistics Compendium 2024, Carta Q3 2024, SVB State of Markets H1 2026, Angel Investors Network Q1 2026, Business Research Insights

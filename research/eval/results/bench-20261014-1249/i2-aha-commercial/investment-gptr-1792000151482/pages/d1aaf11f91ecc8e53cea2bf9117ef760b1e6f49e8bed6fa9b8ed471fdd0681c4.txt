@@ -1,0 +1,287 @@
+What Does the FDA Say About the Use of AI in Clinical Trials? – A Revisit & Summary – TrialX
+
+Our Solutions
+
+For Industry
+
+Patient Recruitment Management Solutions
+
+Mobile Research Solutions
+
+Crew Health & Performance Management Solutions
+
+Online Talkshows
+
+For Patients
+
+Find a Trial
+
+Sign up as a Research Volunteer
+
+Online Talkshows
+
+About Us
+
+Resources
+
+Blogs
+
+Archives
+
+Press
+
+Case Studies
+
+Webinars
+
+Clinical Trials Day
+
+Contact Us
+
+### Menu
+
+×
+
+October 17, 2025
+&bull;
+6 min read
+
+# What Does the FDA Say About the Use of AI in Clinical Trials? – A Revisit & Summary
+
+Like this post
+250
+
+Artificial Intelligence (AI) has become one of the most talked-about innovations in clinical research, driving advances in everything from patient recruitment to data analysis. The field is now evolving further with the rise of agentic AI —systems capable of autonomously planning, reasoning, and executing complex tasks. Unlike traditional AI tools that rely on predefined instructions, agentic AI can proactively identify eligible participants, adapt study protocols in real time, and even generate new hypotheses from ongoing data.
+
+From accelerating patient recruitment to analyzing imaging endpoints and predicting trial outcomes, AI promises to reshape how therapies are developed and delivered. Moreover, pharma companies are increasingly using Agentic AI to even automate FDA reporting—extracting, validating, and formatting data across systems to produce audit-ready submissions in days instead of weeks. For sponsors and CROs, the potential is clear: reduced costs, faster timelines, and smarter decision-making. Yet, in a highly regulated space, the critical question is not just what AI can do—but how regulatory agencies like the U.S. Food and Drug Administration (FDA) view its role in clinical trials. 
+
+Although specific guidelines for the use of Agentic AI are awaited, here’s a revisit & summary of its current recommendations and perspective on generative AI in clinical trials.
+
+## FDA’s First Draft Guidance on AI in Clinical Trials
+
+In January 2025, the FDA published its draft guidance, “ Considerations for the Use of Artificial Intelligence to Support Regulatory Decision Making for Drug and Biological Products.” This guidance is built on years of engagement, including:
+
+An expert workshop in 2022
+
+Over 800 external comments in 2023
+
+A public workshop in 2024
+
+Review of 500+ submissions with AI components from 2016–2023, spanning preclinical, clinical, and postmarketing phases.
+
+Key principles FDA emphasizes:
+
+Risk-based validation : AI models that influence patient safety or efficacy undergo rigorous evaluation to ensure reliability.
+
+Transparency : Developers must provide clear explanations of AI model construction, training processes, and decision-making logic, ensuring regulators, clinicians, and patients can understand and trust the outputs.
+
+Lifecycle monitoring : AI is not “set it and forget it.” Models must be continuously tracked, updated, and revalidated as new data emerges. Mechanisms such as an Algorithm Change Protocol (ACP ) are recommended to manage updates in self-modifying AI/ML systems safely and ensure ongoing credibility.
+
+## The 7-Step Credibility Assessment by the FDA
+
+To put these ideas into practice, the FDA introduced a seven-step process for assessing AI credibility. In brief, sponsors must define the model’s context of use, assess its potential risks, plan and execute credibility activities, collect supporting evidence, evaluate whether the model is fit for purpose, and transparently report the results to regulators and stakeholders.
+
+As Dr. Khair ElZarrad , Director of the Office of Medical Policy within the FDA’s Center for Drug Evaluation and Research, explains:
+
+“We plan on developing a flexible risk-based regulatory framework that will promote innovation and protect patient safety.”
+
+For companies in clinical research, these expectations emphasize both responsibility and opportunity. The FDA’s framework encourages developing AI tools that are trustworthy, explainable, and continuously monitored, not just fast or automated. At TrialX , we apply these principles rigorously, continuously refining AI solutions to ensure they are safe, transparent, and aligned with both regulatory guidance and patient-centered clinical research practices.
+
+## How FDA Is Testing AI — From “Elsa” to Phasing Out Animal Models
+
+In June 2025, the agency rolled out Elsa , a generative AI assistant hosted in a secure government cloud and designed exclusively for FDA reviewers. Elsa is intended to support, not replace, human experts, with capabilities such as:
+
+Summarizing adverse event data
+
+Reviewing clinical protocols
+
+Assisting with database code generation
+
+Comparing product labels across submissions
+
+Early pilots point to significant efficiency gains. As Jinzhong (Jin) Liu, Deputy Director at CDER, put it: “This is a game-changer technology that has enabled me to perform scientific review tasks in minutes that used to take three days.”
+
+The announcement also sparked discussion across professional networks. As one LinkedIn user noted: “Efficiency is always welcome! Elsa sounds like a much needed tool for accelerating drug, tests & device approvals.”
+
+Still, the agency has been candid about limitations. Like other large language models, Elsa can “hallucinate,” generating misleading or inaccurate content. For that reason, its use remains optional for reviewers. A recent Washington Post critique also warned that deploying AI tools too quickly — without robust safeguards — could risk undermining scientific rigor.
+
+At the same time, the FDA is advancing another bold initiative. In April 2025, the FDA announced plans to phase out animal testing in selected areas of drug development—a historic shift for biomedical research.
+
+The agency is piloting New Approach Methodologies (NAMs) that combine advanced science and AI, including:
+
+AI-driven computational models
+
+Organs-on-chips
+
+Human-cell-based platforms
+
+The first pilot program targets monoclonal antibodies, using AI to predict safety and efficacy without relying on animal models.
+
+According to Reuters , if successful, these methods could cut development costs and timelines.
+
+## Challenges FDA is Watching Closely
+
+As it tests and regulates AI, the FDA highlights challenges that must be addressed:
+
+Data drift : AI models can lose accuracy as underlying data patterns shift over time.
+
+Bias : Poorly chosen or unrepresentative training data can skew results, raising equity concerns in trials.
+
+Transparency gaps : Many AI tools remain “black boxes,” producing outputs without clear explanations of how they were derived.
+
+Global alignment : Regulatory approaches differ across countries, making harmonization essential for multinational trials.
+
+To address these, the FDA has formed a CDER AI Steering Committee (AISC) , which coordinates efforts across therapeutic development to ensure approaches are both innovative and scientifically rigorous.
+
+## What Does the Future of AI-Powered Clinical Trials Mean for Patients?
+
+As AI becomes increasingly integrated into clinical research, a key question arises: how will patients experience these innovations? The FDA’s guidance on transparency, risk-based validation, and lifecycle monitoring is crucial, but the ultimate test lies in making trials meaningful and accessible for participants. Patients want to know: How is my data used? How does AI help match me to the right trial? How can I safely report my health outcomes from home?
+
+We are striving to support this shift by bringing AI closer to the patient experience:
+
+AI-Powered Trial Matching – Our Clinical Trial Finder helps patients discover opportunities that fit their condition and location. We’ve also supported advocacy groups like the Michael J. Fox Foundation , Let’s Win Pancreatic Cancer , Sickle Cell Disease Association of America , Reflections Initiative , Beyond Celiac , and ALS Network in making trial access more inclusive.
+
+Simplifying Trial Information – Medical jargon often creates a barrier to participation. Our AI summarization tools turn dense trial descriptions into patient-friendly summaries, helping people quickly understand requirements.
+
+AI-based Pre-Screening – By asking condition-specific questions and checking eligibility, our pre-screeners guide patients to the right studies, reducing delays and site burden.
+
+AI Navigators for Ongoing Support – Conversational assistants being designed to answer questions, send reminders, and engage patients in real time—will help guide participants throughout their clinical trial journey.
+
+As clinical research becomes more AI-based, one question remains central and needs continuous analysis and review: How can we ensure AI is used safely and responsibly in clinical trials?
+
+As the use of Agentic AI increases in clinical trials, we will be on the lookout for revised FDA guidelines, if any.
+
+Feel free to drop us a line to learn more about our AI-assisted clinical trial solutions .
+
+### Share this:
+
+Share on X (Opens in new window)
+X
+
+Share on Facebook (Opens in new window)
+Facebook
+
+### Like this:
+Like Loading…
+
+## Get in touch to learn more about TrialX's Remote Data Collection Solutions
+
+Request a Demo
+
+Written by
+
+##
+Team TrialX
+
+TrialX is a clinical research and space health informatics company. From launching the first clinical trials app on Google Health in 2008, to powering online patient recruitment and research data collection for space missions, TrialX is empowering clinical research here on earth and beyond.
+
+View all posts by Team TrialX
+
+##
+Post Categories
+
+Agentic AI
+
+AI in Clinical Trials
+
+FDA view on AI in Clinical Trials
+
+See all categories
+
+## Related Posts
+
+### Simplifying Clinical Trial Information: How TrialX’s AI Tool Makes Protocol Jargon Understandable for Patients
+
+August 28, 2026
+
+### 🚀 See TrialX at DPHARM 2026: Building Better Ways to Manage Clinical Trials
+
+August 11, 2026
+
+### Guided Search for Finding Matching ALS Clinical Trials : Explore 5 Clinical Trials Driving Progress
+
+August 7, 2026
+
+### 🚀 Building Better Ways to Manage Clinical Trials
+
+July 16, 2026
+
+### What Happens to EHR Data in Clinical Research — and How Privacy Is Maintained
+
+July 3, 2026
+
+### One platform. Various ways to connect patients to your clinical studies.
+
+From discovery to participation, our platform supports every step of the patient journey.
+
+Get in touch with our team
+
+TrialX is a clinical research and space health informatics company headquartered in New York City.
+
+### Contact Us
+
+520 White Plains Road Suite 500 Tarrytown, NY 10591
+
++1 212.537.6944
+
+info@trialx.com
+
+### About Us
+
+About TrialX
+
+Leadership Team
+
+Careers
+
+Internship
+
+Privacy Policy
+
+### Our Solutions
+
+#### For Industry
+
+Patient Recruitment Management Solutions
+
+Mobile Research Solutions
+
+Crew Health & Performance Management Solutions
+
+Online Talkshows
+
+#### For Patients
+
+Find a Trial
+
+Sign up as a Research Volunteer
+
+Online Talkshows
+
+### Resources
+
+Blogs
+
+Archives
+
+Press
+
+Case Studies
+
+Webinars
+
+Clinical Trial Day
+
+© 2026 TrialX, Inc. All rights reserved.
+
+Privacy Policy
+
+## Discover more from TrialX
+
+Subscribe now to keep reading and get access to the full archive.
+
+Continue reading
+
+Loading Comments...
+
+%d

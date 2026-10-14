@@ -1,0 +1,271 @@
+Cure’s AI Drug Discovery Funding Tracker 2026
+
+# Cure’s AI Drug Discovery Funding Tracker 2026
+News
+
+View all topics
+
+By Megan Eileen McDonough
+
+Published July 8, 2026
+Updated September 4, 2026
+
+Share
+
+Print
+
+Cure
+
+#### Overview
+The latest AI drug discovery venture capital news, updated monthly—tracking funding rounds of $10M or more in 2026.
+
+The latest biotech venture capital news relating to AI drug discovery, updated monthly—tracking major funding rounds of $10M or more in 2026.
+For medtech deals, visit our Medtech Funding Tracker , updated weekly.
+
+### July 2026
+
+#### Accipiter Bio
+Date: July 31
+Series: Seed extension
+Amount: $10.5M
+Therapeutic Area: Multiple (oncology and beyond; bispecific-style dual-target biologics)
+Modality : AI-designed proteins with dual active sites capable of simultaneously binding two targets
+Notable Investors: Flying Fish Partners and Takeda co-led the round, with Columbus Venture Partners, Cercano Capital, WRF Capital, Alexandria Investments, Pack Ventures, and Argonautic Ventures as existing investors. 
+Accipiter Bio, a Seattle-based AI drug developer with roots in the University of Washington&#x27;s Institute for Protein Design, topped up its seed round in July with an additional $10.5M from existing investors only. It&#x27;s been less than a year since emerging from stealth with $12.7M in funding. The company will use the funds to grow its team and diversify its clinical portfolio, building on protein-design work that produces molecules with two simultaneous binding sites.
+
+#### Transcripta Bio
+Date: July 22
+Series: Series A follow-on
+Amount: $24M
+Therapeutic Area: Neurological and neuromuscular disease (Myotonic Dystrophy, FSHD, Autism Spectrum Disorder, Huntington&#x27;s Disease)
+Modality: AI-driven transcriptomic signature matching to identify and reposition drugs whose molecular effects reverse patient-derived disease signatures
+Notable Investors: New Strategic Investors include Mayo Clinic and healthcare investor Omnimed. JAZZ Venture Partners and BlueYard Capital are existing backers who also participated, plus a group of life sciences family offices. 
+Transcripta Bio, a Palo Alto-based AI-powered drug discovery company, raised $24M in follow-on funding to its Series A, bringing total disclosed funding to roughly $34M. The capital will fund IND-enabling studies and clinical preparation across its four-program pipeline. The platform pairs a Disease Signature Atlas with Conductor AI, a machine learning system trained on more than a billion gene responses; its furthest-advanced program repositions an FDA-approved oncology drug for a genetically defined ASD subtype.
+
+#### Chai Discovery
+Date: July 14
+Series: Series C
+Amount: $400M
+Therapeutic Area: Multiple (oncology, immunology, and beyond; partnered programs span several areas)
+Modality: AI foundation models for molecular design, predicting and reprogramming protein interactions to generate de novo antibodies and small molecules
+Notable Investors: Index Ventures led the round. Kleiner Perkins, Sequoia Capital, Dimension, Bain Capital Ventures, Battery Ventures, Baillie Gifford, BDT & MSD, Sapphire Ventures, and Avra Capital also participated. Thrive Capital, OpenAI, Oak HC/FT, Menlo Ventures, and General Catalyst are existing backers that re-invested in the Series C round. 
+Chai Discovery, an AI company building foundation models to accelerate preclinical drug discovery, raised $400M in Series C financing at a $3.8B valuation, nearly triple its valuation from seven months prior. The company will use the capital to scale its platform and expand partnerships with the pharma industry. Its latest model, Chai-3, builds on Chai-2, the first zero-shot generative platform to achieve double-digit experimental success rates in fully de novo antibody design, with active collaborations already in place with Eli Lilly, Pfizer, and Novartis.
+
+#### Drug Farm
+Date: July 13
+Series: Series D (first closing)
+Amount: $55M
+Therapeutic Area: Rare genetic disease (ROSAH syndrome), cardiovascular disease, and hepatitis B
+Modality: AI-developed small-molecule inhibitors, including ALPK1-targeted compounds
+Notable Investors : Shanghai Pudong Leading Area Investment Center and Shanghai Puxing Collaborative Private Equity Fund Partnership Enterprise co-lead the round. New investors include: Tukar Capital, Fuzhou Xinhe Fund, Shenzhen Luohu Donghai Chempartner Investment Fund, and Keyuan Pharma. BioVeda China Fund (BVCF), YD Capital, Jiashan State VC, Detong Capital, Wedo Capital, and Biometas are existing investors that also participated. 
+Drug Farm, a China- and US-based AI drug-design specialist, closed the first tranche of a $55M Series D. Proceeds will advance lead candidate DF-003, an AI-developed ALPK1 inhibitor moving into Phase 3 for the rare genetic disorder ROSAH syndrome, alongside proof-of-concept work in atherosclerotic cardiovascular disease and continued development of a second ALPK1 inhibitor for hepatitis B.
+
+#### Alchemab Therapeutics
+Date: July 9
+Series: Series A extension
+Amount: £25M ($34M)
+Therapeutic Area: Neurodegeneration (ALS) and oncology
+Modality: AI-enabled antibody discovery platform mining naturally occurring protective antibodies from disease-resilient individuals
+Notable Investors: British Business Bank was the lead investor. Existing key investors include SV Health Investors, RA Capital Management, DCVC Bio, Eli Lilly, Lightstone Ventures, Ono Venture Investment, and Camford Partners
+Alchemab Therapeutics, a London-based clinical-stage biotech, raised a $34M extension to its Series A, bringing the round to roughly £109M (more than $147M) total. The company&#x27;s Resiliome platform draws on more than half a billion antibody sequences, described as the largest single-source proprietary antibody database in the world, to identify protective antibodies in people naturally resilient to disease. Proceeds will accelerate research, expand the antibody database, and advance two additional wholly owned programs into the clinic.
+
+#### MindRank AI
+Date: July 9
+Series: Series B
+Amount: $52M
+Therapeutic Area: Multiple (including metabolic disease)
+Modality: AI-native drug R&D platform integrating biology, chemistry, computation, experimental data, and clinical learning
+Notable Investors: Institutional and healthcare funds (specific investors not disclosed)
+MindRank AI, a clinical-stage biotech developing an AI-native drug R&D engine, raised $52M in Series B financing. The company will use the capital to advance its Molecule Arts Platform (MAP), including its multi-agent system and clinical-data-in-the-loop capabilities, while progressing its pipeline. Its lead program, MDR-001, is an AI-designed oral small-molecule GLP-1 receptor agonist already in Phase III development in China.
+
+### June 2026
+
+#### Xellar Biosystems
+Date: June 29
+Series: Series A / A+
+Amount: $50M
+Therapeutic Area: Multiple (its platform serves broad drug discovery applications)
+Modality: AI-driven "3D Bio Intelligence" platform combining organ-on-chip systems, lab automation, high-content imaging, and multi-omics analysis
+Notable Investors: Investor syndicate not publicly disclosed
+Xellar Biosystems, a Boston-based TechBio company, raised $50M in Series A/A+ financing to build out its 3D Bio Intelligence platform. The company integrates organ-on-chip systems with AI-driven biological modeling to generate human-relevant data infrastructure for drug discovery, positioning itself as a data and virtual-cell technology layer rather than a therapeutics developer with its own pipeline.
+
+#### Waypoint Bio
+Date: June 2
+Series: Series A
+Amount: $20M
+Therapeutic Area: Oncology (solid tumors)
+Modality: AI-designed in vivo CAR-T therapies using spatial biology, computer vision, and pooled in vivo screening
+Notable Investors: Amplify Partners was the lead investor. Other investors include General Catalyst, Time BioVentures, Mitsui Global Investments, Lux Capital, and Hummingbird Ventures
+Waypoint Bio, an AI-native cell therapy company, raised $20M in Series A financing to advance its lead program, WAY-103, into an investigator-initiated trial expected to begin in late 2026. The company applies computer vision and spatial biology to pooled in vivo screens, aiming to design next-generation CAR-T therapies for solid tumors. In this area, CAR-T has historically struggled outside blood cancers.
+
+### May 2026
+
+#### Perceptic
+Date: May 26
+Series: Seed 
+Amount: $12M 
+Therapeutic Area: Multiple (platform serves pharma R&D broadly) 
+Modality: End-to-end AI platform spanning drug discovery, asset scouting, indication selection, and clinical trial design 
+Notable Investors: Accel (lead), Air Street Capital, and Elder Gull
+Perceptic, a startup that automates drug discovery from start to finish for Big Pharma, closed $12M in seed funding . According to their press release, Perceptic will focus on scouting external assets developed by biotechnology companies, helping pharma companies choose which indications to pursue in clinical trials, and building a "data foundation" for clinical trial design. Perceptic is headquartered in London and also has a presence in the Switzerland Innovation Park Basel Area.
+
+#### Isomorphic Labs
+Date: May 12 
+Series: Series B 
+Amount: $2.1B (brings total funding to roughly $2.7B) 
+Therapeutic Area: Multiple (internal pipeline focused on oncology and immunology; partnered programs span additional areas) 
+Modality: AI drug design engine (IsoDDE) spanning small molecules and biologics across multiple modalities 
+Notable Investors: Thrive Capital (lead), Alphabet and GV (existing), MGX, Temasek, CapitalG, and the UK Sovereign AI Fund
+Headquartered in London with a second location in Lausanne, Switzerland, Isomorphic Labs is an AI company founded by Demis Hassabis, who serves as CEO. Isomorphic Labs is an Alphabet-founded firm that plans to use its $2.1B fundraising round to accelerate drug development through AI. It&#x27;s an AL model, AlphaFold, that predicts protein structures. To date, this is the second-largest fundraising for a biotech company, following Altos Labs&#x27; $5.5 billion combined investment.
+
+### April 2026
+
+#### Fathom Therapeutics (formerly Atommap)
+Date: April 27 
+Series: Series A (oversubscribed) 
+Amount: $47M 
+Therapeutic Area: Multiple (internal pipeline in high-impact disease areas; lead program includes a protein degrader against an "undruggable" target) 
+Modality: Physics- and AI-based small-molecule drug design, simulating protein motion at atomic resolution 
+Notable Investors: Sutter Hill Ventures (lead), Chemistry, Alexandria Venture Investments, and Empire State Development&#x27;s NY Ventures
+New York-based drug design company, Fathom Therapeutics (formerly Atommap), rebranded and raised a $47M Series A financing round led by Sutter Hill Ventures. Participating investors included Chemistry, Alexandria Venture Investments, and NY Ventures, among others. The company uses physics-based simulations and AI to model protein motion at the atomic level, addressing a long-standing limitation in computational drug discovery, according to its official press release. 
+
+#### Alloy Therapeutics
+Date: April 15 
+Series: Series E 
+Amount: $40M (values company at $1B) 
+Therapeutic Area: Platform / drug discovery infrastructure
+Modality: AI-powered antibody, bispecific, genetic medicine, and cell therapy discovery infrastructure, plus preclinical/clinical services and biologics manufacturing 
+Notable Investors: 8VC; JIC Venture Growth Investments; Echo Capital; multiple family offices; existing investors Mubadala Capital, Presight Capital, Thiel Capital, Founders Fund, Alexandria Venture Investments, Gaingels, Ulysses Diversified Holdings
+Alloy Therapeutics is a company empowering drug discovery and development through AI/ML-driven innovation and integrated solutions. Headquartered in Waltham, Massachusetts, and founded by Errik Anderson, Alley Therapeutics just raised $40M in Series E funding . To date, total capital raised is $174M, with a $1B valuation. Notable investors include 8VC, JIC Venture Growth Investments, and Echo Capital Group. Funding will go towards further scaling its AI-driven biotech infrastructure. 
+
+#### Helical
+Date: April 14 
+Series: Seed 
+Amount: $10M 
+Therapeutic Area: Multiple (deployed programs span neurodegenerative disease, including ALS, cardiovascular disease, and predictive safety biomarkers) 
+Modality: Application layer that turns biological foundation models into reproducible in-silico drug discovery workflows for target identification, biomarker discovery, and therapeutic design 
+Notable Investors: redalpine (lead), Gradient, BoxGroup, Frst, and angels, including Aidan Gomez (Cohere) and Clément Delangue 
+Helical is a London-based biotech and AI company that provides an application layer for pharmaceutical companies to test biological hypotheses computationally at scale. It replaces physical web lab experiments that are slow with in silico simulations, ultimately helping researchers accelerate drug discovery from years to just a few weeks. The company was founded in 2024 by Rick Schneider, Maxime Allard, and Mathieu Klop. Redalpine led the $10M round , with investors including Gradient, BoxGroup, and Frst. 
+
+#### Generare
+Date: April 2 
+Series: Series A 
+Amount: €20M / $23M 
+Therapeutic Area: Multiple (compounds licensed to pharma/agrochemical partners as discovery starting points, including antimicrobial and oncology applications) 
+Modality: AI- and synthetic-biology-driven generation of novel small-molecule data mined from microbial genomes, feeding downstream drug-discovery AI models 
+Notable Investors: Alven and daphni (co-leads), Galion.exe, Teampact Ventures, and VIVES Partners
+Generate is a Paris-based startup founded in 2023 that recently raised a €20M ($23M) Series A to scale AI-driven molecular discovery. As reported in the company&#x27;s press release, Generate identified more than 200 previously uncharacterized molecules last year, which differentiates its platform from other techbio competitors. Generate&#x27;s current goal is to scale its dataset to more than 2,000 molecules by 2027 and expand its team of experts. 
+
+### March 2026
+
+#### Scala Biodesign
+Date: March 31 
+Series: Series A 
+Amount: $16M (brings total funding to $21.5M)
+Therapeutic Area: Multiple (platform serves biologics, enzymes, antibodies, vaccines and industrial biotech programs) 
+Modality: AI and physics-based computational protein design platform (ScalaOS) 
+Notable Investors: Grove Ventures (lead), TLV Partners, Deep Insight, and the Israel Innovation Authority
+Founded in 2022 by Dr. Ravit Netzer and Dr. Adi Goldenzweig, Scala Biodesign is a Tel Aviv-based company that develops protein-based products using ScalaOS. Scale Biodesign&#x27;s $16M Series A financing will support their hybrid AI-driven software platform to accelerate the design and optimization of biologics, vaccines, antibodies, and enzymes. Grove Ventures was the lead investor, with TLV Partners, Deep Insight, and the Israel Innovation Authority also participating. 
+
+#### Earendil Labs
+Date: March 20 
+Series: Financing rounds (not a single named series) 
+Amount: $787M 
+Therapeutic Area: Oncology, autoimmune, and inflammatory diseases 
+Modality: AI-designed antibodies and biologics (bispecifics, T-cell engagers, dual-targeting ADCs) 
+Notable Investors: Dimension Capital, DST Global, INCE Capital, Luminous Ventures, Miracle Capital, Sanofi, Biotech Development Fund (Hillhouse + Pfizer)
+AI-powered biotech company Earendil Labs, which integrates machine learning and predictive protein modeling to design next-generation biologics, has raised a combined $787M in financing . Leading global investors included Dimension Capital, DST Global, and INCE Capital, among others, alongside existing and new investors in the healthcare and technology spaces. According to their press release, the financing will accelerate Earendil Labs&#x27; AI-driven R&D platform and its growing pipeline of antibody and biologics programs. 
+
+### February 2026
+
+#### Tamarind Bio
+Date: February 26 
+Series: Series A 
+Amount: $13.6M total raise, including a $12M Series A component 
+Therapeutic Area: Multiple (platform-agnostic infrastructure serving 8 of the top 20 pharma companies, plus biotechs including Boehringer Ingelheim, Bayer, Mammoth Biosciences, and Adimab) 
+Modality: Cloud infrastructure for running AI and physics-based molecular models (AlphaFold, RFdiffusion, MPNN, GROMACS, and 200+ others) without local ML/infrastructure setup 
+Notable Investors: Dimension Capital (lead), and Y Combinator
+Based in San Francisco and founded by Stanford computer science alumni Deniz Kavi and Sherry Liu in 2023, Tamarind Bio is a platform for molecular AI inference that serves thousands of leading scientists worldwide. According to Kavi, the company has grown revenue by 7x over the last year, with key partnerships with organizations such as Bayer, Boehringer Ingelheim, and Adimab. Its recent $13.6M in funding includes a $12M Series A round led by Dimension Capital, with Y Combinator among the investors. 
+
+#### Galux
+Date: February 9 
+Series: Series B 
+Amount: $29M (brings total funding to $47M) 
+Therapeutic Area: Multiple (targets include PD-L1, HER2, and expansion into GPCRs and ion channels) 
+Modality: AI-driven de novo protein and antibody design, generating therapeutic proteins from scratch rather than modifying existing templates 
+Notable Investors: InterVest, DAYLI Partners, PATHWAY Investment (existing); Yuanta Investment, Korea Development Bank, SL Investment, NCORE Ventures, SneakPeek Investments, Korea Investment & Securities, Mirae Asset Securities
+Founded in 2020, Galux is a South Korean biotechnology company that develops AI for drug discovery. The company recently raised $29M Series B funding to advance its AI-driven protein design for drug discovery. With the close of the round, Galux&#x27;s total funding comes to $47 million. Several existing investors participated in the Series B round, along with new investors such as Yuanta Investment, Korea Development Bank (KDB), and SL Investment. 
+
+### January 2026
+
+#### Proxima (formerly VantAI)
+Date: January 13 
+Series: Seed (oversubscribed) 
+Amount: $80M 
+Therapeutic Area: Multiple (AI-driven proximity-therapeutics platform; first partnered program expected to enter the clinic in 2026) 
+Modality: AI-designed PROTACs and molecular glues (proximity-based small molecules) 
+Notable Investors: DCVC (lead), NVentures (NVIDIA), Braidwell, Roivant, AIX Ventures, Yosemite, Magnetic Ventures, Alexandria Venture Investments, and Modi Ventures
+As part of their recent oversubscribed $80M fundraise , VantAI has rebranded as Proxima to better reflect their focus on unlocking proximity-based therapeutics through technology and data. DCVC led the most recent round of funding, with participation from other investors such as NVentures, Braidwell, Roivant, AIX Ventures, and Yosemite. The AI-native drug discovery company is primarily based in New York City, with a physical presence in Boston, Massachusetts. 
+
+#### Converge Bio
+Date: January 13 
+Series: Series A 
+Amount: $25M (brings total funding to $30M) 
+Therapeutic Area: Multiple (platform serves pharma and biotech clients across target discovery, antibody design, and manufacturing optimization) 
+Modality: Multi-model AI system for target discovery, antibody design, and protein manufacturing optimization 
+Notable Investors: Bessemer Venture Partners (lead), TLV Partners, Vintage Investment Partners, Saras Capital, and executives from Meta, OpenAI, and Wiz
+Converge Bio, a generative AI life sciences company that accelerates drug development, raised $25M in Series A funding , bringing the total funding to $30M. Bessemer Venture Partners led the round, with other investors including TLV Partners, Vintage Investment Partners, and Saras Capital. Converge Bio plans to expand operations and development. The three co-founders are Dov Gertz, CEO; Oded Kalev, CTO; and Dr. Iddo Weiner, CSO. Converge Bio is headquartered in Boston, Massachusetts, and Tel Aviv, Israel. 
+
+#### Topos Bio  
+Date: January 8 
+Series: Seed 
+Amount : $10.5M 
+Therapeutic Area : Neurodegenerative disease initially (Alzheimer&#x27;s, Parkinson&#x27;s), with planned expansion into oncology and metabolic disorders 
+Modality : AI-native foundation model (Topos-1) for intrinsically disordered proteins, generating dynamic conformational ensembles rather than static structures, paired with generative chemistry for small-molecule design 
+Notable Investors : Boldstart, Threshold, and Neo; angels including Dara Khosrowshahi (Uber) and Naveen Rao (Unconventional AI)
+Topos Bio, an AI-native biotech company that develops drug-discovery platforms for intrinsically disordered proteins (IDPs) raised a $10.5M seed round to target &#x27;undruggable&#x27; proteins in Alzheimer&#x27;s and Cancer. Boldstart, Threshold, and Neo led the funding round, with other angel investors like Dara Khosrowshahi and Naveen Rao participating. Topos Bio is headquartered in San Francisco and was founded by biophysicist and AI leader Ryan Zarcone and former Intel AI CTO Amir Khosrowshahi. 
+
+#### Boltz
+Date: January 8 
+Series: Seed 
+Amount: $28M 
+Therapeutic Area: Multiple (platform-agnostic; deployed for small-molecule and biologics programs across Pfizer&#x27;s and Takeda&#x27;s pipelines) 
+Modality: Open biomolecular foundation models (Boltz-2, BoltzGen) for structure prediction, binding affinity estimation, and de novo protein/small-molecule design, packaged into a hosted product platform with AI-powered discovery agents 
+Notable Investors: Andreessen Horowitz, Amplify Partners, Zetta Venture Partners (co-leads); angels including Clément Delangue (Hugging Face), Factorial Capital, and Obvious Ventures
+AI-driven biotech startup, Boltz, raised a $28M seed funding round led by Zetta Ventures, Amplify Partners, and 16z. Founded in late 2024 by MIT researchers Gabriele Corso, Jeremy Wohlwend, and Saro Passaro, Boltz is partnering with Pfizer on AI drug discovery. Boltz will leverage Pfizer&#x27;s historical data in its models used to predict molecular structures, as well as small-molecule binding and biologics, per the company&#x27;s fundraising press release. 
+
+## Recommended Stories
+
+###### 7 VCs Funding Longevity Startups in 2026
+May 29, 2026
+
+###### Cure’s Women’s Health Funding Tracker 2026
+June 25, 2026
+
+###### Cure’s Biotech Funding Tracker 2026
+May 1, 2026
+
+###### Cure’s Medtech Funding Tracker 2026
+May 20, 2026
+
+## More Stories
+
+###### The Ivy League vs China: Who Leads the Science That Becomes Medicine?
+October 13, 2026
+
+Innovation Index
+
+###### Inside the Business of Fixing Healthcare Problems No One Owns
+October 8, 2026
+
+Cure Member Spotlight
+
+###### Can We Get to a Reliable Measure of Aging Within Five Years?
+October 6, 2026
+
+Longevity and Healthspan
+
+###### Turning New York&#x27;s Research Lead Into Cures
+October 5, 2026
+
+Innovation Index

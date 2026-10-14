@@ -1,0 +1,187 @@
+EOSC Node | BBMRI-ERIC - EOSC Association
+
+
+
+
+Skip to content
+
+EOSC Monitoring Tool
+
+Calls & Grants
+
+Newsletter
+
+Forum
+
+&larr;
+Return to Nodes overview
+
+Home EOSC Federation EOSC Node | BBMRI-ERIC
+
+### The BBMRI-ERIC EOSC Node integrates Europe’s biobanks and biomolecular resources into the EOSC Federation. It provides GDPR-compliant, FAIR access to biosamples, genomic, imaging, and clinical data across ~500 biobanks in 25 countries.
+
+The Node enables secure federated analysis environments, contributes to the European Health Data Space (EHDS2), and supports AI-driven biomedical research with multicentric validation of models and biomarker discovery.
+
+EOSC Node | BBMRI-ERIC
+
+Key objective:
+To establish the BBMRI-ERIC Node as the biomedical/sensitive health data EOSC Node, enabling FAIR and secure federated access to data, GDPR-compliant analysis, and cross-border research in alignment with EHDS2.
+
+Science areas:
+Biomedical and clinical research, genomics, biomarker discovery, personalised medicine, oncology, population health, One Health.
+
+Scientific impact
+
+Status & timeline
+
+Capabilities & access
+
+Coordination
+
+## FAIR data
+
+#### The BBMRI-ERIC EOSC Node makes FAIR data from ~500 biobanks: genomics, imaging, clinical metadata. BBMRI Directory ensures findability; federated secure compute ensures accessibility and interoperability under GDPR and EHDS2 frameworks.
+
+## Scientific use cases
+
+####
+Multi-centric validation of AI models for prostate-cancer screening
+
+#### Advances in digital pathology are transforming cancer diagnosis by enabling high-resolution imaging of tissue samples and the application of artificial intelligence (AI) for clinical decision support.
+
+Prostate cancer, one of the most prevalent malignancies among men worldwide, represents a critical case for early and accurate diagnosis, as survival rates are strongly tied to timely detection and treatment. The objective of the multi-centric validation of AI models for prostate-cancer screening (MCVAL) use case, coordinated by the BBMRI-ERIC EOSC Node, is to create a secure environment in which AI models for prostate cancer screening can be validated using data from different hospitals. Rather than building new diagnostic systems from scratch, the project focuses on testing an existing model trained on whole-slide images and assessing how well it performs when applied to data processed elsewhere.
+
+EOSC Federation scientific use case - MCVAL
+
+####
+Other use cases
+
+Colorectal cancer prediction with explainable AI
+
+Synthetic data for computational pathology
+
+## Status
+
+Candidate thematic EOSC Node (initial Node registration completed July 2026; Node catalogue deployment planned for August 2026).
+
+EOSC Node | BBMRI-ERIC Project Charter
+
+## Deliverables
+
+The revised 2026 charter does not define a separate contractual deliverables list. Progress is tracked through the Status & Timeline and Federating Capabilities & Integration Activities sections.
+
+## Technical status
+
+### Completed
+
+Federated AAI (initial Life Science AAI/eID integration demonstrated in November 2025; further eID and user-experience refinement is ongoing in 2026)
+
+Existing BBMRI discovery services remain operational; EOSC Node Service Catalogue and Research Product Catalogue deployment is planned for August 2026, followed by Federation and Node Registry connection
+
+### Planned
+
+Node-level service management and security coordination (planned through EOSC Mesh from September 2026)
+
+Cross-node helpdesk and monitoring integration (staged implementation planned; mature in-Node support remains available)
+
+## Interactions with other EOSC Nodes
+
+EOSC EU Node
+
+EOSC Node | Poland
+
+EOSC Node | Italy
+
+EOSC Node | SURF
+
+EOSC Node | Finland
+
+EOSC Node | Slovakia
+
+## How to access the Node
+
+### Rules of Participation
+
+Rules of participation are based on BBMRI-ERIC AUP and Policy for Access to Biological Samples and Data . The BBMRI-ERIC policy is aligned with:
+
+EOSC Federation rules
+
+GDPR
+
+### Access points
+
+Through the BBMRI Directory, Negotiator, and Sample Locator . Federated AAI ensures EOSC User access.
+
+## Node capabilities
+
+### Federated services
+
+AAI
+
+Directory
+
+Negotiator
+
+Sample Locator
+
+### Data repositories
+
+~500 biobanks across 25 countries
+
+### Other
+
+GDPR-compliance frameworks
+
+Training materials
+
+EHDS2 integration
+
+##
+Coordinating organisation
+
+BBMRI-ERIC
+
+## Node organisation
+
+#### Coordinator
+
+Petr Holub (BBMRI-ERIC)
+
+#### Operation Manager
+
+Andreas Türk (BBMRI-ERIC) & Kurt Majcen (BBMRI-ERIC)
+
+#### Security Officer
+
+Alexander Fürbaß
+
+#### Scientific Officer
+
+Jens Habermann
+
+#### Legal/Ethics Officer
+
+Irene Schlünder
+
+#### Public Affairs
+
+Jana Pavlic-Zupanc
+
+## Contributing organisations
+
+22 member and 3 observer countries and WHO/IARC
+
+~500 biobanks
+
+Each member/observer constitutes a national node (e.g., BBMRI-AT, BBMRI-NL, BBMRI-SE, etc.)
+
+
+
+
+
+
+Close
+
+Previous
+
+Next

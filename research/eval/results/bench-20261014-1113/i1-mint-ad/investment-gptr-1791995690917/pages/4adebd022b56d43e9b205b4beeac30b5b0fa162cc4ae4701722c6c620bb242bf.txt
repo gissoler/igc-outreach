@@ -1,0 +1,271 @@
+Research and Development Tax Credit (R&D) | Maryland Department of Commerce
+
+Skip to main content
+
+# Research and Development Tax Credit (R&D)
+
+Skip sidebar navigation
+
+About this page. This page explains the Maryland Research and Development Tax Credit in plain language. The credit is codified at Maryland Tax-General Article §10-721 - PDF - 63.91 KB , with program regulations at COMAR 03.04.10 . The program was extended by the DECADE Act of 2026 . If anything on this page conflicts with the statute or regulations, the statute and regulations control.
+
+## Program Status
+The application period for Tax Year 2025 is open.
+Applications are accepted through the online portal from June 1, 2026 until the November 15, 2026 statutory deadline.
+Apply through the R&D Tax Credit application portal . Online applications are not available at this time. Please reach out directly to the contact listed below.
+Deadline note. November 15, 2026 falls on a Sunday. Commerce has indicated the portal will remain available through Monday, November 16, 2026. Do not rely on the extra day — submit by November 15 and confirm the operative closing date with Commerce if you are filing close to the deadline.
+Sunset date: The DECADE Act of 2026 extended the credit through tax year 2030 . Commerce states the program remains in effect until January 31, 2031 , subject to further extension by the Maryland General Assembly.
+
+## What This Program Does
+The Research and Development Tax Credit provides Maryland income tax credits to businesses that have qualified research and development expenses in Maryland.
+The credit equals 10% of eligible Maryland R&D expenses that exceed the business’s Maryland Base Amount.
+For small businesses , the credit is refundable — if the credit is larger than the business’s Maryland income tax liability, the excess is refunded.
+The program encourages companies to expand innovation, develop new technologies, and grow research operations in Maryland.
+
+## Who This Is For
+This credit is for businesses that:
+have qualified research and development expenses in Maryland
+meet the federal definition of qualified research under Internal Revenue Code §41
+apply by the annual November 15 deadline
+Businesses fall into one of two groups for the purpose of the funding caps: small businesses and applicants that are not small businesses . Each group draws from a separate pool of credits.
+
+### Definitions
+Small business. A for-profit corporation, limited liability company, partnership, or sole proprietorship with net book value assets of less than $5,000,000 — measured at either the beginning or the end of the taxable year in which the Maryland qualified R&D expenses were incurred, as reported on the balance sheet.
+Net book value assets. The total net value of a business’s assets, including intangibles but not including liabilities, minus depreciation and amortization.
+Maryland qualified research and development. Qualified research as defined in §41(d) of the Internal Revenue Code that is conducted in Maryland.
+Maryland qualified research and development expenses. Qualified research expenses as defined in §41(b) of the Internal Revenue Code, incurred for Maryland qualified research and development.
+Maryland Base Amount. A calculated threshold based on the business’s Maryland gross receipts and prior R&D spending. The credit applies only to expenses above this amount. See “How the Program Works” for the calculation.
+
+## Program Duration and Limits
+
+### Credit rate
+10% of Maryland qualified R&D expenses that exceed the Maryland Base Amount.
+
+### Statutory caps
+Limit
+Amount
+Applies to
+
+Total annual program cap
+$12,000,000
+All applicants combined
+
+Small business set-aside
+$3,500,000
+Small business applicants
+
+Remaining pool
+$8,500,000
+Applicants that are not small businesses
+
+Maximum credit per applicant
+$250,000
+Every applicant, regardless of size
+
+The two pools are connected. If small business applications total less than $3.5 million, the unused amount is added to the pool available to applicants that are not small businesses — and vice versa.
+
+### Carryforward and refundability
+Carryforward: unused credits may be carried forward for up to 7 taxable years after the taxable year in which the qualified R&D expense was incurred.
+Refundable for small businesses: R&D tax credits certified after December 15, 2012 are refundable for a small business to the extent the credit exceeds its income tax liability for that taxable year.
+
+### Sunset
+The DECADE Act of 2026 (HB 898 / SB 388, Chapter 352) , signed May 12, 2026, extended the credit through tax year 2030 . Commerce states the program remains in effect until January 31, 2031 .
+Because applications are filed in the year following the expense year, businesses planning around the final years of the program should confirm the last available application cycle with Commerce.
+
+## How the Program Works
+The credit equals 10% of the Maryland qualified R&D expenses that exceed the Maryland Base Amount. If total applications exceed the statutory caps, credits are prorated.
+
+### Calculating the credit
+Determine the business’s Maryland gross receipts for the credit year and the preceding four years (or for the years the business had gross receipts).
+Compute the average gross receipts based on the number of years the business existed. For a partial or short tax year, multiply the average by the portion of the year being claimed.
+Determine the business’s Maryland qualified R&D expenses for the credit year and the preceding four years, if any.
+Compute the average of those expenses on the same basis.
+Calculate the base percentage: average Maryland qualified R&D expenses ÷ average Maryland gross receipts.
+Calculate the Maryland Base Amount: base percentage × average Maryland gross receipts.
+Compute the credit: (Maryland qualified R&D expenses − Maryland Base Amount) × 10%.
+First-year businesses. If the credit year is the first year the business incurred R&D expenses, the Maryland Base Amount is zero. The credit is 10% of all qualified expenses incurred in that tax year.
+
+### Partial or short tax years
+A business with a partial or short tax year uses the Maryland Adjusted Base Amount : the Maryland Base Amount multiplied by the number of days in the calendar year that fall within the short tax year, divided by 365.
+Example. A tax year running January 1 to June 30 covers 181 days. The Maryland Adjusted Base Amount is the Maryland Base Amount × 181/365, or about 50%.
+
+### Proration when applications exceed the caps
+Commerce prorates credits separately within each pool.
+
+#### Small business pool
+If small business applications exceed $3.5 million, each small business applicant’s credit is multiplied by:
+$3,500,000 ÷ total credits applied for by all small business applicants
+
+#### Non-small business pool
+If applications from businesses that are not small businesses exceed $8.5 million, each applicant’s credit is multiplied by:
+$8,500,000 ÷ total credits applied for by all non-small business applicants
+Example. A business that is not a small business applies for a $500,000 credit. Total non-small business applications come to $15 million. The prorated amount would be $500,000 × ($8.5M ÷ $15M) = $283,333. However, because no applicant may receive more than $250,000, the business receives $250,000 .
+Important. No applicant may receive a credit exceeding $250,000, regardless of expenses incurred or the proration calculation.
+
+### Subsidiaries and corporate groups
+Only the parent company applies. Each subsidiary is allocated a fraction of the total credit to use against its own Maryland tax liability. The fraction is:
+Subsidiary’s Maryland qualified R&D expenses ÷ total Maryland qualified R&D expenses of all affiliated entities under common control
+
+### Mergers, acquisitions, and reorganizations
+When determining the Maryland Base Amount, the business must include the Maryland qualified R&D expenses of any acquired, consolidated, merged, or restructured entity — both for the credit year and for the prior years used in the base calculation.
+Example. If Company A buys Company B, Company A counts Company B’s Maryland qualified R&D expenses in the taxable year, but must also count Company B’s R&D expenses in previous years when determining the base amount.
+
+## Key Eligibility Requirements
+To qualify, a business must:
+Have Maryland qualified research and development expenses, as defined by §41(b) of the Internal Revenue Code , incurred in Maryland
+Conduct qualified research as defined in §41(d) of the Internal Revenue Code within Maryland
+Submit an application to Commerce no later than November 15 of the calendar year following the tax year in which the expenses were incurred
+Be in Good Standing with the Maryland State Department of Assessments and Taxation
+Businesses applying as a small business must also submit documentation showing net book value assets of less than $5 million at the beginning or end of the tax year, as reported on the balance sheet.
+
+## Documents You Will Need to Apply
+Applicants should be prepared to provide documentation supporting the calculation of qualified R&D expenses. These materials are typically prepared with an accountant or tax advisor.
+
+### Financial and expense documentation
+Detailed R&D expense schedules
+Payroll records for employees performing research
+Contractor and vendor invoices
+Cost allocation methodology
+
+### Tax and calculation documentation
+Federal Form 6765 or equivalent R&D calculation worksheets
+Maryland gross receipts for the credit year and the preceding four years
+Maryland qualified R&D expenses for the credit year and the preceding four years
+Base amount calculation support
+
+### Small business documentation (if applicable)
+Balance sheet showing net book value assets of less than $5 million at the beginning or end of the taxable year
+
+### Business standing
+Proof of Good Standing with the Maryland State Department of Assessments and Taxation
+Commerce may request additional documentation to verify eligibility.
+
+## How to Apply
+Gather the documentation listed above, working with your accountant or tax advisor.
+Calculate the Maryland Base Amount and the credit amount using the steps in “How the Program Works.”
+Submit the application through the R&D Tax Credit application portal no later than November 15 of the calendar year following the tax year in which the expenses were incurred. Online applications are not available at this time. Please reach out directly to the contact listed below.
+Small businesses must also submit documentation demonstrating they meet the $5 million net book value asset threshold.
+Commerce reviews applications and applies proration if the statutory caps are exceeded.
+Commerce issues a tax credit certificate with the approved credit amount by February 15.
+
+### Application timeline
+When
+What happens
+
+Calendar year of the expenses
+The business incurs Maryland qualified research and development expenses.
+
+June 1 of the following year
+The online application portal opens for that tax year.
+
+November 15 of the following year
+Statutory application deadline. Applications must be submitted no later than this date. If November 15 falls on a weekend or holiday, confirm the operative portal closing date with Commerce.
+
+By February 15
+Commerce issues a tax credit certificate stating the approved credit amount.
+
+After certification
+The business claims the credit on an amended return for the expense year, or on a return filed for any of the following 7 tax years.
+
+## Application Review Timeline
+Commerce issues tax credit certificates by February 15 of the calendar year following the end of the year in which the business submitted its application.
+This assumes a complete application with all required documentation.
+
+## How You Claim the Credit
+Because the application deadline falls after most tax filing dates, the business will usually already have filed a return for the expense year by the time it receives certification. After certification, the business may either:
+file an amended tax return for the year the expenses were incurred, or
+claim the credit on an income tax return filed for any of the following 7 tax years .
+A copy of the Commerce certification must be attached to the return.
+Small businesses. If the credit exceeds the business’s income tax liability for the taxable year, a small business may receive the excess as a refund. This applies to credits certified after December 15, 2012.
+
+## Frequently Asked Questions
+
+##
+Research & Development Tax Credit FAQs
+
+###
+
+Is the application period open right now?
+
+The Tax Year 2025 application period opened June 1, 2026 and runs through the November 15, 2026 statutory deadline. Apply through the online portal .
+
+###
+
+How long will the program be available?
+
+The DECADE Act of 2026 extended the credit through tax year 2030 . Commerce states the program remains in effect until January 31, 2031, subject to further extension by the General Assembly.
+Because applications are filed by November 15 of the year following the expense year, businesses planning around the final years of the program should confirm the last available application cycle with Commerce before relying on the credit.
+
+###
+
+How much credit does a business receive?
+
+10% of Maryland qualified R&D expenses incurred during the taxable year that exceed the Maryland Base Amount, subject to the statutory caps and the $250,000 per-applicant maximum.
+
+###
+
+What if my business did not invest in R&D before the year I am claiming?
+
+If the credit year is the first year the business incurred R&D expenses, the Maryland Base Amount is zero and the credit equals 10% of the qualified expenses incurred in that tax year.
+
+###
+
+What if I do not have enough tax liability to use all of the credit?
+
+Unused credits may be carried forward for up to 7 taxable years after the taxable year in which the qualified R&D expense was incurred. Small businesses may instead receive the excess as a refund.
+
+###
+
+Is the credit refundable?
+
+For small businesses , yes — R&D tax credits certified after December 15, 2012 are refundable to the extent the credit exceeds the income tax liability for that taxable year. For applicants that are not small businesses, the credit is not refundable but may be carried forward for 7 years.
+
+###
+
+What if total credits applied for exceed the statutory caps?
+
+Credits are prorated separately within the small business pool ($3.5 million) and the non-small business pool ($8.5 million). If one pool is undersubscribed, the unused amount is added to the other. No applicant may receive more than $250,000 regardless of the proration result. See “Proration when applications exceed the caps” for worked examples.
+
+###
+
+My corporation has several Maryland subsidiaries conducting R&D. How are credits allocated?
+
+Only the parent company applies. Each subsidiary is allocated a fraction of the total credit based on its share of the Maryland qualified R&D expenses of all affiliated entities under common control.
+
+###
+
+What if R&D expenses increase because of a merger, acquisition, or reorganization?
+
+The Maryland qualified R&D expenses of the acquired, consolidated, merged, or restructured entity must be included when determining the Maryland Base Amount — both in the credit year and in the prior years used for the base calculation.
+
+###
+
+If I purchase a firm that claimed R&D credits, do the credits carry over?
+
+Credits carry over only to the extent allowed under federal law. If the transaction is a purchase of assets, the credits generally do not carry over, because the company from which the assets were purchased remains a legal entity and retains the credits.
+
+###
+
+How are “net book value assets” defined?
+
+The total net value of a business’s assets, including intangibles but not including liabilities, minus depreciation and amortization.
+
+## Legal Notices and Required Language
+This credit is authorized under Maryland Tax-General Article §10-721 - PDF - 63.91 KB . Credit amounts are subject to statutory caps and proration.
+Program regulations:
+COMAR 03.04.10 — Maryland Research and Development Tax Credit
+Amending legislation:
+DECADE Act of 2026 (HB 898 / SB 388, Chapter 352) — extended the credit through tax year 2030 and added reporting requirements; signed May 12, 2026, effective July 1, 2026
+Federal reference:
+Internal Revenue Code §41 (26 U.S.C. §41) — definitions of qualified research and qualified research expenses
+Apply:
+R&D Tax Credit application portal
+Applicants should consult the statute and applicable regulations for the complete legal requirements governing this tax credit.
+
+## Contact
+Amy Poad
+Tax Specialist
+Maryland Department of Commerce
+401 E. Pratt Street
+Baltimore, MD 21202
+Email: [email protected]
+Phone: 410-767-0429

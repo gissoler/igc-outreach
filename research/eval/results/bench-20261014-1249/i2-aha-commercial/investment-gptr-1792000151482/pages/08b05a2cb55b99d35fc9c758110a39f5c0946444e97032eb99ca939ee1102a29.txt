@@ -1,0 +1,518 @@
+What Clinical Trial Venture Capital Think About Clinical Trial Tech
+
+
+
+
+
+
+#### Moe Alsumidaie
+
+
+
+
+
+
+
+##### 
+Chief Editor
+
+
+
+Moe Alsumidaie is Chief Editor of The Clinical Trial Vanguard. Moe holds decades of experience in the clinical trials industry.
+
+Moe also serves as Head of Research at CliniBiz and Chief Data Scientist at Annex Clinical Corporation.
+
+
+
+
+
+
+Adaptive Clinical Trial Design
+Adaptive Trial Design
+AI in Clinical Trials
+alcohol use disorder
+Alzheimer's Disease
+Article
+Clinical Operations
+Clinical Research
+Clinical Trial Design
+Clinical Trial Operations
+Clinical Trial Ops Brief
+Clinical Trial Quality
+Clinical Trials
+CLINOPS WATCHDOG
+CNS Trials
+Conference Coverage
+Decentralized Clinical Trials
+Digital Health Technologies
+DOGE FDA Budget Cuts
+dual diagnosis
+eClinical Tech News
+eClinical Technology
+EMA
+Executive Interviews
+FDA Enforcement
+FDA Guidance
+FDA Real-World Evidence
+FDA Regulation
+FDA Regulatory Strategy
+FDA Warning Letter
+GCP Compliance
+GLP-1 Receptor Agonists
+Ketamine Therapy
+Oncology Trials
+Opinion
+Parkinson's Disease
+Platform Trials
+Psilocybin MDMA
+Psychedelic Clinical Trials
+PSYCH PULSE
+Real-World Evidence
+site activation
+Site Operations
+study startup
+Treatment-Resistant Depression
+
+
+
+
+
+
+
+
+Articles
+
+Conference Coverage
+
+Executive Interviews
+
+News
+
+CliniCast
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Article: Executive Interviews
+
+# What Clinical Trial Venture Capital Think About Clinical Trial Tech
+
+By Moe Alsumidaie
+
+September 2, 2025
+
+“Even when the ROI is 10 to 13x, it still takes six years to adopt.” That’s the paradox that Sunny Kumar, Partner at Informed Ventures, grapples with daily. His firm has backed next-generation clinical trial platforms like Medable and Deep6 AI. But the question remains: why does it take decades for these innovations to become standard practice?
+
+In this interview, Kumar unpacks the behavioral biases, structural bottlenecks, and regulatory shifts shaping the adoption of decentralized trials and AI. He shares lessons from the recent DCT contraction, offers real examples of sites opting out due to tech burden, and explains why the term “DCT” itself may not survive the next five years.
+
+
+
+## Moe: Sunny, you’ve backed platforms like Medable and Deep6 AI. But Tufts data shows it still takes 6 years for companies to adopt tech and 20 for widespread uptake. Why the delay?
+
+Sunny: Pharma and healthcare are fundamentally risk-averse. They’re not early adopters by nature. The stakes are too high—no one wants to jeopardize a phase 3 trial using unproven tech. That caution is understandable but also slows innovation. DCTs are a great example. Medable is a newer platform, but decentralized elements have been around for over 20 years. It’s only recently, thanks to FDA guidance and hard ROI data—like 10x to 13x returns per Tufts—that adoption is gaining steam. Still, it’s not plug-and-play. You need upgraded data lakes, pipelines, and backend support. That infrastructure lift is a real barrier.
+
+## Moe: LinkedIn data shows DCT headcounts are dropping even as the market grows. Is this a correction or something deeper?
+
+Sunny: It’s mostly a correction. Post- COVID , VCs like us expected hypergrowth—3x, 4x, even 5x year-over-year. Companies staffed up aggressively to meet those projections. But reality hit: sales cycles in clinical trials are long, and sustainable growth looks more like 2x. The smart companies have adjusted. They cut back, recalibrated, and are now better staffed to achieve profitability. This isn’t a sign that DCTs are failing. It’s a sign the sector is maturing.
+
+
+
+## Moe: DCTs promised democratization. But many sites decline participation. What are you seeing at the ground level?
+
+Sunny: Real-world data supports DCTs: better retention, broader reach, underserved populations included. But execution is tough. Take device provisioning. Pharma companies aren’t built to ship and support devices. Sites aren’t trained for remote workflows. Some say no outright because the training burden, tech stack, and backend support are too much.
+
+One initiative we saw failed because translation and localization alone spanned 50+ countries. These aren’t edge cases—they’re systemic blockers. But this is where AI can help: translation, CRA support, automating workflow redundancies. Agentic AI is the next frontier.
+
+## Moe: The FDA’s tone has shifted: less emphasis on diversity targets, more on resilience and adaptability. How are startups responding?
+
+Sunny: That shift matters. Everyone agrees diversity is important, but resilience is the new north star. If trials are adaptive and robust, we get better outcomes faster. Startups are responding in kind. Whether it means in silico control arms, fully virtual trials, or adaptive designs, the focus now is on operational flexibility. That changes how startups pitch, what they prioritize in product development, and how they build toward regulatory alignment.
+
+## Moe: Let’s talk AI. It has enormous promise but also risk. Have you seen well-intentioned tools worsen inequity?
+
+Sunny: Absolutely. Early big data efforts often hardcoded physician bias into the algorithms. Without safeguards, AI can deepen the very gaps we aim to close. What we need is inclusivity by design: ensuring rural areas have connectivity, investing in digital literacy, training staff across sites—not just at major hubs. The goal isn’t a perfectly equal field. It’s to up-level everyone.
+
+
+
+## Moe: Some leaders now say we should stop calling it “DCT” and just call it a trial. What’s the legacy of the DCT era?
+
+Sunny: That shift is already happening. DCT elements—eConsent, eCOA, remote monitoring—are being baked into trials by default. Soon we won’t distinguish between “DCT” and “trial.” That’s the legacy: not just tech adoption, but a cultural shift in how trials are run.
+
+## Moe: Anything else you’d like to add?
+
+Sunny: I’m most excited about AI agents. The automation we’re starting to see—in CRA support, document translation, backend workflows—is just the beginning. The ones that succeed will be those who build for flexibility, automation, and inclusivity from day one.
+
+##### Moe Alsumidaie
+
+Website | + posts Bio
+Moe Alsumidaie, MBA, MSF, is founder and Chief Editor of Vanguard Publications, which publishes Clinical Trial Vanguard, Pharma Vanguard and BullScope, and Head of Research at CliniBiz. He has two decades in clinical trial operations and data science, with earlier roles at Genentech, Abbott Vascular and Stanford University Medical Center, and is a guest lecturer in clinical trial sciences at Rutgers University.
+
+Moe Alsumidaie
+
+The Infrastructure Bet That Pays Off Before the First Patient Enrolls
+
+Moe Alsumidaie
+
+Why the First Scan Matters Most: IAG’s Romiesa Hagoug on Keeping Imaging Data Honest Across Multi-Site Trials
+
+Moe Alsumidaie
+
+When the Trial Fails, Was It the Drug or the Design?
+
+Moe Alsumidaie
+
+When the Trial Ends, the Data Work Begins
+
+
+
+
+
+
+
+
+
+Previous post 
+
+###### Pharma Cuts Clinical Trial CSR Time by >50% With AI
+
+
+
+
+
+
+
+
+
+
+Next post 
+
+###### Oculis Presents Trial Data on Macular Edema, Optic Neuritis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 
+You Might Also Like 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Article: Executive Interviews
+
+
+
+### The Brain Needs Fertilizer, Not Just a New Molecule
+
+May 12, 2026 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Article: Executive Interviews
+
+
+
+### Clinical Trial Complexity: A Unique Challenge Tackled
+
+March 28, 2024 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Article: Executive Interviews
+
+
+
+### Advancing Cancer Care: The Impact of Illinois’ New Bill of Rights
+
+February 13, 2025 
+
+
+
+
+
+
+
+
+
+#### Latest News
+
+
+
+
+01 
+
+
+
+
+News
+
+
+
+#### Phase IV heart failure studies use digital tools to address patient dropout from low perceived benefit
+
+October 14, 2026 
+
+
+
+
+
+
+
+02 
+
+
+
+
+News
+
+
+
+#### CRIO Launches AI eSource Builder to Cut Protocol Review Time by Four Hours
+
+October 14, 2026 
+
+
+
+
+
+
+
+03 
+
+
+
+
+News
+
+
+
+#### Senti Biosciences Adjourns Merger Vote, Seeking Additional Stockholder Support
+
+October 14, 2026 
+
+
+
+
+
+
+
+04 
+
+
+
+
+News
+
+
+
+#### Phio Pharmaceuticals Completes Commercial cGMP Batch of PH-762
+
+October 14, 2026 
+
+
+
+
+
+
+
+05 
+
+
+
+
+News
+
+
+
+#### ArriVent doses first patient with ARR-002 dual-target ADC for ovarian cancer
+
+October 14, 2026 
+
+
+
+
+
+
+
+06 
+
+
+
+
+News
+
+
+
+#### Zenas BioPharma releases Phase 3 obexelimab data in IgG4-related disease
+
+October 14, 2026 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Start typing and press Enter to search
+
+
+
+
+
+
+
+Manage Consent
+
+To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.
+
+Functional
+
+Functional
+
+Always active
+
+The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.
+
+Preferences
+
+Preferences
+
+The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.
+
+Statistics
+
+Statistics
+
+The technical storage or access that is used exclusively for statistical purposes.
+The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.
+
+Marketing
+
+Marketing
+
+The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.
+
+Manage options
+
+Manage services
+
+Manage {vendor_count} vendors
+
+Read more about these purposes
+
+Accept
+Deny
+View preferences
+Save preferences
+View preferences
+
+{title}
+
+{title}
+
+{title}
+
+Manage consent

@@ -1,0 +1,52 @@
+{
+ "id": "i3-medtech-eu",
+ "kind": "investment",
+ "objective": "investment",
+ "brief": "eval/briefs/medtech-eu-forprofit.json",
+ "why": "startup en España: inversores europeos",
+ "dry": true,
+ "ok": true,
+ "status": "done",
+ "error": null,
+ "started": "2026-10-14T14:50:30.626Z",
+ "seconds": 0,
+ "stages": {
+  "search_s": 0,
+  "judge_s": 0,
+  "engine_s": null,
+  "contacts_s": null,
+  "evaluator_s": null,
+  "total_s": 0
+ },
+ "urls": {
+  "gptr": 1,
+  "registry": 0,
+  "opened": null,
+  "assessed": null,
+  "by_status": null
+ },
+ "findings": {
+  "verified": 1,
+  "to_review": 0
+ },
+ "lists": {
+  "top": 1,
+  "radar": 0,
+  "discarded": 0
+ },
+ "apollo_credits": 0,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "Fixture Ventures invests in seed-stage digital health and medical technology companies in the United States and Europe.",
+   "list": "top",
+   "deadline": null,
+   "verified": true,
+   "url": "https://example.test/fixture-fund",
+   "contacts": 0
+  }
+ ]
+}

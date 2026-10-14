@@ -1,0 +1,127 @@
+Junebrain — Whiteford Research Biobase
+
+Login
+Sign Up
+
+← Company DB
+
+### Classification
+
+Sector
+
+Medical Devices
+(5113)
+
+Subsubsectors
+
+Neurology and Spine Devices
+(534)
+
+Technologies
+
+Ai-Assisted
+(135)
+
+Automated Quantitative
+(2)
+
+Clinical Research
+(60)
+
+Cloud-Based Ophthalmic
+(3)
+
+Deep Learning
+(64)
+
+Point-Of-Care
+(103)
+
+Remote Neurological
+(2)
+
+Wearable Retinal
+(2)
+
+portable OCT systems
+(3)
+
+swept-source optical coherence tomography
+(3)
+
+Request Update/Expanded Info
+
+# JuneBrain
+
+## Overview
+
+JuneBrain is a Maryland-founded medical technology company developing portable optical coherence tomography (OCT) devices and AI software for remote monitoring of neurological and retinal diseases. [1] The company describes its products as investigational-use-only and positions them for clinical, point-of-care, and research settings where more frequent retinal imaging could support neurology and ophthalmology care. [1] JuneBrain is headquartered in Baltimore, Maryland, with its recent ecosystem support centered around Baltimore's LaunchPort and regional commercialization programs. [2]
+
+## Technology
+
+The company's flagship system is Neuro-i SS-OCT, a wearable, AI-powered retinal imaging platform designed to bring high-resolution OCT imaging beyond traditional eye clinics into neurology, primary care, community health, and mobile settings. [2] JuneBrain also offers a Reading Center service focused on automated quantitative analysis of OCT data for clinical research. [1] In a SEC filing, the company described Neuro-i as a mobile, wearable device for remote detection of ophthalmologic or brain disease, paired with cloud software that segments and analyzes retinal OCT images using deep-learning-based methods. [3]
+
+## Products and Development
+
+JuneBrain's Neuro-i SS-OCT is intended to detect and monitor eye and brain disease through technician-free retinal imaging. [2] ETC Baltimore reported in 2026 that the company had built and tested working Neuro-i SS-OCT prototypes and enrolled nearly 100 patients across three company-sponsored clinical studies. [2] The same report said JuneBrain was advancing toward FDA submission in 2026 and had multiple issued patents supporting its device and algorithm technology. [2]
+
+## Clinical Focus
+
+JuneBrain targets diseases where retinal imaging may help quantify progression or treatment response, including multiple sclerosis, Parkinson's disease, Alzheimer's disease, and retinal disorders. [4] NSF's description of the company's STTR Phase II project emphasized development of a fully automated, wearable, lower-cost retinal imaging device for clinical and home settings, initially highlighting multiple sclerosis monitoring. [5] The company frames its broader goal as expanding access to advanced eye and brain health monitoring across underserved and non-traditional care environments. [1]
+
+## Funding
+
+JuneBrain has received non-dilutive and private financing to support product development and commercialization. ETC Baltimore reported in February 2026 that the company had secured $3 million in grants, including Phase I and II NSF SBIR/STTR awards, and raised $3.4 million in private investment. [2] Public round-level disclosures are incomplete for some private financings; the table below separates disclosed amounts from aggregate or estimated valuation information.
+
+Round / financing type
+Date
+Amount
+Investors / participants
+Valuation information
+Sources
+
+Pre-seed convertible notes and SAFEs
+June 1, 2020; July 1-2, 2020; February 17, 2021; December 15, 2022
+$585,000 disclosed across $150,000 convertible notes, $285,000 SAFEs, and a $150,000 Maryland governmental-entity convertible note
+Undisclosed note/SAFE holders; Maryland governmental entity
+Later company filing describes a $150,000 governmental-entity note with an $8 million valuation-cap conversion alternative; other valuation terms not fully disclosed in the public excerpt
+SEC Form C-AR [3]
+
+Crowdfunding SAFE
+March 5, 2023
+$77,980 raised from 160 investors; SEC filing lists $79,539 face value including intermediary SAFEs
+Republic crowdfunding investors
+$8 million valuation cap and 15% discount; SEC filing says the company ascribed no valuation and securities were priced arbitrarily
+Republic [7] ; SEC Form C-AR [3]
+
+Non-dilutive NSF STTR Phase II grant
+June 10, 2021 / July 12, 2021 announcement
+$1,000,000
+National Science Foundation
+Not applicable; grant funding
+JuneBrain NSF announcement [6]
+
+Pre-seed
+October 9, 2025
+$250,000
+TEDCO Pre-Seed Builder Fund / Social Impact Funds
+Not disclosed
+TEDCO [8] ; CityBiz [4]
+
+Series Seed+
+February 27, 2026
+$200,000
+Emerging Technology Centers Baltimore / Baltimore Development Corporation
+Not disclosed
+CityBiz / ETC Baltimore [2]
+
+Seed
+March 24, 2026
+Undisclosed
+New Orleans BioFund; Gulf South Angels
+Terms not disclosed by the investors; Caplight lists JuneBrain's last round as Seed on March 24, 2026, estimated valuation $10 million, and total funding raised $2.89 million
+New Orleans BioFund [9] ; CityBiz [4] ; Caplight [10]
+
+## Investors and Partners
+
+Recent investors and supporters include Emerging Technology Centers Baltimore, TEDCO, The New Orleans BioFund, and Gulf South Angels. [2] [4] CityBiz reported in April 2026 that the New Orleans BioFund and Gulf South Angels made a joint investment to help JuneBrain expand into Louisiana and deepen clinical partnerships with regional health systems and universities. [4] TEDCO had previously invested $250,000 through its Social Impact Funds, according to the same report. [4]

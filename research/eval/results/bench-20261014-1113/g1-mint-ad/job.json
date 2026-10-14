@@ -1,0 +1,3524 @@
+{
+ "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea",
+ "brief": {
+  "name": "Founder",
+  "role": "Founder",
+  "company": "IGC pharma",
+  "product": "mint ad",
+  "description": "Goal to serve 10,000 people",
+  "industry": "healthcare",
+  "stage": "marketed",
+  "geography": "US",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "grant"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 8000000,
+  "minDays": 30,
+  "useTeam": true,
+  "useApify": true,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "IGC pharma",
+  "venture": "IGC pharma",
+  "oneLiner": "stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees",
+  "round": "seed",
+  "constraints": "",
+  "useOfFunds": "development and hiring",
+  "timeline": "",
+  "website": "",
+  "entityType": "for_profit",
+  "country": "",
+  "state": "Maryland",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: IGC pharma · mint ad: grant · marketed · seed · US · USD 8000000",
+   "at": "2026-10-14T16:13:31.138Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 5 phrasings separately: healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention tool",
+   "at": "2026-10-14T16:13:31.796Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T16:13:31.990Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 8 candidates with provenance.",
+   "at": "2026-10-14T16:20:13.831Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 8 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T16:20:13.838Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Grant work items built from official calls; no fundraising emails were created.",
+   "at": "2026-10-14T16:20:17.230Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 7 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T16:20:17.245Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": null,
+   "role": null,
+   "org": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+   "title": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2027-06-30",
+   "amount": "$1,000,000",
+   "contact": {
+    "type": "web",
+    "value": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+    "provenance": "Read and verified on grantanchor.com"
+   },
+   "evidence": [
+    {
+     "id": "af9b9c8fd698ee24a1f4",
+     "source": "Web research engine · grantanchor.com",
+     "url": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+     "quote": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "cabfbe982dbc833a3384",
+     "source": "Web research engine · deadline",
+     "url": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+     "quote": "The application deadline is June 30, 2027.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD) Alzheimer&#x27;s Association Global Real-World Data Programs… — Grant Anchor Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 259,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s Alzheimer’s risk stratification tool aligns with the grant’s focus on dementia real‑world data.",
+     "fundsQuote": "to strengthen real-world data platforms for dementia research.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+    "deadline": "The application deadline is June 30, 2027."
+   },
+   "key": "opportunity:engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+   "id": "e39b0fc1a82c79b60023",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform"
+   ],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s Alzheimer’s risk stratification tool aligns with the grant’s focus on dementia real‑world data.",
+    "workType": null
+   },
+   "score": 51,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 25,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s Alzheimer’s risk stratification tool aligns with the grant’s focus on dementia real‑world data.",
+    "Specific open grant opportunity (engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd); eligibility must be resolved against the notice.",
+    "Published deadline: 2027-06-30.",
+    "Published ceiling USD $1,000,000; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 259,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 1,
+   "jev": {
+    "leadId": "e39b0fc1a82c79b60023",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.39,
+    "fitConfidence": 0.49,
+    "evidenceSufficient": 0.3,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+    "body": "Official call: engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd — Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)\n\nWhere to apply: the official program page\nOfficial notice: https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd\n\nDeadline: 2027-06-30 — 259 days left; the steps before submitting take about 21.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 61
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     },
+     {
+      "when": "2027-06-23",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on the official program page. First step: Apply through the form or instructions on the official program page.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Enough time for the required steps",
+      "done": true
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+    "agency": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+    "deadline": "2027-06-30",
+    "daysToDeadline": 259,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": 259,
+     "feasible": true,
+     "verdict": "feasible",
+     "nextDeadline": null,
+     "message": "259 days left; the steps before submitting take about 21.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+   "title": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2027-04-05",
+   "amount": "8,000,000 USD",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "45cc25f3af2d05bfb407",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+     "quote": "NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "483f60d5d6211b95f869",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+     "quote": "Application close date: April 5, 2027",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "fc2cd44d5593e646f512",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+     "quote": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [],
+   "missing": [
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional) PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional) NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional) Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Grants.gov",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:PA-27-102",
+   "verification": {
+    "verdict": "apply",
+    "tier": "main",
+    "status": "open",
+    "eligible": "yes",
+    "daysLeft": 173,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "IGC pharma’s stratification tool is a scientific innovation intended for commercialization, aligning with the STTR program’s purpose.",
+     "fundsQuote": "The Small Business Technology Transfer (STTR) grant program helps United States small business concerns (SBCs) that partner with a nonprofit research institution bring scientific innovations to the marketplace.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "NIH SEED (Small business Education and Entrepreneurial Development) SEEDinfo@nih.gov",
+     "role": "Contact listed in the official registry",
+     "email": "SEEDinfo@nih.gov",
+     "organization": "National Institutes of Health",
+     "linkedin": null,
+     "provenance": "Official registry contact",
+     "source": "registry"
+    }
+   ],
+   "registry": {
+    "number": "PA-27-102",
+    "agency": "National Institutes of Health",
+    "closeDate": "2027-04-05",
+    "forecastClose": null,
+    "status": "posted",
+    "url": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+    "moreInfoUrl": null,
+    "via": "simpler"
+   },
+   "quotes": {
+    "identity": "NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+    "deadline": "Application close date: April 5, 2027",
+    "eligible": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity."
+   },
+   "key": "opportunity:PA-27-102",
+   "id": "da50c00dd25d826dc718",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "IGC pharma’s stratification tool is a scientific innovation intended for commercialization, aligning with the STTR program’s purpose.",
+    "workType": null
+   },
+   "score": 45,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 25,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "IGC pharma’s stratification tool is a scientific innovation intended for commercialization, aligning with the STTR program’s purpose.",
+    "Specific open grant opportunity (engine:grant:PA-27-102); eligibility must be resolved against the notice.",
+    "Published deadline: 2027-04-05.",
+    "Published ceiling USD 8,000,000 USD; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 173,
+   "gate": {
+    "tier": "main",
+    "reason": "Open today and eligible, both verified on the page",
+    "source": "read"
+   },
+   "rank": 2,
+   "jev": {
+    "leadId": "da50c00dd25d826dc718",
+    "action": "investigate_more",
+    "actionConfidence": 0.94,
+    "actionProbabilities": {
+     "prioritize": 0.04,
+     "investigate_more": 0.96,
+     "discard": 0
+    },
+    "strategicFit": 1.95,
+    "fitConfidence": 0.88,
+    "evidenceSufficient": 0.61,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:PA-27-102",
+    "body": "Official call: engine:grant:PA-27-102 — PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)\n\nWhere to apply: Grants.gov Workspace or NIH ASSIST (https://public.era.nih.gov/assist)\nOfficial notice: https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24\n\nDeadline: 2027-04-05 — NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. 173 days left; the steps before submitting take about 72.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)\n3. Letter of intent if the notice asks for one (usually ~30 days before)\n4. Prepare and submit the application package (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 130
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     },
+     {
+      "when": "2027-03-29",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace or NIH ASSIST. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Enough time for the required steps",
+      "done": true
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_era",
+      "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application package (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:PA-27-102",
+    "agency": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+    "deadline": "2027-04-05",
+    "daysToDeadline": 173,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "nih",
+     "portal": {
+      "name": "Grants.gov Workspace or NIH ASSIST",
+      "url": "https://public.era.nih.gov/assist"
+     },
+     "infoUrl": "https://grants.nih.gov/how-to-apply-application-guide",
+     "officialUrl": "https://simpler.grants.gov/opportunity/ee37f2de-b959-4b45-86a9-43d06c944f24",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "era",
+       "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before)",
+       "days": 14,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "loi",
+       "label": "Letter of intent if the notice asks for one (usually ~30 days before)",
+       "days": 0,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application package",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 72,
+     "daysToDeadline": 173,
+     "feasible": true,
+     "verdict": "feasible",
+     "nextDeadline": null,
+     "message": "NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. 173 days left; the steps before submitting take about 72.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional)",
+   "title": "PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "open",
+   "deadline": "2027-04-05",
+   "amount": "Not specified in the page",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "20b624d1b5f72590a1d7",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+     "quote": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "1e339c193d894e617939",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+     "quote": "Application close date: April 5, 2027",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "1fd5becd9544a7266e48",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+     "quote": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion eligibility: the judge disagrees with the compiler",
+    "Criterion non_dilutive: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart"
+   ],
+   "missing": [
+    "Eligibility for a for-profit startup not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional) PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional) Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity. Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Grants.gov",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:PA-27-100",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "open",
+    "eligible": "unclear",
+    "daysLeft": 173,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion eligibility: the judge disagrees with the compiler",
+     "Criterion non_dilutive: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "A stratification tool for Alzheimer’s disease is a scientific innovation in healthcare, fitting the program’s focus.",
+     "fundsQuote": "The Small Business Innovation Research (SBIR) program helps United States small business concerns (SBCs) bring scientific innovations to the marketplace.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "NIH SEED (Small business Education and Entrepreneurial Development) SEEDinfo@nih.gov",
+     "role": "Contact listed in the official registry",
+     "email": "SEEDinfo@nih.gov",
+     "organization": "National Institutes of Health",
+     "linkedin": null,
+     "provenance": "Official registry contact",
+     "source": "registry"
+    }
+   ],
+   "registry": {
+    "number": "PA-27-100",
+    "agency": "National Institutes of Health",
+    "closeDate": "2027-04-05",
+    "forecastClose": null,
+    "status": "posted",
+    "url": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+    "moreInfoUrl": null,
+    "via": "simpler"
+   },
+   "quotes": {
+    "identity": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+    "deadline": "Application close date: April 5, 2027",
+    "eligible": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity."
+   },
+   "key": "opportunity:PA-27-100",
+   "id": "f277824ee3767a6c550b",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "A stratification tool for Alzheimer’s disease is a scientific innovation in healthcare, fitting the program’s focus.",
+    "workType": null
+   },
+   "score": 45,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 25,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "A stratification tool for Alzheimer’s disease is a scientific innovation in healthcare, fitting the program’s focus.",
+    "Specific open grant opportunity (engine:grant:PA-27-100); eligibility must be resolved against the notice.",
+    "Published deadline: 2027-04-05.",
+    "Published ceiling USD Not specified in the page; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": 173,
+   "gate": {
+    "tier": "verify",
+    "reason": "Eligibility not confirmed by the judge with a quote from the page",
+    "source": "read"
+   },
+   "rank": 3,
+   "jev": {
+    "leadId": "f277824ee3767a6c550b",
+    "action": "investigate_more",
+    "actionConfidence": 0.95,
+    "actionProbabilities": {
+     "prioritize": 0.03,
+     "investigate_more": 0.97,
+     "discard": 0
+    },
+    "strategicFit": 1.97,
+    "fitConfidence": 0.88,
+    "evidenceSufficient": 0.54,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:PA-27-100",
+    "body": "Official call: engine:grant:PA-27-100 — PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional)\n\nWhere to apply: Grants.gov Workspace or NIH ASSIST (https://public.era.nih.gov/assist)\nOfficial notice: https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e\n\nDeadline: 2027-04-05 — NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. 173 days left; the steps before submitting take about 72.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)\n3. Letter of intent if the notice asks for one (usually ~30 days before)\n4. Prepare and submit the application package (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 133
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     },
+     {
+      "when": "2027-03-29",
+      "what": "Submit a week before the deadline."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace or NIH ASSIST. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": true
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Enough time for the required steps",
+      "done": true
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_era",
+      "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application package (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:PA-27-100",
+    "agency": "PA-27-100 · NIH, CDC and FDA Small Business Innovation Research Grant (Parent SBIR [R43/R44] Clinical Trial Optional)",
+    "deadline": "2027-04-05",
+    "daysToDeadline": 173,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "nih",
+     "portal": {
+      "name": "Grants.gov Workspace or NIH ASSIST",
+      "url": "https://public.era.nih.gov/assist"
+     },
+     "infoUrl": "https://grants.nih.gov/how-to-apply-application-guide",
+     "officialUrl": "https://simpler.grants.gov/opportunity/d1ba49e5-3684-4420-849a-ab2330ec493e",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "era",
+       "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before)",
+       "days": 14,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "loi",
+       "label": "Letter of intent if the notice asks for one (usually ~30 days before)",
+       "days": 0,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application package",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 72,
+     "daysToDeadline": 173,
+     "feasible": true,
+     "verdict": "feasible",
+     "nextDeadline": null,
+     "message": "NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. 173 days left; the steps before submitting take about 72.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional)",
+   "title": "PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "forecast",
+   "deadline": null,
+   "amount": "Not specified",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "b1fc252aa05732e65017",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+     "quote": "The National Institutes of Health (NIH) and Centers for Disease Control and Prevention (CDC), including the participating Institutes, Centers and Offices, intend to publish a Notice of Funding Opportunity (NOFO) to invite eligible United States small business concerns (SBCs) to submit Small Business Innovation Research (SBIR) Phase I, and Fast-Track (NIH only) grant applications for the Small Business Transition Grant.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "3e37ff08ae487f896406",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+     "quote": "Estimated application due date: January 5, 2027",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "f5a214f03dbc75251160",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+     "quote": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Forecast notice: applications are not open yet (estimated deadline 2027-01-05)",
+    "Application deadline: compiler 2026-11-05, 2027-01-05, judge 2027-01-05",
+    "Criterion eligibility: the judge disagrees with the compiler"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional) PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional) The National Institutes of Health (NIH) and Centers for Disease Control and Prevention (CDC), including the participating Institutes, Centers and Offices, intend to publish a Notice of Funding Opportunity (NOFO) to invite eligible United States small business concerns (SBCs) to submit Small Business Innovation Research (SBIR) Phase I, and Fast-Track (NIH only) grant applications for the Small Business Transition Grant. Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Grants.gov",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:PAR-27-039",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "forecast",
+    "eligible": "yes",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Forecast notice: applications are not open yet (estimated deadline 2027-01-05)",
+     "Application deadline: compiler 2026-11-05, 2027-01-05, judge 2027-01-05",
+     "Criterion eligibility: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "forecast_notice"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "A stratification tool for Alzheimer’s disease risk aligns with NIH/CDC health research missions.",
+     "fundsQuote": "United States small businesses that have the research capabilities and technological expertise to contribute to the R&D mission(s) of the NIH and CDC awarding components identified in this NOFO are encouraged to begin to consider applying for this new NOFO.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "NIH SEED (Small business Education and Entrepreneurial Development) Office of Extramural Research (OER) 301-827-8595",
+     "role": "Contact listed in the official registry",
+     "email": "SEEDinfo@nih.gov",
+     "organization": "National Institutes of Health",
+     "linkedin": null,
+     "provenance": "Official registry contact",
+     "source": "registry"
+    }
+   ],
+   "registry": {
+    "number": "PAR-27-039",
+    "agency": "National Institutes of Health",
+    "closeDate": null,
+    "forecastClose": "2027-01-05",
+    "status": "forecasted",
+    "url": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+    "moreInfoUrl": null,
+    "via": "simpler"
+   },
+   "quotes": {
+    "identity": "The National Institutes of Health (NIH) and Centers for Disease Control and Prevention (CDC), including the participating Institutes, Centers and Offices, intend to publish a Notice of Funding Opportunity (NOFO) to invite eligible United States small business concerns (SBCs) to submit Small Business Innovation Research (SBIR) Phase I, and Fast-Track (NIH only) grant applications for the Small Business Transition Grant.",
+    "deadline": "Estimated application due date: January 5, 2027",
+    "eligible": "Only United States small business concerns (SBCs), as defined by the Small Business Administration (SBA)(sbir.gov/apply) are eligible to submit applications for this opportunity."
+   },
+   "key": "opportunity:PAR-27-039",
+   "id": "b7d532dc55a6dd9968ac",
+   "fit": 0.16666666666666666,
+   "matchedTerms": [
+    "Neurodegenerative disease stratification solution"
+   ],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "A stratification tool for Alzheimer’s disease risk aligns with NIH/CDC health research missions.",
+    "workType": null
+   },
+   "score": 28,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 5.8,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "A stratification tool for Alzheimer’s disease risk aligns with NIH/CDC health research missions.",
+    "Specific forecast grant opportunity (engine:grant:PAR-27-039); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD Not specified; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Forecast notice: applications are not open yet (estimated deadline 2027-01-05)",
+    "source": "read"
+   },
+   "rank": 4,
+   "jev": {
+    "leadId": "b7d532dc55a6dd9968ac",
+    "action": "investigate_more",
+    "actionConfidence": 0.97,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.98,
+     "discard": 0.02
+    },
+    "strategicFit": 1.82,
+    "fitConfidence": 0.81,
+    "evidenceSufficient": 0.29,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:PAR-27-039",
+    "body": "Official call: engine:grant:PAR-27-039 — PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional)\n\nWhere to apply: Grants.gov Workspace (https://www.grants.gov/applicants/workspace-overview)\nOfficial notice: https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. Prepare and submit the application in Grants.gov Workspace (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 75
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~58 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application in Grants.gov Workspace (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:PAR-27-039",
+    "agency": "PAR-27-039 · Small Business Transition Grant for New Entrepreneurs (Parent R43/R44 Clinical Trial Optional)",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "grantsgov",
+     "portal": {
+      "name": "Grants.gov Workspace",
+      "url": "https://www.grants.gov/applicants/workspace-overview"
+     },
+     "infoUrl": "https://www.grants.gov/applicants/applicant-registration",
+     "officialUrl": "https://simpler.grants.gov/opportunity/86b34b22-1c01-4d94-8256-f582a1f0af24",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application in Grants.gov Workspace",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 58,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator",
+   "title": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$35,000,000",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "5e0876a31c80a2f6cc4f",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+     "quote": "7 Expected awards",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "be0e66892ba14f096baf",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+     "quote": "#### Business\nFor-profit organizations other than small businesses\nSmall businesses",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "No application deadline verified on the page",
+    "Application deadline: compiler 2026-07-26, judge none",
+    "Criterion deadline: the judge disagrees with the compiler",
+    "Criterion region: the judge disagrees with the compiler",
+    "Check: fake_quote:topic_fit"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "The opportunity focuses on Alzheimer’s disease risk reduction and early detection, which matches the applicant’s stratification tool.",
+    "Geographic eligibility and stage to confirm"
+   ],
+   "searchText": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator Opportunity Listing - Public Health Strategies to Address Alzheimer&#x27;s Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator 7 Expected awards #### Business\nFor-profit organizations other than small businesses\nSmall businesses",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "unknown",
+    "eligible": "yes",
+    "daysLeft": null,
+    "flags": [
+     "fake_quote:topic_fit"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "No application deadline verified on the page",
+     "Application deadline: compiler 2026-07-26, judge none",
+     "Criterion deadline: the judge disagrees with the compiler",
+     "Criterion region: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The opportunity focuses on Alzheimer’s disease risk reduction and early detection, which matches the applicant’s stratification tool.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "7 Expected awards",
+    "eligible": "#### Business\nFor-profit organizations other than small businesses\nSmall businesses"
+   },
+   "key": "opportunity:engine:grant:https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+   "id": "b192de7ef3a4b2c24c3f",
+   "fit": 0.35,
+   "matchedTerms": [
+    "Alzheimer's risk prediction platform",
+    "Neurodegenerative disease stratification solution",
+    "Preventive dementia intervention tool"
+   ],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The opportunity focuses on Alzheimer’s disease risk reduction and early detection, which matches the applicant’s stratification tool.",
+    "workType": null
+   },
+   "score": 26,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 12.3,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The opportunity focuses on Alzheimer’s disease risk reduction and early detection, which matches the applicant’s stratification tool.",
+    "Specific unknown grant opportunity (engine:grant:https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD $35,000,000; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "discarded",
+   "discard": "Not eligible: The title (\"Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Init\") is an institutional center or training award, not for a company.",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "drop",
+    "reason": "Not eligible: The title (\"Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Init\") is an institutional center or training award, not for a company.",
+    "source": "screen"
+   },
+   "rank": 1,
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+    "body": "Official call: engine:grant:https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24 — Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator\n\nWhere to apply: Grants.gov Workspace (https://www.grants.gov/applicants/workspace-overview)\nOfficial notice: https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. Prepare and submit the application in Grants.gov Workspace (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 87
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The opportunity focuses on Alzheimer’s disease risk reduction and early detection, which matches the applicant’s stratification tool. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~58 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application in Grants.gov Workspace (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+    "agency": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "grantsgov",
+     "portal": {
+      "name": "Grants.gov Workspace",
+      "url": "https://www.grants.gov/applicants/workspace-overview"
+     },
+     "infoUrl": "https://www.grants.gov/applicants/applicant-registration",
+     "officialUrl": "https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application in Grants.gov Workspace",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 58,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "National Institutes of Health (NIH) - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+   "title": "National Institutes of Health (NIH) - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "forecast",
+   "deadline": null,
+   "amount": "$--",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "a7cf1f49a868b845b1ae",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "quote": "Funding opportunity number : RFA-AG-27-002",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "fce6949ca1f80b1ada03",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "quote": "Estimated Application Due Date : May 25, 2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "158da42361052c31b00e",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "quote": "For-profit organizations other than small businesses\nSmall businesses",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Forecast notice: applications are not open yet (estimated deadline 2026-05-25)",
+    "Criterion eligibility: the judge disagrees with the compiler"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "National Institutes of Health (NIH) - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research Opportunity Listing - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research Funding opportunity number : RFA-AG-27-002 For-profit organizations other than small businesses\nSmall businesses",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "forecast",
+    "eligible": "yes",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Forecast notice: applications are not open yet (estimated deadline 2026-05-25)",
+     "Criterion eligibility: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "forecast_notice"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s digital‑health risk‑stratification tool for Alzheimer’s disease aligns with the focus on DHT data in AD/ADRD research.",
+     "fundsQuote": "The National Institute on Aging (NIA) intends to publish a Notice of Funding Opportunity (NOFO) that aims to establish a multi-component Translational Center for Accelerating the Use of Digital Health Technologies (DHT) Data in Alzheimer’s Disease (AD) and AD-Related Dementias (ADRD) research.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "Funding opportunity number : RFA-AG-27-002",
+    "deadline": "Estimated Application Due Date : May 25, 2026",
+    "eligible": "For-profit organizations other than small businesses\nSmall businesses"
+   },
+   "key": "opportunity:engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "id": "4455fdcee84ec547d2fc",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s digital‑health risk‑stratification tool for Alzheimer’s disease aligns with the focus on DHT data in AD/ADRD research.",
+    "workType": null
+   },
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s digital‑health risk‑stratification tool for Alzheimer’s disease aligns with the focus on DHT data in AD/ADRD research.",
+    "Specific forecast grant opportunity (engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD $--; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Forecast notice: applications are not open yet (estimated deadline 2026-05-25)",
+    "source": "read"
+   },
+   "rank": 5,
+   "jev": {
+    "leadId": "4455fdcee84ec547d2fc",
+    "action": "investigate_more",
+    "actionConfidence": 0.95,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.97,
+     "discard": 0.03
+    },
+    "strategicFit": 1.28,
+    "fitConfidence": 0.64,
+    "evidenceSufficient": 0.33,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+    "body": "Official call: engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c — National Institutes of Health (NIH) - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research\n\nWhere to apply: Grants.gov Workspace or NIH ASSIST (https://public.era.nih.gov/assist)\nOfficial notice: https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c\n\nDeadline: not published — NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)\n3. Letter of intent if the notice asks for one (usually ~30 days before)\n4. Prepare and submit the application package (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 137
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace or NIH ASSIST. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~72 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_era",
+      "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before) (~14 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application package (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+    "agency": "National Institutes of Health (NIH) - Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "nih",
+     "portal": {
+      "name": "Grants.gov Workspace or NIH ASSIST",
+      "url": "https://public.era.nih.gov/assist"
+     },
+     "infoUrl": "https://grants.nih.gov/how-to-apply-application-guide",
+     "officialUrl": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "era",
+       "label": "eRA Commons accounts for the organization and the PI (NIH asks to start ≥ 6 weeks before)",
+       "days": 14,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "loi",
+       "label": "Letter of intent if the notice asks for one (usually ~30 days before)",
+       "days": 0,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application package",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 72,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "NIH: you apply through Grants.gov/ASSIST. Writing to the scientific contact listed in the notice is normal for fit questions, but optional. No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I",
+   "title": "HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "forecast",
+   "deadline": null,
+   "amount": "$100,000 (award ceiling)",
+   "contact": {
+    "type": "web",
+    "value": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+    "provenance": "Read and verified on simpler.grants.gov"
+   },
+   "evidence": [
+    {
+     "id": "0e7bf9aad1b585ec6082",
+     "source": "Web research engine · simpler.grants.gov",
+     "url": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+     "quote": "NIDILRR will make 11 grants under this opportunity.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.825Z",
+     "verified": true
+    },
+    {
+     "id": "406f25b204770f011eda",
+     "source": "Web research engine · deadline",
+     "url": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+     "quote": "Estimated application due date: December 16, 2026",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "79d398963e9a36d587cc",
+     "source": "Web research engine · fit",
+     "url": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+     "quote": "Eligible applicant types: small businesses",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Forecast notice: applications are not open yet (estimated deadline 2026-12-16)",
+    "Page type: compiler call, judge forecast_notice",
+    "Criterion deadline: the judge disagrees with the compiler",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I NIDILRR will make 11 grants under this opportunity. Eligible applicant types: small businesses",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Grants.gov",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:HHS-2027-ACL-NIDILRR-BISA-0308",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "forecast",
+    "eligible": "yes",
+    "daysLeft": null,
+    "flags": [],
+    "deadlineQuote": "",
+    "blockers": [
+     "Forecast notice: applications are not open yet (estimated deadline 2026-12-16)",
+     "Page type: compiler call, judge forecast_notice",
+     "Criterion deadline: the judge disagrees with the compiler",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "call"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s Alzheimer’s disease stratification tool aims to improve lives of people with cognitive disabilities, aligning with the program’s purpose.",
+     "fundsQuote": "The specific purpose of ACL's SBIR program is to improve the lives of people with disabilities through R/R&D products generated by small businesses",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Brian Bard (202) 795-7298",
+     "role": "Contact listed in the official registry",
+     "email": "brian.bard@acl.hhs.gov",
+     "organization": "Administration for Community Living",
+     "linkedin": null,
+     "provenance": "Official registry contact",
+     "source": "registry"
+    }
+   ],
+   "registry": {
+    "number": "HHS-2027-ACL-NIDILRR-BISA-0308",
+    "agency": "Administration for Community Living",
+    "closeDate": null,
+    "forecastClose": "2026-12-16",
+    "status": "forecasted",
+    "url": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+    "moreInfoUrl": "https://www.acl.gov/grants/applying-grants",
+    "via": "simpler"
+   },
+   "quotes": {
+    "identity": "NIDILRR will make 11 grants under this opportunity.",
+    "deadline": "Estimated application due date: December 16, 2026",
+    "eligible": "Eligible applicant types: small businesses"
+   },
+   "key": "opportunity:engine:grant:HHS-2027-ACL-NIDILRR-BISA-0308",
+   "id": "4d02472512ab540bc799",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "match",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s Alzheimer’s disease stratification tool aims to improve lives of people with cognitive disabilities, aligning with the program’s purpose.",
+    "workType": null
+   },
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s Alzheimer’s disease stratification tool aims to improve lives of people with cognitive disabilities, aligning with the program’s purpose.",
+    "Specific forecast grant opportunity (engine:grant:HHS-2027-ACL-NIDILRR-BISA-0308); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD $100,000 (award ceiling); stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "Forecast notice: applications are not open yet (estimated deadline 2026-12-16)",
+    "source": "read"
+   },
+   "rank": 6,
+   "jev": {
+    "leadId": "4d02472512ab540bc799",
+    "action": "investigate_more",
+    "actionConfidence": 0.97,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.98,
+     "discard": 0.02
+    },
+    "strategicFit": 1.39,
+    "fitConfidence": 0.57,
+    "evidenceSufficient": 0.33,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:HHS-2027-ACL-NIDILRR-BISA-0308",
+    "body": "Official call: engine:grant:HHS-2027-ACL-NIDILRR-BISA-0308 — HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I\n\nWhere to apply: Grants.gov Workspace (https://www.grants.gov/applicants/workspace-overview)\nOfficial notice: https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)\n2. Prepare and submit the application in Grants.gov Workspace (~30 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 71
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Review eligibility",
+    "nextAction": "Check eligibility in the official notice, then apply on Grants.gov Workspace. First step: Register the organization in SAM.gov (UEI) and Grants.gov.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": true
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~58 days)",
+      "done": false
+     },
+     {
+      "key": "step_sam",
+      "label": "Register the organization in SAM.gov (UEI) and Grants.gov (~28 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Prepare and submit the application in Grants.gov Workspace (~30 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:HHS-2027-ACL-NIDILRR-BISA-0308",
+    "agency": "HHS-2027-ACL-NIDILRR-BISA-0308 · Small Business Innovation Research (SBIR) program, Phase I",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "grantsgov",
+     "portal": {
+      "name": "Grants.gov Workspace",
+      "url": "https://www.grants.gov/applicants/workspace-overview"
+     },
+     "infoUrl": "https://www.grants.gov/applicants/applicant-registration",
+     "officialUrl": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+     "steps": [
+      {
+       "key": "sam",
+       "label": "Register the organization in SAM.gov (UEI) and Grants.gov",
+       "days": 28,
+       "required": false,
+       "skip": false
+      },
+      {
+       "key": "proposal",
+       "label": "Prepare and submit the application in Grants.gov Workspace",
+       "days": 30,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 58,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "U.S. DOE Office of Science (SC)",
+   "title": "U.S. DOE Office of Science (SC)",
+   "kind": "opportunity",
+   "fundingType": "grant",
+   "status": "forecast",
+   "deadline": null,
+   "amount": "Hundreds of awards annually",
+   "contact": {
+    "type": "web",
+    "value": "https://science.osti.gov/sbir",
+    "provenance": "Read and verified on science.osti.gov"
+   },
+   "evidence": [
+    {
+     "id": "c74a991c6206bdd5de50",
+     "source": "Web research engine · science.osti.gov",
+     "url": "https://science.osti.gov/sbir",
+     "quote": "DOE SBIR/STTR provides hundreds of awards annually to innovators, spanning research areas that support the DOE mission in: Energy Production & Use, Fundamental Energy Science, Defense Nuclear Nonproliferation, Environmental Management.",
+     "field": "opportunity",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    },
+    {
+     "id": "686137e97bb2e1c83bd9",
+     "source": "Web research engine · fit",
+     "url": "https://science.osti.gov/sbir",
+     "quote": "The Small Business Innovation Research (SBIR) and Small Business Technology Transfer (STTR) programs are competitive non-dilutive funding programs that fund eligible small businesses to engage in Federal Research/Research and Development (R/R&D) with the goal of product commercialization.",
+     "field": "eligibility",
+     "retrievedAt": "2026-10-14T16:20:13.827Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "The judge says \"no\" for topic_fit without a quote from the page",
+    "Topic fit not confirmed by the judge with a quote from the page",
+    "Forecast notice: applications are not open yet",
+    "Judge reads the page as program_page, not as a call",
+    "Application deadline: compiler 2026-04-13, judge none",
+    "Criterion eligibility: the judge disagrees with the compiler",
+    "Criterion region: the judge disagrees with the compiler",
+    "Criterion topic_fit: the judge disagrees with the compiler",
+    "Check: fake_quote:topic_fit"
+   ],
+   "missing": [
+    "Deadline not confirmed on the page",
+    "The applicant’s healthcare diagnostic tool does not align with any of the DOE mission areas listed.",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev suggests discarding; needs human review first."
+   ],
+   "searchText": "U.S. DOE Office of Science (SC) Small Business Innovation Resear... | U.S. DOE Office of Science (SC) DOE SBIR/STTR provides hundreds of awards annually to innovators, spanning research areas that support the DOE mission in: Energy Production & Use, Fundamental Energy Science, Defense Nuclear Nonproliferation, Environmental Management. The Small Business Innovation Research (SBIR) and Small Business Technology Transfer (STTR) programs are competitive non-dilutive funding programs that fund eligible small businesses to engage in Federal Research/Research and Development (R/R&D) with the goal of product commercialization.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "grant",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:grant:https://science.osti.gov/sbir",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "forecast",
+    "eligible": "yes",
+    "daysLeft": null,
+    "flags": [
+     "fake_quote:topic_fit"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "The judge says \"no\" for topic_fit without a quote from the page",
+     "Topic fit not confirmed by the judge with a quote from the page",
+     "Forecast notice: applications are not open yet",
+     "Judge reads the page as program_page, not as a call",
+     "Application deadline: compiler 2026-04-13, judge none",
+     "Criterion eligibility: the judge disagrees with the compiler",
+     "Criterion region: the judge disagrees with the compiler",
+     "Criterion topic_fit: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "program_page"
+    },
+    "scopeFit": {
+     "verdict": "unclear",
+     "reason": "The applicant’s healthcare diagnostic tool does not align with any of the DOE mission areas listed.",
+     "fundsQuote": null,
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "quotes": {
+    "identity": "DOE SBIR/STTR provides hundreds of awards annually to innovators, spanning research areas that support the DOE mission in: Energy Production & Use, Fundamental Energy Science, Defense Nuclear Nonproliferation, Environmental Management.",
+    "eligible": "The Small Business Innovation Research (SBIR) and Small Business Technology Transfer (STTR) programs are competitive non-dilutive funding programs that fund eligible small businesses to engage in Federal Research/Research and Development (R/R&D) with the goal of product commercialization."
+   },
+   "key": "opportunity:engine:grant:https://science.osti.gov/sbir",
+   "id": "4183732036024fb5ec9a",
+   "fit": 0,
+   "matchedTerms": [],
+   "grantMatch": {
+    "verdict": "weak",
+    "source": "model",
+    "anchorsInTitle": [],
+    "anchorsInScope": [],
+    "phrases": [],
+    "genericOnly": [],
+    "reasons": [],
+    "summary": "The applicant’s healthcare diagnostic tool does not align with any of the DOE mission areas listed.",
+    "workType": null
+   },
+   "score": 17,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 2.5,
+     "max": 25
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "contact",
+     "points": 0,
+     "max": 0
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 20
+    }
+   ],
+   "why": [
+    "The applicant’s healthcare diagnostic tool does not align with any of the DOE mission areas listed.",
+    "Specific forecast grant opportunity (engine:grant:https://science.osti.gov/sbir); eligibility must be resolved against the notice.",
+    "Deadline is not confirmed.",
+    "Published ceiling USD Hundreds of awards annually; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "gate": {
+    "tier": "verify",
+    "reason": "The judge says \"no\" for topic_fit without a quote from the page",
+    "source": "read"
+   },
+   "rank": 7,
+   "jev": {
+    "leadId": "4183732036024fb5ec9a",
+    "action": "discard",
+    "actionConfidence": 0.69,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.21,
+     "discard": 0.79
+    },
+    "strategicFit": 0.48,
+    "fitConfidence": 0.6,
+    "evidenceSufficient": 0.18,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "How to apply · engine:grant:https://science.osti.gov/sbir",
+    "body": "Official call: engine:grant:https://science.osti.gov/sbir — U.S. DOE Office of Science (SC)\n\nWhere to apply: the official program page\nOfficial notice: https://science.osti.gov/sbir\n\nDeadline: not published — No deadline published: confirm the dates on the official page.\n\nSteps:\n1. Apply through the form or instructions on the official program page (~21 days)\n\nNo need to write to anyone: apply through the official portal.",
+    "sections": [],
+    "connector": null,
+    "status": "grant work item",
+    "warning": "Grant applications go through the official portal. This is a work item, not an email.",
+    "wordCount": 60
+   },
+   "warmPlan": {
+    "route": "grant_application",
+    "label": "Manage the application",
+    "built": false,
+    "cadenceDays": null,
+    "why": "The primary action is a go/no-go decision and an application plan. Contact the program officer only to resolve a specific ambiguity.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Read the official notice and resolve entity, geography, PI, budget and scope eligibility."
+     },
+     {
+      "when": "2026-10-28",
+      "what": "Make a go/no-go decision; if one rule is ambiguous, ask the published contact one specific question."
+     }
+    ]
+   },
+   "grantPlan": {
+    "state": "eligibility_review",
+    "decision": "review",
+    "label": "Check topic fit",
+    "nextAction": "The applicant’s healthcare diagnostic tool does not align with any of the DOE mission areas listed. Confirm against the official objective before any draft.",
+    "checklist": [
+     {
+      "key": "topic_fit",
+      "label": "Topic matches the official objective",
+      "done": false
+     },
+     {
+      "key": "official_notice",
+      "label": "Official notice identified",
+      "done": true
+     },
+     {
+      "key": "deadline",
+      "label": "Deadline confirmed",
+      "done": false
+     },
+     {
+      "key": "eligibility",
+      "label": "Eligibility resolved",
+      "done": false
+     },
+     {
+      "key": "budget",
+      "label": "Award ceiling confirmed",
+      "done": false
+     },
+     {
+      "key": "feasible",
+      "label": "Time for the required steps (~21 days)",
+      "done": false
+     },
+     {
+      "key": "step_proposal",
+      "label": "Apply through the form or instructions on the official program page (~21 days)",
+      "done": false
+     }
+    ],
+    "programNumber": "engine:grant:https://science.osti.gov/sbir",
+    "agency": "U.S. DOE Office of Science (SC)",
+    "deadline": null,
+    "daysToDeadline": null,
+    "policyThemes": [
+     "agent"
+    ],
+    "geography": "US",
+    "contactQuestion": null,
+    "apply": {
+     "route": "web",
+     "portal": null,
+     "infoUrl": null,
+     "officialUrl": "https://science.osti.gov/sbir",
+     "steps": [
+      {
+       "key": "proposal",
+       "label": "Apply through the form or instructions on the official program page",
+       "days": 21,
+       "required": true,
+       "skip": false
+      }
+     ],
+     "leadDays": 21,
+     "daysToDeadline": null,
+     "feasible": false,
+     "verdict": "unknown",
+     "nextDeadline": null,
+     "message": "No deadline published: confirm the dates on the official page.",
+     "contactAdvice": "No need to write to anyone: apply through the official portal."
+    }
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T16:13:31.132Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:1",
+    "sequence": 1,
+    "at": "2026-10-14T16:13:31.989Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "IGC pharma · mint ad: grant · marketed · seed · US · USD 8000000",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention tool"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "healthcare mint ad"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "healthcare mint ad"
+      },
+      {
+       "provider": "Open web opportunities",
+       "query": "Challenges, prizes, accelerators and startup calls by topic and stage"
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:2",
+    "sequence": 2,
+    "at": "2026-10-14T16:13:31.990Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:3",
+    "sequence": 3,
+    "at": "2026-10-14T16:20:13.827Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 8 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 8,
+    "durationMs": 401837,
+    "status": "success"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:4",
+    "sequence": 4,
+    "at": "2026-10-14T16:20:13.837Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 0 new people across 0 organizations (0 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:5",
+    "sequence": 5,
+    "at": "2026-10-14T16:20:13.838Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:6",
+    "sequence": 6,
+    "at": "2026-10-14T16:20:13.838Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 0,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Founder",
+     "contacts": 0,
+     "candidates": 8,
+     "paths": []
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:7",
+    "sequence": 7,
+    "at": "2026-10-14T16:20:13.838Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 8 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 8,
+    "status": "running"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:8",
+    "sequence": 8,
+    "at": "2026-10-14T16:20:15.560Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "0 people found across 2 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 0,
+    "status": "warning"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:9",
+    "sequence": 9,
+    "at": "2026-10-14T16:20:15.562Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:10",
+    "sequence": 10,
+    "at": "2026-10-14T16:20:17.227Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 7 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 7,
+    "durationMs": 1665,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 5026,
+      "output_tokens": 595,
+      "cost": 0.000211092
+     }
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:11",
+    "sequence": 11,
+    "at": "2026-10-14T16:20:17.229Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 7 on radar and 1 discarded after de-duplication and scoring.",
+    "resultCount": 8,
+    "durationMs": 3391,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+       "org": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+       "title": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+       "score": 51,
+       "why": "The applicant’s Alzheimer’s risk stratification tool aligns with the grant’s focus on dementia real‑world data.",
+       "bucket": "radar"
+      },
+      {
+       "name": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical T",
+       "org": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical T",
+       "title": "PA-27-102 · NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional)",
+       "score": 45,
+       "why": "IGC pharma’s stratification tool is a scientific innovation intended for commercialization, aligning with the STTR program’s purpose.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [
+      {
+       "name": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The Nationa",
+       "org": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The Nationa",
+       "title": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Cen",
+       "score": 26,
+       "why": "The opportunity focuses on Alzheimer’s disease risk reduction and early detection, which matches the applicant’s stratification tool.",
+       "bucket": "discarded"
+      }
+     ],
+     "counts": {
+      "top": 0,
+      "radar": 7,
+      "discarded": 1
+     }
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:12",
+    "sequence": 12,
+    "at": "2026-10-14T16:20:17.236Z",
+    "phase": "evaluating",
+    "title": "Application plans prepared",
+    "message": "7 opportunities converted into go/no-go work plans.",
+    "provider": "Application plan",
+    "resultCount": 7,
+    "status": "success"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:13",
+    "sequence": 13,
+    "at": "2026-10-14T16:20:17.242Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 168 pages read by the AI · 0 main list · 7 to verify · 1 discarded (not_eligible 1). Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:14",
+    "sequence": 14,
+    "at": "2026-10-14T16:20:17.244Z",
+    "phase": "drafting",
+    "title": "Grant work items ready",
+    "message": "8 specific grant opportunities prepared for review.",
+    "resultCount": 8,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+     "org": "Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)",
+     "subject": "How to apply · engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+     "excerpt": "Official call: engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd — Alzheimer's Association Global Real-World Data Programs Funding (ALZ-RWD)\n\nWhere to apply: the official program page\nOfficial notice: https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd\n\nDeadline: 2027-06-30 — 259 days lef"
+    }
+   },
+   {
+    "id": "b87bfbd1-4958-4503-92a4-b66a60b8cfea:15",
+    "sequence": 15,
+    "at": "2026-10-14T16:20:17.245Z",
+    "phase": "completed",
+    "title": "Run complete",
+    "message": "0 candidates prioritized; 7 on radar.",
+    "resultCount": 8,
+    "status": "success",
+    "detail": {
+     "jobStatus": "done",
+     "usage": {},
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "done",
+ "plan": {
+  "topic": "healthcare",
+  "query": "healthcare mint ad",
+  "scientificQuery": "healthcare",
+  "summary": "IGC pharma · mint ad: grant · marketed · seed · US · USD 8000000",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention tool"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "healthcare mint ad"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "healthcare mint ad"
+   },
+   {
+    "provider": "Open web opportunities",
+    "query": "Challenges, prizes, accelerators and startup calls by topic and stage"
+   }
+  ],
+  "alzheimer": false,
+  "terms": [
+   {
+    "term": "healthcare",
+    "source": "yours"
+   },
+   {
+    "term": "Alzheimer's risk prediction platform",
+    "source": "model"
+   },
+   {
+    "term": "Neurodegenerative disease stratification solution",
+    "source": "model"
+   },
+   {
+    "term": "Cognitive decline early detection system",
+    "source": "model"
+   },
+   {
+    "term": "Preventive dementia intervention tool",
+    "source": "model"
+   }
+  ]
+ },
+ "portals": [
+  {
+   "name": "TEDCO",
+   "url": "https://www.tedco.md/"
+  },
+  {
+   "name": "NIH Parent SBIR (PA-27-100): U.S. for-profit small businesses",
+   "url": "https://files.simpler.grants.gov/opportunities/d1ba49e5-3684-4420-849a-ab2330ec493e/attachments/743ad4bd-fc28-450e-9249-1008f37490af/PA-27-100-Revised-Full-Announcement.html"
+  }
+ ],
+ "engineDrops": [
+  {
+   "url": "https://simpler.grants.gov/opportunity/a44b38f2-6d15-4b5b-b1df-788a730bb203",
+   "title": "PA-27-101 · NIH Small Business Innovation Research (SBIR) Phase IIB Strategic Breakthrough Award (Parent [R44] Clinical Trial Optional)",
+   "reason": "not_eligible",
+   "quote": "Only United States small business concerns (SBCs) that have previously received an NIH SBIR or STTR Phase II award are eligible to submit applications for this opportunity.",
+   "deadline": "2029-04-05",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/01db6b26-98f3-43cc-ba54-f38ee97aefdb",
+   "title": "25-540 · National Science Foundation Translation to Practice (NSF TTP)",
+   "reason": "not_eligible",
+   "quote": "NSF TTP-Translate (NSF TTP-T) starts with use‑inspired research and initial translational activities and further matures the idea(s), iterates and improves the solution(s), and lowers the barrier(s) to effective translation of research from lab to practice.",
+   "deadline": "2026-11-17",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/4a3dc5ce-41cd-4350-9dec-5fcd7422a7cd",
+   "title": "USDA-NIFA-SBIR-012221 · Small Business Innovation Research and Small Business Technology Transfer Programs Phase II",
+   "reason": "not_eligible",
+   "quote": "Eligibility for the SBIR/STTR Phase II program is limited to only SBIR/STTR Phase I recipients.",
+   "deadline": "2026-11-17",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/8bb15754-c013-462d-b305-f2a8dd116e08",
+   "title": "HRSA-27-051 · Rural Health Network Development Program",
+   "reason": "not_eligible",
+   "quote": "The Network Development Tract supports nascent/early‑stage integrated rural health care networks",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/3a86114d-4f52-41ec-82fd-290ca9212f13",
+   "title": "OST-OSDBU-2027-SBTTAC-REGION-4-FY2027-1 · Region 4 Small Business Transportation Technical Assistance Center (SBTTAC)",
+   "reason": "not_eligible",
+   "quote": "Eligible applicant types: other; private institutions of higher education; nonprofits non higher education with 501c3; public and state institutions of higher education Additional eligibility information: Including 501(c )(6)",
+   "deadline": "2026-10-31",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/e1fc9b62-d8b3-45a3-bf54-a15340b9c36b",
+   "title": "USDA-AMS-TM-DBI-G-26-0011 · Dairy Business Innovation Initiatives Program (DBI) Fiscal Year 2026",
+   "reason": "not_eligible",
+   "quote": "The U.S. Department of Agriculture (USDA), Agricultural Marketing Service (AMS), requests applications for the fiscal year (FY) 2025 only from the existing four initiatives of the Dairy Business Innovation (DBI) Initiatives program: the California State University Fresno Foundation, the University o",
+   "deadline": "2026-12-01",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/f6992058-89ab-46e1-8a50-eb6867fe4e60",
+   "title": "HHS-2027-ACL-NIDILRR-BISB-0309 · Small Business Innovation Research Program (SBIR) Phase II",
+   "reason": "not_eligible",
+   "quote": "SBIR Phase I grantees who successfully completed their Phase I grant between October 1, 2024 and December 31, 2026 are eligible to apply.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/4a3dc5ce-41cd-4350-9dec-5fcd7422a7cd/attachments/466e7ab0-5f27-4cef-a9d3-0239e69cf515/FY26-SBIR-STTR-PII-NOFO-P.pdf",
+   "title": "SBIR-STTR-Phase-2",
+   "reason": "not_eligible",
+   "quote": "NIFA requests applications for the Phase II SBIR/STTR programs from previous SBIR/STTR program Phase I recipients.",
+   "deadline": "2026-11-17",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alz.org/getmedia/74753e1b-53a9-4c80-8c9f-02f279927221/2026-ptc-reg-rfa.pdf",
+   "title": "Alzheimer's Association",
+   "reason": "not_eligible",
+   "quote": "Lead candidate therapeutic agents that require early-stage testing (Phase 1), prior to further Phase 2 or 3 efficacy studies",
+   "deadline": "2026-12-15",
+   "objective": "grant"
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/e1fc9b62-d8b3-45a3-bf54-a15340b9c36b/attachments/4de1c571-b1c8-439a-afae-ba6544c1cee5/FY2026_DBI_Notice_of_Funding_Opportunity.pdf",
+   "title": "DAIRY BUSINESS INNOVATION INITIATIVES: FY25 Request for Applications",
+   "reason": "not_eligible",
+   "quote": "requests applications for fiscal year (FY) 2026 from existing initiatives of the Dairy Business Innovation (DBI) Initiatives Program: the California State University Fresno Foundation, the University of Tennessee, the Vermont Agency of Agriculture, Food and Markets, and the University of Wisconsin.",
+   "deadline": "2026-12-01",
+   "objective": "grant"
+  },
+  {
+   "url": "https://ventures.jhu.edu/funding/translational-funding/maryland-innovation-initiative-mii-funding",
+   "title": "Maryland Innovation Initiative (MII) Funding - Johns Hopkins Technology Ventures",
+   "reason": "equity_or_loan",
+   "quote": "Funding is in the form of a convertible debt note",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/3a86114d-4f52-41ec-82fd-290ca9212f13/attachments/8a5b2032-28a4-4863-9f02-3a6346d186ed/Region_4_Short_NOFO_FINAL_09252026B.pdf",
+   "title": "Draft for Coordination 001 (4/23)",
+   "reason": "not_eligible",
+   "quote": "To be eligible for this Cooperative Agreement, an applicant must be an established nonprofit, community-based organization, transportation-related trade association, chamber of commerce, college or university, community college, faith-based institution; Historically Black College or Universities (HB",
+   "deadline": "2026-10-31",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.tedcomd.com/sites/default/files/2026-01/MII%20Company%20Formation-RFA_FY2026_v4.pdf",
+   "title": "Maryland Innovation Initiative (MII) - Company Formation Phase",
+   "reason": "not_eligible",
+   "quote": "The new start-up must have no more than pre-seed level of dilutive funding totaling less than $1,000,000.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://files.simpler.grants.gov/opportunities/a44b38f2-6d15-4b5b-b1df-788a730bb203/attachments/bdbd129f-fe3b-4317-900d-b14383923e7f/PA-27-101-Revised-Full-Announcement.html",
+   "title": "PA-27-101: NIH Small Business Innovation Research (SBIR) Phase IIB Strategic Breakthrough Award (Parent [R44] Clinical Trial Optional)",
+   "reason": "not_eligible",
+   "quote": "September 05, 2026 *",
+   "deadline": "2027-01-05",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/360451",
+   "title": "Lock",
+   "reason": "too_short",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants",
+   "title": "Types of Grants | Alzheimer&#x27;s Association",
+   "reason": "scope_mismatch",
+   "quote": "The Alzheimer's Association works to identify and fund a wide range of the most promising grant projects, from basic discovery science to studies addressing social and behavioral aspects of Alzheimer's and related dementias.",
+   "deadline": "2026-12-15",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir/nia-small-business-interest-areas",
+   "title": "NIA Small Business Interest Areas | National Institute on Aging",
+   "reason": "closed",
+   "quote": "The next standard receipt date is September 5, 2026.",
+   "deadline": "2026-09-05",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants/alzheimers-association-real-world-data-funding",
+   "title": "ALZ-RWD Research Grant l Alzheimer&#x27;s Association",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/sbir",
+   "title": "NIA Small Business Programs (SBIR &amp; STTR) | National Institute on Aging",
+   "reason": "closed",
+   "quote": "The next standard receipt date is September 5, 2026.",
+   "deadline": "2026-09-05",
+   "objective": "grant"
+  },
+  {
+   "url": "https://sbir.org/awards/hhs-1R43AG044951-01-1",
+   "title": "NESHER TECHNOLOGIES INC - Ultra-sensitive biomarker detection for early Alzheimer&#039;s disease diagnosis Award | SBIR.org",
+   "reason": "not_a_call:report",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://howardcountyeda.org/business-resources/financing-options/other-funding-options/",
+   "title": "Other Funding Options - HCEDA",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://sbir.org/awards/hhs-1R41AG028198-01A1-1",
+   "title": "COGNOSCI INC - Anti-inflammatory Treatment for Alzheimer&#039;s Brain Blood Vessel Damage Award | SBIR.org",
+   "reason": "scope_mismatch",
+   "quote": "Anti-inflammatory Treatment for Alzheimer's Brain Blood Vessel Damage",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzforum.org/grants",
+   "title": "Grants | ALZFORUM",
+   "reason": "not_eligible",
+   "quote": "The primary applicant organization must be a university or other research institution that participates in the NIH Small Business Technology Transfer (STTR) program.",
+   "deadline": "2026-11-10",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.nia.nih.gov/research/grants-funding",
+   "title": "Grants &amp; Funding | National Institute on Aging",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.mdqi.org/awards/excellence",
+   "title": "Awards of Excellence",
+   "reason": "not_eligible",
+   "quote": "To be eligible for an award, the project must have a date of substantial completion or acceptance for maintenance between January 1, 2026 and December 31, 2026.",
+   "deadline": "2027-02-13",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.montgomerycountymd.gov/businesses/business-resources/business-funding-incentives",
+   "title": "Business Funding &amp; Incentives - Office of the County Executive - Montgomery County, MD",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.grants.gov/search-results-detail/361556",
+   "title": "Lock",
+   "reason": "too_short",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/prevention-pipeline",
+   "title": "Prevention | Alzheimer's Drug Discovery Foundation",
+   "reason": "equity_or_loan",
+   "quote": "NOTE: Funding is provided through mission-related investments that require return on investment based upon scientific and/or business milestones (see Our Research Strategy for more information).",
+   "deadline": "2026-12-07",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities",
+   "title": "Funding Opportunities | Alzheimer's Drug Discovery Foundation",
+   "reason": "not_eligible",
+   "quote": "advancing therapeutic and biomarker development for Alzheimer's and related dementias",
+   "deadline": "2026-12-07",
+   "objective": "grant"
+  },
+  {
+   "url": "https://simpler.grants.gov/opportunity/32dcf252-e495-4dbc-a0ad-b3636888c389",
+   "title": "Opportunity Listing - Alzheimer&#x27;s Disease Programs Initiative (ADPI) - State and Community Grant Program",
+   "reason": "closed",
+   "quote": "Closed: July 22, 2026",
+   "deadline": "2026-07-22",
+   "objective": "grant"
+  },
+  {
+   "url": "https://grantedai.com/grants/maryland-technology-development-corporation-tedco-tedco-81234fad",
+   "title": "Maryland Technology Development Corporation (TEDCO) (2026) | Granted AI",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://ausgrant.com/us/grant/tedco-maryland-innovation-initiative-mii-technology-assessment-awards",
+   "title": "TEDCO Maryland Innovation Initiative (MII) Technology Assessment Awards - AusGrant",
+   "reason": "not_eligible",
+   "quote": "Eligible applicants are faculty inventors at Johns Hopkins, University of Maryland College Park/Baltimore/Baltimore County, and Morgan State University.",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://arpa-h.gov/explore-funding/open-funding-opportunities",
+   "title": "Open Funding Opportunities | ARPA-H",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.tailorbrands.com/llc-formation/maryland-llc/grants",
+   "title": "Top Small Business Grants for 2026 in Maryland",
+   "reason": "not_a_call:program_page",
+   "quote": "",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.instrumentl.com/browse-grants/alzheimers-and-dementia-research-grants",
+   "title": "119+ Active Alzheimer&#39;s and Dementia Research Grants in The U.S. | Instrumentl Grant Database",
+   "reason": "not_official",
+   "quote": "119+ Active Alzheimer's and Dementia Research Grants in The U.S. | Instrumentl Grant Database",
+   "deadline": "2026-10-14",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.getcada.com/post/arpa-h-sbir-health-tech-guide",
+   "title": "ARPA-H SBIR for Health Tech Startups: 2026 Founder Guide | Cada",
+   "reason": "not_official",
+   "quote": "ARPA-H SBIR for Health Tech Startups: 2026 Founder Guide | Cada",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://freemindgroup.com/2026/06/02/sbir-sttr-program-updates-2026/",
+   "title": "SBIR/STTR Program Updates: What Life Science Companies Need to Know in 2026",
+   "reason": "not_eligible",
+   "quote": "Approaching Deadline:  September 5, 2026",
+   "deadline": "2027-01-05",
+   "objective": "grant"
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) | Maryland Department of Commerce",
+   "reason": "not_eligible",
+   "quote": "The program supports seed and early‑stage investment in Maryland’s biotechnology industry.",
+   "deadline": "2026-11-03",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.fsidigital.ca/grants/md/columbia/healthcare",
+   "title": "$20K–$500K+ Healthcare &amp; MedTech Grants in Columbia, MD",
+   "reason": "not_official",
+   "quote": "FSI Digital Funding Research • Reviewed November 12, 2026",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://startdmv.org/blog/small-business-grants-maryland",
+   "title": "Small Business Grants in Maryland: 2026 Open Deadlines",
+   "reason": "scope_mismatch",
+   "quote": "Manufacturing, tech, agriculture",
+   "deadline": "2026-10-15",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzforum.org/grants/limited-competition-nih-research-evaluation-and-commercialization-hubs-reach-sb0-clinical",
+   "title": "Limited Competition: NIH Research Evaluation and Commercialization Hubs (REACH) (SB0 Clinical Trial Optional) (RFA-OD-27-009) | ALZFORUM",
+   "reason": "not_eligible",
+   "quote": "The primary applicant organization must be a university or other research institution that participates in the NIH Small Business Technology Transfer (STTR) program.",
+   "deadline": "2026-11-10",
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzforum.org/grants/include-project-transformative-research-awards-down-syndrome-r01-clinical-trial-not-allowed",
+   "title": "INCLUDE Project: Transformative Research Awards for Down syndrome (R01 Clinical Trial Not Allowed) (RFA-OD-27-004) | ALZFORUM",
+   "reason": "scope_mismatch",
+   "quote": "Transformative Research Awards for Down syndrome (R01 Clinical Trial Not Allowed)",
+   "deadline": null,
+   "objective": "grant"
+  },
+  {
+   "url": "https://www.alzdiscovery.org/research-and-grants/funding-opportunities/drug-development-rfp",
+   "title": "Drug Development RFP | Alzheimer's Drug Discovery Foundation",
+   "reason": "scope_mismatch",
+   "quote": "Other non-pharmacologic interventions, such as diet, meditation, and exercise, will not be considered.",
+   "deadline": "2026-12-07",
+   "objective": "grant"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "grant",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 184,
+    "seconds": 402,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": true,
+     "numbers": 10,
+     "seeds": 15,
+     "notices": 4,
+     "brief": {
+      "queries": 6,
+      "numbers": 0,
+      "returned": 152,
+      "kept": 15,
+      "closed": 9,
+      "notEligible": 0,
+      "via": [
+       "simpler"
+      ],
+      "errors": [],
+      "attachments": 3
+     },
+     "byNumber": {
+      "queries": 0,
+      "numbers": 10,
+      "returned": 1,
+      "kept": 1,
+      "closed": 0,
+      "notEligible": 0,
+      "via": [
+       "simpler"
+      ],
+      "errors": [],
+      "attachments": 1
+     }
+    }
+   },
+   "triage": {
+    "opened": 117,
+    "assessed": 55,
+    "by_status": {
+     "registry": 15,
+     "open": 18,
+     "upcoming": 1,
+     "rolling": 3,
+     "unknown": 51,
+     "closed": 29,
+     "unread": 51
+    },
+    "docs": 3
+   },
+   "judge": {
+    "finalists": 51,
+    "calls": 51,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 0,
+    "people": 0,
+    "credits": 0,
+    "skipped": "grants: APOLLO_FOR_GRANTS=0 (Apollo se reserva para inversores)",
+    "domains": []
+   },
+   "seconds": 216,
+   "opens": 168,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "registryCheck": {
+  "checked": 0,
+  "kept": 0,
+  "dropped": 0,
+  "unread": 0,
+  "withOfficialPage": 0,
+  "skipped": "off"
+ },
+ "hunter": {
+  "calls": 0,
+  "emailsAdded": 0,
+  "peopleAdded": 0,
+  "domains": 0,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:grant:https://grantanchor.com/grant/GA-03023/alzheimers-association-global-real-world-data-programs-funding-alz-rwd",
+    "canonical_name": "Grant Anchor",
+    "official_domain": "grantanchor.com",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "partial",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:grant:https://science.osti.gov/sbir",
+    "canonical_name": "U.S. Department of Energy (DOE) SBIR/STTR Programs",
+    "official_domain": "osti.gov",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "partial",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 4,
+    "credits_estimated": 2,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected_limited",
+  "organizations": 2,
+  "calls": 4,
+  "creditsEstimated": 2,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(grant) 0 queries · 168 pages · 168 read",
+   "dimension": "engine",
+   "returned": 168,
+   "discovered": 8,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "IGC pharma",
+   "product": "mint ad",
+   "industry": "healthcare",
+   "geography": "US",
+   "stage": "marketed",
+   "round": "seed",
+   "fundingTypes": [
+    "grant"
+   ],
+   "constraints": null
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 168,
+   "pagesRead": 168,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 8,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 7,
+    "discarded": 1
+   },
+   "discardReasons": {
+    "not_eligible": 1
+   },
+   "radarReasons": {
+    "Eligibility not confirmed by the judge with a quote from the page": 2,
+    "Open today and eligible, both verified on the page": 1,
+    "Forecast notice: applications are not open yet (estimated deadline 2027-01-05)": 1,
+    "Forecast notice: applications are not open yet (estimated deadline 2026-05-25)": 1,
+    "Forecast notice: applications are not open yet (estimated deadline 2026-12-16)": 1,
+    "The judge says \"no\" for topic_fit without a quote from the page": 1
+   }
+  },
+  "queries": [],
+  "discarded": [
+   {
+    "objective": "grant",
+    "url": "https://simpler.grants.gov/opportunity/46db8757-712d-4916-9b0f-741cf6138e24",
+    "title": "Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Initiative, BOLD Public Health Centers of Excellence, and Public Health Adoption Accelerator",
+    "queries": [],
+    "verdict": "skip",
+    "drop": "not_eligible",
+    "reasons": [
+     "Not eligible: The title (\"Public Health Strategies to Address Alzheimer's Disease and Related Dementias: The National Healthy Brain Init\") is an institutional center or training award, not for a company."
+    ]
+   }
+  ],
+  "providers": [],
+  "expansion": [],
+  "grantSources": {
+   "jurisdiction": "Maryland",
+   "portals": [
+    {
+     "name": "TEDCO",
+     "url": "https://www.tedco.md/"
+    },
+    {
+     "name": "NIH Parent SBIR (PA-27-100): U.S. for-profit small businesses",
+     "url": "https://files.simpler.grants.gov/opportunities/d1ba49e5-3684-4420-849a-ab2330ec493e/attachments/743ad4bd-fc28-450e-9249-1008f37490af/PA-27-100-Revised-Full-Announcement.html"
+    }
+   ],
+   "portalPages": [],
+   "reporter": null,
+   "nsf": null,
+   "errors": []
+  },
+  "comparePrompts": {
+   "grant": "Hoy es 2026-10-14. Actúa como investigador de financiación no dilutiva. Busca en la web convocatorias de GRANTS (subvenciones, premios o concursos; no inversión ni deuda) a las que pueda aplicar este proyecto:\n\n- Proyecto: IGC pharma: stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees\n- Producto: mint ad\n- Sector: healthcare\n- Etapa: marketed / seed\n- Geografía: US\n- Constitución: país de constitución no indicado\n- Monto objetivo: 8,000,000 USD\n- Uso de fondos: development and hiring\n\nTipo de entidad: empresa / startup con fines de lucro.\n\nREGLAS (estrictas):\n1. Solo convocatorias ABIERTAS cuya fecha límite sea posterior al 2026-11-13 (mínimo 30 días desde hoy). Si no encuentras la fecha de cierre en la página oficial, NO la pongas en la lista principal.\n2. Solo páginas OFICIALES de la convocatoria o del financiador. Nada de blogs, noticias, agregadores ni directorios.\n3. Elegibilidad: debe poder aplicar el tipo de entidad indicado. Si la convocatoria lo excluye o no lo dice, márcala aparte.\n4. No incluyas convocatorias que contradigan las restricciones del proyecto.\n5. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Nombre | URL oficial | Fecha límite (AAAA-MM-DD) | CITA LITERAL de la página donde aparece esa fecha | Quién puede aplicar (CITA LITERAL) | Monto máximo | Encaje (una línea) | Estado (abierta / dudosa).\nDespués una segunda tabla, «No pude confirmar», con lo que podría servir pero le falta fecha, elegibilidad o monto, y qué falta. Al final, dime cuántas hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T16:20:17.244Z",
+ "usage": {},
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

@@ -1,0 +1,143 @@
+Regulatory Considerations for AI-Based Healthcare Startups
+
+Innovators
+
+Inventors
+
+Foundry
+
+Fellows
+
+Investors
+
+About Us
+
+Business Model
+
+Portfolio Companies
+
+Careers
+
+Team
+
+News
+
+Journal
+
+Contact
+
+Subscribe
+
+Innovators
+
+Inventors
+
+Foundry
+
+Fellows
+
+Investors
+
+About Us
+
+Business Model
+
+Portfolio Companies
+
+Careers
+
+Team
+
+News
+
+Journal
+
+Contact
+
+Subscribe
+
+Innovators
+
+Inventors
+
+Foundry
+
+Fellows
+
+Investors
+
+About
+
+Our Team
+
+Business Model
+
+Portfolio Companies
+
+Careers
+
+News
+
+Contact
+
+# Regulatory Considerations for AI-Based Healthcare Startups
+
+Posted on November 13, 2024
+
+By
+
+Bruce Young, PhD
+
+The use of artificial intelligence (AI) and machine learning (ML) in healthcare and related industries has increased dramatically in recent years. In the world of healthcare startups, founders and investors are faced with rapidly changing issues in the regulatory landscape as well as in IP protection, patent law, and cybersecurity. In this article, we will focus on changes in FDA regulatory policy as well as explore potential future directions. Note that many terms like artificial intelligence, machine learning, large language model (LLM), and deep learning (DL) are used somewhat interchangeably in the popular press, but they each have specific meanings and significant differences. The FDA has created a Digital Health and Artificial Intelligence Glossary to help with the evolving terminology.
+
+At a recent workshop presented jointly by the FDA and the Clinical Trials Transformation Initiative (CTTI), Patrizia Cavazzoni, Director of the Center for Drug Evaluation and Research (CDER), stated that they have received over 300 submissions that include some use of AI, and this trend has increased rapidly in recent years. This is demonstrated in the following chart, derived from internal FDA databases as well as published research .
+
+AI/ML is being used across the entire product development process for healthcare-related products, including drugs, medical devices, and diagnostics. For example, in drug development the impact of AI is seen in target selection, compound screening, toxicity studies, clinical trials (site selection, patient recruitment and retention, data analysis, etc.), manufacturing, and post-market safety monitoring. As can be seen in the chart, one of the most active areas of AI usage is in clinical trials, leading CTTI to publish its vision for transforming trials by 2030 .
+
+It is worth highlighting that, although the foundation of AI/ML methods is accurate, unbiased data, the usual sources of bias (patient selection, measurement bias, confirmation bias, etc.) may show up in any dataset, and if this data is used to train an AI model, the model will amplify the bias. For example, underinsured patients may exhibit a low responsiveness to treatment due to lack of access to adequate healthcare. An AI model could erroneously predict individuals with low socioeconomic status as being less responsive to treatment, and this error would be propagated as the model is trained. As a result, models need to be tested with various population subgroups to detect this sort of bias.
+
+Although many large companies have considerable amounts of data in proprietary databases, small startups have no such advantage. There are, however, numerous lists and indices of publicly available data with AIMI Dataset Index and HealthData.gov being two examples. To supplement this data and that obtained through a company’s own clinical trials, FDA uses Real-World Evidence (RWE), which is gathered from the analysis of Real World Data (RWD). RWD is that which is obtained outside of structured clinical trials, such as electronic health records and insurance claims data. The FDA created the framework for evaluating the use of RWE/RWD in 2018, but the increasing use of AI/ML methods has accelerated this program.
+
+While AI/ML methods are greatly increasing both the pace and quality of healthcare discoveries, there are many hurdles to overcome. Among the most challenging are regulatory rules surrounding patient privacy, such as the Health Insurance Portability and Accountability Act ( HIPAA) in the US and the General Data Protection Regulation (GDPR) in the EU. Due to differences in laws and enforcement mechanisms, it is essentially impossible to aggregate data on a global scale. This is unfortunate in that it prevents the realization of insights that would have been possible using these larger, international data. Even within the US, hospitals and research institutions usually cannot release data due to HIPAA regulations. One current method is the use of “federated computing”. In this method, a central facility designing an AI model sends copies of the model to various sites around the country. These sites train the model on local data and send only the trained model back to the central facility, which aggregates all the trained models into a single model. The result is a model that has been effectively trained on data from around the US without any raw data leaving the local sites.
+
+How does the rapid development of AI methods affect healthcare startups and their investors? Both founders and investors need to embrace the new technology rather than fear it since it is more an evolution than a revolution. Many of the old standards still apply: A risk-based approach depending on intended use is expected, and CDER encourages early engagement to get their current thoughts on such issues and provide feedback. For example, in 2019 the FDA published a discussion paper and feedback request concerning software as a medical device. This addresses questions regarding the validation and risk analysis of software that can give different outputs as it learns. Also, in the above-mentioned workshop, there was discussion of “modular AI” which involves starting with a small subset of a population (and hence a small market) and getting interim approval from FDA. The model would then be tuned with RWD from hospitals to improve the product and potentially expand into other markets.
+
+Overlay of FDA's TPLC approach on AI/ML workflow from FDA Discussion Paper, “Proposed Regulatory Framework for Modifications to Artificial Intelligence/Machine Learning (AI/ML)-Based Software as a Medical Device (SaMD).”
+
+With the preceding background in mind, how will investors feel about jumping into a limited market with hopes of new markets appearing as the model improves? In some ways, investors have already jumped into the AI/ML life science space across numerous applications ranging from drug discovery, to smarter prosthetics, to uniquely capable new diagnostic systems. Within VIC Tech’s own portfolio of rapid growth startups, we already have several examples including CardioWise which connects cardiac CT data with innovative new artificial intelligence (AI) algorithms that augment human decision-making within existing clinical workflows, and Cellia Science which leverages artificial intelligence to classify cells in images, enabling point-of-care microscopy-based diagnostics.
+
+Finally, there has historically been an expectation at FDA that companies would use all tools available to them. Decades ago, as more sophisticated statistical tools became readily available, companies were expected to take advantage of them to make their validations more robust. The same will be true of AI-based technologies. Not only will FDA expect their use, but companies that fail to embrace this new way of thinking will likely be left far behind by their competitors.
+
+About the author: Bruce Young, PhD, is a seasoned scientist and business professional with over 25 years of experience in academia, industry and investing. He is a member of the VIC Tech Strategic Advisory Board and Opportunity Assessment Team.
+
+Technology Solutions For A Better World
+
+Our mission is to form and grow life science and emerging technology companies that shape the future by bringing innovative discoveries from research labs to commercial deployment.
+
+Subscribe to the VIC newsletter.
+
+Privacy Policy
+
+Innovators
+
+Inventors
+
+Foundry
+
+Fellows
+
+Investors
+
+About
+
+Our Team
+
+Business Model
+
+Portfolio Companies
+
+Careers
+
+News
+
+Contact

@@ -1,0 +1,49 @@
+Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (IA) (Partnership in AI, Data and Robotics) | Programme | HORIZON | CORDIS | European Commission
+
+Skip to main content
+
+EN
+
+The project will address the current European gap in system integration capabilities for robotics solutions addressing the various needs of industries. The project will aim at disseminating a deep understanding of state-of-the-art robotics components, including both hardware and software, and expertise in addressing interoperability issues for the upskilling of system integrators.
+To maximise the impact and adaptability of deployed systems, the approach should consider the most appropriate tools to speed up integration processes and suitable AI design, training and inference methodologies, ensuring scalability, transferability, transparency, robustness, flexibility, and real-world applicability in diverse industrial environments, and should remain adaptable to the latest technological developments.
+Integration frameworks will promote the use of energy-efficient AI models and hardware ('Green AI'), alongside carbon-aware deployment and operational strategies for robotic system. Where relevant, projects should contribute to open and widely recognised standards to foster interoperability and uptake across the robotics ecosystem. To enhance safety and performance, projects may include high-fidelity simulation environments or digital twins as testbeds for training, validation and verification, with measures to ensure smooth transfer from simulation to real-world deployment.
+By bridging the gap between technology providers and end-users, these integrators will enable the creation of seamless, reliable and scalable robotics systems that can be easily adopted by industries, especially SMEs, thereby supporting more flexible and efficient production processes.
+The project is expected to deliver:
+A deployable, modular integration framework, validated through at least three real-world industrial pilots covering different reference scenarios to demonstrate that the approach can be adapted to varied industrial needs and company sizes, including both SMEs and larger manufacturers. This framework should provide, for example, a common software layer, standard interfaces to connect to existing workflow and legacy system, possibly also to connect various robot components, coordinate multiple robots and link them with additional AI tools and IoT environments, as well as tested configuration templates and clear guidelines to ensure safe and efficient use.
+An Integration Kit, building on this framework, which offers ready-to-use modules, example configurations and practical tools that help system integrators and companies to set up, test and run AI-enabled robotics solutions more quickly and with reduced technical effort.
+Where relevant, high-fidelity digital twin testbeds should be linked to each pilot, allowing safe and realistic testing and training before deployment, and supporting a smooth transition from virtual models to actual production lines.
+Reusable, datasets (compliant with relevant regulation and IP protection) and practical benchmark tasks, made available to the wider robotics and AI community, to support further development and comparison of new solutions while respecting European data protection rules.
+A clear Step-by-Step Adoption Guide aimed at SMEs and other end-users, providing easy-to-follow instructions, practical checklists and examples to help companies plan, budget and implement AI-driven robotics in a safe and cost-effective way, even if they have limited in-house expertise, and including guidance to navigate regulatory compliance and certification.
+Concrete contributions to relevant open standards and clear guidance on certification pathways, to help ensure compliance with European regulations and build trust in the safe use of AI in robotics. Projects are expected to make full use of existing robotics resources and assets made available through the AI-on-Demand Platform, such as the EuroCORE repository and other relevant shared tools, to maximise synergies, avoid duplication of efforts and ensure broad dissemination and reuse of results within the European AI and robotics community.
+This topic implements the co-programmed European Partnership on AI, data, and robotics (ADRA), and all proposals are expected to allocate tasks for cohesion activities with ADRA.
+
+See all projects funded under this programme or topic
+
+## Download Download the content of the page
+
+XML
+
+Last update: 18 November 2025
+
+Permalink: https://cordis.europa.eu/programme/id/HORIZON_HORIZON-CL4-2027-04-DIGITAL-EMERGING-05
+
+European Union, 2026
+
+This site uses cookies
+to offer you a better browsing experience.
+
+I accept cookies.
+
+I refuse cookies.
+
+## Your data extraction is available
+
+Your data extraction with Task ID
+TASK_ID_PLACEHOLDER
+is available for download.
+
+Go to my data extractions
+
+Close
+
+DET Modal body ...

@@ -1,0 +1,107 @@
+Idoven - Google for Startups
+
+7 minute read
+
+Startup Story
+
+The AI cardiac goalkeeper: Idoven spots hearts that skip beats
+
+Copy link
+
+×
+
+An algorithm for rapid arrhythmia detection has arrived. Welcome to Cardiology-as-a-Service
+
+“Idoven’s artificial intelligence has saved my life,” says Real Madrid icon Iker Casillas . Since a 2019 heart attack cut short his career, the world famous goalkeeper now relies on Idoven , an AI cardiac algorithm to triage his heart rhythms and spot arrhythmias during exercise and rest. In just minutes, the Spanish startup’s device-neutral software can make predictive, wireless diagnoses from an AI trained on 49,000 patients, 1.2 million hours of real electrocardiogram (ECG) records, one of the world’s largest such databases.
+
+“By embedding AI algorithms directly into a daily clinical workflow, Idoven identifies 86 electrical heart disturbances, which make up 90% of the most common cardiac problems,” says cofounder Manuel Marina Breysse. “That’s our value to physicians. In about eight minutes, our AI can make the same accurate diagnosis that takes a cardiologist eight hours, using traditional, manually-intensive methods.”
+
+Idoven worked from Google for Startup Campus Madrid from their early days, and it was one of nine startups chosen for a Google for Startups Residency Program back in 2020. Since then, the startup has gone on to raise nearly $20 million from European Innovation Council (EIC) Accelerator; Wayra, Telefónica's innovation hub; Insight Partners; Northzone; business angel investors such as Casillas; and former senior executives of Apple and Amazon. The health tech startup is currently in Series A, recently raised 18.5M€, and in the last 3 months, they grew their team by 40%.
+
+How Idoven’s AI speeds up a dysfunctionally slow process of cardiac analysis
+
+With origins at the National Cardiovascular Research Centre in Madrid (CNIC), Idoven was co-founded in 2018 by sports cardiologist Manuel Marina Breysse and machine learning scientist Jose María Lillo Castellano, who sought a way to leverage machine learning to prevent and predict heart disease. The Spanish startup,which launched and grew from the Google for Startups Campus Madrid, worked closely with Google Cloud team to build out this feat of machine learning and medical diagnosis—Idoven’s cardiac AI can analyse 50,000 heartbeats in 60 seconds .
+
+During a 2020 Google for Startups Residency, Idoven refined a market strategy to pinpoint and solve a clinical problem that persisted among heart doctors adopting AI.
+
+“Among cardiologists, the culture of ECG analysis can be dysfunctionally slow for patients. In Europe, each day, cardiac doctors spend around 1 million hours analysing patients’ ECGs to diagnose patients,” says Marina Breysse, who spent a decade as both a research and clinical cardiologist. “It’s an iterative, tedious task that delays patient diagnoses and in which doctors hardly contribute any value.”
+
+For hospitals overwhelmed with patient wearable data, Idoven’s AI augments diagnoses
+
+Idoven empowers hospitals and heart doctors to make diagnoses, using machine learning to make sense of the wave of cardiac data ushered in by wearable devices.
+
+“We call it Cardiology-as-a-Service,” says Marina Breysse, who notes the platform’s ability to absorb data from global ECG archives and personal medical devices with equal rigour. “Idoven’s academic collaborations—data sets from European and U.S. medical research institutions, including Oxford, the Sorbonne, and Massachusetts General—are paired with serverless architecture built on Google Cloud Run that can ingest data from an ever expanding array of ECG data devices, while meeting the security requirements of GDPR, HIPAA, and Spain’s ISO medical privacy laws.”
+
+Claiming 17 million lives each year, cardiac disease remains the globe’s largest killer. And one of the most potent tools to understand heart disease, the ECG, was invented in 1902 by Willem Einthoven (Idoven is a playful homage to the Dutch physiologist), enduring for well over a century and entrenching a longstanding clinical culture of manually analyzing waves and dips on printouts.
+
+“The current hospital reality is that we saw machine learning approaches fail in clinical practice,” says Marina Breysse. “We saw that hospital systems could not keep up with the vast new volumes of real-time cardiac patient data enabled by wearables, Holter monitors, event monitors, and wearable devices, with vendor-proprietary ECG formats that created data silos and constrained deeper analytics.”
+
+Transforming heart disease detection with non-invasive devices and tests
+
+In part thanks to the mentoring received during the Google for Startups Residency in 2020 and the support provided by the Google for Startups team, Idoven retooled its strategic marketing strategy, doubling down on a device-neutral approach (the startup’s algorithm works with all 60+ cardiac monitoring devices on the market) and touting its go-anywhere approach to absorbing electrocardiogram data as solving everyday clinical problems for cardiologists.
+
+“We saw software embedded in devices with limited processing power that were too rigid to handle novel problems,” says Marina Breysse. “Idoven’s algorithm is platform-neutral and can analyse data signals from 1-pin wearables and patches to 12-pin hospital ECGs.”
+
+With non-invasive devices and tests, Idoven can also deliver medical grade reports remotely, something that proved immensely useful during the pandemic. “When the pandemic hit, Google for Startups and Idoven started promoting our work, as we could offer remote cardiologic tests to help prevent heart diseases in those people that couldn't go to hospitals because of the pandemic,” says Marina Breysse.
+
+For a startup supporting a medical-grade algorithm, building out Idoven’s technology stack was daunting.
+
+Currently, we work closely with the Google Cloud team to have a clear product roadmap and avoid duplicating development efforts near upcoming product updates,” says Marina Breysse. “We are very grateful for all the advisory services received from Google for Startups, and for the credits and the support from the Google Cloud team.
+
+With $50,000 in Google Cloud credits, the Idoven team relied on Kubernetes, Firestore, and Datastudio to build its rapid algorithmic detection. “We are in love with Google Cloud Run,” says Jose María Lillo Castellano, Idoven’s co-founder and technology chief. “Beyond the technology, in the entrepreneurial world, as in all businesses, companies are people. The ones thinking behind the company are people, and these minds need to be healthy. The talks and daily interaction at Google for Startups Campus helped us realise why we are doing this, why we work on our project, and why our work is necessary.”
+
+Pivoting to prediction: How Idoven’s algorithm can spot and prevent cardiac disease
+
+Idoven’s algorithm has notched 31 publications in peer-reviewed science journals—which offers clues as to how its algorithm works. A recent study in the Cardiovascular Digital Health Journal by Idoven-affiliated doctors found that compared to manual diagnosis, Idoven’s AI algorithm excels at weeding out false positives for arrhythmias, bradycardias, and ventricular tachycardias–by a whopping 97 percent. Idoven’s AI software improved the accuracy of ICMs by 95.4% for arrhythmia detection and reduced false-positive detections by 98%.
+
+“We offer early detection and precision treatment,” says Marina Breysse. “Our AI models can predict the evolution of atrial fibrillation, an irregular and often rapid heart rhythm that can lead to blood clots, for a patient within the next six months, even for patients with no prior history, using just physiological data.”
+
+In November 2022, the pharmaceutical company AstraZeneca, Google’s Fitbit and Idoven announced their collaboration on a European project that uses AI to detect heart failure. The initiative involves identifying and monitoring patients with cardiac pathologies via AI technology and Fitbit’s wearable devices, diagnosing those at high risk of heart failure in minutes. The wearable data will then be remotely shared with healthcare professionals to enable tailored treatment, leading to a more personalised healthcare service with early diagnosis and greater agility in treatment development.
+
+By pairing an platform-agnostic, ML approach to cardiac data, Marina Breysse believes Idoven has a long and useful future transforming the way cardiovascular diseases are detected, by facilitating physicians’ decision-making through the integration of AI algorithms into the daily clinical workflow. “Managing this public health challenge starts with early diagnosis, and the most ubiquitous point-of-care test to detect heart problems is the electrocardiogram,” says Marina Breysse. “We are building a healthier world, in which no cardiovascular disease goes undiagnosed or untreated.”
+
+Products used
+
+Google Cloud Platform
+
+Build a machine learning model
+
+Information
+
+Idoven
+
+Madrid, Spain
+
+Health, AI, SaaS
+
+Learn more about Idoven
+
+Visit their website
+
+## Explore similar startups and their unique stories
+
+Startup Story
+
+Arkangel AI
+
+Canadian startup Arkangel AI taps into Cloud tech to remotely detect disease in seconds—including COVID-19
+
+Read their story
+
+Startup Story
+
+Neurescence
+
+Medtech startup Neurescence sheds light on brain diseases
+
+Read their story
+
+Founder Story
+
+Zyla
+
+Indian healthtech startup Zyla connects patients to 24/7 care management
+
+Read their story
+
+More startup stories

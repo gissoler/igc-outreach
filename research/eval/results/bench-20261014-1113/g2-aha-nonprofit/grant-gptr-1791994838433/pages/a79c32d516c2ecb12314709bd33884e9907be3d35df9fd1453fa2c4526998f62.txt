@@ -1,0 +1,155 @@
+European Health Data Space Regulation (EHDS) - Public Health
+
+Skip to main content
+
+# European Health Data Space Regulation (EHDS)
+
+## What is the EHDS Regulation about
+
+### Unlocking the future of health data in Europe
+The European Health Data Space (EHDS) is a cornerstone of the European Health Union and the first common EU data space dedicated to a specific sector as part of the European strategy for data .
+The EHDS Regulation aims to establish a common framework for the use and exchange of electronic health data across the EU. It enhances individuals’ access to and control over their personal electronic health data, while also enabling certain data to be reused for public interest, policy support, and scientific research purposes. It fosters a health-specific data environment that supports a single market for digital health services and products. Additionally, the regulation establishes a harmonised legal and technical framework for electronic health record (EHR) systems, fostering interoperability, innovation, and the smooth functioning of the internal market.
+The EHDS will:
+empower individuals to access, control and share their electronic health data across borders for the healthcare delivery ( primary use of data );
+enable the secure and trustworthy reuse health data for research, innovation, policy-making, and regulatory activities ( secondary use of data );
+foster a single market for electronic health record (EHR) systems, supporting both primary and secondary use.
+By doing so, the EHDS will enable the EU to benefit from the full potential offered by a safe and secure exchange, use and reuse of health data to benefit patients, health professionals, researchers, regulators, and innovators. The EHDS regulation was discussed in a series of webinars .
+
+## What is the timeline for the implementation of the EHDS Regulation?
+On 5th March 2025, the European Health Data Space Regulation was officially published in the Official Journal of the European Union. It enters into force on 26 March 2025, marking the beginning of the transition phase towards application.
+
+### When a regulation is published, what happens next?
+However, this does not mean that the regulation will immediately apply. Instead, it is the beginning of a process that will unfold over time.
+When a regulation is published, it typically establishes the main principles and objectives. However, to make these principles operational, additional implementing acts are needed. These implementing acts provide more detailed rules and specifications that help to put the regulation into practice.
+The EHDS Regulation, first proposed by the European Commission in March 2022 , underwent extensive negotiations before being adopted by the European Parliament and the Council . Now, its implementation will be gradual and structured to ensure a smooth transition.
+
+### Key milestones towards full implementation
+March 2025: The EHDS Regulation enters into force, marking the beginning of the transition period.
+March 2027: Deadline for the Commission to adopt several key implementing acts, providing detailed rules for the regulation operationalisation
+March 2029: Key parts of the EHDS Regulation will enter into application, including, for primary use, the exchange of the first group of priority categories of health data (Patient Summaries, ePrescriptions/eDispensations) in all EU Member States. Rules on secondary use will also start to apply for most data categories (e.g. data from electronic health records).
+March 2031: For primary use, the exchange of the second group of priority categories of health data (medical images, lab results, and hospital discharge reports) should be operational in all EU Member States. Rules on secondary use will also start to apply for the remaining data categories (e.g. genomic data).
+March 2035: Third countries and international organisations will be able to apply to join HealthData@EU, for the secondary use.
+
+## What does this mean for you?
+While the publication of the EHDS Regulation is an important milestone, it is essential to understand that the regulation will not have an immediate effect. Instead, it will be a gradual process that will unfold over time. While several features maybe anticipated by MS on a voluntary basis, most of the obligations will only start applying 4 years after the entry into force of the regulation.
+Stay informed: This page will be regularly updated to reflect the progress of the implementing acts and the implementation of the EHDS Regulation, providing you with the most up-to-date information on these important developments.
+
+## Who benefits from EHDS?
+The European Health Data Space (EHDS) is designed to benefit all EU citizens, including patients, healthcare professionals, researchers, policymakers, and industry players.
+
+### Patients
+fast and free access over their own electronic health data
+easy sharing of health data with health professionals, including across borders
+more control over their own electronic health data: possibility to add personal health information, restrict access to specific parts of their record or to specific persons, view who accessed their data, ask for corrections if errors are found and the right to view health data in a standard European format. ( EEHRxF )
+security and privacy protections by default
+opt out rights from secondary use of their own electronic health data.
+
+### Health professionals
+faster and easier access to patient’s health records across different healthcare providers and countries
+easier access to health records from different systems, significantly reducing the administrative burden.
+
+### Researchers
+access to large-scale health data for scientific
+a clear and structured system to discover what data is available, where it is located, and its quality
+more cost-efficient access to high-quality health data.
+
+### Regulators and policymakers
+easier, more transparent and cost-effective access to electronic health data for the public health monitoring, improved healthcare systems efficiency and ensured patient safety.
+
+### Industry and innovators
+thanks to standardisation, there is easier access to new markets for electronic health records in different Member States
+greater availability of anonymised and pseudonymised electronic health data, enabling its use for applied research and innovation.
+By enabling secure and seamless data exchange, the EHDS transforms healthcare for everyone -patients, professionals, researchers, and industry alike.
+
+## How will the EHDS ensure data protection and security?
+Trust is a fundamental enabler for the success of the European Health Data Space. EHDS provides a trustworthy setting for secure access to and processing a wide range of health data.
+The EHDS builds on key existing horizontal EU frameworks, including:
+General Data Protection Regulation (GDPR)
+Data Governance Act
+Data Act
+Network and Information Systems Directive .
+The EHDS complements these rules and provides additional tailor-made rules for the health sector where needed:
+For primary use, patients will have the right to restrict the access for health professionals to all or parts of their personal electronic health data exchanged though EHDS infrastructures. Member States may offer an opt-out option for the cross-border exchange of electronic health data under EHDS. However, this does not affect the national digitalisation of healthcare systems—patients' data will still be stored and processed digitally within their country’s healthcare infrastructure.
+Moreover, processing electronic health data for secondary use will only be possible for specific purposes outlined in the Regulation, based on a permit issued by a health data access body. Clear rules define what can and cannot be done with the data. For example, it will be forbidden to use the data to make decisions that could be detrimental to individuals or for marketing purposes.
+People who do not wish to take part in secondary use will have the right to opt out in a simple and reversible manner. However, under strict safeguards - including transparency requirements - their data may still be used for certain important public interest purposes.
+Data processing can only take place in secure processing environments that comply with the highest standards of privacy and cybersecurity. No personal data can be downloaded from these environments. Furthermore, researchers, companies, or public institutions may only access pseudonymised data if anonymised data is insufficient for their purpose. It is forbidden to re-identify data subjects or even attempt to do so. Given the sensitive nature of health data, these stringent measures are essential.
+The Regulation also introduces strict security and interoperability criteria for EHR systems, requiring manufacturers to certify their compliance. It establishes a comprehensive pre- and post-market compliance framework to ensure that systems processing electronic health data are high-quality, secure, and fully interoperable across the EU market. Manufacturers of EHR systems must adhere to specific requirements to place an EHDS-compliant EHR system on the market, ensuring consistency and reliability in the exchange of health data across Member States.
+
+## Transforming healthcare through data
+EHDS optimises the use of health data to improve healthcare, foster innovation, and support evidence-based policymaking. It is expected to:
+generate €11 billion in savings over the next decade by enhancing data accessibility.
+enhance healthcare service efficiency across EU member states
+drive 20-30% expansion in the digital health sector
+strengthen policy development and scientific research
+lead to better health outcomes for European citizens.
+
+## Seamless health data access across borders
+improved data exchange enables secure sharing of medical history supporting better diagnosis and treatment decisions
+reduces unnecessary duplicated medical tests , easing patient burden and cutting healthcare costs
+facilitates data-driven research and innovation , enhancing efficiency and affordability in medical advancements.
+
+## Advancing digital healthcare
+EHDS fosters digital transformation in health services by:
+offering electronic health record access for individuals and healthcare providers
+empowering patients with greater control over their health data for secondary use through an opt-out system
+encouraging healthcare institutions to transition from paper-based to digital records for full EHDS integration
+supporting telemedicine, personalised treatments, and cross-border collaboration for improved healthcare delivery
+
+## Communication material
+
+### Banners
+Health-Care Professionals
+Patients
+Researchers
+
+### Infosheets
+Health-Care Professionals
+Patients
+Researchers
+
+### Presentations
+Health-Care Professionals
+Patients
+Researchers
+
+### Videos
+Health-Care Professionals
+Patients
+Researchers
+Series of 11 webinars on eHealth Network, MyHealth@EU and eHN Guidelines
+
+## Latest updates and documents
+
+News announcement
+13 October 2026
+Commission establishes the European Health Data Space Stakeholder Forum and Community
+1 min read
+
+News announcement
+8 July 2026
+Summary conclusions - Implementation dialogue on the European Health Data Space Regulation with Commissioner Olivér Várhelyi (10 June 2026)
+1 min read
+
+News announcement
+26 March 2026
+Frequently Asked Questions on the European Health Data Space
+1 min read
+
+News announcement
+26 March 2026
+Video - EHDS celebrates 1st birthday!
+1 min read
+
+See all
+
+Key documents
+
+Events
+
+Consultations
+
+Publications
+
+Eurobarometers
+
+Videos

@@ -1,0 +1,188 @@
+The Women's Funding Landscape — Silver & Salt Capital
+
+AI-researched, human-reviewed. Every record carries a confidence rating and source URL.
+Read the methodology →
+Open the spreadsheet ⊞
+
+Section 01 · Find organizations
+
+## Browse by type, then by state.
+
+Filter by organization type with the pills below. Click any state on the map to see what exists there. Or scroll the list directly.
+
+Fewer
+
+More orgs
+
+Section 02 · What these organizations are
+
+There are 4 types of organizations that focus on early-stage investing for women founders.
+
+01
+Venture Funds
+—
+
+Pooled money run by professional investors who invest in women-led startups. Outside investors put money in; the fund managers decide where it goes.
+
+Cost Free for founders. Investors typically pay a 2% management fee and 20% carry (the industry standard).
+
+02
+Angels
+—
+
+Networks of individuals who invest their own money in early-stage women-led companies. Members write personal checks, usually starting at about $25,000.
+
+Cost Annual dues $500 to $3K to join. Members must be accredited investors.
+
+03
+Syndicates
+—
+
+A community of investors who usually have a deal lead and write small personal checks starting at $1,000 into a shared pool that becomes one large check for the founder.
+
+Cost Often a membership fee ($125 to $3,500/yr) plus per-deal carry (~5% to 20%) and SPV admin fees.
+
+04
+Education
+—
+
+Programs that train women to become investors, raise capital, or evaluate deals. Cohorts, fellowships, accelerators.
+
+Cost Often free; modest tuition $500 to $5K
+
+Section 03
+
+The shape of the field
+
+## Most funding for women-owned startups is managed through venture funds. Angel investing and syndicates give investors more control over their decisions.
+
+Composition
+
+By organization type
+
+Venture funds dominate the count. Education programs and syndicates are the smallest categories, and the easiest entry points for new investors.
+
+A timeline by founding year is in scope for the next revision; only ~38% of records currently include a verified founding-year field.
+
+Access
+
+Cost to participate, founder side
+
+All 103 venture funds carry standard 2&20 economics for LPs (assumed where undisclosed), so they never sit in the &ldquo;free&rdquo; bucket. The truly-free entries are education programs and syndicate joins.
+
+"Not publicly disclosed" is itself a finding: roughly a third of organizations don&rsquo;t publish member or LP economics on their websites.
+
+Section 04
+
+Every organization
+
+## The full directory.
+
+Search, filter, sort. Click any record for the full profile, including cost detail, named leadership, and a one-click correction link.
+
+Cards
+Table
+
+— of —
+
+Headline finding
+
+22 of 51
+
+states & territories have no angel group or syndicate dedicated to funding women founders.
+
+Alabama · Alaska · Colorado · Delaware · Hawaii · Idaho · Kansas · Kentucky · Minnesota · Mississippi · Nevada · New Jersey · New Mexico · North Dakota · Oklahoma · Rhode Island · South Carolina · Utah · Vermont · Washington DC · West Virginia · Wisconsin
+
+Section 05
+
+How this was made
+
+## We show our work, field by field.
+
+Four phases. One AI model. One human editor. One published Google Sheet. Every step is described below in plain language so you can replicate it, audit it, or improve it.
+
+Phase 01 · Discovery
+
+Build the candidate list.
+
+Claude was prompted to surface every U.S. organization built to support women investors and women founders. Output was deduplicated against existing public directories (Project Sage, NVCA, AngelList).
+
+Initial pull: ~340 candidates
+
+After dedupe and out-of-scope removal: 177
+
+Out-of-scope: men-led funds with one woman partner; corporate diversity programs without check-writing authority
+
+"List U.S. organizations whose explicit purpose is to direct capital, training, or deal flow toward women founders or women investors. Include angel groups, syndicates, venture funds, and education programs. Exclude corporate ESG programs."
+
+Phase 02 · Field extraction
+
+Pull the same fields, every time.
+
+For each candidate, Claude visited the organization&rsquo;s public site and extracted a fixed schema: name, type, state, lead, check size, stage, sectors, cost to founders, cost to LPs, and a one-paragraph summary.
+
+Where the website was silent, the field was marked "not publicly disclosed"
+
+No estimates were inserted into name, lead, or URL fields
+
+Cost estimates carry the qualifier "industry-standard" or "assumed"
+
+Phase 03 · Confidence rating
+
+Score every record.
+
+Each record is rated on a three-tier scale that you see throughout the directory.
+
+Verified · live URL, named lead, fully disclosed cost, longer-than-stub description
+
+Sourced · live URL plus most fields; one or two gaps
+
+Estimated · key fields rely on industry-standard assumptions or undisclosed economics
+
+Phase 04 · Human review
+
+A real person reads every row.
+
+Tori Horton reviews every record before publication. Records flagged "Estimated" are routed back to discovery for a second pass. Corrections from readers are integrated within seven days and re-flagged with a new verification date.
+
+Verification interval: every 90 days
+
+Correction route: Email Tori →
+
+Underlying spreadsheet: live Google Sheet
+
+Section 06 · Help us make this better
+
+## Found something?
+Say something.
+
+This is a living document. If you run one of these organizations, lead one we missed, or have updated data on cost or check size, send it. Corrections are integrated within seven days and credited (unless you ask us not to).
+
+Email a correction
+Open the full spreadsheet
+
+More from S&S Capital Research
+
+01
+
+Utah Funding 2025
+
+$509.6M in pre-seed and seed capital. ~6% to women founders. The numbers behind the gap, by source.
+
+02
+
+Accredited Women Investors in Utah
+
+An original analysis of how many Utah women meet the SEC accreditation threshold, and what that means for collective capacity.
+
+03
+
+The Women&rsquo;s Funding Landscape
+
+You&rsquo;re reading it. 177 organizations, all 50 states, every cost line documented.
+
+04
+
+References & Citations
+
+The source bible. Every primary citation behind every claim across every report, in one place.

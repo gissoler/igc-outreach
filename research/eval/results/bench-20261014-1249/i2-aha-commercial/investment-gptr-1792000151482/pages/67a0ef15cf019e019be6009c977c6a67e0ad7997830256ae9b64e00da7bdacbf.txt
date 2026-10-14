@@ -1,0 +1,143 @@
+AI in Clinical Trials: Benefits and Innovations | Salesforce
+
+Skip to content
+
+Share the story
+
+Demo Agentforce for Life Sciences
+
+Learn more
+
+AI is improving every stage of the clinical trial process. Learn where it delivers value and how today's teams are putting it to work in real studies.
+
+Clinical trials are entering a new era. AI is enabling improvements in everything from patient matching to data analysis while also helping teams reduce delays, strengthen evidence, and operate more efficiently.
+
+Learn more about AI's role in clinical trials with real-world applications, early wins, and adoption challenges — plus some practical steps for implementing AI safely and effectively in your organization.
+
+AI already plays a significant role across the clinical trial lifecycle. It helps life sciences teams design studies, recruit participants, select sites, and analyze large, complex datasets. During the study design phase, machine learning reviews previous trials and real-world data to inform endpoint selection and flag potential feasibility concerns. This helps reduce the chance of protocol amendments, a major cause of trial delays. With tools like Life Sciences Cloud , teams can bring all data together in one secure place, making it easier to spot important insights sooner.
+
+Patient recruitment is becoming easier thanks to AI. Natural language processing is an AI feature that can scan electronic health records and other real-world data to identify patients who meet study criteria, a task that is often slow and error-prone when done manually. Some research organizations use AI-enabled screening tools and chatbots to quickly gather basic symptom information and connect eligible participants with study coordinators.
+
+AI also supports faster, deeper data analysis. Machine learning can spot early safety signals, identify biomarkers, and automate data cleaning so teams don't face delays later in the process. The unified Agentforce 360 for Health and Life Sciences platform makes it possible for clinical operations teams to incorporate all of these insights into the same system they use for trial management. It helps teams move studies forward with greater confidence and control.
+
+Even in the earliest adoption stages, AI is already helping life sciences teams make great strides. With the ability to automate time-consuming tasks and reveal patterns that are difficult to spot manually, sponsors can speed up timelines and improve precision and efficiency. The key advantages AI brings to clinical trials include:
+
+Faster trial startup and execution
+
+The ability of AI to spot feasibility issues before a study launch helps reduce the need for protocol amendments and accelerates site activation. Salesforce’s unified data model and AI tools make it easier to evaluate risks across datasets in a single environment.
+
+More accurate patient matching
+
+Calling on NLP and machine learning capabilities, AI can compare eligibility criteria with structured and unstructured data. Teams can more accurately identify eligible participants than with manual screening, while reducing screen failures and improving diversity efforts.
+
+Higher-quality data and early insights
+
+AI automates data cleaning and identifies patterns so teams can perform interim analyses quickly and detect safety issues or promising subgroups faster. And oversight is strengthened because the Salesforce platform brings these insights into the same system that's used for site communication and participant support.
+
+Improved trial outcomes
+
+With improved matching, cleaner data, and earlier signal detection come stronger evidence-based decisions. This ultimately improves study reliability and patient outcomes.
+
+With its ability to quickly analyze large volumes of structured and unstructured data and predict outcomes, the use of AI in clinical trials offers numerous benefits, including:
+
+Less time spent on site performance analysis: Because AI can swiftly analyze data and identify markers of a site's potential performance — such as enrollment rates, data entry timelines, data quality, and adherence to protocols — an AI-powered, data-first approach ensures the choice of the best site for each trial. AI models can be developed and refined based on historical and current site performance data, both structured and unstructured. This empowers study teams to quickly and easily assess risks associated with each site, understand why certain sites may exhibit risks, and pinpoint which sites are most likely to succeed.
+
+Data-driven site selection: AI enhances manual processes, eliminating guesswork and streamlining site selection and management throughout a trial. It enables you to focus on key information as needed, making it easier to identify and address studies or trials that aren't enrolling on schedule, are failing to meet diversity criteria, or are exhibiting data quality issues.
+
+Real-time visibility into trial progress and autonomous monitoring: Once sites are selected, they must be closely managed throughout the study to ensure the success of both the site and the study itself. For what was previously a time-consuming and labor-intensive process, predictive and generative AI tools now activate site data to help teams gain insight and identify risk markers. AI algorithms can provide continuous analysis of data from wearable devices and other sources to detect patient treatment adherence and other health indicators. Autonomous agents can also monitor health info in the background to identify and raise issues for the people leading the trials.
+
+Real-time assistive collaboration: Study teams and site personnel can communicate with each other effectively and perform tasks collaboratively by using agentic AI with Agentforce to accelerate the study startup and conduct processes.
+
+Targeted participant recruitment and enrollment: Enrolling the right participants for each trial can be challenging and may cause delays. AI participant matching offers study teams an intelligent, efficient, and accurate way to match prospective participants to eligible trials. For example, having AI pre-screen criteria helps teams automatically identify prospective trial participants and generate lists of patients who are ready to be contacted and recruited for clinical trials. This results in more precise matches and ensures patients are paired with the most appropriate trials.
+
+AI is quickly gaining traction as a tool for extracting, organizing, and analyzing vast amounts of data from electronic health records (EHRs), medical claims, and other real-world data sources. Educating teams about the technology and preparing them to use it is important to ensure optimal results.
+
+As more clinical research sponsors embrace AI technology, they seek AI tools and platforms that best meet their needs. To prepare for AI implementation in clinical trials, teams must standardize all available data from multiple sources — especially from clinical trial systems — to create a single unified data source. A data integration layer like Salesforce's MuleSoft unified integration and automation platform can provide tools to connect and map data to a unified clinical data model. Teams can use the power of MuleSoft to bring data into Data 360 , which can automate data from external systems to create a common model.
+
+Life Sciences Cloud is a secure end-to-end engagement platform that can help life sciences organizations provide clinical trial stakeholders with a single source of truth and insights about each trial.
+
+For example, powered by AI, data, and automation, Life Sciences Cloud helps organizations streamline operations, personalize patient engagement, and enable sites, sponsors, and research organizations to collaborate seamlessly. It includes features that can help speed and simplify clinical trial management, from study participant recruitment to real-time support for sites and patients throughout the study lifecycle.
+
+While today's life sciences organizations employ teams of data scientists and technical specialists who may have advanced AI knowledge, some researchers, clinicians, and other stakeholders may need more focused training to use AI tools effectively. To help study teams without extensive AI knowledge collaborate and interpret the results generated by AI systems — and prevent misinterpretations of results — it is essential to educate them about:
+
+How AI works and its potential impact on clinical research
+
+How to interpret and use AI-generated results
+
+How to identify potential biases
+
+How to integrate AI into trial design and study operations
+
+FDA guidelines, ethics committee guidelines, and other regulatory requirements
+
+Study teams should also ensure that study participants understand how AI and other technologies will be used during the trial to create trust. They should demonstrate to participants the safeguards implemented to protect their data.
+
+Implementing AI doesn’t require a full-scale digital overhaul. Most organizations start small, focusing on high-impact use cases and scaling as they build confidence. With this simplified framework, teams can move from early exploration to meaningful results:
+
+Begin by identifying those areas in which AI can provide the most value, watching for repetitive workflows or areas in which delays are common. This might include areas such as patient matching, feasibility assessments, document automation, or safety signal detection.
+
+Select tools that are secure, compliant, and flexible enough to integrate with existing systems. Platforms like Agentforce for Life Sciences and Data 360 help unify data across sources so AI models have the high-quality inputs they need.
+
+Start with a narrow, well-defined workflow to test performance and build internal alignment. Pilots provide fast learnings and help refine models before expanding to additional trial phases.
+
+Successful adoption still depends on human expertise. Train study teams and operational staff on how AI works and how to evaluate its outputs responsibly.
+
+Track the areas where AI is making a difference. Use those findings to refine the approach, demonstrate value to stakeholders, and identify the next areas to scale.
+
+As AI becomes more embedded in clinical trials, life sciences organizations will gain new efficiencies. At the same time, they will need to navigate several challenges. Key considerations include:
+
+Data quality and integration: AI relies on large datasets from many sources, which requires ongoing monitoring to ensure accuracy and relevance.
+
+Technical expertise and implementation costs: Deploying AI solutions often requires new infrastructure and training, which can take time to build across an organization.
+
+Evolving regulatory expectations: Agencies like the FDA support AI innovation but continue to refine frameworks to ensure safety and reliability, which is why it's important for teams to stay current with emerging guidance.
+
+Ethical and bias considerations: AI models can unintentionally reinforce data biases. Organizations need processes for oversight and responsible use.
+
+Privacy and security requirements: Compliance with strict data-protection standards is essential. Choosing sophisticated tools with features like the Agentforce Trust Layer helps safeguard sensitive clinical and patient data.
+
+Relying on clear processes, continuous monitoring, and the right technology partners can make these challenges more manageable as organizations scale their AI capabilities.
+
+The focus of the next phase of AI in clinical research will be on deeper automation and more flexible study models. Generative AI will help teams draft protocols and patient materials with far less effort, while also streamlining regulatory compliance documentation. Predictive tools will help guide study designs that change in response to real-time data. New approaches such as digital twins and virtual cohorts will reduce the workload for sites and participants and broaden access, helping more people to remain engaged throughout a trial.
+
+As AI becomes a critical component of everyday trial operations, the focus will shift toward transparency and steady oversight. Sponsors will need platforms that bring data into one place and generate insights without adding extra steps, all while protecting trust. Life Sciences Cloud supports this shift with secure data integration, responsible AI capabilities, and workflow automation designed specifically for life sciences organizations.
+
+Learn more about how Life Sciences Cloud supports AI-enabled clinical trials by watching our demo.
+
+###
+
+What is AI in clinical trials?
+
+AI in clinical trials is the use of artificial intelligence (AI) technology that streamlines and accelerates the clinical development process. It automates time-consuming tasks like patient recruitment and site selection and provides real-time visibility into trial progress. This helps to make clinical trials more efficient and allows patients to access new treatments faster.
+
+###
+
+What are the benefits of using AI in clinical trials?
+
+The benefits of using AI in clinical trials include less time spent on site performance analysis, data-driven site selection, and real-time visibility. It also allows for autonomous monitoring, targeted patient recruitment, and enhanced collaboration among study teams, while also helping to cut costs and improve productivity.
+
+###
+
+How does AI accelerate clinical development?
+
+AI can accelerate clinical development by streamlining processes, cutting costs, and improving productivity. It automates routine tasks, assists with protocol development, and supports collaboration. By analyzing large amounts of patient data from sources like wearable devices, it also helps with continuous progress monitoring.
+
+###
+
+How does AI assist with patient recruitment?
+
+AI can help with patient recruitment by automating the process of matching and recruiting the right patients for a trial. It can analyze large volumes of data from various sources, such as electronic health records and medical claims, to improve the speed and accuracy of patient matching.
+
+###
+
+How does AI improve data analysis in clinical trials?
+
+AI tools can analyze extensive datasets from multiple sources, including electronic health records and medical claims. They can also support continuous progress monitoring by analyzing patient data from sources like wearable devices, helping researchers to make data-driven decisions and determine the optimal criteria when designing trials.
+
+###
+
+What are some challenges of adopting AI in clinical trials?
+
+Challenges to adopting AI in clinical trials include managing large, diverse datasets, new investments in technology and expertise, and keeping up with the evolving regulatory landscape. It is also important to choose trusted AI tools that prioritize data privacy and security.
+
+Writers were aided by AI to draft these FAQ questions

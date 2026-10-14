@@ -1,0 +1,199 @@
+What everyone’s missing about data quality for AI and FDA readiness
+
+Trends & Insights ,
+
+Industry Updates ,
+
+Case Studies
+
+# What everyone’s missing about data quality for AI and FDA readiness
+
+By
+- Laura Budurlean, PhD, Content Marketing Manager,
+
+June 3, 2025
+
+## FDA's AI guidance is reshaping real-world data standards
+
+Artificial Intelligence (AI) is rapidly changing the landscape of life sciences, offering powerful tools for streamlining clinical trials, optimizing drug development, and enhancing regulatory decision-making. Recognizing this, the FDA recently released a significant draft guidance titled, "Considerations for the Use of Artificial Intelligence to Support Regulatory Decision-Making for Drug and Biological Products , " outlining best practices for establishing credibility and traceability in AI-driven processes. 1
+
+At the heart of this new FDA guidance is a straightforward message: the quality , relevance , and traceability of data directly determine the trustworthiness of AI-driven outcomes.
+
+The rising significance of AI in life sciences isn't just theoretical. Recent data underscores a sharp increase in FDA-reviewed AI-enabled medical products across various healthcare specialties. As shown in Figure 1, the number of these products surged dramatically, particularly from 2020 to 2023, highlighting an accelerating industry trend toward AI-driven solutions. 2 This rapid adoption underscores why clear guidance from regulatory bodies like the FDA has become essential, particularly regarding the quality and provenance of the data fueling these sophisticated tools.
+
+A recent study demonstrates how high-quality HealthVerity electronic health record (EHR) data was used to build an AI conversational patient triage which received a 97.7% effectiveness score by clinicians. Read more about the model in our review of the publication .
+
+Figure 1: FDA-reviewed AI-enabled medical products by year and specialty panel (2015–2023). Adapted from Mills et al. (2024). 2
+
+## Why FDA-compliant data is essential for AI models
+
+The FDA emphasizes that data used to develop and validate AI models must be "fit for use." 1 According to the guidance, this means data must be:
+
+Relevant for the context
+
+Representative of the target population or process
+
+Reliable in accuracy and completeness
+
+Traceable back to its original source
+
+This expectation underscores a critical point for the life sciences industry. The success of regulatory submissions increasingly depends not just on the sophistication of the AI models but on the foundational data feeding these models. As the saying goes, “garbage in, garbage out.” No matter how advanced the model, its outputs will only ever be as good as the data it's built on. Poorly sourced or untraceable datasets pose serious risks, from bias and inaccuracies in predictions to regulatory setbacks. 3
+
+### Key FDA Requirement:
+
+Rigorous testing and documentation of data provenance and processing are mandatory, as outlined in Step 4 of the FDA's credibility assessment framework. 1 Transparency in data sourcing and meticulous documentation are no longer optional. HealthVerity uses a comprehensive approach to data governance and identity management, specifically designed to meet these stringent requirements. This ensures the data provided is source traceable and built for compliance.
+
+To this end, HealthVerity and Medeloop announced a strategic partnership to enhance real-world evidence insights with AI-Driven Analytics. This powerful collaboration unites the HealthVerity privacy-compliant data ecosystem with Medeloop’s cutting-edge AI Agent Analytics technology, enabling customers to uncover insights with unprecedented speed and transform vast, complex datasets into clear, actionable intelligence. Read more about that press release here.
+
+## So where does HealthVerity play a role in RWD?
+
+Real-world data (RWD) is becoming increasingly critical within regulatory frameworks and is subject to greater scrutiny when integrated with AI technologies. HealthVerity is ready when your RWD must be precise, representative of diverse patient populations, and maintain clear lineage from initial data capture through processing and analysis. 4
+
+A recently published manuscript highlights several key regulatory challenges associated with using AI in pharmaceutical characterization, including:
+
+The need for comprehensive validation methods tailored specifically for AI tools.
+
+Mitigation of biases inherent in training data to ensure generalizability.
+
+Strategies for maintaining data representativeness over time to support ongoing model accuracy. 5
+
+A compelling example of this shift comes from Atrium Health , where researchers developed a large language model (LLM)-powered platform to improve clinical trial screening in oncology. 6 The platform was built using both public and commercial data sources, including real-world data licensed from HealthVerity . The tool matches patients to relevant clinical trials by assessing eligibility criteria, surfacing EHR-based evidence, and filtering trial relevance, all with high accuracy and traceability. The platform achieved over 93% accuracy in expert-level eligibility assessment and is currently being deployed in a real-world setting with more than 1,000 cancer patients and 58 clinical trials. 6
+
+This kind of applied innovation reinforces the FDA’s central message. AI can help in maintaining ongoing compliance with FDA regulations but to succeed with AI in a regulatory context, organizations need more than just cutting-edge algorithms. They need high-quality, representative, and traceable data from the start , and that’s where HealthVerity shines . For biopharma teams looking to streamline their data analysis HealthVerity eXOs is an AI agent built on high-quality data from HealthVerity that turns plain-English prompts into transparent insights in minutes.
+
+## The role of HealthVerity in ensuring data credibility
+
+HealthVerity plays a critical upstream role in this context by providing life sciences organizations with high-quality, verified datasets designed to meet standards around accuracy, representativeness and traceability from day one.
+
+## HealthVerity Core Strengths:
+
+HealthVerity Marketplace and Identity Manager : Consistently refreshed and accurately linked datasets across multiple sources, including medical claims, lab results, and EMR records.
+
+Robust Governance and Consent Management : Ensures datasets remain traceable, compliant, and aligned with stakeholder expectations.
+
+These practices support lifecycle management, align with FDA guidance requirements, and significantly reduce the risk of regulatory non-compliance.
+
+This strategic position within the data supply chain reflects a broader industry shift away from opaque data aggregator models and toward transparent, source-level access. We explored this shift in detail in a recent blog on the rise of the Marketplace model .
+
+### Looking ahead to prepare for regulatory success
+
+The recent analysis of the FDA's draft guidance emphasizes its implications for drug development and regulatory processes. 3 Discussions between AI technology leaders such as OpenAI and regulatory bodies like the FDA continue to evolve, bringing up discussions around ethical, legal, and technical expectations for AI in regulatory processes. Projects such as cderGPT , which aim to streamline the drug approval process, are in the early stages of discussion. 7
+
+OpenAI’s recent launch of HealthBench adds important context to the FDA’s draft guidance. HealthBench is a new open-source benchmark designed to evaluate the performance and safety of LLMs in realistic healthcare scenarios. Developed with input from more than 260 physicians across 60 countries, it simulates 5,000 multi-turn medical conversations and scores them against over 48,000 physician-derived criteria. 8 This effort reflects a growing industry commitment to evaluating AI outputs with the same rigor expected for regulatory submissions.
+
+## Positioning your organization for the future of AI
+
+The FDA’s draft guidance represents a pivotal shift in how data quality and provenance will be evaluated in regulatory settings moving forward. Organizations proactively adopting processes to meet these standards will be best positioned to thrive in the AI-enhanced future of drug and biologic development.
+
+HealthVerity can support your regulatory preparedness by providing verified, high-quality real-world datasets through HealthVerity Marketplace . Datasets that are traceable and tailored specifically for compliance with the FDA’s evolving guidelines. This includes a focus on data governance through the HealthVerity IPGE framework , which ensures identity, privacy, governance, and exchange are embedded into every data solution from the start.
+
+HealthVerity is committed to advancing science by synchronizing transformational technologies with the nation’s largest healthcare and consumer data ecosystem. We believe trust, transparency, and responsible innovation are the foundation of meaningful healthcare transformation.
+
+To explore how HealthVerity can help your organization meet FDA standards for data credibility and traceability, contact our team today .
+
+# References
+
+US Food and Drug Administration. Considerations for the use of artificial intelligence to support regulatory decision-making for drug and biological products. Draft Guidance for Industry. Available from: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and-biological January 2025.
+
+Mills AM, Hawkins WA, Lee SM, et al. FDA-reviewed artificial intelligence-enabled products applicable to emergency care. Am J Emerg Med. 2024;78:11-17. doi: 10.1016/j.ajem.2024.03.018
+
+FDA issues draft guidance on the use of AI to support regulatory decision-making for drug and biological products. Clinical Leader. Available from: https://www.clinicalleader.com/doc/fda-issues-draft-guidance-on-the-use-of-ai-to-support-regulatory-decision-making-for-drug-and-biological-products-0001 . Accessed May 14, 2025.
+
+FDA proposes framework to advance credibility of AI models used for drug and biological product submissions. FDA Press Release. Available from: https://www.fda.gov/news-events/press-announcements/fda-proposes-framework-advance-credibility-ai-models-used-drug-and-biological-product-submissions . Accessed May 14, 2025.
+
+Khairat SS, Twaijry AA, Ali MY. Biopharmaceutical Characterization in the Age of Artificial Intelligence. Pharmaceuticals. 2025;18(1):47. https://www.mdpi.com/1424-8247/18/1/47
+
+Maher M, Aravamudan V, Cobos E, et al. Enhancing clinical trial screening with a comprehensive large language model platform. J Clin Oncol. 2025;43(16_suppl):e13674. doi:10.1200/JCO.2025.43.16_suppl.e13674
+
+OpenAI and the FDA are holding talks about using AI in drug evaluation. Wired. Available from: https://www.wired.com/story/openai-fda-doge-ai-drug-evaluation . Accessed May 14, 2025.
+
+OpenAI. HealthBench. OpenAI. Published May 12, 2025. Accessed May 14, 2025. https://openai.com/index/healthbench/
+
+###### Category
+
+Solutions & Best Practices
+
+Trends & Insights
+
+HEOR
+
+Marketplace (RWD)
+
+Thought Leadership
+
+Industry Updates
+
+Open & Closed Claims
+
+Case Studies
+
+Commercial Pharma
+
+Government
+
+AI
+
+eXOs
+
+Audiences
+
+taXonomy Pathways
+
+Clinical Notes
+
+Rare Diseases
+
+###### Popular Post
+
+The GLP-1 trend: What the real-world data reveals
+
+GLP-1 trends 2025: real-world data, patient outcomes & future therapies
+
+Open claims vs. closed payer claims: What’s the difference?
+
+An integrated approach for deeper insight with both open and closed claims data
+
+GLP‑1 real‑world data for obesity: A new standard for metabolic care
+
+###### Subscribe
+
+### Similar Blogs
+
+####
+How government agencies use HealthVerity for public health and AI-powered research
+
+By
+
+Tracy Hammonds, PhD, Director of Real-World Data Insights
+
+17 July 2025
+
+Government health agencies are increasingly turning to real-world data (RWD) for public health...
+
+READ MORE
+
+####
+How FDA’s New Real-World Data Guidance Solves 3 Big Problems
+
+By
+
+TJ Van Bemmel, senior director, technical solutions
+
+17 October 2023
+
+In case you missed it, at the end of August, the FDA released new guidance on how to approach...
+
+READ MORE
+
+####
+How the FDA is using real-world evidence in safety and approval decisions
+
+By
+
+HealthVerity
+
+18 December 2025
+
+Regulatory decision-making depends on evidence that reflects how medical products perform in...
+
+READ MORE

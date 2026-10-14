@@ -1,0 +1,182 @@
+The best AI tools for remote patient monitoring in clinical trials | Medable
+
+Simplify + speed up your trials.
+
+Ultimate control and transparency
+
+Build studies 35x faster with Studio + AI
+
+It drastically improves our ability to launch the program more quickly.
+- Top 10 Pharma
+
+Your form has been received!
+Thank you for your interest in Medable. We will be in touch with you shortly.
+In the meantime, read more about Medable’s Enterprise Solutions:
+
+Webinars
+6 min
+
+Is Data Readiness Slowing Down AI in Clinical Trials? How Agentic AI Enables Immediate Impact
+
+Releases
+6 min
+
+New Tufts CSDD Analysis Finds AI Agents Can Deliver Up to $21 Million in Net Financial Value Per Drug Development Program and Up to 82x ROI
+
+Done
+
+Please fill out the form to read this article
+
+Downloading your file now
+If the download does not start automatically, click on the box below:
+
+PDF
+The best AI tools for remote patient monitoring in clinical trials
+
+Done
+
+May 5, 2026
+
+# The best AI tools for remote patient monitoring in clinical trials
+
+Remote Patient Monitoring
+6 min
+
+Blog posts
+
+Speakers
+No items found.
+
+AI-powered remote patient monitoring (RPM) is transforming clinical trials by enabling continuous data collection, real-time insights, and decentralized participation. This ecosystem spans wearables, AI analytics, data platforms, and decentralized clinical trial (DCT) infrastructure.
+Additionally, agentic AI is fundamentally reshaping remote patient monitoring (RPM) in clinical trials by shifting it from passive data collection to proactive, autonomous decision support. Instead of simply aggregating data from wearables and patient-reported outcomes, agentic systems can continuously analyze multi-source trial data, identify emerging risks, and take action, such as prioritizing at-risk patients or sites, triggering alerts, or recommending interventions, without waiting for human input. This significantly reduces delays in detecting safety signals or protocol deviations. Just as importantly, agentic AI introduces workflow automation at scale by handling routine monitoring tasks, coordinating communications, and maintaining audit-ready reasoning trails. The result is a more adaptive and responsive RPM model where clinical teams move from manual oversight to strategic supervision, enabling faster, safer, and more efficient trials.
+Below is a structured overview of the leading vendors, tools, and providers enabling AI-driven RPM in clinical research.
+
+## AI and advanced analytics platforms for clinical trials
+These vendors specialize in AI-driven insights and predictive analytics built on top of RPM and trial data.
+
+## Notable AI platforms
+‍ CluePoints – AI-based risk-based monitoring and anomaly detection
+PhaseV – Machine learning for causal inference and adaptive trial design
+QuantHealth – Simulation-based trial optimization and predictive modeling
+Medable - Medable’s decentralized clinical trial platform integrates remote patient monitoring with end-to-end trial orchestration. Its differentiation is increasingly driven by AI-powered automation.  Medable’s Clinical Monitoring Agent is an AI-driven solution designed to transform how clinical research associates (CRAs) oversee trial sites. It proactively identifies and prioritizes site risks, generates comprehensive pre-visit summaries, and delivers actionable recommendations to improve trial oversight and compliance. The platform unifies data across CTMS, RTSM, EDC, labs, consent, and safety systems into a single view, replacing manual reconciliation with automated, real-time insights. This allows study teams to instantly see which sites are on track—and where intervention is required. 
+Medable’s CRA Agent also maintains human-in-the-loop oversight, providing a transparent reasoning trail that explains why each recommendation or action is suggested—critical for regulatory confidence and audit readiness.
+‍
+Notably, Medable estimates that CRA Agents can take on up to 90% of the tactical and administrative workload CRAs handle daily. This includes sending site-specific communications, tracking responses, and updating systems—freeing clinical teams to focus on strategic decision-making and trial execution.
+‍
+
+## What AI enables in RPM
+Early safety signal detection
+Patient stratification and cohort optimization
+Adaptive trial design and efficiency gains
+This layer is where AI delivers the most measurable impact in clinical trial performance .
+
+## Emerging AI-Native Remote Monitoring Startups
+A new wave of companies is building AI-first remote patient monitoring systems .
+
+### Examples
+Lord’s Mark AI – Contactless AI-based monitoring platform
+Early-stage and academic solutions focusing on:
+Autonomous patient monitoring
+AI-driven triage and alerting
+Predictive risk modeling
+
+Radicle Science – Fully remote clinical trial execution
+Lindus Health – AI-powered end-to-end clinical trial platform
+This category is rapidly evolving toward fully autonomous remote patient monitoring in clinical trials .
+
+## The AI-powered RPM technology stack in clinical trials
+AI-powered remote patient monitoring is not a single solution—it’s a multi-layered technology stack .
+
+### Data capture layer
+Wearables, biosensors, mobile health apps
+Continuous vitals and patient-reported outcomes
+
+### Data infrastructure layer
+Cloud-based ingestion and integration platforms
+APIs connecting EDC, eCOA, and CTMS systems
+
+### AI and analytics layer
+Predictive modeling and risk scoring
+Automated alerts and signal detection
+Patient adherence and engagement insights
+
+### Trial orchestration layer
+DCT platforms managing workflows and patient experience
+Regulatory-compliant data pipelines (FDA, EMA)
+
+## RPM for clinical trials
+These vendors provide integrated, clinical-grade remote patient monitoring solutions , combining devices, data ingestion, and AI analytics.
+
+### Leading RPM vendors
+Medidata (Dassault Systèmes) – Sensor Cloud
+A popular platform that integrates wearable data directly into EDC and eCOA systems within the Rave Clinical Cloud.
+Empatica
+Offers FDA-cleared wearables and AI-powered digital biomarkers, commonly used across multiple therapeutic areas.
+These platforms represent the core infrastructure for AI-powered remote monitoring in regulated clinical trials .
+
+## RPM healthcare vendors used in clinical trials
+These companies provide RPM platforms originally built for healthcare delivery , now increasingly used in decentralized and hybrid trials.
+
+### Key providers
+Health Recovery Solutions (HRS) – End-to-end RPM platform with device integration and analytics
+Optimize Health – Focuses on workflow automation and compliance
+HealthArc – Combines remote monitoring with care coordination
+Cadence / HealthSnap / Accuhealth – Condition-specific monitoring with AI-driven workflows
+These vendors are often used in hybrid clinical trials, real-world evidence studies, and post-market research .
+
+## Wearables, biosensors, and digital biomarker platforms
+Wearables and biosensors are foundational to AI-powered RPM, enabling continuous, real-world patient data collection .
+
+### Leading wearable and sensor companies
+Empatica – Neurological monitoring, actigraphy, and physiological data
+ActiGraph, Fibion, Garmin Health – Activity, sleep, and vital sign tracking ecosystems
+
+### Key capabilities
+Continuous vital signs (heart rate, temperature, HRV)
+Activity and sleep tracking
+Passive digital biomarker generation
+These tools provide the high-frequency data streams that power AI models in clinical trials .
+‍
+
+## The future of RPM
+As AI-powered remote patient monitoring continues to evolve, the shift toward agentic systems marks a turning point for clinical trials. What was once a fragmented, reactive process is becoming a connected, intelligent ecosystem that can anticipate risk, streamline operations, and elevate decision-making across the study lifecycle. By combining continuous data capture with AI-driven insights and automation, sponsors can run more adaptive, patient-centric trials while reducing operational burden on study teams. As highlighted throughout this landscape, the future of RPM will not be defined by any single tool or vendor, but by how effectively these technologies work together to drive speed, quality, and outcomes in clinical research.
+‍
+
+## Read this article by answering a few questions
+Unlock this article now
+
+Play webinar
+
+Your content is ready.
+Please, download by clicking the button below.
+
+Download now
+
+Tags
+Agentic AI
+AI
+Clinical trial platform
+
+## Related articles
+See all
+
+Blog posts
+
+### Why the future looks bright for eCOA in clinical trials
+eCOA
+6 min
+
+See why the electronic clinical outcome (eCOA) market is poised to continue its rapid growth and why Medable customers have chosen eCOA as a future foundation for their next era of clinical conduct.
+‍
+
+White Papers, Case Studies, Reports
+
+### ePRO Case study: Better options and outcomes oncology trials.
+Oncology
+6 min
+
+Medable worked with a top 5 pharma company to increase the safety of patients as anti-cancer treatments may cause pulmonary toxicity, ranging from asymptomatic radiological changes to respiratory failure, and is considered a common side effect.
+‍
+
+## See how Agent Studio can transform your trials.
+Book a demo

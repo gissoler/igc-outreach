@@ -1,0 +1,132 @@
+HeartBeam Presents Positive Results on its Artificial Intelligence Capabilities for Detecting Arrhythmias | DAIC
+
+""
+
+Skip to main content
+
+X
+
+#### If you enjoy this content, please share it with a colleague
+
+News | Wearables | April 12, 2024
+
+# HeartBeam Presents Positive Results on its Artificial Intelligence Capabilities for Detecting Arrhythmias
+
+New Data Presented at the European Heart Rhythm Association Conference Marks First Scientific Presentation on HeartBeam AI, the Company’s Deep Learning Technology
+
+April 12, 2024 —   HeartBeam, Inc. , a medical technology company focused on transforming cardiac care through the power of personalized insights, today announced new data demonstrating that applying the company’s artificial intelligence ( AI ) algorithms to vectorcardiography (VCG) showed considerably improved performance in the detection of atrial flutter over single-lead electrocardiograms (ECGs) and similar performance to 12-lead ECGs, the standard for diagnosing atrial flutter. This marks the first scientific presentation on the company’s deep learning algorithm, HeartBeam AI. The data was presented by Vivek Reddy , MD, Director of Cardiac Arrhythmia Services at The Mount Sinai Hospital , during the European Heart Rhythm Association (EHRA) conference in Berlin, Germany.
+
+In the study, HeartBeam AI with VCG demonstrated a 28% improvement over single-lead ECG in the detection of atrial flutter cases (sensitivity of 91.0% for VCG vs. 71.2% for single-lead ECG) without sacrificing the ability to identify those individuals without atrial flutter (specificity of 98.7% for VCG vs. 96.9% for single-lead ECG ). Additional details about the study can be found  here .
+
+Smartwatches have become increasingly popular for detecting and monitoring abnormalities in the timing or pattern of heartbeats but only offer a single-lead ECG, which greatly limits their ability to detect a broad range of cardiac irregularities. Atrial flutter is a common irregularity, or arrhythmia, that typically requires a healthcare professional to administer a 12-lead ECG in a medical setting which is not always practical or even possible at the time of a cardiac event.
+
+HeartBeam’s core vectorelectrocardiography (3D VECG) technology captures the heart’s signals in three projections (X, Y, Z), similar to VCG, and synthesizes a 12-lead ECG. The technology is designed to be used in HeartBeam’s small, portable, patient-friendly devices that allow for remote cardiac monitoring. The Company’s first planned application of the 3D VECG platform technology is the HeartBeam AIMIGo™, a credit card-sized device for patient use at home or anywhere, which is currently under review with FDA.
+
+“The study presented at the EHRA conference shows that HeartBeam AI combined with VCG delivers equivalent performance to a 12-lead ECG and greatly improves detection of atrial flutter over a single-lead ECG, underscoring the limitations of current wearable technologies. This presents an opportunity for a VCG-based algorithm that offers arrhythmia detection capabilities beyond what is available today and to fill gaps in healthcare inequality when obtaining a 12-lead ECG is challenging,” said Dr. Reddy.
+
+The HeartBeam technology gathers far more data than a single-lead ECG. By leveraging AI to analyze these data-rich signals, HeartBeam believes it will be able to improve diagnostic accuracy and the technology has the potential to extract unique information that could go beyond today’s 12-lead ECGs as data of great diagnostic value is gathered from the same patients using the device over time. HeartBeam believes this presents a unique opportunity to create a comprehensive repository of data that could unlock personalized AI-driven insights to improve cardiac care.
+
+“The intent of our AI program is to leverage our novel VECG platform to unlock detection and prediction capabilities currently limited to healthcare facilities and make them readily accessible and available to the patient, and this new data is a clear example of what we can accomplish,” said Branislav Vajdic , PhD, CEO and Founder of HeartBeam. “As we continue to expand our artificial intelligence capabilities, we look forward to demonstrating how the combination of our data rich 3D VECG platform with HeartBeam AI has the potential to transform how cardiac health is managed in the future.”
+
+For more information:  www.heartbeam.com
+
+#### If you enjoy this content, please share it with a colleague
+
+## Related Content
+
+Feature | ECG | Samir Awasthi, MD, PhD
+Turning ECG Data into Actionable Insight with AI
+For decades, medicine has treated the electrocardiogram as a familiar, inexpensive and indispensable test, but also as ...
+
+June 16, 2026
+
+News | ECG
+HeartSciences Launches New Version of MyoVista Insights with AI-ECG
+June 2, 2026 —HeartSciences Inc. has announced the commercial release of MyoVista Insights version 1.3, a major platform ...
+
+June 05, 2026
+
+News | ECG
+AccurKardia Receives Patent for AI-Driven ECG Detection of Cardiac Amyloidosis
+June 2, 2026 — AccurKardia, Inc. has been granted US Patent No. 12,620,488 for the company's proprietary machine ...
+
+June 02, 2026
+
+News | ECG
+MedTech Breakthrough Names AI-powered Hyperkalemia Detection Software 'Best New ECG Technology Solution'
+May 7, 2026 — AccurKardia, a provider of ECG-based diagnostics technology, recently announced that AK+ Guard has been ...
+
+May 08, 2026
+
+News | ECG
+AliveCor Launches Handheld 12-Lead ECG with  Single-Cable Design
+April 15, 2026 – AliveCor has received CE Mark (Conformité Européenne) for the Kardia 12L electrocardiogram (ECG) System ...
+
+April 15, 2026
+
+News | ECG
+ClearCardio, HeartBeam Team Up to Bring 12-Lead ECG Technology to Preventive Cardiology Market
+March 4, 2026 — HeartBeam, Inc. has announced a commercial partnership with ClearCardio. In addition to serving as ...
+
+March 06, 2026
+
+News | ECG
+Clinical Trial: ECG Outcomes Have Reduced Negative Remodeling of Heart Volumes
+March 3, 2026 — BioCardia, Inc., a developer of cellular and cell-derived therapeutics for treating cardiovascular and ...
+
+March 04, 2026
+
+News | ECG
+Study Shows AI-Enabled ECG Can Detect Aortic Stenosis Years Before Valve Replacement
+Feb. 10, 2026 – AccurKardia, a provider of ECG-based diagnostics technology, recently announced results from a new study ...
+
+February 24, 2026
+
+News | ECG
+Study Shows AI-Powered ECG Could Help Patients Requiring Lifelong Heart Monitoring
+Feb. 18, 2026 — Researchers at the Mount Sinai Kravis Children’s Heart Center led a multicenter effort to develop and ...
+
+February 20, 2026
+
+News | ECG
+HeartBeam Earns FDA Clearance for 12-Lead Synthesis Software for Assessing Arrhythmia
+Dec. 10, 2025 — The U.S. Food and Drug Administration (FDA) has granted 510(k) clearance to HeartBeam, Inc. for its 12 ...
+
+February 16, 2026
+
+## Buyers Guide
+
+The DAIC Product Buyer’s Guide is the one-stop shop to secure product information as well as details of where to buy .
+
+See Buyers Guide
+
+## Comparison Charts
+
+Compare multiple products side-by-side and download an Excel spreadsheet to assist in product evaluations and purchasing discussions.
+
+PACS Systems
+
+Drug-Coated Balloons
+
+Septal Occluders
+
+Echocardiology Reporting Systems
+
+TEVAR Stent Grafts
+
+See All Comparison Charts
+
+## WEBINARS
+
+ON-DEMAND Webinar: Maximizing Structural Heart Workflows
+Read More
+
+See All Webinars
+
+© Copyright Wainscot Media . All Rights Reserved.
+
+Subscribe Now
+
+&times;
+
+#### E-newsletter subscription form

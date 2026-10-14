@@ -1,0 +1,71 @@
+Maryland Today | NIH Awards $12.5M to Use AI to Scour Vast Stores of…
+
+Research
+
+#
+NIH Awards $12.5M to Use AI to Scour Vast Stores of ‘Biobank’ Data on Alzheimer’s
+
+Multi-Institutional Project Co-led by UMD Computer Scientist Aims to Improve Diagnosis, Treatment
+
+Amyloid plaques, which appear as dark swaths and splotches, form between neurons of the brain in this illustration of the progression of Alzheimer's disease. (Illustration by Shutterstock)
+
+February 24, 2026
+
+By
+
+Jennifer S. Holland M.S. ’98
+
+The National Institutes of Health has awarded $12.5 million over five years to support an initiative led in part by University of Maryland researchers that uses artificial intelligence (AI) and machine learning (ML) to quickly search huge quantities of existing data for patterns that signal risk of Alzheimer’s disease and related forms of dementia.
+The funding from the National Institute on Aging (NIA) will continue to support a multi-institution team that also includes principal investigators from the University of Southern California, the University of Pennsylvania and Indiana University in its goal to use AI to improve Alzheimer’s disease prevention, diagnosis, prognosis and treatment.
+“Now is the time to develop precision medicine approaches for these diseases,” said Heng Huang, the Brendan Iribe Endowed Professor of Computer Science who serves as the AI/ML principal investigator for the consortium. “To do so, we need a robust understanding of the risk and protective factors that precipitate or delay the pathological process.”
+Huang noted that the rapid collection of vast amounts of genomic, biomarker and cognitive data exceeds scientists’ current capacity to analyze it. 
+Dementia occurs in more than 100 forms, with Alzheimer’s disease being the most common, affecting more than 7 million older adults in the United States today and an estimated 150 million worldwide by 2050. Related costs soar into the hundreds of billions of dollars. It’s a progressive disease, and the brain changes at its core can start some 20 years before memory-related symptoms arise.
+“That’s why we need efficient, scalable and publicly available tools powered by ‘cognitive systems,’ including AI, to meet our goals,” said Huang, who also has joint appointments in the  University of Maryland Institute for Health Computing (UM-IHC),  Institute for Advanced Computer Studies , and Department of Electrical and Computer Engineering.
+The current Phase II of the Artificial Intelligence for Alzheimer’s Disease initiative brings such tools to the table, he said, “letting us relate massive scale genomics data to biomarker features by merging all relevant data sources.” 
+During the first phase of the initiative, funded in 2020, the researchers developed fundamental AI and ML models to analyze ultra-scale multimodal brain data and published more than 150 research articles. 
+With the new award, the team will focus on four key efforts: advancing molecular subtyping for precision medicine, improving clinical trial design, adapting AI models to diverse study cohorts to improve genetic target and treatment selection, and using the genome to help find new therapeutic uses for existing drugs. 
+The team is creating a novel Alzheimer’s disease genomic language model at UMD and the IHC to study genomic data and carry out dementia subtyping—the task of categorizing different forms of dementia into groups based on pathology, brain region involvement and symptoms. “If successful, the findings may provide a drug discovery pipeline for these diseases,” Huang said.
+By tapping into their growing toolkit, including reams of genetic data from NIA’s  Alzheimer’s Disease Sequencing Project , which has been ongoing since 2012, the researchers hope to better understand the unique signatures that signal disease risk.
+“Our new genomic language models will identify Alzheimer’s disease risk signatures in datasets of 3 billion nucleotides from more than 60,000 individuals’ genomes,” Huang said. “That’s a sum of information we’ve never had access to before now, and it holds great promise in helping us better diagnose, treat and even prevent these devastating diseases."
+
+AI at Maryland
+The University of Maryland is shaping the future of artificial intelligence by forging solutions to the world’s most pressing issues through collaborative research, training the leaders of an AI-infused workforce and applying AI to strengthen our economy and communities.
+Read more about how UMD embraces AI’s potential for the public good—without losing sight of the human values that power it.
+
+Topics
+
+Research
+
+Tags
+
+Artificial Intelligence
+Machine Learning
+Computer Science
+Health Care
+Research
+
+Units
+
+College of Computer, Mathematical, and Natural Sciences
+University of Maryland Institute for Advanced Computer Studies
+A. James Clark School of Engineering
+Institute for Health Computing
+
+##
+Related Articles
+
+Research
+
+Election Workers Are Bracing for New Challenges, UMD Researcher Says
+
+October 08, 2026
+
+Despite threats of lawsuits and questions about voting integrity, election expert says voters should feel confident in system
+
+Research
+
+Where Have All the Apples Gone?
+
+September 16, 2026
+
+A spring frost devastated Maryland crops. UMD fruit experts share what to expect at pick-your-own orchards and beyond.

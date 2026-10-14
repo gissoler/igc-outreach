@@ -1,0 +1,48 @@
+Recursion Pharmaceuticals, Inc. - Recursion Announces Collaboration and $50 Million Investment from NVIDIA to Accelerate Groundbreaking Foundation Models in AI-Enabled Drug Discovery
+
+
+
+
+
+
+Skip to main navigation
+
+#
+
+Recursion Announces Collaboration and $50 Million Investment from NVIDIA to Accelerate Groundbreaking Foundation Models in AI-Enabled Drug Discovery
+
+July 12, 2023 at 8:30 AM EDT
+
+PDF Version
+
+Companies to collaborate on software for biotech and pharmaceutical companies to create improved patient treatments faster
+
+SALT LAKE CITY , TORONTO and MONTRÉAL , July 12, 2023 (GLOBE NEWSWIRE) -- Recursion (NASDAQ: RXRX), a leading clinical stage TechBio company decoding biology to industrialize drug discovery, today announced a $50 million investment by NVIDIA , which was executed as a private investment in public equity (PIPE). Recursion also announced plans to accelerate development of its AI foundation models for biology and chemistry, which, in collaboration with NVIDIA, it intends to optimize and distribute to biotechnology companies using NVIDIA cloud services.
+
+“Our collaboration with NVIDIA represents two best-in-class companies coming together to help solve one of the world’s most difficult challenges, drug discovery,” said Chris Gibson , Ph.D., Co-founder and CEO of Recursion. “With our powerful dataset and NVIDIA’s accelerated computing capabilities, we intend to create groundbreaking foundation models in biology and chemistry at a scale unlike anything that has ever been released in the biological space.”
+
+Recursion plans to utilize its vast proprietary biological and chemical dataset, which exceeds 23 petabytes and 3 trillion searchable gene and compound relationships, to accelerate the training of foundation models on NVIDIA DGX™ Cloud for possible commercial license/release on BioNeMo, NVIDIA’s cloud service for generative AI in drug discovery. NVIDIA will also help optimize and scale Recursion foundation models leveraging the NVIDIA AI stack and NVIDIA’s full-stack computing expertise. BioNeMo was announced earlier this year as a cloud service for generative AI in drug discovery, offering tools to quickly customize and deploy domain-specific, state-of-the-art biomolecular models at-scale through cloud APIs. Recursion anticipates using this software to support its internal pipeline as well as its current and future partners.
+
+"Generative AI is a revolutionary tool to discover new medicines and treatments,” said Jensen Huang , founder and CEO of NVIDIA. “We are delighted to collaborate with Recursion’s world-class team, which is doing pioneering work in digital biology and chemistry with NVIDIA DGX and NVIDIA AI software to accelerate the development of the world’s largest biomolecular generative AI models and speed drug discovery for biotech and pharmaceutical companies.”
+
+Recursion, through its recent acquisition of Valence Discovery , aims to accelerate the development of new technologies to feed the biopharma industry, while simultaneously democratizing access to large-scale models that have maximum impact in drug discovery.
+
+About Recursion
+
+Recursion (NASDAQ: RXRX) is a clinical stage TechBio company leading the space by decoding biology to industrialize drug discovery. Enabling its mission is the Recursion OS, a platform built across diverse technologies that continuously expands one of the world’s largest proprietary biological and chemical datasets. Recursion leverages sophisticated machine-learning algorithms to distill from its dataset a collection of trillions of searchable relationships across biology and chemistry unconstrained by human bias. By commanding massive experimental scale — up to millions of wet lab experiments weekly — and massive computational scale — owning and operating one of the most powerful supercomputers in the world, Recursion is uniting technology, biology, and chemistry to advance the future of medicine.
+
+Recursion is headquartered in Salt Lake City , where it is a founding member of BioHive , the Utah life sciences industry collective. Recursion also has offices in Toronto , Montréal and the San Francisco Bay Area . Learn more at www.Recursion.com , or connect on Twitter and LinkedIn .
+
+Media Contact
+
+Media@Recursion.com
+
+Investor Contact
+
+Investor@Recursion.com
+
+Forward-Looking Statements
+
+This document contains information that includes or is based upon "forward-looking statements" within the meaning of the Securities Litigation Reform Act of 1995, including, without limitation, those regarding the acceleration and advancement of development of AI foundation models, as well as optimizing, licensing, and distributing such models; using BioNeMo software to support Recursion’s internal pipeline and well as Recursion’s current and future industry partners; Recursion accelerating development of new technologies through its Valence Discovery acquisition; and all other statements that are not historical facts. Forward-looking statements may or may not include identifying words such as “plan,” “will,” “expect,” “anticipate,” “intend,” “believe,” “potential,” “continue,” and similar terms. These statements are subject to known or unknown risks and uncertainties that could cause actual results to differ materially from those expressed or implied in such statements, including but not limited to: challenges inherent in pharmaceutical research and development, including the timing and results of preclinical and clinical programs, where the risk of failure is high and failure can occur at any stage prior to or after regulatory approval due to lack of sufficient efficacy, safety considerations, or other factors; our ability to leverage and enhance our drug discovery platform; our ability to obtain financing for development activities and other corporate purposes; the success of our collaboration activities; our ability to obtain regulatory approval of, and ultimately commercialize, drug candidates; our ability to obtain, maintain, and enforce intellectual property protections; cyberattacks or other disruptions to our technology systems; our ability to attract, motivate, and retain key employees and manage our growth; inflation and other macroeconomic issues; and other risks and uncertainties such as those described under the heading “Risk Factors” in our filings with the U.S. Securities and Exchange Commission , including our Annual Report on Form 10- K. All forward-looking statements are based on management’s current estimates, projections, and assumptions, and Recursion undertakes no obligation to correct or update any such statements, whether as a result of new information, future developments, or otherwise, except to the extent required by applicable law.
+
+Source: Recursion Pharmaceuticals

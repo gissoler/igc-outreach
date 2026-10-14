@@ -1,0 +1,157 @@
+The Top 10 VC Firms Investing in AI (2026)
+
+# Who are the top venture capital firms investing in AI in 2026?
+
+Written by
+Lexi Peck
+
+Last updated
+August 19, 2026
+
+Share on
+
+table of contents
+
+Text Link
+Text Link
+
+The top venture capital firms investing in AI in 2026 are Andreessen Horowitz (a16z), Sequoia Capital, Lightspeed Venture Partners, Khosla Ventures, Founders Fund, Thrive Capital, Accel, General Catalyst, Pioneer Fund, and Soma Capital. These firms have collectively deployed tens of billions of dollars into artificial intelligence companies across foundation models, infrastructure, and application-layer startups. Their investment decisions are shaping which AI technologies reach production and which remain research projects.
+What you'll learn:
+Which 10 VC firms lead AI investing in 2026, and how they were selected
+How AI investment breaks into three layers: foundation models, application-layer software, and seed-stage bets
+The mega-rounds reshaping AI venture capital, including back-to-back multi-billion-dollar raises from OpenAI, Anthropic, and xAI in early 2026
+How top VCs are adopting AI tools in their own dealmaking processes
+
+## Why is AI dominating venture capital in 2026?
+AI and machine learning deals captured 65.6% of US venture capital funding in 2025, up from 47.2% the prior year, according to the PitchBook-NVCA Venture Monitor . That concentration has only accelerated. Foundational AI funding in Q1 2026 doubled the total raised across all of 2025 , driven by three mega-rounds that rewrote the scale of venture capital: OpenAI closed $110 billion in February 2026, Anthropic raised a $30 billion Series G that same month, and xAI secured $20 billion in early 2026.
+Roughly 50% of all global venture funding in 2025 went to companies in AI-related fields . That's the largest single-sector concentration in venture history. The capital flowing into AI reflects a structural bet by the venture industry that artificial intelligence will become the primary infrastructure layer for the next generation of tech companies.
+For venture firms, the question has gone from from "should we invest in AI" to "where in the AI stack do we have a right to win." Foundation-model companies require check sizes that only a handful of firms can write. Application-layer startups need investors who understand vertical workflows. And seed-stage AI founders need partners who can evaluate technical architectures before product-market fit exists.
+That segmentation is reshaping which firms matter most in AI investing, and why the top 10 look different than they did two years ago.
+
+## How we selected the top AI venture capital firms
+Writing a large check into an AI company doesn't make a firm an AI investor. This ranking separates the two using PitchBook's analysis of VC investors participating in the most generative AI deals , supplemented by public data on fund deployment, portfolio composition, and exit track records through Q1 2026.
+We evaluated firms across four criteria:
+Depth of AI focus. How much of the firm's recent deployment targets AI-native companies versus companies that use AI as one feature among many?
+Repeat category leadership. Has the firm led multiple rounds in the same AI sub-sector (foundation models, infrastructure, or applications), or are its AI deals opportunistic and scattered?
+Track record with foundational AI companies. Does the firm back companies building core AI infrastructure (models, training systems, inference optimization) or primarily application-layer startups built on top of others' models?
+Operational support for technical teams. Does the firm provide meaningful post-investment support to engineering-heavy, research-driven companies (recruiting, compute partnerships, go-to-market for technical products)?
+Firms that scored well across all four criteria made the list. Firms that write large checks into AI but lack depth or repeat conviction did not.
+
+## The 10 top venture capital firms investing in AI
+
+### 1. Andreessen Horowitz (a16z)
+Founded: 2009 | Portfolio companies: 1,600+
+Focus areas: Foundation models, AI infrastructure, AI-native applications, enterprise AI, bio + AI convergence
+Why they're notable: Andreessen Horowitz has built one of the broadest AI portfolios in venture capital, backing companies across every layer of the AI stack. The firm operates dedicated AI-focused funds and has invested in both the foundational model companies defining the category and the application-layer startups building on top of them. Their portfolio reflects a thesis that AI is a horizontal technology layer, reshaping every industry it touches.
+Notable AI investments: OpenAI, Hippocratic AI, Databricks, Character.AI, Mistral AI, ElevenLabs
+"We believe Artificial Intelligence is our alchemy, our Philosopher's Stone – we are literally making sand think. We believe Artificial Intelligence is best thought of as a universal problem solver. And we have a lot of problems to solve. We believe Artificial Intelligence can save lives – if we let it." — Marc Andreessen, Techno-Optimist Manifesto
+### 2. Sequoia Capital
+Founded: 1972, Menlo Park | Portfolio companies: 2,000+ | Exits: 400+
+Focus areas: Foundation models, AI infrastructure, AI-native enterprise software, vertical AI applications
+Why they're notable: Sequoia's AI portfolio spans from the earliest bets on Nvidia to current positions in OpenAI and Harvey. The firm's multi-stage approach (investing from seed through growth) gives it visibility across the full AI lifecycle. Sequoia has been particularly active in backing AI companies that serve enterprise workflows, where the gap between AI capability and production deployment remains wide.
+Notable AI investments: OpenAI, Notion, Nvidia, Harvey, Glean
+"AI's potential is now congealing into something real and tangible—embodied by physical data centers that are rising up all across America... If 2024 was about new ideas abounding, 2025 will be about sifting through those ideas to see which really work." — David Cahn, Partner at Sequoia Capital
+### 3. Lightspeed Venture Partners
+Focus areas: Generative AI infrastructure, compute orchestration, AI-native enterprise platforms
+Why they're notable: Lightspeed has been one of the most active investors in generative AI infrastructure, frequently leading rounds for companies developing models, compute orchestration layers, and enterprise AI platforms. The firm's investment approach emphasizes infrastructure plays that sit between foundation models and end-user applications: the middleware and tooling that determine whether AI systems work reliably in production environments.
+Notable AI investments: Stability AI, OctoAI, Mistral AI, Groq
+
+### 4. Khosla Ventures
+Founded: 2004, by Vinod Khosla (Sun Microsystems co-founder)
+Focus areas: AI for healthcare, climate technology, frontier research, AI hardware
+Why they're notable: Khosla Ventures invests at the intersection of AI and industries where the technology can produce measurable, large-scale outcomes: healthcare diagnostics, drug discovery, climate modeling, and energy optimization. The firm takes a thesis-driven approach, backing founders who apply AI to reach outcomes in these industries, without positioning AI itself as the product. Khosla's portfolio reflects a conviction that the most valuable AI companies will be those that apply intelligence to industries with high regulatory barriers and deep domain complexity.
+Notable AI investments: OpenAI, Analog Inference, Curai Health
+"AI is a powerful tool which, like any previous powerful technology tool like nuclear or biotechnology, can be used for good or bad. It is imperative that we choose carefully and use it to construct that 'possible' world guided by societal choices. That we not forsake the benefits out of fear of the unknown. I am a technology possibilist, a techno-optimist, but for technology used with care and caring." — Vinod Khosla
+### 5. Founders Fund
+Focus areas: Transformative technologies, national security AI, robotics, autonomous systems, deep tech infrastructure
+Why they're notable: While most technology investments compound gradually, Founders Fund looks for companies producing step-function changes in capability. The firm's AI investments cluster around autonomy, defense, and infrastructure: areas where the technical barriers to entry are high and the market dynamics favor a small number of dominant companies. Founders Fund has been a consistent backer of Palantir and SpaceX, and its AI thesis extends that pattern into frontier machine learning and robotics.
+Notable AI investments: Palantir, Anduril, Figure AI, xAI
+
+### 6. Thrive Capital
+Focus areas: Frontier AI, foundation models, AI-native consumer and enterprise applications
+Why they're notable: Few firms have concentrated as heavily on frontier AI as Thrive Capital, which has taken high-conviction positions in several of the most important AI companies of the current cycle. The firm's investment philosophy emphasizes big bets on a small number of companies over broad portfolio diversification. In AI, that approach has produced concentrated positions in frontier model companies and the platforms most likely to capture durable value as the technology matures.
+Notable AI investments: OpenAI, Perplexity AI, Anthropic
+
+### 7. Accel
+Focus areas: AI-native enterprise software, developer tools, data infrastructure
+Why they're notable: Enterprise software is Accel's home turf: the firm built its reputation backing companies at the earliest stages and helping them scale globally. It has applied that pattern to AI-native software platforms and developer tooling, investing in companies building products where machine learning defines the core architecture. Accel's portfolio companies typically target technical buyers (engineering teams, data scientists, and DevOps professionals) who evaluate products on performance over marketing.
+Notable AI investments: Anthropic, Vercel, CrowdStrike, Synthesia
+
+### 8. General Catalyst
+Focus areas: AI for healthcare, defense, enterprise automation, financial services
+Why they're notable: Large datasets, complex workflows, and regulatory requirements create steep barriers to entry in the industries General Catalyst targets, which is exactly where the firm invests. It has been particularly active in healthcare AI (clinical decision support, diagnostics, administrative automation) and defense AI (autonomous systems, intelligence analysis). Their thesis centers on AI companies that can build durable competitive advantages through proprietary data and domain expertise.
+Notable AI investments: Stripe, Grammarly, Tempus AI, Lilt
+
+### 9. Pioneer Fund
+Founded: 2017
+Focus areas: Pre-seed AI, Y Combinator startups, machine learning infrastructure
+Why they're notable: Pioneer Fund invests at the earliest stages in founders building at the frontier of AI, large language models, and machine learning. With a dedicated ML and AI fund, the firm focuses on pre-seed rounds where technical founders need capital before product-market fit exists. Pioneer Fund's model (investing in YC-backed companies with deep technical foundations) has produced a portfolio that captures AI innovation before later-stage firms enter.
+Notable AI investments: Hamming AI, Cofactr, EzDubs
+
+### 10. Soma Capital
+Founded: 2015 | Unicorns: 20+
+Focus areas: Early-stage AI, fintech AI, enterprise automation, developer tools
+Why they're notable: Soma Capital has built a portfolio of 20+ unicorns by investing early in companies that apply AI to high-frequency, high-value business processes. The firm's AI investments span financial automation, legal technology, developer productivity, and workforce management: categories where AI produces measurable efficiency gains that justify rapid adoption.
+Notable AI investments: Ramp, Cognition Labs, Ironclad, Mercor
+
+## What types of AI are venture capital firms investing in?
+AI venture capital breaks into three distinct investment layers, each with different check sizes, risk profiles, and investor specializations.
+
+### Foundation-model rounds ($500 million to $30 billion)
+These are the mega-rounds backing companies that build and train large-scale AI models from scratch. OpenAI, Anthropic, xAI, and Mistral AI fall into this category. The capital requirements are enormous. Training frontier models costs hundreds of millions of dollars in compute alone, and only a handful of VC firms can write checks at this scale. a16z, Sequoia, Founders Fund, and Thrive Capital have all participated in foundation-model rounds, often alongside sovereign wealth funds and corporate strategic investors.
+The defining characteristic of this layer: the capital is funding infrastructure that other companies will build on top of.
+
+### Application-layer investments ($5 million to $50 million)
+These investments target companies that build products using existing AI models rather than training their own. Healthcare AI (Curai Health, Tempus), legal AI (Harvey, Ironclad), and enterprise automation (Glean, Lilt) are representative examples. Khosla Ventures, Accel, and General Catalyst are particularly active here, backing companies where the competitive advantage comes from proprietary data, domain expertise, and workflow integration ahead of model performance alone.
+Application-layer AI companies typically raise smaller rounds than foundation-model companies but can reach profitability faster because they're selling products with clear ROI to identifiable buyers.
+
+### Seed-stage AI ($250,000 to $3 million)
+Pioneer Fund, Gradient Ventures (Google's AI-focused fund), and AI Fund (Andrew Ng's deep learning studio) focus on the earliest stage of AI company formation. These investors back technical founders (often straight out of research labs or Y Combinator) who are testing whether a specific AI capability can become a viable product. The check sizes are small, the failure rates are high, and the upside when a seed-stage AI company breaks out can be enormous.
+What distinguishes seed-stage AI investing from general seed investing is the evaluation process. Investors at this layer need the technical depth to assess model architectures, training approaches, and data strategies before any commercial traction exists.
+
+## How are top VCs using AI in their own dealmaking?
+The adoption runs deeper than portfolio strategy. The firms investing billions into AI companies are also integrating AI tools into how they source, evaluate, and manage their own investments.
+A survey of nearly 300 private capital professionals found that 85% are using AI to automate daily tasks, up from 76% in 2025. Even more striking is that 82% now use AI to research companies for deal sourcing, compared to 64% the prior year. That 18-point jump in a single year signals a change from experimentation to standard practice.
+The use cases are specific and measurable. Firms report using AI to synthesize company research before partner meetings, identify patterns across their existing portfolio that suggest follow-on opportunities, and surface warm introduction paths to founders through their existing network.
+The common thread is that AI handles the information-processing workload that previously consumed hours of analyst and associate time, which frees investment professionals to focus on judgment calls that require experience and relationships.
+"What used to be a 5–10 minute, multi-screen, multi-app workflow after every meeting is now one 30 second natural language request. The Affinity MCP connector lets me ask Claude for a relationship snapshot on any person or company and get it back in plain English—and when a meeting wraps, I just share my raw notes and Claude handles the rest: polished prose, calendar context, and the right entity tags posted directly to Affinity for visibility across my team." — Stephen Lantz, Principal, Bain Capital The shift is also changing how firms build and maintain their networks. AI that analyzes relationship data across a firm can identify which connections are strengthening, which are going cold, and where a warm introduction path exists that no individual partner would have spotted on their own. For investment teams managing thousands of relationships across multiple funds, that visibility compounds over time.
+"Our team already works inside Claude all day, so having our CRM context available immediately in the same interface using Affinity's MCP connector just feels natural. Instead of digging through tabs before a meeting, we can ask Affinity for relationship history and recent interactions directly in Claude." — Joff Redfern, GP, Menlo Ventures For firms evaluating AI tools for venture capital firms , the decision now focuses on which tools integrate cleanly into existing workflows without requiring a full process overhaul. The most effective implementations automate the data work: capturing interactions, enriching company records, and scoring relationship strength. That frees investment professionals to focus on the judgment calls that require experience and pattern recognition.
+Firms that use AI to improve their dealmaking process generate better data about which approaches work, which in turn makes their AI tools more effective. The gap between firms that have invested in AI-augmented workflows and those that have not is widening with each investment cycle.
+
+## Where AI venture capital goes from here
+The top VC firms investing in AI are making structural bets on which technologies will define the next decade of the global economy through where they choose to deploy capital. The firms on this list have positioned themselves across every layer of the AI stack, from the foundation models that underpin the technology to the applications that deliver its value to specific industries.
+For investment teams tracking how AI is transforming dealmaking , the story is as much about how the firms themselves are using the technology as it is which companies they're funding.
+The firms that will lead AI investing through the rest of this decade are the ones combining capital deployment with genuine technical understanding, applying that understanding both to their portfolios and to how they operate.
+
+## Frequently asked questions about AI venture capital
+
+### Who are the top venture capital firms investing in AI?
+The top venture capital firms investing in AI in 2026 are Andreessen Horowitz (a16z), Sequoia Capital, Lightspeed Venture Partners, Khosla Ventures, Founders Fund, Thrive Capital, Accel, General Catalyst, Pioneer Fund, and Soma Capital. These firms span the full AI investment spectrum, from multi-billion-dollar foundation-model rounds to sub-$3 million pre-seed checks.
+
+### How much venture capital is going into AI in 2026?
+AI captured 65.6% of US venture capital funding in 2025, with that concentration accelerating into 2026. Foundational AI funding in Q1 2026 alone doubled the total raised across all of 2025. The three largest AI rounds of early 2026 collectively exceeded $160 billion, an unprecedented concentration of capital in a single technology category: OpenAI ($110 billion), Anthropic ($30 billion), and xAI ($20 billion).
+
+### What's the difference between foundation-model VCs and application-layer AI VCs?
+Foundation-model VCs (a16z, Sequoia, Thrive Capital) invest in companies that build and train large-scale AI models from scratch. These rounds range from $500 million to $30 billion and fund the infrastructure other companies build on. Application-layer AI VCs (Khosla, Accel, General Catalyst) invest in companies that use existing AI models to build products for specific industries such as healthcare, legal, and financial services, with rounds typically between $5 million and $50 million.
+
+### How do venture capital firms decide which AI companies to back?
+Top AI VCs evaluate companies on several criteria: the technical depth of the founding team, the quality and defensibility of the company's data or model architecture, the size and accessibility of the target market, and the clarity of the path from research capability to commercial product. For foundation-model companies, the evaluation emphasizes compute efficiency and benchmark performance. For application-layer companies, the focus shifts to domain expertise, data moats, and evidence of product-market fit within a specific vertical.
+
+### Which AI sectors are attracting the most VC funding?
+In 2026, the largest concentrations of AI venture capital are flowing into large language models and foundation models (OpenAI, Anthropic, xAI), AI infrastructure and compute (Groq, OctoAI), healthcare AI (Tempus, Curai Health), enterprise automation (Glean, Lilt), and AI-native developer tools (Vercel, Cognition Labs). Foundation-model rounds account for the majority of capital deployed, but application-layer and seed-stage investments account for the majority of deals by count.
+
+### How are VCs using AI in their own investment processes?
+A survey of nearly 300 private capital professionals found that 85% use AI to automate daily tasks and 82% use it for deal sourcing research, both figures up from 76% and 64% respectively in 2025. Common use cases include synthesizing company research, identifying portfolio patterns that suggest follow-on opportunities, and surfacing warm introduction paths through existing networks.
+
+## Related Articles
+
+### The six-week AI sprint: how one VC team actually adopted AI
+
+### How PE firms use CRM at every stage of the deal lifecycle
+
+### What shipped in September: Correct what your agents suggest, and let them work with your files
+
+## Put your firm’s network to work
+
+Get started →
+Get started →

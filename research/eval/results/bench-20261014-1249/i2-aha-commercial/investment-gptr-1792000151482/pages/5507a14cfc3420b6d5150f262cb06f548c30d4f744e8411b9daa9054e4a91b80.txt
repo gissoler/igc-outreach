@@ -1,0 +1,83 @@
+Artificial Intelligence-Enabled Medical Devices | FDA
+
+Skip to main content
+
+Skip to FDA Search
+
+Skip to in this section menu
+
+Skip to footer links
+
+Home
+
+Medical Devices
+
+Digital Health Center of Excellence
+
+Artificial Intelligence-Enabled Medical Devices
+
+Digital Health Center of Excellence
+
+In this section
+
+Artificial intelligence (AI) is advancing rapidly and is being adopted broadly across the health care ecosystem, with the potential to reshape the medical device landscape, support clinical decision-making, improve patient and consumer health outcomes, and address public health needs. AI-enabled medical devices can analyze large and complex datasets, identify patterns, and generate information that may support disease detection, diagnosis, treatment, and other aspects of health care. Some AI-enabled medical devices may also adapt over time as new data, information, or experience becomes available.
+The FDA’s Center for Devices and Radiological Health (CDRH) regulates medical devices, including AI-enabled medical devices, under the Federal Food, Drug, and Cosmetic Act (FD&C Act), employing a risk-based approach, taking into consideration the device’s intended use and technological characteristics. CDRH is committed to fostering device innovation while ensuring that devices are safe and effective throughout the total product life cycle.
+Medical device innovators are applying AI across a growing range of products and functions, including tools that support earlier disease detection and diagnosis, personalized diagnostics and therapeutics, and functions intended to improve device usability and the user and patient experience. The characteristics of AI-enabled medical devices can also introduce considerations that extend across the total product life cycle, from development and validation through deployment, monitoring, maintenance, and modification. Careful management throughout the product life cycle can help support the continued safety and effectiveness of these devices.
+
+## On this page:
+FDA Regulation of AI in Medical Devices
+List of AI-Enabled Medical Devices
+AI Resources for Innovators
+Contact Us
+
+## FDA Regulation of AI in Medical Devices
+The FDA does not regulate AI as such; it regulates medical devices, including AI-enabled medical devices. Under the FD&C Act, a “device” is intended for use in the diagnosis, cure, mitigation, treatment, or prevention of disease, or intended to affect the structure or function of the body. The term device includes software, except for certain software functions that are excluded from the device definition in accordance with section 520(o) of the FD&C Act.
+The FDA reviews medical devices through an appropriate premarket pathway, such as  premarket clearance (510(k)) ,  De Novo classification , or  premarket approval . The FDA also reviews and clears modifications to medical devices, including AI-enabled medical device software functions, that could significantly affect the safety or effectiveness of a device. Learn more about the FDA’s guidance for risk-based approach for 510(k) software modifications .
+A marketing submission for a device may include one or more AI-enabled medical device software functions and may include a Predetermined Change Control Plan (PCCP). Learn more about the FDA’s guidance for Predetermined Change Control Plan for Artificial Intelligence-Enabled Device Software Functions .
+
+## List of AI-Enabled Medical Devices
+The FDA has authorized over 1,600 AI-enabled medical devices for marketing in the United States as of September 2026. These medical devices encompass a wide range of AI and machine learning technologies. They help strengthen health care and provide information that supports diagnoses, cures, and treatments for a range of diseases and conditions.
+Some real-world examples of AI-enabled medical devices include:
+An imaging system that uses algorithms to give diagnostic information for skin cancer in patients
+Software that uses deep learning to sharpen images
+AI systems that can detect diabetic retinopathy from retinal images
+Smart sensor device that estimates the probability of a heart attack
+AI algorithms to automate insulin dosing based on continuous glucose monitor (DGM) readings
+The FDA provides a searchable resource with publicly available information on AI-enabled medical devices authorized for marketing in the United States. The FDA updates this resource periodically.
+
+## AI Resources for Innovators
+Guidances Final Guidance: Marketing Submission Recommendations for a Predetermined Change Control Plan for Artificial Intelligence-Enabled Device Software Functions
+Draft Guidance: Artificial Intelligence-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations
+
+Guiding Principles Good Machine Learning Practice for Medical Device Development
+Predetermined Change Control Plans for Machine Learning-Enabled Medical Devices
+Transparency for Machine Learning-Enabled Medical Devices
+
+Advisory Committees Digital Health Advisory Committee 2024 Meeting on Total Product Lifecycle Considerations for Generative AI-enabled Devices
+2025 Meeting on Generative AI-enabled Digital Mental Health Medical Devices
+
+Patient Engagement Advisory Committee 2020 Meeting on Artificial Intelligence (AI) and Machine Learning (ML) in Medical Devices
+
+FDA Digital Health and Artificial Intelligence Glossary
+Discussion Papers Considerations for the Regulation of Generative AI-Enabled Medical Devices
+Measuring and Evaluating Artificial Intelligence-enabled Medical Device Performance in the Real-World
+Proposed Regulatory Framework for Modifications to Artificial Intelligence/Machine Learning (AI/ML)-Based Software as a Medical Device (SaMD)
+
+Additional Resources Artificial Intelligence Program: Research on AI/ML-Based Medical Devices
+Artificial Intelligence and Machine Learning Software as a Medical Device Action Plan
+Artificial Intelligence and Medical Products: How CBER, CDER, CDRH, and OCP are Working Together
+
+## Contact Us
+If you have questions about AI, you may send an email to the FDA’s Digital Health Center of Excellence at DigitalHealth@fda.hhs.gov . You may also visit our Digital Health Frequently Asked Questions (FAQs) .
+
+## Content current as of:
+
+09/22/2026
+
+## Regulated Product(s)
+
+Medical Devices
+
+Feedback
+
+Back to Top

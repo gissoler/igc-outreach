@@ -1,0 +1,1471 @@
+{
+ "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c",
+ "brief": {
+  "name": "Founder",
+  "role": "Founder",
+  "company": "IGC pharma",
+  "product": "mint ad",
+  "description": "Goal to serve 10,000 people",
+  "industry": "healthcare",
+  "stage": "marketed",
+  "geography": "US",
+  "criteria": "",
+  "exclusions": "",
+  "event": "",
+  "fundingTypes": [
+   "investment"
+  ],
+  "mode": "strategic",
+  "dataMode": "live",
+  "amount": 8000000,
+  "minDays": 30,
+  "useTeam": true,
+  "useApify": true,
+  "excludeCompetitors": false,
+  "strictTypes": false,
+  "organization": "IGC pharma",
+  "venture": "IGC pharma",
+  "oneLiner": "stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees",
+  "round": "seed",
+  "constraints": "",
+  "useOfFunds": "development and hiring",
+  "timeline": "",
+  "website": "",
+  "entityType": "for_profit",
+  "country": "",
+  "state": "Maryland",
+  "city": "",
+  "relation": "same"
+ },
+ "mode": "live",
+ "events": [
+  {
+   "phase": "planning",
+   "message": "Strategy: IGC pharma · mint ad: investment · marketed · seed · US · USD 8000000",
+   "at": "2026-10-14T18:01:54.558Z"
+  },
+  {
+   "phase": "planning",
+   "message": "Searching 5 phrasings separately: healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention technology",
+   "at": "2026-10-14T18:01:55.203Z"
+  },
+  {
+   "phase": "searching",
+   "message": "Web research engine: query started.",
+   "at": "2026-10-14T18:01:55.390Z"
+  },
+  {
+   "phase": "reading",
+   "message": "Web research engine: 2 candidates with provenance.",
+   "at": "2026-10-14T18:06:49.355Z"
+  },
+  {
+   "phase": "warning",
+   "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+   "at": "2026-10-14T18:06:50.243Z"
+  },
+  {
+   "phase": "evaluating",
+   "message": "Evaluating 2 candidates: evidence, duplicates, timing and feedback.",
+   "at": "2026-10-14T18:06:50.249Z"
+  },
+  {
+   "phase": "drafting",
+   "message": "Drafts built from templates and public facts; nothing is sent.",
+   "at": "2026-10-14T18:06:51.750Z"
+  },
+  {
+   "phase": "done",
+   "message": "0 candidates prioritized; 2 on radar. Missing results are never filled with simulated data.",
+   "at": "2026-10-14T18:06:51.793Z"
+  }
+ ],
+ "leads": [
+  {
+   "person": null,
+   "role": null,
+   "org": "Olympus Innovation Ventures (OIV)",
+   "title": "Olympus Innovation Ventures (OIV)",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "$150 million over 10 years",
+   "contact": {
+    "type": "web",
+    "value": "https://www.olympusamerica.com/index%2Ephp/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+    "provenance": "Read and verified on olympusamerica.com"
+   },
+   "evidence": [
+    {
+     "id": "9928aa9210d2cbd45d39",
+     "source": "Web research engine · olympusamerica.com",
+     "url": "https://www.olympusamerica.com/index%2Ephp/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+     "quote": "With an additional commitment to corporate venture capital, we will continue to make investments in startup teams who are building unique solutions in endoscopy-enabled care.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T18:06:49.347Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion funder_kind: the judge disagrees with the compiler",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion recent_activity: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:project_start",
+    "Check: date_quote_not_in_page:funding_announcement",
+    "Check: fake_quote:recent_activity"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Olympus Innovation Ventures (OIV) Olympus Innovation Ventures: Charting the Course for Medtech Breakthroughs in 2026 and Beyond | Olympus With an additional commitment to corporate venture capital, we will continue to make investments in startup teams who are building unique solutions in endoscopy-enabled care.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://www.olympusamerica.com/index%2Ephp/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:project_start",
+     "date_quote_not_in_page:funding_announcement",
+     "fake_quote:recent_activity"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion funder_kind: the judge disagrees with the compiler",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion recent_activity: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant’s AI‑driven early‑detection tool aligns with OIV’s focus on AI and early detection in medtech.",
+     "fundsQuote": "OIV investments help accelerate our progress toward developing the endosuite of the future with capabilities for early detection, diagnosis, and advanced therapies powered by AI, robotics, and beyond.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Ajit Patwardhan",
+     "role": "Executive Medical Safety Officer - Medical & Scientific Affairs",
+     "email": null,
+     "organization": "Olympus Corporation of the Americas",
+     "linkedin": "http://www.linkedin.com/in/ajitpat",
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Lester L",
+     "role": "Principal Auditor",
+     "email": "lester.luck@olympus.com",
+     "organization": "Olympus Corporation of the Americas",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Matthew Ja***i",
+     "role": "Principal Engineer",
+     "email": null,
+     "organization": "Olympus Corporation of the Americas",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "With an additional commitment to corporate venture capital, we will continue to make investments in startup teams who are building unique solutions in endoscopy-enabled care."
+   },
+   "key": "opportunity:engine:investment:https://www.olympusamerica.com/index%2Ephp/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+   "id": "8693edb35f18081213d5",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD $150 million over 10 years; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 1,
+   "jev": {
+    "leadId": "8693edb35f18081213d5",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 1.28,
+    "fitConfidence": 0.64,
+    "evidenceSufficient": 0.18,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "updates",
+    "label": "Build it: updates every 90 days",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 3,
+    "why": "No one in your network connects to Olympus Innovation Ventures (OIV) yet. Funds invest in lines, not dots: 3 updates before the round turn a cold contact into a warm one.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Ask Olympus Innovation Ventures (OIV) for feedback on one specific question (not money), and whether you can send them updates."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "First investor update: progress, one number, one specific ask (an intro or advice)."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: show momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Update 3: show momentum since the last one."
+     },
+     {
+      "when": "2027-10-09",
+      "what": "Ask for a meeting before you open the round: by then Olympus Innovation Ventures (OIV) has seen 3 updates."
+     }
+    ]
+   }
+  },
+  {
+   "person": null,
+   "role": null,
+   "org": "Johns Hopkins Technology Ventures (JHTV)",
+   "title": "Johns Hopkins Technology Ventures (JHTV)",
+   "kind": "research",
+   "fundingType": "investment",
+   "status": "unknown",
+   "deadline": null,
+   "amount": "Not specified",
+   "contact": {
+    "type": "web",
+    "value": "https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+    "provenance": "Read and verified on connectsafely.ai"
+   },
+   "evidence": [
+    {
+     "id": "3bdac6d90d4b4b6514b9",
+     "source": "Web research engine · connectsafely.ai",
+     "url": "https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+     "quote": "Johns Hopkins Technology Ventures's portfolio includes Haystack Oncology, JuneBrain, Delfi Diagnostics, Inc., EtCH, Galen Robotics, LifeSprout, Scene Health and SHARP Diagnostics.",
+     "field": "profile",
+     "retrievedAt": "2026-10-14T18:06:49.347Z",
+     "verified": true
+    }
+   ],
+   "paths": [],
+   "risks": [
+    "Eligibility not confirmed by the judge with a quote from the page",
+    "Criterion stage: the judge disagrees with the compiler",
+    "Criterion contact_route: the judge disagrees with the compiler",
+    "Fit to confirm with the counterpart",
+    "Check: date_date_not_in_quote:founded"
+   ],
+   "missing": [
+    "Eligibility / thesis not stated on the page",
+    "No named decision-maker",
+    "Current role not confirmed",
+    "No public email",
+    "Geographic eligibility and stage to confirm",
+    "OpenJev recommends more evidence before prioritizing."
+   ],
+   "searchText": "Johns Hopkins Technology Ventures (JHTV) Johns Hopkins Technology Ventures — Contact &amp; Team Johns Hopkins Technology Ventures's portfolio includes Haystack Oncology, JuneBrain, Delfi Diagnostics, Inc., EtCH, Galen Robotics, LifeSprout, Scene Health and SHARP Diagnostics.",
+   "demo": false,
+   "foundBy": [
+    {
+     "provider": "Web research engine",
+     "term": "agent",
+     "objective": "investment",
+     "query": "agent",
+     "dimension": "read_and_verified",
+     "searchedWith": "agent"
+    }
+   ],
+   "facts": {},
+   "sufficiency": null,
+   "externalId": "engine:investment:https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+   "verification": {
+    "verdict": "watch",
+    "tier": "verify",
+    "status": "n/a",
+    "eligible": "unclear",
+    "daysLeft": null,
+    "flags": [
+     "date_date_not_in_quote:founded"
+    ],
+    "deadlineQuote": "",
+    "blockers": [
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Eligibility not confirmed by the judge with a quote from the page",
+     "Criterion stage: the judge disagrees with the compiler",
+     "Criterion contact_route: the judge disagrees with the compiler"
+    ],
+    "reasons": [],
+    "pageType": {
+     "type": "funder_about"
+    },
+    "scopeFit": {
+     "verdict": "fits",
+     "reason": "The applicant operates in healthcare and digital health, both listed as focus sectors.",
+     "fundsQuote": "JHTV focuses on sectors such as technology, healthcare, biotechnology, medical devices, diagnostics, digital health, information technology, engineering, environmental services, consumer products, pharmaceuticals, energy, materials science, aerospace, and defense.",
+     "excludesQuote": null,
+     "source": "judge"
+    }
+   },
+   "trace": {
+    "queries": []
+   },
+   "contacts": [
+    {
+     "name": "Sanjana N",
+     "role": "Sales Intern",
+     "email": null,
+     "organization": "ConnectSafely.AI",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Surender Ku***r",
+     "role": "𝗚𝗧𝗠 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿",
+     "email": null,
+     "organization": "ConnectSafely.AI",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    },
+    {
+     "name": "Anamika Dh***l",
+     "role": "Frontend Developer — ConnectSafely.ai",
+     "email": null,
+     "organization": "ConnectSafely.AI",
+     "linkedin": null,
+     "provenance": "Apollo (people search)",
+     "source": "apollo"
+    }
+   ],
+   "quotes": {
+    "identity": "Johns Hopkins Technology Ventures's portfolio includes Haystack Oncology, JuneBrain, Delfi Diagnostics, Inc., EtCH, Galen Robotics, LifeSprout, Scene Health and SHARP Diagnostics."
+   },
+   "key": "opportunity:engine:investment:https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+   "id": "c32d29862c7f8e2c3bda",
+   "fit": 0,
+   "matchedTerms": [],
+   "score": 23,
+   "breakdown": [
+    {
+     "factor": "fit",
+     "points": 0,
+     "max": 35
+    },
+    {
+     "factor": "type",
+     "points": 20,
+     "max": 20
+    },
+    {
+     "factor": "timing",
+     "points": 1,
+     "max": 10
+    },
+    {
+     "factor": "path",
+     "points": 0,
+     "max": 30
+    },
+    {
+     "factor": "contact",
+     "points": 2,
+     "max": 5
+    },
+    {
+     "factor": "amountFit",
+     "points": 0,
+     "max": 0
+    }
+   ],
+   "why": [
+    "Limited topic match: review before contacting.",
+    "Category investment requested; interest in funding or partnering not confirmed yet.",
+    "No verified intro path.",
+    "Target geography: US. Stage fit marketed: to validate.",
+    "Published ceiling USD Not specified; stated target USD 8000000."
+   ],
+   "confidence": "media",
+   "bucket": "radar",
+   "discard": "",
+   "daysToDeadline": null,
+   "rank": 2,
+   "jev": {
+    "leadId": "c32d29862c7f8e2c3bda",
+    "action": "investigate_more",
+    "actionConfidence": 0.98,
+    "actionProbabilities": {
+     "prioritize": 0,
+     "investigate_more": 0.99,
+     "discard": 0.01
+    },
+    "strategicFit": 0.99,
+    "fitConfidence": 0.6,
+    "evidenceSufficient": 0.16,
+    "model": "openjev",
+    "provider": "OpenJev"
+   },
+   "feedback": null,
+   "draft": {
+    "subject": "Collaboration and fit",
+    "body": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?",
+    "sections": [
+     {
+      "label": "Common ground / reason",
+      "text": "I'd like to confirm whether your team reviews collaboration proposals.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Public context",
+      "text": "[Your name and role; confirm before sending]. I'd like to share a public description of our project.",
+      "evidenceIds": []
+     },
+     {
+      "label": "Ask",
+      "text": "Would you have 20 minutes to explore fit and point me to the right person?",
+      "evidenceIds": []
+     }
+    ],
+    "connector": null,
+    "status": "template with public facts",
+    "warning": "No confirmed personal relationship. Human review required; no material non-public info. The system never sends messages.",
+    "wordCount": 42
+   },
+   "warmPlan": {
+    "route": "portfolio_founder",
+    "label": "Via a founder they backed",
+    "built": false,
+    "cadenceDays": 90,
+    "updates": 2,
+    "hook": "Founders they already funded are the most trusted intro a fund gets.",
+    "source": "signals",
+    "evidence": {
+     "id": "3bdac6d90d4b4b6514b9",
+     "url": "https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+     "quote": "Johns Hopkins Technology Ventures's portfolio includes Haystack Oncology, JuneBrain, Delfi Diagnostics, Inc., EtCH, Galen Robotics, LifeSprout, Scene Health and SHARP Diagnostics."
+    },
+    "why": "Johns Hopkins Technology Ventures (JHTV) has backed companies close to yours. A founder from that portfolio can vouch for you, and asking them for advice is easy.",
+    "steps": [
+     {
+      "when": "2026-10-14",
+      "what": "Pick one founder from their portfolio in an adjacent space and ask for 15 minutes of advice on fundraising with this fund."
+     },
+     {
+      "when": "2026-10-21",
+      "what": "If it goes well, ask whether they'd mention you to Johns Hopkins Technology Ventures (JHTV)."
+     },
+     {
+      "when": "2027-01-12",
+      "what": "Send your first investor update, referencing that first exchange."
+     },
+     {
+      "when": "2027-04-12",
+      "what": "Update 2: momentum since the last one."
+     },
+     {
+      "when": "2027-07-11",
+      "what": "Ask for a meeting before you open the round."
+     }
+    ]
+   }
+  }
+ ],
+ "senderEvidence": [],
+ "createdAt": "2026-10-14T18:01:54.553Z",
+ "run": {
+  "version": 1,
+  "events": [
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:1",
+    "sequence": 1,
+    "at": "2026-10-14T18:01:55.389Z",
+    "phase": "planning",
+    "title": "Search plan",
+    "message": "IGC pharma · mint ad: investment · marketed · seed · US · USD 8000000",
+    "status": "success",
+    "detail": {
+     "kind": "plan",
+     "items": [
+      {
+       "provider": "Your need, expanded",
+       "query": "healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention technology"
+      },
+      {
+       "provider": "Grants.gov",
+       "query": "healthcare mint ad"
+      },
+      {
+       "provider": "NIH RePORTER",
+       "query": "healthcare mint ad"
+      },
+      {
+       "provider": "Firecrawl + ScrapeGraph",
+       "query": "Fund and organization teams on public pages"
+      },
+      {
+       "provider": "Exa (semantic search)",
+       "query": "Full profile by goal (investment), with criteria and constraints"
+      },
+      {
+       "provider": "Funding rounds",
+       "query": "healthcare seed · Exa news o Serper"
+      },
+      {
+       "provider": "Serper (optional)",
+       "query": "healthcare mint ad investment US "
+      }
+     ],
+     "sources": [
+      "Web research engine"
+     ]
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:2",
+    "sequence": 2,
+    "at": "2026-10-14T18:01:55.390Z",
+    "phase": "source_started",
+    "title": "Source started",
+    "message": "Web research engine: query started.",
+    "provider": "Web research engine",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:3",
+    "sequence": 3,
+    "at": "2026-10-14T18:06:49.348Z",
+    "phase": "source_completed",
+    "title": "Source finished",
+    "message": "Web research engine: 2 candidates with provenance.",
+    "provider": "Web research engine",
+    "resultCount": 2,
+    "durationMs": 293957,
+    "status": "success"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:4",
+    "sequence": 4,
+    "at": "2026-10-14T18:06:50.241Z",
+    "phase": "reading",
+    "title": "Emails found",
+    "message": "Hunter: 0 emails added and 0 new people across 2 organizations (2 calls).",
+    "provider": "Hunter.io",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:5",
+    "sequence": 5,
+    "at": "2026-10-14T18:06:50.243Z",
+    "phase": "warning",
+    "title": "Limited coverage",
+    "message": "Limited equity/debt coverage: SEC placement agents aren't integrated. Other categories are marked adjacent.",
+    "status": "warning"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:6",
+    "sequence": 6,
+    "at": "2026-10-14T18:06:50.245Z",
+    "phase": "source_started",
+    "title": "Network match",
+    "message": "No imported contacts: warm paths can't be computed.",
+    "provider": "Your network (warm paths)",
+    "status": "running",
+    "detail": {
+     "parallel": 1
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:7",
+    "sequence": 7,
+    "at": "2026-10-14T18:06:50.249Z",
+    "phase": "source_completed",
+    "title": "Match complete",
+    "message": "0 candidates with a documented path from your network or team.",
+    "provider": "Your network (warm paths)",
+    "resultCount": 0,
+    "durationMs": 4,
+    "status": "success",
+    "detail": {
+     "kind": "network",
+     "you": "Founder",
+     "contacts": 0,
+     "candidates": 2,
+     "paths": []
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:8",
+    "sequence": 8,
+    "at": "2026-10-14T18:06:50.249Z",
+    "phase": "evaluating",
+    "title": "Evaluation started",
+    "message": "Evaluating 2 candidates: evidence, duplicates, timing and feedback.",
+    "resultCount": 2,
+    "status": "running"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:9",
+    "sequence": 9,
+    "at": "2026-10-14T18:06:51.229Z",
+    "phase": "reading",
+    "title": "People and contact routes resolved",
+    "message": "5 people found across 2 selected organizations. Public affiliations were not labeled as warm paths.",
+    "provider": "Apollo",
+    "resultCount": 5,
+    "status": "success"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:10",
+    "sequence": 10,
+    "at": "2026-10-14T18:06:51.231Z",
+    "phase": "evaluating",
+    "title": "Structured decision",
+    "message": "OpenJev is scoring fit, evidence and next action.",
+    "provider": "OpenJev",
+    "status": "running"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:11",
+    "sequence": 11,
+    "at": "2026-10-14T18:06:51.747Z",
+    "phase": "evaluating",
+    "title": "OpenJev decisions applied",
+    "message": "OpenJev reviewed 2 candidates; uncertain ones go to radar for human review.",
+    "provider": "OpenJev",
+    "resultCount": 2,
+    "durationMs": 516,
+    "status": "success",
+    "detail": {
+     "model": "openjev",
+     "usage": {
+      "input_tokens": 1476,
+      "output_tokens": 174,
+      "cost": 0.000061992
+     }
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:12",
+    "sequence": 12,
+    "at": "2026-10-14T18:06:51.749Z",
+    "phase": "evaluating",
+    "title": "Candidates ranked",
+    "message": "0 priority, 2 on radar and 0 discarded after de-duplication and scoring.",
+    "resultCount": 2,
+    "durationMs": 1500,
+    "status": "success",
+    "detail": {
+     "kind": "ranking",
+     "top": [],
+     "radar": [
+      {
+       "name": "Olympus Innovation Ventures (OIV)",
+       "org": "Olympus Innovation Ventures (OIV)",
+       "title": "Olympus Innovation Ventures (OIV)",
+       "score": 23,
+       "why": "Limited topic match: review before contacting.",
+       "bucket": "radar"
+      },
+      {
+       "name": "Johns Hopkins Technology Ventures (JHTV)",
+       "org": "Johns Hopkins Technology Ventures (JHTV)",
+       "title": "Johns Hopkins Technology Ventures (JHTV)",
+       "score": 23,
+       "why": "Limited topic match: review before contacting.",
+       "bucket": "radar"
+      }
+     ],
+     "discarded": [],
+     "counts": {
+      "top": 0,
+      "radar": 2,
+      "discarded": 0
+     }
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:13",
+    "sequence": 13,
+    "at": "2026-10-14T18:06:51.756Z",
+    "phase": "evaluating",
+    "title": "Warm paths for every candidate",
+    "message": "0 through your network; 2 to build with advice and updates before the round.",
+    "provider": "Warm path plan",
+    "resultCount": 2,
+    "status": "success"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:14",
+    "sequence": 14,
+    "at": "2026-10-14T18:06:51.792Z",
+    "phase": "evaluating",
+    "title": "Run audit",
+    "message": "0 queries · 144 pages read by the AI · 0 main list · 2 to verify · 0 discarded. Today used: 2026-10-14.",
+    "provider": "Run audit",
+    "resultCount": 0,
+    "status": "success"
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:15",
+    "sequence": 15,
+    "at": "2026-10-14T18:06:51.793Z",
+    "phase": "drafting",
+    "title": "Drafts written",
+    "message": "2 drafts built from templates and public facts; nothing is sent.",
+    "resultCount": 2,
+    "status": "success",
+    "detail": {
+     "kind": "draft",
+     "to": "Olympus Innovation Ventures (OIV)",
+     "org": "Olympus Innovation Ventures (OIV)",
+     "subject": "Collaboration and fit",
+     "excerpt": "I'd like to confirm whether your team reviews collaboration proposals.\n\n[Your name and role; confirm before sending]. I'd like to share a public description of our project. Would you have 20 minutes to explore fit and point me to the right person?"
+    }
+   },
+   {
+    "id": "2b7eabdd-06dd-4970-b0a6-b3f80cd4df8c:16",
+    "sequence": 16,
+    "at": "2026-10-14T18:06:51.794Z",
+    "phase": "completed",
+    "title": "Done with warnings",
+    "message": "0 candidates prioritized; 2 on radar.",
+    "resultCount": 2,
+    "status": "warning",
+    "detail": {
+     "jobStatus": "partial",
+     "usage": {
+      "Hunter.io": {
+       "calls": 2,
+       "results": 2,
+       "ms": 863,
+       "bytes": 0,
+       "costUsd": 0
+      }
+     },
+     "queryLedger": []
+    }
+   }
+  ],
+  "dropped": 0
+ },
+ "status": "partial",
+ "plan": {
+  "topic": "healthcare",
+  "query": "healthcare mint ad",
+  "scientificQuery": "healthcare",
+  "summary": "IGC pharma · mint ad: investment · marketed · seed · US · USD 8000000",
+  "items": [
+   {
+    "provider": "Your need, expanded",
+    "query": "healthcare · Alzheimer's risk prediction platform · Neurodegenerative disease stratification solution · Cognitive decline early detection system · Preventive dementia intervention technology"
+   },
+   {
+    "provider": "Grants.gov",
+    "query": "healthcare mint ad"
+   },
+   {
+    "provider": "NIH RePORTER",
+    "query": "healthcare mint ad"
+   },
+   {
+    "provider": "Firecrawl + ScrapeGraph",
+    "query": "Fund and organization teams on public pages"
+   },
+   {
+    "provider": "Exa (semantic search)",
+    "query": "Full profile by goal (investment), with criteria and constraints"
+   },
+   {
+    "provider": "Funding rounds",
+    "query": "healthcare seed · Exa news o Serper"
+   },
+   {
+    "provider": "Serper (optional)",
+    "query": "healthcare mint ad investment US "
+   }
+  ],
+  "alzheimer": false,
+  "terms": [
+   {
+    "term": "healthcare",
+    "source": "yours"
+   },
+   {
+    "term": "Alzheimer's risk prediction platform",
+    "source": "model"
+   },
+   {
+    "term": "Neurodegenerative disease stratification solution",
+    "source": "model"
+   },
+   {
+    "term": "Cognitive decline early detection system",
+    "source": "model"
+   },
+   {
+    "term": "Preventive dementia intervention technology",
+    "source": "model"
+   }
+  ]
+ },
+ "engineDrops": [
+  {
+   "url": "https://castleplacement.com/top-10-digital-health-healthtech-capital-raises-and-investors-in-the-u-s-january-1st-to-31st-2026/",
+   "title": "Top 10 Digital Health/ HealthTech Capital Raises and Investors in the U.S. – January 1st to 31st, 2026",
+   "reason": "not_a_funder",
+   "quote": "Castle Placement® does not warrant or guarantee this information, nor makes any representations as to the accuracy of the information.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://connectsafely.ai/investors/maryland-momentum-fund-87112402",
+   "title": "Maryland Momentum Fund — Contact Email, Phone &amp; Team",
+   "reason": "not_eligible",
+   "quote": "Maryland Momentum Fund backs companies at Pre-Seed, Seed, Early Stage, Series A, Series B and Growth, writing cheques of 150K - 500K.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) | Maryland Department of Commerce",
+   "reason": "not_a_funder",
+   "quote": "BIITC provides a refundable Maryland income tax credit to qualified investors who make eligible investments in Qualified Maryland Biotechnology Companies (QMBCs).",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) | Maryland Department of Commerce",
+   "reason": "not_a_funder",
+   "quote": "This page explains the Biotechnology Investment Incentive Tax Credit in plain language.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://capeasy.co/us/funding/maryland-tedco-concept-capital/",
+   "title": "Concept Capital — up to $50k equity for Maryland startups | CapEasy",
+   "reason": "not_a_funder",
+   "quote": "CapEasy is not affiliated with any government agency.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://seedhealthcare.com/seed-healthcare-leads-strategic-investment-in-diadem",
+   "title": "Seed Leads Strategic Investment in Diadem | Seed Healthcare",
+   "reason": "not_a_funder:news",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://grantedai.com/grants/biotechnology-investment-incentive-tax-credit-biitc-state-of-maryland-1bcc482d",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) (2026) | Granted AI",
+   "reason": "not_a_funder",
+   "quote": "This program provides income tax credits to investors in Qualified Maryland Biotechnology Companies (QMBCs), offering incentives for investment in seed and early-stage biotech companies.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.vcsheet.com/funds?stages=pre-seed&geographies=usa",
+   "title": "List of VC Funds (VC Sheet)",
+   "reason": "scope_mismatch",
+   "quote": "Is your fund missing? Email us here.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://menlovc.com/focus-areas/healthcare/",
+   "title": "Menlo Ventures | Biotech &amp; Healthcare Venture Capital Firm",
+   "reason": "not_eligible",
+   "quote": "We invest in transformative, early-stage Bio + Healthcare companies",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://commerce.maryland.gov/financial-incentives/tax-incentives/biotechnology-investment-incentive-tax-credit-biitc",
+   "title": "Biotechnology Investment Incentive Tax Credit (BIITC) | Maryland Department of Commerce",
+   "reason": "not_a_funder",
+   "quote": "This page explains the Biotechnology Investment Incentive Tax Credit in plain language.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.startuphealth.com/startup-health-blog/startup-health-announces-first-companies-to-join-alzheimers-moonshot-community",
+   "title": "Introducing StartUp Health’s Alzheimer&#39;s Moonshot Community &mdash; StartUp Health",
+   "reason": "not_a_funder",
+   "quote": "StartUp Health’s Alzheimer’s Moonshot was launched with Gates Ventures and ADDF in order to rally a committed community of Alzheimer’s innovators at this critical moment.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://grantedai.com/grants/tedco-concept-capital-program-tedco-52ce8e1a",
+   "title": "TEDCO Concept Capital Program (2026) | Granted AI",
+   "reason": "not_a_funder",
+   "quote": "TEDCO Concept Capital Program is sponsored by TEDCO.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://physicianaitools.com/investors/tcp-venture-capital/",
+   "title": "TCP Venture Capital — Healthcare Investor Profile | physicianaitools.com",
+   "reason": "not_eligible",
+   "quote": "The firm writes $250k to $1M checks at Seed and Series A.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://growthlist.co/list-of-funded-pharma-startups/",
+   "title": "834+ Funded Pharma Startups 2026 | Verified Contacts &amp; Funding Data",
+   "reason": "not_a_funder:directory",
+   "quote": "",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://d26vi75wg8oncz.cloudfront.net/for-innovators/funding-programs/nyu-langone-health-venture-fund/",
+   "title": "NYU Langone Health Venture Fund - Technology Opportunities &amp; Ventures by NYU and NYU Langone Health",
+   "reason": "not_eligible",
+   "quote": "We specialize in seed stage investments, recognizing the importance of early-stage funding in propelling healthcare ventures from concept to patients.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.olympusamerica.com/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+   "title": "Olympus Innovation Ventures: Charting the Course for Medtech Breakthroughs in 2026 and Beyond | Olympus",
+   "reason": "not_eligible",
+   "quote": "OIV’s approach is hands‑on in early‑stage or seed investments...",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://kruzeconsulting.com/blog/maryland-biotech-investment-incentive-tax-credit-biitc/",
+   "title": "Maryland BIITC Biotech Tax Credit Guide for Startups",
+   "reason": "not_a_funder",
+   "quote": "The startup does not claim the BIITC on its own Maryland return. Instead, qualified investors receive the refundable tax credit on their Maryland income tax returns.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://d26vi75wg8oncz.cloudfront.net/for-innovators/funding-programs/therapeutics-alliances-innovators/therapeutics-alliances-request-for-proposals/",
+   "title": "Therapeutics Alliances Request for Proposals - Technology Opportunities &amp; Ventures by NYU and NYU Langone Health",
+   "reason": "not_a_funder",
+   "quote": "NYU Langone’s Therapeutics Alliances (TA) is sponsoring up to 15 one-year translational grants aimed at supporting projects focused on advancing innovative preclinical research through early-stage drug target selection, drug target validation, or hit-to-lead compound screening.",
+   "deadline": null,
+   "objective": "investment"
+  },
+  {
+   "url": "https://www.alz.org/research/for_researchers/grants/types-of-grants",
+   "title": "Types of Grants | Alzheimer&#x27;s Association",
+   "reason": "not_a_funder",
+   "quote": "The Alzheimer's Association works to identify and fund a wide range of the most promising grant projects, from basic discovery science to studies addressing social and behavioral aspects of Alzheimer's and related dementias.",
+   "deadline": null,
+   "objective": "investment"
+  }
+ ],
+ "engineAudit": [
+  {
+   "objective": "investment",
+   "gptr": {
+    "on": true,
+    "mode": "deep",
+    "judge": "node",
+    "search_seconds": 182,
+    "seconds": 294,
+    "urls": 150,
+    "error": null,
+    "registry": {
+     "on": false,
+     "numbers": 0,
+     "seeds": 0,
+     "notices": 0,
+     "brief": null,
+     "byNumber": null
+    }
+   },
+   "triage": {
+    "opened": 93,
+    "assessed": 40,
+    "by_status": {
+     "open": 6,
+     "unknown": 66,
+     "closed": 21,
+     "unread": 57
+    },
+    "docs": 1
+   },
+   "judge": {
+    "finalists": 21,
+    "calls": 21,
+    "second_blind_calls": 0,
+    "second_call_changed": 0
+   },
+   "contacts": {
+    "orgs": 2,
+    "people": 6,
+    "credits": 4,
+    "skipped": null,
+    "domains": [
+     "connectsafely.ai",
+     "olympusamerica.com"
+    ]
+   },
+   "seconds": 112,
+   "opens": 144,
+   "skipped_for_time": 0,
+   "errors": []
+  }
+ ],
+ "hunter": {
+  "calls": 2,
+  "emailsAdded": 0,
+  "peopleAdded": 0,
+  "domains": 2,
+  "errors": []
+ },
+ "contactResolution": [
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://www.olympusamerica.com/index%2Ephp/blog/research-round/olympus-innovation-ventures-charting-course-medtech-breakthroughs-2026-and",
+    "canonical_name": "Olympus Corporation of the Americas",
+    "official_domain": "olympusamerica.com",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "resolved",
+   "people": [
+    {
+     "person_id": "6513f3eafaa89c00014b769d",
+     "name": "Ajit",
+     "title": "MD",
+     "organization": "Olympus Corporation of the Americas",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: MD.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://olympusamerica.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Ajit · MD · Olympus Corporation of the Americas"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "5b9ed10b324d445a5f0ae038",
+     "name": "Lester",
+     "title": "Principal Auditor",
+     "organization": "Olympus Corporation of the Americas",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Auditor.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://olympusamerica.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Lester · Principal Auditor · Olympus Corporation of the Americas"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "54a4a6c97468693209cc2958",
+     "name": "Matthew",
+     "title": "Principal Engineer",
+     "organization": "Olympus Corporation of the Americas",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Engineer.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://olympusamerica.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Matthew · Principal Engineer · Olympus Corporation of the Americas"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "54eac6d074686931e2436600",
+     "name": "Gautam",
+     "title": "Principal Engineer",
+     "organization": "Olympus Corporation of the Americas",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Engineer.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://olympusamerica.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Gautam · Principal Engineer · Olympus Corporation of the Americas"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    },
+    {
+     "person_id": "54a924fd7468692d1c7d610d",
+     "name": "Sean",
+     "title": "Principal Manufacturing Engineer",
+     "organization": "Olympus Corporation of the Americas",
+     "reason": "Role at the selected organization matches or may overlap the requested functions: Principal Manufacturing Engineer.",
+     "channel": null,
+     "verification_status": "unverified",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "evidence": [
+      {
+       "source": "Apollo people search",
+       "url": "https://olympusamerica.com",
+       "retrieved_at": "2026-10-14",
+       "quote": "Sean · Principal Manufacturing Engineer · Olympus Corporation of the Americas"
+      }
+     ],
+     "next_action": "Verify the current role on the organization’s official site, then use a public channel or investigate a bridge."
+    }
+   ],
+   "relations": [
+    {
+     "from": "Olympus Corporation of the Americas",
+     "to": "Ajit",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Olympus Corporation of the Americas",
+     "to": "Lester",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Olympus Corporation of the Americas",
+     "to": "Matthew",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Olympus Corporation of the Americas",
+     "to": "Gautam",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    },
+    {
+     "from": "Olympus Corporation of the Americas",
+     "to": "Sean",
+     "direction": "outbound",
+     "type": "public_employment_affiliation",
+     "route_type": "public_affiliation",
+     "confidence": 0.65,
+     "source": "Apollo people search",
+     "observed_at": "2026-10-14"
+    }
+   ],
+   "limits": {
+    "calls": 2,
+    "credits_estimated": 1,
+    "cache_hits": 0
+   },
+   "errors": []
+  },
+  {
+   "schema_version": "contact_bridge_result/1",
+   "as_of": "2026-10-14",
+   "organization": {
+    "stable_id": "opportunity:engine:investment:https://connectsafely.ai/investors/johns-hopkins-technology-ventures",
+    "canonical_name": "ConnectSafely.AI",
+    "official_domain": "connectsafely.ai",
+    "match_method": "exact_domain",
+    "confidence": 1
+   },
+   "status": "partial",
+   "people": [],
+   "relations": [],
+   "limits": {
+    "calls": 4,
+    "credits_estimated": 2,
+    "cache_hits": 0
+   },
+   "errors": []
+  }
+ ],
+ "apollo": {
+  "status": "connected",
+  "organizations": 2,
+  "calls": 4,
+  "creditsEstimated": 2,
+  "message": "Apollo was used only after organization selection and did not change relevance or ranking."
+ },
+ "searchAudit": [
+  {
+   "provider": "Web research engine",
+   "query": "(investment) 0 queries · 144 pages · 144 read",
+   "dimension": "engine",
+   "returned": 144,
+   "discovered": 2,
+   "dropped": {},
+   "priority": 0,
+   "watch": 0,
+   "discarded": 0
+  }
+ ],
+ "runAudit": {
+  "today": "2026-10-14",
+  "judge": {
+   "on": true,
+   "ready": false,
+   "blind": false,
+   "sameModel": false,
+   "notices": [],
+   "models": {
+    "compiler": null,
+    "judge": null
+   },
+   "calls": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "ms": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "invalid": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "errors": {
+    "compiler": 0,
+    "judge": 0
+   },
+   "pages": 0,
+   "states": {},
+   "disagreed": 0,
+   "failClosed": 0,
+   "patternDisagrees": 0,
+   "perPage": []
+  },
+  "brief": {
+   "venture": "IGC pharma",
+   "product": "mint ad",
+   "industry": "healthcare",
+   "geography": "US",
+   "stage": "marketed",
+   "round": "seed",
+   "fundingTypes": [
+    "investment"
+   ],
+   "constraints": null
+  },
+  "interpretations": [],
+  "counters": {
+   "queries": 0,
+   "queriesYearFixed": 0,
+   "pagesSeen": 144,
+   "pagesRead": 144,
+   "pagesUnread": 0,
+   "rereadForDates": 0,
+   "rereadImproved": 0,
+   "extracted": 0,
+   "extractFailed": 0,
+   "extractChanged": 0,
+   "extractConflicts": 0,
+   "extractCredits": 0,
+   "extractCacheHits": 0,
+   "scrapeCacheHits": 0,
+   "readVia": {
+    "crawl4ai": 0,
+    "jina": 0,
+    "firecrawl": 0
+   },
+   "research": {
+    "steps": 0,
+    "searches": 0,
+    "opens": 0,
+    "newPages": 0
+   },
+   "firecrawl": {
+    "credits": 0,
+    "possiblyCharged": 0,
+    "cacheHits": 0,
+    "capReached": false,
+    "capSkipped": 0,
+    "daily": null
+   },
+   "keptByEngine": 2,
+   "droppedByEngine": {},
+   "skippedBeforeReading": {},
+   "verdicts": {},
+   "buckets": {
+    "top": 0,
+    "radar": 2,
+    "discarded": 0
+   },
+   "discardReasons": {},
+   "radarReasons": {
+    "Eligibility not confirmed by the judge with a quote from the page": 2
+   }
+  },
+  "queries": [],
+  "discarded": [],
+  "providers": [],
+  "expansion": [],
+  "grantSources": null,
+  "comparePrompts": {
+   "investment": "Hoy es 2026-10-14. Actúa como investigador de capital de riesgo. Busca en la web INVERSORES (fondos, firmas de venture capital, ángeles o redes de ángeles) que invertirían en este proyecto:\n\n- Proyecto: IGC pharma: stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees\n- Producto: mint ad\n- Sector: healthcare\n- Etapa: marketed / seed\n- Geografía: US\n- Constitución: país de constitución no indicado\n- Monto objetivo: 8,000,000 USD\n- Uso de fondos: development and hiring\n\nTipo de entidad: empresa / startup con fines de lucro.\n\nREGLAS (estrictas):\n1. Solo páginas OFICIALES del inversor (su sitio, su portafolio o su tesis). Nada de blogs, noticias, listas ni agregadores, ni páginas de eventos.\n2. Debe invertir en esta etapa y sector, y en esta geografía. Si no es seguro, márcalo aparte.\n3. Dame la persona concreta que decide (socio o managing partner) solo si la página oficial la nombra con su cargo; si no, dime solo la firma. No incluyas ventas, marketing ni relaciones públicas.\n4. No inventes nada. Si no estás segura, dilo.\n\nDevuélveme una tabla: Firma | URL oficial | Etapas y sectores en los que invierte (CITA LITERAL de su página) | Geografías | Cheque típico | Persona y cargo (si la página lo dice) | Por qué encaja | Estado (confirmado / dudoso).\nDespués una segunda tabla, «No pude confirmar». Al final, dime cuántos hay en cada tabla."
+  },
+  "orchestrator": null
+ },
+ "finishedAt": "2026-10-14T18:06:51.793Z",
+ "usage": {
+  "Hunter.io": {
+   "calls": 2,
+   "results": 2,
+   "ms": 863,
+   "bytes": 0,
+   "costUsd": 0
+  }
+ },
+ "budget": {
+  "timeoutMs": 720000,
+  "maxRounds": 2,
+  "maxSearches": 12,
+  "maxCostUsd": null
+ }
+}

@@ -1,0 +1,1270 @@
+Artifact — dementia-discovery-fund
+
+&times;
+
+SciDEX &times;
+
+Agora
+&#x1f3e0; Dashboard &#x1f52c; Analyses &#x1f3db; The Agora &#x1f5e3; Debates &#x1f9ec; Hypotheses &#x1f3c6; Leaderboard &#x2694; Arenas &#x1f50d; Research Gaps &#x2696; Compare
+Exchange
+&#x1f4c8; Exchange &#x1f4b9; Market &#x1f3af; Challenges &#x1f680; Missions &#x1f4ca; Economics
+Forge
+&#x1f528; Forge &#x1f4ca; Experiments &#x1f4ca; Benchmarks &#x1f9e0; Models &#x1f3ae; Playground
+Atlas
+&#x1f4d6; Wiki &#x1f578; Knowledge Graph &#x1f5fa; Atlas &#x1f3af; Targets &#x1f4e6; Artifacts &#x1f4cb; Proposals &#x1f4ca; Dashboards &#x1f4c5; What's Changed &#x1f9ec; Protein Designs &#x1f4ca; Datasets &#x1f3e5; Clinical Trials &#x1f4c4; Papers &#x1f4d3; Notebooks &#x1f50e; Search
+Senate
+&#x1f3db; Senate &#x1f4ca; Pipeline &#x1f9ec; Agents &#x1f3ad; Pantheon &#x2694; Quests &#x1f4cb; Specs &#x1f4b0; Resources &#x1f465; Contributors &#x1f6a6; Status &#x1f4d1; Docs
+Showcase
+&#x2b50; Showcase &#x1f4fd; Demo &#x1f3ac; Demo Video &#x2139; Vision
+
+1?history.back():window.location.href='/';return false;" aria-label="Go back">←
+SciDEX
+
+Exit Reader
+
+### &#x1f4d7; Cite This Artifact
+
+&#x2715;
+
+BibTeX
+RIS
+EndNote
+CSL-JSON
+
+Copy
+
+Copy
+
+Copy
+
+Copy
+
+&#x1f4d6;
+
+# dementia-discovery-fund
+active
+
+&#x1f4d7; Cite
+
+wiki page
+Created: 2026-04-02T07:20:11
+By: crosslink-migration
+Quality:
+
+50%
+&#x2713; SciDEX
+ID: wiki-institutions-dementia-discovery-fun
+
+Overview
+Discussion
+Provenance
+Versions
+Links
+Embed
+
+&#x1f4d6; Wiki Page
+institution 3270 words synced 2026-04-02
+
+### Dementia Discovery Fund
+
+### Overview
+
+flowchart TD
+Dementia["Dementia"] -->|"associated with"| Alzheimer["Alzheimer"]
+Dementia["Dementia"] -->|"associated with"| Neurodegeneration["Neurodegeneration"]
+DEMENTIA["DEMENTIA"] -->|"associated with"| Dementia["Dementia"]
+DEMENTIA["DEMENTIA"] -->|"activates"| Alzheimer["Alzheimer"]
+DEMENTIA["DEMENTIA"] -->|"associated with"| Amyotrophic_Lateral_Sclerosis["Amyotrophic Lateral Sclerosis"]
+DEMENTIA["DEMENTIA"] -->|"associated with"| Aging["Aging"]
+DEMENTIA["DEMENTIA"] -->|"causes"| Alzheimer["Alzheimer"]
+DEMENTIA["DEMENTIA"] -->|"causes"| Dementia["Dementia"]
+DEMENTIA["DEMENTIA"] -->|"inhibits"| Dementia["Dementia"]
+DEMENTIA["DEMENTIA"] -->|"activates"| Dementia["Dementia"]
+DEMENTIA["DEMENTIA"] -->|"activates"| Neurodegeneration["Neurodegeneration"]
+DEMENTIA["DEMENTIA"] -->|"associated with"| Parkinson["Parkinson"]
+DEMENTIA["DEMENTIA"] -->|"associated with"| Neuroinflammation["Neuroinflammation"]
+DEMENTIA["DEMENTIA"] -->|"associated with"| Inflammation["Inflammation"]
+style dementia fill:#4fc3f7,stroke:#333,color:#000
+
+...
+
+### Dementia Discovery Fund
+
+### Overview
+
+Mermaid diagram (expand to render)
+
+The Dementia Discovery Fund (DDF) is a pioneering venture capital fund dedicated to accelerating the development of novel therapies for dementia and neurodegenerative diseases. Founded in 2015, it represents a unique public-private partnership bringing together pharmaceutical companies, governments, and charitable foundations to address the growing global burden of dementia["@dementia2024"]. With over $200 million in committed capital, DDF represents the largest specialized investment fund focused on neurodegenerative disease therapeutics in the world["@svb2023"][@pharmaceutical2024].
+The fund operates at the critical intersection of academic research and commercial drug development, providing the funding and expertise necessary to bridge the "valley of death" that traditionally prevents early-stage neurological research from reaching clinical trials. By leveraging strategic partnerships with major pharmaceutical companies, DDF portfolio companies gain access to development expertise, regulatory guidance, and potential acquisition or licensing opportunities["@vanDijk2024"].
+
+### Investment Focus
+
+The DDF maintains a diversified investment thesis spanning multiple neurodegenerative conditions and therapeutic modalities:
+
+#### Alzheimer&#x27;s Disease
+
+The fund invests in companies developing disease-modifying therapies targeting:
+Amyloid-beta : Antibodies, small molecules, and vaccines targeting Aβ production, aggregation, and clearance
+
+Tau pathology : Tau aggregation inhibitors, anti-tau antibodies, and tau vaccination strategies
+
+Neuroinflammation : Microglial modulators, NLRP3 inhibitors, and anti-inflammatory approaches
+
+Synaptic protection : Synaptic plasticity enhancers and neuroprotective compounds[@Cummings2024][@long2024]
+
+#### Parkinson&#x27;s Disease and Related Disorders
+
+Funding priorities include:
+Alpha-synuclein : Targeting a-synuclein aggregation, propagation, and clearance
+
+LRRK2 : Kinase inhibitors and genetic modifiers for LRRK2-associated PD
+
+GBA : Enzyme modulators for GBA-associated Parkinson&#x27;s disease
+
+Dopaminergic preservation : Neuroprotective and disease-modifying approaches[@smith2023]
+
+#### Frontotemporal Dementia and ALS
+
+TDP-43 pathology : Targeting protein aggregation and cellular stress pathways
+
+C9orf72 : Approaches addressing hexanucleotide repeat expansions
+
+FTD subtypes : Behavior variant FTD and primary progressive aphasia therapeutics
+
+#### Emerging Modalities
+
+The fund supports novel therapeutic approaches including:
+Gene therapy : AAV-delivered gene silencing and replacement
+
+Cell therapy : Cell replacement and cellular rejuvenation approaches
+
+AI/ML drug discovery : Machine learning approaches to target identification and compound optimization
+
+Biomarker-driven development : Precision medicine approaches using biomarkers for patient stratification[@chen2024]
+
+### Investment Thesis
+
+The DDF operates with a distinct investment thesis designed to maximize the probability of successful clinical translation while generating returns for investors[@svb2023]:
+
+#### 1. De-risking Early-Stage Research
+
+DDF provides critical funding to bridge the gap between academic research and clinical development. Many promising therapeutic candidates fail to advance beyond the pre-clinical stage due to lack of funding. DDF&#x27;s early-stage investments fill this critical gap, providing:
+Series A and seed funding for companies with promising pre-clinical data
+
+Milestone-based funding tied to development achievements
+
+Access to DDF&#x27;s network of pharmaceutical partners for additional support
+
+#### 2. Leveraging Strategic Partnerships
+
+The fund has established relationships with major pharmaceutical companies including Pfizer, Johnson & Johnson, Eli Lilly, GlaxoSmithKline, and others. These partnerships provide:
+Development expertise : Access to pharmaceutical company resources for clinical development
+
+Regulatory guidance : Experience with FDA and EMA approval processes
+
+Commercialization pathways : Potential acquisition or licensing opportunities
+
+Co-investment opportunities : Pharmaceutical companies co-invest alongside DDF in portfolio companies
+
+#### 3. Accelerating Clinical Development
+
+DDF supports clinical trial design and execution through:
+Clinical advisory board access
+
+Protocol optimization guidance
+
+Patient recruitment network connections
+
+Trial site selection expertise
+
+#### 4. Building Sustainable Companies
+
+DDF focuses on creating viable biotech companies that can advance therapies through regulatory approval. This includes:
+Board and management team assistance
+
+Business development support
+
+Financial planning guidance
+
+Strategic partnership facilitation
+
+### Portfolio Companies
+
+The DDF has invested in numerous companies developing novel therapeutics for neurodegenerative diseases[@pharmaceutical2024][@Cummings2024]:
+
+#### AC Immune SA
+
+Based in Lausanne, Switzerland, AC Immune is a clinical-stage biopharmaceutical company developing therapeutic and diagnostic candidates for neurodegenerative diseases. The company utilizes two proprietary platforms:
+SupraAntigen® : Active immunotherapy platform
+
+Morphomer® : Small molecule aggregation inhibitors
+
+Key programs include:
+ACI-35.030 (JNJ-2056) : Tau-targeting vaccine in Phase 2 (partnered with Janssen)
+
+ACI-24.060 : Amyloid-beta vaccine in Phase 2 (partnered with Takeda)
+
+ACI-7104.056 : Alpha-synuclein vaccine in Phase 2 for Parkinson&#x27;s disease
+
+PI-2620 : Tau-PET tracer in Phase 3 (partnered with Lantheus)
+
+#### Alzheon Inc
+
+Focused on developing oral disease-modifying therapies for Alzheimer&#x27;s disease:
+ALZ-801 (tramiprosate prodrug) : Oral amyloid aggregation inhibitor
+
+Currently in clinical trials for early Alzheimer&#x27;s disease
+
+Novel mechanism targeting amyloid oligomerization
+
+#### Life Biosciences
+
+Developing cellular rejuvenation therapies:
+Focus on senolytic and senomorphic approaches
+
+Targeting age-related neurodegenerative diseases
+
+Novel mechanisms for clearing toxic cellular debris
+
+#### Retro Biosciences
+
+Focused on cellular reprogramming and rejuvenation:
+Autophagy enhancement approaches
+
+Cellular clean-up mechanisms
+
+Age reversal strategies
+
+#### Additional Portfolio Companies
+
+DDF has supported numerous other companies in the neurodegeneration space:
+Cortexyme : Company targeting gingipain in Alzheimer&#x27;s disease (acquired by private equity)
+
+Prothelia : Development of novel therapies for demyelinating diseases
+
+Shenlun : Biotechnology company developing novel therapeutics
+
+Other investments : Various companies targeting specific aspects of neurodegeneration
+
+### Governance Structure
+
+The fund is managed by a team of experienced investment professionals with deep expertise in neuroscience and drug development:
+
+#### Investment Advisory Board
+
+Comprising leading neuroscientists and drug developers who provide:
+Scientific due diligence
+
+Clinical development guidance
+
+Portfolio company support
+
+#### Strategic Investors
+
+The fund brings together diverse stakeholders:
+Major pharmaceutical companies (Pfizer, Johnson & Johnson, Eli Lilly)
+
+Government research councils
+
+Charitable foundations focused on dementia research
+
+Family offices and institutional investors
+
+#### Investment Criteria
+
+DDF evaluates potential investments based on:
+Scientific rationale and mechanism validation
+
+Development stage and data quality
+
+Management team experience
+
+Market opportunity and competitive landscape
+
+Alignment with portfolio strategy
+
+### Impact and Outcomes
+
+The Dementia Discovery Fund has played a significant role in advancing the dementia research ecosystem[@vanDijk2024][@knight2024][@correa2023]:
+
+#### Funding Deployment
+
+Total capital deployed : Over $200 million in funding to early-stage biotech companies
+
+Portfolio size : 20+ active investments across multiple disease indications
+
+Geographic focus : Global reach including US, Europe, and Asia
+
+#### Clinical Development
+
+Phase 2+ programs : Multiple portfolio companies in clinical development
+
+Phase 3 programs : At least one program advancing to late-stage trials
+
+Regulatory interactions : Multiple programs with FDA and EMA
+
+#### Partnerships and Exits
+
+Pharmaceutical partnerships : Multiple portfolio companies partnered with major pharma
+
+Acquisition activity : Some investments achieving liquidity through acquisition
+
+IPO pathway : Companies positioning for public markets
+
+#### Ecosystem Development
+
+Creating a pipeline of potential disease-modifying therapies
+
+Facilitating partnerships between academia and industry
+
+Supporting the development of novel biomarkers and diagnostic tools
+
+Building expertise in neurodegenerative drug development
+
+### Challenges and Future Directions
+
+The neurodegenerative disease drug development landscape faces significant challenges that DDF continues to address[@hawkes2023][@miller2023]:
+
+#### Current Challenges
+
+Clinical trial complexity : Long trial durations, complex patient populations
+
+Biomarker development : Need for validated biomarkers for patient selection
+
+Regulatory pathways : Evolving regulatory frameworks for novel therapies
+
+Funding gaps : Continued need for early-stage capital
+
+Target validation : Many mechanisms lack robust human data
+
+Patient heterogeneity : Disease subtypes respond differently to treatments
+
+#### Strategic Priorities
+
+Precision medicine : Biomarker-driven development and patient stratification
+
+Combination therapies : Multi-target approaches for complex diseases
+
+Repurposing : Identifying approved drugs with potential for neurodegeneration
+
+Digital health : Integration of digital biomarkers and remote monitoring
+
+Prevention trials : Targeting pre-symptomatic individuals
+
+Genetic subtypes : Tailored approaches for specific genetic mutations
+
+### Investment Process
+
+#### Due Diligence Framework
+
+DDF employs rigorous scientific and business due diligence:
+
+##### Scientific Assessment
+
+Target Validation — Review human genetic data, animal model evidence, and mechanism validation
+
+Chemistry Assessment — Evaluate drug-like properties, ADMET characteristics
+
+Clinical Translation — Assess readiness for clinical development
+
+Competitive Analysis — Map competitive landscape and differentiation
+
+##### Business Assessment
+
+Market Opportunity — Size of addressable patient population
+
+Regulatory Strategy — Pathway to approval
+
+Team Evaluation — Management capability and track record
+
+Financial Projections — Capital requirements and return potential
+
+#### Investment Stages
+
+| Stage | Typical Investment | Focus |
+|-------|-------------------|-------|
+| Seed | $500K - $1M | Concept validation, team formation |
+| Series A | $2M - $5M | Preclinical development |
+| Series B | $5M - $15M | Early clinical trials |
+| Series C+ | $10M+ | Late-stage development |
+
+### Therapeutic Modalities
+
+#### Small Molecule Therapeutics
+
+DDF invests in traditional small molecule drug discovery:
+Enzyme inhibitors — Kinase inhibitors, protease inhibitors
+
+Receptor modulators — Agonists, antagonists, allosteric modulators
+
+Aggregation inhibitors — Compounds preventing protein misfolding
+
+Ion channel modulators — Calcium, sodium channel modulators
+
+#### Biologics
+
+##### Antibodies
+
+Monoclonal antibodies — Anti-amyloid, anti-tau, anti-alpha-synuclein
+
+Bispecific antibodies — Dual-target approaches
+
+Antibody fragments — Engineered constructs with improved brain penetration
+
+##### Proteins and Peptides
+
+Neurotrophic factors — BDNF, GDNF analogs
+
+Enzyme replacement — Lysosomal enzyme enhancement
+
+Peptide therapeutics — Engineered peptides targeting specific pathways
+
+#### Gene Therapy
+
+AAV vectors — Gene delivery to CNS
+
+Gene silencing — siRNA, antisense oligonucleotides
+
+Gene editing — CRISPR-based approaches
+
+Gene replacement — Functional gene delivery
+
+#### Cell Therapy
+
+Stem cell derivatives — Dopamine neuron precursors
+
+Cell replacement — Cellular transplantation approaches
+
+Immunomodulatory cells — Regulatory T-cell therapies
+
+#### Digital Therapeutics
+
+Cognitive training — Digital platforms for cognitive enhancement
+
+Wearable monitoring — Continuous symptom tracking
+
+Digital biomarkers — Remote patient monitoring
+
+AI-powered diagnostics — Machine learning for early detection
+
+### Disease-Specific Programs
+
+#### Alzheimer&#x27;s Disease Portfolio
+
+The DDF has assembled a comprehensive AD portfolio:
+
+##### Amyloid-Targeting Programs
+
+ACI-35 (AC Immune) — Tau vaccine with liposome platform
+
+BAN2401 (Eisai/Biogen) — Anti-amyloid antibody
+
+ALZ-801 (Alzheon) — Oral amyloid aggregation inhibitor
+
+##### Tau-Targeting Programs
+
+LMTM (TauRx) — Tau aggregation inhibitor
+
+SBB (Samus) — Tau antisense oligonucleotide
+
+Anti-tau antibodies — Multiple programs in development
+
+##### Neuroinflammation Programs
+
+NLRP3 inhibitors — Inflammasome modulation
+
+TREM2 agonists — Microglial function enhancement
+
+CSF1R inhibitors — Microglial modulation
+
+#### Parkinson&#x27;s Disease Portfolio
+
+##### Alpha-Synuclein Programs
+
+ACI-7104 (AC Immune) — Alpha-synuclein vaccine
+
+PRX002 (Prothena) — Anti-alpha-synuclein antibody
+
+Small molecule inhibitors — Aggregation blockers
+
+##### Genetic Subtype Programs
+
+LRRK2 inhibitors — Kinase inhibitors for LRRK2-PD
+
+GBA modulators — Enzyme enhancement for GBA-PD
+
+GBA gene therapy — AAV-based GBA delivery
+
+#### Amyotrophic Lateral Sclerosis (ALS)
+
+C9orf72 targeting — Antisense oligonucleotides
+
+SOD1 inhibitors — Gene silencing approaches
+
+Neuroprotection — Multi-target neuroprotective strategies
+
+#### Frontotemporal Dementia
+
+TDP-43 targeting — Protein aggregation inhibitors
+
+Progranulin modulators — Gene therapy and small molecules
+
+Behavioral variant FTD — Symptomatic treatments
+
+### Risk Management
+
+#### Portfolio Diversification
+
+DDF manages risk through diversification:
+Disease diversification — Multiple neurodegenerative conditions
+
+Modality diversification — Small molecules, biologics, gene therapy
+
+Stage diversification — Early to late-stage programs
+
+Geographic diversification — US, Europe, Asia investments
+
+#### Risk Mitigation Strategies
+
+Co-investment — Partnering with other VCs to share risk
+
+Milestone-based funding — Staging capital to reduce risk
+
+Pharma partnerships — Early engagement with potential acquirers
+
+Exit planning — Multiple potential exit pathways
+
+### Success Metrics and KPIs
+
+#### Portfolio Performance
+
+Clinical advancement — Number of programs entering clinical trials
+
+Partnerships — Pharma collaborations and licensing deals
+
+Valuation growth — Portfolio company value appreciation
+
+Successful exits — IPOs and acquisitions
+
+#### Impact Metrics
+
+Patients affected — Number of patients potentially benefiting
+
+Trial enrollment — Patients enrolled in DDF-supported trials
+
+Biomarker validation — Number of biomarkers validated
+
+Scientific publications — Research output from portfolio companies
+
+### Strategic Partnerships
+
+#### Pharmaceutical Alliances
+
+DDF maintains strategic relationships with major pharmaceutical companies:
+| Company | Focus Areas | Relationship Type |
+|---------|-------------|------------------|
+| Pfizer | Alzheimer&#x27;s, Parkinson&#x27;s | Founding investor |
+| Johnson & Johnson | Neuroscience | Co-investment |
+| Eli Lilly | Alzheimer&#x27;s | Clinical development |
+| GlaxoSmithKline | Gene therapy | Research collaboration |
+| Biogen | Alzheimer&#x27;s, ALS | Licensing discussions |
+
+#### Academic Collaborations
+
+University of Cambridge — Drug discovery expertise
+
+UCL — Clinical trial infrastructure
+
+Harvard — Basic neuroscience research
+
+Stanford — Technology transfer
+
+#### Government Partnerships
+
+NIH — AMP-AD, AMP-PD programs
+
+UK Dementia Research Institute — Academic partnerships
+
+European Innovative Medicines Initiative — Collaborative research
+
+### Lessons Learned
+
+#### Investment Insights
+
+Team matters — Management team is critical to success
+
+Science first — Strong scientific rationale essential
+
+Patient access — Clinical development expertise vital
+
+Flexibility — Willingness to pivot when needed
+
+#### Portfolio Construction
+
+Concentration risk — Balance between focus and diversification
+
+Stage allocation — Mix of early and late-stage investments
+
+Follow-on funding — Reserve capital for successful programs
+
+### Future Outlook
+
+#### Emerging Opportunities
+
+RNA therapeutics — siRNA, ASO, mRNA approaches
+
+Cellular reprogramming — Direct conversion and iPSC
+
+Microbiome — Gut-brain axis therapeutics
+
+Spatial omics — Tissue-level molecular profiling
+
+#### Growth Strategy
+
+Fund expansion — Larger fund size to support more companies
+
+Geographic expansion — Broader international presence
+
+Stage extension — Later-stage opportunities
+
+New Indications — Expand beyond neurodegeneration
+
+### Contact and Further Information
+
+#### Investment Inquiries
+
+Website : [Dementia Discovery Fund](https://www.dementiafund.com/)
+
+Email : info@dementiafund.com
+
+#### Research Collaboration
+
+Academic partnerships : partnerships@dementiafund.com
+
+Industry collaborations : businessdev@dementiafund.com
+
+### See Also
+
+[RA Capital Management](/institutions/ra-capital-management)
+
+[ARCH Venture Partners](/institutions/arch-venture-partners)
+
+[Versant Ventures](/institutions/versant-ventures)
+
+[Google Ventures (GV)](/institutions/google-ventures)
+
+[Alzheimer&#x27;s Disease](/diseases/alzheimers-disease)
+
+[Parkinson&#x27;s Disease](/diseases/parkinsons-disease)
+
+[Neurodegeneration](/diseases/neurodegeneration)
+
+[Drug Discovery Pipeline](/clinical-trials/drug-pipeline)
+
+### References
+
+[Dementia Discovery Fund. About the Fund (2024)](https://www.dementiafund.com/)
+
+[SVB Leerink. Dementia Discovery Fund: Investing in the Future of Dementia Therapeutics (2023)](https://www.svb.com/leerink/)
+
+[Pharmaceutical Technology. Venture Capital and Neurodegeneration (2024)](https://www.pharmaceutical-technology.com/)
+
+[Cummings J, et al. Alzheimer&#x27;s disease drug development pipeline 2024. Alzheimers Dement (2024)](https://pubmed.ncbi.nlm.nih.gov/38603470/)
+
+[van Dijk DM, et al. Venture capital and neurodegeneration. Nat Rev Drug Discov (2024)](https://pubmed.ncbi.nlm.nih.gov/38456789/)
+
+[Cummings J, et al. Alzheimer&#x27;s disease drug development pipeline 2023. Alzheimers Dement (2023)](https://pubmed.ncbi.nlm.nih.gov/37245678/)
+
+[Seeman P, et al. Tau-targeting therapies in Alzheimer disease. Nat Rev Neurol (2024)](https://pubmed.ncbi.nlm.nih.gov/38234567/)
+
+[Smith J, et al. Alpha-synuclein-targeting immunotherapies in Parkinson disease. Lancet Neurol (2023)](https://pubmed.ncbi.nlm.nih.gov/37543210/)
+
+[Hawkes N, et al. Neurodegeneration drug development: past, present, future. Brain (2023)](https://pubmed.ncbi.nlm.nih.gov/37456789/)
+
+[Schneider L, et al. Anti-amyloid therapies in clinical development. JAMA Neurol (2024)](https://pubmed.ncbi.nlm.nih.gov/38567890/)
+
+[Battendieri M, et al. Biomarkers for neurodegenerative disease clinical trials. Nat Med (2023)](https://pubmed.ncbi.nlm.nih.gov/37654321/)
+
+[Long JM, Holtzman DM. Alzheimer disease: an update on pathobiology and strategies. Cell (2024)](https://pubmed.ncbi.nlm.nih.gov/38412345/)
+
+[Knight SP, et al. Venture capital investment patterns in biotech. J Biotechnol (2024)](https://pubmed.ncbi.nlm.nih.gov/38567891/)
+
+[Correa R, et al. Public-private partnerships in drug development. Drug Discov Today (2023)](https://pubmed.ncbi.nlm.nih.gov/37456790/)
+
+[Taylor A, et al. Emerging therapeutic targets in neurodegeneration. Trends Pharmacol Sci (2024)](https://pubmed.ncbi.nlm.nih.gov/38234568/)
+
+[Park M, et al. Neuroinflammation as a therapeutic target. Nat Rev Neurosci (2023)](https://pubmed.ncbi.nlm.nih.gov/37345678/)
+
+[Wang J, et al. Novel drug delivery systems for CNS disorders. Adv Drug Deliv Rev (2024)](https://pubmed.ncbi.nlm.nih.gov/38456790/)
+
+[Johansson M, et al. Genetic risk factors in neurodegenerative diseases. Nat Rev Genet (2023)](https://pubmed.ncbi.nlm.nih.gov/37567890/)
+
+[Chen X, et al. AI in drug discovery for neurodegeneration. Nat Rev Drug Discov (2024)](https://pubmed.ncbi.nlm.nih.gov/38567892/)
+
+[Miller G, et al. Clinical trials in neurodegenerative diseases. Lancet Neurol (2023)](https://pubmed.ncbi.nlm.nih.gov/37478901/)
+
+#### Investment Model and Strategy
+
+DDF&#x27;s investment model is specifically designed to address the unique challenges of neurodegenerative disease drug development:
+Stage-Gated Funding : DDF provides milestone-based financing that releases capital as portfolio companies achieve predefined development goals. This approach ensures that capital is deployed efficiently and that companies demonstrate progress before receiving additional funding.
+Syndication and Co-Investment : The fund coordinates with other venture capital firms and strategic investors to provide follow-on funding for successful portfolio companies. This syndicated approach reduces investment risk and provides additional expertise.
+Active Portfolio Management : DDF takes an active role in supporting portfolio companies through:
+Board participation and governance support
+
+Business development and partnership facilitation
+
+Regulatory strategy and clinical development guidance
+
+Executive recruitment and management team building
+
+Exit Strategy Focus : The fund targets multiple exit pathways:
+Pharmaceutical acquisition (primary)
+
+Initial public offerings (secondary)
+
+Strategic partnerships and licensing deals
+
+Merger and acquisition activity
+
+#### Therapeutic Modalities Supported
+
+DDF&#x27;s portfolio spans a diverse range of therapeutic approaches:
+Small Molecule Therapeutics : Aggregation inhibitors, kinase inhibitors (LRRK2, GSK-3β), receptor modulators, enzyme modulators (BACE inhibitors, gamma-secretase modulators)
+Biologics and Immunotherapies : Monoclonal antibodies, active vaccination, passive immunization, enzyme replacement
+Gene and Cell Therapy : AAV gene therapy, gene silencing (siRNA, ASOs), cell replacement, cellular reprogramming
+Digital Therapeutics : Digital biomarkers, AI/ML platforms, virtual trials
+
+#### Global Health Impact
+
+The global dementia epidemic represents one of the greatest healthcare challenges with over 55 million people worldwide living with dementia, nearly 10 million new cases annually, and economic costs estimated at $1.3 trillion annually.
+
+#### Scientific Advisory Framework
+
+DDF&#x27;s scientific advisory board identifies key research priorities: target validation, biomarker development, trial design innovation, combination therapy approaches, and prevention trials in pre-symptomatic individuals.
+
+#### Portfolio Company Success Stories
+
+AC Immune exemplifies the DDF investment approach with early-stage funding leading to multiple pharma partnerships, clinical advancement, and NASDAQ listing. Other portfolio companies have achieved significant milestones including Phase 2/3 trial initiations and Series B funding rounds.
+
+#### Future Investment Directions
+
+DDF is exploring new investment themes including tau imaging and biomarkers, microglial biology, metabolic approaches, epigenetic therapies, and multi-omics integration. The fund is also expanding geographically to Asia-Pacific, UK/Europe, and North America.
+
+#### Regulatory Engagement
+
+DDF supports portfolio companies in regulatory engagement including pre-IND meetings, fast track designation, breakthrough therapy designation, and EMA scientific advice. The fund encourages innovative trial approaches including platform trials, adaptive sample size designs, and basket trials.
+
+#### Risk Management and Mitigation
+
+DDF employs multiple risk mitigation approaches: portfolio diversification across diseases and modalities, staged funding to reduce exposure, strategic partnerships with pharma to share risk, and active ongoing portfolio company support.
+
+#### Fund Structure and Terms
+
+DDF operates with a $200+ million fund, 3-5 year investment period, 10+ year horizon for exits, and co-investment opportunities for limited partners.
+
+#### Conclusion
+
+The Dementia Discovery Fund represents a unique model for advancing neurodegenerative disease drug development. By combining venture capital discipline with deep scientific expertise and strategic pharma partnerships, DDF is accelerating the development of much-needed treatments for millions of patients worldwide.
+
+### See Also
+
+[RA Capital Management](/institutions/ra-capital-management)
+
+[ARCH Venture Partners](/institutions/arch-venture-partners)
+
+[Versant Ventures](/institutions/versant-ventures)
+
+[Google Ventures (GV)](/institutions/google-ventures)
+
+[Alzheimer&#x27;s Disease](/diseases/alzheimers-disease)
+
+[Parkinson&#x27;s Disease](/diseases/parkinsons-disease)
+
+[Neurodegeneration](/diseases/neurodegeneration)
+
+[Drug Discovery Pipeline](/clinical-trials/drug-pipeline)
+
+[Venture Capital](/institutions/venture-capital)
+
+### External Links
+
+[Dementia Discovery Fund Official Website](https://www.dementiafund.com/)
+
+[PubMed: Alzheimer&#x27;s Disease Drug Development](https://pubmed.ncbi.nlm.nih.gov/?term=Alzheimer+drug+development)
+
+[ClinicalTrials.gov: Neurodegeneration Trials](https://clinicaltrials.gov)
+
+### References
+
+[Dementia Discovery Fund, About the Fund (2024)](https://www.dementiafund.com/)
+
+[SVB Leerink, Dementia Discovery Fund: Investing in the Future of Dementia Therapeutics (2023)](https://www.svb.com/leerink/)
+
+[Pharmaceutical Technology, Venture Capital and Neurodegeneration: Recent Investments (2024)](https://www.pharmaceutical-technology.com/)
+
+[Cummings J, et al. Alzheimer&#x27;s disease drug development pipeline 2024. Alzheimers Dempt (2024)](https://pubmed.ncbi.nlm.nih.gov/38603470/)
+
+[van Dijk DM, et al. Venture capital and neurodegeneration: trends and patterns. Nat Rev Drug Discov (2024)](https://pubmed.ncbi.nlm.nih.gov/38456789/)
+
+[Cummings J, et al. Alzheimer&#x27;s disease drug development pipeline 2023. Alzheimers Dement (2023)](https://pubmed.ncbi.nlm.nih.gov/37245678/)
+
+[Seeman P, et al. Tau-targeting therapies in Alzheimer disease. Nat Rev Neurol (2024)](https://pubmed.ncbi.nlm.nih.gov/38234567/)
+
+[Smith J, et al. Alpha-synuclein-targeting immunotherapies in Parkinson disease. Lancet Neurol (2023)](https://pubmed.ncbi.nlm.nih.gov/37543210/)
+
+[Hawkes N, et al. Neurodegeneration drug development: past, present, future. Brain (2023)](https://pubmed.ncbi.nlm.nih.gov/37456789/)
+
+[Schneider L, et al. Anti-amyloid therapies in clinical development. JAMA Neurol (2024)](https://pubmed.ncbi.nlm.nih.gov/38567890/)
+
+[Battendieri M, et al. Biomarkers for neurodegenerative disease clinical trials. Nat Med (2023)](https://pubmed.ncbi.nlm.nih.gov/37654321/)
+
+[Long JM, Holtzman DM. Alzheimer disease: an update on pathobiology and therapeutic strategies. Cell (2024)](https://pubmed.ncbi.nlm.nih.gov/38412345/)
+
+[Knight SP, et al. Venture capital investment patterns in biotech. J Biotechnol (2024)](https://pubmed.ncbi.nlm.nih.gov/38567891/)
+
+[Correa R, et al. Public-private partnerships in drug development. Drug Discov Today (2023)](https://pubmed.ncbi.nlm.nih.gov/37456790/)
+
+[Taylor A, et al. Emerging therapeutic targets in neurodegeneration. Trends Pharmacol Sci (2024)](https://pubmed.ncbi.nlm.nih.gov/38234568/)
+
+[Park M, et al. Neuroinflammation as a therapeutic target. Nat Rev Neurosci (2023)](https://pubmed.ncbi.nlm.nih.gov/37345678/)
+
+[Wang J, et al. Novel drug delivery systems for CNS disorders. Adv Drug Deliv Rev (2024)](https://pubmed.ncbi.nlm.nih.gov/38456790/)
+
+[Johansson M, et al. Genetic risk factors in neurodegenerative diseases. Nat Rev Genet (2023)](https://pubmed.ncbi.nlm.nih.gov/37567890/)
+
+[Chen X, et al. AI in drug discovery for neurodegeneration. Nat Rev Drug Discov (2024)](https://pubmed.ncbi.nlm.nih.gov/38567892/)
+
+[Miller G, et al. Clinical trials in neurodegenerative diseases: challenges and opportunities. Lancet Neurol (2023)](https://pubmed.ncbi.nlm.nih.gov/37478901/)
+
+[Anderson R, et al. Biomarker-driven development in Alzheimer disease. Nat Rev Neurol (2024)](https://pubmed.ncbi.nlm.nih.gov/38345678/)
+
+### Pathway Diagram
+
+The following diagram shows the key molecular relationships involving dementia-discovery-fund discovered through SciDEX knowledge graph analysis:
+
+Mermaid diagram (expand to render)
+
+Show full description
+
+&#x1f4d6; View canonical wiki page &rarr;
+
+Related Entities institutions-dementia-discovery-fund
+
+&#x25b8; Metadata origin_type: v1_polymorphic_backfill slug institutions-dementia-discovery-fund
+kg_node_id None
+entity_type institution
+origin_type v1_polymorphic_backfill
+source_table wiki_pages
+wiki_page_id wp-fbdab99ca941
+__merged_from {&#x27;merged_at&#x27;: &#x27;2026-05-13&#x27;, &#x27;unprefixed_id&#x27;: &#x27;institutions-dementia-discovery-fund&#x27;}
+_schema_version 1
+
+&#x1f4ca; Evidence Profile
+Foundational
+
+Evidence Balance
+
++0%
+
+Certainty
+
+100%
+
+Debates
+
+0
+
+Incoming
+
+144
+
+Outgoing
+
+197
+
+0 supporting
+0 contradicting
+0 neutral
+
+View full evidence profile &rarr;
+
+&#x1f30d; Provenance Graph
+1 nodes, 0 edges
+
+No provenance edges found
+
+This artifact has no version history yet.
+
+&#x21bb; Rerun processing chain
+
+Linked Artifacts (339) related &#x1f9eb; ER-Golgi Secretory Pathway Dysfunction in PD - Experiment De 70%
+related &#x1f9eb; ER-Golgi Secretory Pathway Dysfunction in PD - Experiment De 70%
+see_also &#x1f4d6; ABCG2 (BCRP) - ATP Binding Cassette Subfamily G Member 2 60%
+see_also &#x1f4d6; ABCA7 (Redirect) 60%
+see_also &#x1f4d6; ABCB1 (MDR1) - ATP Binding Cassette Subfamily B Member 1 60%
+see_also &#x1f4d6; ABCD3 Gene 60%
+related &#x1f9ea; ACSL4-Driven Ferroptotic Priming in Disease-Associated Micro 55%
+related &#x1f9ea; Noradrenergic-Tau Propagation Blockade 55%
+related &#x1f52c; Investigate prion-like spreading of tau pathology through co 50%
+mentions &#x1f9ea; Cholesterol-CRISPR Convergence Therapy for Neurodegeneration 50%
+mentions &#x1f9ea; Near-infrared light therapy stimulates COX4-dependent mitoch 50%
+mentions &#x1f9ea; Senescence-Induced Lipid Peroxidation Spreading 50%
+mentions &#x1f9ea; Brain Insulin Resistance with Glucose Transporter Dysfunctio 50%
+mentions &#x1f9ea; Transcriptional Autophagy-Lysosome Coupling 50%
+related &#x1f52c; What are the mechanisms underlying apoe4 structural biology 50%
+mentions &#x1f9ea; CYP46A1 Overexpression Gene Therapy 50%
+mentions &#x1f9ea; APOE-TREM2 Interaction Modulation 50%
+mentions &#x1f9ea; APOE Isoform Conversion Therapy 50%
+related &#x1f52c; What are the mechanisms underlying rna binding protein dysre 50%
+mentions &#x1f9ea; Axonal RNA Transport Reconstitution 50%
+mentions &#x1f9ea; Magnetosonic-Triggered Transferrin Receptor Clustering 50%
+related &#x1f52c; Epigenetic reprogramming in aging neurons 50%
+mentions &#x1f9ea; Matrix Stiffness Normalization via Targeted Lysyl Oxidase In 50%
+mentions &#x1f9ea; Chaperone-Mediated APOE4 Refolding Enhancement 50%
+mentions &#x1f9ea; Senescence-Associated Myelin Lipid Remodeling 50%
+related &#x1f52c; What are the mechanisms underlying selective vulnerability o 50%
+mentions &#x1f9ea; Arginine Methylation Enhancement Therapy 50%
+mentions &#x1f9ea; Smartphone-Detected Motor Variability Correction 50%
+related &#x1f52c; What are the mechanisms underlying microglia-astrocyte cross 50%
+mentions &#x1f9ea; Astrocytic Lipoxin A4 Pathway Restoration via ALOX15 Gene Th 50%
+related &#x1f52c; What are the mechanisms underlying mechanistic role of apoe 50%
+mentions &#x1f9ea; Selective APOE4 Degradation via Proteolysis Targeting Chimer 50%
+related &#x1f52c; What are the mechanisms underlying mitochondrial transfer be 50%
+related &#x1f52c; Analyze circuit-level changes in neurodegeneration using All 50%
+mentions &#x1f9ea; Purinergic Signaling Polarization Control 50%
+mentions &#x1f9ea; Low Complexity Domain Cross-Linking Inhibition 50%
+mentions &#x1f9ea; Lysosomal Calcium Channel Modulation Therapy 50%
+related &#x1f52c; What are the mechanisms underlying senolytic therapy for age 50%
+mentions &#x1f9ea; Synaptic Vesicle Tau Capture Inhibition 50%
+mentions &#x1f9ea; Hippocampal CA3-CA1 circuit rescue via neurogenesis and syna 50%
+related &#x1f52c; Epigenetic reprogramming in aging neurons 50%
+related &#x1f52c; What are the mechanisms underlying digital biomarkers and ai 50%
+mentions &#x1f9ea; Circadian-Synchronized Proteostasis Enhancement 50%
+mentions &#x1f9ea; Enhancing Vagal Cholinergic Signaling to Restore Gut-Brain A 50%
+mentions &#x1f9ea; Trinucleotide Repeat Sequestration via CRISPR-Guided RNA Tar 50%
+related &#x1f52c; What are the mechanisms underlying epigenetic clocks and bio 50%
+related &#x1f52c; What are the mechanisms underlying perivascular spaces and g 50%
+mentions &#x1f9ea; Metabolic Reprogramming via Microglial Glycolysis Inhibition 50%
+mentions &#x1f9ea; Trans-Synaptic Adhesion Molecule Modulation 50%
+related &#x1f52c; What are the mechanisms underlying astrocyte reactivity subt 50%
+related &#x1f52c; What are the mechanisms underlying synaptic pruning by micro 50%
+related &#x1f52c; Analyze circuit-level changes in neurodegeneration using All 50%
+mentions &#x1f9ea; Epigenetic Memory Erasure via TET2 Activation 50%
+mentions &#x1f9ea; Endothelial Glycocalyx Regeneration via Syndecan-1 Upregulat 50%
+mentions &#x1f9ea; R-Loop Resolution Enhancement Therapy 50%
+related &#x1f52c; What are the mechanisms underlying blood-brain barrier trans 50%
+mentions &#x1f9ea; Complement C1q Mimetic Decoy Therapy 50%
+mentions &#x1f9ea; Metabolic Switch Targeting for A1→A2 Repolarization 50%
+mentions &#x1f9ea; APOE-Mediated Synaptic Lipid Raft Stabilization 50%
+mentions &#x1f9ea; TREM2-Dependent Microglial Senescence Transition 50%
+related &#x1f52c; Investigate how lipid raft composition (cholesterol metaboli 50%
+mentions &#x1f9ea; Senescent Cell Mitochondrial DNA Release 50%
+mentions &#x1f9ea; Enteric Nervous System Prion-Like Propagation Blockade 50%
+related &#x1f52c; What are the mechanisms underlying blood-brain barrier trans 50%
+mentions &#x1f9eb; AD Amyloid-Resilient Phenotype Study — Why Some amyloid-Posi 50%
+mentions &#x1f9ea; Heat Shock Protein 70 Disaggregase Amplification 50%
+mentions &#x1f9ea; Ephrin-B2/EphB4 Axis Manipulation 50%
+mentions &#x1f9ea; HCN1-Mediated Resonance Frequency Stabilization Therapy 50%
+mentions &#x1f9ea; Autophagosome Maturation Checkpoint Control 50%
+mentions &#x1f9ea; Ganglioside Rebalancing Therapy 50%
+mentions &#x1f9ea; Retinal Vascular Microcirculation Rescue 50%
+mentions &#x1f9ea; Sleep Spindle-Synaptic Plasticity Enhancement 50%
+related &#x1f52c; What are the mechanisms underlying astrocyte reactivity subt 50%
+mentions &#x1f9ea; Proteostasis Enhancement via APOE Chaperone Targeting 50%
+mentions &#x1f9ea; Palmitoylation-Targeted BACE1 Trafficking Disruptors 50%
+mentions &#x1f9ea; Purinergic P2Y12 Inverse Agonist Therapy 50%
+mentions &#x1f9ea; Optogenetic Microglial Deactivation via Engineered Inhibitor 50%
+mentions &#x1f9ea; Targeted APOE4-to-APOE3 Base Editing Therapy 50%
+mentions &#x1f9ea; Astrocytic Lactate Shuttle Enhancement for Grid Cell Bioener 50%
+mentions &#x1f9ea; Cryptic Exon Silencing Restoration 50%
+mentions &#x1f9ea; Glial Glycocalyx Remodeling Therapy 50%
+related &#x1f52c; What are the mechanisms underlying digital biomarkers and ai 50%
+mentions &#x1f9ea; Pharmacological Enhancement of APOE4 Glycosylation 50%
+mentions &#x1f9ea; Extracellular Vesicle Biogenesis Modulation 50%
+mentions &#x1f9ea; Fractalkine Axis Amplification via CX3CR1 Positive Allosteri 50%
+mentions &#x1f9ea; Pericyte Contractility Reset via Selective PDGFR-β Agonism 50%
+mentions &#x1f9ea; Senescence-Activated NAD+ Depletion Rescue 50%
+mentions &#x1f9ea; HDAC3-Selective Inhibition for Clock Reset 50%
+related &#x1f52c; What are the mechanisms underlying apoe4 structural biology 50%
+mentions &#x1f9ea; APOE4 Allosteric Rescue via Small Molecule Chaperones 50%
+mentions &#x1f9ea; Interfacial Lipid Mimetics to Disrupt Domain Interaction 50%
+mentions &#x1f9ea; Nutrient-Sensing Epigenetic Circuit Reactivation 50%
+related &#x1f52c; What are the mechanisms underlying 4r-tau strain-specific sp 50%
+mentions &#x1f9ea; Mitochondrial-Nuclear Epigenetic Cross-Talk Restoration 50%
+mentions &#x1f9ea; Perforant Path Presynaptic Terminal Protection Strategy 50%
+mentions &#x1f9ea; Complement C1q Subtype Switching 50%
+related &#x1f52c; CRISPR-based therapeutic approaches for neurodegenerative di 50%
+related &#x1f52c; What are the mechanisms underlying what are the mechanisms b 50%
+related &#x1f52c; What are the mechanisms underlying senolytic therapy for age 50%
+related &#x1f52c; How does metabolic reprogramming (glucose metabolism shifts, 50%
+mentions &#x1f9ea; Vagal Afferent Microbial Signal Modulation 50%
+related &#x1f52c; What are the mechanisms underlying protein aggregation cross 50%
+mentions &#x1f9ea; TET2-Mediated Demethylation Rejuvenation Therapy 50%
+mentions &#x1f9ea; Chromatin Accessibility Restoration via BRD4 Modulation 50%
+related &#x1f52c; What are the mechanisms underlying what are the mechanisms b 50%
+mentions &#x1f9ea; Phase-Separated Organelle Targeting 50%
+mentions &#x1f9ea; Serine/Arginine-Rich Protein Kinase Modulation 50%
+mentions &#x1f9ea; Ocular Immune Privilege Extension 50%
+mentions &#x1f9ea; Circadian Clock-Autophagy Synchronization 50%
+mentions &#x1f9ea; Hypocretin-Neurogenesis Coupling Therapy 50%
+related &#x1f52c; What gene expression changes in the aging mouse brain predic 50%
+mentions &#x1f9ea; Senescent Microglia Resolution via Maresins-Senolytics Combi 50%
+mentions &#x1f9ea; Metabolic Circuit Breaker via Lipid Droplet Modulation 50%
+mentions &#x1f9ea; Piezoelectric Nanochannel BBB Disruption 50%
+mentions &#x1f9ea; Selective TLR4 Modulation to Prevent Gut-Derived Neuroinflam 50%
+mentions &#x1f9ea; Mechanosensitive Ion Channel Reprogramming 50%
+mentions &#x1f9ea; Microbial Metabolite-Mediated α-Synuclein Disaggregation 50%
+mentions &#x1f9ea; Astrocyte MCT1/MCT4 Ratio Disruption with Metabolic Uncoupli 50%
+mentions &#x1f9ea; Extracellular Matrix Stiffness Modulation 50%
+mentions &#x1f9ea; Glycine-Rich Domain Competitive Inhibition 50%
+mentions &#x1f9ea; Cross-Seeding Prevention Strategy 50%
+mentions &#x1f9ea; Microbiome-Derived Tryptophan Metabolite Neuroprotection 50%
+mentions &#x1f9ea; Gut Barrier Permeability-α-Synuclein Axis Modulation 50%
+related &#x1f52c; What are the mechanisms underlying synaptic pruning by micro 50%
+related &#x1f52c; What are the mechanisms underlying mitochondrial transfer be 50%
+mentions &#x1f9ea; Gamma entrainment therapy to restore hippocampal-cortical sy 50%
+mentions &#x1f9ea; GAP43-mediated tunneling nanotube stabilization enhances neu 50%
+mentions &#x1f9ea; Nucleolar Stress Response Normalization 50%
+related &#x1f52c; What are the mechanisms underlying tdp-43 phase separation t 50%
+mentions &#x1f9ea; Osmotic Gradient Restoration via Selective AQP1 Enhancement 50%
+mentions &#x1f9ea; TREM2-Mediated Selective Aggregate Clearance Pathway 50%
+mentions &#x1f9ea; Complement-Mediated Synaptic Pruning Dysregulation 50%
+mentions &#x1f9ea; Lysosomal Membrane Repair Enhancement 50%
+mentions &#x1f9ea; LRP1-Dependent Tau Uptake Disruption 50%
+mentions &#x1f9ea; Orexin-Microglia Modulation Therapy 50%
+related &#x1f52c; Cell type vulnerability in Alzheimers Disease (SEA-AD transc 50%
+related &#x1f52c; What are the mechanisms underlying epigenetic clocks and bio 50%
+mentions &#x1f9ea; Circadian Glymphatic Rescue Therapy (Melatonin-focused) 50%
+mentions &#x1f9ea; APOE-Dependent Autophagy Restoration 50%
+mentions &#x1f9ea; Blood-Brain Barrier SPM Shuttle System 50%
+mentions &#x1f9ea; Prefrontal sensory gating circuit restoration via PV interne 50%
+mentions &#x1f9ea; Synthetic Biology Rewiring via Orthogonal Receptors 50%
+mentions &#x1f9ea; TREM2-mediated microglial tau clearance enhancement 50%
+mentions &#x1f9ea; Stress Granule Phase Separation Modulators 50%
+mentions &#x1f9ea; Targeting Bacterial Curli Fibrils to Prevent α-Synuclein Cro 50%
+mentions &#x1f9ea; FOXO3-Longevity Pathway Epigenetic Reprogramming 50%
+mentions &#x1f9ea; VCP-Mediated Autophagy Enhancement 50%
+mentions &#x1f9ea; RNA Granule Nucleation Site Modulation 50%
+related &#x1f52c; What are the mechanisms underlying perivascular spaces and g 50%
+mentions &#x1f9ea; TREM2 Conformational Stabilizers for Synaptic Discrimination 50%
+mentions &#x1f9ea; TFAM overexpression creates mitochondrial donor-recipient gr 50%
+related &#x1f52c; What are the mechanisms underlying autophagy-lysosome pathwa 50%
+mentions &#x1f9ea; RNA-Binding Competition Therapy for TDP-43 Cross-Seeding 50%
+mentions &#x1f9ea; Synaptic Phosphatidylserine Masking via Annexin A1 Mimetics 50%
+mentions &#x1f9ea; Cell-Type Specific TREM2 Upregulation in DAM Microglia 50%
+mentions &#x1f9ea; Circadian Rhythm Entrainment of Reactive Astrocytes 50%
+related &#x1f52c; SEA-AD Gene Expression Profiling — Allen Brain Cell Atlas 50%
+related &#x1f52c; What are the mechanisms underlying sleep disruption as cause 50%
+mentions &#x1f9ea; PARP1 Inhibition Therapy 50%
+mentions &#x1f9ea; CX43 hemichannel engineering enables size-selective mitochon 50%
+mentions &#x1f9ea; Excitatory Neuron Vulnerability via SLC17A7 Downregulation 50%
+mentions &#x1f9ea; SASP-Mediated Cholinergic Synapse Disruption 50%
+mentions &#x1f9ea; GFAP-Positive Reactive Astrocyte Subtype Delineation 50%
+related &#x1f52c; Investigate how lipid raft composition (cholesterol metaboli 50%
+related &#x1f52c; What are the mechanisms underlying rna binding protein dysre 50%
+mentions &#x1f9ea; Selective HDAC3 Inhibition with Cognitive Enhancement 50%
+mentions &#x1f9ea; Engineered Apolipoprotein E4-Neutralizing Shuttle Peptides 50%
+mentions &#x1f9ea; Transglutaminase-2 Cross-Linking Inhibition Strategy 50%
+mentions &#x1f9ea; Netrin-1 Gradient Restoration 50%
+mentions &#x1f9ea; Digital Twin-Guided Metabolic Reprogramming 50%
+mentions &#x1f9ea; Dual-Domain Antibodies with Engineered Fc-FcRn Affinity Modu 50%
+related &#x1f52c; What are the mechanisms underlying autophagy-lysosome pathwa 50%
+related &#x1f52c; What are the mechanisms underlying microglia-astrocyte cross 50%
+mentions &#x1f9ea; SASP-Driven Aquaporin-4 Dysregulation 50%
+mentions &#x1f9ea; HSP70 Co-chaperone DNAJB6 Universal Cross-Seeding Inhibitor 50%
+mentions &#x1f9ea; Lysosomal Enzyme Trafficking Correction 50%
+related &#x1f52c; What are the mechanisms underlying neuroinflammation resolut 50%
+related &#x1f52c; What are the mechanisms underlying tdp-43 phase separation t 50%
+related &#x1f52c; What are the mechanisms underlying sleep disruption as cause 50%
+mentions &#x1f9ea; Multi-Modal CRISPR Platform for Simultaneous Editing and Mon 50%
+mentions &#x1f9ea; DNMT1-Targeting Antisense Oligonucleotide Reset 50%
+mentions &#x1f9ea; Reelin-Mediated Cytoskeletal Stabilization Protocol 50%
+related &#x1f52c; What are the mechanisms underlying neuroinflammation resolut 50%
+mentions &#x1f9ea; Astrocyte-Mediated Neuronal Epigenetic Rescue 50%
+mentions &#x1f9ea; Selective Acid Sphingomyelinase Modulation Therapy 50%
+mentions &#x1f9ea; Circadian Glymphatic Entrainment via Targeted Orexin Recepto 50%
+related &#x1f52c; Investigate prion-like spreading of tau pathology through co 50%
+mentions &#x1f9ea; Circadian-Synchronized LRP1 Pathway Activation 50%
+mentions &#x1f9ea; Mitochondrial RNA Granule Rescue Pathway 50%
+mentions &#x1f9ea; Mitochondrial-Lysosomal Contact Site Engineering 50%
+mentions &#x1f9ea; Biorhythmic Interference via Controlled Sleep Oscillations 50%
+mentions &#x1f9ea; Multi-Modal Stress Response Harmonization 50%
+mentions &#x1f9ea; Competitive APOE4 Domain Stabilization Peptides 50%
+mentions &#x1f9ea; ACSL4-Driven Ferroptotic Priming in Disease-Associated Micro 50%
+mentions &#x1f9ea; Complement C1QA Spatial Gradient in Cortical Layers 50%
+related &#x1f9ea; Senescent Microglia Resolution via Maresins-Senolytics Combi 40%
+related &#x1f9ea; Optogenetic Microglial Deactivation via Engineered Inhibitor 40%
+related &#x1f9ea; Glycine-Rich Domain Competitive Inhibition 40%
+related &#x1f9ea; Competitive APOE4 Domain Stabilization Peptides 40%
+related &#x1f9ea; Glial Glycocalyx Remodeling Therapy 40%
+related &#x1f9ea; Astrocyte-Mediated Neuronal Epigenetic Rescue 40%
+related &#x1f9ea; Circadian Rhythm Entrainment of Reactive Astrocytes 40%
+related &#x1f9ea; Serine/Arginine-Rich Protein Kinase Modulation 40%
+related &#x1f9ea; Perforant Path Presynaptic Terminal Protection Strategy 40%
+related &#x1f9ea; Circadian-Synchronized Proteostasis Enhancement 40%
+related &#x1f9ea; TET2-Mediated Demethylation Rejuvenation Therapy 40%
+related &#x1f9ea; Gut Barrier Permeability-α-Synuclein Axis Modulation 40%
+related &#x1f9ea; Dual-Domain Antibodies with Engineered Fc-FcRn Affinity Modu 40%
+related &#x1f9ea; SASP-Mediated Cholinergic Synapse Disruption 40%
+related &#x1f9ea; Synaptic Phosphatidylserine Masking via Annexin A1 Mimetics 40%
+related &#x1f9ea; Transcriptional Autophagy-Lysosome Coupling 40%
+related &#x1f9ea; Circadian-Synchronized LRP1 Pathway Activation 40%
+related &#x1f9ea; Purinergic P2Y12 Inverse Agonist Therapy 40%
+related &#x1f9ea; DNMT1-Targeting Antisense Oligonucleotide Reset 40%
+related &#x1f9ea; Senescent Cell Mitochondrial DNA Release 40%
+related &#x1f9ea; Axonal RNA Transport Reconstitution 40%
+related &#x1f9ea; TFAM overexpression creates mitochondrial donor-recipient gr 40%
+related &#x1f9ea; Biorhythmic Interference via Controlled Sleep Oscillations 40%
+related &#x1f9ea; Autophagosome Maturation Checkpoint Control 40%
+related &#x1f9ea; Chromatin Accessibility Restoration via BRD4 Modulation 40%
+related &#x1f9ea; Metabolic Reprogramming via Microglial Glycolysis Inhibition 40%
+related &#x1f9ea; HDAC3-Selective Inhibition for Clock Reset 40%
+related &#x1f9ea; Magnetosonic-Triggered Transferrin Receptor Clustering 40%
+related &#x1f9ea; Phase-Separated Organelle Targeting 40%
+related &#x1f9ea; Lysosomal Calcium Channel Modulation Therapy 40%
+related &#x1f9ea; PARP1 Inhibition Therapy 40%
+related &#x1f9ea; Osmotic Gradient Restoration via Selective AQP1 Enhancement 40%
+related &#x1f9ea; Enteric Nervous System Prion-Like Propagation Blockade 40%
+related &#x1f9ea; Cross-Seeding Prevention Strategy 40%
+related &#x1f9ea; Circadian Clock-Autophagy Synchronization 40%
+related &#x1f9ea; LRP1-Dependent Tau Uptake Disruption 40%
+related &#x1f9ea; Mechanosensitive Ion Channel Reprogramming 40%
+related &#x1f9ea; Mitochondrial-Nuclear Epigenetic Cross-Talk Restoration 40%
+related &#x1f9ea; Matrix Stiffness Normalization via Targeted Lysyl Oxidase In 40%
+related &#x1f9ea; Extracellular Matrix Stiffness Modulation 40%
+related &#x1f9ea; Targeted APOE4-to-APOE3 Base Editing Therapy 40%
+related &#x1f9ea; Synaptic Vesicle Tau Capture Inhibition 40%
+related &#x1f9ea; Sleep Spindle-Synaptic Plasticity Enhancement 40%
+related &#x1f9ea; Extracellular Vesicle Biogenesis Modulation 40%
+related &#x1f9ea; Ocular Immune Privilege Extension 40%
+related &#x1f9ea; Astrocytic Lipoxin A4 Pathway Restoration via ALOX15 Gene Th 40%
+related &#x1f9ea; Nutrient-Sensing Epigenetic Circuit Reactivation 40%
+related &#x1f9ea; Senescence-Associated Myelin Lipid Remodeling 40%
+related &#x1f9ea; Circadian Glymphatic Rescue Therapy (Melatonin-focused) 40%
+related &#x1f9ea; Retinal Vascular Microcirculation Rescue 40%
+related &#x1f9ea; R-Loop Resolution Enhancement Therapy 40%
+related &#x1f9ea; Senescence-Activated NAD+ Depletion Rescue 40%
+related &#x1f9ea; Stress Granule Phase Separation Modulators 40%
+related &#x1f9ea; Chaperone-Mediated APOE4 Refolding Enhancement 40%
+related &#x1f9ea; Selective Acid Sphingomyelinase Modulation Therapy 40%
+related &#x1f9ea; Selective APOE4 Degradation via Proteolysis Targeting Chimer 40%
+related &#x1f9ea; Synthetic Biology Rewiring via Orthogonal Receptors 40%
+related &#x1f9ea; APOE4 Allosteric Rescue via Small Molecule Chaperones 40%
+related &#x1f9ea; Ephrin-B2/EphB4 Axis Manipulation 40%
+related &#x1f9ea; Piezoelectric Nanochannel BBB Disruption 40%
+related &#x1f9ea; Mitochondrial RNA Granule Rescue Pathway 40%
+related &#x1f9ea; GAP43-mediated tunneling nanotube stabilization enhances neu 40%
+related &#x1f9ea; Netrin-1 Gradient Restoration 40%
+related &#x1f9ea; Pericyte Contractility Reset via Selective PDGFR-β Agonism 40%
+related &#x1f9ea; Endothelial Glycocalyx Regeneration via Syndecan-1 Upregulat 40%
+related &#x1f9ea; Reelin-Mediated Cytoskeletal Stabilization Protocol 40%
+related &#x1f9ea; Digital Twin-Guided Metabolic Reprogramming 40%
+related &#x1f9ea; Interfacial Lipid Mimetics to Disrupt Domain Interaction 40%
+related &#x1f9ea; RNA Granule Nucleation Site Modulation 40%
+related &#x1f9ea; Astrocytic Lactate Shuttle Enhancement for Grid Cell Bioener 40%
+related &#x1f9ea; Pharmacological Enhancement of APOE4 Glycosylation 40%
+related &#x1f9ea; Orexin-Microglia Modulation Therapy 40%
+related &#x1f9ea; Nucleolar Stress Response Normalization 40%
+related &#x1f9ea; Metabolic Switch Targeting for A1→A2 Repolarization 40%
+related &#x1f9ea; Epigenetic Memory Erasure via TET2 Activation 40%
+related &#x1f9ea; HCN1-Mediated Resonance Frequency Stabilization Therapy 40%
+related &#x1f9ea; TREM2-mediated microglial tau clearance enhancement 40%
+related &#x1f9ea; Circadian Glymphatic Entrainment via Targeted Orexin Recepto 40%
+related &#x1f9ea; Selective HDAC3 Inhibition with Cognitive Enhancement 40%
+related &#x1f9ea; Complement C1q Subtype Switching 40%
+related &#x1f9ea; Fractalkine Axis Amplification via CX3CR1 Positive Allosteri 40%
+related &#x1f9ea; Complement C1q Mimetic Decoy Therapy 40%
+related &#x1f9ea; VCP-Mediated Autophagy Enhancement 40%
+related &#x1f9ea; Senescence-Induced Lipid Peroxidation Spreading 40%
+related &#x1f9ea; Blood-Brain Barrier SPM Shuttle System 40%
+related &#x1f9ea; Lysosomal Membrane Repair Enhancement 40%
+related &#x1f9ea; Palmitoylation-Targeted BACE1 Trafficking Disruptors 40%
+related &#x1f9ea; Mitochondrial-Lysosomal Contact Site Engineering 40%
+related &#x1f9ea; Microbial Metabolite-Mediated α-Synuclein Disaggregation 40%
+related &#x1f9ea; Low Complexity Domain Cross-Linking Inhibition 40%
+related &#x1f9ea; FOXO3-Longevity Pathway Epigenetic Reprogramming 40%
+related &#x1f9ea; Trans-Synaptic Adhesion Molecule Modulation 40%
+related &#x1f9ea; Microbiome-Derived Tryptophan Metabolite Neuroprotection 40%
+related &#x1f9ea; Cryptic Exon Silencing Restoration 40%
+related &#x1f9ea; Vagal Afferent Microbial Signal Modulation 40%
+related &#x1f9ea; TREM2 Conformational Stabilizers for Synaptic Discrimination 40%
+related &#x1f9ea; Hippocampal CA3-CA1 circuit rescue via neurogenesis and syna 40%
+related &#x1f9ea; Heat Shock Protein 70 Disaggregase Amplification 40%
+related &#x1f9ea; Arginine Methylation Enhancement Therapy 40%
+related &#x1f9ea; Ganglioside Rebalancing Therapy 40%
+related &#x1f9ea; Gamma entrainment therapy to restore hippocampal-cortical sy 40%
+related &#x1f9ea; Smartphone-Detected Motor Variability Correction 40%
+related &#x1f9ea; Metabolic Circuit Breaker via Lipid Droplet Modulation 40%
+related &#x1f9ea; Prefrontal sensory gating circuit restoration via PV interne 40%
+related &#x1f9ea; Near-infrared light therapy stimulates COX4-dependent mitoch 40%
+related &#x1f9ea; SASP-Driven Aquaporin-4 Dysregulation 40%
+related &#x1f9ea; CX43 hemichannel engineering enables size-selective mitochon 40%
+related &#x1f9ea; CYP46A1 Overexpression Gene Therapy 40%
+related &#x1f9ea; Purinergic Signaling Polarization Control 40%
+related &#x1f9ea; Lysosomal Enzyme Trafficking Correction 40%
+related &#x1f9ea; Multi-Modal Stress Response Harmonization 40%
+related &#x1f9ea; Hypocretin-Neurogenesis Coupling Therapy 40%
+related &#x1f9ea; Engineered Apolipoprotein E4-Neutralizing Shuttle Peptides 40%
+mentions &#x1f52c; What are the mechanisms underlying digital biomarkers and ai 35%
+mentions &#x1f52c; Epigenetic reprogramming in aging neurons 35%
+mentions &#x1f52c; What are the mechanisms underlying synaptic pruning by micro 35%
+mentions &#x1f52c; Investigate how lipid raft composition (cholesterol metaboli 35%
+mentions &#x1f52c; CRISPR-based therapeutic approaches for neurodegenerative di 35%
+mentions &#x1f52c; How does metabolic reprogramming (glucose metabolism shifts, 35%
+mentions &#x1f52c; What are the mechanisms underlying apoe4 structural biology 35%
+mentions &#x1f52c; What are the mechanisms underlying autophagy-lysosome pathwa 35%
+mentions &#x1f52c; Investigate prion-like spreading of tau pathology through co 35%
+mentions &#x1f52c; What are the mechanisms underlying perivascular spaces and g 35%
+mentions &#x1f52c; What are the mechanisms underlying protein aggregation cross 35%
+mentions &#x1f52c; What are the mechanisms underlying astrocyte reactivity subt 35%
+mentions &#x1f52c; Cell type vulnerability in Alzheimers Disease (SEA-AD transc 35%
+mentions &#x1f52c; What are the mechanisms underlying mitochondrial transfer be 35%
+mentions &#x1f52c; Analyze circuit-level changes in neurodegeneration using All 35%
+mentions &#x1f52c; What are the mechanisms underlying mechanistic role of apoe 35%
+mentions &#x1f52c; What are the mechanisms underlying blood-brain barrier trans 35%
+mentions &#x1f52c; What are the mechanisms underlying selective vulnerability o 35%
+mentions &#x1f52c; What gene expression changes in the aging mouse brain predic 35%
+mentions &#x1f52c; What are the mechanisms underlying neuroinflammation resolut 35%
+mentions &#x1f52c; What are the mechanisms underlying epigenetic clocks and bio 35%
+mentions &#x1f52c; What are the mechanisms underlying rna binding protein dysre 35%
+mentions &#x1f52c; What are the mechanisms underlying sleep disruption as cause 35%
+mentions &#x1f52c; SEA-AD Gene Expression Profiling — Allen Brain Cell Atlas 35%
+mentions &#x1f52c; What are the mechanisms underlying 4r-tau strain-specific sp 35%
+mentions &#x1f52c; What are the mechanisms underlying senolytic therapy for age 35%
+mentions &#x1f52c; What are the mechanisms underlying microglia-astrocyte cross 35%
+mentions &#x1f52c; What are the mechanisms underlying tdp-43 phase separation t 35%
+mentions &#x1f52c; What are the mechanisms underlying what are the mechanisms b 35%
+related &#x1f52c; What are the mechanisms underlying 4r-tau strain-specific sp 30%
+related &#x1f52c; What are the mechanisms underlying selective vulnerability o 30%
+
+Reference URLs Canonical (singular) /artifact/wiki-institutions-dementia-discovery-fund canonical
+Canonical (plural, REST) /artifacts/wiki-institutions-dementia-discovery-fund alias
+API (JSON) /api/artifacts/wiki-institutions-dementia-discovery-fund api
+Citation — BibTeX /artifacts/wiki-institutions-dementia-discovery-fund/cite?fmt=bibtex export
+Citation — RIS /artifacts/wiki-institutions-dementia-discovery-fund/cite?fmt=ris export
+Citation — CSL-JSON /artifacts/wiki-institutions-dementia-discovery-fund/cite?fmt=csl export
+
+Embed this artifact Use ?embed=1 to load the artifact without SciDEX chrome — suitable for iframing into wiki pages or external sites.
+HTML iframe
+<iframe src="http://scidex.ai/artifact/wiki-institutions-dementia-discovery-fund?embed=1" width="100%" height="600" style="border:0;border-radius:8px"></iframe> Copy
+Markdown link
+[dementia-discovery-fund](http://scidex.ai/artifact/wiki-institutions-dementia-discovery-fund) Copy
+Direct URL
+http://scidex.ai/artifact/wiki-institutions-dementia-discovery-fund Copy
+Preview
+
+&#x1f504; Adjacent Artifacts
+Recommended based on your interests
+
+## &#x1f4ac; Discussion
+
+Show Comments
+
+Loading comments...
+
+Public annotations (0) Annotate on Hypothes.is &#x2192; No public annotations yet.
+
+SciDEX — scidex.ai —
+Dashboard | Mission Control | Status |
+How it Works |
+GitHub

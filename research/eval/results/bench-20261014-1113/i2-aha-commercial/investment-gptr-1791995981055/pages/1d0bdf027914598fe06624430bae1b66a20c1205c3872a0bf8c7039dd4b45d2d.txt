@@ -1,0 +1,117 @@
+The 4 Ps of Evaluating a Pre-Seed Healthcare Spinout: Problem, Product, Process, People, Sonnerie VC
+
+How Sonnerie VC evaluates pre-seed healthcare spinouts across the 4 Ps: Problem, Product, Process, People, plus regulatory and market structure. Questions, green flags, red flags.
+
+Framework
+
+# The 4 Ps of Evaluating a Pre-Seed Healthcare Spinout: Problem, Product, Process, People
+
+How Sonnerie VC assesses university healthcare and life-sciences spinouts at the earliest stage, and how founders can build toward readiness before they raise.
+
+July 10, 2026 9 min read By Tomasz Felpel
+
+In brief Sonnerie VC evaluates pre-seed healthcare and life-sciences spinouts across four dimensions, the 4 Ps: Problem, Product, Process, and People, read throughout through two cross-cutting filters, regulatory pathway and market structure. In regulated healthcare, clinical evidence and reimbursement decide outcomes as much as the underlying technology does, so we weigh regulatory and clinical readiness more heavily than a generalist software investor typically would. This article sets out the questions we ask, the green flags and red flags for each P, and why readiness is something founders can deliberately build toward rather than a fixed trait they either have or lack.
+
+## What are the 4 Ps of evaluating a healthcare startup?
+
+The 4 Ps are a structured way to assess whether an early healthcare or life-sciences company is fundable and, more importantly, buildable. They are Problem, Product, Process, and People. Problem asks whether the clinical or scientific need is real, large, and underserved. Product asks whether the technology plausibly solves it and holds a defensible position. Process asks whether the team understands the regulatory, clinical, and manufacturing path from bench to patient. People asks whether the founders can carry a science-heavy company through years of evidence generation.
+
+At Sonnerie, we treat these four dimensions as a lens rather than a checklist, and we read all of them through two cross-cutting filters that matter uniquely in healthcare: the regulatory pathway and the market structure, including who pays. A strong answer on Product means little if the regulatory Process runs for years with an uncertain outcome, or if no payer has a reason to reimburse.
+
+This article is the narrative companion to our self-assessment scorecard. The scorecard gives founders a number. This explains the reasoning behind it, so that a founder can see not just where they stand but what they would need to build to move.
+
+In software, the product is the evidence. In healthcare, the evidence is the product.
+
+## Problem: is the clinical need real, large, and underserved?
+
+The first question is whether the problem is a genuine unmet clinical need or an elegant solution searching for a use. In healthcare this distinction is unforgiving, because the cost of building the wrong thing is measured in years and clinical studies, not sprints.
+
+The questions we ask: Who is the patient, and how many are there? What does the current standard of care actually achieve, and where does it fail? Is the failure a matter of outcomes, access, cost, or all three? Would a clinician change their behavior if this existed, and what would have to be true for them to do so? Does the need persist across health systems and geographies, or is it an artifact of one reimbursement quirk?
+
+Green flags: a need articulated in the language of clinicians and patients, not just of the technology; a clear account of why the problem has resisted prior solutions; evidence that the founder has spoken with many practitioners, not read about the market.
+
+Red flags: a total addressable market built by multiplying a large population by a hoped-for price; a problem that is real but rare enough to make evidence generation uneconomic; a need that exists only if payers behave differently than they do.
+
+Why it matters more here: in software you can pivot the problem in weeks. A healthcare company that has designed a trial or a device around the wrong problem may not discover the error until it has spent years and most of its capital.
+
+## Product: does the technology solve it, and is the position defensible?
+
+Product covers the science and the moat. For a university spinout the underlying technology is often genuinely novel, which is a strength, but novelty is not the same as a product, and a discovery is not yet a company. We look for a credible line from the science to something a health system can adopt.
+
+The questions we ask: What is the core insight, and how much of it is de-risked versus still hypothesis? What is the intellectual property position, and does the company hold a clean license from the university rather than an ambiguous claim? How much of the value depends on data or a mechanism that competitors cannot easily replicate? What is the minimum viable evidence that would make a clinician or a buyer act?
+
+Green flags: a defensible IP position with a properly executed license from the institution; a clear articulation of the smallest experiment that would prove or kill the thesis; differentiation grounded in mechanism or proprietary data rather than in features.
+
+Red flags: technology that is impressive in the lab but has no obvious path into clinical workflow; IP that is contested, thin, or still entangled with the university; a moat that rests entirely on being first rather than on being hard to copy.
+
+Why it matters more here: a software moat can be a head start on execution. In healthcare, intellectual property and regulatory exclusivity are often the moat, and evidence generated over years is itself a barrier competitors must independently reproduce.
+
+## Process: does the team understand the path from bench to patient?
+
+Process is the dimension generalist investors most often underweight and where healthcare companies most often stall. It covers the regulatory pathway, the clinical evidence plan, and, where relevant, manufacturing and quality systems. A company can have a real problem and a strong product and still fail because it did not plan the road between them.
+
+The questions we ask: What is the intended regulatory pathway, and why? Has the team mapped the evidence a regulator and a payer will each require, recognizing that these are different audiences with different standards? Are the milestones sequenced, and does the capital plan match the biology and the regulatory clock rather than a generic runway? For a therapeutic, is there a coherent preclinical package to support an investigational new drug application before the first human study? For a device or diagnostic, is the likely regulatory classification understood, and where a clearance route depends on one, has a predicate been identified?
+
+Green flags: a founder who can name the plausible regulatory route and the key evidence gates; a reimbursement thesis that identifies the payer and the mechanism through which payment would flow; milestones that de-risk the biggest unknown first.
+
+Red flags: treating regulatory approval as a formality at the end; conflating clinical validation with commercial adoption; a plan that assumes the fastest theoretical timeline with no allowance for iteration or a clinical hold.
+
+Why it matters more here: software ships when it works. A healthcare product reaches patients when a regulator permits it and a payer funds it, and both require evidence that takes years and capital to produce. Process is where that reality is either respected or ignored.
+
+## People: can the founders carry a science-heavy company for years?
+
+People is the dimension we weight most heavily at pre-seed, because at this stage we are underwriting the team more than the data. Spinout founders are frequently scientists of genuine distinction, and the question is not whether they are accomplished but whether they can build.
+
+The questions we ask: Does the founding team pair deep scientific credibility with someone who has carried a product through regulation and commercialization, or a credible plan to add that person? How does the founder respond to disconfirming evidence, given that in healthcare the data will sometimes say no? Is the scientist willing to become a builder, or attached to remaining a researcher? Is the relationship with the university constructive, and are incentives aligned across founders, institution, and investors?
+
+Green flags: intellectual honesty about what is not yet known; a founder who has already recruited operators or advisors to cover their gaps; resilience and a long time horizon, because this is a decade-scale undertaking.
+
+Red flags: a solo academic founder with no operating complement and no plan to add one; defensiveness when the thesis is pressure-tested; a founder whose deepest interest is the next paper rather than the patient.
+
+Why it matters more here: a consumer team can learn its market in months of shipping. A healthcare team must sustain conviction and coordination across years before the market ever renders a verdict. Character and complementarity compound over that span in a way they do not in a fast-feedback business.
+
+## Why does regulation and market structure sit across all four Ps?
+
+Regulation and market structure are not a fifth P bolted on at the end. They are the atmosphere in which the other four operate, and they reshape each one. The regulatory pathway determines how much evidence the Product needs, how long the Process runs, and how much capital the People must raise and steward. Market structure, above all the question of who pays, determines whether solving the Problem creates a business at all.
+
+In most software markets, the person who benefits is the person who buys. In healthcare, the patient benefits, the clinician decides, and a payer settles the bill, and these are usually three different parties with three different incentives. A pre-seed company that has not reasoned about all three has not yet found its market, however strong its science.
+
+This is also why compliance, handled early, can become a moat rather than a tax. The evidence and the regulatory clearances that slow a company down are the same assets that make it hard to displace once earned. We look for founders who see it that way.
+
+## How should founders use the 4 Ps before they raise?
+
+Readiness is not a fixed trait. It is a set of gaps that can be closed deliberately, and the 4 Ps are most useful as a map of what to build next rather than a verdict on what you are. A founder who scores low on Process today can, over a quarter, map their regulatory pathway, seek out people who have run that route before, and build a defensible evidence plan. A founder missing an operating complement can recruit one before the raise rather than promising to after it.
+
+We encourage founders to run the self-assessment honestly, then attack their weakest P first, because investors read the floor more than the ceiling. A company that is excellent on Product and silent on Process reads as a company that does not yet understand its own road. Closing the weakest dimension does more for fundability than polishing the strongest.
+
+That is the disposition we back at Sonnerie: founders who treat evaluation not as a gate to pass but as a discipline to internalize. The best spinout teams we meet have already asked themselves these questions, which is often the clearest signal of all. We invest early precisely so we can help build the answers, from the first proof of concept toward scale.
+
+If you are a founder working through these questions, the self-assessment scorecard turns this narrative into a structured score, and we read every one that reaches us.
+
+## Frequently asked questions
+
+### What are the 4 Ps used to evaluate healthcare startups?
+The 4 Ps are Problem, Product, Process, and People. Problem assesses whether the clinical need is real, large, and underserved. Product assesses whether the technology solves it and holds a defensible position. Process assesses whether the team understands the regulatory, clinical, and manufacturing path to patients. People assesses whether the founders can carry a science-heavy company through years of evidence generation. Sonnerie VC reads all four through the cross-cutting filters of regulatory pathway and market structure.
+
+### Why does Sonnerie weight regulatory and market factors so heavily at pre-seed?
+Because in regulated healthcare, clinical evidence and reimbursement decide outcomes as much as the underlying technology does. The regulatory pathway sets how much evidence a product needs and how long development runs, and market structure determines whether solving the problem creates a business, since the patient who benefits, the clinician who decides, and the payer who pays are usually three different parties. A generalist software investor can underweight these; in healthcare they are decisive.
+
+### What is the most common red flag in a pre-seed healthcare spinout?
+Treating regulatory approval and reimbursement as formalities addressed at the end, rather than as constraints that shape the entire plan from the start. Closely related is a solo academic founder with no operating complement and no plan to add one. Both signal a team with strong science that has not yet reckoned with the road from bench to patient.
+
+### Can founders improve their readiness score, or is it fixed?
+It is not fixed. Readiness is a set of gaps that can be closed deliberately. A founder weak on Process can map their regulatory pathway and build an evidence plan over a quarter; a team missing an operator can recruit one before raising. Sonnerie encourages founders to attack their weakest P first, because investors read the floor of a company more than its ceiling.
+
+### How is evaluating a healthcare startup different from evaluating a software startup?
+In software, the product is the evidence and teams can pivot in weeks with fast market feedback. In healthcare, the evidence is the product: regulators and payers typically require years of clinical data before a company can reach patients or get paid, mistakes surface late and expensively, and moats often rest on intellectual property and regulatory exclusivity rather than execution speed. This is why Sonnerie weights Process and People more heavily at the earliest stage.
+
+Keep reading
+
+Tool · Founders Take the Pre-Seed Readiness Check
+Knowledge Why Invest in Healthcare and Life Sciences as an Asset Class
+Field guide Therapeutics vs. Devices vs. Diagnostics: A Founder and Investor Map of Healthcare Venture
+Field guide Drug Development Phases Explained: A Field Guide for Founders and Generalist Investors
+
+← All writing
+Readiness check →
+Work with us →

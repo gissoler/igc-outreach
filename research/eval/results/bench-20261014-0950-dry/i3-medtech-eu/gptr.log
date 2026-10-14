@@ -1,0 +1,7 @@
+[gptr 14:50:30] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 14:50:30] prompt (1921 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-L9b3ZP/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-L9b3ZP/gptr.log
+[gptr 14:50:30] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 14:50:30] búsqueda terminada en 0s
+[gptr 14:50:30] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 14:50:30] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 14:50:30] juez listo: 1 hallazgos (1 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s

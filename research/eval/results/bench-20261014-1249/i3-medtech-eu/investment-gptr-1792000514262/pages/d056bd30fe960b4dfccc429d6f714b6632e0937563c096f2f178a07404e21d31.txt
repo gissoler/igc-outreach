@@ -1,0 +1,241 @@
+COMBINE-CT advances to clinical validation - News | Philips
+
+# European COMBINE-CT project advances from technology development to clinical validation
+
+Aug 28, 2026 | 2 minute read
+
+Image-guided therapy Cardiology CT Artificial intelligence (AI) Press release
+
+Co-funded by the European Union (EU) Innovative Health Initiative (IHI) and industry partners, the Philips-coordinated COMBINE-CT project combines AI, diagnostic imaging data and interventional approaches to improve care for patients with coronary artery disease.
+
+Five clinical studies have been launched to evaluate an integrated care pathway enabled by AI-powered CT and Spectral CT imaging solutions.
+
+Amsterdam, the Netherlands – Royal Philips (NYSE: PHG, AEX: PHIA), a global leader in health technology, today announced that the COMBINE-CT project, a European consortium coordinated by Philips, has advanced from technology development to clinical validation of its computed tomography (CT)-based integrated care pathway for patients with coronary artery disease (CAD).
+
+Launched in 2023, the four-year COMBINE-CT project aims to transform coronary CT angiography (CCTA) from a diagnostic test into an AI-enabled platform for clinical decision support and treatment planning. The project is developing a connected, automated CCTA-based workflow designed to support every stage of the CAD care pathway by helping physicians select the most appropriate treatment, plan interventions, guide procedures and support follow-up care.
+
+The project brings together experts in cardiology, medical imaging, interventional procedures and AI, alongside health economists and non-profit organizations representing patients. Together, they are conducting five multicenter studies to generate evidence on the value of CCTA across the CAD care pathway. The studies will evaluate its role in definitive CAD diagnosis, treatment planning, procedure guidance and patient follow-up, while also exploring how Spectral Photon-Counting CT can be used to assess coronary artery bypass grafts and previously implanted stents.
+
+“AI-powered CT imaging is creating new opportunities for the non-invasive diagnosis and assessment of coronary artery disease while enabling more informed treatment decisions,” said Bert van Meurs, Chief Business Leader Diagnosis and Treatment, Image Guided Therapy, at Royal Philips. “By combining AI, spectral CT and minimally invasive therapies, our joint research aims to help physicians diagnose and treat coronary artery disease with greater precision, confidence and efficiency.”
+
+“Interventional cardiologists need precise and actionable information to plan and deliver the most appropriate treatment for each patient with coronary artery disease,” said Dr. Bimmer Claessen, interventional cardiologist at the Amsterdam UMC. “We are researching how combining AI, CT and interventional X-ray imaging could enhance PCI procedures to treat coronary artery disease. Through the COMBINE-CT project, we aim to make this information readily available whenever it is needed – before, during and after the procedure – helping physicians make informed decisions with greater confidence, even in highly dynamic situations.”
+
+### Innovation through public-private partnership
+
+The IHI COMBINE-CT multistakeholder public-private partnership comprises 11 partners from six European countries. With a total project budget of EUR 10 million, the four-year project is co-funded by the industry partners through in-kind contributions and additional resources, as well as by the European Union Innovative Health Initiative (IHI).
+
+Industry partners: Philips and Novo Nordisk
+Clinical and academic partners: Amsterdam UMC (The Netherlands), Cardiologie Centra Nederland (The Netherlands), Université Claude Bernard Lyon 1 (France), HCL - Hospices Civils de Lyon (France), Sheba Medical Center (Israel), IBSAL - Instituto de Investigación Biomédica de Salamanca (Spain), CIBER - Centro de Investigación Biomédica en Red (Spain), and UNIKLINIK KÖLN (Germany)
+Non-profit organization: EUPATI – European Patients’ Academy on Therapeutic Innovation (pan-European)
+
+### The need for non-invasive coronary artery imaging
+
+Coronary artery disease (often referred to as ischemic heart disease) is the leading cause of mortality worldwide [1], estimated to affect 2.5% of the world’s population and more than 5% of people in Europe in 2019 [2]. The aging population and the increasing incidence of risk factors such as obesity and Type 2 diabetes are predicted to further increase the number of CAD patients that require diagnosis and treatment [3].
+
+The most common cause of CAD is atherosclerosis – the gradual buildup of fatty deposits (plaque) within the arteries feeding the heart that restrict blood flow to the heart muscle. For patients admitted to hospital with CAD-like symptoms such as chest pain, the current gold standard for diagnosis is an invasive angiography. This involves inserting a fine tube (catheter) via the patient’s blood vessel to the heart and injecting a contrast media that shows up the coronary arteries and any obstructions in them on X-ray images. Invasive angiography needs to be performed in a cardiac catheterization laboratory (cath lab), where any discovered obstructive lesions may be treated during the same procedure. However, around 60% of patients undergoing invasive coronary angiography are found not to have significantly narrowed or blocked coronary arteries, highlighting the potential to reduce unnecessary cath lab procedures through reliable non-invasive assessment.
+
+Using innovative CT imaging technology and AI, the COMBINE-CT consortium has achieved milestone development of an end-to-end non-invasive solution for CAD diagnosis, patient stratification, treatment planning, guided intervention, and follow-up. Capable of being performed in a standard radiology department or dedicated cardiac imaging unit, the consortium has moved into its second phase of conducting clinical studies to investigate and demonstrate whether a CCTA-informed end-to-end workflow has the potential to reduce the number of invasive coronary angiographies, increase care provider efficiency, reduce costs, and offer better patient experiences and outcomes.
+
+### Clinical studies
+
+The following studies have been launched to investigate and demonstrate potential benefits towards supporting the adoption of CCTA-based care pathways across heart centers in Europe.
+
+CONVENE: A prospective study to conduct an evaluation of the consortium’s end-to-end CCTA-based diagnostic and interventional workflow.
+CODEX-1: A retrospective study to determine the accuracy and reproducibility of the diagnostic AI-based software on CCTA, on data from more than 1000 patients.
+IMPACT: A prospective study leveraging invasive coronary angiography, invasive coronary physiology measurements and intracoronary imaging to improve the diagnostic accuracy of non-invasive AI-enhanced CCTA for stenosis grading, plaque burden and composition, and non-invasive coronary physiology.
+SPCCT-STENT: A prospective study of patients receiving non-invasive follow-up with Spectral Photon Counting CT (SPCCT) CCTA after high-risk and complex PCI treatment. SPCCT provides advanced medical imaging based on energy-resolving detector technology, aimed to provide superior imaging of stents and surrounding tissue.
+EVOLVE: A prospective study to evaluate the feasibility of using serial non-invasive, AI-enriched CCTA imaging to identify novel imaging features associated with plaque progression to improve individualized risk prediction in high-risk patients with type 2 diabetes mellitus.
+
+### Philips and public-private partnerships for innovation
+
+Public-private partnerships play a vital role in advancing healthcare innovation. With over 40 years of experience in shaping and leading such partnerships, Philips sees them as a powerful complement to its global R&D programs, helping build sustainable ecosystems that foster innovation. Philips’ broad imaging, image-guided therapy, and healthcare informatics portfolio helps clinicians visualize, assess, and guide treatment, and confirm outcomes – supporting more precise and personalized care.
+
+More information can be viewed on the COMBINE-CT website .
+
+The CORDIS project page for COMBINE-CT can be accessed here . The IHI factsheet for COMBINE-CT can be found here .
+
+[1] Roth GA, Johnson C, Abajobir A, et al. Global, Regional, and National Burden of Cardiovascular Diseases for 10 Causes, 1990 to 2015 . J Am Coll Cardiol. 2017 Jul 4;70(1):1-25. doi: 10.1016/j.jacc.2017.04.052. Epub 2017 May 17. PMID: 28527533; PMCID: PMC5491406.
+[2] Virani SS, Alonso A, Aparicio HJ, et al. Heart Disease and Stroke Statistics-2021 Update: A Report From the American Heart Association. Circulation. 2021 Feb 23;143(8):e254-e743. doi: 10.1161/CIR.0000000000000950. Epub 2021 Jan 27. PMID: 33501848.
+[3] Khan MA, Hashim MJ, Mustafa H, et al. Global Epidemiology of Ischemic Heart Disease: Results from the Global Burden of Disease Study . Cureus. 2020 Jul 23;12(7):e9349. doi: 10.7759/cureus.9349. PMID: 32742886; PMCID: PMC7384703.
+
+This project is supported by the Innovative Health Initiative Joint Undertaking (IHI JU) under grant agreement No 101132862. The JU receives support from the European Union’s Horizon Europe research and innovation program and COCIR, EFPIA, EuropaBio, MedTech Europe and Vaccines Europe. COMBINE-CT is funded by the European Union, the private members, and those contributing partners of the IHI JU. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the aforementioned parties. Neither of the aforementioned parties can be held responsible for them.
+
+## Media assets
+
+#### COMBINE-CT
+0.0 MB -
+
+### Media contacts
+
+Joost Maltha
+Philips Global External Relations
+
+Contact details Contact details Tel: +31610558116
+
+Hide Show
+
+Compare now
+Select to compare
+Selected products
+( 0 /3)
+Cancel Compare products
+
+Add product
+
+Add product
+
+Add product
+
+Add product
+
+Remove
+
+By clicking on the link, you will be leaving the official Royal Philips ("Philips") website. Any links to third-party websites that may appear on this site are provided only for your convenience and in no way represent any affiliation or endorsement of the information provided on those linked websites. Philips makes no representations or warranties of any kind with regard to any third-party websites or the information contained therein.
+I understand
+You are about to visit a Philips global content page
+Continue
+
+Jayme Maniatis
+Philips Global External Relations
+
+Contact details Contact details Tel: +16178948368
+
+Hide Show
+
+Compare now
+Select to compare
+Selected products
+( 0 /3)
+Cancel Compare products
+
+Add product
+
+Add product
+
+Add product
+
+Add product
+
+Remove
+
+By clicking on the link, you will be leaving the official Royal Philips ("Philips") website. Any links to third-party websites that may appear on this site are provided only for your convenience and in no way represent any affiliation or endorsement of the information provided on those linked websites. Philips makes no representations or warranties of any kind with regard to any third-party websites or the information contained therein.
+I understand
+You are about to visit a Philips global content page
+Continue
+
+#### Get our latest news by e-mail
+
+Subscribe
+
+#### Share this page
+
+https://www.philips.com/a-w/about/news/archive/standard/news/press/2026/european-combine-ct-project-advances-from-technology-development-to-clinical-validation.html Link copied
+
+## Related news
+
+Press release |
+August 11, 2026
+Exor and Philips Extend Long-term Relationship Agreement
+Governance
+
+Press release |
+May 08, 2026
+Philips shareholders approve all proposals at the AGM 2026
+Governance
+
+Press release |
+March 23, 2026
+Philips convenes the Annual General Meeting of Shareholders 2026
+Governance
+
+Press release |
+March 23, 2026
+Philips proposes new appointment and re-appointments to its Supervisory Board and CEO re-appointment
+Governance
+
+Press release |
+February 19, 2026
+Philips publishes its Annual Report 2025
+Financial performance
+
+Press release |
+February 10, 2026
+Philips proposes to re-appoint CEO Roy Jakobs
+Governance
+
+About us
+News & Insights
+COMBINE-CT advances to clinical validation
+News & Insights
+
+Consumer products Consumer products
+Home
+Support
+Product registration
+My Philips
+
+Healthcare professionals Healthcare professionals
+Home
+Products
+Services
+Specialties
+Solutions
+
+Other business solutions Other business solutions
+Lighting
+Automotive
+Hearing solutions
+More Display solutions
+Dictation Solutions
+
+About us About us
+Home
+News & Insights
+Investor Relations
+Careers
+More Innovation
+Sustainability
+Suppliers
+
+Contact & support Contact & support
+Customer support
+Professional healthcare support
+Company contacts
+
+Stay up-to-date Stay up-to-date
+Subscribe to our news
+
+Select country/region
+Global (English)
+
+Privacy Notice
+Terms of use
+Cookie notice
+Disclaimer
+Cookie Preferences
+© Koninklijke Philips N.V., 2004 - 2026. All rights reserved.
+
+Hide Show
+
+Compare now
+Select to compare
+Selected products
+( 0 /3)
+Cancel Compare products
+
+Add product
+
+Add product
+
+Add product
+
+Add product
+
+Remove
+
+By clicking on the link, you will be leaving the official Royal Philips ("Philips") website. Any links to third-party websites that may appear on this site are provided only for your convenience and in no way represent any affiliation or endorsement of the information provided on those linked websites. Philips makes no representations or warranties of any kind with regard to any third-party websites or the information contained therein.
+I understand
+You are about to visit a Philips global content page
+Continue
+
+Our site can best be viewed with the latest version of Microsoft Edge, Google Chrome or Firefox.

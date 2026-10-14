@@ -1,0 +1,257 @@
+Clinical Decision Support System for Early Detection of Cognitive Decline Using Electronic Health Records and Deep Learning
+
+Sign In
+
+Tools to Win.
+Insights to Lead.
+
+Powerful Market Intelligence
+
+Leading Business Development Tools
+
+Authoritative Capital Markets
+
+Let's keep this going
+
+##### You've used all of your free views
+
+Free Trial
+
+Schedule Demo
+
+Free Trial
+Schedule Demo
+
+##### Description
+
+##### Search
+
+HigherGov
+
+Pipeline
+
+FOIA
+
+Track
+
+Favorite
+
+No Bid
+
+Export
+
+Toggle Dropdown
+
+CSV
+
+Excel
+
+Share
+
+Toggle Dropdown
+
+Copy URL
+
+Email
+
+Tweet
+
+Search Prime Grants
+
+# R44AG081006
+
+Project Grant
+
+List
+
+Text
+
+## Overview
+
+Grant Description
+
+Clinical decision support system for early detection of cognitive decline using electronic health records and deep learning.
+
+Awardee
+
+Melax Technologies
+
+Funding Goals
+
+NOT APPLICABLE
+
+Grant Program (CFDA)
+
+93.866 - Aging Research
+
+Awarding / Funding Agency
+
+National Institute on Aging (NIA) [HHS - NIH]
+
+Place of Performance
+
+Texas
+
+United States
+
+Geographic Scope
+
+State-Wide
+
+Related Opportunity
+
+Advancing Research on Alzheimer's Disease (AD) and Alzheimer's-Disease-Related Dementias (ADRD) (R43/R44 Clinical Trial Optional) (PAS-19-316)
+
+Analysis Notes
+
+Amendment Since initial award the End Date has been shortened from 01/31/25 to 01/31/24.
+
+Melax Technologies was awarded
+
+Project Grant R44AG081006
+worth $1,121,445
+from National Institute on Aging in February 2023 with work to be completed primarily in Texas United States.
+
+The grant
+has a duration of 1 year and
+was awarded through assistance program 93.866 Aging Research.
+
+The Project Grant was awarded through grant opportunity Advancing Research on Alzheimer&#x27;s Disease (AD) and Alzheimer&#x27;s-Disease-Related Dementias (ADRD) (R43/R44 Clinical Trial Optional).
+
+## SBIR Details
+
+Research Type
+
+SBIR Phase II
+
+Title
+
+Clinical Decision Support System for Early Detection of Cognitive Decline Using Electronic Health Records and Deep Learning
+
+Abstract
+
+Project Summary The prevalence of Alzheimer’s disease (AD) and related dementia (AD/ADRD) is expected to nearly triple to a staggering 13 million affected Americans and the total costs of care are projected to increase five-fold to 1.1 trillion dollars by the year 2050. Early detection of precursor stages of AD/ADRD becomes extremely important, as it can introduce treatment or intervention earlier for potential AD/ADRD patients, given existing treatments only have modest benefit at best. Early cognitive decline of patients is often under diagnosed by primary care physicians (PCPs). A clinical decision support (CDS) tool that can automatically detect cognitive decline signals from longitudinal electronic health records (EHRs) and facilitate PCPs to make timely diagnoses would be highly desirable, as it would result in early intervention for potential AD/ADRD patients. In our Phase I Equivalent work at Harvard Medical School, we have developed a deep learning model for earlier detection of cognitive decline using clinical notes in Mass General Brigham’s EHRs. Here we propose a Direct-to-Phase II study, which further develops novel deep learning algorithms for the early detection of cognitive decline, implement them into a clinical decision support tool, and validate the tool in a primary care setting. Specifically, in Aim 1, we will develop novel ontology, NLP, and classification approaches to identify patients with early cognitive decline using records from EHR and extract related evidence from clinical notes. In Aim 2, we will work with frontline physicians to design, develop and evaluate a user-centered clinical decision support tool to identify and manage patients with cognitive decline. The system, which we intend to align with evidence-based frameworks such as the CMS Collaborative Care Model, will identify patients at risk (with supporting evidence) and prompt personalized recommendations for timely care. Once the system is developed and fully tested, we will implement the developed CDS tool in a simulated EHR environment at Mass General Brigham healthcare system, using real patient data, and formally evaluate its utility and usability by recruiting primary care clinicians. This project will deliver not only effective models for early detection of cognitive decline, but also a practical and validated CDS tool that can improve diagnosis of precursor stages of AD/ADRD, thus facilitating early intervention for potential AD/ADRD patients. If successful, it will be the first study that engages primary care physicians and real patient data to validate the utility of such a cognitive decline detection tool.
+
+Topic Code
+
+NIA
+
+Solicitation Number
+
+PAS19-316
+
+## Status
+
+(Complete)
+
+Last Modified 5/20/24
+
+Period of Performance
+
+2/1/23
+
+Start Date
+
+1/31/24
+
+End Date
+
+100% Complete
+
+Funding Split
+
+$1.1M
+
+Federal Obligation
+
+$0.0
+
+Non-Federal Obligation
+
+$1.1M
+
+Total Obligated
+
+100.0% Federal Funding
+
+0.0% Non-Federal Funding
+
+## Activity Timeline
+
+Interactive chart of timeline of amendments to R44AG081006
+
+Export
+
+###### Visible Records
+
+Clipboard
+
+CSV
+
+Excel
+
+## Transaction History
+
+### Modifications to R44AG081006
+
+## Additional Detail
+
+Award ID FAIN
+
+R44AG081006
+
+SAI Number
+
+R44AG081006-1407568438
+
+Award ID URI
+
+SAI UNAVAILABLE
+
+Awardee Classifications
+
+Small Business
+
+Awarding Office
+
+75NN00 NIH NATIONAL INSITUTE ON AGING
+
+Funding Office
+
+75NN00 NIH NATIONAL INSITUTE ON AGING
+
+Awardee UEI
+
+ME3MA61LJD79
+
+Awardee CAGE
+
+7XJ98
+
+Performance District
+
+TX-90
+
+Senators
+
+John Cornyn
+
+Ted Cruz
+
+## Budget Funding
+
+Federal Account
+Budget Subfunction
+Object Class
+Total
+Percentage
+
+National Institute on Aging, National Institutes of Health, Health and Human Services (075-0843)
+Health research and training
+Grants, subsidies, and contributions (41.0)
+$1,121,445
+100%
+
+Modified: 5/20/24
+
+Open Support

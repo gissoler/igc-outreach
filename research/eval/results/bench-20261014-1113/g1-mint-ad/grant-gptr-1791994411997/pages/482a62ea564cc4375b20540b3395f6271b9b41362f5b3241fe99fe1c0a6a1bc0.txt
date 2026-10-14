@@ -1,0 +1,82 @@
+Development and Validation of a Tool to Predict Onset of Mild Cognitive Impairment and Alzheimer Dementia | Exa
+Exa Site Index
+Fetch the Exa site index at: https://exa.ai/llms.txt
+Use this file to discover Exa products, pricing, evaluations, comparisons, use cases, agent interfaces, and technical documentation before exploring further.
+
+Introducing ATLAS Introducing ATLAS: A new benchmark for agentic search Learn more
+
+Products Search API
+
+Contents API
+
+Agent API
+
+Monitors API
+
+Integrations
+Exa Connect
+
+Resources Careers We&#x27;re hiring
+
+Customers
+
+Webinars
+
+Partners
+
+Demos
+
+About
+
+Contact us
+
+Research
+
+Brand
+
+Use Cases Use cases
+Model Training
+
+AI Assistants
+
+Inference Providers
+
+Coding
+
+GTM
+
+Enterprise
+
+Blog
+Docs
+Pricing
+
+Contact sales Sign up
+
+Abstract
+Importance The ability to predict the onset of mild cognitive impairment (MCI) and Alzheimer dementia (AD) could allow older adults and clinicians to make informed decisions about dementia care.
+Objective To assess whether the age at onset of MCI and AD can be predicted using a statistical modeling approach. Design, Setting, and Participants: This prognostic study used data from 2 aging and dementia cohort studies-the Australian Imaging, Biomarker and Lifestyle (AIBL) study and the Alzheimer&#x27;s Disease Neuroimaging Initiative (ADNI)-for model development and validation of the Florey Dementia Index (FDI), a tool used to predict the age at onset of MCI and AD in older adults. Data from the Anti-Amyloid Treatment in Asymptomatic Alzheimer (A4) study were used for a simulated trial. Data were collected from 1665 AIBL participants, 2029 ADNI participants, and 93 A4 participants from October 1, 2004, to March 1, 2023. The data analysis was conducted between January and August 2024. Main Outcomes and Measures: Predicted age at onset compared with clinically observed age at onset.
+Results Among the 1665 AIBL participants (741 [44.5%] female) and 2029 ADNI participants (925 [45.6%] female), the mean (SD) age at first evaluation was 71.8 (7.1) years and 74.5 (6.7) years, respectively. The FDI achieved mean absolute errors of 2.78 (95% CI, 2.63-2.93) years for predicting MCI onset and 1.48 (95% CI, 1.32-1.65) years for predicting AD onset. In the simulated trial with 93 A4 participants (48 [51.6%] female; mean [SD] age at baseline, 73.4 [5.1] years), the FDI achieved mean absolute errors of 1.57 (95% CI, 1.41-1.71) years for predicting MCI onset and 0.70 (95% CI, 0.53-0.88) years for predicting AD onset. Conclusions and Relevance: In this prognostic study, the FDI was developed and validated to predict the onset age of MCI and AD. This tool may be useful in organizing health care for older adults with cognitive decline or dementia and in the future may help prioritize patients for the use of disease-modifying monoclonal antibody drugs.
+
+## 1 Authors
+Author Affiliation h-index Citations
+Chenyin Chu The University of Melbourne 4 73
+Yifei Wang The University of Melbourne 2 19
+Yihan Wang The University of Melbourne 20 1,696
+Christopher James Fowler Florey Institute of Neuroscience and Mental Health 49 9,260
+Georgios Zisis Florey Institute of Neuroscience and Mental Health 6 130
+Colin Louis Masters Florey Institute of Neuroscience and Mental Health 175 134,366
+James D. Doecke Commonwealth Scientific and Industrial Research Organisation 47 10,349
+Benjamin Goudey The University of Melbourne 14 1,065
+
+Published Jan 8, 2025
+Venue JAMA Network Open
+Citations 9
+References 29
+DOI 10.1001/jamanetworkopen.2024.53756
+Fields
+Dementia and Cognitive Impairment Research Alzheimer&#x27;s disease research and treatments Biological Research and Disease Studies
+
+Showing the abstract — retrieve the full paper via the Exa API.
+View API Docs Get API Key
+Powered by the Exa API

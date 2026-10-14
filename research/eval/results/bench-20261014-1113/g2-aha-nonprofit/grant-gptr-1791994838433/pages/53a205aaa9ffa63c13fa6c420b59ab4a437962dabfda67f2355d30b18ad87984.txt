@@ -1,0 +1,207 @@
+Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (IA) (Partnership in AI, Data and Robotics) | Horizon-europe.gouv.fr
+
+Aller au menu
+
+Aller à la recherche
+
+Aller au contenu
+
+##
+
+Rechercher
+
+##
+
+Menu
+
+Menu
+
+Découvrir Horizon Europe
+
+Présentation du programme
+
+Les programmes de travail
+
+La coopération internationale
+
+Le programme Euratom
+
+Autres programmes de financement
+
+FAQ : grands principes
+
+Comment candidater ?
+
+Les Points de Contact Nationaux
+
+Appels à propositions
+
+Aides au montage de projets
+
+Ressources juridiques et financières
+
+HE pour les entreprises
+
+Être expert auprès de la CE
+
+Pilier 1
+
+Conseil européen de la recherche (ERC)
+
+Actions Marie Sklodowska-Curie (MSCA)
+
+Infrastructures de recherche
+
+Pilier 2
+
+Cluster 1 - Santé
+
+Cluster 2 - Culture et société
+
+Cluster 3 - Sécurité civile
+
+Cluster 4 - Numérique, industrie et espace
+
+Cluster 5 - Climat, énergie et mobilité
+
+Cluster 6 - Bioéconomie
+
+Les Missions européennes
+
+Les partenariats
+
+Pilier 3
+
+Conseil européen de l'innovation (EIC)
+
+L'institut européen d'innovation et de technologie (EIT)
+
+Écosystèmes européens d'innovation (EIE)
+
+Pilier transversal
+
+Le programme WIDERA
+
+Le programme COST
+
+Accueil
+
+Toute l'actualité
+
+Agenda
+
+Nous rejoindre
+
+Vos PCN
+
+###
+
+Outils
+
+Les FAQ
+
+Statistiques de participation au PCRI
+
+scanR, l'outil de cartographie thématique R&I
+
+Dashboard, l'outil de la C.E. sur les participations au PCRI
+
+scanR, l'outil de cartographie thématique R&I
+
+Sourd et malentendant, contactez-nous avec Acceo - Nouvelle fenêtre
+
+Paramètres d'accessibilité- New window
+
+Accessibilité
+
+##
+
+Agenda
+Fermer
+
+### Événement à la une
+
+Du 20.10.2026 au 21.10.2026
+
+####
+Meet'Up Greentech 2026
+
+Meet'Up Greentech 2026 est le rendez-vous annuel de la greentech organisé par l’Ecolab du Commissariat Général au Développement Durable (CGDD) des Ministères Aménagement du territoire et Transition écologique, en partenariat avec l’Agence de l’Innovation pour les Transports, l’ADEME, BpiFrance, l’AFNOR, la mission French Tech et la Banque des Territoires.
+
+Agenda des événements
+
+Agenda des événements
+
+Ce topic appartient à l'appel
+DIGITAL
+
+Identifiant du topic:
+HORIZON-CL4-2027-04-DIGITAL-EMERGING-05
+
+# Apply AI: AI-Driven Robotics for Industry: Enabling System Integration and Adoption (IA) (Partnership in AI, Data and Robotics)
+
+Type d'action :
+HORIZON Innovation Actions
+
+Date d'ouverture :
+
+17 novembre 2026
+
+Date de clôture
+1
+: 18 mars 2027 01:00
+
+Détail du topic
+
+Budget :
+
+€18 000 000
+
+Call : DIGITAL
+
+Call Identifier : HORIZON-CL4-2027-04
+
+Description :
+Expected Outcome:
+
+The Apply AI Strategy emphasises acceleration pipelines to ensure a smooth transition from research to deployment of AI-powered robotics. Projects under this topic will deliver common frameworks and reusable building blocks that can serve multiple sectors and use cases, reinforcing Europe’s ability to bring AI-driven robotics to scale.
+
+Project results are expected to contribute to all of the following expected outcomes:
+
+Wider and faster deployment of robotics, bridging the gap between technology providers and end-users.
+
+Development and implementation of modular and interoperable integration frameworks and solutions, including standardized protocols for data, training and safety testing, evaluation and validation of robotic solutions in key use cases
+
+Improved competitiveness of European industries, notably SMEs via the development of advanced robotics systems, intelligent planning and control systems, user feedback rendering techniques and cutting-edge AI innovations
+
+Scope:
+
+The project will address the current European gap in system integration capabilities for robotics solutions addressing the various needs of industries. The project will aim at disseminating a deep understanding of state-of-the-art robotics components, including both hardware and software, and expertise in addressing interoperability issues for the upskilling of system integrators.
+
+To maximise the impact and adaptability of deployed systems, the approach should consider the most appropriate tools to speed up integration processes and suitable AI design, training and inference methodologies, ensuring scalability, transferability, transparency, robustness, flexibility, and real-world applicability in diverse industrial environments, and should remain adaptable to the latest technological developments.
+
+Integration frameworks will promote the use of energy-efficient AI models and hardware ('Green AI'), alongside carbon-aware deployment and operational strategies for robotic system. Where relevant, projects should contribute to open and widely recognised standards to foster interoperability and uptake across the robotics ecosystem. To enhance safety and performance, projects may include high-fidelity simulation environments or digital twins as testbeds for training, validation and verification, with measures to ensure smooth transfer from simulation to real-world deployment.
+
+By bridging the gap between technology providers and end-users, these integrators will enable the creation of seamless, reliable and scalable robotics systems that can be easily adopted by industries, especially SMEs, thereby supporting more flexible and efficient production processes.
+
+The project is expected to deliver:
+
+A deployable, modular integration framework, validated through at least three real-world industrial pilots covering different reference scenarios to demonstrate that the approach can be adapted to varied industrial needs and company sizes, including both SMEs and larger manufacturers. This framework should provide, for example, a common software layer, standard interfaces to connect to existing workflow and legacy system, possibly also to connect various robot components, coordinate multiple robots and link them with additional AI tools and IoT environments, as well as tested configuration templates and clear guidelines to ensure safe and efficient use.
+
+An Integration Kit, building on this framework, which offers ready-to-use modules, example configurations and practical tools that help system integrators and companies to set up, test and run AI-enabled robotics solutions more quickly and with reduced technical effort.
+
+Where relevant, high-fidelity digital twin testbeds should be linked to each pilot, allowing safe and realistic testing and training before deployment, and supporting a smooth transition from virtual models to actual production lines.
+
+Reusable, datasets (compliant with relevant regulation and IP protection) and practical benchmark tasks, made available to the wider robotics and AI community, to support further development and comparison of new solutions while respecting European data protection rules.
+
+A clear Step-by-Step Adoption Guide aimed at SMEs and other end-users, providing easy-to-follow instructions, practical checklists and examples to help companies plan, budget and implement AI-driven robotics in a safe and cost-effective way, even if they have limited in-house expertise, and including guidance to navigate regulatory compliance and certification.
+
+Concrete contributions to relevant open standards and clear guidance on certification pathways, to help ensure compliance with European regulations and build trust in the safe use of AI in robotics. Projects are expected to make full use of existing robotics resources and assets made available through the AI-on-Demand Platform, such as the EuroCORE repository and other relevant shared tools, to maximise synergies, avoid duplication of efforts and ensure broad dissemination and reuse of results within the European AI and robotics community.
+
+This topic implements the co-programmed European Partnership on AI, data, and robotics (ADRA), and all proposals are expected to allocate tasks for cohesion activities with ADRA.
+
+Technology Readiness Level - Technology readiness level expected from completed projects
+
+Activities are expected to start at TRL 4 and achieve TRL 7 by the end of the project – see General Annex B.
+
+Trouver des partenaires potentiels

@@ -1,0 +1,24 @@
+[gptr 16:28:29] INICIO objetivo=grant modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 16:28:29] prompt (3053 caracteres): /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-6CQQ1s/prompt.txt · log de GPT Researcher: /var/folders/lc/_1mnqdgs63g7j291kg96lhnr0000gp/T/gptr-6CQQ1s/gptr.log
+[gptr 16:28:44] 15s · fuentes leídas 0 · última línea: INFO: [11:28:43] 🌐 Browsing the web to learn more about the task: Latin America foundation grants maternal health telehealth NGOs 2026...
+[gptr 16:28:59] 30s · fuentes leídas 121 · última línea: INFO: [11:28:59] 🌐 Scraping content from 9 URLs...
+[gptr 16:29:14] 45s · fuentes leídas 147 · última línea: 💸 Total Research Costs: $0.022605
+[gptr 16:29:29] 60s · fuentes leídas 185 · última línea: WARNING:gpt_researcher.scraper.scraper:Content too short or empty for https://www.herox.com/CommunityMaternalHealth2.0, treating as fetch fa
+[gptr 16:29:44] 75s · fuentes leídas 206 · última línea: 🔎 Generating 2 search queries...
+[gptr 16:29:59] 90s · fuentes leídas 260 · última línea: INFO: [11:29:59] 📚 Combined research context: 0 MCP sources, web content
+[gptr 16:30:14] 105s · fuentes leídas 260 · última línea: 💸 Total Research Costs: $0.012835
+[gptr 16:30:29] 120s · fuentes leídas 260 · última línea: 🔍 Running research for 'Merck for Mothers telemedicine project Venezuela eligibility criteria partnership requirements NGOs and comparable 
+[gptr 16:30:44] 135s · fuentes leídas 330 · última línea: 💸 Total Research Costs: $0.011655
+[gptr 16:30:59] 150s · fuentes leídas 330 · última línea: ✅ Generated 2 queries: ['World Bank digital health financing eligibility criteria and application procedures for NGOs and private providers 
+[gptr 16:31:14] 165s · fuentes leídas 399 · última línea: INFO: [11:31:14] 🌐 Scraping content from 13 URLs...
+[gptr 16:31:29] 180s · fuentes leídas 399 · última línea: 💸 Total Research Costs: $0.01174
+[gptr 16:31:43] la búsqueda terminó y empezó el informe: margen de 30s y se corta
+[gptr 16:31:44] 195s · fuentes leídas 399 · última línea: For every opportunity give: name and funder, official URL of the call itself, application deadline (exact date, or "not found"), award size,
+[gptr 16:31:59] 210s · fuentes leídas 399 · última línea: [0m
+[gptr 16:32:13] cortando GPT Researcher: ya no hace falta el informe
+[gptr 16:32:13] el proceso terminó (código null, cortado por tiempo)
+[gptr 16:32:13] proceso terminó tras 224s · timedOut=true código=n/d informe=ninguno
+[gptr 16:32:13] búsqueda terminada en 224s
+[gptr 16:32:13] URLs para el juez: 150 (0 del informe) → https://policycentermmh.org/congress-passes-2026-funding-bill-with-targeted-investments-in-maternal-health | https://www.hrsa.gov/grants/find-funding/HRSA-27-001 | https://policycentermmh.org/senate-committee-advances-2026-funding-bill-including-maternal-mental-health-priorities | https://www.federalregister.gov/documents/2026/02/02/2026-01934/notice-of-funding-opportunities-for-the-strategic-economic-and-community-development-program-for-fy | https://www.hrsa.gov/grants/find-funding/HRSA-26-083 …
+[gptr 16:32:13] juez de Node: 150 páginas (0 del registro oficial + 150 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 16:34:28] juez listo: 1 hallazgos (0 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 358s

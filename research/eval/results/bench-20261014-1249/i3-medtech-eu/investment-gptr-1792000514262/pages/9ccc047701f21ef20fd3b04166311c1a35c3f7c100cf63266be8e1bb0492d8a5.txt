@@ -1,0 +1,234 @@
+Implicity raises €35M to scale AI cardiac monitoring
+
+Skip to content
+
+Live funding
+
+↑ Cofrai
+€2.6M
+funding round led by DFF Ventures
+
+↑ Undecimal Bio
+€16M
+Seed round led by 4BIO Capital
+
+↑ Obsero
+€1M
+Seed round led by SFC Capital
+
+↑ ParkMundo
+€2.3M
+Seed round led by Rabobank
+
+↑ Ubitium
+€12.5M
+Seed round led by Ibex Investors
+
+↑ Alchera Technologies
+€3.2M
+Seed round led by Maven Capital Partners
+
+↑ Sainaptic
+€1.2M
+funding round led by Brighteye Ventures
+
+↑ reebuild
+€3M
+Seed round led by Rise PropTech
+
+↑ Causa Prima
+€17.9M
+Seed round led by Base10 Partners
+
+↑ Affinity Labs
+€1.8M
+Pre-seed round led by Antler
+
+↑ Epyr
+€15M
+Series A round led by SlateVC
+
+↑ CarbonFarm
+€7M
+Series A round led by Colam Impact
+
+↑ CMR Surgical
+€358.1M
+funding round led by Stryker
+
+↑ HyLight
+€13M
+Series A round led by Rubio Impact Ventures
+
+↑ Monopulse
+€2M
+funding round led by Coinvest Capital
+
+↑ 1KOMMA5°
+€70M
+raises a funding round
+
+↑ Scarlet
+€44.7M
+Series B round led by Headline
+
+↑ Mothium
+€1M
+raises a funding round
+
+↑ Besso
+€4.3M
+funding round led by Undisclosed European family office (named anonymous by the company)
+
+↑ Klarent
+€7.2M
+Seed round led by Mosaic Ventures
+
+Sesame Summit 2027
+
+Menu
+&times;
+
+Events
+Programs
+Funding
+Founders
+Investors
+Ecosystems
+Jobs
+
+Databases
+
+Insights
+Events calendar
+Programs
+Startups
+Investors
+Business angels
+Investment Club
+Rankings
+Deadline Desk
+Funding data
+What is a startup?
+Podcast
+
+Newsletters
+Sesame Summit 2027
+Log in
+
+Also see more funding coverage: /funding/
+
+Round at a glance
+
+€35M Series C
+
+Announced 10 September 2026
+
+Founded 2016 · Paris, France
+
+Company Implicity · profile
+
+HQ Paris, France
+
+Sector Gov Tech
+
+Stage Series C
+
+Lead
+Five Arrows , IRIS
+
+Team
+51-200 people
+
+Company profile →
+·
+In the deals tracker →
+
+Paris-based Implicity has raised €35M in growth funding, co-led by IRIS and Five Arrows, to scale its AI-powered cardiac remote monitoring platform across the United States after reporting a 26% reduction in patient mortality.
+
+European medtech keeps hearing that growth capital is the missing rung on our ladder – and yet here is a French electrophysiology startup closing a €35M growth round from two European investors to go win the American market. Below, I lay out what Implicity announced, why the clinical numbers matter more than the amount, and what this round tells us about where European health AI is heading.
+
+## The round: €35M from IRIS and Five Arrows
+
+Implicity announced on 9 September 2026 a €35M growth equity round, presented as $40M in the company’s own US release, co-led by IRIS, the European tech growth firm, and Five Arrows, the alternative assets arm of Rothschild & Co.
+
+The money has one job: the United States. Implicity has operated a commercial office in Cambridge, Massachusetts since 2022, and the new funds go to expanding that commercial footprint, hiring, building US-specific features, and pushing its AI and heart failure prediction algorithms further. “This funding lets us care for patients at scale, catching the information through the noise to provide the best possible care,” said co-founder and CEO Dr Arnaud Rosier, a practising electrophysiologist, in the announcement.
+
+It follows a $23M Series A in April 2022 backed by Crédit Mutuel Innovation and Bpifrance, bringing the company’s total raised to roughly $69M since its founding – per Tech Funding News, September 2026.
+
+## Ten years of listening to hearts
+
+Founded in Paris in 2016, Implicity built a universal remote monitoring platform for cardiac implantable devices – pacemakers, defibrillators, implantable loop recorders – that pulls data from every major manufacturer into one clinical workflow. Today the platform serves more than 250 medical centres and monitors over 120,000 patients daily across the US, France and Germany, per the company’s announcement.
+
+The clinical evidence is the real headline. Implicity reports a 26% reduction in mortality and a 4% reduction in hospitalisations compared with conventional remote monitoring, and its ECG Analyzer cuts false alarms by up to 76% – the noise that drowns cardiology teams. Its algorithms, including the SignalHF heart failure prediction model, are FDA-cleared as Class II medical devices. At Institut Mutualiste Montsouris in Paris, the platform let one team scale from 250 monitored patients to 5,000, per EU-Startups.
+
+The team behind those numbers is still remarkably compact: around 120 to 125 people, with 15 in the US and four in Germany, the rest in France – Tech Funding News, September 2026.
+
+## A $4.1bn market compounding at 11.3%
+
+The global remote cardiac monitoring market was worth $4.1bn in 2024 and is projected to reach $12bn by 2034, an 11.3% CAGR over 2025-2034 – Market.us, March 2026. North America alone holds more than 47% of it, which is exactly why this round is denominated in American ambition.
+
+For scale inside our own fundraising data , remote patient monitoring is having a European moment: Lisbon’s Hope Care raised €6M in Series A earlier this month for its home monitoring platform. Implicity’s €35M sits a full stage later, and it buys distribution rather than product – the product has already cleared the FDA.
+
+## The growth cheque Europe finally wrote
+
+So what does this round actually signal? For years the pattern was depressingly predictable: European health AI companies proved the science at home, then took American growth capital to scale – and the value quietly migrated with it. Here the cheque comes from IRIS and from Rothschild & Co’s growth arm, two firms rooted in Paris, funding a French company’s assault on the world’s largest healthcare market.
+
+The good news is that European growth-stage conviction is building. French AI champions are raising at scales we did not see two years ago – Mistral AI’s €3B Series D made the loudest version of that argument last week – and Implicity makes the quieter, clinical case: French growth capital funding the stage where it used to bow out.
+
+What to watch now is execution: US cardiology is a brutally competitive market where the incumbents are the device manufacturers themselves, and a 125-person team from Paris is betting that manufacturer-neutral AI beats vertical lock-in.
+
+Ten years in, Implicity has the clinical evidence, the FDA clearances and now the capital. The next 120,000 patients will tell us whether European medtech can win America on its own terms. Watch this one closely.
+
+More digital health: see the best digital health events in Europe 2027 , ranked by attendance.
+
+Sesamers newsletters
+
+Weekly fundraising intel - free.
+
+Keep reading
+
+## Related coverage
+
+Funding
+
+October 14, 2026
+
+### Ubitium raises $14M seed to put physical AI on one chip
+
+One reconfigurable RISC-V array that senses, infers and controls - proven on Samsung's 8nm - just earned Ubitium $14M from Ibex Investors. Evaluation chips land in&hellip;
+
+Stéphane Paillard
+
+Funding
+
+October 14, 2026
+
+### Undecimal Bio raises $18M seed to take RNA medicines beyond the liver
+
+An $18M oversubscribed seed co-led by 4BIO Capital and IQ Capital backs a Cambridge spin-out betting the next phase of RNA medicine is delivery, not silencing&hellip;
+
+Stéphane Paillard
+
+Funding
+
+October 14, 2026
+
+### Causa Prima raises $20M seed for AI agents that settle B2B invoices
+
+Three months after a $10M pre-seed, Munich's Causa Prima has raised $20M from Base10 Partners to put AI agents on both sides of the B2B invoice&hellip;
+
+Stéphane Paillard
+
+Get the weekly briefing
+Europe's rounds, founders & events - every Monday, in five minutes.
+
+×
+
+Cookies
+
+We use analytics cookies to understand which stories are read and how people find them. Nothing is used for advertising. Decline and the site works exactly the same. How we use cookies
+
+Decline
+
+Accept

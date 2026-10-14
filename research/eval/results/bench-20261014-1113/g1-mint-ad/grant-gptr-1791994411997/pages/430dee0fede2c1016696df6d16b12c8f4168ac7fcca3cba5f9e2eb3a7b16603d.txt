@@ -1,0 +1,163 @@
+NESHER TECHNOLOGIES INC - Ultra-sensitive biomarker detection for early Alzheimer's disease diagnosis Award | SBIR.org
+
+Searches company, title, contract #, tracking #, DUNS, abstract
+
+Random Award
+
+Phase I
+
+$462,692
+
+Department of Health and Human Services
+
+diagnostics
+
+Alzheimer's disease
+
+biomarkers
+
+neurodegenerative
+
+medical devices
+
+precision medicine
+
+aging
+
+# Ultra-sensitive biomarker detection for early Alzheimer's disease diagnosis
+
+NESHER TECHNOLOGIES INC
+
+A new diagnostic technology may detect disease markers in tiny patient samples using single-molecule fluorescence spectroscopy to help identify Alzheimer's disease earlier than current methods.
+
+## What is this research about?
+
+This technology appears to detect disease markers (proteins and microRNAs) in body fluids like cerebrospinal fluid using a technique called alternating laser excitation (ALEX) spectroscopy—a method that switches between different colored lasers to identify specific molecules. Imagine tagging disease markers with different colored fluorescent dyes, then using lasers to identify which markers are present and measure their amounts—all in a single small sample without needing to amplify or separate the molecules first.
+
+A key advantage seems to be sensitivity: it can reportedly detect markers at extremely low concentrations that would be invisible to traditional tests. It also multiplexes, meaning it can measure many different markers simultaneously from one sample. For Alzheimer's disease, doctors could potentially identify the disease in early stages by measuring a panel of protein and microRNA biomarkers in cerebrospinal fluid—before symptoms become severe.
+
+## Why does this matter?
+
+Current diagnostic methods for Alzheimer's disease rely on cognitive testing and brain imaging, which often only reveal advanced disease after significant neurodegeneration has already occurred. By the time symptoms are obvious, treatment options tend to be limited. There is an urgent need for biomarker-based tests that can identify disease in asymptomatic or early symptomatic stages, when interventions might have better chances of slowing progression.
+
+Existing biomarker detection technologies often lack sensitivity (can't detect low concentrations), struggle to measure multiple markers simultaneously, or require large sample volumes—problematic when testing cerebrospinal fluid, which is obtained through invasive procedures. This ALEX spectroscopy approach may overcome these limitations by achieving ultrasensitive detection of multiple markers from tiny samples without amplification steps (a process that can introduce errors). As new Alzheimer's treatments move through development, accurate early detection becomes increasingly important for identifying who might benefit and monitoring response to therapy.
+
+## Real-World Applications
+
+Neurologists and geriatricians might use this test to identify Alzheimer's disease in patients with early cognitive complaints, allowing earlier intervention before significant brain damage occurs. Research centers conducting Alzheimer's clinical trials could potentially use it to screen which patients are most likely to benefit from experimental treatments. Hospitals and diagnostic laboratories may eventually deploy this as a routine test for older adults showing subtle memory problems, helping distinguish normal aging from disease progression.
+
+Beyond Alzheimer's, the same platform could eventually be adapted to detect other neurodegenerative diseases like Parkinson's or frontotemporal dementia, since these conditions also produce characteristic biomarkers in body fluids.
+
+### For Taxpayers
+
+Earlier Alzheimer's detection could potentially reduce long-term healthcare costs by enabling interventions before patients require expensive institutional care, nursing homes, or emergency hospitalizations. The technology supports the NIH's investment in Alzheimer's research by providing the diagnostic tools needed to validate new treatments in clinical trials, helping accelerate development of disease-modifying therapies that might extend quality of life for millions of Americans.
+
+### For Science
+
+This work demonstrates how single-molecule detection platforms can be adapted for clinical diagnostics, potentially providing a blueprint for other researchers developing biomarker tests for various diseases. The combination of microfluidics (tiny channels that control fluid flow at microscopic scales) with ALEX spectroscopy—termed single molecule optfluidics—represents a new technical approach that other labs could apply to their own diagnostic challenges, expanding the toolkit for precision medicine.
+
+### For Humanity
+
+Early detection of Alzheimer's disease could help preserve cognitive function and independence for millions of people worldwide, improving quality of life for patients and reducing burden on families and caregivers. By enabling doctors to identify disease before irreversible damage occurs, this technology supports the goal of preventing or slowing neurodegenerative diseases—a critical need as populations age globally.
+
+## Status (Open)
+
+Reference Numbers
+
+Contract
+
+1R43AG044951-01
+
+Agency Tracking #
+
+R43AG044951
+
+Solicitation #
+
+PA11-134
+
+DUNS
+
+173130225
+
+Branch
+
+National Institutes of Health
+
+## Technical Abstract
+
+Detailed scientific and technical information
+
+DESCRIPTION: To maximize clinical information content obtainable from a single small patient sample (e.g. cerebrospinal fluid-CSF), single molecule detection (SMD) technologies are the most promising for development of next- generation medical diagnostics. Recently, microRNAs (miRNAs) have been implicated in human malignancies including neurodegenerative disorders, offering the exciting prospect to combine traditional protein markers with novel miRNA candidate markers in panels. But as patient samples arelimited and marker concentrations often very low, serial analysis is not practical. Thus, only very sensitive methodologies with high multiplexing power will be able to maximize diagnostic value and be suitable for improved tests for early disease detection. Nesher Technologies, Inc. (NTI) has exclusively licensed the intellectual property for a revolutionary, quantitative, ultrasensitive and -specific biodetection technology, developed at the UCLA Single Molecule Biophysics Lab (headed by Prof. Shimon Weiss), with exquisite single-well multiplexing potential, minimal sample requirements, and extremely simplified workflows (no separation/washing and amplification steps). It is based on alternating laser excitation (ALEX) single molecule fluorescence spectroscopy, whereby target recognition molecules are tagged with different color fluorescent dyes (and quenchers), allowing, on the same platform, ultrasensitive detection of both proteins and nucleic acids (including miRNAs) in body fluids. NTI recently achieved extension from 2-color (2c) to 4-color (4c) ALEX, substantially expanding its multiplexing power (particularly when involving FRET), and demonstrated diagnostic utility for ultrasensitive protein as well as miRNA quantification at clinically relevantconcentrations without amplification. Furthermore, recent work by our consultants Profs. Steve Quake and Shimon Weiss shows i) combination of microfluidics- based sample handling with ALEX spectroscopy, a new breakthrough approach for assay miniaturizationtermed single molecule opt fluidics , and ii) enhanced throughput using a multifocal excitation/detection geometry. NTI's long-term goal is to develop rapid, highly multiplexed (with a capacity of gt100 analytes per sample), ultrasensitive and -specific,quantitative, cost-effective, and fully automated, protein- and nucleic acid- based diagnostic tests that require minimal sample sizes. Here we propose assay development and clinical validation for improved early-stage Alzheimer's disease (AD) diagnosis,implementing a panel of candidate protein and miRNA biomarkers. Our Specific Aims are: 1. Reagent development for a multiplex protein and microRNA biomarker-based next-generation AD test 2. Separate as well as multiplexed biomarker detection and quantification using spiked samples 3. ALEX-based analysis of archived clinical samples from 108 patients (PRoBE study design implementation) SBIR Phase II will propose assay expansion, miniaturization, and development of a versatile, user-friendly, diagnostic system as useful tool for early detection of AD and other neurodegenerative disorders. PUBLIC HEALTH RELEVANCE PUBLIC HEALTH RELEVANCE: Early detection of neurodegenerative diseases including Alzheimer's disease is crucial for early intervention and to ensure optimal care and implementation of patient management strategies that may support improved quality of life. As disease-modifying treatments are being developed, there will be a great need for versatile next-generation platform technologies todetect and quantify panels of diagnostic and prognostic biomarkers as they become available to decide who should enter particular clinical trials, for determining who should or should not receive a particular therapy, for determining the likelihood of disease progression, and for tracking disease progression. Based on patent-protected alternating laser excitation (ALEX) single molecule fluorescence spectroscopy, Nesher Technologies, Inc. intends to make its single molecule detection (SMD) platform technology robust and easy to use for diagnostic labs as well as the broad research community, and proposes to develop a next-generation test for early detection of Alzheimer's disease, monitoring a panel of protein and microRNA biomarkers present in very small patient samples, thereby translating cutting-edge innovations in Nano biotechnology into benefits for the society at large by saving human lives and reducing healthcare costs.
+
+## Related Awards
+
+Phase I
+
+Same Company
+
+###
+Ultra-sensitive cancer detection from blood, urine, and saliva samples
+
+A new fluorescence-based technology that appears capable of simultaneously detecting thousands of cancer markers in body fluids with high sensitivity, potentially enabling earlier cancer diagnosis and treatment monitoring.
+
+$100,000
+
+Phase I
+
+Same Company
+
+###
+Fast Blood Test May Identify Drug-Resistant Bacteria in Hours
+
+A new blood test using fluorescent molecular markers appears capable of detecting multiple drug-resistant bacterial strains from a single sample, potentially enabling doctors to prescribe targeted antibiotics more quickly instead of broad-spectrum drugs.
+
+$598,110
+
+Phase I
+
+Same Company
+
+###
+Compact Single-Molecule Reader for Detecting Multiple Biomolecules at Once
+
+A desktop device that may detect and measure multiple disease markers or pathogens in a single patient sample using advanced fluorescence microscopy, potentially making sophisticated molecular diagnostics more accessible to hospital labs without specialized expertise.
+
+$400,000
+
+Phase I
+
+Same Company
+
+###
+Ultra-sensitive blood test may detect thousands of cancer markers simultaneously
+
+A new diagnostic technology uses fluorescent-tagged antibodies to detect and measure cancer tumor markers in blood, urine, or saliva with high sensitivity—potentially enabling earlier cancer detection from a single patient sample.
+
+$100,000
+
+Phase I
+
+Same Company
+
+###
+Ultra-sensitive microRNA detection for early cancer diagnosis
+
+A new fluorescence-based technology that may detect and count cancer-related microRNAs in blood samples without amplification, potentially enabling faster, more sensitive cancer screening.
+
+$300,000
+
+Phase I
+
+Same Company
+
+###
+Automated genetic test detects thousands of neurological disorder mutations simultaneously
+
+A new diagnostic system appears to use advanced fluorescence technology to identify multiple genetic mutations and gene dosages in a single test, potentially improving diagnosis of inherited neurological disorders like Charcot-Marie-Tooth disease.
+
+$193,215
+
+ID: 19b3f8d8-956c-4eae-988b-0d01f93521e3
+
+Summaries are AI-generated for accessibility and may contain errors. Always refer to official agency sources for authoritative information. Report corrections .

@@ -1,0 +1,66 @@
+Laying the Groundwork to Expand the NACC Dataset - National Alzheimer’s Coordinating Center (NACC) Skip to main content
+
+stacked_line_chart Request Data
+question_mark Support
+person ADRC Portal Login
+
+# Laying the Groundwork to Expand the NACC Dataset
+September 9, 2026
+
+In a new proof-of-concept study, scientists at the National Alzheimer’s Coordinating Center (NACC) and three Alzheimer’s Disease Research Centers (ADRCs) have developed a strategy for linking NACC’s Uniform Data Set and genetic data with data from participants’ electronic health records and Medicare claims. The project lays the groundwork for answering some of the most pressing questions about Alzheimer’s disease and related dementias.
+Kari A. Stephens, PhD
+Director of NACC
+“It’s really about filling the gaps and trying to have a more complete picture of this wonderful cohort of patients … so that we can speed to faster cures and treatments and ways to identify dementias,” says Kari Stephens, Director of NACC and Professor of Family Medicine at the University of Washington.
+Despite the rigor and scale of the NACC dataset, it represents only part of the broader health information available for participants. “The strength of the Uniform Data Set is the phenotypic data on patients collected through ADRCs that have very well curated research procedures and policies for how to do that,” says Stephens. However, she adds that “in the meantime, people go out into the messy world of healthcare, and they receive a lot of healthcare outside the Centers that includes all kinds of care that generates what we call real world data … and we’re missing all of those data.”
+To address that, Stephens and a team of colleagues and collaborators from across the country sought to incorporate data from NACC participants’ electronic health records and Medicare claims. “We felt an obligation to try to enhance what we had … around these populations, and, in the long term, to create a process for the ADRC program to have more comprehensive data,” says Stephens. The group published their initial results earlier this year in Alzheimer’s & Dementia. That paper capped years of work overcoming a thicket of interlocking challenges.
+For the initial study, Stephens and the NACC team worked with the teams at three ADRCs: Washington University in St. Louis, Indiana University, and Columbia University. Most participants at those ADRCs also received their regular medical care at the ADRC’s academic medical center, so at least in principle, their health records were available. The ADRCs prioritized consultations with their community advisory boards of participants, who were enthusiastic about sharing more comprehensive data. “It’s not just about the paperwork of getting folks to consent to share their data, which is a legal minimum, it’s also about partnership with patients and their loved ones, because we want to make sure that we’re being ethical in how we do this and that they’re in agreement,” says Stephens.
+Once ADRCs executed required governance, the ADRCs were able to transfer de-identified data from the patients’ electronic health records to NACC, where they became part of an expanded dataset. Getting Medicare claims data was more complex, as the Federal government places stringent restrictions on moving that information, even if it’s anonymized. Instead of adding the data directly to the NACC dataset, the researchers negotiated an arrangement for accessing the claims data in cloud storage maintained by a Federal contractor .
+
+Despite these hurdles, the technical issues were not the biggest challenges. “It’s the people side that’s the hardest, meaning the regulations and the organizations and the trust, all of the relationship building and legal work that needs to be done,” says Stephens. Indeed, she estimates that 80% of the team’s effort focused on navigating the complex legal and ethical questions the project raised. “It’s unusual to have [Institutional Review Boards] at different universities talking to each other, but each of these universities are their own business entity, and they have their own legal requirements, so we spent time and effort to get them all talking,” says Stephens. Meanwhile, the regulations around data sharing are also evolving, as both AI and medical privacy issues dominate many healthcare policy discussions.
+
+“Most of the users of our data are not in the ADRC Program, so [we want] to be that conduit between the research world and the ADRCs”
+
+After several years of effort, the team had linked the NACC data for over 2,000 participants with their associated electronic health records and added Medicare claims data for over 1,500. The expanded dataset provides an unprecedented depth and breadth of information for researchers to examine.
+Though she stresses that this project was strictly a proof-of-concept, Stephens is happy with the results. “We now know we can successfully link real world data with NACC’s data,” she says. Because the COVID-19 pandemic overlapped with the team’s work, they were also able to incorporate detailed information about the effects of the novel coronavirus’s emergence on an especially vulnerable population, highlighting the potential of adding unanticipated data types in the future. Stephens explains that as diagnostic and treatment options for dementia continue to evolve, “we need a governance system that adapts quickly to connect any new data set that emerges.’”
+Having developed a viable strategy for unifying these datasets, Stephens and her colleagues are now working to expand it. Leaders at the National Institute on Aging, NACC, and a growing group of ADRCs are enthusiastic about the project, and Stephens says a set of modular data use agreements that grew out of the initial project should help streamline the legal process of extending the datasets further.
+Besides incorporating more data, the NACC team is also working on making it more of these data accessible to researchers. “Most of the users of our data are not in the ADRC Program, so [we want] to be that conduit between the research world and the ADRCs,” says Stephens. That philosophy has driven related initiatives, such as a quick access system that allows scientists to receive the NACC dataset within a few days of applying for access, and tools to make it easier to analyze the data in different ways. “When I first stepped into NACC, we pivoted the data distribution into a self service system instead of a manual one, inspired by a system we created for UW Medicine many years ago. Over the last few years, that has exponentially increased the number of papers that are coming out with innovations and discoveries that these data are helping drive,” says Stephens.
+
+Biber S, Culhane JE, Prado MG, et al. Integrating real-world data with gold-standard longitudinal clinical and genomic data to advance precision medicine for the Alzheimer's Disease Research Center Program and beyond: a proof-of-concept data platform. Alzheimer's Dement. 2026; 22:e71207. https://doi.org/10.1002/alz.71207
+
+## Explore All of NACC&#x27;s Articles
+Topics
+
+Search...
+
+Sort by Date Created Relevance Date Alphabetically
+
+Page 1 - Showing 1 to 5 from 47 results
+
+## Strategic Data Management Roadmap
+October 12, 2026
+The following details ongoing and upcoming enhancements to the NACC Data Platform
+Topics: Announcements , Newsletter , News
+
+## Earlier Onset, Worse Disease
+October 2, 2026
+A new NACC and LEADS study found that earlier onset Alzheimer’s disease is associated with greater cognitive impairment and more rapid decline.
+Topics: UDSv4 , Clinical Core , Research , Data Core
+
+## Newsletter - September 2026
+September 11, 2026
+Explore real-world health data linkages, year-round ADRC webinars, upcoming events, and more
+Topics: Newsletter , News , Research , Funding Opportunities , Webinar , Events
+
+## Laying the Groundwork to Expand the NACC Dataset
+September 9, 2026
+A new NACC-led proof-of-concept study is laying the groundwork for a more comprehensive view of ADRC participants’ health by linking NACC’s rich longitudinal data with electronic health records and Medicare claims.
+Topics: UDSv4 , Clinical Core , Research , Data Core
+
+## 2026 Fall ADRC Meeting: Your Guide to Seattle
+August 28, 2026
+We're thrilled to welcome the ADRC network to Seattle! Whether you're looking for a quick coffee, an evening stroll, or flavors from around the world, there's something for you!
+Topics: ADRC Meeting
+
+5 10 20 30 50 100
+
+Topics: UDSv4 , Clinical Core , Research , Data Core

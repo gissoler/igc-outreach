@@ -1,0 +1,132 @@
+{
+ "id": "g2-aha-nonprofit",
+ "kind": "grant",
+ "objective": "grant",
+ "brief": "eval/briefs/aha-nonprofit.json",
+ "why": "ONG de EE. UU.: elegibilidad por tipo de entidad y registro federal",
+ "dry": false,
+ "ok": true,
+ "status": "done",
+ "error": null,
+ "started": "2026-10-14T16:20:37.447Z",
+ "seconds": 451,
+ "stages": {
+  "search_s": 240,
+  "judge_s": 207,
+  "engine_s": 447,
+  "contacts_s": null,
+  "evaluator_s": 3,
+  "total_s": 451
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 11,
+  "opened": 129,
+  "assessed": 51,
+  "by_status": {
+   "registry": 11,
+   "open": 18,
+   "upcoming": 12,
+   "rolling": 1,
+   "unknown": 52,
+   "closed": 35,
+   "unread": 34
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 12
+ },
+ "lists": {
+  "top": 0,
+  "radar": 12,
+  "discarded": 0
+ },
+ "apollo_credits": 4,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "AD Data Initiative | Alzheimer’s Trials Data Discovery Challenge",
+   "list": "radar",
+   "deadline": "2027-02-01",
+   "verified": false,
+   "url": "https://www.alzheimersdata.org/alzheimer-s-trials-data-discovery-challenge",
+   "contacts": 0
+  },
+  {
+   "title": "RFA-AG-27-005 · The NIA Genetics of Alzheimer's Disease Data Storage Site (NIAGADS)",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf",
+   "contacts": 1
+  },
+  {
+   "title": "Development of predictive biomarkers of disease progression and treatment response by using AI methodologies for chronic",
+   "list": "radar",
+   "deadline": "2027-02-17",
+   "verified": false,
+   "url": "https://www.horizon-europe.gouv.fr/development-predictive-biomarkers-disease-progression-and-treatment-response-using-ai-methodologies",
+   "contacts": 0
+  },
+  {
+   "title": "26-512 · Unlocking Dataset Value for AI-Enabled Scientific Discovery (AI Datasets)",
+   "list": "radar",
+   "deadline": "2026-11-04",
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/9bd80298-4f43-40e6-890d-64fed9ef6d41",
+   "contacts": 1
+  },
+  {
+   "title": "U.S. National Science Foundation State and Regional Artificial Intelligence Infrastructure Hubs",
+   "list": "radar",
+   "deadline": "2026-11-04",
+   "verified": false,
+   "url": "https://www.nsf.gov/funding/opportunities/us-national-science-foundation-state-regional-artificial",
+   "contacts": 0
+  },
+  {
+   "title": "EIBIR (European Institute for Biomedical Imaging Research)",
+   "list": "radar",
+   "deadline": "2027-03-18",
+   "verified": false,
+   "url": "https://www.eibir.org/open-funding-calls/",
+   "contacts": 0
+  },
+  {
+   "title": "EuroAccess - Fördermittelsuche der EuroVienna EU-consulting & -management GmbH",
+   "list": "radar",
+   "deadline": "2026-10-15",
+   "verified": false,
+   "url": "https://www.euro-access.eu/en/calls",
+   "contacts": 0
+  },
+  {
+   "title": "Translational Center for Accelerating the Use of Digital Health Technologies Data in AD/ADRD Research",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/e4a95157-fd31-4a44-96ef-cfa0f95ec39c",
+   "contacts": 0
+  },
+  {
+   "title": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Data and Robo",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.horizon-europe.gouv.fr/apply-ai-challenge-driven-ai-innovation-booster-apply-ai-prioritised-sectors-ria-partnership-ai",
+   "contacts": 0
+  },
+  {
+   "title": "Euresearch",
+   "list": "radar",
+   "deadline": null,
+   "verified": false,
+   "url": "https://www.euresearch.ch/en/our-services/inform/open-calls-137.html",
+   "contacts": 0
+  }
+ ]
+}

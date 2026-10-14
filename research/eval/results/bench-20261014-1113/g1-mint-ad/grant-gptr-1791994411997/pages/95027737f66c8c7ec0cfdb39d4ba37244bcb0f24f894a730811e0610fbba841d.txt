@@ -1,0 +1,362 @@
+ARPA-H SBIR for Health Tech Startups: 2026 Founder Guide | Cada
+Skip to content Hundreds of Proposals Written
+
+Federal, State & Foundation Grants
+
+If your NIH SBIR application has been sitting in reauthorization limbo for months, you are not alone. Of the health tech companies we work with, a large share sit in the defense-health cluster where ARPA-H is a natural fit, and most of them did not realize ARPA-H was actively accepting submissions while NIH and NSF SBIR remained paused. This guide is for the ARPA-H SBIR health tech startup founder who has been waiting on a frozen SBIR cycle and is wondering whether ARPA-H is a real alternative -- and how it actually works.
+
+Three things to know up front. ARPA-H is not a traditional grant. The innovation bar is 10x not 10%. And the way ARPA-H Program Managers actually evaluate you is completely different from how NIH study sections work. If you go in thinking in NIH terms, you will write the wrong document. Phase I or Base Period awards vary by program, with typical ISO Base Periods landing in the $1M to $5M range over 12-24 months, evaluated by a single Program Manager against the Heilmeier Catechism.
+
+This guide gives you the structural picture: what ARPA-H funds, how it differs from NIH SBIR, which of the four Mission Offices you should target, and what a winning Solution Summary actually contains.
+
+## What is ARPA-H, and how does ARPA-H funding work for startups?
+
+The Advanced Research Projects Agency for Health (ARPA-H) is a U.S. federal agency that funds high-risk, high-reward health technologies that cannot be developed through conventional research approaches. It uses "Other Transactions" authority for milestone-based agreements, not traditional grants. Founded in 2022, it operates four Mission Offices and evaluates submissions through a single Program Manager using the Heilmeier Catechism. For startups, ARPA-H grants typically mean $1M-$5M Base Period awards with potential to extend to $10M-$25M+ via option periods.
+
+Think of ARPA-H as DARPA for health. DARPA-style means: Program Managers with technical authority, no peer review panels, milestone-based contracts with explicit Go/No-Go gates, and an explicit mandate to fund what NIH would call "too risky."
+
+ARPA-H by the numbers:
+
+Item
+Detail
+
+Phase I / Base Period typical size
+$1M to $5M over 12-24 months for a typical ISO Base Period; some pilot programs below $1M
+
+Option periods
+Often $10M to $25M+ for successful performers
+
+Evaluation framework
+Heilmeier Catechism (10 questions)
+
+Reviewer
+A single Program Manager (no panels)
+
+Mechanism
+"Other Transactions" (OT) authority, milestone-based
+
+Application format
+6-page Solution Summary
+
+Mission Offices
+4 (HSF, PHO, RSO, SSO)
+
+Innovation bar
+Non-incremental -- 10x not 10%
+
+If you came in expecting "$600K Phase I" because that's the number floating around, here is the honest version. ARPA-H Phase I awards vary by program and Mission Office. Some are smaller pilots, but a typical Base Period under an Innovation Solicitation for Solutions (ISO) is in the $1M to $5M range over 12-24 months. The mechanism is an Other Transaction agreement, not a Phase I SBIR award. Calling it "ARPA-H SBIR" is shorthand most founders use, but the actual instrument is different.
+
+## How is ARPA-H different from NIH SBIR?
+
+Dimension
+NIH SBIR Phase I
+ARPA-H
+
+Reviewer
+Study section of 15-20 scientists
+A single Program Manager
+
+Award size
+~$275K over 6-12 months
+$1M to $5M over 12-24 months
+
+Mechanism
+Grant
+Other Transaction (OT), milestone-based
+
+Innovation bar
+Incremental research is acceptable
+Non-incremental -- 10x improvement
+
+Format
+Specific Aims + Research Strategy
+6-page Solution Summary
+
+Evaluation criteria
+Significance, Investigators, Innovation, Approach, Environment
+Heilmeier Catechism (10 questions)
+
+Cycle
+3 standard cycles per year (Jan / Apr / Sep deadlines)
+Rolling, by ISO
+
+Foreign ownership
+Strict for-profit, US-owned-and-controlled
+Foreign entities may apply, but face additional scrutiny
+
+Portfolio overlap
+Not screened pre-review
+Pre-review screening kills overlapping submissions
+
+A single Program Manager makes the call. That changes everything about how you write. You are not writing for a panel of generalists who will average scores. You are writing for one technical expert who has to be convinced -- and who has to defend the funding decision to leadership. Your job is to make that PM's case for them.
+
+The 10x bar is real. ARPA-H is explicit that it funds non-incremental innovation. If your technology improves on the standard of care by 30%, ARPA-H is not the right home. If it changes what is even possible (a new diagnostic mechanism, a new manufacturing approach, a new delivery model that closes a 100x access gap), ARPA-H is the right place.
+
+Milestones are payable events. Unlike NIH specific aims, which describe what you will study, ARPA-H milestones are Go/No-Go decision points. If you do not hit the milestone, the program ends. This means you need to write milestones that are operationally testable, not "we will explore."
+
+## Why ARPA-H matters right now
+
+As of May 2026, SBIR reauthorization remains a moving target. NIH SBIR, NSF SBIR/STTR, and the DOD SBIR Components have all faced cycle delays or funding uncertainty tied to the broader reauthorization debate. ARPA-H sits on a different footing.
+
+ARPA-H operates under Other Transactions authority, not the SBIR statutory framework. Its Innovation Solicitations for Solutions (ISOs) are not SBIR solicitations. That means ARPA-H is active, funding, and accepting submissions during a period when several other federal SBIR sources are paused or slowed.
+
+Frankly, the timing of NIH and NSF SBIR resumption is unclear. The reauthorization could clear in weeks or stretch into late 2026. If you are a health tech founder whose NIH SBIR application is in limbo, ARPA-H is one of the few federal options that is not blocked by that uncertainty.
+
+That said, ARPA-H is not a substitute for NIH SBIR for every health tech company. NIH SBIR is forgiving of incremental innovation and standardized review. ARPA-H is not. Check fit before pivoting.
+
+## Which ARPA-H Mission Office should you target?
+
+ARPA-H has four Mission Offices. Picking the right one is the single most important pre-application decision you will make. Submitting to the wrong Mission Office almost guarantees rejection, because the Program Manager will read your Solution Summary against an interest area framework you are not addressing.
+
+To pick a Mission Office, walk through this decision tree in order. Stop at the first yes.
+
+Is the innovation a new tool or platform for biological discovery, molecular analysis, cellular engineering, or AI/ML applied to biology? If yes, target HSF (Health Science Futures) .
+
+Is the innovation focused on detecting disease or conditions before symptoms appear, continuous health monitoring, or early intervention? If yes, target PHO (Proactive Health Office) .
+
+Is the innovation focused on health system infrastructure -- manufacturing, supply chain, rural access, health IT interoperability, or emergency response? If yes, target RSO (Resilient Systems Office) .
+
+Is the innovation focused on access, equity, or delivery -- getting solutions to underserved populations at scale? If yes, target SSO (Scalable Solutions Office) .
+
+If two or more Mission Offices could fit, pick the one where the primary bottleneck your technology solves lives. A new diagnostic device could be HSF (if the innovation is the sensing mechanism) or PHO (if the innovation is enabling pre-symptomatic detection). The bottleneck framing usually resolves it.
+
+### HSF -- Health Science Futures
+
+Foundational technologies: novel molecular tools, cellular engineering, advanced biomarker platforms, AI/ML for biological discovery.
+
+Illustrative fit (fictional): A startup with a new cryo-EM image analysis platform that resolves protein conformations at sub-second timescales -- enabling drug discovery against targets currently considered undruggable. This is HSF because the innovation is the foundational tool, not the disease application.
+
+### PHO -- Proactive Health Office
+
+Preventive and early intervention: wearables and sensors for pre-symptomatic detection, continuous health monitoring, screening at population scale.
+
+Illustrative fit (fictional): A wrist-worn sensor that detects early atrial fibrillation through a novel signal processing approach, designed for deployment in primary care settings before symptoms present. PHO because the innovation enables detection before symptoms.
+
+### RSO -- Resilient Systems Office
+
+Health system infrastructure: supply chain, surge manufacturing, rural access, health IT interoperability, emergency response.
+
+Illustrative fit (fictional): A modular drug substance manufacturing platform that produces 20+ small molecules from shared upstream infrastructure, designed to surge capacity within 30 days of a public health emergency. RSO because the innovation is system-level resilience.
+
+### SSO -- Scalable Solutions Office
+
+Access, equity, and adoption at scale: last-mile delivery, behavioral tools, care coordination, health literacy.
+
+Illustrative fit (fictional): A peer-coordinator workflow platform that lets community health workers manage 200 chronic disease patients per coordinator across rural counties, with measurable adherence and outcome data. SSO because the innovation is scale of access.
+
+Which ARPA-H Mission Office is right for your startup? Walk through the decision tree in order and stop at the first yes. HSF is for foundational biology tools, PHO is for pre-symptomatic detection and monitoring, RSO is for health system infrastructure and surge capacity, and SSO is for access, equity, and delivery at scale. If two Mission Offices fit, pick the one solving the primary bottleneck.
+
+## How does ARPA-H evaluate Solution Summaries?
+
+Every ARPA-H Program Manager evaluates Solution Summaries against the Heilmeier Catechism. The Heilmeier Catechism is a 10-question framework developed by George Heilmeier at DARPA in the 1970s. It is the single most important framework to understand before writing.
+
+Each section of your Solution Summary maps to specific Heilmeier Questions. If you do not directly answer each question, the PM has no way to score you.
+
+HQ
+The Heilmeier Question
+What the PM is really asking
+Common founder mistake
+
+HQ1
+What are you trying to do? Articulate your objectives using absolutely no jargon.
+Can you explain this in under 60 seconds to a non-specialist?
+Opening with technical jargon and acronyms.
+
+HQ2
+How is it done today, and what are the limits of current practice?
+Do you understand why current approaches fundamentally fail, not just their surface limitations?
+Listing competitor features rather than structural limitations.
+
+HQ3
+What is new in your approach and why do you think it will be successful?
+Is this a genuinely new mechanism or a better implementation of existing methods?
+"We use AI/ML to" without specifying what is novel.
+
+HQ4
+Who cares? If you are successful, what difference will it make?
+Is the impact measured in health outcomes (lives, prevented disease, healthy years), not revenue?
+Leading with market size ($XB TAM) instead of health burden.
+
+HQ5
+What are the risks?
+Are you honest about technical failure modes?
+Listing only market or regulatory risks.
+
+HQ6
+How much will it cost?
+Is the budget realistic for the scope, with R&#x26;D spending dominant?
+Unrealistic budgets, top-heavy on overhead.
+
+HQ7
+How long will it take?
+Do you have a credible timeline with intermediate milestones?
+Vague timelines without monthly checkpoints.
+
+HQ8
+What are the mid-term and final "exams" to check for success?
+What are the Go/No-Go decision points?
+Listing only final deliverables, no checkpoints.
+
+HQ9
+How will you address issues of equity and access in health?
+Does your design intentionally address access barriers, or is access an afterthought?
+"We will ensure equitable access" with no specifics.
+
+HQ10
+How will you mitigate potential misuse of the technology?
+Have you thought about dual-use concerns, data privacy, algorithmic bias, unintended consequences?
+Ignoring the question or a generic compliance answer.
+
+The Heilmeier Catechism is the test. If you cannot answer all 10 questions in jargon-free prose, you are not ready to write a Solution Summary. Many founders skip HQ9 and HQ10 in their thinking. That is a common reason Solution Summaries get rejected.
+
+## Why ARPA-H rejects submissions before review
+
+This is the one most founders miss. ARPA-H pre-screens for active portfolio overlap. If ARPA-H already funds a program addressing the same problem with a similar approach, your submission gets rejected as duplicative, often before a PM reads it carefully.
+
+The portfolio overlap check is a silent killer. There is no formal "overlap" rejection notification. The Solution Summary just does not advance. Founders assume they got out-competed when, in many cases, they got out-screened.
+
+### The four overlap risk tiers
+
+Risk level
+Definition
+What to do
+
+CRITICAL
+Same technology + same problem + same/similar approach
+Do not submit. Pivot the framing or wait for the active program to close.
+
+HIGH
+Same technology, different application, OR same problem, similar approach
+Submit only with explicit differentiation in Section 2. State why your approach is distinct.
+
+MEDIUM
+Adjacent technology or related problem
+Note the related program in Section 2. Include a brief differentiation statement.
+
+LOW / NONE
+No meaningful overlap
+Note explicitly: "No overlapping active ARPA-H programs identified." This is a positive signal to the PM.
+
+### How to do a self-overlap check in 30 minutes
+
+Go to arpa-h.gov and read every program page under your target Mission Office. Note name, objectives, and any performer list.
+
+Search site:arpa-h.gov plus your core technology keywords (the actual mechanism, not the marketing terms).
+
+Look for active ISOs in your Mission Office. ISO interest areas tell you what the Mission Office is currently soliciting.
+
+For each program that looks adjacent, write one sentence on how your technology differs structurally. If you cannot write that sentence, you are in HIGH or CRITICAL territory.
+
+If you find a CRITICAL overlap, stop. Reframe or wait. Submitting against an active program is wasted time.
+
+Cada's playbook does this check as a discrete step before drafting. We treat it as a Go/No-Go gate. About 1 in 6 companies we screen for ARPA-H gets a CRITICAL or HIGH overlap finding. For those companies, pivoting framing or targeting a different agency saves 60-100 hours of wasted drafting.
+
+## What goes in an ARPA-H Solution Summary?
+
+The Solution Summary is 6 pages, 11pt Calibri, 1" margins, single-spaced, with 5 sections. The page budget is tight. Every paragraph has to do work.
+
+Section
+What it covers
+Page budget
+Heilmeier Questions
+
+1. Concept Summary
+Plain-language statement of the technology and impact
+~1 page
+HQ1, HQ4
+
+2. Innovation and Impact
+Why current approaches fail, what is new, health equity, who benefits
+~2 pages
+HQ2, HQ3, HQ4, HQ9
+
+3. Proposed Work
+Technical approach, milestones with Go/No-Go gates, risks, misuse mitigation
+~2 pages
+HQ3, HQ5, HQ7, HQ8, HQ10
+
+4. Team and Capabilities
+Why your team can do this
+~0.5 page
+HQ3 supporting evidence
+
+5. Basis of Estimate
+Budget with R&#x26;D activity breakdown
+~0.5 page
+HQ6
+
+Three structural rules that catch most founders off guard.
+
+Rule 1: Milestones are payable events with Go/No-Go gates. Each milestone must have a binary success criterion that determines whether the program continues. "We will demonstrate feasibility" is not a milestone. "Achieve a sensitivity of 0.85 on the validation cohort at month 6, or the program terminates" is a milestone.
+
+Rule 2: Quantitative targets require state-of-the-art baselines. For every metric you commit to, you need to state the current state-of-the-art number and your target number. If current SoA detection sensitivity is 0.62 and you target 0.85, say so explicitly. Vague claims of improvement fail Heilmeier HQ3.
+
+Rule 3: Deployment at scale is part of the score. ARPA-H weights "delivery at scale" heavily. Describing your end users as "patients" or "providers" is too abstract. Name the specific delivery sites or population segments, with numbers. "Federally Qualified Health Centers and community pharmacies in the 25 lowest-physician-density U.S. counties" is the kind of concreteness that scores.
+
+## Does my technology meet ARPA-H's innovation bar?
+
+Three questions to ask before investing 60-100 hours in a Solution Summary.
+
+Question 1: Can you state a 10x metric improvement with a credible mechanism? Not "our solution is better" but "current SoA achieves X, our approach achieves 10X because of [mechanism Y]." If you cannot fill in Y, you do not have a 10x claim.
+
+Question 2: Is the failure of current approaches structural, not just incremental? If current approaches fail because they have not been optimized, ARPA-H is not the right fit. If current approaches fail because of a fundamental constraint that your approach removes, ARPA-H is the right fit.
+
+Question 3: Can your technology improve health outcomes at population scale, not just for an early-adopter segment? ARPA-H Mission Offices score "who benefits" generously when the answer reaches a meaningful population, not just patients with insurance who can afford the technology.
+
+If you answered yes to all three, ARPA-H is worth the time investment. If you answered no to any, look elsewhere or refine your framing. Honesty here saves months.
+
+## How do I apply to ARPA-H?
+
+A 4-step Phase 0 process before you write a single section.
+
+Step 1: Mission Office routing. Use the decision tree above. Lock in your target Mission Office before you write anything else.
+
+Step 2: Heilmeier self-assessment. Take the 10 Heilmeier Questions. Write a 2-3 sentence answer to each. If you cannot answer in jargon-free prose, the gap is in your thinking, not your writing. Fix the thinking first.
+
+Step 3: Portfolio overlap check. Spend 30 minutes on arpa-h.gov. Identify your overlap risk tier. If you are CRITICAL, stop and pivot. If you are HIGH or MEDIUM, plan your differentiation language.
+
+Step 4: Solution Summary draft. Write the 5 sections in order, against the page budget, mapping every paragraph to a Heilmeier Question. Then revise against the question framework.
+
+Realistic timing: 60-100 hours of focused work for a competitive Solution Summary. That includes Phase 0 prep, drafting, revision, and budget. If you are drafting it alongside other work, plan for 3-4 weeks of calendar time.
+
+## Wondering if your innovation clears the ARPA-H bar?
+
+If you are an ARPA-H SBIR health tech startup wondering whether to apply, the honest answer to "should I apply to ARPA-H?" is usually one of three things: yes and here is which Mission Office, no and here is a better fit, or yes-with-conditions and here is the framing change you need.
+
+Cada has written hundreds of grant proposals across 30+ federal agencies and foundations, including Solution Summaries across multiple ARPA-H Mission Offices. We do a free 15-minute ARPA-H fit assessment that gives you a straight answer: which Mission Office, what the 10x claim looks like for your technology, and whether there is portfolio overlap risk you should know about.
+
+No pitch, no obligation. If ARPA-H is not the right fit, we will tell you and point you to what is.
+
+If you want help, reach out at cada.partners . Mention ARPA-H in your message and we will route you to the fit assessment.
+
+## Frequently Asked Questions
+How much does ARPA-H Phase I pay? Phase I or Base Period awards typically range from $1M to $5M over 12-24 months, depending on the Mission Office and the specific program. Some smaller pilot programs are below this range. Option periods can extend total funding to $10M to $25M+ for successful performers.
+
+Is ARPA-H affected by the SBIR reauthorization pause? No. ARPA-H operates under Other Transactions authority, not the SBIR statutory framework. Its Innovation Solicitations for Solutions (ISOs) are not SBIR solicitations and are not affected by SBIR reauthorization status. As of May 2026, ARPA-H is one of the few federal funding paths for health tech that is unambiguously active.
+
+Can foreign-owned companies apply to ARPA-H? Foreign entities may apply to ARPA-H, but they face additional scrutiny on national security, data, and supply chain risk. The default expectation is that the prime performer is U.S.-based with U.S. data handling. Foreign-owned U.S. subsidiaries are sometimes eligible but the structure matters.
+
+How long does ARPA-H take to award? Timelines vary by ISO and Mission Office. The general pattern is Solution Summary submission, then a 4-8 week initial review, then either a full proposal request or a decline. From submission to award typically takes 4-9 months, though some programs move faster.
+
+What is the difference between an ISO and an SBIR solicitation? An Innovation Solicitation for Solutions (ISO) is an ARPA-H mechanism for soliciting Solution Summaries against specific Mission Office interest areas. An SBIR solicitation is a Small Business Innovation Research program announcement under the SBIR statute. ISOs are not SBIR. The application format, evaluation, and contract type are different.
+
+Do I need preliminary data for ARPA-H? ARPA-H is more accepting of conceptual proposals than NIH, but evidence that the approach can work helps. Preliminary data, prior research, working prototypes, or theoretical analysis that supports the 10x claim all help. If you have no evidence at all, the PM has nothing to evaluate.
+
+## Ready to explore your funding options ?
+We&#x27;ll map your technology to the most relevant programs and tell you where to start. 15 minutes, no obligation.
+Book Strategy Review
+
+## Related Articles
+
+SBIR/STTR
+### The SBIR Technical Risk Section: Why "No Risks" Reads as Engineering, Not R&D
+Most founders draft their SBIR Specific Aims to sound as confident as possible, and that instinct is backwards: one external reviewer on a Cada-drafted NASA proposal wrote that risk-free writing "reads more as engineering than R&D." This guide gives founders a three-part credibility test for technical risk statements, a six-failure-mode table, and five worked cross-agency examples (NIH, NASA, NSF, ARPA-E, AFWERX) showing exactly what a scored risk section looks like.
+September 11, 2026
+SBIR/STTR
+### How to Write an SBIR Significance Section: The Six-Sentence Opener (And the One Step Founders Skip)
+The opening paragraph of your Significance section is the highest-stakes paragraph in an SBIR proposal, and most first-time founders get it wrong by leading with their technology. This guide lays it out as a fixed six-sentence sequence, distilled from external-reviewer track-changes, and names the one step founders skip almost every time: naming the current standard of care before pitching the solution.
+September 9, 2026
+SBIR/STTR
+### A Federal Grant Application Has About 100 Fields. Only 25 of Them Are Actually Yours.
+A federal grant application touches about 100 discrete fields, but only roughly a quarter of them are actually the founder&#x27;s job to answer. This piece publishes Cada&#x27;s field-bucket classifier (founder-facing, portal-only, consultant-prefilled, consultant-internal) and the 0-100 readiness score that gates drafting, so you can self-score before you ever open an intake form.
+September 2, 2026
