@@ -32,10 +32,8 @@ export function fleetConfig(env = process.env) {
   roles.engine = engineUrl && engineModel
     ? { url: engineUrl, model: engineModel, ready: true, apiKey: env.ENGINE_LLM_API_KEY || '', jsonMode: env.ENGINE_LLM_JSON_MODE !== '0', reasoningEffort: String(env.ENGINE_LLM_REASONING_EFFORT || '').trim(), maxTokens: Number(env.ENGINE_LLM_MAX_TOKENS) || 0, thinking: env.ENGINE_LLM_THINKING === '0' ? false : undefined }
     : { ...roles.chat, alias: 'chat' };
-  // V13 · Roles 'compiler' (recopila: lee la página y devuelve hechos con cita) y 'judge' (valida los hechos del compilador contra la
-  // página y el brief). Cada uno con su propio modelo. Sin URL y modelo el rol NO está listo y NO se sustituye por otro: el respaldo
-  // existe solo si se pide con COMPILER_LLM_FALLBACK / JUDGE_LLM_FALLBACK = engine | chat (y queda anotado en `fallback`).
-  for (const [role, P] of [['compiler', 'COMPILER'], ['judge', 'JUDGE']]) {
+  // Roles separados del motor. Sin URL y modelo no están listos ni se sustituyen: el respaldo existe solo si se pide.
+  for (const [role, P] of [['compiler', 'COMPILER'], ['judge', 'JUDGE'], ['agent', 'ENGINE_AGENT']]) {
     const url = trim(env[`${P}_LLM_URL`]); const model = String(env[`${P}_LLM_MODEL`] || '').trim();
     const fb = String(env[`${P}_LLM_FALLBACK`] || '').trim().toLowerCase();
     roles[role] = url && model

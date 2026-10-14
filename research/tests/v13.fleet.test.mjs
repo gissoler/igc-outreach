@@ -45,3 +45,20 @@ test('V13-4 chatJSON uses the per-role timeout and the role model, and engine be
   assert.equal(seen[0].body.response_format, undefined);   // JUDGE_LLM_JSON_MODE=0
   await assert.rejects(chatJSON({ system: 's', user: 'u', role: 'judge' }, { env: {}, fetcher }), /role not configured: judge/);
 });
+
+test('F2.1 agent role is ready with its own URL and model', () => {
+  const agent = fleetConfig({
+    ENGINE_AGENT_LLM_URL: 'http://127.0.0.1:8016/v1/',
+    ENGINE_AGENT_LLM_MODEL: 'openai/gpt-oss-120b',
+    ENGINE_AGENT_LLM_REASONING_EFFORT: 'medium',
+    ENGINE_AGENT_LLM_JSON_MODE: '1',
+    ENGINE_AGENT_LLM_TIMEOUT_MS: '240000',
+  }).roles.agent;
+  assert.deepEqual([agent.ready, agent.url, agent.model], [true, 'http://127.0.0.1:8016/v1', 'openai/gpt-oss-120b']);
+  assert.deepEqual([agent.reasoningEffort, agent.jsonMode, agent.timeoutMs], ['medium', true, 240000]);
+});
+
+test('F2.1 agent role is not ready without URL and model', () => {
+  const agent = fleetConfig({}).roles.agent;
+  assert.deepEqual([agent.ready, agent.url, agent.model, agent.fallback], [false, '', '', null]);
+});
