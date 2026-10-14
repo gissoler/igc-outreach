@@ -41,12 +41,12 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   async function model(prompt, role, validate, pageRef = null) {
     for (let retry = 0; retry < 2; retry++) {
       const at = Date.now(); let response = null; let error = null;
-      const callRole = role === 'understand' ? 'agent' : role === 'assess' ? 'engine' : role;
+      const callRole = role === 'understand' ? (parallel ? 'engine' : 'agent') : role === 'assess' ? 'engine' : role;
       const callSignal = parallel && role !== 'judge' ? anySignal([opts.signal, AbortSignal.timeout(Math.max(5000, (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started)))]) : opts.signal;
       try { response = await chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole }, { env, fetcher: opts.fetcher, signal: callSignal }); }
       catch (e) { error = e; }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
-      trace.event('model_call', { role, model: response?.model || env[role === 'agent' || role === 'understand' ? 'ENGINE_AGENT_LLM_MODEL' : role === 'assess' ? 'ENGINE_LLM_MODEL' : 'JUDGE_LLM_MODEL'] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      trace.event('model_call', { role, model: response?.model || env[role === 'agent' || (role === 'understand' && !parallel) ? 'ENGINE_AGENT_LLM_MODEL' : role === 'assess' || role === 'understand' ? 'ENGINE_LLM_MODEL' : 'JUDGE_LLM_MODEL'] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
       if (checked.ok) return checked.value ?? raw;
     }
     return null;
