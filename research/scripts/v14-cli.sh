@@ -8,7 +8,7 @@ caso="${1:-grant}"; out="eval/runs/v14-3-$caso-$(date +%H%M%S)"
 bash scripts/tunnel-g355.sh dual-status || bash scripts/tunnel-g355.sh dual-bg
 bash scripts/tunnel-g355.sh dual-status || { echo "Los túneles no responden: no se corre nada."; exit 1; }
 export ENGINE_JUDGE=1 ENGINE_JUDGE_BLIND=1 ENGINE_LLM_URL=http://127.0.0.1:8017/v1 ENGINE_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ENGINE_LLM_TIMEOUT_MS=90000
-export COMPILER_LLM_URL=http://127.0.0.1:8017/v1 COMPILER_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 COMPILER_LLM_JSON_MODE=1 COMPILER_LLM_TIMEOUT_MS=240000
+export COMPILER_LLM_URL=http://127.0.0.1:8017/v1 COMPILER_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 COMPILER_LLM_JSON_MODE=1 COMPILER_LLM_TIMEOUT_MS=90000
 export JUDGE_LLM_URL=http://127.0.0.1:8016/v1 JUDGE_LLM_MODEL=openai/gpt-oss-120b JUDGE_LLM_REASONING_EFFORT=low JUDGE_LLM_JSON_MODE=1 JUDGE_LLM_TIMEOUT_MS=100000
 if [ "${AGENT_MODEL:-grande}" = "rapido" ]; then export ENGINE_AGENT_LLM_URL=http://127.0.0.1:8017/v1 ENGINE_AGENT_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ENGINE_AGENT_LLM_REASONING_EFFORT=
 else export ENGINE_AGENT_LLM_URL=http://127.0.0.1:8016/v1 ENGINE_AGENT_LLM_MODEL=openai/gpt-oss-120b ENGINE_AGENT_LLM_REASONING_EFFORT=low; fi

@@ -7,7 +7,7 @@ cd "$(dirname "$0")/.."
 bash scripts/tunnel-g355.sh dual-status || bash scripts/tunnel-g355.sh dual-bg
 bash scripts/tunnel-g355.sh dual-status || { echo "Los túneles no responden: no se arranca."; exit 1; }
 export ENGINE_JUDGE=1 ENGINE_LLM_URL=http://127.0.0.1:8017/v1 ENGINE_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ENGINE_LLM_TIMEOUT_MS=90000
-export COMPILER_LLM_URL=http://127.0.0.1:8017/v1 COMPILER_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 COMPILER_LLM_JSON_MODE=1 COMPILER_LLM_TIMEOUT_MS=240000
+export COMPILER_LLM_URL=http://127.0.0.1:8017/v1 COMPILER_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 COMPILER_LLM_JSON_MODE=1 COMPILER_LLM_TIMEOUT_MS=90000
 export JUDGE_LLM_URL=http://127.0.0.1:8016/v1 JUDGE_LLM_MODEL=openai/gpt-oss-120b JUDGE_LLM_REASONING_EFFORT=low JUDGE_LLM_JSON_MODE=1 JUDGE_LLM_TIMEOUT_MS=100000
 # Modelo que decide los pasos del agente: AGENT_MODEL=grande (por defecto, gpt-oss-120b con razonamiento bajo, como en el diseño y el benchmark) o AGENT_MODEL=rapido (Qwen3-30B, más veloz y menos capaz).
 # La comprensión del brief y la lectura de cada página van con Qwen3-30B: en la traza del 13/10 la comprensión con gpt-oss-120b superó 120 s dos veces.
