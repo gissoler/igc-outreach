@@ -1,0 +1,191 @@
+{
+ "objective": "grant",
+ "seconds": 632,
+ "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+ "traces": 160,
+ "pagesSummary": 80,
+ "read": 59,
+ "unread": 21,
+ "kept": 0,
+ "dropped": {
+  "aggregator": 82,
+  "not_eligible": 14,
+  "not_a_call:news": 7,
+  "not_a_call:directory": 3,
+  "closed": 10,
+  "not_a_call:program_page": 7,
+  "not_a_call:job": 2,
+  "wrong_kind:directory": 2,
+  "not_a_call:blog": 1,
+  "scope_mismatch": 4,
+  "wrong_kind:news": 2,
+  "not_a_call:cohort": 3,
+  "not_a_call:event": 1,
+  "wrong_kind:partner": 1,
+  "wrong_kind:other": 1,
+  "not_relevant": 1
+ },
+ "skipped": {
+  "social_host": 99,
+  "over_page_budget": 633
+ },
+ "verdicts": {
+  "apply": 0,
+  "watch": 0
+ },
+ "judge": {
+  "calls": {
+   "compiler": 80,
+   "judge": 80
+  },
+  "invalid": {
+   "compiler": 20,
+   "judge": 0
+  },
+  "errors": {
+   "compiler": 1,
+   "judge": 1
+  },
+  "ms": {
+   "compiler": 547238,
+   "judge": 1230384
+  },
+  "states": {
+   "unknown": 36,
+   "upcoming": 3,
+   "closed": 10,
+   "forecast": 3,
+   "open": 7
+  },
+  "disagreed": 45,
+  "failClosed": 0,
+  "patternDisagrees": 23
+ },
+ "expand": {
+  "on": true,
+  "seeds": 0,
+  "pages": 0,
+  "snowball": 0,
+  "siteDive": 0,
+  "similar": 0,
+  "lateral": {
+   "openalex": 0,
+   "edgar": 0,
+   "ai": 6,
+   "errors": [
+    "OpenAlex: today.getUTCFullYear is not a function"
+   ]
+  },
+  "errors": [
+   "OpenAlex: today.getUTCFullYear is not a function"
+  ],
+  "siteDiveVia": ""
+ },
+ "research": {
+  "steps": 2,
+  "searches": 8,
+  "opens": 6,
+  "stopped": "done"
+ },
+ "byReason": {
+  "aggregator": 43,
+  "over_page_budget": 37,
+  "not_eligible": 14,
+  "not_a_call:news": 7,
+  "not_a_call:directory": 3,
+  "compiler_invalid": 21,
+  "closed": 10,
+  "not_a_call:program_page": 7,
+  "not_a_call:job": 2,
+  "wrong_kind:directory": 2,
+  "not_a_call:blog": 1,
+  "scope_mismatch": 4,
+  "wrong_kind:news": 2,
+  "not_a_call:cohort": 3,
+  "not_a_call:event": 1,
+  "wrong_kind:partner": 1,
+  "wrong_kind:other": 1,
+  "not_relevant": 1
+ },
+ "byDecider": {
+  "código: lista de hosts/ruta (verify.mjs hostKind)": 43,
+  "código: tope de páginas": 37,
+  "elegibilidad: juez": 13,
+  "código: pageType.mjs classifyPage": 24,
+  "lectura inválida: compilador": 21,
+  "juez (fechas con rol) + auditor por código (resta)": 10,
+  "modelo lector (kind) + regla de objetivo en engine.mjs": 6,
+  "juez (topic_fit no con cita)": 4,
+  "elegibilidad: código: applicant.mjs": 1,
+  "modelo lector (relevant=false)": 1
+ },
+ "fetched": {
+  "firecrawl": 16,
+  "search": 56,
+  "direct": 7,
+  "search+reread:direct": 1
+ },
+ "notACall": {
+  "not_a_call:news | modelo page_type=call kind=program | juez pageType=call | regla=\"News or press release about the program, not the call itself\"": 1,
+  "not_a_call:directory | modelo page_type=call kind=program | juez pageType=call | regla=\"Directory or list of many opportunities\"": 1,
+  "not_a_call:program_page | modelo page_type=call kind=program | juez pageType=forecast_notice | regla=\"No way to apply on the page (no application form, deadline, eligibility or call)\"": 1,
+  "not_a_call:job | modelo page_type=program_page kind=program | juez pageType=program_page | regla=\"Job posting, not a funding call\"": 1,
+  "not_a_call:blog | modelo page_type=blog kind=program | juez pageType=blog | regla=\"Blog post or article, not the call itself\"": 1,
+  "not_a_call:directory | modelo page_type=call kind=funder | juez pageType=call | regla=\"Index of funding opportunities; the individual calls are the leads\"": 1,
+  "not_a_call:news | modelo page_type=program_page kind=program | juez pageType=program_page | regla=\"News or press release about the program, not the call itself\"": 1,
+  "not_a_call:job | modelo page_type=call kind=program | juez pageType=call | regla=\"Job posting, not a funding call\"": 1,
+  "not_a_call:news | modelo page_type=news kind=program | juez pageType=news | regla=\"News or press release about the program, not the call itself\"": 4,
+  "not_a_call:news | modelo page_type=news kind=funder | juez pageType=news | regla=\"News or press release about the program, not the call itself\"": 1,
+  "not_a_call:program_page | modelo page_type=call kind=program | juez pageType=call | regla=\"No way to apply on the page (no application form, deadline, eligibility or call)\"": 3,
+  "not_a_call:cohort | modelo page_type=cohort_announcement kind=funder | juez pageType=cohort_announcement | regla=\"Announces a selected cohort/winners, not an open call\"": 2,
+  "not_a_call:cohort | modelo page_type=cohort_announcement kind=program | juez pageType=cohort_announcement | regla=\"Announces a selected cohort/winners, not an open call\"": 1,
+  "not_a_call:directory | modelo page_type=program_page kind=funder | juez pageType=program_page | regla=\"Index of funding opportunities; the individual calls are the leads\"": 1,
+  "not_a_call:program_page | modelo page_type=program_page kind=program | juez pageType=program_page | regla=\"No way to apply on the page (no application form, deadline, eligibility or call)\"": 2,
+  "not_a_call:event | modelo page_type=program_page kind=program | juez pageType=program_page | regla=\"Meeting, workshop or summary page, not a funding call\"": 1,
+  "not_a_call:program_page | modelo page_type=report kind=funder | juez pageType=report | regla=\"No way to apply on the page (no application form, deadline, eligibility or call)\"": 1
+ },
+ "eligibility": {
+  "juez | juez no-con-cita=eligibility+entity_type+topic_fit | lector eligible=no | código=no": 2,
+  "juez | juez no-con-cita=eligibility+topic_fit | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=eligibility | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=eligibility+region | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=deadline+eligibility | lector eligible=no | código=no": 2,
+  "juez | juez no-con-cita=region | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=eligibility+region+stage+topic_fit | lector eligible=no | código=no": 1,
+  "código: applicant.mjs | juez no-con-cita=topic_fit | lector eligible=unclear | código=no": 1,
+  "juez | juez no-con-cita=deadline+eligibility+stage+topic_fit | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=stage | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=deadline+stage+topic_fit | lector eligible=no | código=no": 1,
+  "juez | juez no-con-cita=stage+topic_fit | lector eligible=no | código=no": 1
+ },
+ "judgeDrop": {
+  "juez.dropReason=not_eligible → final=not_eligible": 13,
+  "juez.dropReason=null → final=not_a_call:news": 3,
+  "juez.dropReason=not_eligible → final=not_a_call:directory": 2,
+  "juez.dropReason=not_eligible → final=unread": 6,
+  "juez.dropReason=closed → final=closed": 10,
+  "juez.dropReason=closed → final=unread": 4,
+  "juez.dropReason=scope_mismatch → final=not_a_call:program_page": 1,
+  "juez.dropReason=scope_mismatch → final=not_a_call:job": 1,
+  "juez.dropReason=null → final=wrong_kind:directory": 2,
+  "juez.dropReason=not_eligible → final=not_a_call:blog": 1,
+  "juez.dropReason=scope_mismatch → final=scope_mismatch": 4,
+  "juez.dropReason=null → final=not_a_call:directory": 1,
+  "juez.dropReason=not_eligible → final=not_a_call:news": 2,
+  "juez.dropReason=not_eligible → final=not_a_call:job": 1,
+  "juez.dropReason=scope_mismatch → final=wrong_kind:news": 2,
+  "juez.dropReason=null → final=not_a_call:program_page": 3,
+  "juez.dropReason=not_eligible → final=not_a_call:cohort": 1,
+  "juez.dropReason=null → final=not_a_call:cohort": 1,
+  "juez.dropReason=null → final=unread": 8,
+  "juez.dropReason=not_eligible → final=not_a_call:program_page": 3,
+  "juez.dropReason=null → final=not_a_call:event": 1,
+  "juez.dropReason=scope_mismatch → final=wrong_kind:partner": 1,
+  "juez.dropReason=scope_mismatch → final=not_a_call:news": 2,
+  "juez.dropReason=not_eligible → final=wrong_kind:other": 1,
+  "juez.dropReason=scope_mismatch → final=not_eligible": 1,
+  "juez.dropReason=scope_mismatch → final=unread": 3,
+  "juez.dropReason=scope_mismatch → final=not_a_call:cohort": 1,
+  "juez.dropReason=null → final=not_relevant": 1
+ }
+}

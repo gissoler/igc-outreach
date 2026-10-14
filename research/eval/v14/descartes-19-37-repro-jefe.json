@@ -1,0 +1,118 @@
+{
+ "objective": "grant",
+ "seconds": 1727,
+ "model": "Qwen/Qwen3-235B-A22B-Instruct-2507-FP8",
+ "traces": 148,
+ "pagesSummary": 80,
+ "read": 80,
+ "unread": 0,
+ "kept": 12,
+ "dropped": {
+  "aggregator": 102,
+  "not_a_call:directory": 3,
+  "closed": 21,
+  "not_a_call:program_page": 6,
+  "not_a_call:cohort": 7,
+  "not_a_call": 9,
+  "not_a_call:blog": 4,
+  "wrong_kind:other": 2,
+  "not_a_call:news": 3,
+  "wrong_kind:event": 1,
+  "scope_mismatch": 2,
+  "not_a_call:event": 1,
+  "wrong_kind:news": 3,
+  "not_eligible": 3,
+  "wrong_kind:directory": 1,
+  "wrong_kind:grant_awarded": 1,
+  "not_official": 1
+ },
+ "skipped": {
+  "social_host": 111,
+  "over_page_budget": 644
+ },
+ "verdicts": {
+  "apply": 0,
+  "watch": 12
+ },
+ "judge": null,
+ "expand": {
+  "on": true,
+  "seeds": 4,
+  "pages": 12,
+  "snowball": 15,
+  "siteDive": 5,
+  "similar": 18,
+  "lateral": {
+   "openalex": 0,
+   "edgar": 0,
+   "ai": 6,
+   "errors": [
+    "OpenAlex: today.getUTCFullYear is not a function"
+   ]
+  },
+  "errors": [
+   "site-dive: Common Crawl index HTTP 504",
+   "OpenAlex: today.getUTCFullYear is not a function"
+  ],
+  "siteDiveVia": "common_crawl"
+ },
+ "research": {
+  "steps": 3,
+  "searches": 8,
+  "opens": 6,
+  "stopped": "no_actions"
+ },
+ "byReason": {
+  "aggregator": 67,
+  "over_page_budget": 13,
+  "not_a_call:directory": 3,
+  "closed": 21,
+  "not_a_call:program_page": 6,
+  "not_a_call:cohort": 7,
+  "not_a_call": 9,
+  "not_a_call:blog": 4,
+  "wrong_kind:other": 2,
+  "not_a_call:news": 3,
+  "wrong_kind:event": 1,
+  "scope_mismatch": 2,
+  "not_a_call:event": 1,
+  "wrong_kind:news": 3,
+  "not_eligible": 3,
+  "wrong_kind:directory": 1,
+  "wrong_kind:grant_awarded": 1,
+  "not_official": 1
+ },
+ "byDecider": {
+  "código: lista de hosts/ruta (verify.mjs hostKind)": 67,
+  "código: tope de páginas": 13,
+  "código: pageType.mjs classifyPage": 24,
+  "código: dates.mjs": 21,
+  "otro": 10,
+  "modelo lector (kind) + regla de objetivo en engine.mjs": 8,
+  "modelo lector (scope_fit)": 2,
+  "elegibilidad: modelo lector": 3
+ },
+ "fetched": {
+  "search": 44,
+  "firecrawl": 5,
+  "direct": 15,
+  "search+reread:direct": 2,
+  "search+reread:firecrawl": 1,
+  "snippet": 1
+ },
+ "notACall": {
+  "not_a_call:directory | modelo page_type=program_page kind=program | juez pageType=undefined | regla=\"Index of funding opportunities; the individual calls are the leads\"": 1,
+  "not_a_call:program_page | modelo page_type=call kind=program | juez pageType=undefined | regla=\"No way to apply on the page (no application form, deadline, eligibility or call)\"": 6,
+  "not_a_call:cohort | modelo page_type=cohort_announcement kind=program | juez pageType=undefined | regla=\"Announces a selected cohort/winners, not an open call\"": 7,
+  "not_a_call:blog | modelo page_type=call kind=program | juez pageType=undefined | regla=\"Guide or explainer, not the call itself\"": 1,
+  "not_a_call:directory | modelo page_type=call kind=program | juez pageType=undefined | regla=\"Index of funding opportunities; the individual calls are the leads\"": 2,
+  "not_a_call:blog | modelo page_type=call kind=program | juez pageType=undefined | regla=\"Blog post or article, not the call itself\"": 2,
+  "not_a_call:news | modelo page_type=news kind=program | juez pageType=undefined | regla=\"News or press release about the program, not the call itself\"": 3,
+  "not_a_call:blog | modelo page_type=program_page kind=program | juez pageType=undefined | regla=\"Guide or explainer, not the call itself\"": 1,
+  "not_a_call:event | modelo page_type=event kind=program | juez pageType=undefined | regla=\"Event, workshop or course page, not a funding call\"": 1
+ },
+ "eligibility": {
+  "modelo lector | juez no-con-cita=- | lector eligible=no | código=no": 3
+ },
+ "judgeDrop": {}
+}
