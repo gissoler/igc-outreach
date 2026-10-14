@@ -326,9 +326,9 @@ export async function runObjective(objective, brief, opts = {}) {
   const researchState = { steps: 0, searches: 0, opens: 0, newPages: 0, stopped: null, log: [], errors: [] };
   if (researchOn) audit.research = researchState;
   Object.assign(audit, { extractCacheHits: 0, scrapeCacheHits: 0, extractSkipped: {}, extractPolicy: env.ENGINE_EXTRACT_POLICY === 'all' ? 'all' : 'decisive' });
-  const pendingExtract = [];
+  const pendingExtract = []; let exaSpent = 0;
   const run = search || (apis
-    ? async (q) => { const ck = `${recency}|${q}`; if (opts.cache?.[ck]) return opts.cache[ck]; const rows = await multiSearch(q, { env, fetcher, signal, recency, breaker }); if (opts.cache && rows.length) opts.cache[ck] = rows; for (const [p, x] of Object.entries(rows.stats || {})) { const s = stat(p); s.calls++; s.returned += x.returned; s.ms += x.ms; s.costUsd += x.costUsd || 0; if (x.error) { s.errors++; if (audit.errors.length < 20) audit.errors.push(`${p}: ${x.error}`); } if (x.disabled && !s.disabled) { s.disabled = x.disabled; audit.errors.push(`${p}: DESACTIVADO para el resto de la corrida (${x.disabled.slice(0, 120)})`); } } return rows; }
+    ? async (q) => { const ck = `${recency}|${q}`; if (opts.cache?.[ck]) return opts.cache[ck]; const rows = await multiSearch(q, { env, fetcher, signal, recency, breaker }); if (opts.cache && rows.length) opts.cache[ck] = rows; for (const [p, x] of Object.entries(rows.stats || {})) { const s = stat(p); s.calls++; s.returned += x.returned; s.ms += x.ms; s.costUsd += x.costUsd || 0; if (p === 'exa') { exaSpent += Number(x.costUsd) || 0; if (Number.isFinite(opts.exaUsdCap) && exaSpent >= opts.exaUsdCap) { breaker.exa ||= {}; breaker.exa.off = true; breaker.exa.reason = `V14 Exa cap ${opts.exaUsdCap} USD`; x.disabled ||= breaker.exa.reason; } } if (x.error) { s.errors++; if (audit.errors.length < 20) audit.errors.push(`${p}: ${x.error}`); } if (x.disabled && !s.disabled) { s.disabled = x.disabled; audit.errors.push(`${p}: DESACTIVADO para el resto de la corrida (${x.disabled.slice(0, 120)})`); } } return rows; }
     : searxConfigured(env)
     ? (q) => searxSearch(q, { env, fetcher, signal, timeRange: range === 'qdr:y' ? 'year' : range === 'qdr:m' ? 'month' : '' })
     : (q) => firecrawlSearch(q, { limit: 6, markdown: true, tbs: range, ...fc, cache: false, essential: true }));
