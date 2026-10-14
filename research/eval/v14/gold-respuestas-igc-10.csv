@@ -1,0 +1,125 @@
+id,sirve,por_que_no,es_pista,fecha_vista,nota,producto_igc
+g01,No sirve,No es una convocatoria,Sí,no aplica,deberia usarlo como una pista tipo para indagar quien financio en ese sector y buscar en apollo una posible financiacion y colaboracion,stratification tool that tells the risk of a patient to develop AD disease and suggest interventions to delay the onset of the illnees
+g02,No sirve,No es una convocatoria,si,ya vencio,ver si TEDCO tiene nuevas inscripciones y ver si podemos aplciar al as proximas,
+g03,No sirve,No es una convocatoria,si,no aplica,"this would be useful if Im a investor. Puedo ver 10 startupts para financiar, pero como igc no sirve, de pronto buscar sobre esa starups si ya se financiaron y como lo hicieron",
+g04,Sí,Otro (ver nota),No,16 oct y 16 dic fecha limite,"si sirve mucho solo que esta muy encima la convocatorio se vence en 3 dias, depende del intake si se muestra o no y plan seria investigar la proxima convocatoria",
+g05,Sí,Otro (ver nota),No,23 de junio 2028,"siento que si encjaa pero pues habria que encajar el enfoque. Tendria que decirme algo asi Copilot said:
+
+Sí, podrías aplicar con una propuesta basada en una herramienta de estratificación de riesgo para Alzheimer.
+
+Sin embargo, que puedas aplicar no significa que sea competitiva o que tenga una alta probabilidad de financiación. La convocatoria acepta aplicaciones de pequeñas empresas, organizaciones con fines de lucro y universidades elegibles.
+
+La única salvedad importante es que la propuesta tendría que alinearse con los objetivos científicos de la convocatoria. Si tu proyecto se presenta únicamente como un producto de predicción de riesgo y recomendaciones clínicas, el encaje sería más débil. Pero a la pregunta de si se puede presentar una aplicación basada en esa idea, la respuesta es:",
+g06,Sí,Otro (ver nota),No,19 de octubre de 2026,muy por encima pero lo mismo de la anterior se puede cambiar el enfoque pero creo que tambien en el intake deberia preguntar que tanto estaria desipuesto a cambiar el enfoque por una financiacion,
+g07,Sí,,No,4 novimebre 2026,"That could be a strong concept for this FTD/AD funding space. Here's a concise framing:
+
+Project Concept
+
+MINT-AD: Multimodal Intelligent Neurodegeneration Trajectory Tool for Alzheimer's Disease Risk Stratification and Personalized Intervention
+
+Objective
+
+Develop an AI-powered clinical decision support platform that:
+
+Estimates an individual's risk of developing Alzheimer's disease (AD) before clinical symptoms appear.
+Identifies the dominant risk drivers for each patient.
+Generates personalized intervention recommendations aimed at delaying disease onset and slowing progression.
+Monitors risk changes over time as patients adopt interventions.
+Data Inputs
+
+The model could integrate multimodal data:
+
+Demographics (age, sex, education)
+Family history
+APOE and other genetic markers
+Blood biomarkers
+MRI/PET imaging
+Cognitive assessments
+Digital biomarkers from wearables
+Sleep metrics
+Physical activity
+Cardiovascular and metabolic health
+Social determinants of health
+Nutrition and lifestyle factors
+AI Approach
+Multimodal transformer architecture
+Longitudinal risk prediction
+Explainable AI to identify key risk factors
+Personalized intervention recommendation engine
+Causal inference models to prioritize modifiable risk factors
+Outputs
+Risk Stratification
+Low risk
+Moderate risk
+High risk
+Very high risk
+Biological Drivers
+
+Example:
+
+Neuroinflammation: 35%
+Vascular dysfunction: 25%
+Sleep impairment: 20%
+Metabolic risk: 15%
+Genetic predisposition: 5%
+Personalized Recommendations
+
+Examples:
+
+Exercise prescription
+Mediterranean/MIND diet adherence
+Blood pressure optimization
+Diabetes management
+Sleep therapy
+Cognitive training
+Hearing-loss treatment
+Social engagement programs
+Clinical trial enrollment
+Innovation
+
+Most AD risk calculators provide only a risk score. MINT-AD would combine:
+
+Risk prediction
+Explainability
+Intervention prioritization
+Longitudinal monitoring
+Precision prevention
+
+into a single platform.
+
+Why it fits a grant call
+
+The project aligns with priorities commonly seen in dementia funding:
+
+AI and machine learning
+Biomarker development
+Multimodal data integration
+Early disease detection
+Precision medicine
+Prevention-focused interventions
+Potential Specific Aim
+
+Develop and validate a multimodal AI framework that predicts 5-year and 10-year Alzheimer's disease risk and identifies personalized intervention strategies capable of reducing projected risk trajectories in cognitively normal and mildly impaired adults.
+
+This could be positioned not only as an AD prevention tool but also adapted for sporadic Frontotemporal Dementia (FTD) by replacing AD-specific biomarkers with FTD-relevant imaging, proteomic, and cognitive markers, which would make it more aligned with the grant opportunity you're currently reviewing.",
+g08,No sirve,No es una convocatoria,Meh,no aplica,"Correcto. No es un grant, ni una convocatoria de financiamiento, ni una oportunidad de inversión. Lo que tienes abierto es un**""Highlighted Topic""** del National Institutes of Health (NIH). La propia página aclara que**""This is not a notice of funding opportunity (NOFO)""**, es decir, no es una oportunidad de financiación por sí misma. Piensa en ello como una señal del NIH que dice: ""Nos interesa que la comunidad investigue y valide herramientas de salud digital e IA."" Si alguien va a presentar una propuesta a alguna convocatoria abierta del NIH, este tema puede ayudar a demostrar que su proyecto está alineado con prioridades institucionales. Pero la página en sí: ❌ No tiene presupuesto asignado. ❌ No acepta aplicaciones directamente. ❌ No es una inversión ni un fondo para startups. ❌ No es un RFA/NOFO. ✅ Es una descripción de áreas de interés científico para futuros solicitantes. De las pestañas que tienes abiertas, las que sí parecen más cercanas a grants o funding son: Request for Proposals: Kissick Family Foundation Frontotemporal Dementia Grant Program (2026–2027). Model-to-Clinic (M2C) for Precision Medicine with AI: Integrating Imaging with Multimodal Data (PRIMED-AI). BRAIN Initiative: Integrative Team-Research BRAIN Circuits Program. Por el título, esas sí suenan a convocatorias de financiamiento reales, mientras que la página activa es más una guía de prioridades de investigación del NIH. Si estás revisando oportunidades para conseguir dinero para un proyecto o startup de IA en salud, esta página probablemente no vale la pena priorizarla frente a las otras pestañas.",
+g09,Sí,,,Expiración de la convocatoria: 6 de abril de 2027,"Esto es una convocatoria de financiación de los National Institutes of Health (NIH) de EE. UU. llamada PA-27-102: NIH Small Business Technology Transfer Grant (Parent STTR [R41/R42] Clinical Trial Optional). En pocas palabras: Está dirigida a startups y pequeñas empresas estadounidenses que trabajen junto con una universidad o institución de investigación sin ánimo de lucro. Financia el desarrollo de tecnologías biomédicas y de salud, desde pruebas de viabilidad hasta etapas más avanzadas de I+D con potencial comercial. El programa es STTR (Small Business Technology Transfer), que exige una colaboración formal entre la empresa y una institución de investigación. Acepta proyectos de muchas áreas del NIH, incluyendo salud digital, IA, diagnóstico, dispositivos médicos, neurociencia, salud mental, envejecimiento, cáncer, entre otras. Las fechas de recepción comienzan el 5 de agosto de 2026, con ciclos de revisión y financiación posteriores. Si lo estás viendo desde una perspectiva de IA en salud Dado que también tienes abiertas convocatorias de IA biomédica y medicina de precisión, esta oportunidad podría ser relevante si tu proyecto: desarrolla un producto basado en IA para salud, tiene potencial comercial claro, y puede asociarse con una universidad o centro de investigación de EE. UU. Como estás en producto e IA, este tipo de convocatoria suele ser interesante para crear una startup o spin-off con una tecnología de IA aplicada a salud digital, diagnóstico clínico o investigación biomédica. Si quieres, también puedo revisar rápidamente si tu idea/proyecto encajaría en esta convocatoria y qué tan competitivo sería.",
+g10,No sirve,Otro (ver nota),"Sí. Aunque esta convocatoria específica no aplica, tu idea es una buena pista para buscar programas dentro de la Alzheimer's Association relacionados con:
+
+Detección temprana de Alzheimer.
+Biomarcadores digitales.
+Estratificación de riesgo.
+Herramientas de apoyo a decisiones clínicas.
+Prevención y retraso de la progresión de la enfermedad.
+
+También podría encajar mejor en convocatorias de:
+
+IA aplicada a salud.
+Salud digital.
+Medicina de precisión.
+Biomarcadores y diagnóstico temprano de demencias.
+
+Así que la respuesta corta es:
+
+✅ Sí, vale la pena seguir explorando oportunidades dentro de la Alzheimer's Association y organizaciones del ecosistema Alzheimer.
+ ❌ No a través de esta convocatoria de terapias combinadas (PTC-CTP) en particular.",,"Generating response  Copilot said: No aplica si tu proyecto es únicamente: Un modelo de IA que calcula el riesgo de desarrollar Alzheimer y recomienda intervenciones para retrasar la enfermedad. La convocatoria Part the Cloud Translational Research for Alzheimer’s Disease Program: Combination Therapies Program (PTC-CTP) financia ensayos clínicos de terapias combinadas (fármaco-fármaco, fármaco-intervención conductual, etc.), no herramientas de predicción o estratificación de riesgo por sí solas. Sí aplicaría solo si la herramienta de IA forma parte de un ensayo clínico de una terapia combinada y se usa para seleccionar pacientes o asignar tratamientos dentro del estudio. Para la descripción que escribiste, la respuesta es: No aplica.",

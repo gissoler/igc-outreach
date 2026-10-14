@@ -139,7 +139,7 @@ node --env-file-if-exists=.env scripts/engine-run.mjs --brief eval/briefs/jefe-i
 ## F4 · Informe
 
 ### F4.1 · Puntuación contra la referencia
-- Crear `research/eval/v14/score.mjs` (≤ 150): entradas `eval/calificar-igc-10.xlsx` (hoja «Calificar», filas 7–16, columnas E–I; id en la columna J; leer con un lector de xlsx sin dependencia nueva si es posible, o pedir a Gisel exportar a CSV y anotarlo como discrepancia), `eval/v14/gold-sistema-igc-10.csv` y la carpeta de una corrida; salida `summary.gold` (aciertos de 10, caso por caso, pistas) y una tabla para `report.md`, según la adenda 1.
+- Crear `research/eval/v14/score.mjs` (≤ 150): entradas `eval/v14/gold-respuestas-igc-10.csv` (respuestas de Gisel ya exportadas del Excel; los valores no siempre son los de la lista: «si»/«Sí», «Meh» y texto largo se normalizan a mano, «Meh» y vacío = no sé), `eval/v14/gold-sistema-igc-10.csv` y la carpeta de una corrida; salida `summary.gold` (aciertos de 10, caso por caso, pistas) y una tabla para `report.md`, según la adenda 1.
 - Prueba: `research/tests/v14.score.test.mjs` con 4 casos inventados por la prueba: aciertos esperados.
 - Aceptación: verde.
 
