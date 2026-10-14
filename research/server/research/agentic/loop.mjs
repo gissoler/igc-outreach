@@ -9,6 +9,8 @@ import { createTools } from './tools.mjs';
 import { runDiscovery } from './discovery.mjs';
 import { contactStage } from './contacts.mjs';
 import { deadlineDecision } from '../dates.mjs';
+import { hostKind } from '../verify.mjs';
+import { selfPage, shortName } from '../judge/funder.mjs';
 
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
@@ -99,6 +101,26 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return out;
   }
 
+  const DOC_FILE = /\.(pdf|docx?|rtf)(?:[?#]|$)/i;
+  const CALL_DOC = /\b(rfa|rfp|nofo|foa|solicitation|guidelines?|request for (?:applications|proposals)|funding (?:opportunity|announcement)|program announcement|call for (?:proposals|applications)|application (?:guide|instructions|package|form)|notice of funding|bases|convocatoria|t[ée]rminos de referencia)\b/i;
+  async function followDocs(rows, seen) {
+    const perPage = Number(env.GPTR_DOCS_PER_PAGE) || 2; const max = env.GPTR_DOC_FOLLOW_MAX === undefined ? 12 : Number(env.GPTR_DOC_FOLLOW_MAX); if (!max) return [];
+    const year = Number(String(today).slice(0, 4)); const picks = [];
+    for (const x of rows) {
+      let n = 0;
+      for (const l of x.r?.links || []) {
+        if (picks.length >= max || n >= perPage) break;
+        const url = String(l.url || ''); let label = `${l.text || ''} ${url}`; try { label = decodeURIComponent(label); } catch { /* tal cual */ }
+        if (!url || seen.has(url) || !CALL_DOC.test(label) || !(DOC_FILE.test(url) || /\b(rfa|rfp|nofo|solicitation|request for (?:applications|proposals))\b/i.test(String(l.text || '')))) continue;
+        const years = [...label.matchAll(/(?:^|[^0-9])(20\d{2})(?![0-9])/g)].map((m) => +m[1]); if (years.length && Math.max(...years) < year) continue;   // RFA de años pasados
+        seen.add(url); picks.push(l.ref); n++;
+      }
+    }
+    if (!picks.length || pastDeadline(60000)) return [];
+    const opened = await pool(picks, 8, (ref) => tools.open({ ref }));
+    return picks.map((ref, i) => [ref, opened[i]]).filter(([, r]) => r?.ref);
+  }
+
   async function searchMany(args, action) {
     const qs = [...new Set((args.queries || []).map((q) => String((q && typeof q === 'object' ? q.query ?? q.q ?? q.text ?? '' : q) || '').trim()).filter(Boolean))].slice(0, maxSearchesPerStep);
     for (const q of qs) queries.push({ query: q, family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
@@ -149,7 +171,11 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       for (const x of left) if (x.r?.ref) trace.event('drop', { url: x.r.url, page_ref: x.r.ref, reason: `triage_${x.status}`, decided_by: 'code', read: true });
       triageStats = { opened: rows.filter((x) => x.score >= 0).length, assessed: chosen.length, by_status: rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), {}) };
       trace.event('tool_call', { tool: 'triage', args: { opened: rows.filter((x) => x.score >= 0).length, assessed: chosen.length }, results_n: chosen.length, ms_call: 0, counts: rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), {}) });
-      await assessOpened(chosen.sort((a, b) => a.i - b.i).map((x) => [x.ref, x.r]), 1, 'finish', understood);
+      // Documentos enlazados (14-10): muchas convocatorias publican el plazo y la elegibilidad solo en un PDF/DOC (RFA, solicitud, guía).
+      // De las páginas elegidas se siguen hasta 2 enlaces por página a documentos de convocatoria del año, y se leen como páginas propias.
+      const docs = await followDocs(chosen.filter((x) => x.status !== 'registry' && x.status !== 'closed'), new Set(rows.map((x) => x.r?.url).filter(Boolean)));
+      if (docs.length) { triageStats.docs = docs.length; trace.event('tool_call', { tool: 'triage', args: { docs_followed: docs.length }, results_n: docs.length, ms_call: 0 }); }
+      await assessOpened([...chosen.sort((a, b) => a.i - b.i).map((x) => [x.ref, x.r]), ...docs], 1, 'finish', understood);
     }
     stopReason = 'seeded'; trace.event('finish', { reason: 'seeded' });
   }
@@ -200,6 +226,10 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const judgment = preFirst ? preFirst[idx] : await runFirst(); judgeCalls++; firstJudgments.set(ref, judgment);
     if (!judgment && pastDeadline()) { skippedForTime.push(page.url); trace.event('drop', { url: page.url, page_ref: ref, reason: 'time_budget', decided_by: 'code', read: true }); continue; }
     const audit = auditPage({ objective, page, today, compilation: compilerOf(a), judgment, failure: judgment ? {} : { judge: 'invalid' }, blind: prompt.blind, criteriaIds: ids, requireCall: seeded });
+    // Directorios y agregadores (Instrumentl, etc.) nunca son la convocatoria: en modo GPTR no salen como hallazgo (14-10 10:09).
+    if (seeded && !audit.dropReason && hostKind(page.url) === 'aggregator') audit.dropReason = 'aggregator';
+    // La página de la propia empresa o producto del brief no es un inversor (14-10: salían sus directivos como «inversores»).
+    if (seeded && !audit.dropReason && objective !== 'grant') { const me = selfPage(page, brief); if (me.self) audit.dropReason = 'not_a_funder:self'; }
     trace.event('decision', { page_ref: ref, by: 'judge', verdict: audit.dropReason ? 'drop' : audit.mainOk ? 'keep' : 'verify', reason: audit.dropReason || (audit.mainOk ? 'audited' : 'blocked'), page_type: audit.pageType?.judge || a.page_type, dates: audit.dates?.judge || [], criteria: audit.criteria, days_left: audit.daysLeft, blocked_by: audit.mainOk ? [] : Object.entries(audit.criteria || {}).filter(([, v]) => v?.verdict !== 'yes').map(([k, v]) => `${k}:${v?.verdict || 'unknown'}`), next_action: null });
     if (audit.dropReason) {
       trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true });
@@ -211,7 +241,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const eligible = ['eligibility', 'region', 'entity_type', 'stage'].some((id) => audit.criteria[id]?.verdict === 'no') ? 'no' : audit.criteria.eligibility?.verdict === 'yes' ? 'yes' : 'unclear';
     const identity = a.lead?.quote && literalIn(a.lead.quote, page.text) ? a.lead.quote : a.about;
     const reg = seedReg.get(page.url);
-    findings.push({ objective, url: page.url, title: page.title, name: reg ? [reg.number, reg.title].filter(Boolean).join(' · ') : a.about, ...(reg ? { registry: { number: reg.number, agency: reg.agency, closeDate: reg.closeDate, forecastClose: reg.forecastClose, status: reg.status, url: reg.url, moreInfoUrl: reg.moreInfoUrl, via: reg.source } } : {}),
+    findings.push({ objective, url: page.url, title: page.title, name: reg ? [reg.number, reg.title].filter(Boolean).join(' · ') : shortName(a.about, page.url), ...(reg ? { registry: { number: reg.number, agency: reg.agency, closeDate: reg.closeDate, forecastClose: reg.forecastClose, status: reg.status, url: reg.url, moreInfoUrl: reg.moreInfoUrl, via: reg.source } } : {}),
       ...(reg?.contactEmail ? { contacts: [{ name: reg.contactText || 'Agency contact', title: 'Contact listed in the official registry', organization: reg.agency, email: reg.contactEmail, linkedin_url: null, source: 'registry' }] } : {}), query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries },
       // El tema lo decide el juez con su cita; sin esto, el filtro de palabras de evaluate() descartaba convocatorias ya auditadas (14-10).
       scopeFit: (() => { const tf = audit.criteria.topic_fit || {}; return { verdict: tf.verdict === 'yes' ? 'fits' : tf.verdict === 'no' ? 'does_not_fit' : 'unclear', reason: tf.reason || '', fundsQuote: tf.verdict === 'yes' ? tf.quote : null, excludesQuote: tf.verdict === 'no' ? tf.quote : null, source: 'judge' }; })() });

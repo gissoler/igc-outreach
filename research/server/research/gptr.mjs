@@ -52,7 +52,7 @@ ${geoLine} Work out for yourself the kinds of investors that fit (by stage, cheq
   const head = [objective === 'grant' ? 'open grant funding' : `${objective} funding`, short(brief.oneLiner || brief.product || brief.description, 8), brief.industry, entityWords(brief.entityType), geo.join(' '), yr].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
   return `${head}
 
-Today is ${day(today)}. Find CURRENTLY OPEN or upcoming ${kind} that this applicant could realistically apply to. Use only official, current sources (funder websites, government portals and registries, state and local programs, sector foundations). Ignore anything whose deadline has already passed.
+Today is ${day(today)}. Find CURRENTLY OPEN or upcoming ${kind} that this applicant could realistically apply to. Use only official, current sources (funder websites, government portals and registries, state and local programs, sector foundations). Ignore anything whose deadline has already passed.${brief.deadlineFrom || brief.deadlineTo ? `\nThe applicant can only apply ${brief.deadlineFrom ? `from ${brief.deadlineFrom} ` : ''}${brief.deadlineTo ? `until ${brief.deadlineTo}` : ''}: look first for calls whose application deadline falls inside that window, and for recurring calls with a cycle inside it. Report calls outside the window separately.` : ''}
 
 Applicant and context (from the brief):
 ${briefBlock(brief)}
@@ -212,10 +212,11 @@ export async function runGptr(objective, brief, opts = {}) {
   const byNumber = numbers.length ? await registrySeeds({ brief, numbers, today, env, fetcher, signal: opts.signal, log: glog }).catch((e) => ({ seeds: [], stats: { errors: [String(e?.message || e)] } })) : { seeds: [], stats: null };
   const regSeeds = []; const regSeen = new Set();
   for (const sd of [...byNumber.seeds, ...byBrief.seeds]) { const k = sd.registry?.number || sd.url; if (regSeen.has(k)) continue; regSeen.add(k); regSeeds.push({ url: sd.url, title: sd.title, text: sd.text, registry: sd.registry }); }
-  const seeds = [...regSeeds, ...urls.filter((u) => !regSeeds.some((r) => r.url === u.url))];
+  const notices = [...(byNumber.attachments || []), ...(byBrief.attachments || [])].filter((a, i, all) => all.findIndex((b) => b.url === a.url) === i).map((a) => ({ url: a.url, title: a.title }));
+  const seeds = [...regSeeds, ...notices, ...urls.filter((u) => !regSeeds.some((r) => r.url === u.url) && !notices.some((n) => n.url === u.url))];
   if (env.ENGINE_AGENT_TRACE_DIR) { try { writeFileSync(join(env.ENGINE_AGENT_TRACE_DIR, `gptr-seeds-${objective}.json`), JSON.stringify({ today, numbers, registry: regSeeds.map((r) => ({ url: r.url, title: r.title, why: r.registry?.number })), gptr: urls }, null, 1)); } catch { /* sin traza */ } }
   trace?.event?.('tool_call', { tool: 'gptr', args: { mode, done: true, urls: urls.length, registry: regSeeds.length }, results_n: seeds.length, ms_call: searchMs, ...(error ? { error } : {}) });
-  const registry = { on: registryOn, numbers: numbers.length, seeds: regSeeds.length, brief: byBrief.stats, byNumber: byNumber.stats };
+  const registry = { on: registryOn, numbers: numbers.length, seeds: regSeeds.length, notices: notices.length, brief: byBrief.stats, byNumber: byNumber.stats };
   if (!seeds.length) return { findings: [], leads: [], queries: [], audit: { objective, search: 'gptr', queries: 0, pages: 0, read: 0, unread: 0, dropped: {}, kept: 0, errors: [error || 'GPTR_NO_URLS'], gptr: { on: true, mode, judge: 'node', seconds: Math.round(searchMs / 1000), urls: 0, error: error || 'GPTR_NO_URLS', registry } } };
   glog(`juez de Node: ${seeds.length} páginas (${regSeeds.length} del registro oficial + ${seeds.length - regSeeds.length} de GPT Researcher); se abren todas y el modelo lee hasta ${judgeMax + regSeeds.length} elegidas por fechas`);
   const judged = await (opts.judgeRunner || runAgentObjective)(objective, brief, { ...opts, env, today, seedUrls: seeds, assessMax: judgeMax + regSeeds.length, parallel: true, secondJudge: opts.secondJudge });

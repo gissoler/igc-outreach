@@ -2,6 +2,7 @@
 // antes de investigar. El modelo (Qwen u otro vía endpoint OpenAI-compatible) es OPCIONAL: sin él,
 // la extracción heurística y las preguntas guiadas mantienen el flujo. Principio: el modelo propone,
 // el código valida rutas, enums y citas. Nada de lo extraído se usa hasta que el usuario confirma.
+import { parseWindow, windowLabel } from './window.mjs';
 import { randomUUID } from 'node:crypto';
 import { norm } from './core.mjs';
 import { fleetConfig } from '../analysis/fleet.mjs';
@@ -10,7 +11,7 @@ export const OBJECTIVES = ['investment', 'grant', 'partnering', 'sponsorship', '
 export const ENTITY_TYPES = ['for_profit', 'nonprofit', 'academic'];
 export const RELATIONS = ['same', 'subsidiary', 'spinout', 'sponsored', 'portfolio', 'client', 'other'];
 export const MATURITY = ['idea', 'prototype', 'preclinical', 'clinical_phase_1', 'clinical_phase_2', 'clinical_phase_3', 'marketed', 'other'];
-export const ROUNDS = ['pre-seed', 'seed', 'series-a', 'series-b', 'growth'];
+export const ROUNDS = ['pre-seed', 'seed', 'series-a', 'series-b', 'series-c', 'growth', 'public'];
 export const SECTORS = ['AI', 'biotech', 'digital health', 'pharma', 'medtech', 'neuro', 'mental health', 'diagnostics', 'climate', 'fintech', 'enterprise', 'consumer'];
 
 /* Ontología del perfil. `ask` = pregunta guiada; `required` = necesario para investigar. */
@@ -23,7 +24,7 @@ export const FIELDS = [
   { path: 'product.maturity', label: 'Stage', kind: 'enum', options: MATURITY, required: true, ask: 'Where is it: idea, prototype, preclinical, clinical or on the market?' },
   { path: 'geography', label: 'Geography', kind: 'list', required: true, ask: 'Where do you operate and which countries do you want funding from?' },
   { path: 'funding.amount_usd', label: 'Amount (USD)', kind: 'number', ask: 'Roughly how much do you need, in USD?' },
-  { path: 'funding.round', label: 'Round', kind: 'enum', options: ROUNDS, ask: 'Is it a pre-seed, seed or Series A round?' },
+  { path: 'funding.round', label: 'Round', kind: 'enum', options: ROUNDS, ask: 'What kind of financing is this: pre-seed, seed, Series A/B/C, growth, or — if the company is listed — a public offering or PIPE? The type decides which investors can take it.' },
   { path: 'company.traction', label: 'Proof it works so far', kind: 'text', investor: true, ask: 'What proof do you have so far that people want this or that it works? For example: 200 users, 3 pilots, $10k in revenue, a signed letter of intent or study results. Numbers help.' },
   { path: 'funding.use_of_funds', label: 'Use of funds', kind: 'text', investor: true, ask: 'What will this money get you to, concretely: which milestone, and by when?' },
   { path: 'product.differentiation', label: 'Why you win', kind: 'text', investor: true, ask: 'Why will you win against the alternatives people use today?' },
@@ -41,6 +42,7 @@ export const FIELDS = [
   { path: 'founder.title', label: 'Your role', kind: 'text' },
   { path: 'product.description', label: 'Description', kind: 'text' },
   { path: 'funding.timeline', label: 'Timeline', kind: 'text' },
+  { path: 'funding.apply_window', label: 'When you can apply', kind: 'window', grant: true, ask: 'In which dates can you apply: for example November to December 2026, or before the end of the year? Calls closing outside that window are set aside.' },
   { path: 'company.website', label: 'Website', kind: 'text' },
 ];
 const FIELD = Object.fromEntries(FIELDS.map((f) => [f.path, f]));
@@ -101,10 +103,13 @@ const NEG_INTENT = /\bno\s+(?:queremos|buscamos|necesitamos|quiero|aceptamos)\b|
 export function mapRound(text) {
   const t = norm(text);
   if (/\bpre ?seed\b|\bpre semilla\b|\bpresemilla\b/.test(t)) return 'pre-seed';
-  if (/\bseries? b\b/.test(t)) return 'series-b';
-  if (/\bseries? a\b/.test(t)) return 'series-a';
+  // Empresa cotizada: su «ronda» es una oferta pública, PIPE, follow-on o línea ATM; no es seed ni Serie A.
+  if (/\b(public|publica|publico|publicly|listed|cotiza\w*|ipo|follow ?on|pipe|private placement|registered direct|atm|at the market|nyse|nasdaq|otc|bolsa|oferta publica)\b/.test(t)) return 'public';
+  if (/\bseries? b\b|\bserie b\b/.test(t)) return 'series-b';
+  if (/\bseries? a\b|\bserie a\b/.test(t)) return 'series-a';
+  if (/\bseries? c\b|\bserie c\b/.test(t)) return 'series-c';
+  if (/\bgrowth\b|\bcrecimiento\b|\bseries? [d-z]\b|\bserie [d-z]\b|\bpre ?ipo\b|\bcrossover\b|\blate stage\b/.test(t)) return 'growth';
   if (/\bseed\b|\bsemilla\b/.test(t)) return 'seed';
-  if (/\bgrowth\b|\bseries? [c-d]\b/.test(t)) return 'growth';
   return null;
 }
 export function mapMaturity(text) {
@@ -167,7 +172,7 @@ export function heuristicExtract(text) {
     const sectors = mapSectors(s); if (sectors.length) push('industry.sectors', sectors, s);
     const geo = mapGeo(s); if (geo.length) push('geography', geo, s);
     const objectives = (INTENT_CTX.test(n) && !NEG_INTENT.test(n)) ? mapObjectives(s) : []; if (objectives.length) push('funding.objectives', objectives, s);
-    once('funding.round', mapRound(s), s);
+    { const r = mapRound(s); if (r !== 'public' || /\b(round|ronda|offering|oferta|raise|raising|financing|financiaci\w*|placement|follow.?on|pipe)\b/i.test(s)) once('funding.round', r, s); }
     const maturity = mapMaturity(s); if (maturity) once('product.maturity', maturity, s);
     if (RAISE_CTX.test(n) && !NOT_RAISE.test(n)) for (const m of s.matchAll(MONEY)) once('funding.amount_usd', parseAmount(m[1] || m[3], m[2] || m[4] || ''), s);
     const comp = s.match(/\b(?:competidores|competencia|competitors|competition)\s*(?:principales|main|directos|directa)?\s*(?:son|are|incluyen|include|:|-|—)\s*(.{3,200})/i);
@@ -182,6 +187,7 @@ export function heuristicExtract(text) {
     once('product.name', nameAfter(s, PRODUCT_TRIG) || titled?.[1] || null, s);
     const title = s.match(/\b(?:soy|i am|i'm)\s+(?:el |la |the |a |an )?((?:co-?)?(?:ceo|cto|coo|cso|cmo|founder|fundador\w*|cofundador\w*|director\w*|presidente|investigador\w*)(?:\s+(?:y|and|&)\s+(?:co-?)?\w+)?)/i);
     if (title) once('founder.title', clip(title[1], 80), s);
+    if (/\b(?:apply|aplicar|postular|presentar|submit|applying|aplicaci[oó]n|plazo|ventana|window|deadline|cierre)\b/i.test(s)) { const wl = windowLabel(s); if (wl && /\b(?:grant|convocatoria|call|subvenci|apply|aplicar|postular|ventana|window)\b/i.test(s)) once('funding.apply_window', wl, s); }
     const timeline = s.match(/\b(?:en|en los|within|in the next|next|pr[oó]ximos)\s+(\d{1,2})\s+(meses|months|semanas|weeks)\b/i);
     if (timeline) once('funding.timeline', `${timeline[1]} ${timeline[2].toLowerCase()}`, s);
     const use = s.match(/\b(?:uso de (?:los )?fondos|use of funds|para financiar|to fund|los fondos se usar[aá]n para)\s*:?\s*(.{8,220})/i);
@@ -204,6 +210,7 @@ export function interpretAnswer(path, text) {
   if (path === 'funding.amount_usd') return { value: looseAmount(raw) };
   if (path === 'product.maturity') return { value: mapMaturity(raw) || (MATURITY.includes(norm(raw)) ? norm(raw) : null) };
   if (path === 'funding.round') return { value: mapRound(raw) };
+  if (path === 'funding.apply_window') return { value: windowLabel(raw) };
   if (path === 'funding.objectives') return { value: mapObjectives(raw) };
   if (path === 'industry.sectors') { const m = mapSectors(raw); return { value: m.length ? m : listSplit(raw).slice(0, 5) }; }
   if (path === 'geography') { const m = mapGeo(raw); return { value: m.length ? m : listSplit(raw).slice(0, 6) }; }
@@ -231,7 +238,7 @@ function seedFromProfile(s, p) {
   set('industry.sectors', p.project?.sectors); set('geography', p.project?.geo); set('funding.amount_usd', p.project?.raise_usd);
   set('funding.objectives', i.objectives); set('product.maturity', i.maturity); set('competitors', i.competitors);
   set('constraints', i.constraints); set('criteria', i.criteria);
-  set('funding.use_of_funds', i.use_of_funds); set('funding.timeline', i.timeline); set('company.website', i.website);
+  set('funding.use_of_funds', i.use_of_funds); set('funding.timeline', i.timeline); set('funding.apply_window', i.apply_window); set('company.website', i.website);
   set('company.traction', i.traction); set('company.team', i.team); set('product.business_model', i.business_model); set('product.differentiation', i.differentiation);
   if (i.objectives && ROUNDS.includes(p.project?.stage)) set('funding.round', p.project.stage);
 }
@@ -239,6 +246,7 @@ function seedFromProfile(s, p) {
 function sanitize(path, value) {
   const f = FIELD[path];
   if (!f || value === undefined || value === null) return null;
+  if (f.kind === 'window') return windowLabel(Array.isArray(value) ? value.join(' ') : value);
   if (f.kind === 'number') { const v = typeof value === 'number' ? Math.round(value) : looseAmount(value); return v && v > 0 && v < 1e12 ? v : null; }
   if (path === 'company.entity_type') { const t = norm(value); return /non.?profit|not.for.profit|charit|foundation|\bngo\b|\bong\b|sin (?:animo|fines)/.test(t) ? 'nonprofit' : /universit|academic|college|research (?:institut|lab|cent)/.test(t) ? 'academic' : /for.?profit|compan|start.?up|corporat|\bllc\b|\binc\b|\bltd\b|\bsas\b|\bs\.?l\b/.test(t) ? 'for_profit' : null; }
   if (f.kind === 'enum') { const v = norm(value).replace(/ /g, f.path === 'funding.round' ? '-' : '_'); return f.options.includes(v) ? v : null; }
@@ -289,7 +297,7 @@ export function editField(s, path, value) {
    review all use this same list, so 100% means "the search has what it needs". */
 export const GOAL_FIELDS = {
   investment: ['funding.round', 'funding.amount_usd', 'company.traction'],
-  grant: ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state'],
+  grant: ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state', 'funding.apply_window'],
   partnering: ['company.traction', 'product.differentiation'],
   sponsorship: ['funding.amount_usd', 'funding.use_of_funds'],
   debt: ['funding.amount_usd', 'company.traction'],
@@ -329,6 +337,7 @@ const WHY_IT_MATTERS = {
   'funding.use_of_funds': 'it decides which programs fund this kind of work',
   'company.entity_type': 'many calls accept only one type of applicant',
   'company.state': 'state and regional programs fund only local applicants',
+  'funding.apply_window': 'it keeps only calls that close when you can actually apply',
   'company.country': 'most calls fund only applicants from their country',
   'product.differentiation': 'partners screen on it',
 };
@@ -502,6 +511,7 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
         if (path === pending || changed.has(path) || filled(s, path) || !planFields(s).includes(path)) continue;
         if (path === 'funding.amount_usd' && !/\$|\busd\b|d[oó]lar|dollar|\d\s*(k|m|mm|million|millones|millon|mil)\b/i.test(message)) continue;
         const hit = interpretAnswer(path, message);
+        if (path === 'funding.round' && hit?.value === 'public' && !/\b(round|ronda|offering|oferta|raise|raising|financing|financiaci\w*|placement|follow.?on|pipe)\b/i.test(message)) continue;
         if (hit?.value && applyUpdate(s, { path, value: hit.value, quote: message }, 'conversation', message)) changed.add(path);
       }
       if (!filled(s, 'product.description') && message.length >= 120 && applyUpdate(s, { path: 'product.description', value: message, quote: '' }, 'conversation', message)) changed.add('product.description');
@@ -621,7 +631,7 @@ export function toProfile(s, base, user, env = {}) {
     comparables,
     intake: {
       objectives, maturity: v('product.maturity') || 'other', competitors, criteria: v('criteria') || [], constraints: v('constraints') || [],
-      use_of_funds: v('funding.use_of_funds') || '', traction: v('company.traction') || '', team: v('company.team') || '', business_model: v('product.business_model') || '', differentiation: v('product.differentiation') || '', timeline: v('funding.timeline') || '', website: v('company.website') || '',
+      use_of_funds: v('funding.use_of_funds') || '', traction: v('company.traction') || '', team: v('company.team') || '', business_model: v('product.business_model') || '', differentiation: v('product.differentiation') || '', timeline: v('funding.timeline') || '', apply_window: v('funding.apply_window') || '', apply_from: (parseWindow(v('funding.apply_window'), env.today) || {}).from || '', apply_to: (parseWindow(v('funding.apply_window'), env.today) || {}).to || '', website: v('company.website') || '',
       organization: v('organization.name') || '', relation: v('company.relation') || '', entity_type: v('company.entity_type') || '', country: v('company.country') || '', state: v('company.state') || '', city: v('company.city') || '',
       documents: s.documents.map((d) => ({ name: d.name, chars: d.chars, at: d.at })), evidence,
       plan: planResearch(s, env), confirmedAt: new Date().toISOString(),

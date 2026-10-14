@@ -23,7 +23,7 @@ const OBJECTIVES: [string, string][] = [['investment', 'Investment (VC, angels)'
 const MATURITY: [string, string][] = [['idea', 'Idea'], ['prototype', 'Prototype or pilot'], ['preclinical', 'Preclinical'], ['clinical_phase_1', 'Clinical phase 1'], ['clinical_phase_2', 'Clinical phase 2'], ['clinical_phase_3', 'Clinical phase 3'], ['marketed', 'On the market'], ['other', 'Other']];
 const RELATIONS: [string, string][] = [['same', 'It\'s my own company'], ['subsidiary', 'Subsidiary'], ['spinout', 'Spin-off'], ['sponsored', 'Project we sponsor'], ['portfolio', 'Portfolio company'], ['client', 'Client'], ['other', 'Other']];
 const ENTITY_TYPES: [string, string][] = [['for_profit', 'For-profit company'], ['nonprofit', 'Nonprofit'], ['academic', 'University or research institute']];
-const ROUNDS: [string, string][] = [['pre-seed', 'Pre-seed'], ['seed', 'Seed'], ['series-a', 'Series A'], ['series-b', 'Series B'], ['growth', 'Growth']];
+const ROUNDS: [string, string][] = [['pre-seed', 'Pre-seed'], ['seed', 'Seed'], ['series-a', 'Series A'], ['series-b', 'Series B'], ['series-c', 'Series C'], ['growth', 'Growth / late stage'], ['public', 'Public company (offering, PIPE)']];
 
 const F: Record<string, FieldDef> = {
   'company.name': { path: 'company.name', label: 'Company or project to fund', kind: 'text', required: true, placeholder: 'e.g. Mentiva', help: 'Excluded from results; heads every message.', max: 220 },
@@ -45,6 +45,7 @@ const F: Record<string, FieldDef> = {
   'funding.amount_usd': { path: 'funding.amount_usd', label: 'Amount (USD)', kind: 'amount', placeholder: '2500000', help: 'Compared against published ceilings.' },
   'geography': { path: 'geography', label: 'Geography', kind: 'tags', required: true, placeholder: 'US, Europe, LATAM…', help: 'Filters calls; flagged as eligibility to confirm.' },
   'funding.timeline': { path: 'funding.timeline', label: 'Timeline', kind: 'text', placeholder: 'e.g. 6 months', max: 220 },
+  'funding.apply_window': { path: 'funding.apply_window', label: 'When you can apply', kind: 'text', placeholder: 'e.g. November to December 2026', help: 'Only calls that close inside these dates are kept; the rest go to the watch list. Dates like 2026-11-01 to 2026-12-31 also work.', max: 100 },
   'funding.use_of_funds': { path: 'funding.use_of_funds', label: 'Use of funds', kind: 'text', placeholder: 'e.g. clinical validation and certification', max: 220 },
   'company.traction': { path: 'company.traction', label: 'Proof it works so far', kind: 'long', placeholder: 'For example: 200 users, 3 pilots, $10k revenue, a signed letter of intent or study results.', help: 'Anything that shows people want this or that it works. Say "none yet" if you have nothing.', max: 600 },
   'product.differentiation': { path: 'product.differentiation', label: 'Why you win', kind: 'long', placeholder: 'What you do that alternatives can\'t.', max: 600 },
@@ -59,7 +60,7 @@ export const SECTIONS: SectionDef[] = [
   { id: 'asistente', label: 'AI assistant', icon: <Sparkles size={16} />, why: 'Tell it in your own words — faster than a form.', impact: '', fields: [] },
   { id: 'empresa', label: 'Company', icon: <Building2 size={16} />, why: 'Who\'s looking, and for whom.', impact: '', fields: ['company.name', 'organization.name', 'company.relation', 'company.entity_type', 'company.country', 'company.state', 'company.city', 'founder.title', 'company.website'] },
   { id: 'producto', label: 'Product', icon: <FlaskConical size={16} />, why: 'The terms the engine looks for in evidence.', impact: '', fields: ['product.name', 'product.one_liner', 'product.description', 'product.maturity', 'industry.sectors'], advanced: ['company.traction', 'product.differentiation', 'product.business_model', 'company.team'] },
-  { id: 'objetivo', label: 'Goal', icon: <Target size={16} />, why: 'Decides which sources run and how funding type is scored.', impact: '', fields: ['funding.objectives', 'funding.round', 'funding.amount_usd', 'geography', 'funding.timeline', 'funding.use_of_funds'], advanced: ['competitors', 'criteria', 'constraints'] },
+  { id: 'objetivo', label: 'Goal', icon: <Target size={16} />, why: 'Decides which sources run and how funding type is scored.', impact: '', fields: ['funding.objectives', 'funding.round', 'funding.amount_usd', 'geography', 'funding.timeline', 'funding.apply_window', 'funding.use_of_funds'], advanced: ['competitors', 'criteria', 'constraints'] },
   { id: 'evidencia', label: 'Documents', icon: <FileText size={16} />, why: 'Your documents fill the profile with quotes.', impact: '', fields: [] },
   { id: 'red', label: 'Network', icon: <Network size={16} />, why: 'The best meetings come through someone you already know.', impact: '', fields: [] },
   { id: 'revision', label: 'Review', icon: <ListChecks size={16} />, why: 'See exactly what will be used before anything runs.', impact: '', fields: [] },
@@ -283,6 +284,7 @@ function ReviewSection({ intake, prefs, setPrefs, onGo, canPrefs }: { intake: In
       <dt>Company</dt><dd>{String(v('company.name') || '—')}{v('organization.name') ? ` · via ${String(v('organization.name'))}` : ''}</dd>
       <dt>Product</dt><dd>{String(v('product.name') || '—')} — {String(v('product.one_liner') || '—')}</dd>
       <dt>Looking for</dt><dd>{asList(v('funding.objectives')).map((o) => OBJECTIVES.find(([id]) => id === o)?.[1] || o).join(' · ') || '—'}{v('funding.round') ? ` · ${String(v('funding.round'))}` : ''}{v('funding.amount_usd') ? ` · ${fmtUsd(Number(v('funding.amount_usd')))}` : ''}</dd>
+      {asList(v('funding.objectives')).includes('grant') && <><dt>Apply window</dt><dd>{v('funding.apply_window') ? String(v('funding.apply_window')).replace(' to ', ' → ') : <button className="x-link-btn" onClick={() => onGo('objetivo', 'funding.apply_window')}>Not set — add the dates you can apply</button>}</dd></>}
       <dt>Fit keywords</dt><dd>{asList(v('industry.sectors')).join(', ') || '—'}</dd>
       <dt>Geography</dt><dd>{asList(v('geography')).join(', ') || '—'}</dd>
       <dt>Exclusions</dt><dd>{asList(v('competitors')).join(', ') || 'None'}</dd>

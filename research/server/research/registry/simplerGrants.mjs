@@ -110,10 +110,13 @@ export async function searchRegistry({ query = '', number = '', applicantTypes =
   const errors = [];
   if (env.SIMPLER_GRANTS_API_KEY) {
     try {
-      const body = { query: number ? (/\s/.test(number) ? bare(number) : number) : query, query_operator: number ? 'AND' : 'OR', filters: { opportunity_status: { one_of: statuses }, ...(applicantTypes?.length && !number ? { applicant_type: { one_of: [...applicantTypes, ...OPEN_TYPES] } } : {}) },
+      const ask = async (operator) => { const body = { query: number ? (/\s/.test(number) ? bare(number) : number) : query, query_operator: operator, filters: { opportunity_status: { one_of: statuses }, ...(applicantTypes?.length && !number ? { applicant_type: { one_of: [...applicantTypes, ...OPEN_TYPES] } } : {}) },
         pagination: { page_offset: 1, page_size: Math.min(100, size), sort_order: [{ order_by: 'relevancy', sort_direction: 'descending' }] } };
-      const data = await post(fetcher, env.SIMPLER_GRANTS_API_URL || SIMPLER, body, { headers: { 'X-API-Key': env.SIMPLER_GRANTS_API_KEY }, signal });
-      const rows = (Array.isArray(data?.data) ? data.data : []).map(fromSimpler);
+        const data = await post(fetcher, env.SIMPLER_GRANTS_API_URL || SIMPLER, body, { headers: { 'X-API-Key': env.SIMPLER_GRANTS_API_KEY }, signal });
+        return (Array.isArray(data?.data) ? data.data : []).map(fromSimpler); };
+      // Varias palabras con AND son mucho más precisas (14-10: con OR salían pesca, crimen rural y cúbits); si AND trae poco, se completa con OR.
+      let rows = await ask('AND');
+      if (!number && rows.length < 5 && /\s/.test(query)) { const more = await ask('OR'); const seen = new Set(rows.map((o) => o.id)); rows = [...rows, ...more.filter((o) => !seen.has(o.id))]; }
       return { via: 'simpler', rows: number ? rows.filter((o) => sameNumber(o.number, number)) : rows, errors };
     } catch (e) { if (signal?.aborted) throw e; errors.push(`simpler: ${e.message}`); }
   }
@@ -135,6 +138,21 @@ export async function searchRegistry({ query = '', number = '', applicantTypes =
 // «NSF 26-511» en una página y «26-511» en el registro: el prefijo separado por espacio es opcional.
 const bare = (x) => String(x || '').toUpperCase().trim().replace(/^[A-Z]{1,5}\s+(?=\d)/, '').replace(/\s+/g, '');
 const sameNumber = (a, b) => bare(a) === bare(b);
+
+/** Adjunto del aviso completo de una oportunidad de Simpler Grants (GET /v1/opportunities/{id} → attachments[].download_path). */
+const NOTICE_FILE = /full.?announcement|nofo|notice.of.funding|\brfa\b|\brfp\b|solicitation|program.?announcement|\bpa-\d|\bpar-\d|funding.?opportunity/i;
+export async function fullNoticeOf(o, { env = process.env, fetcher = fetch, signal } = {}) {
+  if (!env.SIMPLER_GRANTS_API_KEY || !o?.id) return null;
+  try {
+    const base = String(env.SIMPLER_GRANTS_API_URL || SIMPLER).replace(/\/opportunities\/search$/, '');
+    const s = signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000);
+    const r = await fetcher(`${base}/opportunities/${o.id}`, { headers: { Accept: 'application/json', 'X-API-Key': env.SIMPLER_GRANTS_API_KEY }, signal: s });
+    if (!r.ok) return null; const data = (await r.json())?.data || {};
+    const files = (data.attachments || []).filter((a) => a?.download_path && /pdf|html|word|msword|officedocument/i.test(String(a.mime_type || a.file_name || '')));
+    const best = files.find((a) => NOTICE_FILE.test(`${a.file_name || ''} ${a.file_description || ''}`)) || (files.length === 1 ? files[0] : null);
+    return best ? { url: best.download_path, title: `${o.number ? `${o.number} · ` : ''}${best.file_name || 'Full announcement'}`, parent: o.number || o.id } : null;
+  } catch (e) { if (signal?.aborted) throw e; return null; }
+}
 
 /** Números de aviso dentro de URLs o textos (PA-27-100, RFA-AG-27-010, HRSA-26-101, NSF 26-511). Patrón genérico «LETRAS-AA-NNN». */
 export function noticeNumbers(texts = []) {
@@ -179,16 +197,23 @@ export async function registrySeeds({ brief = {}, queries = [], numbers = [], to
   const per = new Map(); const picked = [...byNumber];
   for (const s of rest) { const a = s.registry.agencyCode || s.registry.agency || '?'; if ((per.get(a) || 0) >= 4) continue; per.set(a, (per.get(a) || 0) + 1); picked.push(s); }
   stats.kept = Math.min(max, picked.length); stats.via = [...stats.via].filter((v) => v && v !== 'none');
-  log(`registro: ${stats.queries} búsquedas + ${stats.numbers} números → ${stats.returned} oportunidades, ${stats.closed} cerradas, ${stats.notEligible} no elegibles por tipo de solicitante, ${stats.kept} al juez (vía ${stats.via.join('+') || 'ninguna'})${stats.errors.length ? ` · errores: ${stats.errors.slice(0, 2).join(' | ')}` : ''}`);
-  return { seeds: picked.slice(0, max), stats };
+  // Con clave de Simpler Grants: el aviso completo de las primeras oportunidades también va al juez (se lee como cualquier página).
+  const attachMax = env.REGISTRY_ATTACH_MAX === undefined ? 8 : Number(env.REGISTRY_ATTACH_MAX);
+  const attachments = (await Promise.all(picked.slice(0, max).filter((sd) => sd.registry?.source === 'simpler').slice(0, attachMax).map((sd) => fullNoticeOf(sd.registry, { env, fetcher, signal })))).filter(Boolean);
+  stats.attachments = attachments.length;
+  log(`registro: ${stats.queries} búsquedas + ${stats.numbers} números → ${stats.returned} oportunidades, ${stats.closed} cerradas, ${stats.notEligible} no elegibles por tipo de solicitante, ${stats.kept} al juez (vía ${stats.via.join('+') || 'ninguna'})${stats.attachments ? ` + ${stats.attachments} avisos completos` : ''}${stats.errors.length ? ` · errores: ${stats.errors.slice(0, 2).join(' | ')}` : ''}`);
+  return { seeds: picked.slice(0, max), attachments, stats };
 }
 
 /** Consultas para el registro hechas solo con el brief (y los términos que ya expandió el plan): frases cortas, sin agencias. */
 export function registryQueries(brief = {}, plan = null) {
   const short = (s, n = 6) => String(s || '').replace(/[^\p{L}\p{N}\s-]/gu, ' ').split(/\s+/).filter((w) => w.length > 2 && !/^(the|and|for|that|with|from|this|tells|tool|patient|develop|suggest|goal|serve|people)$/i.test(w)).slice(0, n).join(' ');
+  const who = { for_profit: 'small business', nonprofit: 'nonprofit', academic: 'university' }[String(brief.entityType || '').toLowerCase()] || '';
+  const topic = String(plan?.topic || brief.industry || '').trim();
   return [...new Set([
+    ...(who && topic ? [`${who} ${topic}`, `${who} research ${topic}`] : []),
     plan?.topic, ...(plan?.terms || []).map((t) => t.term),
     short(brief.oneLiner, 5), short(brief.product, 4), short(brief.description, 5), brief.industry,
     ...String(brief.criteria || '').split(/[,;\n]/),
-  ].map((q) => String(q || '').trim()).filter((q) => q.length >= 3))].slice(0, 6);
+  ].map((q) => String(q || '').trim()).filter((q) => q.length >= 3))].slice(0, 7);
 }

@@ -72,8 +72,9 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
       const response = args.op === 'organization'
         ? await apolloClient.organizationSearch({ domain: args.domain, name: args.name, perPage: args.n || 5 })
         : args.op === 'people' ? await apolloClient.peopleSearch({ domain: args.domain, titles: args.titles || [], perPage: args.n || 5 })
+          : args.op === 'match' ? await apolloClient.peopleMatch({ id: args.id, organization: args.domain || '' })
           : (() => { throw new Error('invalid_apollo_op'); })();
-      const rows = response.data?.organizations || response.data?.accounts || response.data?.people || [];
+      const rows = response.data?.organizations || response.data?.accounts || response.data?.people || (response.data?.person ? [response.data.person] : []);
       record('apollo', args, started, rows, { credits: (apolloClient.stats?.creditsEstimated || 0) - before }); return { rows, credits_estimated: (apolloClient.stats?.creditsEstimated || 0) - before };
     } catch (error) { return fail('apollo', args, started, error, { credits: (apolloClient.stats?.creditsEstimated || 0) - before }); }
   }

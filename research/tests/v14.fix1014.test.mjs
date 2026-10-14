@@ -94,10 +94,10 @@ test('BUG-5 engineLeads conserva los contactos (Apollo y registro) y la ficha de
 test('BUG-5 Apollo no pisa el contacto oficial del registro ni busca personas en el dominio del registro', async () => {
   const calls = []; const tools = { usage: () => ({ apollo_credits: calls.length }), apollo: async (a) => { calls.push(a); return a.op === 'organization' ? { rows: [{ id: 'o' }] } : { rows: [{ first_name: 'Ana', last_name: 'R', title: 'Program Officer' }] }; } };
   const reg = { url: 'https://simpler.grants.gov/opportunity/x', registry: { moreInfoUrl: 'https://www.agency.gov/program' }, contacts: [{ name: 'Desk', email: 'd@agency.gov', source: 'registry' }], eligible: 'yes', status: 'open' };
-  await contactStage({ findings: [reg], tools, env: {}, configured: true });
+  await contactStage({ findings: [reg], tools, env: { APOLLO_FOR_GRANTS: '1' }, configured: true });
   assert.equal(calls[0].domain, 'agency.gov'); assert.equal(reg.contacts[0].source, 'registry'); assert.equal(reg.contacts[1].name, 'Ana R');
   const noInfo = { url: 'https://simpler.grants.gov/opportunity/y', registry: {}, eligible: 'yes', status: 'open' }; const before = calls.length;
-  await contactStage({ findings: [noInfo], tools, env: {}, configured: true }); assert.equal(calls.length, before, 'sin enlace de la agencia no se gasta Apollo en grants.gov');
+  await contactStage({ findings: [noInfo], tools, env: { APOLLO_FOR_GRANTS: '1' }, configured: true }); assert.equal(calls.length, before, 'sin enlace de la agencia no se gasta Apollo en grants.gov');
 });
 
 /* ── Tarea B: registro oficial como herramienta genérica. ── */
@@ -185,4 +185,157 @@ test('E inversores: el ranking de URLs para inversión prefiere las páginas pro
   const log = ['https://agency.gov/funding/rfa-2026', 'https://examplevc.com/portfolio', 'https://examplevc.com/team'].map((x) => `Added source url to research: ${x}`).join('\n');
   const r = urlsFromRun({ log, today: TODAY, objective: 'investment' });
   assert.equal(r[0].url, 'https://examplevc.com/portfolio');
+});
+
+/* ── Bug 7 (corrida real 14-10 09:57): el evento «triage» no estaba en el esquema de la traza → TRACE_INVALID y el motor fallaba. ── */
+import { createTrace } from '../server/research/trace.mjs';
+import { mkdtempSync as mkd } from 'node:fs';
+import { tmpdir as tmpd } from 'node:os';
+import { join as pjoin } from 'node:path';
+test('BUG-7 la traza real acepta los eventos nuevos (triage, descartes por triage y por tiempo)', () => {
+  const t = createTrace({ dir: mkd(pjoin(tmpd(), 'tr-')), runId: 'x', objective: 'grant' });
+  assert.doesNotThrow(() => t.event('tool_call', { tool: 'triage', args: { opened: 3, assessed: 2 }, results_n: 2, ms_call: 0, counts: { open: 1 } }));
+  assert.doesNotThrow(() => t.event('drop', { url: 'https://a.example', page_ref: 'p1', reason: 'triage_unknown', decided_by: 'code', read: true }));
+  assert.doesNotThrow(() => t.event('drop', { url: 'https://a.example', page_ref: 'p1', reason: 'time_budget', decided_by: 'code', read: true }));
+});
+
+/* ── Corrida real 14-10 10:09 ── */
+test('BUG-8 «Expiration Date» futura no es el plazo (PA-27-101 salía con cierre abr-2029); pasada, cierra', () => {
+  const page = { url: 'u', title: 'Parent R44', text: 'Expiration Date April 06, 2029\nStandard dates apply.' };
+  const a = auditPage({ page, today: TODAY, judgment: { page_type: 'call', dates: [{ role: 'application_deadline', date: '2029-04-06', estimated: false, quote: 'Expiration Date April 06, 2029' }], criteria: crit() } });
+  assert.equal(a.deadline, null); assert.notEqual(a.state, 'open');
+  const old = auditPage({ page: { url: 'u', title: 'Parent', text: 'Expiration Date September 6, 2019' }, today: TODAY, judgment: { page_type: 'call', dates: [{ role: 'expiration_date', date: '2019-09-06', estimated: false, quote: 'Expiration Date September 6, 2019' }], criteria: crit() } });
+  assert.equal(old.dropReason, 'closed');
+});
+test('BUG-9 Apollo no gasta créditos en el dominio del registro (grants.gov)', async () => {
+  const calls = []; const tools = { usage: () => ({}), apollo: async (a) => { calls.push(a); return { rows: [] }; } };
+  await contactStage({ findings: [{ url: 'https://simpler.grants.gov/opportunity/x', registry: { moreInfoUrl: 'https://www.grants.gov/search-results-detail/1' }, eligible: 'yes', status: 'open' }], tools, env: { APOLLO_FOR_GRANTS: '1' }, configured: true });
+  assert.equal(calls.length, 0);
+});
+test('BUG-10 el registro busca también por tipo de solicitante + tema (genérico, sin agencias)', () => {
+  const q = registryQueries({ entityType: 'for_profit', industry: 'healthcare' }, { topic: 'Alzheimer' });
+  assert.equal(q[0], 'small business Alzheimer'); assert.doesNotMatch(q.join(' '), /NIH|NSF|SBIR/);
+});
+
+test('APOLLO política: grants apagado por defecto; inversores se enriquecen (nombre completo, LinkedIn, correo)', async () => {
+  const calls = []; const tools = { usage: () => ({ apollo_credits: calls.length }), apollo: async (a) => { calls.push(a.op);
+    if (a.op === 'organization') return { rows: [{ id: 'o' }] };
+    if (a.op === 'people') return { rows: [{ id: 'p1', first_name: 'Ana', last_name_obfuscated: 'Ru***z', title: 'Partner' }] };
+    return { rows: [{ first_name: 'Ana', last_name: 'Ruiz', title: 'Partner', linkedin_url: 'https://linkedin.example/ana', email: 'ana@fund.example', email_status: 'verified' }] }; } };
+  const g = await contactStage({ findings: [{ url: 'https://agency.example/rfa', eligible: 'yes', status: 'open' }], objective: 'grant', tools, env: {}, configured: true });
+  assert.match(g.skipped, /APOLLO_FOR_GRANTS/); assert.equal(calls.length, 0);
+  const f = { url: 'https://fund.example/portfolio', eligible: 'yes', status: 'n/a' };
+  await contactStage({ findings: [f], objective: 'investment', tools, env: {}, configured: true });
+  assert.deepEqual(calls, ['organization', 'people', 'match']);
+  assert.equal(f.contacts[0].name, 'Ana Ruiz'); assert.equal(f.contacts[0].linkedin_url, 'https://linkedin.example/ana'); assert.equal(f.contacts[0].email, 'ana@fund.example');
+});
+
+test('DOCS: de una página de programa sin plazo se sigue el PDF de la convocatoria del año y se juzga como página propia', async () => {
+  const { runAgentObjective } = await import('../server/research/agentic/loop.mjs');
+  const { createTools } = await import('../server/research/agentic/tools.mjs');
+  const { honestChat, mapReader } = await import('../scripts/bench/fake.mjs');
+  const pages = new Map([
+    ['https://state-agency.example/program', { title: 'Company program', text: 'State company formation program for startups.\nRead the [Request for Applications FY2026](https://state-agency.example/files/2026-01/RFA_FY2026.pdf) and the [old RFA 2023](https://state-agency.example/files/2023/RFA_2023.pdf).' }],
+    ['https://state-agency.example/files/2026-01/RFA_FY2026.pdf', { title: 'RFA FY2026', text: 'Request for Applications FY2026: company formation grant awards.\nApplications due: November 20, 2026\nEligible applicants: for-profit companies located in Maryland working on health technology.' }],
+  ]);
+  const tools = createTools({ env: {}, readers: { open: mapReader(pages) }, limits: { opens: 50, apolloCredits: 0 } });
+  const seeds = ['https://state-agency.example/program', 'https://other.example/a', 'https://other.example/b'].map((url) => ({ url }));
+  const r = await runAgentObjective('grant', { company: 'C', state: 'Maryland', entityType: 'for_profit' }, { chat: honestChat({ today: TODAY }), tools, today: TODAY, parallel: true, seedUrls: seeds, assessMax: 2, env: {} });
+  const f = r.findings.find((x) => /RFA_FY2026\.pdf/.test(x.url));
+  assert.ok(f, `hallazgos: ${r.findings.map((x) => x.url).join(', ')}`); assert.equal(f.deadline, '2026-11-20');
+  assert.equal(r.findings.some((x) => /RFA_2023/.test(x.url)), false, 'no sigue RFA de años pasados');
+  assert.equal(r.audit.triage.docs, 1);
+});
+
+test('SIMPLER: AND primero y OR si trae poco; el aviso completo (adjunto) de cada oportunidad también va al juez', async () => {
+  const sent = [];
+  const fetcher = async (url, init = {}) => {
+    if (/\/opportunities\/search$/.test(url)) { const b = JSON.parse(init.body); sent.push(b.query_operator); return { ok: true, json: async () => ({ data: b.query_operator === 'AND' ? [SIMPLER_ROW] : [{ ...SIMPLER_ROW, opportunity_id: 'or-1', opportunity_number: 'OR-27-001' }] }) }; }
+    if (/\/opportunities\/00000000-0000-4000-8000-000000000100$/.test(url)) return { ok: true, json: async () => ({ data: { attachments: [{ file_name: 'budget-template.xlsx', mime_type: 'application/vnd.ms-excel', download_path: 'https://files.example/x.xlsx' }, { file_name: 'PA-27-100-Full-Announcement.html', mime_type: 'text/html', download_path: 'https://files.simpler.example/PA-27-100-Full-Announcement.html' }] } }) };
+    return { ok: false, json: async () => ({}) };
+  };
+  const r = await registrySeeds({ brief: { entityType: 'for_profit' }, queries: ['dementia risk software'], today: TODAY, env: { SIMPLER_GRANTS_API_KEY: 'k' }, fetcher });
+  assert.deepEqual(sent, ['AND', 'OR']); assert.equal(r.seeds.length, 2);
+  assert.equal(r.attachments.length, 1); assert.equal(r.attachments[0].url, 'https://files.simpler.example/PA-27-100-Full-Announcement.html');
+  const none = await registrySeeds({ brief: {}, queries: ['x y'], today: TODAY, env: {}, fetcher: async () => ({ ok: true, json: async () => ({ errorcode: 0, data: { oppHits: [] } }) }) });
+  assert.deepEqual(none.attachments, [], 'sin clave no hay adjuntos (la API pública no los da)');
+});
+
+/* ───────── VENTANA PARA APLICAR (campo del asistente) ───────── */
+import { parseWindow, windowLabel } from '../server/research/window.mjs';
+import { nextQuestion, newIntake, toProfile, interpretAnswer, GOAL_FIELDS, planFields, FIELDS } from '../server/research/intake.mjs';
+
+test('WINDOW: meses en inglés o español, relativos y fechas exactas → {from,to}; lo vago o pasado → null', () => {
+  const T = '2026-10-14';
+  assert.deepEqual(parseWindow('November and December', T), { from: '2026-11-01', to: '2026-12-31' });
+  assert.deepEqual(parseWindow('noviembre y diciembre 2026', T), { from: '2026-11-01', to: '2026-12-31' });
+  assert.deepEqual(parseWindow('noviembre a febrero', T), { from: '2026-11-01', to: '2027-02-28' });
+  assert.deepEqual(parseWindow('antes de diciembre', T), { from: '2026-10-14', to: '2026-12-31' });
+  assert.deepEqual(parseWindow('2026-11-01 to 2026-12-31', T), { from: '2026-11-01', to: '2026-12-31' });
+  assert.deepEqual(parseWindow('próximos 3 meses', T), { from: '2026-10-14', to: '2027-01-14' });
+  assert.equal(parseWindow('enero 2026', T), null);
+  assert.equal(parseWindow('cuando se pueda', T), null);
+  assert.equal(windowLabel('Nov-Dec', T), '2026-11-01 to 2026-12-31');
+});
+
+test('WINDOW: el asistente la pregunta en objetivo grant, la guarda normalizada y llega al perfil como apply_from/apply_to', () => {
+  assert.ok(GOAL_FIELDS.grant.includes('funding.apply_window'));
+  assert.ok(FIELDS.find((f) => f.path === 'funding.apply_window')?.ask);
+  assert.deepEqual(interpretAnswer('funding.apply_window', 'november to december 2026'), { value: '2026-11-01 to 2026-12-31' });
+  assert.equal(interpretAnswer('funding.apply_window', 'cuando sea').value, null);   // no se entiende → se vuelve a preguntar
+  const s = newIntake({});
+  s.fields['funding.objectives'] = { value: ['grant'], origin: 'user', confidence: 'user', quote: '', at: '' };
+  for (const p of planFields(s)) if (p !== 'funding.apply_window') s.fields[p] ??= { value: p === 'funding.amount_usd' ? 1e6 : (FIELDS.find((f) => f.path === p)?.kind === 'list' ? ['x'] : 'x'), origin: 'user', confidence: 'user', quote: '', at: '' };
+  assert.equal(nextQuestion(s)?.path, 'funding.apply_window');
+  s.fields['funding.apply_window'] = { value: '2026-11-01 to 2026-12-31', origin: 'user', confidence: 'user', quote: '', at: '' };
+  const p = toProfile(s, { founder: {}, project: {} }, { name: 'U', email: 'u@x.co' }, { today: '2026-10-14' });
+  assert.equal(p.intake.apply_from, '2026-11-01'); assert.equal(p.intake.apply_to, '2026-12-31');
+});
+
+/* ───────── INVERSORES: solo organizaciones que invierten (bench 14-10: i2 e i3) ───────── */
+import { selfPage, shortName, NOT_FUNDER_TYPES } from '../server/research/judge/funder.mjs';
+const cr = (over = {}) => ({ funder_kind: { verdict: 'unknown', quote: null, reason: '' }, region: { verdict: 'unknown', quote: null, reason: '' }, entity_type: { verdict: 'unknown', quote: null, reason: '' }, stage: { verdict: 'unknown', quote: null, reason: '' }, topic_fit: { verdict: 'unknown', quote: null, reason: '' }, ...over });
+const IBRIEF = { company: 'AHA Labs Inc.', venture: 'AHA Labs', product: 'Agentic Harmonization Assistant for pharma and CRO clinical datasets', fundingTypes: ['investment'] };
+
+test('FUNDER-1 la página de la propia empresa/producto del brief no es un inversor (sigla del producto, nombre o dominio)', () => {
+  assert.equal(selfPage({ url: 'https://acme-pharma.com/news/aaic', title: 'Acme to showcase AI portfolio', text: 'The AHA platform cut harmonization time. AHA is built by Acme. Learn about AHA.' }, IBRIEF).self, true);
+  assert.equal(selfPage({ url: 'https://ahalabs.com/about', title: 'About', text: 'We build tools.' }, IBRIEF).self, true);
+  assert.equal(selfPage({ url: 'https://seedfund.vc/thesis', title: 'Seed Fund thesis', text: 'We invest in digital health seed rounds.' }, IBRIEF).self, false);
+});
+test('FUNDER-2 el nombre de la fila es la organización, no una frase de la página', () => {
+  assert.equal(shortName('IGC Pharma, Inc. is a clinical-stage biotechnology company developing therapeutics for Alzheimer’s disease and AI-enabled tools', 'https://igcpharma.com/x'), 'IGC Pharma, Inc.');
+  assert.equal(shortName('Qubit Capital is a platform that provides insights and analysis on angel investment trends in Healthcare', 'https://qubit.capital/blog/x'), 'Qubit Capital');
+  assert.equal(shortName('Eoniq', 'https://eoniq.fund'), 'Eoniq');
+  assert.equal(shortName('A curated list of investors who specialize in healthcare technology, from telemedicine and clinical software to AI diagnostics and patient engagement platforms.', 'https://www.vcsheet.com/sheet/x'), 'Vcsheet');
+});
+test('FUNDER-3 juez en modo solo juez: informe, lista o artículo → descartado como «not_a_funder»; criterio funder_kind «no» con cita también', () => {
+  for (const type of ['report', 'blog', 'news', 'directory']) {
+    const a = auditPage({ objective: 'investment', page: { url: 'https://x.com/p', title: 't', text: 'Top 18 medtech funds' }, today: TODAY, judgment: { page_type: type, dates: [], criteria: cr() }, criteriaIds: ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit'], requireCall: true });
+    assert.equal(a.dropReason, `not_a_funder:${type}`);
+  }
+  const q = 'Qubit Capital is a platform that provides insights';
+  const b = auditPage({ objective: 'investment', page: { url: 'https://q.capital/b', title: 't', text: `${q} on angel trends` }, today: TODAY, judgment: { page_type: 'funder_about', dates: [], criteria: cr({ funder_kind: { verdict: 'no', quote: q, reason: 'a platform, not an investor' } }) }, criteriaIds: ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit'], requireCall: true });
+  assert.equal(b.dropReason, 'not_a_funder');
+  const ok = auditPage({ objective: 'investment', page: { url: 'https://fund.vc/', title: 'Fund', text: 'We invest in seed' }, today: TODAY, judgment: { page_type: 'funder_about', dates: [], criteria: cr({ funder_kind: { verdict: 'yes', quote: 'We invest in seed', reason: 'fund' } }) }, criteriaIds: ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit'], requireCall: true });
+  assert.equal(ok.dropReason, null);
+  assert.ok(NOT_FUNDER_TYPES.has('directory'));
+});
+
+/* ───────── ASISTENTE: rondas reales (empresa cotizada, Serie C+) ───────── */
+import { mapRound, runTurn } from '../server/research/intake.mjs';
+test('ROUND: «Series E», «IGC is public», PIPE y ATM se entienden; «public health» suelto no es una ronda', async () => {
+  assert.equal(mapRound('The round is Series E'), 'growth');
+  assert.equal(mapRound('Series C'), 'series-c');
+  assert.equal(mapRound('IGC is public'), 'public');
+  assert.equal(mapRound('IGC Pharma is publicly listed on NYSE American (ticker IGC)'), 'public');
+  assert.equal(mapRound('a PIPE or follow-on offering'), 'public');
+  assert.equal(mapRound('seed'), 'seed');
+  assert.equal(mapRound('Series B'), 'series-b');
+  const s = newIntake({});
+  s.fields['funding.objectives'] = { value: ['investment'], origin: 'user', confidence: 'user', quote: '', at: '' };
+  await runTurn(s, { text: 'We work on public health surveillance in rural clinics.', env: {} });
+  assert.notEqual(s.fields['funding.round']?.value, 'public');
+  await runTurn(s, { text: 'IGC is public', env: {} });
+  s.pending = 'funding.round'; await runTurn(s, { text: 'IGC is public', env: {} });
+  assert.equal(s.fields['funding.round']?.value, 'public');
 });

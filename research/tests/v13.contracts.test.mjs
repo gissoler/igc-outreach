@@ -55,7 +55,7 @@ test('V13-8 prompts are versioned, fence the page and hide claims in blind mode'
 test('V13-9 criteria catalog differs by domain: deadline only for dated objectives', () => {
   assert.equal(hasDeadline('grant'), true);
   assert.equal(hasDeadline('investment'), false);
-  assert.deepEqual(criteriaFor('investment'), ['region', 'entity_type', 'stage', 'topic_fit']);
+  assert.deepEqual(criteriaFor('investment'), ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit']);
   const j = judgePrompt({ objective: 'investment', brief: {}, page: { url: 'u', text: 't' }, today: '2026-10-12' });
   assert.doesNotMatch(j.user, /"deadline":\{/);
 });

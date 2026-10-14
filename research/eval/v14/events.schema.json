@@ -19,11 +19,11 @@
     { "if": { "properties": { "type": { "const": "understand" } } }, "then": { "required": ["output"] } },
     { "if": { "properties": { "type": { "const": "brief_patch" } } }, "then": { "required": ["field", "from", "to", "why", "source"], "properties": { "source": { "enum": ["user_answer", "assumption"] } } } },
     { "if": { "properties": { "type": { "const": "model_call" } } }, "then": { "required": ["role", "model", "prompt_version", "tokens", "ms_call", "ok"], "properties": {
-      "role": { "enum": ["planner", "reader", "compiler", "judge", "agent", "followup", "lateral", "researcher", "extractor", "understand"] },
+      "role": { "enum": ["planner", "reader", "compiler", "judge", "agent", "followup", "lateral", "researcher", "extractor", "understand", "assess", "coverage"] },
       "tokens": { "type": "object", "required": ["prompt", "completion"] },
       "invalid": { "type": "boolean" }, "retry": { "type": "integer" }, "page_ref": { "type": ["string", "null"] }, "error": { "type": "string" } } } },
     { "if": { "properties": { "type": { "const": "tool_call" } } }, "then": { "required": ["tool", "args", "results_n", "ms_call"], "properties": {
-      "tool": { "enum": ["search", "open", "apollo", "entity_funding", "registry", "note", "ask_user", "finish", "read", "expand", "extract"] },
+      "tool": { "enum": ["search", "open", "apollo", "gptr", "entity_funding", "registry", "note", "ask_user", "finish", "read", "expand", "extract", "triage"] },
       "provider": { "type": "string" }, "cost_usd": { "type": "number" }, "credits": { "type": "number" }, "error": { "type": "string" }, "from_lead": { "type": ["string", "null"] }, "rejected_ref": { "type": "boolean" } } } },
     { "if": { "properties": { "type": { "const": "page" } } }, "then": { "required": ["ref", "url", "host", "title", "via", "chars", "sha256", "path", "found_by", "read"], "properties": {
       "found_by": { "type": "object", "required": ["tool"], "description": "herramienta y ref (o consulta) que trajo la página" },

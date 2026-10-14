@@ -10,15 +10,16 @@ export const JUDGE_PROMPT_VERSION = 'judge.v13.1';
 export const CRITERIA = {
   grant: ['deadline', 'eligibility', 'region', 'entity_type', 'stage', 'topic_fit'],
   sponsorship: ['deadline', 'eligibility', 'region', 'entity_type', 'stage', 'topic_fit'],
-  investment: ['region', 'entity_type', 'stage', 'topic_fit'],
-  debt: ['region', 'entity_type', 'stage', 'topic_fit'],
-  partnering: ['region', 'entity_type', 'stage', 'topic_fit'],
+  investment: ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit'],
+  debt: ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit'],
+  partnering: ['funder_kind', 'region', 'entity_type', 'stage', 'topic_fit'],
 };
 export const criteriaFor = (objective) => CRITERIA[objective] || CRITERIA.grant;
 export const hasDeadline = (objective) => criteriaFor(objective).includes('deadline');
 
 export const CRITERION_HELP = {
   deadline: 'deadline: is there an APPLICATION deadline on the page that is on or after today and not marked estimated or forecast? yes = a firm future application deadline; no = the page says the call is closed or its application deadline is before today; unknown = no application deadline, only estimated or forecast dates, or an announcement that applications are not being solicited yet. If the brief gives deadlineFrom and/or deadlineTo, the firm application deadline must fall inside that window (both days included); a firm deadline outside it is no.',
+  funder_kind: 'funder_kind: is this page about ONE specific organization or person that itself invests, lends or partners (a venture fund, angel, corporate venture arm, investing accelerator, lender or strategic partner)? no, with a quote, when it is an article, report, ranking, list or directory of investors, a data or software platform, news about someone else\'s deal, a government tax credit or subsidy, a company selling products, or the applicant\'s own company or product (see the brief). yes needs a quote showing that the organization invests or lends.',
   eligibility: 'eligibility: can this applicant apply to this page overall (who may apply, restrictions, exclusions)? yes only with a quote that says who may apply.',
   region: 'region: does the page allow the applicant\'s country / state / region? A foreign-institution allowance counts as yes only if the page says it.',
   entity_type: 'entity_type: does the page allow the applicant\'s type of entity (for-profit company, startup, small business, nonprofit, university...)?',

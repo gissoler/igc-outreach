@@ -26,7 +26,7 @@ test('hallazgos: verificada → apply/main; a revisar de convocatoria → watch;
 test('runGptr: usa el proceso, lee el JSON verificado y llama a Apollo después', async () => {
   mkdirSync(join(GPTR_DIR, 'outputs'), { recursive: true }); const rel = 'outputs/fixture-test.json'; writeFileSync(join(GPTR_DIR, rel), JSON.stringify(rows));
   const apollo = []; const tools = { usage: () => ({ apollo_credits: apollo.length }), apollo: async (a) => { apollo.push(a); return a.op === 'organization' ? { rows: [{ id: 'o' }] } : { rows: [{ id: 'p', first_name: 'Ana', title: 'Program Officer' }] }; } };
-  const r = await runGptr('grant', { company: 'IGC' }, { env: { APOLLO_API_KEY: 'k', GPTR_JUDGE: 'verify' }, today: '2026-10-14', tools, gptrRunner: async () => ({ json: rel }) });
+  const r = await runGptr('grant', { company: 'IGC' }, { env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1', GPTR_JUDGE: 'verify' }, today: '2026-10-14', tools, gptrRunner: async () => ({ json: rel }) });
   assert.equal(r.findings.length, 3); assert.equal(r.audit.gptr.verified, 1); assert.equal(r.findings[0].contacts[0].name, 'Ana'); assert.equal(apollo[0].domain, 'nsf.gov');
 });
 test('runGptr: si el proceso falla devuelve cero hallazgos con el error, no revienta', async () => {

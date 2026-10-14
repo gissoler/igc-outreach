@@ -6,6 +6,7 @@
      · la regla de estado: closed | open | forecast | unknown.
    Falla cerrado: juez caído o inválido → nada entra a la lista principal. Compilador y juez en desacuerdo → «a verificar».
    Funciones puras (sin red, disco ni reloj). */
+import { NOT_FUNDER_TYPES } from './funder.mjs';
 import { literalIn } from '../verify.mjs';
 import { datesIn, daysBetween, todayIso } from '../dates.mjs';
 import { criteriaFor, hasDeadline } from './prompts.v13.mjs';
@@ -26,12 +27,15 @@ export function verifyDate(d, pageText) {
 }
 /* El juez a veces etiqueta la fecha de cierre con otro nombre («deadline», «expiration»…): se normaliza a application_deadline.
    Diagnóstico 14-10: PAR-17-067 («Expiration Date September 6, 2019») quedó «a verificar» en vez de cerrado por el rol «deadline». */
-const DEADLINE_ALIASES = /^(deadline|due|due_date|close|closes|closing|close_date|closing_date|expiration|expiration_date|expires|expiry|submission_deadline|application_due|application_due_date|application_close|proposal_deadline|full_proposal_deadline|end_date)$/i;
-export const normRole = (d) => (d && DEADLINE_ALIASES.test(String(d.role || '').trim()) ? { ...d, role: 'application_deadline' } : d);
+const DEADLINE_ALIASES = /^(deadline|due|due_date|close|closes|closing|close_date|closing_date|submission_deadline|application_due|application_due_date|application_close|proposal_deadline|full_proposal_deadline)$/i;
+// Vencimiento del aviso («Expiration Date»): no es el próximo plazo de entrega; solo prueba cierre cuando ya pasó.
+const EXPIRY_ALIASES = /^(expiration|expiration_date|expires|expiry|end_date)$/i;
+const EXPIRY_QUOTE = /\bexpir(?:ation|es|y)\b/i;
+export const normRole = (d) => { if (!d) return d; const r = String(d.role || '').trim(); if (EXPIRY_ALIASES.test(r) || (r === 'application_deadline' && EXPIRY_QUOTE.test(String(d.quote || '')) && !/\b(due|deadline|submit)/i.test(String(d.quote || '')))) return { ...d, role: 'expiration' }; return DEADLINE_ALIASES.test(r) ? { ...d, role: 'application_deadline' } : d; };
 const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map(normRole).map((d) => verifyDate(d, pageText));
 /** Una cita de cierre con VARIAS fechas no sirve para fijar un plazo, pero si TODAS son anteriores a hoy prueba que está cerrado. */
 function pastOnly(d, pageText, today) {
-  if (d.role !== 'application_deadline' || d.why !== 'quote_has_several_dates' || !literalIn(d.quote, pageText)) return d;
+  if (!['application_deadline', 'expiration'].includes(d.role) || d.why !== 'quote_has_several_dates' || !literalIn(d.quote, pageText)) return d;
   const found = datesIn(d.quote); if (!found.length || !found.every((x) => x < today)) return d;
   return { ...d, date: found.includes(d.date) ? d.date : found.sort().at(-1), verified: true, why: null, past_only: true };
 }
@@ -87,6 +91,8 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const criteria = auditCriteria(judgment, objective, text, flags, criteriaIds);
   // Sin plazo verificado, pero la página prueba que ya cerró: el juez dice «no» al plazo con una cita literal cuyas fechas son todas pasadas,
   // o el título lo marca como vencido. Nunca abre nada: solo puede cerrar.
+  // Aviso vencido según su propia fecha de expiración (verificada y pasada) → cerrado.
+  if (dated && st.state === 'unknown') { const exp = jDates.filter((d) => d.role === 'expiration' && d.verified && d.date < now).sort((a, b) => b.date.localeCompare(a.date))[0]; if (exp && !jDates.some((d) => d.role === 'expiration' && d.verified && d.date >= now)) { st = { state: 'closed', deadline: exp.date, quote: exp.quote, daysLeft: null, estimatedDeadline: null }; flags.push('closed_by_expiration'); } }
   if (dated && st.state === 'unknown') {
     const dq = criteria.deadline; const qd = dq?.verdict === 'no' && dq.quoteOk ? datesIn(dq.quote) : [];
     const pastQuote = qd.length && qd.every((x) => x < now);
@@ -112,7 +118,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   }
 
   // Razones de descarte: solo un «no» con cita literal en la página.
-  const NO_TO_DROP = { eligibility: 'not_eligible', region: 'not_eligible', entity_type: 'not_eligible', stage: 'not_eligible', topic_fit: 'scope_mismatch', non_dilutive: 'equity_or_loan', official: 'not_official', recent_activity: 'scope_mismatch', contact_route: 'scope_mismatch' };
+  const NO_TO_DROP = { eligibility: 'not_eligible', region: 'not_eligible', entity_type: 'not_eligible', stage: 'not_eligible', topic_fit: 'scope_mismatch', non_dilutive: 'equity_or_loan', official: 'not_official', recent_activity: 'scope_mismatch', contact_route: 'scope_mismatch', funder_kind: 'not_a_funder' };
   const noWithQuote = Object.entries(criteria).find(([id, c]) => id !== 'deadline' && c.verdict === 'no' && c.quoteOk);
   const win = window && (window.from || window.to) ? { from: window.from || null, to: window.to || null } : null;
   const outsideWindow = Boolean(win && dated && (st.state === 'open' || st.state === 'upcoming') && st.deadline && ((win.from && st.deadline < win.from) || (win.to && st.deadline > win.to)));
@@ -125,9 +131,11 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
     if (!known) dropReason = 'too_short';
     else if (st.state === 'unknown' && !CALL_TYPES.has(judgment.page_type) && criteria.deadline?.verdict !== 'yes') dropReason = `not_a_call:${judgment.page_type || 'other'}`;
   }
+  // Inversores / socios en modo solo juez: una página que es un artículo, informe, lista o evento no es un financiador (14-10: salían como «inversores» listas de «Top 18» y notas de prensa).
+  if (requireCall && !dated && !dropReason && NOT_FUNDER_TYPES.has(String(judgment.page_type || '').toLowerCase())) dropReason = `not_a_funder:${judgment.page_type}`;
   for (const [id, c] of Object.entries(criteria)) if (id !== 'deadline' && c.claimed === 'no' && c.verdict === 'unknown') blockers.push(`The judge says "no" for ${id} without a quote from the page`);
 
-  const extraRequired = criteriaIds ? criteriaIds.filter((id) => ['non_dilutive', 'official', 'recent_activity', 'contact_route'].includes(id)) : [];
+  const extraRequired = criteriaIds ? criteriaIds.filter((id) => ['non_dilutive', 'official', 'recent_activity', 'contact_route', 'funder_kind'].includes(id)) : [];
   const requiredYes = [...(dated ? ['eligibility', 'topic_fit'] : ['topic_fit']), ...extraRequired];
   for (const id of requiredYes) if (criteria[id]?.verdict !== 'yes') blockers.push(`${id === 'topic_fit' ? 'Topic fit' : 'Eligibility'} not confirmed by the judge with a quote from the page`);
   if (dated) {

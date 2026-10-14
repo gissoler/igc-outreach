@@ -26,6 +26,7 @@ const META: Record<string, { label: string; kind: Kind; placeholder?: string }> 
   'funding.amount_usd': { label: 'Amount (USD)', kind: 'number' },
   'funding.use_of_funds': { label: 'Use of funds', kind: 'text' },
   'funding.timeline': { label: 'Timeline', kind: 'text', placeholder: '6 months' },
+  'funding.apply_window': { label: 'When you can apply (grants)', kind: 'text', placeholder: 'November to December 2026' },
   'industry.sectors': { label: 'Sector', kind: 'tags' },
   'product.maturity': { label: 'Stage', kind: 'maturity' },
   'geography': { label: 'Geography', kind: 'tags', placeholder: 'US, CO, LATAM…' },
@@ -41,7 +42,7 @@ const REQUIRED = ['company.name', 'product.name', 'funding.objectives', 'product
 const GROUPS: [string, string[]][] = [
   ['Who\'s looking, and for whom', ['organization.name', 'founder.title', 'company.name', 'company.relation', 'company.entity_type', 'company.country', 'company.state', 'company.city']],
   ['Product', ['product.name', 'product.one_liner', 'product.description', 'company.website']],
-  ['Funding', ['funding.objectives', 'funding.round', 'funding.amount_usd', 'funding.use_of_funds', 'funding.timeline']],
+  ['Funding', ['funding.objectives', 'funding.round', 'funding.amount_usd', 'funding.use_of_funds', 'funding.timeline', 'funding.apply_window']],
   ['Market and stage', ['industry.sectors', 'product.maturity', 'geography']],
   ['Investor view', ['company.traction', 'product.differentiation', 'product.business_model', 'company.team']],
   ['Criteria and constraints', ['competitors', 'criteria', 'constraints']],
@@ -49,7 +50,7 @@ const GROUPS: [string, string[]][] = [
 export const OBJECTIVES: [string, string][] = [['investment', 'Investment (VC, angels)'], ['grant', 'Non-dilutive grants'], ['partnering', 'Partnering'], ['sponsorship', 'Sponsorship'], ['debt', 'Debt']];
 const RELATIONS: [string, string][] = [['same', 'It\'s my own company'], ['subsidiary', 'Subsidiary'], ['spinout', 'Spin-off'], ['sponsored', 'Project we sponsor'], ['portfolio', 'Portfolio company'], ['client', 'Client'], ['other', 'Other']];
 const MATURITY: [string, string][] = [['idea', 'Idea'], ['prototype', 'Prototype or pilot'], ['preclinical', 'Preclinical'], ['clinical_phase_1', 'Clinical phase 1'], ['clinical_phase_2', 'Clinical phase 2'], ['clinical_phase_3', 'Clinical phase 3'], ['marketed', 'On the market'], ['other', 'Other']];
-const ROUNDS = ['pre-seed', 'seed', 'series-a', 'series-b', 'growth'];
+const ROUNDS = ['pre-seed', 'seed', 'series-a', 'series-b', 'series-c', 'growth', 'public'];
 const errorText = (error: unknown) => error instanceof Error ? error.message : 'Something went wrong.';
 const asList = (v: unknown) => Array.isArray(v) ? v.map(String) : [];
 

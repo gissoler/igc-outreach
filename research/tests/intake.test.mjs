@@ -238,7 +238,7 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
 test('intake: grants piden monto y uso de fondos; no piden ronda', () => {
   const s = newIntake({});
   s.fields['funding.objectives'] = { value: ['grant'], origin: 'user', confidence: 'source' };
-  assert.deepEqual(planFields(s).slice(-4), ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state']);
+  assert.deepEqual(planFields(s).slice(-5), ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state', 'funding.apply_window']);
   assert.ok(!planFields(s).includes('funding.round'));
 });
 

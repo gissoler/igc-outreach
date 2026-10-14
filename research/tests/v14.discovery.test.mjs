@@ -38,7 +38,7 @@ function apolloTools(extra = {}) {
 test('contactStage llama a Apollo en código, una vez por dominio, y adjunta contactos', async () => {
   const { calls, tools } = apolloTools();
   const findings = [{ url: 'https://www.nia.nih.gov/a', eligible: 'yes', status: 'open' }, { url: 'https://grants.nih.gov/b', eligible: 'unclear', status: 'open' }, { url: 'https://x.org/c', eligible: 'no', status: 'open' }, { url: 'https://closed.org/d', eligible: 'yes', status: 'closed' }];
-  const out = await contactStage({ findings, objective: 'grant', tools, env: { APOLLO_API_KEY: 'k' }, configured: true });
+  const out = await contactStage({ findings, objective: 'grant', tools, env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1' }, configured: true });
   assert.deepEqual(calls.map((c) => `${c.op}:${c.domain}`), ['organization:nih.gov', 'people:nih.gov']);
   assert.equal(findings[0].contacts[0].name, 'Ana Pe***'); assert.equal(findings[1].contacts[0].title, 'Program Officer');
   assert.equal(findings[2].contacts, undefined); assert.equal(out.orgs, 1); assert.equal(out.people, 1); assert.equal(out.credits, 2);
@@ -48,12 +48,12 @@ test('contactStage respeta APOLLO_ENABLED=0, falta de clave y el tope de organiz
   assert.equal((await contactStage({ findings: [{ url: 'https://a.org/x' }], tools: a.tools, env: { APOLLO_ENABLED: '0' }, configured: true })).skipped, 'APOLLO_ENABLED=0');
   assert.equal((await contactStage({ findings: [{ url: 'https://a.org/x' }], tools: a.tools, env: {}, configured: false })).skipped, 'APOLLO_API_KEY missing'); assert.equal(a.calls.length, 0);
   const b = apolloTools(); const fs = ['a.org', 'b.org', 'c.org'].map((h) => ({ url: `https://${h}/x`, eligible: 'yes', status: 'open' }));
-  const out = await contactStage({ findings: fs, tools: b.tools, env: { APOLLO_API_KEY: 'k', ENGINE_AGENT_APOLLO_ORGS: '2' }, configured: true });
+  const out = await contactStage({ findings: fs, tools: b.tools, env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1', ENGINE_AGENT_APOLLO_ORGS: '2' }, configured: true });
   assert.equal(out.orgs, 2); assert.equal(b.calls.filter((c) => c.op === 'organization').length, 2);
 });
 test('contactStage: organización no encontrada no gasta la búsqueda de personas', async () => {
   const { calls, tools } = apolloTools({ noOrg: true }); const f = [{ url: 'https://a.org/x', eligible: 'yes', status: 'open' }];
-  await contactStage({ findings: f, tools, env: { APOLLO_API_KEY: 'k' }, configured: true });
+  await contactStage({ findings: f, tools, env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1' }, configured: true });
   assert.deepEqual(calls.map((c) => c.op), ['organization']); assert.deepEqual(f[0].contacts, []);
 });
 
@@ -85,7 +85,7 @@ test('el bucle: descubrimiento por niveles alimenta el primer paso y Apollo se l
     if (req.name === 'agent') { agentUsers.push(req.user); return { json: agentSteps.shift(), model: 'f' }; }
     if (req.name === 'assess') return { json: assessment(String(req.user.match(/Page ref: (\S+?)\./)?.[1])), model: 'f' };
     return { json: judgment, model: 'f' }; };
-  const result = await runAgentObjective('grant', { company: 'IGC', state: 'Maryland', country: 'US' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, discovery: true, env: { APOLLO_API_KEY: 'k', ENGINE_AGENT_STEPS: '6' } });
+  const result = await runAgentObjective('grant', { company: 'IGC', state: 'Maryland', country: 'US' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, discovery: true, env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1', ENGINE_AGENT_STEPS: '6' } });
   assert.equal(seen.includes('coverage'), true);
   assert.equal(calls.length, 4, 'primera búsqueda + 3 consultas del plan');
   assert.match(agentUsers[0], /national agencies/); assert.match(agentUsers[0], /"level":"state programs"/, 'el primer paso ya ve resultados etiquetados por nivel');

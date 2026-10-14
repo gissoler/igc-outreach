@@ -30,7 +30,7 @@ const AFF_KINDS: { id: Affiliation['kind']; label: string }[] = [
   { id: 'universidad', label: 'Universidad' }, { id: 'empresa', label: 'Empresa anterior' }, { id: 'aceleradora', label: 'Aceleradora' },
   { id: 'comunidad', label: 'Comunidad' }, { id: 'grupo', label: 'Grupo empresarial' },
 ];
-const STAGES = ['pre-seed', 'seed', 'series-a', 'series-b', 'growth'];
+const STAGES = ['pre-seed', 'seed', 'series-a', 'series-b', 'series-c', 'growth', 'public'];
 export const FUNDING: { id: FundingType; label: string; hint: string }[] = [
   { id: 'grant', label: 'Grants (no dilutivo)', hint: 'No entregas participación de la empresa' },
   { id: 'venture', label: 'Venture capital', hint: 'Capital a cambio de participación' },
