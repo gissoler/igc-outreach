@@ -1,6 +1,6 @@
 # V14 · C2 · Arquitectura del bucle del agente (13/10/2026)
 
-Hipótesis que prueba el benchmark (no es un resultado): con el bucle del agente detrás de `ENGINE_AGENT=1`, el mismo brief produce al menos tantas oportunidades correctas como la línea F1, sigue pistas que hoy se tiran y no aumenta los errores frente a la referencia manual. Nada de este documento afirma que el bucle sea mejor; las cifras que lo refutarían están en §9.
+Hipótesis que prueba el benchmark (no es un resultado): con el bucle del agente detrás de `ENGINE_AGENT=1`, el mismo brief produce al menos tantas oportunidades correctas como la línea F1, sigue pistas que hoy se tiran y no aumenta los errores frente a la referencia manual. Nada de este documento afirma que el bucle sea mejor; las cifras que lo refutarían están en §10.
 
 ## 1. Qué hace el código y qué hace el modelo
 
@@ -32,9 +32,9 @@ repetir mientras no haya finish ni tope:
 al terminar: finalistas → juez (§6) → auditor → findings; pistas → leads
 ```
 
-Rol nuevo `agent` en `fleetConfig` (`ENGINE_AGENT_LLM_URL`, `ENGINE_AGENT_LLM_MODEL`; por defecto el del rol `judge`). Configuración del benchmark: agente `openai/gpt-oss-120b` en 127.0.0.1:8016; juez el mismo modelo con contexto nuevo y `ENGINE_JUDGE_BLIND=1` (no ve el razonamiento del agente, sí los hechos con cita). Se registra `sameModel: true`. Motivo: el 235B está apagado y el 30B dio 20/80 JSON inválidos en 22-44. Riesgo de independencia en §9.
+Rol nuevo `agent` en `fleetConfig` (`ENGINE_AGENT_LLM_URL`, `ENGINE_AGENT_LLM_MODEL`; sin los dos el rol no está listo y el motor sigue con el camino actual, mismo criterio que `compiler` y `judge` en V13). Configuración del benchmark: agente `openai/gpt-oss-120b` en 127.0.0.1:8016; juez el mismo modelo con contexto nuevo y `ENGINE_JUDGE_BLIND=1` (no ve el razonamiento del agente, sí los hechos con cita). Se registra `sameModel: true`. Motivo: el 235B está apagado y el 30B dio 20/80 JSON inválidos en 22-44. Riesgo de independencia en §10.
 
-Topes por objetivo en el benchmark (código, `ENGINE_AGENT_*`): 40 pasos, 20 búsquedas, 30 aperturas, 1.200 s, 25 créditos de Apollo (50 en total para los dos casos), Exa dentro del tope de 5 USD de `exa_spend.mjs`. Las cifras de F1 (32 consultas, 80 lecturas, 539–632 s) son la referencia de coste.
+Topes por objetivo en el benchmark (código, `ENGINE_AGENT_*`): 40 pasos, 20 búsquedas, 30 aperturas, 1.200 s, 25 créditos de Apollo (50 en total para los dos casos), Exa ≤ 0,50 USD por caso y ≤ 5 USD en todo V14 (`--exa-usd-cap` de F1.3). Las cifras de F1 (32 consultas, 80 lecturas, 539–632 s) son la referencia de coste.
 
 ## 3. Paso 0: entender el brief y preguntar antes de gastar (respuesta 5 de C0)
 

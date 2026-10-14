@@ -112,7 +112,7 @@ F1 se acepta si: (a) las 12 preguntas tienen respuesta en las dos corridas; (b) 
 F2 se acepta, y F3 puede empezar, si se cumplen todas:
 1. Pasos inválidos del agente tras el reintento ≤ 10 % en cada caso.
 2. Segundos ≤ 2 × los de F1 en cada caso.
-3. Exa ≤ 0,50 USD por caso; Apollo ≤ 25 créditos por caso; tope total 5 USD sin tocar.
+3. Exa ≤ 0,50 USD por caso (suma de `costUsd` de exa que calcula el motor); Apollo ≤ 25 créditos por caso; V14 completo ≤ 5 USD de Exa.
 4. 0 `rejected_ref` con una URL escrita por el modelo.
 5. En el caso grant, ≥ 1 pista con seguimiento (`lead_followup`).
 6. Con ≥ 50 filas etiquetadas: FP(F2) ≤ FP(F1) y VP(F2) ≥ VP(F1) sobre las URLs etiquetadas (incluida la adenda).
