@@ -32,6 +32,7 @@ import { compilerPrompt, judgePrompt, COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERS
 import { validateCompilation, validateJudgment } from './judge/contracts.v13.mjs';
 import { auditPage, applyAudit, dateOverrideOf, legacyOut, judgeMode, slimJudge } from './judge/audit.v13.mjs';
 import { createTrace } from './trace.mjs';
+import { join } from 'node:path';
 import { runAgentObjective } from './agentic/loop.mjs';
 
 export const OBJECTIVES = {
@@ -219,7 +220,10 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const agentRequested = String(env.ENGINE_AGENT || '') === '1'; const agentRole = fleetConfig(env).roles.agent;
-  if (agentRequested && agentRole.ready && !(opts.queries?.length)) return (opts.agentRunner || runAgentObjective)(objective, brief, { ...opts, env });
+  if (agentRequested && agentRole.ready && !(opts.queries?.length)) {
+    const appTrace = !opts.trace && env.ENGINE_AGENT_TRACE_DIR ? createTrace({ dir: join(env.ENGINE_AGENT_TRACE_DIR, `${objective}-${Date.now()}`), runId: `app-${objective}-${Date.now()}`, objective }) : null;   // trazas de las corridas desde el frontend
+    return (opts.agentRunner || runAgentObjective)(objective, brief, { ...opts, env, ...(appTrace ? { trace: appTrace } : {}) });
+  }
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead, crawl4aiReader = opts.search ? null : crawl4aiRead } = opts;
   const traceLog = opts.trace || createTrace(null);
   const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, expand: null, providers: {}, errors: [], queryLog: [], traces: [] };
