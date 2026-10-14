@@ -9,10 +9,10 @@ bash scripts/tunnel-g355.sh dual-status || { echo "Los túneles no responden: no
 export ENGINE_JUDGE=1 ENGINE_LLM_URL=http://127.0.0.1:8017/v1 ENGINE_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ENGINE_LLM_TIMEOUT_MS=90000
 export COMPILER_LLM_URL=http://127.0.0.1:8017/v1 COMPILER_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 COMPILER_LLM_JSON_MODE=1 COMPILER_LLM_TIMEOUT_MS=240000
 export JUDGE_LLM_URL=http://127.0.0.1:8016/v1 JUDGE_LLM_MODEL=openai/gpt-oss-120b JUDGE_LLM_REASONING_EFFORT=low JUDGE_LLM_JSON_MODE=1 JUDGE_LLM_TIMEOUT_MS=100000
-# Modelo que decide los pasos del agente: AGENT_MODEL=rapido (Qwen3-30B, por defecto) o AGENT_MODEL=grande (gpt-oss-120b, razonamiento bajo).
-# En la traza del 13/10 la comprensión del brief con gpt-oss-120b superó 120 s dos veces; la comprensión y la lectura de páginas van siempre con Qwen.
-if [ "${AGENT_MODEL:-rapido}" = "grande" ]; then export ENGINE_AGENT_LLM_URL=http://127.0.0.1:8016/v1 ENGINE_AGENT_LLM_MODEL=openai/gpt-oss-120b ENGINE_AGENT_LLM_REASONING_EFFORT=low
-else export ENGINE_AGENT_LLM_URL=http://127.0.0.1:8017/v1 ENGINE_AGENT_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ENGINE_AGENT_LLM_REASONING_EFFORT=; fi
+# Modelo que decide los pasos del agente: AGENT_MODEL=grande (por defecto, gpt-oss-120b con razonamiento bajo, como en el diseño y el benchmark) o AGENT_MODEL=rapido (Qwen3-30B, más veloz y menos capaz).
+# La comprensión del brief y la lectura de cada página van con Qwen3-30B: en la traza del 13/10 la comprensión con gpt-oss-120b superó 120 s dos veces.
+if [ "${AGENT_MODEL:-grande}" = "rapido" ]; then export ENGINE_AGENT_LLM_URL=http://127.0.0.1:8017/v1 ENGINE_AGENT_LLM_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ENGINE_AGENT_LLM_REASONING_EFFORT=
+else export ENGINE_AGENT_LLM_URL=http://127.0.0.1:8016/v1 ENGINE_AGENT_LLM_MODEL=openai/gpt-oss-120b ENGINE_AGENT_LLM_REASONING_EFFORT=low; fi
 export ENGINE_AGENT=1 ENGINE_AGENT_PARALLEL=1 ENGINE_AGENT_LLM_JSON_MODE=1 ENGINE_AGENT_LLM_TIMEOUT_MS=90000
 export ENGINE_AGENT_SECONDS=300 ENGINE_AGENT_HARD_SECONDS=540 ENGINE_AGENT_JUDGE_RESERVE_SECONDS=100 ENGINE_AGENT_STEPS=40 ENGINE_AGENT_OPENS=40 ENGINE_AGENT_SEARCHES=24 ENGINE_AGENT_APOLLO_CREDITS=0
 # El .env apunta el intake y el chat al 235B, que ya no está en 8016 (ahora sirve gpt-oss-120b): se redirigen aquí, sin tocar .env.
