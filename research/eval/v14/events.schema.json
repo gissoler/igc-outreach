@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "trace/1",
+  "title": "Una línea de events.jsonl (V14)",
+  "type": "object",
+  "required": ["v", "run_id", "seq", "ts", "ms", "objective", "type"],
+  "properties": {
+    "v": { "const": "trace/1" },
+    "run_id": { "type": "string" },
+    "seq": { "type": "integer", "minimum": 0 },
+    "ts": { "type": "string", "description": "ISO 8601" },
+    "ms": { "type": "integer", "description": "ms desde run_start" },
+    "objective": { "enum": ["grant", "investment", "sponsorship", "debt", "partnering", "-"] },
+    "step": { "type": ["integer", "null"], "description": "paso del agente (F2) o ronda del motor (F1)" },
+    "type": { "enum": ["run_start", "understand", "brief_patch", "model_call", "tool_call", "page", "decision", "drop", "lead", "lead_followup", "ask_user", "budget", "finish", "run_end"] }
+  },
+  "allOf": [
+    { "if": { "properties": { "type": { "const": "run_start" } } }, "then": { "required": ["brief", "brief_sha", "today", "flags", "models", "prompts", "git_commit", "limits"] } },
+    { "if": { "properties": { "type": { "const": "understand" } } }, "then": { "required": ["output"] } },
+    { "if": { "properties": { "type": { "const": "brief_patch" } } }, "then": { "required": ["field", "from", "to", "why", "source"], "properties": { "source": { "enum": ["user_answer", "assumption"] } } } },
+    { "if": { "properties": { "type": { "const": "model_call" } } }, "then": { "required": ["role", "model", "prompt_version", "tokens", "ms_call", "ok"], "properties": {
+      "role": { "enum": ["planner", "reader", "compiler", "judge", "agent", "followup", "lateral", "researcher", "extractor", "understand"] },
+      "tokens": { "type": "object", "required": ["prompt", "completion"] },
+      "invalid": { "type": "boolean" }, "retry": { "type": "integer" }, "page_ref": { "type": ["string", "null"] }, "error": { "type": "string" } } } },
+    { "if": { "properties": { "type": { "const": "tool_call" } } }, "then": { "required": ["tool", "args", "results_n", "ms_call"], "properties": {
+      "tool": { "enum": ["search", "open", "apollo", "entity_funding", "registry", "note", "ask_user", "finish", "read", "expand", "extract"] },
+      "provider": { "type": "string" }, "cost_usd": { "type": "number" }, "credits": { "type": "number" }, "error": { "type": "string" }, "from_lead": { "type": ["string", "null"] }, "rejected_ref": { "type": "boolean" } } } },
+    { "if": { "properties": { "type": { "const": "page" } } }, "then": { "required": ["ref", "url", "host", "title", "via", "chars", "sha256", "path", "found_by", "read"], "properties": {
+      "found_by": { "type": "object", "required": ["tool"], "description": "herramienta y ref (o consulta) que trajo la página" },
+      "read": { "type": "boolean", "description": "false = vista en resultados pero no abierta" } } } },
+    { "if": { "properties": { "type": { "const": "decision" } } }, "then": { "required": ["page_ref", "by", "verdict", "reason"], "properties": {
+      "by": { "type": "string", "description": "agent | judge | auditor | reader | compiler | code:<archivo>#<función>" },
+      "verdict": { "enum": ["candidate", "keep", "verify", "drop", "lead", "none"] },
+      "page_type": { "type": "string" }, "dates": { "type": "array" }, "criteria": { "type": "object" }, "days_left": { "type": ["integer", "null"] }, "next_action": { "type": ["string", "null"] } } } },
+    { "if": { "properties": { "type": { "const": "drop" } } }, "then": { "required": ["url", "reason", "decided_by", "read"], "properties": {
+      "decided_by": { "type": "string", "description": "code:verify.mjs#hostKind | code:pageType.mjs#classifyPage | code:budget | judge | auditor | agent | reader | invalid:compiler | …" } } } },
+    { "if": { "properties": { "type": { "const": "lead" } } }, "then": { "required": ["id", "page_ref", "kind", "funder", "recipient", "quote"] } },
+    { "if": { "properties": { "type": { "const": "lead_followup" } } }, "then": { "required": ["lead_id", "action"] } },
+    { "if": { "properties": { "type": { "const": "ask_user" } } }, "then": { "required": ["questions", "answered"] } },
+    { "if": { "properties": { "type": { "const": "budget" } } }, "then": { "required": ["left"] } },
+    { "if": { "properties": { "type": { "const": "finish" } } }, "then": { "required": ["reason"] } },
+    { "if": { "properties": { "type": { "const": "run_end" } } }, "then": { "required": ["seconds", "totals"] } }
+  ]
+}

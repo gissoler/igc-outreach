@@ -1,0 +1,21 @@
+{
+  "v": "summary/1",
+  "run_id": "",
+  "case": "grant | investment",
+  "fase": "F1 | F2",
+  "git_commit": "",
+  "flags": { "ENGINE_JUDGE": "1", "ENGINE_AGENT": "0 | 1", "ENGINE_JUDGE_BLIND": "" },
+  "today": "2026-10-12",
+  "seconds": 0,
+  "pages": { "seen": 0, "read": 0, "unread_by_reason": {} },
+  "model_calls": { "<rol>": { "calls": 0, "invalid": 0, "errors": 0, "tokens_prompt": 0, "tokens_completion": 0, "ms": 0 } },
+  "tools": { "<herramienta>": { "calls": 0, "results": 0, "ms": 0, "cost_usd": 0, "credits": 0, "errors": 0 } },
+  "searches": { "total": 0, "repeated_normalized": 0 },
+  "drops": { "<motivo>": { "<decidido_por>": 0 } },
+  "findings": { "main": 0, "verify": 0 },
+  "leads": { "total": 0, "with_followup": 0, "with_finalist": 0 },
+  "agent": { "steps": 0, "invalid_steps": 0, "rejected_ref": 0, "stop_reason": "", "questions": 0, "assumptions": 0 },
+  "judge": { "finalists": 0, "calls": 0, "second_blind_calls": 0, "second_call_changed": 0 },
+  "coverage": { "files_executed": 0, "functions_executed": 0, "path": "coverage/" },
+  "gold": { "labeled_rows": 0, "tp": null, "fp": null, "fn": null, "by_criterion": {} }
+}
