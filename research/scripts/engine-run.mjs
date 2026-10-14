@@ -33,7 +33,8 @@ const exaCapRaw = arg('--exa-usd-cap', '');
 const exaUsdCap = exaCapRaw === '' ? Number.NaN : Number(exaCapRaw);
 
 if (dryRun) {
-  const planned = (Number(env.ENGINE_MAX_QUERIES) || 10) * (Number(env.ENGINE_ROUNDS) || 2) + (Number(env.ENGINE_RESEARCH_SEARCHES) || 0);
+  const planned = env.ENGINE_AGENT === '1' ? Number(env.ENGINE_AGENT_SEARCHES) || 20
+    : (Number(env.ENGINE_MAX_QUERIES) || 10) * (Number(env.ENGINE_ROUNDS) || 2) + (Number(env.ENGINE_RESEARCH_SEARCHES) || 0);
   console.log(`Dry run: máximo ${planned} llamadas a Exa · ${(planned * 0.0089).toFixed(4)} USD a 0,0089 USD por llamada.`);
   process.exit(0);
 }
@@ -65,7 +66,7 @@ const t0 = Date.now();
 const r = await runEngine(brief, { env, today, objectives, cache: useCache ? cache : undefined, trace: trace || undefined,
   ...(Number.isFinite(exaUsdCap) ? { exaUsdCap } : {}), ...(fixture ? { search: fixtureSearch, chat: fixtureChat, rounds: 1, maxPages: 2 } : {}) });
 const seconds = Math.round((Date.now() - t0) / 1000);
-trace?.event('run_end', { seconds, totals: { findings: r.findings.length, queries: r.queries.length, pages: r.audits.reduce((n, a) => n + a.pages, 0) } });
+trace?.event('run_end', { seconds, totals: { findings: r.findings.length, queries: r.queries.length, pages: r.audits.reduce((n, a) => n + (a.pages || 0), 0) } });
 trace?.close();
 if (useCache) { mkdirSync(resolve(cachePath, '..'), { recursive: true }); writeFileSync(cachePath, JSON.stringify(cache)); }
 
@@ -100,11 +101,13 @@ const lines = [
   `- Búsqueda: ${searchProviders(env).join(', ') || 'sin APIs'} · rondas ${env.ENGINE_ROUNDS || 2} · duración ${seconds} s`,
   `- Caché de búsquedas: ${useCache ? `${cachedBefore} → ${Object.keys(cache).length} consultas` : 'desactivada'}`,
   '', '## Resumen por objetivo', '', '| Objetivo | Búsqueda | Consultas | Páginas | Leídas | Sin leer | Vía Jina Reader | Verificadas | Descartes |', '|---|---|---|---|---|---|---|---|---|',
-  ...r.audits.map((a) => `| ${a.objective} | ${a.search} | ${a.queries} | ${a.pages} | ${a.read} | ${a.unread} | ${a.jinaRead || 0} | **${a.kept}** | ${esc(Object.entries(a.dropped).map(([k, v]) => `${k} ${v}`).join(', '))} |`),
+  ...r.audits.map((a) => `| ${a.objective} | ${a.search} | ${a.queries} | ${a.pages} | ${a.read} | ${a.unread} | ${a.jinaRead || 0} | **${a.kept}** | ${esc(Object.entries(a.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', '))} |`),
   '', '## Aporte de cada buscador', '', '| Proveedor | Llamadas | Resultados | Errores | Seg. medios | Coste US$ | Páginas leídas | Verificadas | Solo él las trajo | Nota |', '|---|---|---|---|---|---|---|---|---|---|',
   ...Object.entries(prov).map(([p, s]) => `| ${p} | ${s.calls} | ${s.returned} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.costUsd ? s.costUsd.toFixed(3) : '-'} | ${s.pagesRead} | ${s.kept} | ${s.keptOnlyHere} | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`),
   '', `## Oportunidades verificadas (${r.findings.length})`, '', '| # | Veredicto | Nombre | Estado | Cierre | Días | Elegible | Monto | Buscadores | URL |', '|---|---|---|---|---|---|---|---|---|---|',
   ...r.findings.map((f, i) => `| ${i + 1} | ${f.verdict} | ${esc(f.name || f.title)} | ${f.status} | ${f.deadline || '—'} | ${f.daysLeft ?? '—'} | ${f.eligible} | ${esc(f.amount) || '—'} | ${(f.providers || []).join(', ')} | ${f.url} |`),
+  '', `## Pistas (${(r.leads || []).length})`, '', '| # | Tipo | Financiador | Receptor | Seguimientos | Produjo | URL |', '|---|---|---|---|---|---|---|',
+  ...(r.leads || []).map((l, i) => `| ${i + 1} | ${esc(l.kind)} | ${esc(l.funder) || '—'} | ${esc(l.recipient) || '—'} | ${(l.followups || []).length} | ${(l.produced || []).length} | ${l.url || '—'} |`),
   ...(recall.length ? ['', `## Recall contra la lista de referencia: ${recall.filter((x) => x.found).length}/${recall.length}`, '', '| Programa | ¿Lo encontró? | Veredicto | Buscadores |', '|---|---|---|---|', ...recall.map((x) => `| ${esc(x.name)} | ${x.found ? '✔' : '✖'} | ${x.verdict || '—'} | ${x.via.join(', ') || '—'} |`)] : []),
   '', '## Citas de cada verificada', '',
   ...r.findings.flatMap((f, i) => [`**${i + 1}. ${esc(f.name || f.title)}** — ${f.url}`, ...Object.entries(f.quotes || {}).map(([k, v]) => `- ${k}: “${esc(v).slice(0, 300)}”`), ...(f.flags?.length ? [`- avisos: ${f.flags.join(', ')}`] : []), '']),
@@ -114,7 +117,7 @@ const lines = [
   '', '> Todo lo listado pasó la verificación en código (cita literal en la página, fecha contra hoy, sin agregadores ni redes). Lo que no aparece aquí no se pudo verificar; no se inventa.',
 ];
 writeFileSync(join(outDir, 'report.md'), lines.join('\n'));
-writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, providers: searchProviders(env), seconds, audits: r.audits, recall, findings: r.findings, queries: r.queries }, null, 2));
+writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, providers: searchProviders(env), seconds, audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
 
 function coverageSummary() {
   const dir = join(outDir, 'coverage'); if (!existsSync(dir)) return { files_executed: 0, functions_executed: 0, path: 'coverage/' };
@@ -148,6 +151,11 @@ function writeSummary() {
     if (e.type === 'lead_followup') followups.add(e.lead_id);
   }
   summary.leads.with_followup = followups.size; summary.searches.total = searches.length; summary.searches.repeated_normalized = searches.length - new Set(searches).size;
+  const agentAudits = r.audits.filter((a) => a.agent?.on);
+  if (agentAudits.length) {
+    summary.agent = agentAudits.reduce((x, a) => ({ steps: x.steps + (a.agent.steps || 0), invalid_steps: x.invalid_steps + (a.agent.invalid_steps || 0), rejected_ref: x.rejected_ref + (a.agent.rejected_ref || 0), stop_reason: [x.stop_reason, a.agent.stop_reason].filter(Boolean).join(','), questions: x.questions + (a.agent.questions || 0), assumptions: x.assumptions + (a.agent.assumptions || 0) }), { steps: 0, invalid_steps: 0, rejected_ref: 0, stop_reason: '', questions: 0, assumptions: 0 });
+    summary.judge = agentAudits.reduce((x, a) => ({ finalists: x.finalists + (a.judge?.finalists || 0), calls: x.calls + (a.judge?.calls || 0), second_blind_calls: x.second_blind_calls + (a.judge?.second_blind_calls || 0), second_call_changed: x.second_call_changed + (a.judge?.second_call_changed || 0) }), { finalists: 0, calls: 0, second_blind_calls: 0, second_call_changed: 0 });
+  }
   writeFileSync(join(outDir, 'summary.json'), JSON.stringify(summary, null, 2));
 }
 if (traceOn && env.NODE_V8_COVERAGE) { try { takeCoverage(); } catch { /* Node sin cobertura activa */ } }

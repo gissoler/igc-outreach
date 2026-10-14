@@ -13,8 +13,9 @@ const json = async (fetcher, url, init = {}) => { const r = await fetcher(url, i
 const rowsOf = (data) => Array.isArray(data) ? data : data?.results || data?.response?.award || data?.hits?.hits || [];
 
 export function createTools({ env = process.env, fetcher = fetch, signal, trace = noopTrace, limits = {}, apollo = null, readers = {} } = {}) {
-  const refs = new Map(); let searches = 0; let opens = 0; let searchSeq = 0; let pageSeq = 0;
-  const caps = { searches: Number(limits.searches) || 20, opens: Number(limits.opens) || 30, apolloCredits: Number(limits.apolloCredits) || 25 };
+  const refs = new Map(); let searches = 0; let opens = 0; let rejectedRefs = 0; let exaSpent = 0; let searchSeq = 0; let pageSeq = 0;
+  const breaker = {};
+  const caps = { searches: Number(limits.searches) || 20, opens: Number(limits.opens) || 30, apolloCredits: Number(limits.apolloCredits) || 25, exaUsd: Number.isFinite(Number(limits.exaUsdCap)) ? Number(limits.exaUsdCap) : Infinity };
   const apolloClient = apollo || createApolloClient({ apiKey: env.APOLLO_API_KEY, fetcher, budget: new ApolloBudget({ perRun: caps.apolloCredits, perDay: 50 }) });
   const record = (tool, args, started, result, extra = {}) => trace.event('tool_call', { tool, args, results_n: Array.isArray(result) ? result.length : Number(result?.results?.length || result?.rows?.length || 0), ms_call: Date.now() - started, ...extra });
   const fail = (tool, args, started, error, extra = {}) => { record(tool, args, started, [], { error: String(error?.code || error?.message || error), ...extra }); return { error: String(error?.code || error?.message || error) }; };
@@ -24,20 +25,24 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
     if (searches >= caps.searches) return fail('search', args, started, 'budget');
     searches++; const id = ++searchSeq;
     try {
-      const found = await (readers.search || multiSearch)(String(args.query || ''), { env, fetcher, signal, limit: Math.min(10, Number(args.n) || 10), recency: args.recency || '' });
+      const found = await (readers.search || multiSearch)(String(args.query || ''), { env, fetcher, signal, breaker, limit: Math.min(10, Number(args.n) || 10), recency: args.recency || '' });
       const results = found.slice(0, 10).map((row, i) => {
         const ref = `s${id}.${i + 1}`; refs.set(ref, { url: row.url, title: row.title || '', snippet: row.description || '', markdown: row.markdown || '' });
         return { ref, url: row.url, title: row.title || '', snippet: row.description || '', providers: row.providers || [row.provider].filter(Boolean), host_hint: hostKind(row.url) };
       });
       const cost = Object.values(found.stats || {}).reduce((n, x) => n + (Number(x.costUsd) || 0), Number(found.costUsd) || 0);
-      record('search', args, started, results, { provider: 'multi', cost_usd: cost, ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
+      if (found.stats && Object.keys(found.stats).length) for (const [provider, stat] of Object.entries(found.stats)) {
+        trace.event('tool_call', { tool: 'search', provider, args, results_n: Number(stat.returned) || 0, ms_call: Number(stat.ms) || 0, cost_usd: Number(stat.costUsd) || 0, ...(stat.error ? { error: stat.error } : {}), ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
+      } else record('search', args, started, results, { provider: 'injected', cost_usd: cost, ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
+      exaSpent += Number(found.stats?.exa?.costUsd) || 0;
+      if (exaSpent >= caps.exaUsd) breaker.exa = { off: true, reason: `V14 Exa cap ${caps.exaUsd.toFixed(4)} USD` };
       return { results, cost_usd: cost };
     } catch (error) { return fail('search', args, started, error); }
   }
 
   async function open(args = {}) {
     const started = Date.now(); const row = refs.get(args.ref);
-    if (!row) return fail('open', args, started, 'rejected_ref', { rejected_ref: true });
+    if (!row) { rejectedRefs++; return fail('open', args, started, 'rejected_ref', { rejected_ref: true }); }
     if (hostKind(row.url) === 'social') return fail('open', args, started, 'blocked_social');
     if (opens >= caps.opens) return fail('open', args, started, 'budget');
     opens++;
@@ -96,5 +101,5 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   const note = async (args = {}) => { const at = Date.now(); record('note', args, at, []); return { ok: true }; };
   const ask_user = async (args = {}) => { const at = Date.now(); const out = { answered: false }; record('ask_user', args, at, []); trace.event('ask_user', { questions: args.questions || [], answered: false }); return out; };
   const finish = async (args = {}) => { const at = Date.now(); record('finish', args, at, []); trace.event('finish', { reason: String(args.reason || 'agent') }); return { ok: true }; };
-  return { search, open, apollo: apolloTool, entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, apollo_credits: apolloClient.stats?.creditsEstimated || 0 }) };
+  return { search, open, apollo: apolloTool, entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
 }

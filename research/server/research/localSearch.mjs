@@ -51,6 +51,6 @@ export async function fetchPage(url, { fetcher = fetch, signal, maxBytes = 1_500
     const html = (await r.text()).slice(0, maxBytes);
     const title = (/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] || '').replace(/\s+/g, ' ').trim();
     const text = htmlToText(html);
-    return text.length > 80 ? { url: final, title, text } : null;
+    return text.length > 80 ? { url: final, title, text, html } : null;
   } catch { return null; }
 }

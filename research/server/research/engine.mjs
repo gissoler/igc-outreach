@@ -32,6 +32,7 @@ import { compilerPrompt, judgePrompt, COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERS
 import { validateCompilation, validateJudgment } from './judge/contracts.v13.mjs';
 import { auditPage, applyAudit, dateOverrideOf, legacyOut, judgeMode, slimJudge } from './judge/audit.v13.mjs';
 import { createTrace } from './trace.mjs';
+import { runAgentObjective } from './agentic/loop.mjs';
 
 export const OBJECTIVES = {
   grant: {
@@ -217,9 +218,12 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
  *  Sin `search`: SearXNG propio si hay SEARXNG_URL (y descarga directa de las páginas), si no Firecrawl. */
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
+  const agentRequested = String(env.ENGINE_AGENT || '') === '1'; const agentRole = fleetConfig(env).roles.agent;
+  if (agentRequested && agentRole.ready) return (opts.agentRunner || runAgentObjective)(objective, brief, { ...opts, env });
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead, crawl4aiReader = opts.search ? null : crawl4aiRead } = opts;
   const traceLog = opts.trace || createTrace(null);
   const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, expand: null, providers: {}, errors: [], queryLog: [], traces: [] };
+  if (agentRequested) audit.agent = { on: true, ready: false, notice: 'ENGINE_AGENT=1 but ENGINE_AGENT_LLM_URL and ENGINE_AGENT_LLM_MODEL are not both configured; current engine used' };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0, urls: 0, onlyUrls: 0, outcomes: {} });
   // Benchmark por proveedor: cada URL nueva se asienta UNA vez con su desenlace (apply, watch, motivo de descarte u omisión) y se acredita a TODOS los que la trajeron.
   const settled = new Set();
@@ -649,7 +653,7 @@ export async function runEngine(brief, opts = {}) {
   const objectives = (opts.objectives || brief.fundingTypes || []).filter((x) => OBJECTIVES[x]);
   const breaker = opts.breaker || {};   // compartido: un proveedor apagado en un objetivo se apaga en todos
   const runs = await Promise.all(objectives.map((x) => runObjective(x, brief, { ...opts, breaker, mapSeeds: opts.mapSeedsBy?.[x] || opts.mapSeeds })));
-  return { findings: runs.flatMap((r) => r.findings), audits: runs.map((r) => r.audit), queries: runs.flatMap((r) => r.queries) };
+  return { findings: runs.flatMap((r) => r.findings), leads: runs.flatMap((r) => r.leads || []), audits: runs.map((r) => r.audit), queries: runs.flatMap((r) => r.queries) };
 }
 
 /* 5 · leads para el pipeline actual */
