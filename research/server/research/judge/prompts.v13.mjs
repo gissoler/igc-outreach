@@ -17,7 +17,7 @@ export const CRITERIA = {
 export const criteriaFor = (objective) => CRITERIA[objective] || CRITERIA.grant;
 export const hasDeadline = (objective) => criteriaFor(objective).includes('deadline');
 
-const CRITERION_HELP = {
+export const CRITERION_HELP = {
   deadline: 'deadline: is there an APPLICATION deadline on the page that is on or after today and not marked estimated or forecast? yes = a firm future application deadline; no = the page says the call is closed or its application deadline is before today; unknown = no application deadline, only estimated or forecast dates, or an announcement that applications are not being solicited yet. If the brief gives deadlineFrom and/or deadlineTo, the firm application deadline must fall inside that window (both days included); a firm deadline outside it is no.',
   eligibility: 'eligibility: can this applicant apply to this page overall (who may apply, restrictions, exclusions)? yes only with a quote that says who may apply.',
   region: 'region: does the page allow the applicant\'s country / state / region? A foreign-institution allowance counts as yes only if the page says it.',
