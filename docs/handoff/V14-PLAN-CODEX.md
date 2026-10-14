@@ -2,7 +2,7 @@
 
 Entradas: `V14-DIAGNOSTICO.md`, `V14-ARQUITECTURA.md`, `V14-BENCHMARK.md`, `V14-C0-RESPUESTAS.md`, `V14-F3-LISTA.md`. Si una tarea choca con el código real, parar y escribir la discrepancia en `V14-DISCREPANCIAS.md`.
 
-Valores fijados por Gisel (C0): Apollo 50 créditos en total (25 por caso, solo F2). Congelados: se mueven solo las filas firmadas en `V14-F3-LISTA.md`. Referencia manual: Gisel, esta semana. Pistas: se listan aparte y alimentan la búsqueda. Brief de inversionistas: el mismo de IGC.
+Valores fijados por Gisel (C0): Apollo 50 créditos en total (25 por caso, solo F2). Congelados: se mueven solo las filas firmadas en `V14-F3-LISTA.md`. Referencia manual: Gisel, 10 casos en `research/eval/calificar-igc-10.xlsx` (adenda 1 de `V14-BENCHMARK.md`). Pistas: se listan aparte y alimentan la búsqueda. Brief de inversionistas: el mismo de IGC.
 
 Comunes a todas las tareas:
 - Antes: `git status` limpio salvo `research/scripts/g355-*` y `tunnel-g355.sh`; `cd research && node --test tests/*.test.mjs` (485/483/1/1) y `node --test tests/agent/*.test.mjs` (191/190/1).
@@ -119,7 +119,7 @@ node --env-file-if-exists=.env scripts/engine-run.mjs --brief eval/briefs/jefe-i
 - Mismos comandos de F1.5 con `--out eval/runs/v14-f2-<caso>` y además `ENGINE_AGENT=1 ENGINE_AGENT_LLM_URL=http://127.0.0.1:8016/v1 ENGINE_AGENT_LLM_MODEL=openai/gpt-oss-120b ENGINE_AGENT_LLM_REASONING_EFFORT=medium ENGINE_AGENT_LLM_JSON_MODE=1 ENGINE_JUDGE_BLIND=1 ENGINE_AGENT_APOLLO_CREDITS=25`, y `APOLLO_ENABLED=1` solo si `npm run preflight:apollo` responde; si no, `apollo` devuelve `not_configured` y se anota.
 - Gasto Exa: `--dry-run` antes y `--exa-usd-cap` con lo que quede de los 5 USD tras F1. Créditos Apollo: `creditUsage` antes y después, más `creditsEstimated` del registro.
 - Escribir `docs/handoff/V14-F2-CIFRAS.md`: tabla §4 columnas F1 y F2 para los dos casos; páginas, llamadas por rol, segundos, USD y créditos por herramienta, verificadas, pistas, descartes por motivo y por quién; las 12 respuestas; el resultado de cada criterio F2 de `V14-BENCHMARK.md` §6 (cumple o no, con la cifra).
-- Si la referencia manual tiene ≥ 50 filas: correr F4.1 (`score.mjs`) para F1 y F2 antes de decidir. Si no: criterio 6 «pendiente», F3 no empieza.
+- Si las 10 filas del Excel están llenas: correr F4.1 (`score.mjs`) para F1 y F2 antes de decidir. Si no: criterio 6 «pendiente», F3 no empieza.
 - Aceptación: el informe está completo. Si algún criterio no se cumple, se dice y F3 no empieza.
 
 ## F3 · Limpieza (solo si F2 cumple los 7 criterios y solo lo firmado)
@@ -139,9 +139,8 @@ node --env-file-if-exists=.env scripts/engine-run.mjs --brief eval/briefs/jefe-i
 ## F4 · Informe
 
 ### F4.1 · Puntuación contra la referencia
-- Crear `research/eval/v14/score.mjs` (≤ 150): entradas `eval/gold-etiquetado-igc.csv`, `eval/v14/gold-sistema-igc.csv`, `eval/v14/gold-adenda-igc.csv` (si existe) y la carpeta de una corrida; salida `summary.gold` (VP, FP, FN, acierto por criterio y por decisor, fechas, pistas) y una tabla para `report.md`, según `V14-BENCHMARK.md` §5.
-- Crear `eval/v14/gold-adenda-igc.csv` con las URLs verificadas por F1 o F2 que no estén en la referencia (tope 30, mismas columnas a ciegas), para Gisel.
-- Prueba: `research/tests/v14.score.test.mjs` con 6 filas inventadas por la prueba: VP, FP y FN esperados.
+- Crear `research/eval/v14/score.mjs` (≤ 150): entradas `eval/calificar-igc-10.xlsx` (hoja «Calificar», filas 7–16, columnas E–I; id en la columna J; leer con un lector de xlsx sin dependencia nueva si es posible, o pedir a Gisel exportar a CSV y anotarlo como discrepancia), `eval/v14/gold-sistema-igc-10.csv` y la carpeta de una corrida; salida `summary.gold` (aciertos de 10, caso por caso, pistas) y una tabla para `report.md`, según la adenda 1.
+- Prueba: `research/tests/v14.score.test.mjs` con 4 casos inventados por la prueba: aciertos esperados.
 - Aceptación: verde.
 
 ### F4.2 · `V14-CAMBIOS.md` y nota del vault
@@ -151,7 +150,7 @@ node --env-file-if-exists=.env scripts/engine-run.mjs --brief eval/briefs/jefe-i
 
 ## Orden y dependencias
 
-F1.1 → F1.2 → F1.3 → F1.4 → F1.5 → F2.0 → F2.1 → F2.2 → F2.3 → F2.4 → F2.5 → F2.6 → (F4.1 si hay ≥ 50 filas) → F3.0 → F3.1 → F3.2 → F4.2. Líneas nuevas previstas en `server/`: ≤ 1.020 (trace 150, contracts 120, prompts 150, tools 250, loop 350) más los cambios en `engine.mjs`, `engine-run.mjs`, `fleet.mjs`, `core.mjs`, `lateral.mjs`.
+F1.1 → F1.2 → F1.3 → F1.4 → F1.5 → F2.0 → F2.1 → F2.2 → F2.3 → F2.4 → F2.5 → F2.6 → (F4.1 si las 10 filas están llenas) → F3.0 → F3.1 → F3.2 → F4.2. Líneas nuevas previstas en `server/`: ≤ 1.020 (trace 150, contracts 120, prompts 150, tools 250, loop 350) más los cambios en `engine.mjs`, `engine-run.mjs`, `fleet.mjs`, `core.mjs`, `lateral.mjs`.
 
 ## Lo que no decide Codex
 

@@ -121,3 +121,15 @@ F2 se acepta, y F3 puede empezar, si se cumplen todas:
 Si falta 6 porque la referencia no está, F2 se informa y F3 espera. Para inversionistas no hay referencia en V14: se informan 1–5 y 7; el código de inversionistas (`investor.mjs`) no entra en F3.
 
 Se informan sin decidir con ellos: segunda llamada ciega del juez (cuántos de 10 cambian), preguntas y supuestos del paso 0 y su puntuación contra `respuesta-producto-igc.txt`, búsquedas repetidas, cobertura.
+
+## Adenda 1 (13/10/2026, 19:30 hora de Bogotá) · referencia de 10 casos
+
+Motivo: Gisel puede calificar como máximo 10 casos y pidió Excel en lugar de CSV. Se escribe antes de correr F1. Reemplaza el §5 y el criterio 6 del §6.
+
+- Archivo: `research/eval/calificar-igc-10.xlsx`, hoja «Calificar», 10 filas con listas desplegables, sin la decisión del sistema. Las URLs y los ids están en `research/eval/v14/gold-sistema-igc-10.csv`. Los CSV de 100 filas se retiran.
+- Los 10 casos: 3 pistas que hoy se tiran (Constantiam en dealroom, ganadoras MBIA/TEDCO, cohorte Techstars DC), 5 páginas que el juez descartó en 23-09 (SBIR ACL, BRAIN RM1, PRIMED-AI, Kissick, NIH tema 97) y 2 verificadas en 19-37 (STTR PA-27-102, Part the Cloud).
+- Columnas: «¿Sirve para IGC?» (Sí, aplicaría · La vigilaría · No sirve · No sé), «Si no sirve, ¿por qué?» (Ya cerró · No acepta empresas con fines de lucro · No es para EE. UU. / Maryland · Tema distinto · Etapa distinta · No es una convocatoria · Otro), «¿Es una pista?» (Sí · No), fecha de cierre vista y nota. Más la frase del producto (celda D4).
+- Positivo = «Sí, aplicaría» o «La vigilaría». «No sé» no cuenta.
+- Criterio 6 nuevo: sobre los 10 casos, F2 no acierta menos casos que F1 (acierto = el sistema lo verifica si es positivo y lo descarta si es «No sirve»; pistas: el sistema la marca como pista si Gisel dijo «Sí»). Con 10 casos, una diferencia de 1 caso no se interpreta como mejora; se informa caso por caso.
+- Se mide cuando están las 10 filas llenas. Sin ellas, criterio 6 «pendiente» y F3 no empieza.
+- Lo que F1 o F2 verifiquen fuera de los 10 se informa como «sin referencia». No hay segunda ronda de etiquetado.
