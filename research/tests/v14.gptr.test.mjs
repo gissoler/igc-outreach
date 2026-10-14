@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { gptrPrompt, findingsFromVerified, runGptr, urlsFromRun, GPTR_DIR } from '../server/research/gptr.mjs';
 import { runObjective } from '../server/research/engine.mjs';
@@ -38,6 +38,19 @@ test('engine: ENGINE_GPTR=1 usa gptr y no el agente; seedOnly no', async () => {
   const gptrRunner = async () => { g++; throw new Error('GPTR_FAILED'); };
   const r = await runObjective('grant', { fundingTypes: ['grant'] }, { env, today: '2026-10-14', gptrRunner, agentRunner: async () => { a++; return {}; }, tools: { usage: () => ({}), apollo: async () => ({ rows: [] }) } });
   assert.equal(g, 1); assert.equal(a, 0); assert.equal(r.findings.length, 0);
+});
+
+test('engine: las consultas de seguimiento siguen usando GPT Researcher y no el motor legado', async () => {
+  let prompt = ''; let legacy = 0;
+  const r = await runObjective('grant', { fundingTypes: ['grant'], product: 'risk tool' }, {
+    env: { ENGINE_GPTR: '1', GPTR_JUDGE: 'verify' }, today: '2026-10-14',
+    queries: [{ query: 'current official funding calls risk tool 2026' }],
+    search: async () => { legacy++; return []; },
+    gptrRunner: async ({ promptFile }) => { prompt = readFileSync(promptFile, 'utf8'); return {}; },
+    tools: { usage: () => ({}), apollo: async () => ({ rows: [] }) },
+  });
+  assert.equal(legacy, 0); assert.equal(r.audit.gptr.on, true);
+  assert.match(prompt, /Follow-up search hypotheses/); assert.match(prompt, /not verified facts/);
 });
 
 test('urlsFromRun: informe primero, log después, sin duplicados ni imágenes, con tope', () => {

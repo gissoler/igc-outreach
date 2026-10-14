@@ -452,7 +452,9 @@ export async function runResearch(
           if (env.CONFIRM_SNIPPETS !== '0') await confirmFromPages(found, b, { read: (url) => readPage(url, s), max: Number(env.CONFIRM_SNIPPETS_MAX) || 15, signal: s, modelRead });
           return found;
         };
-        const orchestratorOn = env.ORCHESTRATOR !== '0' && (searchApisConfigured(env) || engineConfigured(env) || env.EXA_API_KEY || env.SERPER_API_KEY || hunter);
+        // GPT Researcher ya hace planificación y búsquedas iterativas. No se apila el orquestador genérico: antes duplicaba
+        // dos rondas y, por una condición de queries, las ejecutaba silenciosamente con el motor legado.
+        const orchestratorOn = env.ORCHESTRATOR !== '0' && !(engineOn && String(env.ENGINE_GPTR || '') === '1') && (searchApisConfigured(env) || engineConfigured(env) || env.EXA_API_KEY || env.SERPER_API_KEY || hunter);
         if (orchestratorOn) {
           const provider = jevProvider(env);
           live({ phase: 'evaluating', provider: ORCHESTRATOR, status: 'running', title: 'Reviewing the results', message: `${aiReasonerOn(env) ? 'The AI model' : provider ? provider.name : 'Rules'} reviews what we found and decides whether to search again (up to ${Number(env.ORCHESTRATOR_MAX_ATTEMPTS ?? 2)} more attempts).` });

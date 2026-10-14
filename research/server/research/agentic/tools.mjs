@@ -54,7 +54,8 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
       else if (row.markdown?.length > 80) { page = { url: row.url, title: row.title, text: row.markdown }; via = 'search'; }
       // args.cheap: solo lectores gratuitos (triage de muchas páginas); nunca gasta créditos de Jina o Firecrawl.
       else for (const [name, reader] of (args.cheap ? [['direct', (u, o) => fetchPage(u, { ...o, timeoutMs: Number(env.GPTR_CHEAP_TIMEOUT_MS) || 6000 })]] : [['direct', fetchPage], ['crawl4ai', crawl4aiRead], ['jina', jinaRead], ['firecrawl', firecrawlRead]])) {
-        page = await reader(row.url, { env, fetcher, signal }); if (page) { via = name; break; }
+        try { page = await reader(row.url, { env, fetcher, signal }); } catch { page = null; }
+        if (page) { via = name; break; }
       }
       if (!page) return fail('open', args, started, 'read_failed');
       const ref = `p${++pageSeq}`; const links = extractLinks(page.html || page.text, page.url || row.url).slice(0, 60).map((link, i) => {

@@ -221,8 +221,9 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const agentRequested = String(env.ENGINE_AGENT || '') === '1'; const agentRole = fleetConfig(env).roles.agent;
-  if (String(env.ENGINE_GPTR || '') === '1') console.log(`[gptr ${new Date().toISOString().slice(11, 19)}] runObjective(${objective}): ${!(opts.queries?.length) && !opts.seedOnly && !opts.seedPages?.length ? 'usa GPT Researcher' : `NO usa GPT Researcher (queries=${opts.queries?.length || 0} seedOnly=${Boolean(opts.seedOnly)} seedPages=${opts.seedPages?.length || 0})`}`);
-  if (String(env.ENGINE_GPTR || '') === '1' && !(opts.queries?.length) && !opts.seedOnly && !opts.seedPages?.length) {   // GPT Researcher + verificación en código como motor web
+  const gptrRun = String(env.ENGINE_GPTR || '') === '1' && !opts.seedOnly && !opts.seedPages?.length;
+  if (String(env.ENGINE_GPTR || '') === '1') console.log(`[gptr ${new Date().toISOString().slice(11, 19)}] runObjective(${objective}): ${gptrRun ? 'usa GPT Researcher' : `NO usa GPT Researcher (seedOnly=${Boolean(opts.seedOnly)} seedPages=${opts.seedPages?.length || 0})`}`);
+  if (gptrRun) {   // GPT Researcher + verificación en código como motor web; las consultas de seguimiento no caen al motor legado
     const appTrace = !opts.trace && env.ENGINE_AGENT_TRACE_DIR ? createTrace({ dir: join(env.ENGINE_AGENT_TRACE_DIR, `${objective}-gptr-${Date.now()}`), runId: `app-${objective}-${Date.now()}`, objective }) : null;
     console.log(`[engine ${new Date().toTimeString().slice(0, 8)}] ${objective}: ENGINE_GPTR=1 → motor GPT Researcher (no el agente iterativo)`);
     return (opts.gptrRunner ? (o, b, x) => runGptr(o, b, x) : runGptr)(objective, brief, { ...opts, env, ...(appTrace ? { trace: appTrace } : {}) });

@@ -27,7 +27,7 @@ const GEO_KEYS = ['country', 'state', 'region', 'city', 'geography', 'location']
 const geoOf = (brief) => GEO_KEYS.map((k) => String(brief?.[k] || '').trim()).filter((v) => v && !/^(global|worldwide|any)$/i.test(v));
 /* Prompt de GPT Researcher hecho solo con el brief. Sin nombres de financiadores: se describen TIPOS de fuente (registros oficiales,
    agencias de desarrollo económico o tecnológico del estado, programas universidad-empresa) y el modelo deduce cuáles existen. */
-export function gptrPrompt({ brief = {}, objective = 'grant', today = new Date() } = {}) {
+export function gptrPrompt({ brief = {}, objective = 'grant', today = new Date(), queries = [] } = {}) {
   const geo = geoOf(brief); const geoOpen = !geo.length; const where = geo.join(', ');
   const yr = day(today).slice(0, 4);
   const geoLine = geoOpen
@@ -50,6 +50,7 @@ ${geoLine} Work out for yourself the kinds of investors that fit (by stage, cheq
   // GPT Researcher usa el comienzo del prompt como PRIMERA búsqueda web (log 14-10, línea 3: buscaba los 1.900 caracteres enteros):
   // la primera línea es una consulta corta hecha con el brief.
   const head = [objective === 'grant' ? 'open grant funding' : `${objective} funding`, short(brief.oneLiner || brief.product || brief.description, 8), brief.industry, entityWords(brief.entityType), geo.join(' '), yr].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+  const followup = queries.length ? `\nFollow-up search hypotheses from the evaluator (not verified facts):\n${queries.slice(0, 12).map((q) => `- ${String(q?.query ?? q).trim()}`).filter((q) => q.length > 2).join('\n')}\nUse them only as search directions. Independently verify that every named program exists, is current and fits; discard it otherwise.\n` : '';
   return `${head}
 
 Today is ${day(today)}. Find CURRENTLY OPEN or upcoming ${kind} that this applicant could realistically apply to. Use only official, current sources (funder websites, government portals and registries, state and local programs, sector foundations). Ignore anything whose deadline has already passed.${brief.deadlineFrom || brief.deadlineTo ? `\nThe applicant can only apply ${brief.deadlineFrom ? `from ${brief.deadlineFrom} ` : ''}${brief.deadlineTo ? `until ${brief.deadlineTo}` : ''}: look first for calls whose application deadline falls inside that window, and for recurring calls with a cycle inside it. Report calls outside the window separately.` : ''}
@@ -58,6 +59,7 @@ Applicant and context (from the brief):
 ${briefBlock(brief)}
 
 ${geoLine}
+${followup}
 Work out for yourself every level of funder that could fund this applicant and search each one separately:
 1. National government: the agencies whose mission matches the product, including their small-business innovation programs, and the national government grants registry where their calls are posted (search it for posted and forecasted opportunities and give the opportunity number).
 2. The applicant's state, region and city: the state's economic development agency, technology development or innovation corporation, university-industry partnership programs and matching-fund programs for companies that already hold national awards.
@@ -170,9 +172,10 @@ export async function runGptr(objective, brief, opts = {}) {
   const seconds = Math.max(60, Math.min(Number(env.GPTR_SECONDS) || 270, opts.deadlineAt ? Math.floor((Number(opts.deadlineAt) - Date.now()) / 1000) - 120 : Infinity)); const verifyMode = env.GPTR_JUDGE === 'verify';
   if (env.ENGINE_AGENT_TRACE_DIR) { try { mkdirSync(env.ENGINE_AGENT_TRACE_DIR, { recursive: true }); LOG_FILE = join(env.ENGINE_AGENT_TRACE_DIR, 'gptr.log'); } catch { LOG_FILE = null; } }
   glog(`INICIO objetivo=${objective} modo=${mode} tope=${seconds}s juez=${verifyMode ? 'verify.py' : 'node'} script=${existsSync(join(GPTR_DIR, 'run-engine.sh')) ? 'ok' : 'NO ENCONTRADO en ' + GPTR_DIR} venv=${existsSync(join(GPTR_DIR, '.venv')) ? 'ok' : 'se creará (tarda unos minutos la primera vez)'}`);
-  const dir = mkdtempSync(join(tmpdir(), 'gptr-')); const promptFile = join(dir, 'prompt.txt'); const logFile = join(dir, 'gptr.log'); writeFileSync(promptFile, gptrPrompt({ brief, objective, today }));
+  const prompt = gptrPrompt({ brief, objective, today, queries: opts.queries || [] });
+  const dir = mkdtempSync(join(tmpdir(), 'gptr-')); const promptFile = join(dir, 'prompt.txt'); const logFile = join(dir, 'gptr.log'); writeFileSync(promptFile, prompt);
   trace?.event?.('tool_call', { tool: 'gptr', args: { mode, seconds, judge: verifyMode ? 'verify.py' : 'node' }, results_n: 0, ms_call: 0 });
-  glog(`prompt (${gptrPrompt({ brief, objective, today }).length} caracteres): ${join(dir, 'prompt.txt')} · log de GPT Researcher: ${logFile}`);
+  glog(`prompt (${prompt.length} caracteres${opts.queries?.length ? `, ${opts.queries.length} hipótesis de seguimiento` : ''}): ${join(dir, 'prompt.txt')} · log de GPT Researcher: ${logFile}`);
   const ticker = setInterval(() => { const t = readSafe(logFile); const n = (t.match(/Added source url to research:/g) || []).length; const last = t.trim().split('\n').pop()?.replace(/\s+/g, ' ').slice(0, 140) || '(sin salida todavía)'; glog(`${Math.round((Date.now() - started) / 1000)}s · fuentes leídas ${n} · última línea: ${last}`); }, Number(env.GPTR_LOG_EVERY_MS) || 15000);
   ticker.unref?.();
   // Registro oficial (Simpler Grants / Grants.gov) en paralelo con GPT Researcher: búsquedas con el brief mientras GPTR navega.
