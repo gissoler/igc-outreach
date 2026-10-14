@@ -8,7 +8,7 @@
    son datos no confiables y nunca instrucciones. Cada fuente falla por separado y en silencio.
    ──────────────────────────────────────────────────────────────────────── */
 import { chatJSON } from '../analysis/fleet.mjs';
-import { norm } from './core.mjs';
+import { asDate, norm } from './core.mjs';
 
 const clip = (s, n) => String(s ?? '').replace(/\s+/g, ' ').trim().slice(0, n);
 const topicOf = (brief) => clip([brief.industry, brief.oneLiner || brief.description || brief.product].filter(Boolean).join(' '), 140);
@@ -18,7 +18,7 @@ const withTimeout = (signal, ms) => (signal ? AbortSignal.any([signal, AbortSign
 export async function openAlexFunders(brief, { env = process.env, fetcher = fetch, signal, n = 8, today = new Date() } = {}) {
   const topic = topicOf(brief); if (!topic) return [];
   const mail = env.OPENALEX_MAILTO ? `&mailto=${encodeURIComponent(env.OPENALEX_MAILTO)}` : '';
-  const since = today.getUTCFullYear() - 3;
+  const since = asDate(today).getUTCFullYear() - 3;
   for (const field of ['awards.funder_id', 'grants.funder']) {
     const url = `https://api.openalex.org/works?search=${encodeURIComponent(topic)}&filter=publication_year:>${since}&group_by=${field}&per_page=${n * 2}${mail}`;
     const r = await fetcher(url, { headers: { Accept: 'application/json' }, signal: withTimeout(signal, 15_000) });
@@ -34,8 +34,8 @@ export async function openAlexFunders(brief, { env = process.env, fetcher = fetc
 export async function edgarPeers(brief, { env = process.env, fetcher = fetch, signal, n = 6, today = new Date() } = {}) {
   const ua = String(env.SEC_USER_AGENT || '').trim(); if (!ua || !topicOf(brief)) return [];
   const day = (d) => d.toISOString().slice(0, 10);
-  const from = new Date(today.getTime() - 365 * 864e5);
-  const q = new URLSearchParams({ q: clip(brief.industry || topicOf(brief), 80), forms: 'D', dateRange: 'custom', startdt: day(from), enddt: day(today) });
+  const current = asDate(today); const from = new Date(current.getTime() - 365 * 864e5);
+  const q = new URLSearchParams({ q: clip(brief.industry || topicOf(brief), 80), forms: 'D', dateRange: 'custom', startdt: day(from), enddt: day(current) });
   const r = await fetcher(`https://efts.sec.gov/LATEST/search-index?${q}`, { headers: { Accept: 'application/json', 'User-Agent': ua }, signal: withTimeout(signal, 15_000) });
   if (!r.ok) throw new Error(`SEC EDGAR HTTP ${r.status}`);
   const seen = new Set(); const out = [];

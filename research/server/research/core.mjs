@@ -21,6 +21,13 @@ export const safeUrl = (value) => {
     return null;
   }
 };
+/** Normaliza Date, YYYY-MM-DD o vacío a una fecha UTC a medianoche. */
+export const asDate = (value) => {
+  const raw = value == null || value === '' ? new Date() : value;
+  const date = raw instanceof Date ? raw : /^\d{4}-\d{2}-\d{2}$/.test(String(raw)) ? new Date(`${raw}T00:00:00Z`) : new Date(raw);
+  if (Number.isNaN(date.getTime())) throw new Error('Invalid date.');
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+};
 export const fundingTypes = ['partnering', 'grant', 'investment', 'debt', 'sponsorship'];
 export const RELATIONS = ['same', 'subsidiary', 'spinout', 'sponsored', 'portfolio', 'client', 'other'];
 export function validateBrief(input) {
