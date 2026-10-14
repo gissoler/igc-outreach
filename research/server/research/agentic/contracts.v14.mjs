@@ -33,10 +33,12 @@ export const STEP_SCHEMA = { $id: 'agent.step/1', type: 'object', additionalProp
     tool: { enum: ['search', 'open', 'apollo', 'entity_funding', 'registry', 'note', 'ask_user', 'finish'] }, args: { type: 'object' }, from_lead: { type: ['string', 'null'] },
   } },
 } };
+export const ASSESS_SCHEMA = { ...assessment, $id: 'agent.assess/1', type: 'object' };
 const ajv = new Ajv({ allErrors: true, strict: false });
-const checkUnderstand = ajv.compile(UNDERSTAND_SCHEMA); const checkStep = ajv.compile(STEP_SCHEMA);
+const checkUnderstand = ajv.compile(UNDERSTAND_SCHEMA); const checkStep = ajv.compile(STEP_SCHEMA); const checkAssess = ajv.compile(ASSESS_SCHEMA);
 const result = (check, raw) => check(raw) ? { ok: true, value: raw, errors: [] } : { ok: false, value: null, errors: (check.errors || []).map((e) => `${e.instancePath || '/'} ${e.message}`) };
 export const validateUnderstand = (raw) => result(checkUnderstand, raw);
+export const validateAssess = (raw) => result(checkAssess, raw);
 export function validateStep(raw, { lastObservation = null } = {}) {
   const out = result(checkStep, raw);
   if (out.ok && lastObservation === 'page' && raw.assessment === null) return { ok: false, value: null, errors: ['/assessment required after page'] };

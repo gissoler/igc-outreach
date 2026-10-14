@@ -145,3 +145,17 @@ Cambios, hechos después de ver esa corrida y antes de repetirla (no se esconde 
 4. `summary.json`: `fase` pasa a «F2» con `ENGINE_AGENT=1`; `searches.total` cuenta consultas distintas y `repeated_normalized` solo repeticiones de la misma consulta al mismo proveedor (antes contaba una consulta enviada a 5 proveedores como 4 repetidas).
 
 Se informan las dos corridas F2 de grant: v14.1 (fallida) y v14.2. Los criterios del §6 se evalúan sobre v14.2. Una sola corrección de este tipo está permitida; si v14.2 también falla por un defecto del bucle, se informa y se para, sin segunda iteración.
+
+## Adenda 3 (13/10/2026, 22:30 hora de Bogotá) · modo paralelo v14.3 y tope de tiempo
+
+Motivo: la corrida F2 v14.2 de grant tardó unos 20 minutos (tope de 1.200 s por defecto del bucle). Gisel pidió entrega en 5 minutos, 10 como máximo, con toda la capacidad del motor. En esa corrida cada decisión del modelo grande tardó entre 77 y 87 s, una apertura de página entre 4 y 7 s y una búsqueda entre 1 y 6 s (`events.jsonl`, últimos 25 eventos; no se midió el total de la corrida).
+
+Cambios, detrás de `ENGINE_AGENT=1` y de `ENGINE_AGENT_PARALLEL=1` (apagado por defecto; sin él el bucle es el de v14.2):
+1. Un paso puede abrir hasta 8 refs (`open` con `args.refs`) y lanzar hasta 4 búsquedas (`search` con `args.queries`) a la vez.
+2. Cada página abierta la evalúa el modelo rápido (rol `engine`, Qwen3-30B, contrato `agent.assess/1`) en paralelo; el agente recibe un resumen por página (ref, qué es, tipo, candidata, fechas verificadas, 20 enlaces) y no el texto.
+3. Juez de finalistas y segunda llamada ciega, en paralelo (hasta 8 a la vez).
+4. Tiempo: objetivo 300 s; si el paso anterior añadió una candidata, sigue hasta 540 s; se reservan 60 s para los jueces. Cada llamada del bucle se corta al llegar el tope. Se devuelve lo que haya (`stop_reason: time`).
+5. Sin cambios: `literalIn`, `verifyDate`, `auditPage`, presupuestos de búsquedas y aperturas, tope de Exa, rechazo del primer `finish` prematuro.
+6. `runObjective` ya no lanza el agente cuando recibe `opts.queries` (llamadas extra del pipeline); esas usan el motor anterior.
+
+La corrida F2 de inversionistas con v14.2 (secuencial) ya estaba en marcha con el commit 33c5769 cuando se escribió esto. Los criterios del §6 se evalúan sobre las corridas v14.2. La corrida v14.3 se informa aparte, con la misma medición y los mismos criterios, y con la etiqueta «v14.3, no pre-registrada antes de v14.2».
