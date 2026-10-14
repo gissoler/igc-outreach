@@ -31,6 +31,7 @@ import { expandRound, expandLimits } from './expansion.mjs';
 import { compilerPrompt, judgePrompt, COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERSION } from './judge/prompts.v13.mjs';
 import { validateCompilation, validateJudgment } from './judge/contracts.v13.mjs';
 import { auditPage, applyAudit, dateOverrideOf, legacyOut, judgeMode, slimJudge } from './judge/audit.v13.mjs';
+import { createTrace } from './trace.mjs';
 
 export const OBJECTIVES = {
   grant: {
@@ -89,7 +90,7 @@ export function fallbackQueries(objective, brief, today) {
 }
 export async function planQueries(objective, brief, { chat = chatJSON, env = process.env, fetcher, signal, today, n = 10 } = {}) {
   const o = OBJECTIVES[objective]; const base = fallbackQueries(objective, brief, today);
-  if (chat === chatJSON && !fleetReady(env, 'engine')) return { queries: base, planned: false };
+  if ((chat.raw || chat) === chatJSON && !fleetReady(env, 'engine')) return { queries: base, planned: false };
   const y = +dayOf(today).slice(0, 4);
   try {
     const { json } = await chat({
@@ -217,6 +218,7 @@ export async function followUpQueries(objective, brief, { findings, dropped, ask
 export async function runObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const apis = !opts.search && searchApisConfigured(env); const breaker = opts.breaker || {};
   const { fetcher = fetch, signal, today = new Date(), chat = chatJSON, search = null, maxQueries = Number(env.ENGINE_MAX_QUERIES) || 10, maxPages = Number(env.ENGINE_MAX_PAGES) || (apis ? 40 : 24), concurrency = Number(env.ENGINE_READ_CONCURRENCY) || 4, rounds = Number(env.ENGINE_ROUNDS) || 2, pageFetcher = fetchPage, reader = jinaRead, fallbackReader = opts.search ? null : firecrawlRead, crawl4aiReader = opts.search ? null : crawl4aiRead } = opts;
+  const traceLog = opts.trace || createTrace(null);
   const o = OBJECTIVES[objective]; const audit = { objective, search: search ? 'injected' : apis ? `apis:${searchProviders(env).join('+')}` : searxConfigured(env) ? 'searxng' : 'firecrawl', planned: false, rounds: 0, queries: 0, pages: 0, fetched: 0, jinaRead: 0, read: 0, unread: 0, dropped: {}, skipped: {}, kept: 0, verdicts: { apply: 0, watch: 0 }, reread: 0, rereadImproved: 0, overBudget: [], extracted: 0, extractFailed: 0, extractChanged: 0, extractConflicts: 0, extractCredits: 0, yearFixed: 0, expand: null, providers: {}, errors: [], queryLog: [], traces: [] };
   const stat = (p) => (audit.providers[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0, urls: 0, onlyUrls: 0, outcomes: {} });
   // Benchmark por proveedor: cada URL nueva se asienta UNA vez con su desenlace (apply, watch, motivo de descarte u omisión) y se acredita a TODOS los que la trajeron.
@@ -227,6 +229,27 @@ export async function runObjective(objective, brief, opts = {}) {
     for (const p of provs) { const s = stat(p); s.urls++; if (provs.length === 1) s.onlyUrls++; s.outcomes[outcome] = (s.outcomes[outcome] || 0) + 1; }
   };
   const canRead = !(chat === chatJSON && !fleetReady(env, 'engine'));
+  const tracedRole = (a = {}) => {
+    const named = { plan: 'planner', finding: 'reader', research: 'researcher', followup: 'followup', lateral: 'lateral' }[a.name] || a.name;
+    return ['planner', 'reader', 'compiler', 'judge', 'agent', 'followup', 'lateral', 'researcher', 'extractor', 'understand'].includes(named) ? named : 'reader';
+  };
+  const modelChat = async (args, deps) => {
+    const started = Date.now(); const role = tracedRole(args); let model = fleetConfig(env).roles[args.role]?.model || 'unknown';
+    try {
+      const out = await chat(args, deps); model = out?.model || model;
+      const usage = out?.usage || {};
+      traceLog.event('model_call', { role, model, prompt_version: args.version || args.name || role,
+        tokens: { prompt: Number(usage.prompt_tokens) || 0, completion: Number(usage.completion_tokens) || 0, estimated: !out?.usage },
+        ms_call: Number(out?.latency_ms) || Date.now() - started, ok: true, invalid: false, page_ref: args.page_ref || null });
+      return out;
+    } catch (error) {
+      traceLog.event('model_call', { role, model, prompt_version: args.version || args.name || role,
+        tokens: { prompt: 0, completion: 0, estimated: true }, ms_call: Date.now() - started, ok: false,
+        invalid: /json|invalid/i.test(String(error?.message || error)), page_ref: args.page_ref || null, error: String(error?.message || error).slice(0, 300) });
+      throw error;
+    }
+  };
+  modelChat.raw = chat;
   // V13 · Agente de compilación + agente juez + auditor por código (ENGINE_JUDGE=1; apagado por defecto). Sin los dos roles el
   // comportamiento no cambia y el audit lo avisa. opts.judge (true|false) fuerza el modo en pruebas.
   const jm = opts.judge !== undefined ? { on: Boolean(opts.judge), ready: Boolean(opts.judge), blind: Boolean(opts.judgeBlind), sameModel: false, notice: null } : judgeMode(env, fleetConfig(env));
@@ -241,7 +264,7 @@ export async function runObjective(objective, brief, opts = {}) {
     const call = async (role, prompt, validator) => {
       const t0 = Date.now(); st.calls[role]++;
       try {
-        const { json, model } = await chat({ system: prompt.system, user: prompt.user, name: role, role }, { env, fetcher, signal });
+        const { json, model } = await modelChat({ system: prompt.system, user: prompt.user, name: role, role, version: prompt.version, page_ref: page._traceRef || null }, { env, fetcher, signal });
         t[role] = Date.now() - t0; st.ms[role] += t[role]; if (model) st.models[role] = model;
         const r = validator(json);
         if (!r.ok) { st.invalid[role]++; return { ok: false, model, failure: `invalid_json: ${r.errors.slice(0, 3).join('; ')}` }; }
@@ -311,10 +334,45 @@ export async function runObjective(objective, brief, opts = {}) {
     : (q) => firecrawlSearch(q, { limit: 6, markdown: true, tbs: range, ...fc, cache: false, essential: true }));
   // El orquestador puede pasar sus propias consultas (estrategia nueva): se usan tal cual (con el año corregido), sin planear.
   const injected = Array.isArray(opts.queries) ? opts.queries.map((q) => (typeof q === 'string' ? { query: q, family: 'orchestrator' } : q)).filter((q) => q?.query) : null;
-  const plan = opts.seedOnly ? { queries: [], planned: false } : injected?.length ? { queries: fixAll(injected, objective, today, env), planned: true } : await planQueries(objective, brief, { chat, env, fetcher, signal, today, n: maxQueries });
+  const runSearch = async (query) => {
+    const started = Date.now();
+    try {
+      const rows = await run(query); const stats = Object.entries(rows.stats || {});
+      if (stats.length) for (const [provider, s] of stats) traceLog.event('tool_call', { tool: 'search', provider, args: { query }, results_n: Number(s.returned) || 0, ms_call: Number(s.ms) || 0, cost_usd: Number(s.costUsd) || 0, ...(s.error ? { error: String(s.error) } : {}) });
+      else traceLog.event('tool_call', { tool: 'search', provider: audit.search, args: { query }, results_n: rows.length, ms_call: Date.now() - started, cost_usd: 0 });
+      return rows;
+    } catch (error) {
+      traceLog.event('tool_call', { tool: 'search', provider: audit.search, args: { query }, results_n: 0, ms_call: Date.now() - started, cost_usd: 0, error: String(error?.message || error).slice(0, 300) });
+      throw error;
+    }
+  };
+  const plan = opts.seedOnly ? { queries: [], planned: false } : injected?.length ? { queries: fixAll(injected, objective, today, env), planned: true } : await planQueries(objective, brief, { chat: modelChat, env, fetcher, signal, today, n: maxQueries });
   audit.planned = plan.planned;
   audit.interpretation = interpretBrief(objective, brief, { today, recency, providers: apis ? searchProviders(env) : [audit.search], planned: plan.planned && !injected?.length });
   const asked = []; const queries = []; const seenPages = new Set(); const findings = [];
+  const foundBy = (p) => p.seed ? { tool: 'expand', seed: p.seed } : p.family === 'researcher' ? { tool: 'researcher', step: p.round || null } : { tool: 'search', query: p.query, providers: p.providers || [] };
+  const recordPage = (p, read) => {
+    if (p._traceRef) return p._traceRef;
+    const saved = traceLog.page({ url: p.url, title: p.title || '', text: p.text || p.snippet || '', via: p.via || 'search', found_by: foundBy(p), read });
+    p._traceRef = saved.ref; return saved.ref;
+  };
+  const decidedBy = (reason, v = {}, jr = null) => {
+    if (reason === 'aggregator' || reason === 'social_host') return 'code:verify.mjs#hostKind';
+    if (reason === 'over_page_budget') return 'code:budget';
+    if (reason === 'closed') return jr ? 'judge+auditor' : 'code:dates.mjs#deadlineDecision';
+    if (reason === 'not_eligible' && jr) return 'judge';
+    if (reason === 'not_eligible' && v.flags?.includes('model_not_eligible')) return 'reader';
+    if (reason === 'not_eligible') return 'code:applicant.mjs#checkApplicant';
+    if (reason === 'scope_mismatch' && v.scopeFit?.source === 'code') return 'code:verify.mjs#scopeVocabulary';
+    if (reason === 'scope_mismatch') return jr ? 'judge' : 'reader';
+    if (String(reason).startsWith('not_a_call:')) return 'code:pageType.mjs#classifyPage';
+    if (/^(wrong_kind:|wrong_money:)/.test(String(reason))) return 'reader+code:engine.mjs#verifyFinding';
+    if (reason === 'not_relevant' || reason === 'not_a_call') return 'reader';
+    if (reason === 'unreliable_read' || reason === 'no_identity_quote') return 'code:engine.mjs#verifyFinding';
+    if (reason === 'not_official' || reason === 'equity_or_loan') return 'reader+code:verify.mjs#verifyOpportunity';
+    return `unknown:${reason || 'dropped'}`;
+  };
+  let leadSeq = 0;
   // Las páginas leídas son lo que explica un resultado: tienen su propio tope. Las omitidas sin leer (presupuesto de páginas, agregadores)
   // tienen otro más pequeño, para que cientos de ellas no dejen fuera a las leídas (pasó en la corrida de 80 páginas).
   const maxSkippedTraces = Number(env.ENGINE_TRACE_SKIPPED_MAX) || 80;
@@ -330,13 +388,23 @@ export async function runObjective(objective, brief, opts = {}) {
     for (const p of page.providers) stat(p).pagesRead++;
     const trace = { ...traceBase, fetchedVia: page.via || 'search', textChars: page.text.length, read: { model, out: sanitize(json) }, verify: { verdict: v.verdict, tier: v.tier, drop: v.drop, reasons: v.reasons, blockers: v.blockers, flags: v.flags, checks: v.checks || [], pageType: v.pageType || null, dates: v.dates ? { status: v.dates.status, phase: v.dates.phase, reason: v.dates.reason, quote: v.dates.quote, opens: v.dates.opens || null, claimed: v.dates.claimed, milestones: (v.dates.milestones || []).slice(0, 10) } : null, eligibility: v.eligibility ? { decision: v.eligibility.decision, reason: v.eligibility.reason, quote: v.eligibility.quote, types: v.eligibility.types, countries: v.eligibility.countries } : null } , ...(extractionMeta ? { extraction: extractionMeta } : {}), ...(jr ? { judge: slimJudge(jr) } : {}) };
     if (jr) countJudge(jr, v);
+    const pageRef = recordPage(page, true);
+    const decision = { page_ref: pageRef, verdict: v.keep ? (v.tier === 'main' ? 'keep' : 'verify') : 'drop', reason: v.drop || v.verdict || 'verified', page_type: v.pageType?.type || jr?.audit?.page_type || json?.page_type || '', dates: v.dates?.milestones || jr?.audit?.dates || [], criteria: jr?.judgment?.criteria || {}, days_left: v.daysLeft ?? null, next_action: null };
+    if (jr?.compilation) traceLog.event('decision', { ...decision, by: 'compiler', verdict: 'candidate', reason: 'compiled', page_type: jr.compilation.page_type, dates: jr.compilation.dates || [], criteria: {} });
+    if (jr?.judgment) traceLog.event('decision', { ...decision, by: 'judge', verdict: v.keep ? 'candidate' : 'drop', reason: v.drop || 'judged', page_type: jr.judgment.page_type, dates: jr.judgment.dates || [], criteria: jr.judgment.criteria || {} });
+    traceLog.event('decision', { ...decision, by: jr ? 'auditor' : 'reader' });
+    const source = jr?.compilation || json || {}; const leadKind = source.identity?.kind || source.kind; const pageType = source.page_type;
+    if (leadKind === 'deal_news' || ['news', 'cohort_announcement'].includes(pageType) || ['not_a_call:news', 'not_a_call:cohort'].includes(v.drop)) {
+      const quote = source.identity?.quote || source.quotes?.identity || '';
+      traceLog.event('lead', { id: `L${++leadSeq}`, page_ref: pageRef, kind: pageType === 'cohort_announcement' ? 'cohort' : 'funding_news', funder: null, recipient: null, quote });
+    }
     opts.onVerdict?.({ url: page.url, v, trace, json, model });
     if (v.keep) {
       const explain = o.dated ? buildExplanation(v, { summary: typeof json?.summary === 'string' ? json.summary : '', name: v.name, url: page.url, amount: v.amount, page }) : null;
       seedPool.push({ url: page.url, text: page.text, name: v.name, verdict: v.verdict });
       findings.push({ objective, url: page.url, title: page.title, query: page.query, family: page.family, providers: page.providers, round, model, ...v, explain, trace }); audit.kept++; settle(page, v.verdict === 'apply' ? 'apply' : 'watch');
       for (const p of page.providers) { stat(p).kept++; if (page.providers.length === 1) stat(p).keptOnlyHere++; }
-    } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; settle(page, v.drop || 'dropped'); keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
+    } else { audit.dropped[v.drop] = (audit.dropped[v.drop] || 0) + 1; settle(page, v.drop || 'dropped'); traceLog.event('drop', { url: page.url, page_ref: pageRef, reason: v.drop || 'dropped', decided_by: decidedBy(v.drop, v, jr), read: true }); keepTrace({ ...trace, verdict: 'skip', drop: v.drop, reasons: v.reasons, name: v.name }); }
   };
   // Páginas índice (portales de jurisdicción): no se leen como convocatorias; se recorren sus enlaces y esas páginas entran a la lectura normal.
   if (Array.isArray(opts.mapSeeds) && opts.mapSeeds.length && canRead) {
@@ -359,7 +427,7 @@ export async function runObjective(objective, brief, opts = {}) {
       let added = 0;
       for (const [i, r] of rows.entries()) {
         if (!r?.url || seenPages.has(r.url)) continue;
-        if (hostKind(r.url) === 'social') { audit.skipped.social_host = (audit.skipped.social_host || 0) + 1; settle({ url: r.url, providers: r.providers || [r.provider || audit.search] }, 'social_host'); continue; }
+        if (hostKind(r.url) === 'social') { const p = { ...r, text: r.markdown || r.description || '', query, family, providers: r.providers || [r.provider || audit.search] }; audit.skipped.social_host = (audit.skipped.social_host || 0) + 1; settle(p, 'social_host'); recordPage(p, false); traceLog.event('drop', { url: p.url, page_ref: p._traceRef, reason: 'social_host', decided_by: decidedBy('social_host'), read: false }); continue; }
         const had = pages.get(r.url);
         if (had) { for (const p of r.providers || []) if (!had.providers.includes(p)) had.providers.push(p); if (!had.queries.some((x) => x.query === query)) had.queries.push({ query, family }); if ((r.markdown || '').length > had.text.length) had.text = r.markdown; continue; }
         log.newPages++; added++;
@@ -371,7 +439,7 @@ export async function runObjective(objective, brief, opts = {}) {
       const log = { round, query, family, ...(original ? { original } : {}), returned: 0, newPages: 0, providers: [] };
       audit.queryLog.push(log);
       try {
-        const rows = await run(query);
+        const rows = await runSearch(query);
         ingest(rows, query, family, log);
       } catch (error) { audit.error = error.message; log.error = String(error.message).slice(0, 200); }
     });
@@ -398,13 +466,13 @@ export async function runObjective(objective, brief, opts = {}) {
       const perRound = Math.max(1, Math.ceil(rLimits.steps / Math.max(1, rounds)));
       try {
         await runResearcher({
-          objective, ask: o.ask, briefText: briefText(brief), today: dayOf(today), pages, asked, env, fetcher, signal, chat, role: researchRole, state: researchState,
+          objective, ask: o.ask, briefText: briefText(brief), today: dayOf(today), pages, asked, env, fetcher, signal, chat: modelChat, role: researchRole, state: researchState,
           limits: { ...rLimits, steps: Math.min(rLimits.steps, researchState.steps + perRound) }, kindOf: hostKind, priority: (p) => readPriority(p, today),
           search: async (query, family) => {
             const fixed = fixAll([{ query, family }], objective, today, env)[0];
             const log = { round, query: fixed.query, family, researcher: true, ...(fixed.original ? { original: fixed.original } : {}), returned: 0, newPages: 0, providers: [] };
             audit.queryLog.push(log); queries.push({ query: fixed.query, family });
-            try { return ingest(await run(fixed.query), fixed.query, family, log); } catch (error) { log.error = String(error.message).slice(0, 200); throw error; }
+            try { return ingest(await runSearch(fixed.query), fixed.query, family, log); } catch (error) { log.error = String(error.message).slice(0, 200); throw error; }
           },
           open: async (p) => { const got = await fetchFull(p).catch(() => null); if (got && got.text.length > p.text.length) { p.text = got.text; p.title = p.title || got.title; p.via = got.via; } },
         });
@@ -414,12 +482,13 @@ export async function runObjective(objective, brief, opts = {}) {
     let list = [...pages.values()].filter((p) => {
       if (hostKind(p.url) !== 'aggregator') return true;
       audit.dropped.aggregator = (audit.dropped.aggregator || 0) + 1; settle(p, 'aggregator');
+      recordPage(p, false); traceLog.event('drop', { url: p.url, page_ref: p._traceRef, reason: 'aggregator', decided_by: decidedBy('aggregator'), read: false });
       keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'aggregator', reasons: ['aggregator'], today: dayOf(today), note: 'Aggregator/directory host: not read' });
       return false;
     }).sort((a, b) => readPriority(b, today) - readPriority(a, today) || a.order - b.order);
     if (list.length > maxPages) audit.skipped.over_page_budget = (audit.skipped.over_page_budget || 0) + list.length - maxPages;
     for (const p of list.slice(maxPages)) { if (audit.overBudget.length < 600) audit.overBudget.push({ url: p.url, title: String(p.title || '').slice(0, 100), score: readPriority(p, today), providers: p.providers.length }); }
-    for (const p of list.slice(maxPages)) settle(p, 'over_page_budget');
+    for (const p of list.slice(maxPages)) { settle(p, 'over_page_budget'); recordPage(p, false); traceLog.event('drop', { url: p.url, page_ref: p._traceRef, reason: 'over_page_budget', decided_by: decidedBy('over_page_budget'), read: false }); }
     for (const p of list.slice(maxPages)) keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'over_page_budget', reasons: ['over_page_budget'], today: dayOf(today), note: `Not read: over the page budget (ENGINE_MAX_PAGES=${maxPages})` });
     list = list.slice(0, maxPages);
     await pool(list.filter((p) => p.text.length < 400 && !p.fixed), 6, async (p) => {
@@ -429,20 +498,22 @@ export async function runObjective(objective, brief, opts = {}) {
     list = list.filter((p) => {
       if (p.text.length > 120) return true;
       audit.skipped.too_short = (audit.skipped.too_short || 0) + 1; settle(p, 'too_short');
+      recordPage(p, false); traceLog.event('drop', { url: p.url, page_ref: p._traceRef, reason: 'too_short', decided_by: decidedBy('too_short'), read: false });
       keepTrace({ url: p.url, title: p.title, query: p.query, family: p.family, queries: p.queries, providers: p.providers, round, read: null, verdict: 'skip', drop: 'too_short', reasons: ['too_short'], today: dayOf(today), note: 'Page text could not be read (too short)' });
       return false;
     });
     list.forEach((p) => seenPages.add(p.url)); audit.pages = seenPages.size;
     await pool(list, concurrency, async (page) => {
+      recordPage(page, true);
       const traceBase = { url: page.url, title: page.title, query: page.query, family: page.family, queries: page.queries, providers: page.providers, round, fetchedVia: page.via || 'search', textChars: page.text.length, today: dayOf(today) };
       if (!canRead) { audit.unread++; settle(page, 'unread'); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: 'No AI model available to read the page' }); return; }
       try {
         let json; let model; let jr = null;
         if (judgeOn) {
           jr = await readWithJudge(page);
-          if (!jr.compilation) { audit.unread++; settle(page, 'read_failed'); audit.judge.pages++; keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Compiler agent failed: ${jr.failure.compiler}`, judge: slimJudge(jr) }); return; }
+          if (!jr.compilation) { audit.unread++; settle(page, 'read_failed'); audit.judge.pages++; traceLog.event('drop', { url: page.url, page_ref: page._traceRef, reason: 'read_failed', decided_by: 'invalid:compiler', read: true }); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Compiler agent failed: ${jr.failure.compiler}`, judge: slimJudge(jr) }); return; }
           model = jr.models.compiler;
-        } else ({ json, model } = await chat({ ...readPrompt({ objective, brief, page, today }), name: 'finding', role: 'engine' }, { env, fetcher, signal }));
+        } else ({ json, model } = await modelChat({ ...readPrompt({ objective, brief, page, today }), name: 'finding', role: 'engine', page_ref: page._traceRef }, { env, fetcher, signal }));
         audit.read++;
         let v = jr ? verifyJudged(jr, page) : verifyFinding(json, page, objective, { today, brief, profile });
         // Segunda lectura de fechas: una convocatoria sin ninguna fecha en el texto que tenemos (recortado por el
@@ -469,7 +540,7 @@ export async function runObjective(objective, brief, opts = {}) {
         // La segunda lectura se decide DESPUÉS de leer toda la ronda: así se reparte el tope por prioridad y no por quién terminó antes.
         if (need) { pendingExtract.push({ page, json, model, v, traceBase, need }); return; }
         finalize({ page, json: jr ? legacyOut(jr.compilation, jr.audit) : json, model, v, traceBase, jr }, null);
-      } catch (error) { audit.unread++; settle(page, 'read_failed'); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
+      } catch (error) { audit.unread++; settle(page, 'read_failed'); traceLog.event('drop', { url: page.url, page_ref: page._traceRef, reason: 'read_failed', decided_by: judgeOn ? 'invalid:judge' : 'invalid:compiler', read: true }); keepTrace({ ...traceBase, read: null, verdict: 'unread', note: `Read failed: ${String(error?.message || error).slice(0, 160)}` }); }
     });
     // Segunda lectura (Firecrawl JSON) solo de lo que puede cambiar la decisión, por prioridad: lo que entraría a la lista
     // principal, luego conflictos de fecha, luego fechas sin resolver, luego dudas de «cerrada»; dentro, readPriority.
@@ -509,11 +580,12 @@ export async function runObjective(objective, brief, opts = {}) {
       } catch (error) { extractionMeta = { ok: false, error: String(error?.message || error).slice(0, 160) }; }
       finalize(rec, extractionMeta);
     });
-    const follow = round < rounds && canRead ? fixAll(await followUpQueries(objective, brief, { findings, dropped: audit.dropped, asked }, { chat, env, fetcher, signal, today }), objective, today, env) : [];
+    const follow = round < rounds && canRead ? fixAll(await followUpQueries(objective, brief, { findings, dropped: audit.dropped, asked }, { chat: modelChat, env, fetcher, signal, today }), objective, today, env) : [];
     if (expandOn && !expandDone && round === 1) {
       expandDone = true;
       const seeds = [...seedPool].sort((a, b) => (a.verdict === 'apply' ? 0 : 1) - (b.verdict === 'apply' ? 0 : 1));
-      const ex = await expandRound({ objective, brief, seeds, seen: seenPages, asked, env, fetcher, signal, chat, canRead, today, limits: expandLimits(env, opts.expandLimits), deps: opts.expandDeps });
+      const ex = await expandRound({ objective, brief, seeds, seen: seenPages, asked, env, fetcher, signal, chat: modelChat, canRead, today, limits: expandLimits(env, opts.expandLimits), deps: opts.expandDeps });
+      traceLog.event('tool_call', { tool: 'expand', args: { seeds: seeds.length }, results_n: ex.pages.length, ms_call: 0, cost_usd: 0 });
       pendingExpansion.push(...ex.pages); lateralQ = fixAll(ex.queries, objective, today, env);
       Object.assign(audit.expand, ex.stats, { seeds: Math.min(seeds.length, expandLimits(env, opts.expandLimits).seeds) });
     }
