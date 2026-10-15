@@ -236,8 +236,12 @@ export function sourceHealth(job: Job): SourceHealthItem[] {
       if (e.phase === 'warning' || e.phase === 'error') it.messages.push(e.message);
       if (e.phase === 'source_completed') {
         it.results = e.resultCount ?? 0; it.durationMs = e.durationMs ?? null;
-        it.state = e.status === 'error' ? 'error' : (e.resultCount || 0) > 0 ? 'ok' : 'empty';
+        it.state = e.status === 'error' ? 'error' : e.status === 'pending' ? 'skipped' : (e.resultCount || 0) > 0 ? 'ok' : 'empty';
         it.reason = e.message;
+      } else if (e.status === 'success' && ['reading', 'evaluating', 'drafting'].includes(e.phase)) {
+        // Algunos pasos internos (por ejemplo Application plan) son fases exitosas, no
+        // fuentes externas. No deben quedar falsamente marcados como «sin finalizar».
+        it.state = 'ok'; it.results = e.resultCount ?? it.results; it.durationMs = e.durationMs ?? it.durationMs; it.reason = e.message;
       }
     }
   } else {
