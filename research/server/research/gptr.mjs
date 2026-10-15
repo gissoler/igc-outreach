@@ -168,8 +168,11 @@ const readSafe = (p) => { try { return readFileSync(p, 'utf8'); } catch { return
 export async function runGptr(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = day(opts.today); const started = Date.now(); const trace = opts.trace;
   const mode = env.GPTR_MODE === 'rapido' ? 'rapido' : 'deep';
-  // Con plazo del pipeline, la búsqueda deja al menos 120 s para leer y juzgar.
-  const seconds = Math.max(60, Math.min(Number(env.GPTR_SECONDS) || 270, opts.deadlineAt ? Math.floor((Number(opts.deadlineAt) - Date.now()) / 1000) - 120 : Infinity)); const verifyMode = env.GPTR_JUDGE === 'verify';
+  // Con plazo del pipeline, la búsqueda deja GPTR_RESERVE_SECONDS (270 s) para comprender, abrir, leer y juzgar. Antes eran 120 s:
+  // la comprensión, las descargas y el compilador se los comían y el bucle descartaba todas las páginas por tiempo antes del juez.
+  const reserve = Number(env.GPTR_RESERVE_SECONDS) || 270; const budget = opts.deadlineAt ? Math.floor((Number(opts.deadlineAt) - Date.now()) / 1000) - reserve : Infinity;
+  const seconds = Math.max(60, Math.min(Number(env.GPTR_SECONDS) || 270, budget)); const verifyMode = env.GPTR_JUDGE === 'verify';
+  if (budget < 60) glog(`AVISO: el plazo del pipeline deja ${Math.max(0, budget + reserve)}s para GPTR + juez; con menos de ${60 + reserve}s el juez puede quedarse sin páginas. Sube RESEARCH_RUN_TIMEOUT_MS.`);
   if (env.ENGINE_AGENT_TRACE_DIR) { try { mkdirSync(env.ENGINE_AGENT_TRACE_DIR, { recursive: true }); LOG_FILE = join(env.ENGINE_AGENT_TRACE_DIR, 'gptr.log'); } catch { LOG_FILE = null; } }
   glog(`INICIO objetivo=${objective} modo=${mode} tope=${seconds}s juez=${verifyMode ? 'verify.py' : 'node'} script=${existsSync(join(GPTR_DIR, 'run-engine.sh')) ? 'ok' : 'NO ENCONTRADO en ' + GPTR_DIR} venv=${existsSync(join(GPTR_DIR, '.venv')) ? 'ok' : 'se creará (tarda unos minutos la primera vez)'}`);
   const prompt = gptrPrompt({ brief, objective, today, queries: opts.queries || [] });
@@ -188,7 +191,7 @@ export async function runGptr(objective, brief, opts = {}) {
   catch (e) { if (opts.signal?.aborted) throw e; error = String(e?.message || e); }
   clearInterval(ticker);
   // El log crudo de GPT Researcher vivía solo en /tmp: se copia junto a la traza para poder diagnosticar después.
-  if (env.ENGINE_AGENT_TRACE_DIR) { try { copyFileSync(logFile, join(env.ENGINE_AGENT_TRACE_DIR, `gptr-raw-${objective}.log`)); } catch { /* no hubo log */ } }
+  if (env.ENGINE_AGENT_TRACE_DIR) { try { copyFileSync(logFile, join(env.ENGINE_AGENT_TRACE_DIR, `gptr-raw-${objective}${opts.queries?.length ? '-followup' : ''}.log`)); } catch { /* no hubo log */ } }
   glog(`proceso terminó tras ${Math.round((Date.now() - started) / 1000)}s · timedOut=${Boolean(res.timedOut)} código=${res.code ?? 'n/d'} informe=${res.report || 'ninguno'}${error ? ' · error=' + error : ''}${res.stderr ? ' · stderr: ' + String(res.stderr).trim().slice(-300).replace(/\s+/g, ' ') : ''}`);
   if (res.timedOut && !res.early) error = `GPTR_TIMEOUT ${seconds}s (se usan las páginas que alcanzó a leer)`;
   const searchMs = Date.now() - started;

@@ -62,7 +62,10 @@ export async function runResearch(
     const livePhase = LEGACY_TO_LIVE[phase] || 'reading';
     live({ phase: livePhase, provider, status: livePhase === 'warning' ? 'warning' : livePhase === 'error' ? 'error' : 'running', title: livePhase === 'warning' ? 'Warning' : 'Processing', message });
   };
-  const runTimeoutMs = Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 240000);
+  // Con GPT Researcher el tope de 180-240 s (.env.example / por defecto) no alcanza: el motor le daba 60 s a GPTR y, al terminar,
+  // ya había pasado el plazo para abrir páginas, así que ninguna llegaba al juez (15-10, MINT AD: 0 resultados). Piso: GPTR_RUN_TIMEOUT_MS.
+  const gptrFloorMs = String(env.ENGINE_GPTR || '') === '1' ? Number(env.GPTR_RUN_TIMEOUT_MS) || 720000 : 0;
+  const runTimeoutMs = Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 240000, gptrFloorMs);
   const runStarted = Date.now();
   const timeoutSignal = AbortSignal.timeout(runTimeoutMs);
   const signal = externalSignal ? AbortSignal.any([timeoutSignal, externalSignal]) : timeoutSignal;
@@ -175,16 +178,25 @@ export async function runResearch(
           : []),
         ...(engineOn
           ? [[ENGINE_SOURCE, async () => { const portals = b.fundingTypes.includes('grant') ? portalSeeds(b) : []; if (portals.length) job.portals = portals.map((p) => ({ name: p.title, url: p.url }));
-          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals }, deadlineAt: engineDeadlineAt, plan: job.plan });
+          // Con GPT Researcher, las rutas de capital van como hipótesis dentro del MISMO prompt: desde ce4e49d cada grupo lanzaba una
+          // segunda corrida completa de GPTR sin plazo, que se comía el tope de la corrida y pisaba el log de la primera.
+          const gptrMode = String(env.ENGINE_GPTR || '') === '1';
+          const strategyQueries = job.capitalStrategyContext ? capitalQueries(job.capitalStrategyContext, { tools: ['searxng', 'official_grants', 'funding_round_sources'] }).slice(0, Math.max(1, Number(env.CAPITAL_STRATEGY_EXECUTE_MAX) || 6)) : [];
+          const strategyObjective = (query) => (query.recommended_tool === 'official_grants' && b.fundingTypes.includes('grant') ? 'grant' : b.fundingTypes.includes('investment') ? 'investment' : b.fundingTypes.find((item) => ['grant', 'investment', 'debt', 'sponsorship', 'partnering'].includes(item)));
+          const gptrQueriesBy = {};
+          if (gptrMode) for (const query of strategyQueries) { const o = strategyObjective(query); if (o) (gptrQueriesBy[o] ||= []).push({ query: query.query, family: `capital_strategy:${query.route_id}` }); }
+          const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals }, deadlineAt: engineDeadlineAt, plan: job.plan, ...(gptrMode ? { gptrQueriesBy } : {}) });
           engineRuns.push(...r.audits);
           job.engineDrops = r.audits.flatMap((a) => (a.dropped_pages || []).map((d) => ({ ...d, objective: a.objective })));
           // Resumen por objetivo para el banco nocturno y el asistente: tiempos, URLs, triage, juez y créditos de Apollo.
           job.engineAudit = r.audits.map((a) => ({ objective: a.objective, gptr: a.gptr || null, triage: a.triage || null, judge: a.judge || null, contacts: a.contacts || null, seconds: a.agent?.seconds ?? null, opens: a.agent?.opens ?? a.pages ?? null, skipped_for_time: a.skipped_for_time || 0, errors: a.errors || [] }));
-          if (job.capitalStrategyContext) {
-            const strategyQueries = capitalQueries(job.capitalStrategyContext, { tools: ['searxng', 'official_grants', 'funding_round_sources'] }).slice(0, Math.max(1, Number(env.CAPITAL_STRATEGY_EXECUTE_MAX) || 6));
+          if (job.capitalStrategyContext && gptrMode) {
+            for (const query of strategyQueries) capitalExecutions.push({ query_id: query.query_id, new_evidence: 0, latency_ms: 0, error: null, merged_into: 'gptr_prompt' });
+            job.capitalStrategyContext = recordCapitalToolResults(attachCapitalEvidence(job.capitalStrategyContext, capitalFindings), capitalExecutions);
+          } else if (job.capitalStrategyContext) {
             const grouped = new Map();
             for (const query of strategyQueries) {
-              const objective = query.recommended_tool === 'official_grants' && b.fundingTypes.includes('grant') ? 'grant' : b.fundingTypes.includes('investment') ? 'investment' : b.fundingTypes.find((item) => ['grant', 'investment', 'debt', 'sponsorship', 'partnering'].includes(item));
+              const objective = strategyObjective(query);
               if (!objective) continue;
               grouped.set(objective, [...(grouped.get(objective) || []), { ...query, family: `capital_strategy:${query.route_id}` }]);
             }
