@@ -188,6 +188,27 @@ export async function runResearch(
           if (gptrMode) for (const query of strategyQueries) { const o = strategyObjective(query); if (o) (gptrQueriesBy[o] ||= []).push({ query: query.query, family: `capital_strategy:${query.route_id}` }); }
           const r = await runEngine(b, { env, fetcher, signal, mapSeedsBy: { grant: portals }, deadlineAt: engineDeadlineAt, plan: job.plan, ...(gptrMode ? { gptrQueriesBy } : {}) });
           engineRuns.push(...r.audits);
+          // El registro federal corre dentro de GPT Researcher, pero debe aparecer como fuente
+          // propia en la interfaz. Antes quedaba oculto bajo «Web research engine», por lo que
+          // una corrida que sí usó Simpler.Grants.gov parecía no haberlo consultado.
+          const registryRuns = r.audits.map((audit) => audit?.gptr?.registry).filter((registry) => registry?.on);
+          if (registryRuns.length) {
+            const allStats = registryRuns.flatMap((registry) => [registry.brief, registry.byNumber]).filter(Boolean);
+            const via = [...new Set(allStats.flatMap((stats) => stats.via || []))];
+            const provider = via.includes('simpler') ? 'Simpler.Grants.gov' : via.includes('grants.gov') ? 'Grants.gov' : 'Federal grants registry';
+            const candidates = registryRuns.reduce((sum, registry) => sum + Number(registry.seeds || 0), 0);
+            const errors = allStats.flatMap((stats) => stats.errors || []);
+            live({
+              phase: 'source_completed', provider,
+              status: candidates || !errors.length ? 'success' : 'error',
+              title: errors.length && !candidates ? 'Federal registry error' : 'Federal registry searched',
+              message: candidates
+                ? `${provider}: ${candidates} current opportunities sent to the same eligibility review as the web results.`
+                : errors.length ? `${provider}: ${errors[0]}` : `${provider}: no current opportunities matched this brief.`,
+              resultCount: candidates,
+              detail: { via, errors: errors.slice(0, 3) },
+            });
+          }
           job.engineDrops = r.audits.flatMap((a) => (a.dropped_pages || []).map((d) => ({ ...d, objective: a.objective })));
           // Resumen por objetivo para el banco nocturno y el asistente: tiempos, URLs, triage, juez y créditos de Apollo.
           job.engineAudit = r.audits.map((a) => ({ objective: a.objective, gptr: a.gptr || null, triage: a.triage || null, judge: a.judge || null, contacts: a.contacts || null, seconds: a.agent?.seconds ?? null, opens: a.agent?.opens ?? a.pages ?? null, skipped_for_time: a.skipped_for_time || 0, errors: a.errors || [] }));
@@ -608,6 +629,9 @@ export async function runResearch(
         live({ phase: 'source_completed', provider: step.name, status: r?.skipped ? 'pending' : 'success', title: r?.skipped ? 'Source skipped' : 'Source finished', message: r?.message || `${step.name}: done.`, resultCount: r?.count ?? 0, durationMs: Date.now() - started });
       } catch (e) {
         live({ phase: 'warning', provider: step.name, status: 'warning', title: 'Warning', message: `${step.name}: ${e.message}. The rest of the run was kept.`, durationMs: Date.now() - started });
+        // Cierra siempre la fuente. Dejar solo el warning hacía que la UI la mostrara como
+        // «The source didn't report completion», ocultando el error real.
+        live({ phase: 'source_completed', provider: step.name, status: 'error', title: 'Source error', message: `${step.name}: ${e.message}`, resultCount: 0, durationMs: Date.now() - started });
       }
       store.save(job);
     }
