@@ -126,7 +126,9 @@ export const isIGC = (b) => /\bigc\b/.test(norm(`${b.company} ${b.organization |
 export const ventureOf = (b) => b.venture || b.company;
 export function makePlan(b) {
   const text = norm(`${b.industry} ${b.description} ${b.product}`);
-  const alzheimer = /alzheimer|dementia|demencia|adrd/.test(text);
+  // En briefs de salud es muy común escribir solo "AD disease" o describir
+  // deterioro cognitivo/neurodegeneración sin deletrear Alzheimer.
+  const alzheimer = /alzheimer|dementia|demencia|adrd|\bad disease\b|cognitive decline|neurodegener/.test(text);
   const data = /data|datos|harmon|armon|mint|artificial/.test(text);
   const topic = alzheimer ? 'Alzheimer' : b.industry;
   const query = alzheimer

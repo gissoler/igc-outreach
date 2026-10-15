@@ -23,6 +23,12 @@ test('grant-only plan uses official sources and does not schedule paid web enric
   assert.doesNotMatch(providers, /ScrapeGraph|Exa|Serper/);
 });
 
+test('MINT AD se reconoce como Alzheimer aunque el brief diga AD disease', () => {
+  const plan = makePlan({ ...brief, product: 'MINT AD', description: 'Risk stratification tool for patients who may develop AD disease', stage: 'marketed', useApify: true });
+  assert.equal(plan.alzheimer, true);
+  assert.equal(plan.topic, 'Alzheimer');
+});
+
 test('grant hits are diversified by agency before detail fetch', () => {
   const hits = [1, 2, 3, 4].map((id) => ({ id, agency: 'NIH' })).concat([{ id: 5, agency: 'NSF' }, { id: 6, agency: 'EU' }]);
   assert.deepEqual(diversifyGrantHits(hits, 4).map((x) => x.id), [1, 5, 6, 2]);

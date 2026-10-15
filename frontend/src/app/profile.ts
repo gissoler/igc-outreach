@@ -25,7 +25,7 @@ export function briefFromProfile(profile: ProjectConfig & { onboardingComplete?:
   const namedCompetitors=(intake?.competitors||[]).filter((name)=>!/^\s*(apps?|tools?|classes|events?|professionals?|tests?|therapy|therapists?|coaches?|coaching|content|meditation|journaling|wellness)\b/i.test(name)&&name.trim().split(/\s+/).length<=8);
   return {name:profile.founder.name||'Founder',role:profile.founder.title||'Founder',company:organization,organization,venture,relation:profile.project.relation||'same',
     product:profile.project.name,description:(profile.project.description||profile.project.one_liner).slice(0,3000),oneLiner:(profile.project.one_liner||'').slice(0,300),
-    industry:(profile.project.sectors.join(' ')||profile.project.one_liner).slice(0,200),stage:intake?.maturity||'prototype',round:profile.project.stage||'',
+    industry:(profile.project.sectors.join(' ')||profile.project.one_liner).slice(0,200),stage:intake?.maturity||'prototype',round:fundingTypes.includes('investment')?(profile.project.stage||''):'',
     geography:(profile.project.geo.join(', ')||'Global').slice(0,200),fundingTypes:fundingTypes.length?fundingTypes:['investment'],amount:profile.project.raise_usd||'',
     criteria:list(intake?.criteria).slice(0,1000),constraints:list(intake?.constraints).slice(0,1000),useOfFunds:(intake?.use_of_funds||'').slice(0,500),
     entityType:intake?.entity_type||'',country:(intake?.country||'').slice(0,60),state:(intake?.state||'').slice(0,80),city:(intake?.city||'').slice(0,80),timeline:(intake?.timeline||'').slice(0,100),...(intake?.apply_from&&intake?.apply_to?{deadlineFrom:intake.apply_from,deadlineTo:intake.apply_to}:{}),website:(intake?.website||'').slice(0,300),exclusions:namedCompetitors.join(', ').slice(0,1000),
