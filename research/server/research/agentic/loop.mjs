@@ -168,15 +168,41 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     // Una semilla puede traer su texto (registro oficial): se lee tal cual, sin descargar nada.
     const refs = seedUrls.map((u, i) => { const ref = `seed${i + 1}`; tools.refs.set(ref, { url: u.url, title: u.title || '', ...(u.text ? { markdown: u.text, official: Boolean(u.registry) } : {}) }); return ref; });
     const cap = Number(opts.assessMax) || refs.length;
-    if (refs.length <= cap) await openMany({ refs }, 1, 'finish', understood, refs.length);
+    const hasEmbeddedRegistry = seedUrls.some((seed) => seed.text && seed.registry);
+    if (refs.length <= cap && !hasEmbeddedRegistry) await openMany({ refs }, 1, 'finish', understood, refs.length);
     else {
       // El texto de un registro oficial ya es la página fuente. Se evalúa primero y fuera de la cola de descargas:
       // una tanda grande de URLs lentas no puede impedir que el compilador y el juez vean estas oportunidades.
-      const embedded = refs.map((ref, i) => ({ ref, i, seed: seedUrls[i] })).filter((x) => x.seed.text);
+      const registryMax = Math.max(1, Number(env.GPTR_REGISTRY_JUDGE_MAX) || 10);
+      const embeddedAll = refs.map((ref, i) => ({ ref, i, seed: seedUrls[i] })).filter((x) => x.seed.text && x.seed.registry);
+      const embedded = embeddedAll.slice(0, Math.min(cap, registryMax));
       const embeddedPairs = embedded.map(({ ref, seed }) => [ref, { ref, url: seed.url, title: seed.title || '', chars: String(seed.text).length, text: `<page_data>${String(seed.text).slice(0, 12000)}</page_data>`, links: [], via: 'registry' }]);
-      if (embeddedPairs.length) await assessOpened(embeddedPairs, 1, 'finish', understood);
+      // Simpler ya entrega un registro oficial estructurado. Mandarlo antes al compilador duplicaba
+      // el trabajo y, con 15 avisos, consumía todo el plazo antes de que empezara el juez. Para estas
+      // páginas el código solo arma la candidatura; el juez sigue verificando elegibilidad, tema y fecha
+      // contra el texto oficial completo.
+      for (const [ref, r] of embeddedPairs) {
+        const seed = seedUrls[refs.indexOf(ref)];
+        const criteria = Object.fromEntries(ids.map((id) => [id, { verdict: 'unknown', quote: null, reason: 'Pending verification against the official registry text.' }]));
+        ingest({ type: 'page', ...r, text: unpage(r.text) }, {
+          ref,
+          about: seed?.registry?.title || seed?.title || 'Official grant opportunity',
+          page_type: 'call',
+          candidate: true,
+          dates: [],
+          criteria,
+          lead: null,
+        }, 1, 'finish');
+        trace.event('note', { kind: 'registry_direct_to_judge', page_ref: ref, url: r.url });
+      }
+      for (const x of embeddedAll.slice(embedded.length)) trace.event('drop', { url: x.seed.url, page_ref: x.ref, reason: 'registry_judge_cap', decided_by: 'code', read: true });
       const embeddedRefs = new Set(embedded.map((x) => x.ref));
-      const web = refs.map((ref, i) => ({ ref, i })).filter((x) => !embeddedRefs.has(x.ref));
+      const webAll = refs.map((ref, i) => ({ ref, i })).filter((x) => !embeddedRefs.has(x.ref) && !seedUrls[x.i]?.registry);
+      // Si quedan menos de ocho minutos, se entregan primero los grants oficiales. La cola web es
+      // complementaria y no puede volver a convertir 15 resultados de Simpler en "0 candidates".
+      const webMinRemainingMs = Math.max(60_000, Number(env.GPTR_WEB_MIN_REMAINING_MS) || 480_000);
+      const web = embeddedPairs.length && deadlineAt && deadlineAt - Date.now() < webMinRemainingMs ? [] : webAll;
+      if (!web.length && webAll.length) trace.event('note', { kind: 'web_deferred_for_registry', count: webAll.length, remaining_ms: Math.max(0, deadlineAt - Date.now()) });
       const webCap = Math.max(0, cap - embeddedPairs.length);
       // Triage por código antes del modelo: se abren todas (barato) y se evalúan primero las que traen un plazo futuro según el
       // lector de fechas (dates.mjs), luego las sin fecha y al final las que el código ya ve cerradas. Las del registro van siempre.
