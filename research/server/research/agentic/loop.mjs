@@ -158,19 +158,28 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const cap = Number(opts.assessMax) || refs.length;
     if (refs.length <= cap) await openMany({ refs }, 1, 'finish', understood, refs.length);
     else {
+      // El texto de un registro oficial ya es la página fuente. Se evalúa primero y fuera de la cola de descargas:
+      // una tanda grande de URLs lentas no puede impedir que el compilador y el juez vean estas oportunidades.
+      const embedded = refs.map((ref, i) => ({ ref, i, seed: seedUrls[i] })).filter((x) => x.seed.text);
+      const embeddedPairs = embedded.map(({ ref, seed }) => [ref, { ref, url: seed.url, title: seed.title || '', chars: String(seed.text).length, text: `<page_data>${String(seed.text).slice(0, 12000)}</page_data>`, links: [], via: 'registry' }]);
+      if (embeddedPairs.length) await assessOpened(embeddedPairs, 1, 'finish', understood);
+      const embeddedRefs = new Set(embedded.map((x) => x.ref));
+      const web = refs.map((ref, i) => ({ ref, i })).filter((x) => !embeddedRefs.has(x.ref));
+      const webCap = Math.max(0, cap - embeddedPairs.length);
       // Triage por código antes del modelo: se abren todas (barato) y se evalúan primero las que traen un plazo futuro según el
       // lector de fechas (dates.mjs), luego las sin fecha y al final las que el código ya ve cerradas. Las del registro van siempre.
-      const opened = await pool(refs, Number(env.GPTR_OPEN_CONCURRENCY) || 24, (ref, i) => (pastDeadline(60000) ? null : tools.open({ ref, ...(i >= cap ? { cheap: true } : {}) })));
+      const opened = await pool(web, Number(env.GPTR_OPEN_CONCURRENCY) || 24, (x, i) => (pastDeadline(60000) ? null : tools.open({ ref: x.ref, ...(i >= webCap ? { cheap: true } : {}) })));
       const RANK = { open: 3, upcoming: 3, rolling: 2, unknown: 1, closed: 0 };
-      const rows = refs.map((ref, i) => {
-        const r = opened[i]; if (!r?.ref) return { ref, r, i, score: -1, status: 'unread' };
-        const status = seedUrls[i].text ? 'registry' : deadlineDecision(unpage(r.text), { today }).status;
-        return { ref, r, i, status, score: status === 'registry' ? 9 : RANK[status] ?? 1 };
+      const rows = web.map(({ ref, i }, j) => {
+        const r = opened[j]; if (!r?.ref) return { ref, r, i, score: -1, status: 'unread' };
+        const status = deadlineDecision(unpage(r.text), { today }).status;
+        return { ref, r, i, status, score: RANK[status] ?? 1 };
       }).sort((a, b) => b.score - a.score || a.i - b.i);
-      const chosen = rows.slice(0, cap).filter((x) => x.score >= 0); const left = rows.filter((x) => !chosen.includes(x));
+      const chosen = rows.slice(0, webCap).filter((x) => x.score >= 0); const left = rows.filter((x) => !chosen.includes(x));
       for (const x of left) if (x.r?.ref) trace.event('drop', { url: x.r.url, page_ref: x.r.ref, reason: `triage_${x.status}`, decided_by: 'code', read: true });
-      triageStats = { opened: rows.filter((x) => x.score >= 0).length, assessed: chosen.length, by_status: rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), {}) };
-      trace.event('tool_call', { tool: 'triage', args: { opened: rows.filter((x) => x.score >= 0).length, assessed: chosen.length }, results_n: chosen.length, ms_call: 0, counts: rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), {}) });
+      const byStatus = rows.reduce((m, x) => ({ ...m, [x.status]: (m[x.status] || 0) + 1 }), { ...(embeddedPairs.length ? { registry: embeddedPairs.length } : {}) });
+      triageStats = { opened: embeddedPairs.length + rows.filter((x) => x.score >= 0).length, assessed: embeddedPairs.length + chosen.length, by_status: byStatus };
+      trace.event('tool_call', { tool: 'triage', args: { opened: triageStats.opened, assessed: triageStats.assessed }, results_n: triageStats.assessed, ms_call: 0, counts: byStatus });
       // Documentos enlazados (14-10): muchas convocatorias publican el plazo y la elegibilidad solo en un PDF/DOC (RFA, solicitud, guía).
       // De las páginas elegidas se siguen hasta 2 enlaces por página a documentos de convocatoria del año, y se leen como páginas propias.
       const docs = await followDocs(chosen.filter((x) => x.status !== 'registry' && x.status !== 'closed'), new Set(rows.map((x) => x.r?.url).filter(Boolean)));

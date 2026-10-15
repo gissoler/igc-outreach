@@ -282,6 +282,21 @@ test('DOCS: de una página de programa sin plazo se sigue el PDF de la convocato
   assert.equal(r.audit.triage.docs, 1);
 });
 
+test('REGISTRY-FIRST: el texto oficial llega al compilador y juez aunque la cola web completa falle', async () => {
+  const { runAgentObjective } = await import('../server/research/agentic/loop.mjs');
+  const { createTools } = await import('../server/research/agentic/tools.mjs');
+  const { honestChat } = await import('../scripts/bench/fake.mjs');
+  const text = 'Official grant call for health technology.\nApplication due date: November 20, 2026\nEligible applicants: for-profit small businesses in the United States.\nFunds Alzheimer risk assessment research with non-dilutive awards.';
+  const tools = createTools({ env: {}, readers: { open: async () => { throw new Error('web queue unavailable'); } }, limits: { opens: 20, apolloCredits: 0 } });
+  const seeds = [
+    { url: 'https://registry.example/opportunity/1', title: 'Official call', text, registry: { number: 'GEN-26-001', status: 'posted', closeDate: '2026-11-20' } },
+    { url: 'https://web.example/a' }, { url: 'https://web.example/b' },
+  ];
+  const r = await runAgentObjective('grant', { company: 'C', country: 'US', entityType: 'for_profit' }, { chat: honestChat({ today: TODAY }), tools, today: TODAY, parallel: true, seedUrls: seeds, assessMax: 1, env: {} });
+  assert.equal(r.audit.triage.by_status.registry, 1); assert.equal(r.audit.triage.assessed, 1);
+  assert.equal(r.audit.judge.calls, 1); assert.equal(r.findings[0].registry.number, 'GEN-26-001');
+});
+
 test('SIMPLER: AND primero y OR si trae poco; el aviso completo (adjunto) de cada oportunidad también va al juez', async () => {
   const sent = [];
   const fetcher = async (url, init = {}) => {
