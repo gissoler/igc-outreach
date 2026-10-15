@@ -665,7 +665,7 @@ export function readPriority(p, today = new Date()) {
 export async function runEngine(brief, opts = {}) {
   const objectives = (opts.objectives || brief.fundingTypes || []).filter((x) => OBJECTIVES[x]);
   const breaker = opts.breaker || {};   // compartido: un proveedor apagado en un objetivo se apaga en todos
-  const runs = await Promise.all(objectives.map((x) => runObjective(x, brief, { ...opts, breaker, mapSeeds: opts.mapSeedsBy?.[x] || opts.mapSeeds })));
+  const runs = await Promise.all(objectives.map((x) => runObjective(x, brief, { ...opts, breaker, mapSeeds: opts.mapSeedsBy?.[x] || opts.mapSeeds, ...(opts.gptrQueriesBy?.[x]?.length ? { queries: opts.gptrQueriesBy[x] } : {}) })));
   return { findings: runs.flatMap((r) => r.findings), leads: runs.flatMap((r) => r.leads || []), audits: runs.map((r) => r.audit), queries: runs.flatMap((r) => r.queries) };
 }
 
