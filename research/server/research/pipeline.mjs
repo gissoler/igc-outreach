@@ -64,7 +64,8 @@ export async function runResearch(
   };
   // Con GPT Researcher el tope de 180-240 s (.env.example / por defecto) no alcanza: el motor le daba 60 s a GPTR y, al terminar,
   // ya había pasado el plazo para abrir páginas, así que ninguna llegaba al juez (15-10, MINT AD: 0 resultados). Piso: GPTR_RUN_TIMEOUT_MS.
-  const gptrFloorMs = String(env.ENGINE_GPTR || '') === '1' ? Number(env.GPTR_RUN_TIMEOUT_MS) || 720000 : 0;
+  // Es un techo, no la duración: la corrida termina cuando el juez acaba. Búsqueda + 30 s de margen del informe + reserva del juez + reserva del pipeline.
+  const gptrFloorMs = String(env.ENGINE_GPTR || '') === '1' ? Number(env.GPTR_RUN_TIMEOUT_MS) || ((Number(env.GPTR_SECONDS) || 270) + 30 + (Number(env.GPTR_RESERVE_SECONDS) || 210) + 60 + 20) * 1000 : 0;
   const runTimeoutMs = Math.max(1000, Number(env.RESEARCH_RUN_TIMEOUT_MS) || 240000, gptrFloorMs);
   const runStarted = Date.now();
   const timeoutSignal = AbortSignal.timeout(runTimeoutMs);

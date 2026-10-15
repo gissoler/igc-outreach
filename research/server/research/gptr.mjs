@@ -9,7 +9,9 @@ import { fileURLToPath } from 'node:url';
 import { briefBlock } from './judge/prompts.v13.mjs';
 import { createTools } from './agentic/tools.mjs';
 import { contactStage } from './agentic/contacts.mjs';
-import { runAgentObjective } from './agentic/loop.mjs';
+import { runAgentObjective, understandBrief } from './agentic/loop.mjs';
+import { fetchPage } from './localSearch.mjs';
+import { hostKind } from './verify.mjs';
 import { briefCountry, foreignHost } from './geo.mjs';
 import { registrySeeds, registryQueries, noticeNumbers } from './registry/simplerGrants.mjs';
 import { copyFileSync } from 'node:fs';
@@ -165,12 +167,25 @@ export function runGptrProcess({ promptFile, mode, today, env, signal, spawnFn =
 
 const readSafe = (p) => { try { return readFileSync(p, 'utf8'); } catch { return ''; } };
 
+/* Descarga anticipada: mientras GPT Researcher busca, cada URL nueva de su log se baja con el lector directo (gratis, 6 s).
+   Al terminar la búsqueda el juez ya tiene casi todas las páginas en memoria: antes se bajaban ~150 en fila después de esperar a GPTR. */
+export function startPrefetch({ logFile, env = process.env, fetcher, signal, read = readSafe, fetchFn = fetchPage, everyMs = 3000 } = {}) {
+  const pages = new Map(); const queued = new Set(); const queue = []; let active = 0; let stopped = false; let tried = 0;
+  const max = Number(env.GPTR_PREFETCH_MAX) || 250; const conc = Number(env.GPTR_PREFETCH_CONCURRENCY) || 8; const timeoutMs = Number(env.GPTR_CHEAP_TIMEOUT_MS) || 6000;
+  const pump = () => { while (!stopped && active < conc && queue.length) { const url = queue.shift(); active++; tried++;
+    fetchFn(url, { fetcher, signal, timeoutMs }).then((p) => { if (p && !stopped) pages.set(url, p); }).catch(() => {}).finally(() => { active--; pump(); }); } };
+  const scan = () => { if (stopped) return; for (const m of read(logFile).matchAll(/Added source url to research: (\S+)/g)) { const u = clean(m[1]);
+    if (queued.size >= max || queued.has(u) || !/^https?:\/\//.test(u) || IMG.test(u) || hostKind(u) === 'social') continue; queued.add(u); queue.push(u); } pump(); };
+  const timer = setInterval(scan, everyMs); timer.unref?.();
+  return { pages, scan, stop: () => { scan(); stopped = true; clearInterval(timer); queue.length = 0; return { queued: queued.size, tried, ok: pages.size }; } };
+}
+
 export async function runGptr(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = day(opts.today); const started = Date.now(); const trace = opts.trace;
   const mode = env.GPTR_MODE === 'rapido' ? 'rapido' : 'deep';
-  // Con plazo del pipeline, la búsqueda deja GPTR_RESERVE_SECONDS (270 s) para comprender, abrir, leer y juzgar. Antes eran 120 s:
-  // la comprensión, las descargas y el compilador se los comían y el bucle descartaba todas las páginas por tiempo antes del juez.
-  const reserve = Number(env.GPTR_RESERVE_SECONDS) || 270; const budget = opts.deadlineAt ? Math.floor((Number(opts.deadlineAt) - Date.now()) / 1000) - reserve : Infinity;
+  // Con plazo del pipeline, la búsqueda deja GPTR_RESERVE_SECONDS (210 s) para leer y juzgar. Antes eran 120 s y, como la comprensión
+  // y las descargas iban después de GPTR, el bucle descartaba todas las páginas por tiempo antes del juez. Ahora esas dos van en paralelo.
+  const reserve = Number(env.GPTR_RESERVE_SECONDS) || 210; const budget = opts.deadlineAt ? Math.floor((Number(opts.deadlineAt) - Date.now()) / 1000) - reserve : Infinity;
   const seconds = Math.max(60, Math.min(Number(env.GPTR_SECONDS) || 270, budget)); const verifyMode = env.GPTR_JUDGE === 'verify';
   if (budget < 60) glog(`AVISO: el plazo del pipeline deja ${Math.max(0, budget + reserve)}s para GPTR + juez; con menos de ${60 + reserve}s el juez puede quedarse sin páginas. Sube RESEARCH_RUN_TIMEOUT_MS.`);
   if (env.ENGINE_AGENT_TRACE_DIR) { try { mkdirSync(env.ENGINE_AGENT_TRACE_DIR, { recursive: true }); LOG_FILE = join(env.ENGINE_AGENT_TRACE_DIR, 'gptr.log'); } catch { LOG_FILE = null; } }
@@ -186,10 +201,15 @@ export async function runGptr(objective, brief, opts = {}) {
   const registryOn = objective === 'grant' && env.REGISTRY_TOOL !== 'off' && !verifyMode && [null, 'US'].includes(briefCountry(brief)) && (!opts.gptrRunner || Boolean(opts.registryFetcher));
   const fetcher = opts.registryFetcher || opts.fetcher || fetch;
   const registryByBrief = registryOn ? registrySeeds({ brief, queries: registryQueries(brief, opts.plan), today, env, fetcher, signal: opts.signal, log: glog }).catch((e) => ({ seeds: [], stats: { errors: [String(e?.message || e)] } })) : Promise.resolve({ seeds: [], stats: null });
+  // Con el proceso real de GPTR: la descarga de páginas y la comprensión del brief corren mientras GPTR busca, no después.
+  const live = !opts.gptrRunner && !verifyMode;
+  const prefetch = live && env.GPTR_PREFETCH !== 'off' ? startPrefetch({ logFile, env, fetcher: opts.fetcher || fetch, signal: opts.signal }) : null;
+  const understood = live && !opts.understood ? understandBrief(objective, brief, { env, today, fetcher: opts.fetcher, signal: opts.signal, chat: opts.chat }).catch(() => null) : opts.understood;
   let res = {}; let error = null;
   try { res = await (opts.gptrRunner || runGptrProcess)({ promptFile, mode, today, env, signal: opts.signal, seconds, logFile, verify: verifyMode }); }
   catch (e) { if (opts.signal?.aborted) throw e; error = String(e?.message || e); }
   clearInterval(ticker);
+  const pre = prefetch?.stop(); if (pre) glog(`descarga anticipada: ${pre.ok} páginas listas de ${pre.queued} URLs vistas (${pre.tried} intentadas) mientras GPTR buscaba`);
   // El log crudo de GPT Researcher vivía solo en /tmp: se copia junto a la traza para poder diagnosticar después.
   if (env.ENGINE_AGENT_TRACE_DIR) { try { copyFileSync(logFile, join(env.ENGINE_AGENT_TRACE_DIR, `gptr-raw-${objective}${opts.queries?.length ? '-followup' : ''}.log`)); } catch { /* no hubo log */ } }
   glog(`proceso terminó tras ${Math.round((Date.now() - started) / 1000)}s · timedOut=${Boolean(res.timedOut)} código=${res.code ?? 'n/d'} informe=${res.report || 'ninguno'}${error ? ' · error=' + error : ''}${res.stderr ? ' · stderr: ' + String(res.stderr).trim().slice(-300).replace(/\s+/g, ' ') : ''}`);
@@ -225,7 +245,7 @@ export async function runGptr(objective, brief, opts = {}) {
   const registry = { on: registryOn, numbers: numbers.length, seeds: regSeeds.length, notices: notices.length, brief: byBrief.stats, byNumber: byNumber.stats };
   if (!seeds.length) return { findings: [], leads: [], queries: [], audit: { objective, search: 'gptr', queries: 0, pages: 0, read: 0, unread: 0, dropped: {}, kept: 0, errors: [error || 'GPTR_NO_URLS'], gptr: { on: true, mode, judge: 'node', seconds: Math.round(searchMs / 1000), urls: 0, error: error || 'GPTR_NO_URLS', registry } } };
   glog(`juez de Node: ${seeds.length} páginas (${regSeeds.length} del registro oficial + ${seeds.length - regSeeds.length} de GPT Researcher); se abren todas y el modelo lee hasta ${judgeMax + regSeeds.length} elegidas por fechas`);
-  const judged = await (opts.judgeRunner || runAgentObjective)(objective, brief, { ...opts, env, today, seedUrls: seeds, assessMax: judgeMax + regSeeds.length, parallel: true, secondJudge: opts.secondJudge });
+  const judged = await (opts.judgeRunner || runAgentObjective)(objective, brief, { ...opts, env, today, seedUrls: seeds, assessMax: judgeMax + regSeeds.length, parallel: true, secondJudge: opts.secondJudge, ...(understood ? { understood } : {}), ...(prefetch ? { readers: { ...(opts.readers || {}), cached: prefetch.pages } } : {}) });
   glog(`juez listo: ${judged.findings?.length ?? 0} hallazgos (${(judged.findings || []).filter((f) => f.tier === 'main').length} verificados) · contactos Apollo: ${judged.audit?.contacts?.orgs ?? 0} organizaciones, ${judged.audit?.contacts?.credits ?? 0} créditos · total ${Math.round((Date.now() - started) / 1000)}s`);
   judged.audit = { ...judged.audit, gptr: { on: true, mode, judge: 'node', search_seconds: Math.round(searchMs / 1000), seconds: Math.round((Date.now() - started) / 1000), urls: urls.length, error, registry } };
   return judged;
