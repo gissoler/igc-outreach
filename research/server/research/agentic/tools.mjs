@@ -50,6 +50,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
       let page = null; let via = '';
       // Texto oficial ya provisto (registro federal): se usa tal cual, sin descargar.
       if (row.official && row.markdown) { page = { url: row.url, title: row.title, text: row.markdown }; via = 'registry'; }
+      else if (readers.cached?.get?.(row.url)) { page = readers.cached.get(row.url); via = 'prefetch'; }   // descargada mientras GPTR buscaba
       else if (readers.open) { page = await readers.open(row.url, { row, env, fetcher, signal }); via = 'injected'; }
       else if (row.markdown?.length > 80) { page = { url: row.url, title: row.title, text: row.markdown }; via = 'search'; }
       // args.cheap: solo lectores gratuitos (triage de muchas páginas); nunca gasta créditos de Jina o Firecrawl.

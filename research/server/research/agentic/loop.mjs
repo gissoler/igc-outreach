@@ -25,6 +25,16 @@ const compilerOf = (a) => ({
   official: a.criteria.official?.verdict === 'yes', money: 'unknown', non_dilutive: a.criteria.non_dilutive?.verdict || 'unknown', summary: a.about,
 });
 
+/** Comprensión del brief sin el resto del bucle: GPTR la lanza al empezar a buscar para no esperarla después. Devuelve null si falla. */
+export async function understandBrief(objective, brief, { env = process.env, today, fetcher, signal, chat = chatJSON } = {}) {
+  const prompt = understandPrompt({ brief, objective, today });
+  for (let retry = 0; retry < 2; retry++) {
+    try { const r = await chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: 'understand', role: 'compiler' }, { env, fetcher, signal }); const checked = validateUnderstand(r?.json ?? r); if (checked.ok) return checked.value ?? (r?.json ?? r); }
+    catch { if (signal?.aborted) return null; }
+  }
+  return null;
+}
+
 export async function runAgentObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = opts.today || new Date().toISOString().slice(0, 10); const trace = opts.trace || noopTrace;
   const tools = opts.tools || createTools({ env, fetcher: opts.fetcher, signal: opts.signal, trace, limits: opts.limits || {
@@ -131,7 +141,9 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   }
 
   const uPrompt = understandPrompt({ brief, objective, today });
-  const understood = await model(uPrompt, 'understand', validateUnderstand) || {
+  // opts.understood: comprensión ya hecha en paralelo con la búsqueda de GPTR (no se repite la llamada al terminar la búsqueda).
+  const early = opts.understood ? await Promise.resolve(opts.understood).catch(() => null) : null;
+  const understood = early || await model(uPrompt, 'understand', validateUnderstand) || {
     product_one_line: '', who_pays: '', sector: '', neighbor_sectors: [], stage: '', geography: '', assumptions: [], doubts: [],
   };
   trace.event('understand', { output: understood });
