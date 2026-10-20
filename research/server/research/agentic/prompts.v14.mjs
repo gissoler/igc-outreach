@@ -17,6 +17,23 @@ export const AGENT_CRITERIA = {
 export const criterionHelp = { ...CRITERION_HELP, ...EXTRA };
 const day = (today) => (today instanceof Date ? today : new Date(`${today || new Date().toISOString().slice(0, 10)}T00:00:00Z`)).toISOString().slice(0, 10);
 
+const clipTo = (v, n) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, n);
+/** P0.5 · Comprensión determinista desde el perfil: copia campos declarados, no infiere ni inventa (agent.understand/1). */
+export function understandFromBrief(brief = {}) {
+  const b = brief || {};
+  return {
+    product_one_line: clipTo(b.oneLiner || b.product || b.description, 500), who_pays: clipTo(b.buyer || b.customer || b.whoPays || b.who_pays, 300),
+    sector: clipTo(b.industry || b.sector, 200), neighbor_sectors: [], stage: clipTo(b.stage, 100), geography: clipTo(b.geography || b.country, 200),
+    assumptions: [], doubts: [],
+  };
+}
+/** La lectura del modelo completa el perfil; un campo vacío del modelo no borra lo declarado. */
+export function mergeUnderstood(base = {}, model = {}) {
+  const out = { ...base };
+  for (const [k, v] of Object.entries(model || {})) if (Array.isArray(v) ? v.length : String(v ?? '').trim()) out[k] = v;
+  return out;
+}
+
 export function understandPrompt({ brief, objective, today } = {}) {
   return { version: AGENT_PROMPT_VERSION, schema: UNDERSTAND_SCHEMA,
     system: 'Understand a funding brief before spending tools. Find ambiguity or contradictions, but do not invent facts. Ask only closed questions that can change search or criteria. Reply only JSON.',
@@ -35,7 +52,7 @@ export function stepPrompt({ state = {}, observation = null } = {}) {
     user: `Objective: ${objective}.\nCriteria:\n${ids.map((id) => `- ${criterionHelp[id]}`).join('\n')}\n\nState:\n${fence(JSON.stringify(state))}\n\nLast observation:\n${observationBlock}\n\nReturn agent.step/1. ${page ? 'Assessment is required because the observation is a page. Every yes/no needs a literal quote.' : 'Assessment must be null unless the observation is a page.'} Dates may be absent from a page: open a known link ref to look for them. Funding news is a lead: identify who funded whom, adjacent funders or sectors, and follow it using from_lead. Never put a URL in args; only refs returned by tools.${parallel ? PARALLEL_RULES : ''}`,
   };
 }
-const PARALLEL_RULES = ' Parallel mode: in one step you may open up to 8 refs at once (action open, args {"refs":[...]}) and run up to 4 searches at once (action search, args {"queries":[...]}). Opened pages come back already assessed as short summaries with their links, so assessment must be null. Prefer wide steps: many opens or searches per step, because every step takes about a minute. Follow link refs from the summaries to reach official pages. Use apollo for people: when a page gives you a verified funder, program or investor, call apollo (op organization with its domain, then op people with titles such as program officer, partner or director) to find who to contact; the budget is in budget_left. Time is limited: finish with the best finalists when budget_left.seconds is low.';
+const PARALLEL_RULES = ' Parallel mode: in one step you may open up to 8 refs at once (action open, args {"refs":[...]}) and run up to 4 searches at once (action search, args {"queries":[...]}). Opened pages come back assessed as short summaries with their links, so assessment must be null; a page still being read appears in reading and its summary arrives later in late_reads; a page with unread_by_model was not read by the model (it can never be a finalist), but its links and code triage (shape, banners, call_ids) can still guide you. Prefer wide steps: many opens or searches per step, because every step takes about a minute. Follow link refs from the summaries to reach official pages. Use apollo for people: when a page gives you a verified funder, program or investor, call apollo (op organization with its domain, then op people with titles such as program officer, partner or director) to find who to contact; the budget is in budget_left. Time is limited: finish with the best finalists when budget_left.seconds is low.';
 
 export const ASSESS_LITE_PROMPT_VERSION = 'agent.v14.4-lite';
 export const ASSESS_MIN_PROMPT_VERSION = 'agent.v14.4-min';
