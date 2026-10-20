@@ -37,7 +37,7 @@ export function fleetConfig(env = process.env) {
     const url = trim(env[`${P}_LLM_URL`]); const model = String(env[`${P}_LLM_MODEL`] || '').trim();
     const fb = String(env[`${P}_LLM_FALLBACK`] || '').trim().toLowerCase();
     roles[role] = url && model
-      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
+      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, stream: env[`${P}_LLM_STREAM`] === '1', thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
       : ['engine', 'chat'].includes(fb) && roles[fb]?.ready
         ? { ...roles[fb], alias: fb, fallback: fb }
         : { url: '', model: '', ready: false, fallback: null };
@@ -85,6 +85,46 @@ export async function postChat(target, body, opts = {}) {
   });
 }
 
+/**
+ * /chat/completions en streaming (SSE). Mide sin modelo de por medio: tiempo al primer token, tokens de salida
+ * (por `usage` si el servidor lo manda con stream_options.include_usage; si no, por número de fragmentos) y separa
+ * `reasoning_content` del contenido. `progress` (objeto) se actualiza mientras llega la respuesta, así quien corta la
+ * llamada por tiempo puede registrar lo que sí se generó. Un error lleva `.partial` con ese mismo progreso.
+ */
+export async function postChatStream(target, body, { apiKey, timeoutMs = 120_000, fetcher = fetch, signal, progress = {} } = {}) {
+  const started = Date.now(); Object.assign(progress, { chunks: 0, content_chars: 0, reasoning_chars: 0, ttft_ms: null, started });
+  const timeout = AbortSignal.timeout(timeoutMs); const sig = signal ? AbortSignal.any([signal, timeout]) : timeout;
+  const fail = (e) => { throw Object.assign(e instanceof Error ? e : new Error(String(e)), { partial: { ...progress, ms: Date.now() - started } }); };
+  let response;
+  try {
+    response = await fetcher(`${target.url}/chat/completions`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(apiKey || target.apiKey ? { Authorization: `Bearer ${apiKey || target.apiKey}` } : {}) },
+      body: JSON.stringify({ ...body, stream: true, stream_options: { include_usage: true } }), signal: sig });
+  } catch (e) { fail(e); }
+  if (!response.ok) { const text = await response.text().catch(() => ''); fail(new Error(`vLLM HTTP ${response.status} en /chat/completions${text ? `: ${text.slice(0, 160)}` : ''}`)); }
+  let content = ''; let reasoning = ''; let usage = null; let finish = null; let model = null; let buffer = '';
+  const decoder = new TextDecoder();
+  const take = (line) => {
+    const data = line.replace(/^data:\s*/, '').trim(); if (!data || data === '[DONE]') return;
+    let chunk; try { chunk = JSON.parse(data); } catch { return; }
+    model ||= chunk.model || null; if (chunk.usage) usage = chunk.usage;
+    for (const choice of chunk.choices || []) {
+      const d = choice.delta || {}; const c = d.content || ''; const r = d.reasoning_content || d.reasoning || '';
+      if (c || r) { progress.chunks++; if (progress.ttft_ms === null) progress.ttft_ms = Date.now() - started; progress.first_at ||= Date.now(); progress.last_at = Date.now(); }
+      content += c; reasoning += r; progress.content_chars = content.length; progress.reasoning_chars = reasoning.length;
+      if (choice.finish_reason) finish = choice.finish_reason;
+    }
+  };
+  try {
+    for await (const part of response.body) {
+      buffer += decoder.decode(part, { stream: true });
+      let at; while ((at = buffer.indexOf('\n')) >= 0) { const line = buffer.slice(0, at); buffer = buffer.slice(at + 1); if (line.startsWith('data:')) take(line); }
+    }
+    if (buffer.startsWith('data:')) take(buffer);
+  } catch (e) { fail(e); }
+  return { content, reasoning, usage, finish_reason: finish, model: model || target.model, ttft_ms: progress.ttft_ms, ms: Date.now() - started, chunks: progress.chunks,
+    decode_ms: progress.first_at && progress.last_at ? progress.last_at - progress.first_at : null };
+}
+
 /** Primer objeto JSON del texto, sin bloques <think>. */
 export function parseJsonContent(content) {
   let text = String(content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
@@ -119,13 +159,17 @@ export function agentMaxTokens(purpose, env = process.env) {
 }
 
 /** Chat con salida estructurada (response_format json_schema). */
-export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens }, { env = process.env, fetcher = fetch, signal } = {}) {
+export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens, stream }, { env = process.env, fetcher = fetch, signal, progress } = {}) {
   const cfg = fleetConfig(env);
   const target = model ? { ...cfg.roles[role], model } : cfg.roles[role];
   if (!target?.url || !target.model) throw new Error(`Fleet: role not configured: ${role} (URL and model).`);
   const jsonMode = target.jsonMode !== false;
   const started = Date.now();
-  const data = await postChat(target, {
+  const useStream = stream ?? target.stream === true;   // *_LLM_STREAM=1: cuenta tokens aunque la llamada se corte
+  const send = useStream
+    ? async (t, body, o) => { const r = await postChatStream(t, body, { ...o, progress: progress || {} }); return { model: r.model, usage: r.usage || (r.chunks ? { prompt_tokens: 0, completion_tokens: r.chunks, estimated: true } : null), choices: [{ finish_reason: r.finish_reason, message: { content: r.content } }] }; }
+    : postChat;
+  const data = await send(target, {
     model: target.model,
     temperature,
     ...(seed === undefined ? {} : { seed }),
