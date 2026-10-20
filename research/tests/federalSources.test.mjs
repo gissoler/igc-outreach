@@ -3,7 +3,7 @@
    federales de EE. UU. Estas pruebas fijan qué briefs activan cada punto de partida y que los demás no. */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { portalsFor, loadPortals } from '../server/research/grantSources.mjs';
+import { portalsFor, portalSeeds, loadPortals, loadRhtpStateSources } from '../server/research/grantSources.mjs';
 import { expandTerms, vehicleTerms, lexiconTerms } from '../server/research/expand.mjs';
 
 const igc = { company: 'IGC Pharma', industry: "Alzheimer's, cognitive screening, digital health", product: 'MINT-AD AI platform for cognitive risk screening',
@@ -36,6 +36,34 @@ test('las entradas federales apuntan a páginas oficiales y el catálogo conserv
   assert.ok(all.filter((p) => p.scope === 'state').length >= 20);
 });
 
+test('el catálogo RHTP conecta una fuente por cada estado con procedencia verificable', () => {
+  const stateSources = loadRhtpStateSources();
+  assert.equal(stateSources.length, 50);
+  assert.equal(new Set(stateSources.map((p) => p.state)).size, 50);
+  assert.equal(new Set(stateSources.flatMap((p) => p.stateCodes)).size, 50);
+  for (const source of stateSources) {
+    assert.match(source.url, /^https:\/\//);
+    assert.equal(source.program, 'RHTP');
+    assert.equal(source.source.sheet, 'RFPs Status');
+    assert.match(source.source.sha256, /^[a-f0-9]{64}$/);
+  }
+});
+
+test('RHTP nacional ofrece los 50 estados; con estado limita la fuente estatal', () => {
+  const national = portalsFor({ country: 'US', searchTerms: 'RHTP' });
+  assert.equal(national.filter((p) => p.program === 'RHTP').length, 50);
+  assert.deepEqual(national.filter((p) => p.program === 'RHTP').slice(0, 3).map((p) => p.state), ['Alaska', 'Virginia', 'Mississippi']);
+
+  const maryland = portalsFor({ country: 'US', state: 'MD', searchTerms: 'Rural Health Transformation Program' });
+  assert.deepEqual(maryland.filter((p) => p.program === 'RHTP').map((p) => p.state), ['Maryland']);
+  assert.equal(portalSeeds({ country: 'US', state: 'MD', searchTerms: 'RHTP' }).find((p) => /Maryland Rural/.test(p.title)).seed, 'rhtp-state-sources/1');
+});
+
+test('un brief rural genérico no activa automáticamente las 50 fuentes RHTP', () => {
+  const generic = portalsFor({ country: 'US', industry: 'rural health', product: 'telehealth' });
+  assert.equal(generic.filter((p) => p.program === 'RHTP').length, 0);
+});
+
 test('consultas: RHTP y SBIR entran justo después de las palabras del usuario, antes que el modelo', async () => {
   assert.deepEqual(vehicleTerms(igc), ['Rural Health Transformation Program', 'SBIR STTR small business innovation research']);
   const modelFetch = async () => ({ ok: true, json: async () => ({ choices: [{ message: { content: '{"terms":["alpha one","beta two","gamma three"]}' } }] }) });
@@ -45,4 +73,10 @@ test('consultas: RHTP y SBIR entran justo después de las palabras del usuario, 
   assert.ok(terms.includes('SBIR STTR small business innovation research'), terms.join(' | '));
   assert.ok(lexiconTerms({ industry: 'wellness', product: 'app', description: 'tell us about a startup' }).every((t) => !/SBIR/.test(t)), 'el pronombre "us" no activa EE. UU.');
   assert.ok(vehicleTerms({ industry: 'biotech', product: 'x', description: 'Spanish for-profit biotech startup' }).every((t) => !/SBIR/.test(t)), 'sin EE. UU. no hay SBIR');
+});
+
+test('consultas: los programas escritos por el usuario tienen prioridad sobre sectores genéricos', async () => {
+  const terms = await expandTerms({ ...igc, searchTerms: 'Rural Health Transformation Program; dementia risk reduction' }, { QUERY_EXPAND_MAX: '4' });
+  assert.deepEqual(terms.slice(0, 2).map((x) => x.term), ['Rural Health Transformation Program', 'dementia risk reduction']);
+  assert.deepEqual(terms.slice(0, 2).map((x) => x.source), ['yours', 'yours']);
 });

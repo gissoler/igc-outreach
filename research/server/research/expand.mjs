@@ -34,6 +34,8 @@ const valid = (t) => t.length >= 3 && t.length <= 60 && !/[{}<>]/.test(t);
 
 /** The user's own words for the need: first sector tags, else the product. */
 export function primaryTerms(b) {
+  const exact = String(b.searchTerms || '').split(/[,;|]/).map(clean).filter(valid);
+  if (exact.length) return exact.slice(0, 3);
   const tags = String(b.industry || '').split(/[,;|]/).map(clean).filter(valid);
   return (tags.length ? tags.slice(0, 2) : [clean(b.product)]).filter(valid);
 }

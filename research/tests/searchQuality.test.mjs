@@ -16,6 +16,7 @@ import { buildRunAudit } from '../server/research/runAudit.mjs';
 
 const fx = JSON.parse(readFileSync(new URL('./fixtures/search-quality-cases.json', import.meta.url), 'utf8'));
 const mentiva = JSON.parse(readFileSync(new URL('../eval/briefs/mentiva.json', import.meta.url), 'utf8'));
+const mentivaForProfit = { ...mentiva, entityType: 'for_profit' };
 const page = (id) => fx.pages.find((p) => p.id === id);
 const TODAY = '2026-09-30';
 const LOI_BLOCK = 'UPCOMING DEADLINES Letter of Intent: September 14, 2026; Invited Full Proposal: TBD. ELIGIBILITY Existing companies and new startups are both eligible.';
@@ -36,7 +37,7 @@ test('Biohub: un informe de impacto (blog) no es una convocatoria aunque el mode
 /* ── Caso 3 · taller para estudiantes de UW-Madison ── */
 test('UW-Madison I-Corps: evento/cohorte para estudiantes y faculty → cerrado, no es convocatoria y no elegible', () => {
   const p = page('uw');
-  const v = verifyFinding(fx.modelReads.uw, p, 'grant', { today: TODAY, brief: mentiva });
+  const v = verifyFinding(fx.modelReads.uw, p, 'grant', { today: TODAY, brief: mentivaForProfit });
   assert.equal(v.keep, false);
   assert.deepEqual(v.reasons, ['closed', 'not_a_call:event', 'not_eligible', 'scope_mismatch']);
   assert.equal(v.deadline, '2026-09-09');
@@ -45,7 +46,7 @@ test('UW-Madison I-Corps: evento/cohorte para estudiantes y faculty → cerrado,
   assert.equal(v.eligibility.decision, 'no');
   assert.match(v.eligibility.quote, /graduate student/);
   // Aunque fuera antes del plazo, sigue siendo un evento para estudiantes: nunca entra.
-  const early = verifyFinding(fx.modelReads.uw, p, 'grant', { today: '2026-09-01', brief: mentiva });
+  const early = verifyFinding(fx.modelReads.uw, p, 'grant', { today: '2026-09-01', brief: mentivaForProfit });
   assert.equal(early.keep, false); assert.equal(early.drop, 'not_a_call:event'); assert.ok(early.reasons.includes('not_eligible'));
 });
 
@@ -145,7 +146,7 @@ test('tipo de página: blog, noticia, cohorte, evento y directorio no son convoc
 
 /* ── Elegibilidad ── */
 test('elegibilidad: el código la decide contra el brief (startup con fines de lucro) y con cita', () => {
-  const prof = applicantProfile(mentiva);
+  const prof = applicantProfile({ ...mentiva, entityType: 'for-profit startup' });
   assert.equal(prof.entity, 'for_profit_startup'); assert.deepEqual(prof.outside.sort(), ['EU', 'US']);
   assert.equal(checkApplicant('Eligibility: open to registered nonprofits and charities only.', prof).decision, 'no');
   assert.equal(checkApplicant('Who can apply: universities and research institutes.', prof).decision, 'no');
@@ -176,7 +177,7 @@ const casesChat = async ({ name, user }) => {
 test('motor: los tres casos reales se descartan con motivo y recorrido; el año viejo de la consulta se corrige', async () => {
   const seen = [];
   const search = async (q) => { seen.push(q); return fx.pages.map((p) => ({ url: p.url, title: p.title, markdown: p.text, providers: ['exa'] })); };
-  const r = await runObjective('grant', mentiva, { chat: casesChat, search, today: TODAY, rounds: 1 });
+  const r = await runObjective('grant', mentivaForProfit, { chat: casesChat, search, today: TODAY, rounds: 1 });
   assert.equal(r.findings.length, 0);
   assert.equal(r.audit.dropped['not_a_call:report'], 1); assert.equal(r.audit.dropped.closed, 2);
   assert.ok(seen.includes('2026 Chan Zuckerberg Initiative Neurodegeneration Challenge Network'), JSON.stringify(seen));

@@ -11,6 +11,7 @@ export const ENTITY_TYPES = ['for_profit', 'nonprofit', 'academic'];
 export const RELATIONS = ['same', 'subsidiary', 'spinout', 'sponsored', 'portfolio', 'client', 'other'];
 export const MATURITY = ['idea', 'prototype', 'preclinical', 'clinical_phase_1', 'clinical_phase_2', 'clinical_phase_3', 'marketed', 'other'];
 export const ROUNDS = ['pre-seed', 'seed', 'series-a', 'series-b', 'growth'];
+export const APPLICANT_ROLES = ['direct', 'subcontractor', 'either'];
 export const SECTORS = ['AI', 'biotech', 'digital health', 'pharma', 'medtech', 'neuro', 'mental health', 'diagnostics', 'climate', 'fintech', 'enterprise', 'consumer'];
 
 /* Ontología del perfil. `ask` = pregunta guiada; `required` = necesario para investigar. */
@@ -20,7 +21,7 @@ export const FIELDS = [
   { path: 'funding.objectives', label: 'What you\'re looking for', kind: 'enumList', options: OBJECTIVES, required: true, ask: 'What are you looking for: investment (VC or angels), non-dilutive grants, partnering, sponsorship or debt? Can be more than one.' },
   { path: 'product.one_liner', label: 'What it does', kind: 'text', required: true, ask: 'In one sentence: what does the product do, and for whom?' },
   { path: 'industry.sectors', label: 'Sector', kind: 'list', required: true, ask: 'Which sector or therapeutic area do you work in?' },
-  { path: 'product.maturity', label: 'Stage', kind: 'enum', options: MATURITY, required: true, ask: 'Where is it: idea, prototype, preclinical, clinical or on the market?' },
+  { path: 'product.maturity', label: 'Stage', kind: 'enum', options: MATURITY, ask: 'Where is it: idea, prototype, preclinical, clinical or on the market?' },
   { path: 'geography', label: 'Geography', kind: 'list', required: true, ask: 'Where do you operate and which countries do you want funding from?' },
   { path: 'funding.amount_usd', label: 'Amount (USD)', kind: 'number', ask: 'Roughly how much do you need, in USD?' },
   { path: 'funding.round', label: 'Round', kind: 'enum', options: ROUNDS, ask: 'Is it a pre-seed, seed or Series A round?' },
@@ -35,6 +36,9 @@ export const FIELDS = [
   { path: 'company.entity_type', label: 'Type of organization', kind: 'enum', options: ENTITY_TYPES, grant: true, ask: 'Who would receive the grant: a for-profit company, a nonprofit, or a university or research institute? Many calls only accept one of these.' },
   { path: 'company.country', label: 'Country of the applicant', kind: 'text', grant: true, ask: 'In which country is the applicant based? Many calls only fund local applicants.' },
   { path: 'company.state', label: 'State or region of the applicant', kind: 'text', grant: true, ask: 'In which state or region (and city) is the applicant based? State and regional programs fund only local applicants.' },
+  { path: 'funding.applicant_role', label: 'How you can participate', kind: 'enum', options: APPLICANT_ROLES, grant: true, ask: 'Should I look for grants you can apply to directly, subcontractor or vendor routes, or both?' },
+  { path: 'project.target_population', label: 'Target population', kind: 'text', grant: true, ask: 'Which population should the grant serve? For example, older adults in rural counties at risk of dementia.' },
+  { path: 'funding.search_terms', label: 'Programs and search terms', kind: 'list', grant: true, ask: 'Which exact programs or phrases must the search preserve? For example, Rural Health Transformation Program, RHTP, rural health or dementia screening.' },
   { path: 'company.city', label: 'City of the applicant', kind: 'text' },
   { path: 'company.relation', label: 'Relationship to the company', kind: 'enum', options: RELATIONS },
   { path: 'criteria', label: 'Criteria', kind: 'list' },
@@ -44,7 +48,7 @@ export const FIELDS = [
   { path: 'company.website', label: 'Website', kind: 'text' },
 ];
 const FIELD = Object.fromEntries(FIELDS.map((f) => [f.path, f]));
-const LONG_TEXT = new Set(['company.traction', 'funding.use_of_funds', 'product.differentiation', 'product.business_model', 'company.team']);
+const LONG_TEXT = new Set(['company.traction', 'funding.use_of_funds', 'project.target_population', 'product.differentiation', 'product.business_model', 'company.team']);
 const ASK = FIELDS.filter((f) => f.ask);
 export const LIMITS = { docChars: 60_000, docs: 8, messageChars: 4000, history: 60 };
 
@@ -186,6 +190,15 @@ export function heuristicExtract(text) {
     if (timeline) once('funding.timeline', `${timeline[1]} ${timeline[2].toLowerCase()}`, s);
     const use = s.match(/\b(?:uso de (?:los )?fondos|use of funds|para financiar|to fund|los fondos se usar[aá]n para)\s*:?\s*(.{8,220})/i);
     if (use) once('funding.use_of_funds', clip(use[1], 220), s);
+    const population = s.match(/\b(?:target population|population served|poblaci[oó]n objetivo|serv(?:e|es|ing)|sirve a|for)\s*:?\s*((?:older adults?|seniors?|rural (?:adults?|communities|counties|residents?)|adultos mayores|comunidades rurales)[^.]{0,180})/i);
+    if (population) once('project.target_population', clip(population[1], 220), s);
+    const grantTerms = [...s.matchAll(/\b(Rural Health Transformation Program|RHTP|rural health|dementia risk reduction|cognitive screening|MINT-AD|PRISM)\b/gi)].map((m) => m[1]);
+    if (grantTerms.length) push('funding.search_terms', uniq(grantTerms), s);
+    const directRole = /\b(?:apply directly|direct applications?|direct applicant|aplicar directamente|solicitante directo)\b/i.test(s);
+    const partnerRole = /\b(?:subcontractor|subcontract|subaward|vendor|subcontratista|subcontrato|proveedor)\b/i.test(s);
+    if (directRole && partnerRole) once('funding.applicant_role', 'either', s);
+    else if (directRole) once('funding.applicant_role', 'direct', s);
+    else if (partnerRole) once('funding.applicant_role', 'subcontractor', s);
     if (/\b(no queremos|no buscamos|no aceptamos|evitar|evitamos|excluir|excluimos|avoid|exclude|not interested|no trabajamos con)\b/.test(n)) push('constraints', [clip(s, 200)], s);
     if (/\b(preferimos|prefer\w*|idealmente|ideally|que lideren|lead investor|que inviertan en|investors who|smart money)\b/.test(n)) push('criteria', [clip(s, 200)], s);
     // No es el sitio de la empresa: enlaces internos de este mismo producto, no del negocio del usuario.
@@ -233,6 +246,7 @@ function seedFromProfile(s, p) {
   set('constraints', i.constraints); set('criteria', i.criteria);
   set('funding.use_of_funds', i.use_of_funds); set('funding.timeline', i.timeline); set('company.website', i.website);
   set('company.traction', i.traction); set('company.team', i.team); set('product.business_model', i.business_model); set('product.differentiation', i.differentiation);
+  set('funding.applicant_role', i.applicant_role); set('project.target_population', i.target_population); set('funding.search_terms', i.search_terms);
   if (i.objectives && ROUNDS.includes(p.project?.stage)) set('funding.round', p.project.stage);
 }
 
@@ -287,18 +301,18 @@ export function editField(s, path, value) {
    score (ticket / ceiling fit), the round in every investor query, use of funds in semantic search,
    and traction is the proof point investors and the drafts rely on. Progress bar, questions and
    review all use this same list, so 100% means "the search has what it needs". */
+const CORE_FIELDS = ['company.name', 'product.name', 'funding.objectives', 'product.one_liner', 'industry.sectors', 'geography'];
 export const GOAL_FIELDS = {
-  investment: ['funding.round', 'funding.amount_usd', 'company.traction'],
-  grant: ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state'],
+  investment: ['product.maturity', 'funding.round', 'funding.amount_usd', 'company.traction'],
+  grant: ['company.entity_type', 'funding.applicant_role', 'project.target_population', 'funding.search_terms'],
   partnering: ['company.traction', 'product.differentiation'],
   sponsorship: ['funding.amount_usd', 'funding.use_of_funds'],
   debt: ['funding.amount_usd', 'company.traction'],
 };
 export function planFields(s) {
-  const base = FIELDS.filter((f) => f.required).map((f) => f.path);
   const goals = fieldValue(s, 'funding.objectives') || [];
   const extra = goals.flatMap((g) => GOAL_FIELDS[g] || []);
-  return [...new Set([...base, ...extra])];
+  return [...new Set([...CORE_FIELDS, ...extra])];
 }
 const inPlan = (s, path) => planFields(s).includes(path);
 /** Plan fields still empty. A skipped ("I don't know") field stays missing: 100% only when everything is there. */
@@ -339,6 +353,9 @@ export function closingLine(s) {
     'funding.use_of_funds': 'so the message has a concrete milestone',
     'company.entity_type': 'because many grants limit who may apply',
     'company.country': 'because grant eligibility depends on the applicant country',
+    'funding.applicant_role': 'so I separate direct applications from partner, subcontractor and vendor routes',
+    'project.target_population': 'so I match the people and communities named by each program',
+    'funding.search_terms': 'so I preserve the exact programs and words you supplied',
   }[path] || 'so the search is specific';
   const example = field?.ask?.match(/(?:For example|e\.g\.)[: ]+(.+?)(?:[.?]|$)/i)?.[1];
   const prompt = field?.ask || `What should I know about ${field?.label?.toLowerCase() || 'this'}?`;
@@ -358,7 +375,7 @@ export function modelInfo(env = {}) {
   const t = intakeTargets(env)[0];
   return { configured: Boolean(t), model: t ? t.model : null, reasoning: env.INTAKE_LLM_THINK === 'true' || Boolean(t?.reasoningEffort) };
 }
-const SYSTEM = `You run the intake for IGC Outreach, and you think like a seasoned early-stage investor on a first screening call. The goal: build an accurate profile of what the founder wants to fund so investors, grants or partners can be researched.
+const SYSTEM = `You run the intake for IGC Outreach as a funding research specialist. Adapt to the requested objective: grants are not investor outreach. The goal is an accurate profile for investors, grants or partners.
 Reply ONLY with a JSON object: {"ack": string, "question": string, "asking": string|null, "skipped": string|null, "updates": [{"path": string, "value": any, "quote": string}]}
 Allowed fields (path → type):
 ${FIELDS.map((f) => `- ${f.path}: ${f.kind}${f.options ? ` ∈ {${f.options.join(', ')}}` : ''} — ${f.label}`).join('\n')}
@@ -367,11 +384,13 @@ How to extract:
 2. "quote" is a LITERAL fragment from the message or a document that supports the value. If you inferred it, leave quote empty.
 3. funding.amount_usd is a USD number (1.5M → 1500000). geography uses codes (US, CO, MX, UK, EU, LATAM, GLOBAL...) or names.
 4. company.name is the company or project that RECEIVES the funding (e.g. Mentiva). organization.name is the organization the user represents, only if different (e.g. IGC seeking sponsorship for Mentiva); company.relation describes that relationship.
-5. Text fields (traction, use of funds, why you win, business model, team) should be short, specific summaries with numbers when available.
+5. Text fields should be short, specific summaries with numbers when available. Traction contains only results already achieved. Future goals, planned pilots, targets and intended outcomes are not traction; put them in use of funds, timeline or description, or leave traction empty.
+5a. Preserve the user's exact named programs and search phrases in funding.search_terms. Do not replace Rural Health Transformation Program, RHTP, rural, a population, disease or product with a broader label.
+5b. For grants, distinguish direct applicant from subcontractor, subaward, vendor or partner routes. Never infer a pre-seed or other investment round unless the user explicitly asks for investment.
 5b. competitors contains only NAMED companies or products. Generic alternatives such as classes, professionals, apps, tests or events belong in differentiation, never competitors or constraints.
 How to reply:
 6. English only. No filler ("Great!", "Thanks for sharing"), no lists, never restate the whole profile.
-7. "ack": ONE short sentence (max 20 words) naming only what is NEW in this turn (a number, a date, a milestone). If they sent a document, name it. If nothing new was learned, "ack" is "".
+7. "ack": ONE short sentence (max 40 words). If the user asks a direct question about the setup, answer it from current_profile and these rules; otherwise name only what is NEW. If nothing new was learned, "ack" is "".
 8a. Write for a founder who has never raised money. Use plain words; never use jargon such as "traction", "runway", "LOI" or "key data" without saying what it means in the same sentence. End with a short example answer in parentheses, e.g. (for example: "about 2 million dollars").
 8b. If the founder's last reply shows they did not understand the previous question ("what do you mean?", a confused or off-topic answer), ask the SAME open question again in simpler words with a concrete example, instead of moving on.
 8. "question": exactly ONE question, the one a sharp investor would ask next, chosen ONLY from "open_questions". Put its path in "asking". Make it specific to this company (use their product name and facts), max 30 words, ending with "?".
@@ -587,7 +606,11 @@ export function planResearch(s, env = {}) {
   const skipped = [];
   const add = (goal, source, why, status = 'activo', cost = 'gratis') => steps.push({ goal, source, why, status, cost });
   if (objectives.includes('grant')) {
-    add('Grants', 'Grants.gov', 'Open federal calls: dates, ceilings and published contacts.');
+    add('Grants', env.SIMPLER_GRANTS_API_KEY ? 'Simpler.Grants.gov + Grants.gov' : 'Grants.gov', 'Open federal calls: dates, ceilings and published contacts.');
+    const grantContext = `${(fieldValue(s, 'funding.search_terms') || []).join(' ')} ${fieldValue(s, 'project.target_population') || ''} ${sectors}`;
+    if (/\brural\b|rhtp|rural health transformation/i.test(grantContext)) {
+      add('Grants', 'CMS Rural Health Transformation + Rural Health Information Hub', 'Official federal program context and state-level rural health funding routes.');
+    }
     if (health) {
       add('Grants', 'NIH RePORTER', 'Funded projects and program officers in the area.');
       add('Grants', 'Foundation radar (ADDF, CDMRP, a2)', 'Foundation cycles and specialized programs.');
@@ -626,7 +649,8 @@ export function toProfile(s, base, user, env = {}) {
     project: {
       ...base.project,
       name: v('product.name') || '', one_liner: v('product.one_liner') || '', description: v('product.description') || v('product.one_liner') || '',
-      sectors: v('industry.sectors') || [], stage: v('funding.round') || base.project?.stage || 'pre-seed',
+      sectors: v('industry.sectors') || [], keywords: [...new Set([...(base.project?.keywords || []), ...(v('funding.search_terms') || [])])],
+      stage: v('funding.round') || (objectives.includes('investment') ? base.project?.stage || 'pre-seed' : 'other'),
       raise_usd: v('funding.amount_usd') || null, geo: v('geography') || [],
       funding_types: [...new Set(objectives.map((o) => FUNDING_MAP[o]))],
       venture: v('company.name') || '',
@@ -636,6 +660,7 @@ export function toProfile(s, base, user, env = {}) {
     intake: {
       objectives, maturity: v('product.maturity') || 'other', competitors, criteria: v('criteria') || [], constraints: v('constraints') || [],
       use_of_funds: v('funding.use_of_funds') || '', traction: v('company.traction') || '', team: v('company.team') || '', business_model: v('product.business_model') || '', differentiation: v('product.differentiation') || '', timeline: v('funding.timeline') || '', website: v('company.website') || '',
+      applicant_role: v('funding.applicant_role') || '', target_population: v('project.target_population') || '', search_terms: v('funding.search_terms') || [],
       organization: v('organization.name') || '', relation: v('company.relation') || '', entity_type: v('company.entity_type') || '', country: v('company.country') || '', state: v('company.state') || '', city: v('company.city') || '',
       documents: s.documents.map((d) => ({ name: d.name, chars: d.chars, at: d.at })), evidence,
       plan: planResearch(s, env), confirmedAt: new Date().toISOString(),

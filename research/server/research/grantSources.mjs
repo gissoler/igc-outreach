@@ -206,33 +206,52 @@ export async function sbir(client, brief, plan, { emit = () => {}, max = 12 } = 
 }
 
 /* ── Jurisdicción: catálogo de portales ─────────────────────────────── */
-let catalog = null;
+let catalog = null; let rhtpCatalog = null;
 export const loadPortals = (path = new URL('./grantPortals.json', import.meta.url)) => (catalog ||= JSON.parse(readFileSync(path, 'utf8')));
-export const resetPortals = () => { catalog = null; };
+export const loadRhtpStateSources = (path = new URL('./rhtpStateSources.json', import.meta.url)) => {
+  if (rhtpCatalog) return rhtpCatalog;
+  const raw = JSON.parse(readFileSync(path, 'utf8'));
+  const priority = new Map((raw.priority?.states || []).map((state, index) => [norm(state), index]));
+  rhtpCatalog = (raw.sources || []).map((source) => ({
+    scope: 'state', country: 'United States', countryNames: ['US', 'USA', 'United States of America', 'Estados Unidos'],
+    state: source.state, stateCodes: [source.stateCode], name: `${source.state} Rural Health Transformation Program`, url: source.url,
+    program: 'RHTP', catalog: raw.schema, topics: ['rural health transformation program', 'rhtp'],
+    notes: 'State RHTP source page. Verify the current solicitation status, deadline and eligibility on the live page.',
+    source: { ...raw.source, row: source.sourceRow }, seedPriority: priority.has(norm(source.state)) ? priority.get(norm(source.state)) : 100 + source.sourceRow,
+  })).sort((a, b) => a.seedPriority - b.seedPriority);
+  return rhtpCatalog;
+};
+export const resetPortals = () => { catalog = null; rhtpCatalog = null; };
 const sameName = (a, b) => norm(a) === norm(b);
 /** Portales aplicables a la jurisdicción del brief: nacionales del país + estatales/regionales del estado indicado (+ ciudad). Coincidencia por nombre normalizado o código, no por palabras sueltas. */
 const US_RX = /\b(?:u\.?s\.?a?|united states|estados unidos)\b/i;
+const RHTP_RX = /\b(?:rhtp|rural health transformation(?: program)?)\b/i;
 /** Texto del brief sobre el que se comparan los temas de un portal (minúsculas). */
-const briefTopicText = (brief) => [brief.industry, brief.product, brief.description, brief.oneLiner, brief.useOfFunds, brief.company].map(clean).join(' ').toLowerCase();
+const briefTopicText = (brief) => [brief.industry, brief.searchTerms, brief.targetPopulation, brief.product, brief.description, brief.oneLiner, brief.useOfFunds, brief.company].map(clean).join(' ').toLowerCase();
 /** Condiciones opcionales de un portal: entityTypes (si el brief declara tipo de entidad, debe estar en la lista) y topics (algún término en el brief). */
 function portalApplies(p, brief) {
   if (p.entityTypes?.length && brief.entityType && !p.entityTypes.includes(brief.entityType)) return false;
   if (p.topics?.length) { const text = briefTopicText(brief); if (!p.topics.some((t) => text.includes(t))) return false; }
   return true;
 }
-export function portalsFor(brief, portals = loadPortals()) {
+export function portalsFor(brief, portals = loadPortals(), rhtpSources = loadRhtpStateSources()) {
   // Sin país explícito, un brief que dice estar en EE. UU. (geografía o domicilio) usa los portales de ese país.
   const country = clean(brief.country) || (US_RX.test(`${brief.geography || ''} ${brief.domicile || ''}`) ? 'United States' : '');
   const state = clean(brief.state); const city = clean(brief.city);
   if (!country && !state && !city) return [];
-  return portals.filter((p) => {
+  const wantsRhtp = RHTP_RX.test(briefTopicText(brief));
+  const available = wantsRhtp ? [...portals, ...rhtpSources] : portals;
+  return available.filter((p) => {
     if (!portalApplies(p, brief)) return false;
     const inCountry = !country || [p.country, ...(p.countryNames || [])].some((n) => sameName(n, country));
     if (!inCountry) return false;
     if (p.scope === 'country') return true;
-    if (p.scope === 'state') return Boolean(state) && [p.state, ...(p.stateCodes || [])].some((n) => sameName(n, state));
+    if (p.scope === 'state') {
+      if (p.program === 'RHTP' && wantsRhtp && !state) return true;
+      return Boolean(state) && [p.state, ...(p.stateCodes || [])].some((n) => sameName(n, state));
+    }
     if (p.scope === 'city') return Boolean(city) && sameName(p.city, city);
     return false;
   });
 }
-export const portalSeeds = (brief, portals) => portalsFor(brief, portals).map((p) => ({ url: p.url, title: p.name, description: p.notes || '', markdown: '', providers: ['portal-catalog'], family: 'portal', seed: 'portal-catalog' }));
+export const portalSeeds = (brief, portals, rhtpSources) => portalsFor(brief, portals, rhtpSources).map((p) => ({ url: p.url, title: p.name, description: p.notes || '', markdown: '', providers: ['portal-catalog'], family: 'portal', seed: p.catalog || 'portal-catalog', ...(p.source ? { source: p.source } : {}) }));
