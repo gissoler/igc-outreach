@@ -21,7 +21,7 @@ test('P0.6 consultas de siembra: términos exactos declarados en el brief; si no
 test('P0.6 registry grants_gov: convocatorias como refs abribles sin red, guide_ref oficial del NIH, sin gastar búsquedas web', async () => {
   const urls = []; const trace = traceOf();
   const fetcher = async (url, init) => { urls.push(url); return new Response(JSON.stringify(search2(JSON.parse(init.body).keyword)), { status: 200 }); };
-  const tools = createTools({ env: {}, fetcher, trace });
+  const tools = createTools({ env: { ENGINE_AGENT_REGISTRY_DETAIL: '0' }, fetcher, trace });
   const out = await tools.registry({ source: 'grants_gov', query: 'Alzheimer MRI biomarker' });
   assert.equal(out.rows.length, 2); assert.equal(out.rows[0].ref, 'r1.1'); assert.equal(out.rows[0].number, 'PAR-25-272');
   assert.equal(out.rows[0].guide_ref, 'r1.1.g'); assert.equal(tools.refs.get('r1.1.g').url, nihGuideUrl('PAR-25-272'));

@@ -14,7 +14,7 @@ const tools = (trace) => ({
 });
 
 test('P0.2 defaults por propósito y variables de entorno para cambiarlos', () => {
-  assert.deepEqual({ ...AGENT_MAX_TOKENS_DEFAULTS }, { understand: 1500, step: 400, assess: 2000, judge: 2000 });
+  assert.deepEqual({ ...AGENT_MAX_TOKENS_DEFAULTS }, { understand: 1500, step: 800, assess: 2000, judge: 2000 });
   assert.equal(agentMaxTokens('assess', {}), 2000);
   assert.equal(agentMaxTokens('assess', { ENGINE_AGENT_ASSESS_MAX_TOKENS: '1200' }), 1200);
   assert.equal(agentMaxTokens('step', { ENGINE_AGENT_STEP_MAX_TOKENS: '0' }), 0, '"0" desactiva el tope del agente');
