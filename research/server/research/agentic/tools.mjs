@@ -6,14 +6,31 @@ import { firecrawlRead, jinaRead } from '../searchApis.mjs';
 import { extractLinks } from '../discovery.mjs';
 import { hostKind } from '../verify.mjs';
 import { ApolloBudget, createApolloClient } from '../../../capital/apollo.mjs';
+import { foaIdsIn, grantsGovSearch, simplerGrantsSearch } from '../grantSources.mjs';
 
 const clip = (v, n = 12000) => String(v ?? '').replace(/<\/?\s*page_data\s*>/gi, '[tag removed]').slice(0, n);
 const noopTrace = { event: () => null, page: () => ({}) };
 const json = async (fetcher, url, init = {}) => { const r = await fetcher(url, init); if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); };
+/** Cliente mínimo con la forma de providers.mjs#makeClient().json que usan grantSources.mjs (sin registro de vivo). */
+export const registryClient = (fetcher = fetch, signal) => ({ json: async (url, body, headers = {}) => { const r = await fetcher(url, { method: body ? 'POST' : 'GET', headers: { Accept: 'application/json', ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers }, ...(body ? { body: JSON.stringify(body) } : {}), signal }); if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); } });
+/** URL oficial del NIH Guide a partir de un identificador oficial (RFA/PA/PAR/NOT); no se inventa nada fuera de ese patrón. */
+export function nihGuideUrl(number) {
+  const id = String(number || '').trim().toUpperCase(); if (!foaIdsIn(id).includes(id)) return null;
+  const dir = id.startsWith('RFA-') ? 'rfa-files' : id.startsWith('NOT-') ? 'notice-files' : /^PAR?-/.test(id) ? 'pa-files' : null;
+  return dir ? `https://grants.nih.gov/grants/guide/${dir}/${id}.html` : null;
+}
+/** Texto de una ficha de registro (campos oficiales, en el orden en que los da la API). */
+export function registryText(hit, source) {
+  const d = hit._simplerDetail?.synopsis || {};
+  return [`Official registry record (${source === 'simpler' ? 'Simpler.Grants.gov' : 'Grants.gov'}).`, `Opportunity title: ${hit.title || ''}.`, hit.number ? `Opportunity number: ${hit.number}.` : '', `Agency: ${hit.agency || d.agencyName || ''}.`,
+    hit.oppStatus ? `Opportunity status: ${hit.oppStatus}.` : '', hit.openDate ? `Posted date: ${hit.openDate}.` : '', hit.closeDate ? `Close date: ${hit.closeDate}.` : '',
+    d.awardCeiling ? `Award ceiling: ${d.awardCeiling}.` : '', d.applicantEligibilityDesc ? `Applicant eligibility: ${d.applicantEligibilityDesc}` : '', d.synopsisDesc ? `Summary: ${String(d.synopsisDesc).slice(0, 4000)}` : '',
+    d.fundingDescLinkUrl ? `Additional information: ${d.fundingDescLinkUrl}` : ''].filter(Boolean).join('\n');
+}
 const rowsOf = (data) => Array.isArray(data) ? data : data?.results || data?.response?.award || data?.hits?.hits || [];
 
 export function createTools({ env = process.env, fetcher = fetch, signal, trace = noopTrace, limits = {}, apollo = null, readers = {} } = {}) {
-  const refs = new Map(); let searches = 0; let opens = 0; let rejectedRefs = 0; let exaSpent = 0; let searchSeq = 0; let pageSeq = 0;
+  const refs = new Map(); let searches = 0; let opens = 0; let rejectedRefs = 0; let exaSpent = 0; let searchSeq = 0; let pageSeq = 0; let registrySeq = 0;
   const breaker = {};
   const caps = { searches: Number(limits.searches) || 20, opens: Number(limits.opens) || 30, apolloCredits: Number(limits.apolloCredits) || 25, exaUsd: Number.isFinite(Number(limits.exaUsdCap)) ? Number(limits.exaUsdCap) : Infinity };
   const apolloClient = apollo || createApolloClient({ apiKey: env.APOLLO_API_KEY, fetcher, budget: new ApolloBudget({ perRun: caps.apolloCredits, perDay: 50 }) });
@@ -49,7 +66,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
     try {
       let page = null; let via = '';
       if (readers.open) { page = await readers.open(row.url, { row, env, fetcher, signal }); via = 'injected'; }
-      else if (row.markdown?.length > 80) { page = { url: row.url, title: row.title, text: row.markdown }; via = 'search'; }
+      else if (row.markdown?.length > 80) { page = { url: row.url, title: row.title, text: row.markdown }; via = row.via || 'search'; }
       else for (const [name, reader] of [['direct', fetchPage], ['crawl4ai', crawl4aiRead], ['jina', jinaRead], ['firecrawl', firecrawlRead]]) {
         page = await reader(row.url, { env, fetcher, signal }); if (page) { via = name; break; }
       }
@@ -89,12 +106,30 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
     } catch (error) { return fail('entity_funding', args, started, error); }
   }
 
+  /** Registros oficiales. simpler / grants_gov devuelven convocatorias abiertas o en forecast con refs abribles (el texto del
+   *  registro se lee sin red); reporter / nsf / sbir devuelven inteligencia (premios pasados, solicitudes SBIR). Gratis: no
+   *  consume el presupuesto de búsquedas web, pero abrir sus refs sí consume aperturas. */
   async function registry(args = {}) {
-    const started = Date.now();
+    const started = Date.now(); const source = String(args.source || '').trim(); const query = clip(args.query, 200);
     try {
-      const endpoints = { grants_gov: ['https://api.grants.gov/v1/api/search2', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ keyword: args.query, rows: 10 }), signal }], reporter: ['https://api.reporter.nih.gov/v2/projects/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ criteria: { advanced_text_search: { search_text: args.query } }, limit: 10 }), signal }], nsf: [`https://api.nsf.gov/services/v1/awards.json?${new URLSearchParams({ keyword: args.query })}`, { signal }], sbir: [`https://api.www.sbir.gov/public/api/solicitations?${new URLSearchParams({ keyword: args.query, open: '1', rows: '10' })}`, { signal }] };
-      if (!endpoints[args.source]) throw new Error('invalid_registry'); const [url, init] = endpoints[args.source]; const data = await json(fetcher, url, init); const rows = rowsOf(data?.data?.oppHits || data);
-      record('registry', args, started, rows); return { rows };
+      let rows;
+      if (source === 'simpler' || source === 'grants_gov') {
+        const hits = source === 'simpler'
+          ? (env.SIMPLER_GRANTS_API_KEY ? (await simplerGrantsSearch(registryClient(fetcher, signal), { keyword: query, rows: Math.min(25, Number(args.n) || 10) }, { apiKey: env.SIMPLER_GRANTS_API_KEY })).hits : (() => { throw new Error('simpler_not_configured'); })())
+          : (await grantsGovSearch(registryClient(fetcher, signal), { keyword: query, rows: Math.min(25, Number(args.n) || 10) })).hits;
+        const id = ++registrySeq;
+        rows = hits.slice(0, Math.min(25, Number(args.n) || 10)).map((hit, i) => {
+          const ref = `r${id}.${i + 1}`; const url = hit.url || (hit.id ? `https://www.grants.gov/search-results-detail/${hit.id}` : '');
+          const text = registryText(hit, source); refs.set(ref, { url, title: hit.title || hit.number || '', snippet: '', markdown: text, via: 'registry' });
+          const guide = nihGuideUrl(hit.number); let guideRef = null;
+          if (guide) { guideRef = `${ref}.g`; refs.set(guideRef, { url: guide, title: `${hit.number} (NIH Guide)`, snippet: '', markdown: '' }); }
+          return { ref, url, title: hit.title || '', number: hit.number || null, agency: hit.agency || hit.agencyName || null, status: hit.oppStatus || null, close_date: hit.closeDate || null, ...(guideRef ? { guide_ref: guideRef } : {}), source };
+        });
+      } else {
+        const endpoints = { reporter: ['https://api.reporter.nih.gov/v2/projects/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ criteria: { advanced_text_search: { search_text: query } }, limit: 10 }), signal }], nsf: [`https://api.nsf.gov/services/v1/awards.json?${new URLSearchParams({ keyword: query })}`, { signal }], sbir: [`https://api.www.sbir.gov/public/api/solicitations?${new URLSearchParams({ keyword: query, open: '1', rows: '10' })}`, { signal }] };
+        if (!endpoints[source]) throw new Error('invalid_registry'); const [url, init] = endpoints[source]; const data = await json(fetcher, url, init); rows = rowsOf(data?.data?.oppHits || data);
+      }
+      record('registry', args, started, rows, { urls: rows.map((r) => r.url).filter(Boolean).slice(0, 10) }); return { rows };
     } catch (error) { return fail('registry', args, started, error); }
   }
 

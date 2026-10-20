@@ -7,6 +7,7 @@ import { assessContractOf, assessValidator, liftAssess, validateStep, validateUn
 import { AGENT_CRITERIA, assessPromptFor, criterionHelp, mergeUnderstood, stepPrompt, understandFromBrief, understandPrompt } from './prompts.v14.mjs';
 import { createTools } from './tools.mjs';
 import { triageNote, triagePage } from './triage.mjs';
+import { foaIdsIn } from '../grantSources.mjs';
 
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
@@ -20,7 +21,21 @@ export function normalizeAgentQuery(value, objective, today) {
 }
 /** Lo que el agente ve del triage determinista de una página (sin texto completo). */
 const triageView = (t) => ({ shape: t.structure.kind, ...(t.structure.hub ? { hub: true } : {}), ...(t.banners.length ? { banners: t.banners.map((b) => b.kind) } : {}), ...(t.foa_ids.length ? { call_ids: t.foa_ids.slice(0, 6) } : {}) });
-const linksView = (links) => (links || []).slice(0, 20).map((l) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80) }));
+/** Enlaces que ve el agente (máx. 20). P0.6: los que llevan un ID oficial de convocatoria (foaIdsIn) van primero y lo
+ *  muestran, para que en un hub de NIH el agente pueda abrir las convocatorias individuales. No es un filtro temático. */
+const linksView = (links) => {
+  const rows = (links || []).map((l, i) => ({ l, i, id: foaIdsIn(`${l.url || ''} ${l.text || ''}`)[0] || null }));
+  rows.sort((a, b) => (a.id ? 0 : 1) - (b.id ? 0 : 1) || a.i - b.i);
+  return rows.slice(0, 20).map(({ l, id }) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80), ...(id ? { call_id: id } : {}) }));
+};
+/** Consultas para sembrar el registro: los términos exactos que declara el brief («Exact search terms: a; b»), y si no hay,
+ *  el campo de industria o la frase del producto. Se copian, no se inventan ni se filtran por tema. */
+export function registryQueries(brief = {}, n = 2) {
+  const exact = String(brief.constraints || '').match(/exact (?:search )?terms?\s*:\s*([^\n]+)/i)?.[1] || '';
+  const terms = exact.split(/[;\n]/).map((t) => t.replace(/\.$/, '').replace(/\s+/g, ' ').trim()).filter((t) => t.length >= 3);
+  const base = terms.length ? terms : [brief.industry, brief.oneLiner || brief.product].map((t) => String(t || '').replace(/\s+/g, ' ').trim()).filter(Boolean);
+  return [...new Set(base.map((t) => t.slice(0, 100)))].slice(0, Math.max(0, n));
+}
 /** Ejecuta como mucho `n` tareas a la vez, en orden de llegada. */
 const limiter = (n) => { let active = 0; const q = []; const next = () => { if (active >= Math.max(1, n) || !q.length) return; active++; const { fn, res, rej } = q.shift(); Promise.resolve().then(fn).then(res, rej).finally(() => { active--; next(); }); }; return (fn) => new Promise((res, rej) => { q.push({ fn, res, rej }); next(); }); };
 /** Espera una promesa como mucho `ms` (sin rechazar ni dejar temporizadores vivos). */
@@ -181,6 +196,19 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return out;
   }
 
+  async function seedRegistry() {
+    const source = env.SIMPLER_GRANTS_API_KEY ? 'simpler' : 'grants_gov';
+    const qs = registryQueries(brief, Number(env.ENGINE_AGENT_REGISTRY_SEED_QUERIES) || 2); const results = []; const seen = new Set(); const errors = [];
+    for (const query of qs) {
+      const out = await tools.registry({ source, query, n: Number(env.ENGINE_AGENT_REGISTRY_SEED_ROWS) || 10 });
+      if (out?.error) { errors.push(out.error); continue; }
+      for (const row of out?.rows || []) if (row.ref && !seen.has(row.url)) { seen.add(row.url); results.push(row); }
+    }
+    const seed = { source, queries: qs, results: results.slice(0, Number(env.ENGINE_AGENT_REGISTRY_SEED_MAX) || 12), ...(errors.length ? { errors } : {}) };
+    trace.event('registry_seed', { source, queries: qs, results_n: seed.results.length, urls: seed.results.map((r) => r.url), ...(errors.length ? { errors } : {}) });
+    return seed;
+  }
+
   async function searchMany(args, action) {
     const planned = (args.queries || []).map((raw) => ({ raw: String(raw || '').trim(), query: normalizeAgentQuery(raw, objective, today) })).filter((x) => x.query);
     const qs = [];
@@ -217,7 +245,11 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       .then((v) => (v ? adoptUnderstood(v) : understandFailed())).catch(() => understandFailed()).finally(() => { understandTask = null; });
   }
 
-  let observation = opts.initialObservation || { type: 'start', understood }; let finalRefs = [];
+  // P0.6 · Grants: registros oficiales primero. Antes del primer paso se siembran convocatorias abiertas/forecast del
+  // registro (Simpler.Grants.gov si hay clave; si no, Grants.gov) con las consultas declaradas en el brief. Son refs
+  // abribles; abrirlas consume aperturas como cualquier otra página. No gasta búsquedas web.
+  const registrySeed = objective === 'grant' && String(env.ENGINE_AGENT_REGISTRY_SEED ?? '1') !== '0' && typeof tools.registry === 'function' && !opts.initialObservation ? await seedRegistry() : null;
+  let observation = opts.initialObservation || { type: 'start', understood, ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}) }; let finalRefs = [];
   for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
     stepsRun = step;
     const used = tools.usage?.() || {};
