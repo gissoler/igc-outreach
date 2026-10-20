@@ -8,7 +8,9 @@ import { hostKind } from '../verify.mjs';
 import { ApolloBudget, createApolloClient } from '../../../capital/apollo.mjs';
 import { foaIdsIn, grantsGovSearch, simplerGrantsSearch } from '../grantSources.mjs';
 
-const clip = (v, n = 12000) => String(v ?? '').replace(/<\/?\s*page_data\s*>/gi, '[tag removed]').slice(0, n);
+/** Texto de página tal como lo ve el lector (sin etiquetas page_data, 12.000 caracteres). Exportado para el banco de reproducción. */
+export const clipPage = (v, n = 12000) => String(v ?? '').replace(/<\/?\s*page_data\s*>/gi, '[tag removed]').slice(0, n);
+const clip = clipPage;
 const noopTrace = { event: () => null, page: () => ({}) };
 const json = async (fetcher, url, init = {}) => { const r = await fetcher(url, init); if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); };
 /** Cliente mínimo con la forma de providers.mjs#makeClient().json que usan grantSources.mjs (sin registro de vivo). */
