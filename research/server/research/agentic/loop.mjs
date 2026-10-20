@@ -1,5 +1,5 @@
 /* Bucle agentic V14: comprender, actuar con refs, evaluar páginas y juzgar finalistas. */
-import { chatJSON } from '../../analysis/fleet.mjs';
+import { agentMaxTokens, chatJSON } from '../../analysis/fleet.mjs';
 import { literalIn } from '../verify.mjs';
 import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
@@ -56,9 +56,10 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       const remainingMs = parallel ? Math.max(1, deadlineSeconds * 1000 - (Date.now() - started)) : configuredMs;
       const timeoutMs = Math.max(1, Math.min(configuredMs, remainingMs)); const controller = new AbortController();
       const callSignal = anySignal([opts.signal, controller.signal]); let timer;
+      const purpose = role === 'agent' ? 'step' : role; const maxTokens = agentMaxTokens(purpose, env);
       try {
         response = await Promise.race([
-          chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole }, { env, fetcher: opts.fetcher, signal: callSignal }),
+          chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal }),
           new Promise((_, reject) => { timer = setTimeout(() => { const e = new Error(`model_timeout_${role}_${timeoutMs}ms`); e.code = 'MODEL_TIMEOUT'; controller.abort(e); reject(e); }, timeoutMs); }),
         ]);
       }
@@ -66,9 +67,9 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       finally { clearTimeout(timer); }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
       const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
-      trace.event('model_call', { role: callRole, model: response?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage || error?.usage), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
       if (checked.ok) return checked.value ?? raw;
-      if (error?.code === 'MODEL_TIMEOUT' || /abort|timeout/i.test(String(error?.message || error))) break;
+      if (error?.code === 'MODEL_TIMEOUT' || error?.code === 'MODEL_TRUNCATED' || /abort|timeout/i.test(String(error?.message || error))) break;   // repetir con el mismo tope reproduce el corte
     }
     return null;
   }
