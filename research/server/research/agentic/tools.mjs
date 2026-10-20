@@ -141,7 +141,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   async function registry(args = {}) {
     const started = Date.now(); const source = String(args.source || '').trim(); const query = clip(args.query, 200);
     try {
-      let rows; let detailN = 0;
+      let rows; let detailN = 0; const detailMissing = [];
       if (source === 'simpler' || source === 'grants_gov') {
         const hits = source === 'simpler'
           ? (env.SIMPLER_GRANTS_API_KEY ? (await simplerGrantsSearch(registryClient(fetcher, signal), { keyword: query, rows: Math.min(25, Number(args.n) || 10) }, { apiKey: env.SIMPLER_GRANTS_API_KEY })).hits : (() => { throw new Error('simpler_not_configured'); })())
@@ -151,7 +151,12 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         // quién puede aplicar y la descripción; sin eso el juez no puede confirmar elegibilidad ni tema.
         if (source === 'grants_gov' && String(env.ENGINE_AGENT_REGISTRY_DETAIL ?? '1').trim() !== '0') await Promise.all(hits.slice(0, Math.min(10, Number(args.n) || 10)).map(async (hit) => {
           if (!hit.id || hit._simplerDetail) return;
-          try { const d = await registryClient(fetcher, signal).json('https://api.grants.gov/v1/api/fetchOpportunity', { opportunityId: Number(hit.id) }); if (d?.errorcode === 0 && d.data?.synopsis) { hit._simplerDetail = { synopsis: { ...d.data.synopsis, applicantTypes: d.data.synopsis.applicantTypes || [] } }; detailN++; } } catch { /* sin detalle: se conserva la ficha básica */ }
+          try {
+            const d = await registryClient(fetcher, signal).json('https://api.grants.gov/v1/api/fetchOpportunity', { opportunityId: Number(hit.id) });
+            const syn = d?.data?.synopsis || d?.data?.forecast;   // las convocatorias «forecasted» pueden traer `forecast` en vez de `synopsis`
+            if (d?.errorcode === 0 && syn) { hit._simplerDetail = { synopsis: { ...syn, synopsisDesc: syn.synopsisDesc || syn.forecastDesc, applicantTypes: syn.applicantTypes || [] } }; detailN++; }
+            else detailMissing.push({ id: String(hit.id), why: d?.errorcode !== 0 ? `errorcode_${d?.errorcode}` : `sin_synopsis(${Object.keys(d?.data || {}).slice(0, 8).join(',')})` });
+          } catch (e) { detailMissing.push({ id: String(hit.id), why: String(e?.message || e).slice(0, 60) }); /* sin detalle: se conserva la ficha básica */ }
         }));
         rows = hits.slice(0, Math.min(25, Number(args.n) || 10)).map((hit, i) => {
           const ref = `r${id}.${i + 1}`; const url = hit.url || (hit.id ? `https://www.grants.gov/search-results-detail/${hit.id}` : '');
@@ -164,7 +169,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         const endpoints = { reporter: ['https://api.reporter.nih.gov/v2/projects/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ criteria: { advanced_text_search: { search_text: query } }, limit: 10 }), signal }], nsf: [`https://api.nsf.gov/services/v1/awards.json?${new URLSearchParams({ keyword: query })}`, { signal }], sbir: [`https://api.www.sbir.gov/public/api/solicitations?${new URLSearchParams({ keyword: query, open: '1', rows: '10' })}`, { signal }] };
         if (!endpoints[source]) throw new Error('invalid_registry'); const [url, init] = endpoints[source]; const data = await json(fetcher, url, init); rows = rowsOf(data?.data?.oppHits || data);
       }
-      record('registry', args, started, rows, { urls: rows.map((r) => r.url).filter(Boolean).slice(0, 10), ...(detailN ? { detail_n: detailN } : {}) }); return { rows };
+      record('registry', args, started, rows, { urls: rows.map((r) => r.url).filter(Boolean).slice(0, 10), ...(detailN ? { detail_n: detailN } : {}), ...(detailMissing.length ? { detail_missing: detailMissing.slice(0, 10) } : {}) }); return { rows };
     } catch (error) { return fail('registry', args, started, error); }
   }
 
