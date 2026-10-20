@@ -14,11 +14,11 @@ const tools = (trace) => ({
 });
 
 test('P0.2 defaults por propósito y variables de entorno para cambiarlos', () => {
-  assert.deepEqual({ ...AGENT_MAX_TOKENS_DEFAULTS }, { understand: 500, step: 400, assess: 2000, judge: 900 });
+  assert.deepEqual({ ...AGENT_MAX_TOKENS_DEFAULTS }, { understand: 1500, step: 400, assess: 2000, judge: 2000 });
   assert.equal(agentMaxTokens('assess', {}), 2000);
   assert.equal(agentMaxTokens('assess', { ENGINE_AGENT_ASSESS_MAX_TOKENS: '1200' }), 1200);
   assert.equal(agentMaxTokens('step', { ENGINE_AGENT_STEP_MAX_TOKENS: '0' }), 0, '"0" desactiva el tope del agente');
-  assert.equal(agentMaxTokens('judge', { ENGINE_AGENT_JUDGE_MAX_TOKENS: '' }), 900, 'vacío vuelve al defecto');
+  assert.equal(agentMaxTokens('judge', { ENGINE_AGENT_JUDGE_MAX_TOKENS: "" }), 2000, 'vacío vuelve al defecto');
   assert.equal(agentMaxTokens('judge', { ENGINE_AGENT_JUDGE_MAX_TOKENS: 'abc' }), 0);
   assert.equal(agentMaxTokens('unknown', {}), 0);
 });
@@ -34,7 +34,7 @@ test('P0.2 el bucle envía max_tokens distinto por comprensión, paso, lectura y
   };
   const env = { ENGINE_AGENT_UNDERSTAND_MODE: 'blocking', ENGINE_AGENT_STEP_MAX_TOKENS: '333', ENGINE_AGENT_ASSESS_MAX_TOKENS: '444' };
   await runAgentObjective('grant', { company: 'X' }, { chat, tools: tools(trace), trace, today: '2026-10-19', parallel: true, secondJudge: 0, env });
-  assert.equal(seen.understand, 500); assert.equal(seen.agent, 333); assert.equal(seen.assess, 444);
+  assert.equal(seen.understand, 1500); assert.equal(seen.agent, 333); assert.equal(seen.assess, 444);
   const call = trace.events.find((e) => e.type === 'model_call' && e.purpose === 'step');
   assert.equal(call.max_tokens, 333);
 });
