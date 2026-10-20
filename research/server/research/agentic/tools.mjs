@@ -36,7 +36,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   // ENGINE_SEARCH_PROVIDERS_OFF=jina,… apaga proveedores desde el inicio (p. ej. sin saldo conocido) sin gastar una llamada.
   const breaker = Object.fromEntries(String(env.ENGINE_SEARCH_PROVIDERS_OFF || '').split(',').map((p) => p.trim().toLowerCase()).filter(Boolean).map((p) => [p, { fails: 0, off: true, reason: 'disabled by ENGINE_SEARCH_PROVIDERS_OFF' }]));
   const announcedOff = new Set();
-  const caps = { searches: Number(limits.searches) || 20, opens: Number(limits.opens) || 30, apolloCredits: Number(limits.apolloCredits) || 25, exaUsd: Number.isFinite(Number(limits.exaUsdCap)) ? Number(limits.exaUsdCap) : Infinity };
+  const caps = { searches: Number(limits.searches) || 20, opens: Number(limits.opens) || 30, apolloCredits: Number(limits.apolloCredits) || 5, exaUsd: Number.isFinite(Number(limits.exaUsdCap)) ? Number(limits.exaUsdCap) : Infinity };
   const apolloClient = apollo || createApolloClient({ apiKey: env.APOLLO_API_KEY, fetcher, budget: new ApolloBudget({ perRun: caps.apolloCredits, perDay: 50 }) });
   const record = (tool, args, started, result, extra = {}) => trace.event('tool_call', { tool, args, results_n: Array.isArray(result) ? result.length : Number(result?.results?.length || result?.rows?.length || 0), ms_call: Date.now() - started, ...extra });
   const fail = (tool, args, started, error, extra = {}) => { record(tool, args, started, [], { error: String(error?.code || error?.message || error), ...extra }); return { error: String(error?.code || error?.message || error) }; };

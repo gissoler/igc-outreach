@@ -63,9 +63,18 @@ test('Apollo fuente en el bucle: con APOLLO_ENABLED=1 siembra organizaciones ant
   assert.equal(apollo.calls.length, 2, 'una búsqueda por término del brief'); assert.deepEqual(apollo.calls.map((c) => c.keywords), [['brain MRI classification'], ['Alzheimer biomarker']]);
   assert.match(starts[0], /"apollo_seed"/); assert.match(starts[0], /alz-foundation\.org/);
   const stage = events.find((e) => e.type === 'apollo_source');
-  assert.equal(stage.called, true); assert.equal(stage.credits, 2); assert.equal(stage.cap, 25); assert.equal(stage.results_n, 2); assert.equal(stage.reason_not_called, null);
+  assert.equal(stage.called, true); assert.equal(stage.credits, 2); assert.equal(stage.cap, 5); assert.equal(stage.results_n, 2); assert.equal(stage.reason_not_called, null);
   assert.deepEqual(r.audit.apollo.seed, { called: 1, results_n: 2, credits: 2 });
   assert.equal(apollo.calls.every((c) => c.domain === undefined), true);
+});
+
+test('Apollo fuente: el tope por corrida es 5 créditos por defecto y ENGINE_AGENT_APOLLO_CREDITS lo baja; al llegar al tope la fuente inicial se detiene', async () => {
+  const lowCap = await runWith({ env: { APOLLO_ENABLED: '1', APOLLO_API_KEY: 'k', ENGINE_AGENT_APOLLO_CREDITS: '1' } });
+  assert.equal(lowCap.apollo.calls.length, 1, 'con tope 1 solo cabe una búsqueda'); const stage = lowCap.events.find((e) => e.type === 'apollo_source');
+  assert.equal(stage.cap, 1); assert.equal(stage.credits, 1); assert.equal(stage.capped, true);
+  const big = await runWith({ env: { APOLLO_ENABLED: '1', APOLLO_API_KEY: 'k', ENGINE_AGENT_APOLLO_SEED_QUERIES: '9' }, apollo: fakeApollo() });
+  assert.equal(big.apollo.calls.length <= 5, true, 'nunca pasa de 5 créditos estimados por defecto');
+  const none = await runWith({ env: { APOLLO_API_KEY: 'k' } }); assert.equal(none.apollo.calls.length, 0, 'sin APOLLO_ENABLED=1 no se llama');
 });
 
 test('Apollo fuente: sin APOLLO_ENABLED, sin clave o con ENGINE_AGENT_APOLLO_SEED=0 no se llama y la razón queda en la traza (0 créditos)', async () => {
@@ -88,7 +97,7 @@ test('Apollo fuente: si Apollo falla o llega al tope, la corrida sigue sin organ
 });
 
 test('Apollo fuente: el reporte muestra la fuente inicial, con organizaciones y créditos o con la razón de no llamada', () => {
-  const audit = (seed) => ({ objective: 'grant', apollo: { stage: 'tool', enabled: true, configured: true, eligible: 0, called: 0, credits: 2, cap: 25, reasons: {}, seed } });
+  const audit = (seed) => ({ objective: 'grant', apollo: { stage: 'tool', enabled: true, configured: true, eligible: 0, called: 0, credits: 2, cap: 5, reasons: {}, seed } });
   const on = funnelLines([], [audit({ called: 1, results_n: 2, credits: 2 })]).join('\n'); assert.match(on, /fuente inicial: 2 organizaciones, 2 créditos/);
   const off = funnelLines([], [audit({ called: 0, results_n: 0, credits: 0, reason_not_called: 'apollo_disabled' })]).join('\n'); assert.match(off, /fuente inicial: no llamada \(apollo_disabled\)/);
 });
