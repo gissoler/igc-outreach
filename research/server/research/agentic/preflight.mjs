@@ -2,7 +2,7 @@
    (agent.assess_lite/1) por endpoint, en streaming. Decide pasa/no pasa contra un umbral de tokens/s. Sin búsquedas ni Apollo. */
 import { fleetConfig, postChatStream, parseJsonContent, withLanguageRule } from '../../analysis/fleet.mjs';
 import { assessLitePrompt, AGENT_CRITERIA } from './prompts.v14.mjs';
-import { validateAssessLite } from './contracts.v14.mjs';
+import { relaxForModel, validateAssessLite } from './contracts.v14.mjs';
 import { checkEndpoint, parseEndpoints } from './replay.mjs';
 
 export const PREFLIGHT_EXIT = Object.freeze({ ok: 0, down: 2, slow: 3, unmeasurable: 4 });
@@ -28,7 +28,7 @@ export const PREFLIGHT_PAGE = { url: 'https://preflight.example.org/call', title
 export function preflightBody(model, { maxTokens = 600, effort = 'low', today = new Date().toISOString().slice(0, 10) } = {}) {
   const prompt = assessLitePrompt({ objective: 'grant', brief: { company: 'Preflight', product: 'Synthetic throughput probe', industry: 'neurodegeneration research' }, page: PREFLIGHT_PAGE, ref: 'p1', today });
   return { model, temperature: 0, messages: [{ role: 'system', content: withLanguageRule(prompt.system) }, { role: 'user', content: prompt.user }],
-    response_format: { type: 'json_schema', json_schema: { name: 'assess', schema: prompt.schema } }, max_tokens: maxTokens, ...(/gpt-oss/i.test(model) && effort ? { reasoning_effort: effort } : {}) };
+    response_format: { type: 'json_schema', json_schema: { name: 'assess', schema: relaxForModel(prompt.schema) } }, max_tokens: maxTokens, ...(/gpt-oss/i.test(model) && effort ? { reasoning_effort: effort } : {}) };
 }
 
 /** Prueba cada endpoint y devuelve { rows, code }. `metric`: decode (por defecto) o e2e. Nunca inventa una medición. */

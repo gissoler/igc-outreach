@@ -4,7 +4,7 @@ import { hostKind, hostOf, literalIn } from '../verify.mjs';
 import { resolveApolloContacts } from '../../../capital/resolver.mjs';
 import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
-import { assessContractOf, assessValidator, liftAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
+import { assessContractOf, assessValidator, liftAssess, relaxForModel, validateStep, validateUnderstand } from './contracts.v14.mjs';
 import { AGENT_CRITERIA, assessPromptFor, criterionHelp, mergeUnderstood, stepPrompt, understandFromBrief, understandPrompt } from './prompts.v14.mjs';
 import { createTools } from './tools.mjs';
 import { triageNote, triagePage } from './triage.mjs';
@@ -91,10 +91,11 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       const remainingMs = parallel ? Math.max(1, deadlineSeconds * 1000 - (Date.now() - started)) : configuredMs;
       const timeoutMs = Math.max(1, Math.min(configuredMs, remainingMs)); const controller = new AbortController();
       const callSignal = anySignal([opts.signal, call.signal, controller.signal]); let timer;
+      const relax = String(env.ENGINE_AGENT_SCHEMA_RELAX ?? '1').trim() !== '0';   // 0 = envía el esquema con maxLength (comparación)
       const purpose = role === 'agent' ? 'step' : role; const maxTokens = call.maxTokens ?? agentMaxTokens(purpose, env); const progress = {};
       try {
         response = await Promise.race([
-          chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal, progress }),
+          chat({ system: prompt.system, user: prompt.user, schema: relax ? relaxForModel(prompt.schema) : prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal, progress }),
           new Promise((_, reject) => { timer = setTimeout(() => { const e = new Error(`model_timeout_${role}_${timeoutMs}ms`); e.code = 'MODEL_TIMEOUT'; controller.abort(e); reject(e); }, timeoutMs); }),
           ...(call.signal ? [new Promise((_, reject) => { const stop = () => reject(Object.assign(new Error(`model_aborted_${role}`), { code: 'MODEL_ABORTED' })); if (call.signal.aborted) stop(); else call.signal.addEventListener('abort', stop, { once: true }); })] : []),
         ]);
@@ -103,7 +104,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       finally { clearTimeout(timer); }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
       const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
-      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: response?.usage || error?.usage ? tokens(response?.usage || error?.usage) : cutTokens(prompt, progress), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, schema_relaxed: relax, tokens: response?.usage || error?.usage ? tokens(response?.usage || error?.usage) : cutTokens(prompt, progress), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
       if (checked.ok) { info.reason = null; return checked.value ?? raw; }
       info.reason = error?.code === 'MODEL_TIMEOUT' ? 'timeout' : error?.code === 'MODEL_TRUNCATED' ? 'truncated' : error?.code === 'MODEL_ABORTED' ? 'aborted' : error ? 'error' : 'invalid';
       info.detail = String(error?.message || checked.errors?.[0] || '').slice(0, 200);
