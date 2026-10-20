@@ -31,7 +31,9 @@ const rowsOf = (data) => Array.isArray(data) ? data : data?.results || data?.res
 
 export function createTools({ env = process.env, fetcher = fetch, signal, trace = noopTrace, limits = {}, apollo = null, readers = {} } = {}) {
   const refs = new Map(); let searches = 0; let opens = 0; let rejectedRefs = 0; let exaSpent = 0; let searchSeq = 0; let pageSeq = 0; let registrySeq = 0;
-  const breaker = {};
+  // ENGINE_SEARCH_PROVIDERS_OFF=jina,… apaga proveedores desde el inicio (p. ej. sin saldo conocido) sin gastar una llamada.
+  const breaker = Object.fromEntries(String(env.ENGINE_SEARCH_PROVIDERS_OFF || '').split(',').map((p) => p.trim().toLowerCase()).filter(Boolean).map((p) => [p, { fails: 0, off: true, reason: 'disabled by ENGINE_SEARCH_PROVIDERS_OFF' }]));
+  const announcedOff = new Set();
   const caps = { searches: Number(limits.searches) || 20, opens: Number(limits.opens) || 30, apolloCredits: Number(limits.apolloCredits) || 25, exaUsd: Number.isFinite(Number(limits.exaUsdCap)) ? Number(limits.exaUsdCap) : Infinity };
   const apolloClient = apollo || createApolloClient({ apiKey: env.APOLLO_API_KEY, fetcher, budget: new ApolloBudget({ perRun: caps.apolloCredits, perDay: 50 }) });
   const record = (tool, args, started, result, extra = {}) => trace.event('tool_call', { tool, args, results_n: Array.isArray(result) ? result.length : Number(result?.results?.length || result?.rows?.length || 0), ms_call: Date.now() - started, ...extra });
@@ -48,9 +50,13 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         return { ref, url: row.url, title: row.title || '', snippet: row.description || '', providers: row.providers || [row.provider].filter(Boolean), host_hint: hostKind(row.url) };
       });
       const cost = Object.values(found.stats || {}).reduce((n, x) => n + (Number(x.costUsd) || 0), Number(found.costUsd) || 0);
+      // P0.8 · Por proveedor se guardan las URL que devolvió (hasta 10), no solo cuántas; un proveedor apagado por
+      // saldo/clave (p. ej. Jina HTTP 402) se anuncia una vez con `provider_disabled` y deja de llamarse en esta corrida.
       if (found.stats && Object.keys(found.stats).length) for (const [provider, stat] of Object.entries(found.stats)) {
-        trace.event('tool_call', { tool: 'search', provider, args, results_n: Number(stat.returned) || 0, ms_call: Number(stat.ms) || 0, cost_usd: Number(stat.costUsd) || 0, ...(stat.error ? { error: stat.error } : {}), ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
-      } else record('search', args, started, results, { provider: 'injected', cost_usd: cost, ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
+        const urls = found.filter((row) => (row.providers || [row.provider]).includes(provider)).slice(0, 10).map((row) => row.url);
+        trace.event('tool_call', { tool: 'search', provider, args, results_n: Number(stat.returned) || 0, urls, ms_call: Number(stat.ms) || 0, cost_usd: Number(stat.costUsd) || 0, ...(stat.error ? { error: stat.error } : {}), ...(stat.disabled ? { disabled: true } : {}), ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
+        if (stat.disabled && !announcedOff.has(provider)) { announcedOff.add(provider); trace.event('provider_disabled', { provider, reason: String(stat.disabled).slice(0, 240), after_calls: searches }); }
+      } else record('search', args, started, results, { provider: 'injected', urls: results.map((r) => r.url).slice(0, 10), cost_usd: cost, ...(args.from_lead ? { from_lead: args.from_lead } : {}) });
       exaSpent += Number(found.stats?.exa?.costUsd) || 0;
       if (exaSpent >= caps.exaUsd) breaker.exa = { off: true, reason: `V14 Exa cap ${caps.exaUsd.toFixed(4)} USD` };
       return { results, cost_usd: cost };
@@ -136,5 +142,5 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   const note = async (args = {}) => { const at = Date.now(); record('note', args, at, []); return { ok: true }; };
   const ask_user = async (args = {}) => { const at = Date.now(); const out = { answered: false }; record('ask_user', args, at, []); trace.event('ask_user', { questions: args.questions || [], answered: false }); return out; };
   const finish = async (args = {}) => { const at = Date.now(); record('finish', args, at, []); trace.event('finish', { reason: String(args.reason || 'agent') }); return { ok: true }; };
-  return { search, open, apollo: apolloTool, entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
+  return { search, open, apollo: apolloTool, apolloClient, disabledProviders: () => Object.fromEntries(Object.entries(breaker).filter(([, b]) => b.off).map(([p, b]) => [p, b.reason])), entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
 }

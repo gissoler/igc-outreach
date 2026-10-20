@@ -13,6 +13,7 @@ import { fleetConfig } from '../server/analysis/fleet.mjs';
 import { hostOf } from '../server/research/verify.mjs';
 import { createTrace } from '../server/research/trace.mjs';
 import { COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERSION } from '../server/research/judge/prompts.v13.mjs';
+import { footerFor, funnelLines, funnelOf, modelsUsed, providerRows } from '../server/research/agentic/report.mjs';
 
 const arg = (name, fallback = '') => { const at = process.argv.indexOf(name); return at >= 0 ? process.argv[at + 1] : fallback; };
 const env = process.env;
@@ -68,6 +69,7 @@ trace?.event('run_start', { brief, brief_sha: createHash('sha256').update(briefB
   prompts: { compiler: COMPILER_PROMPT_VERSION, judge: JUDGE_PROMPT_VERSION, planner: 'plan', reader: 'finding', followup: 'followup', researcher: 'research' }, git_commit: commit, limits });
 
 const fixture = env.ENGINE_TEST_FIXTURE === '1';
+if (fixture && env.ENGINE_AGENT_REGISTRY_SEED === undefined) env.ENGINE_AGENT_REGISTRY_SEED = '0';   // el fixture no toca registros reales
 const fixturePage = { url: 'https://fixture.example.org/call', title: 'Fixture call', markdown: 'Alzheimer research grant. Applications are open to US for-profit companies. Application deadline is December 15, 2026. Cash grant with no equity.' };
 const fixtureSearch = async () => [fixturePage];
 const fixtureChat = async ({ name }) => name === 'plan'
@@ -79,6 +81,9 @@ const r = await runEngine(brief, { env, today, objectives, cache: useCache ? cac
 const seconds = Math.round((Date.now() - t0) / 1000);
 trace?.event('run_end', { seconds, totals: { findings: r.findings.length, queries: r.queries.length, pages: r.audits.reduce((n, a) => n + (a.pages || 0), 0) } });
 trace?.close();
+const events = traceOn ? readFileSync(join(outDir, 'events.jsonl'), 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse) : [];
+const used = modelsUsed(events); const funnel = funnelOf(r.audits, r.findings); const searchProv = providerRows(events);
+const usedText = (purpose) => { const u = used[purpose]; return traceOn ? (u ? ` · usado en la traza: ${Object.entries(u.models).map(([m, n]) => `\`${m}\` ×${n}`).join(', ')} (${u.ok}/${u.calls} ok)` : ' · sin llamadas en la traza') : ''; };
 if (useCache) { mkdirSync(resolve(cachePath, '..'), { recursive: true }); writeFileSync(cachePath, JSON.stringify(cache)); }
 
 // Recall contra la lista de referencia (solo para Mentiva · grants)
@@ -109,17 +114,21 @@ const registry = [
 const lines = [
   `# Motor v2 — ${brief.company || 'brief'} · ${objectives.join(', ')} · ${today}`, '',
   ...(agentModels ? [
-    `- Modelo planificador: \`${agentModels.planner.model || 'no configurado'}\` (${agentModels.planner.url || 'sin URL'})`,
-    `- Modelo de comprensión: \`${agentModels.understand.model || 'no configurado'}\` (${agentModels.understand.role})`,
-    `- Modelo lector/evaluador: \`${agentModels.assess.model || 'no configurado'}\` (${agentModels.assess.role})`,
-    `- Modelo juez: \`${agentModels.judge.model || 'no configurado'}\` (${agentModels.judge.url || 'sin URL'})`,
+    `- Modelo planificador: \`${agentModels.planner.model || 'no configurado'}\` (${agentModels.planner.url || 'sin URL'})${usedText('step')}`,
+    `- Modelo de comprensión: \`${agentModels.understand.model || 'no configurado'}\` (${agentModels.understand.role})${usedText('understand')}`,
+    `- Modelo lector/evaluador: \`${agentModels.assess.model || 'no configurado'}\` (${agentModels.assess.role})${usedText('assess')}`,
+    `- Modelo juez: \`${agentModels.judge.model || 'no configurado'}\` (${agentModels.judge.url || 'sin URL'})${usedText('judge')}`,
   ] : [`- Modelo que planea y lee: \`${engineRole.model}\` (${engineRole.url})`]),
   `- Búsqueda: ${searchProviders(env).join(', ') || 'sin APIs'} · rondas ${env.ENGINE_ROUNDS || 2} · duración ${seconds} s`,
   `- Caché de búsquedas: ${useCache ? `${cachedBefore} → ${Object.keys(cache).length} consultas` : 'desactivada'}`,
   '', '## Resumen por objetivo', '', '| Objetivo | Búsqueda | Consultas | Páginas | Leídas | Sin leer | Vía Jina Reader | Verificadas | Descartes |', '|---|---|---|---|---|---|---|---|---|',
   ...r.audits.map((a) => `| ${a.objective} | ${a.search} | ${a.queries} | ${a.pages} | ${a.read} | ${a.unread} | ${a.jinaRead || 0} | **${a.kept}** | ${esc(Object.entries(a.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', '))} |`),
+  '', ...funnelLines(funnel, r.audits),
   '', '## Aporte de cada buscador', '', '| Proveedor | Llamadas | Resultados | Errores | Seg. medios | Coste US$ | Páginas leídas | Verificadas | Solo él las trajo | Nota |', '|---|---|---|---|---|---|---|---|---|---|',
   ...Object.entries(prov).map(([p, s]) => `| ${p} | ${s.calls} | ${s.returned} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.costUsd ? s.costUsd.toFixed(3) : '-'} | ${s.pagesRead} | ${s.kept} | ${s.keptOnlyHere} | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`),
+  // Modo agente: el audit no trae proveedores; se cuentan desde la traza. Un proveedor apagado (p. ej. Jina 402) va marcado y sus errores no cuentan como errores del resto.
+  ...(!Object.keys(prov).length ? Object.entries(searchProv.rows).map(([p, s]) => `| ${p} | ${s.calls} | ${s.results} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.cost_usd ? s.cost_usd.toFixed(3) : '-'} | — | — | — | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`) : []),
+  ...(!Object.keys(prov).length && Object.keys(searchProv.rows).length ? ['', `Errores de proveedores activos: ${searchProv.active_errors}/${searchProv.active_calls} llamadas${Object.keys(searchProv.disabled).length ? ` · apagados: ${Object.keys(searchProv.disabled).join(', ')}` : ''}.`] : []),
   '', `## Oportunidades verificadas (${r.findings.length})`, '', '| # | Veredicto | Nombre | Estado | Cierre | Días | Elegible | Monto | Buscadores | URL |', '|---|---|---|---|---|---|---|---|---|---|',
   ...r.findings.map((f, i) => `| ${i + 1} | ${f.verdict} | ${esc(f.name || f.title)} | ${f.status} | ${f.deadline || '—'} | ${f.daysLeft ?? '—'} | ${f.eligible} | ${esc(f.amount) || '—'} | ${(f.providers || []).join(', ')} | ${f.url} |`),
   '', `## Pistas (${(r.leads || []).length})`, '', '| # | Tipo | Financiador | Receptor | Seguimientos | Produjo | URL |', '|---|---|---|---|---|---|---|',
@@ -130,10 +139,10 @@ const lines = [
   '## Consultas ejecutadas', '', ...r.queries.map((q) => `- (${esc(q.family) || '—'}) ${esc(q.query)}`),
   ...(traceOn ? ['', '## Registro', '', ...registry.map(([n, q]) => `${n}. ${q}`)] : []),
   ...(r.audits.some((a) => a.errors?.length) ? ['', '## Errores de proveedores (muestra)', '', ...r.audits.flatMap((a) => (a.errors || []).map((e) => `- ${esc(e)}`))] : []),
-  '', '> Todo lo listado pasó la verificación en código (cita literal en la página, fecha contra hoy, sin agregadores ni redes). Lo que no aparece aquí no se pudo verificar; no se inventa.',
+  '', footerFor(funnel, r.findings),
 ];
 writeFileSync(join(outDir, 'report.md'), lines.join('\n'));
-writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, ...(agentModels ? { agent_models: Object.fromEntries(Object.entries(agentModels).map(([name, target]) => [name, { role: target.role, model: target.model || null, url: target.url || null }])) } : {}), providers: searchProviders(env), seconds, audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
+writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, ...(agentModels ? { agent_models: Object.fromEntries(Object.entries(agentModels).map(([name, target]) => [name, { role: target.role, model: target.model || null, url: target.url || null }])) } : {}), providers: searchProviders(env), seconds, funnel, ...(traceOn ? { models_used: used } : {}), audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
 
 function coverageSummary() {
   const dir = join(outDir, 'coverage'); if (!existsSync(dir)) return { files_executed: 0, functions_executed: 0, path: 'coverage/' };
@@ -150,13 +159,15 @@ function coverageSummary() {
 
 function writeSummary() {
   if (!traceOn) return;
-  const events = readFileSync(join(outDir, 'events.jsonl'), 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
   const summary = { v: 'summary/1', run_id: events[0]?.run_id || '', case: objectives.join(','), fase: process.env.ENGINE_AGENT === '1' ? 'F2' : 'F1', git_commit: commit,
     flags: { ENGINE_JUDGE: env.ENGINE_JUDGE || '', ENGINE_AGENT: env.ENGINE_AGENT || '', ENGINE_JUDGE_BLIND: env.ENGINE_JUDGE_BLIND || '' }, today, seconds,
     pages: { seen: 0, read: 0, unread_by_reason: {} }, model_calls: {}, tools: {}, searches: { total: 0, repeated_normalized: 0 }, drops: {},
     findings: { main: r.findings.filter((f) => f.tier === 'main').length, verify: r.findings.filter((f) => f.tier !== 'main').length },
     leads: { total: 0, with_followup: 0, with_finalist: 0 }, agent: { steps: 0, invalid_steps: 0, rejected_ref: 0, stop_reason: '', questions: 0, assumptions: 0 },
-    judge: { finalists: r.findings.length, calls: 0, second_blind_calls: 0, second_call_changed: 0 }, coverage: coverageSummary(), gold: null };
+    judge: { finalists: r.findings.length, calls: 0, second_blind_calls: 0, second_call_changed: 0 }, coverage: coverageSummary(), gold: null,
+    funnel, models_used: used, search_providers: searchProv.rows, search_errors_active: searchProv.active_errors, providers_disabled: searchProv.disabled,
+    queries_skipped: events.filter((e) => e.type === 'query_skipped').length, unread_by_model: events.filter((e) => e.type === 'page_unread').length,
+    apollo: r.audits.map((a) => a.apollo).filter(Boolean) };
   const searches = []; const followups = new Set();
   for (const e of events) {
     if (e.type === 'page') { summary.pages.seen++; if (e.read) summary.pages.read++; }

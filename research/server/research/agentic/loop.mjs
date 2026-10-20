@@ -1,6 +1,7 @@
 /* Bucle agentic V14: comprender, actuar con refs, evaluar páginas y juzgar finalistas. */
 import { agentMaxTokens, chatJSON } from '../../analysis/fleet.mjs';
-import { literalIn } from '../verify.mjs';
+import { hostKind, hostOf, literalIn } from '../verify.mjs';
+import { resolveApolloContacts } from '../../../capital/resolver.mjs';
 import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
 import { assessContractOf, assessValidator, liftAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
@@ -36,12 +37,20 @@ export function registryQueries(brief = {}, n = 2) {
   const base = terms.length ? terms : [brief.industry, brief.oneLiner || brief.product].map((t) => String(t || '').replace(/\s+/g, ' ').trim()).filter(Boolean);
   return [...new Set(base.map((t) => t.slice(0, 100)))].slice(0, Math.max(0, n));
 }
+/** Registros y agregadores oficiales: su dominio no es la organización que financia (Apollo no aporta personas ahí). */
+const APOLLO_SKIP_HOSTS = /(^|\.)(grants\.gov|sam\.gov|sbir\.gov|reporter\.nih\.gov)$/i;
+const APOLLO_TITLES = { grant: ['program officer', 'program director', 'scientific program manager', 'grants manager'], sponsorship: ['partnerships manager', 'sponsorship manager'],
+  investment: ['partner', 'principal', 'investment director', 'managing director'], partnering: ['business development', 'search and evaluation', 'licensing'], debt: ['partner', 'managing director'] };
 /** Ejecuta como mucho `n` tareas a la vez, en orden de llegada. */
 const limiter = (n) => { let active = 0; const q = []; const next = () => { if (active >= Math.max(1, n) || !q.length) return; active++; const { fn, res, rej } = q.shift(); Promise.resolve().then(fn).then(res, rej).finally(() => { active--; next(); }); }; return (fn) => new Promise((res, rej) => { q.push({ fn, res, rej }); next(); }); };
 /** Espera una promesa como mucho `ms` (sin rechazar ni dejar temporizadores vivos). */
 const within = (promise, ms) => { if (!Number.isFinite(ms)) return promise; let t; return Promise.race([promise, new Promise((r) => { t = setTimeout(r, Math.max(0, ms)); })]).finally(() => clearTimeout(t)); };
 const unpage = (text) => String(text || '').replace(/^<page_data>|<\/page_data>$/g, '');
 const tokens = (usage) => ({ prompt: Number(usage?.prompt_tokens) || 0, completion: Number(usage?.completion_tokens) || 0, ...(!usage ? { estimated: true } : {}) });
+/** Tokens de una llamada sin `usage` (cortada por tiempo): entrada estimada por caracteres (≈4 por token) y salida contada
+ *  en streaming si el rol tiene *_LLM_STREAM=1; sin streaming el cliente no puede saber cuánto generó (limitación anotada). */
+const cutTokens = (prompt, progress = {}) => ({ prompt: Math.round((String(prompt?.system || '').length + String(prompt?.user || '').length) / 4), completion: Number(progress.chunks) || 0, estimated: true,
+  ...(progress.started ? { streamed: true, ...(progress.ttft_ms !== null && progress.ttft_ms !== undefined ? { ttft_ms: progress.ttft_ms } : {}) } : { completion_unknown: true }) });
 const validJudgment = (raw, ids) => Boolean(raw && typeof raw === 'object' && typeof raw.page_type === 'string' && Array.isArray(raw.dates) && raw.criteria && ids.every((id) => ['yes', 'no', 'unknown'].includes(raw.criteria[id]?.verdict)));
 const compilerOf = (a) => ({
   page_type: a.page_type, identity: { name: a.about, org: null, kind: a.page_type === 'investor_about' ? 'investor' : 'program', quote: a.lead?.quote || a.about },
@@ -65,6 +74,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const maxOpensPerStep = Number(env.ENGINE_AGENT_OPENS_PER_STEP) || 8; const maxSearchesPerStep = Number(env.ENGINE_AGENT_SEARCHES_PER_STEP) || 4;
   const assessConcurrency = Number(env.ENGINE_AGENT_ASSESS_CONCURRENCY) || 8; const judgeConcurrency = Number(env.ENGINE_AGENT_JUDGE_CONCURRENCY) || 8;
   const elapsed = () => (Date.now() - started) / 1000; let lastCandidateStep = 0;
+  const apolloMode = String(env.ENGINE_AGENT_APOLLO_STAGE || '').trim().toLowerCase() === 'post_judge' ? 'post_judge' : 'tool';
   const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const assessContract = assessContractOf(env); const pages = new Map(); const candidates = new Map();
   const findings = []; const leads = []; const queries = []; const decisions = []; const seenSearches = new Set(); let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
 
@@ -81,10 +91,10 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       const remainingMs = parallel ? Math.max(1, deadlineSeconds * 1000 - (Date.now() - started)) : configuredMs;
       const timeoutMs = Math.max(1, Math.min(configuredMs, remainingMs)); const controller = new AbortController();
       const callSignal = anySignal([opts.signal, call.signal, controller.signal]); let timer;
-      const purpose = role === 'agent' ? 'step' : role; const maxTokens = call.maxTokens ?? agentMaxTokens(purpose, env);
+      const purpose = role === 'agent' ? 'step' : role; const maxTokens = call.maxTokens ?? agentMaxTokens(purpose, env); const progress = {};
       try {
         response = await Promise.race([
-          chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal }),
+          chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal, progress }),
           new Promise((_, reject) => { timer = setTimeout(() => { const e = new Error(`model_timeout_${role}_${timeoutMs}ms`); e.code = 'MODEL_TIMEOUT'; controller.abort(e); reject(e); }, timeoutMs); }),
           ...(call.signal ? [new Promise((_, reject) => { const stop = () => reject(Object.assign(new Error(`model_aborted_${role}`), { code: 'MODEL_ABORTED' })); if (call.signal.aborted) stop(); else call.signal.addEventListener('abort', stop, { once: true }); })] : []),
         ]);
@@ -93,7 +103,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       finally { clearTimeout(timer); }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
       const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
-      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage || error?.usage), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: response?.usage || error?.usage ? tokens(response?.usage || error?.usage) : cutTokens(prompt, progress), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
       if (checked.ok) { info.reason = null; return checked.value ?? raw; }
       info.reason = error?.code === 'MODEL_TIMEOUT' ? 'timeout' : error?.code === 'MODEL_TRUNCATED' ? 'truncated' : error?.code === 'MODEL_ABORTED' ? 'aborted' : error ? 'error' : 'invalid';
       info.detail = String(error?.message || checked.errors?.[0] || '').slice(0, 200);
@@ -196,6 +206,38 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return out;
   }
 
+  /* P0.8 · Apollo como etapa determinista posterior al juez (ENGINE_AGENT_APOLLO_STAGE=post_judge). Recorre los hallazgos
+     (main antes que verify), toma el dominio oficial de la URL y resuelve personas con capital/resolver.mjs, con tope de
+     créditos por corrida (ENGINE_AGENT_APOLLO_CREDITS, 25) y de organizaciones (ENGINE_AGENT_APOLLO_MAX_ORGS, 3). Cada
+     hallazgo deja una traza apollo_stage con enabled, eligible_for_call, called, créditos y razón de no llamada. En el
+     modo anterior ('tool') solo se resume lo que el agente gastó, para poder comparar. Apollo no cambia ranking ni veredicto. */
+  async function apolloStage(found) {
+    const enabled = env.APOLLO_ENABLED === '1'; const client = tools.apolloClient || null; const configured = Boolean(client && (env.APOLLO_API_KEY || opts.apollo));
+    const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25; const maxOrgs = Number(env.ENGINE_AGENT_APOLLO_MAX_ORGS) || 3;
+    const credits = () => Number(client?.stats?.creditsEstimated) || 0;
+    if (apolloMode !== 'post_judge') {
+      const spent = credits(); const row = { stage: 'tool', enabled, eligible_for_call: found.length > 0, called: spent > 0, credits: spent, reason_not_called: spent > 0 ? null : !enabled ? 'apollo_disabled' : !found.length ? 'no_findings' : 'agent_did_not_call' };
+      trace.event('apollo_stage', row); return { stage: 'tool', enabled, configured, eligible: row.eligible_for_call ? 1 : 0, called: row.called ? 1 : 0, credits: spent, cap, reasons: row.reason_not_called ? { [row.reason_not_called]: 1 } : {} };
+    }
+    const summary = { stage: 'post_judge', enabled, configured, eligible: 0, called: 0, credits: 0, cap, reasons: {} };
+    const note = (row) => { trace.event('apollo_stage', { stage: 'post_judge', enabled, ...row }); if (row.reason_not_called) summary.reasons[row.reason_not_called] = (summary.reasons[row.reason_not_called] || 0) + 1; };
+    if (!found.length) { note({ eligible_for_call: false, called: false, credits: 0, reason_not_called: 'no_findings' }); return summary; }
+    const ordered = [...found].sort((a, b) => (a.tier === 'main' ? 0 : 1) - (b.tier === 'main' ? 0 : 1)); const domains = new Set();
+    for (const f of ordered) {
+      const domain = hostOf(f.url);
+      const reason = !enabled ? 'apollo_disabled' : !configured ? 'apollo_not_configured' : !domain ? 'no_domain' : APOLLO_SKIP_HOSTS.test(domain) ? 'registry_host'
+        : hostKind(f.url) !== 'other' ? `${hostKind(f.url)}_host` : domains.has(domain) ? 'duplicate_domain' : summary.called >= maxOrgs ? 'org_cap' : credits() >= cap ? 'credit_cap' : null;
+      if (reason) { note({ finding_url: f.url, domain: domain || null, eligible_for_call: false, called: false, credits: 0, reason_not_called: reason }); continue; }
+      domains.add(domain); summary.eligible++; const before = credits();
+      const result = await resolveApolloContacts({ organization_stable_id: domain, canonical_name: f.name || f.title || domain, official_domain: domain, target_roles: APOLLO_TITLES[objective] || APOLLO_TITLES.grant, as_of: today }, { client, maxPeople: Number(env.APOLLO_PEOPLE_PER_ORG) || 5 })
+        .catch((e) => ({ status: 'error', people: [], errors: [String(e?.message || e)] }));
+      const spent = credits() - before; summary.called++; summary.credits += spent;
+      f.contacts = (result.people || []).map((p) => ({ name: p.name, title: p.title, organization: p.organization, route: 'public_affiliation', channel: p.channel || null }));
+      note({ finding_url: f.url, domain, eligible_for_call: true, called: true, credits: spent, reason_not_called: null, status: result.status, people_n: f.contacts.length });
+    }
+    return summary;
+  }
+
   async function seedRegistry() {
     const source = env.SIMPLER_GRANTS_API_KEY ? 'simpler' : 'grants_gov';
     const qs = registryQueries(brief, Number(env.ENGINE_AGENT_REGISTRY_SEED_QUERIES) || 2); const results = []; const seen = new Set(); const errors = [];
@@ -209,10 +251,15 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return seed;
   }
 
-  async function searchMany(args, action) {
+  async function searchMany(args, action, step = null) {
     const planned = (args.queries || []).map((raw) => ({ raw: String(raw || '').trim(), query: normalizeAgentQuery(raw, objective, today) })).filter((x) => x.query);
     const qs = [];
-    for (const item of planned) { const key = queryKey(item.query); if (!key || seenSearches.has(key)) continue; seenSearches.add(key); qs.push(item); if (qs.length >= maxSearchesPerStep) break; }
+    for (const item of planned) {
+      const key = queryKey(item.query);
+      if (!key || seenSearches.has(key)) { trace.event('query_skipped', { step, query: item.query, ...(item.raw !== item.query ? { original: item.raw } : {}), reason: 'duplicate' }); continue; }
+      if (qs.length >= maxSearchesPerStep) { trace.event('query_skipped', { step, query: item.query, reason: 'per_step_cap' }); continue; }
+      seenSearches.add(key); qs.push(item);
+    }
     for (const item of qs) queries.push({ query: item.query, family: 'agent', ...(item.raw !== item.query ? { original: item.raw } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
     if (!qs.length) return { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_queries'] } };
     const found = await Promise.all(qs.map((item) => tools.search({ query: item.query, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
@@ -254,11 +301,18 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     stepsRun = step;
     const used = tools.usage?.() || {};
     const state = { objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
-      ...(parallel ? { parallel: true } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
+      ...(parallel ? { parallel: true } : {}), ...(apolloMode === 'post_judge' ? { apollo_stage: 'post_judge' } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
     const late = collectLateReads(); if (late) observation = { ...observation, late_reads: late };   // lecturas que terminaron después de su paso
     const prompt = stepPrompt({ state, observation });
-    const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null);
-    if (!value) { invalidSteps++; observation = { type: 'invalid_step' }; continue; }
+    const stepInfo = {};
+    const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null, { info: stepInfo });
+    if (!value) {
+      // P0.8 · Un paso que falla (timeout o JSON inválido) no borra lo observado: se repite la misma observación
+      // (resultados de búsqueda, páginas, lecturas tardías) con una nota, en vez de sustituirla por `invalid_step`.
+      invalidSteps++; const { retry_note: _drop, ...kept } = observation || {};
+      observation = observation ? { ...kept, retry_note: `previous step failed (${stepInfo.reason || 'invalid'}); the same observation is repeated so its results are not lost` } : { type: 'invalid_step' };
+      continue;
+    }
     if (value.assessment && observation?.type === 'page') ingest(observation, value.assessment, step, value.action?.tool);
     const action = value.action;
     if (action.tool === 'finish' && !finishRefused && candidates.size === 0 && (used.opens || 0) < 5 && step < maxSteps / 2) { finishRefused = true; trace.event('tool_call', { tool: 'finish', args: action.args || {}, results_n: 0, ms_call: 0, error: 'refused_early' }); observation = { type: 'finish_refused', message: 'No candidate yet and most of the budget is unused. Search with different queries or open more results before finishing.' }; continue; }
@@ -266,18 +320,22 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const args = { ...(action.args || {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) };
     if (parallel && (action.tool === 'open' || (action.tool === 'search' && Array.isArray(args.queries)))) {
       if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.followups.push(step); trace.event('lead_followup', { lead_id: action.from_lead, action: action.tool, step }); }
-      observation = action.tool === 'open' ? await openMany(args, step, action.tool, understood) : await searchMany(args, action);
+      observation = action.tool === 'open' ? await openMany(args, step, action.tool, understood) : await searchMany(args, action, step);
       if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.produced.push(...(action.tool === 'open' ? observation.pages.map((p) => p.ref) : observation.result.results.map((p) => p.ref)).filter(Boolean)); }
       continue;
     }
     if (action.tool === 'search') {
       const original = String(args.query || '').trim(); const query = normalizeAgentQuery(original, objective, today); const key = queryKey(query);
-      if (!key || seenSearches.has(key)) { observation = { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_query'] } }; continue; }
+      if (!key || seenSearches.has(key)) { trace.event('query_skipped', { step, query, ...(original !== query ? { original } : {}), reason: 'duplicate' }); observation = { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_query'] } }; continue; }
       seenSearches.add(key); args.query = query; queries.push({ query, family: 'agent', ...(original !== query ? { original } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
     }
     if (action.from_lead) {
       const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.followups.push(step);
       trace.event('lead_followup', { lead_id: action.from_lead, action: action.tool, step });
+    }
+    if (action.tool === 'apollo' && apolloMode === 'post_judge') {   // P0.8 · con la etapa posterior al juez, el agente no gasta créditos
+      trace.event('tool_call', { tool: 'apollo', args, results_n: 0, ms_call: 0, error: 'apollo_runs_after_judge' });
+      observation = { type: 'tool', tool: 'apollo', result: { error: 'apollo_runs_after_judge', note: 'Apollo runs automatically after the judge on the final findings; do not call it.' } }; continue;
     }
     const result = await tools[action.tool](args);
     if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.produced.push(...(result?.results || []).map((x) => x.ref).filter(Boolean)); }
@@ -312,6 +370,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const first = firstJudgments.get(ref);
     if (!second || !first || ids.some((id) => second.criteria[id]?.verdict !== first.criteria[id]?.verdict)) changed++;
   }
+  const apollo = await apolloStage(findings);
   const usage = tools.usage?.() || {};
-  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
+  return { findings, leads, audit: { apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }
