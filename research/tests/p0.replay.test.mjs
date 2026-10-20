@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { buildReplayRequest, checkEndpoint, loadReplayCorpus, measureOnce, parseEndpoints, sampleCorpus, summarizeReplay, quantile, REPLAY_VARIANTS } from '../server/research/agentic/replay.mjs';
+import { buildReplayRequest, checkEndpoint, loadReplayCorpus, measureOnce, parseEndpoints, sampleCorpus, summarizeReplay, quantile, REPLAY_VARIANTS, DEFAULT_REPLAY_VARIANTS } from '../server/research/agentic/replay.mjs';
 import { AGENT_CRITERIA, assessPrompt } from '../server/research/agentic/prompts.v14.mjs';
 
 const ids = AGENT_CRITERIA.grant;
@@ -38,7 +38,12 @@ test('P0.1 la petición usa las funciones reales de prompts.v14 y difiere solo e
   assert.equal(lite.body.response_format.json_schema.schema.$id, 'agent.assess_lite/1'); assert.equal(lite.body.max_tokens, 700); assert.equal(lite.body.reasoning_effort, 'low');
   assert.match(lite.body.messages[1].content, /Deterministic pre-read/);
   assert.deepEqual(json.body.response_format, { type: 'json_object' }); assert.equal(json.body.messages[1].content, buildReplayRequest(page, 'lite', { model: 'm' }).body.messages[1].content);
-  assert.deepEqual(Object.keys(REPLAY_VARIANTS), ['full', 'full+mt700', 'lite', 'lite+mt700', 'json', 'json+mt700']);
+  assert.deepEqual(DEFAULT_REPLAY_VARIANTS, ['full', 'full+mt700', 'lite', 'lite+mt700', 'json', 'json+mt700']);
+  const shape = buildReplayRequest(page, 'json-shape+mt1500', { model: 'm' });
+  assert.deepEqual(shape.body.response_format, { type: 'json_object' }); assert.equal(shape.body.max_tokens, 1500);
+  assert.match(shape.body.messages[1].content, /validates against this JSON Schema/); assert.match(shape.body.messages[1].content, /"page_type"/);
+  assert.equal(json.body.messages[1].content.includes('validates against this JSON Schema'), false, 'json sin shape reproduce el prompt de producción');
+  assert.equal(buildReplayRequest(page, 'lite+mt1500', { model: 'm' }).body.response_format.type, 'json_schema');
 });
 
 test('P0.1 medición: latencia, TTFT, tokens de entrada/salida, tokens/s y validez del contrato; un fallo deja el error sin números inventados', async () => {
