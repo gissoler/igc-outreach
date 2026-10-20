@@ -104,6 +104,20 @@ export function withLanguageRule(system) {
   return /write in spanish|en español|reply in spanish|same language as the draft/i.test(s) ? s : `${s}\n\n${ENGLISH_RULE}`;
 }
 
+/**
+ * Tope de tokens de salida por propósito del agente (no por puerto): comprensión, paso, lectura y juez.
+ * Variable vacía o ausente → valor por defecto; "0" o negativo → no se envía max_tokens desde el agente
+ * (se usa el `*_LLM_MAX_TOKENS` del rol de la flota si existe). En gpt-oss el tope incluye los tokens de razonamiento.
+ */
+export const AGENT_MAX_TOKENS_DEFAULTS = Object.freeze({ understand: 500, step: 400, assess: 700, judge: 900 });
+export const AGENT_MAX_TOKENS_ENV = Object.freeze({ understand: 'ENGINE_AGENT_UNDERSTAND_MAX_TOKENS', step: 'ENGINE_AGENT_STEP_MAX_TOKENS', assess: 'ENGINE_AGENT_ASSESS_MAX_TOKENS', judge: 'ENGINE_AGENT_JUDGE_MAX_TOKENS' });
+export function agentMaxTokens(purpose, env = process.env) {
+  const key = AGENT_MAX_TOKENS_ENV[purpose]; if (!key) return 0;
+  const raw = env[key];
+  if (raw === undefined || String(raw).trim() === '') return AGENT_MAX_TOKENS_DEFAULTS[purpose];
+  const n = Number(raw); return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
+}
+
 /** Chat con salida estructurada (response_format json_schema). */
 export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens }, { env = process.env, fetcher = fetch, signal } = {}) {
   const cfg = fleetConfig(env);
@@ -122,7 +136,16 @@ export async function chatJSON({ system, user, messages, schema, name = 'salida'
     ...(maxTokens || target.maxTokens ? { max_tokens: maxTokens || target.maxTokens } : {}),
     ...(target.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),   // ENGINE_LLM_THINKING=0: modelos Qwen con modo razonamiento
   }, { apiKey: target.apiKey || cfg.apiKey, timeoutMs: Number(target.timeoutMs) || (Number(env.ENGINE_LLM_TIMEOUT_MS) && role === 'engine' ? Number(env.ENGINE_LLM_TIMEOUT_MS) : cfg.timeoutMs), fetcher, signal });
-  return { json: parseJsonContent(data?.choices?.[0]?.message?.content), model: data?.model || target.model, usage: data?.usage || null, latency_ms: Date.now() - started };
+  const finishReason = data?.choices?.[0]?.finish_reason || null; const usage = data?.usage || null;
+  let json;
+  try { json = parseJsonContent(data?.choices?.[0]?.message?.content); }
+  catch (error) {
+    // Salida cortada por max_tokens: se distingue de un JSON inválido y conserva el uso de tokens para la traza.
+    const limit = maxTokens || target.maxTokens || 0;
+    const e = finishReason === 'length' ? Object.assign(new Error(`model_truncated_max_tokens_${limit}`), { code: 'MODEL_TRUNCATED' }) : error;
+    throw Object.assign(e, { usage, finish_reason: finishReason, model: data?.model || target.model });
+  }
+  return { json, model: data?.model || target.model, usage, latency_ms: Date.now() - started, finish_reason: finishReason };
 }
 
 /** Embeddings en lotes; devuelve vectores en el orden de entrada. */
