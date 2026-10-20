@@ -16,6 +16,8 @@ const anySignal = (list) => { const l = list.filter(Boolean); return l.length < 
 /** El modelo a veces manda las consultas como objeto ({query:'...'}) en vez de texto: se lee el texto en vez de convertirlo en "[object Object]". */
 /** Texto crudo de una respuesta rechazada, acotado, para saber por qué fue inválida. */
 const rawText = (raw) => { try { return (typeof raw === 'string' ? raw : JSON.stringify(raw) ?? '').slice(0, 800); } catch { return ''; } };
+/** Un ref de página (p1, p2…) ya fue leído: no se vuelve a abrir. Sin esta explicación el agente lo reintentaba en bucle (runs-v6/RD-04: ~20 de 32 pasos). */
+const REJECTED_REF_HINT = (ref) => /^p\d+$/.test(String(ref)) ? `${ref} is a page you already read; its summary is in judged_pages and its links came with it. Do not reopen it: open one of its link refs, a search or registry ref, search a new angle, or finish.` : `${ref} is not a ref returned by a tool. Use only refs from search, registry or page links.`;
 const DUPLICATE_HINT = 'Those queries were already run and their results are in your earlier observations. Do not repeat them: search a different angle, open a ref you have not opened, or finish.';
 export const queryText = (value) => typeof value === 'string' ? value : value && typeof value === 'object' ? String(value.query ?? value.q ?? value.text ?? value.search ?? '') : String(value ?? '');
 const queryKey = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -197,7 +199,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const opened = await Promise.all(wanted.map((ref) => tools.open({ ref })));
     const out = { type: 'pages', pages: [], failed: [] }; const mine = [];
     for (const [i, r] of opened.entries()) {
-      if (!r?.ref) { out.failed.push({ ref: wanted[i], error: r?.error || 'open_failed' }); continue; }
+      if (!r?.ref) { out.failed.push({ ref: wanted[i], error: r?.error || 'open_failed', ...(r?.error === 'rejected_ref' ? { hint: REJECTED_REF_HINT(wanted[i]) } : {}) }); continue; }
       const text = unpage(r.text); r.triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
       trace.event('triage', { page_ref: r.ref, url: r.url, version: r.triage.version, structure: r.triage.structure, banners: r.triage.banners, foa_ids: r.triage.foa_ids, dates: r.triage.dates.slice(0, 6) });
       mine.push(startRead(r, step, nextTool, understoodBrief));
@@ -377,7 +379,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   if (understandTask) { uController.abort('loop_finished'); await understandTask; }
 
   const selected = (finalRefs.length ? finalRefs : [...candidates.keys()]).filter((ref) => candidates.has(ref));
-  let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map();
+  let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map(); const droppedCalls = new Map(); const callIdsOf = new Map();
   const secondMax = opts.secondJudge === undefined ? Number(env.ENGINE_AGENT_JUDGE_SECOND ?? 10) : Number(opts.secondJudge);
   const secondRefs = selected.slice(0, Math.max(0, secondMax));
   const judgeFirst = (ref) => { const row = candidates.get(ref); const a = row.assessment; const page = { url: row.url, title: row.title, text: row.text };
@@ -391,10 +393,16 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const judgment = preFirst ? preFirst[idx] : await runFirst(); judgeCalls++; firstJudgments.set(ref, judgment);
     const audit = auditPage({ objective, page, today, compilation: compilerOf(a), judgment, failure: judgment ? {} : { judge: 'invalid' }, blind: prompt.blind, criteriaIds: ids });
     trace.event('decision', { page_ref: ref, by: 'judge', verdict: audit.dropReason ? 'drop' : audit.mainOk ? 'keep' : 'verify', reason: audit.dropReason || (audit.mainOk ? 'audited' : 'blocked'), page_type: audit.pageType?.judge || a.page_type, dates: audit.dates?.judge || [], criteria: audit.criteria, days_left: audit.daysLeft, next_action: null });
-    if (audit.dropReason) { trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true }); continue; }
+    if (audit.dropReason) { for (const id of foaIdsIn(page.text)) droppedCalls.set(id, { reason: audit.dropReason, url: page.url }); trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true }); continue; }
+    callIdsOf.set(page.url, foaIdsIn(page.text));
     const eligible = ['eligibility', 'region', 'entity_type', 'stage'].some((id) => audit.criteria[id]?.verdict === 'no') ? 'no' : audit.criteria.eligibility?.verdict === 'yes' ? 'yes' : 'unclear';
     const identity = a.lead?.quote && literalIn(a.lead.quote, page.text) ? a.lead.quote : a.about;
     findings.push({ objective, url: page.url, title: page.title, name: a.about, query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, read_contract: a.contract || 'full', quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries } });
+  }
+  // La misma convocatoria (mismo ID oficial) leída por otra URL: si el juez la descartó con la página completa, no queda como verificada por una ficha pobre.
+  for (let i = findings.length - 1; i >= 0; i--) {
+    const f = findings[i]; const hit = (callIdsOf.get(f.url) || []).map((id) => [id, droppedCalls.get(id)]).find(([, d]) => d && d.url !== f.url);
+    if (hit) { trace.event('drop', { url: f.url, reason: 'same_call_dropped', decided_by: 'code', read: true, call_id: hit[0], dropped_url: hit[1].url, dropped_reason: hit[1].reason }); findings.splice(i, 1); }
   }
   for (const [idx, ref] of secondRefs.entries()) {
     const second = preSecond ? preSecond[idx] : await judgeSecond(ref)(); secondCalls++;
