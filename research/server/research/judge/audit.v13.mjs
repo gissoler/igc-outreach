@@ -7,7 +7,7 @@
    Falla cerrado: juez caído o inválido → nada entra a la lista principal. Compilador y juez en desacuerdo → «a verificar».
    Funciones puras (sin red, disco ni reloj). */
 import { literalIn } from '../verify.mjs';
-import { datesIn, daysBetween, todayIso } from '../dates.mjs';
+import { datesIn, daysBetween, parseDates, todayIso } from '../dates.mjs';
 import { criteriaFor, hasDeadline } from './prompts.v13.mjs';
 
 export const JUDGE_AUDIT_VERSION = 'v13.1';
@@ -21,8 +21,11 @@ export function verifyDate(d, pageText) {
   if (!literalIn(d.quote, pageText)) return { ...base, verified: false, why: 'quote_not_in_page' };
   const found = datesIn(d.quote);
   if (!found.includes(d.date)) return { ...base, verified: false, why: 'date_not_in_quote' };
-  if (found.length > 1) return { ...base, verified: false, why: 'quote_has_several_dates' };
-  return { ...base, verified: true, why: null };
+  // Se cuentan las fechas ESCRITAS en la cita, no sus lecturas posibles: «11/12/2027» es una sola fecha con dos lecturas (12 nov o 11 dic).
+  const written = new Set(parseDates(d.quote).filter((x) => x.iso && !x.yearless && x.precision === 'day').map((x) => x.iso));
+  if (written.size > 1) return { ...base, verified: false, why: 'quote_has_several_dates' };
+  const ambiguous = found.length > 1;   // una sola fecha escrita con dos lecturas: se acepta la que dio el juez y se deja marcada
+  return { ...base, verified: true, why: null, ...(ambiguous ? { ambiguous: true } : {}) };
 }
 const auditDates = (list, pageText) => (Array.isArray(list) ? list : []).map((d) => verifyDate(d, pageText));
 const appDatesOf = (dates) => dates.filter((d) => d.role === 'application_deadline' && d.verified);
@@ -73,6 +76,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const jDates = auditDates(judgment.dates, text);
   const cDates = auditDates(compilation?.dates, text);
   for (const d of jDates) if (!d.verified && d.why !== 'no_date') flags.push(`date_${d.why}:${d.role}`);
+  for (const d of jDates) if (d.verified && d.ambiguous) flags.push(`date_ambiguous_numeric:${d.role}`);
   const st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated });
   const criteria = auditCriteria(judgment, objective, text, flags, criteriaIds);
 
