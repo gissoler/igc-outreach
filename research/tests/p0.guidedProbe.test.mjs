@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { probeSet, runProbe, schemaLadder, summarizeProbes } from '../server/research/agentic/guidedProbe.mjs';
+import { ABLATIONS, probeSet, runProbe, schemaAblations, schemaLadder, summarizeProbes } from '../server/research/agentic/guidedProbe.mjs';
 
 const page = { case: 'RD-04', run: 'runs', objective: 'grant', today: '2026-10-19', brief: { company: 'IGC', industry: 'Alzheimer imaging' }, url: 'https://example.org/c', title: 'Call', sha256: 'a'.repeat(64), text: 'Application deadline is December 15, 2026. '.repeat(40) };
 const size = (s) => Object.keys(s.properties).length;
@@ -41,6 +41,24 @@ test('sonda guiada CLI: --dry no llama a nada; con el endpoint caído sale con c
   const cwd = new URL('..', import.meta.url); const out = join(root, 'out');
   const dry = spawnSync(process.execPath, ['scripts/probe-guided.mjs', '--pipeline', root, '--runs', 'runs', '--dry', '--backends', 'xgrammar'], { cwd, encoding: 'utf8' });
   assert.equal(dry.status, 0); assert.match(dry.stdout, /9 sondas × 2 rondas = 18 llamadas/); assert.match(dry.stdout, /L4@xgrammar/);
+  const abl = spawnSync(process.execPath, ['scripts/probe-guided.mjs', '--pipeline', root, '--runs', 'runs', '--dry', '--ablate', '--repeat', '1'], { cwd, encoding: 'utf8' });
+  assert.equal(abl.status, 0); assert.match(abl.stdout, /9 sondas × 1 rondas = 9 llamadas/); assert.match(abl.stdout, /abl_no_maxLength/);
   const down = spawnSync(process.execPath, ['scripts/probe-guided.mjs', '--pipeline', root, '--runs', 'runs', '--endpoint', 'x=http://127.0.0.1:9/v1#m', '--out', out], { cwd, encoding: 'utf8' });
   assert.equal(down.status, 2); assert.match(down.stderr, /no responde/); assert.equal(existsSync(out), false);
+});
+
+const has = (node, key) => JSON.stringify(node).includes(`"${key}"`);
+test('sonda guiada: cada ablación quita solo su construcción del esquema real y no muta el original', () => {
+  const abl = Object.fromEntries(schemaAblations()); const base = abl.abl_base_L4;
+  assert.equal(has(base, 'maxLength') && has(base, 'pattern') && has(base, 'maxItems') && has(base, 'enum'), true, 'el contrato real usa estas construcciones');
+  assert.equal(has(abl.abl_no_maxLength, 'maxLength'), false); assert.equal(has(abl.abl_no_maxLength, 'pattern'), true);
+  assert.equal(has(abl.abl_no_pattern, 'pattern'), false); assert.equal(has(abl.abl_no_pattern, 'maxLength'), true);
+  assert.equal(has(abl.abl_no_maxItems, 'maxItems'), false); assert.equal(has(abl.abl_no_enum, 'enum'), false);
+  assert.equal(JSON.stringify(abl.abl_no_nullable).includes('"null"'), false); assert.equal(JSON.stringify(base).includes('"null"'), true);
+  assert.equal(JSON.stringify(abl.abl_no_closed_objects).includes('"additionalProperties":false'), false);
+  for (const k of ['maxLength', 'pattern', 'maxItems', 'enum']) assert.equal(has(abl.abl_sin_todo, k), false);
+  assert.deepEqual(Object.keys(abl.abl_sin_todo.properties), Object.keys(base.properties), 'las ablaciones no quitan campos');
+  assert.equal(Object.keys(ABLATIONS).length, 6);
+  const probes = probeSet(page, { model: 'm', ablate: true }); assert.deepEqual(probes.map((p) => p.name), ['json_object', ...schemaAblations().map(([n]) => n)]);
+  assert.equal(probes.slice(1).every((p) => p.body.response_format.type === 'json_schema'), true);
 });

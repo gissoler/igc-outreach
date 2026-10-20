@@ -3,7 +3,8 @@
 // Uso (desde research/, con el túnel abierto):
 //   node scripts/probe-guided.mjs --pipeline "<…>/Fuentes/Pipeline I+D Outreach - 2026-10-19" [--case RD-04] [--runs runs,runs-v2-qwen-assess-timeout]
 //        [--endpoint "qwen=http://127.0.0.1:8017/v1#Qwen/Qwen3-30B-A3B-Instruct-2507"] [--repeat 2] [--max-tokens 400]
-//        [--backends xgrammar,outlines] [--out eval/runs/probe-guided-<fecha>] [--dry]
+//        [--backends xgrammar,outlines] [--ablate] [--out eval/runs/probe-guided-<fecha>] [--dry]
+// --ablate: en vez de la escalera, mide el esquema ligero completo quitando UNA construcción cada vez (maxLength, pattern, maxItems, enum, null, objetos cerrados) y sin ninguna.
 // Orden de ejecución: ronda a ronda (todas las sondas, luego otra vez), para que un pico de carga no sesgue a una sola sonda.
 // Salida: tabla en pantalla + calls.jsonl y results.json en un directorio NUEVO. Código 2 si el endpoint no responde.
 import { mkdirSync, writeFileSync, appendFileSync, existsSync } from 'node:fs';
@@ -18,13 +19,13 @@ if (!pipeline || !existsSync(pipeline)) { console.error('✖ Falta --pipeline <c
 const runs = arg('--runs', 'runs,runs-v2-qwen-assess-timeout').split(',').map((x) => x.trim()).filter(Boolean);
 const [endpoint] = parseEndpoints(arg('--endpoint', 'qwen=http://127.0.0.1:8017/v1#Qwen/Qwen3-30B-A3B-Instruct-2507'));
 const repeat = Math.max(1, Number(arg('--repeat', '2')) || 2); const maxTokens = Number(arg('--max-tokens', '400')) || 400;
-const backends = arg('--backends', '').split(',').map((x) => x.trim()).filter(Boolean); const caseId = arg('--case', 'RD-04');
+const ablate = argv.includes('--ablate'); const backends = arg('--backends', '').split(',').map((x) => x.trim()).filter(Boolean); const caseId = arg('--case', 'RD-04');
 const stamp = new Date().toISOString().replace(/[:T]/g, '-').slice(0, 16); const outDir = resolve(arg('--out', join('eval/runs', `probe-guided-${stamp}`)));
 
 const corpus = loadReplayCorpus(pipeline, { runs }).filter((p) => p.case === caseId); const page = sampleCorpus(corpus, 1)[0];
 if (!page) { console.error(`✖ No hay páginas guardadas del caso ${caseId} en ${runs.join(', ')}.`); process.exit(2); }
 const effort = /gpt-oss/i.test(endpoint.model) ? 'low' : '';
-const probes = probeSet(page, { model: endpoint.model, maxTokens, reasoningEffort: effort, backends });
+const probes = probeSet(page, { model: endpoint.model, maxTokens, reasoningEffort: effort, backends, ablate });
 console.log(`Sonda guiada · ${endpoint.name}=${endpoint.url}#${endpoint.model} · página ${page.case} (${page.url})\n  ${probes.length} sondas × ${repeat} rondas = ${probes.length * repeat} llamadas, max_tokens ${maxTokens}`);
 if (argv.includes('--dry')) { for (const p of probes) console.log(`  ${p.name}: ${p.note} · formato ${p.body.response_format?.type || 'ninguno'}${p.body.guided_decoding_backend ? ` · motor ${p.body.guided_decoding_backend}` : ''}`); console.log('Dry run: no se llamó a ningún modelo.'); process.exit(0); }
 try { endpoint.model = await checkEndpoint(endpoint); } catch (error) { console.error(`✖ ${error.message}\n  No se ejecutó ninguna llamada.`); process.exit(2); }
