@@ -117,6 +117,26 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   /** Registros oficiales. simpler / grants_gov devuelven convocatorias abiertas o en forecast con refs abribles (el texto del
    *  registro se lee sin red); reporter / nsf / sbir devuelven inteligencia (premios pasados, solicitudes SBIR). Gratis: no
    *  consume el presupuesto de búsquedas web, pero abrir sus refs sí consume aperturas. */
+  /* Apollo como fuente inicial (20/10): organizaciones por palabras clave del brief → refs abribles hacia su sitio oficial.
+     No pide personas (cuestan más créditos); lo que Apollo dice de la organización es una pista, no evidencia: la página decide. */
+  let apolloSeq = 0;
+  async function apolloSource(args = {}) {
+    const started = Date.now(); const before = apolloClient.stats?.creditsEstimated || 0; const keywords = (args.keywords || []).map((k) => clip(k, 100)).filter(Boolean).slice(0, 5);
+    const credits = () => (apolloClient.stats?.creditsEstimated || 0) - before;
+    try {
+      if (!keywords.length) throw new Error('no_keywords');
+      const response = await apolloClient.organizationSearch({ keywords, perPage: Math.min(10, Number(args.n) || 8) });
+      const orgs = response?.data?.organizations || response?.data?.accounts || []; const id = ++apolloSeq; const rows = []; const seen = new Set();
+      for (const o of orgs) {
+        const domain = String(o.primary_domain || '').toLowerCase().replace(/^www\./, ''); const url = String(o.website_url || (domain ? `https://${domain}` : '')).trim();
+        if (!/^https?:\/\//i.test(url) || seen.has(domain || url)) continue; seen.add(domain || url);
+        const ref = `a${id}.${rows.length + 1}`; refs.set(ref, { url, title: o.name || domain, snippet: clip(o.short_description, 300), markdown: '', via: 'apollo' });
+        rows.push({ ref, url, name: o.name || null, domain: domain || null, industry: o.industry || null, description: clip(o.short_description, 200) || null, employees: o.estimated_num_employees ?? null, source: 'apollo' });
+      }
+      record('apollo', { op: 'organization_keywords', keywords }, started, rows, { credits: credits(), urls: rows.map((r) => r.url).slice(0, 10) }); return { rows, credits_estimated: credits() };
+    } catch (error) { return fail('apollo', { op: 'organization_keywords', keywords }, started, error, { credits: credits() }); }
+  }
+
   async function registry(args = {}) {
     const started = Date.now(); const source = String(args.source || '').trim(); const query = clip(args.query, 200);
     try {
@@ -144,5 +164,5 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   const note = async (args = {}) => { const at = Date.now(); record('note', args, at, []); return { ok: true }; };
   const ask_user = async (args = {}) => { const at = Date.now(); const out = { answered: false }; record('ask_user', args, at, []); trace.event('ask_user', { questions: args.questions || [], answered: false }); return out; };
   const finish = async (args = {}) => { const at = Date.now(); record('finish', args, at, []); trace.event('finish', { reason: String(args.reason || 'agent') }); return { ok: true }; };
-  return { search, open, apollo: apolloTool, apolloClient, disabledProviders: () => Object.fromEntries(Object.entries(breaker).filter(([, b]) => b.off).map(([p, b]) => [p, b.reason])), entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
+  return { search, open, apollo: apolloTool, apolloSource, apolloClient, disabledProviders: () => Object.fromEntries(Object.entries(breaker).filter(([, b]) => b.off).map(([p, b]) => [p, b.reason])), entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
 }
