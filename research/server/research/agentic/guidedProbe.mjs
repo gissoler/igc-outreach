@@ -27,10 +27,24 @@ export function schemaLadder(ids = AGENT_CRITERIA.grant) {
     ['schema_L4_lite_completo', lite],
   ];
 }
+/** Ablación (20/10): el esquema ligero completo sin UNA construcción cada vez, y sin ninguna. Si una sube a ~200 tok/s, esa es la causa. */
+const stripDeep = (node, fn) => Array.isArray(node) ? node.map((x) => stripDeep(x, fn)) : (node && typeof node === 'object') ? fn(Object.fromEntries(Object.entries(node).map(([k, v]) => [k, stripDeep(v, fn)]))) : node;
+const without = (...keys) => (o) => { const c = { ...o }; for (const k of keys) delete c[k]; return c; };
+export const ABLATIONS = Object.freeze({
+  no_maxLength: without('maxLength'), no_pattern: without('pattern'), no_maxItems: without('maxItems'),
+  no_enum: (o) => { if (!Array.isArray(o.enum)) return o; const { enum: _e, ...rest } = o; return { ...rest, type: 'string' }; },
+  no_nullable: (o) => Array.isArray(o.type) ? { ...o, type: o.type.find((t) => t !== 'null') || 'string' } : o,
+  no_closed_objects: (o) => o.additionalProperties === false ? without('additionalProperties')(o) : o,
+});
+export function schemaAblations(ids = AGENT_CRITERIA.grant) {
+  const { $id, ...lite } = assessLiteSchema(ids); void $id;
+  const all = (o) => Object.values(ABLATIONS).reduce((acc, fn) => fn(acc), o);
+  return [['abl_base_L4', lite], ...Object.entries(ABLATIONS).map(([name, fn]) => [`abl_${name}`, stripDeep(lite, fn)]), ['abl_sin_todo', stripDeep(lite, all)]];
+}
 const TEXT_SCHEMA = { type: 'object', additionalProperties: false, required: ['text'], properties: { text: { type: 'string' } } };
 
 /** Lista de sondas para una página. `backends` añade una sonda por motor con el esquema completo (puede ser rechazada: se registra). */
-export function probeSet(page, { model, maxTokens = 400, reasoningEffort = '', backends = [] } = {}) {
+export function probeSet(page, { model, maxTokens = 400, reasoningEffort = '', backends = [], ablate = false } = {}) {
   const base = buildReplayRequest(page, 'lite', { model }).body; const messages = base.messages;
   const common = { model, temperature: 0, max_tokens: maxTokens, ...(reasoningEffort ? { reasoning_effort: reasoningEffort } : {}) };
   const control = [{ role: 'system', content: 'Reply only with JSON.' }, { role: 'user', content: `<page>\n${String(page.text || '').slice(0, 3000)}\n</page>\n\nReturn {"text": "..."} where text is a plain-prose summary of this page of about 250 words.` }];
@@ -41,6 +55,10 @@ export function probeSet(page, { model, maxTokens = 400, reasoningEffort = '', b
     { name: 'ctl_schema_text', note: 'control: el mismo resumen con un esquema de 1 campo string', body: { ...common, messages: control, response_format: { type: 'json_schema', json_schema: { name: 'text', schema: TEXT_SCHEMA } } } },
     ...schemaLadder(AGENT_CRITERIA[page.objective] || AGENT_CRITERIA.grant).map(([name, schema]) => ({ name, note: 'json_schema, mismo prompt', body: { ...common, messages, response_format: { type: 'json_schema', json_schema: { name: 'assess', schema } } } })),
   ];
+  if (ablate) {
+    const schemaProbe = (name, schema, note) => ({ name, note, body: { ...common, messages, response_format: { type: 'json_schema', json_schema: { name: 'assess', schema } } } });
+    return [probes[1], ...schemaAblations(AGENT_CRITERIA[page.objective] || AGENT_CRITERIA.grant).map(([name, schema]) => schemaProbe(name, schema, 'ablación del esquema ligero completo'))];
+  }
   const full = probes.find((p) => p.name === 'schema_L4_lite_completo');
   for (const backend of backends) probes.push({ name: `L4@${backend}`, note: `esquema completo pidiendo el motor ${backend} por petición`, body: { ...full.body, guided_decoding_backend: backend } });
   return probes;
