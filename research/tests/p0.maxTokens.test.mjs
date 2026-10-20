@@ -26,7 +26,7 @@ test('P0.2 defaults por propósito y variables de entorno para cambiarlos', () =
 test('P0.2 el bucle envía max_tokens distinto por comprensión, paso, lectura y juez, y lo deja en la traza', async () => {
   const seen = {}; const trace = traceOf(); const steps = [step('open', { refs: ['s1.1'] }), step('finish', { reason: 'done', finalists: [] })];
   const chat = async (req) => {
-    seen[req.name] = req.maxTokens;
+    seen[req.name] ??= req.maxTokens;   // la primera llamada de cada propósito (el reintento mínimo usa su propio tope)
     if (req.name === 'understand') return { json: understood, model: 'fixture' };
     if (req.name === 'agent') return { json: steps.shift(), model: 'fixture' };
     if (req.name === 'assess') return { json: {}, model: 'fixture' };
