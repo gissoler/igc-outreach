@@ -3,9 +3,10 @@ import { agentMaxTokens, chatJSON } from '../../analysis/fleet.mjs';
 import { literalIn } from '../verify.mjs';
 import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
-import { validateAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
-import { AGENT_CRITERIA, assessPrompt, criterionHelp, stepPrompt, understandPrompt } from './prompts.v14.mjs';
+import { assessContractOf, assessValidator, liftAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
+import { AGENT_CRITERIA, assessPromptFor, criterionHelp, stepPrompt, understandPrompt } from './prompts.v14.mjs';
 import { createTools } from './tools.mjs';
+import { triageNote, triagePage } from './triage.mjs';
 
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
@@ -17,6 +18,9 @@ export function normalizeAgentQuery(value, objective, today) {
   const year = Number(String(today || '').slice(0, 4));
   return Number.isInteger(year) ? query.replace(/\b(20\d{2})\b/g, (match) => Number(match) < year ? String(year) : match) : query;
 }
+/** Lo que el agente ve del triage determinista de una página (sin texto completo). */
+const triageView = (t) => ({ shape: t.structure.kind, ...(t.structure.hub ? { hub: true } : {}), ...(t.banners.length ? { banners: t.banners.map((b) => b.kind) } : {}), ...(t.foa_ids.length ? { call_ids: t.foa_ids.slice(0, 6) } : {}) });
+const linksView = (links) => (links || []).slice(0, 20).map((l) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80) }));
 const unpage = (text) => String(text || '').replace(/^<page_data>|<\/page_data>$/g, '');
 const tokens = (usage) => ({ prompt: Number(usage?.prompt_tokens) || 0, completion: Number(usage?.completion_tokens) || 0, ...(!usage ? { estimated: true } : {}) });
 const validJudgment = (raw, ids) => Boolean(raw && typeof raw === 'object' && typeof raw.page_type === 'string' && Array.isArray(raw.dates) && raw.criteria && ids.every((id) => ['yes', 'no', 'unknown'].includes(raw.criteria[id]?.verdict)));
@@ -42,7 +46,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const maxOpensPerStep = Number(env.ENGINE_AGENT_OPENS_PER_STEP) || 8; const maxSearchesPerStep = Number(env.ENGINE_AGENT_SEARCHES_PER_STEP) || 4;
   const assessConcurrency = Number(env.ENGINE_AGENT_ASSESS_CONCURRENCY) || 8; const judgeConcurrency = Number(env.ENGINE_AGENT_JUDGE_CONCURRENCY) || 8;
   const elapsed = () => (Date.now() - started) / 1000; let lastCandidateStep = 0;
-  const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const pages = new Map(); const candidates = new Map();
+  const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const assessContract = assessContractOf(env); const pages = new Map(); const candidates = new Map();
   const findings = []; const leads = []; const queries = []; const decisions = []; const seenSearches = new Set(); let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
 
   async function model(prompt, role, validate, pageRef = null) {
@@ -95,11 +99,14 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const out = { type: 'pages', pages: [], failed: [] };
     await pool(opened.map((r, i) => [wanted[i], r]), assessConcurrency, async ([ref, r]) => {
       if (!r?.ref) { out.failed.push({ ref, error: r?.error || 'open_failed' }); return; }
-      const obs = { type: 'page', ...r };
-      const a = await model(assessPrompt({ objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text: unpage(r.text) }, ref: r.ref, today }), 'assess', validateAssess, r.ref);
-      if (!a) { out.failed.push({ ref: r.ref, error: 'assess_invalid' }); return; }
+      const obs = { type: 'page', ...r }; const text = unpage(r.text);
+      const triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
+      trace.event('triage', { page_ref: r.ref, url: r.url, version: triage.version, structure: triage.structure, banners: triage.banners, foa_ids: triage.foa_ids, dates: triage.dates.slice(0, 6) });
+      const raw = await model(assessPromptFor(assessContract, { objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text }, ref: r.ref, today, triageNote: triageNote(triage) }), 'assess', assessValidator(assessContract, ids), r.ref);
+      if (!raw) { out.failed.push({ ref: r.ref, error: 'assess_invalid' }); return; }
+      const a = liftAssess(raw, assessContract, ids);
       a.ref = r.ref; const { dates, leadId } = ingest(obs, a, step, nextTool);
-      out.pages.push({ ref: r.ref, url: r.url, title: r.title, chars: r.chars, about: a.about, page_type: a.page_type, candidate: candidates.has(r.ref), dates: dates.filter(Boolean).slice(0, 6), lead_id: leadId, links: (r.links || []).slice(0, 20).map((l) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80) })) });
+      out.pages.push({ ref: r.ref, url: r.url, title: r.title, chars: r.chars, about: a.about, page_type: a.page_type, candidate: candidates.has(r.ref), dates: dates.filter(Boolean).slice(0, 6), lead_id: leadId, ...triageView(triage), links: linksView(r.links) });
     });
     out.pages.sort((x, y) => Number(x.ref.slice(1)) - Number(y.ref.slice(1)));
     return out;

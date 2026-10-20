@@ -9,6 +9,8 @@ const quoteOf = { deadline: 'Application deadline is December 15, 2026.', topic_
 const criteria = Object.fromEntries(AGENT_CRITERIA.grant.map((id) => [id, { verdict: 'yes', quote: quoteOf[id] || 'Eligible for-profit companies in the United States.', reason: 'stated' }]));
 const dates = [{ role: 'application_deadline', date: '2026-12-15', estimated: false, quote: 'Application deadline is December 15, 2026.' }];
 const assessment = (ref) => ({ ref, page_type: 'call', about: 'Official Program', dates, date_missing_next: null, criteria, candidate: true, lead: null });
+// Contrato ligero (P0.3, por defecto): sin `reason` ni `date_missing_next`.
+const liteAssessment = (ref) => ({ ref, page_type: 'call', about: 'Official Program', dates, criteria: Object.fromEntries(Object.entries(criteria).map(([id, c]) => [id, { verdict: c.verdict, quote: c.quote }])), candidate: true, lead: null });
 const judgment = { page_type: 'call', dates, criteria: Object.fromEntries(Object.entries(criteria).map(([id, c]) => [id, { ...c, compiler: 'agree' }])) };
 const step = (tool, args) => ({ thought: 'next', assessment: null, notes: [], action: { tool, args, from_lead: null } });
 const traceOf = () => { const events = []; return { events, event: (type, data) => events.push({ type, ...data }) }; };
@@ -29,7 +31,7 @@ const chatBy = (agentSteps, seen = []) => async (req) => {
   seen.push(req.name);
   if (req.name === 'understand') return { json: understood, model: 'fixture' };
   if (req.name === 'agent') return { json: agentSteps.shift(), model: 'fixture' };
-  if (req.name === 'assess') return { json: assessment(String(req.user.match(/Page ref: (\S+?)\./)?.[1])), model: 'fixture' };
+  if (req.name === 'assess') { const ref = String(req.user.match(/Page ref: (\S+?)\./)?.[1]); return { json: req.schema?.$id === 'agent.assess_lite/1' ? liteAssessment(ref) : assessment(ref), model: 'fixture' }; }
   return { json: judgment, model: 'fixture' };
 };
 
@@ -71,7 +73,7 @@ test('F2.7 una página que el modelo rápido no devuelve válida se reporta como
   const users = []; const chat = async (req) => { if (req.name === 'agent') users.push(req.user); return req.name === 'assess' ? { json: {}, model: 'fixture' } : agent(req); };
   const result = await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace, today: '2026-10-12', parallel: true, secondJudge: 0 });
   assert.equal(result.findings.length, 0);
-  assert.equal(trace.events.filter((x) => x.type === 'model_call' && x.role === 'compiler' && x.prompt_version === 'agent.v14.3' && x.invalid).length, 2);
+  assert.equal(trace.events.filter((x) => x.type === 'model_call' && x.role === 'compiler' && x.prompt_version === 'agent.v14.4-lite' && x.invalid).length, 2);
   assert.equal(trace.events.some((x) => x.type === 'model_call' && x.role === 'assess'), false, 'la traza registra el rol ejecutor permitido, no el nombre semántico del prompt');
   assert.equal(users.some((u) => u.includes("assess_invalid")), true);
 });
@@ -99,5 +101,5 @@ test('F2.7 permite asignar comprensión y lectura al rol agent cuando compiler e
   await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace, today: '2026-10-19', parallel: true, secondJudge: 0, env: { ENGINE_AGENT_UNDERSTAND_ROLE: 'agent', ENGINE_AGENT_ASSESS_ROLE: 'agent' } });
   assert.equal(roles.some(([name, role]) => name === 'understand' && role === 'agent'), true);
   assert.equal(roles.some(([name, role]) => name === 'assess' && role === 'agent'), true);
-  assert.equal(trace.events.some((x) => x.type === 'model_call' && x.prompt_version === 'agent.v14.3' && x.role === 'agent'), true);
+  assert.equal(trace.events.some((x) => x.type === 'model_call' && x.prompt_version === 'agent.v14.4-lite' && x.role === 'agent'), true);
 });
