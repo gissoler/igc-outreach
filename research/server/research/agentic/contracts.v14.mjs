@@ -81,7 +81,7 @@ export const validateUnderstand = (raw) => result(checkUnderstand, raw);
 export const validateAssess = (raw) => result(checkAssess, raw);
 const liteChecks = new Map(); const checkMin = ajv.compile(ASSESS_MIN_SCHEMA);
 export function validateAssessLite(raw, ids = []) {
-  const key = ids.join('|'); if (!liteChecks.has(key)) liteChecks.set(key, ajv.compile(assessLiteSchema(ids)));
+  const key = ids.join('|'); if (!liteChecks.has(key)) liteChecks.set(key, new Ajv({ allErrors: true, strict: false }).compile(assessLiteSchema(ids))); // un Ajv por lista de criterios: el $id es fijo y Ajv rechaza dos esquemas con el mismo $id
   return result(liteChecks.get(key), raw);
 }
 export const validateAssessMin = (raw) => result(checkMin, raw);
