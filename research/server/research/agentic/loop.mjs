@@ -63,7 +63,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = opts.today || new Date().toISOString().slice(0, 10); const trace = opts.trace || noopTrace;
   const tools = opts.tools || createTools({ env, fetcher: opts.fetcher, signal: opts.signal, trace, limits: opts.limits || {
     searches: Number(env.ENGINE_AGENT_SEARCHES) || 20, opens: Number(env.ENGINE_AGENT_OPENS) || 30,
-    apolloCredits: Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25, exaUsdCap: opts.exaUsdCap,
+    apolloCredits: Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 5, exaUsdCap: opts.exaUsdCap,
   }, apollo: opts.apollo, readers: opts.readers });
   const chat = opts.chat || chatJSON; const maxSteps = Number(opts.maxSteps ?? env.ENGINE_AGENT_STEPS) || 40;
   // Modo paralelo (ENGINE_AGENT_PARALLEL=1): varias aperturas y búsquedas por paso, páginas evaluadas en paralelo por el modelo rápido, jueces en paralelo y tope de tiempo con entrega parcial.
@@ -209,12 +209,12 @@ export async function runAgentObjective(objective, brief, opts = {}) {
 
   /* P0.8 · Apollo como etapa determinista posterior al juez (ENGINE_AGENT_APOLLO_STAGE=post_judge). Recorre los hallazgos
      (main antes que verify), toma el dominio oficial de la URL y resuelve personas con capital/resolver.mjs, con tope de
-     créditos por corrida (ENGINE_AGENT_APOLLO_CREDITS, 25) y de organizaciones (ENGINE_AGENT_APOLLO_MAX_ORGS, 3). Cada
+     créditos por corrida (ENGINE_AGENT_APOLLO_CREDITS, 5) y de organizaciones (ENGINE_AGENT_APOLLO_MAX_ORGS, 3). Cada
      hallazgo deja una traza apollo_stage con enabled, eligible_for_call, called, créditos y razón de no llamada. En el
      modo anterior ('tool') solo se resume lo que el agente gastó, para poder comparar. Apollo no cambia ranking ni veredicto. */
   async function apolloStage(found) {
     const enabled = env.APOLLO_ENABLED === '1'; const client = tools.apolloClient || null; const configured = Boolean(client && (env.APOLLO_API_KEY || opts.apollo));
-    const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25; const maxOrgs = Number(env.ENGINE_AGENT_APOLLO_MAX_ORGS) || 3;
+    const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 5; const maxOrgs = Number(env.ENGINE_AGENT_APOLLO_MAX_ORGS) || 3;
     const credits = () => Number(client?.stats?.creditsEstimated) || 0;
     if (apolloMode !== 'post_judge') {
       const spent = credits(); const row = { stage: 'tool', enabled, eligible_for_call: found.length > 0, called: spent > 0, credits: spent, reason_not_called: spent > 0 ? null : !enabled ? 'apollo_disabled' : !found.length ? 'no_findings' : 'agent_did_not_call' };
@@ -254,23 +254,24 @@ export async function runAgentObjective(objective, brief, opts = {}) {
 
   /* Apollo como fuente inicial (20/10, decisión de Gisel): antes del primer paso busca organizaciones con los términos del brief
      (los mismos que el registro) y las deja como refs abribles hacia su sitio. Es determinista y acotado: ENGINE_AGENT_APOLLO_SEED_QUERIES
-     (2) búsquedas, 1 crédito estimado cada una, y siempre dentro del tope por corrida (ENGINE_AGENT_APOLLO_CREDITS, 25). Solo corre con
+     (2) búsquedas, 1 crédito estimado cada una, y siempre dentro del tope por corrida (ENGINE_AGENT_APOLLO_CREDITS, 5). Solo corre con
      APOLLO_ENABLED=1; ENGINE_AGENT_APOLLO_SEED=0 lo apaga. Cada decisión deja una traza apollo_source. */
   async function seedApollo() {
-    const enabled = env.APOLLO_ENABLED === '1'; const configured = Boolean(env.APOLLO_API_KEY || opts.apollo); const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25;
+    const enabled = env.APOLLO_ENABLED === '1'; const configured = Boolean(env.APOLLO_API_KEY || opts.apollo); const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 5;
     const qs = registryQueries(brief, Number(env.ENGINE_AGENT_APOLLO_SEED_QUERIES) || 2);
     const reason = String(env.ENGINE_AGENT_APOLLO_SEED ?? '1') === '0' ? 'seed_off' : !enabled ? 'apollo_disabled' : !configured ? 'apollo_not_configured' : typeof tools.apolloSource !== 'function' ? 'no_tool' : !qs.length ? 'no_terms' : null;
     const base = { stage: 'source', enabled, configured, cap, queries: qs };
     if (reason) { trace.event('apollo_source', { ...base, eligible_for_call: false, called: false, credits: 0, reason_not_called: reason }); return { ...base, called: 0, credits: 0, results_n: 0, reason }; }
-    const results = []; const seen = new Set(); const errors = []; let credits = 0;
+    const results = []; const seen = new Set(); const errors = []; let credits = 0; let capped = false;
     for (const query of qs) {
+      if (credits >= cap) { capped = true; break; }   // el tope por corrida también corta la fuente inicial
       const out = await tools.apolloSource({ keywords: [query], n: Number(env.ENGINE_AGENT_APOLLO_SEED_ROWS) || 8 });
       credits += Number(out?.credits_estimated) || 0;
       if (out?.error) { errors.push(out.error); if (/CAP|cap/.test(out.error)) break; continue; }
       for (const row of out?.rows || []) if (row.ref && !seen.has(row.domain || row.url)) { seen.add(row.domain || row.url); results.push(row); }
     }
     const seed = { source: 'apollo', queries: qs, results: results.slice(0, Number(env.ENGINE_AGENT_APOLLO_SEED_MAX) || 10), credits, ...(errors.length ? { errors } : {}) };
-    trace.event('apollo_source', { ...base, eligible_for_call: true, called: true, credits, results_n: seed.results.length, urls: seed.results.map((r) => r.url), reason_not_called: null, ...(errors.length ? { errors } : {}) });
+    trace.event('apollo_source', { ...base, eligible_for_call: true, called: true, credits, results_n: seed.results.length, urls: seed.results.map((r) => r.url), reason_not_called: null, ...(capped ? { capped: true } : {}), ...(errors.length ? { errors } : {}) });
     return seed;
   }
 
