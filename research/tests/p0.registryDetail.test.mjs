@@ -29,3 +29,20 @@ test('ENGINE_AGENT_REGISTRY_DETAIL=0 no pide el detalle', async () => {
   const calls = []; const tools = createTools({ env: { ENGINE_AGENT_REGISTRY_DETAIL: '0' }, fetcher: fetcherOf(calls), trace: { event() {}, page() {} } });
   await tools.registry({ source: 'grants_gov', query: 'Alzheimer' }); assert.equal(calls.some((u) => u.endsWith('/fetchOpportunity')), false);
 });
+
+test('el detalle de una convocatoria en pronóstico (forecast en vez de synopsis) también llega a la ficha, y lo que falta queda anotado con su razón', async () => {
+  const hitsF = [{ id: '1', number: 'RFA-AG-27-005', title: 'Forecasted', agency: 'NIH', oppStatus: 'forecasted' }, { id: '2', number: 'N-2', title: 'Sin forma', agency: 'NIH', oppStatus: 'posted' }, { id: '3', number: 'N-3', title: 'Error', agency: 'NIH', oppStatus: 'posted' }];
+  const fetcher = async (url, init) => {
+    if (url.endsWith('/search2')) return new Response(JSON.stringify({ errorcode: 0, data: { oppHits: hitsF } }), { status: 200 });
+    const id = String(JSON.parse(init.body).opportunityId);
+    if (id === '1') return new Response(JSON.stringify({ errorcode: 0, data: { forecast: { forecastDesc: '<p>Will fund Alzheimer genetics.</p>', applicantEligibilityDesc: 'Higher education institutions.', applicantTypes: [{ description: 'Nonprofits' }] } } }), { status: 200 });
+    if (id === '2') return new Response(JSON.stringify({ errorcode: 0, data: { other: {} } }), { status: 200 });
+    return new Response('x', { status: 500 });
+  };
+  const events = []; const tools = createTools({ env: {}, fetcher, trace: { event: (type, data) => events.push({ type, ...data }), page() {} } });
+  const out = await tools.registry({ source: 'grants_gov', query: 'x' });
+  const page = await tools.open({ ref: out.rows[0].ref });
+  assert.match(page.text, /Applicant eligibility: Higher education institutions\./); assert.match(page.text, /Summary: Will fund Alzheimer genetics\./); assert.match(page.text, /Applicant types: Nonprofits\./);
+  const rec = events.find((e) => e.tool === 'registry'); assert.equal(rec.detail_n, 1);
+  assert.deepEqual(rec.detail_missing.map((m) => m.id).sort(), ['2', '3']); assert.match(rec.detail_missing.find((m) => m.id === '2').why, /sin_synopsis\(other\)/);
+});
