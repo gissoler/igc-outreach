@@ -1,14 +1,14 @@
 // Banco de reproducción offline de la lectura estructurada (P0.1). No usa buscadores ni Apollo: solo los endpoints de modelo.
 // Uso:
 //   node scripts/replay-assess.mjs --pipeline "<…>/Fuentes/Pipeline I+D Outreach - 2026-10-19" \
-//     [--runs runs,runs-v2-qwen-assess-timeout] [--pages 6] [--variants full,full+mt700,lite,lite+mt700,json,json+mt700] \
+//     [--runs runs,runs-v2-qwen-assess-timeout] [--pages 6] [--variants full,full+mt700,lite,lite+mt700,json,json+mt700 (+ opcionales: lite+mt1500,json-shape,json-shape+mt1500)] \
 //     [--endpoints "gpt-oss=http://127.0.0.1:8016/v1#openai/gpt-oss-120b,qwen=http://127.0.0.1:8017/v1#Qwen/Qwen3-30B-A3B-Instruct-2507"] \
 //     [--reasoning-effort low] [--concurrency 1] [--timeout-ms 120000] [--no-stream] [--out eval/runs/replay-assess-<fecha>] [--dry]
 // Escribe en un directorio NUEVO (falla si ya existe): calls.jsonl (una línea por llamada, a medida que terminan),
 // results.json (meta + llamadas + resumen) y summary.md. Si un endpoint no responde, termina con código 2 sin escribir nada.
 import { mkdirSync, writeFileSync, appendFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
-import { REPLAY_VARIANTS, buildReplayRequest, checkEndpoint, loadReplayCorpus, measureOnce, parseEndpoints, sampleCorpus, summarizeReplay } from '../server/research/agentic/replay.mjs';
+import { DEFAULT_REPLAY_VARIANTS, REPLAY_VARIANTS, buildReplayRequest, checkEndpoint, loadReplayCorpus, measureOnce, parseEndpoints, sampleCorpus, summarizeReplay } from '../server/research/agentic/replay.mjs';
 
 const argv = process.argv.slice(2);
 const arg = (name, fallback = '') => { const at = argv.indexOf(name); return at >= 0 ? argv[at + 1] : fallback; };
@@ -16,7 +16,7 @@ const flag = (name) => argv.includes(name);
 const pipeline = arg('--pipeline', process.env.OUTREACH_PIPELINE_DIR || '');
 if (!pipeline || !existsSync(pipeline)) { console.error('✖ Falta --pipeline <carpeta con runs/ y profiles/> (o OUTREACH_PIPELINE_DIR).'); process.exit(2); }
 const runs = arg('--runs', 'runs').split(',').map((x) => x.trim()).filter(Boolean);
-const variants = arg('--variants', Object.keys(REPLAY_VARIANTS).join(',')).split(',').map((x) => x.trim()).filter(Boolean);
+const variants = arg('--variants', DEFAULT_REPLAY_VARIANTS.join(',')).split(',').map((x) => x.trim()).filter(Boolean);
 for (const v of variants) if (!REPLAY_VARIANTS[v]) { console.error(`✖ Variante desconocida: ${v}. Válidas: ${Object.keys(REPLAY_VARIANTS).join(', ')}`); process.exit(2); }
 const endpoints = parseEndpoints(arg('--endpoints', 'gpt-oss=http://127.0.0.1:8016/v1#openai/gpt-oss-120b,qwen=http://127.0.0.1:8017/v1#Qwen/Qwen3-30B-A3B-Instruct-2507'));
 const nPages = Number(arg('--pages', '6')) || 6; const concurrency = Math.max(1, Number(arg('--concurrency', '1')) || 1);

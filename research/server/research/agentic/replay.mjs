@@ -17,7 +17,12 @@ export const REPLAY_VARIANTS = Object.freeze({
   full: { contract: 'full', format: 'json_schema', maxTokens: 0 }, 'full+mt700': { contract: 'full', format: 'json_schema', maxTokens: 700 },
   lite: { contract: 'lite', format: 'json_schema', maxTokens: 0 }, 'lite+mt700': { contract: 'lite', format: 'json_schema', maxTokens: 700 },
   json: { contract: 'lite', format: 'json_object', maxTokens: 0 }, 'json+mt700': { contract: 'lite', format: 'json_object', maxTokens: 700 },
+  // Opcionales (20/10): el prompt de producción solo nombra el contrato; en json_object el modelo nunca ve los campos. `shape` pega el esquema en el prompt.
+  'lite+mt1500': { contract: 'lite', format: 'json_schema', maxTokens: 1500 },
+  'json-shape': { contract: 'lite', format: 'json_object', maxTokens: 0, shape: true }, 'json-shape+mt1500': { contract: 'lite', format: 'json_object', maxTokens: 1500, shape: true },
 });
+/** Variantes que corre el banco si no se piden otras (las seis originales). */
+export const DEFAULT_REPLAY_VARIANTS = Object.freeze(['full', 'full+mt700', 'lite', 'lite+mt700', 'json', 'json+mt700']);
 // En V3 la comprensión agotó su tope y el lector recibió este objeto vacío: el esquema actual se reproduce con él.
 const V3_EMPTY_UNDERSTOOD = { product_one_line: '', who_pays: '', sector: '', neighbor_sectors: [], stage: '', geography: '', assumptions: [], doubts: [] };
 
@@ -57,7 +62,7 @@ export function buildReplayRequest(page, variantName, { model, reasoningEffort =
   const text = clipPage(page.text); const args = { objective: page.objective, brief: page.brief, page: { url: page.url, title: page.title, text }, ref, today: page.today };
   const prompt = v.contract === 'full' ? assessPrompt({ ...args, understood: V3_EMPTY_UNDERSTOOD })
     : assessLitePrompt({ ...args, understood: understandFromBrief(page.brief), triageNote: triageNote(triagePage({ url: page.url, title: page.title, text, today: page.today })) });
-  const body = { model, temperature: 0, messages: [{ role: 'system', content: withLanguageRule(prompt.system) }, { role: 'user', content: prompt.user }],
+  const body = { model, temperature: 0, messages: [{ role: 'system', content: withLanguageRule(prompt.system) }, { role: 'user', content: v.shape ? `${prompt.user}\n\nReply with one JSON object that validates against this JSON Schema (all required keys, no extra keys):\n${JSON.stringify(prompt.schema)}` : prompt.user }],
     response_format: v.format === 'json_schema' ? { type: 'json_schema', json_schema: { name: 'assess', schema: prompt.schema } } : { type: 'json_object' },
     ...(reasoningEffort ? { reasoning_effort: reasoningEffort } : {}), ...(v.maxTokens ? { max_tokens: v.maxTokens } : {}) };
   return { variant: variantName, ...v, prompt, body, prompt_chars: prompt.system.length + prompt.user.length };
