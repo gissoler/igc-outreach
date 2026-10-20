@@ -8,7 +8,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { postChat, postChatStream, parseJsonContent, withLanguageRule } from '../../analysis/fleet.mjs';
 import { AGENT_CRITERIA, assessLitePrompt, assessPrompt, understandFromBrief } from './prompts.v14.mjs';
-import { validateAssess, validateAssessLite } from './contracts.v14.mjs';
+import { relaxForModel, validateAssess, validateAssessLite } from './contracts.v14.mjs';
 import { triageNote, triagePage } from './triage.mjs';
 import { clipPage } from './tools.mjs';
 
@@ -18,6 +18,8 @@ export const REPLAY_VARIANTS = Object.freeze({
   lite: { contract: 'lite', format: 'json_schema', maxTokens: 0 }, 'lite+mt700': { contract: 'lite', format: 'json_schema', maxTokens: 700 },
   json: { contract: 'lite', format: 'json_object', maxTokens: 0 }, 'json+mt700': { contract: 'lite', format: 'json_object', maxTokens: 700 },
   // Opcionales (20/10): el prompt de producción solo nombra el contrato; en json_object el modelo nunca ve los campos. `shape` pega el esquema en el prompt.
+  // Esquema sin maxLength (el que envía ahora el motor); la validación sigue con el esquema original.
+  'lite-relaxed': { contract: 'lite', format: 'json_schema', maxTokens: 0, relax: true }, 'full-relaxed': { contract: 'full', format: 'json_schema', maxTokens: 0, relax: true },
   'lite+mt1500': { contract: 'lite', format: 'json_schema', maxTokens: 1500 },
   'json-shape': { contract: 'lite', format: 'json_object', maxTokens: 0, shape: true }, 'json-shape+mt1500': { contract: 'lite', format: 'json_object', maxTokens: 1500, shape: true },
 });
@@ -63,7 +65,7 @@ export function buildReplayRequest(page, variantName, { model, reasoningEffort =
   const prompt = v.contract === 'full' ? assessPrompt({ ...args, understood: V3_EMPTY_UNDERSTOOD })
     : assessLitePrompt({ ...args, understood: understandFromBrief(page.brief), triageNote: triageNote(triagePage({ url: page.url, title: page.title, text, today: page.today })) });
   const body = { model, temperature: 0, messages: [{ role: 'system', content: withLanguageRule(prompt.system) }, { role: 'user', content: v.shape ? `${prompt.user}\n\nReply with one JSON object that validates against this JSON Schema (all required keys, no extra keys):\n${JSON.stringify(prompt.schema)}` : prompt.user }],
-    response_format: v.format === 'json_schema' ? { type: 'json_schema', json_schema: { name: 'assess', schema: prompt.schema } } : { type: 'json_object' },
+    response_format: v.format === 'json_schema' ? { type: 'json_schema', json_schema: { name: 'assess', schema: v.relax ? relaxForModel(prompt.schema) : prompt.schema } } : { type: 'json_object' },
     ...(reasoningEffort ? { reasoning_effort: reasoningEffort } : {}), ...(v.maxTokens ? { max_tokens: v.maxTokens } : {}) };
   return { variant: variantName, ...v, prompt, body, prompt_chars: prompt.system.length + prompt.user.length };
 }

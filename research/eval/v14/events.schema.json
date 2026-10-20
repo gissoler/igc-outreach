@@ -21,7 +21,7 @@
     { "if": { "properties": { "type": { "const": "model_call" } } }, "then": { "required": ["role", "model", "prompt_version", "tokens", "ms_call", "ok"], "properties": {
       "role": { "enum": ["planner", "reader", "compiler", "judge", "agent", "followup", "lateral", "researcher", "extractor", "understand"] },
       "tokens": { "type": "object", "required": ["prompt", "completion"] },
-      "invalid": { "type": "boolean" }, "retry": { "type": "integer" }, "page_ref": { "type": ["string", "null"] }, "error": { "type": "string" } } } },
+      "invalid": { "type": "boolean" }, "schema_relaxed": { "type": "boolean" }, "retry": { "type": "integer" }, "page_ref": { "type": ["string", "null"] }, "error": { "type": "string" } } } },
     { "if": { "properties": { "type": { "const": "tool_call" } } }, "then": { "required": ["tool", "args", "results_n", "ms_call"], "properties": {
       "tool": { "enum": ["search", "open", "apollo", "entity_funding", "registry", "note", "ask_user", "finish", "read", "expand", "extract"] },
       "provider": { "type": "string" }, "cost_usd": { "type": "number" }, "credits": { "type": "number" }, "error": { "type": "string" }, "from_lead": { "type": ["string", "null"] }, "rejected_ref": { "type": "boolean" } } } },

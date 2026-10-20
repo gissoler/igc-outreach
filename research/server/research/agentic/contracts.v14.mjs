@@ -74,21 +74,54 @@ export function liftAssess(raw, contract, ids = []) {
   const leadOut = contract === 'lite' && raw.lead ? { ...raw.lead, next: raw.lead.next || [] } : null;
   return { ref: raw.ref, page_type: raw.page_type, about: raw.about, dates, date_missing_next: null, criteria, candidate: Boolean(raw.candidate), lead: leadOut, contract };
 }
+/* Esquema para el modelo, sin `maxLength` (medido el 20/10 con Qwen3-30B en vLLM, una sola página): esa restricción bajaba la
+   decodificación guiada de ~209 a ~14 tok/s; quitar enum, pattern, maxItems, null o objetos cerrados no cambió nada.
+   El largo se pide en el prompt y se recorta en código (`clipLengths`) antes de validar con el esquema original. */
+const SCHEMA_MAPS = ['properties', 'patternProperties', '$defs', 'definitions']; const SCHEMA_LISTS = ['anyOf', 'oneOf', 'allOf']; const SCHEMA_ONE = ['items', 'additionalProperties', 'not', 'if', 'then', 'else'];
+export function relaxForModel(schema) {
+  if (!schema || typeof schema !== 'object' || Array.isArray(schema)) return schema;
+  const out = {};
+  for (const [k, v] of Object.entries(schema)) {
+    if (k === 'maxLength') continue;
+    if (SCHEMA_MAPS.includes(k) && v && typeof v === 'object') out[k] = Object.fromEntries(Object.entries(v).map(([name, sub]) => [name, relaxForModel(sub)]));
+    else if (SCHEMA_LISTS.includes(k) && Array.isArray(v)) out[k] = v.map(relaxForModel);
+    else if (SCHEMA_ONE.includes(k) && v && typeof v === 'object') out[k] = relaxForModel(v);
+    else out[k] = v;
+  }
+  return out;
+}
+/** Recorta los textos que pasan de su `maxLength`. Un recorte de una cita literal sigue siendo literal (es un prefijo). */
+export function clipLengths(value, schema) {
+  let clipped = 0;
+  const walk = (v, s) => {
+    if (!s || typeof s !== 'object') return v;
+    if (typeof v === 'string') { if (Number.isInteger(s.maxLength) && v.length > s.maxLength) { clipped += 1; return v.slice(0, s.maxLength); } return v; }
+    if (Array.isArray(v)) return s.items && typeof s.items === 'object' ? v.map((x) => walk(x, s.items)) : v;
+    if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x, s.properties?.[k] ?? (s.additionalProperties && typeof s.additionalProperties === 'object' ? s.additionalProperties : null))]));
+    return v;
+  };
+  const out = walk(value, schema); return { value: out, clipped };
+}
 const ajv = new Ajv({ allErrors: true, strict: false });
 const checkUnderstand = ajv.compile(UNDERSTAND_SCHEMA); const checkStep = ajv.compile(STEP_SCHEMA); const checkAssess = ajv.compile(ASSESS_SCHEMA);
-const result = (check, raw) => check(raw) ? { ok: true, value: raw, errors: [] } : { ok: false, value: null, errors: (check.errors || []).map((e) => `${e.instancePath || '/'} ${e.message}`) };
-export const validateUnderstand = (raw) => result(checkUnderstand, raw);
-export const validateAssess = (raw) => result(checkAssess, raw);
+const result = (check, raw, schema) => {
+  const { value, clipped } = schema ? clipLengths(raw, schema) : { value: raw, clipped: 0 };
+  return check(value) ? { ok: true, value, errors: [], ...(clipped ? { clipped } : {}) } : { ok: false, value: null, errors: (check.errors || []).map((e) => `${e.instancePath || '/'} ${e.message}`) };
+};
+export const validateUnderstand = (raw) => result(checkUnderstand, raw, UNDERSTAND_SCHEMA);
+export const validateAssess = (raw) => result(checkAssess, raw, ASSESS_SCHEMA);
 const liteChecks = new Map(); const checkMin = ajv.compile(ASSESS_MIN_SCHEMA);
 export function validateAssessLite(raw, ids = []) {
-  const key = ids.join('|'); if (!liteChecks.has(key)) liteChecks.set(key, new Ajv({ allErrors: true, strict: false }).compile(assessLiteSchema(ids))); // un Ajv por lista de criterios: el $id es fijo y Ajv rechaza dos esquemas con el mismo $id
-  return result(liteChecks.get(key), raw);
+  const key = ids.join('|');
+  if (!liteChecks.has(key)) { const schema = assessLiteSchema(ids); liteChecks.set(key, { schema, check: new Ajv({ allErrors: true, strict: false }).compile(schema) }); }   // un Ajv por lista de criterios: el $id es fijo y Ajv rechaza dos esquemas con el mismo $id
+  const { schema, check } = liteChecks.get(key);
+  return result(check, raw, schema);
 }
-export const validateAssessMin = (raw) => result(checkMin, raw);
+export const validateAssessMin = (raw) => result(checkMin, raw, ASSESS_MIN_SCHEMA);
 /** Validador por contrato; `ids` son los criterios del objetivo (fijos en el contrato ligero). */
 export const assessValidator = (contract, ids = []) => contract === 'full' ? validateAssess : contract === 'min' ? validateAssessMin : (raw) => validateAssessLite(raw, ids);
 export function validateStep(raw, { lastObservation = null } = {}) {
-  const out = result(checkStep, raw);
+  const out = result(checkStep, raw, STEP_SCHEMA);
   if (out.ok && lastObservation === 'page' && raw.assessment === null) return { ok: false, value: null, errors: ['/assessment required after page'] };
   if (out.ok && raw.action.tool === 'ask_user' && (!Array.isArray(raw.action.args?.questions) || raw.action.args.questions.length > 3)) return { ok: false, value: null, errors: ['/action/args/questions must contain 1 to 3 questions'] };
   return out;
