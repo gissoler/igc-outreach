@@ -149,7 +149,7 @@ export function withLanguageRule(system) {
  * Variable vacía o ausente → valor por defecto; "0" o negativo → no se envía max_tokens desde el agente
  * (se usa el `*_LLM_MAX_TOKENS` del rol de la flota si existe). En gpt-oss el tope incluye los tokens de razonamiento.
  */
-export const AGENT_MAX_TOKENS_DEFAULTS = Object.freeze({ understand: 1500, step: 400, assess: 2000, judge: 2000 });   // understand 1500 y judge 2000 (20/10, corrida runs-v4: 10/10 comprensiones cortadas a 500 y 20/54 jueces cortados a 900, con p50 de 805); assess 2000 (20/10): 700 cortaba lecturas válidas de gpt-oss, cuyo razonamiento cuenta dentro del tope; la salida más larga medida fue 1664
+export const AGENT_MAX_TOKENS_DEFAULTS = Object.freeze({ understand: 1500, step: 800, assess: 2000, judge: 2000 });   // understand 1500 y judge 2000 (20/10, corrida runs-v4: 10/10 comprensiones cortadas a 500 y 20/54 jueces cortados a 900, con p50 de 805); assess 2000 (20/10): 700 cortaba lecturas válidas de gpt-oss, cuyo razonamiento cuenta dentro del tope; la salida más larga medida fue 1664
 export const AGENT_MAX_TOKENS_ENV = Object.freeze({ understand: 'ENGINE_AGENT_UNDERSTAND_MAX_TOKENS', step: 'ENGINE_AGENT_STEP_MAX_TOKENS', assess: 'ENGINE_AGENT_ASSESS_MAX_TOKENS', judge: 'ENGINE_AGENT_JUDGE_MAX_TOKENS' });
 export function agentMaxTokens(purpose, env = process.env) {
   const key = AGENT_MAX_TOKENS_ENV[purpose]; if (!key) return 0;
