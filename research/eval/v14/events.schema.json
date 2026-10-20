@@ -12,7 +12,7 @@
     "ms": { "type": "integer", "description": "ms desde run_start" },
     "objective": { "enum": ["grant", "investment", "sponsorship", "debt", "partnering", "-"] },
     "step": { "type": ["integer", "null"], "description": "paso del agente (F2) o ronda del motor (F1)" },
-    "type": { "enum": ["run_start", "understand", "brief_patch", "model_call", "tool_call", "page", "decision", "drop", "lead", "lead_followup", "ask_user", "budget", "finish", "run_end"] }
+    "type": { "enum": ["run_start", "understand", "brief_patch", "model_call", "tool_call", "page", "decision", "drop", "lead", "lead_followup", "ask_user", "budget", "finish", "run_end", "triage", "page_unread", "query_skipped", "provider_disabled", "registry_seed", "drain", "apollo_stage"] }
   },
   "allOf": [
     { "if": { "properties": { "type": { "const": "run_start" } } }, "then": { "required": ["brief", "brief_sha", "today", "flags", "models", "prompts", "git_commit", "limits"] } },
