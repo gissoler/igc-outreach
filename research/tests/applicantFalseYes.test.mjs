@@ -3,6 +3,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applicantProfile, checkApplicant } from '../server/research/applicant.mjs';
 
+test('sin tipo de entidad no inventa una startup con fines de lucro', () => {
+  const unknown = applicantProfile({ geography: 'United States' });
+  assert.equal(unknown.entity, 'unknown');
+  assert.equal(unknown.forProfit, null);
+  assert.equal(checkApplicant('Eligibility: registered nonprofits only.', unknown).decision, 'unclear');
+});
+
 const prof = applicantProfile({ geography: 'GLOBAL (incorporated outside the US and the EU)', entityType: 'for-profit startup', stage: 'seed' });
 
 test('empresas solo como socios permitidos no son elegibles para liderar (NordForsk)', () => {

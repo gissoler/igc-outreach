@@ -48,6 +48,17 @@ const cachedBefore = Object.keys(cache).length;
 console.log(`Motor v2 · ${objectives.join(', ')} · hoy=${today}\n  modelo: ${engineRole.model} @ ${engineRole.url}${engineRole.alias ? ' (rol chat)' : ''}\n  búsqueda: ${searchProviders(env).join(', ') || '(ninguna API)'}\n  caché de búsquedas: ${useCache ? `${cachedBefore} consultas guardadas` : 'no'}\n  salida: ${outDir}\n`);
 
 const cfg = fleetConfig(env);
+const configuredAgentRole = (name, fallback) => {
+  const requested = String(env[name] || '').trim();
+  const role = ['agent', 'compiler'].includes(requested) ? requested : fallback;
+  return { role, ...(cfg.roles[role] || {}) };
+};
+const agentModels = env.ENGINE_AGENT === '1' ? {
+  planner: { role: 'agent', ...(cfg.roles.agent || {}) },
+  understand: configuredAgentRole('ENGINE_AGENT_UNDERSTAND_ROLE', env.ENGINE_AGENT_PARALLEL === '1' ? 'compiler' : 'agent'),
+  assess: configuredAgentRole('ENGINE_AGENT_ASSESS_ROLE', 'compiler'),
+  judge: { role: 'judge', ...(cfg.roles.judge || {}) },
+} : null;
 const safeFlags = Object.fromEntries(Object.entries(env).filter(([k]) => k.startsWith('ENGINE_') && !/(KEY|TOKEN|SECRET|PASSWORD)/i.test(k)));
 const trace = traceOn ? createTrace({ dir: outDir, runId: `${label}-${Date.now()}`, objective: objectives.length === 1 ? objectives[0] : '-' }) : null;
 const commit = (() => { try { return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(); } catch { return 'unknown'; } })();
@@ -97,7 +108,12 @@ const registry = [
 ];
 const lines = [
   `# Motor v2 — ${brief.company || 'brief'} · ${objectives.join(', ')} · ${today}`, '',
-  `- Modelo que planea y lee: \`${engineRole.model}\` (${engineRole.url})`,
+  ...(agentModels ? [
+    `- Modelo planificador: \`${agentModels.planner.model || 'no configurado'}\` (${agentModels.planner.url || 'sin URL'})`,
+    `- Modelo de comprensión: \`${agentModels.understand.model || 'no configurado'}\` (${agentModels.understand.role})`,
+    `- Modelo lector/evaluador: \`${agentModels.assess.model || 'no configurado'}\` (${agentModels.assess.role})`,
+    `- Modelo juez: \`${agentModels.judge.model || 'no configurado'}\` (${agentModels.judge.url || 'sin URL'})`,
+  ] : [`- Modelo que planea y lee: \`${engineRole.model}\` (${engineRole.url})`]),
   `- Búsqueda: ${searchProviders(env).join(', ') || 'sin APIs'} · rondas ${env.ENGINE_ROUNDS || 2} · duración ${seconds} s`,
   `- Caché de búsquedas: ${useCache ? `${cachedBefore} → ${Object.keys(cache).length} consultas` : 'desactivada'}`,
   '', '## Resumen por objetivo', '', '| Objetivo | Búsqueda | Consultas | Páginas | Leídas | Sin leer | Vía Jina Reader | Verificadas | Descartes |', '|---|---|---|---|---|---|---|---|---|',
@@ -117,7 +133,7 @@ const lines = [
   '', '> Todo lo listado pasó la verificación en código (cita literal en la página, fecha contra hoy, sin agregadores ni redes). Lo que no aparece aquí no se pudo verificar; no se inventa.',
 ];
 writeFileSync(join(outDir, 'report.md'), lines.join('\n'));
-writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, providers: searchProviders(env), seconds, audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
+writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, ...(agentModels ? { agent_models: Object.fromEntries(Object.entries(agentModels).map(([name, target]) => [name, { role: target.role, model: target.model || null, url: target.url || null }])) } : {}), providers: searchProviders(env), seconds, audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
 
 function coverageSummary() {
   const dir = join(outDir, 'coverage'); if (!existsSync(dir)) return { files_executed: 0, functions_executed: 0, path: 'coverage/' };

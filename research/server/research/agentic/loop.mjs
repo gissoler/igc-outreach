@@ -10,6 +10,13 @@ import { createTools } from './tools.mjs';
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
 const anySignal = (list) => { const l = list.filter(Boolean); return l.length < 2 ? l[0] : typeof AbortSignal.any === 'function' ? AbortSignal.any(l) : l[l.length - 1]; };
+const queryKey = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+export function normalizeAgentQuery(value, objective, today) {
+  const query = String(value || '').replace(/\s+/g, ' ').trim().slice(0, 240);
+  if (!['grant', 'sponsorship'].includes(objective)) return query;
+  const year = Number(String(today || '').slice(0, 4));
+  return Number.isInteger(year) ? query.replace(/\b(20\d{2})\b/g, (match) => Number(match) < year ? String(year) : match) : query;
+}
 const unpage = (text) => String(text || '').replace(/^<page_data>|<\/page_data>$/g, '');
 const tokens = (usage) => ({ prompt: Number(usage?.prompt_tokens) || 0, completion: Number(usage?.completion_tokens) || 0, ...(!usage ? { estimated: true } : {}) });
 const validJudgment = (raw, ids) => Boolean(raw && typeof raw === 'object' && typeof raw.page_type === 'string' && Array.isArray(raw.dates) && raw.criteria && ids.every((id) => ['yes', 'no', 'unknown'].includes(raw.criteria[id]?.verdict)));
@@ -36,18 +43,32 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const assessConcurrency = Number(env.ENGINE_AGENT_ASSESS_CONCURRENCY) || 8; const judgeConcurrency = Number(env.ENGINE_AGENT_JUDGE_CONCURRENCY) || 8;
   const elapsed = () => (Date.now() - started) / 1000; let lastCandidateStep = 0;
   const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const pages = new Map(); const candidates = new Map();
-  const findings = []; const leads = []; const queries = []; const decisions = []; let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
+  const findings = []; const leads = []; const queries = []; const decisions = []; const seenSearches = new Set(); let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
 
   async function model(prompt, role, validate, pageRef = null) {
     for (let retry = 0; retry < 2; retry++) {
       const at = Date.now(); let response = null; let error = null;
-      const callRole = role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role;
-      const callSignal = parallel && role !== 'judge' ? anySignal([opts.signal, AbortSignal.timeout(Math.max(5000, (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started)))]) : opts.signal;
-      try { response = await chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole }, { env, fetcher: opts.fetcher, signal: callSignal }); }
+      const configuredRole = role === 'understand' ? String(env.ENGINE_AGENT_UNDERSTAND_ROLE || '') : role === 'assess' ? String(env.ENGINE_AGENT_ASSESS_ROLE || '') : '';
+      const roleOverride = ['agent', 'compiler'].includes(configuredRole) ? configuredRole : null;
+      const callRole = roleOverride || (role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role);
+      const configuredMs = Number(env[role === 'understand' ? 'ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS' : role === 'assess' ? 'ENGINE_AGENT_ASSESS_TIMEOUT_MS' : role === 'agent' ? 'ENGINE_AGENT_STEP_TIMEOUT_MS' : 'ENGINE_AGENT_JUDGE_TIMEOUT_MS']) || (role === 'understand' ? 45_000 : role === 'assess' || role === 'agent' ? 60_000 : 100_000);
+      const deadlineSeconds = role === 'judge' ? hardSeconds : hardSeconds - reserveSeconds;
+      const remainingMs = parallel ? Math.max(1, deadlineSeconds * 1000 - (Date.now() - started)) : configuredMs;
+      const timeoutMs = Math.max(1, Math.min(configuredMs, remainingMs)); const controller = new AbortController();
+      const callSignal = anySignal([opts.signal, controller.signal]); let timer;
+      try {
+        response = await Promise.race([
+          chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole }, { env, fetcher: opts.fetcher, signal: callSignal }),
+          new Promise((_, reject) => { timer = setTimeout(() => { const e = new Error(`model_timeout_${role}_${timeoutMs}ms`); e.code = 'MODEL_TIMEOUT'; controller.abort(e); reject(e); }, timeoutMs); }),
+        ]);
+      }
       catch (e) { error = e; }
+      finally { clearTimeout(timer); }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
-      trace.event('model_call', { role, model: response?.model || env[role === 'agent' || (role === 'understand' && !parallel) ? 'ENGINE_AGENT_LLM_MODEL' : role === 'assess' || role === 'understand' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL'] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
+      trace.event('model_call', { role: callRole, model: response?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
       if (checked.ok) return checked.value ?? raw;
+      if (error?.code === 'MODEL_TIMEOUT' || /abort|timeout/i.test(String(error?.message || error))) break;
     }
     return null;
   }
@@ -84,9 +105,12 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   }
 
   async function searchMany(args, action) {
-    const qs = [...new Set((args.queries || []).map((q) => String(q || '').trim()).filter(Boolean))].slice(0, maxSearchesPerStep);
-    for (const q of qs) queries.push({ query: q, family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
-    const found = await Promise.all(qs.map((q) => tools.search({ query: q, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
+    const planned = (args.queries || []).map((raw) => ({ raw: String(raw || '').trim(), query: normalizeAgentQuery(raw, objective, today) })).filter((x) => x.query);
+    const qs = [];
+    for (const item of planned) { const key = queryKey(item.query); if (!key || seenSearches.has(key)) continue; seenSearches.add(key); qs.push(item); if (qs.length >= maxSearchesPerStep) break; }
+    for (const item of qs) queries.push({ query: item.query, family: 'agent', ...(item.raw !== item.query ? { original: item.raw } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
+    if (!qs.length) return { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_queries'] } };
+    const found = await Promise.all(qs.map((item) => tools.search({ query: item.query, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
     const seen = new Set(); const results = [];
     for (const f of found) for (const row of f?.results || []) if (!seen.has(row.url)) { seen.add(row.url); results.push({ ...row, snippet: String(row.snippet || '').slice(0, 200) }); }
     return { type: 'tool', tool: 'search', result: { results, errors: found.map((f) => f?.error).filter(Boolean) } };
@@ -123,7 +147,11 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.produced.push(...(action.tool === 'open' ? observation.pages.map((p) => p.ref) : observation.result.results.map((p) => p.ref)).filter(Boolean)); }
       continue;
     }
-    if (action.tool === 'search') queries.push({ query: String(args.query || ''), family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
+    if (action.tool === 'search') {
+      const original = String(args.query || '').trim(); const query = normalizeAgentQuery(original, objective, today); const key = queryKey(query);
+      if (!key || seenSearches.has(key)) { observation = { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_query'] } }; continue; }
+      seenSearches.add(key); args.query = query; queries.push({ query, family: 'agent', ...(original !== query ? { original } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
+    }
     if (action.from_lead) {
       const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.followups.push(step);
       trace.event('lead_followup', { lead_id: action.from_lead, action: action.tool, step });
