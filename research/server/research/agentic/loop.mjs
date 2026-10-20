@@ -13,6 +13,11 @@ import { foaIdsIn } from '../grantSources.mjs';
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
 const anySignal = (list) => { const l = list.filter(Boolean); return l.length < 2 ? l[0] : typeof AbortSignal.any === 'function' ? AbortSignal.any(l) : l[l.length - 1]; };
+/** El modelo a veces manda las consultas como objeto ({query:'...'}) en vez de texto: se lee el texto en vez de convertirlo en "[object Object]". */
+/** Texto crudo de una respuesta rechazada, acotado, para saber por qué fue inválida. */
+const rawText = (raw) => { try { return (typeof raw === 'string' ? raw : JSON.stringify(raw) ?? '').slice(0, 800); } catch { return ''; } };
+const DUPLICATE_HINT = 'Those queries were already run and their results are in your earlier observations. Do not repeat them: search a different angle, open a ref you have not opened, or finish.';
+export const queryText = (value) => typeof value === 'string' ? value : value && typeof value === 'object' ? String(value.query ?? value.q ?? value.text ?? value.search ?? '') : String(value ?? '');
 const queryKey = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 export function normalizeAgentQuery(value, objective, today) {
   const query = String(value || '').replace(/\s+/g, ' ').trim().slice(0, 240);
@@ -104,7 +109,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       finally { clearTimeout(timer); }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
       const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
-      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, schema_relaxed: relax, tokens: response?.usage || error?.usage ? tokens(response?.usage || error?.usage) : cutTokens(prompt, progress), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
+      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, schema_relaxed: relax, tokens: response?.usage || error?.usage ? tokens(response?.usage || error?.usage) : cutTokens(prompt, progress), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}), ...(!checked.ok && !error ? { raw: rawText(raw), validation_errors: (checked.errors || []).slice(0, 3).map((x) => String(x).slice(0, 160)) } : {}) });
       if (checked.ok) { info.reason = null; return checked.value ?? raw; }
       info.reason = error?.code === 'MODEL_TIMEOUT' ? 'timeout' : error?.code === 'MODEL_TRUNCATED' ? 'truncated' : error?.code === 'MODEL_ABORTED' ? 'aborted' : error ? 'error' : 'invalid';
       info.detail = String(error?.message || checked.errors?.[0] || '').slice(0, 200);
@@ -276,16 +281,17 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   }
 
   async function searchMany(args, action, step = null) {
-    const planned = (args.queries || []).map((raw) => ({ raw: String(raw || '').trim(), query: normalizeAgentQuery(raw, objective, today) })).filter((x) => x.query);
+    const planned = (Array.isArray(args.queries) ? args.queries : []).map((raw) => ({ raw: queryText(raw).trim(), query: normalizeAgentQuery(queryText(raw), objective, today) })).filter((x) => x.query);
+    const repeated = [];
     const qs = [];
     for (const item of planned) {
       const key = queryKey(item.query);
-      if (!key || seenSearches.has(key)) { trace.event('query_skipped', { step, query: item.query, ...(item.raw !== item.query ? { original: item.raw } : {}), reason: 'duplicate' }); continue; }
+      if (!key || seenSearches.has(key)) { repeated.push(item.query); trace.event('query_skipped', { step, query: item.query, ...(item.raw !== item.query ? { original: item.raw } : {}), reason: 'duplicate' }); continue; }
       if (qs.length >= maxSearchesPerStep) { trace.event('query_skipped', { step, query: item.query, reason: 'per_step_cap' }); continue; }
       seenSearches.add(key); qs.push(item);
     }
     for (const item of qs) queries.push({ query: item.query, family: 'agent', ...(item.raw !== item.query ? { original: item.raw } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
-    if (!qs.length) return { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_queries'] } };
+    if (!qs.length) return { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_queries'], already_searched: repeated.slice(0, 8), message: DUPLICATE_HINT } };
     const found = await Promise.all(qs.map((item) => tools.search({ query: item.query, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
     const seen = new Set(); const results = [];
     for (const f of found) for (const row of f?.results || []) if (!seen.has(row.url)) { seen.add(row.url); results.push({ ...row, snippet: String(row.snippet || '').slice(0, 200) }); }
@@ -325,7 +331,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
     stepsRun = step;
     const used = tools.usage?.() || {};
-    const state = { objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
+    const state = { objective, brief, understood, leads, queries, queries_done: queries.map((q) => q.query).slice(-40), step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
       ...(parallel ? { parallel: true } : {}), ...(apolloMode === 'post_judge' ? { apollo_stage: 'post_judge' } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
     const late = collectLateReads(); if (late) observation = { ...observation, late_reads: late };   // lecturas que terminaron después de su paso
     const prompt = stepPrompt({ state, observation });
@@ -350,8 +356,8 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       continue;
     }
     if (action.tool === 'search') {
-      const original = String(args.query || '').trim(); const query = normalizeAgentQuery(original, objective, today); const key = queryKey(query);
-      if (!key || seenSearches.has(key)) { trace.event('query_skipped', { step, query, ...(original !== query ? { original } : {}), reason: 'duplicate' }); observation = { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_query'] } }; continue; }
+      const original = queryText(args.query).trim(); const query = normalizeAgentQuery(original, objective, today); const key = queryKey(query);
+      if (!key || seenSearches.has(key)) { trace.event('query_skipped', { step, query, ...(original !== query ? { original } : {}), reason: 'duplicate' }); observation = { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_query'], already_searched: [query], message: DUPLICATE_HINT } }; continue; }
       seenSearches.add(key); args.query = query; queries.push({ query, family: 'agent', ...(original !== query ? { original } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
     }
     if (action.from_lead) {
