@@ -49,22 +49,25 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const assessContract = assessContractOf(env); const pages = new Map(); const candidates = new Map();
   const findings = []; const leads = []; const queries = []; const decisions = []; const seenSearches = new Set(); let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
 
-  async function model(prompt, role, validate, pageRef = null) {
+  /** Una llamada al modelo con tope local. `call`: { timeoutMs, maxTokens, signal, info } — `info.reason` recibe la causa del fallo. */
+  async function model(prompt, role, validate, pageRef = null, call = {}) {
+    const info = call.info || {};
     for (let retry = 0; retry < 2; retry++) {
       const at = Date.now(); let response = null; let error = null;
       const configuredRole = role === 'understand' ? String(env.ENGINE_AGENT_UNDERSTAND_ROLE || '') : role === 'assess' ? String(env.ENGINE_AGENT_ASSESS_ROLE || '') : '';
       const roleOverride = ['agent', 'compiler'].includes(configuredRole) ? configuredRole : null;
       const callRole = roleOverride || (role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role);
-      const configuredMs = Number(env[role === 'understand' ? 'ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS' : role === 'assess' ? 'ENGINE_AGENT_ASSESS_TIMEOUT_MS' : role === 'agent' ? 'ENGINE_AGENT_STEP_TIMEOUT_MS' : 'ENGINE_AGENT_JUDGE_TIMEOUT_MS']) || (role === 'understand' ? 45_000 : role === 'assess' || role === 'agent' ? 60_000 : 100_000);
+      const configuredMs = Number(call.timeoutMs) || Number(env[role === 'understand' ? 'ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS' : role === 'assess' ? 'ENGINE_AGENT_ASSESS_TIMEOUT_MS' : role === 'agent' ? 'ENGINE_AGENT_STEP_TIMEOUT_MS' : 'ENGINE_AGENT_JUDGE_TIMEOUT_MS']) || (role === 'understand' ? 45_000 : role === 'assess' || role === 'agent' ? 60_000 : 100_000);
       const deadlineSeconds = role === 'judge' ? hardSeconds : hardSeconds - reserveSeconds;
       const remainingMs = parallel ? Math.max(1, deadlineSeconds * 1000 - (Date.now() - started)) : configuredMs;
       const timeoutMs = Math.max(1, Math.min(configuredMs, remainingMs)); const controller = new AbortController();
-      const callSignal = anySignal([opts.signal, controller.signal]); let timer;
-      const purpose = role === 'agent' ? 'step' : role; const maxTokens = agentMaxTokens(purpose, env);
+      const callSignal = anySignal([opts.signal, call.signal, controller.signal]); let timer;
+      const purpose = role === 'agent' ? 'step' : role; const maxTokens = call.maxTokens ?? agentMaxTokens(purpose, env);
       try {
         response = await Promise.race([
           chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal }),
           new Promise((_, reject) => { timer = setTimeout(() => { const e = new Error(`model_timeout_${role}_${timeoutMs}ms`); e.code = 'MODEL_TIMEOUT'; controller.abort(e); reject(e); }, timeoutMs); }),
+          ...(call.signal ? [new Promise((_, reject) => { const stop = () => reject(Object.assign(new Error(`model_aborted_${role}`), { code: 'MODEL_ABORTED' })); if (call.signal.aborted) stop(); else call.signal.addEventListener('abort', stop, { once: true }); })] : []),
         ]);
       }
       catch (e) { error = e; }
@@ -72,8 +75,10 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
       const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
       trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage || error?.usage), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}) });
-      if (checked.ok) return checked.value ?? raw;
-      if (error?.code === 'MODEL_TIMEOUT' || error?.code === 'MODEL_TRUNCATED' || /abort|timeout/i.test(String(error?.message || error))) break;   // repetir con el mismo tope reproduce el corte
+      if (checked.ok) { info.reason = null; return checked.value ?? raw; }
+      info.reason = error?.code === 'MODEL_TIMEOUT' ? 'timeout' : error?.code === 'MODEL_TRUNCATED' ? 'truncated' : error?.code === 'MODEL_ABORTED' ? 'aborted' : error ? 'error' : 'invalid';
+      info.detail = String(error?.message || checked.errors?.[0] || '').slice(0, 200);
+      if (error?.code === 'MODEL_TIMEOUT' || error?.code === 'MODEL_TRUNCATED' || error?.code === 'MODEL_ABORTED' || /abort|timeout/i.test(String(error?.message || error))) break;   // repetir con el mismo tope reproduce el corte
     }
     return null;
   }
@@ -93,20 +98,48 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return { a, dates, leadId };
   }
 
+  /** Lectura de una página por el modelo con respaldo (P0.4): si falla, queda `unread_by_model` con su razón y su triage,
+   *  y se reintenta UNA vez con el contrato mínimo si queda tiempo. Una página sin lectura exitosa nunca es candidata. */
+  const unreadPages = new Map(); const readStats = { attempted: 0, ok: 0, ok_min: 0, retried: 0, unread: 0 };
+  const retryMinMs = Number(env.ENGINE_AGENT_ASSESS_RETRY_MIN_MS) || 15_000; const retryTimeoutMs = Number(env.ENGINE_AGENT_ASSESS_RETRY_TIMEOUT_MS) || 30_000;
+  const retryOn = String(env.ENGINE_AGENT_ASSESS_RETRY ?? '1') !== '0';
+  const readWindowMs = () => (parallel ? (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started) : Infinity);
+  async function readPage(r, step, nextTool, understoodBrief, signal) {
+    const obs = { type: 'page', ...r }; const text = unpage(r.text); const triage = r.triage || triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
+    const args = { objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text }, ref: r.ref, today, triageNote: triageNote(triage) };
+    readStats.attempted++;
+    const first = {}; let contract = assessContract;
+    let raw = await model(assessPromptFor(contract, args), 'assess', assessValidator(contract, ids), r.ref, { info: first, signal });
+    let retried = null;
+    if (!raw && retryOn && first.reason !== 'aborted' && readWindowMs() >= retryMinMs && !signal?.aborted) {
+      readStats.retried++; contract = 'min'; const second = {};
+      raw = await model(assessPromptFor('min', args), 'assess', assessValidator('min', ids), r.ref, { info: second, signal, timeoutMs: Math.min(retryTimeoutMs, readWindowMs()), maxTokens: Number(env.ENGINE_AGENT_ASSESS_RETRY_MAX_TOKENS) || 300 });
+      retried = { contract: 'min', ok: Boolean(raw), ...(raw ? {} : { reason: second.reason, detail: second.detail }) };
+    }
+    if (!raw) return markUnread(r, triage, first.reason || 'invalid', first.detail, retried);
+    const a = liftAssess(raw, contract, ids); a.ref = r.ref;
+    if (contract === 'min') readStats.ok_min++; else readStats.ok++;
+    const { dates, leadId } = ingest(obs, a, step, nextTool);
+    return { ok: true, page: { ref: r.ref, url: r.url, title: r.title, chars: r.chars, about: a.about, page_type: a.page_type, candidate: candidates.has(r.ref), read: contract === 'min' ? 'min' : 'ok', dates: dates.filter(Boolean).slice(0, 6), lead_id: leadId, ...triageView(triage), links: linksView(r.links) } };
+  }
+  function markUnread(r, triage, reason, detail, retried) {
+    readStats.unread++;
+    const row = { page_ref: r.ref, url: r.url, title: r.title || '', reason, ...(detail ? { detail } : {}), retried: retried || null, triage: { structure: triage.structure, banners: triage.banners, foa_ids: triage.foa_ids, dates: triage.dates.slice(0, 6) } };
+    unreadPages.set(r.ref, row); trace.event('page_unread', row);
+    trace.event('decision', { page_ref: r.ref, by: 'code:loop.mjs#readPage', verdict: 'none', reason: 'unread_by_model', page_type: triage.structure.page_type_code, dates: [], criteria: {}, days_left: null, next_action: null });
+    return { ok: false, failed: { ref: r.ref, error: reason === 'invalid' ? 'assess_invalid' : `assess_${reason}`, unread_by_model: true, url: r.url, title: r.title, ...triageView(triage), links: linksView(r.links) } };
+  }
+
   async function openMany(args, step, nextTool, understoodBrief) {
     const wanted = [...new Set([...(Array.isArray(args.refs) ? args.refs : []), args.ref].filter(Boolean).map(String))].slice(0, maxOpensPerStep);
     const opened = await Promise.all(wanted.map((ref) => tools.open({ ref })));
     const out = { type: 'pages', pages: [], failed: [] };
     await pool(opened.map((r, i) => [wanted[i], r]), assessConcurrency, async ([ref, r]) => {
       if (!r?.ref) { out.failed.push({ ref, error: r?.error || 'open_failed' }); return; }
-      const obs = { type: 'page', ...r }; const text = unpage(r.text);
-      const triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
-      trace.event('triage', { page_ref: r.ref, url: r.url, version: triage.version, structure: triage.structure, banners: triage.banners, foa_ids: triage.foa_ids, dates: triage.dates.slice(0, 6) });
-      const raw = await model(assessPromptFor(assessContract, { objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text }, ref: r.ref, today, triageNote: triageNote(triage) }), 'assess', assessValidator(assessContract, ids), r.ref);
-      if (!raw) { out.failed.push({ ref: r.ref, error: 'assess_invalid' }); return; }
-      const a = liftAssess(raw, assessContract, ids);
-      a.ref = r.ref; const { dates, leadId } = ingest(obs, a, step, nextTool);
-      out.pages.push({ ref: r.ref, url: r.url, title: r.title, chars: r.chars, about: a.about, page_type: a.page_type, candidate: candidates.has(r.ref), dates: dates.filter(Boolean).slice(0, 6), lead_id: leadId, ...triageView(triage), links: linksView(r.links) });
+      const text = unpage(r.text); r.triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
+      trace.event('triage', { page_ref: r.ref, url: r.url, version: r.triage.version, structure: r.triage.structure, banners: r.triage.banners, foa_ids: r.triage.foa_ids, dates: r.triage.dates.slice(0, 6) });
+      const done = await readPage(r, step, nextTool, understoodBrief);
+      if (done.ok) out.pages.push(done.page); else out.failed.push(done.failed);
     });
     out.pages.sort((x, y) => Number(x.ref.slice(1)) - Number(y.ref.slice(1)));
     return out;
@@ -188,7 +221,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     if (audit.dropReason) { trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true }); continue; }
     const eligible = ['eligibility', 'region', 'entity_type', 'stage'].some((id) => audit.criteria[id]?.verdict === 'no') ? 'no' : audit.criteria.eligibility?.verdict === 'yes' ? 'yes' : 'unclear';
     const identity = a.lead?.quote && literalIn(a.lead.quote, page.text) ? a.lead.quote : a.about;
-    findings.push({ objective, url: page.url, title: page.title, name: a.about, query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries } });
+    findings.push({ objective, url: page.url, title: page.title, name: a.about, query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, read_contract: a.contract || 'full', quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries } });
   }
   for (const [idx, ref] of secondRefs.entries()) {
     const second = preSecond ? preSecond[idx] : await judgeSecond(ref)(); secondCalls++;
@@ -196,5 +229,5 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     if (!second || !first || ids.some((id) => second.criteria[id]?.verdict !== first.criteria[id]?.verdict)) changed++;
   }
   const usage = tools.usage?.() || {};
-  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: usage.opens || 0, unread: 0, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
+  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }
