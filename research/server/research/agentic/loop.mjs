@@ -4,7 +4,7 @@ import { literalIn } from '../verify.mjs';
 import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
 import { assessContractOf, assessValidator, liftAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
-import { AGENT_CRITERIA, assessPromptFor, criterionHelp, stepPrompt, understandPrompt } from './prompts.v14.mjs';
+import { AGENT_CRITERIA, assessPromptFor, criterionHelp, mergeUnderstood, stepPrompt, understandFromBrief, understandPrompt } from './prompts.v14.mjs';
 import { createTools } from './tools.mjs';
 import { triageNote, triagePage } from './triage.mjs';
 
@@ -21,6 +21,10 @@ export function normalizeAgentQuery(value, objective, today) {
 /** Lo que el agente ve del triage determinista de una página (sin texto completo). */
 const triageView = (t) => ({ shape: t.structure.kind, ...(t.structure.hub ? { hub: true } : {}), ...(t.banners.length ? { banners: t.banners.map((b) => b.kind) } : {}), ...(t.foa_ids.length ? { call_ids: t.foa_ids.slice(0, 6) } : {}) });
 const linksView = (links) => (links || []).slice(0, 20).map((l) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80) }));
+/** Ejecuta como mucho `n` tareas a la vez, en orden de llegada. */
+const limiter = (n) => { let active = 0; const q = []; const next = () => { if (active >= Math.max(1, n) || !q.length) return; active++; const { fn, res, rej } = q.shift(); Promise.resolve().then(fn).then(res, rej).finally(() => { active--; next(); }); }; return (fn) => new Promise((res, rej) => { q.push({ fn, res, rej }); next(); }); };
+/** Espera una promesa como mucho `ms` (sin rechazar ni dejar temporizadores vivos). */
+const within = (promise, ms) => { if (!Number.isFinite(ms)) return promise; let t; return Promise.race([promise, new Promise((r) => { t = setTimeout(r, Math.max(0, ms)); })]).finally(() => clearTimeout(t)); };
 const unpage = (text) => String(text || '').replace(/^<page_data>|<\/page_data>$/g, '');
 const tokens = (usage) => ({ prompt: Number(usage?.prompt_tokens) || 0, completion: Number(usage?.completion_tokens) || 0, ...(!usage ? { estimated: true } : {}) });
 const validJudgment = (raw, ids) => Boolean(raw && typeof raw === 'object' && typeof raw.page_type === 'string' && Array.isArray(raw.dates) && raw.criteria && ids.every((id) => ['yes', 'no', 'unknown'].includes(raw.criteria[id]?.verdict)));
@@ -116,7 +120,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
       raw = await model(assessPromptFor('min', args), 'assess', assessValidator('min', ids), r.ref, { info: second, signal, timeoutMs: Math.min(retryTimeoutMs, readWindowMs()), maxTokens: Number(env.ENGINE_AGENT_ASSESS_RETRY_MAX_TOKENS) || 300 });
       retried = { contract: 'min', ok: Boolean(raw), ...(raw ? {} : { reason: second.reason, detail: second.detail }) };
     }
-    if (!raw) return markUnread(r, triage, first.reason || 'invalid', first.detail, retried);
+    if (!raw) return markUnread(r, triage, signal?.aborted && typeof signal.reason === 'string' ? signal.reason : first.reason || 'invalid', first.detail, retried);
     const a = liftAssess(raw, contract, ids); a.ref = r.ref;
     if (contract === 'min') readStats.ok_min++; else readStats.ok++;
     const { dates, leadId } = ingest(obs, a, step, nextTool);
@@ -130,17 +134,49 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return { ok: false, failed: { ref: r.ref, error: reason === 'invalid' ? 'assess_invalid' : `assess_${reason}`, unread_by_model: true, url: r.url, title: r.title, ...triageView(triage), links: linksView(r.links) } };
   }
 
+  // P0.5 · Lecturas sin bloqueo: cada página abierta se lee en segundo plano (tope de concurrencia global); el paso
+  // espera como mucho ENGINE_AGENT_READ_WAIT_MS y lo que termine después llega en el siguiente paso como `late_reads`.
+  // Al cerrar la ventana de acciones, una fase de drenaje deja terminar las lecturas ya lanzadas, con su propio tope y
+  // nunca más allá de hardSeconds − reserveSeconds, para que el juez conserve su reserva y el tope duro no se rompa.
+  const readSlot = limiter(assessConcurrency); const pendingReads = new Map();
+  const readWaitMs = Number(env.ENGINE_AGENT_READ_WAIT_MS ?? 20_000);
+  function startRead(r, step, nextTool, understoodBrief) {
+    const controller = new AbortController(); const entry = { r, controller, done: false, delivered: false, result: null };
+    entry.promise = readSlot(() => readPage(r, step, nextTool, understoodBrief, controller.signal))
+      .catch((e) => markUnread(r, r.triage, 'error', String(e?.message || e), null))
+      .then((res) => { entry.done = true; entry.result = res; return res; });
+    pendingReads.set(r.ref, entry); return entry;
+  }
+  function collectLateReads() {
+    const late = { pages: [], failed: [] };
+    for (const e of pendingReads.values()) if (e.done && !e.delivered) { e.delivered = true; if (e.result.ok) late.pages.push(e.result.page); else late.failed.push(e.result.failed); }
+    return late.pages.length || late.failed.length ? late : null;
+  }
+  async function drainReads() {
+    const open = [...pendingReads.values()].filter((e) => !e.done); if (!open.length) return;
+    const capMs = Math.max(0, Math.min(Number(env.ENGINE_AGENT_DRAIN_SECONDS ?? 60) * 1000, parallel ? (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started) : Infinity));
+    const t0 = Date.now(); await within(Promise.all(open.map((e) => e.promise)), capMs);
+    const still = open.filter((e) => !e.done); for (const e of still) e.controller.abort('drain_timeout');
+    await Promise.all(still.map((e) => e.promise));
+    trace.event('drain', { pending: open.length, completed: open.length - still.length, aborted: still.length, ms: Date.now() - t0, cap_ms: Number.isFinite(capMs) ? capMs : null });
+  }
+
   async function openMany(args, step, nextTool, understoodBrief) {
     const wanted = [...new Set([...(Array.isArray(args.refs) ? args.refs : []), args.ref].filter(Boolean).map(String))].slice(0, maxOpensPerStep);
     const opened = await Promise.all(wanted.map((ref) => tools.open({ ref })));
-    const out = { type: 'pages', pages: [], failed: [] };
-    await pool(opened.map((r, i) => [wanted[i], r]), assessConcurrency, async ([ref, r]) => {
-      if (!r?.ref) { out.failed.push({ ref, error: r?.error || 'open_failed' }); return; }
+    const out = { type: 'pages', pages: [], failed: [] }; const mine = [];
+    for (const [i, r] of opened.entries()) {
+      if (!r?.ref) { out.failed.push({ ref: wanted[i], error: r?.error || 'open_failed' }); continue; }
       const text = unpage(r.text); r.triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
       trace.event('triage', { page_ref: r.ref, url: r.url, version: r.triage.version, structure: r.triage.structure, banners: r.triage.banners, foa_ids: r.triage.foa_ids, dates: r.triage.dates.slice(0, 6) });
-      const done = await readPage(r, step, nextTool, understoodBrief);
-      if (done.ok) out.pages.push(done.page); else out.failed.push(done.failed);
-    });
+      mine.push(startRead(r, step, nextTool, understoodBrief));
+    }
+    const waitMs = Math.max(0, Math.min(readWaitMs, parallel ? (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started) : Infinity));
+    await within(Promise.all(mine.map((e) => e.promise)), waitMs);
+    for (const e of mine) {
+      if (e.done) { e.delivered = true; if (e.result.ok) out.pages.push(e.result.page); else out.failed.push(e.result.failed); }
+      else (out.reading ||= []).push({ ref: e.r.ref, url: e.r.url, title: e.r.title, status: 'reading', ...triageView(e.r.triage), links: linksView(e.r.links) });
+    }
     out.pages.sort((x, y) => Number(x.ref.slice(1)) - Number(y.ref.slice(1)));
     return out;
   }
@@ -157,16 +193,29 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return { type: 'tool', tool: 'search', result: { results, errors: found.map((f) => f?.error).filter(Boolean) } };
   }
 
+  // P0.5 · La comprensión no bloquea el primer paso: el perfil da una lectura determinista inmediata y el modelo,
+  // si se pide, corre en paralelo con un tope corto. Si falla, se sigue con el perfil y el brief en bruto (nota en la traza).
   const uPrompt = understandPrompt({ brief, objective, today });
-  const understood = await model(uPrompt, 'understand', validateUnderstand) || {
-    product_one_line: '', who_pays: '', sector: '', neighbor_sectors: [], stage: '', geography: '', assumptions: [], doubts: [],
+  const requestedMode = String(env.ENGINE_AGENT_UNDERSTAND_MODE || '').trim().toLowerCase();
+  const understandMode = ['profile', 'parallel', 'blocking'].includes(requestedMode) ? requestedMode : parallel ? 'parallel' : 'blocking';
+  const fromProfile = understandFromBrief(brief); let understood = fromProfile; let understandSource = 'profile';
+  const adoptUnderstood = async (value) => {
+    understood = mergeUnderstood(fromProfile, value); understandSource = 'model';
+    trace.event('understand', { output: understood, source: 'model', mode: understandMode });
+    for (const [i, assumption] of (understood.assumptions || []).entries()) trace.event('brief_patch', {
+      field: `assumptions[${i}]`, from: null, to: assumption, why: assumption, source: 'assumption',
+    });
+    const doubts = (understood.doubts || []).filter((d) => d.impact !== 'none').slice(0, 3);
+    if (doubts.length) { questions = doubts.length; await tools.ask_user({ questions: doubts.map((d) => ({ q: d.question, options: d.options })) }); }
   };
-  trace.event('understand', { output: understood });
-  for (const [i, assumption] of (understood.assumptions || []).entries()) trace.event('brief_patch', {
-    field: `assumptions[${i}]`, from: null, to: assumption, why: assumption, source: 'assumption',
-  });
-  const doubts = (understood.doubts || []).filter((d) => d.impact !== 'none').slice(0, 3);
-  if (doubts.length) { questions = doubts.length; await tools.ask_user({ questions: doubts.map((d) => ({ q: d.question, options: d.options })) }); }
+  const uInfo = {}; const uController = new AbortController(); let understandTask = null;
+  const understandFailed = () => trace.event('understand', { output: understood, source: 'profile', mode: understandMode, note: `model_understand_failed:${uInfo.reason || 'unknown'}; kept the profile view and the raw brief` });
+  if (understandMode === 'blocking') { const v = await model(uPrompt, 'understand', validateUnderstand, null, { info: uInfo }); if (v) await adoptUnderstood(v); else understandFailed(); }
+  else {
+    trace.event('understand', { output: understood, source: 'profile', mode: understandMode, note: understandMode === 'parallel' ? 'model understanding runs in parallel; first steps use the profile and the raw brief' : 'deterministic from the profile (ENGINE_AGENT_UNDERSTAND_MODE=profile)' });
+    if (understandMode === 'parallel') understandTask = model(uPrompt, 'understand', validateUnderstand, null, { info: uInfo, signal: uController.signal, timeoutMs: Number(env.ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS) || 20_000 })
+      .then((v) => (v ? adoptUnderstood(v) : understandFailed())).catch(() => understandFailed()).finally(() => { understandTask = null; });
+  }
 
   let observation = opts.initialObservation || { type: 'start', understood }; let finalRefs = [];
   for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
@@ -174,6 +223,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const used = tools.usage?.() || {};
     const state = { objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
       ...(parallel ? { parallel: true } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
+    const late = collectLateReads(); if (late) observation = { ...observation, late_reads: late };   // lecturas que terminaron después de su paso
     const prompt = stepPrompt({ state, observation });
     const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null);
     if (!value) { invalidSteps++; observation = { type: 'invalid_step' }; continue; }
@@ -202,6 +252,8 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     observation = action.tool === 'open' && result?.ref ? { type: 'page', ...result } : { type: 'tool', tool: action.tool, result };
   }
   if (!stopReason) { stopReason = parallel && elapsed() >= maxSeconds - reserveSeconds ? 'time' : 'budget'; trace.event('budget', { left: { steps: 0 } }); trace.event('finish', { reason: stopReason }); }
+  await drainReads();
+  if (understandTask) { uController.abort('loop_finished'); await understandTask; }
 
   const selected = (finalRefs.length ? finalRefs : [...candidates.keys()]).filter((ref) => candidates.has(ref));
   let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map();
@@ -229,5 +281,5 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     if (!second || !first || ids.some((id) => second.criteria[id]?.verdict !== first.criteria[id]?.verdict)) changed++;
   }
   const usage = tools.usage?.() || {};
-  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
+  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }

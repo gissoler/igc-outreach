@@ -89,7 +89,7 @@ test('F2.7 corrige años pasados en grants y no repite consultas entre pasos', a
 
 test('F2.7 impone un tope aunque el cliente de modelo ignore AbortSignal', async () => {
   const { tools, trace } = setup(); const never = async () => new Promise(() => {}); const started = Date.now();
-  const result = await runAgentObjective('grant', { company: 'IGC' }, { chat: never, tools, trace, today: '2026-10-19', parallel: true, secondJudge: 0, maxSeconds: 1, hardSeconds: 1, reserveSeconds: 0, env: { ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS: '20' } });
+  const result = await runAgentObjective('grant', { company: 'IGC' }, { chat: never, tools, trace, today: '2026-10-19', parallel: true, secondJudge: 0, maxSeconds: 1, hardSeconds: 1, reserveSeconds: 0, env: { ENGINE_AGENT_UNDERSTAND_MODE: 'blocking', ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS: '20' } });   // comprensión bloqueante (modo anterior); el modo paralelo se prueba en p0.nonBlocking
   assert.equal(Date.now() - started < 500, true); assert.equal(result.audit.agent.stop_reason, 'time');
   assert.equal(trace.events.some((x) => x.type === 'model_call' && /model_timeout_understand/.test(x.error || '')), true);
 });
