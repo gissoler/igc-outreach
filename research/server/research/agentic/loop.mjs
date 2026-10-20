@@ -252,6 +252,28 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return seed;
   }
 
+  /* Apollo como fuente inicial (20/10, decisión de Gisel): antes del primer paso busca organizaciones con los términos del brief
+     (los mismos que el registro) y las deja como refs abribles hacia su sitio. Es determinista y acotado: ENGINE_AGENT_APOLLO_SEED_QUERIES
+     (2) búsquedas, 1 crédito estimado cada una, y siempre dentro del tope por corrida (ENGINE_AGENT_APOLLO_CREDITS, 25). Solo corre con
+     APOLLO_ENABLED=1; ENGINE_AGENT_APOLLO_SEED=0 lo apaga. Cada decisión deja una traza apollo_source. */
+  async function seedApollo() {
+    const enabled = env.APOLLO_ENABLED === '1'; const configured = Boolean(env.APOLLO_API_KEY || opts.apollo); const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25;
+    const qs = registryQueries(brief, Number(env.ENGINE_AGENT_APOLLO_SEED_QUERIES) || 2);
+    const reason = String(env.ENGINE_AGENT_APOLLO_SEED ?? '1') === '0' ? 'seed_off' : !enabled ? 'apollo_disabled' : !configured ? 'apollo_not_configured' : typeof tools.apolloSource !== 'function' ? 'no_tool' : !qs.length ? 'no_terms' : null;
+    const base = { stage: 'source', enabled, configured, cap, queries: qs };
+    if (reason) { trace.event('apollo_source', { ...base, eligible_for_call: false, called: false, credits: 0, reason_not_called: reason }); return { ...base, called: 0, credits: 0, results_n: 0, reason }; }
+    const results = []; const seen = new Set(); const errors = []; let credits = 0;
+    for (const query of qs) {
+      const out = await tools.apolloSource({ keywords: [query], n: Number(env.ENGINE_AGENT_APOLLO_SEED_ROWS) || 8 });
+      credits += Number(out?.credits_estimated) || 0;
+      if (out?.error) { errors.push(out.error); if (/CAP|cap/.test(out.error)) break; continue; }
+      for (const row of out?.rows || []) if (row.ref && !seen.has(row.domain || row.url)) { seen.add(row.domain || row.url); results.push(row); }
+    }
+    const seed = { source: 'apollo', queries: qs, results: results.slice(0, Number(env.ENGINE_AGENT_APOLLO_SEED_MAX) || 10), credits, ...(errors.length ? { errors } : {}) };
+    trace.event('apollo_source', { ...base, eligible_for_call: true, called: true, credits, results_n: seed.results.length, urls: seed.results.map((r) => r.url), reason_not_called: null, ...(errors.length ? { errors } : {}) });
+    return seed;
+  }
+
   async function searchMany(args, action, step = null) {
     const planned = (args.queries || []).map((raw) => ({ raw: String(raw || '').trim(), query: normalizeAgentQuery(raw, objective, today) })).filter((x) => x.query);
     const qs = [];
@@ -297,7 +319,8 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   // registro (Simpler.Grants.gov si hay clave; si no, Grants.gov) con las consultas declaradas en el brief. Son refs
   // abribles; abrirlas consume aperturas como cualquier otra página. No gasta búsquedas web.
   const registrySeed = objective === 'grant' && String(env.ENGINE_AGENT_REGISTRY_SEED ?? '1') !== '0' && typeof tools.registry === 'function' && !opts.initialObservation ? await seedRegistry() : null;
-  let observation = opts.initialObservation || { type: 'start', understood, ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}) }; let finalRefs = [];
+  const apolloSeed = !opts.initialObservation ? await seedApollo() : null;
+  let observation = opts.initialObservation || { type: 'start', understood, ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}), ...(apolloSeed?.results?.length ? { apollo_seed: apolloSeed } : {}) }; let finalRefs = [];
   for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
     stepsRun = step;
     const used = tools.usage?.() || {};
@@ -371,7 +394,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const first = firstJudgments.get(ref);
     if (!second || !first || ids.some((id) => second.criteria[id]?.verdict !== first.criteria[id]?.verdict)) changed++;
   }
-  const apollo = await apolloStage(findings);
+  const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
   const usage = tools.usage?.() || {};
   return { findings, leads, audit: { apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }

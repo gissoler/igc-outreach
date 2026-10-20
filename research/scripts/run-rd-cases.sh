@@ -4,7 +4,8 @@
 # Uso:  PIPELINE_ROOT="…/Fuentes/Pipeline I+D Outreach - 2026-10-19" OUT_NAME=runs-v4 [CONFIRM_SPEND=1] research/scripts/run-rd-cases.sh
 # Variables P0 (con su valor por defecto): ENGINE_AGENT_UNDERSTAND_MODE=parallel, ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS=20000,
 #   ENGINE_AGENT_ASSESS_CONTRACT=lite, ENGINE_AGENT_APOLLO_STAGE=tool (post_judge para la etapa nueva), PREFLIGHT_MIN_TOKS=80,
-#   ENGINE_SEARCH_PROVIDERS_OFF= (p. ej. jina si sigue sin saldo). Ninguna decide por sí sola una comparación: ver 09/10 del vault.
+#   ENGINE_SEARCH_PROVIDERS_OFF= (p. ej. jina si sigue sin saldo), ENGINE_AGENT_APOLLO_SEED=1 (Apollo como fuente inicial: busca organizaciones con los
+#   términos del brief antes del primer paso, 1 crédito estimado por búsqueda, dentro del tope de 25; 0 lo apaga). Tope de tokens de assess: 2000. Ninguna decide por sí sola una comparación: ver 09/10 del vault.
 set -u
 WT="${WT:-$(cd "$(dirname "$0")/../.." && pwd)}"
 ROOT="${PIPELINE_ROOT:?define PIPELINE_ROOT (carpeta con profiles/)}"
