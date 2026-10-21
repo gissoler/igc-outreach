@@ -1,0 +1,14 @@
+[gptr 01:47:27] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 01:47:27] prompt (1685 caracteres): /sessions/rcw-01fzhjqfnnsajxdsn96ruonj/tmp/gptr-Uign4P/prompt.txt · log de GPT Researcher: /sessions/rcw-01fzhjqfnnsajxdsn96ruonj/tmp/gptr-Uign4P/gptr.log
+[gptr 01:47:27] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 01:47:27] búsqueda terminada en 0s
+[gptr 01:47:27] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 01:47:27] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 01:47:28] juez listo: 0 hallazgos (0 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s
+[gptr 01:47:59] INICIO objetivo=investment modo=deep tope=270s juez=node script=ok venv=ok
+[gptr 01:47:59] prompt (1685 caracteres): /sessions/rcw-01fzhjqfnnsajxdsn96ruonj/tmp/gptr-qVx6Lx/prompt.txt · log de GPT Researcher: /sessions/rcw-01fzhjqfnnsajxdsn96ruonj/tmp/gptr-qVx6Lx/gptr.log
+[gptr 01:47:59] proceso terminó tras 0s · timedOut=false código=n/d informe=ninguno
+[gptr 01:47:59] búsqueda terminada en 0s
+[gptr 01:47:59] URLs para el juez: 1 (0 del informe) → https://example.test/fixture-fund
+[gptr 01:47:59] juez de Node: 1 páginas (0 del registro oficial + 1 de GPT Researcher); se abren todas y el modelo lee hasta 40 elegidas por fechas
+[gptr 01:47:59] juez listo: 0 hallazgos (0 verificados) · contactos Apollo: 0 organizaciones, 0 créditos · total 0s

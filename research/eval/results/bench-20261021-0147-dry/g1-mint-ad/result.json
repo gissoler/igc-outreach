@@ -1,0 +1,106 @@
+{
+ "id": "g1-mint-ad",
+ "kind": "grant",
+ "objective": "grant",
+ "brief": "eval/briefs/jefe-igc-mint-ad-2026-10-12.json",
+ "why": "brief del jefe: cobertura contra la lista de Gemini",
+ "dry": true,
+ "ok": true,
+ "status": "done",
+ "error": null,
+ "started": "2026-10-21T01:47:58.314Z",
+ "seconds": 0,
+ "stages": {
+  "search_s": 0,
+  "judge_s": 0,
+  "engine_s": null,
+  "contacts_s": null,
+  "evaluator_s": null,
+  "total_s": 0
+ },
+ "urls": {
+  "gptr": 150,
+  "registry": 2,
+  "opened": 152,
+  "assessed": 42,
+  "by_status": {
+   "registry": 2,
+   "open": 2,
+   "unknown": 148
+  }
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 2
+ },
+ "lists": {
+  "top": 0,
+  "radar": 2,
+  "discarded": 0
+ },
+ "apollo_credits": 0,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": [
+  {
+   "title": "PA-27-100 · NIH SBIR omnibus parent solicitation (fixture record)",
+   "list": "radar",
+   "deadline": "2027-01-05",
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/00000000-0000-4000-8000-0000000a0100",
+   "contacts": 1
+  },
+  {
+   "title": "NSF-SBIR-PHASE-I-FIXTURE · NSF SBIR Phase I (fixture record)",
+   "list": "radar",
+   "deadline": "2026-11-04",
+   "verified": false,
+   "url": "https://simpler.grants.gov/opportunity/00000000-0000-4000-8000-0000000b0200",
+   "contacts": 0
+  }
+ ],
+ "coverage": [
+  {
+   "id": "nih-sbir-parent",
+   "label": "NIH SBIR parent PA-27-100 (cierres 5-ene-2027 y 5-abr-2027)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2027-01-05",
+   "expected": "2027-01-05",
+   "verified": false,
+   "why_out": null
+  },
+  {
+   "id": "nsf-sbir",
+   "label": "NSF SBIR (cierre 4-nov-2026)",
+   "found": true,
+   "list": "radar",
+   "deadline": "2026-11-04",
+   "expected": "2026-11-04",
+   "verified": false,
+   "why_out": null
+  },
+  {
+   "id": "tedco-mii",
+   "label": "TEDCO Maryland Innovation Initiative, RFA (cierre 15-oct-2026)",
+   "found": false,
+   "list": null,
+   "deadline": null,
+   "expected": "2026-10-15",
+   "verified": false,
+   "why_out": null
+  },
+  {
+   "id": "mips",
+   "label": "MIPS (cierre 15-oct-2026)",
+   "found": false,
+   "list": null,
+   "deadline": null,
+   "expected": "2026-10-15",
+   "verified": false,
+   "why_out": null
+  }
+ ]
+}

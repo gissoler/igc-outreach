@@ -1,0 +1,15 @@
+{
+  "schema": "investor_control/1",
+  "status": "unreviewed_control",
+  "warning": "NOT a gold set. Copied from the manual control list in the vault note '18 - Pipeline I+D - pruebas de oportunidades' (19/10/2026). Nobody has adjudicated fit, stage or geography for IGC; it only measures omissions of organizations someone already found by hand. Set reviewed_by (a person) before calling any number from it recall.",
+  "reviewed_by": null,
+  "source": "Product Brain/Outreach/18 - Pipeline I+D - pruebas de oportunidades.md, tabla 'Verificación manual de control'",
+  "today": "2026-10-19",
+  "items": [
+    { "org": "sanofiventures.com", "name": "Sanofi Ventures", "cases": ["RD-01", "RD-09", "RD-10"], "route": "investment", "note": "seed onward; biotech and digital health/data science" },
+    { "org": "synthesisbioventures.com", "name": "SYNthesis BioVentures", "cases": ["RD-01", "RD-10"], "route": "investment", "note": "therapeutics only, Australian focus: geography and platform-without-asset are material risks" },
+    { "org": "novoholdings.com", "name": "Novo Holdings Seed Investments", "cases": ["RD-03", "RD-01", "RD-10"], "route": "investment", "note": "seed and company creation, mostly Nordic" },
+    { "org": "novonordisk.com", "name": "Novo Nordisk R&D and commercial partnering", "cases": ["RD-03", "RD-10"], "route": "partnering", "note": "evergreen partnering, not investment: should appear in other_routes, not as an investor" },
+    { "org": "lilly.com", "name": "Lilly corporate business development / Catalyze360", "cases": ["RD-03", "RD-10"], "route": "partnering_or_venture", "note": "obesity interest explicit; Catalyze360 covers early biotech" }
+  ]
+}

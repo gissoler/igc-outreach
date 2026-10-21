@@ -50,5 +50,5 @@ test('C asistente: «por qué descartaste X» usa las razones y citas reales (li
 test('C intake: al final hace UNA pregunta concreta y dice por qué cambia la búsqueda (sin la lista «I still need: …»)', () => {
   const s = newIntake({ user: { name: 'G' } });
   const line = closingLine(s);
-  assert.doesNotMatch(line, /still need:/); assert.equal((line.match(/\?/g) || []).length, 1); assert.match(line, /It changes the search|Your plan is complete/);
+  assert.doesNotMatch(line, /still need:/); assert.equal((line.match(/\?/g) || []).length, 1); assert.match(line, /, (so|because) |Your plan is complete/);
 });

@@ -44,3 +44,4 @@ research/artifacts/
 
 # Salidas de corrida del benchmark (evidencia fuera del repo)
 research/bench/investors/out/
+frontend/tsconfig.tsbuildinfo

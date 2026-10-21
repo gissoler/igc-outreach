@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from '../server/research/store.mjs';
 import { createApp } from '../server/index.mjs';
-import { applyUpdate, missingRequired, planFields, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
+import { applyUpdate, closingLine, editField, missingRequired, planFields, heuristicExtract, interpretAnswer, newIntake, planResearch, runTurn, toProfile } from '../server/research/intake.mjs';
 import { blankProfile } from '../server/research/profileDefaults.mjs';
 import { createServer } from 'node:http';
 
@@ -225,9 +225,7 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
   await runTurn(s, { text: 'no sé', env, fetchImpl: answer({ ack: 'Ok.', question: '', asking: null, skipped: 'funding.amount_usd', updates: [] }) });
   assert.ok(missingRequired(s).includes('funding.amount_usd'));
   await runTurn(s, { text: '1,200 beta users', env, fetchImpl: answer({ ack: 'Great traction.', question: '', asking: null, updates: [{ path: 'company.traction', value: '1,200 beta users', quote: '1,200 beta users' }] }) });
-  assert.match(s.messages.at(-1).text, /how much do you need/i);
-  assert.match(s.messages.at(-1).text, /It changes the search/);
-  assert.equal((s.messages.at(-1).text.match(/\?/g) || []).length, 1, 'one question at a time');
+  assert.match(s.messages.at(-1).text, /missing one useful detail.*amount/i);
   assert.doesNotMatch(s.messages.at(-1).text, /complete/);
   await runTurn(s, { text: 'about 500k', env, fetchImpl: answer({ ack: 'USD 500k.', question: '', asking: null, updates: [{ path: 'funding.amount_usd', value: 500000, quote: '500k' }] }) });
   assert.deepEqual(missingRequired(s), []);
@@ -235,11 +233,34 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
   assert.equal(s.pending, null);
 });
 
-test('intake: grants piden monto y uso de fondos; no piden ronda', () => {
+test('intake: grants pide datos propios de grants y no obliga a completar una ronda de inversión', () => {
   const s = newIntake({});
   s.fields['funding.objectives'] = { value: ['grant'], origin: 'user', confidence: 'source' };
-  assert.deepEqual(planFields(s).slice(-5), ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state', 'funding.apply_window']);
+  assert.deepEqual(planFields(s).slice(-8), ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state', 'funding.apply_window', 'funding.applicant_role', 'project.target_population', 'funding.search_terms']);
   assert.ok(!planFields(s).includes('funding.round'));
+  assert.ok(!planFields(s).includes('company.traction'));
+});
+
+test('feedback IGC: conserva RHTP, población rural y ruta de aplicación sin inventar pre-seed', async () => {
+  const s = newIntake({});
+  await runTurn(s, { text: 'I work for IGC Pharma, a for-profit U.S. biotech company. We seek grants for PRISM under the Rural Health Transformation Program (RHTP), serving older adults in rural counties at risk of dementia. Include direct applications and subcontractor or vendor routes.' });
+  assert.ok(s.fields['funding.search_terms'].value.some((x) => /Rural Health Transformation Program|RHTP/.test(x)));
+  assert.match(s.fields['project.target_population'].value, /older adults in rural counties/i);
+  assert.equal(s.fields['funding.applicant_role'].value, 'either');
+  assert.equal(s.fields['funding.round'], undefined);
+  const profile = toProfile(s, blankProfile({ name: 'Gisel', email: 'g@x.co' }), { name: 'Gisel', email: 'g@x.co' });
+  assert.equal(profile.project.stage, 'other');
+  assert.ok(profile.project.keywords.some((x) => /RHTP|Rural Health Transformation Program/.test(x)));
+  assert.equal(profile.intake.traction, '');
+});
+
+test('plan de grants rural muestra fuentes rurales y Simpler cuando está configurado', () => {
+  const s = newIntake({});
+  editField(s, 'funding.objectives', ['grant']);
+  editField(s, 'funding.search_terms', ['RHTP', 'rural health']);
+  const sources = planResearch(s, { SIMPLER_GRANTS_API_KEY: 'configured' }).steps.map((x) => x.source);
+  assert.ok(sources.includes('Simpler.Grants.gov + Grants.gov'));
+  assert.ok(sources.includes('CMS Rural Health Transformation + Rural Health Information Hub'));
 });
 
 test('intake sin modelo: capta ronda y monto aunque lleguen fuera de orden; "1,200 users" no es un monto', async () => {
@@ -254,6 +275,16 @@ test('intake sin modelo: capta ronda y monto aunque lleguen fuera de orden; "1,2
   s.pending = null;
   await runTurn(s, { text: 'about 500k USD', env: {} });
   assert.equal(s.fields['funding.amount_usd']?.value, 500000);
+});
+
+test('intake: el cierre usa el contexto y ofrece continuar con un dato desconocido', () => {
+  const s = newIntake();
+  applyUpdate(s, { path: 'company.name', value: 'Mentiva', quote: 'Mentiva' }, 'conversation', 'Mentiva');
+  applyUpdate(s, { path: 'product.name', value: 'Compass', quote: 'Compass' }, 'conversation', 'Compass');
+  const line = closingLine(s);
+  assert.match(line, /Compass/);
+  assert.match(line, /I don't know/);
+  assert.doesNotMatch(line, /To build your plan I still need:/);
 });
 
 test('el modelo acusa recibo de un rango sin devolver el número: el código guarda el monto (tope del rango)', async () => {

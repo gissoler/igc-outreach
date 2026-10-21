@@ -40,6 +40,9 @@ export type Brief = {
   city?: string;
   timeline?: string;
   website?: string;
+  applicantRole?: string;
+  targetPopulation?: string;
+  searchTerms?: string;
 };
 export type Evidence = {
   id: string;

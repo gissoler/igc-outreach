@@ -14,6 +14,9 @@ const META: Record<string, { label: string; kind: Kind; placeholder?: string }> 
   'company.entity_type': { label: 'Type of organization (for grants)', kind: 'text' },
   'company.country': { label: 'Applicant country', kind: 'text' },
   'company.state': { label: 'Applicant state or region', kind: 'text' },
+  'funding.applicant_role': { label: 'How you can participate', kind: 'text' },
+  'project.target_population': { label: 'Target population', kind: 'long' },
+  'funding.search_terms': { label: 'Programs and exact search terms', kind: 'tags' },
   'company.city': { label: 'Applicant city', kind: 'text' },
   'company.name': { label: 'Company or project to fund', kind: 'text' },
   'founder.title': { label: 'Your role', kind: 'text', placeholder: 'CEO, founder, CSO…' },
@@ -38,11 +41,11 @@ const META: Record<string, { label: string; kind: Kind; placeholder?: string }> 
   'criteria': { label: 'Criteria', kind: 'lines', placeholder: 'One per line' },
   'constraints': { label: 'Constraints', kind: 'lines', placeholder: 'One per line' },
 };
-const REQUIRED = ['company.name', 'product.name', 'funding.objectives', 'product.one_liner', 'industry.sectors', 'product.maturity', 'geography'];
+const REQUIRED = ['company.name', 'product.name', 'funding.objectives', 'product.one_liner', 'industry.sectors', 'geography'];
 const GROUPS: [string, string[]][] = [
   ['Who\'s looking, and for whom', ['organization.name', 'founder.title', 'company.name', 'company.relation', 'company.entity_type', 'company.country', 'company.state', 'company.city']],
   ['Product', ['product.name', 'product.one_liner', 'product.description', 'company.website']],
-  ['Funding', ['funding.objectives', 'funding.round', 'funding.amount_usd', 'funding.use_of_funds', 'funding.timeline', 'funding.apply_window']],
+  ['Funding', ['funding.objectives', 'funding.applicant_role', 'project.target_population', 'funding.search_terms', 'funding.round', 'funding.amount_usd', 'funding.use_of_funds', 'funding.timeline', 'funding.apply_window']],
   ['Market and stage', ['industry.sectors', 'product.maturity', 'geography']],
   ['Investor view', ['company.traction', 'product.differentiation', 'product.business_model', 'company.team']],
   ['Criteria and constraints', ['competitors', 'criteria', 'constraints']],
@@ -153,6 +156,7 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
   const missing = intake ? (intake.planFields?.length ? intake.missing.length : REQUIRED.filter((p) => intake.missing.includes(p)).length) : REQUIRED.length;
   // "I don't know" answers stay missing (the plan is not complete) but must not lock the user in.
   const onlyUnknown = !!intake && missing > 0 && intake.missing.every((p) => intake.skipped.includes(p));
+  const canReview = !missing || onlyUnknown || intake?.pending === null || !reviewRequiresConversation;
 
   return <div className="ia-chat">
     {title && <div className="ia-chat-head">
@@ -184,8 +188,8 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
       <input ref={input} type="file" multiple accept={ACCEPT} hidden onChange={(e) => { if (e.target.files) add(e.target.files); e.target.value = ''; }} />
     </div>
     <div className="rl-actions ia-actions">
-      <span className="ia-status">{!missing ? <><Check size={14} /> Your plan is complete</> : onlyUnknown ? 'Some answers are still unknown; results will be less precise.' : 'Answer the assistant to complete your plan.'}</span>
-      {(!missing || onlyUnknown || !reviewRequiresConversation) && <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (!!missing && !onlyUnknown) || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>}
+      <span className="ia-status">{!missing ? <><Check size={14} /> Your plan is complete</> : onlyUnknown || intake?.pending === null ? 'You can review now; missing details will stay unknown.' : 'Answer one question at a time, or say “I don’t know”.'}</span>
+      {canReview && <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>}
     </div>
   </div>;
 }

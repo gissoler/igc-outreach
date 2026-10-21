@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────────────────────────────────────
    Elegibilidad del solicitante, decidida por el CÓDIGO contra el brief.
-   · applicantProfile(brief): quién postula. Por defecto (anotado): startup con fines de lucro que busca
-     fondos no dilutivos; el brief puede cambiarlo (entityType, country/domicile, "incorporated outside …").
+   · applicantProfile(brief): quién postula. Lo que el brief no declara queda desconocido; nunca se
+     convierte por defecto en startup con fines de lucro.
    · checkApplicant(pageText, profile, {modelQuote}): busca en la página las frases de elegibilidad
      (y la cita del modelo si es literal), extrae tipo de entidad, fines de lucro, estudiantes/afiliación,
      país y etapa, y decide yes | no | unclear con la cita. Si la cita dice estudiantes/universidades/
@@ -32,13 +32,14 @@ const ACRONYMS = [['US', /\b(?:US|U\.S\.|USA|U\.S\.A\.)(?![a-z])/], ['EU', /\bEU
 const placesIn = (text) => [...new Set([...PLACES.filter(([, rx]) => rx.test(text)).map(([code]) => code), ...ACRONYMS.filter(([, rx]) => rx.test(text)).map(([code]) => code)])];
 const covers = (code, country) => code === country || (code === 'EU' && EU_MEMBERS.has(country)) || (code === 'LATAM' && LATAM.has(country));
 
-/** Perfil del solicitante a partir del brief. Lo que no dice el brief queda como default anotado. */
+/** Perfil del solicitante a partir del brief. Lo que no dice el brief queda desconocido. */
 export function applicantProfile(brief = {}) {
   const text = lower([brief.entityType, brief.organization, brief.company, brief.venture, brief.description, brief.oneLiner, brief.geography, brief.constraints, brief.domicile, brief.country].filter(Boolean).join(' · '));
   const explicit = lower(brief.entityType || '');
-  let entity = 'for_profit_startup'; let entitySource = 'default (for-profit startup seeking non-dilutive funding)';
+  let entity = 'unknown'; let entitySource = 'unknown (brief does not say the entity type)';
   if (/non-?profit|ngo|charity|foundation|sin animo|sin fines|ong\b/.test(explicit || '')) { entity = 'nonprofit'; entitySource = 'brief.entityType'; }
   else if (/universit|academic|research lab|research institute/.test(explicit || '')) { entity = 'academic'; entitySource = 'brief.entityType'; }
+  else if (/for.?profit|compan|start.?up|corporat|\bllc\b|\binc\b|\bltd\b/.test(explicit)) { entity = 'for_profit_startup'; entitySource = 'brief.entityType'; }
   else if (explicit) { entitySource = 'brief.entityType'; }
   else if (/\b(non-?profit organi[sz]ation|registered charity|501\(c\)|we are a (?:non-?profit|foundation|university))\b/.test(text)) { entity = 'nonprofit'; entitySource = 'brief text'; }
   const geo = String([brief.country, brief.domicile, brief.geography].filter(Boolean).join(' · '));
@@ -47,7 +48,7 @@ export function applicantProfile(brief = {}) {
   const insideMatch = /(?:incorporated|based|registered|domiciled)\s+in\s+(?:the\s+)?([^)·;,]+)/i.exec(geo);
   const country = brief.country ? (placesIn(brief.country)[0] || null) : insideMatch ? (placesIn(insideMatch[1])[0] || null) : null;
   return {
-    entity, forProfit: entity === 'for_profit_startup', entitySource,
+    entity, forProfit: entity === 'unknown' ? null : entity === 'for_profit_startup', entitySource,
     country, outside, countrySource: brief.country ? 'brief.country' : insideMatch ? 'brief.geography' : outside.length ? 'brief.geography (outside …)' : 'unknown (brief does not say where the company is incorporated)',
     state: usStateOf([brief.state, brief.city, brief.geography, brief.domicile].filter(Boolean).join(', ')),
     stage: [brief.stage, brief.round].filter(Boolean).join(' / ') || 'unknown',
@@ -193,13 +194,13 @@ const TRIBAL_TITLE = /\b(tribal|tribes?|american indian|alaska native|native (?:
 const INSTITUTIONAL_TITLE = /\b(?:cancer center support|center support grants?|education and research centers?|designated (?:cancer )?centers?|alzheimer'?s? disease research centers?|\\badrcs?\\b|centers? of excellence|institutional (?:training|career|research training)|training (?:program|grant)s?)\b|\((?:T\d{2}|P30|P50|U54|D43|R25)\b/i;
 const TRIBAL_ORG = /\bindian health service\b/i;
 export function screenCall({ url = '', title = '', org = '' } = {}, profile = {}) {
-  if (profile.forProfit !== false && INSTITUTIONAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'institutional_only', reason: `The title ("${String(title).slice(0, 110)}") is an institutional center or training award, not for a company` };
-  if (profile.forProfit !== false && /(?:^|\.)[a-z0-9-]+\.edu$/.test((() => { try { return new URL(url).hostname.toLowerCase(); } catch { return ''; } })()) && !/\b(?:PA[RS]?|RFA|NOT|NSF|HHS)[-\s]?(?:[A-Z]{2}-)?\d{2}-\d{3}|\b(?:SBIR|STTR|BARDA|CDMRP)\b/i.test(title)) return { code: 'university_page', reason: 'A page on a university site (not a funder call) is an internal digest or notice, not an open call for a company' };
-  if (profile.forProfit !== false && TRIBAL_ORG.test(org)) return { code: 'restricted_applicant', reason: 'Indian Health Service funds tribal and urban Indian organizations, not outside companies' };
-  if (profile.forProfit !== false && FOREIGN_AID_ORG.test(org)) return { code: 'foreign_aid', reason: `${String(org).slice(0, 60)} funds programs abroad, not a US company's clinical research` };
-  if (profile.forProfit !== false && /(?:^|\.)research\.va\.gov$/.test((() => { try { return new URL(url).hostname; } catch { return ''; } })())) return { code: 'restricted_applicant', reason: 'VA research awards (Merit Review) are for VA investigators, not outside companies' };
-  if (profile.forProfit !== false && TRIBAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'restricted_applicant', reason: `The title ("${String(title).slice(0, 110)}") is aimed at tribal or native organizations, not a for-profit company` };
-  if (profile.forProfit !== false && INDIVIDUAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) {
+  if (profile.forProfit === true && INSTITUTIONAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'institutional_only', reason: `The title ("${String(title).slice(0, 110)}") is an institutional center or training award, not for a company` };
+  if (profile.forProfit === true && /(?:^|\.)[a-z0-9-]+\.edu$/.test((() => { try { return new URL(url).hostname.toLowerCase(); } catch { return ''; } })()) && !/\b(?:PA[RS]?|RFA|NOT|NSF|HHS)[-\s]?(?:[A-Z]{2}-)?\d{2}-\d{3}|\b(?:SBIR|STTR|BARDA|CDMRP)\b/i.test(title)) return { code: 'university_page', reason: 'A page on a university site (not a funder call) is an internal digest or notice, not an open call for a company' };
+  if (profile.forProfit === true && TRIBAL_ORG.test(org)) return { code: 'restricted_applicant', reason: 'Indian Health Service funds tribal and urban Indian organizations, not outside companies' };
+  if (profile.forProfit === true && FOREIGN_AID_ORG.test(org)) return { code: 'foreign_aid', reason: `${String(org).slice(0, 60)} funds programs abroad, not a US company's clinical research` };
+  if (profile.forProfit === true && /(?:^|\.)research\.va\.gov$/.test((() => { try { return new URL(url).hostname; } catch { return ''; } })())) return { code: 'restricted_applicant', reason: 'VA research awards (Merit Review) are for VA investigators, not outside companies' };
+  if (profile.forProfit === true && TRIBAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) return { code: 'restricted_applicant', reason: `The title ("${String(title).slice(0, 110)}") is aimed at tribal or native organizations, not a for-profit company` };
+  if (profile.forProfit === true && INDIVIDUAL_TITLE.test(title) && !SMALL_BUSINESS_TITLE.test(title)) {
     const m = INDIVIDUAL_TITLE.exec(title)[0];
     return { code: 'individual_only', reason: `The title ("${String(title).slice(0, 110)}") is an award for an individual (${m}), not for a company` };
   }

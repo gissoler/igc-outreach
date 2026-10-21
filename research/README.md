@@ -37,7 +37,8 @@ La evaluación reproducible usa casos adjudicados en `eval/gold/`, payloads cong
 
 - OpenAlex: coautorías con identidad estable y afiliaciones históricas. Cuando se activa equipo IGC, verifica al advisor en el sitio oficial antes de construir el camino. Una coautoría no prueba amistad ni capacidad de presentar.
 - ClinicalTrials.gov: patrocinadores industriales y responsables publicados. No se usan correos de reclutamiento como contactos de negocio.
-- Grants.gov: convocatorias, estados, fechas, techos y contactos publicados en la convocatoria.
+- Simpler.Grants.gov: fuente oficial preferida cuando `SIMPLER_GRANTS_API_KEY` está configurada; aporta búsqueda normalizada por UUID, estado, fecha, monto y elegibilidad. Si falla, el flujo vuelve a Grants.gov salvo que `GRANTS_SOURCE=simpler_only`.
+- Grants.gov: fallback oficial para convocatorias, estados, fechas, techos y contactos publicados en la convocatoria.
 - NIH RePORTER: proyectos financiados y responsables/program officers. Los montos adjudicados no se presentan como dinero disponible.
 
 ### Grants como gestor de convocatorias

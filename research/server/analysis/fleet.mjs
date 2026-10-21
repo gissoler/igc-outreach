@@ -37,7 +37,7 @@ export function fleetConfig(env = process.env) {
     const url = trim(env[`${P}_LLM_URL`]); const model = String(env[`${P}_LLM_MODEL`] || '').trim();
     const fb = String(env[`${P}_LLM_FALLBACK`] || '').trim().toLowerCase();
     roles[role] = url && model
-      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', schemaLoose: env[`${P}_LLM_SCHEMA_LOOSE`] === '1', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
+      ? { url, model, ready: true, apiKey: env[`${P}_LLM_API_KEY`] || '', jsonMode: env[`${P}_LLM_JSON_MODE`] !== '0', schemaLoose: env[`${P}_LLM_SCHEMA_LOOSE`] === '1', reasoningEffort: String(env[`${P}_LLM_REASONING_EFFORT`] || '').trim(), maxTokens: Number(env[`${P}_LLM_MAX_TOKENS`]) || 0, timeoutMs: Number(env[`${P}_LLM_TIMEOUT_MS`]) || 0, stream: env[`${P}_LLM_STREAM`] === '1', thinking: env[`${P}_LLM_THINKING`] === '0' ? false : undefined, fallback: null }
       : ['engine', 'chat'].includes(fb) && roles[fb]?.ready
         ? { ...roles[fb], alias: fb, fallback: fb }
         : { url: '', model: '', ready: false, fallback: null };
@@ -85,6 +85,46 @@ export async function postChat(target, body, opts = {}) {
   });
 }
 
+/**
+ * /chat/completions en streaming (SSE). Mide sin modelo de por medio: tiempo al primer token, tokens de salida
+ * (por `usage` si el servidor lo manda con stream_options.include_usage; si no, por número de fragmentos) y separa
+ * `reasoning_content` del contenido. `progress` (objeto) se actualiza mientras llega la respuesta, así quien corta la
+ * llamada por tiempo puede registrar lo que sí se generó. Un error lleva `.partial` con ese mismo progreso.
+ */
+export async function postChatStream(target, body, { apiKey, timeoutMs = 120_000, fetcher = fetch, signal, progress = {} } = {}) {
+  const started = Date.now(); Object.assign(progress, { chunks: 0, content_chars: 0, reasoning_chars: 0, ttft_ms: null, started });
+  const timeout = AbortSignal.timeout(timeoutMs); const sig = signal ? AbortSignal.any([signal, timeout]) : timeout;
+  const fail = (e) => { throw Object.assign(e instanceof Error ? e : new Error(String(e)), { partial: { ...progress, ms: Date.now() - started } }); };
+  let response;
+  try {
+    response = await fetcher(`${target.url}/chat/completions`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(apiKey || target.apiKey ? { Authorization: `Bearer ${apiKey || target.apiKey}` } : {}) },
+      body: JSON.stringify({ ...body, stream: true, stream_options: { include_usage: true } }), signal: sig });
+  } catch (e) { fail(e); }
+  if (!response.ok) { const text = await response.text().catch(() => ''); fail(new Error(`vLLM HTTP ${response.status} en /chat/completions${text ? `: ${text.slice(0, 160)}` : ''}`)); }
+  let content = ''; let reasoning = ''; let usage = null; let finish = null; let model = null; let buffer = '';
+  const decoder = new TextDecoder();
+  const take = (line) => {
+    const data = line.replace(/^data:\s*/, '').trim(); if (!data || data === '[DONE]') return;
+    let chunk; try { chunk = JSON.parse(data); } catch { return; }
+    model ||= chunk.model || null; if (chunk.usage) usage = chunk.usage;
+    for (const choice of chunk.choices || []) {
+      const d = choice.delta || {}; const c = d.content || ''; const r = d.reasoning_content || d.reasoning || '';
+      if (c || r) { progress.chunks++; if (progress.ttft_ms === null) progress.ttft_ms = Date.now() - started; progress.first_at ||= Date.now(); progress.last_at = Date.now(); }
+      content += c; reasoning += r; progress.content_chars = content.length; progress.reasoning_chars = reasoning.length;
+      if (choice.finish_reason) finish = choice.finish_reason;
+    }
+  };
+  try {
+    for await (const part of response.body) {
+      buffer += decoder.decode(part, { stream: true });
+      let at; while ((at = buffer.indexOf('\n')) >= 0) { const line = buffer.slice(0, at); buffer = buffer.slice(at + 1); if (line.startsWith('data:')) take(line); }
+    }
+    if (buffer.startsWith('data:')) take(buffer);
+  } catch (e) { fail(e); }
+  return { content, reasoning, usage, finish_reason: finish, model: model || target.model, ttft_ms: progress.ttft_ms, ms: Date.now() - started, chunks: progress.chunks,
+    decode_ms: progress.first_at && progress.last_at ? progress.last_at - progress.first_at : null };
+}
+
 /** Primer objeto JSON del texto, sin bloques <think>. */
 export function parseJsonContent(content) {
   let text = String(content || '').replace(/<think>[\s\S]*?<\/think>/g, '');
@@ -104,6 +144,20 @@ export function withLanguageRule(system) {
   return /write in spanish|en español|reply in spanish|same language as the draft/i.test(s) ? s : `${s}\n\n${ENGLISH_RULE}`;
 }
 
+/**
+ * Tope de tokens de salida por propósito del agente (no por puerto): comprensión, paso, lectura y juez.
+ * Variable vacía o ausente → valor por defecto; "0" o negativo → no se envía max_tokens desde el agente
+ * (se usa el `*_LLM_MAX_TOKENS` del rol de la flota si existe). En gpt-oss el tope incluye los tokens de razonamiento.
+ */
+export const AGENT_MAX_TOKENS_DEFAULTS = Object.freeze({ understand: 1500, step: 800, assess: 2000, judge: 2000 });   // understand 1500 y judge 2000 (20/10, corrida runs-v4: 10/10 comprensiones cortadas a 500 y 20/54 jueces cortados a 900, con p50 de 805); assess 2000 (20/10): 700 cortaba lecturas válidas de gpt-oss, cuyo razonamiento cuenta dentro del tope; la salida más larga medida fue 1664
+export const AGENT_MAX_TOKENS_ENV = Object.freeze({ understand: 'ENGINE_AGENT_UNDERSTAND_MAX_TOKENS', step: 'ENGINE_AGENT_STEP_MAX_TOKENS', assess: 'ENGINE_AGENT_ASSESS_MAX_TOKENS', judge: 'ENGINE_AGENT_JUDGE_MAX_TOKENS' });
+export function agentMaxTokens(purpose, env = process.env) {
+  const key = AGENT_MAX_TOKENS_ENV[purpose]; if (!key) return 0;
+  const raw = env[key];
+  if (raw === undefined || String(raw).trim() === '') return AGENT_MAX_TOKENS_DEFAULTS[purpose];
+  const n = Number(raw); return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
+}
+
 /** Chat con salida estructurada (response_format json_schema). */
 /** Quita las cotas de longitud de cadena (maxLength/minLength; las de arrays se conservan para que el modelo no liste sin fin) del esquema que se envía al servidor: vLLM las expande al compilar la gramática y se cuelga. Los validadores del motor siguen exigiéndolas. */
 function looseSchema(node) {
@@ -114,13 +168,17 @@ function looseSchema(node) {
   return out;
 }
 
-export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens }, { env = process.env, fetcher = fetch, signal } = {}) {
+export async function chatJSON({ system, user, messages, schema, name = 'salida', role = 'chat', model, temperature = 0, seed, maxTokens, stream }, { env = process.env, fetcher = fetch, signal, progress } = {}) {
   const cfg = fleetConfig(env);
   const target = model ? { ...cfg.roles[role], model } : cfg.roles[role];
   if (!target?.url || !target.model) throw new Error(`Fleet: role not configured: ${role} (URL and model).`);
   const jsonMode = target.jsonMode !== false;
   const started = Date.now();
-  const data = await postChat(target, {
+  const useStream = stream ?? target.stream === true;   // *_LLM_STREAM=1: cuenta tokens aunque la llamada se corte
+  const send = useStream
+    ? async (t, body, o) => { const r = await postChatStream(t, body, { ...o, progress: progress || {} }); return { model: r.model, usage: r.usage || (r.chunks ? { prompt_tokens: 0, completion_tokens: r.chunks, estimated: true } : null), choices: [{ finish_reason: r.finish_reason, message: { content: r.content } }] }; }
+    : postChat;
+  const data = await send(target, {
     model: target.model,
     temperature,
     ...(seed === undefined ? {} : { seed }),
@@ -131,7 +189,16 @@ export async function chatJSON({ system, user, messages, schema, name = 'salida'
     ...(maxTokens || target.maxTokens ? { max_tokens: maxTokens || target.maxTokens } : {}),
     ...(target.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),   // ENGINE_LLM_THINKING=0: modelos Qwen con modo razonamiento
   }, { apiKey: target.apiKey || cfg.apiKey, timeoutMs: Number(target.timeoutMs) || (Number(env.ENGINE_LLM_TIMEOUT_MS) && role === 'engine' ? Number(env.ENGINE_LLM_TIMEOUT_MS) : cfg.timeoutMs), fetcher, signal });
-  return { json: parseJsonContent(data?.choices?.[0]?.message?.content), model: data?.model || target.model, usage: data?.usage || null, latency_ms: Date.now() - started };
+  const finishReason = data?.choices?.[0]?.finish_reason || null; const usage = data?.usage || null;
+  let json;
+  try { json = parseJsonContent(data?.choices?.[0]?.message?.content); }
+  catch (error) {
+    // Salida cortada por max_tokens: se distingue de un JSON inválido y conserva el uso de tokens para la traza.
+    const limit = maxTokens || target.maxTokens || 0;
+    const e = finishReason === 'length' ? Object.assign(new Error(`model_truncated_max_tokens_${limit}`), { code: 'MODEL_TRUNCATED' }) : error;
+    throw Object.assign(e, { usage, finish_reason: finishReason, model: data?.model || target.model });
+  }
+  return { json, model: data?.model || target.model, usage, latency_ms: Date.now() - started, finish_reason: finishReason };
 }
 
 /** Embeddings en lotes; devuelve vectores en el orden de entrada. */

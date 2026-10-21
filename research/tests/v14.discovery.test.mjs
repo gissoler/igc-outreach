@@ -85,7 +85,7 @@ test('el bucle: descubrimiento por niveles alimenta el primer paso y Apollo se l
     if (req.name === 'agent') { agentUsers.push(req.user); return { json: agentSteps.shift(), model: 'f' }; }
     if (req.name === 'assess') return { json: assessment(String(req.user.match(/Page ref: (\S+?)\./)?.[1])), model: 'f' };
     return { json: judgment, model: 'f' }; };
-  const result = await runAgentObjective('grant', { company: 'IGC', state: 'Maryland', country: 'US' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, discovery: true, env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1', ENGINE_AGENT_STEPS: '6' } });
+  const result = await runAgentObjective('grant', { company: 'IGC', state: 'Maryland', country: 'US' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, discovery: true, env: { APOLLO_API_KEY: 'k', APOLLO_FOR_GRANTS: '1', ENGINE_AGENT_STEPS: '6', ENGINE_AGENT_ASSESS_CONTRACT: 'full' } });
   assert.equal(seen.includes('coverage'), true);
   assert.equal(calls.length, 4, 'primera búsqueda + 3 consultas del plan');
   assert.match(agentUsers[0], /national agencies/); assert.match(agentUsers[0], /"level":"state programs"/, 'el primer paso ya ve resultados etiquetados por nivel');
@@ -112,7 +112,7 @@ test('modo solo juez: abre las URLs dadas, no hace pasos del agente ni descubrim
     if (req.name === 'assess') return { json: assessment(String(req.user.match(/Page ref: (\S+?)\./)?.[1])), model: 'f' };
     if (req.name === 'agent' || req.name === 'coverage') throw new Error('el agente no debe correr');
     return { json: judgment, model: 'f' }; };
-  const r = await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, discovery: true, seedUrls: [{ url: 'https://a.org/1' }, 'https://b.org/2'], env: { APOLLO_ENABLED: '0' } });
+  const r = await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, discovery: true, seedUrls: [{ url: 'https://a.org/1' }, 'https://b.org/2'], env: { APOLLO_ENABLED: '0', ENGINE_AGENT_ASSESS_CONTRACT: 'full' } });
   assert.deepEqual(opened, ['https://a.org/1', 'https://b.org/2']); assert.equal(seen.includes('agent'), false); assert.equal(seen.includes('coverage'), false);
   assert.equal(r.findings.length, 2); assert.equal(r.audit.agent.stop_reason, 'seeded');
 });
@@ -122,6 +122,6 @@ test('modo solo juez: una convocatoria que el compilador rechaza (candidate=fals
     note: async () => ({}), ask_user: async () => ({}), finish: async () => ({}), apollo: async () => ({ rows: [] }), usage: () => ({ opens: 1 }) };
   const rejected = { ...assessment('p1'), candidate: false, criteria: { ...criteria, non_dilutive: { verdict: 'no', quote: 'This is a grant with no equity.', reason: 'x' } } };
   const chat = async (req) => { if (req.name === 'understand') return { json: understood, model: 'f' }; if (req.name === 'assess') return { json: rejected, model: 'f' }; judged++; return { json: judgment, model: 'f' }; };
-  const r = await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, seedUrls: ['https://a.org/rfa'], env: { APOLLO_ENABLED: '0' } });
+  const r = await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace: { event: () => null }, today: '2026-10-12', parallel: true, secondJudge: 0, seedUrls: ['https://a.org/rfa'], env: { APOLLO_ENABLED: '0', ENGINE_AGENT_ASSESS_CONTRACT: 'full' } });
   assert.equal(judged >= 1, true); assert.equal(r.findings.length, 1);
 });

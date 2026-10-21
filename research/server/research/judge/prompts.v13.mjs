@@ -38,7 +38,7 @@ const dayOf = (today) => (today instanceof Date ? today : new Date(today || Date
 export const fence = (text) => String(text || '').replace(/<\/?\s*(page_data|compiler_claims)\s*>/gi, '[tag removed]');
 const pageBlock = (page, max) => `<page_data>\nURL: ${fence(page?.url)}\nTITLE: ${fence(page?.title)}\nTEXT:\n${fence(pageExcerpt(page?.text, max))}\n</page_data>`;
 
-const DATE_RULES = `DATES. List every date on the page that matters for applying or for the timeline, one entry each: {"role","date","estimated","quote"}.
+export const DATE_RULES = `DATES. List every date on the page that matters for applying or for the timeline, one entry each: {"role","date","estimated","quote"}.
 Roles: application_deadline (last day to submit the application or full proposal), loi_deadline (letter of intent, pre-proposal or registration deadline), opens (the day applications open), award (award or decision date), project_start (project start date), posted (date posted, published or last updated), other.
 - A date labelled Award Date, Estimated Award Date, Project Start Date or Decision is NEVER application_deadline: use award or project_start. application_deadline needs a label like Application Due Date, Deadline, Closing Date or Close Date.
 - Assign the role from the label that is attached to the date in the page. A date's role is the label immediately before or next to it: do not shift labels onto the neighbouring value, especially in tables and lists where several labels come first and the values come after, in the same order.
@@ -46,7 +46,7 @@ Roles: application_deadline (last day to submit the application or full proposal
 - estimated is true when the page calls the date Estimated, Anticipated, Forecasted, Projected, Tentative or similar, or when the whole page is a forecast or a notice of intent to publish.
 - Do not compute days remaining, status or open/closed: code does that.`;
 
-const PAGE_TYPE_RULES = `page_type: call (the page IS a call with how/when to apply) | forecast_notice (the agency intends to publish or announces a forecast; applications are not being solicited yet) | program_page (describes a program but gives no application information) | report | blog | news | event | cohort_announcement | directory | funder_about | other.`;
+export const PAGE_TYPE_RULES = `page_type: call (the page IS a call with how/when to apply) | forecast_notice (the agency intends to publish or announces a forecast; applications are not being solicited yet) | program_page (describes a program but gives no application information) | report | blog | news | event | cohort_announcement | directory | funder_about | other.`;
 
 export function compilerPrompt({ objective, brief, page, today } = {}) {
   return {
