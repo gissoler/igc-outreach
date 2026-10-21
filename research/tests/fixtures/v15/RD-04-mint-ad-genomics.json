@@ -1,0 +1,15 @@
+{
+  "_about": "Team claim: identification of genetic risk factors for Alzheimer's disease, including possibly previously unreported factors. No cohort, sample size, ancestry, replication, effect sizes, multiple-testing correction or external validation was supplied.",
+  "company": "IGC Pharma",
+  "venture": "MINT-AD Genomics",
+  "product": "AI-assisted identification and validation planning for genetic risk factors associated with Alzheimer's disease",
+  "description": "Research-stage genomics capability intended to identify Alzheimer risk factors and generate hypotheses for replication. Any claim of previously unreported factors remains unvalidated without cohort and replication evidence.",
+  "oneLiner": "Research-stage Alzheimer's genomics risk-factor discovery",
+  "industry": "Alzheimer genomics GWAS polygenic risk health disparities biobank translational research",
+  "stage": "research-stage claim; dataset and replication status unknown",
+  "geography": "Global scientific scope; applicant country and entity type not confirmed",
+  "constraints": "Do not call genetic factors novel, causal or validated. Eligibility facts such as entity type, PI, registrations and institutional affiliation are unknown. Exact search terms: Alzheimer's genomics grant; NIA genetic risk factors funding; dementia genomics biobank call; AD/ADRD omics research grant.",
+  "useOfFunds": "Cohort access, replication, ancestry-diverse validation, statistical genetics, functional follow-up and data governance",
+  "timeline": "Unknown",
+  "fundingTypes": ["grant"]
+}

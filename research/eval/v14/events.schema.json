@@ -12,7 +12,7 @@
     "ms": { "type": "integer", "description": "ms desde run_start" },
     "objective": { "enum": ["grant", "investment", "sponsorship", "debt", "partnering", "-"] },
     "step": { "type": ["integer", "null"], "description": "paso del agente (F2) o ronda del motor (F1)" },
-    "type": { "enum": ["run_start", "understand", "brief_patch", "model_call", "tool_call", "page", "decision", "drop", "lead", "lead_followup", "ask_user", "budget", "finish", "run_end", "triage", "page_unread", "query_skipped", "provider_disabled", "registry_seed", "drain", "apollo_stage", "apollo_source"] }
+    "type": { "enum": ["run_start", "understand", "brief_patch", "model_call", "tool_call", "page", "decision", "drop", "lead", "lead_followup", "ask_user", "budget", "finish", "run_end", "triage", "page_unread", "query_skipped", "provider_disabled", "registry_seed", "drain", "apollo_stage", "apollo_source", "harvest", "dossier", "dossier_upgrade", "dossier_shortlist", "dossier_summary", "investor_harvest", "investor_screen", "investor_org", "investor_summary", "stall"] }
   },
   "allOf": [
     { "if": { "properties": { "type": { "const": "run_start" } } }, "then": { "required": ["brief", "brief_sha", "today", "flags", "models", "prompts", "git_commit", "limits"] } },
@@ -39,6 +39,12 @@
     { "if": { "properties": { "type": { "const": "ask_user" } } }, "then": { "required": ["questions", "answered"] } },
     { "if": { "properties": { "type": { "const": "budget" } } }, "then": { "required": ["left"] } },
     { "if": { "properties": { "type": { "const": "finish" } } }, "then": { "required": ["reason"] } },
-    { "if": { "properties": { "type": { "const": "run_end" } } }, "then": { "required": ["seconds", "totals"] } }
+    { "if": { "properties": { "type": { "const": "run_end" } } }, "then": { "required": ["seconds", "totals"] } },
+    { "if": { "properties": { "type": { "const": "harvest" } } }, "then": { "required": ["source", "items_n"] } },
+    { "if": { "properties": { "type": { "const": "dossier" } } }, "then": { "required": ["key", "decision"] } },
+    { "if": { "properties": { "type": { "const": "stall" } } }, "then": { "required": ["step", "stall", "action"] } },
+    { "if": { "properties": { "type": { "const": "dossier_summary" } } }, "then": { "required": ["funnel", "status_line"] } },
+    { "if": { "properties": { "type": { "const": "investor_org" } } }, "then": { "required": ["key", "decision"] } },
+    { "if": { "properties": { "type": { "const": "investor_summary" } } }, "then": { "required": ["funnel", "status_line"] } }
   ]
 }

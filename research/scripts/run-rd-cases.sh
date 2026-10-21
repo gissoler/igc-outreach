@@ -42,7 +42,8 @@ run_case() {
   if [ -n "${ONLY:-}" ] && ! echo ",$ONLY," | grep -q ",$id,"; then return 0; fi   # ONLY=RD-04,RD-05 corre solo esos casos
   if test -f "$out/result.json"; then echo "$id already complete"; return 0; fi
   mkdir -p "$out"; echo "=== $id $objective ==="
-  NODE_V8_COVERAGE="$out/coverage" "$NODE" --env-file="$ENV_FILE" scripts/engine-run.mjs \
+  ap="$APOLLO_ENABLED"; [ "$objective" = grant ] && ap=0
+  APOLLO_ENABLED="$ap" ENGINE_AGENT_APOLLO_SEED="${ENGINE_AGENT_APOLLO_SEED:-0}" NODE_V8_COVERAGE="$out/coverage" "$NODE" --env-file="$ENV_FILE" scripts/engine-run.mjs \
     --brief "$ROOT/profiles/$profile" --objectives "$objective" --today "${TODAY:-2026-10-19}" \
     --no-cache --trace --exa-usd-cap 0.25 --out "$out"
 }
