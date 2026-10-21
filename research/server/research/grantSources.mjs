@@ -46,8 +46,12 @@ const simplerDate = (value) => {
   const match = String(value || '').match(/^(\d{4}-\d{2}-\d{2})/);
   return match ? match[1] : null;
 };
+// V15 · En la API v1 de Simpler los campos de la convocatoria vienen ANIDADOS en `summary` (objeto): summary_description,
+// applicant_types (enum como small_businesses), applicant_eligibility_description, close_date, award_ceiling… Antes se leía
+// row.summary como texto y quedaba «[object Object]»: la ficha llegaba al juez sin alcance ni requisitos.
+const summaryOf = (row) => (row?.summary && typeof row.summary === 'object' ? row.summary : {});
 const simplerApplicantTypes = (row) => {
-  const values = row?.applicant_types || row?.applicantTypes || row?.current_opportunity_summary?.applicant_types || [];
+  const values = summaryOf(row).applicant_types || row?.applicant_types || row?.applicantTypes || row?.current_opportunity_summary?.applicant_types || [];
   return (Array.isArray(values) ? values : []).map((value) => ({ description: clean(value?.description || value?.applicant_type || value) })).filter((value) => value.description);
 };
 export function simplerOpportunity(row) {
@@ -57,15 +61,17 @@ export function simplerOpportunity(row) {
   const title = clean(row?.opportunity_title || row?.opportunityTitle) || number;
   const agency = clean(row?.agency_name || row?.agencyName || row?.agency_code || row?.agencyCode) || 'Federal agency';
   const status = clean(row?.opportunity_status || row?.opportunityStatus).toLowerCase();
-  const summary = clean(row?.summary || row?.description || row?.synopsis || row?.opportunity_summary?.summary_description);
-  const eligibility = clean(row?.applicant_eligibility_description || row?.applicantEligibilityDescription);
+  const sum = summaryOf(row);
+  const summary = clean((typeof row?.summary === 'string' ? row.summary : '') || sum.summary_description || row?.description || row?.synopsis || row?.opportunity_summary?.summary_description).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const eligibility = clean(sum.applicant_eligibility_description || row?.applicant_eligibility_description || row?.applicantEligibilityDescription).replace(/<[^>]+>/g, ' ');
   const hit = {
     id,
     number,
     title,
     agency,
     oppStatus: status,
-    closeDate: simplerDate(row?.close_date || row?.closeDate),
+    closeDate: simplerDate(sum.close_date || row?.close_date || row?.closeDate),
+    forecastCloseDate: simplerDate(sum.forecasted_close_date),
     url: `https://simpler.grants.gov/opportunity/${id}`,
     provider: 'Simpler.Grants.gov',
   };
@@ -74,10 +80,11 @@ export function simplerOpportunity(row) {
       synopsisDesc: summary,
       applicantTypes: simplerApplicantTypes(row),
       applicantEligibilityDesc: eligibility,
-      awardCeiling: Number(row?.award_ceiling ?? row?.awardCeiling) || null,
-      awardFloor: Number(row?.award_floor ?? row?.awardFloor) || null,
+      awardCeiling: Number(sum.award_ceiling ?? row?.award_ceiling ?? row?.awardCeiling) || null,
+      awardFloor: Number(sum.award_floor ?? row?.award_floor ?? row?.awardFloor) || null,
       agencyName: agency,
-      fundingDescLinkUrl: safeUrl(clean(row?.additional_info_url || row?.additionalInfoUrl)) || null,
+      fundingDescLinkUrl: safeUrl(clean(sum.additional_info_url || row?.additional_info_url || row?.additionalInfoUrl)) || null,
+      forecastedCloseDate: simplerDate(sum.forecasted_close_date) || null,
     },
     cfdas: (row?.assistance_listings || row?.assistanceListings || []).map((item) => ({
       cfdaNumber: clean(item?.assistance_listing_number || item?.program_number || item?.number || item),

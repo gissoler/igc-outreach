@@ -26,8 +26,8 @@ const plainText = (value) => String(value ?? '').replace(/<[^>]+>/g, ' ').replac
 export function registryText(hit, source) {
   const d = hit._simplerDetail?.synopsis || {};
   return [`Official registry record (${source === 'simpler' ? 'Simpler.Grants.gov' : 'Grants.gov'}).`, `Opportunity title: ${hit.title || ''}.`, hit.number ? `Opportunity number: ${hit.number}.` : '', `Agency: ${hit.agency || d.agencyName || ''}.`,
-    hit.oppStatus ? `Opportunity status: ${hit.oppStatus}.` : '', hit.openDate ? `Posted date: ${hit.openDate}.` : '', hit.closeDate ? `Close date: ${hit.closeDate}.` : '',
-    d.awardCeiling ? `Award ceiling: ${d.awardCeiling}.` : '', (d.applicantTypes || []).length ? `Applicant types: ${d.applicantTypes.map((a) => plainText(a?.description ?? a)).filter(Boolean).join('; ')}.` : '', d.applicantEligibilityDesc ? `Applicant eligibility: ${plainText(d.applicantEligibilityDesc)}` : '', d.synopsisDesc ? `Summary: ${plainText(d.synopsisDesc).slice(0, 4000)}` : '',
+    hit.oppStatus ? `Opportunity status: ${hit.oppStatus}.` : '', hit.openDate ? `Posted date: ${hit.openDate}.` : '', hit.closeDate ? `Close date: ${hit.closeDate}.` : '', d.forecastedCloseDate ? `Estimated (forecasted) close date: ${d.forecastedCloseDate}.` : '',
+    d.awardCeiling ? `Award ceiling: ${d.awardCeiling}.` : '', (d.applicantTypes || []).length ? `Applicant types: ${d.applicantTypes.map((a) => plainText(a?.description ?? a).replace(/_/g, ' ')).filter(Boolean).join('; ')}.` : '', d.applicantEligibilityDesc ? `Applicant eligibility: ${plainText(d.applicantEligibilityDesc)}` : '', d.synopsisDesc ? `Summary: ${plainText(d.synopsisDesc).slice(0, 4000)}` : '',
     d.fundingDescLinkUrl ? `Additional information: ${d.fundingDescLinkUrl}` : ''].filter(Boolean).join('\n');
 }
 const rowsOf = (data) => Array.isArray(data) ? data : data?.results || data?.response?.award || data?.hits?.hits || [];
@@ -66,15 +66,25 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
     } catch (error) { return fail('search', args, started, error); }
   }
 
+  // V15 · Páginas ya leídas: abrir p1 otra vez no es un error, es una observación idempotente (RD-04: 23 rechazos seguidos).
+  const readPages = new Map(); let reopened = 0;
   async function open(args = {}) {
     const started = Date.now(); const row = refs.get(args.ref);
+    if (!row && readPages.has(String(args.ref))) {
+      reopened++; const seen = readPages.get(String(args.ref));
+      record('open', args, started, [], { already_read: true });
+      return { ref: String(args.ref), already_read: true, url: seen.url, title: seen.title, chars: seen.chars, links: seen.links, via: 'already_read' };
+    }
     if (!row) { rejectedRefs++; return fail('open', args, started, 'rejected_ref', { rejected_ref: true }); }
     if (hostKind(row.url) === 'social') return fail('open', args, started, 'blocked_social');
     if (opens >= caps.opens) return fail('open', args, started, 'budget');
     opens++;
     try {
       let page = null; let via = '';
+      // V15 · Una ficha de registro sin alcance ni requisitos (stub) no se da por leída: si es del NIH se abre el aviso oficial completo.
+      const guide = row.stub && row.number ? nihGuideUrl(row.number) : null;
       if (readers.open) { page = await readers.open(row.url, { row, env, fetcher, signal }); via = 'injected'; }
+      else if (guide && (page = await (readers.fetchPage || fetchPage)(guide, { env, fetcher, signal }).catch(() => null))) { via = 'nih_guide_page'; }
       else if (row.markdown?.length > 80) { page = { url: row.url, title: row.title, text: row.markdown }; via = row.via || 'search'; }
       else for (const [name, reader] of [['direct', fetchPage], ['crawl4ai', crawl4aiRead], ['jina', jinaRead], ['firecrawl', firecrawlRead]]) {
         page = await reader(row.url, { env, fetcher, signal }); if (page) { via = name; break; }
@@ -84,13 +94,18 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         const linkRef = `${ref}.l${i + 1}`; refs.set(linkRef, link); return { ref: linkRef, text: link.text, url: link.url };
       });
       trace.page({ ref, url: page.url || row.url, title: page.title || row.title, text: page.text || '', via, found_by: { tool: 'open', ref: args.ref }, read: true });
-      const result = { ref, url: page.url || row.url, title: page.title || row.title, chars: String(page.text || '').length, text: `<page_data>${clip(page.text)}</page_data>`, links, via };
+      const result = { ref, url: page.url || row.url, title: page.title || row.title, chars: String(page.text || '').length, text: `<page_data>${clip(page.text)}</page_data>`, links, via, ...(row.stub && via === 'registry' ? { stub: true } : {}) };
+      readPages.set(ref, { url: result.url, title: result.title, chars: result.chars, links });
       record('open', args, started, [result]); return result;
     } catch (error) { return fail('open', args, started, error); }
   }
 
+  /* Si Apollo contesta 403 (el plan no incluye el endpoint), no se vuelve a llamar en esta corrida: cada intento gasta créditos estimados sin devolver nada. */
+  let apolloDenied = false;
+  const planDenied = (e) => e?.status === 403 || /ENDPOINT_ACCESS_DENIED|unsupported_by_plan/i.test(String(e?.code || e?.message || ''));
   async function apolloTool(args = {}) {
     const started = Date.now(); const before = apolloClient.stats?.creditsEstimated || 0;
+    if (apolloDenied) return { rows: [], credits_estimated: 0, error: 'apollo_denied_by_plan' };
     try {
       const response = args.op === 'organization'
         ? await apolloClient.organizationSearch({ domain: args.domain, name: args.name, perPage: args.n || 5 })
@@ -98,7 +113,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
           : (() => { throw new Error('invalid_apollo_op'); })();
       const rows = response.data?.organizations || response.data?.accounts || response.data?.people || [];
       record('apollo', args, started, rows, { credits: (apolloClient.stats?.creditsEstimated || 0) - before }); return { rows, credits_estimated: (apolloClient.stats?.creditsEstimated || 0) - before };
-    } catch (error) { return fail('apollo', args, started, error, { credits: (apolloClient.stats?.creditsEstimated || 0) - before }); }
+    } catch (error) { if (planDenied(error)) apolloDenied = true; return fail('apollo', args, started, error, { credits: (apolloClient.stats?.creditsEstimated || 0) - before }); }
   }
 
   async function entityFunding(args = {}) {
@@ -124,6 +139,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   async function apolloSource(args = {}) {
     const started = Date.now(); const before = apolloClient.stats?.creditsEstimated || 0; const keywords = (args.keywords || []).map((k) => clip(k, 100)).filter(Boolean).slice(0, 5);
     const credits = () => (apolloClient.stats?.creditsEstimated || 0) - before;
+    if (apolloDenied) return { rows: [], credits_estimated: 0, error: 'apollo_denied_by_plan' };
     try {
       if (!keywords.length) throw new Error('no_keywords');
       const response = await apolloClient.organizationSearch({ keywords, perPage: Math.min(10, Number(args.n) || 8) });
@@ -135,7 +151,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         rows.push({ ref, url, name: o.name || null, domain: domain || null, industry: o.industry || null, description: clip(o.short_description, 200) || null, employees: o.estimated_num_employees ?? null, source: 'apollo' });
       }
       record('apollo', { op: 'organization_keywords', keywords }, started, rows, { credits: credits(), urls: rows.map((r) => r.url).slice(0, 10) }); return { rows, credits_estimated: credits() };
-    } catch (error) { return fail('apollo', { op: 'organization_keywords', keywords }, started, error, { credits: credits() }); }
+    } catch (error) { if (planDenied(error)) apolloDenied = true; return fail('apollo', { op: 'organization_keywords', keywords }, started, error, { credits: credits() }); }
   }
 
   async function registry(args = {}) {
@@ -160,7 +176,8 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         }));
         rows = hits.slice(0, Math.min(25, Number(args.n) || 10)).map((hit, i) => {
           const ref = `r${id}.${i + 1}`; const url = hit.url || (hit.id ? `https://www.grants.gov/search-results-detail/${hit.id}` : '');
-          const text = registryText(hit, source); refs.set(ref, { url, title: hit.title || hit.number || '', snippet: '', markdown: text, via: 'registry' });
+          const text = registryText(hit, source); const stub = !hit._simplerDetail?.synopsis?.synopsisDesc && !(hit._simplerDetail?.synopsis?.applicantTypes || []).length;
+          refs.set(ref, { url, title: hit.title || hit.number || '', snippet: '', markdown: text, via: 'registry', number: hit.number || null, ...(stub ? { stub: true } : {}) });
           const guide = nihGuideUrl(hit.number); let guideRef = null;
           if (guide) { guideRef = `${ref}.g`; refs.set(guideRef, { url: guide, title: `${hit.number} (NIH Guide)`, snippet: '', markdown: '' }); }
           return { ref, url, title: hit.title || '', number: hit.number || null, agency: hit.agency || hit.agencyName || null, status: hit.oppStatus || null, close_date: hit.closeDate || null, ...(guideRef ? { guide_ref: guideRef } : {}), source };
@@ -176,5 +193,5 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
   const note = async (args = {}) => { const at = Date.now(); record('note', args, at, []); return { ok: true }; };
   const ask_user = async (args = {}) => { const at = Date.now(); const out = { answered: false }; record('ask_user', args, at, []); trace.event('ask_user', { questions: args.questions || [], answered: false }); return out; };
   const finish = async (args = {}) => { const at = Date.now(); record('finish', args, at, []); trace.event('finish', { reason: String(args.reason || 'agent') }); return { ok: true }; };
-  return { search, open, apollo: apolloTool, apolloSource, apolloClient, disabledProviders: () => Object.fromEntries(Object.entries(breaker).filter(([, b]) => b.off).map(([p, b]) => [p, b.reason])), entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
+  return { apolloDenied: () => apolloDenied, search, open, apollo: apolloTool, apolloSource, apolloClient, disabledProviders: () => Object.fromEntries(Object.entries(breaker).filter(([, b]) => b.off).map(([p, b]) => [p, b.reason])), entity_funding: entityFunding, registry, note, ask_user, finish, refs, usage: () => ({ searches, opens, rejected_ref: rejectedRefs, reopened, apollo_credits: apolloClient.stats?.creditsEstimated || 0, exa_usd: exaSpent }) };
 }

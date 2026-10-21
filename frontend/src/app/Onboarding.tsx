@@ -24,21 +24,25 @@ const MATURITY: [string, string][] = [['idea', 'Idea'], ['prototype', 'Prototype
 const RELATIONS: [string, string][] = [['same', 'It\'s my own company'], ['subsidiary', 'Subsidiary'], ['spinout', 'Spin-off'], ['sponsored', 'Project we sponsor'], ['portfolio', 'Portfolio company'], ['client', 'Client'], ['other', 'Other']];
 const ENTITY_TYPES: [string, string][] = [['for_profit', 'For-profit company'], ['nonprofit', 'Nonprofit'], ['academic', 'University or research institute']];
 const ROUNDS: [string, string][] = [['pre-seed', 'Pre-seed'], ['seed', 'Seed'], ['series-a', 'Series A'], ['series-b', 'Series B'], ['growth', 'Growth']];
+const APPLICANT_ROLES: [string, string][] = [['direct', 'Apply directly'], ['subcontractor', 'Subcontractor or vendor'], ['either', 'Either route']];
 
 const F: Record<string, FieldDef> = {
   'company.name': { path: 'company.name', label: 'Company or project to fund', kind: 'text', required: true, placeholder: 'e.g. Mentiva', help: 'Excluded from results; heads every message.', max: 220 },
   'organization.name': { path: 'organization.name', label: 'Organization you represent', kind: 'text', placeholder: 'Only if different, e.g. IGC Pharma', help: 'Its team and relationships feed the warm paths.', max: 220 },
   'company.relation': { path: 'company.relation', label: 'Relationship', kind: 'select', options: RELATIONS, help: 'How the company is introduced in drafts.' },
-  'company.entity_type': { path: 'company.entity_type', label: 'Type of organization', kind: 'select', options: ENTITY_TYPES, help: 'Grant calls often accept only one type. If empty, we assume for-profit and mark it unconfirmed.' },
+  'company.entity_type': { path: 'company.entity_type', label: 'Type of organization', kind: 'select', options: ENTITY_TYPES, help: 'Grant calls often accept only one type. If empty, it stays unknown and cannot be used to claim eligibility.' },
   'company.country': { path: 'company.country', label: 'Country', kind: 'text', placeholder: 'United States, Colombia…', help: 'Where the applicant is based. National programs depend on it.', max: 60 },
   'company.state': { path: 'company.state', label: 'State or region', kind: 'text', placeholder: 'California, Antioquia…', help: 'State and regional grant programs only fund local applicants; we also read the official portals of that state.', max: 80 },
+  'funding.applicant_role': { path: 'funding.applicant_role', label: 'How you can participate', kind: 'select', options: APPLICANT_ROLES, help: 'Keeps direct applications separate from subcontractor, vendor and partner routes.' },
+  'project.target_population': { path: 'project.target_population', label: 'Target population', kind: 'long', placeholder: 'e.g. older adults in rural counties at risk of dementia', max: 600 },
+  'funding.search_terms': { path: 'funding.search_terms', label: 'Programs and exact search terms', kind: 'tags', placeholder: 'RHTP, rural health, dementia screening', help: 'These words are preserved in the first searches instead of being replaced by broad sectors.' },
   'company.city': { path: 'company.city', label: 'City', kind: 'text', placeholder: 'Boston, Medellín…', max: 80 },
   'founder.title': { path: 'founder.title', label: 'Your role', kind: 'text', placeholder: 'CEO, founder, CSO…', max: 220 },
   'company.website': { path: 'company.website', label: 'Website', kind: 'url', placeholder: 'https://…', help: 'Public source to verify facts.' },
   'product.name': { path: 'product.name', label: 'Product or project', kind: 'text', required: true, placeholder: 'e.g. IGC-AD1 or AHA', max: 220 },
   'product.one_liner': { path: 'product.one_liner', label: 'What it does, in one sentence', kind: 'text', required: true, placeholder: 'e.g. Predicts agitation episodes in dementia 40 minutes early.', help: 'Used to match topics in the evidence.', max: 220 },
   'product.description': { path: 'product.description', label: 'Description', kind: 'long', placeholder: 'The problem, who it is for, and any proof so far (users, pilots, revenue).', max: 1500 },
-  'product.maturity': { path: 'product.maturity', label: 'Stage', kind: 'select', required: true, options: MATURITY, help: 'Changes which sources apply.' },
+  'product.maturity': { path: 'product.maturity', label: 'Stage', kind: 'select', options: MATURITY, help: 'Changes which sources apply; required for an investment search, optional for grants.' },
   'industry.sectors': { path: 'industry.sectors', label: 'Sector', kind: 'tags', required: true, placeholder: 'e.g. neurology, dementia, digital health', help: 'Each term is a fit keyword: 35% of the score in strategic mode, 25% in financial.' },
   'funding.objectives': { path: 'funding.objectives', label: 'What you\'re looking for', kind: 'objectives', required: true, options: OBJECTIVES, help: 'Decides which sources run and the funding-type factor.' },
   'funding.round': { path: 'funding.round', label: 'Round', kind: 'select', options: ROUNDS },
@@ -59,7 +63,7 @@ export const SECTIONS: SectionDef[] = [
   { id: 'asistente', label: 'AI assistant', icon: <Sparkles size={16} />, why: 'Tell it in your own words — faster than a form.', impact: '', fields: [] },
   { id: 'empresa', label: 'Company', icon: <Building2 size={16} />, why: 'Who\'s looking, and for whom.', impact: '', fields: ['company.name', 'organization.name', 'company.relation', 'company.entity_type', 'company.country', 'company.state', 'company.city', 'founder.title', 'company.website'] },
   { id: 'producto', label: 'Product', icon: <FlaskConical size={16} />, why: 'The terms the engine looks for in evidence.', impact: '', fields: ['product.name', 'product.one_liner', 'product.description', 'product.maturity', 'industry.sectors'], advanced: ['company.traction', 'product.differentiation', 'product.business_model', 'company.team'] },
-  { id: 'objetivo', label: 'Goal', icon: <Target size={16} />, why: 'Decides which sources run and how funding type is scored.', impact: '', fields: ['funding.objectives', 'funding.round', 'funding.amount_usd', 'geography', 'funding.timeline', 'funding.use_of_funds'], advanced: ['competitors', 'criteria', 'constraints'] },
+  { id: 'objetivo', label: 'Goal', icon: <Target size={16} />, why: 'Decides which sources run and how funding type is scored.', impact: '', fields: ['funding.objectives', 'funding.applicant_role', 'project.target_population', 'funding.search_terms', 'funding.round', 'funding.amount_usd', 'geography', 'funding.timeline', 'funding.use_of_funds'], advanced: ['competitors', 'criteria', 'constraints'] },
   { id: 'evidencia', label: 'Documents', icon: <FileText size={16} />, why: 'Your documents fill the profile with quotes.', impact: '', fields: [] },
   { id: 'red', label: 'Network', icon: <Network size={16} />, why: 'The best meetings come through someone you already know.', impact: '', fields: [] },
   { id: 'revision', label: 'Review', icon: <ListChecks size={16} />, why: 'See exactly what will be used before anything runs.', impact: '', fields: [] },
@@ -284,6 +288,9 @@ function ReviewSection({ intake, prefs, setPrefs, onGo, canPrefs }: { intake: In
       <dt>Product</dt><dd>{String(v('product.name') || '—')} — {String(v('product.one_liner') || '—')}</dd>
       <dt>Looking for</dt><dd>{asList(v('funding.objectives')).map((o) => OBJECTIVES.find(([id]) => id === o)?.[1] || o).join(' · ') || '—'}{v('funding.round') ? ` · ${String(v('funding.round'))}` : ''}{v('funding.amount_usd') ? ` · ${fmtUsd(Number(v('funding.amount_usd')))}` : ''}</dd>
       <dt>Fit keywords</dt><dd>{asList(v('industry.sectors')).join(', ') || '—'}</dd>
+      <dt>Exact grant terms</dt><dd>{asList(v('funding.search_terms')).join(', ') || '—'}</dd>
+      <dt>Target population</dt><dd>{String(v('project.target_population') || '—')}</dd>
+      <dt>Applicant route</dt><dd>{String(v('funding.applicant_role') || '—')}</dd>
       <dt>Geography</dt><dd>{asList(v('geography')).join(', ') || '—'}</dd>
       <dt>Exclusions</dt><dd>{asList(v('competitors')).join(', ') || 'None'}</dd>
       <dt>Documents</dt><dd>{intake.documents.length ? intake.documents.map((d) => d.name).join(', ') : 'None'}</dd>
@@ -294,6 +301,8 @@ function ReviewSection({ intake, prefs, setPrefs, onGo, canPrefs }: { intake: In
         <h3 className="x-h3">Scoring <Info wide label="Scoring mode">Mode changes the score weights, not the evidence searched.</Info></h3>
         <div className="ow-mode" role="radiogroup" aria-label="Scoring mode">{(['strategic', 'financial'] as const).map((m) => <button key={m} role="radio" aria-checked={prefs.mode === m} disabled={!canPrefs} className={prefs.mode === m ? 'on' : ''} onClick={() => setPrefs({ mode: m })}><b>{MODE_LABEL[m]}</b></button>)}</div>
         <label className="ow-inline">Minimum lead time <input type="number" min={0} max={730} value={prefs.minDays} disabled={!canPrefs} onChange={(e) => setPrefs({ minDays: Math.max(0, Math.min(730, Math.round(Number(e.target.value) || 0))) })} /> days <small>Earlier deadlines go to radar.</small></label>
+        <label className="ow-inline">Deadline from <input type="date" value={prefs.deadlineFrom || ''} disabled={!canPrefs} onChange={(e) => setPrefs({ deadlineFrom: e.target.value || undefined })} /></label>
+        <label className="ow-inline">Deadline through <input type="date" value={prefs.deadlineTo || ''} disabled={!canPrefs} min={prefs.deadlineFrom || undefined} onChange={(e) => setPrefs({ deadlineTo: e.target.value || undefined })} /> <small>Firm application deadlines outside this window are excluded.</small></label>
         {!canPrefs && <p className="x-muted">Preferences save once the profile is confirmed.</p>}
         <h3 className="x-h3">Where we look</h3>
         <ul className="ow-sources">{intake.plan.steps.filter((s) => s.status === 'activo').map((s) => <li key={`${s.goal}-${s.source}`}>{s.source}{s.cost === 'crédito' ? <span className="x-credit">paid</span> : null}</li>)}</ul>

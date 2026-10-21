@@ -103,6 +103,27 @@ const prov = {};
 for (const a of r.audits) for (const [p, s] of Object.entries(a.providers || {})) { const t = (prov[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 }); for (const k of Object.keys(t)) t[k] += s[k] || 0; if (s.disabled) t.disabled = s.disabled; }
 
 const esc = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim();
+/** V15 · Sección del resultado por convocatoria: línea de estado, embudo de expedientes y tabla con condiciones. */
+function dossierLines(a, found) {
+  const f = a.dossier; const src = Object.entries(f.by_source || {}).map(([k, v]) => `${k} ${v}`).join(', ');
+  return ['', '## Resultado por convocatoria (expedientes)', '', `**${esc(a.status_line)}**`, ...(a.incomplete?.length ? ['', `⚠ Exploración incompleta: ${a.incomplete.join(', ')}.`] : []), '',
+    '| Ítems cosechados | Catálogos recorridos | Convocatorias distintas | Sin texto suficiente | Vencidas (código) | Cerradas (registro) | Preselección (directas / posibles / ajenas) | Juzgadas | Descartadas por el juez | Retenidas | Pertinentes por tema | Abiertas | Pronóstico | Condicionadas | Listas |', '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+    `| ${f.items} (${esc(src)}) | ${f.catalogs} | ${f.dossiers} | ${f.not_evaluable} | ${f.expired} | ${f.closed_registry} | ${f.shortlist ? `${f.shortlist.direct} / ${f.shortlist.possible} / ${f.shortlist.unrelated} de ${f.shortlist.screened}` : '—'} | ${f.judged}${f.judge_failed ? ` (${f.judge_failed} sin juicio)` : ''} | ${esc(Object.entries(f.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', ')) || '0'} | ${f.kept} | ${f.pertinent} | ${f.open} | ${f.forecast} | ${f.conditional} | **${f.ready}** |`,
+    '', '| # | ID | Convocatoria | Vía | Tema | Estado | Próxima fecha (fuente) | Carta de intención | Elegibilidad | Condiciones | Bloqueadores | URL |', '|---|---|---|---|---|---|---|---|---|---|---|---|',
+    ...found.map((x, i) => `| ${i + 1} | ${x.call_id || '—'} | ${esc(x.title).slice(0, 110)} | ${x.lane || '—'}${x.mechanism ? ` (${x.mechanism})` : ''} | ${x.fit?.topic || '—'} | ${x.status} | ${x.deadline ? `${x.deadline} (${x.deadlineSource || 'juez'})` : x.estimatedDeadline ? `estimada ${x.estimatedDeadline}` : '—'} | ${x.loiDeadline || '—'} | ${x.eligible} | ${esc((x.conditions || []).join(' · ')).slice(0, 260) || '—'} | ${esc((x.blockers || []).join(' · ')).slice(0, 260) || '—'} | ${x.url} |`)];
+}
+/** V15 · Inversionistas por organización: embudo, evidencia por código (cita + URL) y rutas que no son inversión. */
+function investorLines(a, found) {
+  const f = a.investor; const via = Object.entries(f.by_via || {}).map(([k, v]) => `${k} ${v}`).join(', ');
+  const cell = (e) => (e?.quote ? `“${esc(e.quote).slice(0, 140)}”` : e?.link ? `enlace ${e.link}` : '—');
+  return ['', '## Inversionistas por organización (evidencia por código)', '', `**${esc(a.status_line)}**`, ...(a.incomplete?.length ? ['', `⚠ Exploración incompleta: ${a.incomplete.join(', ')}.`] : []), '',
+    '| Consultas (código) | Resultados | Listas abiertas → candidatos | Noticias → nombres → resueltos | Apollo (candidatas / abiertas / retenidas) | Candidatas | Abiertas | Descartes (código) | Retenidas | Tesis específica | Listas para contactar |', '|---|---|---|---|---|---|---|---|---|---|---|',
+    `| ${f.queries.length} | ${f.results} | ${f.lists_opened} → ${f.list_candidates} | ${f.news_opened} → ${f.names_found} → ${f.names_resolved} | ${f.apollo.candidates} / ${f.apollo.selected} / ${f.apollo.kept} | ${f.candidates} (${esc(via)}) | ${f.opened} | ${esc(Object.entries(f.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', ')) || '0'} | ${f.kept} | ${f.specific} | **${f.main}** |`,
+    ...(f.snowball ? ['', `Segunda ronda (co-inversores que nombran los fondos retenidos): ${f.snowball.names} nombres → ${f.snowball.resolved} resueltos → ${f.snowball.added} candidatas nuevas → ${f.snowball.screened} abiertas.`] : []),
+    '', '| # | Organización | Nivel | Tesis | Etapa | Geografía | Contacto | Actividad | Condiciones | Bloqueos |', '|---|---|---|---|---|---|---|---|---|---|',
+    ...found.map((x, i) => `| ${i + 1} | ${esc(x.name)} (${x.org.key}) | ${x.tier} | ${x.evidence.thesis.level}: ${cell(x.evidence.thesis)} | ${x.evidence.stage.fit}: ${cell(x.evidence.stage)} | ${x.evidence.geography.fit}: ${cell(x.evidence.geography)} | ${x.evidence.contact.kind}: ${cell(x.evidence.contact)} | ${x.evidence.recent.year || '—'} | ${esc((x.conditions || []).join(' · ')).slice(0, 220) || '—'} | ${esc((x.blockers || []).join(' · ')).slice(0, 220) || '—'} |`),
+    ...(a.other_routes?.length ? ['', 'Rutas que no son inversión (partnering/licensing), detectadas por código:', ...a.other_routes.map((r) => `- ${r.org}: “${esc(r.quote || '').slice(0, 160)}” (${r.url})`)] : [])];
+}
 const registry = [
   ['1', 'Eventos `page`: `found_by`.'], ['2', 'Eventos `page` con `read` y eventos `drop` con `read:false`.'],
   ['3', 'Eventos `drop`: `reason` y `decided_by`.'], ['4', 'Eventos `decision`: `dates` y `days_left`.'],
@@ -123,13 +144,15 @@ const lines = [
   `- Caché de búsquedas: ${useCache ? `${cachedBefore} → ${Object.keys(cache).length} consultas` : 'desactivada'}`,
   '', '## Resumen por objetivo', '', '| Objetivo | Búsqueda | Consultas | Páginas | Leídas | Sin leer | Vía Jina Reader | Verificadas | Descartes |', '|---|---|---|---|---|---|---|---|---|',
   ...r.audits.map((a) => `| ${a.objective} | ${a.search} | ${a.queries} | ${a.pages} | ${a.read} | ${a.unread} | ${a.jinaRead || 0} | **${a.kept}** | ${esc(Object.entries(a.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', '))} |`),
+  ...r.audits.filter((a) => a.dossier).flatMap((a) => dossierLines(a, r.findings.filter((f) => f.objective === a.objective))),
+  ...r.audits.filter((a) => a.investor).flatMap((a) => investorLines(a, r.findings.filter((f) => f.objective === a.objective))),
   '', ...funnelLines(funnel, r.audits),
   '', '## Aporte de cada buscador', '', '| Proveedor | Llamadas | Resultados | Errores | Seg. medios | Coste US$ | Páginas leídas | Verificadas | Solo él las trajo | Nota |', '|---|---|---|---|---|---|---|---|---|---|',
   ...Object.entries(prov).map(([p, s]) => `| ${p} | ${s.calls} | ${s.returned} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.costUsd ? s.costUsd.toFixed(3) : '-'} | ${s.pagesRead} | ${s.kept} | ${s.keptOnlyHere} | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`),
   // Modo agente: el audit no trae proveedores; se cuentan desde la traza. Un proveedor apagado (p. ej. Jina 402) va marcado y sus errores no cuentan como errores del resto.
   ...(!Object.keys(prov).length ? Object.entries(searchProv.rows).map(([p, s]) => `| ${p} | ${s.calls} | ${s.results} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.cost_usd ? s.cost_usd.toFixed(3) : '-'} | — | — | — | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`) : []),
   ...(!Object.keys(prov).length && Object.keys(searchProv.rows).length ? ['', `Errores de proveedores activos: ${searchProv.active_errors}/${searchProv.active_calls} llamadas${Object.keys(searchProv.disabled).length ? ` · apagados: ${Object.keys(searchProv.disabled).join(', ')}` : ''}.`] : []),
-  '', `## Oportunidades verificadas (${r.findings.length})`, '', '| # | Veredicto | Nombre | Estado | Cierre | Días | Elegible | Monto | Buscadores | URL |', '|---|---|---|---|---|---|---|---|---|---|',
+  '', `## Oportunidades retenidas (${r.findings.length}) · listas para aplicar: ${r.findings.filter((f) => f.verdict === 'apply').length}`, '', '| # | Veredicto | Nombre | Estado | Cierre | Días | Elegible | Monto | Buscadores | URL |', '|---|---|---|---|---|---|---|---|---|---|',
   ...r.findings.map((f, i) => `| ${i + 1} | ${f.verdict} | ${esc(f.name || f.title)} | ${f.status} | ${f.deadline || '—'} | ${f.daysLeft ?? '—'} | ${f.eligible} | ${esc(f.amount) || '—'} | ${(f.providers || []).join(', ')} | ${f.url} |`),
   '', `## Pistas (${(r.leads || []).length})`, '', '| # | Tipo | Financiador | Receptor | Seguimientos | Produjo | URL |', '|---|---|---|---|---|---|---|',
   ...(r.leads || []).map((l, i) => `| ${i + 1} | ${esc(l.kind)} | ${esc(l.funder) || '—'} | ${esc(l.recipient) || '—'} | ${(l.followups || []).length} | ${(l.produced || []).length} | ${l.url || '—'} |`),

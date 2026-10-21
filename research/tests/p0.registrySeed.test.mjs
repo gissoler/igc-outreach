@@ -20,7 +20,7 @@ test('P0.6 consultas de siembra: términos exactos declarados en el brief; si no
 
 test('P0.6 registry grants_gov: convocatorias como refs abribles sin red, guide_ref oficial del NIH, sin gastar búsquedas web', async () => {
   const urls = []; const trace = traceOf();
-  const fetcher = async (url, init) => { urls.push(url); return new Response(JSON.stringify(search2(JSON.parse(init.body).keyword)), { status: 200 }); };
+  const fetcher = async (url, init) => { urls.push(url); if (/grants\.nih\.gov/.test(url)) return new Response('not found', { status: 404 }); return new Response(JSON.stringify(search2(JSON.parse(init.body).keyword)), { status: 200 }); };
   const tools = createTools({ env: { ENGINE_AGENT_REGISTRY_DETAIL: '0' }, fetcher, trace });
   const out = await tools.registry({ source: 'grants_gov', query: 'Alzheimer MRI biomarker' });
   assert.equal(out.rows.length, 2); assert.equal(out.rows[0].ref, 'r1.1'); assert.equal(out.rows[0].number, 'PAR-25-272');
@@ -29,7 +29,8 @@ test('P0.6 registry grants_gov: convocatorias como refs abribles sin red, guide_
   assert.equal(tools.usage().searches, 0);
   const page = await tools.open({ ref: 'r1.1' });
   assert.equal(page.via, 'registry'); assert.match(page.text, /Opportunity number: PAR-25-272/); assert.match(page.text, /Close date: 05\/08\/2027/);
-  assert.deepEqual(urls, ['https://api.grants.gov/v1/api/search2'], 'abrir la ficha no hace otra llamada');
+  // V15: una ficha sin alcance ni requisitos (stub) de un aviso del NIH intenta primero el aviso oficial completo; si no carga, queda marcada stub.
+  assert.deepEqual(urls, ['https://api.grants.gov/v1/api/search2', nihGuideUrl('PAR-25-272')]); assert.equal(page.stub, true);
   assert.equal(tools.usage().opens, 1);
   assert.deepEqual(trace.events.find((e) => e.tool === 'registry').urls.length, 2);
 });

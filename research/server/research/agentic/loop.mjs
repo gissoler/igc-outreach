@@ -6,7 +6,15 @@ import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
 import { assessContractOf, assessValidator, liftAssess, relaxForModel, validateStep, validateUnderstand } from './contracts.v14.mjs';
 import { AGENT_CRITERIA, assessPromptFor, criterionHelp, mergeUnderstood, stepPrompt, understandFromBrief, understandPrompt } from './prompts.v14.mjs';
-import { createTools } from './tools.mjs';
+import { createTools, nihGuideUrl, registryClient } from './tools.mjs';
+import { briefTerms, scoreDocs } from '../dossier/terms.mjs';
+import { callScore, harvestNih, harvestRegistry, harvestWeb, nihItem, webQueries } from '../dossier/harvest.mjs';
+import { nihGuideSearch, nihItemFromPage } from '../dossier/nihGuide.mjs';
+import { fetchPage } from '../localSearch.mjs';
+import { firecrawlRead } from '../searchApis.mjs';
+import { parseDates } from '../dates.mjs';
+import { runDossierStage } from '../dossier/pipeline.mjs';
+import { prefetchInvestors, runInvestorStage } from '../investors/pipeline.mjs';
 import { triageNote, triagePage } from './triage.mjs';
 import { foaIdsIn } from '../grantSources.mjs';
 
@@ -18,6 +26,7 @@ const anySignal = (list) => { const l = list.filter(Boolean); return l.length < 
 const rawText = (raw) => { try { return (typeof raw === 'string' ? raw : JSON.stringify(raw) ?? '').slice(0, 800); } catch { return ''; } };
 /** Un ref de página (p1, p2…) ya fue leído: no se vuelve a abrir. Sin esta explicación el agente lo reintentaba en bucle (runs-v6/RD-04: ~20 de 32 pasos). */
 const REJECTED_REF_HINT = (ref) => /^p\d+$/.test(String(ref)) ? `${ref} is a page you already read; its summary is in judged_pages and its links came with it. Do not reopen it: open one of its link refs, a search or registry ref, search a new angle, or finish.` : `${ref} is not a ref returned by a tool. Use only refs from search, registry or page links.`;
+const ALREADY_READ_HINT = (ref) => `${ref} was already read: reopening it adds nothing. Its summary is in judged_pages. Open one of its link refs (shown here), a search or registry ref you have not opened, search a new angle, or finish.`;
 const DUPLICATE_HINT = 'Those queries were already run and their results are in your earlier observations. Do not repeat them: search a different angle, open a ref you have not opened, or finish.';
 export const queryText = (value) => typeof value === 'string' ? value : value && typeof value === 'object' ? String(value.query ?? value.q ?? value.text ?? value.search ?? '') : String(value ?? '');
 const queryKey = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -68,8 +77,13 @@ const compilerOf = (a) => ({
 
 export async function runAgentObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = opts.today || new Date().toISOString().slice(0, 10); const trace = opts.trace || noopTrace;
+  // V15 · Inversionistas por organización (ENGINE_INVESTOR_DOSSIER=1 por defecto en investment): cosecha y verificación por código
+  // en investors/; el agente solo aporta páginas. Tiene su propio presupuesto de búsquedas y aperturas, sumado al del agente.
+  const investorOn = objective === 'investment' && String(env.ENGINE_INVESTOR_DOSSIER ?? (opts.tools || env.ENGINE_TEST_FIXTURE === '1' ? '0' : '1')) !== '0' && !opts.initialObservation;
+  const investorSearches = investorOn ? (Number(env.ENGINE_INVESTOR_SEARCHES) || 12) + (Number(env.ENGINE_INVESTOR_RESOLVE) || 14) + 2 * (Number.isFinite(Number(env.ENGINE_INVESTOR_SNOWBALL)) && env.ENGINE_INVESTOR_SNOWBALL !== undefined && env.ENGINE_INVESTOR_SNOWBALL !== '' ? Number(env.ENGINE_INVESTOR_SNOWBALL) : 8) : 0;   // consultas + resolución de nombres + segunda ronda (hasta 2 intentos por nombre): si el tope es menor, las búsquedas de resolución fallan en silencio
+  const investorOpens = investorOn ? Number(env.ENGINE_INVESTOR_OPENS) || 200 : 0;
   const tools = opts.tools || createTools({ env, fetcher: opts.fetcher, signal: opts.signal, trace, limits: opts.limits || {
-    searches: Number(env.ENGINE_AGENT_SEARCHES) || 20, opens: Number(env.ENGINE_AGENT_OPENS) || 30,
+    searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) + investorSearches, opens: (Number(env.ENGINE_AGENT_OPENS) || 30) + investorOpens,
     apolloCredits: Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 5, exaUsdCap: opts.exaUsdCap,
   }, apollo: opts.apollo, readers: opts.readers });
   const chat = opts.chat || chatJSON; const maxSteps = Number(opts.maxSteps ?? env.ENGINE_AGENT_STEPS) || 40;
@@ -126,7 +140,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const dates = (a.dates || []).map((d) => verifyDate(d, pageText));
     const decision = { step, page_ref: a.ref, by: 'agent', verdict: a.candidate ? 'candidate' : 'none', reason: a.candidate ? 'agent_candidate' : 'agent_rejected', page_type: a.page_type, dates, criteria: a.criteria, days_left: null, next_action: nextTool || null };
     decisions.push(decision); trace.event('decision', decision); pages.set(a.ref, { ...obs, text: pageText, assessment: a });
-    if (a.candidate && !Object.values(a.criteria || {}).some((c) => c.verdict === 'no' && literalIn(c.quote, pageText))) { candidates.set(a.ref, pages.get(a.ref)); lastCandidateStep = step; }
+    if (a.candidate && !obs.stub && !Object.values(a.criteria || {}).some((c) => c.verdict === 'no' && literalIn(c.quote, pageText))) { candidates.set(a.ref, pages.get(a.ref)); lastCandidateStep = step; }
     let leadId = null;
     if (a.lead?.quote && literalIn(a.lead.quote, pageText)) {
       const lead = { id: `L${leads.length + 1}`, page_ref: a.ref, kind: a.lead.kind, funder: a.lead.funder, recipient: a.lead.recipient, amount: a.lead.amount, quote: a.lead.quote, url: obs.url, found_at_step: step, followups: [], produced: [] };
@@ -199,7 +213,9 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const opened = await Promise.all(wanted.map((ref) => tools.open({ ref })));
     const out = { type: 'pages', pages: [], failed: [] }; const mine = [];
     for (const [i, r] of opened.entries()) {
+      if (r?.already_read) { const seen = pages.get(r.ref)?.assessment; (out.already_read ||= []).push({ ref: r.ref, url: r.url, title: r.title, ...(seen ? { about: seen.about, page_type: seen.page_type, candidate: candidates.has(r.ref) } : {}), hint: ALREADY_READ_HINT(r.ref), links: linksView(r.links) }); continue; }
       if (!r?.ref) { out.failed.push({ ref: wanted[i], error: r?.error || 'open_failed', ...(r?.error === 'rejected_ref' ? { hint: REJECTED_REF_HINT(wanted[i]) } : {}) }); continue; }
+      openedRefs.add(wanted[i]); if (r.url) openedUrls.add(r.url);
       const text = unpage(r.text); r.triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
       trace.event('triage', { page_ref: r.ref, url: r.url, version: r.triage.version, structure: r.triage.structure, banners: r.triage.banners, foa_ids: r.triage.foa_ids, dates: r.triage.dates.slice(0, 6) });
       mine.push(startRead(r, step, nextTool, understoodBrief));
@@ -230,17 +246,18 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const summary = { stage: 'post_judge', enabled, configured, eligible: 0, called: 0, credits: 0, cap, reasons: {} };
     const note = (row) => { trace.event('apollo_stage', { stage: 'post_judge', enabled, ...row }); if (row.reason_not_called) summary.reasons[row.reason_not_called] = (summary.reasons[row.reason_not_called] || 0) + 1; };
     if (!found.length) { note({ eligible_for_call: false, called: false, credits: 0, reason_not_called: 'no_findings' }); return summary; }
-    const ordered = [...found].sort((a, b) => (a.tier === 'main' ? 0 : 1) - (b.tier === 'main' ? 0 : 1)); const domains = new Set();
+    const ordered = [...found].sort((a, b) => (a.tier === 'main' ? 0 : 1) - (b.tier === 'main' ? 0 : 1)); const domains = new Set(); let denied = Boolean(tools.apolloDenied?.());
     for (const f of ordered) {
       const domain = hostOf(f.url);
       const reason = !enabled ? 'apollo_disabled' : !configured ? 'apollo_not_configured' : !domain ? 'no_domain' : APOLLO_SKIP_HOSTS.test(domain) ? 'registry_host'
-        : hostKind(f.url) !== 'other' ? `${hostKind(f.url)}_host` : domains.has(domain) ? 'duplicate_domain' : summary.called >= maxOrgs ? 'org_cap' : credits() >= cap ? 'credit_cap' : null;
+        : hostKind(f.url) !== 'other' ? `${hostKind(f.url)}_host` : domains.has(domain) ? 'duplicate_domain' : summary.called >= maxOrgs ? 'org_cap' : credits() >= cap ? 'credit_cap' : denied ? 'plan_denied' : null;
       if (reason) { note({ finding_url: f.url, domain: domain || null, eligible_for_call: false, called: false, credits: 0, reason_not_called: reason }); continue; }
       domains.add(domain); summary.eligible++; const before = credits();
       const result = await resolveApolloContacts({ organization_stable_id: domain, canonical_name: f.name || f.title || domain, official_domain: domain, target_roles: APOLLO_TITLES[objective] || APOLLO_TITLES.grant, as_of: today }, { client, maxPeople: Number(env.APOLLO_PEOPLE_PER_ORG) || 5 })
         .catch((e) => ({ status: 'error', people: [], errors: [String(e?.message || e)] }));
       const spent = credits() - before; summary.called++; summary.credits += spent;
       f.contacts = (result.people || []).map((p) => ({ name: p.name, title: p.title, organization: p.organization, route: 'public_affiliation', channel: p.channel || null }));
+      if (result.status === 'unsupported_by_plan') denied = true;
       note({ finding_url: f.url, domain, eligible_for_call: true, called: true, credits: spent, reason_not_called: null, status: result.status, people_n: f.contacts.length });
     }
     return summary;
@@ -280,6 +297,34 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const seed = { source: 'apollo', queries: qs, results: results.slice(0, Number(env.ENGINE_AGENT_APOLLO_SEED_MAX) || 10), credits, ...(errors.length ? { errors } : {}) };
     trace.event('apollo_source', { ...base, eligible_for_call: true, called: true, credits, results_n: seed.results.length, urls: seed.results.map((r) => r.url), reason_not_called: null, ...(capped ? { capped: true } : {}), ...(errors.length ? { errors } : {}) });
     return seed;
+  }
+
+  /* V15 · Progreso por paso y sugerencias para salir de un bucle. */
+  const terms = briefTerms(brief); const openedRefs = new Set(); const openedUrls = new Set(); const seenUrls = new Set();
+  let stall = 0; let maxStall = 0; let autopilotSteps = 0;
+  const stallGuard = String(env.ENGINE_AGENT_STALL_GUARD ?? (opts.tools ? '0' : '1')) !== '0';   // con herramientas inyectadas se pide explícito
+  const stallHint = Number(env.ENGINE_AGENT_STALL_HINT) || 2; const stallAuto = Number(env.ENGINE_AGENT_STALL_AUTOPILOT) || 3; const stallStop = Number(env.ENGINE_AGENT_STALL_STOP) || 6;
+  function progressOf(obs) {
+    if (!obs || obs.retry_note) return 0;
+    if (obs.type === 'pages') return (obs.pages?.length || 0) + (obs.reading?.length || 0) + (obs.failed || []).filter((f) => f.unread_by_model).length + (obs.late_reads ? obs.late_reads.pages.length : 0);
+    if (obs.type === 'page') return 1;
+    if (obs.type === 'tool' && obs.tool === 'search') { let n = 0; for (const r of obs.result?.results || []) if (r.url && !seenUrls.has(r.url)) { seenUrls.add(r.url); n++; } return n; }
+    if (obs.type === 'tool' && ['registry', 'entity_funding', 'apollo'].includes(obs.tool)) return (obs.result?.rows || []).length;
+    return obs.late_reads ? obs.late_reads.pages.length : 0;
+  }
+  function unopenedRefs(n = 6) {
+    const rows = [];
+    for (const [ref, row] of tools.refs || []) {
+      if (!row?.url || openedRefs.has(ref) || openedUrls.has(row.url) || /^p\d+$/.test(ref)) continue;
+      const sc = callScore({ url: row.url, title: row.title || row.text || '' }, terms.anchor) + (/^n\d+$/.test(ref) ? -1 : 0);
+      if (sc >= 2) rows.push({ ref, url: row.url, title: String(row.title || row.text || '').slice(0, 100), sc });
+    }
+    return rows.sort((a, b) => b.sc - a.sc).slice(0, n).map(({ sc: _s, ...r }) => r);
+  }
+  function coverageQueries(n = 3) {
+    if (typeof tools.search !== 'function') return [];
+    const pool = [...(terms.anchor ? webQueries(terms, today, 3) : []), ...terms.phrases.map((p) => `${p} grant`), ...registryQueries(brief, 4)];
+    return [...new Set(pool)].filter((q) => !seenSearches.has(queryKey(normalizeAgentQuery(q, objective, today)))).slice(0, n);
   }
 
   async function searchMany(args, action, step = null) {
@@ -327,11 +372,52 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   // P0.6 · Grants: registros oficiales primero. Antes del primer paso se siembran convocatorias abiertas/forecast del
   // registro (Simpler.Grants.gov si hay clave; si no, Grants.gov) con las consultas declaradas en el brief. Son refs
   // abribles; abrirlas consume aperturas como cualquier otra página. No gasta búsquedas web.
-  const registrySeed = objective === 'grant' && String(env.ENGINE_AGENT_REGISTRY_SEED ?? '1') !== '0' && typeof tools.registry === 'function' && !opts.initialObservation ? await seedRegistry() : null;
+  // V15 · Expedientes (grants, ENGINE_DOSSIER=1 por defecto): antes del primer paso se cosechan convocatorias oficiales con
+  // texto completo (NIH Guide, registro federal con consultas cortas); la web (fundaciones y catálogos) se cosecha EN PARALELO
+  // al agente. Al final se juzga por convocatoria, no por página. ENGINE_DOSSIER=0 vuelve al flujo anterior.
+  const dossierMode = objective === 'grant' && String(env.ENGINE_DOSSIER ?? (opts.tools || env.ENGINE_TEST_FIXTURE === '1' ? '0' : '1')) !== '0' && typeof tools.registry === 'function' && !opts.initialObservation;   // con herramientas inyectadas (bancos y pruebas antiguas) se pide explícito
+  const client = opts.registryClient || registryClient(opts.fetcher || fetch, opts.signal);
+  let official = null; let webTask = null; const harvestErrors = [];
+  if (dossierMode) {
+    const safe = (p) => p.catch((e) => ({ items: [], errors: [{ error: String(e?.message || e).slice(0, 160) }] }));
+    const [nih, reg] = await Promise.all([
+      String(env.ENGINE_DOSSIER_NIH ?? '1') !== '0' ? safe(harvestNih({ client, terms, brief, today, trace, env })) : Promise.resolve({ items: [], errors: [] }),
+      safe(harvestRegistry({ tools, terms, brief, env, trace })),
+    ]);
+    official = { items: [...nih.items, ...reg.items], nih, reg };
+    let k = 0; for (const it of nih.items) { const ref = `n${++k}`; tools.refs?.set?.(ref, { url: it.url, title: it.title, snippet: '', markdown: it.text, via: 'nih_guide', number: it.number }); it.ref = ref; }
+    if (String(env.ENGINE_DOSSIER_WEB_HARVEST ?? '1') !== '0') webTask = harvestWeb({ tools, terms, today, trace, skipIds: new Set(official.items.map((x) => x.number).filter(Boolean)) }).catch((e) => { harvestErrors.push(String(e?.message || e).slice(0, 160)); return { items: [] }; });
+  }
+  const officialCoverage = official ? (() => {
+    const ranked = scoreDocs(official.items.map((x) => ({ title: x.title, text: `${x.meta?.purpose || ''} ${String(x.text || '').slice(0, 1500)}` })), terms.weights).map((sc, i) => ({ sc: sc.score, it: official.items[i] })).sort((a, b) => b.sc - a.sc);
+    return { calls_collected: official.items.length, note: 'Federal calls already collected from official registries with their full text; they will all be judged. Do not spend steps re-finding them. Look for OTHER funders (foundations, associations, state, international or industry programs) and open individual program pages from catalogs.', examples: ranked.slice(0, 12).map(({ it }) => ({ ref: it.ref || null, id: it.number || null, title: String(it.title || '').slice(0, 120) })) };
+  })() : null;
+  const registrySeed = !dossierMode && objective === 'grant' && String(env.ENGINE_AGENT_REGISTRY_SEED ?? '1') !== '0' && typeof tools.registry === 'function' && !opts.initialObservation ? await seedRegistry() : null;
   const apolloSeed = !opts.initialObservation ? await seedApollo() : null;
-  let observation = opts.initialObservation || { type: 'start', understood, ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}), ...(apolloSeed?.results?.length ? { apollo_seed: apolloSeed } : {}) }; let finalRefs = [];
-  for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
+  const investorErrors = []; const openedPages = new Map();
+  if (investorOn && typeof tools.open === 'function') {   // toda página abierta (la lea o no el modelo) entra al expediente de su organización
+    const rawOpen = tools.open; tools.open = async (args) => { const r = await rawOpen(args); if (r?.ref && r.text && !r.already_read && !openedPages.has(r.url)) openedPages.set(r.url, { url: r.url, title: r.title, text: unpage(r.text), links: r.links || [] }); return r; };
+  }
+  const investorTask = investorOn ? prefetchInvestors({ tools, brief, today, trace, env, apolloRows: apolloSeed?.results || [] }).catch((e) => { investorErrors.push(String(e?.message || e).slice(0, 160)); return null; }) : null;
+  let observation = opts.initialObservation || { type: 'start', understood, ...(officialCoverage ? { official_coverage: officialCoverage } : {}), ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}), ...(apolloSeed?.results?.length ? { apollo_seed: apolloSeed } : {}) }; let finalRefs = [];
+  const dossierReserve = dossierMode ? Number(env.ENGINE_DOSSIER_RESERVE_SECONDS) || 45 : investorOn ? Number(env.ENGINE_INVESTOR_RESERVE_SECONDS) || 30 : 0;
+  for (let step = 1; step <= maxSteps && (elapsed() < maxSeconds - reserveSeconds - dossierReserve || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds - dossierReserve)); step++) {
     stepsRun = step;
+    // V15 · Guardia de no-progreso: sin páginas ni resultados nuevos, primero se avisa con opciones concretas, luego el código
+    // da el paso él mismo (abre refs no abiertas o busca un ángulo nuevo) y, si tampoco hay opciones, la corrida se corta como «stuck».
+    if (step > 1 && stallGuard) {
+      if (progressOf(observation) > 0) stall = 0; else { stall++; maxStall = Math.max(maxStall, stall); }
+      if (stall >= stallStop) { stopReason = 'stuck'; trace.event('stall', { step, stall, action: 'stop' }); trace.event('finish', { reason: 'stuck' }); break; }
+      if (stall >= stallAuto) {
+        const refsNext = unopenedRefs(6); const qsNext = refsNext.length ? [] : coverageQueries(3);
+        if (!refsNext.length && !qsNext.length) { stopReason = 'stuck'; trace.event('stall', { step, stall, action: 'stop_no_options' }); trace.event('finish', { reason: 'stuck' }); break; }
+        autopilotSteps++; trace.event('stall', { step, stall, action: 'autopilot', refs: refsNext.map((r) => r.ref), queries: qsNext });
+        observation = refsNext.length ? await openMany({ refs: refsNext.map((r) => r.ref) }, step, 'open', understood) : await searchMany({ queries: qsNext }, { from_lead: null }, step);
+        observation = { ...observation, autopilot: `code took this step because your last ${stall} steps produced nothing new` };
+        continue;
+      }
+      if (stall >= stallHint) observation = { ...observation, stuck: { steps_without_progress: stall, message: 'Your last steps produced no new page or result. Change strategy now: open one of these unopened refs or run one of these new searches.', unopened_refs: unopenedRefs(6), new_queries: coverageQueries(3) } };
+    }
     const used = tools.usage?.() || {};
     const state = { objective, brief, understood, leads, queries, queries_done: queries.map((q) => q.query).slice(-40), step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
       ...(parallel ? { parallel: true } : {}), ...(apolloMode === 'post_judge' ? { apollo_stage: 'post_judge' } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
@@ -372,11 +458,48 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     }
     const result = await tools[action.tool](args);
     if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.produced.push(...(result?.results || []).map((x) => x.ref).filter(Boolean)); }
-    observation = action.tool === 'open' && result?.ref ? { type: 'page', ...result } : { type: 'tool', tool: action.tool, result };
+    if (action.tool === 'open' && result?.ref && !result.already_read) { openedRefs.add(String(args.ref)); if (result.url) openedUrls.add(result.url); }
+    observation = action.tool === 'open' && result?.ref && !result.already_read ? { type: 'page', ...result } : { type: 'tool', tool: action.tool, result: result?.already_read ? { ...result, hint: ALREADY_READ_HINT(result.ref) } : result };
   }
   if (!stopReason) { stopReason = parallel && elapsed() >= maxSeconds - reserveSeconds ? 'time' : 'budget'; trace.event('budget', { left: { steps: 0 } }); trace.event('finish', { reason: stopReason }); }
   await drainReads();
   if (understandTask) { uController.abort('loop_finished'); await understandTask; }
+  const stallAudit = { max: maxStall, autopilot_steps: autopilotSteps, stopped_stuck: stopReason === 'stuck' };
+
+  if (dossierMode) {
+    // V15 · Juicio por convocatoria: cosecha oficial + web + páginas que leyó el agente, en expedientes.
+    const web = webTask ? await webTask : { items: [] };
+    const agentItems = [...pages.values()].filter((p) => p.assessment && (candidates.has(p.assessment.ref) || ['call', 'forecast_notice', 'program_page'].includes(p.assessment.page_type)))
+      .map((p) => ({ source: 'agent', ref: p.assessment.ref, url: p.url, title: p.title, text: p.text, textKind: p.stub ? 'stub' : 'web', query: 'agent', meta: {} }));
+    // Texto completo de un aviso del NIH por su número: API de la guía (si respondió en la cosecha), página pública, y Firecrawl de respaldo.
+    const apiDown = Boolean(official.nih.errors?.length) && !official.nih.items.length; const userAgent = String(env.RESEARCH_USER_AGENT || 'IGCOutreachResearch/1.0');
+    const readers = [opts.readers?.fetchPage || fetchPage, ...(opts.readers?.fetchPage ? [] : [firecrawlRead])];
+    const nihFetch = async (id) => {
+      const url = nihGuideUrl(id); if (!url) return [];
+      if (!apiDown) { try { const r = await nihGuideSearch(client, { query: id, perpage: 10, userAgent }); const docs = r.docs.filter((x) => x.id === id); if (docs.length) return docs.map((doc) => nihItem(doc, `upgrade:${id}`)); } catch { /* sigue con la página */ } }
+      for (const read of readers) { const page = await read(url, { env, fetcher: opts.fetcher || fetch, signal: opts.signal }).catch(() => null); const it = page ? nihItemFromPage({ ...page, url }, id, { parse: parseDates }) : null; if (it) return [it]; }
+      return [];
+    };
+    const stage = await runDossierStage({ items: [...official.items, ...web.items, ...agentItems], brief, today, terms, ids, objective, model, trace, env, nihFetch });
+    findings.push(...stage.findings);
+    const incomplete = [...(stopReason === 'stuck' ? ['agent_stuck'] : []), ...(official.nih.errors?.length ? ['nih_guide_errors'] : []), ...(official.reg.errors?.length ? ['registry_errors'] : []), ...(harvestErrors.length ? ['web_harvest_error'] : []), ...(stage.funnel.judge_failed ? ['judge_failures'] : []), ...(official.items.length === 0 ? ['no_official_sources'] : [])];
+    trace.event('dossier_summary', { funnel: stage.funnel, status_line: stage.statusLine, incomplete, facts_missing: stage.facts.missing });
+    const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
+    const usage = tools.usage?.() || {};
+    return { findings, leads, audit: { apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent+dossier', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: stage.funnel.dropped, kept: findings.length, errors: [...(official.nih.errors || []), ...(official.reg.errors || [])].map((e) => `${e.query || ''} ${e.error}`.trim()), dossier: stage.funnel, status_line: stage.statusLine, incomplete, applicant_missing: stage.facts.missing, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, stall: stallAudit, ...usage }, judge: { finalists: stage.funnel.judged, calls: stage.funnel.judged, second_blind_calls: 0, second_call_changed: 0, mode: 'dossier' }, decisions: [...decisions, ...stage.decisions] }, queries };
+  }
+
+  if (investorOn) {
+    // V15 · Inversionistas: expedientes por organización y evidencia por código. El juez LLM no decide aquí.
+    const prefetched = await investorTask;
+    const agentPages = [...openedPages.values()];
+    const stage = await runInvestorStage({ tools, brief, today, trace, env, agentPages, apolloRows: apolloSeed?.results || [], prefetched });
+    findings.push(...stage.findings);
+    const incomplete = [...(stopReason === 'stuck' ? ['agent_stuck'] : []), ...(investorErrors.length ? ['investor_harvest_error'] : []), ...(stage.funnel.errors?.length ? ['search_errors'] : []), ...(stage.funnel.candidates === 0 ? ['no_candidates'] : [])];
+    const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, candidates: stage.funnel.apollo.candidates, kept: stage.funnel.apollo.kept, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
+    const usage = tools.usage?.() || {};
+    return { findings, leads, audit: { apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent+investor_dossier', queries: queries.length + stage.funnel.queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: stage.funnel.candidates, dropped: stage.funnel.dropped, kept: findings.length, errors: [...investorErrors, ...(stage.funnel.errors || []).map((e) => `${e.query} ${e.error}`)], investor: stage.funnel, other_routes: stage.otherRoutes, status_line: stage.statusLine, incomplete, applicant_missing: stage.facts.missing, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, stall: stallAudit, ...usage }, judge: { finalists: 0, calls: 0, second_blind_calls: 0, second_call_changed: 0, mode: 'investor_dossier_code' }, decisions: [...decisions, ...stage.decisions] }, queries: [...queries, ...stage.funnel.queries.map((q) => ({ query: q, family: 'investor_dossier' }))] };
+  }
 
   const selected = (finalRefs.length ? finalRefs : [...candidates.keys()]).filter((ref) => candidates.has(ref));
   let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map(); const droppedCalls = new Map(); const callIdsOf = new Map();
@@ -411,5 +534,5 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   }
   const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
   const usage = tools.usage?.() || {};
-  return { findings, leads, audit: { apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
+  return { findings, leads, audit: { apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: [], agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, stall: stallAudit, ...usage }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }
