@@ -45,13 +45,27 @@ export function honestRead(text, today, objective = 'grant') {
 /** chat() falso con la misma firma que fleet.chatJSON. `pages`: Map url → texto (lo que se lee); si falta, usa el texto del prompt. */
 export function honestChat({ today, objective = 'grant', calls = [] } = {}) {
   const textOf = (user) => { const m = String(user).match(/<page_data>\n([\s\S]*?)\n<\/page_data>/); const raw = m ? m[1] : ''; const tIdx = raw.indexOf('TEXT:\n'); return tIdx >= 0 ? raw.slice(tIdx + 6) : raw; };
+  // El contrato de lectura activo (lite por defecto, full o min) se anuncia en el prompt ("Return agent.assess_xxx/1"):
+  // una simulación "honesta" debe responder con la forma que el contrato pedido exige, igual que un modelo real la vería.
+  const contractOf = (user) => (/agent\.assess_lite\/1/.test(user) ? 'lite' : /agent\.assess_min\/1/.test(user) ? 'min' : 'full');
   return async (req) => {
     calls.push(req.name);
     if (req.name === 'understand') return { json: { product_one_line: 'fixture', who_pays: '', sector: '', neighbor_sectors: [], stage: '', geography: '', assumptions: [], doubts: [] }, model: 'fake' };
     const text = textOf(req.user); const r = honestRead(text, today, objective);
     if (req.name === 'assess') {
       const ref = String(req.user.match(/Page ref: (\S+?)\./)?.[1] || 'p0');
-      return { json: { ref, page_type: r.pageType, about: r.about, dates: r.dates, date_missing_next: null, criteria: r.criteria, candidate: r.pageType !== 'program_page' || objective !== 'grant', lead: null }, model: 'fake' };
+      const candidate = r.pageType !== 'program_page' || objective !== 'grant';
+      const contract = contractOf(req.user);
+      if (contract === 'min') {
+        const d = r.dates.find((x) => x.role === 'application_deadline') || null;
+        return { json: { ref, page_type: r.pageType, about: r.about, candidate, deadline: d ? { role: d.role, date: d.date, quote: d.quote } : null }, model: 'fake' };
+      }
+      if (contract === 'lite') {
+        const dates = r.dates.filter((d) => d.role === 'application_deadline' || d.role === 'loi_deadline').slice(0, 6).map((d) => ({ role: d.role, date: d.date, estimated: Boolean(d.estimated), quote: d.quote }));
+        const criteria = Object.fromEntries(Object.entries(r.criteria).map(([k, v]) => [k, { verdict: v.verdict, quote: v.quote }]));
+        return { json: { ref, page_type: r.pageType, about: r.about, dates, criteria, candidate, lead: null }, model: 'fake' };
+      }
+      return { json: { ref, page_type: r.pageType, about: r.about, dates: r.dates, date_missing_next: null, criteria: r.criteria, candidate, lead: null }, model: 'fake' };
     }
     return { json: { page_type: r.pageType, dates: r.dates, criteria: Object.fromEntries(Object.entries(r.criteria).map(([k, v]) => [k, { ...v, compiler: 'agree' }])) }, model: 'fake' };
   };

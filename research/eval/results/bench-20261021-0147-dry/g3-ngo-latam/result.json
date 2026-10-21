@@ -1,0 +1,36 @@
+{
+ "id": "g3-ngo-latam",
+ "kind": "grant",
+ "objective": "grant",
+ "brief": "eval/briefs/ngo-latam-health.json",
+ "why": "ONG en Colombia: no debe usar el registro de EE. UU. ni traer convocatorias solo-EE. UU.",
+ "dry": true,
+ "ok": false,
+ "status": "failed",
+ "error": "Error: fallo simulado en g3-ngo-latam (BENCH_DRY_FAIL): el banco debe seguir con los demás |     at runDry (file:///sessions/rcw-01fzhjqfnnsajxdsn96ruonj/mnt/AGENT/research/scripts/bench-overnight.mjs:102:50) |     at runCase (file:///sessions/rcw-01fzhjqfnnsajxdsn96ruonj/mnt/AGENT/research/scripts/bench-overnight.mjs:126:41)",
+ "started": "2026-10-21T01:47:58.684Z",
+ "seconds": 0,
+ "stages": {},
+ "urls": {
+  "gptr": null,
+  "registry": null,
+  "opened": null,
+  "assessed": null,
+  "by_status": null
+ },
+ "findings": {
+  "verified": 0,
+  "to_review": 0
+ },
+ "lists": {
+  "top": 0,
+  "radar": 0,
+  "discarded": 0
+ },
+ "apollo_credits": 0,
+ "apollo_people": 0,
+ "errors": [],
+ "skipped_for_time": 0,
+ "timed_out": false,
+ "top": []
+}

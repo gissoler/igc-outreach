@@ -655,6 +655,17 @@ code { font-family: var(--x-mono); font-size: .92em; background: var(--x-sunken)
 .ow-ai-chat .ia-chat-head h1 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
 .ow-ai-chat .ia-thread { max-height: 52vh; min-height: 320px; background: var(--x-surface-2); border-color: var(--x-line); border-radius: 16px; }
 .ow-ai-chat .ia-composer { border-radius: 14px; border-color: var(--x-line-strong); }
+
+.ld-apollo { margin-top: 12px; border: 1px solid var(--x-line); border-radius: 12px; overflow: hidden; background: var(--x-surface-2); }
+.ld-apollo > header { display: flex; justify-content: space-between; gap: 12px; padding: 11px 13px; border-bottom: 1px solid var(--x-line); }
+.ld-apollo > header span { display: grid; gap: 2px; }
+.ld-apollo > header small, .ld-apollo article small { color: var(--x-muted); font-size: 11px; font-weight: 500; }
+.ld-apollo > header em { align-self: center; min-width: 22px; padding: 2px 6px; border-radius: 999px; background: var(--x-ink); color: white; text-align: center; font-size: 11px; font-style: normal; }
+.ld-apollo article { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 11px 13px; border-bottom: 1px solid var(--x-line); }
+.ld-apollo article > div:nth-child(2) { display: grid; gap: 2px; min-width: 0; }
+.ld-apollo article p { margin: 3px 0 0; color: var(--x-muted); font-size: 12px; }
+.ld-apollo-a { display: grid; justify-items: end; gap: 5px; font-size: 12px; }
+.ld-apollo > p { margin: 0; padding: 9px 13px; color: var(--x-muted); font-size: 11px; }
 .ow-ai-alt { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--x-muted); }
 .ow-ai-side { position: sticky; top: 76px; display: grid; gap: 10px; padding: 14px; border: 1px solid var(--x-line); border-radius: 14px; background: var(--x-surface-2); max-height: calc(100vh - 100px); overflow: auto; }
 .ow-ai-side header { display: flex; align-items: center; gap: 6px; font-size: 14px; } .ow-ai-side header span { margin-left: auto; font-size: 12px; color: var(--x-muted); }

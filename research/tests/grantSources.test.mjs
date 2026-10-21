@@ -1,7 +1,7 @@
 /* Fuentes de grants: inteligencia RePORTER/NSF, filtros de Grants.gov, SBIR, jurisdicción y portales. Sin red. */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { foaIdsIn, eligibilityFilter, grantsGovSearch, reporterIntel, nsfIntel, grantIntel, intelQueries, intelNote, sbirLeads, sbir, portalsFor, portalSeeds, loadPortals } from '../server/research/grantSources.mjs';
+import { foaIdsIn, eligibilityFilter, grantsGovSearch, simplerGrantsSearch, reporterIntel, nsfIntel, grantIntel, intelQueries, intelNote, sbirLeads, sbir, portalsFor, portalSeeds, loadPortals } from '../server/research/grantSources.mjs';
 import { grants } from '../server/research/providers.mjs';
 import { validateBrief } from '../server/research/core.mjs';
 import { runObjective } from '../server/research/engine.mjs';
@@ -53,6 +53,22 @@ test('grantsGovSearch: filtro aceptado, y repetición sin filtro si lo rechazan'
   const r = await grantsGovSearch(client, { keyword: 'x', eligibilities: '22|23' }, { emit: (k, m) => warnings.push(k) });
   assert.equal(r.fellBack, true); assert.equal(r.hits.length, 1); assert.equal(bodies.length, 2); assert.ok(!('eligibilities' in bodies[1])); assert.deepEqual(warnings, ['warning']);
   assert.equal(eligibilityFilter({ entityType: 'for_profit' }), '22|23'); assert.equal(eligibilityFilter({}), null);
+});
+
+test('simplerGrantsSearch: autentica, normaliza UUIDs y conserva datos oficiales', async () => {
+  let request = null;
+  const client = { json: async (url, body, headers) => {
+    request = { url, body, headers };
+    return { data: [{ opportunity_id: '7a4a9822-f39f-464d-8a1d-d941afaebcdf', opportunity_number: 'RFA-AG-27-001', opportunity_title: 'Precision aging', agency_name: 'National Institutes of Health', opportunity_status: 'posted', close_date: '2027-01-05', award_ceiling: 500000, applicant_types: ['small_businesses'], summary: 'Research on precision aging.' }] };
+  } };
+  const r = await simplerGrantsSearch(client, { keyword: 'precision aging', rows: 10 }, { apiKey: 'secret-key' });
+  assert.equal(request.url, 'https://api.simpler.grants.gov/v1/opportunities/search');
+  assert.equal(request.headers['X-API-Key'], 'secret-key');
+  assert.deepEqual(request.body.filters.opportunity_status.one_of, ['posted', 'forecasted']);
+  assert.equal(r.hits[0].id, '7a4a9822-f39f-464d-8a1d-d941afaebcdf');
+  assert.equal(r.hits[0].url, 'https://simpler.grants.gov/opportunity/7a4a9822-f39f-464d-8a1d-d941afaebcdf');
+  assert.equal(r.hits[0]._simplerDetail.synopsis.awardCeiling, 500000);
+  assert.equal(r.hits[0]._simplerDetail.synopsis.applicantTypes[0].description, 'small_businesses');
 });
 
 test('grants(): añade la búsqueda filtrada por tipo de solicitante y las del intel, y anota la inteligencia en la convocatoria', async () => {

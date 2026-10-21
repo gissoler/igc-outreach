@@ -1,0 +1,32 @@
+{
+  "schema_version": "case/1",
+  "case_id": "case-pilot-igc-mint-ad",
+  "kind": "anchor",
+  "as_of": "2026-10-12",
+  "profile_path": "research/bench/pilot/profiles/prof-pilot-igc-mint-ad.json",
+  "profile_sha256": "d10972e16ad9e9ca7cd9cea8d0fba576e158b4e931021ac7fc0aa4daa7ce3546",
+  "construction": {
+    "curator": "pilot-only",
+    "profile_builder": "manual transcription from dated legacy brief",
+    "profile_builder_saw_anchor": false,
+    "selection_order": "profile_first",
+    "profile_source_kind": "real_org_internal_docs",
+    "profile_frozen_at": "2026-10-12T00:00:00-05:00",
+    "anchor_chosen_at": "2026-10-14T02:35:00-05:00"
+  },
+  "anchor": {
+    "name": "Small Business Innovation Research (SBIR) program, Phase I",
+    "issuer": "Administration for Community Living",
+    "identifiers": [
+      {"scheme": "grantsgov", "value": "363966"},
+      {"scheme": "url", "value": "simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6"}
+    ],
+    "official_url": "https://simpler.grants.gov/opportunity/474541a4-7569-4d5f-9ca2-b7ecd7aaf9d6",
+    "closes_on": "2026-12-16",
+    "verified_open_on": "2026-10-14",
+    "winners_published": false,
+    "expected_route": "direct_apply",
+    "why_it_fits": "Forecasted Phase I SBIR call for small-business R&D products that improve life for people with disabilities; IGC must confirm small-business status and scope fit."
+  },
+  "null_case": null
+}

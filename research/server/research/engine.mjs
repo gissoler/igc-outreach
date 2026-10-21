@@ -677,13 +677,15 @@ export function engineLeads(findings) {
     const ev = [evidence(`${ENGINE_SOURCE} · ${host}`, f.url, f.quotes.identity, o.kind === 'opportunity' ? 'opportunity' : 'profile')];
     if (f.quotes.deadline) ev.push(evidence(`${ENGINE_SOURCE} · deadline`, f.url, f.quotes.deadline, 'opportunity'));
     if (f.quotes.eligible) ev.push(evidence(`${ENGINE_SOURCE} · fit`, f.url, f.quotes.eligible, 'eligibility'));
+    if (f.quotes.topic) ev.push(evidence(`${ENGINE_SOURCE} · topic`, f.url, f.quotes.topic, 'opportunity'));
+    if (f.quotes.loi) ev.push(evidence(`${ENGINE_SOURCE} · letter of intent`, f.url, f.quotes.loi, 'opportunity'));
     return candidate({
       externalId: `engine:${f.objective}:${f.url}`, org: f.name || host, title: f.name || f.title || host,
       kind: o.kind === 'opportunity' ? 'opportunity' : 'research', fundingType: f.objective,
       status: f.forecast || f.status === 'forecast' ? 'forecasted' : f.status === 'n/a' ? 'unknown' : f.status, deadline: f.forecast || f.status === 'forecast' ? null : f.deadline, ...(f.estimatedDeadline ? { estimatedDeadline: f.estimatedDeadline } : {}), amount: f.amount,
       contact: { type: 'web', value: f.url, provenance: `Read and verified on ${host}` },
       evidence: ev,
-      risks: [...new Set([...(f.blockers || []), f.eligible === 'yes' ? null : 'Fit to confirm with the counterpart', ...f.flags.map((x) => `Check: ${x}`)].filter(Boolean))],
+      risks: [...new Set([...(f.conditions || []), ...(f.blockers || []), f.eligible === 'yes' ? null : 'Fit to confirm with the counterpart', ...f.flags.map((x) => `Check: ${x}`)].filter(Boolean))],
       missing: [...(o.dated && !f.deadline ? ['Deadline not confirmed on the page'] : []), ...(f.quotes.eligible && f.eligible === 'yes' ? [] : [o.dated ? 'Eligibility for a for-profit startup not confirmed on the page' : 'Eligibility / thesis not stated on the page'])],
       searchText: [f.name, f.title, f.quotes.identity, f.quotes.eligible].filter(Boolean).join(' ').slice(0, 4000),
       foundBy: (f.trace?.queries?.length ? f.trace.queries : [{ query: f.query, family: f.family }]).map((q) => ({ provider: f.registry ? 'Grants.gov' : ENGINE_SOURCE, term: q.family || f.family || f.objective, objective: f.objective, query: q.query, dimension: 'read_and_verified', ...(f.providers?.length ? { searchedWith: f.providers.join(', ') } : {}) })),

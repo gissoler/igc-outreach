@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { runAgentObjective } from '../server/research/agentic/loop.mjs';
+import { normalizeAgentQuery, runAgentObjective } from '../server/research/agentic/loop.mjs';
 import { AGENT_CRITERIA } from '../server/research/agentic/prompts.v14.mjs';
 
 const understood = { product_one_line: 'Alzheimer risk software', who_pays: 'health systems', sector: 'health', neighbor_sectors: [], stage: 'seed', geography: 'US', assumptions: [], doubts: [] };
@@ -9,6 +9,8 @@ const quoteOf = { deadline: 'Application deadline is December 15, 2026.', topic_
 const criteria = Object.fromEntries(AGENT_CRITERIA.grant.map((id) => [id, { verdict: 'yes', quote: quoteOf[id] || 'Eligible for-profit companies in the United States.', reason: 'stated' }]));
 const dates = [{ role: 'application_deadline', date: '2026-12-15', estimated: false, quote: 'Application deadline is December 15, 2026.' }];
 const assessment = (ref) => ({ ref, page_type: 'call', about: 'Official Program', dates, date_missing_next: null, criteria, candidate: true, lead: null });
+// Contrato ligero (P0.3, por defecto): sin `reason` ni `date_missing_next`.
+const liteAssessment = (ref) => ({ ref, page_type: 'call', about: 'Official Program', dates, criteria: Object.fromEntries(Object.entries(criteria).map(([id, c]) => [id, { verdict: c.verdict, quote: c.quote }])), candidate: true, lead: null });
 const judgment = { page_type: 'call', dates, criteria: Object.fromEntries(Object.entries(criteria).map(([id, c]) => [id, { ...c, compiler: 'agree' }])) };
 const step = (tool, args) => ({ thought: 'next', assessment: null, notes: [], action: { tool, args, from_lead: null } });
 const traceOf = () => { const events = []; return { events, event: (type, data) => events.push({ type, ...data }) }; };
@@ -29,7 +31,7 @@ const chatBy = (agentSteps, seen = []) => async (req) => {
   seen.push(req.name);
   if (req.name === 'understand') return { json: understood, model: 'fixture' };
   if (req.name === 'agent') return { json: agentSteps.shift(), model: 'fixture' };
-  if (req.name === 'assess') return { json: assessment(String(req.user.match(/Page ref: (\S+?)\./)?.[1])), model: 'fixture' };
+  if (req.name === 'assess') { const ref = String(req.user.match(/Page ref: (\S+?)\./)?.[1]); return { json: req.schema?.$id === 'agent.assess_lite/1' ? liteAssessment(ref) : assessment(ref), model: 'fixture' }; }
   return { json: judgment, model: 'fixture' };
 };
 
@@ -70,6 +72,34 @@ test('F2.7 una página que el modelo rápido no devuelve válida se reporta como
   const { tools, trace } = setup(); const agent = chatBy([step('search', { queries: ['a one'] }), step('open', { refs: ['s1.1'] }), step('finish', { reason: 'done', finalists: [] })]);
   const users = []; const chat = async (req) => { if (req.name === 'agent') users.push(req.user); return req.name === 'assess' ? { json: {}, model: 'fixture' } : agent(req); };
   const result = await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace, today: '2026-10-12', parallel: true, secondJudge: 0 });
-  assert.equal(result.findings.length, 0); assert.equal(trace.events.filter((x) => x.type === 'model_call' && x.role === 'assess' && x.invalid).length, 2);
+  assert.equal(result.findings.length, 0);
+  assert.equal(trace.events.filter((x) => x.type === 'model_call' && x.role === 'compiler' && x.prompt_version === 'agent.v14.4-lite' && x.invalid).length, 2);
+  assert.equal(trace.events.some((x) => x.type === 'model_call' && x.role === 'assess'), false, 'la traza registra el rol ejecutor permitido, no el nombre semántico del prompt');
   assert.equal(users.some((u) => u.includes("assess_invalid")), true);
+});
+
+test('F2.7 corrige años pasados en grants y no repite consultas entre pasos', async () => {
+  const { tools, trace, calls } = setup();
+  const steps = [step('search', { queries: ['NIA dementia grant 2024'] }), step('search', { queries: ['NIA dementia grant 2024'] }), step('finish', { reason: 'done', finalists: [] })];
+  const result = await runAgentObjective('grant', { company: 'IGC' }, { chat: chatBy(steps), tools, trace, today: '2026-10-19', parallel: true, secondJudge: 0 });
+  assert.deepEqual(calls.filter((x) => x[0] === 'search').map((x) => x[1]), ['NIA dementia grant 2026']);
+  assert.equal(result.queries.length, 1); assert.equal(result.queries[0].original, 'NIA dementia grant 2024');
+  assert.equal(normalizeAgentQuery('seed fund 2024', 'investment', '2026-10-19'), 'seed fund 2024');
+});
+
+test('F2.7 impone un tope aunque el cliente de modelo ignore AbortSignal', async () => {
+  const { tools, trace } = setup(); const never = async () => new Promise(() => {}); const started = Date.now();
+  const result = await runAgentObjective('grant', { company: 'IGC' }, { chat: never, tools, trace, today: '2026-10-19', parallel: true, secondJudge: 0, maxSeconds: 1, hardSeconds: 1, reserveSeconds: 0, env: { ENGINE_AGENT_UNDERSTAND_MODE: 'blocking', ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS: '20' } });   // comprensión bloqueante (modo anterior); el modo paralelo se prueba en p0.nonBlocking
+  assert.equal(Date.now() - started < 500, true); assert.equal(result.audit.agent.stop_reason, 'time');
+  assert.equal(trace.events.some((x) => x.type === 'model_call' && /model_timeout_understand/.test(x.error || '')), true);
+});
+
+test('F2.7 permite asignar comprensión y lectura al rol agent cuando compiler está saturado', async () => {
+  const { tools, trace } = setup(); const roles = [];
+  const base = chatBy([step('search', { queries: ['a one'] }), step('open', { refs: ['s1.1'] }), step('finish', { reason: 'done', finalists: [] })]);
+  const chat = async (req) => { roles.push([req.name, req.role]); return base(req); };
+  await runAgentObjective('grant', { company: 'IGC' }, { chat, tools, trace, today: '2026-10-19', parallel: true, secondJudge: 0, env: { ENGINE_AGENT_UNDERSTAND_ROLE: 'agent', ENGINE_AGENT_ASSESS_ROLE: 'agent' } });
+  assert.equal(roles.some(([name, role]) => name === 'understand' && role === 'agent'), true);
+  assert.equal(roles.some(([name, role]) => name === 'assess' && role === 'agent'), true);
+  assert.equal(trace.events.some((x) => x.type === 'model_call' && x.prompt_version === 'agent.v14.4-lite' && x.role === 'agent'), true);
 });

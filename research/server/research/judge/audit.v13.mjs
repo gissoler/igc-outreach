@@ -8,7 +8,7 @@
    Funciones puras (sin red, disco ni reloj). */
 import { NOT_FUNDER_TYPES } from './funder.mjs';
 import { literalIn } from '../verify.mjs';
-import { datesIn, daysBetween, todayIso } from '../dates.mjs';
+import { datesIn, daysBetween, parseDates, todayIso } from '../dates.mjs';
 import { criteriaFor, hasDeadline } from './prompts.v13.mjs';
 
 export const JUDGE_AUDIT_VERSION = 'v13.1';
@@ -22,8 +22,11 @@ export function verifyDate(d, pageText) {
   if (!literalIn(d.quote, pageText)) return { ...base, verified: false, why: 'quote_not_in_page' };
   const found = datesIn(d.quote);
   if (!found.includes(d.date)) return { ...base, verified: false, why: 'date_not_in_quote' };
-  if (found.length > 1) return { ...base, verified: false, why: 'quote_has_several_dates' };
-  return { ...base, verified: true, why: null };
+  // Se cuentan las fechas ESCRITAS en la cita, no sus lecturas posibles: «11/12/2027» es una sola fecha con dos lecturas (12 nov o 11 dic).
+  const written = new Set(parseDates(d.quote).filter((x) => x.iso && !x.yearless && x.precision === 'day').map((x) => x.iso));
+  if (written.size > 1) return { ...base, verified: false, why: 'quote_has_several_dates' };
+  const ambiguous = found.length > 1;   // una sola fecha escrita con dos lecturas: se acepta la que dio el juez y se deja marcada
+  return { ...base, verified: true, why: null, ...(ambiguous ? { ambiguous: true } : {}) };
 }
 /* El juez a veces etiqueta la fecha de cierre con otro nombre («deadline», «expiration»…): se normaliza a application_deadline.
    Diagnóstico 14-10: PAR-17-067 («Expiration Date September 6, 2019») quedó «a verificar» en vez de cerrado por el rol «deadline». */
@@ -95,6 +98,7 @@ export function auditPage({ objective = 'grant', page, today, compilation = null
   const jDates = auditDates(judgment.dates, text).map((d) => pastOnly(d, text, now));
   const cDates = auditDates(compilation?.dates, text);
   for (const d of jDates) if (!d.verified && d.why !== 'no_date') flags.push(`date_${d.why}:${d.role}`);
+  for (const d of jDates) if (d.verified && d.ambiguous) flags.push(`date_ambiguous_numeric:${d.role}`);
   let st = stateFrom({ judgeType: judgment.page_type, compilerType: compilation?.page_type, judgeDates: jDates, compilerDates: cDates, today: now, dated, registryForecast });
   const criteria = auditCriteria(judgment, objective, text, flags, criteriaIds);
   // Sin plazo verificado, pero la página prueba que ya cerró: el juez dice «no» al plazo con una cita literal cuyas fechas son todas pasadas,

@@ -1,22 +1,76 @@
 /* Bucle agentic V14: comprender, actuar con refs, evaluar páginas y juzgar finalistas. */
-import { chatJSON } from '../../analysis/fleet.mjs';
-import { literalIn } from '../verify.mjs';
+import { agentMaxTokens, chatJSON } from '../../analysis/fleet.mjs';
+import { hostKind, hostOf, literalIn } from '../verify.mjs';
+import { resolveApolloContacts } from '../../../capital/resolver.mjs';
 import { auditPage, verifyDate } from '../judge/audit.v13.mjs';
 import { judgePrompt } from '../judge/prompts.v13.mjs';
-import { validateAssess, validateStep, validateUnderstand } from './contracts.v14.mjs';
-import { AGENT_CRITERIA, assessPrompt, criterionHelp, stepPrompt, understandPrompt } from './prompts.v14.mjs';
-import { createTools } from './tools.mjs';
+import { assessContractOf, assessValidator, liftAssess, relaxForModel, validateStep, validateUnderstand } from './contracts.v14.mjs';
+import { AGENT_CRITERIA, assessPromptFor, criterionHelp, mergeUnderstood, stepPrompt, understandFromBrief, understandPrompt } from './prompts.v14.mjs';
+import { createTools, nihGuideUrl, registryClient } from './tools.mjs';
 import { runDiscovery } from './discovery.mjs';
-import { contactStage } from './contacts.mjs';
 import { deadlineDecision } from '../dates.mjs';
-import { hostKind } from '../verify.mjs';
 import { selfPage, shortName } from '../judge/funder.mjs';
+import { contactStage } from './contacts.mjs';
+import { briefTerms, scoreDocs } from '../dossier/terms.mjs';
+import { callScore, harvestNih, harvestRegistry, harvestWeb, nihItem, webQueries } from '../dossier/harvest.mjs';
+import { nihGuideSearch, nihItemFromPage } from '../dossier/nihGuide.mjs';
+import { fetchPage } from '../localSearch.mjs';
+import { firecrawlRead } from '../searchApis.mjs';
+import { parseDates } from '../dates.mjs';
+import { runDossierStage } from '../dossier/pipeline.mjs';
+import { prefetchInvestors, runInvestorStage } from '../investors/pipeline.mjs';
+import { triageNote, triagePage } from './triage.mjs';
+import { foaIdsIn } from '../grantSources.mjs';
 
 const noopTrace = { event: () => null };
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
 const anySignal = (list) => { const l = list.filter(Boolean); return l.length < 2 ? l[0] : typeof AbortSignal.any === 'function' ? AbortSignal.any(l) : l[l.length - 1]; };
+/** El modelo a veces manda las consultas como objeto ({query:'...'}) en vez de texto: se lee el texto en vez de convertirlo en "[object Object]". */
+/** Texto crudo de una respuesta rechazada, acotado, para saber por qué fue inválida. */
+const rawText = (raw) => { try { return (typeof raw === 'string' ? raw : JSON.stringify(raw) ?? '').slice(0, 800); } catch { return ''; } };
+/** Un ref de página (p1, p2…) ya fue leído: no se vuelve a abrir. Sin esta explicación el agente lo reintentaba en bucle (runs-v6/RD-04: ~20 de 32 pasos). */
+const REJECTED_REF_HINT = (ref) => /^p\d+$/.test(String(ref)) ? `${ref} is a page you already read; its summary is in judged_pages and its links came with it. Do not reopen it: open one of its link refs, a search or registry ref, search a new angle, or finish.` : `${ref} is not a ref returned by a tool. Use only refs from search, registry or page links.`;
+const ALREADY_READ_HINT = (ref) => `${ref} was already read: reopening it adds nothing. Its summary is in judged_pages. Open one of its link refs (shown here), a search or registry ref you have not opened, search a new angle, or finish.`;
+const DUPLICATE_HINT = 'Those queries were already run and their results are in your earlier observations. Do not repeat them: search a different angle, open a ref you have not opened, or finish.';
+export const queryText = (value) => typeof value === 'string' ? value : value && typeof value === 'object' ? String(value.query ?? value.q ?? value.text ?? value.search ?? '') : String(value ?? '');
+const queryKey = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+export function normalizeAgentQuery(value, objective, today) {
+  const query = String(value || '').replace(/\s+/g, ' ').trim().slice(0, 240);
+  if (!['grant', 'sponsorship'].includes(objective)) return query;
+  const year = Number(String(today || '').slice(0, 4));
+  return Number.isInteger(year) ? query.replace(/\b(20\d{2})\b/g, (match) => Number(match) < year ? String(year) : match) : query;
+}
+/** Lo que el agente ve del triage determinista de una página (sin texto completo). */
+const triageView = (t) => ({ shape: t.structure.kind, ...(t.structure.hub ? { hub: true } : {}), ...(t.banners.length ? { banners: t.banners.map((b) => b.kind) } : {}), ...(t.foa_ids.length ? { call_ids: t.foa_ids.slice(0, 6) } : {}) });
+/** Enlaces que ve el agente (máx. 20). P0.6: los que llevan un ID oficial de convocatoria (foaIdsIn) van primero y lo
+ *  muestran, para que en un hub de NIH el agente pueda abrir las convocatorias individuales. No es un filtro temático. */
+const linksView = (links) => {
+  const rows = (links || []).map((l, i) => ({ l, i, id: foaIdsIn(`${l.url || ''} ${l.text || ''}`)[0] || null }));
+  rows.sort((a, b) => (a.id ? 0 : 1) - (b.id ? 0 : 1) || a.i - b.i);
+  return rows.slice(0, 20).map(({ l, id }) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80), ...(id ? { call_id: id } : {}) }));
+};
+/** Consultas para sembrar el registro: los términos exactos que declara el brief («Exact search terms: a; b»), y si no hay,
+ *  el campo de industria o la frase del producto. Se copian, no se inventan ni se filtran por tema. */
+export function registryQueries(brief = {}, n = 2) {
+  const exact = String(brief.constraints || '').match(/exact (?:search )?terms?\s*:\s*([^\n]+)/i)?.[1] || '';
+  const terms = exact.split(/[;\n]/).map((t) => t.replace(/\.$/, '').replace(/\s+/g, ' ').trim()).filter((t) => t.length >= 3);
+  const base = terms.length ? terms : [brief.industry, brief.oneLiner || brief.product].map((t) => String(t || '').replace(/\s+/g, ' ').trim()).filter(Boolean);
+  return [...new Set(base.map((t) => t.slice(0, 100)))].slice(0, Math.max(0, n));
+}
+/** Registros y agregadores oficiales: su dominio no es la organización que financia (Apollo no aporta personas ahí). */
+const APOLLO_SKIP_HOSTS = /(^|\.)(grants\.gov|sam\.gov|sbir\.gov|reporter\.nih\.gov)$/i;
+const APOLLO_TITLES = { grant: ['program officer', 'program director', 'scientific program manager', 'grants manager'], sponsorship: ['partnerships manager', 'sponsorship manager'],
+  investment: ['partner', 'principal', 'investment director', 'managing director'], partnering: ['business development', 'search and evaluation', 'licensing'], debt: ['partner', 'managing director'] };
+/** Ejecuta como mucho `n` tareas a la vez, en orden de llegada. */
+const limiter = (n) => { let active = 0; const q = []; const next = () => { if (active >= Math.max(1, n) || !q.length) return; active++; const { fn, res, rej } = q.shift(); Promise.resolve().then(fn).then(res, rej).finally(() => { active--; next(); }); }; return (fn) => new Promise((res, rej) => { q.push({ fn, res, rej }); next(); }); };
+/** Espera una promesa como mucho `ms` (sin rechazar ni dejar temporizadores vivos). */
+const within = (promise, ms) => { if (!Number.isFinite(ms)) return promise; let t; return Promise.race([promise, new Promise((r) => { t = setTimeout(r, Math.max(0, ms)); })]).finally(() => clearTimeout(t)); };
 const unpage = (text) => String(text || '').replace(/^<page_data>|<\/page_data>$/g, '');
 const tokens = (usage) => ({ prompt: Number(usage?.prompt_tokens) || 0, completion: Number(usage?.completion_tokens) || 0, ...(!usage ? { estimated: true } : {}) });
+/** Tokens de una llamada sin `usage` (cortada por tiempo): entrada estimada por caracteres (≈4 por token) y salida contada
+ *  en streaming si el rol tiene *_LLM_STREAM=1; sin streaming el cliente no puede saber cuánto generó (limitación anotada). */
+const cutTokens = (prompt, progress = {}) => ({ prompt: Math.round((String(prompt?.system || '').length + String(prompt?.user || '').length) / 4), completion: Number(progress.chunks) || 0, estimated: true,
+  ...(progress.started ? { streamed: true, ...(progress.ttft_ms !== null && progress.ttft_ms !== undefined ? { ttft_ms: progress.ttft_ms } : {}) } : { completion_unknown: true }) });
 const validJudgment = (raw, ids) => Boolean(raw && typeof raw === 'object' && typeof raw.page_type === 'string' && Array.isArray(raw.dates) && raw.criteria && ids.every((id) => ['yes', 'no', 'unknown'].includes(raw.criteria[id]?.verdict)));
 const compilerOf = (a) => ({
   page_type: a.page_type, identity: { name: a.about, org: null, kind: a.page_type === 'investor_about' ? 'investor' : 'program', quote: a.lead?.quote || a.about },
@@ -37,8 +91,13 @@ export async function understandBrief(objective, brief, { env = process.env, tod
 
 export async function runAgentObjective(objective, brief, opts = {}) {
   const env = opts.env || process.env; const today = opts.today || new Date().toISOString().slice(0, 10); const trace = opts.trace || noopTrace;
+  // V15 · Inversionistas por organización (ENGINE_INVESTOR_DOSSIER=1 por defecto en investment): cosecha y verificación por código
+  // en investors/; el agente solo aporta páginas. Tiene su propio presupuesto de búsquedas y aperturas, sumado al del agente.
+  const investorOn = objective === 'investment' && String(env.ENGINE_INVESTOR_DOSSIER ?? (opts.tools || env.ENGINE_TEST_FIXTURE === '1' ? '0' : '1')) !== '0' && !opts.initialObservation;
+  const investorSearches = investorOn ? (Number(env.ENGINE_INVESTOR_SEARCHES) || 12) + (Number(env.ENGINE_INVESTOR_RESOLVE) || 14) + 2 * (Number.isFinite(Number(env.ENGINE_INVESTOR_SNOWBALL)) && env.ENGINE_INVESTOR_SNOWBALL !== undefined && env.ENGINE_INVESTOR_SNOWBALL !== '' ? Number(env.ENGINE_INVESTOR_SNOWBALL) : 8) : 0;   // consultas + resolución de nombres + segunda ronda (hasta 2 intentos por nombre): si el tope es menor, las búsquedas de resolución fallan en silencio
+  const investorOpens = investorOn ? Number(env.ENGINE_INVESTOR_OPENS) || 200 : 0;
   const tools = opts.tools || createTools({ env, fetcher: opts.fetcher, signal: opts.signal, trace, limits: opts.limits || {
-    searches: Number(env.ENGINE_AGENT_SEARCHES) || 20, opens: Math.max(Number(env.ENGINE_AGENT_OPENS) || 30, (opts.seedUrls || []).length),
+    searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) + investorSearches, opens: Math.max(Number(env.ENGINE_AGENT_OPENS) || 30, (opts.seedUrls || []).length) + investorOpens,
     apolloCredits: Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 25, exaUsdCap: opts.exaUsdCap,
   }, apollo: opts.apollo, readers: opts.readers });
   const chat = opts.chat || chatJSON; const maxSteps = Number(opts.maxSteps ?? env.ENGINE_AGENT_STEPS) || 40;
@@ -55,21 +114,42 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const deadlineAt = Number(opts.deadlineAt) || 0; const pastDeadline = (marginMs = 0) => Boolean(deadlineAt) && Date.now() > deadlineAt - marginMs;
   const skippedForTime = []; const droppedPages = []; let triageStats = null;
   const elapsed = () => (Date.now() - started) / 1000; let lastCandidateStep = 0;
-  const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const pages = new Map(); const candidates = new Map();
-  const findings = []; const leads = []; const queries = []; const decisions = []; let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
+  const apolloMode = String(env.ENGINE_AGENT_APOLLO_STAGE || '').trim().toLowerCase() === 'post_judge' ? 'post_judge' : 'tool';
+  const ids = AGENT_CRITERIA[objective] || AGENT_CRITERIA.grant; const assessContract = assessContractOf(env); const pages = new Map(); const candidates = new Map();
+  const findings = []; const leads = []; const queries = []; const decisions = []; const seenSearches = new Set(); let invalidSteps = 0; let finishRefused = false; let questions = 0; let stopReason = ''; let stepsRun = 0;
 
-  async function model(prompt, role, validate, pageRef = null) {
+  /** Una llamada al modelo con tope local. `call`: { timeoutMs, maxTokens, signal, info } — `info.reason` recibe la causa del fallo. */
+  async function model(prompt, role, validate, pageRef = null, call = {}) {
+    const info = call.info || {};
     for (let retry = 0; retry < 2; retry++) {
       const at = Date.now(); let response = null; let error = null;
-      const callRole = role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role === 'coverage' ? 'agent' : role;
-      const callSignal = anySignal([parallel && role !== 'judge' ? anySignal([opts.signal, AbortSignal.timeout(Math.max(5000, (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started)))]) : opts.signal,
-        deadlineAt ? AbortSignal.timeout(Math.max(1000, deadlineAt - Date.now())) : null]);
+      const configuredRole = role === 'understand' ? String(env.ENGINE_AGENT_UNDERSTAND_ROLE || '') : role === 'assess' ? String(env.ENGINE_AGENT_ASSESS_ROLE || '') : '';
+      const roleOverride = ['agent', 'compiler'].includes(configuredRole) ? configuredRole : null;
+      const callRole = roleOverride || (role === 'understand' ? (parallel ? 'compiler' : 'agent') : role === 'assess' ? 'compiler' : role === 'coverage' ? 'agent' : role);
+      const configuredMs = Number(call.timeoutMs) || Number(env[role === 'understand' ? 'ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS' : role === 'assess' ? 'ENGINE_AGENT_ASSESS_TIMEOUT_MS' : role === 'agent' ? 'ENGINE_AGENT_STEP_TIMEOUT_MS' : 'ENGINE_AGENT_JUDGE_TIMEOUT_MS']) || (role === 'understand' ? 45_000 : role === 'assess' || role === 'agent' ? 60_000 : 100_000);
+      const deadlineSeconds = role === 'judge' ? hardSeconds : hardSeconds - reserveSeconds;
+      const remainingMs = parallel ? Math.max(1, deadlineSeconds * 1000 - (Date.now() - started)) : configuredMs;
+      const timeoutMs = Math.max(1, Math.min(configuredMs, remainingMs)); const controller = new AbortController();
       if (pastDeadline()) return null;
-      try { response = await chat({ system: prompt.system, user: prompt.user, schema: prompt.schema, name: role, role: callRole }, { env, fetcher: opts.fetcher, signal: callSignal }); }
+      const callSignal = anySignal([opts.signal, call.signal, controller.signal, deadlineAt ? AbortSignal.timeout(Math.max(1000, deadlineAt - Date.now())) : null]); let timer;
+      const relax = String(env.ENGINE_AGENT_SCHEMA_RELAX ?? '1').trim() !== '0';   // 0 = envía el esquema con maxLength (comparación)
+      const purpose = role === 'agent' ? 'step' : role; const maxTokens = call.maxTokens ?? agentMaxTokens(purpose, env); const progress = {};
+      try {
+        response = await Promise.race([
+          chat({ system: prompt.system, user: prompt.user, schema: relax ? relaxForModel(prompt.schema) : prompt.schema, name: role, role: callRole, ...(maxTokens ? { maxTokens } : {}) }, { env, fetcher: opts.fetcher, signal: callSignal, progress }),
+          new Promise((_, reject) => { timer = setTimeout(() => { const e = new Error(`model_timeout_${role}_${timeoutMs}ms`); e.code = 'MODEL_TIMEOUT'; controller.abort(e); reject(e); }, timeoutMs); }),
+          ...(call.signal ? [new Promise((_, reject) => { const stop = () => reject(Object.assign(new Error(`model_aborted_${role}`), { code: 'MODEL_ABORTED' })); if (call.signal.aborted) stop(); else call.signal.addEventListener('abort', stop, { once: true }); })] : []),
+        ]);
+      }
       catch (e) { error = e; }
+      finally { clearTimeout(timer); }
       const raw = response?.json ?? response; const checked = error ? { ok: false, errors: [error.message] } : validate(raw);
-      trace.event('model_call', { role, model: response?.model || env[role === 'agent' || role === 'coverage' || (role === 'understand' && !parallel) ? 'ENGINE_AGENT_LLM_MODEL' : role === 'assess' || role === 'understand' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL'] || 'injected', prompt_version: prompt.version, tokens: tokens(response?.usage), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : !checked.ok ? { error: 'INVALID: ' + (checked.errors || []).join('; ').slice(0, 500) } : {}) });
-      if (checked.ok) return checked.value ?? raw;
+      const modelKey = callRole === 'agent' ? 'ENGINE_AGENT_LLM_MODEL' : callRole === 'compiler' ? 'COMPILER_LLM_MODEL' : 'JUDGE_LLM_MODEL';
+      trace.event('model_call', { role: callRole, purpose, model: response?.model || error?.model || env[modelKey] || 'injected', prompt_version: prompt.version, schema_relaxed: relax, tokens: response?.usage || error?.usage ? tokens(response?.usage || error?.usage) : cutTokens(prompt, progress), max_tokens: maxTokens || null, ...(response?.finish_reason || error?.finish_reason ? { finish_reason: response?.finish_reason || error?.finish_reason } : {}), ms_call: Date.now() - at, ok: checked.ok, invalid: !checked.ok, retry, page_ref: pageRef, ...(error ? { error: String(error.message || error) } : {}), ...(!checked.ok && !error ? { raw: rawText(raw), validation_errors: (checked.errors || []).slice(0, 3).map((x) => String(x).slice(0, 160)) } : {}) });
+      if (checked.ok) { info.reason = null; return checked.value ?? raw; }
+      info.reason = error?.code === 'MODEL_TIMEOUT' ? 'timeout' : error?.code === 'MODEL_TRUNCATED' ? 'truncated' : error?.code === 'MODEL_ABORTED' ? 'aborted' : error ? 'error' : 'invalid';
+      info.detail = String(error?.message || checked.errors?.[0] || '').slice(0, 200);
+      if (error?.code === 'MODEL_TIMEOUT' || error?.code === 'MODEL_TRUNCATED' || error?.code === 'MODEL_ABORTED' || /abort|timeout/i.test(String(error?.message || error))) break;   // repetir con el mismo tope reproduce el corte
     }
     return null;
   }
@@ -82,7 +162,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const dates = [...new Map((a.dates || []).map((d) => [`${d.role}|${d.date}`, d])).values()].map((d) => verifyDate(d, pageText));
     const decision = { step, page_ref: a.ref, by: 'agent', verdict: a.candidate ? 'candidate' : 'none', reason: a.candidate ? 'agent_candidate' : 'agent_rejected', page_type: a.page_type, dates, criteria: a.criteria, days_left: null, next_action: nextTool || null };
     decisions.push(decision); trace.event('decision', decision); pages.set(a.ref, { ...obs, text: pageText, assessment: a });
-    if (a.candidate && (seeded || !Object.values(a.criteria || {}).some((c) => c.verdict === 'no' && literalIn(c.quote, pageText)))) { candidates.set(a.ref, pages.get(a.ref)); lastCandidateStep = step; }
+    if (a.candidate && !obs.stub && (seeded || !Object.values(a.criteria || {}).some((c) => c.verdict === 'no' && literalIn(c.quote, pageText)))) { candidates.set(a.ref, pages.get(a.ref)); lastCandidateStep = step; }
     let leadId = null;
     if (a.lead?.quote && literalIn(a.lead.quote, pageText)) {
       const lead = { id: `L${leads.length + 1}`, page_ref: a.ref, kind: a.lead.kind, funder: a.lead.funder, recipient: a.lead.recipient, amount: a.lead.amount, quote: a.lead.quote, url: obs.url, found_at_step: step, followups: [], produced: [] };
@@ -91,28 +171,90 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     return { a, dates, leadId };
   }
 
+  /** Lectura de una página por el modelo con respaldo (P0.4): si falla, queda `unread_by_model` con su razón y su triage,
+   *  y se reintenta UNA vez con el contrato mínimo si queda tiempo. Una página sin lectura exitosa nunca es candidata. */
+  const unreadPages = new Map(); const readStats = { attempted: 0, ok: 0, ok_min: 0, retried: 0, unread: 0 };
+  const retryMinMs = Number(env.ENGINE_AGENT_ASSESS_RETRY_MIN_MS) || 15_000; const retryTimeoutMs = Number(env.ENGINE_AGENT_ASSESS_RETRY_TIMEOUT_MS) || 30_000;
+  const retryOn = String(env.ENGINE_AGENT_ASSESS_RETRY ?? '1') !== '0';
+  const readWindowMs = () => (parallel ? (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started) : Infinity);
+  async function readPage(r, step, nextTool, understoodBrief, signal) {
+    const obs = { type: 'page', ...r }; const text = unpage(r.text); const triage = r.triage || triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
+    const args = { objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text }, ref: r.ref, today, triageNote: triageNote(triage) };
+    readStats.attempted++;
+    const first = {}; let contract = assessContract;
+    let raw = await model(assessPromptFor(contract, args), 'assess', assessValidator(contract, ids), r.ref, { info: first, signal });
+    let retried = null;
+    if (!raw && retryOn && first.reason !== 'aborted' && readWindowMs() >= retryMinMs && !signal?.aborted) {
+      readStats.retried++; contract = 'min'; const second = {};
+      raw = await model(assessPromptFor('min', args), 'assess', assessValidator('min', ids), r.ref, { info: second, signal, timeoutMs: Math.min(retryTimeoutMs, readWindowMs()), maxTokens: Number(env.ENGINE_AGENT_ASSESS_RETRY_MAX_TOKENS) || 300 });
+      retried = { contract: 'min', ok: Boolean(raw), ...(raw ? {} : { reason: second.reason, detail: second.detail }) };
+    }
+    if (!raw) return markUnread(r, triage, signal?.aborted && typeof signal.reason === 'string' ? signal.reason : first.reason || 'invalid', first.detail, retried);
+    const a = liftAssess(raw, contract, ids); a.ref = r.ref;
+    if (contract === 'min') readStats.ok_min++; else readStats.ok++;
+    const { dates, leadId } = ingest(obs, a, step, nextTool);
+    return { ok: true, page: { ref: r.ref, url: r.url, title: r.title, chars: r.chars, about: a.about, page_type: a.page_type, candidate: candidates.has(r.ref), read: contract === 'min' ? 'min' : 'ok', dates: dates.filter(Boolean).slice(0, 6), lead_id: leadId, ...triageView(triage), links: linksView(r.links) } };
+  }
+  function markUnread(r, triage, reason, detail, retried) {
+    readStats.unread++;
+    const row = { page_ref: r.ref, url: r.url, title: r.title || '', reason, ...(detail ? { detail } : {}), retried: retried || null, triage: { structure: triage.structure, banners: triage.banners, foa_ids: triage.foa_ids, dates: triage.dates.slice(0, 6) } };
+    unreadPages.set(r.ref, row); trace.event('page_unread', row);
+    trace.event('decision', { page_ref: r.ref, by: 'code:loop.mjs#readPage', verdict: 'none', reason: 'unread_by_model', page_type: triage.structure.page_type_code, dates: [], criteria: {}, days_left: null, next_action: null });
+    return { ok: false, failed: { ref: r.ref, error: reason === 'invalid' ? 'assess_invalid' : `assess_${reason}`, unread_by_model: true, url: r.url, title: r.title, ...triageView(triage), links: linksView(r.links) } };
+  }
+
+  // P0.5 · Lecturas sin bloqueo: cada página abierta se lee en segundo plano (tope de concurrencia global); el paso
+  // espera como mucho ENGINE_AGENT_READ_WAIT_MS y lo que termine después llega en el siguiente paso como `late_reads`.
+  // Al cerrar la ventana de acciones, una fase de drenaje deja terminar las lecturas ya lanzadas, con su propio tope y
+  // nunca más allá de hardSeconds − reserveSeconds, para que el juez conserve su reserva y el tope duro no se rompa.
+  const readSlot = limiter(assessConcurrency); const pendingReads = new Map();
+  const readWaitMs = Number(env.ENGINE_AGENT_READ_WAIT_MS ?? 20_000);
+  function startRead(r, step, nextTool, understoodBrief) {
+    const controller = new AbortController(); const entry = { r, controller, done: false, delivered: false, result: null };
+    entry.promise = readSlot(() => readPage(r, step, nextTool, understoodBrief, controller.signal))
+      .catch((e) => markUnread(r, r.triage, 'error', String(e?.message || e), null))
+      .then((res) => { entry.done = true; entry.result = res; return res; });
+    pendingReads.set(r.ref, entry); return entry;
+  }
+  function collectLateReads() {
+    const late = { pages: [], failed: [] };
+    for (const e of pendingReads.values()) if (e.done && !e.delivered) { e.delivered = true; if (e.result.ok) late.pages.push(e.result.page); else late.failed.push(e.result.failed); }
+    return late.pages.length || late.failed.length ? late : null;
+  }
+  async function drainReads() {
+    const open = [...pendingReads.values()].filter((e) => !e.done); if (!open.length) return;
+    const capMs = Math.max(0, Math.min(Number(env.ENGINE_AGENT_DRAIN_SECONDS ?? 60) * 1000, parallel ? (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started) : Infinity));
+    const t0 = Date.now(); await within(Promise.all(open.map((e) => e.promise)), capMs);
+    const still = open.filter((e) => !e.done); for (const e of still) e.controller.abort('drain_timeout');
+    await Promise.all(still.map((e) => e.promise));
+    trace.event('drain', { pending: open.length, completed: open.length - still.length, aborted: still.length, ms: Date.now() - t0, cap_ms: Number.isFinite(capMs) ? capMs : null });
+  }
+
   async function openMany(args, step, nextTool, understoodBrief, limit = maxOpensPerStep) {
     const wanted = [...new Set([...(Array.isArray(args.refs) ? args.refs : []), args.ref].filter(Boolean).map(String))].slice(0, limit);
     const opened = await Promise.all(wanted.map((ref) => tools.open({ ref })));
-    return assessOpened(opened.map((r, i) => [wanted[i], r]), step, nextTool, understoodBrief);
-  }
-  async function assessOpened(pairs, step, nextTool, understoodBrief) {
-    const out = { type: 'pages', pages: [], failed: [] };
-    await pool(pairs, assessConcurrency, async ([ref, r]) => {
-      if (!r?.ref) { out.failed.push({ ref, error: r?.error || 'open_failed' }); return; }
-      if (pastDeadline(20000)) { skippedForTime.push(r.url); trace.event('drop', { url: r.url, page_ref: r.ref, reason: 'time_budget', decided_by: 'code', read: true }); return; }
-      const obs = { type: 'page', ...r };
-      const a = await model(assessPrompt({ objective, brief, understood: understoodBrief, page: { url: r.url, title: r.title, text: unpage(r.text) }, ref: r.ref, today }), 'assess', validateAssess, r.ref);
-      if (!a) { out.failed.push({ ref: r.ref, error: 'assess_invalid' }); return; }
-      a.ref = r.ref; const { dates, leadId } = ingest(obs, a, step, nextTool);
-      out.pages.push({ ref: r.ref, url: r.url, title: r.title, chars: r.chars, about: a.about, page_type: a.page_type, candidate: candidates.has(r.ref), dates: dates.filter(Boolean).slice(0, 6), lead_id: leadId, links: (r.links || []).slice(0, 20).map((l) => ({ ref: l.ref, text: String(l.text || '').slice(0, 80) })) });
-    });
+    const out = { type: 'pages', pages: [], failed: [] }; const mine = [];
+    for (const [i, r] of opened.entries()) {
+      if (r?.already_read) { const seen = pages.get(r.ref)?.assessment; (out.already_read ||= []).push({ ref: r.ref, url: r.url, title: r.title, ...(seen ? { about: seen.about, page_type: seen.page_type, candidate: candidates.has(r.ref) } : {}), hint: ALREADY_READ_HINT(r.ref), links: linksView(r.links) }); continue; }
+      if (!r?.ref) { out.failed.push({ ref: wanted[i], error: r?.error || 'open_failed', ...(r?.error === 'rejected_ref' ? { hint: REJECTED_REF_HINT(wanted[i]) } : {}) }); continue; }
+      openedRefs.add(wanted[i]); if (r.url) openedUrls.add(r.url);
+      const text = unpage(r.text); r.triage = triagePage({ url: r.url, title: r.title, text, links: r.links || [], today });
+      trace.event('triage', { page_ref: r.ref, url: r.url, version: r.triage.version, structure: r.triage.structure, banners: r.triage.banners, foa_ids: r.triage.foa_ids, dates: r.triage.dates.slice(0, 6) });
+      mine.push(startRead(r, step, nextTool, understoodBrief));
+    }
+    const waitMs = Math.max(0, Math.min(readWaitMs, parallel ? (hardSeconds - reserveSeconds) * 1000 - (Date.now() - started) : Infinity));
+    await within(Promise.all(mine.map((e) => e.promise)), waitMs);
+    for (const e of mine) {
+      if (e.done) { e.delivered = true; if (e.result.ok) out.pages.push(e.result.page); else out.failed.push(e.result.failed); }
+      else (out.reading ||= []).push({ ref: e.r.ref, url: e.r.url, title: e.r.title, status: 'reading', ...triageView(e.r.triage), links: linksView(e.r.links) });
+    }
     out.pages.sort((x, y) => Number(x.ref.slice(1)) - Number(y.ref.slice(1)));
     return out;
   }
 
   const DOC_FILE = /\.(pdf|docx?|rtf)(?:[?#]|$)/i;
   const CALL_DOC = /\b(rfa|rfp|nofo|foa|solicitation|guidelines?|request for (?:applications|proposals)|funding (?:opportunity|announcement)|program announcement|call for (?:proposals|applications)|application (?:guide|instructions|package|form)|notice of funding|bases|convocatoria|t[ée]rminos de referencia)\b/i;
+  /** Documentos enlazados (14-10): muchas convocatorias publican el plazo y la elegibilidad solo en un PDF/DOC (RFA, solicitud, guía). Usado por el modo solo juez (opts.seedUrls). */
   async function followDocs(rows, seen) {
     const perPage = Number(env.GPTR_DOCS_PER_PAGE) || 2; const max = env.GPTR_DOC_FOLLOW_MAX === undefined ? 12 : Number(env.GPTR_DOC_FOLLOW_MAX); if (!max) return [];
     const year = Number(String(today).slice(0, 4)); const picks = [];
@@ -130,40 +272,220 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const opened = await pool(picks, 8, (ref) => tools.open({ ref }));
     return picks.map((ref, i) => [ref, opened[i]]).filter(([, r]) => r?.ref);
   }
+  /** Lee y evalúa un lote de pares [ref, página-abierta] ya elegidos (modo solo juez: opts.seedUrls). Reusa readPage,
+   *  que ya trae reintento con contrato mínimo y registro `unread_by_model`; no pasa por la cola asíncrona de drainReads
+   *  porque aquí ya se abrieron todas las páginas que se van a leer. */
+  async function assessOpened(pairs, step, nextTool, understoodBrief) {
+    const out = { type: 'pages', pages: [], failed: [] };
+    await pool(pairs, assessConcurrency, async ([ref, r]) => {
+      if (!r?.ref) { out.failed.push({ ref, error: r?.error || 'open_failed' }); return; }
+      if (pastDeadline(20000)) { skippedForTime.push(r.url); trace.event('drop', { url: r.url, page_ref: r.ref, reason: 'time_budget', decided_by: 'code', read: true }); return; }
+      const res = await readPage(r, step, nextTool, understoodBrief);
+      if (res.ok) out.pages.push(res.page); else out.failed.push(res.failed);
+    });
+    out.pages.sort((x, y) => Number(x.ref.slice(1)) - Number(y.ref.slice(1)));
+    return out;
+  }
 
-  async function searchMany(args, action) {
-    const qs = [...new Set((args.queries || []).map((q) => String((q && typeof q === 'object' ? q.query ?? q.q ?? q.text ?? '' : q) || '').trim()).filter(Boolean))].slice(0, maxSearchesPerStep);
-    for (const q of qs) queries.push({ query: q, family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
-    const found = await Promise.all(qs.map((q) => tools.search({ query: q, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
+  /* P0.8 · Apollo como etapa determinista posterior al juez (ENGINE_AGENT_APOLLO_STAGE=post_judge). Recorre los hallazgos
+     (main antes que verify), toma el dominio oficial de la URL y resuelve personas con capital/resolver.mjs, con tope de
+     créditos por corrida (ENGINE_AGENT_APOLLO_CREDITS, 5) y de organizaciones (ENGINE_AGENT_APOLLO_MAX_ORGS, 3). Cada
+     hallazgo deja una traza apollo_stage con enabled, eligible_for_call, called, créditos y razón de no llamada. En el
+     modo anterior ('tool') solo se resume lo que el agente gastó, para poder comparar. Apollo no cambia ranking ni veredicto. */
+  async function apolloStage(found) {
+    const enabled = env.APOLLO_ENABLED === '1'; const client = tools.apolloClient || null; const configured = Boolean(client && (env.APOLLO_API_KEY || opts.apollo));
+    const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 5; const maxOrgs = Number(env.ENGINE_AGENT_APOLLO_MAX_ORGS) || 3;
+    const credits = () => Number(client?.stats?.creditsEstimated) || 0;
+    if (apolloMode !== 'post_judge') {
+      const spent = credits(); const row = { stage: 'tool', enabled, eligible_for_call: found.length > 0, called: spent > 0, credits: spent, reason_not_called: spent > 0 ? null : !enabled ? 'apollo_disabled' : !found.length ? 'no_findings' : 'agent_did_not_call' };
+      trace.event('apollo_stage', row);
+      // Si el agente no gastó créditos por su cuenta (no llamó apollo como acción), se cae al contactStage determinista:
+      // mismo contrato que antes de P0.8 (contactStage en código, sin que el modelo decida), para no perder el enriquecimiento
+      // automático de contactos cuando nadie pidió explícitamente el modo post_judge.
+      const fallback = spent === 0 && found.length ? await contactStage({ findings: found, objective, tools, trace, env, configured: Boolean(env.APOLLO_API_KEY || opts.apollo) }) : null;
+      return { stage: 'tool', enabled, configured, eligible: row.eligible_for_call ? 1 : 0, called: row.called ? 1 : 0, credits: spent, cap, reasons: row.reason_not_called ? { [row.reason_not_called]: 1 } : {},
+        orgs: fallback?.orgs || 0, people: fallback?.people || 0, ...(fallback?.skipped ? { skipped: fallback.skipped } : {}) };
+    }
+    const summary = { stage: 'post_judge', enabled, configured, eligible: 0, called: 0, credits: 0, cap, reasons: {} };
+    const note = (row) => { trace.event('apollo_stage', { stage: 'post_judge', enabled, ...row }); if (row.reason_not_called) summary.reasons[row.reason_not_called] = (summary.reasons[row.reason_not_called] || 0) + 1; };
+    if (!found.length) { note({ eligible_for_call: false, called: false, credits: 0, reason_not_called: 'no_findings' }); return summary; }
+    const ordered = [...found].sort((a, b) => (a.tier === 'main' ? 0 : 1) - (b.tier === 'main' ? 0 : 1)); const domains = new Set(); let denied = Boolean(tools.apolloDenied?.());
+    for (const f of ordered) {
+      const domain = hostOf(f.url);
+      const reason = !enabled ? 'apollo_disabled' : !configured ? 'apollo_not_configured' : !domain ? 'no_domain' : APOLLO_SKIP_HOSTS.test(domain) ? 'registry_host'
+        : hostKind(f.url) !== 'other' ? `${hostKind(f.url)}_host` : domains.has(domain) ? 'duplicate_domain' : summary.called >= maxOrgs ? 'org_cap' : credits() >= cap ? 'credit_cap' : denied ? 'plan_denied' : null;
+      if (reason) { note({ finding_url: f.url, domain: domain || null, eligible_for_call: false, called: false, credits: 0, reason_not_called: reason }); continue; }
+      domains.add(domain); summary.eligible++; const before = credits();
+      const result = await resolveApolloContacts({ organization_stable_id: domain, canonical_name: f.name || f.title || domain, official_domain: domain, target_roles: APOLLO_TITLES[objective] || APOLLO_TITLES.grant, as_of: today }, { client, maxPeople: Number(env.APOLLO_PEOPLE_PER_ORG) || 5 })
+        .catch((e) => ({ status: 'error', people: [], errors: [String(e?.message || e)] }));
+      const spent = credits() - before; summary.called++; summary.credits += spent;
+      f.contacts = (result.people || []).map((p) => ({ name: p.name, title: p.title, organization: p.organization, route: 'public_affiliation', channel: p.channel || null }));
+      if (result.status === 'unsupported_by_plan') denied = true;
+      note({ finding_url: f.url, domain, eligible_for_call: true, called: true, credits: spent, reason_not_called: null, status: result.status, people_n: f.contacts.length });
+    }
+    summary.orgs = summary.called; summary.people = found.reduce((n, f) => n + (f.contacts?.length || 0), 0);
+    return summary;
+  }
+
+  async function seedRegistry() {
+    const source = env.SIMPLER_GRANTS_API_KEY ? 'simpler' : 'grants_gov';
+    const qs = registryQueries(brief, Number(env.ENGINE_AGENT_REGISTRY_SEED_QUERIES) || 2); const results = []; const seen = new Set(); const errors = [];
+    for (const query of qs) {
+      const out = await tools.registry({ source, query, n: Number(env.ENGINE_AGENT_REGISTRY_SEED_ROWS) || 10 });
+      if (out?.error) { errors.push(out.error); continue; }
+      for (const row of out?.rows || []) if (row.ref && !seen.has(row.url)) { seen.add(row.url); results.push(row); }
+    }
+    const seed = { source, queries: qs, results: results.slice(0, Number(env.ENGINE_AGENT_REGISTRY_SEED_MAX) || 12), ...(errors.length ? { errors } : {}) };
+    trace.event('registry_seed', { source, queries: qs, results_n: seed.results.length, urls: seed.results.map((r) => r.url), ...(errors.length ? { errors } : {}) });
+    return seed;
+  }
+
+  /* Apollo como fuente inicial (20/10, decisión de Gisel): antes del primer paso busca organizaciones con los términos del brief
+     (los mismos que el registro) y las deja como refs abribles hacia su sitio. Es determinista y acotado: ENGINE_AGENT_APOLLO_SEED_QUERIES
+     (2) búsquedas, 1 crédito estimado cada una, y siempre dentro del tope por corrida (ENGINE_AGENT_APOLLO_CREDITS, 5). Solo corre con
+     APOLLO_ENABLED=1; ENGINE_AGENT_APOLLO_SEED=0 lo apaga. Cada decisión deja una traza apollo_source. */
+  async function seedApollo() {
+    const enabled = env.APOLLO_ENABLED === '1'; const configured = Boolean(env.APOLLO_API_KEY || opts.apollo); const cap = Number(env.ENGINE_AGENT_APOLLO_CREDITS) || 5;
+    const qs = registryQueries(brief, Number(env.ENGINE_AGENT_APOLLO_SEED_QUERIES) || 2);
+    const reason = String(env.ENGINE_AGENT_APOLLO_SEED ?? '1') === '0' ? 'seed_off' : !enabled ? 'apollo_disabled' : !configured ? 'apollo_not_configured' : typeof tools.apolloSource !== 'function' ? 'no_tool' : !qs.length ? 'no_terms' : null;
+    const base = { stage: 'source', enabled, configured, cap, queries: qs };
+    if (reason) { trace.event('apollo_source', { ...base, eligible_for_call: false, called: false, credits: 0, reason_not_called: reason }); return { ...base, called: 0, credits: 0, results_n: 0, reason }; }
+    const results = []; const seen = new Set(); const errors = []; let credits = 0; let capped = false;
+    for (const query of qs) {
+      if (credits >= cap) { capped = true; break; }   // el tope por corrida también corta la fuente inicial
+      const out = await tools.apolloSource({ keywords: [query], n: Number(env.ENGINE_AGENT_APOLLO_SEED_ROWS) || 8 });
+      credits += Number(out?.credits_estimated) || 0;
+      if (out?.error) { errors.push(out.error); if (/CAP|cap/.test(out.error)) break; continue; }
+      for (const row of out?.rows || []) if (row.ref && !seen.has(row.domain || row.url)) { seen.add(row.domain || row.url); results.push(row); }
+    }
+    const seed = { source: 'apollo', queries: qs, results: results.slice(0, Number(env.ENGINE_AGENT_APOLLO_SEED_MAX) || 10), credits, ...(errors.length ? { errors } : {}) };
+    trace.event('apollo_source', { ...base, eligible_for_call: true, called: true, credits, results_n: seed.results.length, urls: seed.results.map((r) => r.url), reason_not_called: null, ...(capped ? { capped: true } : {}), ...(errors.length ? { errors } : {}) });
+    return seed;
+  }
+
+  /* V15 · Progreso por paso y sugerencias para salir de un bucle. */
+  const terms = briefTerms(brief); const openedRefs = new Set(); const openedUrls = new Set(); const seenUrls = new Set();
+  let stall = 0; let maxStall = 0; let autopilotSteps = 0;
+  const stallGuard = String(env.ENGINE_AGENT_STALL_GUARD ?? (opts.tools ? '0' : '1')) !== '0';   // con herramientas inyectadas se pide explícito
+  const stallHint = Number(env.ENGINE_AGENT_STALL_HINT) || 2; const stallAuto = Number(env.ENGINE_AGENT_STALL_AUTOPILOT) || 3; const stallStop = Number(env.ENGINE_AGENT_STALL_STOP) || 6;
+  function progressOf(obs) {
+    if (!obs || obs.retry_note) return 0;
+    if (obs.type === 'pages') return (obs.pages?.length || 0) + (obs.reading?.length || 0) + (obs.failed || []).filter((f) => f.unread_by_model).length + (obs.late_reads ? obs.late_reads.pages.length : 0);
+    if (obs.type === 'page') return 1;
+    if (obs.type === 'tool' && obs.tool === 'search') { let n = 0; for (const r of obs.result?.results || []) if (r.url && !seenUrls.has(r.url)) { seenUrls.add(r.url); n++; } return n; }
+    if (obs.type === 'tool' && ['registry', 'entity_funding', 'apollo'].includes(obs.tool)) return (obs.result?.rows || []).length;
+    return obs.late_reads ? obs.late_reads.pages.length : 0;
+  }
+  function unopenedRefs(n = 6) {
+    const rows = [];
+    for (const [ref, row] of tools.refs || []) {
+      if (!row?.url || openedRefs.has(ref) || openedUrls.has(row.url) || /^p\d+$/.test(ref)) continue;
+      const sc = callScore({ url: row.url, title: row.title || row.text || '' }, terms.anchor) + (/^n\d+$/.test(ref) ? -1 : 0);
+      if (sc >= 2) rows.push({ ref, url: row.url, title: String(row.title || row.text || '').slice(0, 100), sc });
+    }
+    return rows.sort((a, b) => b.sc - a.sc).slice(0, n).map(({ sc: _s, ...r }) => r);
+  }
+  function coverageQueries(n = 3) {
+    if (typeof tools.search !== 'function') return [];
+    const pool = [...(terms.anchor ? webQueries(terms, today, 3) : []), ...terms.phrases.map((p) => `${p} grant`), ...registryQueries(brief, 4)];
+    return [...new Set(pool)].filter((q) => !seenSearches.has(queryKey(normalizeAgentQuery(q, objective, today)))).slice(0, n);
+  }
+
+  async function searchMany(args, action, step = null) {
+    const planned = (Array.isArray(args.queries) ? args.queries : []).map((raw) => ({ raw: queryText(raw).trim(), query: normalizeAgentQuery(queryText(raw), objective, today) })).filter((x) => x.query);
+    const repeated = [];
+    const qs = [];
+    for (const item of planned) {
+      const key = queryKey(item.query);
+      if (!key || seenSearches.has(key)) { repeated.push(item.query); trace.event('query_skipped', { step, query: item.query, ...(item.raw !== item.query ? { original: item.raw } : {}), reason: 'duplicate' }); continue; }
+      if (qs.length >= maxSearchesPerStep) { trace.event('query_skipped', { step, query: item.query, reason: 'per_step_cap' }); continue; }
+      seenSearches.add(key); qs.push(item);
+    }
+    for (const item of qs) queries.push({ query: item.query, family: 'agent', ...(item.raw !== item.query ? { original: item.raw } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
+    if (!qs.length) return { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_queries'], already_searched: repeated.slice(0, 8), message: DUPLICATE_HINT } };
+    const found = await Promise.all(qs.map((item) => tools.search({ query: item.query, ...(args.recency ? { recency: args.recency } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) })));
     const seen = new Set(); const results = [];
     for (const f of found) for (const row of f?.results || []) if (!seen.has(row.url)) { seen.add(row.url); results.push({ ...row, snippet: String(row.snippet || '').slice(0, 200) }); }
     return { type: 'tool', tool: 'search', result: { results, errors: found.map((f) => f?.error).filter(Boolean) } };
   }
 
+  // P0.5 · La comprensión no bloquea el primer paso: el perfil da una lectura determinista inmediata y el modelo,
+  // si se pide, corre en paralelo con un tope corto. Si falla, se sigue con el perfil y el brief en bruto (nota en la traza).
   const uPrompt = understandPrompt({ brief, objective, today });
-  // opts.understood: comprensión ya hecha en paralelo con la búsqueda de GPTR (no se repite la llamada al terminar la búsqueda).
-  const early = opts.understood ? await Promise.resolve(opts.understood).catch(() => null) : null;
-  const understood = early || await model(uPrompt, 'understand', validateUnderstand) || {
-    product_one_line: '', who_pays: '', sector: '', neighbor_sectors: [], stage: '', geography: '', assumptions: [], doubts: [],
+  const requestedMode = String(env.ENGINE_AGENT_UNDERSTAND_MODE || '').trim().toLowerCase();
+  const understandMode = ['profile', 'parallel', 'blocking'].includes(requestedMode) ? requestedMode : parallel ? 'parallel' : 'blocking';
+  const fromProfile = understandFromBrief(brief); let understood = fromProfile; let understandSource = 'profile';
+  const adoptUnderstood = async (value) => {
+    understood = mergeUnderstood(fromProfile, value); understandSource = 'model';
+    trace.event('understand', { output: understood, source: 'model', mode: understandMode });
+    for (const [i, assumption] of (understood.assumptions || []).entries()) trace.event('brief_patch', {
+      field: `assumptions[${i}]`, from: null, to: assumption, why: assumption, source: 'assumption',
+    });
+    const doubts = (understood.doubts || []).filter((d) => d.impact !== 'none').slice(0, 3);
+    if (doubts.length) { questions = doubts.length; await tools.ask_user({ questions: doubts.map((d) => ({ q: d.question, options: d.options })) }); }
   };
-  trace.event('understand', { output: understood });
-  for (const [i, assumption] of (understood.assumptions || []).entries()) trace.event('brief_patch', {
-    field: `assumptions[${i}]`, from: null, to: assumption, why: assumption, source: 'assumption',
-  });
-  const doubts = (understood.doubts || []).filter((d) => d.impact !== 'none').slice(0, 3);
-  if (doubts.length) { questions = doubts.length; await tools.ask_user({ questions: doubts.map((d) => ({ q: d.question, options: d.options })) }); }
+  const uInfo = {}; const uController = new AbortController(); let understandTask = null;
+  const understandFailed = () => trace.event('understand', { output: understood, source: 'profile', mode: understandMode, note: `model_understand_failed:${uInfo.reason || 'unknown'}; kept the profile view and the raw brief` });
+  // 15-10 · Quien llama (p. ej. gptr.mjs, que ya arrancó su propia comprensión en paralelo con la búsqueda) puede pasar
+  // opts.understood (valor o promesa): se adopta tal cual y no se vuelve a pedir al modelo.
+  if (opts.understood !== undefined) {
+    const adopt = (v) => (v ? adoptUnderstood(v) : understandFailed());
+    if (opts.understood && typeof opts.understood.then === 'function') understandTask = opts.understood.then(adopt).catch(() => understandFailed()).finally(() => { understandTask = null; });
+    else adopt(opts.understood);
+  } else if (understandMode === 'blocking') { const v = await model(uPrompt, 'understand', validateUnderstand, null, { info: uInfo }); if (v) await adoptUnderstood(v); else understandFailed(); }
+  else {
+    trace.event('understand', { output: understood, source: 'profile', mode: understandMode, note: understandMode === 'parallel' ? 'model understanding runs in parallel; first steps use the profile and the raw brief' : 'deterministic from the profile (ENGINE_AGENT_UNDERSTAND_MODE=profile)' });
+    if (understandMode === 'parallel') understandTask = model(uPrompt, 'understand', validateUnderstand, null, { info: uInfo, signal: uController.signal, timeoutMs: Number(env.ENGINE_AGENT_UNDERSTAND_TIMEOUT_MS) || 20_000 })
+      .then((v) => (v ? adoptUnderstood(v) : understandFailed())).catch(() => understandFailed()).finally(() => { understandTask = null; });
+  }
 
-  let observation = opts.initialObservation || { type: 'start', understood }; let finalRefs = [];
+  let finalRefs = [];
+  // Modo solo juez (opts.seedUrls): otro motor trajo las URLs; aquí solo se abren, se leen en paralelo y pasan por juez, segundo juez y auditoría.
+  const seedUrls = (opts.seedUrls || []).map((u) => (typeof u === 'string' ? { url: u } : u)).filter((u) => u?.url);
+  const seedReg = new Map(seedUrls.filter((u) => u.registry).map((u) => [u.url, u.registry]));
+
+  // P0.6 · Grants: registros oficiales primero. Antes del primer paso se siembran convocatorias abiertas/forecast del
+  // registro (Simpler.Grants.gov si hay clave; si no, Grants.gov) con las consultas declaradas en el brief. Son refs
+  // abribles; abrirlas consume aperturas como cualquier otra página. No gasta búsquedas web.
+  // V15 · Expedientes (grants, ENGINE_DOSSIER=1 por defecto): antes del primer paso se cosechan convocatorias oficiales con
+  // texto completo (NIH Guide, registro federal con consultas cortas); la web (fundaciones y catálogos) se cosecha EN PARALELO
+  // al agente. Al final se juzga por convocatoria, no por página. ENGINE_DOSSIER=0 vuelve al flujo anterior. Ninguno de los dos
+  // corre en modo solo juez (opts.seedUrls): otro motor ya trajo las URLs.
+  const dossierMode = !seedUrls.length && objective === 'grant' && String(env.ENGINE_DOSSIER ?? (opts.tools || env.ENGINE_TEST_FIXTURE === '1' ? '0' : '1')) !== '0' && typeof tools.registry === 'function' && !opts.initialObservation;   // con herramientas inyectadas (bancos y pruebas antiguas) se pide explícito
+  const client = opts.registryClient || registryClient(opts.fetcher || fetch, opts.signal);
+  let official = null; let webTask = null; const harvestErrors = [];
+  if (dossierMode) {
+    const safe = (p) => p.catch((e) => ({ items: [], errors: [{ error: String(e?.message || e).slice(0, 160) }] }));
+    const [nih, reg] = await Promise.all([
+      String(env.ENGINE_DOSSIER_NIH ?? '1') !== '0' ? safe(harvestNih({ client, terms, brief, today, trace, env })) : Promise.resolve({ items: [], errors: [] }),
+      safe(harvestRegistry({ tools, terms, brief, env, trace })),
+    ]);
+    official = { items: [...nih.items, ...reg.items], nih, reg };
+    let k = 0; for (const it of nih.items) { const ref = `n${++k}`; tools.refs?.set?.(ref, { url: it.url, title: it.title, snippet: '', markdown: it.text, via: 'nih_guide', number: it.number }); it.ref = ref; }
+    if (String(env.ENGINE_DOSSIER_WEB_HARVEST ?? '1') !== '0') webTask = harvestWeb({ tools, terms, today, trace, skipIds: new Set(official.items.map((x) => x.number).filter(Boolean)) }).catch((e) => { harvestErrors.push(String(e?.message || e).slice(0, 160)); return { items: [] }; });
+  }
+  const officialCoverage = official ? (() => {
+    const ranked = scoreDocs(official.items.map((x) => ({ title: x.title, text: `${x.meta?.purpose || ''} ${String(x.text || '').slice(0, 1500)}` })), terms.weights).map((sc, i) => ({ sc: sc.score, it: official.items[i] })).sort((a, b) => b.sc - a.sc);
+    return { calls_collected: official.items.length, note: 'Federal calls already collected from official registries with their full text; they will all be judged. Do not spend steps re-finding them. Look for OTHER funders (foundations, associations, state, international or industry programs) and open individual program pages from catalogs.', examples: ranked.slice(0, 12).map(({ it }) => ({ ref: it.ref || null, id: it.number || null, title: String(it.title || '').slice(0, 120) })) };
+  })() : null;
+  const registrySeed = !seedUrls.length && !dossierMode && objective === 'grant' && String(env.ENGINE_AGENT_REGISTRY_SEED ?? '1') !== '0' && typeof tools.registry === 'function' && !opts.initialObservation ? await seedRegistry() : null;
+  const apolloSeed = !seedUrls.length && !opts.initialObservation ? await seedApollo() : null;
+  const investorErrors = []; const openedPages = new Map();
+  if (investorOn && typeof tools.open === 'function') {   // toda página abierta (la lea o no el modelo) entra al expediente de su organización
+    const rawOpen = tools.open; tools.open = async (args) => { const r = await rawOpen(args); if (r?.ref && r.text && !r.already_read && !openedPages.has(r.url)) openedPages.set(r.url, { url: r.url, title: r.title, text: unpage(r.text), links: r.links || [] }); return r; };
+  }
+  const investorTask = investorOn && !seedUrls.length ? prefetchInvestors({ tools, brief, today, trace, env, apolloRows: apolloSeed?.results || [] }).catch((e) => { investorErrors.push(String(e?.message || e).slice(0, 160)); return null; }) : null;
+  let observation = opts.initialObservation || { type: 'start', understood, ...(officialCoverage ? { official_coverage: officialCoverage } : {}), ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}), ...(apolloSeed?.results?.length ? { apollo_seed: apolloSeed } : {}) };
+
   // Descubrimiento (ENGINE_DISCOVERY=1): búsqueda ligera, plan de cobertura por niveles de financiador y abanico de consultas en paralelo, antes del primer paso.
+  // Solo cuando ninguna otra cosecha (expediente, inversionistas, modo solo juez) ya se encargó de sembrar la primera observación.
   let coverage = null; let discoveryQueries = 0;
-  if (!opts.initialObservation && !opts.seedUrls?.length && (opts.discovery === true || String(env.ENGINE_DISCOVERY || '') === '1')) {
+  if (!opts.initialObservation && !seedUrls.length && !dossierMode && !investorOn && (opts.discovery === true || String(env.ENGINE_DISCOVERY || '') === '1')) {
     const d = await runDiscovery({ brief, understood, objective, today, model, searchMany, tools, trace, env });
     coverage = d.plan; discoveryQueries = d.queries.length;
     if (d.observation?.result?.results?.length) observation = d.observation;
   }
-  // Modo solo juez (opts.seedUrls): otro motor trajo las URLs; aquí solo se abren, se leen en paralelo y pasan por juez, segundo juez y auditoría.
-  const seedUrls = (opts.seedUrls || []).map((u) => (typeof u === 'string' ? { url: u } : u)).filter((u) => u?.url);
-  const seedReg = new Map(seedUrls.filter((u) => u.registry).map((u) => [u.url, u.registry]));
+
   if (seedUrls.length) {
     // Una semilla puede traer su texto (registro oficial): se lee tal cual, sin descargar nada.
     const refs = seedUrls.map((u, i) => { const ref = `seed${i + 1}`; tools.refs.set(ref, { url: u.url, title: u.title || '', ...(u.text ? { markdown: u.text, official: Boolean(u.registry) } : {}) }); return ref; });
@@ -226,15 +548,39 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     }
     stopReason = 'seeded'; trace.event('finish', { reason: 'seeded' });
   }
-  for (let step = 1; step <= maxSteps && !seedUrls.length && (elapsed() < maxSeconds - reserveSeconds || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds)); step++) {
+  const dossierReserve = dossierMode ? Number(env.ENGINE_DOSSIER_RESERVE_SECONDS) || 45 : investorOn ? Number(env.ENGINE_INVESTOR_RESERVE_SECONDS) || 30 : 0;
+  for (let step = 1; step <= maxSteps && !seedUrls.length && (elapsed() < maxSeconds - reserveSeconds - dossierReserve || (parallel && lastCandidateStep >= step - 1 && elapsed() < hardSeconds - reserveSeconds - dossierReserve)); step++) {
     stepsRun = step;
+    // V15 · Guardia de no-progreso: sin páginas ni resultados nuevos, primero se avisa con opciones concretas, luego el código
+    // da el paso él mismo (abre refs no abiertas o busca un ángulo nuevo) y, si tampoco hay opciones, la corrida se corta como «stuck».
+    if (step > 1 && stallGuard) {
+      if (progressOf(observation) > 0) stall = 0; else { stall++; maxStall = Math.max(maxStall, stall); }
+      if (stall >= stallStop) { stopReason = 'stuck'; trace.event('stall', { step, stall, action: 'stop' }); trace.event('finish', { reason: 'stuck' }); break; }
+      if (stall >= stallAuto) {
+        const refsNext = unopenedRefs(6); const qsNext = refsNext.length ? [] : coverageQueries(3);
+        if (!refsNext.length && !qsNext.length) { stopReason = 'stuck'; trace.event('stall', { step, stall, action: 'stop_no_options' }); trace.event('finish', { reason: 'stuck' }); break; }
+        autopilotSteps++; trace.event('stall', { step, stall, action: 'autopilot', refs: refsNext.map((r) => r.ref), queries: qsNext });
+        observation = refsNext.length ? await openMany({ refs: refsNext.map((r) => r.ref) }, step, 'open', understood) : await searchMany({ queries: qsNext }, { from_lead: null }, step);
+        observation = { ...observation, autopilot: `code took this step because your last ${stall} steps produced nothing new` };
+        continue;
+      }
+      if (stall >= stallHint) observation = { ...observation, stuck: { steps_without_progress: stall, message: 'Your last steps produced no new page or result. Change strategy now: open one of these unopened refs or run one of these new searches.', unopened_refs: unopenedRefs(6), new_queries: coverageQueries(3) } };
+    }
     const used = tools.usage?.() || {};
-    const state = { today, objective, brief, understood, leads, queries, step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
+    const state = { today, objective, brief, understood, leads, queries, queries_done: queries.map((q) => q.query).slice(-40), step, budget_left: { steps: maxSteps - step + 1, searches: (Number(env.ENGINE_AGENT_SEARCHES) || 20) - (used.searches || 0), opens: (Number(env.ENGINE_AGENT_OPENS) || 30) - (used.opens || 0), seconds: Math.max(0, Math.round(maxSeconds - reserveSeconds - elapsed())) },
       ...(coverage ? { coverage: coverage.levels.map((l) => ({ level: l.level, why: l.why, queries: l.queries })) } : {}),
-      ...(parallel ? { parallel: true } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
+      ...(parallel ? { parallel: true } : {}), ...(apolloMode === 'post_judge' ? { apollo_stage: 'post_judge' } : {}), judged_pages: [...pages.values()].slice(-30).map((p) => ({ ref: p.assessment.ref, about: p.assessment.about, page_type: p.assessment.page_type, candidate: p.assessment.candidate })), candidates: candidates.size };
+    const late = collectLateReads(); if (late) observation = { ...observation, late_reads: late };   // lecturas que terminaron después de su paso
     const prompt = stepPrompt({ state, observation });
-    const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null);
-    if (!value) { invalidSteps++; observation = { type: 'invalid_step' }; continue; }
+    const stepInfo = {};
+    const value = await model(prompt, 'agent', (raw) => validateStep(raw, { lastObservation: observation?.type }), observation?.ref || null, { info: stepInfo });
+    if (!value) {
+      // P0.8 · Un paso que falla (timeout o JSON inválido) no borra lo observado: se repite la misma observación
+      // (resultados de búsqueda, páginas, lecturas tardías) con una nota, en vez de sustituirla por `invalid_step`.
+      invalidSteps++; const { retry_note: _drop, ...kept } = observation || {};
+      observation = observation ? { ...kept, retry_note: `previous step failed (${stepInfo.reason || 'invalid'}); the same observation is repeated so its results are not lost` } : { type: 'invalid_step' };
+      continue;
+    }
     if (value.assessment && observation?.type === 'page') ingest(observation, value.assessment, step, value.action?.tool);
     const action = value.action;
     if (action.tool === 'finish' && !finishRefused && candidates.size === 0 && (used.opens || 0) < 5 && step < maxSteps / 2) { finishRefused = true; trace.event('tool_call', { tool: 'finish', args: action.args || {}, results_n: 0, ms_call: 0, error: 'refused_early' }); observation = { type: 'finish_refused', message: 'No candidate yet and most of the budget is unused. Search with different queries or open more results before finishing.' }; continue; }
@@ -242,23 +588,70 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     const args = { ...(action.args || {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) };
     if (parallel && (action.tool === 'open' || (action.tool === 'search' && Array.isArray(args.queries)))) {
       if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.followups.push(step); trace.event('lead_followup', { lead_id: action.from_lead, action: action.tool, step }); }
-      observation = action.tool === 'open' ? await openMany(args, step, action.tool, understood) : await searchMany(args, action);
+      observation = action.tool === 'open' ? await openMany(args, step, action.tool, understood) : await searchMany(args, action, step);
       if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.produced.push(...(action.tool === 'open' ? observation.pages.map((p) => p.ref) : observation.result.results.map((p) => p.ref)).filter(Boolean)); }
       continue;
     }
-    if (action.tool === 'search') queries.push({ query: String(args.query || ''), family: 'agent', ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
+    if (action.tool === 'search') {
+      const original = queryText(args.query).trim(); const query = normalizeAgentQuery(original, objective, today); const key = queryKey(query);
+      if (!key || seenSearches.has(key)) { trace.event('query_skipped', { step, query, ...(original !== query ? { original } : {}), reason: 'duplicate' }); observation = { type: 'tool', tool: 'search', result: { results: [], errors: ['duplicate_query'], already_searched: [query], message: DUPLICATE_HINT } }; continue; }
+      seenSearches.add(key); args.query = query; queries.push({ query, family: 'agent', ...(original !== query ? { original } : {}), ...(action.from_lead ? { from_lead: action.from_lead } : {}) });
+    }
     if (action.from_lead) {
       const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.followups.push(step);
       trace.event('lead_followup', { lead_id: action.from_lead, action: action.tool, step });
     }
+    if (action.tool === 'apollo' && apolloMode === 'post_judge') {   // P0.8 · con la etapa posterior al juez, el agente no gasta créditos
+      trace.event('tool_call', { tool: 'apollo', args, results_n: 0, ms_call: 0, error: 'apollo_runs_after_judge' });
+      observation = { type: 'tool', tool: 'apollo', result: { error: 'apollo_runs_after_judge', note: 'Apollo runs automatically after the judge on the final findings; do not call it.' } }; continue;
+    }
     const result = await tools[action.tool](args);
     if (action.from_lead) { const lead = leads.find((x) => x.id === action.from_lead); if (lead) lead.produced.push(...(result?.results || []).map((x) => x.ref).filter(Boolean)); }
-    observation = action.tool === 'open' && result?.ref ? { type: 'page', ...result } : { type: 'tool', tool: action.tool, result };
+    if (action.tool === 'open' && result?.ref && !result.already_read) { openedRefs.add(String(args.ref)); if (result.url) openedUrls.add(result.url); }
+    observation = action.tool === 'open' && result?.ref && !result.already_read ? { type: 'page', ...result } : { type: 'tool', tool: action.tool, result: result?.already_read ? { ...result, hint: ALREADY_READ_HINT(result.ref) } : result };
   }
   if (!stopReason) { stopReason = parallel && elapsed() >= maxSeconds - reserveSeconds ? 'time' : 'budget'; trace.event('budget', { left: { steps: 0 } }); trace.event('finish', { reason: stopReason }); }
+  await drainReads();
+  if (understandTask) { uController.abort('loop_finished'); await understandTask; }
+  const stallAudit = { max: maxStall, autopilot_steps: autopilotSteps, stopped_stuck: stopReason === 'stuck' };
+
+  if (dossierMode) {
+    // V15 · Juicio por convocatoria: cosecha oficial + web + páginas que leyó el agente, en expedientes.
+    const web = webTask ? await webTask : { items: [] };
+    const agentItems = [...pages.values()].filter((p) => p.assessment && (candidates.has(p.assessment.ref) || ['call', 'forecast_notice', 'program_page'].includes(p.assessment.page_type)))
+      .map((p) => ({ source: 'agent', ref: p.assessment.ref, url: p.url, title: p.title, text: p.text, textKind: p.stub ? 'stub' : 'web', query: 'agent', meta: {} }));
+    // Texto completo de un aviso del NIH por su número: API de la guía (si respondió en la cosecha), página pública, y Firecrawl de respaldo.
+    const apiDown = Boolean(official.nih.errors?.length) && !official.nih.items.length; const userAgent = String(env.RESEARCH_USER_AGENT || 'IGCOutreachResearch/1.0');
+    const readers = [opts.readers?.fetchPage || fetchPage, ...(opts.readers?.fetchPage ? [] : [firecrawlRead])];
+    const nihFetch = async (id) => {
+      const url = nihGuideUrl(id); if (!url) return [];
+      if (!apiDown) { try { const r = await nihGuideSearch(client, { query: id, perpage: 10, userAgent }); const docs = r.docs.filter((x) => x.id === id); if (docs.length) return docs.map((doc) => nihItem(doc, `upgrade:${id}`)); } catch { /* sigue con la página */ } }
+      for (const read of readers) { const page = await read(url, { env, fetcher: opts.fetcher || fetch, signal: opts.signal }).catch(() => null); const it = page ? nihItemFromPage({ ...page, url }, id, { parse: parseDates }) : null; if (it) return [it]; }
+      return [];
+    };
+    const stage = await runDossierStage({ items: [...official.items, ...web.items, ...agentItems], brief, today, terms, ids, objective, model, trace, env, nihFetch });
+    findings.push(...stage.findings);
+    const incomplete = [...(stopReason === 'stuck' ? ['agent_stuck'] : []), ...(official.nih.errors?.length ? ['nih_guide_errors'] : []), ...(official.reg.errors?.length ? ['registry_errors'] : []), ...(harvestErrors.length ? ['web_harvest_error'] : []), ...(stage.funnel.judge_failed ? ['judge_failures'] : []), ...(official.items.length === 0 ? ['no_official_sources'] : [])];
+    trace.event('dossier_summary', { funnel: stage.funnel, status_line: stage.statusLine, incomplete, facts_missing: stage.facts.missing });
+    const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
+    const usage = tools.usage?.() || {};
+    return { findings, leads, audit: { apollo, contacts: apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent+dossier', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: stage.funnel.dropped, kept: findings.length, errors: [...(official.nih.errors || []), ...(official.reg.errors || [])].map((e) => `${e.query || ''} ${e.error}`.trim()), dossier: stage.funnel, status_line: stage.statusLine, incomplete, applicant_missing: stage.facts.missing, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, stall: stallAudit, ...usage }, judge: { finalists: stage.funnel.judged, calls: stage.funnel.judged, second_blind_calls: 0, second_call_changed: 0, mode: 'dossier' }, decisions: [...decisions, ...stage.decisions] }, queries };
+  }
+
+  if (investorOn) {
+    // V15 · Inversionistas: expedientes por organización y evidencia por código. El juez LLM no decide aquí.
+    const prefetched = await investorTask;
+    const agentPages = [...openedPages.values()];
+    const stage = await runInvestorStage({ tools, brief, today, trace, env, agentPages, apolloRows: apolloSeed?.results || [], prefetched });
+    findings.push(...stage.findings);
+    const incomplete = [...(stopReason === 'stuck' ? ['agent_stuck'] : []), ...(investorErrors.length ? ['investor_harvest_error'] : []), ...(stage.funnel.errors?.length ? ['search_errors'] : []), ...(stage.funnel.candidates === 0 ? ['no_candidates'] : [])];
+    const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, candidates: stage.funnel.apollo.candidates, kept: stage.funnel.apollo.kept, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
+    const usage = tools.usage?.() || {};
+    return { findings, leads, audit: { apollo, contacts: apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent+investor_dossier', queries: queries.length + stage.funnel.queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: stage.funnel.candidates, dropped: stage.funnel.dropped, kept: findings.length, errors: [...investorErrors, ...(stage.funnel.errors || []).map((e) => `${e.query} ${e.error}`)], investor: stage.funnel, other_routes: stage.otherRoutes, status_line: stage.statusLine, incomplete, applicant_missing: stage.facts.missing, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, stall: stallAudit, ...usage }, judge: { finalists: 0, calls: 0, second_blind_calls: 0, second_call_changed: 0, mode: 'investor_dossier_code' }, decisions: [...decisions, ...stage.decisions] }, queries: [...queries, ...stage.funnel.queries.map((q) => ({ query: q, family: 'investor_dossier' }))] };
+  }
 
   const selected = (finalRefs.length ? finalRefs : [...candidates.keys()]).filter((ref) => candidates.has(ref));
-  let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map();
+  let judgeCalls = 0; let secondCalls = 0; let changed = 0; const firstJudgments = new Map(); const droppedCalls = new Map(); const callIdsOf = new Map();
   // El segundo juez ciego solo mide acuerdo (no cambia hallazgos): en modo solo juez se apaga por defecto para no restar GPU al primero.
   const secondMax = opts.secondJudge !== undefined && opts.secondJudge !== null ? Number(opts.secondJudge) : Number(env.ENGINE_AGENT_JUDGE_SECOND ?? (seeded ? 0 : 10));
   const secondRefs = selected.slice(0, Math.max(0, secondMax));
@@ -281,18 +674,25 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     if (seeded && !audit.dropReason && objective !== 'grant') { const me = selfPage(page, brief); if (me.self) audit.dropReason = 'not_a_funder:self'; }
     trace.event('decision', { page_ref: ref, by: 'judge', verdict: audit.dropReason ? 'drop' : audit.mainOk ? 'keep' : 'verify', reason: audit.dropReason || (audit.mainOk ? 'audited' : 'blocked'), page_type: audit.pageType?.judge || a.page_type, dates: audit.dates?.judge || [], criteria: audit.criteria, days_left: audit.daysLeft, blocked_by: audit.mainOk ? [] : Object.entries(audit.criteria || {}).filter(([, v]) => v?.verdict !== 'yes').map(([k, v]) => `${k}:${v?.verdict || 'unknown'}`), next_action: null });
     if (audit.dropReason) {
+      for (const id of foaIdsIn(page.text)) droppedCalls.set(id, { reason: audit.dropReason, url: page.url });
       trace.event('drop', { url: page.url, page_ref: ref, reason: audit.dropReason, decided_by: 'judge', read: true });
       // Para el asistente («¿por qué descartaste X?»): motivo y la cita que lo sostiene, sin el texto de la página.
       const why = audit.dropReason === 'closed' ? audit.deadlineQuote : Object.values(audit.criteria || {}).find((c) => c.verdict === 'no' && c.quoteOk)?.quote;
       droppedPages.push({ url: page.url, title: String(page.title || a.about || '').slice(0, 160), reason: audit.dropReason, quote: String(why || '').slice(0, 300), deadline: audit.deadline || null });
       continue;
     }
+    callIdsOf.set(page.url, foaIdsIn(page.text));
     const eligible = ['eligibility', 'region', 'entity_type', 'stage'].some((id) => audit.criteria[id]?.verdict === 'no') ? 'no' : audit.criteria.eligibility?.verdict === 'yes' ? 'yes' : 'unclear';
     const identity = a.lead?.quote && literalIn(a.lead.quote, page.text) ? a.lead.quote : a.about;
     findings.push({ objective, url: page.url, title: page.title, name: reg ? [reg.number, reg.title].filter(Boolean).join(' · ') : shortName(a.about, page.url), ...(reg ? { registry: { number: reg.number, agency: reg.agency, closeDate: reg.closeDate, forecastClose: reg.forecastClose, status: reg.status, url: reg.url, moreInfoUrl: reg.moreInfoUrl, via: reg.source } } : {}),
-      ...(reg?.contactEmail ? { contacts: [{ name: reg.contactText || 'Agency contact', title: 'Contact listed in the official registry', organization: reg.agency, email: reg.contactEmail, linkedin_url: null, source: 'registry' }] } : {}), query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, ...(audit.state === 'forecast' ? { forecast: true, estimatedDeadline: audit.estimatedDeadline } : {}), eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries },
+      ...(reg?.contactEmail ? { contacts: [{ name: reg.contactText || 'Agency contact', title: 'Contact listed in the official registry', organization: reg.agency, email: reg.contactEmail, linkedin_url: null, source: 'registry' }] } : {}), query: 'agent', family: 'agent', providers: ['agent'], model: env.ENGINE_AGENT_LLM_MODEL || 'injected', keep: true, drop: null, status: audit.state, deadline: audit.deadline, daysLeft: audit.daysLeft, ...(audit.state === 'forecast' ? { forecast: true, estimatedDeadline: audit.estimatedDeadline } : {}), eligible, nonDilutive: a.criteria.non_dilutive?.verdict || 'unknown', amount: a.lead?.amount || null, pageType: { type: a.page_type }, read_contract: a.contract || 'full', quotes: { identity, ...(audit.deadlineQuote ? { deadline: audit.deadlineQuote } : {}), ...(audit.criteria.eligibility?.quote ? { eligible: audit.criteria.eligibility.quote } : {}) }, tier: audit.mainOk ? 'main' : 'verify', verdict: audit.mainOk ? 'apply' : 'watch', flags: audit.flags || [], blockers: audit.blockers || [], reasons: [], trace: { queries },
       // El tema lo decide el juez con su cita; sin esto, el filtro de palabras de evaluate() descartaba convocatorias ya auditadas (14-10).
       scopeFit: (() => { const tf = audit.criteria.topic_fit || {}; return { verdict: tf.verdict === 'yes' ? 'fits' : tf.verdict === 'no' ? 'does_not_fit' : 'unclear', reason: tf.reason || '', fundsQuote: tf.verdict === 'yes' ? tf.quote : null, excludesQuote: tf.verdict === 'no' ? tf.quote : null, source: 'judge' }; })() });
+  }
+  // La misma convocatoria (mismo ID oficial) leída por otra URL: si el juez la descartó con la página completa, no queda como verificada por una ficha pobre.
+  for (let i = findings.length - 1; i >= 0; i--) {
+    const f = findings[i]; const hit = (callIdsOf.get(f.url) || []).map((id) => [id, droppedCalls.get(id)]).find(([, d]) => d && d.url !== f.url);
+    if (hit) { trace.event('drop', { url: f.url, reason: 'same_call_dropped', decided_by: 'code', read: true, call_id: hit[0], dropped_url: hit[1].url, dropped_reason: hit[1].reason }); findings.splice(i, 1); }
   }
   for (const [idx, ref] of secondRefs.entries()) {
     const second = preSecond ? preSecond[idx] : await judgeSecond(ref)(); secondCalls++;
@@ -300,7 +700,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     if (!second || !first || ids.some((id) => second.criteria[id]?.verdict !== first.criteria[id]?.verdict)) changed++;
   }
   // Apollo en código: contactos de los financiadores que sobrevivieron al juez (el modelo ya no decide si se gasta).
-  const contacts = pastDeadline() ? { orgs: 0, people: 0, credits: 0, skipped: 'time_budget', domains: [] } : await contactStage({ findings, objective, tools, trace, env, configured: Boolean(env.APOLLO_API_KEY || opts.apollo) });
+  const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };
   const usage = tools.usage?.() || {};
-  return { findings, leads, audit: { objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: usage.opens || 0, unread: 0, dropped: {}, kept: findings.length, errors: skippedForTime.length ? [`TIME_BUDGET: ${skippedForTime.length} pages not judged before the run deadline`] : [], skipped_for_time: skippedForTime.length, dropped_pages: droppedPages.slice(0, 120), triage: triageStats, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, questions, assumptions: (understood.assumptions || []).length, ...usage }, discovery: { on: Boolean(coverage), levels: coverage ? coverage.levels.length : 0, queries: discoveryQueries }, contacts, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
+  return { findings, leads, audit: { apollo, contacts: apollo, ...(tools.disabledProviders ? { providers_disabled: tools.disabledProviders() } : {}), objective, search: 'agent', queries: queries.length, pages: usage.opens || 0, read: pages.size, unread: unreadPages.size, unread_by_model: [...unreadPages.values()], reads: { ...readStats }, candidates: candidates.size, dropped: {}, kept: findings.length, errors: skippedForTime.length ? [`TIME_BUDGET: ${skippedForTime.length} pages not judged before the run deadline`] : [], skipped_for_time: skippedForTime.length, dropped_pages: droppedPages.slice(0, 120), triage: triageStats, agent: { on: true, ready: true, steps: stepsRun, invalid_steps: invalidSteps, seconds: Math.round((Date.now() - started) / 1000), stop_reason: stopReason, understand_source: understandSource, questions, assumptions: (understood.assumptions || []).length, stall: stallAudit, ...usage }, discovery: { on: Boolean(coverage), levels: coverage ? coverage.levels.length : 0, queries: discoveryQueries }, judge: { finalists: selected.length, calls: judgeCalls, second_blind_calls: secondCalls, second_call_changed: changed }, decisions }, queries };
 }

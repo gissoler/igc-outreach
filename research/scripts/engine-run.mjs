@@ -13,6 +13,7 @@ import { fleetConfig } from '../server/analysis/fleet.mjs';
 import { hostOf } from '../server/research/verify.mjs';
 import { createTrace } from '../server/research/trace.mjs';
 import { COMPILER_PROMPT_VERSION, JUDGE_PROMPT_VERSION } from '../server/research/judge/prompts.v13.mjs';
+import { footerFor, funnelLines, funnelOf, modelsUsed, providerRows } from '../server/research/agentic/report.mjs';
 
 const arg = (name, fallback = '') => { const at = process.argv.indexOf(name); return at >= 0 ? process.argv[at + 1] : fallback; };
 const env = process.env;
@@ -48,6 +49,17 @@ const cachedBefore = Object.keys(cache).length;
 console.log(`Motor v2 · ${objectives.join(', ')} · hoy=${today}\n  modelo: ${engineRole.model} @ ${engineRole.url}${engineRole.alias ? ' (rol chat)' : ''}\n  búsqueda: ${searchProviders(env).join(', ') || '(ninguna API)'}\n  caché de búsquedas: ${useCache ? `${cachedBefore} consultas guardadas` : 'no'}\n  salida: ${outDir}\n`);
 
 const cfg = fleetConfig(env);
+const configuredAgentRole = (name, fallback) => {
+  const requested = String(env[name] || '').trim();
+  const role = ['agent', 'compiler'].includes(requested) ? requested : fallback;
+  return { role, ...(cfg.roles[role] || {}) };
+};
+const agentModels = env.ENGINE_AGENT === '1' ? {
+  planner: { role: 'agent', ...(cfg.roles.agent || {}) },
+  understand: configuredAgentRole('ENGINE_AGENT_UNDERSTAND_ROLE', env.ENGINE_AGENT_PARALLEL === '1' ? 'compiler' : 'agent'),
+  assess: configuredAgentRole('ENGINE_AGENT_ASSESS_ROLE', 'compiler'),
+  judge: { role: 'judge', ...(cfg.roles.judge || {}) },
+} : null;
 const safeFlags = Object.fromEntries(Object.entries(env).filter(([k]) => k.startsWith('ENGINE_') && !/(KEY|TOKEN|SECRET|PASSWORD)/i.test(k)));
 const trace = traceOn ? createTrace({ dir: outDir, runId: `${label}-${Date.now()}`, objective: objectives.length === 1 ? objectives[0] : '-' }) : null;
 const commit = (() => { try { return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(); } catch { return 'unknown'; } })();
@@ -57,6 +69,7 @@ trace?.event('run_start', { brief, brief_sha: createHash('sha256').update(briefB
   prompts: { compiler: COMPILER_PROMPT_VERSION, judge: JUDGE_PROMPT_VERSION, planner: 'plan', reader: 'finding', followup: 'followup', researcher: 'research' }, git_commit: commit, limits });
 
 const fixture = env.ENGINE_TEST_FIXTURE === '1';
+if (fixture && env.ENGINE_AGENT_REGISTRY_SEED === undefined) env.ENGINE_AGENT_REGISTRY_SEED = '0';   // el fixture no toca registros reales
 const fixturePage = { url: 'https://fixture.example.org/call', title: 'Fixture call', markdown: 'Alzheimer research grant. Applications are open to US for-profit companies. Application deadline is December 15, 2026. Cash grant with no equity.' };
 const fixtureSearch = async () => [fixturePage];
 const fixtureChat = async ({ name }) => name === 'plan'
@@ -68,6 +81,9 @@ const r = await runEngine(brief, { env, today, objectives, cache: useCache ? cac
 const seconds = Math.round((Date.now() - t0) / 1000);
 trace?.event('run_end', { seconds, totals: { findings: r.findings.length, queries: r.queries.length, pages: r.audits.reduce((n, a) => n + (a.pages || 0), 0) } });
 trace?.close();
+const events = traceOn ? readFileSync(join(outDir, 'events.jsonl'), 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse) : [];
+const used = modelsUsed(events); const funnel = funnelOf(r.audits, r.findings); const searchProv = providerRows(events);
+const usedText = (purpose) => { const u = used[purpose]; return traceOn ? (u ? ` · usado en la traza: ${Object.entries(u.models).map(([m, n]) => `\`${m}\` ×${n}`).join(', ')} (${u.ok}/${u.calls} ok)` : ' · sin llamadas en la traza') : ''; };
 if (useCache) { mkdirSync(resolve(cachePath, '..'), { recursive: true }); writeFileSync(cachePath, JSON.stringify(cache)); }
 
 // Recall contra la lista de referencia (solo para Mentiva · grants)
@@ -87,6 +103,27 @@ const prov = {};
 for (const a of r.audits) for (const [p, s] of Object.entries(a.providers || {})) { const t = (prov[p] ||= { calls: 0, returned: 0, errors: 0, ms: 0, costUsd: 0, pagesRead: 0, kept: 0, keptOnlyHere: 0 }); for (const k of Object.keys(t)) t[k] += s[k] || 0; if (s.disabled) t.disabled = s.disabled; }
 
 const esc = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim();
+/** V15 · Sección del resultado por convocatoria: línea de estado, embudo de expedientes y tabla con condiciones. */
+function dossierLines(a, found) {
+  const f = a.dossier; const src = Object.entries(f.by_source || {}).map(([k, v]) => `${k} ${v}`).join(', ');
+  return ['', '## Resultado por convocatoria (expedientes)', '', `**${esc(a.status_line)}**`, ...(a.incomplete?.length ? ['', `⚠ Exploración incompleta: ${a.incomplete.join(', ')}.`] : []), '',
+    '| Ítems cosechados | Catálogos recorridos | Convocatorias distintas | Sin texto suficiente | Vencidas (código) | Cerradas (registro) | Preselección (directas / posibles / ajenas) | Juzgadas | Descartadas por el juez | Retenidas | Pertinentes por tema | Abiertas | Pronóstico | Condicionadas | Listas |', '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+    `| ${f.items} (${esc(src)}) | ${f.catalogs} | ${f.dossiers} | ${f.not_evaluable} | ${f.expired} | ${f.closed_registry} | ${f.shortlist ? `${f.shortlist.direct} / ${f.shortlist.possible} / ${f.shortlist.unrelated} de ${f.shortlist.screened}` : '—'} | ${f.judged}${f.judge_failed ? ` (${f.judge_failed} sin juicio)` : ''} | ${esc(Object.entries(f.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', ')) || '0'} | ${f.kept} | ${f.pertinent} | ${f.open} | ${f.forecast} | ${f.conditional} | **${f.ready}** |`,
+    '', '| # | ID | Convocatoria | Vía | Tema | Estado | Próxima fecha (fuente) | Carta de intención | Elegibilidad | Condiciones | Bloqueadores | URL |', '|---|---|---|---|---|---|---|---|---|---|---|---|',
+    ...found.map((x, i) => `| ${i + 1} | ${x.call_id || '—'} | ${esc(x.title).slice(0, 110)} | ${x.lane || '—'}${x.mechanism ? ` (${x.mechanism})` : ''} | ${x.fit?.topic || '—'} | ${x.status} | ${x.deadline ? `${x.deadline} (${x.deadlineSource || 'juez'})` : x.estimatedDeadline ? `estimada ${x.estimatedDeadline}` : '—'} | ${x.loiDeadline || '—'} | ${x.eligible} | ${esc((x.conditions || []).join(' · ')).slice(0, 260) || '—'} | ${esc((x.blockers || []).join(' · ')).slice(0, 260) || '—'} | ${x.url} |`)];
+}
+/** V15 · Inversionistas por organización: embudo, evidencia por código (cita + URL) y rutas que no son inversión. */
+function investorLines(a, found) {
+  const f = a.investor; const via = Object.entries(f.by_via || {}).map(([k, v]) => `${k} ${v}`).join(', ');
+  const cell = (e) => (e?.quote ? `“${esc(e.quote).slice(0, 140)}”` : e?.link ? `enlace ${e.link}` : '—');
+  return ['', '## Inversionistas por organización (evidencia por código)', '', `**${esc(a.status_line)}**`, ...(a.incomplete?.length ? ['', `⚠ Exploración incompleta: ${a.incomplete.join(', ')}.`] : []), '',
+    '| Consultas (código) | Resultados | Listas abiertas → candidatos | Noticias → nombres → resueltos | Apollo (candidatas / abiertas / retenidas) | Candidatas | Abiertas | Descartes (código) | Retenidas | Tesis específica | Listas para contactar |', '|---|---|---|---|---|---|---|---|---|---|---|',
+    `| ${f.queries.length} | ${f.results} | ${f.lists_opened} → ${f.list_candidates} | ${f.news_opened} → ${f.names_found} → ${f.names_resolved} | ${f.apollo.candidates} / ${f.apollo.selected} / ${f.apollo.kept} | ${f.candidates} (${esc(via)}) | ${f.opened} | ${esc(Object.entries(f.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', ')) || '0'} | ${f.kept} | ${f.specific} | **${f.main}** |`,
+    ...(f.snowball ? ['', `Segunda ronda (co-inversores que nombran los fondos retenidos): ${f.snowball.names} nombres → ${f.snowball.resolved} resueltos → ${f.snowball.added} candidatas nuevas → ${f.snowball.screened} abiertas.`] : []),
+    '', '| # | Organización | Nivel | Tesis | Etapa | Geografía | Contacto | Actividad | Condiciones | Bloqueos |', '|---|---|---|---|---|---|---|---|---|---|',
+    ...found.map((x, i) => `| ${i + 1} | ${esc(x.name)} (${x.org.key}) | ${x.tier} | ${x.evidence.thesis.level}: ${cell(x.evidence.thesis)} | ${x.evidence.stage.fit}: ${cell(x.evidence.stage)} | ${x.evidence.geography.fit}: ${cell(x.evidence.geography)} | ${x.evidence.contact.kind}: ${cell(x.evidence.contact)} | ${x.evidence.recent.year || '—'} | ${esc((x.conditions || []).join(' · ')).slice(0, 220) || '—'} | ${esc((x.blockers || []).join(' · ')).slice(0, 220) || '—'} |`),
+    ...(a.other_routes?.length ? ['', 'Rutas que no son inversión (partnering/licensing), detectadas por código:', ...a.other_routes.map((r) => `- ${r.org}: “${esc(r.quote || '').slice(0, 160)}” (${r.url})`)] : [])];
+}
 const registry = [
   ['1', 'Eventos `page`: `found_by`.'], ['2', 'Eventos `page` con `read` y eventos `drop` con `read:false`.'],
   ['3', 'Eventos `drop`: `reason` y `decided_by`.'], ['4', 'Eventos `decision`: `dates` y `days_left`.'],
@@ -97,14 +134,25 @@ const registry = [
 ];
 const lines = [
   `# Motor v2 — ${brief.company || 'brief'} · ${objectives.join(', ')} · ${today}`, '',
-  `- Modelo que planea y lee: \`${engineRole.model}\` (${engineRole.url})`,
+  ...(agentModels ? [
+    `- Modelo planificador: \`${agentModels.planner.model || 'no configurado'}\` (${agentModels.planner.url || 'sin URL'})${usedText('step')}`,
+    `- Modelo de comprensión: \`${agentModels.understand.model || 'no configurado'}\` (${agentModels.understand.role})${usedText('understand')}`,
+    `- Modelo lector/evaluador: \`${agentModels.assess.model || 'no configurado'}\` (${agentModels.assess.role})${usedText('assess')}`,
+    `- Modelo juez: \`${agentModels.judge.model || 'no configurado'}\` (${agentModels.judge.url || 'sin URL'})${usedText('judge')}`,
+  ] : [`- Modelo que planea y lee: \`${engineRole.model}\` (${engineRole.url})`]),
   `- Búsqueda: ${searchProviders(env).join(', ') || 'sin APIs'} · rondas ${env.ENGINE_ROUNDS || 2} · duración ${seconds} s`,
   `- Caché de búsquedas: ${useCache ? `${cachedBefore} → ${Object.keys(cache).length} consultas` : 'desactivada'}`,
   '', '## Resumen por objetivo', '', '| Objetivo | Búsqueda | Consultas | Páginas | Leídas | Sin leer | Vía Jina Reader | Verificadas | Descartes |', '|---|---|---|---|---|---|---|---|---|',
   ...r.audits.map((a) => `| ${a.objective} | ${a.search} | ${a.queries} | ${a.pages} | ${a.read} | ${a.unread} | ${a.jinaRead || 0} | **${a.kept}** | ${esc(Object.entries(a.dropped || {}).map(([k, v]) => `${k} ${v}`).join(', '))} |`),
+  ...r.audits.filter((a) => a.dossier).flatMap((a) => dossierLines(a, r.findings.filter((f) => f.objective === a.objective))),
+  ...r.audits.filter((a) => a.investor).flatMap((a) => investorLines(a, r.findings.filter((f) => f.objective === a.objective))),
+  '', ...funnelLines(funnel, r.audits),
   '', '## Aporte de cada buscador', '', '| Proveedor | Llamadas | Resultados | Errores | Seg. medios | Coste US$ | Páginas leídas | Verificadas | Solo él las trajo | Nota |', '|---|---|---|---|---|---|---|---|---|---|',
   ...Object.entries(prov).map(([p, s]) => `| ${p} | ${s.calls} | ${s.returned} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.costUsd ? s.costUsd.toFixed(3) : '-'} | ${s.pagesRead} | ${s.kept} | ${s.keptOnlyHere} | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`),
-  '', `## Oportunidades verificadas (${r.findings.length})`, '', '| # | Veredicto | Nombre | Estado | Cierre | Días | Elegible | Monto | Buscadores | URL |', '|---|---|---|---|---|---|---|---|---|---|',
+  // Modo agente: el audit no trae proveedores; se cuentan desde la traza. Un proveedor apagado (p. ej. Jina 402) va marcado y sus errores no cuentan como errores del resto.
+  ...(!Object.keys(prov).length ? Object.entries(searchProv.rows).map(([p, s]) => `| ${p} | ${s.calls} | ${s.results} | ${s.errors} | ${s.calls ? (s.ms / s.calls / 1000).toFixed(1) : '-'} | ${s.cost_usd ? s.cost_usd.toFixed(3) : '-'} | — | — | — | ${s.disabled ? `⚠ apagado: ${esc(s.disabled).slice(0, 90)}` : ''} |`) : []),
+  ...(!Object.keys(prov).length && Object.keys(searchProv.rows).length ? ['', `Errores de proveedores activos: ${searchProv.active_errors}/${searchProv.active_calls} llamadas${Object.keys(searchProv.disabled).length ? ` · apagados: ${Object.keys(searchProv.disabled).join(', ')}` : ''}.`] : []),
+  '', `## Oportunidades retenidas (${r.findings.length}) · listas para aplicar: ${r.findings.filter((f) => f.verdict === 'apply').length}`, '', '| # | Veredicto | Nombre | Estado | Cierre | Días | Elegible | Monto | Buscadores | URL |', '|---|---|---|---|---|---|---|---|---|---|',
   ...r.findings.map((f, i) => `| ${i + 1} | ${f.verdict} | ${esc(f.name || f.title)} | ${f.status} | ${f.deadline || '—'} | ${f.daysLeft ?? '—'} | ${f.eligible} | ${esc(f.amount) || '—'} | ${(f.providers || []).join(', ')} | ${f.url} |`),
   '', `## Pistas (${(r.leads || []).length})`, '', '| # | Tipo | Financiador | Receptor | Seguimientos | Produjo | URL |', '|---|---|---|---|---|---|---|',
   ...(r.leads || []).map((l, i) => `| ${i + 1} | ${esc(l.kind)} | ${esc(l.funder) || '—'} | ${esc(l.recipient) || '—'} | ${(l.followups || []).length} | ${(l.produced || []).length} | ${l.url || '—'} |`),
@@ -114,10 +162,10 @@ const lines = [
   '## Consultas ejecutadas', '', ...r.queries.map((q) => `- (${esc(q.family) || '—'}) ${esc(q.query)}`),
   ...(traceOn ? ['', '## Registro', '', ...registry.map(([n, q]) => `${n}. ${q}`)] : []),
   ...(r.audits.some((a) => a.errors?.length) ? ['', '## Errores de proveedores (muestra)', '', ...r.audits.flatMap((a) => (a.errors || []).map((e) => `- ${esc(e)}`))] : []),
-  '', '> Todo lo listado pasó la verificación en código (cita literal en la página, fecha contra hoy, sin agregadores ni redes). Lo que no aparece aquí no se pudo verificar; no se inventa.',
+  '', footerFor(funnel, r.findings),
 ];
 writeFileSync(join(outDir, 'report.md'), lines.join('\n'));
-writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, providers: searchProviders(env), seconds, audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
+writeFileSync(join(outDir, 'result.json'), JSON.stringify({ brief, objectives, today, model: engineRole.model, ...(agentModels ? { agent_models: Object.fromEntries(Object.entries(agentModels).map(([name, target]) => [name, { role: target.role, model: target.model || null, url: target.url || null }])) } : {}), providers: searchProviders(env), seconds, funnel, ...(traceOn ? { models_used: used } : {}), audits: r.audits, recall, findings: r.findings, leads: r.leads || [], queries: r.queries }, null, 2));
 
 function coverageSummary() {
   const dir = join(outDir, 'coverage'); if (!existsSync(dir)) return { files_executed: 0, functions_executed: 0, path: 'coverage/' };
@@ -134,13 +182,15 @@ function coverageSummary() {
 
 function writeSummary() {
   if (!traceOn) return;
-  const events = readFileSync(join(outDir, 'events.jsonl'), 'utf8').trim().split('\n').filter(Boolean).map(JSON.parse);
   const summary = { v: 'summary/1', run_id: events[0]?.run_id || '', case: objectives.join(','), fase: process.env.ENGINE_AGENT === '1' ? 'F2' : 'F1', git_commit: commit,
     flags: { ENGINE_JUDGE: env.ENGINE_JUDGE || '', ENGINE_AGENT: env.ENGINE_AGENT || '', ENGINE_JUDGE_BLIND: env.ENGINE_JUDGE_BLIND || '' }, today, seconds,
     pages: { seen: 0, read: 0, unread_by_reason: {} }, model_calls: {}, tools: {}, searches: { total: 0, repeated_normalized: 0 }, drops: {},
     findings: { main: r.findings.filter((f) => f.tier === 'main').length, verify: r.findings.filter((f) => f.tier !== 'main').length },
     leads: { total: 0, with_followup: 0, with_finalist: 0 }, agent: { steps: 0, invalid_steps: 0, rejected_ref: 0, stop_reason: '', questions: 0, assumptions: 0 },
-    judge: { finalists: r.findings.length, calls: 0, second_blind_calls: 0, second_call_changed: 0 }, coverage: coverageSummary(), gold: null };
+    judge: { finalists: r.findings.length, calls: 0, second_blind_calls: 0, second_call_changed: 0 }, coverage: coverageSummary(), gold: null,
+    funnel, models_used: used, search_providers: searchProv.rows, search_errors_active: searchProv.active_errors, providers_disabled: searchProv.disabled,
+    queries_skipped: events.filter((e) => e.type === 'query_skipped').length, unread_by_model: events.filter((e) => e.type === 'page_unread').length,
+    apollo: r.audits.map((a) => a.apollo).filter(Boolean) };
   const searches = []; const followups = new Set();
   for (const e of events) {
     if (e.type === 'page') { summary.pages.seen++; if (e.read) summary.pages.read++; }

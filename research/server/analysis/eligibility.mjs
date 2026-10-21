@@ -76,7 +76,7 @@ const val = (p, k) => p?.[k]?.value ?? null;
 /** Perfil de elegibilidad a partir del brief del trabajo (no el de IGC). Lo que el brief no dice queda en null → "?" y no "✖". */
 export function profileFromBrief(brief = {}) {
   const a = applicantProfile(brief);
-  const assumed = /^default/.test(a.entitySource);
+  const assumed = a.entity === 'unknown';
   const from = (value, source, extra = {}) => ({ value, source, ...extra });
   const entityValue = a.entity === 'for_profit_startup' ? 'for_profit' : a.entity;
   const us = a.country ? a.country === 'US' : a.outside.includes('US') ? false : null;

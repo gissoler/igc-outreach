@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, Check, ChevronRight, Copy, ExternalLink, FileSearch, Globe, Lightbulb, Lock, Mail, MessageSquareText, MoreHorizontal, Plus, RefreshCw, Route, ThumbsDown, TriangleAlert, UserRound, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import type { BrowseAction, BrowseShot, Evidence, Job, Lead } from '../researchApi';
+import type { BrowseAction, BrowseShot, ContactPerson, Evidence, Job, Lead } from '../researchApi';
 import { browsePage, closeBrowse, fundingLabels, officialPage, statusLabels } from '../researchApi';
 import { SOURCE_META } from '../sources';
 import { CopyBtn, reasonFor, shortDraft } from './Contacts';
@@ -148,6 +148,30 @@ function ContactCard({ lead, demo, isGrant }: { lead: Lead; demo: boolean; isGra
         : <span className="pl-chip gray" title={k.type === 'email' ? k.value || '' : undefined}>{k.type === 'email' && k.value ? clip(k.value, 30) : k.value || 'No public channel'}</span>}
       {k.type === 'email' && k.value && !demo && <CopyButton text={k.value} label="" className="ld-ic" />}
     </div>
+  </div>;
+}
+
+const orgKey = (value: string) => value.toLowerCase().replace(/\b(inc|llc|ltd|limited|corp|corporation|ventures?|capital|partners?)\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+function ApolloContacts({ lead, job, demo }: { lead: Lead; job: Job; demo: boolean }) {
+  if (demo) return null;
+  const target = orgKey(lead.org);
+  if (!target) return null;
+  const people: ContactPerson[] = (job.contactResolution || [])
+    .filter((row) => {
+      const candidate = orgKey(row.organization.canonical_name);
+      return candidate === target || (candidate.length > 4 && (candidate.includes(target) || target.includes(candidate)));
+    })
+    .flatMap((row) => row.people)
+    .slice(0, 3);
+  if (!people.length) return null;
+  return <div className="ld-apollo">
+    <header><span><b>Apollo contacts</b><small>Found after this organization was selected</small></span><em>{people.length}</em></header>
+    {people.map((person) => <article key={person.person_id}>
+      <span className="ld-contact-av" aria-hidden="true">{initials(person.name)}</span>
+      <div><b>{person.name}</b><small>{person.title || 'Role not confirmed'} · {person.organization}</small><p>{person.reason}</p></div>
+      <div className="ld-apollo-a">{person.channel ? (person.channel.type === 'email' ? <><span>{clip(person.channel.value, 30)}</span><CopyButton text={person.channel.value} label="" className="ld-ic" /></> : <a className="x-btn sm" href={person.channel.value} target="_blank" rel="noreferrer">Open {person.channel.type} <ExternalLink size={12} /></a>) : <span className="pl-chip gray">No public channel</span>}<small>{person.verification_status === 'verified' ? 'Verified contact data' : 'Review contact data'}</small></div>
+    </article>)}
+    <p>Apollo confirms a public role or channel. It does not prove a warm relationship or willingness to introduce you.</p>
   </div>;
 }
 
