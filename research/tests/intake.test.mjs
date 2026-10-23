@@ -225,7 +225,8 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
   await runTurn(s, { text: 'no sé', env, fetchImpl: answer({ ack: 'Ok.', question: '', asking: null, skipped: 'funding.amount_usd', updates: [] }) });
   assert.ok(missingRequired(s).includes('funding.amount_usd'));
   await runTurn(s, { text: '1,200 beta users', env, fetchImpl: answer({ ack: 'Great traction.', question: '', asking: null, updates: [{ path: 'company.traction', value: '1,200 beta users', quote: '1,200 beta users' }] }) });
-  assert.match(s.messages.at(-1).text, /missing one useful detail.*amount/i);
+  assert.match(s.messages.at(-1).text, /amount.*unknown|unknown.*amount/i);
+  assert.doesNotMatch(s.messages.at(-1).text, /\?/);
   assert.doesNotMatch(s.messages.at(-1).text, /complete/);
   await runTurn(s, { text: 'about 500k', env, fetchImpl: answer({ ack: 'USD 500k.', question: '', asking: null, updates: [{ path: 'funding.amount_usd', value: 500000, quote: '500k' }] }) });
   assert.deepEqual(missingRequired(s), []);
@@ -236,7 +237,7 @@ test('intake: el plan depende del objetivo; inversión exige ronda, monto y trac
 test('intake: grants pide datos propios de grants y no obliga a completar una ronda de inversión', () => {
   const s = newIntake({});
   s.fields['funding.objectives'] = { value: ['grant'], origin: 'user', confidence: 'source' };
-  assert.deepEqual(planFields(s).slice(-8), ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state', 'funding.apply_window', 'funding.applicant_role', 'project.target_population', 'funding.search_terms']);
+  assert.deepEqual(planFields(s).slice(-7), ['funding.amount_usd', 'funding.use_of_funds', 'company.entity_type', 'company.state', 'funding.apply_window', 'funding.applicant_role', 'project.target_population']);
   assert.ok(!planFields(s).includes('funding.round'));
   assert.ok(!planFields(s).includes('company.traction'));
 });

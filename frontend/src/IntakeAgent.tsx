@@ -108,13 +108,16 @@ export function PlanProgress({ intake }: { intake: IntakeState | null }) {
   const missing = intake ? plan.filter((p) => intake.missing.includes(p)) : plan;
   const done = plan.length - missing.length;
   const pct = Math.round((done / plan.length) * 100);
+  const goals = asList(intake?.fields['funding.objectives']?.value);
+  const grantsOnly = goals.length === 1 && goals[0] === 'grant';
+  const readyWithUnknown = !!intake && intake.messages.length > 1 && missing.length > 0 && intake.pending === null;
   return <div className="ia-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Plan readiness">
     <div className="ia-progress-h">
       <span className="ia-progress-t"><LoaderCircle size={14} className={pct < 100 ? 'spin-slow' : ''} /> Your plan</span>
       <span><b>{pct}%</b> · {done} of {plan.length} answers</span>
     </div>
     <div className="ia-progress-bar"><b style={{ width: `${pct}%` }} />{pct < 100 && <s style={{ left: `${pct}%`, width: `${Math.min(100 - pct, 100 / REQUIRED.length)}%` }} />}<i style={{ left: `${pct}%` }} /></div>
-    <p>{pct < 100 ? <>At 100% we build your plan: <b>who to contact, why, and a 4-line email</b>.</> : <><Check size={13} /> Complete. Review and run the search.</>}</p>
+    <p>{readyWithUnknown ? <>Ready to review; unanswered details stay unknown.</> : pct < 100 ? <>You can leave details unknown. We use your answers to find <b>{grantsOnly ? 'relevant calls, requirements and next steps' : 'relevant funding and next steps'}</b>.</> : <><Check size={13} /> Ready to review and run the search.</>}</p>
   </div>;
 }
 /* ───────── Paso 1: conversación + adjuntos ───────── */
@@ -165,9 +168,9 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
     </div>}
     <PlanProgress intake={intake} />
     <div className="ia-thread" ref={thread} aria-live="polite">
-      {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role} ${m.role === 'assistant' && i === intake.messages.length - 1 && missing > 0 && !busy && intake.messages.length > 1 ? 'ask' : ''}`}>
+      {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role} ${m.role === 'assistant' && i === intake.messages.length - 1 && missing > 0 && Boolean(intake.pending) && !busy && intake.messages.length > 1 ? 'ask' : ''}`}>
         {m.role === 'assistant' && <img src="/igc-outreach-mark.png" alt="" width={26} height={26} />}
-        <div>{m.role === 'assistant' && i === intake!.messages.length - 1 && missing > 0 && !busy && intake!.messages.length > 1 && <span className="ia-need">Needed for your plan</span>}{m.text && <p>{m.text}</p>}{m.files?.length ? <div className="ia-files">{m.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div> : null}</div>
+        <div>{m.role === 'assistant' && i === intake!.messages.length - 1 && missing > 0 && Boolean(intake?.pending) && !busy && intake!.messages.length > 1 && <span className="ia-need">Next detail</span>}{m.text && <p>{m.text}</p>}{m.files?.length ? <div className="ia-files">{m.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div> : null}</div>
       </div>)}
       {sent && <div className="ia-msg user pending"><div>{sent.text && <p>{sent.text}</p>}{sent.files.length > 0 && <div className="ia-files">{sent.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div>}</div></div>}
       {busy && <div className="ia-msg assistant"><img src="/igc-outreach-mark.png" alt="" width={26} height={26} /><div><p className="ia-typing"><i /><i /><i /> {sent?.files.length ? 'Reading your documents…' : 'Thinking…'}</p></div></div>}
