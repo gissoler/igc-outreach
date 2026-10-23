@@ -174,6 +174,10 @@ export type Lead = {
   kind: string;
   fundingType: string;
   opportunityType?: 'challenge' | 'prize' | 'accelerator' | 'fellowship' | 'open_call' | string;
+  /** Tipo de inversor verificado por código (hoy solo «family_office»). */
+  investorType?: 'family_office' | string | null;
+  /** Inversión directa citada en el sector: la prueba de encaje de un family office que no publica tesis. */
+  directInvestment?: { quote: string; url: string; from: 'portfolio' | 'own_page' | 'news' | string | null; year: number | null; terms: string[] };
   status: string;
   deadline: string | null;
   estimatedDeadline?: string | null;

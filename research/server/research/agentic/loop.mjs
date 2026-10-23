@@ -471,10 +471,12 @@ export async function runAgentObjective(objective, brief, opts = {}) {
   const registrySeed = !seedUrls.length && !dossierMode && objective === 'grant' && String(env.ENGINE_AGENT_REGISTRY_SEED ?? '1') !== '0' && typeof tools.registry === 'function' && !opts.initialObservation ? await seedRegistry() : null;
   const apolloSeed = !seedUrls.length && !opts.initialObservation ? await seedApollo() : null;
   const investorErrors = []; const openedPages = new Map();
+  // EDGAR (family offices) usa la red solo con las herramientas reales o un fetcher inyectado: con herramientas de prueba no hay red.
+  const investorFetcher = opts.fetcher || (opts.tools ? null : fetch);
   if (investorOn && typeof tools.open === 'function') {   // toda página abierta (la lea o no el modelo) entra al expediente de su organización
     const rawOpen = tools.open; tools.open = async (args) => { const r = await rawOpen(args); if (r?.ref && r.text && !r.already_read && !openedPages.has(r.url)) openedPages.set(r.url, { url: r.url, title: r.title, text: unpage(r.text), links: r.links || [] }); return r; };
   }
-  const investorTask = investorOn && !seedUrls.length ? prefetchInvestors({ tools, brief, today, trace, env, apolloRows: apolloSeed?.results || [] }).catch((e) => { investorErrors.push(String(e?.message || e).slice(0, 160)); return null; }) : null;
+  const investorTask = investorOn && !seedUrls.length ? prefetchInvestors({ tools, brief, today, trace, env, apolloRows: apolloSeed?.results || [], fetcher: investorFetcher }).catch((e) => { investorErrors.push(String(e?.message || e).slice(0, 160)); return null; }) : null;
   let observation = opts.initialObservation || { type: 'start', understood, ...(officialCoverage ? { official_coverage: officialCoverage } : {}), ...(registrySeed?.results.length ? { registry_seed: registrySeed } : {}), ...(apolloSeed?.results?.length ? { apollo_seed: apolloSeed } : {}) };
 
   // Descubrimiento (ENGINE_DISCOVERY=1): búsqueda ligera, plan de cobertura por niveles de financiador y abanico de consultas en paralelo, antes del primer paso.
@@ -642,7 +644,7 @@ export async function runAgentObjective(objective, brief, opts = {}) {
     // V15 · Inversionistas: expedientes por organización y evidencia por código. El juez LLM no decide aquí.
     const prefetched = await investorTask;
     const agentPages = [...openedPages.values()];
-    const stage = await runInvestorStage({ tools, brief, today, trace, env, agentPages, apolloRows: apolloSeed?.results || [], prefetched });
+    const stage = await runInvestorStage({ tools, brief, today, trace, env, agentPages, apolloRows: apolloSeed?.results || [], prefetched, fetcher: investorFetcher });
     findings.push(...stage.findings);
     const incomplete = [...(stopReason === 'stuck' ? ['agent_stuck'] : []), ...(investorErrors.length ? ['investor_harvest_error'] : []), ...(stage.funnel.errors?.length ? ['search_errors'] : []), ...(stage.funnel.candidates === 0 ? ['no_candidates'] : [])];
     const apollo = await apolloStage(findings); if (apolloSeed) apollo.seed = { called: apolloSeed.called === 0 ? 0 : 1, results_n: apolloSeed.results?.length || 0, credits: apolloSeed.credits || 0, candidates: stage.funnel.apollo.candidates, kept: stage.funnel.apollo.kept, ...(apolloSeed.reason ? { reason_not_called: apolloSeed.reason } : {}), ...(apolloSeed.errors ? { errors: apolloSeed.errors } : {}) };

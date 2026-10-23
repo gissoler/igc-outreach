@@ -13,6 +13,9 @@ export type Confidence = 'alta' | 'media' | 'baja';
 export const CONF_LABEL: Record<string, string> = { alta: 'High', media: 'Medium', baja: 'Low' };
 export const CONF_RANK: Record<string, number> = { alta: 3, media: 2, baja: 1 };
 export const BUCKET_LABEL: Record<string, string> = { top: 'Priority', radar: 'Radar', discarded: 'Discarded' };
+/** Family office: invierte directo y rara vez publica tesis; su encaje puede venir de una inversión directa citada. */
+export const isFamilyOffice = (l: Pick<Lead, 'investorType'>) => l.investorType === 'family_office';
+export const DEAL_FROM: Record<string, string> = { portfolio: 'Their portfolio page', own_page: 'Their own site', news: 'Funding-round news' };
 export const BUCKET_PLURAL: Record<string, string> = { top: 'Priority', radar: 'Radar', discarded: 'Discarded' };
 export const FACTOR_LABEL: Record<string, string> = {
   fit: 'Topic fit', type: 'Funding type', timing: 'Timing', path: 'Documented relationship (warm path)',

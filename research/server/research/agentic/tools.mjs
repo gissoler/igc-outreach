@@ -150,7 +150,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
     if (apolloDenied) return { rows: [], credits_estimated: 0, error: 'apollo_denied_by_plan' };
     try {
       if (!keywords.length) throw new Error('no_keywords');
-      const response = await apolloClient.organizationSearch({ keywords, perPage: Math.min(10, Number(args.n) || 8) });
+      const location = clip(args.location, 80); const response = await apolloClient.organizationSearch({ keywords, ...(location ? { location } : {}), perPage: Math.min(10, Number(args.n) || 8) });
       const orgs = response?.data?.organizations || response?.data?.accounts || []; const id = ++apolloSeq; const rows = []; const seen = new Set();
       for (const o of orgs) {
         const domain = String(o.primary_domain || '').toLowerCase().replace(/^www\./, ''); const url = String(o.website_url || (domain ? `https://${domain}` : '')).trim();
@@ -158,7 +158,7 @@ export function createTools({ env = process.env, fetcher = fetch, signal, trace 
         const ref = `a${id}.${rows.length + 1}`; refs.set(ref, { url, title: o.name || domain, snippet: clip(o.short_description, 300), markdown: '', via: 'apollo' });
         rows.push({ ref, url, name: o.name || null, domain: domain || null, industry: o.industry || null, description: clip(o.short_description, 200) || null, employees: o.estimated_num_employees ?? null, source: 'apollo' });
       }
-      record('apollo', { op: 'organization_keywords', keywords }, started, rows, { credits: credits(), urls: rows.map((r) => r.url).slice(0, 10) }); return { rows, credits_estimated: credits() };
+      record('apollo', { op: 'organization_keywords', keywords, ...(location ? { location } : {}) }, started, rows, { credits: credits(), urls: rows.map((r) => r.url).slice(0, 10) }); return { rows, credits_estimated: credits() };
     } catch (error) { if (planDenied(error)) apolloDenied = true; return fail('apollo', { op: 'organization_keywords', keywords }, started, error, { credits: credits() }); }
   }
 

@@ -679,6 +679,9 @@ export function engineLeads(findings) {
     if (f.quotes.eligible) ev.push(evidence(`${ENGINE_SOURCE} · fit`, f.url, f.quotes.eligible, 'eligibility'));
     if (f.quotes.topic) ev.push(evidence(`${ENGINE_SOURCE} · topic`, f.url, f.quotes.topic, 'opportunity'));
     if (f.quotes.loi) ev.push(evidence(`${ENGINE_SOURCE} · letter of intent`, f.url, f.quotes.loi, 'opportunity'));
+    // Family office sin tesis publicada: la inversión directa citada (su portafolio o la noticia de la ronda) es la prueba de encaje.
+    const deal = f.evidence?.deal?.quote && f.evidence.deal.url ? f.evidence.deal : null;
+    if (deal) ev.push(evidence(`${ENGINE_SOURCE} · direct investment`, deal.url, deal.quote, 'eligibility'));
     return candidate({
       externalId: `engine:${f.objective}:${f.url}`, org: f.name || host, title: f.name || f.title || host,
       kind: o.kind === 'opportunity' ? 'opportunity' : 'research', fundingType: f.objective,
@@ -686,7 +689,7 @@ export function engineLeads(findings) {
       contact: { type: 'web', value: f.url, provenance: `Read and verified on ${host}` },
       evidence: ev,
       risks: [...new Set([...(f.conditions || []), ...(f.blockers || []), f.eligible === 'yes' ? null : 'Fit to confirm with the counterpart', ...f.flags.map((x) => `Check: ${x}`)].filter(Boolean))],
-      missing: [...(o.dated && !f.deadline ? ['Deadline not confirmed on the page'] : []), ...(f.quotes.eligible && f.eligible === 'yes' ? [] : [o.dated ? 'Eligibility for a for-profit startup not confirmed on the page' : 'Eligibility / thesis not stated on the page'])],
+      missing: [...(o.dated && !f.deadline ? ['Deadline not confirmed on the page'] : []), ...(f.quotes.eligible && f.eligible === 'yes' ? [] : deal && !f.quotes.eligible ? ['Thesis not published: fit rests on a direct investment'] : [o.dated ? 'Eligibility for a for-profit startup not confirmed on the page' : 'Eligibility / thesis not stated on the page'])],
       searchText: [f.name, f.title, f.quotes.identity, f.quotes.eligible].filter(Boolean).join(' ').slice(0, 4000),
       foundBy: (f.trace?.queries?.length ? f.trace.queries : [{ query: f.query, family: f.family }]).map((q) => ({ provider: f.registry ? 'Grants.gov' : ENGINE_SOURCE, term: q.family || f.family || f.objective, objective: f.objective, query: q.query, dimension: 'read_and_verified', ...(f.providers?.length ? { searchedWith: f.providers.join(', ') } : {}) })),
       verification: compactVerification({ ...f, tier: f.tier || (f.verdict === 'apply' ? 'main' : 'verify') }),
@@ -696,6 +699,8 @@ export function engineLeads(findings) {
       ...(Array.isArray(f.contacts) ? { contacts: f.contacts.filter((c) => c?.name || c?.email).map((c) => ({ name: c.name || 'Unnamed contact', role: c.title || c.role || null, email: c.email || null, organization: c.organization || null, linkedin: c.linkedin_url || c.linkedin || null, provenance: c.source === 'registry' ? 'Official registry contact' : 'Apollo (people search)', source: c.source || 'apollo' })) } : {}),
       ...(f.registry ? { registry: f.registry, externalId: `engine:${f.objective}:${f.registry.number || f.url}` } : {}),
       ...(f.quotes ? { quotes: f.quotes } : {}),
+      ...(f.investor_type ? { investorType: f.investor_type } : {}),
+      ...(deal ? { directInvestment: { quote: deal.quote, url: deal.url, from: deal.from || null, year: deal.year ?? null, terms: deal.terms || [] } } : {}),
     });
   });
 }
