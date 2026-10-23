@@ -210,7 +210,8 @@ test('V15-INV-15 home delgada de un dominio que suena a fondo se profundiza; la 
 
 test('V15-INV-16 cobertura: consultas por arquetipo derivadas del brief, sin nombres de fondos escritos a mano', () => {
   const qs = investorQueries(AI_BRIEF);
-  assert.ok(qs.length >= 10 && qs.length <= 12, `n=${qs.length}`);
+  assert.ok(qs.length >= 10 && qs.length <= 15, `n=${qs.length}`);
+  assert.ok(qs.filter((q) => /family offices?/i.test(q)).length >= 2, 'family offices como arquetipo propio');
   assert.ok(qs.some((q) => /corporate venture capital arms/.test(q)) && qs.some((q) => /^most active /.test(q)) && qs.some((q) => /Series A led by/.test(q)));
   assert.ok(!qs.some((q) => /^AI Series A/.test(q)), 'sin consultas vacías de sector');
   assert.equal(new Set(qs.map((q) => q.toLowerCase())).size, qs.length);
@@ -328,4 +329,14 @@ test('V15-INV-26 un directorio de varios fondos en primera persona es directorio
   assert.equal(ev('neurotechpartnering.com', text).directory, true);
   assert.equal(ev('someventures.com', text).directory, false, 'un sitio que suena a fondo puede nombrar a otros (co-inversores)');
   for (const u of ['https://www.nsf.gov/funding', 'https://www.ukri.gov.uk/x', 'https://www.nih.gov/']) assert.equal(isThirdParty(u), true, u);
+});
+
+test('V15-INV-19 family offices: se reconocen como inversores y una nota de ronda en el sitio de la financiada no es candidata', async () => {
+  const { roleOf } = await import('../server/research/investors/orgs.mjs');
+  assert.equal(roleOf({ url: 'https://acmebio.com/blog/acme-raises', title: 'Acme Bio raises $5M seed round led by Zorro Capital', snippet: '' }), 'news');
+  assert.equal(roleOf({ url: 'https://acmebio.com/', title: 'Acme Bio announces $5M seed financing', snippet: '' }), 'news');
+  assert.equal(roleOf({ url: 'https://smithfamilyoffice.com/', title: 'Smith Family Office', snippet: 'We invest directly in life sciences companies' }), 'org');
+  const { orgEvidence } = await import('../server/research/investors/evidence.mjs');
+  const ev = orgEvidence({ pages: [{ url: 'https://smithfamilyoffice.com/', title: 'Smith Family Office', text: 'Smith Family Office is a single-family office. We invest directly in AI drug discovery companies around the world. Get in touch with our team. In 2026 we backed a seed round.', links: [] }], sector: sectorOf(AI_BRIEF), brief: AI_BRIEF, facts: { country: null }, today: '2026-10-23', org: { key: 'smithfamilyoffice.com', names: ['Smith Family Office'] } });
+  assert.equal(ev.investor.ok, true);
 });

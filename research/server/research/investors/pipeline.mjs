@@ -27,7 +27,7 @@ const noopTrace = { event: () => null };
 const clean = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 const unpage = (t) => String(t || '').replace(/^<page_data>|<\/page_data>$/g, '');
 const pool = async (items, n, fn) => { const out = new Array(items.length); let i = 0; await Promise.all(Array.from({ length: Math.min(Math.max(1, n), items.length) }, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k], k); } })); return out; };
-const INVESTORISH = /\b(ventures?|capital|partners|vc|fund|funds|invest\w*|holdings|equity|seed|angels?)\b/i;
+const INVESTORISH = /\b(ventures?|capital|partners|vc|fund|funds|invest\w*|holdings|equity|seed|angels?|family offices?)\b/i;
 const INSTITUTIONAL_LINK = /\b(about|who we are|approach|thesis|focus|strategy|sectors?|areas?|what we (?:do|invest|look for)|invest\w*|portfolio|companies|contact|pitch|submit|founders|apply|team|our story|mission)\b/i;
 
 /** La propia empresa del brief nunca es un inversor (14-10: salían sus directivos como «inversores»). */
@@ -53,7 +53,7 @@ export async function resolveNames({ tools, names, brief, addCand, source }) {
 
 /* ── 1 · Cosecha ── */
 export async function harvestInvestors({ tools, brief, today, trace = noopTrace, env = process.env, apolloRows = [] } = {}) {
-  const maxQ = Number(env.ENGINE_INVESTOR_SEARCHES) || 12; const queries = investorQueries(brief, maxQ);
+  const maxQ = Number(env.ENGINE_INVESTOR_SEARCHES) || 15; const queries = investorQueries(brief, maxQ);
   const found = await Promise.all(queries.map((query) => tools.search({ query }).then((r) => ({ query, r })).catch((e) => ({ query, r: { error: String(e?.message || e) } }))));
   const cands = new Map(); const lists = []; const news = []; const errors = [];
   const addCand = (key, row) => {
@@ -67,7 +67,8 @@ export async function harvestInvestors({ tools, brief, today, trace = noopTrace,
     for (const row of r?.results || []) {
       results++; const role = roleOf({ url: row.url, title: row.title, snippet: row.snippet });
       if (role === 'list') lists.push({ ...row, query }); else if (role === 'news') news.push({ ...row, query });
-      else if (role === 'org' && !isSelf(row.url, brief)) { if (isArticleUrl(row.url)) news.push({ ...row, query }); addCand(orgKey(row.url), { name: clean(row.title).split(/\s[|–—-]\s/)[0].slice(0, 80), url: row.url, ref: row.ref, source: `search:${query}`, via: 'search', snippet: `${row.title} ${row.snippet}` }); }
+      else if (role === 'org' && !isSelf(row.url, brief)) { if (isArticleUrl(row.url)) { news.push({ ...row, query }); continue; }   // nota en el sitio de una empresa («X raises $5M led by…»): fuente de nombres, nunca candidata (la financiada no es el inversor)
+        addCand(orgKey(row.url), { name: clean(row.title).split(/\s[|–—-]\s/)[0].slice(0, 80), url: row.url, ref: row.ref, source: `search:${query}`, via: 'search', snippet: `${row.title} ${row.snippet}` }); }
     }
   }
   // Listas: sus enlaces externos son candidatos con dominio (sin resolver nombres ni pedirle al modelo que elija).

@@ -36,7 +36,7 @@ export function gptrPrompt({ brief = {}, objective = 'grant', today = new Date()
     ? "The brief does not restrict geography: include funders outside the applicant's country."
     : `The applicant is based in ${where}. Only include funders that accept applicants from there; skip programs restricted to other countries or regions.`;
   if (objective === 'investment' || objective === 'debt') {
-    const what = objective === 'debt' ? 'lenders and non-dilutive debt programs (venture debt funds, revenue-based financing, public loan programs)' : 'investors (venture capital funds, angel groups, corporate venture arms, family offices, accelerators that invest)';
+    const what = objective === 'debt' ? 'lenders and non-dilutive debt programs (venture debt funds, revenue-based financing, public loan programs)' : 'investors (venture capital funds, angel groups, corporate venture arms, family offices (single- and multi-family), accelerators that invest)';
     const head = [`${brief.round || brief.stage || ''} investors`, short(brief.oneLiner || brief.product || brief.description, 8), brief.industry, geo.join(' '), yr].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
     return `${head}
 
@@ -46,6 +46,8 @@ Company and context (from the brief):
 ${briefBlock(brief)}
 
 ${geoLine} Work out for yourself the kinds of investors that fit (by stage, cheque size, sector thesis and geography) and search each kind with several differently worded queries. Prefer each investor's own website (thesis, portfolio and team pages) and recent deal announcements from ${Number(yr) - 1}-${yr}; do not rely on lists or rankings alone. For every investor give: name, official URL of its own thesis or portfolio page, stage and typical cheque size as stated, evidence of a deal in the last 18 months (with date), how to pitch (form, email or warm intro), why it fits, red flags, and a short literal quote from its page that supports the thesis fit. Finish with the investors you excluded and why.
+
+Who counts: only the party that PUTS IN the money (a fund, angel group, corporate venture arm, accelerator or family office). A company, founder or person who RECEIVED funding is never an answer: use news about rounds only to learn which investors led or joined them, then research those investors' own sites. Family offices rarely publish a thesis page: look for their own site, their direct deals in the last 18 months and the people who run them.
 `;
   }
   const kind = objective === 'grant' ? 'grant opportunities (non-dilutive funding, not investors)' : `${objective} opportunities`;

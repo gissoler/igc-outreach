@@ -78,7 +78,7 @@ const stripRoute = (phrase) => clean(String(phrase).split(/\s+/).filter((w) => {
 /** Consultas cortas para encontrar inversionistas (el código las escribe; el modelo no decide qué fondo buscar). */
 /** Término de sector «padre» por familia: como los fondos se describen («biotech», «obesity», «digital health»), no como el brief. */
 const PARENT = { drug_discovery: 'biotech', metabolic: 'obesity biotech', neuro: 'neuroscience biotech', cannabinoid: 'cannabinoid biotech', digital_health: 'digital health', genomics: 'genomics', ai: 'AI' };
-export function investorQueries(brief = {}, n = 12) {
+export function investorQueries(brief = {}, n = 15) {
   const exact = exactTerms(brief);
   const invest = exact.filter((t) => /\b(investor|investors|venture|vc|fund|capital|seed)\b/i.test(t));
   const topics = [...new Set(exact.map(stripRoute).filter((t) => contentTokens(t).length >= 1 && t.length >= 3))];
@@ -97,6 +97,8 @@ export function investorQueries(brief = {}, n = 12) {
   const fam = sectorOf(brief).families; const parents = [...new Set(fam.map((f) => PARENT[f]).filter(Boolean))];
   const p1 = parents.find((p) => p !== 'AI') || parents[0] || t1; const p2 = parents.find((p) => p !== p1 && p !== 'AI') || p1;
   if (fam.includes('drug_discovery') || fam.includes('metabolic') || fam.includes('neuro')) out.push('pharma corporate venture capital arms', `${p1} company creation venture fund`);
+  // Family offices: invierten directo y rara vez salen en listas de VC; se buscan como arquetipo propio (su sitio, listas de family offices y rondas donde participaron).
+  out.push(p1 && `family office direct investments ${p1}`, p1 && `family offices investing in ${p1} early-stage companies`, p1 && `${p1} family office list`);
   out.push(p1 && `most active ${p1} seed investors`, t1 && `${t1} funding round investors include`, p2 && `${p2} Series A led by participation from`, p1 && `${p1} venture fund early-stage pitch founders`, p1 && `${p1} venture capital list`);
   const queries = out.filter(Boolean).map(clean);
   const seen = new Set(); return queries.filter((q) => { const k = q.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); if (!k || seen.has(k)) return false; seen.add(k); return true; }).slice(0, n);

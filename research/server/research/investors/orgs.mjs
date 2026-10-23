@@ -36,12 +36,15 @@ const ARTICLE_PATH = /\/(news|newsroom|press|press-releases?|media|blogs?|insigh
 const ARTICLE_TEXT = /\b(press release|for immediate release|today announced|announced today|raises? \$?\d|closes? \$?\d[\d.,]* ?(?:m|million|b|billion)|series [a-e] (?:round|financing)|seed (?:round|financing) led by)\b/i;
 export const LISTISH = /\b(\d{1,3} (?:best |top |leading |largest |most active )?[a-z ]{0,35}(?:venture capital (?:firms|companies)|investors|vcs|vc firms)\b|the \d{1,3} (?:best|top|leading|largest|most active)\b|ranking of|market map|most active (?:venture|vc|investors?|firms)|directory of|database of|top \d+ [a-z ]{0,30}(?:investors|vcs|venture capital firms|funds|firms)|list of [a-z ]{0,30}(?:investors|vcs|venture capital firms|funds|firms)|(?:investors|vcs|venture capital firms) (?:to know|to watch|list|directory|database))\b/i;
 const LIST_TEXT = /\b(ranking of|market map|most active (?:venture|vc|investors?|firms)|top \d+|\d+ (?:best|top|leading|most active)|list of|best [a-z ]{0,30}(?:investors|vcs|venture capital firms|funds)|(?:investors|vcs|venture capital firms|funds) (?:to know|to watch|list|directory|database))\b/i;
+const FUNDED_HEADLINE = /\b(?:raises?|raised|secures?|secured|lands?|closes?|announces?)\s+(?:a\s+)?(?:an\s+)?\$?€?£?\d[\d.,]*\s?(?:k|m|mm|b|million|billion)?\b[^.]{0,60}\b(?:seed|pre-?seed|series\s+[a-e]|funding|financing|round)\b/i;
 /** Papel de un resultado o página: 'list' (fuente de candidatos), 'news' (fuente de nombres), 'org' (posible candidato), 'skip'. */
 export function roleOf({ url = '', title = '', snippet = '', text = '' } = {}) {
   const head = `${title} ${snippet} ${String(text).slice(0, 1200)}`;
   if (hostKind(url) === 'social' || PLATFORM.test(hostOf(url))) return 'skip';
   if (LIST_TEXT.test(`${title} ${snippet}`)) return 'list';
   if (isThirdParty(url)) return ARTICLE_TEXT.test(head) || ARTICLE_PATH.test(url) ? 'news' : LIST_TEXT.test(head) ? 'list' : 'news';
+  // Resultado del sitio de una empresa que ANUNCIA su ronda («Acme raises $5M seed round»): la financiada no es el inversor; solo aporta los nombres de quienes la lideraron.
+  if (FUNDED_HEADLINE.test(`${title} ${snippet}`)) return 'news';
   return 'org';
 }
 /** ¿Esta URL del sitio propio es un artículo (noticia/blog) y no una página institucional? */
@@ -90,7 +93,7 @@ export function namesFromNews(text, { max = 12 } = {}) {
 }
 
 /** ¿El dominio/nombre suena a inversor? Sin límites de palabra: «archventure», «aixventures», «amplitudevc» son una sola etiqueta. */
-export const INVESTORISH_LABEL = /(venture|capital|invest|fund|vc$|vc\b|partners|holdings|equity|angel|seed|bio.?ventures|labs?$)/i;
+export const INVESTORISH_LABEL = /(venture|capital|invest|fund|vc$|vc\b|partners|holdings|equity|angel|seed|bio.?ventures|labs?$|family.?offices?)/i;
 
 /** Nombre legible de la organización. El título de la página puede ser «Home» o un titular; se prefiere un nombre que coincida con el dominio. */
 const GENERIC_TITLE = /^(home|homepage|welcome|index|main|about|about us|untitled|portfolio|team|contact|\W*)$/i;
