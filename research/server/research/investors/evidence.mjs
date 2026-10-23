@@ -6,13 +6,17 @@
      · stage      — etapas en las que dice invertir, comparadas con la del brief;
      · geography  — dónde dice invertir, comparado con el país CONFIRMADO del solicitante;
      · contact    — una vía para presentar o contactar (frase con verbo de acción o enlace del propio sitio);
-     · recent     — actividad con un año reciente (respecto de `today`, no del reloj).
+     · recent     — actividad con un año reciente (respecto de `today`, no del reloj);
+     · familyOffice — se presenta como family office (frase propia, nombre o dominio);
+     · deals      — inversión directa en el sector (su portafolio, o una noticia de ronda que lo nombra): reemplaza la tesis
+                    de un family office, que casi nunca la publica (V16, familyOffices.mjs).
    Toda cita sale de `plain(texto)`, así `literalIn(cita, texto)` siempre la encuentra.
    Funciones puras.
    ───────────────────────────────────────────────────────────────────────────── */
 import { plain } from '../verify.mjs';
 import { sectorMatch } from './sector.mjs';
 import { isArticleUrl, LISTISH, nameMatchesDomain, orgKey } from './orgs.mjs';
+import { FAMILY_OFFICE, FAMILY_OFFICE_LABEL, isFamilyOfficeName } from './familyOffices.mjs';
 
 const clean = (s) => String(s ?? '').replace(/\s+/g, ' ').trim();
 /** Frases de una página tal como las compara literalIn (sin markdown). */
@@ -88,8 +92,9 @@ export function briefStage(brief = {}) {
 /**
  * Evidencia de un expediente de organización. pages: [{url, title, text, links}] del MISMO dominio registrable.
  * facts: { country: string|null } (solo lo que el brief confirma). sector: sectorOf(brief).
+ * dealPages: noticias de rondas (de terceros) que nombraron a esta organización; solo cuentan para `deals`.
  */
-export function orgEvidence({ pages = [], sector, brief = {}, facts = { country: null }, today, org: org0 = {} }) {
+export function orgEvidence({ pages = [], dealPages = [], sector, brief = {}, facts = { country: null }, today, org: org0 = {} }) {
   // Los nombres vienen de títulos de búsqueda: el título de un artículo sobre «EQT Life Sciences» o de un perfil de «Angelini Ventures» no es el nombre del sitio.
   // Solo cuenta como nombre propio el que coincide con el dominio; así una frase sobre OTRO fondo en un medio, directorio o conferencia no pasa por «habla de sí misma».
   const org = { ...org0, names: (org0.names || []).flatMap((n) => String(n).split(/[|｜–—:]/)).map((n) => n.trim()).filter((n) => n && org0.key && (nameMatchesDomain(n, `https://${org0.key}`) || compactOf(n).includes(compactOf(String(org0.key).split('.')[0])))) };
@@ -182,5 +187,41 @@ export function orgEvidence({ pages = [], sector, brief = {}, facts = { country:
   const labelFundy = /(venture|capital|invest|fund|vc|partners|holdings|equity|angel|seed)/i.test(String(org.key || '').split('.')[0]);
   const aggregator = !labelFundy && foreign.size >= 3;
   const directory = aggregator || pages.some((p) => LISTISH.test(`${p.title || ''} ${plain(p.text).slice(0, 700)}`));
-  return { investor, thesis, stage, geography, contact, recent, directory, service, chars: pages.reduce((n, p) => n + String(p.text || '').length, 0), pages: pages.map((p) => p.url) };
+
+  // Family office: se presenta como tal (frase propia) o lo dice su dominio/nombre propio.
+  const foRow = pick(rows, (s) => FAMILY_OFFICE.test(s) && own(s));
+  const familyOffice = Boolean(foRow) || FAMILY_OFFICE_LABEL.test(String(org.key || '').split('.')[0]) || org.names.some(isFamilyOfficeName);
+  const deals = directDeals({ rows, dealPages, sector, org, rawNames: org0.names || [], unnamed, year });
+  return { investor, thesis, stage, geography, contact, recent, directory, service, familyOffice, deals, chars: pages.reduce((n, p) => n + String(p.text || '').length, 0), pages: pages.map((p) => p.url) };
+}
+
+/* Inversión directa en el sector, con cita literal: la prueba de encaje de un family office que no publica tesis.
+   · en sus propias páginas: una frase propia con verbo de inversión + sector, o una frase de sector en su página de portafolio;
+   · en una noticia de ronda que lo nombró (dealPages): una frase con su nombre y «led by / participation from / backed by…»,
+     con el sector en esa frase o en la vecina (misma noticia). Se cita la frase con el nombre. */
+const DEAL_CUE = /\b(invested in|investments? in|we (?:have )?(?:invested|backed|led|co-led|participated|joined)|(?:led|co-led|participated in|joined) (?:the|a|an|its) [\w$€£.,\s-]{0,40}(?:round|financing|raise)|portfolio (?:company|companies)|our portfolio (?:includes|spans)|backed)\b/i;
+const NEWS_CUE = /\b(led by|co-led by|participation (?:from|of|by)|investors? (?:include|including)|backed by|joined by|along(?:side| with)|together with)\b/i;
+const BIO = /\b(?:he|she) (?:is|was|has|joined|serves?)\b|\byears of experience\b|\bprior to joining\b/i;
+const PORTFOLIO_PAGE = /\b(portfolio|investments|companies|holdings)\b/i;
+function directDeals({ rows, dealPages = [], sector, org, rawNames = [], unnamed, year }) {
+  const yearOf = (s) => { const ys = (s.match(/\b20\d{2}\b/g) || []).map(Number).filter((y) => !year || y <= year); return ys.length ? Math.max(...ys) : null; };
+  const found = [];
+  for (const r of rows) {
+    if (BIO.test(r.s)) continue;
+    const portfolioPage = PORTFOLIO_PAGE.test(r.url.replace(/^https?:\/\/[^/]+/, ''));
+    if (!((DEAL_CUE.test(r.s) && aboutSelf(r.s, org)) || portfolioPage)) continue;
+    const m = sectorMatch(unnamed(r.s), sector); if (m.level) found.push({ s: r.s, url: r.url, m, from: portfolioPage && !DEAL_CUE.test(r.s) ? 'portfolio' : 'own_page' });
+  }
+  const names = [...new Set([...org.names, ...rawNames.map((n) => clean(String(n).split(/[|｜–—:]/)[0]))])].filter((n) => n.length >= 4);
+  const rxs = names.map((n) => new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i'));
+  for (const p of dealPages) {
+    const ss = sentencesOf(p.text);
+    ss.forEach((s, i) => {
+      if (!NEWS_CUE.test(s) || !rxs.some((rx) => rx.test(s))) return;
+      const m = sectorMatch([ss[i - 1], s, ss[i + 1]].filter(Boolean).join(' '), sector); if (m.level) found.push({ s, url: p.url, m, from: 'news' });
+    });
+  }
+  found.sort((a, b) => (a.m.level === 'specific' ? 0 : 1) - (b.m.level === 'specific' ? 0 : 1) || (yearOf(b.s) || 0) - (yearOf(a.s) || 0) || b.m.terms.length - a.m.terms.length);
+  const best = found[0];
+  return best ? { ...hit(true, best.m.level, best.s, best.url), terms: best.m.terms, from: best.from, year: yearOf(best.s), count: found.length } : { ...miss(null), terms: [], from: null, year: null, count: 0 };
 }

@@ -6,14 +6,28 @@ import { SOURCE_META } from '../sources';
 import { CopyBtn, reasonFor, shortDraft } from './Contacts';
 import { clip, clipWords, cleanText, fmtAge, fmtDate, fmtPct, initials, readableQuote } from './format';
 import {
-  BUCKET_LABEL, contributions, decisionTrace, familyOf, GKIND_LABEL, introReason, isDemoJob, nextAction, oneLiner, pathsOf,
+  BUCKET_LABEL, contributions, DEAL_FROM, decisionTrace, familyOf, GKIND_LABEL, introReason, isDemoJob, nextAction, oneLiner, pathsOf,
   RELATION_LABEL, STATUS_HELP, type GEdge, type GNode, type Graph, type NormHop, type NormPath, type TraceNode,
-  warmPlanOf,
+  isFamilyOffice, warmPlanOf,
 } from './model';
 import { BucketBadge, ConfBadge, Drawer, Info, LinkBadge, Meter, ScorePill } from './ui';
 import { ResultTracePanel } from './Audit';
 
 /* ───────── Evidence ───────── */
+
+/** Family office: rara vez publica tesis. Si el encaje viene de una inversión directa citada, se muestra aquí con su fuente. */
+function FamilyOfficeFit({ lead, demo }: { lead: Lead; demo: boolean }) {
+  const d = lead.directInvestment;
+  return <section className="ld-sec">
+    <header className="ld-h"><h3>Family office</h3>{d && <span className="pl-chip sun">No published thesis</span>}</header>
+    {d ? <div className="ld-deal">
+      <p className="ld-sub">The fit rests on a direct investment{d.terms.length ? ` in ${d.terms.slice(0, 3).join(', ')}` : ''}, not on a stated focus. Confirm their current appetite before pitching.</p>
+      <q>{clipWords(readableQuote(d.quote), 220)}</q>
+      <small>{DEAL_FROM[d.from || ''] || 'Source'}{d.year ? ` · ${d.year}` : ''}{d.url && !demo && <> · <a href={d.url} target="_blank" rel="noreferrer">Open source <ExternalLink size={11} /></a></>}</small>
+    </div> : <p className="ld-sub">Invests its own family capital directly; its sector focus is stated on its own site.</p>}
+  </section>;
+}
+
 export function SourceTag({ e, demo }: { e: Evidence; demo: boolean }) {
   const k = familyOf(e, demo); const m = SOURCE_META[k]; const Icon = m.icon;
   return <span className="x-src" style={{ ['--src' as string]: m.color }}><Icon size={12} aria-hidden="true" />{m.label}<em>{clip(e.source, 40)}</em></span>;
@@ -410,7 +424,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     <section className="ld-sec">
       <div className="ld-who">
         <span className="ld-av" aria-hidden="true">{initials(name)}</span>
-        <div className="ld-name"><b>{name}</b><small>{isGrant ? `${lead.org}${lead.grantPlan?.programNumber ? ` · ${lead.grantPlan.programNumber}` : lead.opportunityType ? ` · ${lead.opportunityType.replace('_', ' ')}` : ''}` : lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : clip(lead.title, 70)}</small></div>
+        <div className="ld-name"><b>{name}</b><small>{isGrant ? `${lead.org}${lead.grantPlan?.programNumber ? ` · ${lead.grantPlan.programNumber}` : lead.opportunityType ? ` · ${lead.opportunityType.replace('_', ' ')}` : ''}` : lead.person ? `${lead.role || 'Role not confirmed'} · ${lead.org}` : `${isFamilyOffice(lead) ? 'Family office · ' : ''}${clip(lead.title, 70)}`}</small></div>
         <div className="ld-icons">
           <CopyButton text={emailText} label="" className="ld-ic" />
           {sourceHref ? <a className="ld-ic" href={sourceHref} target="_blank" rel="noreferrer" aria-label="Open source" title="Open source"><ExternalLink size={15} /></a> : <span className="ld-ic off" title="No source link"><ExternalLink size={15} /></span>}
@@ -434,6 +448,8 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
 
     {tab === 'overview' && <>
       <Essentials lead={lead} demo={demo} isGrant={isGrant} mailText={emailText} />
+
+      {isFamilyOffice(lead) && <FamilyOfficeFit lead={lead} demo={demo} />}
 
       {risks.length > 0 && <section className="ld-sec">
         <header className="ld-h"><h3>Risks <span className="pl-badge rose">{risks.length}</span></h3></header>
