@@ -19,6 +19,8 @@ export const FAMILY_OFFICE_LABEL = /family.?(?:offices?|capital|investments?)/i;
 export const isFamilyOfficeName = (name) => FAMILY_OFFICE.test(String(name || '')) || FAMILY_OFFICE_LABEL.test(String(name || '').replace(/[^A-Za-z]/g, ''));
 
 /** Consultas dedicadas: su sitio y portafolio, y las rondas donde participaron (los nombres salen de esas noticias). */
+/** El usuario pidió family offices en el chat: la rama deja de ser un cupo lateral y recibe más consultas, nombres y plazas. */
+export const familyOfficeFocus = (brief = {}) => String(brief.investorTypes || '').split(/[,;]\s*/).includes('family_office');
 export function familyOfficeQueries(brief = {}, { n = 4, country = null } = {}) {
   const { t1, p1 } = queryTerms(brief);
   const out = [
@@ -27,6 +29,9 @@ export function familyOfficeQueries(brief = {}, { n = 4, country = null } = {}) 
     p1 && `${p1} family office portfolio companies`,
     country && p1 && `family offices in ${country} investing in ${p1}`,
     t1 && `family office venture investments ${t1}`,
+    // Compañía cotizada (27-10, IGC): los family offices que invierten en cotizadas lo hacen por PIPE o colocación directa.
+    brief.listing === 'public' || brief.round === 'public' ? p1 && `family office PIPE investment ${p1} public company` : null,
+    brief.listing === 'public' || brief.round === 'public' ? t1 && `${t1} registered direct offering family office investor` : null,
   ];
   const seen = new Set();
   return out.filter(Boolean).map(clean).filter((q) => { const k = q.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, n);

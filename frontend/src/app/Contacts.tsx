@@ -33,7 +33,7 @@ export function reasonFor(lead: Lead): string {
     const kind = (lead.opportunityType || 'funding opportunity').replace('_', ' ');
     return topics ? `Specific ${kind} matching ${topics}.` : `Specific ${kind}: ${clip(lead.title, 72)}`;
   }
-  if (topics && role) return `${role} at ${org}; backs ${topics}.`;
+  if (topics && role) return `${role} at ${org}. ${org}'s sources mention ${topics}; that is not this person's own record.`;
   if (topics) return `${org} backs ${topics}.`;
   return clip(lead.why[0] || lead.title, 90);
 }
@@ -140,7 +140,7 @@ function stageOf(l: Lead, grantsOnly: boolean): Stage {
     if (d === 'no_go') return { label: 'Do not pursue', tone: 'gray' };
     return { label: 'Clarify first', tone: 'sun' };
   }
-  return l.bucket === 'top' ? { label: 'Contact now', tone: 'mint' } : { label: 'Later', tone: 'lav' };
+  return l.bucket === 'top' ? { label: 'Priority · review first', tone: 'mint' } : { label: 'Later', tone: 'lav' };
 }
 type View = 'all' | 'top' | 'radar' | 'out';
 
@@ -159,7 +159,7 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
   const noun = grantsOnly ? 'opportunities' : 'candidates';
   const tabs: [View, string, number][] = [
     ['all', 'All', shortlisted],
-    ['top', grantsOnly ? 'Act now' : 'Contact now', counts.top],
+    ['top', grantsOnly ? 'Act now' : 'Priority', counts.top],
     ['radar', grantsOnly ? 'Watch' : 'Later', counts.radar],
     ['out', 'Ruled out', counts.out],
   ];
@@ -167,7 +167,7 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
     <div className="ct-funnel" aria-label="What the system did">
       <div><b>{job.leads.length}</b><span>{noun} found</span></div>
       <div><b>{shortlisted}</b><span>shortlisted · {counts.out} ruled out</span></div>
-      <div className="hot"><b>{counts.top}</b><span>{grantsOnly ? 'ready to review' : 'ready to contact'}</span></div>
+      <div className="hot"><b>{counts.top}</b><span>{grantsOnly ? 'ready to review' : 'priority, to review'}</span></div>
     </div>
     <div className="ct-tabs" role="tablist" aria-label="Which list">
       {tabs.map(([k, label, n]) => <button key={k} role="tab" aria-selected={view === k} className={view === k ? 'on' : ''} onClick={() => setView(k)}>{label}<span>{n}</span></button>)}
@@ -191,7 +191,6 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
           : { icon: null, main: l.deadline || 'No deadline published', small: l.daysToDeadline != null ? `${l.daysToDeadline} days left` : l.status }
         : l.contact ? { icon: l.contact.type === 'email' ? <Mail size={13} /> : <ExternalLink size={13} />, main: l.contact.type === 'email' ? 'Email' : l.contact.type === 'linkedin' ? 'LinkedIn' : 'Website', small: found.length ? `Found · ${found.length}` : 'Our read' }
         : { icon: null, main: 'Not public', small: 'Ask via intro' };
-      const C = 2 * Math.PI * 17;
       return <li key={l.id}><button type="button" className={`ct-item ${isOpen ? 'open' : ''} ${out ? 'out' : ''}`} aria-pressed={isOpen} onClick={() => onOpen(l.id)}>
         <span className="ct-rank">{String(i + 1).padStart(2, '0')}</span>
         <span className="ct-main">
@@ -201,11 +200,10 @@ export function ContactsTable({ job, selectedId, onOpen }: { job: Job; selectedI
         <span className="ct-why"><span title={why}>{why}</span></span>
         <span className="ct-stage"><span className={`pl-chip ${st.tone}`}>{st.label}</span>{sub && <small>{sub}</small>}</span>
         <span className="ct-reach">{reach.icon}<span><b>{reach.main}</b><small>{reach.small}</small></span></span>
-        <svg className={`ct-ring ${l.score >= 60 ? 'hi' : ''}`} viewBox="0 0 40 40" role="img" aria-label={`Fit ${l.score} out of 100`}><circle cx="20" cy="20" r="17" className="bg" /><circle cx="20" cy="20" r="17" className="fg" strokeDasharray={`${(Math.max(2, Math.min(100, l.score)) / 100) * C} ${C}`} transform="rotate(-90 20 20)" /><text x="20" y="24.5" textAnchor="middle">{l.score}</text></svg>
         <ChevronRight size={16} className="ct-go" aria-hidden />
       </button></li>;
     })}</ul>
     {!leads.length && <p className="pl-empty ct-empty"><Search size={14} /> {view === 'out' ? 'Nothing was ruled out.' : view === 'radar' ? 'Nothing on the radar.' : (grantsOnly ? 'No actionable opportunity yet. Widen topic and opportunity type.' : 'No one to contact yet. Widen sector or geography.')}</p>}
-    <p className="ct-foot"><UserRound size={13} /> {grantsOnly ? 'Ranked by topic fit, eligibility evidence, deadline and program terms. The score is not a probability of winning.' : 'Ranked by fit, evidence and how warm the route is. The score orders the list; it is not a probability of investment.'}</p>
+    <p className="ct-foot"><UserRound size={13} /> {grantsOnly ? 'Ranked by topic fit, eligibility evidence, deadline and program terms. The score is not a probability of winning.' : 'Ordered by fit, evidence and how warm the route is. No score is shown; it is not a probability of investment.'}</p>
   </section>;
 }

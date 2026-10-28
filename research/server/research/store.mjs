@@ -20,7 +20,8 @@ export function createStore(path) {
     CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL, expires_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS account_profiles (user_id TEXT PRIMARY KEY, body TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS account_sources (user_id TEXT NOT NULL, source TEXT NOT NULL, body TEXT NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY(user_id,source));
-    CREATE TABLE IF NOT EXISTS intake_sessions (user_id TEXT PRIMARY KEY, body TEXT NOT NULL);`);
+    CREATE TABLE IF NOT EXISTS intake_sessions (user_id TEXT PRIMARY KEY, body TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS investor_tracking (user_id TEXT NOT NULL, item_key TEXT NOT NULL, body TEXT NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY(user_id,item_key));`);
   const store = {
     analysis: createAnalysisStore(db),
     save(job) {
@@ -146,6 +147,16 @@ export function createStore(path) {
     },
     saveIntake(userId, session) {
       db.prepare('INSERT OR REPLACE INTO intake_sessions VALUES (?,?)').run(userId, JSON.stringify(session));
+    },
+    /** Seguimiento de candidatos guardados (local a este servidor; no hay permisos de equipo ni sincronización). */
+    tracking(userId) {
+      return db.prepare('SELECT body FROM investor_tracking WHERE user_id=? ORDER BY updated_at DESC').all(userId).map((row) => JSON.parse(row.body));
+    },
+    saveTracking(userId, item) {
+      db.prepare('INSERT OR REPLACE INTO investor_tracking VALUES (?,?,?,?)').run(userId, item.key, JSON.stringify(item), item.updatedAt);
+    },
+    deleteTracking(userId, key) {
+      db.prepare('DELETE FROM investor_tracking WHERE user_id=? AND item_key=?').run(userId, key);
     },
     deleteIntake(userId) {
       db.prepare('DELETE FROM intake_sessions WHERE user_id=?').run(userId);

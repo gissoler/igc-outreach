@@ -585,6 +585,8 @@ export async function runResearch(
       try {
         const jev = await askJev(job.leads, b, { env, fetcher, signal });
         job.leads = applyJevDecisions(job.leads, jev);
+        // El tier mostrado sigue al bucket: si la segunda opinión rebaja un candidato de la lista principal, pasa a «por verificar» con el motivo.
+        for (const l of job.leads) if (l.investorFit?.tier === 'meets' && l.bucket !== 'top') l.investorFit = { ...l.investorFit, tier: 'verify', gaps: [...new Set([`${jevP.name} asked for more evidence before prioritizing`, ...l.investorFit.gaps])] };
         live({ phase: 'evaluating', provider: jevP.name, status: 'success', title: `${jevP.name} decisions applied`, message: `${jevP.name} reviewed ${jev.decisions.length} candidates; uncertain ones go to radar for human review.`, resultCount: jev.decisions.length, durationMs: Date.now() - jevStarted, detail: { model: jev.model, usage: jev.usage } });
       } catch (error) {
         failures++;
@@ -600,7 +602,7 @@ export async function runResearch(
       feedback: memory.get(l.key) || null,
       draft: buildDraft(l, b, sender),
     }));
-    const card = (l) => ({ name: String(l.person || l.org).slice(0, 90), org: String(l.org || '').slice(0, 90), title: String(l.title || '').slice(0, 140), score: l.score, why: String(l.why?.[0] || l.discard || '').slice(0, 160), bucket: l.bucket });
+    const card = (l) => ({ name: String(l.person || l.org).slice(0, 90), org: String(l.org || '').slice(0, 90), title: String(l.title || '').slice(0, 140), score: l.score, why: String(l.investorFit?.reasons?.[0] || l.why?.[0] || l.discard || '').slice(0, 160), bucket: l.bucket, ...(l.investorFit ? { tier: l.investorFit.tier } : {}) });
     const byBucket = (bucket, n) => job.leads.filter((l) => l.bucket === bucket).slice(0, n).map(card);
     live({ phase: 'evaluating', status: 'success', title: 'Candidates ranked', detail: { kind: 'ranking', top: byBucket('top', 8), radar: byBucket('radar', 2), discarded: byBucket('discarded', 3), counts: { top: job.leads.filter((l) => l.bucket === 'top').length, radar: job.leads.filter((l) => l.bucket === 'radar').length, discarded: job.leads.filter((l) => l.bucket === 'discarded').length } }, message: `${job.leads.filter((l) => l.bucket === 'top').length} priority, ${job.leads.filter((l) => l.bucket === 'radar').length} on radar and ${job.leads.filter((l) => l.bucket === 'discarded').length} discarded after de-duplication and scoring.`, resultCount: job.leads.length, durationMs: Date.now() - evaluationStarted });
     emit(

@@ -123,3 +123,17 @@ i.source { background: #248259 !important; } i.inferred { background: var(--gold
   .ia-live dl > div { grid-template-columns: 110px 1fr; }
   .ia-composer-bar small { display: none; }
 }
+
+/* Summary card in the chat (27-10): what will be used, what is unknown, start or correct. */
+.ia-sum { margin: 6px 0 4px 36px; border: 1px solid #d9d9ef; border-left: 3px solid #4b48b8; background: #fbfbff; padding: 14px 16px; border-radius: 6px; }
+.ia-sum h3 { margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+.ia-sum dl { display: grid; gap: 6px; margin: 0; }
+.ia-sum dl > div { display: grid; grid-template-columns: 130px 1fr; gap: 10px; font-size: 13.5px; }
+.ia-sum dt { color: #6b6b72; }
+.ia-sum dd { margin: 0; color: #1f1f23; overflow-wrap: anywhere; }
+.ia-sum dd ul { margin: 0; padding-left: 16px; }
+.ia-sum .unk dd { color: #6a4a08; }
+.ia-sum .blk dd { color: #a12a1f; font-weight: 500; }
+.ia-sum-note { font-size: 12.5px; color: #55555c; margin: 10px 0; }
+.ia-sum-act { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 640px) { .ia-sum { margin-left: 0; } .ia-sum dl > div { grid-template-columns: 1fr; gap: 2px; } }
