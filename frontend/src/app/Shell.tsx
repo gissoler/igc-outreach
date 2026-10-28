@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNod
 import { accountApi, type AccountConnector, type AccountSession, type AccountSource } from '../accountApi';
 import { fmtDateTime, fmtInt, initials } from './format';
 import { Drawer, ErrorState, SkeletonState } from './ui';
+import { STATE_TEXT, type Stage } from './stages';
 
 export const companyOf = (s: AccountSession | null) => !s?.profile ? 'Company not set up' : s.profile.project.venture && s.profile.project.venture !== s.profile.founder.org ? `${s.profile.project.venture}` : s.profile.founder.org || s.profile.project.venture || 'Company';
 
@@ -47,8 +48,8 @@ export function AccountMenu({ session, onNavigate, onIntegrations, onLogout, dem
     <button className="am-btn" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)} aria-label={`Account: ${name}`}><span className="am-av" aria-hidden="true">{initials(name)}</span><ChevronDown size={14} aria-hidden="true" /></button>
     {open && <div className="am-menu" role="menu" ref={menu} aria-label="Account menu">
       <div className="am-head"><span className="am-av lg" aria-hidden="true">{initials(name)}</span><div><b>{name}</b><small>{demo ? 'No account · demo data' : 'Saved in this browser · no login'}</small><span className="am-meta"><Building2 size={12} /> {company}</span><span className="am-meta"><UserRound size={12} /> {role}</span></div></div>
-      {!demo && <button role="menuitem" onClick={act(() => onNavigate('#/configuracion/empresa'))}><UserPen size={15} /> Edit profile</button>}
-      {!demo && <button role="menuitem" onClick={act(() => onNavigate('#/configuracion/revision'))}><Settings size={15} /> Settings</button>}
+      {!demo && <button role="menuitem" onClick={act(() => onNavigate('#/configuracion/asistente'))}><UserPen size={15} /> Correct my profile in the chat</button>}
+      {!demo && <button role="menuitem" onClick={act(() => onNavigate('#/configuracion/red'))}><Settings size={15} /> Import my network (optional)</button>}
       <button role="menuitem" onClick={act(onIntegrations)}><Plug size={15} /> Integrations</button>
       {!demo ? <button role="menuitem" onClick={act(() => onNavigate('#/demo'))}><FlaskConical size={15} /> Open demo</button> : <button role="menuitem" onClick={act(() => onNavigate('#/evaluacion'))}><LayoutDashboard size={15} /> Leave demo</button>}
       {!demo && <button role="menuitem" className="danger" onClick={act(onLogout)} title="Forget this browser’s workspace and start an empty one"><LogOut size={15} /> Start over</button>}
@@ -90,7 +91,7 @@ export function IntegrationsDrawer({ open, onClose, demo }: { open: boolean; onC
 export type NavKey = 'evaluacion' | 'ejecucion' | 'configuracion' | 'acercamientos';
 export type SearchItem = { id: string; label: string; sub?: string; group: string; onSelect: () => void };
 const NAV: { key: NavKey; label: string; icon: ReactNode }[] = [
-  { key: 'configuracion', label: 'Setup', icon: <SlidersHorizontal size={17} strokeWidth={1.6} /> },
+  { key: 'configuracion', label: 'Conversation', icon: <SlidersHorizontal size={17} strokeWidth={1.6} /> },
   { key: 'ejecucion', label: 'Runs', icon: <Activity size={17} strokeWidth={1.6} /> },
   { key: 'evaluacion', label: 'Evaluation', icon: <LayoutDashboard size={17} strokeWidth={1.6} /> },
   { key: 'acercamientos', label: 'Outreach', icon: <Send size={17} strokeWidth={1.6} /> },
@@ -122,7 +123,19 @@ function CommandSearch({ items, onNav }: { items: SearchItem[]; onNav: (k: NavKe
   </div>;
 }
 
-export function AppShell({ active, onNav, disabled = [], account, actions, children, demo, running, searchItems = [], onIntegrations, onHelp }: { active: NavKey; onNav: (k: NavKey) => void; disabled?: NavKey[]; account: ReactNode; actions?: ReactNode; children: ReactNode; demo?: boolean; running?: boolean; searchItems?: SearchItem[]; onIntegrations?: () => void; onHelp?: () => void }) {
+/* Where the tool is right now (27-10): conversation steps or real research stages, never simulated progress. */
+export function StageRail({ title, stages }: { title: string; stages: Stage[] }) {
+  if (!stages.length) return null;
+  return <section className="sr" aria-label={title}>
+    <h2 className="sr-h">{title}</h2>
+    <ol>{stages.map((s, i) => <li key={s.id} className={`sr-step ${s.state}`} aria-current={s.state === 'active' ? 'step' : undefined}>
+      <span className="sr-dot" aria-hidden="true">{s.state === 'done' ? '✓' : s.state === 'failed' ? '✕' : s.state === 'warning' ? '!' : s.state === 'skipped' ? '–' : i + 1}</span>
+      <span className="sr-txt"><b>{s.label}</b><small>{STATE_TEXT[s.state]}{s.detail ? ` · ${s.detail}` : ''}</small></span>
+    </li>)}</ol>
+  </section>;
+}
+
+export function AppShell({ active, onNav, disabled = [], account, actions, children, demo, running, searchItems = [], onIntegrations, onHelp, rail }: { active: NavKey; onNav: (k: NavKey) => void; disabled?: NavKey[]; account: ReactNode; actions?: ReactNode; children: ReactNode; demo?: boolean; running?: boolean; searchItems?: SearchItem[]; onIntegrations?: () => void; onHelp?: () => void; rail?: { title: string; stages: Stage[] } | null }) {
   const [collapsed, setCollapsed] = useState(() => { try { return localStorage.getItem('igc-nav-collapsed') === '1'; } catch { return false; } });
   const [mobile, setMobile] = useState(false);
   useEffect(() => { try { localStorage.setItem('igc-nav-collapsed', collapsed ? '1' : '0'); } catch { /* no storage */ } }, [collapsed]);
@@ -132,7 +145,8 @@ export function AppShell({ active, onNav, disabled = [], account, actions, child
     <a className="skip" href="#main">Skip to content</a>
     <aside className="sb" aria-label="Sidebar">
       <div className="sb-top"><Brand compact={collapsed} /><button className="sb-collapse" onClick={() => setCollapsed(!collapsed)} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>{collapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}</button><button className="sb-close" onClick={() => setMobile(false)} aria-label="Close menu"><X size={18} /></button></div>
-      <nav className="sb-nav" aria-label="Main">{items.map((n) => <button key={n.key} aria-current={active === n.key ? 'page' : undefined} className={active === n.key ? 'on' : ''} disabled={disabled.includes(n.key)} title={collapsed ? n.label : disabled.includes(n.key) ? 'Finish setup first' : undefined} onClick={() => nav(n.key)}>{n.icon}<span>{n.label}</span>{n.key === 'ejecucion' && running && <i className="sh-live" aria-label="running" />}</button>)}</nav>
+      <nav className="sb-nav" aria-label="Main">{items.map((n) => <button key={n.key} aria-current={active === n.key ? 'page' : undefined} className={active === n.key ? 'on' : ''} disabled={disabled.includes(n.key)} title={collapsed ? n.label : disabled.includes(n.key) ? 'Start a search from the conversation first' : undefined} onClick={() => nav(n.key)}>{n.icon}<span>{n.label}</span>{n.key === 'ejecucion' && running && <i className="sh-live" aria-label="running" />}</button>)}</nav>
+      {rail && !collapsed && <StageRail title={rail.title} stages={rail.stages} />}
       <div className="sb-foot">
         {onIntegrations && <button onClick={onIntegrations} title={collapsed ? 'Integrations' : undefined}><Plug size={17} strokeWidth={1.6} /><span>Integrations</span></button>}
         {onHelp && <button onClick={onHelp} title={collapsed ? 'Demo' : undefined}><CircleHelp size={17} strokeWidth={1.6} /><span>{demo ? 'Leave demo' : 'Demo'}</span>{demo && <em>Demo</em>}</button>}

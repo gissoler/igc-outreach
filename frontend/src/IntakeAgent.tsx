@@ -101,38 +101,44 @@ export function LiveProfile({ intake, onRemoveDocument }: { intake: IntakeState 
 }
 
 
-/* ───────── Progress (feedback 28/09): the user must know how many questions are left
-   and what they get at 100%. Visual: Plan CRM "Lead Detail" progress bar (Dstudio). ───────── */
-export function PlanProgress({ intake }: { intake: IntakeState | null }) {
-  const plan = intake?.planFields?.length ? intake.planFields : REQUIRED;
-  const missing = intake ? plan.filter((p) => intake.missing.includes(p)) : plan;
-  const done = plan.length - missing.length;
-  const pct = Math.round((done / plan.length) * 100);
-  const goals = asList(intake?.fields['funding.objectives']?.value);
-  const grantsOnly = goals.length === 1 && goals[0] === 'grant';
-  const readyWithUnknown = !!intake && intake.messages.length > 1 && missing.length > 0 && intake.pending === null;
-  return <div className="ia-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Plan readiness">
-    <div className="ia-progress-h">
-      <span className="ia-progress-t"><LoaderCircle size={14} className={pct < 100 ? 'spin-slow' : ''} /> Your plan</span>
-      <span><b>{pct}%</b> · {done} of {plan.length} answers</span>
+/* ───────── What the assistant understood (27-10) ─────────
+   No percentage and no completeness score: a filled field is not proof that it is right or sufficient.
+   The card shows what will be used, what is still unknown and its effect, and whether the search can start.
+   The same server readiness decides the card, the button and the reply in the chat. */
+export function SummaryCard({ intake, onRun, onCorrect, busy }: { intake: IntakeState; onRun: () => void; onCorrect: () => void; busy: boolean }) {
+  const r = intake.readiness; const u = intake.summary;
+  if (!r || !u || !intake.summaryShownAt) return null;
+  return <section className="ia-sum" aria-label="What I understood">
+    <h3>Before searching</h3>
+    <dl>
+      <div><dt>Company</dt><dd>{u.who}{u.what ? ` — ${u.what}` : ''}</dd></div>
+      <div><dt>Looking for</dt><dd>{u.lookFor}</dd></div>
+      {u.exclusions.length > 0 && <div><dt>Excluding</dt><dd>{u.exclusions.join('; ')}</dd></div>}
+      {u.wants.length > 0 && <div><dt>You asked to see</dt><dd>{u.wants.join(' ')}</dd></div>}
+      {r.unknown.length > 0 && <div className="unk"><dt>Still unknown</dt><dd><ul>{r.unknown.map((x) => <li key={x.path}><b>{x.label}</b> — {x.impact}{x.said ? ' (you said it is not known yet)' : ''}</li>)}</ul></dd></div>}
+      {r.blocking.length > 0 && <div className="blk"><dt>Needed to start</dt><dd>{r.blocking.map((x) => x.label).join(', ')}</dd></div>}
+    </dl>
+    <p className="ia-sum-note">{r.blocking.length ? 'The search can\'t start without the details above.' : r.complete ? 'Everything this search uses is known.' : 'The search can start with these limits; unknown details are not assumed.'}</p>
+    <div className="ia-sum-act">
+      <button className="rl-primary" onClick={onRun} disabled={busy || !r.canStart}>{busy ? <LoaderCircle className="spin" size={16} /> : <Check size={16} />} Start the search</button>
+      <button className="rl-skip" onClick={onCorrect} disabled={busy}>Correct something</button>
     </div>
-    <div className="ia-progress-bar"><b style={{ width: `${pct}%` }} />{pct < 100 && <s style={{ left: `${pct}%`, width: `${Math.min(100 - pct, 100 / REQUIRED.length)}%` }} />}<i style={{ left: `${pct}%` }} /></div>
-    <p>{readyWithUnknown ? <>Ready to review; unanswered details stay unknown.</> : pct < 100 ? <>You can leave details unknown. We use your answers to find <b>{grantsOnly ? 'relevant calls, requirements and next steps' : 'relevant funding and next steps'}</b>.</> : <><Check size={13} /> Ready to review and run the search.</>}</p>
-  </div>;
+  </section>;
 }
 /* ───────── Paso 1: conversación + adjuntos ───────── */
 type Pending = { id: string; file: File; status: 'reading' | 'ready' | 'error'; text?: string; pages?: number; error?: string };
-const STARTERS = ['I want to raise a seed round', 'I\'m looking for non-dilutive health grants', 'We want a pharma licensing partner'];
+const STARTERS = ['Find family offices that could invest in my company', 'I\'m looking for non-dilutive health grants', 'We want a pharma licensing partner'];
 
-export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell us what you want to fund', description = 'Write freely or attach your deck. The assistant builds your profile; you confirm it.', reviewLabel = 'Review profile', reviewRequiresConversation = true }: { intake: IntakeState | null; onChange: (s: IntakeState) => void; onReview: () => void; onError: (e: string) => void; title?: string; description?: string; reviewLabel?: string; reviewRequiresConversation?: boolean }) {
+export function AgentChat({ intake, onChange, onError, onRun, running = false, title = 'Tell us what you want to fund', description = 'Write freely or attach your deck. The assistant builds your profile; you confirm it.' }: { intake: IntakeState | null; onChange: (s: IntakeState) => void; onError: (e: string) => void; onRun: () => void; running?: boolean; title?: string; description?: string }) {
   const [text, setText] = useState('');
   const [files, setFiles] = useState<Pending[]>([]);
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState<{ text: string; files: string[] } | null>(null);
   const [drag, setDrag] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  const box = useRef<HTMLTextAreaElement>(null);
   const thread = useRef<HTMLDivElement>(null);
-  useEffect(() => { thread.current?.scrollTo({ top: thread.current.scrollHeight, behavior: 'smooth' }); }, [intake?.messages.length, busy]);
+  useEffect(() => { thread.current?.scrollTo({ top: thread.current.scrollHeight, behavior: 'smooth' }); }, [intake?.messages.length, busy, intake?.summaryShownAt]);
 
   function add(list: FileList | File[]) {
     const items: Pending[] = [...list].slice(0, 8).map((file) => ({ id: crypto.randomUUID(), file, status: 'reading' }));
@@ -144,36 +150,36 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
   const ready = files.filter((f) => f.status === 'ready');
   const reading = files.some((f) => f.status === 'reading');
   async function send(message = text) {
-    if (busy || reading || (!message.trim() && !ready.length)) return;
+    if (busy || running || reading || (!message.trim() && !ready.length)) return;
     setBusy(true); onError(''); setSent({ text: message, files: ready.map((f) => f.file.name) }); setText('');
     try {
       const next = await intakeApi.message(message, ready.map((f) => ({ name: f.file.name, type: f.file.type, size: f.file.size, text: f.text || '', pages: f.pages })));
       onChange(next);
       setFiles((f) => f.filter((x) => x.status === 'error'));
-      if (next.modelError) onError(`The model didn't respond (${next.modelError}). Used basic extraction.`);
+      if (next.modelError) onError(`The AI model didn't respond (${next.modelError}). I used rule-based extraction for this message; check the summary.`);
+      if (next.run) onRun();
     } catch (e) { onError(errorText(e)); setText(message); } finally { setBusy(false); setSent(null); }
   }
   const onKey = (e: KeyboardEvent<HTMLTextAreaElement>) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send(); } };
   const onDrop = (e: DragEvent) => { e.preventDefault(); setDrag(false); if (e.dataTransfer.files.length) add(e.dataTransfer.files); };
   const fresh = (intake?.messages.length || 0) <= 1;
-  const missing = intake ? (intake.planFields?.length ? intake.missing.length : REQUIRED.filter((p) => intake.missing.includes(p)).length) : REQUIRED.length;
-  // "I don't know" answers stay missing (the plan is not complete) but must not lock the user in.
-  const onlyUnknown = !!intake && missing > 0 && intake.missing.every((p) => intake.skipped.includes(p));
-  const canReview = !missing || onlyUnknown || intake?.pending === null || !reviewRequiresConversation;
+  const r = intake?.readiness;
+  const status = !intake ? '' : running ? 'Starting the search…' : intake.pending ? 'Answer in your own words, or say “I don’t know”.' : r?.canStart ? 'You can start now or keep correcting; nothing runs until you say so.' : r?.blocking.length ? `Needed before searching: ${r.blocking.map((x) => x.label.toLowerCase()).join(', ')}.` : '';
+  const last = intake ? intake.messages.length - 1 : -1;
 
   return <div className="ia-chat">
     {title && <div className="ia-chat-head">
       <div><h1>{title}</h1><p className="rl-sub">{description}</p></div>
       <span className={`ia-model ${intake?.model.configured ? 'on' : ''}`} title={intake?.model.configured ? 'Local model via OpenAI-compatible endpoint' : 'No model: rule-based extraction'}><Sparkles size={13} />{intake?.model.configured ? intake.model.model : 'Basic extraction'}</span>
     </div>}
-    <PlanProgress intake={intake} />
     <div className="ia-thread" ref={thread} aria-live="polite">
-      {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role} ${m.role === 'assistant' && i === intake.messages.length - 1 && missing > 0 && Boolean(intake.pending) && !busy && intake.messages.length > 1 ? 'ask' : ''}`}>
+      {intake?.messages.map((m, i) => <div key={i} className={`ia-msg ${m.role} ${m.role === 'assistant' && i === last && intake.pending && !busy && i > 0 ? 'ask' : ''}`}>
         {m.role === 'assistant' && <img src="/igc-outreach-mark.png" alt="" width={26} height={26} />}
-        <div>{m.role === 'assistant' && i === intake!.messages.length - 1 && missing > 0 && Boolean(intake?.pending) && !busy && intake!.messages.length > 1 && <span className="ia-need">Next detail</span>}{m.text && <p>{m.text}</p>}{m.files?.length ? <div className="ia-files">{m.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div> : null}</div>
+        <div>{m.role === 'assistant' && i === last && intake.pending && !busy && i > 0 && <span className="ia-need">Question</span>}{m.text && <p>{m.text}</p>}{m.files?.length ? <div className="ia-files">{m.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div> : null}</div>
       </div>)}
       {sent && <div className="ia-msg user pending"><div>{sent.text && <p>{sent.text}</p>}{sent.files.length > 0 && <div className="ia-files">{sent.files.map((f) => <span key={f}><FileText size={12} />{f}</span>)}</div>}</div></div>}
       {busy && <div className="ia-msg assistant"><img src="/igc-outreach-mark.png" alt="" width={26} height={26} /><div><p className="ia-typing"><i /><i /><i /> {sent?.files.length ? 'Reading your documents…' : 'Thinking…'}</p></div></div>}
+      {intake && !busy && !intake.pending && <SummaryCard intake={intake} busy={running} onRun={onRun} onCorrect={() => { setText(''); box.current?.focus(); box.current?.setAttribute('placeholder', 'Tell me what to change, e.g. “search only in Europe” or “exclude Acme Capital”'); }} />}
       {fresh && !busy && <div className="ia-starters">{STARTERS.map((s) => <button key={s} onClick={() => void send(s)}>{s}</button>)}<button onClick={() => input.current?.click()}><Paperclip size={13} /> Attach pitch deck</button></div>}
     </div>
     <div className={`ia-composer ${drag ? 'drag' : ''}`} onDragOver={(e) => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)} onDrop={onDrop}>
@@ -182,18 +188,15 @@ export function AgentChat({ intake, onChange, onReview, onError, title = 'Tell u
         {f.file.name}{f.status === 'error' && <small>{f.error}</small>}
         <button onClick={() => setFiles((l) => l.filter((x) => x.id !== f.id))} aria-label={`Remove ${f.file.name}`}><X size={12} /></button>
       </span>)}</div>}
-      <textarea rows={2} value={text} placeholder="e.g. We're Andes Labs, raising $1.5M pre-seed for Aurora, a wearable that…" onChange={(e) => setText(e.target.value)} onKeyDown={onKey} disabled={busy} aria-label="Message" />
+      <textarea ref={box} rows={2} value={text} placeholder="e.g. We're Andes Labs, a private startup building… We want family offices worldwide." onChange={(e) => setText(e.target.value)} onKeyDown={onKey} disabled={busy || running} aria-label="Message" />
       <div className="ia-composer-bar">
-        <button className="ia-attach" onClick={() => input.current?.click()} disabled={busy}><Paperclip size={16} /> Attach</button>
-        <small>PDF, Word, PowerPoint, Excel or text</small>
-        <button className="ia-send" onClick={() => void send()} disabled={busy || reading || (!text.trim() && !ready.length)} aria-label="Send">{busy ? <LoaderCircle className="spin" size={17} /> : <Send size={17} />}</button>
+        <button className="ia-attach" onClick={() => input.current?.click()} disabled={busy || running}><Paperclip size={16} /> Attach</button>
+        <small>PDF, Word, PowerPoint, Excel or text — read with the source kept for each fact</small>
+        <button className="ia-send" onClick={() => void send()} disabled={busy || running || reading || (!text.trim() && !ready.length)} aria-label="Send">{busy ? <LoaderCircle className="spin" size={17} /> : <Send size={17} />}</button>
       </div>
       <input ref={input} type="file" multiple accept={ACCEPT} hidden onChange={(e) => { if (e.target.files) add(e.target.files); e.target.value = ''; }} />
     </div>
-    <div className="rl-actions ia-actions">
-      <span className="ia-status">{!missing ? <><Check size={14} /> Your plan is complete</> : onlyUnknown || intake?.pending === null ? 'You can review now; missing details will stay unknown.' : 'Answer one question at a time, or say “I don’t know”.'}</span>
-      {canReview && <button className="rl-primary" onClick={onReview} disabled={busy || !intake || (reviewRequiresConversation && intake.messages.length <= 1)}>{reviewLabel} <ChevronRight size={17} /></button>}
-    </div>
+    {status && <p className="ia-status" role="status">{status}</p>}
   </div>;
 }
 

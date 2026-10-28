@@ -21,7 +21,7 @@ import { hostOf, literalIn } from '../verify.mjs';
 import { contentTokens } from '../dossier/terms.mjs';
 import { investorQueries, sectorOf } from './sector.mjs';
 import { orgEvidence } from './evidence.mjs';
-import { apolloFamilyOffices, edgarFamilyOffices, familyOfficeQueries, FAMILY_OFFICE, FAMILY_OFFICE_LABEL, isFamilyOfficeName } from './familyOffices.mjs';
+import { apolloFamilyOffices, edgarFamilyOffices, familyOfficeFocus, familyOfficeQueries, FAMILY_OFFICE, FAMILY_OFFICE_LABEL, isFamilyOfficeName } from './familyOffices.mjs';
 import { INVESTORISH_LABEL, isArticleUrl, linkedInvestors, nameCore, namesFromHeadings, orgDisplayName, candidatesFromList, isThirdParty, nameMatchesDomain, namesFromNews, orgKey, roleOf } from './orgs.mjs';
 
 const noopTrace = { event: () => null };
@@ -58,9 +58,11 @@ export async function resolveNames({ tools, names, brief, addCand, source, via =
 export async function harvestInvestors({ tools, brief, today, trace = noopTrace, env = process.env, apolloRows = [], fetcher = null } = {}) {
   const maxQ = Number(env.ENGINE_INVESTOR_SEARCHES) || 15; const queries = investorQueries(brief, maxQ);
   // Family offices (V16): consultas propias, EDGAR y Apollo, con cupo propio de listas y noticias. ENGINE_INVESTOR_FAMILY_OFFICES=0 apaga la rama.
-  const foOn = String(env.ENGINE_INVESTOR_FAMILY_OFFICES ?? '1') !== '0'; const country = applicantFacts(brief).country;
+  const foOn = String(env.ENGINE_INVESTOR_FAMILY_OFFICES ?? '1') !== '0'; const focus = familyOfficeFocus(brief);
+  // País de la empresa ≠ geografía de los inversores: con búsqueda mundial no se limita a family offices del país del solicitante.
+  const country = /\bglobal\b/i.test(String(brief.geography || '')) ? null : applicantFacts(brief).country;
   const asked = new Set(queries.map((q) => q.toLowerCase()));
-  const foQueries = foOn ? familyOfficeQueries(brief, { n: Number(env.ENGINE_INVESTOR_FO_SEARCHES) || 4, country }).filter((q) => !asked.has(q.toLowerCase())) : [];
+  const foQueries = foOn ? familyOfficeQueries(brief, { n: Number(env.ENGINE_INVESTOR_FO_SEARCHES) || (focus ? 7 : 4), country }).filter((q) => !asked.has(q.toLowerCase())) : [];
   const foQ = new Set(foQueries);
   const edgarTask = foOn && String(env.ENGINE_INVESTOR_FO_EDGAR ?? '1') !== '0'
     ? edgarFamilyOffices({ fetcher, env, today, n: Number(env.ENGINE_INVESTOR_FO_EDGAR_NAMES) || 4 }).catch((e) => ({ names: [], hits: 0, reason: null, error: String(e?.message || e).slice(0, 160) }))
@@ -90,7 +92,7 @@ export async function harvestInvestors({ tools, brief, today, trace = noopTrace,
   }
   // Listas: sus enlaces externos son candidatos con dominio (sin resolver nombres ni pedirle al modelo que elija).
   const maxLists = Number(env.ENGINE_INVESTOR_LISTS) || 5; const maxNews = Number(env.ENGINE_INVESTOR_NEWS) || 6;
-  const foLists = Number(env.ENGINE_INVESTOR_FO_LISTS) || 2; const foNews = Number(env.ENGINE_INVESTOR_FO_NEWS) || 3;
+  const foLists = Number(env.ENGINE_INVESTOR_FO_LISTS) || (focus ? 3 : 2); const foNews = Number(env.ENGINE_INVESTOR_FO_NEWS) || (focus ? 5 : 3);
   const uniq = (rows) => { const seen = new Set(); return rows.filter((x) => !seen.has(x.url) && seen.add(x.url)); };
   // Las de la rama de family offices tienen cupo propio: sin él quedarían detrás de las listas de VC.
   const budget = (rows, n, nFo) => { const main = uniq(rows.filter((x) => !x.fo)).slice(0, n); const urls = new Set(main.map((x) => x.url)); return [...main, ...uniq(rows.filter((x) => x.fo && !urls.has(x.url))).slice(0, nFo)]; };
@@ -108,7 +110,7 @@ export async function harvestInvestors({ tools, brief, today, trace = noopTrace,
   const known = (n) => [...cands.values()].some((c) => c.names.some((x) => x.toLowerCase() === n.toLowerCase()) || nameMatchesDomain(n, `https://${c.key}`));
   // Cupo de resolución: los nombres de family office (que la rama trajo) no compiten con los de VC por los primeros lugares.
   const resolveN = Number(env.ENGINE_INVESTOR_RESOLVE) || 14; const pending = names.filter((x) => !known(x.name));
-  const toResolve = [...pending.filter((x) => !x.fo).slice(0, resolveN), ...pending.filter((x) => x.fo).slice(0, foOn ? Number(env.ENGINE_INVESTOR_FO_RESOLVE) || 4 : 0)];
+  const toResolve = [...pending.filter((x) => !x.fo).slice(0, resolveN), ...pending.filter((x) => x.fo).slice(0, foOn ? Number(env.ENGINE_INVESTOR_FO_RESOLVE) || (focus ? 8 : 4) : 0)];
   for (const x of names) if (known(x.name)) { const c = [...cands.values()].find((c) => nameMatchesDomain(x.name, `https://${c.key}`) || c.names.some((y) => y.toLowerCase() === x.name.toLowerCase())); if (c) { c.sources.add(`news:${orgKey(x.from)}`); c.via.add('news'); if (x.page && c.dealPages.length < 2 && !c.dealPages.some((p) => p.url === x.page.url)) c.dealPages.push(x.page); } }
   const { resolved, log: resolveLog } = await resolveNames({ tools, names: toResolve, brief, addCand, source: 'news' });
   // EDGAR: nombres de filers que se presentan como family office, resueltos a su sitio igual que los de noticias.
@@ -245,7 +247,7 @@ export function auditQuotes(finding, pagesByUrl) {
 
 /** Cosecha + apertura de los candidatos mejor ordenados, pensada para correr EN PARALELO al agente. */
 export async function prefetchInvestors({ tools, brief, today, trace = noopTrace, env = process.env, apolloRows = [], fetcher = null } = {}) {
-  const sector = sectorOf(brief); const foSlots = String(env.ENGINE_INVESTOR_FAMILY_OFFICES ?? '1') !== '0' ? Number(env.ENGINE_INVESTOR_FO_SLOTS) || 4 : 0;
+  const sector = sectorOf(brief); const foSlots = String(env.ENGINE_INVESTOR_FAMILY_OFFICES ?? '1') !== '0' ? Number(env.ENGINE_INVESTOR_FO_SLOTS) || (familyOfficeFocus(brief) ? 8 : 4) : 0;
   const { cands, stats, addCand } = await harvestInvestors({ tools, brief, today, trace, env, apolloRows, fetcher });
   const screenN = Number(env.ENGINE_INVESTOR_SCREEN) || 40; const maxOrgs = Number(env.ENGINE_INVESTOR_ORGS) || 16; const conc = Number(env.ENGINE_INVESTOR_CONCURRENCY) || 6;
   const opened = new Map(); const screenedAll = [];
@@ -298,7 +300,7 @@ export async function runInvestorStage({ tools, brief, today, trace = noopTrace,
   const maxOrgs = Number(env.ENGINE_INVESTOR_ORGS) || 16;
   // Lo ya abierto en paralelo se evalúa siempre; el resto del cupo, por orden.
   const rest = ranked.filter((c) => !done.has(c.key)); const restN = done.size ? Number(env.ENGINE_INVESTOR_AGENT_ORGS) || 8 : maxOrgs;
-  const foSlots = String(env.ENGINE_INVESTOR_FAMILY_OFFICES ?? '1') !== '0' ? Number(env.ENGINE_INVESTOR_FO_SLOTS) || 4 : 0;
+  const foSlots = String(env.ENGINE_INVESTOR_FAMILY_OFFICES ?? '1') !== '0' ? Number(env.ENGINE_INVESTOR_FO_SLOTS) || (familyOfficeFocus(brief) ? 8 : 4) : 0;
   const selected = withReserved([...ranked.filter((c) => done.has(c.key)), ...rest.filter((c) => c.via.has('agent')), ...rest.filter((c) => !c.via.has('agent'))], done.size + restN, isFo, foSlots);
   for (const c of ranked) if (!selected.includes(c)) trace.event('investor_org', { key: c.key, decision: 'not_selected', score: c.score, via: [...c.via] });
   const opened = await pool(selected, Number(env.ENGINE_INVESTOR_CONCURRENCY) || 6, async (c) => {

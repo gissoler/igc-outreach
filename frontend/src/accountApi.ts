@@ -85,7 +85,15 @@ export type IntakeState = {
   model: { configured: boolean; model: string | null; reasoning: boolean };
   changed?: string[];
   modelError?: string | null;
+  /** One readiness for the chat reply, the start button and the server confirm. */
+  readiness?: IntakeReadiness;
+  summary?: IntakeUnderstood;
+  summaryShownAt?: string | null;
+  /** The user said "start" after the summary and the readiness allows it. */
+  run?: boolean;
 };
+export type IntakeReadiness = { canStart: boolean; complete: boolean; blocking: { path: string; label: string }[]; unknown: { path: string; label: string; impact: string; said: boolean }[] };
+export type IntakeUnderstood = { who: string; what: string; lookFor: string; exclusions: string[]; wants: string[] };
 export type IntakeUpload = { name: string; type: string; size: number; text: string; pages?: number };
 
 /* Agente de prerregistro: conversación + documentos -> perfil que el usuario confirma. */

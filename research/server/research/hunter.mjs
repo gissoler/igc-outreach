@@ -9,6 +9,7 @@
    ───────────────────────────────────────────────────────────────────────────── */
 import { candidate, evidence, norm, safeUrl } from './core.mjs';
 import { hostKind } from './verify.mjs';
+import { roleFit } from './investors/fit.mjs';
 
 const API = 'https://api.hunter.io/v2';
 export const HUNTER_SOURCE = 'Hunter.io';
@@ -162,7 +163,8 @@ export async function enrichWithHunter(leads, brief, { env = process.env, fetche
     const roleRe = roleFor(lead.fundingType);
     const emails = (Array.isArray(data?.emails) ? data.emails : [])
       .filter((e) => e?.value && Number(e.confidence) >= minScore && verifiedStatus(e) !== 'invalid' && !knownEmails.has(String(e.value).toLowerCase()))
-      .filter((e) => splitName(e) && (roleRe.test(String(e.position || '')) || roleRe.test(String(e.department || '')) || SENIOR.has(String(e.seniority || ''))))
+      // Inversión (27-10): solo cargos con función inversora. Antes bastaba la antigüedad («senior») y entraban Customer Service o Operations Manager.
+      .filter((e) => splitName(e) && (lead.fundingType === 'investment' ? roleFit(e.position) === 'investing' : (roleRe.test(String(e.position || '')) || roleRe.test(String(e.department || '')) || SENIOR.has(String(e.seniority || '')))))
       .sort((a, b) => (roleRe.test(String(b.position || '')) - roleRe.test(String(a.position || ''))) || (Number(b.confidence) - Number(a.confidence)))
       .slice(0, perDomain);
     const orgName = String(lead.org || data?.organization || domain).trim();
@@ -194,7 +196,9 @@ export async function enrichWithHunter(leads, brief, { env = process.env, fetche
         status: 'unknown',
         contact: { type: 'email', value: e.value, provenance: provenanceOf(e, domain) },
         ...(safeUrl(e.linkedin) ? { linkedin: safeUrl(e.linkedin) } : {}),
-        evidence: [...(lead.evidence || []).filter((x) => x.verified).slice(0, 2), emailEvidence(e, domain, name)],
+        // La evidencia de la organización no se copia a la persona: su tesis no es la tesis de cada empleado.
+        evidence: [emailEvidence(e, domain, name)],
+        orgEvidence: (lead.evidence || []).filter((x) => x.verified).slice(0, 2).map((x) => ({ ...x, about: 'organization' })),
         risks: ['Person and email from Hunter.io: confirm the role is current before reaching out'],
         missing: [...(e.position ? [] : ['Role not confirmed']), 'Funding authority not confirmed'],
         searchText: `${e.position || ''} ${e.department || ''} ${orgName} ${lead.searchText || ''}`.slice(0, 4000),

@@ -700,6 +700,8 @@ export function engineLeads(findings) {
       ...(f.registry ? { registry: f.registry, externalId: `engine:${f.objective}:${f.registry.number || f.url}` } : {}),
       ...(f.quotes ? { quotes: f.quotes } : {}),
       ...(f.investor_type ? { investorType: f.investor_type } : {}),
+      // Expediente del inversor por campo (tesis, etapa, geografía, contacto, actividad, operación) con cita y URL: la ficha lo muestra tal cual.
+      ...(f.objective === 'investment' && f.evidence && typeof f.evidence === 'object' ? { investorEvidence: f.evidence, ...(f.verified_by_code ? { investorChecks: f.verified_by_code } : {}) } : {}),
       ...(deal ? { directInvestment: { quote: deal.quote, url: deal.url, from: deal.from || null, year: deal.year ?? null, terms: deal.terms || [] } } : {}),
     });
   });

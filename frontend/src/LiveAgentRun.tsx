@@ -497,14 +497,13 @@ function interleave<T>(a: T[], b: T[]): T[] { const out: T[] = []; for (let i = 
 function RankScene({ scene, p }: { scene: Scene; p: number }) {
   const d = scene.events.find((e) => e.detail?.kind === 'ranking')?.detail as RankingDetail | undefined;
   const top = (d?.top || []).slice(0, 8);
-  const max = Math.max(1, ...top.map((t) => t.score));
   const settle = Math.min(1, p * 1.5);
   const order = settle < 0.6 ? [...top].sort((a, b) => a.name.localeCompare(b.name)) : top;
   return <div className="agv-rank">
-    <h3 data-cursor="head">Top {d?.counts.top ?? top.length} · explainable score out of 100</h3>
+    <h3 data-cursor="head">Main list: {d?.counts.top ?? top.length} · to review: {d?.counts.radar ?? 0} · ruled out: {d?.counts.discarded ?? 0}</h3>
     <ol>{top.map((r, k) => {
       const i = order.indexOf(r);
-      return <li key={`${r.name}-${k}`} style={{ transform: `translateY(${i * 46}px)` }} data-cursor={k === 0 ? 'row-0' : undefined}><b>{k + 1}</b><span title={r.org}>{r.name}</span><div><i style={{ width: `${(r.score / max) * 100 * settle}%` }} /></div><small>{Math.round(r.score * settle)}</small></li>;
+      return <li key={`${r.name}-${k}`} style={{ transform: `translateY(${i * 46}px)` }} data-cursor={k === 0 ? 'row-0' : undefined}><b>{k + 1}</b><span title={r.org}>{r.name}</span><small title={r.why}>{r.why ? r.why.slice(0, 60) : ''}</small></li>;
     })}</ol>
   </div>;
 }
@@ -529,7 +528,6 @@ function DoneScene({ scene, steps, outcome, elapsed, onReplay, onResults }: { sc
   const records = sources.reduce((n, s) => n + (s.resultCount || 0), 0);
   const maxRecords = Math.max(1, ...sources.map((s) => s.resultCount || 0));
   const top = (ranking?.top || []).slice(0, 5);
-  const maxScore = Math.max(1, ...top.map((t) => t.score));
   const kpis = [
     { label: 'Priority', value: ranking?.counts.top, tone: 'blue' },
     { label: 'Radar', value: ranking?.counts.radar, tone: '' },
@@ -554,7 +552,7 @@ function DoneScene({ scene, steps, outcome, elapsed, onReplay, onResults }: { sc
       </section>
       <section>
         <h4>Top candidates</h4>
-        {top.length ? <ol className="lv-top">{top.map((t, i) => <li key={`${t.name}-${i}`}><b>{i + 1}</b><div><strong>{t.name}</strong><small>{t.org && t.org !== t.name ? t.org : t.title}</small></div><span className="lv-src-bar"><i style={{ width: `${(t.score / maxScore) * 100}%` }} /></span><em>{t.score}</em></li>)}</ol>
+        {top.length ? <ol className="lv-top">{top.map((t, i) => <li key={`${t.name}-${i}`}><b>{i + 1}</b><div><strong>{t.name}</strong><small>{t.org && t.org !== t.name ? t.org : t.title}</small></div><em className="lv-why">{(t.why || '').slice(0, 70)}</em></li>)}</ol>
           : <p className="lv-muted">No candidate had enough evidence for the top list.</p>}
       </section>
     </div>
