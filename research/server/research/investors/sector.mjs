@@ -105,6 +105,9 @@ export function investorQueries(brief = {}, n = 15) {
   // Family offices: invierten directo y rara vez salen en listas de VC; se buscan como arquetipo propio (su sitio, listas de family offices y rondas donde participaron).
   out.push(p1 && `family office direct investments ${p1}`, p1 && `family offices investing in ${p1} early-stage companies`, p1 && `${p1} family office list`);
   out.push(p1 && `most active ${p1} seed investors`, t1 && `${t1} funding round investors include`, p2 && `${p2} Series A led by participation from`, p1 && `${p1} venture fund early-stage pitch founders`, p1 && `${p1} venture capital list`);
+  // «Find more investors like these»: los nombres seleccionados como semilla (coinversores y pares), sin repetirlos como resultado.
+  const seeds = String(brief.similarTo || '').split('|')[0].split(';').map((x) => x.trim()).filter(Boolean).slice(0, 3);
+  if (seeds.length) out.unshift(...seeds.flatMap((s) => [`"${s}" co-investors ${p1 || ''}`, `investors similar to ${s} ${p1 || ''}`]));
   const queries = out.filter(Boolean).map(clean);
   const seen = new Set(); return queries.filter((q) => { const k = q.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); if (!k || seen.has(k)) return false; seen.add(k); return true; }).slice(0, n);
 }

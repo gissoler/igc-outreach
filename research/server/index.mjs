@@ -9,7 +9,9 @@ import { runResearch } from './research/pipeline.mjs';
 import { askRun, chatReady } from './research/runChat.mjs';
 import { webConfigured, webPublicRelations, webProfileLookup, WEB_SOURCE } from './research/webscrape.mjs';
 import { buildNetworkGraph } from './research/networkGraph.mjs';
-import { editField, missingRequired, modelInfo, newIntake, publicIntake, removeDocument, runTurn, toProfile } from './research/intake.mjs';
+import { outreachPlan, similarBrief } from './research/outreachPlan.mjs';
+import { validateTracking } from './research/tracking.mjs';
+import { editField, missingRequired, modelInfo, readiness, newIntake, publicIntake, removeDocument, runTurn, toProfile } from './research/intake.mjs';
 import { blankProfile } from './research/profileDefaults.mjs';
 import { createFrameStore, createLiveHub } from './research/liveRun.mjs';
 import { createBrowserService } from './research/browser.mjs';
@@ -350,7 +352,7 @@ export function createApp({
           if (!text.trim() && !documents.length) return json(400, { error: 'Write a message or attach a document with text.' });
           const session = load();
           const turn = await runTurn(session, { text, documents, env, fetchImpl: modelFetch });
-          return reply(session, { changed: turn.changed, modelError: turn.model.error });
+          return reply(session, { changed: turn.changed, modelError: turn.model.error, ...(turn.run ? { run: true } : {}) });
         }
         if (req.method === 'PUT' && path === '/api/research/intake/field') {
           if (typeof body.path !== 'string') return json(400, { error: 'Invalid field.' });
@@ -370,9 +372,9 @@ export function createApp({
         }
         if (req.method === 'POST' && path === '/api/research/intake/confirm') {
           const session = load();
-          const missing = missingRequired(session);
-          if (missing.some((p) => ['company.name', 'product.name', 'product.one_liner', 'funding.objectives'].includes(p)))
-            return json(400, { error: 'Missing company, product, one-liner or goal.', missing });
+          // El mismo estado que decide el botón del chat (readiness): no hay un segundo criterio en el servidor.
+          const ready = readiness(session);
+          if (!ready.canStart) return json(400, { error: `Missing: ${ready.blocking.map((x) => x.label).join(', ')}.`, missing: ready.blocking.map((x) => x.path) });
           const profile = { ...toProfile(session, store.profile(user.id) || blankProfile(user), user, env), onboardingComplete: false };
           store.saveProfile(user.id, profile);
           session.confirmedAt = new Date().toISOString();
@@ -440,6 +442,42 @@ export function createApp({
             void advisorRoutes.autoStart(store.get(job.id) || job);
           });
         return json(202, { jobId: job.id });
+      }
+      // Plan de outreach por candidato (27-10): hechos con fuente, inferencias y propuestas; borrador revisable, nada se envía.
+      const planMatch = path.match(/^\/api\/research\/jobs\/([a-f0-9-]+)\/leads\/([A-Za-z0-9_:.-]{1,200})\/plan$/);
+      if (planMatch && ['GET', 'POST'].includes(req.method)) {
+        const job = store.get(planMatch[1]); const requestUser = authUser(req);
+        if (!job || (job.userId && job.userId !== requestUser?.id)) return json(404, { error: 'Run not found.' });
+        const lead = (job.leads || []).find((l) => l.id === planMatch[2]);
+        if (!lead) return json(404, { error: 'Candidate not found.' });
+        if (req.method === 'GET') return json(200, { plan: job.outreachPlans?.[lead.id] || null });
+        const plan = await outreachPlan(lead, job, { env, fetchImpl: modelFetch });
+        const fresh = store.get(job.id) || job; fresh.outreachPlans = { ...(fresh.outreachPlans || {}), [lead.id]: plan }; store.save(fresh);
+        return json(200, { plan });
+      }
+      // «Find more investors like these»: devuelve el brief y los rasgos usados; el cliente lo lanza como una corrida normal (se verifica de nuevo).
+      const similarMatch = path.match(/^\/api\/research\/jobs\/([a-f0-9-]+)\/similar$/);
+      if (similarMatch && req.method === 'POST') {
+        const job = store.get(similarMatch[1]); const requestUser = authUser(req);
+        if (!job || (job.userId && job.userId !== requestUser?.id)) return json(404, { error: 'Run not found.' });
+        const ids = new Set(Array.isArray(body.leadIds) ? body.leadIds.map(String) : []);
+        const picked = (job.leads || []).filter((l) => ids.has(l.id));
+        if (!picked.length) return json(400, { error: 'Select at least one investor.' });
+        const orgs = picked.map((l) => (l.person ? (job.leads || []).find((o) => !o.person && o.org === l.org) || l : l));
+        return json(200, similarBrief(job, orgs));
+      }
+      // Seguimiento de candidatos guardados: responsable, estado, siguiente acción y fecha, notas y actividades (propuestas, programadas, hechas).
+      if (path === '/api/research/tracking' || path.startsWith('/api/research/tracking/')) {
+        const requestUser = authUser(req);
+        if (!requestUser) return json(401, { error: 'Sign in to continue.' });
+        if (req.method === 'GET' && path === '/api/research/tracking') return json(200, { items: store.tracking(requestUser.id) });
+        const key = decodeURIComponent(path.split('/').at(-1) || '');
+        if (!key || key === 'tracking') return json(400, { error: 'Missing item.' });
+        if (req.method === 'DELETE') { store.deleteTracking(requestUser.id, key); return json(200, { ok: true }); }
+        if (req.method === 'PUT') {
+          try { const item = validateTracking(body, key, store.tracking(requestUser.id).find((x) => x.key === key)); store.saveTracking(requestUser.id, item); return json(200, { item }); }
+          catch (e) { return json(400, { error: e.message }); }
+        }
       }
       // Asistente de la corrida: conversación con memoria sobre UNA corrida (GET historial, POST mensaje). Solo datos de la corrida.
       const chatMatch = path.match(/^\/api\/research\/jobs\/([a-f0-9-]+)\/chat$/);

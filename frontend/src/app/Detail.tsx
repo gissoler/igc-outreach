@@ -1,3 +1,4 @@
+import { FollowUpPanel, InvestorDossier, OutreachPlanPanel } from './Desk';
 import { ArrowLeft, ArrowRight, Bookmark, BookmarkCheck, Check, ChevronRight, Copy, ExternalLink, FileSearch, Globe, Lightbulb, Lock, Mail, MessageSquareText, MoreHorizontal, Plus, RefreshCw, Route, ThumbsDown, TriangleAlert, UserRound, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { BrowseAction, BrowseShot, ContactPerson, Evidence, Job, Lead } from '../researchApi';
@@ -10,7 +11,7 @@ import {
   RELATION_LABEL, STATUS_HELP, type GEdge, type GNode, type Graph, type NormHop, type NormPath, type TraceNode,
   isFamilyOffice, warmPlanOf,
 } from './model';
-import { BucketBadge, ConfBadge, Drawer, Info, LinkBadge, Meter, ScorePill } from './ui';
+import { BucketBadge, Drawer, Info, LinkBadge, Meter } from './ui';
 import { ResultTracePanel } from './Audit';
 
 /* ───────── Evidence ───────── */
@@ -74,8 +75,7 @@ export function ExecutiveExplain({ lead, job, level, onLevel }: { lead: Lead; jo
     <div className="x-explain-tabs" role="tablist" aria-label="Level">{([[1, 'Summary'], [2, 'Factors'], [3, 'Full trace']] as const).map(([v, l]) => <button key={v} role="tab" aria-selected={level === v} className={level === v ? 'on' : ''} onClick={() => onLevel(v)}><b>{v}</b>{l}</button>)}</div>
     {level === 1 && <p className="x-oneliner">{oneLiner(lead, job)}</p>}
     {level === 2 && <div className="x-factors">
-      <p className="x-formula"><span>Score</span> = Σ (value × weight) × coverage = <b>{raw.toFixed(1)}</b> × <b>{c.penalty}</b> = <b className="x-hl">{lead.score}</b><Info wide label="How to read factors">Each factor is 0–1 times its weight. The sum is halved when there is no verified evidence. It ranks candidates; it is not a probability of investment.</Info></p>
-      <ul>{c.items.map((f) => <li key={f.key}><span className="x-f-label">{f.label}</span><span className="x-f-bar" aria-hidden="true"><i style={{ width: `${f.max ? (f.points / 40) * 100 : 0}%` }} /><s style={{ width: `${(f.missed / 40) * 100}%` }} /></span><span className="x-f-num"><b>{f.points}</b> / {f.max}</span></li>)}</ul>
+      <p className="x-muted">Factors used internally to order candidates inside each tier (no score is shown): {c.items.filter((f) => f.points > 0).map((f) => f.label.toLowerCase()).join(', ') || 'none with evidence'}.{raw > 0 && c.penalty < 1 ? ' Weighted down: no verified evidence.' : ''}</p>
     </div>}
     {level === 3 && <DecisionTrace lead={lead} job={job} expanded />}
   </section>;
@@ -434,7 +434,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
         </div>
       </div>
       <dl className="ld-grid c3">
-        <div><dt>Status</dt><dd>{BUCKET_LABEL[lead.bucket]} · #{lead.rank}</dd></div>
+        <div><dt>Status</dt><dd>{lead.investorFit ? ({ meets: 'Meets your criteria', alternative: 'Alternative', verify: 'Verify first', excluded: 'Ruled out' } as Record<string, string>)[lead.investorFit.tier] : BUCKET_LABEL[lead.bucket]}</dd></div>
         <div><dt>{isGrant ? 'Application state' : 'Warm path'}</dt><dd>{isGrant ? (lead.grantPlan?.label || 'Review eligibility') : p ? `${fmtPct(p.strength)} · ${p.hopCount} hop${p.hopCount === 1 ? '' : 's'}` : 'None'}</dd></div>
         <div><dt>Contact</dt><dd title={contactOf(lead, demo).value || ''}>{contactOf(lead, demo).name ? `${contactOf(lead, demo).name}${contactOf(lead, demo).channel ? ` · ${contactOf(lead, demo).channel}` : ''}` : contactOf(lead, demo).channel || 'Not published'}</dd></div>
       </dl>
@@ -449,7 +449,10 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
     {tab === 'overview' && <>
       <Essentials lead={lead} demo={demo} isGrant={isGrant} mailText={emailText} />
 
-      {isFamilyOffice(lead) && <FamilyOfficeFit lead={lead} demo={demo} />}
+      <InvestorDossier lead={lead} job={job} />
+      <OutreachPlanPanel lead={lead} job={job} />
+      {!demo && !isGrant && <FollowUpPanel lead={lead} job={job} />}
+      {isFamilyOffice(lead) && !lead.investorFit && <FamilyOfficeFit lead={lead} demo={demo} />}
 
       {risks.length > 0 && <section className="ld-sec">
         <header className="ld-h"><h3>Risks <span className="pl-badge rose">{risks.length}</span></h3></header>
@@ -489,7 +492,7 @@ export function CandidatePanel({ lead, job, onFeedback, onEvidence, onHop, onClo
 
     {why && <Drawer open onClose={() => setWhy(false)} title="Why this ranking" subtitle={name} width={640} tone={demo ? 'demo' : undefined}>
       <div className="ld-why">
-        <div className="ld-why-row"><ScorePill score={lead.score} big /><ConfBadge value={lead.confidence} /><BucketBadge bucket={lead.bucket} /></div>
+        <div className="ld-why-row"><BucketBadge bucket={lead.bucket} /></div>
         <p className="x-muted">{action.detail}</p>
         <ExecutiveExplain lead={lead} job={job} level={level} onLevel={setLevel} />
         <WarmPathPanel lead={lead} job={job} onEvidence={onEvidence} onHop={onHop} />

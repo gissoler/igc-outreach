@@ -7,6 +7,7 @@ import { randomUUID } from 'node:crypto';
 import { norm } from './core.mjs';
 import { fleetConfig } from '../analysis/fleet.mjs';
 import { intakeContext, rememberConversation, RESPONSE_SYSTEM, isDescriptiveLabel } from './intakeContext.mjs';
+import { INVESTOR_TYPES, parseExclusions, parseInvestorTypes, parseTypeMode, TYPE_LABEL } from './investors/fit.mjs';
 
 export const OBJECTIVES = ['investment', 'grant', 'partnering', 'sponsorship', 'debt'];
 export const ENTITY_TYPES = ['for_profit', 'nonprofit', 'academic'];
@@ -24,7 +25,10 @@ export const FIELDS = [
   { path: 'product.one_liner', label: 'What it does', kind: 'text', required: true, ask: 'In one sentence: what does the product do, and for whom?' },
   { path: 'industry.sectors', label: 'Sector', kind: 'list', required: true, ask: 'Which sector or therapeutic area do you work in?' },
   { path: 'product.maturity', label: 'Stage', kind: 'enum', options: MATURITY, ask: 'Where is it: idea, prototype, preclinical, clinical or on the market?' },
-  { path: 'geography', label: 'Geography', kind: 'list', required: true, ask: 'Where do you operate and which countries do you want funding from?' },
+  { path: 'geography', label: 'Where funders should be', kind: 'list', required: true, ask: 'Where do you operate and which countries do you want funding from?' },
+  { path: 'investor.types', label: 'Investor types', kind: 'enumList', options: INVESTOR_TYPES },
+  { path: 'investor.types_mode', label: 'Only those investor types, or those first', kind: 'enum', options: ['only', 'prefer'], ask: 'Should I show only those investors, or show them first and list other direct investors separately as alternatives?' },
+  { path: 'company.listing', label: 'Private or publicly listed', kind: 'enum', options: ['public', 'private'] },
   { path: 'funding.amount_usd', label: 'Amount (USD)', kind: 'number', ask: 'Roughly how much do you need, in USD?' },
   { path: 'funding.round', label: 'Round', kind: 'enum', options: ROUNDS, ask: 'Do you know what kind of round this is (for example pre-seed, seed, Series A, growth, or a private placement if the company is listed)? Not every company fits those labels; if yours does not, say so or skip it.' },
   { path: 'company.traction', label: 'Proof it works so far', kind: 'text', investor: true, ask: 'What proof do you have so far that people want this or that it works? For example: 200 users, 3 pilots, $10k in revenue, a signed letter of intent or study results. Numbers help.' },
@@ -32,18 +36,18 @@ export const FIELDS = [
   { path: 'product.differentiation', label: 'Why you win', kind: 'text', investor: true, ask: 'Why will you win against the alternatives people use today?' },
   { path: 'product.business_model', label: 'Business model', kind: 'text', investor: true, ask: 'Who pays, how much, and how do you reach them?' },
   { path: 'company.team', label: 'Team', kind: 'text', investor: true, ask: 'Who is on the team, and why are you the right people to build this?' },
-  { path: 'competitors', label: 'Competitors', kind: 'list', ask: 'Which named companies or products are direct competitors? We use them to avoid conflicts.' },
-  { path: 'constraints', label: 'Constraints', kind: 'list', ask: 'Anything to avoid: investor types, countries, conflicts or terms?' },
+  { path: 'competitors', label: 'Organizations to exclude', kind: 'list', ask: 'Which named companies or products are direct competitors? We use them to avoid conflicts.' },
+  { path: 'constraints', label: 'Exclusions and constraints', kind: 'list', ask: 'Anything to avoid: investor types, countries, conflicts or terms?' },
   { path: 'organization.name', label: 'Organization you represent', kind: 'text', ask: 'Are you raising for that company directly or from another organization? e.g. IGC seeking sponsorship for Mentiva.' },
   { path: 'company.entity_type', label: 'Type of organization', kind: 'enum', options: ENTITY_TYPES, grant: true, ask: 'Who would receive the grant: a for-profit company, a nonprofit, or a university or research institute? Many calls only accept one of these.' },
-  { path: 'company.country', label: 'Country of the applicant', kind: 'text', grant: true, ask: 'In which country is the applicant based? Many calls only fund local applicants.' },
+  { path: 'company.country', label: 'Country where the company is based', kind: 'text', grant: true, ask: 'In which country is the applicant based? Many calls only fund local applicants.' },
   { path: 'company.state', label: 'State or region of the applicant', kind: 'text', grant: true, ask: 'In which state or region (and city) is the applicant based? State and regional programs fund only local applicants.' },
   { path: 'funding.applicant_role', label: 'How you can participate', kind: 'enum', options: APPLICANT_ROLES, grant: true, ask: 'Should I look for grants you can apply to directly, subcontractor or vendor routes, or both?' },
   { path: 'project.target_population', label: 'Target population', kind: 'text', grant: true, ask: 'Which population should the grant serve? For example, older adults in rural counties at risk of dementia.' },
   { path: 'funding.search_terms', label: 'Programs and search terms', kind: 'list', grant: true, ask: 'Which exact programs or phrases must the search preserve? For example, Rural Health Transformation Program, RHTP, rural health or dementia screening.' },
   { path: 'company.city', label: 'City of the applicant', kind: 'text' },
   { path: 'company.relation', label: 'Relationship to the company', kind: 'enum', options: RELATIONS },
-  { path: 'criteria', label: 'Criteria', kind: 'list' },
+  { path: 'criteria', label: 'What you want to see', kind: 'list' },
   { path: 'founder.title', label: 'Your role', kind: 'text' },
   { path: 'product.description', label: 'Description', kind: 'text' },
   { path: 'funding.timeline', label: 'Timeline', kind: 'text' },
@@ -265,7 +269,7 @@ function sanitize(path, value) {
   if (f.kind === 'number') { const v = typeof value === 'number' ? Math.round(value) : looseAmount(value); return v && v > 0 && v < 1e12 ? v : null; }
   if (path === 'company.entity_type') { const t = norm(value); return /non.?profit|not.for.profit|charit|foundation|\bngo\b|\bong\b|sin (?:animo|fines)/.test(t) ? 'nonprofit' : /universit|academic|college|research (?:institut|lab|cent)/.test(t) ? 'academic' : /for.?profit|compan|start.?up|corporat|\bllc\b|\binc\b|\bltd\b|\bsas\b|\bs\.?l\b/.test(t) ? 'for_profit' : null; }
   if (f.kind === 'enum') { const v = norm(value).replace(/ /g, f.path === 'funding.round' ? '-' : '_'); return f.options.includes(v) ? v : null; }
-  if (f.kind === 'enumList') { const v = (Array.isArray(value) ? value : [value]).map((x) => norm(x)).filter((x) => f.options.includes(x)); return v.length ? [...new Set(v)] : null; }
+  if (f.kind === 'enumList') { const v = (Array.isArray(value) ? value : [value]).map((x) => (f.options.includes(norm(x)) ? norm(x) : norm(x).replace(/ /g, '_'))).filter((x) => f.options.includes(x)); return v.length ? [...new Set(v)] : null; }
   if (f.kind === 'list') { const v = uniq((Array.isArray(value) ? value : listSplit(value)).map((x) => clip(x, path === 'constraints' || path === 'criteria' ? 200 : 80)).filter(Boolean)).slice(0, 12); return v.length ? v : null; }
   const v = clip(value, path === 'product.description' ? 1500 : LONG_TEXT.has(path) ? 600 : 220);
   return v || null;
@@ -334,6 +338,9 @@ export function openQuestions(s) {
   return ASK.filter((f) => {
     if (f.path === 'funding.round' && objectives.length && !objectives.includes('investment')) return false;
     if (f.grant && !objectives.includes('grant')) return false;
+    if (f.path === 'investor.types_mode' && !filled(s, 'investor.types')) return false;
+    // Compañía cotizada: su financiación es pública (PIPE, colocación); no se le pregunta por seed/Series ni por «tracción».
+    if (['funding.round', 'company.traction'].includes(f.path) && fieldValue(s, 'company.listing') === 'public') return false;
     const times = s.asked.filter((p) => p === f.path).length;
     return !filled(s, f.path) && !s.skipped.includes(f.path) && !s.unresolvedAnswers?.[f.path] && times < (inPlan(s, f.path) ? 2 : 1);
   });
@@ -341,7 +348,9 @@ export function openQuestions(s) {
 /** The assistant asks only what the plan needs, in the order the list defines. */
 export function nextQuestion(s) {
   const open = openQuestions(s);
-  const order = s.intakeContextVersion === 2 ? ['funding.objectives', 'company.name', 'product.one_liner', 'geography', 'company.entity_type', ...planFields(s)] : planFields(s);
+  const base = s.intakeContextVersion === 2 ? ['funding.objectives', 'company.name', 'product.one_liner', 'geography', 'company.entity_type', ...planFields(s)] : planFields(s);
+  // El usuario nombró un tipo de inversor: preferencia o restricción cambia la lista principal, así que se aclara pronto (una vez).
+  const order = filled(s, 'investor.types') ? [...base.slice(0, base.indexOf('product.one_liner') + 1), 'investor.types_mode', ...base.slice(base.indexOf('product.one_liner') + 1)] : base;
   return open.filter((f) => order.includes(f.path)).sort((a, b) => order.indexOf(a.path) - order.indexOf(b.path))[0] || null;
 }
 function conversationalQuestion(s, field) {
@@ -350,12 +359,151 @@ function conversationalQuestion(s, field) {
     'funding.objectives': `For ${subject}, are you looking for research grants, investment, a business partner, or another kind of funding?`,
     'company.name': 'Which company or organization would receive the funding?',
     'product.one_liner': 'What are you developing, and who would use it?',
-    'geography': 'Where is the applicant based, and which countries should the funding search cover?',
+    'geography': investmentOnly(s) ? 'Should I look for investors in a specific country or region, or worldwide? (Where your company is based is a separate detail.)' : 'Where is the applicant based, and which countries should the funding search cover?',
+    'investor.types_mode': `Should I show only ${typesLabel(s)}, or show them first and list other direct investors separately as alternatives?`,
     'company.entity_type': 'Would a company, nonprofit, or university submit the application?',
     'funding.use_of_funds': 'What would this funding let you achieve next?',
   })[field.path] || field.ask;
 }
 export const isPlanQuestion = inPlan;
+
+/* ───────── Inversores por chat (27-10, prueba IGC «family offices») ─────────
+   Una pasada determinista que corre SIEMPRE (con o sin modelo) sobre el mensaje del usuario: el modelo puede
+   olvidar un tipo de inversor, una exclusión o confundir el país de la empresa con la geografía de búsqueda;
+   el código lo comprueba con la frase literal. Correcciones posteriores reemplazan, no se suman. */
+const investmentOnly = (s) => { const g = fieldValue(s, 'funding.objectives') || []; return g.includes('investment') && !g.includes('grant'); };
+const TYPE_PLURAL = { family_office: 'family offices', venture_capital: 'venture capital firms', corporate_venture: 'corporate venture arms', angel: 'angel investors', private_equity: 'private equity firms', hedge_fund: 'hedge funds and public-market investors', crossover: 'crossover funds', foundation: 'foundations that invest' };
+const typesLabel = (s) => { const t = fieldValue(s, 'investor.types') || []; return t.length ? t.map((x) => TYPE_PLURAL[x] || x).join(' and ') : 'those investors'; };
+const GLOBAL_RX = /\b(?:global(?:ly)?|worldwide|world-wide|world wide|anywhere|any country|all (?:countries|regions)|internationally|international investors|not (?:just|only) (?:in )?(?:the )?(?:us|u\.s\.|usa|united states)|a nivel mundial|todo el mundo|cualquier pa[ií]s)\b/i;
+const BASED_RX = /\b(?:(US|U\.S\.|USA|American|[A-Z][a-z]+)[- ]based|based in (?:the )?([A-Z][\w.]*(?: [A-Z][\w.]*){0,2})|headquartered in (?:the )?([A-Z][\w.]*(?: [A-Z][\w.]*){0,2}))/;
+const COUNTRY_NAME = { US: 'United States', CA: 'Canada', UK: 'United Kingdom', ES: 'Spain', DE: 'Germany', FR: 'France', CO: 'Colombia', MX: 'Mexico', BR: 'Brazil', CL: 'Chile', AR: 'Argentina', PE: 'Peru' };
+const AMOUNT_UNKNOWN = /\b(?:amount|ticket|how much|raise size|check size)\b[^.]{0,60}\b(?:not (?:yet )?(?:set|decided|defined|known|fixed|determined)|unknown|tbd|undecided|open)\b|\bno (?:target )?amount\b[^.]{0,25}\b(?:set|decided|yet)\b|\b(?:don'?t|do not) know (?:the )?(?:amount|how much)\b|\bmonto\b[^.]{0,40}\b(?:no (?:est[aá] )?definido|desconocido)\b/i;
+const RUN_RX = /^(?:yes|yep|yeah|ok|okay|sure|go|go ahead|start|start it|start (?:the )?search(?: now)?|run|run it|run the search|search now|launch(?: it)?|let'?s (?:go|start|search|run)(?: it)?|do it|proceed|confirm(?:ed)?|looks good|that'?s (?:right|correct)|s[ií]|dale|adelante|empieza|ejecuta|busca)\b[^?]{0,60}$/i;
+export const isRunIntent = (text) => RUN_RX.test(String(text || '').trim()) && String(text).trim().length <= 80;
+const setReplace = (s, path, value, quote, changed, origin = 'conversation') => {
+  const clean = sanitize(path, value);
+  if (clean === null || JSON.stringify(s.fields[path]?.value) === JSON.stringify(clean)) return false;
+  const prev = s.fields[path]?.value;
+  s.fields[path] = { value: clean, origin, confidence: 'source', quote: clip(quote, 240), at: new Date().toISOString(), ...(prev !== undefined ? { previous: prev } : {}) };
+  s.skipped = s.skipped.filter((p) => p !== path);
+  if (s.unresolvedAnswers) delete s.unresolvedAnswers[path];
+  changed.add(path);
+  return true;
+};
+export function investorPass(s, message, changed = new Set()) {
+  const text = String(message || '').replace(/[’‘]/g, "'");
+  if (!text.trim()) return changed;
+  const put = (path, value, quote, origin = 'conversation') => { if (applyUpdate(s, { path, value, quote }, origin, text)) changed.add(path); };
+  const all = sentences(text);
+  const types = parseInvestorTypes(text);
+  if (!filled(s, 'funding.objectives') && !NEG_INTENT.test(norm(text)) && (INTENT_CTX.test(norm(text)) || /\b(?:find|look(?:ing)? for|want|need|search|could invest|raise|raising)\b/i.test(text)) && (types.length || /\b(?:invest(?:ors?|ment|ing)?|fund ?rais\w*|raise (?:money|capital|funds)|inversionistas?|inversores?)\b/i.test(text))) put('funding.objectives', ['investment'], text);
+  for (const sent of all) {
+    const t = parseInvestorTypes(sent);
+    if (!t.length || (/\b(?:exclude|excluding|avoid|without|except|excluir|evitar)\b/i.test(sent) && !/\b(?:prefer|want|looking|find|search|focus)\b/i.test(sent))) continue;
+    put('investor.types', t, sent);
+    const mode = parseTypeMode(sent); if (mode) setReplace(s, 'investor.types_mode', mode, sent, changed);
+  }
+  if (s.pending === 'investor.types_mode' && !changed.has('investor.types_mode')) { const mode = parseTypeMode(text) || (/^\s*(?:only|just|solo)\b/i.test(text) ? 'only' : /\b(?:both|either|any|also|others? too|alternatives?)\b/i.test(text) ? 'prefer' : ''); if (mode) setReplace(s, 'investor.types_mode', mode, text, changed); }
+  if (!filled(s, 'company.name')) {
+    const m = text.match(/\b(?:invest(?:ors?)? (?:in|for)|raise (?:money |capital |funds )?for|funding for|investors for)\s+([A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3})/) || text.match(/^\s*([A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3})\s+is an?\s+[^.]{0,120}\b(?:company|startup|biotech\w*|organization|business)\b/);
+    if (m && !/^(?:I|We|The|A|An|Our)$/.test(m[1])) put('company.name', m[1].replace(/[.,;:]+$/, ''), m[0]);
+  }
+  for (const sent of all) {
+    if (!filled(s, 'product.one_liner')) { const m = sent.match(/^\s*[A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3}\s+is an?\s+(.{12,220}?)\.?$/) || sent.match(/\b[A-Z][\w&.'-]*(?:\s+[A-Z][\w&.'-]*){0,3},\s+an?\s+((?:[\w-]+\s+){0,4}(?:startup|company|biotech|lab)\s+(?:building|developing|making|focused on|that)\s+.{8,200}?)\.?$/); if (m && /\b(?:company|startup|biotech\w*|platform|developer|focused|develop\w*)\b/i.test(m[1])) put('product.one_liner', m[1], sent); }
+    if (!filled(s, 'product.name')) { const m = sent.match(/\blead (?:candidate|asset|program|product|compound|drug)[,:]?\s+(?:is\s+)?([A-Z][\w]*(?:-[\w]+)+|[A-Z][A-Za-z0-9]{2,}(?:-\w+)?)/); if (m) put('product.name', m[1], sent); }
+    if (!filled(s, 'product.maturity')) { const m = mapMaturity(sent); if (m) put('product.maturity', m, sent); }
+    if (/\b(?:publicly (?:listed|traded)|public(?:ly)?[- ](?:listed|traded) company|listed (?:on|company)|(?:on|in) (?:the )?(?:nasdaq|nyse)|nyse american|otc markets|cotiza\w*)\b/i.test(sent) && !/\bnot (?:publicly )?(?:listed|traded)\b/i.test(sent)) setReplace(s, 'company.listing', 'public', sent, changed);
+    else if (/\b(?:privately held|private (?:\w+ )?(?:company|startup)|not (?:publicly )?(?:listed|traded))\b/i.test(sent)) setReplace(s, 'company.listing', 'private', sent, changed);
+    const based = sent.match(BASED_RX);
+    if (based) { const raw = based[1] || based[2] || based[3]; const code = mapGeo(raw === 'American' ? 'US' : raw)[0]; if (code || raw) setReplace(s, 'company.country', COUNTRY_NAME[code] || code || raw, sent, changed); }
+    if (/\b(?:show|include|want to (?:see|know|understand)|interested in|interesa|need)\b[^.]*\b(?:deals?|instruments?|warrants?|equity|investment style|style|contacts?)\b/i.test(sent)) put('criteria', [sent], sent);
+  }
+  // Geografía de los INVERSORES, distinta del país de la empresa. «globally/worldwide» reemplaza; «US-based» nunca la llena.
+  const globalSent = all.find((x) => GLOBAL_RX.test(x));
+  let geoSet = false;
+  if (globalSent) geoSet = setReplace(s, 'geography', ['GLOBAL'], globalSent, changed) || fieldValue(s, 'geography')?.[0] === 'GLOBAL';
+  else {
+    const target = all.map((x) => x.match(/\b(?:investors?|family offices?|funds?|search|look(?:ing)?|focus)\b[^.]{0,50}\b(?:in|from|across|based in)\s+((?:the )?[A-Z][\w.]*(?:(?:,| and| or) (?:the )?[A-Z][\w.]*){0,4})/)).find(Boolean);
+    const codes = target ? mapGeo(target[1]) : [];
+    if (codes.length) geoSet = setReplace(s, 'geography', codes, target[0], changed) || true;
+  }
+  const geo = s.fields.geography;
+  if (geo && !geoSet && geo.origin !== 'user' && BASED_RX.test(geo.quote || '') && !/\b(?:investors?|funders?|family offices?|search|from)\b/i.test(String(geo.quote).replace(BASED_RX, ''))) {
+    // Reparación: «US-based» llenó la geografía de búsqueda. Pasa a país de la empresa y la geografía queda desconocida.
+    if (!filled(s, 'company.country')) setReplace(s, 'company.country', COUNTRY_NAME[(geo.value || [])[0]] || (geo.value || [])[0], geo.quote, changed);
+    delete s.fields.geography; changed.add('geography');
+  }
+  if (fieldValue(s, 'company.listing') === 'public') {
+    if (!filled(s, 'funding.round') || fieldValue(s, 'funding.round') !== 'public') setReplace(s, 'funding.round', 'public', s.fields['company.listing'].quote, changed, 'derived:company.listing');
+    if (!filled(s, 'company.entity_type')) { s.fields['company.entity_type'] = { value: 'for_profit', origin: 'derived:company.listing', confidence: 'inferred', quote: s.fields['company.listing'].quote, at: new Date().toISOString() }; changed.add('company.entity_type'); }
+  }
+  for (const x of parseExclusions(text)) put('constraints', [x.quote], x.quote);
+  // «Exclude Acme Ventures»: un nombre propio que no es un tipo de inversor se excluye por nombre (se compara con cada organización).
+  for (const m of text.matchAll(/\b(?:[Ee]xclude|[Ee]xcluding|[Aa]void|[Nn]ot|[Ee]xcept|[Ee]xcluir|[Ee]vitar)\s+((?:[A-Z][\w&.'-]*)(?:\s+[A-Z][\w&.'-]*){0,3})/g)) {
+    const name = m[1].replace(/[.,;:]+$/, '');
+    if (!parseInvestorTypes(name).length && !/^(?:VC|VCs|Wealth|Advisers?|Advisors?|The|US|Any|All|Pharma)$/i.test(name.split(/\s+/)[0])) put('competitors', [name], m[0]);
+  }
+  if (AMOUNT_UNKNOWN.test(text) && !filled(s, 'funding.amount_usd') && !s.skipped.includes('funding.amount_usd')) { s.skipped.push('funding.amount_usd'); s.unknownNotes = { ...(s.unknownNotes || {}), 'funding.amount_usd': clip(text.match(new RegExp(`[^.]*${AMOUNT_UNKNOWN.source}[^.]*`, 'i'))?.[0] || text, 200) }; }
+  return changed;
+}
+
+const ROUND_LABEL = { public: 'public-company financing (e.g. PIPE or registered direct)', 'pre-seed': 'pre-seed', seed: 'seed', 'series-a': 'Series A', 'series-b': 'Series B', 'series-c': 'Series C', growth: 'growth' };
+const MATURITY_LABEL = { idea: 'idea stage', prototype: 'prototype or pilot', preclinical: 'preclinical', clinical_phase_1: 'Phase 1', clinical_phase_2: 'Phase 2', clinical_phase_3: 'Phase 3', marketed: 'on the market', other: 'stage not classified' };
+const geoLabel = (codes) => (codes || []).includes('GLOBAL') ? 'worldwide' : `in ${(codes || []).map((c) => COUNTRY_NAME[c] || c).join(', ')}`;
+/** Un único estado para el chat, el botón de búsqueda y el servidor: qué falta para empezar y qué se desconoce. */
+export function readiness(s) {
+  const goals = fieldValue(s, 'funding.objectives') || [];
+  const blocking = [];
+  if (!filled(s, 'company.name')) blocking.push('company.name');
+  if (!goals.length) blocking.push('funding.objectives');
+  if (!filled(s, 'product.one_liner') && !filled(s, 'product.description') && !(s.intakeContextVersion !== 2 && filled(s, 'product.name'))) blocking.push('product.one_liner');
+  if (s.intakeContextVersion !== 2 && !filled(s, 'product.name') && !goals.includes('investment') && filled(s, 'company.name') && !blocking.length) blocking.push('product.name');
+  const unknown = [];
+  const add = (path, label, impact) => { if (!filled(s, path)) unknown.push({ path, label, impact, said: s.skipped.includes(path) }); };
+  if (goals.includes('investment')) {
+    add('geography', 'where investors should be', 'no geographic filter is applied');
+    if (fieldValue(s, 'company.listing') !== 'public') add('funding.round', 'round type', 'stage fit is checked against each investor\'s stated focus only');
+    add('product.maturity', 'development stage', 'investor stage focus cannot be compared');
+    add('funding.amount_usd', 'target amount and ticket size', 'check sizes cannot be compared; nothing is assumed');
+    if (filled(s, 'investor.types') && !filled(s, 'investor.types_mode')) unknown.push({ path: 'investor.types_mode', label: `whether only ${typesLabel(s)} should appear`, impact: 'other investor types are listed separately as alternatives, never in the main list', said: false });
+  }
+  if (goals.includes('grant')) { add('company.entity_type', 'type of applicant', 'eligibility by entity type stays unconfirmed'); add('company.country', 'applicant country', 'national eligibility stays unconfirmed'); add('funding.apply_window', 'when you can apply', 'deadlines are not filtered by your dates'); }
+  return { canStart: !blocking.length, blocking: blocking.map((p) => ({ path: p, label: FIELD[p]?.label || p })), unknown, complete: !blocking.length && !unknown.length && !missingRequired(s).length };
+}
+/** Lo que se entendió, en una frase por bloque: lo que el chat muestra antes de buscar. */
+export function understoodSummary(s) {
+  const v = (p) => fieldValue(s, p);
+  const who = [v('company.name') || 'Your company', v('company.listing') === 'public' ? 'publicly listed' : v('company.listing') === 'private' ? 'privately held' : null, v('company.country') ? `based in ${v('company.country')}` : null].filter(Boolean);
+  const what = [String(v('product.one_liner') || v('product.description') || '').split(/(?<=\.)\s/)[0].replace(/\.$/, '') || null, v('product.name') && v('product.name') !== v('company.name') && !String(v('product.one_liner') || '').includes(v('product.name')) ? `lead product ${v('product.name')}` : null, v('product.maturity') ? MATURITY_LABEL[v('product.maturity')] : null].filter(Boolean);
+  const types = v('investor.types') || [];
+  const mode = v('investor.types_mode');
+  const lookFor = (v('funding.objectives') || []).includes('investment')
+    ? `${types.length ? typesLabel(s) : 'investors'}${v('geography') ? ` ${geoLabel(v('geography'))}` : ''}${v('funding.round') ? `, for ${ROUND_LABEL[v('funding.round')] || v('funding.round')}` : ''}${types.length && mode === 'only' ? ` (only ${typesLabel(s)})` : types.length && mode === 'prefer' ? ` (${typesLabel(s)} first; other direct investors listed separately as alternatives)` : ''}`
+    : (v('funding.objectives') || []).join(', ');
+  const excl = [...parseExclusions((v('constraints') || []).join('\n')).map((x) => x.label.toLowerCase()), ...(v('competitors') || [])];
+  const other = (v('constraints') || []).filter((c) => !parseExclusions(c).length && !(v('competitors') || []).some((n) => c.includes(n)));
+  return { who: who.join(', '), what: clip(what.join('; '), 260), lookFor, exclusions: [...excl, ...other.map((c) => clip(c, 120))], wants: (v('criteria') || []).map((c) => clip(c, 160)) };
+}
+export function summaryLine(s, changed = new Set()) {
+  const r = readiness(s); const u = understoodSummary(s);
+  const UPDATED = { geography: () => `investor geography: ${fieldValue(s, 'geography') ? geoLabel(fieldValue(s, 'geography')) : 'unknown'}`, 'investor.types_mode': () => (fieldValue(s, 'investor.types_mode') === 'only' ? `only ${typesLabel(s)}` : `${typesLabel(s)} first, others as alternatives`), constraints: () => 'exclusions', criteria: () => 'what you want to see', 'investor.types': () => `investor types: ${typesLabel(s)}`, 'company.listing': () => (fieldValue(s, 'company.listing') === 'public' ? 'publicly listed' : 'privately held'), 'company.country': () => `company based in ${fieldValue(s, 'company.country')}` };
+  const updated = [...changed].filter((p) => FIELD[p] && s.summaryShownAt && !['product.description', 'company.entity_type', 'funding.round', 'industry.sectors'].includes(p)).map((p) => (UPDATED[p] ? UPDATED[p]() : (FIELD[p].label || p).toLowerCase()));
+  const head = updated.length ? `Updated: ${[...new Set(updated)].join('; ')}. ` : '';
+  const facts = `I understand: ${u.who}${u.what ? ` — ${u.what}` : ''}. You're looking for ${u.lookFor}.${u.exclusions.length ? ` Excluding: ${u.exclusions.join('; ')}.` : ''}`;
+  const key = JSON.stringify([u, r.unknown.map((x) => x.path), r.blocking]);
+  if (s.summaryKey === key && !updated.length) return 'That doesn\'t change the search. Say “start” when you want me to search, or tell me what to correct.';
+  s.summaryKey = key; s.summaryShownAt = new Date().toISOString();
+  if (r.blocking.length) return `${head}${facts} Before searching I still need: ${r.blocking.map((x) => x.label.toLowerCase()).join(', ')}.`;
+  if (r.complete) return `${head}${facts} Your plan is complete for this search. Say “start” and I'll run it, or tell me what to correct.`;
+  const unknown = r.unknown.map((x) => `${x.label} (${x.impact})`).join('; ');
+  return `${head}${facts} I can start with this, but some details are still unknown: ${unknown}. Say “start” to search with these limits, or tell me what to correct.`;
+}
+const ANSWER_SYSTEM = `Answer the founder's question about their funding search in at most two plain English sentences. Use only the profile given and general, well-known facts about how investors work. If the answer depends on facts the search has not checked (a specific investor's rules, legal or tax advice), say so and that each candidate's sources will be checked. Do not promise results or give legal or financial advice. Reply ONLY JSON: {"answer": string}`;
+async function answerQuestion(s, message, { env, fetchImpl }) {
+  const t = intakeTargets(env)[0]; if (!t) return '';
+  try { const out = await askTarget(t, { env, system: ANSWER_SYSTEM, user: JSON.stringify({ profile: understoodSummary(s), question: message }), fetchImpl }); return clip(out?.answer, 400); } catch { return ''; }
+}
+const terminalLine = (s, changed, contextV2, modelReady) => (investmentOnly(s) ? summaryLine(s, changed) : contextV2 && modelReady ? reviewLine(s) : closingLine(s));
 /** Closing message when nothing is left to ask: either the plan is complete, or what is still missing and why. */
 /* Por qué cada dato cambia la búsqueda: se dice UNA vez, con UNA pregunta (antes: lista genérica «To build your plan I still need: …»). */
 export function closingLine(s) {
@@ -528,6 +676,16 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
   if (message || added.length) s.messages.push({ role: 'user', at: now, text: message, files: added.map((d) => d.name) });
   const changed = new Set();
   const pending = s.pending;
+  // «Start», «go ahead»… después del resumen: se busca con lo que hay, si el mismo estado que habilita el botón lo permite.
+  if (message && !added.length && s.summaryShownAt && !pending && isRunIntent(message)) {
+    const r = readiness(s);
+    const unknown = r.unknown.map((x) => x.label);
+    const text = r.canStart ? `Starting the search with what we have.${unknown.length ? ` Still unknown: ${unknown.join(', ')}; I won't assume them.` : ''}` : `I can't start yet: I still need ${r.blocking.map((x) => x.label.toLowerCase()).join(', ')}.`;
+    s.messages.push({ role: 'assistant', at: new Date().toISOString(), text, model: null });
+    if (env.INTAKE_CONTEXT_V2 === '1') rememberConversation(s);
+    s.updatedAt = new Date().toISOString();
+    return { session: s, changed: [], model: { used: false, error: null }, run: r.canStart };
+  }
   const hasModel = modelInfo(env).configured;
   const contextV2 = env.INTAKE_CONTEXT_V2 === '1';
   if (contextV2) {
@@ -603,6 +761,7 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
         if (!explicitUnknowns.has(u.path) && (!contextV2 || !s.skipped.includes(u.path) || (u.quote && norm(message).includes(norm(u.quote)))) && applyUpdate(s, u, 'model', corpus)) changed.add(u.path);
       }
       if (out.skipped && FIELD[out.skipped] && !filled(s, out.skipped) && !s.skipped.includes(out.skipped)) s.skipped.push(out.skipped);
+      if (message) investorPass(s, message, changed);
       modelAck = out.ack || '';
       modelQuestion = out.question || '';
       modelReply = out.ack || out.question ? '' : out.reply;
@@ -615,14 +774,14 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
           if (sectors.length && applyUpdate(s, { path: 'industry.sectors', value: sectors }, 'derived:product.one_liner', message)) changed.add('industry.sectors');
         }
         if (!added.length) deferUnmappedAnswer(s, pending, message, changed);
-        const remaining = openQuestions(s).filter((f) => inPlan(s, f.path));
-        if (!remaining.length) { modelReady = readyForReview(s); modelAck = ''; modelQuestion = ''; modelAsking = null; }
+        const remaining = openQuestions(s).filter((f) => inPlan(s, f.path) || f.path === 'investor.types_mode');
+        if (!remaining.length && !/\?/.test(message)) { modelReady = readyForReview(s); modelAck = ''; modelQuestion = ''; modelAsking = null; }
         else {
           try {
             const response = await callModel({ env, system: RESPONSE_SYSTEM, user: JSON.stringify({
               ...intakeContext(s, { message, budget: Number(env.INTAKE_CONTEXT_CHARS) || 18000 }),
               current_profile: compact(s), new_fields: [...changed], ready_for_review: readyForReview(s),
-              open_questions: remaining.map((f) => ({ path: f.path, label: f.label, suggested_question: f.ask, asked_count: s.asked.filter((p) => p === f.path).length })),
+              open_questions: remaining.map((f) => ({ path: f.path, label: f.label, suggested_question: conversationalQuestion(s, f), asked_count: s.asked.filter((p) => p === f.path).length })),
             }), fetchImpl });
             modelAck = response.ack; modelQuestion = response.question; modelAsking = response.asking;
             modelReply = ''; modelReady = response.ready && readyForReview(s);
@@ -639,6 +798,7 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
   if (!model.used) {
     // Red de seguridad por patrones: sin modelo configurado, o el modelo falló este turno.
     for (const d of added) for (const u of heuristicExtract(d.text)) if (applyUpdate(s, u, `document:${d.name}`, d.text)) changed.add(u.path);
+    if (message && !skipInput) investorPass(s, message, changed);
     if (message) {
       // Respuesta corta a una pregunta pendiente: se interpreta solo como respuesta (evita que
       // "IGC Pharma" como nombre de empresa se convierta también en sector).
@@ -670,6 +830,10 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
     if (answer?.value && applyUpdate(s, { path: pending, value: answer.value, quote: message }, 'conversation', message)) changed.add(pending);
   }
 
+  // Tipo de inversor, exclusiones, cotizada, país de la empresa vs. geografía de búsqueda: el código lo comprueba en cada turno.
+  if (message && !skipInput) investorPass(s, message, changed);
+  for (const d of added) if (!filled(s, 'company.listing') || !filled(s, 'investor.types')) investorPass(s, d.text.slice(0, 20000), changed);
+
   if (contextV2 && !added.length) deferUnmappedAnswer(s, pending, message, changed);
 
   // La pregunta la elige el modelo entre las abiertas; si elige algo ya lleno, saltado o repetido, se usa la regla.
@@ -677,7 +841,9 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
   const open = openQuestions(s);
   const chosen = model.used && modelAsking ? open.find((f) => f.path === modelAsking && inPlan(s, f.path)) : null;
   if (contextV2 && readyForReview(s)) modelReady = true;
-  const selected = contextV2 && modelReady ? null : chosen || nextQuestion(s);
+  // La línea final se calcula una sola vez por turno (antes, dos llamadas marcaban el primer resumen como «Updated»).
+  let terminal = null; const term = () => (terminal ??= terminalLine(s, changed, contextV2, modelReady));
+  const selected = contextV2 && modelReady ? (open.find((f) => f.path === 'investor.types_mode') || null) : chosen || nextQuestion(s);
   const q = selected && contextV2 ? { ...selected, ask: conversationalQuestion(s, selected) } : selected;
   if (model.used && !modelAck && !modelQuestion && modelReply) {
     // Formato antiguo (solo "reply"): se respeta, pero siempre termina en una pregunta abierta.
@@ -687,12 +853,17 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
     const lastAck = [...s.messages].reverse().find((m) => m.role === 'assistant')?.text || '';
     const repetitiveAck = contextV2 && /^(?:got it|(?:company|product|project) name (?:recorded|noted)|(?:company|product) (?:recorded|noted)|noted|thanks for sharing)\b/i.test(modelAck.trim());
     const ack = modelAck && !repetitiveAck && !sameGist(modelAck, lastAck) ? modelAck : '';
-    const question = !q ? closingLine(s)
-      : chosen && /\?\s*$/.test(modelQuestion) ? modelQuestion : q.ask;
+    const question = !q ? term()
+      : chosen && /\?\s*$/.test(modelQuestion) && !(investmentOnly(s) && ['geography', 'investor.types_mode'].includes(q.path)) ? modelQuestion : q.ask;
     modelReply = [ack || (modelReply && !q ? modelReply : ''), question].filter(Boolean).join(' ');
   }
   // A terminal turn cannot revive a skipped/exhausted question through model prose.
-  if (!q) modelReply = contextV2 && modelReady ? reviewLine(s) : closingLine(s);
+  if (!q) {
+    // Pregunta directa después del resumen: se responde con el perfil, sin inventar; un «Got it» no es una respuesta.
+    let answer = investmentOnly(s) && model.used && modelAck && /\?/.test(message) && !/^(?:got it|noted|ok(?:ay)?|understood|thanks?)\b[.!]?$/i.test(modelAck.trim()) ? modelAck : '';
+    if (!answer && /\?/.test(message) && hasModel && investmentOnly(s)) answer = await answerQuestion(s, message, { env, fetchImpl });
+    modelReply = [answer, term()].filter(Boolean).join(' ');
+  }
   s.pending = q?.path || null;
   if (q) s.asked.push(q.path);
   let reply = modelReply;
@@ -705,7 +876,7 @@ export async function runTurn(s, { text = '', documents = [], env = {}, fetchImp
     if (learned.length) parts.push(added.length ? 'That covers a good part of it.' : 'Got it.');
     else if (message && pending && !s.skipped.includes(pending)) parts.push('I couldn\'t get a clear detail from that.');
     if (q) parts.push(q.ask);
-    else parts.push(closingLine(s));
+    else parts.push(term());
     reply = parts.join(' ');
   }
   s.messages.push({ role: 'assistant', at: new Date().toISOString(), text: reply, model: model.used ? modelInfo(env).model : null });
@@ -792,6 +963,8 @@ export function toProfile(s, base, user, env = {}) {
       objectives, unresolved_answers: s.unresolvedAnswers || {}, maturity: v('product.maturity') || 'other', competitors, criteria: v('criteria') || [], constraints: v('constraints') || [],
       use_of_funds: v('funding.use_of_funds') || '', traction: v('company.traction') || '', team: v('company.team') || '', business_model: v('product.business_model') || '', differentiation: v('product.differentiation') || '', timeline: v('funding.timeline') || '', apply_window: v('funding.apply_window') || '', apply_from: (parseWindow(v('funding.apply_window'), env.today) || {}).from || '', apply_to: (parseWindow(v('funding.apply_window'), env.today) || {}).to || '', website: v('company.website') || '',
       applicant_role: v('funding.applicant_role') || '', target_population: v('project.target_population') || '', search_terms: v('funding.search_terms') || [],
+      investor_types: v('investor.types') || [], investor_types_mode: v('investor.types_mode') || '', listing: v('company.listing') || '',
+      unknown: readiness(s).unknown.map((x) => x.path), unknown_notes: s.unknownNotes || {},
       organization: v('organization.name') || '', relation: v('company.relation') || '', entity_type: v('company.entity_type') || '', country: v('company.country') || '', state: v('company.state') || '', city: v('company.city') || '',
       documents: s.documents.map((d) => ({ name: d.name, chars: d.chars, at: d.at })), evidence,
       plan: planResearch(s, env), confirmedAt: new Date().toISOString(),
@@ -804,5 +977,6 @@ export function publicIntake(s, env = {}) {
     id: s.id, messages: s.messages, pending: s.pending, confirmedAt: s.confirmedAt, updatedAt: s.updatedAt, skipped: s.skipped,
     documents: s.documents.map(({ text, ...d }) => ({ ...d, preview: clip(text, 280) })),
     fields: s.fields, unresolvedAnswers: s.unresolvedAnswers || {}, missing: missingRequired(s), planFields: planFields(s), plan: planResearch(s, env), model: modelInfo(env),
+    readiness: readiness(s), summary: understoodSummary(s), summaryShownAt: s.summaryShownAt || null,
   };
 }

@@ -2,6 +2,7 @@ import { GENERIC, grantMatch } from './grantMatch.mjs';
 import { applicantProfile, checkApplicant, screenCall } from './applicant.mjs';
 import { createHash } from 'node:crypto';
 
+import { applyInvestorFit } from './investors/fit.mjs';
 export const norm = (s = '') =>
   String(s)
     .normalize('NFKD')
@@ -113,7 +114,7 @@ export function validateBrief(input) {
   brief.strictTypes = input.strictTypes === true;
   // Contexto opcional del perfil confirmado: quién busca (organization), para qué empresa
   // (venture) y todo lo que el prerregistro capturó (criterios, restricciones, ronda...).
-  for (const [key, max] of [['organization', 200], ['venture', 200], ['oneLiner', 300], ['round', 40], ['constraints', 1000], ['useOfFunds', 500], ['timeline', 100], ['website', 300], ['entityType', 40], ['country', 60], ['state', 80], ['city', 80], ['applicantRole', 40], ['targetPopulation', 500], ['searchTerms', 500]]) {
+  for (const [key, max] of [['organization', 200], ['venture', 200], ['oneLiner', 300], ['round', 40], ['constraints', 1000], ['useOfFunds', 500], ['timeline', 100], ['website', 300], ['entityType', 40], ['country', 60], ['state', 80], ['city', 80], ['applicantRole', 40], ['targetPopulation', 500], ['searchTerms', 500], ['investorTypes', 200], ['investorTypesMode', 10], ['listing', 10], ['similarTo', 1500]]) {
     if (input[key] != null && (typeof input[key] !== 'string' || input[key].length > max))
       throw new Error(`Field ${key} is invalid.`);
     brief[key] = input[key]?.trim() || '';
@@ -145,7 +146,7 @@ export function makePlan(b) {
         ? 'Alzheimer artificial intelligence'
         : 'agitation'
       : b.industry,
-    summary: `${ventureOf(b) !== b.product ? `${ventureOf(b)} · ` : ''}${b.product}${b.organization && norm(b.organization) !== norm(ventureOf(b)) ? ` (backed by ${b.organization})` : ''}: ${b.fundingTypes.join(', ')} · ${b.stage}${b.round ? ` · ${b.round}` : ''} · ${b.geography}${b.amount ? ` · USD ${b.amount}` : ''}${b.constraints ? ` · avoid: ${b.constraints.slice(0, 120)}` : ''}`,
+    summary: `${ventureOf(b) !== b.product ? `${ventureOf(b)} · ` : ''}${b.product}${b.organization && norm(b.organization) !== norm(ventureOf(b)) ? ` (backed by ${b.organization})` : ''}: ${b.fundingTypes.join(', ')} · ${b.stage}${b.round ? ` · ${b.round}` : ''} · ${b.geography}${b.amount ? ` · USD ${b.amount}` : ''}${b.constraints ? ` · avoid: ${b.constraints.slice(0, 120)}` : ''}${b.similarTo ? ` · more like: ${b.similarTo.slice(0, 220)}` : ''}`,
     items: [
       ...(b.fundingTypes.includes('partnering')
         ? [
@@ -306,7 +307,8 @@ export function evaluate(
   const tokens = [...new Set(tokenSources.flatMap((x) => specific(x.value)))];
   const profile = applicantProfile(brief);
   const ranked = dedupe(leads).map((l) => {
-    const verified = l.evidence.filter((e) => e.verified);
+    // Persona añadida desde su organización: la evidencia de la organización cuenta como fuente verificada de la organización, no de la persona.
+    const verified = [...l.evidence, ...(l.orgEvidence || [])].filter((e) => e.verified);
     const hay = norm(
       `${l.title} ${l.searchText} ${l.evidence.map((e) => e.quote).join(' ')}`,
     );
@@ -474,9 +476,13 @@ export function evaluate(
       l.missing = [...new Set([...(l.missing || []), `Linked opportunity "${String(parent.title || parent.org).slice(0, 80)}" is ${parent.bucket === 'discarded' ? `discarded (${String(parent.discard || '').slice(0, 80)})` : 'not verified as open and eligible'}`])];
     }
   }
+  // Tipo de inversor, función de la persona y exclusiones del chat (27-10): decide lista principal, alternativas y por verificar.
+  applyInvestorFit(ranked, brief);
+  const TIER_ORDER = { meets: 0, alternative: 1, verify: 2, excluded: 3 };
+  const tierOf = (l) => TIER_ORDER[l.investorFit?.tier] ?? 1;
   const ranks = { top: 0, radar: 0, discarded: 0 };
   return ranked
-    .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
+    .sort((a, b) => tierOf(a) - tierOf(b) || b.score - a.score || a.id.localeCompare(b.id))
     .map((l) => ({ ...l, rank: ++ranks[l.bucket] }));
 }
 const dropText = (ver) => {

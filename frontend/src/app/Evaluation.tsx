@@ -11,6 +11,9 @@ import {
   warmPlanOf, warmShort,
 } from './model';
 import { ContactsTable, HowWeGotHere, ResultsIntro } from './Contacts';
+import { RaiseDesk } from './Desk';
+import type { Brief } from '../researchApi';
+import { API } from '../researchApi';
 import { DemoRibbon, Drawer, EmptyState, Info, LinkBadge, Meter } from './ui';
 import { advisorApi } from '../analysisApi';
 import { RunAuditPanel } from './Audit';
@@ -191,12 +194,11 @@ export function ExecutiveSummary({ job, s, apify, jev, onMetric, onSelectLead, o
       <section className="pl-card pl-list">
         <header><h3>Candidates <span className="pl-badge dark">{leads.length}</span></h3><Seg value={list} onChange={setList} options={[['top', 'Priority'], ['radar', 'Radar']]} /></header>
         <table className="pl-table">
-          <thead><tr><th>Name</th><th>Warm path</th><th>Status</th><th className="num">Score</th><th /></tr></thead>
+          <thead><tr><th>Name</th><th>Warm path</th><th>Status</th><th /></tr></thead>
           <tbody>{leads.slice(0, 6).map((l, i) => { const p = bestPath(l); const c = CHIP[p ? p.status : 'none']; return <tr key={l.id}>
             <td><span className="pl-who"><i className={`pl-av ${TINTS[i % 4]}`}>{initialsOf(l.person || l.org)}</i><span><b>{l.person || l.org}</b><small>{l.person ? `${l.role || 'Role not confirmed'} · ${l.org}` : clip(l.title, 48)}</small></span></span></td>
             <td>{p ? <span className="pl-two"><b>{p.hopCount} {p.hopCount === 1 ? 'hop' : 'hops'} · {fmtPct(p.strength)}</b><small><Route size={12} /> {p.introducer ? `via ${p.introducer}` : 'direct'}</small></span> : (() => { const w = warmPlanOf(l); return w ? <span className="pl-two"><b>{warmShort(w)}</b><small>{w.steps[0]?.what.slice(0, 44)}…</small></span> : <small className="pl-mut">—</small>; })()}</td>
             <td><span className={`pl-chip ${c.cls}`}>{c.label}</span></td>
-            <td className="num"><b>{l.score}</b></td>
             <td className="num"><button className="pl-view" onClick={() => onSelectLead(l.id)}><Eye size={14} /> View</button></td>
           </tr>; })}</tbody>
         </table>
@@ -258,7 +260,7 @@ function SourcesTab({ job, s, apify, jev, health, onMetric }: { job: Job; s: Sum
 
 function MetricBody({ k, job, s, apify, jev, health, onSelectLead }: { k: MetricKey; job: Job; s: Summary; apify: ApifyStatus; jev: JevStatus; health: SourceHealthItem[]; onSelectLead: (id: string) => void }) {
   const demo = isDemoJob(job);
-  const LeadList = ({ ids }: { ids: string[] }) => <ul className="x-linklist">{ids.map((id) => job.leads.find((l) => l.id === id)).filter(Boolean).slice(0, 25).map((l) => <li key={l!.id}><button onClick={() => onSelectLead(l!.id)}>#{l!.rank} {l!.person || l!.org}<small>{l!.score}/100 · {CONF_LABEL[l!.confidence]}</small></button></li>)}</ul>;
+  const LeadList = ({ ids }: { ids: string[] }) => <ul className="x-linklist">{ids.map((id) => job.leads.find((l) => l.id === id)).filter(Boolean).slice(0, 25).map((l) => <li key={l!.id}><button onClick={() => onSelectLead(l!.id)}>#{l!.rank} {l!.person || l!.org}<small>{l!.investorFit ? l!.investorFit.tier : l!.bucket}</small></button></li>)}</ul>;
   switch (k) {
     case 'candidates': {
       const byProvider = new Map<string, number>();
@@ -313,13 +315,24 @@ function useAdvisorPill(job: Job, enabled: boolean): AdvisorPill | null {
 }
 
 /* ───────── Dashboard completo ───────── */
-export function EvaluationDashboard({ job, history, account, onSelectJob, onFeedback, onGo, onNewEvaluation, onOpenRun, onOpenAdvisor, selectedLeadId, onSelectLead }: {
+export function EvaluationDashboard({ job, history, account, onSelectJob, onFeedback, onGo, onNewEvaluation, onOpenRun, onOpenAdvisor, selectedLeadId, onSelectLead, onStartBrief }: {
   job: Job; history: History | null; account: NetworkGraphData | null; onSelectJob?: (id: string) => void;
   onFeedback: ((id: string, d: 'approve' | 'reject', reason: string, note: string) => Promise<unknown>) | null;
   onGo: (t: 'network' | 'setup' | 'sources') => void; onNewEvaluation?: () => void; onOpenRun?: () => void; onOpenAdvisor?: () => void;
-  selectedLeadId: string | null; onSelectLead: (id: string | null) => void;
+  selectedLeadId: string | null; onSelectLead: (id: string | null) => void; onStartBrief?: (brief: Brief, why: string) => void;
 }) {
   const demo = isDemoJob(job);
+  const [similarMsg, setSimilarMsg] = useState('');
+  /* "Find more investors like these": the server derives the features from the selected investors' evidence; the new run verifies every candidate again. */
+  const findSimilar = async (ids: string[]) => {
+    setSimilarMsg('');
+    try {
+      const r = await fetch(`${API}/jobs/${job.id}/similar`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ leadIds: ids }) });
+      const d = await r.json(); if (!r.ok) throw new Error(d.error || `HTTP ${r.status}`);
+      setSimilarMsg(`Searching for investors like ${d.seeds.join(', ')}. Features used: ${d.features.join(' · ')}. Every new candidate is verified again; the selected ones are excluded from the new list.`);
+      onStartBrief?.(d.brief, d.features.join(' · '));
+    } catch (e) { setSimilarMsg(e instanceof Error ? e.message : 'Could not start'); }
+  };
   const s = useMemo(() => summarize(job), [job]);
   const apify = useMemo(() => apifyStatus(job), [job]);
   const jev = useMemo(() => jevStatus(job), [job]);
@@ -356,7 +369,7 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
     <header className="pl-head">
       <span className="pl-crumb">Evaluations <ChevronRight size={12} /> {job.brief.venture || job.brief.company}{job.mode === 'demo' ? ' · Demo' : ''}</span>
       <div className="pl-title-row">
-        <div className="pl-title"><h1>{tab === 'contactos' && job.leads.length ? (grantsOnly ? 'Grant matches' : 'Who to contact') : tab === 'resumen' && job.leads.length ? 'Analytics' : tab === 'fuentes' && job.leads.length ? 'Sources' : (job.brief.venture || job.brief.company)}</h1><span className="pl-count">{tab === 'contactos' ? `${s.buckets.top + s.buckets.radar} ${grantsOnly ? 'in pipeline' : 'shortlisted'}` : `${s.total} ${grantsOnly ? 'opportunities' : 'candidates'}`}</span><span className={`pl-chip ${statusChip[0]}`}>{statusChip[1]}</span></div>
+        <div className="pl-title"><h1>{tab === 'contactos' && job.leads.length ? (grantsOnly ? 'Grant matches' : 'Who to contact') : tab === 'resumen' && job.leads.length ? 'Analytics' : tab === 'fuentes' && job.leads.length ? 'Sources' : (job.brief.venture || job.brief.company)}</h1><span className="pl-count">{tab === 'contactos' ? (grantsOnly ? `${s.buckets.top + s.buckets.radar} in pipeline` : `${job.leads.filter((l) => l.investorFit?.tier === 'meets').length} meet your criteria · ${s.buckets.radar} to review`) : `${s.total} ${grantsOnly ? 'opportunities' : 'candidates'}`}</span><span className={`pl-chip ${statusChip[0]}`}>{statusChip[1]}</span></div>
         <div className="pl-actions">
           {job.leads.length > 0 && <div className="pl-seg" role="tablist" aria-label="Evaluation sections">{tabs.map(([k, l]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{k === 'contactos' ? 'List' : l}</button>)}</div>}
           {!demo && job.leads.length > 0 && <button className="pl-btn" onClick={() => setChatOpen(true)}><MessageSquare size={14} /> Ask</button>}
@@ -370,7 +383,7 @@ export function EvaluationDashboard({ job, history, account, onSelectJob, onFeed
       {running ? 'Results appear when it ends.' : 'No source returned candidates. Check source health or widen sector or geography.'}
       {!running && <><div className="pl-row even"><ApifyCard s={apify} /><JevCard s={jev} /></div><SourceHealth job={job} items={health} /></>}
     </EmptyState> : <>
-      {tab === 'contactos' && <div className="pl-tabpanel ct"><ResultsIntro job={job} /><ContactsTable job={job} selectedId={selectedLeadId} onOpen={(id) => select(id)} /><HowWeGotHere job={job} s={s} health={health} onSources={() => setTab('fuentes')} /></div>}
+      {tab === 'contactos' && <div className="pl-tabpanel ct">{job.brief.fundingTypes.includes('investment') ? <>{similarMsg && <p className="x-note" role="status">{similarMsg}</p>}<RaiseDesk job={job} selectedId={selectedLeadId} onOpen={(id) => select(id)} onSimilar={!demo && onStartBrief ? (ids) => void findSimilar(ids) : undefined} /></> : <><ResultsIntro job={job} /><ContactsTable job={job} selectedId={selectedLeadId} onOpen={(id) => select(id)} /></>}<HowWeGotHere job={job} s={s} health={health} onSources={() => setTab('fuentes')} /></div>}
       {tab === 'resumen' && <ExecutiveSummary job={job} s={s} apify={apify} jev={jev} onMetric={setMetric} onSelectLead={select} onGo={onGo} onOpenAdvisor={onOpenAdvisor} history={history} onSelectJob={onSelectJob} />}
       {tab === 'fuentes' && <SourcesTab job={job} s={s} apify={apify} jev={jev} health={health} onMetric={setMetric} />}
     </>}

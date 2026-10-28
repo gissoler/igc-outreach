@@ -68,6 +68,7 @@ export type IntakeSummary = {
   objectives: string[]; maturity: string; competitors: string[]; criteria: string[]; constraints: string[];
   use_of_funds: string; timeline: string; apply_window?: string; apply_from?: string; apply_to?: string; website: string; organization?: string; relation?: string; entity_type?: string; country?: string; state?: string; city?: string;
   applicant_role?: string; target_population?: string; search_terms?: string[];
+  investor_types?: string[]; investor_types_mode?: string; listing?: string; unknown?: string[];
   documents: { name: string; chars: number; at: string }[];
   evidence: Record<string, { origin: string; confidence: string; quote: string }>;
   plan?: { objectives: string[]; steps: { goal: string; source: string; why: string; status: string; cost: string }[]; skipped: { source: string; reason: string }[]; rules: string[] };

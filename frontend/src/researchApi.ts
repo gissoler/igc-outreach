@@ -25,6 +25,12 @@ export type Brief = {
   excludeCompetitors: boolean;
   strictTypes: boolean;
   linkedinUrl?: string;
+  /** Investor types asked in the chat (family_office, venture_capital…), whether only those, and listed/private. */
+  investorTypes?: string;
+  investorTypesMode?: string;
+  listing?: string;
+  /** "Find more like these": the selected investors and the features used. */
+  similarTo?: string;
   /** Organización que busca (p. ej. IGC) cuando es distinta de la empresa financiada. */
   organization?: string;
   /** Empresa o proyecto que recibe la financiación (p. ej. Mentiva). */
@@ -176,6 +182,12 @@ export type Lead = {
   opportunityType?: 'challenge' | 'prize' | 'accelerator' | 'fellowship' | 'open_call' | string;
   /** Tipo de inversor verificado por código (hoy solo «family_office»). */
   investorType?: 'family_office' | string | null;
+  /** Fit with what the user asked (27-10): tier, entity type with its quote, role fit, deals, instruments, gaps, next step. */
+  investorFit?: InvestorFit;
+  /** Investor dossier by field (thesis, stage, geography, contact, recent, deal) with quote and URL. */
+  investorEvidence?: Record<string, { quote?: string; url?: string; [k: string]: unknown } | null>;
+  /** For people found at an organization: evidence about the organization, not about the person. */
+  orgEvidence?: Evidence[];
   /** Inversión directa citada en el sector: la prueba de encaje de un family office que no publica tesis. */
   directInvestment?: { quote: string; url: string; from: 'portfolio' | 'own_page' | 'news' | string | null; year: number | null; terms: string[] };
   status: string;
@@ -447,3 +459,16 @@ export async function browsePage(jobId: string, leadId: string, body: BrowseActi
 export function closeBrowse(jobId: string, leadId: string) {
   void fetch(`${leadPath(jobId, leadId)}/browse`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'close' }), keepalive: true }).catch(() => {});
 }
+
+export type InvestorDeal = { company: string; year: number | null; instruments: string[]; url: string; quote: string; source: string; amount: { value: string; kind: 'round_size' | 'reported_participation' } | null };
+export type InvestorFit = {
+  tier: 'meets' | 'alternative' | 'verify' | 'excluded'; excludedBy: string | null; reasons: string[]; gaps: string[]; nextAction: string; personLevel?: boolean;
+  entity: { type: string; status: 'sourced' | 'name_only' | 'unknown'; quote: string | null; url: string | null; nameOnly?: boolean };
+  role: { value: 'investing' | 'leadership' | 'operational' | 'unknown'; title: string | null } | null;
+  deals: InvestorDeal[]; instruments: { instrument: string; quote: string; url: string }[];
+  listed: { value: 'listed_evidence' | 'private_only' | 'unknown'; quote?: string | null; url?: string | null };
+};
+export type PlanItem = { text: string; basis: 'fact' | 'inference' | 'proposal'; source?: string | null };
+export type OutreachPlan = { objective: PlanItem[]; who: PlanItem[]; channel: PlanItem[]; angle: PlanItem[]; supportingDeals: PlanItem[]; materials: PlanItem[]; draft: { subject: string; body: string; note: string }; followUp: PlanItem[]; conditions: PlanItem[]; questions: PlanItem[]; unknown: string[]; facts: { id: string; text: string; url: string | null; about: string }[]; by: string; note?: string | null; createdAt: string };
+export type TrackingActivity = { id?: string; kind: 'proposed' | 'scheduled' | 'done'; text: string; date?: string; at?: string };
+export type TrackingItem = { key: string; jobId: string; leadId: string; name: string; org: string; owner: string; status: string; nextAction: string; nextDate: string; lastInteraction: string | null; notes: { text: string; at: string }[]; activities: TrackingActivity[]; updatedAt: string };
